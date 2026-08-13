@@ -1,0 +1,183 @@
+\documentclass{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A counterexample to dimension-two stabilization for Mn(S7)},
+  pdfauthor={Owen Shen},
+  pdfsubject={Additively idempotent semirings and generated varieties},
+  pdfkeywords={additively idempotent semiring, matrix semiring, identity, variety}
+}
+
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\V}{\mathsf{V}}
+
+\newtheorem{theorem}{Theorem}
+
+\title[Dimension-two stabilization for $\M_n(S_7)$]
+{A counterexample to dimension-two stabilization for $\M_n(S_7)$}
+
+\author{Owen Shen}
+\address{Operations Research Center, Massachusetts Institute of Technology,
+Cambridge, Massachusetts 02139, USA}
+\email{owenshen@mit.edu}
+\date{August 2026}
+
+\subjclass[2020]{Primary 16Y60; Secondary 03C05, 08B15}
+\keywords{additively idempotent semiring, matrix semiring, identity, variety}
+
+\begin{document}
+
+\begin{abstract}
+Jiao and Ren asked whether
+$\V(\M_n(S_7))=\V(\M_{n+1}(S_7))$ for every $n\geq 2$ and suggested
+that the chain may stabilize at dimension two. We show that this is false:
+the identity
+\[
+ x+y+x^2+y^2 \approx x+y+x^2+y^2+yx
+\]
+holds in $\M_2(S_7)$ and fails in $\M_3(S_7)$. Consequently,
+$\V(\M_2(S_7))\subsetneq\V(\M_3(S_7))$. The same identity fails in
+$\M_n(S_7)$ for every $n\geq 3$.
+\end{abstract}
+
+\maketitle
+
+An \emph{additively idempotent semiring} is an algebra $(S,+,\cdot)$
+whose additive reduct is a commutative idempotent semigroup, whose
+multiplicative reduct is a semigroup, and in which multiplication distributes
+over addition. For such an algebra $A$, let $\V(A)$ denote the variety it
+generates. Let $S_7=\{1,a,\infty\}$ be the additively idempotent semiring
+with Cayley tables
+\[
+\begin{array}{c|ccc}
+ + & 1 & a & \infty \\ \hline
+ 1 & 1 & \infty & \infty \\
+ a & \infty & a & \infty \\
+ \infty & \infty & \infty & \infty
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+ \cdot & 1 & a & \infty \\ \hline
+ 1 & 1 & a & \infty \\
+ a & a & \infty & \infty \\
+ \infty & \infty & \infty & \infty .
+\end{array}
+\]
+For $n\geq 2$, let $\M_n(S_7)$ be the semiring of $n\times n$ matrices
+over $S_7$. Jiao and Ren proved that $\M_n(S)$ embeds into
+$\M_{n+1}(S)$ for every additively idempotent semiring $S$ and every
+$n\geq 2$. They asked whether the resulting chain for $S_7$ is constant
+from dimension two onward and observed that their nilpotency result suggests
+an affirmative answer \cite[Theorem~2.1 and Section~5]{JiaoRen}. We show
+that the inclusion at $n=2$ is strict.
+
+\begin{theorem}\label{thm:main}
+The identity
+\begin{equation}\label{eq:identity}
+ x+y+x^2+y^2 \approx x+y+x^2+y^2+yx
+\end{equation}
+holds in $\M_2(S_7)$ and fails in $\M_n(S_7)$ for every $n\geq 3$.
+Consequently,
+\[
+ \V(\M_2(S_7))\subsetneq\V(\M_n(S_7))
+ \qquad(n\geq 3).
+\]
+In particular,
+$\V(\M_2(S_7))\subsetneq\V(\M_3(S_7))$.
+\end{theorem}
+
+\begin{proof}
+Let $X,Y\in\M_2(S_7)$ and set
+\[
+ P=X+Y+X^2+Y^2.
+\]
+We prove $P+YX=P$ entrywise. From the Cayley tables, a finite nonempty
+sum in $S_7$ is $1$ precisely when all of its summands are $1$, and is
+$a$ precisely when all of its summands are $a$. Also, a product is $1$
+only when both factors are $1$, while $sa=as=a$ holds only for $s=1$.
+
+Fix $i,j\in\{1,2\}$. If $P_{ij}=\infty$, then
+$(P+YX)_{ij}=P_{ij}$. Suppose $P_{ij}=1$. Then
+$(X^2)_{ij}=(Y^2)_{ij}=1$. Hence, for each $k\in\{1,2\}$,
+\[
+ Y_{ik}Y_{kj}=1
+ \quad\text{and}\quad
+ X_{ik}X_{kj}=1.
+\]
+Thus $Y_{ik}=X_{kj}=1$ for each $k$, so $(YX)_{ij}=1$.
+
+Suppose instead that $P_{ij}=a$. Then
+\[
+ X_{ij}=Y_{ij}=(X^2)_{ij}=(Y^2)_{ij}=a.
+\]
+We have $i\neq j$, since otherwise the summand
+$X_{ii}^2=a^2=\infty$ would force $(X^2)_{ii}=\infty$.
+Since $i\neq j$ and the matrices are $2\times2$, the summation indices
+are precisely $i$ and $j$, and therefore
+\[
+ a=(X^2)_{ij}=X_{ii}a+aX_{jj}.
+\]
+Both summands must be $a$, so $X_{ii}=X_{jj}=1$. The same argument gives
+$Y_{ii}=Y_{jj}=1$. Consequently,
+\[
+ (YX)_{ij}=Y_{ii}X_{ij}+Y_{ij}X_{jj}=1\cdot a+a\cdot1=a.
+\]
+This proves \eqref{eq:identity} in $\M_2(S_7)$.
+
+For failure in dimension three, take
+\[
+ X=\begin{pmatrix}
+ 1&1&1\\
+ 1&1&1\\
+ a&a&1
+ \end{pmatrix},
+ \qquad
+ Y=\begin{pmatrix}
+ 1&1&1\\
+ a&1&1\\
+ a&1&1
+ \end{pmatrix}.
+\]
+At entry $(3,1)$,
+\[
+ X_{31}=Y_{31}=a,
+ \qquad
+ (X^2)_{31}=a\cdot1+a\cdot1+1\cdot a=a,
+\]
+\[
+ (Y^2)_{31}=a\cdot1+1\cdot a+1\cdot a=a,
+ \qquad
+ (YX)_{31}=a\cdot1+1\cdot1+1\cdot a=\infty.
+\]
+Thus the two sides of \eqref{eq:identity} have respective $(3,1)$ entries
+$a$ and $\infty$, so the identity fails in $\M_3(S_7)$.
+
+By the embedding theorem of Jiao and Ren,
+$\M_3(S_7)$ embeds into $\M_n(S_7)$ for every $n\geq 3$; hence
+\eqref{eq:identity} fails in every such $\M_n(S_7)$. Their theorem also
+gives $\M_2(S_7)\hookrightarrow\M_n(S_7)$, and therefore
+$\V(\M_2(S_7))\subseteq\V(\M_n(S_7))$. Since an algebra and the variety
+it generates satisfy the same identities, \eqref{eq:identity} makes the
+inclusion strict.
+\end{proof}
+
+Theorem~\ref{thm:main} gives a negative answer to the question of Jiao and
+Ren and disproves stabilization at $\V(\M_2(S_7))$. It does not distinguish
+consecutive varieties from dimension three onward and therefore does not
+determine whether the chain stabilizes at a later dimension.
+
+\begin{thebibliography}{1}
+
+\bibitem{JiaoRen}
+J.~Jiao and M.~Ren,
+\emph{The finite basis problem for matrix semirings $\M_n(S_7)$},
+arXiv:2607.09677v1 [math.RA], 2026.
+
+\end{thebibliography}
+
+\end{document}

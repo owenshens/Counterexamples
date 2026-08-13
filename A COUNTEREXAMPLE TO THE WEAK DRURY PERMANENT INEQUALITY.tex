@@ -1,0 +1,236 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\setcounter{MaxMatrixCols}{12}
+
+\newcommand{\permanent}{\operatorname{per}}
+\newcommand{\PhiOne}{\Phi_1}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title[A counterexample to the weak Drury inequality]
+{A Counterexample to the Weak Drury Permanent Inequality}
+
+\author{Owen Shen}
+\address{Operations Research Center, Massachusetts Institute of Technology,
+Cambridge, MA 02139, USA}
+\email{owenshen@mit.edu}
+\date{}
+
+\subjclass[2020]{Primary 15A15; Secondary 15B48, 15A45}
+\keywords{permanent, positive semidefinite matrix, Gram matrix, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Zhang recorded as an open problem a weak consequence of the Drury permanent
+conjecture for Hermitian positive semidefinite matrices. We give an exact
+$12\times12$ Gaussian-integer Gram matrix of rank two for which the proposed
+inequality is reversed. Rank two is the least possible rank of a
+counterexample, and the least possible order lies between $4$ and $12$.
+Positive definite correlation matrix counterexamples exist in every order at
+least $12$.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+For an $m\times m$ matrix $M=(m_{jk})$, write
+\[
+  \permanent M=\sum_{\sigma\in S_m}\prod_{j=1}^m m_{j,\sigma(j)}.
+\]
+For a matrix $A$ of order $n$ and distinct indices $j,k$, let
+$A[\widehat{j,k}]$ be the principal submatrix obtained by deleting rows and
+columns $j$ and $k$, and set
+\begin{equation}\label{eq:phi}
+  \PhiOne(A)=\sum_{k=2}^n |a_{1k}|^2\,
+  \permanent A[\widehat{1,k}].
+\end{equation}
+The permanent of the empty matrix is understood to be $1$.
+
+\begin{theorem}\label{thm:main}
+Let $i^2=-1$, let $A=V^*V$, and let
+\[
+\resizebox{0.98\textwidth}{!}{$
+V=\begin{pmatrix}
+1&1&7&7&9&5&5&7&9&5&5&0\\
+0&-2&5&-4+3i&2-6i&8+6i&-3+9i&-4-3i&2+6i&-3-9i&8-6i&1
+\end{pmatrix}.$}
+\]
+Then $A$ is Hermitian positive semidefinite of order $12$ and rank $2$, and
+\begin{align*}
+  \permanent A
+    &=463\,995\,226\,880\,175\,960\,000\,000,\\
+  \PhiOne(A)
+    &=464\,101\,796\,319\,782\,967\,000\,000.
+\end{align*}
+Hence
+\[
+  \PhiOne(A)-\permanent A
+  =106\,569\,439\,607\,007\,000\,000>0.
+\]
+\end{theorem}
+
+Zhang~\cite[p.~315, Eq.~(21)]{Zhang2016} recorded the inequality
+\begin{equation}\label{eq:weak}
+  \PhiOne(A)\leq\permanent A
+\end{equation}
+as an open problem for Hermitian positive semidefinite $A$. It is an immediate
+consequence of the stronger Drury permanent conjecture
+\cite[p.~315, Eq.~(20)]{Zhang2016}, which Hutchinson~\cite{Hutchinson2017}
+disproved with a $4\times4$ complex correlation matrix. Following
+Hutchinson's indexing, the relevant minor is
+$B_{k-1,k-1}=A[\widehat{1,k}]$. Thus Theorem~\ref{thm:main} disproves exactly
+Zhang's surviving weak inequality~\eqref{eq:weak}.
+
+As printed, Paksoy~\cite[Eq.~(1.1)]{Paksoy2023} uses order-$(n-1)$ principal
+minors in the second term, giving a nonhomogeneous formula different from
+both equations~(20) and~(21) of Zhang. The real matrix in
+\cite[Eq.~(1.3)]{Paksoy2023} satisfies the intended weak inequality, since
+\[
+  \PhiOne(A)=\frac{38673}{25000}
+  <\frac{2879693}{800000}=\permanent A.
+\]
+
+\section{Exact verification}
+
+\begin{lemma}\label{lem:ranktwo}
+Let $V=(v_1,\ldots,v_m)\in\mathbb C^{2\times m}$, where
+$v_j=(x_j,y_j)^{\mathsf T}$, and put $G=V^*V$. If
+\[
+  \prod_{j=1}^m(x_j+y_jz)=\sum_{r=0}^m c_rz^r,
+\]
+then
+\begin{equation}\label{eq:ranktwo}
+  \permanent G=\sum_{r=0}^m r!(m-r)!\,|c_r|^2.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Expand
+$\prod_j(\overline{x_j}x_{\sigma(j)}+\overline{y_j}y_{\sigma(j)})$
+over subsets $S\subseteq\{1,\ldots,m\}$, where $S$ records the rows in which
+the $y$-term is chosen. If $|S|=r$, grouping permutations by
+$T=\sigma(S)$ gives
+\[
+ \sum_{\sigma\in S_m}
+ \prod_{j\notin S}x_{\sigma(j)}
+ \prod_{j\in S}y_{\sigma(j)}
+ =r!(m-r)!\sum_{|T|=r}
+ \prod_{k\notin T}x_k\prod_{k\in T}y_k
+ =r!(m-r)!c_r.
+\]
+Summing the conjugate prefactors over all $S$ of size $r$ gives
+$\overline{c_r}$, and \eqref{eq:ranktwo} follows.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The first and last columns of $V$ are $(1,0)^{\mathsf T}$ and
+$(0,1)^{\mathsf T}$, so $A=V^*V\succeq0$ has rank $2$.
+Lemma~\ref{lem:ranktwo}, applied to all twelve columns and then after deleting
+columns $1$ and $k$, gives the following exact values. Grouped indices have
+the same weight and minor permanent.
+\[
+\begin{array}{c|c|r}
+ k & |a_{1k}|^2 & \permanent A[\widehat{1,k}]\\ \hline
+ 2       & 1  & 9\,076\,601\,601\,430\,046\,100\,000\\
+ 3       & 49 & 1\,684\,042\,529\,828\,861\,700\,000\\
+ 4,8     & 49 & 1\,687\,819\,148\,108\,486\,100\,000\\
+ 5,9     & 81 & 1\,042\,294\,059\,228\,024\,900\,000\\
+ 6,11    & 25 &   362\,453\,951\,893\,503\,780\,000\\
+ 7,10    & 25 &   402\,529\,981\,049\,836\,740\,000
+\end{array}
+\]
+Also $a_{1,12}=0$. Substitution into \eqref{eq:phi}, with multiplicity two
+for each grouped pair, gives the values in the theorem. Since all input lies
+in $\mathbb Z[i]$, the calculation is exact.
+\end{proof}
+
+\section{Consequences}
+
+\begin{corollary}\label{cor:minimal}
+Rank two is the least possible rank of a counterexample to \eqref{eq:weak}.
+If $n_{\min}$ denotes the least possible order, then
+$4\leq n_{\min}\leq12$.
+\end{corollary}
+
+\begin{proof}
+If $A=uu^*$ has rank at most one and
+$P=\prod_{j=1}^n|u_j|^2$, then
+\[
+  \permanent A=n!P,
+  \qquad
+  \PhiOne(A)=(n-1)!P=\frac1n\permanent A.
+\]
+For order $2$, $\permanent A-\PhiOne(A)=a_{11}a_{22}\geq0$. For order $3$,
+write
+\[
+ A=\begin{pmatrix}
+ a&b&c\\ \overline b&d&e\\ \overline c&\overline e&f
+ \end{pmatrix}\succeq0.
+\]
+Then
+\[
+ \permanent A-\PhiOne(A)
+ =\det A+2a|e|^2+d|c|^2+f|b|^2\geq0.
+\]
+The theorem supplies the upper bounds.
+\end{proof}
+
+\begin{corollary}\label{cor:pd}
+For every $N\geq12$, some positive definite Hermitian correlation matrix of
+order $N$ violates \eqref{eq:weak}.
+\end{corollary}
+
+\begin{proof}
+For every positive diagonal $D=\operatorname{diag}(d_1,\ldots,d_n)$,
+\[
+ \permanent(DAD)=\Bigl(\prod_{j=1}^n d_j^2\Bigr)\permanent A,
+ \qquad
+ \PhiOne(DAD)=\Bigl(\prod_{j=1}^n d_j^2\Bigr)\PhiOne(A).
+\]
+The diagonal entries of the matrix in Theorem~\ref{thm:main} are positive, so
+diagonal normalization gives a rank-two correlation matrix $A_0$ with the
+same strict violation. Set $C=A_0\oplus I_{N-12}$, omitting the identity block
+when $N=12$. Then
+$\PhiOne(C)-\permanent C=\PhiOne(A_0)-\permanent A_0>0$. The same remains
+true for $C+\varepsilon I_N$ when $\varepsilon>0$ is sufficiently small.
+This matrix is positive definite, and a final diagonal normalization preserves
+the violation.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Hutchinson2017}
+G.~Hutchinson,
+\emph{A counterexample to the Drury permanent conjecture},
+Special Matrices \textbf{5} (2017), 301--302.
+\href{https://doi.org/10.1515/spma-2017-0022}
+{doi:10.1515/spma-2017-0022}.
+
+\bibitem{Paksoy2023}
+V.~E. Paksoy,
+\emph{A permanent inequality for positive semidefinite matrices},
+Electron. J. Linear Algebra \textbf{39} (2023), 71--77.
+\href{https://doi.org/10.13001/ela.2023.7701}
+{doi:10.13001/ela.2023.7701}.
+
+\bibitem{Zhang2016}
+F.~Zhang,
+\emph{An update on a few permanent conjectures},
+Special Matrices \textbf{4} (2016), 305--316.
+\href{https://doi.org/10.1515/spma-2016-0030}
+{doi:10.1515/spma-2016-0030}.
+
+\end{thebibliography}
+
+\end{document}
