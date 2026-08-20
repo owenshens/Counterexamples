@@ -1,0 +1,166 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Non-Cayley Vertex-Transitive 3-Rainbow Domination Regular Graph},
+  pdfsubject={Rainbow domination in cubic vertex-transitive graphs},
+  pdfkeywords={rainbow domination, Cayley graph, vertex-transitive graph, cubic graph}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\gr}{\gamma_{r3}}
+
+\title[A non-Cayley vertex-transitive 3-RDR graph]
+{A Non-Cayley Vertex-Transitive\\
+3-Rainbow Domination Regular Graph}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C25}
+\keywords{rainbow domination, Cayley graph, vertex-transitive graph, cubic graph}
+
+\begin{document}
+
+\begin{abstract}
+We exhibit a connected cubic vertex-transitive graph $X$ of order $108$ such
+that $\gr(X)=54$ and $X$ is not a Cayley graph.  The graph is
+$\mathrm{CVT}[108,42]$ in the cubic vertex-transitive census of
+Poto\v{c}nik, Spiga, and Verret.  Its optimal $3$-rainbow dominating function
+is explicit, and its non-Cayley property follows from an exact computation of
+its full automorphism group.  This answers the non-Cayley existence question
+in Kuzman's Question~\textup{(Q5)} for $d=3$.
+\end{abstract}
+
+\maketitle
+
+A \emph{$3$-rainbow dominating function} on a graph $G$ is a map
+$f\colon V(G)\to 2^{\{1,2,3\}}$ such that
+\[
+ f(v)=\varnothing
+ \quad\Longrightarrow\quad
+ \bigcup_{u\in N(v)}f(u)=\{1,2,3\}.
+\]
+Its weight is $w(f)=\sum_{v\in V(G)}|f(v)|$, and the minimum possible
+weight is the $3$-rainbow domination number $\gr(G)$.  A cubic graph $G$ is
+\emph{$3$-rainbow domination regular}, or \emph{$3$-RDR}, when
+$\gr(G)=|V(G)|/2$.  Kuzman asked whether a non-Cayley vertex-transitive
+$3$-RDR graph exists~\cite[Question~\textup{(Q5)}]{Kuzman2025}.
+
+\begin{theorem}\label{thm:main}
+Let $X$ be the graph specified in Appendix~\ref{app:witness}.  Then $X$ is a
+connected cubic vertex-transitive non-Cayley graph of order $108$, and
+\[
+ \gr(X)=54.
+\]
+Consequently, non-Cayley vertex-transitive $3$-RDR graphs exist.
+\end{theorem}
+
+\begin{proof}
+Decoding the sparse6 string in Appendix~\ref{app:witness} gives a connected
+cubic graph on $108$ vertices.  It is isomorphic to the census graph
+$\mathrm{CVT}[108,42]$~\cite{PSV2013,CensusData}.
+
+Set
+\begin{align*}
+C_1={}&\{4,5,18,19,23,33,52,54,60,61,67,74,78,79,83,86,104,107\},\\
+C_2={}&\{8,10,11,12,21,35,40,55,58,63,65,72,80,82,84,98,99,101\},\\
+C_3={}&\{1,20,24,26,31,34,37,38,39,41,50,56,76,85,88,97,100,103\}.
+\end{align*}
+These sets are pairwise disjoint and each has size $18$.  Every vertex outside
+$C_1\cup C_2\cup C_3$ has exactly one neighbor in each $C_i$.  Hence the
+assignment
+\[
+ f(v)=
+ \begin{cases}
+  \{i\},&v\in C_i,\\
+  \varnothing,&v\notin C_1\cup C_2\cup C_3
+ \end{cases}
+\]
+is a $3$-rainbow dominating function of weight $54$.
+
+For completeness, let $g$ be any $3$-rainbow dominating function on a cubic
+graph $G$ of order $n$, let $w=w(g)$, and put
+$V_0=\{v:g(v)=\varnothing\}$.  Each vertex of $V_0$ receives all three colors
+from its neighborhood, while each unit of weight is counted at most three
+times.  Thus
+\[
+ 3|V_0|
+ \leq \sum_{v\in V_0}\sum_{u\in N(v)}|g(u)|
+ \leq 3w.
+\]
+Also $|V(G)\setminus V_0|\leq w$, so $n\leq 2w$.  Therefore
+$\gr(G)\geq n/2$, and the displayed function proves $\gr(X)=54$.
+
+It remains to verify the symmetry assertions.  An exhaustive enumeration of
+all adjacency-preserving permutations gives, for $A=\Aut(X)$,
+\[
+ |A|=216,
+ \qquad A\text{ is transitive},
+ \qquad |[A,A]|=54,
+ \qquad A/[A,A]\cong C_2\times C_2.
+\]
+Consequently, $A$ has exactly three subgroups of index $2$.  Each has two
+vertex orbits, both of size $54$.  If $X$ were a Cayley graph, $A$ would
+contain a regular subgroup of order $108$; such a subgroup would have index
+$2$ in $A$ and would be transitive, a contradiction.  Hence $X$ is
+non-Cayley.
+
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:main} settles the non-Cayley existence question in
+Kuzman's Question~\textup{(Q5)} for $d=3$.  No claim is made here about
+minimum order or the cases $d\geq4$.
+\end{remark}
+
+\appendix
+\section{The witness}\label{app:witness}
+
+Concatenate the following four strings without whitespace and decode the
+result in standard sparse6 format.  Number the decoded vertices
+$0,1,\ldots,107$ and then add $1$ to every label.
+
+\begin{center}
+\footnotesize
+\verb+:~?@k_GAA_WAC`WM@_gWGaWiF_wQDb?yNcHEL`g]GaWgPcpOUd`]Wc`e+\\
+\verb+YexUJbGuMGw}OEhw_GiGchY]ggXMSdX]WeQ]jJAymJzApkjMsjYE\fh}+\\
+\verb+_grIcOIS}hbMvMRqwMbu{Njs~oKFAoz`CpZlNjYijjI{okTHRqcpOqst+\\
+\verb+PsTJLTKlTmzXHlzeyVz|@VlhZVLp\rK|bqDfIre@cstPfvd|dxEXf+
+\end{center}
+
+\begin{thebibliography}{9}
+
+\bibitem{Kuzman2025}
+B.~Kuzman,
+\emph{On cubic rainbow domination regular graphs},
+Discrete Appl. Math. \textbf{373} (2025), 26--38.
+\href{https://doi.org/10.1016/j.dam.2025.04.046}
+{doi:10.1016/j.dam.2025.04.046}.
+
+\bibitem{PSV2013}
+P.~Poto\v{c}nik, P.~Spiga, and G.~Verret,
+\emph{Cubic vertex-transitive graphs on up to 1280 vertices},
+J. Symbolic Comput. \textbf{50} (2013), 465--477.
+\href{https://doi.org/10.1016/j.jsc.2012.09.002}
+{doi:10.1016/j.jsc.2012.09.002}.
+
+\bibitem{CensusData}
+J.~Azarija, K.~Ber\v{c}i\v{c}, F.~Koprivec, T.~Marc, P.~Poto\v{c}nik,
+P.~Rotar, P.~Spiga, G.~Verret, and J.~Vidali,
+\emph{Cubic vertex-transitive graphs on up to 1280 vertices},
+Zenodo, version 1 (2022).
+\href{https://doi.org/10.5281/zenodo.6576526}
+{doi:10.5281/zenodo.6576526}.
+
+\end{thebibliography}
+
+\end{document}

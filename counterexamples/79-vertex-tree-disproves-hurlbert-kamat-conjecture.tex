@@ -1,0 +1,216 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\I}{\mathcal I}
+
+\title{A 79-Vertex Counterexample to Conjecture~4.1 of Hurlbert and Kamat}
+\subjclass[2020]{05C69, 05D05}
+\keywords{independent set, maximum star center, HK tree, tree,
+Erd\H{o}s--Ko--Rado}
+\date{}
+
+\hypersetup{
+  pdftitle={A 79-Vertex Counterexample to Conjecture 4.1 of Hurlbert and Kamat}
+}
+
+\begin{document}
+
+\begin{abstract}
+We exhibit a tree on $79$ vertices with no vertex of degree two such that,
+for $r=18$, a degree-three vertex is contained in more independent $r$-sets
+than any leaf. Thus the tree is not $18$-HK, disproving Conjecture~4.1 of
+Hurlbert and Kamat. The comparison is certified by exact
+independence-polynomial identities.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For a graph $G$ and $1\le r\le \alpha(G)$, let $\I^r(G)$ be the family of
+independent $r$-subsets of $V(G)$, and let
+\[
+\I_v^r(G)=\{A\in\I^r(G):v\in A\}.
+\]
+A vertex $v$ is a \emph{maximum $r$-center} if $|\I_v^r(G)|$ is maximum over
+$V(G)$. Following Estrugo and Pastine~\cite{EstrugoPastine}, a tree is
+$r$-HK if some leaf is a maximum $r$-center, and is HK if it is $r$-HK for
+every admissible $r$.
+
+Counterexamples to the unrestricted assertion that every tree is HK are
+known~\cite{Borg,FeghaliJohnsonThomas}. Hurlbert and Kamat subsequently
+conjectured that every tree with no vertex of degree two is
+HK~\cite[Conjecture~4.1]{HurlbertKamat}; see also
+\cite[Section~4]{HurlbertSurvey}. We give a counterexample.
+
+\begin{theorem}\label{thm:main}
+There is a tree $T$ on $79$ vertices, with no vertex of degree two, and a
+vertex $c$ of degree three such that
+\[
+|\I_c^{18}(T)|
+=1{,}526{,}033{,}336{,}050{,}350
+>
+\max_{u\text{ a leaf of }T}|\I_u^{18}(T)|
+=1{,}524{,}522{,}945{,}307{,}798.
+\]
+Consequently, $T$ is not $18$-HK, and Conjecture~4.1 of Hurlbert and Kamat
+is false.
+\end{theorem}
+
+\section{Construction and verification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $t_1=9$ and $t_2=t_3=8$. Define $T$ by
+\[
+\begin{aligned}
+V(T)={}&\{c\}\cup\{h_i:1\le i\le3\}
+\cup\{s_{ij}:1\le i\le3,\ 1\le j\le t_i\}\\
+&\cup\{\ell_{ijk}:1\le i\le3,\ 1\le j\le t_i,\ k\in\{1,2\}\},
+\end{aligned}
+\]
+and with edges
+\[
+ch_i,\qquad h_is_{ij},\qquad s_{ij}\ell_{ijk}
+\]
+for all admissible indices. Every vertex other than $c$ has a unique
+neighbor closer to $c$, so $T$ is a tree. Moreover,
+\[
+|V(T)|=1+3+3(t_1+t_2+t_3)=79.
+\]
+Also,
+\[
+\deg(c)=\deg(s_{ij})=3,\qquad
+\deg(h_i)=t_i+1\in\{9,10\},\qquad
+\deg(\ell_{ijk})=1,
+\]
+so $T$ has no vertex of degree two. The three vertices $h_i$ together with
+all $50$ leaves form an independent set, so $18\le\alpha(T)$.
+
+For a graph $F$, write
+\[
+P_F(z)=\sum_{k\ge0}i_k(F)z^k,
+\]
+where $i_k(F)$ is the number of independent $k$-sets of $F$. For every graph
+$G$ and vertex $v\in V(G)$,
+\begin{equation}\label{eq:star}
+|\I_v^r(G)|=[z^{r-1}]P_{G-N_G[v]}(z),
+\end{equation}
+where $N_G[v]$ is the closed neighborhood of $v$.
+
+A support vertex $s_{ij}$ together with its two leaf neighbors induces a
+three-vertex path, whose independence polynomial is
+\[
+S(z)=1+3z+z^2.
+\]
+For $t\ge0$, set
+\[
+H_t(z)=S(z)^t+z(1+z)^{2t}.
+\]
+This is the independence polynomial of a branch with one hub, $t$ support
+vertices, and two leaves adjacent to each support vertex: the first term
+omits the hub, and the second includes it.
+
+Deleting $N_T[c]$ leaves $25$ disjoint three-vertex paths, and hence
+\begin{equation}\label{eq:center}
+P_{T-N_T[c]}(z)=S(z)^{25}.
+\end{equation}
+The leaves form two orbits. Let $u_8$ be a leaf in a branch with eight
+support vertices, and let $u_9$ be a leaf in the branch with nine support
+vertices. After deleting a leaf and its support vertex, its sibling remains
+isolated. Splitting the remaining graph according to whether $c$ is chosen
+gives
+\begin{align}
+P_{T-N_T[u_8]}(z)
+  &=(1+z)\bigl(zS(z)^{24}+H_9(z)H_8(z)H_7(z)\bigr),
+    \label{eq:leaf8}\\
+P_{T-N_T[u_9]}(z)
+  &=(1+z)\bigl(zS(z)^{24}+H_8(z)^3\bigr).
+    \label{eq:leaf9}
+\end{align}
+
+For nonnegative integers $q,m$, with the convention $\binom{n}{k}=0$ for
+$k<0$ or $k>n$, exact coefficients are obtained from
+\begin{equation}\label{eq:coeff}
+[z^m]S(z)^q
+=
+\sum_{j=\max\{0,m-q\}}^{\lfloor m/2\rfloor}
+\binom{q}{j}\binom{q-j}{m-2j}3^{m-2j}
+\end{equation}
+and
+\[
+[z^m]H_t(z)=[z^m]S(z)^t+\binom{2t}{m-1}.
+\]
+Applying \eqref{eq:coeff} and ordinary coefficient convolution to
+\eqref{eq:center}--\eqref{eq:leaf9} yields
+\begin{align*}
+[z^{17}]P_{T-N_T[c]}(z)
+  &=1{,}526{,}033{,}336{,}050{,}350,\\
+[z^{17}]P_{T-N_T[u_8]}(z)
+  &=1{,}524{,}522{,}945{,}307{,}798,\\
+[z^{17}]P_{T-N_T[u_9]}(z)
+  &=1{,}521{,}164{,}183{,}552{,}880.
+\end{align*}
+In particular,
+\[
+|\I_c^{18}(T)|-|\I_{u_8}^{18}(T)|
+=1{,}510{,}390{,}742{,}552>0.
+\]
+By \eqref{eq:star}, the star centered at $c$ is larger than every
+leaf-centered $18$-star. Hence no leaf is a maximum $18$-center, and $T$ is
+not $18$-HK.
+\end{proof}
+
+\medskip
+\noindent\emph{Remark.} No minimality claim is made for the order of the
+construction.
+
+\begin{thebibliography}{9}
+
+\bibitem{Borg}
+P.~Borg,
+\emph{Stars on trees},
+Discrete Math. \textbf{340} (2017), no.~5, 1046--1049.
+\href{https://doi.org/10.1016/j.disc.2016.11.002}
+{doi:10.1016/j.disc.2016.11.002}.
+
+\bibitem{EstrugoPastine}
+E.~J.~J. Estrugo and A.~Pastine,
+\emph{On stars in caterpillars and lobsters},
+Discrete Appl. Math. \textbf{298} (2021), 50--55.
+\href{https://doi.org/10.1016/j.dam.2021.03.013}
+{doi:10.1016/j.dam.2021.03.013}.
+
+\bibitem{FeghaliJohnsonThomas}
+C.~Feghali, M.~Johnson, and D.~Thomas,
+\emph{Erd\H{o}s--Ko--Rado theorems for a family of trees},
+Discrete Appl. Math. \textbf{236} (2018), 464--471.
+\href{https://doi.org/10.1016/j.dam.2017.10.009}
+{doi:10.1016/j.dam.2017.10.009}.
+
+\bibitem{HurlbertSurvey}
+G.~Hurlbert,
+\emph{A survey of the Holroyd--Talbot conjecture},
+in G.~O.~H. Katona, B.~Patk\'os, and C.~Tompkins (eds.),
+\emph{Sum(m)it280: Surveys in Extremal Combinatorics and Combinatorial
+Geometry}, Bolyai Society Mathematical Studies, vol.~32,
+Springer, Cham, 2026, pp.~183--201.
+\href{https://doi.org/10.1007/978-3-032-18810-6_10}
+{doi:10.1007/978-3-032-18810-6\_10}.
+
+\bibitem{HurlbertKamat}
+G.~Hurlbert and V.~Kamat,
+\emph{On intersecting families of independent sets in trees},
+Discrete Appl. Math. \textbf{321} (2022), 4--9.
+\href{https://doi.org/10.1016/j.dam.2022.06.028}
+{doi:10.1016/j.dam.2022.06.028}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,159 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Disconnected Counterexamples to a Real-Rootedness Conjecture for Weighted Bond Posets}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Disconnected counterexamples]
+{Disconnected Counterexamples to a Real-Rootedness Conjecture
+for Weighted Bond Posets}
+
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Conjecture~4.13(2) of Gonz\'alez D'Le\'on and Wachs
+\cite{GDLW} asserts that a signed difference of weighted-bond-poset
+M\"obius polynomials is real-rooted whenever the underlying graphs
+have the same numbers of vertices and connected components and one
+is a subgraph of the other. We show that the conjecture is false for
+disconnected graphs. For every integer $r\geq 3$, the pair
+$G_r=rK_3$ and $H_r=rP_3$ is a counterexample, where $P_3$ is
+the three-vertex path and $rX$ denotes the disjoint union of $r$ copies
+of $X$. The connected restriction is not addressed.
+\end{abstract}
+
+\maketitle
+
+Let $\mu_G(t)$ denote the M\"obius polynomial of the weighted bond
+poset of a graph $G$, as defined in \cite{GDLW}. Conjecture~4.13(2)
+of \cite{GDLW} states that if $G$ has $n$ vertices and $k$ connected
+components and $H$ is a subgraph of $G$ with the same $n$ and $k$,
+then
+\[
+(-1)^{n-k}\bigl(\mu_G(t)-\mu_H(t)\bigr)
+\]
+is real-rooted. The conjecture is stated for arbitrary $k$.
+
+\begin{theorem}
+For every integer $r\geq 3$, let
+\[
+G_r=rK_3,
+\qquad
+H_r=rP_3,
+\]
+where each copy of $P_3$ is obtained by deleting one edge from the
+corresponding copy of $K_3$. Then $H_r$ is a spanning subgraph of
+$G_r$, both graphs have $3r$ vertices and $r$ connected components,
+and
+\[
+(-1)^{3r-r}\bigl(\mu_{G_r}(t)-\mu_{H_r}(t)\bigr)
+\]
+is not real-rooted. Consequently, Conjecture~4.13(2) of
+\cite{GDLW} is false as stated.
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+A(t)=2+5t+2t^2,
+\qquad
+B(t)=1+3t+t^2.
+\]
+Equation~(1.5) and Proposition~2.2 of \cite{GDLW} give
+\[
+\mu_{G_r}(t)-\mu_{H_r}(t)=A(t)^r-B(t)^r.
+\]
+Since $3r-r=2r$, the sign in the conjecture is positive.
+
+Let $\zeta=e^{2\pi i/r}$ and $c=\cos(2\pi/r)$. Since $r\geq3$,
+$\zeta$ is nonreal and $|c|<1$. The factorization
+\[
+A(t)^r-B(t)^r
+=\prod_{j=0}^{r-1}\bigl(A(t)-\zeta^jB(t)\bigr)
+\]
+shows that the real polynomial
+\[
+\begin{aligned}
+Q_r(t)
+&=\bigl(A(t)-\zeta B(t)\bigr)
+  \bigl(A(t)-\overline{\zeta}B(t)\bigr)\\
+&=A(t)^2-2cA(t)B(t)+B(t)^2
+\end{aligned}
+\]
+divides $A(t)^r-B(t)^r$. For real $t$,
+\[
+Q_r(t)
+=\bigl(A(t)-cB(t)\bigr)^2+(1-c^2)B(t)^2.
+\]
+Thus a real zero of $Q_r$ would be a common zero of $A$ and $B$.
+But
+\[
+A(t)-B(t)=(1+t)^2,
+\qquad
+A(-1)=B(-1)=-1,
+\]
+so $A$ and $B$ have no common real zero. Hence $Q_r(t)>0$ for every
+real $t$. Its leading coefficient is
+\[
+|2-\zeta|^2=5-4c>0,
+\]
+so $Q_r$ is a quartic polynomial with no real zeros. Since $Q_r$
+divides $A^r-B^r$, the latter is not real-rooted.
+\end{proof}
+
+The first member of the family occurs at $r=3$. It has nine vertices
+and three connected components, and
+\[
+\mu_{3K_3}(t)-\mu_{3P_3}(t)
+=(1+t)^2\bigl(7+37t+63t^2+37t^3+7t^4\bigr),
+\]
+where the quartic factor is strictly positive on $\mathbb{R}$.
+
+\begin{remark}
+The threshold $r\geq3$ is exact within this family. Indeed,
+\[
+A-B=(1+t)^2,
+\qquad
+A^2-B^2=(1+t)^2(3+8t+3t^2),
+\]
+and the quadratic factor has discriminant $28$.
+\end{remark}
+
+\begin{remark}
+These examples do not refute the companion $\gamma$-positivity
+statement, Conjecture~4.12(2) of \cite{GDLW}. Writing
+$X=(1+t)^2$, one has $A=2X+t$ and $B=X+t$, and therefore
+\[
+A^r-B^r
+=\sum_{j=0}^{r-1}
+\binom{r}{j}\bigl(2^{r-j}-1\bigr)
+t^j(1+t)^{2r-2j}.
+\]
+Thus the difference is $\gamma$-positive for every $r\geq1$.
+The construction also makes no assertion about Conjecture~4.13(1)
+or the restriction of Conjecture~4.13(2) to connected graphs.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{GDLW}
+R.~S. Gonz\'alez D'Le\'on and M.~L. Wachs,
+\emph{Weighted bond posets and a new chromatic symmetric function},
+\href{https://arxiv.org/abs/2608.08692v1}
+{arXiv:2608.08692v1 [math.CO]} (2026).
+
+\end{thebibliography}
+
+\end{document}

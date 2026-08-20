@@ -1,0 +1,128 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\title{Seven disjoint all-\texorpdfstring{$6$}{6}-isolating sets need not exist in a tree}
+\date{}
+
+\subjclass[2020]{Primary 05C69; Secondary 05C05, 05C15}
+\keywords{isolating set, independent isolating set, tree coloring}
+
+\begin{document}
+
+\begin{abstract}
+Boyer, Farrell, and Goddard proved that, for $k\leq 5$, every tree of order
+different from $k$ has a $(k+1)^{*}$-coloring into all-$k$-isolating classes,
+with one exceptional tree, and left $k=6$ open.  We show that the corresponding
+seven-set statement fails.  The two eight-vertex spiders with arm lengths
+$3,2,2$ and $2,2,2,1$ have no seven pairwise disjoint nonempty
+all-$6$-isolating sets, even without an independence requirement.  Among
+trees of order different from $6$, they are the minimum-order trees with no
+$7^{*}$-coloring into all-$6$-isolating classes: orders $1$--$5$ and $7$ all
+admit one, and order $6$ is excluded.  On the other hand,
+every tree has a $6^{*}$-coloring whose color classes are all-$6$-isolating,
+so six is the optimal universal guarantee.
+\end{abstract}
+
+\maketitle
+
+For a graph $G$ and $A\subseteq V(G)$, let $N[A]$ be the closed neighborhood
+of $A$.  The set $A$ is \emph{all-$k$-isolating} if every component of
+$G-N[A]$ has order less than $k$.  Following Boyer, Farrell, and
+Goddard~\cite{BFG}, an $\ell^{*}$-coloring is a weak partition of $V(G)$ into
+$\ell$ independent color classes, where empty classes are allowed.  They
+proved the $(k+1)^{*}$-coloring result for $k\leq 5$, constructed obstructions
+for $k\geq 7$, and left the case $k=6$ open \cite[Theorem~7 and the paragraph following Lemma~8]{BFG}.  We
+answer that case negatively.  Since \cite{BFG} states no result for $k=6$, no
+statement there is contradicted; what is new below is the eight-vertex
+obstruction to seven all-$6$-isolating classes, whereas the positive
+$6^{*}$-coloring guarantee is deduced from their Theorem~7 together with two
+exceptional cases.
+
+Write $S_{r_1,\ldots,r_d}$ for the spider whose arms have lengths
+$r_1,\ldots,r_d$.
+
+\begin{theorem}
+Every tree has a $6^{*}$-coloring in which every color class is
+all-$6$-isolating.  However, neither $S_{3,2,2}$ nor $S_{2,2,2,1}$ has seven
+pairwise disjoint nonempty all-$6$-isolating sets.  Up to isomorphism, they
+are the smallest trees of order different from $6$ admitting no
+$7^{*}$-coloring all of whose color classes are all-$6$-isolating; every tree
+of order at most $7$ other than those of order $6$ admits one.
+In particular, neither spider has an $\ell^{*}$-coloring
+with all color classes all-$6$-isolating for any $\ell\geq 7$; thus six is
+the optimal universal number of color classes.
+\end{theorem}
+
+\begin{proof}
+By~\cite[Theorem~7]{BFG}, every tree other than the subdivided claw $O_7$ and
+trees of order $5$ has a $6^{*}$-coloring whose color classes are
+all-$5$-isolating, and hence all-$6$-isolating.  If a tree has order $5$, every
+subset, including the empty set, is all-$6$-isolating, so any proper
+$6^{*}$-coloring works.  For $O_7$, give two leaves one color and give the
+other five vertices distinct colors.  This is a proper coloring with six
+nonempty classes, and each class has a closed neighborhood containing at
+least two vertices; hence at most five vertices remain.  Thus every tree has
+the stated $6^{*}$-coloring.
+
+It remains to determine the smallest obstruction to seven sets.  Let $T$ be a
+tree of order $8$, and call a leaf \emph{bad} if its neighbor has degree $2$.
+A singleton $\{x\}$ is not all-$6$-isolating if and only if $x$ is a bad leaf.
+Indeed, if $d_T(x)\geq 2$, then $|N[x]|\geq 3$, so at most five vertices
+remain.  If $x$ is a leaf with neighbor $y$, then
+$T-N[x]=T-\{x,y\}$ has six vertices; it is connected exactly when
+$d_T(y)=2$.
+
+Suppose first that $T$ has seven pairwise disjoint nonempty all-$6$-isolating
+sets, and let $s$ of them be singletons.  Since each nonsingleton has at least
+two vertices,
+\[
+  8\geq s+2(7-s)=14-s,
+\]
+so $s\geq 6$.  Therefore a tree with at least three bad leaves cannot have
+seven such sets.  Conversely, if $T$ has at most two bad leaves, place all of
+them in one independent two-vertex set, adding a nonneighbor if there is only
+one and choosing any two distinct leaves if there are none.  Use the remaining
+six vertices as singleton sets.  The two-vertex set is all-$6$-isolating
+because its closed neighborhood has at least three vertices, and every
+singleton used is all-$6$-isolating.  Hence an order-eight tree has seven
+pairwise disjoint nonempty all-$6$-isolating sets if and only if it has at
+most two bad leaves.
+
+Now suppose that $T$ has at least three bad leaves $x_1,x_2,x_3$, with
+respective degree-two neighbors $y_1,y_2,y_3$.  These six vertices are
+distinct.  Let $p,q$ be the remaining vertices.  The second neighbor of each
+$y_i$ lies in $\{p,q\}$: it cannot be another $y_j$, since then
+$x_i y_i y_j x_j$ would be a component.  Connectedness forces
+$pq\in E(T)$.  Up to interchanging $p$ and $q$, the three vertices $y_i$
+attach either all to $p$ or in a $2$--$1$ split.  These two possibilities are
+precisely $S_{2,2,2,1}$ and $S_{3,2,2}$.  Each has three bad leaves and
+therefore admits no seven such sets, even without independence.  Since the
+empty set is not all-$6$-isolating in either order-eight tree, this also
+excludes every $\ell^{*}$-coloring of either spider for $\ell\geq 7$.
+
+Finally, every tree of order less than $6$ has a valid $7^{*}$-coloring
+because every subset is all-$6$-isolating.  Every tree of order $7$ has one
+by assigning a distinct color to each vertex, since deleting a nonempty
+closed neighborhood leaves at most five vertices.  A tree of order $6$ is
+necessarily excluded: any weak partition into seven classes has an empty
+class, and the empty set is not all-$6$-isolating.  Thus the two spiders above
+are exactly the minimum-order counterexamples in the admissible class.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{BFG}
+G.~Boyer, G.~C. Farrell, and W.~Goddard,
+\emph{All-$k$-isolation in trees},
+arXiv:2509.11857v1 [math.CO] (2025).
+
+\end{thebibliography}
+
+\end{document}

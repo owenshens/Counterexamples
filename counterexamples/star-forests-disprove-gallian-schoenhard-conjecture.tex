@@ -1,0 +1,245 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Gallian--Schoenhard Star-Forest Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[A counterexample to the Gallian--Schoenhard conjecture]
+{A Counterexample to the Gallian--Schoenhard Star-Forest Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C78}
+\keywords{
+even harmonious labeling,
+strongly even harmonious labeling,
+star forest
+}
+
+\begin{document}
+
+\begin{abstract}
+Gallian and Schoenhard conjectured that a disjoint union of stars is
+strongly even harmonious whenever one component has more than two
+edges. We disprove the conjecture: $S_3\sqcup 3S_1$ is properly even
+harmonious but not strongly even harmonious. The nonexistence holds
+even with vertex labels in the larger codomain $\{0,\ldots,2q\}$, and
+therefore also under the corrected proper codomain
+$\{0,\ldots,2q-1\}$. A counting inequality also gives two infinite
+families of counterexamples.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Write $S_n=K_{1,n}$, so $S_n$ has $n$ edges, and let $\sqcup$ denote
+disjoint union. In the original even-harmonious convention, a graph
+$G$ with $q$ edges is strongly even harmonious if there is an
+injection
+\[
+ f:V(G)\longrightarrow \{0,1,\ldots,2q\}
+\]
+such that the induced edge labels
+\[
+ f^*(uv)=f(u)+f(v)\pmod{2q}
+\]
+are exactly $0,2,\ldots,2q-2$, and every edge $uv$ satisfies
+\[
+ 0<f(u)+f(v)\le 2q.
+\]
+This is the convention used in the original paper and retained by
+Henderson~\cite{GallianSchoenhard,Henderson}. Gallian's current survey
+instead builds the strong condition on the corrected properly even
+harmonious codomain
+$\{0,1,\ldots,2q-1\}$~\cite[Section~4.6]{Gallian}; see also
+Henderson~\cite{Henderson}. Since this is the smaller codomain, a
+nonexistence result for $\{0,\ldots,2q\}$ applies under both
+conventions.
+
+Gallian and Schoenhard conjectured that
+\[
+ S_{n_1}\sqcup\cdots\sqcup S_{n_t}
+\]
+is strongly even harmonious whenever at least one $n_i$ exceeds
+$2$~\cite[Conjecture~4.12]{GallianSchoenhard}. The statement is still
+listed as a conjecture in the 2025 edition of Gallian's
+survey~\cite[Section~4.6, p.~142]{Gallian}.
+
+\begin{theorem}\label{thm:main}
+The star forest
+\[
+ G=S_3\sqcup 3S_1
+\]
+is properly even harmonious but has no strongly even harmonious
+labeling, even with vertex labels in $\{0,1,\ldots,12\}$. Consequently,
+Conjecture~4.12 of Gallian and Schoenhard is false under either
+codomain convention.
+\end{theorem}
+
+The proof uses the following counting obstruction.
+
+\begin{lemma}\label{lem:count}
+Let
+\[
+ F=S_{n_1}\sqcup\cdots\sqcup S_{n_t},
+ \qquad
+ n_1\ge\cdots\ge n_t\ge1,
+ \qquad
+ q=\sum_{i=1}^t n_i.
+\]
+If $F$ has a strongly even harmonious labeling with vertex labels in
+$\{0,1,\ldots,2q\}$, then
+\begin{equation}\label{eq:obstruction}
+ q^2+\sum_{i=1}^t(i-1)(n_i-1)
+ \le
+ \frac{(q-t+1)(3q+t)}{2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $c_i$ be the center of $S_{n_i}$, and let $U$ be the sum of the
+unused vertex labels. The strong bound lifts the edge residues
+$0,2,\ldots,2q-2$ uniquely to the ordinary edge sums
+\[
+ 2,4,\ldots,2q,
+\]
+whose total is $q(q+1)$. Therefore
+\[
+ q(q+1)
+ =
+ \sum_{v\in V(F)}f(v)
+ +
+ \sum_{i=1}^t(n_i-1)f(c_i).
+\]
+Since the sum of all labels in $\{0,\ldots,2q\}$ is $q(2q+1)$,
+\begin{equation}\label{eq:unused}
+ U=q^2+\sum_{i=1}^t(n_i-1)f(c_i).
+\end{equation}
+
+Put $w_i=n_i-1$, so $w_1\ge\cdots\ge w_t\ge0$, and let
+$b_1<\cdots<b_t$ be the center labels in increasing order. Then
+$b_i\ge i-1$, and the rearrangement inequality gives
+\[
+ \sum_{i=1}^t(n_i-1)f(c_i)
+ \ge
+ \sum_{i=1}^t w_i b_i
+ \ge
+ \sum_{i=1}^t(i-1)(n_i-1).
+\]
+There are $q-t+1$ unused labels. Their sum is at most the sum of the
+$q-t+1$ largest labels in the codomain, namely
+\[
+ U
+ \le
+ (q+t)+(q+t+1)+\cdots+2q
+ =
+ \frac{(q-t+1)(3q+t)}{2}.
+\]
+Combining this bound with \eqref{eq:unused} proves
+\eqref{eq:obstruction}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $G=S_3\sqcup3S_1$, we have $q=6$, $t=4$, and
+\[
+ (n_1,n_2,n_3,n_4)=(3,1,1,1).
+\]
+Thus the two sides of \eqref{eq:obstruction} are $36$ and $33$,
+respectively. Hence no strongly even harmonious labeling exists, even
+in the larger codomain $\{0,\ldots,12\}$.
+
+It remains to exhibit a properly even harmonious labeling. Let $c$ be
+the center of $S_3$, with leaves $x_1,x_2,x_3$, and let $a_i b_i$,
+$1\le i\le3$, be the three $S_1$ components. Set
+\[
+ f(c)=0,
+ \qquad
+ \bigl(f(x_1),f(x_2),f(x_3)\bigr)=(2,6,10),
+\]
+and
+\[
+ \bigl(f(a_1),f(b_1)\bigr)=(3,5),\qquad
+ \bigl(f(a_2),f(b_2)\bigr)=(4,8),\qquad
+ \bigl(f(a_3),f(b_3)\bigr)=(7,9).
+\]
+These are distinct labels in $\{0,\ldots,11\}$, and the induced edge
+labels modulo $12$ are exactly
+\[
+ 0,2,4,6,8,10.
+\]
+Thus $G$ is properly even harmonious.
+\end{proof}
+
+\begin{corollary}\label{cor:families}
+Neither of the following star forests is strongly even harmonious
+under either codomain convention:
+\[
+ S_3\sqcup mS_1 \quad (m\ge3),
+ \qquad
+ S_3\sqcup kS_2 \quad (k\ge5).
+\]
+\end{corollary}
+
+\begin{proof}
+For $S_3\sqcup mS_1$, the left side of
+\eqref{eq:obstruction} exceeds the right side by
+\[
+ m^2-6>0.
+\]
+For $S_3\sqcup kS_2$, the weighted term in
+\eqref{eq:obstruction} is $k(k+1)/2$, and the corresponding difference
+is
+\[
+ k^2-3k-6>0.
+\]
+\end{proof}
+
+\begin{remark}
+Henderson proved that a union of at least two stars, each having at
+least two edges, is properly even
+harmonious~\cite[Theorem~3.1]{Henderson}. Consequently,
+$S_3\sqcup kS_2$ is properly even harmonious but not strongly even
+harmonious for every $k\ge5$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{GallianSchoenhard}
+J.~A. Gallian and L.~A. Schoenhard,
+\emph{Even harmonious graphs},
+AKCE Int. J. Graphs Comb. \textbf{11} (2014), no.~1, 27--49.
+\href{https://doi.org/10.1080/09728600.2014.12088761}
+{doi:10.1080/09728600.2014.12088761}.
+
+\bibitem{Gallian}
+J.~A. Gallian,
+\emph{A dynamic survey of graph labeling},
+Electron. J. Combin., Dynamic Survey \#DS6,
+28th ed. (2025).
+\href{https://doi.org/10.37236/27}
+{doi:10.37236/27}.
+
+\bibitem{Henderson}
+Z.~M. Henderson,
+\emph{Properly even harmonious labeling of a union of stars},
+Electron. J. Graph Theory Appl. \textbf{12} (2024),
+no.~1, 1--16.
+\href{https://doi.org/10.5614/ejgta.2024.12.1.1}
+{doi:10.5614/ejgta.2024.12.1.1}.
+
+\end{thebibliography}
+
+\end{document}

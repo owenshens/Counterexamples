@@ -1,0 +1,246 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to the Glushkov MFN Conjectures}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\Gl}{\operatorname{Gl}}
+\newcommand{\MFN}{\operatorname{MFN}}
+\newcommand{\IARp}{\operatorname{IAR}^{+}}
+
+\title[Glushkov MFN counterexamples]
+{Counterexamples to the Glushkov MFN Conjectures}
+
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We refute the Glushkov parts of Conjectures~1 and~2 of Berglund,
+van der Merwe, and le Roux. For every $k\ge 2$, we give a regular
+expression for which the Minimum Feedback Node (MFN) set of the
+Glushkov automaton has size $k$, whereas the unique minimum
+memoization set is a singleton outside MFN. We characterize all
+memoization sets eliminating infinite degree of ambiguity and show
+that every ordering of $\IARp$ returns the entire MFN set. Both
+output-to-optimum ratios therefore equal $k$ and are unbounded. The
+corresponding Thompson questions are not addressed.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Berglund, van der Merwe, and le Roux conjectured that, for every
+regular expression, a minimum memoization set can be chosen inside the
+Minimum Feedback Node (MFN) set, for both the Thompson and Glushkov
+constructions \cite[Conjecture~1]{BerglundEtAl2026}. They equivalently
+conjectured that some ordering makes $\IARp$ return a minimum
+memoization set
+\cite[Conjecture~2 and Observation~3]{BerglundEtAl2026}.
+We disprove both Glushkov assertions.
+
+We use the conventions of \cite{BerglundEtAl2026}, in particular that
+$+$ is a primitive regular-expression operator. For an NFA $A$ and
+$M\subseteq Q(A)$, write $A[M]$ for the corresponding memoized NFA.
+By the IDA characterization in \cite[Theorem~1]{BerglundEtAl2026},
+$A[M]$ has infinite degree of ambiguity (IDA) if and only if there are
+distinct states $p,q$ and a nonempty word $v$ such that
+\[
+p\xrightarrow{v}p,
+\qquad
+p\xrightarrow{v}q,
+\qquad
+q\xrightarrow{v}q,
+\]
+with the $q$-cycle containing no state of $M$. Define
+\[
+\mu(A)=
+\min\bigl\{
+  |M|:M\subseteq Q(A),\ A[M]\text{ has no IDA}
+\bigr\}.
+\]
+For an ordering $\prec$ of $\MFN(A)$, let $\IARp_{\prec}(A)$ denote
+the output of the procedure in
+\cite[Definition~5]{BerglundEtAl2026}.
+
+For $k\ge 2$, let
+\[
+R_k=
+\Bigl(
+  (\underbrace{a^+\mid\cdots\mid a^+}_{k\text{ occurrences}})b
+\Bigr)^*,
+\qquad
+A_k=\Gl(R_k).
+\]
+The alternatives are distinct syntax-tree occurrences and hence
+distinct positions in the Glushkov linearization; no algebraic
+simplification is applied before the construction. Write $a_i^+$ for
+the $i$th alternative. Let $x_1,\ldots,x_k$ be the positions labelled
+$a$, let $y$ be the position labelled $b$, and put
+\[
+X_k=\{x_1,\ldots,x_k\}.
+\]
+Besides the initial state $q_0$, the nonempty transitions are
+\[
+\delta(q_0,a)=X_k,
+\qquad
+\delta(x_i,a)=\{x_i\},
+\qquad
+\delta(x_i,b)=\{y\},
+\qquad
+\delta(y,a)=X_k
+\]
+for $1\le i\le k$. The final states are $q_0$ and $y$, and all states
+are useful.
+
+\begin{theorem}
+For every $k\ge 2$ and every $M\subseteq Q(A_k)$,
+\[
+A_k[M]\text{ has no IDA}
+\quad\Longleftrightarrow\quad
+y\in M\ \text{ or }\ X_k\subseteq M.
+\]
+Moreover,
+\[
+\MFN(A_k)=X_k,
+\qquad
+\mu(A_k)=1,
+\]
+and $\{y\}$ is the unique minimum memoization set. For every ordering
+$\prec$ of $X_k$,
+\[
+\IARp_{\prec}(A_k)=X_k.
+\]
+\end{theorem}
+
+\begin{proof}
+Algorithm~2 of \cite{BerglundEtAl2026} gives
+\[
+a_i^+
+\longmapsto
+(\varnothing,\{x_i\},\mathrm{false}),
+\qquad
+(a_1^+\mid\cdots\mid a_k^+)
+\longmapsto
+(\varnothing,X_k,\mathrm{false}).
+\]
+Concatenation with $b$ preserves the latter tuple, and the outer star
+changes only its nullability. Thus the root tuple is
+\[
+(R_{\mathrm{op}},R_{\mathrm{req}},
+  \operatorname{nullable}(R_k))
+=
+(\varnothing,X_k,\mathrm{true}),
+\]
+so
+\[
+\MFN(A_k)=X_k.
+\]
+Independently, every feedback vertex set contains all of $X_k$, since
+each $x_i$ has a self-loop, while deleting $X_k$ leaves no directed
+cycle.
+
+Suppose first that $y\in M$. Every directed cycle avoiding $M$ is then
+a self-loop at some $x_i$, and every word labelling such a cycle is
+$a^r$ for some $r\ge 1$. If a state $p$ returns to itself on $a^r$,
+then $p=x_j$ for some $j$, and
+\[
+\delta(x_j,a^r)=\{x_j\}.
+\]
+Thus
+\[
+p\xrightarrow{a^r}q
+\qquad\text{and}\qquad
+q\xrightarrow{a^r}q
+\]
+force $p=q$, so the IDA criterion cannot hold. If instead
+$X_k\subseteq M$, every directed cycle meets $M$, and again there is
+no IDA.
+
+Conversely, suppose that
+\[
+y\notin M
+\qquad\text{and}\qquad
+X_k\nsubseteq M.
+\]
+Choose $x_j\in X_k\setminus M$ and an index $\ell\ne j$. With
+\[
+p=x_\ell,
+\qquad
+q=x_j,
+\qquad
+v=ba,
+\]
+we have
+\[
+x_\ell\xrightarrow{ba}x_\ell,
+\qquad
+x_\ell\xrightarrow{ba}x_j,
+\qquad
+x_j\xrightarrow{ba}x_j.
+\]
+The $q$-cycle visits only $x_j$ and $y$, neither of which lies in $M$.
+The IDA criterion imposes no avoidance condition on the other two
+paths, so $x_\ell$ may itself lie in $M$. Hence $A_k[M]$ has IDA.
+This proves the characterization.
+
+The empty set therefore fails, while $\{y\}$ succeeds, so
+\[
+\mu(A_k)=1.
+\]
+The characterization also shows that every successful singleton is
+$\{y\}$, proving uniqueness.
+
+Finally, $\IARp$ starts from $X_k$. Removing any $x_i$ produces
+$X_k\setminus\{x_i\}$, which contains neither $y$ nor all of $X_k$ and
+therefore has IDA. Thus no state is removable, regardless of the
+ordering.
+\end{proof}
+
+\begin{corollary}
+The Glushkov parts of Conjectures~1 and~2 in
+\cite{BerglundEtAl2026} are false. In fact, for every $k\ge 2$ and
+every ordering $\prec$,
+\[
+\frac{|\MFN(A_k)|}{\mu(A_k)}
+=
+\frac{|\IARp_{\prec}(A_k)|}{\mu(A_k)}
+=
+k.
+\]
+Thus both gaps are unbounded.
+\end{corollary}
+
+\begin{proof}
+The unique minimum memoization set is $\{y\}$, whereas
+\[
+y\notin\MFN(A_k)=X_k.
+\]
+Consequently, no minimum memoization set is contained in MFN. The
+theorem also shows that every ordering of $\IARp$ returns $X_k$. The
+ratios follow from $|X_k|=k$ and $\mu(A_k)=1$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{BerglundEtAl2026}
+M.~Berglund, B.~van der Merwe, and I.~le Roux,
+\emph{Selective memoization for efficient backtracking regular
+expression matching},
+Electron. Proc. Theor. Comput. Sci. \textbf{446} (2026), 1--17.
+\href{https://doi.org/10.4204/EPTCS.446.1}
+{doi:10.4204/EPTCS.446.1}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,234 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample at n=6 to Theorem 1 and Conjecture 36(3) of Kundu and Velmurugan}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\ccn}{\operatorname{ccn}}
+\newcommand{\one}{\mathbf{1}}
+
+\title[A counterexample at $n=6$]
+{A Counterexample at $n=6$ to Theorem~1 and Conjecture~36(3)
+of Kundu and Velmurugan}
+
+\date{}
+
+\subjclass[2020]{20C30, 05E10}
+\keywords{
+covering number, symmetric group, irreducible character,
+Kronecker product
+}
+
+\begin{document}
+
+\begin{abstract}
+We give a short calculation showing that
+\[
+  \ccn(\chi_{(3,3)};S_6)
+  =
+  \ccn(\chi_{(2,2,2)};S_6)
+  =5.
+\]
+Thus the upper inequality in Conjecture~36(3) of Kundu and
+Velmurugan is false at \(n=6\); the same example also contradicts the
+bound in their Theorem~1, which excludes neither \((3,3)\) nor
+\((2,2,2)\). The value itself is implicit in existing formulas
+for tensor powers of the irreducible representations of \(S_6\); what
+is new here is the resulting contradiction with these two statements of
+Kundu and Velmurugan.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+For a character \(\theta\) of a finite group \(G\), let \(c(\theta)\)
+denote its set of irreducible constituents. When it exists, define
+\(\ccn(\theta;G)\) to be the least positive integer \(k\) such that
+\[
+  c(\theta^k)=\Irr(G),
+\]
+where \(\theta^k\) is the pointwise product, equivalently the character
+of the \(k\)-fold tensor power. Sun, Zhang, and Zhu computed power
+formulas for all irreducible representations of \(S_6\); their formulas
+also imply the value below \cite{SZZ}. We give a short independent
+class-function proof and record its consequence for \cite{KV}.
+
+\begin{theorem}\label{thm:main}
+For the irreducible characters of \(S_6\) indexed by \((3,3)\) and
+\((2,2,2)\),
+\[
+  \ccn(\chi_{(3,3)};S_6)
+  =
+  \ccn(\chi_{(2,2,2)};S_6)
+  =5.
+\]
+\end{theorem}
+
+\begin{proof}
+Set \(\chi=\chi_{(3,3)}\), and let \(\pi_r\) be the permutation
+character of \(S_6\) acting on its \(r\)-subsets. Young's rule gives
+\[
+  \pi_3
+  =
+  \chi_{(6)}+\chi_{(5,1)}+\chi_{(4,2)}+\chi_{(3,3)},
+  \qquad
+  \pi_2
+  =
+  \chi_{(6)}+\chi_{(5,1)}+\chi_{(4,2)},
+\]
+so \(\chi=\pi_3-\pi_2\). If \(C_\mu\) is the conjugacy class of cycle
+type \(\mu=(\mu_1,\ldots,\mu_t)\), then
+\[
+  \pi_r(\mu)
+  =
+  [x^r]\prod_{i=1}^t(1+x^{\mu_i}).
+\]
+Writing \(\varepsilon\) for the sign character, we obtain
+\[
+\begin{array}{c|rrrrrrrrrrr}
+\mu
+ &1^6&21^4&2^21^2&2^3&31^3&321&3^2&41^2&42&51&6\\ \hline
+|C_\mu|
+ &1&15&45&15&40&120&40&90&90&144&120\\
+\chi(\mu)
+ &5&1&1&-3&-1&1&2&-1&-1&0&0\\
+\varepsilon(\mu)
+ &1&-1&1&-1&1&-1&1&-1&1&1&-1
+\end{array}
+\]
+The usual inner product of class functions therefore gives
+\[
+  \langle\chi,\one\rangle
+  =
+  \langle\chi^2,\varepsilon\rangle
+  =
+  \langle\chi^3,\one\rangle
+  =
+  \langle\chi^4,\varepsilon\rangle
+  =0.
+\]
+For example,
+\[
+\begin{aligned}
+720\langle\chi^4,\varepsilon\rangle
+={}&625-15+45-1215+40-120\\
+   &\quad+640-90+90
+ =0.
+\end{aligned}
+\]
+Hence none of \(\chi,\chi^2,\chi^3,\chi^4\) contains every irreducible
+character of \(S_6\), and thus
+\[
+  \ccn(\chi;S_6)\geq5.
+\]
+
+Miller proved that, for \(n>4\), every nonlinear
+\(\psi\in\Irr(S_n)\) satisfies
+\[
+  c(\psi^{n-1})=\Irr(S_n)
+\]
+\cite[Theorem~1.1(i)]{Miller}. Since \(\chi\) is nonlinear and
+\(n-1=5\) for \(n=6\), this gives
+\(c(\chi^5)=\Irr(S_6)\), and therefore
+\[
+  \ccn(\chi_{(3,3)};S_6)=5.
+\]
+
+Finally, \((3,3)'=(2,2,2)\), so
+\[
+  \chi_{(2,2,2)}=\chi_{(3,3)}\varepsilon.
+\]
+For every \(k\),
+\[
+  (\chi\varepsilon)^k=\chi^k\varepsilon^k.
+\]
+Tensoring by the linear character \(\varepsilon^k\) permutes
+\(\Irr(S_6)\). Thus the two characters have the same covering number.
+\end{proof}
+
+\begin{corollary}\label{cor:consequences}
+The upper inequality in Conjecture~36(3) of Kundu and Velmurugan
+\cite{KV} is false. The bound in their Theorem~1 is also false as
+stated.
+\end{corollary}
+
+\begin{proof}
+Conjecture~36(3) asserts, for even \(n\geq5\),
+\[
+  \ccn\!\left(\chi_{(n/2,n/2)};S_n\right)
+  \leq
+  \lceil\log_2 n\rceil+1.
+\]
+At \(n=6\), the right-hand side is \(4\), whereas
+Theorem~\ref{thm:main} gives
+\[
+  \ccn(\chi_{(3,3)};S_6)=5.
+\]
+
+Their Theorem~1 asserts, for \(n\geq5\) and
+\[
+  \lambda
+  \notin
+  \{(n),(1^n),(n-1,1),(2,1^{n-2})\},
+\]
+that
+\[
+  \ccn(\chi_\lambda;S_n)
+  \leq
+  \left\lceil\frac{2(n-1)}{3}\right\rceil.
+\]
+At \(n=6\), this bound is \(4\), and neither \((3,3)\) nor
+\((2,2,2)\) is excluded. Theorem~\ref{thm:main} therefore contradicts
+the stated bound.
+\end{proof}
+
+\begin{remark}
+The lower inequality in Conjecture~36(3) remains valid at \(n=6\).
+The counterexample does not address the corresponding upper bound
+restricted to even \(n\geq8\). In the proof of their Theorem~1, Kundu
+and Velmurugan state that the cases \(n\leq11\) were verified directly
+using SageMath; the examples above show that this finite verification
+cannot be correct as stated.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{KV}
+R.~Kundu and S.~Velmurugan,
+\emph{Covering numbers of some irreducible characters of the symmetric
+group},
+Electron. J. Combin. \textbf{32} (2025), no.~2,
+Paper No.~P2.56, 39 pp.
+\href{https://doi.org/10.37236/13289}{doi:10.37236/13289}.
+
+\bibitem{Miller}
+A.~R. Miller,
+\emph{Covering numbers for characters of symmetric groups},
+Ann. Sc. Norm. Super. Pisa Cl. Sci. (5)
+\textbf{26} (2025), no.~1, 517--524.
+\href{https://doi.org/10.2422/2036-2145.202302_003}
+{doi:10.2422/2036-2145.202302\_003}.
+
+\bibitem{SZZ}
+J.-C. Sun, C. Zhang, and H. Zhu,
+\emph{Kronecker coefficients and Harrison centres of the
+representation ring of the symmetric group},
+\href{https://arxiv.org/abs/2407.18152}
+{arXiv:2407.18152}, 2024.
+
+\end{thebibliography}
+
+\end{document}

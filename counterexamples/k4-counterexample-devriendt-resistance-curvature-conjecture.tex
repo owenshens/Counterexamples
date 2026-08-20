@@ -1,0 +1,229 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A four-vertex counterexample to Devriendt's Conjecture 7.6}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\one}{\mathbf{1}}
+
+\title[A counterexample to Devriendt's Conjecture 7.6]
+{A four-vertex counterexample to Devriendt's Conjecture~7.6}
+\date{}
+
+\subjclass[2020]{Primary 05C50; Secondary 05C12}
+\keywords{effective resistance, resistance curvature, resistance capacity,
+submodularity}
+
+\begin{document}
+
+\begin{abstract}
+Devriendt conjectured that, for a normalized weighted graph, submodularity of
+its resistance capacity implies nonnegative resistance curvature. We give a
+normalized weighting of $K_4$ for which all $24$ elementary submodularity
+inequalities are strict, while one curvature coordinate equals $-1/126$.
+This disproves Conjecture~7.6. The example has minimum possible order and
+persists under small perturbations. It does not refute the graph-level
+existential statement in Conjecture~7.7.
+\end{abstract}
+
+\maketitle
+
+Let $G=(V,E)$ be a finite connected simple graph with $|V|\ge2$ and positive
+edge conductances $c$. Let $L$ be its weighted Laplacian and $L^\dagger$ its
+Moore--Penrose pseudoinverse. With $e_u$ denoting the standard basis vector at
+$u$, define
+\[
+ \omega_{uv}=(e_u-e_v)^{\mathsf T}L^\dagger(e_u-e_v),
+ \qquad
+ \Omega=(\omega_{uv})_{u,v\in V},
+ \qquad
+ K=\Omega^{-1}.
+\]
+Following \cite[Definitions~3.1, 5.1, and 7.1]{Devriendt}, the weighting is
+\emph{normalized} when $\one^{\mathsf T}K\one=1$. For $uv\in E$, put
+$r_{uv}=c_{uv}\omega_{uv}$, and define the resistance curvature by
+\[
+ p_v(c)=1-\frac12\sum_{u:\,uv\in E}r_{uv}.
+\]
+For normalized $c$, the resistance capacity is the set function
+$\tau_\bullet(c)$ given by
+\[
+ \tau_\varnothing=0,
+ \qquad
+ \tau_{\{v\}}=\frac12,
+ \qquad
+ \tau_U=\frac12+\frac12
+ \left(\one_U^{\mathsf T}\Omega[U]^{-1}\one_U\right)^{-1}
+ \quad (|U|\ge2),
+\]
+where $\Omega[U]$ is the principal submatrix indexed by $U$ and $\one_U$ is
+the all-ones vector in $\mathbb{R}^U$. Devriendt proved that
+$p(c)\ge0$ implies submodularity of $\tau_\bullet(c)$ and conjectured the
+converse \cite[Theorem~7.5 and Conjecture~7.6]{Devriendt}.
+
+\begin{theorem}\label{thm:main}
+Let $G=K_4$ on $V=\{0,1,2,3\}$, order the edges as
+$01,02,03,12,13,23$, and set
+\[
+ c=\frac{3485}{15876}(1,1,2,1,4,4).
+\]
+Then $c$ is normalized, $\tau_\bullet(c)$ is submodular, and
+\[
+ p(c)=
+ \left(
+ \frac{47}{126},
+ \frac{20}{63},
+ \frac{20}{63},
+ -\frac1{126}
+ \right).
+\]
+Moreover, every elementary submodularity slack is positive, with minimum
+$1123/69700$. Hence Conjecture~7.6 of \cite{Devriendt} is false.
+\end{theorem}
+
+\begin{proof}
+Write $w=(1,1,2,1,4,4)$. Its Laplacian is
+\[
+ L(w)=
+ \begin{pmatrix}
+ 4&-1&-1&-2\\
+ -1&6&-1&-4\\
+ -1&-1&6&-4\\
+ -2&-4&-4&10
+ \end{pmatrix}.
+\]
+Using
+\[
+ L^\dagger=
+ \left(L+\tfrac14\one\one^{\mathsf T}\right)^{-1}
+ -\tfrac14\one\one^{\mathsf T},
+\]
+one obtains
+\begin{equation}\label{eq:omega}
+ \Omega(w)=\frac1{126}
+ \begin{pmatrix}
+ 0&44&44&35\\
+ 44&0&36&23\\
+ 44&36&0&23\\
+ 35&23&23&0
+ \end{pmatrix},
+ \qquad
+ \one^{\mathsf T}\Omega(w)^{-1}\one=\frac{15876}{3485}.
+\end{equation}
+Since $\Omega(\lambda w)=\lambda^{-1}\Omega(w)$, the stated choice
+$c=(3485/15876)w$ satisfies
+$\one^{\mathsf T}\Omega(c)^{-1}\one=1$.
+
+The relative resistances, which are invariant under common rescaling of the
+conductances, are
+\[
+ (r_{01},r_{02},r_{03},r_{12},r_{13},r_{23})
+ =
+ \left(
+ \frac{22}{63},
+ \frac{22}{63},
+ \frac59,
+ \frac27,
+ \frac{46}{63},
+ \frac{46}{63}
+ \right).
+\]
+Substitution in the definition of $p$ gives the displayed curvature vector.
+
+For distinct $i,j\notin S$, define
+\[
+ \Delta_{ij}(S)=
+ \tau_{S\cup\{i\}}+\tau_{S\cup\{j\}}
+ -\tau_S-\tau_{S\cup\{i,j\}}.
+\]
+Submodularity is equivalent to the nonnegativity of the
+$\binom42 2^2=24$ quantities $\Delta_{ij}(S)$. The weighting is invariant
+under $1\leftrightarrow2$. Since
+$\Omega(c)=(15876/3485)\Omega(w)$, exact inversion of the principal
+submatrices in \eqref{eq:omega} gives the following orbit representatives.
+In the table, strings such as $23$ denote the corresponding vertex sets.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}c@{\qquad}l@{\qquad}l@{}}
+\toprule
+$ij$ & $S$ & $\Delta_{ij}(S)$ \\
+\midrule
+$01$ & $\varnothing,2,3,23$
+& $\tfrac{713}{6970},\ \tfrac{3888}{17425},\
+   \tfrac{2107}{20910},\ \tfrac{2389}{41820}$ \\
+$03$ & $\varnothing,1,12$
+& $\tfrac{128}{697},\ \tfrac{112}{615},\
+   \tfrac{1123}{69700}$ \\
+$12$ & $\varnothing,0,3,03$
+& $\tfrac{1217}{6970},\ \tfrac{5148}{17425},\
+   \tfrac{207}{2788},\ \tfrac{64}{2091}$ \\
+$13$ & $\varnothing,0,2,02$
+& $\tfrac{1018}{3485},\ \tfrac{3038}{10455},\
+   \tfrac{2673}{13940},\ \tfrac{1346}{52275}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The involution $1\leftrightarrow2$ supplies the four cases for $02$, the four
+cases for $23$, and
+$\Delta_{03}(\{2\})=\Delta_{03}(\{1\})$, accounting for all $24$
+inequalities. Every displayed value is positive, and
+\[
+ \min_{\substack{i<j\\S\subseteq V\setminus\{i,j\}}}
+ \Delta_{ij}(S)
+ =\Delta_{03}(\{1,2\})
+ =\frac{1123}{69700}>0.
+\]
+Thus $\tau_\bullet(c)$ is submodular, whereas $p_3(c)<0$.
+\end{proof}
+
+\begin{remark}[Minimality and stability]
+The connected simple graphs on fewer than four vertices are $K_2$, $P_3$,
+and $K_3$. On a weighted tree, each edge has relative resistance $1$, so
+$p_v=1-\deg(v)/2\ge0$ on $K_2$ and $P_3$. For a weighted triangle, let
+$e,f$ be the edges incident with $v$, let $g$ be the opposite edge, and put
+$x_h=c_h^{-1}$ and $X=x_e+x_f+x_g$. The series-parallel law gives
+$r_h=1-x_h/X$, and hence
+\[
+ p_v=1-\frac12(r_e+r_f)=\frac{x_e+x_f}{2X}>0.
+\]
+Thus order four is minimal. Since curvature and the finitely many elementary
+slacks depend continuously on positive conductances, the strict inequalities
+$p_3(c)<0$ and $\min\Delta_{ij}(S)>0$ persist under sufficiently small
+perturbations, followed by normalization.
+\end{remark}
+
+\begin{remark}[Scope]
+Conjecture~7.6 is pointwise in the normalized conductance vector. The
+displayed Conjecture~7.7 of \cite{Devriendt} is existential over conductance
+vectors, so the two formulations have different quantifier structures. The
+example above directly refutes Conjecture~7.6, but not the graph-level
+statement in Conjecture~7.7: uniform conductances on $K_4$, after
+normalization, have curvature $(1/4,1/4,1/4,1/4)$, and hence $K_4$ is
+resistance nonnegative.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{Devriendt}
+K.~Devriendt,
+\emph{Graphs with nonnegative resistance curvature},
+Ann. Comb. \textbf{30} (2026), 415--438.
+\href{https://doi.org/10.1007/s00026-025-00774-x}
+{doi:10.1007/s00026-025-00774-x}.
+
+\end{thebibliography}
+
+\end{document}

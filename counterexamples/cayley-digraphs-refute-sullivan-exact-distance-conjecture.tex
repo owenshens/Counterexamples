@@ -1,0 +1,206 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to the Exact-Distance Form of Conjecture 6.13 in Sullivan's Survey}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\Cay}{Cay}
+
+\title[Exact-distance counterexamples]
+{Counterexamples to the Exact-Distance Form of Conjecture 6.13
+in Sullivan's Survey}
+\subjclass[2020]{05C20, 05C25, 05C38}
+\keywords{directed distance, directed girth, Cayley digraph,
+second neighborhood conjecture}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Sullivan's survey defines $N_j^+(v)$ as the set of vertices at directed
+out-distance exactly $j$ from $v$ and records Conjecture~6.13, attributed
+to an unpublished manuscript of Serge Burckel: a simple digraph with no
+directed cycle of length at most $k$ has a vertex $v$ satisfying
+$|N_k^+(v)|\ge |N_{k-1}^+(v)|$. We show that this printed exact-distance
+formulation is false for every $k\ge3$. Indeed,
+$\Cay(\Z_{3k-1},\{1,3\})$ has directed girth $k+1$, while every vertex $v$
+satisfies $|N_{k-1}^+(v)|=3>|N_k^+(v)|=2$. The same family satisfies the
+later recursively defined higher-order-neighborhood formulation.
+\end{abstract}
+
+\maketitle
+
+For vertices $u,v$ of a digraph $D$, let $d_D(u,v)$ be the length of a
+shortest directed path from $u$ to $v$, and set
+\[
+  N_j^+(v)=\{u\in V(D):d_D(v,u)=j\}.
+\]
+Sullivan~\cite{Sullivan} explicitly uses this exact-distance convention and
+prints Conjecture~6.13 in the form stated in the abstract. A later paper of
+Daamouch~\cite{Daamouch} instead presents the Burckel-attributed question
+using recursively iterated out-neighborhoods. We have not seen Burckel's
+unpublished manuscript and make no claim about the formulation intended
+there. The result below concerns precisely the statement printed in
+Sullivan's survey.
+
+\begin{theorem}\label{thm:main}
+For every integer $k\ge3$, let $n=3k-1$ and
+\[
+  D_k=\Cay(\Z_n,\{1,3\}),
+\]
+with arcs $x\to x+1$ and $x\to x+3$ for each $x\in\Z_n$. Then $D_k$ is a
+strongly connected, vertex-transitive oriented graph with indegree and
+outdegree $2$ and directed girth $k+1$. Moreover, every $v\in V(D_k)$
+satisfies
+\[
+  |N_{k-1}^+(v)|=3
+  \qquad\text{and}\qquad
+  |N_k^+(v)|=2.
+\]
+Consequently, the exact-distance statement printed as Conjecture~6.13 in
+Sullivan's survey is false for every $k\ge3$.
+\end{theorem}
+
+\begin{proof}
+Translations of $\Z_n$ act transitively on $D_k$, and the generator $1$
+gives strong connectivity. Every vertex has indegree and outdegree $2$.
+Since $n\ge8$, the increments $1$ and $3$ are distinct and nonzero, and
+\[
+  \{1,3\}\cap\{-1,-3\}=\varnothing
+  \qquad\text{in }\Z_n.
+\]
+Thus the digraph is oriented.
+
+A directed walk of length $\ell$ using $b$ arcs of increment $3$ has
+unreduced displacement
+\[
+  \ell+2b,
+  \qquad 0\le b\le\ell.
+\]
+If $1\le\ell\le k-1$, then
+\[
+  0<\ell+2b\le3\ell\le3k-3<n,
+\]
+so the walk is not closed. If $\ell=k$, then
+\[
+  0<k+2b\le3k=n+1<2n.
+\]
+Closure would therefore require $k+2b=n$, which is impossible because
+$k+2b$ and $n=3k-1$ have opposite parity. Hence $D_k$ has no directed cycle
+of length at most $k$. On the other hand, the walk whose increments are two
+copies of $1$ followed by $k-1$ copies of $3$ is closed, since
+\[
+  2+3(k-1)=n.
+\]
+Its nonzero partial sums are $1$, $2$, and $2+3j$ for
+$1\le j\le k-2$; they are distinct integers strictly between $0$ and $n$.
+Thus this walk is a directed cycle of length $k+1$, and the directed girth
+is $k+1$.
+
+By translation, it remains to compute distances from $0$. A walk of length
+$d$ ends at
+\[
+  d+2b\pmod n,
+  \qquad 0\le b\le d.
+\]
+Fix $2\le d\le k-1$. Since $3d<n$, none of these walks wraps modulo $n$.
+If $b\le d-3$, then
+\[
+  d+2b=(d-2)+2(b+1),
+\]
+so the endpoint is already reachable in $d-2$ steps. The remaining
+endpoints are
+\[
+  3d-4,\qquad 3d-2,\qquad 3d.
+\]
+A walk of length at most $d-2$ has displacement at most $3d-6$, while every
+$(d-1)$-step displacement has parity $d-1$ and the three displayed
+integers have parity $d$. Hence all three have distance exactly $d$, and
+\[
+  N_d^+(0)=\{3d-4,3d-2,3d\},
+  \qquad 2\le d\le k-1.
+\]
+In particular, $|N_{k-1}^+(0)|=3$.
+
+At length $k$, the endpoints with $b\le k-3$ were already reached in
+$k-2$ steps. The remaining endpoints are
+\[
+  3k-4=n-3,\qquad 3k-2=n-1,\qquad 3k=n+1\equiv1\pmod n.
+\]
+The residue $1$ has distance $1$. A walk of length at most $k-2$ has
+unreduced displacement at most $n-5$. A $(k-1)$-step walk has displacement
+at most $n-2<n$ and parity $k-1$, whereas both $n-3=3k-4$ and $n-1=3k-2$
+have parity $k$. Thus neither residue is reachable in fewer than $k$ steps,
+and
+\[
+  N_k^+(0)=\{n-3,n-1\}.
+\]
+Translation completes the proof.
+\end{proof}
+
+\begin{remark}[Recursive formulation]\label{rem:recursive}
+Daamouch~\cite{Daamouch} defines, for $A\subseteq V(D)$,
+\[
+  R^+(A)=\left(\bigcup_{x\in A}N^+(x)\right)\setminus A,
+  \qquad
+  R_1^+(v)=N^+(v),
+  \qquad
+  R_j^+(v)=R^+(R_{j-1}^+(v)).
+\]
+The same graphs are not counterexamples under this convention. For
+$1\le j\le k$, set
+\[
+  S_j=\{j+2b\pmod n:0\le b\le j\}.
+\]
+Since $2j<n$, the residues in $S_j$ are distinct, so $|S_j|=j+1$. We have
+$R_1^+(0)=S_1$, and for $2\le j\le k$,
+\[
+  S_{j-1}+\{1,3\}=S_j.
+\]
+Moreover, $S_{j-1}\cap S_j=\varnothing$. Indeed, an element in the
+intersection would give
+\[
+  1+2(b-c)\equiv0\pmod n
+\]
+for some $0\le b\le j$ and $0\le c\le j-1$, but this integer is odd and
+\[
+  0<|1+2(b-c)|\le2j+1\le2k+1<n.
+\]
+Induction gives $R_j^+(0)=S_j$ for $1\le j\le k$. Therefore, at every
+vertex $v$,
+\[
+  |R_k^+(v)|=k+1>k=|R_{k-1}^+(v)|.
+\]
+Thus Theorem~\ref{thm:main} refutes only Sullivan's printed exact-distance
+formulation, not the later recursive formulation.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Sullivan}
+B.~D. Sullivan,
+\emph{A summary of problems and results related to the
+Caccetta--H\"aggkvist conjecture},
+AIM Preprint 2006-13,
+\href{https://arxiv.org/abs/math/0605646}{arXiv:math/0605646}, 2006.
+
+\bibitem{Daamouch}
+M.~Daamouch,
+\emph{A note on the second neighborhood problem},
+Utilitas Mathematica \textbf{123} (2025), 155--164,
+\href{https://doi.org/10.61091/um123-12}{doi:10.61091/um123-12}.
+
+\end{thebibliography}
+
+\end{document}

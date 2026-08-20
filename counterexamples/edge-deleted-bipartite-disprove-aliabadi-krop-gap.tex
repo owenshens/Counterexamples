@@ -1,0 +1,232 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Edge-Deletion Counterexamples to the Aliabadi--Krop Sharp Uniform-Gap Formula},
+  pdfsubject={Perfect matchings and the Alon--Friedland bound},
+  pdfkeywords={perfect matching, Alon--Friedland bound, extremal graph, uniform gap}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\perfmat}{\operatorname{perfmat}}
+
+\title[Edge-deletion counterexamples]
+{Edge-Deletion Counterexamples to the Aliabadi--Krop
+Sharp Uniform-Gap Formula}
+
+\date{}
+\subjclass[2020]{05C70, 05C35}
+\keywords{perfect matching, Alon--Friedland bound, extremal graph, uniform gap}
+
+\begin{document}
+
+\begin{abstract}
+Aliabadi and Krop asked for the sharp normalized perfect-matching count
+below the Alon--Friedland bound among non-extremal graphs of maximum degree
+at most $\Delta$. For every $\Delta\ge4$, we show that deleting one edge
+from $K_{\Delta,\Delta}$ gives a ratio larger than both candidates in their
+proposed formula. The same family yields an upper bound of order
+$(\log\Delta)/\Delta^2$ on any uniform gap constant, improving their
+order-$1/\Delta$ obstruction.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexamples}
+
+For a finite simple graph $G$ of even order and without isolated vertices, set
+\[
+U(G)=\prod_{v\in V(G)}\bigl(d_G(v)!\bigr)^{1/(2d_G(v))}.
+\]
+The Alon--Friedland bound states that
+$\perfmat(G)\le U(G)$, with equality exactly for disjoint unions of
+balanced complete bipartite graphs \cite{AlonFriedland}.
+
+For $\Delta\ge3$, Aliabadi and Krop define
+\[
+R_\Delta=\sup\left\{
+\frac{\perfmat(G)}{U(G)}:
+\begin{array}{l}
+G\text{ has even order, no isolated vertices, and }\Delta(G)\le\Delta,\\
+G\text{ is not a disjoint union of balanced complete bipartite graphs}
+\end{array}
+\right\}
+\]
+and ask in \cite[Problem~4.9]{AliabadiKrop} whether
+\begin{equation}\label{eq:AK}
+R_\Delta=
+\max\left\{\left(\frac34\right)^{1/3},\rho_{\Delta-1}\right\},
+\qquad
+\rho_r=\frac{(r!)^{1/(r(r+1))}}{(r+1)^{1/(r+1)}}.
+\end{equation}
+
+For $r\ge2$, let $H_r=K_{r,r}-e$, where $e$ is one edge, and write
+\[
+\sigma_r=\frac{\perfmat(H_r)}{U(H_r)}.
+\]
+Aliabadi and Krop observed $H_3$ as the runner-up in their enumeration of
+connected graphs on at most seven vertices \cite[Remark~4.10]{AliabadiKrop}.
+The full deletion family refutes \eqref{eq:AK} from $r=4$ onward.
+
+\begin{theorem}\label{thm:main}
+For every integer $r\ge4$, the graph $H_r$ is admissible in the definition
+of $R_r$ and
+\[
+\sigma_r=
+\frac{r-1}
+{r^{(r-1)/r}\bigl((r-1)!\bigr)^{1/(r(r-1))}}
+>
+\max\left\{\left(\frac34\right)^{1/3},\rho_{r-1}\right\}.
+\]
+Consequently, the formula \eqref{eq:AK} fails for every $\Delta\ge4$.
+\end{theorem}
+
+\begin{proof}
+The graph $H_r$ is connected, has even order, has no isolated vertices, and has
+maximum degree $r$. Since one cross-edge is missing, it is not a balanced
+complete bipartite graph. Of the $r!$ perfect matchings of $K_{r,r}$,
+exactly $(r-1)!$ use the deleted edge. Hence
+\[
+\perfmat(H_r)=(r-1)(r-1)!.
+\]
+There are $2r-2$ vertices of degree $r$ and two of degree $r-1$, so
+\[
+U(H_r)=(r!)^{(r-1)/r}\bigl((r-1)!\bigr)^{1/(r-1)},
+\]
+which gives the stated formula for $\sigma_r$.
+
+By strict arithmetic--geometric mean,
+\begin{equation}\label{eq:amgm}
+\bigl((r-1)!\bigr)^{1/(r-1)}<\frac r2.
+\end{equation}
+Therefore
+\[
+\frac{\sigma_r}{\rho_{r-1}}
+=
+\frac{r-1}
+{r^{(r-2)/r}\bigl((r-1)!\bigr)^{2/(r(r-1))}}
+>
+\left(1-\frac1r\right)2^{2/r}>1.
+\]
+For the last inequality, the function
+$x\mapsto x\log(1-1/x)$ is increasing on $(1,\infty)$, since its derivative
+is
+\[
+\frac1{x-1}-\log\left(1+\frac1{x-1}\right)>0.
+\]
+Thus, for $r\ge3$,
+\[
+\left[\left(1-\frac1r\right)2^{2/r}\right]^r
+=4\left(1-\frac1r\right)^r
+\ge4\left(\frac23\right)^3>1.
+\]
+
+It remains to compare $\sigma_r$ with $(3/4)^{1/3}$. From
+\eqref{eq:amgm},
+\[
+\sigma_r>
+q(r):=\left(1-\frac1r\right)2^{1/r}.
+\]
+The function $q$ is increasing on $(1,\infty)$ because
+\[
+\frac{d}{dx}\log q(x)
+=
+\frac{x/(x-1)-\log2}{x^2}>0.
+\]
+Moreover,
+\[
+\left(\frac{q(5)}{(3/4)^{1/3}}\right)^{15}
+=
+\frac{2^{43}}{3^5 5^{15}}>1,
+\]
+where the final inequality follows from $3^5<2^8$ and $5^3<2^7$.
+Hence $\sigma_r>(3/4)^{1/3}$ for every $r\ge5$. For $r=4$, direct
+simplification gives
+\[
+\left(\frac{\sigma_4}{(3/4)^{1/3}}\right)^{12}
+=
+\frac{3^7}{2^{11}}>1.
+\]
+This proves the two strict comparisons. Taking $r=\Delta$ completes the
+proof.
+\end{proof}
+
+\section{A sharper asymptotic obstruction}
+
+Aliabadi and Krop obtained
+\[
+c(\Delta)\le \frac1\Delta+O\left(\frac{\log\Delta}{\Delta^2}\right)
+\]
+from an added-edge construction \cite[Corollary~4.8]{AliabadiKrop}.
+The deletion family gives the following stronger obstruction.
+
+\begin{corollary}\label{cor:gap}
+As $\Delta\to\infty$,
+\[
+1-R_\Delta
+\le 1-\sigma_\Delta
+=
+\frac{\log(2\pi\Delta)-1}{2\Delta^2}
++O\left(\frac{\log\Delta}{\Delta^3}\right).
+\]
+In particular, any constant $c(\Delta)$ valid in
+\cite[Problem~4.4]{AliabadiKrop} satisfies the same upper bound.
+\end{corollary}
+
+\begin{proof}
+From the formula in Theorem~\ref{thm:main},
+\[
+\log\sigma_r
+=
+\log\left(1-\frac1r\right)
++\frac{\log r}{r}
+-\frac{\log\Gamma(r)}{r(r-1)}.
+\]
+Stirling's formula gives
+\[
+\log\sigma_r
+=-\frac{\log(2\pi r)-1}{2r^2}
++O\left(\frac{\log r}{r^3}\right).
+\]
+The square of the main term is
+$o((\log r)/r^3)$, so exponentiation yields
+\[
+1-\sigma_r
+=
+\frac{\log(2\pi r)-1}{2r^2}
++O\left(\frac{\log r}{r^3}\right).
+\]
+Since $R_\Delta\ge\sigma_\Delta$, the result follows.
+\end{proof}
+
+\begin{remark}
+The theorem does not determine $R_\Delta$, settle the case $\Delta=3$, or
+resolve whether $R_\Delta<1$ for each fixed $\Delta$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{AlonFriedland}
+N.~Alon and S.~Friedland,
+\emph{The maximum number of perfect matchings in graphs with a given degree sequence},
+Electron. J. Combin. \textbf{15} (2008), no.~1, Note~N13, 2~pp.,
+\href{https://doi.org/10.37236/888}{doi:10.37236/888}.
+
+\bibitem{AliabadiKrop}
+M.~Aliabadi and E.~Krop,
+\emph{Odd-cycle defects in the Alon--Friedland bound},
+\href{https://arxiv.org/abs/2607.14134v1}
+{arXiv:2607.14134v1 [math.CO]}, 2026.
+
+\end{thebibliography}
+
+\end{document}

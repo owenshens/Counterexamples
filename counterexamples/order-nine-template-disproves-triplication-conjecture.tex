@@ -1,0 +1,222 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Order-9 Counterexample to the Triplication-Template Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\ST}{\operatorname{ST}}
+
+\title[An order-9 counterexample]
+{An Order-9 Counterexample to the Triplication-Template Conjecture}
+\date{}
+
+\subjclass[2020]{05B15, 11B75}
+\keywords{strong starter, pseudostarter, triplication template,
+triplication table, admissible key, modular Sudoku problem, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Ogandzhanyants, Sadov, and Kondratieva conjectured that every
+triplication table obtained from a triplication template with an admissible
+key is induced by a strong starter. We give a keyed template of order $9$
+with an admissible key such that no strong starter in $\Z_{27}$ is congruous
+with the resulting table. A short carry identity over $\F_3$ certifies
+nonexistence.
+\end{abstract}
+
+\maketitle
+
+We use the terminology and numbering of the published version of
+\cite{OSK}. For a triplication table $\Sigma_m$, let $\ST(\Sigma_m)$ denote
+the set of ordered strong starters in $\Z_{3m}$ congruous with $\Sigma_m$.
+Conjecture~7.1 of \cite{OSK} asserts that
+\[
+ t\in K(T_0,T_1,T_2)
+ \quad\Longrightarrow\quad
+ \ST\bigl(\Sigma_m(T_0,T_1,T_2,t)\bigr)\ne\varnothing.
+\]
+Unsolvable triplication tables are already known: Theorem~7.8 of \cite{OSK}
+exhibits three general triplication tables, of orders $9$, $11$ and $13$,
+that are induced by no strong starter of order $27$, $33$, $39$
+respectively, and Remark~7.9 there reports $2625$ unsolvable tables among
+$10^{5}$ randomly generated tables of order $9$. None of these is asserted
+to arise from a triplication template, and the order-$9$ table of
+\cite[Table~14]{OSK} does not: in no arrangement of its rows can a column be
+chosen that is a starter of $\Z_9$, so that table is not a keyed template
+for any key, and its equivalence class differs from that of
+\eqref{eq:table}. What is new below is thus not an unsolvable table of order
+$9$, but one that lies in the template class of \cite[Definition~4.2]{OSK}
+with an admissible key, that is, in exactly the class quantified over by
+Conjecture~7.1.
+
+\begin{theorem}\label{thm:main}
+In $\Z_9$, let
+\[
+\begin{aligned}
+T_0&=[(1,2),(4,6),(5,8),(3,7)],\\
+T_1&=[(4,5),(1,3),(8,2),(8,3)],\\
+T_2&=[(5,6),(4,6),(7,1),(7,2)].
+\end{aligned}
+\]
+Then $\langle T_0,T_1,T_2\rangle$ is a triplication template,
+$1\in K(T_0,T_1,T_2)$, and
+\[
+\ST\bigl(\Sigma_9(T_0,T_1,T_2,1)\bigr)=\varnothing.
+\]
+Consequently, \cite[Conjecture~7.1]{OSK} is false.
+\end{theorem}
+
+\begin{proof}
+The directed differences in each of $T_0,T_1,T_2$, in the displayed
+order, are $1,2,3,4$ modulo $9$. The pairing $T_0$ partitions
+$\Z_9^*$, while in the multiset union $T_1\uplus T_2$ every element of
+$\Z_9^*$ occurs exactly twice. Thus
+$\langle T_0,T_1,T_2\rangle$ is a triplication template.
+
+With key $t=1$, the resulting keyed template is
+\begin{equation}\label{eq:table}
+\Sigma_9=
+\begin{array}{c|ccc}
+ &0&1&2\\ \hline
+0&& (1,1)&\\
+1&(1,2)&(5,6)&(6,7)\\
+2&(4,6)&(2,4)&(5,7)\\
+3&(5,8)&(0,3)&(8,2)\\
+4&(3,7)&(0,4)&(8,3).
+\end{array}
+\end{equation}
+Here $0$ occurs twice and every nonzero residue occurs three times. The
+three directed differences in regular row $r$ are all $r$, and the multiset
+of pair sums modulo $9$ is
+\[
+\{1,1,1,2,2,2,3,3,3,4,4,4,6\}.
+\]
+The special pair is $(1,1)$, and the thirteen ordered pairs are distinct
+(in fact, their underlying unordered pairs are distinct). Hence
+\eqref{eq:table} satisfies Definition~2.2 of \cite{OSK}; equivalently,
+$1\in K(T_0,T_1,T_2)$ by Definition~4.3.
+
+Suppose that a strong starter in $\Z_{27}$ is congruous with
+\eqref{eq:table}. Index the thirteen table pairs by $i$ and write the
+corresponding lifted pair as
+\[
+ x_i=u_i+9U_i,\qquad y_i=v_i+9V_i,
+ \qquad U_i,V_i\in\{0,1,2\}.
+\]
+Let $r_i\in\{0,1,2,3,4\}$ be the row index, with $r_i=0$ for the special
+pair, and let $s_i\in\{0,\ldots,8\}$ be the residue of $u_i+v_i$ modulo
+$9$. Define
+\[
+\delta_i=
+\begin{cases}
+1,&v_i-u_i<0,\\
+0,&v_i-u_i\ge0,
+\end{cases}
+\qquad
+\sigma_i=
+\begin{cases}
+1,&u_i+v_i\ge9,\\
+0,&u_i+v_i<9.
+\end{cases}
+\]
+Then
+\begin{align}
+ y_i-x_i
+ &\equiv r_i+9(V_i-U_i-\delta_i)\pmod{27},
+ \label{eq:difference}\\
+ x_i+y_i
+ &\equiv s_i+9(U_i+V_i+\sigma_i)\pmod{27}.
+ \label{eq:addition}
+\end{align}
+All identities below are in $\F_3$.
+
+Because the lifted pairs partition $\Z_{27}^*$, the three components
+above each nonzero residue modulo $9$ have quotient digits $0,1,2$; the
+two components above residue $0$ have quotient digits $1,2$. Grouping by
+residue therefore gives
+\begin{equation}\label{eq:components}
+ \sum_i (u_iU_i+v_iV_i)=0.
+\end{equation}
+
+For a fixed regular row $r$, put
+$D_i=V_i-U_i-\delta_i$. By \eqref{eq:difference}, its three lifted
+directed differences are $r+9D_i$. They represent distinct difference
+classes. Since $r\not\equiv-r\pmod 9$, two of them cannot be negatives of
+one another; hence the three values $D_i$ are $0,1,2$. Summing over the
+regular rows yields
+\begin{equation}\label{eq:rows}
+ \sum_i r_i(V_i-U_i)=\sum_i r_i\delta_i.
+\end{equation}
+
+For each $s\in\{1,2,3,4\}$, exactly three pairs in \eqref{eq:table} have
+sum $s$ modulo $9$. Their lifted sums are distinct, so by
+\eqref{eq:addition} the corresponding values
+$U_i+V_i+\sigma_i$ are $0,1,2$. The only other sum class is the singleton
+class $s=6$, whose coefficient is zero in $\F_3$. Thus
+\begin{equation}\label{eq:sums}
+ \sum_i s_i(U_i+V_i)=-\sum_i s_i\sigma_i.
+\end{equation}
+
+Add \eqref{eq:components}, \eqref{eq:rows}, and \eqref{eq:sums}. Since
+$r_i\equiv v_i-u_i$ and $s_i\equiv u_i+v_i$ modulo $9$, the coefficients
+of $U_i$ and $V_i$ are respectively
+\[
+ u_i-r_i+s_i\equiv3u_i=0,
+ \qquad
+ v_i+r_i+s_i\equiv3v_i=0.
+\]
+Every congruous strong starter must therefore satisfy the carry identity
+\begin{equation}\label{eq:carry}
+ \sum_i r_i\delta_i=\sum_i s_i\sigma_i.
+\end{equation}
+
+In \eqref{eq:table}, the only pairs with negative ordinary directed
+difference are $(8,2)$ in row $3$ and $(8,3)$ in row $4$. Hence
+\[
+ \sum_i r_i\delta_i=3+4\equiv1\pmod3.
+\]
+The summation carries occur for
+\[
+(5,6),(6,7),(4,6),(5,7),(5,8),(8,2),(3,7),(8,3),
+\]
+whose sum residues are, respectively,
+\[
+2,4,1,3,4,1,1,2.
+\]
+Their total is $18\equiv0\pmod3$, contradicting \eqref{eq:carry}. Thus
+$\ST(\Sigma_9)=\varnothing$.
+\end{proof}
+
+\begin{remark}
+The starter $T_0$ is near-strong of type~I, whereas $T_1$ and $T_2$ are
+pseudostarters but not starters. Thus the example uses the pseudostarter
+generality of \cite[Conjecture~7.1]{OSK}. It leaves open the restriction to
+templates built entirely from starters and does not address Horton's
+conjecture.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{OSK}
+O.~Ogandzhanyants, S.~Sadov, and M.~Kondratieva,
+\emph{The triplication method for constructing strong starters},
+J. Combin. Math. Combin. Comput. \textbf{131} (2026), 115--160.
+\href{https://doi.org/10.61091/jcmcc131-08}
+{doi:10.61091/jcmcc131-08}.
+
+\end{thebibliography}
+
+\end{document}

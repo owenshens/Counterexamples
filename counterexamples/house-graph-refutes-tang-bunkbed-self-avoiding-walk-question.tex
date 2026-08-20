@@ -1,0 +1,182 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Five-Vertex Counterexample to Tang's Bunkbed Self-Avoiding-Walk Question},
+  pdfsubject={Self-avoiding walks on bunkbed graphs}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\SAW}{\mathcal S}
+
+\title[A five-vertex bunkbed counterexample]
+{A Five-Vertex Counterexample to Tang's Bunkbed Self-Avoiding-Walk Question}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Tang asked whether, for every finite connected simple graph $G$, the
+number of self-avoiding walks in $G\square K_2$ from $u_0$ to $v_0$
+is at most the number from $u_0$ to $v_1$ whenever $uv$ is not a cut
+edge. We answer this question negatively. For the five-vertex house
+graph and a cycle edge $ad$, exact enumeration gives
+\[
+  |\SAW(a_0,d_0)|=60>59=|\SAW(a_0,d_1)|.
+\]
+The base graph is $2$-connected, and five is the minimum possible
+order among counterexamples with an adjacent non-cut edge. We also
+give a $3$-connected counterexample on seven vertices.
+\end{abstract}
+
+\maketitle
+
+\section{A minimum-order counterexample}
+
+For a finite connected simple graph $G$, write $x_i=(x,i)$ for a
+vertex of the bunkbed graph $G\square K_2$. For vertices $p,q$ of the
+bunkbed graph, let $\SAW(p,q)$ denote the set of self-avoiding walks
+from $p$ to $q$. Tang asked whether
+\begin{equation}
+  |\SAW(u_0,v_0)|\le |\SAW(u_0,v_1)|
+  \label{eq:tang}
+\end{equation}
+holds whenever $(u,v)$ is not a cut edge of $G$
+\cite[Question~3.3]{Tang}. The example below uses an adjacent pair,
+so it gives a negative answer independently of any convention
+concerning nonadjacent pairs.
+
+\begin{theorem}
+Let
+\[
+  V(G)=\{a,b,c,d,e\},\qquad
+  E(G)=\{ab,ad,ae,bc,be,cd\}.
+\]
+Then $G$ is $2$-connected, $ad$ is not a cut edge, and
+\[
+  |\SAW(a_0,d_0)|=60>59=|\SAW(a_0,d_1)|.
+\]
+Consequently, \eqref{eq:tang} is false. Moreover, no counterexample
+with an adjacent non-cut edge has fewer than five vertices.
+\end{theorem}
+
+\begin{proof}
+The graph $G$ is the house graph: it is the union of the cycle
+$a b c d a$ and the triangle $a b e a$. Deleting any vertex leaves a
+connected graph, so $G$ is $2$-connected. In particular, the cycle
+edge $ad$ is not a cut edge.
+
+We use an exact last-step recurrence. Let $B=G\square K_2$, fix
+$s\in V(B)$, and, for $A\subseteq V(B)$ and $x\in A$, let $F_s(A,x)$
+be the number of self-avoiding walks from $s$ to $x$ whose vertex set
+is exactly $A$. Set
+\[
+  F_s(\{s\},s)=1,
+  \qquad
+  F_s(A,s)=0\quad\text{for }A\ne\{s\},
+\]
+and set $F_s(A,x)=0$ if $s\notin A$. For $x\ne s$,
+\begin{equation}
+  F_s(A,x)=
+  \sum_{\substack{y\in A\setminus\{x\}\\xy\in E(B)}}
+  F_s(A\setminus\{x\},y).
+  \label{eq:recurrence}
+\end{equation}
+Indeed, deleting the final vertex $x$ gives a bijection according to
+the unique penultimate vertex $y$. Hence, if $N_k(s,t)$ denotes the
+number of $k$-edge self-avoiding walks from $s$ to $t$, then
+\begin{equation}
+  N_k(s,t)=
+  \sum_{\substack{A\subseteq V(B)\\s,t\in A,\ |A|=k+1}}
+  F_s(A,t).
+  \label{eq:length}
+\end{equation}
+Exact evaluation of \eqref{eq:recurrence}--\eqref{eq:length} gives
+\[
+\begin{array}{c|rrrrrrrrr|r}
+ k&1&2&3&4&5&6&7&8&9&\mathrm{total}\\
+\hline
+ N_k(a_0,d_0)&1&0&2&1&9&14&13&13&7&60\\
+ N_k(a_0,d_1)&0&2&0&7&9&12&16&9&4&59
+\end{array}
+\]
+and therefore gives the claimed strict reverse inequality. All
+computations use integer arithmetic.
+
+It remains to verify minimum order. For an adjacent non-cut edge
+$uv$, define
+\[
+  \Delta_G(u,v)=|\SAW(u_0,v_0)|-|\SAW(u_0,v_1)|.
+\]
+Up to isomorphism, the connected simple graphs on two, three, or four
+vertices are exactly those listed below. The final column is the
+maximum of $\Delta_G(u,v)$ over adjacent non-cut edges, evaluated by
+the same recurrence; ``none'' means that every edge is a cut edge.
+\[
+\begin{array}{c|l|r}
+\toprule
+|V(G)|&G&\max \Delta_G(u,v)\\
+\midrule
+2&K_2&\text{none}\\
+3&P_3&\text{none}\\
+3&K_3&-1\\
+4&P_4,\ K_{1,3}&\text{none}\\
+4&C_4&-1\\
+4&\text{paw graph}&0\\
+4&K_4-e&-4\\
+4&K_4&-14\\
+\bottomrule
+\end{array}
+\]
+The one-vertex case is vacuous. Thus no graph of order at most four
+violates \eqref{eq:tang} at an adjacent non-cut edge.
+\end{proof}
+
+\section{A \texorpdfstring{$3$}{3}-connected counterexample}
+
+The failure is not removed by imposing $3$-connectivity.
+
+\begin{proposition}
+Let $H$ be the graph in which $\{0,1,2,6\}$ induces $K_4$,
+$\{3,4,5\}$ induces $K_3$, and the remaining edges are $05$, $14$,
+and $23$. Then $H$ is $3$-connected and
+\[
+  |\SAW(0_0,5_0)|=5031>4801=|\SAW(0_0,5_1)|.
+\]
+\end{proposition}
+
+\begin{proof}
+Deleting at most two vertices leaves each clique nonempty and
+connected. The three edges $05$, $14$, and $23$ are vertex-disjoint,
+so at least one survives and joins the two remaining cliques. Hence
+$H$ remains connected after deleting any two vertices, and therefore
+$\kappa(H)\ge 3$. Since $\delta(H)=3$, we have $\kappa(H)=3$.
+The exact counts follow from
+\eqref{eq:recurrence}--\eqref{eq:length}.
+\end{proof}
+
+\begin{remark}
+The examples above do not address Tang's complete-graph conjecture
+\cite[Conjecture~1.8]{Tang}.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{Tang}
+P.~Tang,
+\emph{Maximum flow and self-avoiding walk on bunkbed graphs},
+arXiv:2502.06237v1 [math.PR], 2025.
+
+\end{thebibliography}
+
+\end{document}

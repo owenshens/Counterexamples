@@ -1,0 +1,387 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={A Counterexample to Samart's Half-Shift Formula for n4},
+  pdfsubject={Mahler measures and Eisenstein--Kronecker series},
+  pdfkeywords={Mahler measure, Eisenstein--Kronecker series, CM point, validated numerics}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\e}{\mathrm e}
+\newcommand{\EK}{\mathcal E_4}
+\DeclareMathOperator{\arcosh}{arcosh}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\title[A counterexample to Samart's half-shift formula]
+      {A Counterexample to Samart's Half-Shift Formula for $n_4$}
+
+\date{}
+
+\subjclass[2020]{Primary 11F67; Secondary 11Y60}
+\keywords{Mahler measure, Eisenstein--Kronecker series, CM point,
+validated numerics}
+
+\begin{document}
+
+\begin{abstract}
+Proposition~3.1(iii) of Samart's paper asserts an Eisenstein--Kronecker
+formula for $n_4(s_4(\tau))$ when
+$\tau=\frac12+iy$ and $y>\frac12$. At
+$\tau_0=\frac12+\frac{\sqrt6}{4}i$ we prove, by interval arithmetic,
+that
+\[
+ n_4\bigl(s_4(\tau_0)\bigr)
+ \ge \frac{151680651}{67108864}>2.26,
+ \qquad
+ \mathcal E_4(\tau_0)<2.22516,
+\]
+where $\mathcal E_4$ is the lattice sum in the proposition. Thus the
+half-shift clause of Proposition~3.1(iii) is false. Since
+$\Im\tau_0=\sqrt6/4<1/\sqrt2$, it is that clause alone that is
+contradicted; the half-shift range was introduced in the 2016 form of
+the proposition. The proof uses an
+exact two-dimensional Jensen reduction and a finite interval
+certificate.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+For a Laurent polynomial $P$ in $r$ variables, let
+\[
+ m(P)=\int_{[0,1]^r}
+ \log\left|P\bigl(\e^{2\pi i t_1},\ldots,\e^{2\pi i t_r}\bigr)\right|
+ \,dt_1\cdots dt_r
+\]
+and define
+\[
+ n_4(s)=4m\bigl(x^4+y^4+z^4+1+s^{1/4}xyz\bigr).
+\]
+The value is independent of the fourth root, by a unit-modulus change
+of one torus variable.
+
+Write
+\[
+ \eta(\tau)=\e^{\pi i\tau/12}
+ \prod_{n\ge1}\bigl(1-\e^{2\pi i n\tau}\bigr),
+\]
+and set
+\begin{align*}
+ A(\tau)&=\frac{\eta(\tau)\eta(4\tau)^2}{\eta(2\tau)^3},\\
+ c(\tau)&=\left(\frac{\eta(2\tau)}{\eta(\tau)}\right)^6
+ \left(16A(\tau)^4+A(\tau)^{-4}\right),
+ &s_4(\tau)&=c(\tau)^4.
+\end{align*}
+This is Samart's parameter $s_4(q)$ with $q=\e^{2\pi i\tau}$.
+For $z\ne0$, put
+\[
+ F(z)=\frac{4(\Re z)^2}{|z|^6}-\frac1{|z|^4},
+ \qquad
+ T_d(\tau)=\sum_{(m,n)\in\Z^2}^{\prime}F(dm\tau+n),
+\]
+where the prime omits $(0,0)$, and define
+\[
+ \EK(\tau)=\frac{10\Im\tau}{\pi^3}
+ \bigl(-T_1(\tau)+4T_2(\tau)\bigr).
+\]
+The sums converge absolutely. Samart's Proposition~3.1(iii) states
+that
+\begin{equation}\label{eq:samart}
+ n_4\bigl(s_4(\tau)\bigr)=\EK(\tau)
+\end{equation}
+when either $\tau=iy$ with $y\ge1/\sqrt2$, or
+$\tau=\frac12+iy$ with $y>\frac12$%
+~\cite[Proposition~3.1(iii)]{Samart2016}.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+ \tau_0=\frac{2+\sqrt{-6}}4
+       =\frac12+\frac{\sqrt6}{4}i.
+\]
+Then
+\[
+ n_4\bigl(s_4(\tau_0)\bigr)
+ \ge \frac{151680651}{67108864}>2.26,
+ \qquad
+ \EK(\tau_0)<2.22516.
+\]
+Thus \eqref{eq:samart} fails at a point in the half-shift range of
+Proposition~3.1(iii).
+\end{theorem}
+
+Although $\tau_0$ also appears in the conjectural Table~6 of
+\cite{Samart2015}, the theorem concerns only Proposition~3.1(iii).
+The half-shift clause is not idle in \cite{Samart2016}, however: the
+proof of \cite[Thm.~1.2(iii)]{Samart2016} in the case $s<0$ applies it
+at $(\tau-1)/2\tau$ with $\tau=iy$, a point whose real part is
+$\frac12$ and whose imaginary part is $1/2y>\frac12$, and $\tau_0$ is
+of exactly this form, with $y=2/\sqrt6$. We do not pursue the
+consequences for that theorem, or for Table~6, here.
+
+\medskip
+\noindent
+\textbf{Relation to earlier work.}
+That \eqref{eq:samart} fails below $\Im\tau=1/\sqrt2$ is not new.
+Zheng \cite[\S5]{Zheng2026} shows that the lattice sum leaves the
+geometric sheet there and states that below that threshold ``the
+identity fails everywhere'', on numerical evidence along the lines
+$\Re\tau=0$ and $\Re\tau=1/4$, and also reports high-precision
+numerical evidence that the Table~6 identity $n_4(81)=40L'(g_7,0)$
+fails. Since $\Im\tau_0=\sqrt6/4<1/\sqrt2$, that blanket statement
+already covers $\tau_0$, so what is new here is not the phenomenon but
+the target and the mode of proof. Zheng quotes the identity only in its
+earlier form \cite[Prop.~2.1(iii)]{Samart2013}, for
+$\Im\tau\ge1/\sqrt2$, and records that below that threshold the
+identity ``is not asserted''. The point of the present note is that it
+\emph{is} asserted: \cite[Prop.~3.1(iii)]{Samart2016}, which
+\cite{Samart2016} introduces as a ``modified version'' of
+\cite[Prop.~2.1]{Samart2013} and justifies by the remark that the
+admitted values of $\tau$ ``lie in a corresponding fundamental domain
+for $\Gamma_0(N)^*$'', covers $\tau=\frac12+iy$ for every $y>\frac12$,
+and hence the whole strip $\frac12<y<\frac1{\sqrt2}$.
+Theorem~\ref{thm:main} is thus a proof, rather than numerical evidence,
+that the formula fails at a point of the range the proposition does
+assert; membership of such a fundamental domain is not by itself
+sufficient for it.
+
+\section{Jensen reduction}
+
+\begin{lemma}\label{lem:jensen}
+For $c\in\mathbb C$, set
+\[
+ a_c(\theta,\phi)
+ =\e^{i(\theta+\phi)/2}\bigl(\e^{i\theta}+\e^{i\phi}+c\bigr),
+ \qquad
+ J(a)=\arcosh\left(\frac{|a-2|+|a+2|}{4}\right),
+\]
+where $\arcosh$ is the nonnegative real inverse of $\cosh$. Then
+\begin{equation}\label{eq:jensen}
+ n_4(c^4)=\frac4{(2\pi)^2}
+ \int_0^{2\pi}\!\int_0^{2\pi}
+ J\bigl(a_c(\theta,\phi)\bigr)\,d\theta\,d\phi.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The argument of $\arcosh$ is at least $1$ by the triangle inequality,
+and $J(-a)=J(a)$. Divide
+$x^4+y^4+z^4+1+cxyz$ by $xyz$ and make the torus substitution
+\[
+ u=\frac{x^3}{yz},\qquad
+ v=\frac{y^3}{xz},\qquad
+ w=\frac{z^3}{xy}.
+\]
+Its exponent matrix has determinant $16$, so the map is a finite
+torus covering and preserves normalized Haar measure. Since
+$uvw=xyz$, the transformed Laurent polynomial is
+\[
+ u+v+w+(uvw)^{-1}+c.
+\]
+For fixed $u=\e^{i\theta}$ and $v=\e^{i\phi}$, Jensen's formula in $w$
+reduces the integral to the roots of
+\[
+ w^2+(u+v+c)w+(uv)^{-1}.
+\]
+After a unit-modulus rescaling this is
+$z^2+a_c(\theta,\phi)z+1$; the choice of square root changes $a_c$ to
+$-a_c$ and hence does not change $J$.
+
+Let $\rho$ be a root with $|\rho|\ge1$. Jensen's contribution is
+$t=\log|\rho|$. Since $-a_c=\rho+\rho^{-1}$,
+\[
+ |a_c-2|+|a_c+2|
+ =\frac{|\rho+1|^2+|\rho-1|^2}{|\rho|}
+ =4\cosh t.
+\]
+Thus the contribution equals $J(a_c)$. The logarithm of a nonzero
+Laurent polynomial is integrable on the torus, so Fubini's theorem and
+Jensen's formula apply, proving \eqref{eq:jensen}.
+\end{proof}
+
+\section{Validated bounds}
+
+Each inequality below is checked by a finite interval computation from
+the constants printed here.
+
+\subsection*{The eta parameter}
+
+Let $q=\e^{2\pi i\tau}$, $r=|q|$, and
+$R_N=\prod_{n>N}(1-q^n)$. Then
+\[
+ |\log R_N|
+ \le \sum_{n>N}\frac{r^n}{1-r^n}
+ \le \frac{r^{N+1}}{(1-r)(1-r^{N+1})},
+\]
+and hence
+\begin{equation}\label{eq:eta-tail}
+ |R_N-1|
+ \le \exp\left(\frac{r^{N+1}}
+ {(1-r)(1-r^{N+1})}\right)-1.
+\end{equation}
+Using $N=30$ in the eta products at
+$\tau_0,2\tau_0,4\tau_0$, with the defining factor
+$\e^{\pi i\tau/12}$ evaluated directly from $\tau$, gives
+\begin{equation}\label{eq:c-box}
+ 0.88<\Re c(\tau_0)<0.89,
+ \qquad
+ -0.89<\Im c(\tau_0)<-0.88.
+\end{equation}
+Here $\Re c(\tau_0)=0.8850840762662\ldots$ and
+$\Im c(\tau_0)=-0.8850840762662\ldots$.
+
+\subsection*{The lattice sum}
+
+The partial-fraction identity
+\[
+ \sum_{n\in\Z}(z+n)^{-3}
+ =\frac{\pi^3\cos(\pi z)}{\sin^3(\pi z)}
+\]
+gives, after pairing the nonzero lattice rows,
+\begin{align*}
+ U_j(\tau)&=2\pi^3\sum_{m\ge1}
+ \frac{\cos(j\pi m\tau)}{m\sin^3(j\pi m\tau)},\\
+ \EK(\tau)&=\Im\left(2\pi\tau+
+ \frac{10}{\pi^3}\bigl(U_1(\tau)-2U_2(\tau)\bigr)\right).
+\end{align*}
+Indeed,
+\[
+ \Im\left(\frac{(jm\tau+n)^{-3}}m\right)
+ =-j\Im(\tau)F(jm\tau+n),
+\]
+and the omitted $m=0$ row of each $T_j$ is
+$6\zeta(4)=\pi^4/15$.
+
+Writing $y=\Im\tau_0$ and $q_j=\e^{-2j\pi y}$, the tail after $M$
+terms satisfies
+\begin{equation}\label{eq:u-tail}
+ |U_j-U_{j,M}|
+ \le
+ \frac{8\pi^3(1+q_j^{M+1})q_j^{M+1}}
+ {(M+1)(1-q_j)(1-q_j^{M+1})^3}.
+\end{equation}
+Interval evaluation of the first $20$ terms, together with
+\eqref{eq:u-tail}, yields
+\begin{equation}\label{eq:ek-bound}
+ \EK(\tau_0)<2.22516.
+\end{equation}
+The enclosure obtained is $\EK(\tau_0)=2.2251552127\ldots$, the tail
+\eqref{eq:u-tail} at $M=20$ being below $10^{-34}$.
+
+\subsection*{The Mahler measure}
+
+Let
+\[
+ c_*=\frac{177}{200}(1-i),
+ \qquad
+ \delta=\frac{123}{3125}.
+\]
+From \eqref{eq:c-box},
+\[
+ |c(\tau_0)-c_*|<\frac{\sqrt2}{200},
+ \qquad
+ |c(\tau_0)|<\frac{63}{50}.
+\]
+Partition $[0,2\pi]^2$ into $512^2$ equal squares with centers
+\[
+ \theta_j=\frac{2\pi(j+1/2)}{512},
+ \qquad 0\le j<512.
+\]
+Since
+\[
+ |\partial_\theta a_c|,|\partial_\phi a_c|
+ \le 2+\frac{|c|}{2}\le\frac{263}{100},
+\]
+every value in the $(j,k)$-cell lies within
+\[
+ \frac{263\pi}{25600}+\frac{\sqrt2}{200}<\delta
+\]
+of $a_{c_*}(\theta_j,\theta_k)$. The last inequality follows, for
+example, from $\pi<355/113$ and $\sqrt2<99/70$.
+
+Directed interval arithmetic gives lower bounds $\ell_{jk}^{\pm}$ for
+$|a_{c_*}(\theta_j,\theta_k)\pm2|$. With $x_+=\max\{x,0\}$, define
+\[
+ X_{jk}=\max\left\{1,
+ \frac{(\ell_{jk}^{-}-\delta)_+
+       +(\ell_{jk}^{+}-\delta)_+}{4}\right\},
+\]
+and let $r_{jk}$ be the largest nonnegative integer such that
+\[
+ \cosh\left(\frac{r_{jk}}{4096}\right)\le X_{jk}.
+\]
+A direct interval computation over the $512^2$ cells gives the exact
+sum
+\begin{equation}\label{eq:sum}
+ \sum_{j,k=0}^{511}r_{jk}=606722604.
+\end{equation}
+Of the $262144$ cells, $31988$ have $X_{jk}=1$ and hence $r_{jk}=0$;
+the other $230156$ satisfy $8\le r_{jk}\le5121$, with $r_{0,0}=4050$,
+$r_{255,255}=1803$, $r_{511,511}=4080$ and $\sum_kr_{0,k}=1687754$. No
+$4096\arcosh(X_{jk})$ with $r_{jk}>0$ lies within $10^{-6}$ of an
+integer, so the floors are insensitive to the binary64 rounding.
+By Lemma~\ref{lem:jensen} and monotonicity of $\arcosh$,
+\[
+ n_4\bigl(s_4(\tau_0)\bigr)
+ \ge \frac{4}{512^2\cdot4096}\sum_{j,k}r_{jk}
+ =\frac{151680651}{67108864}>2.26.
+\]
+Together with \eqref{eq:ek-bound}, this proves
+Theorem~\ref{thm:main}.
+
+\medskip
+\noindent
+\textbf{Reproducibility.}
+The recorded run used Python~3.13.5, NumPy~2.3.5, and mpmath~1.3.0.
+All transcendental quantities were enclosed with the mpmath interval
+context at $80$ decimal digits. The subsequent binary64 stage assumes
+IEEE~754 round-to-nearest arithmetic and correctly rounded square root;
+each result is enlarged outward with \texttt{numpy.nextafter}. These
+semantics form the trusted computing base. Once the cell inequalities
+are checked, \eqref{eq:sum} gives the Mahler lower bound as an exact
+rational number.
+
+\begin{thebibliography}{9}
+
+\bibitem{Samart2013}
+D.~Samart,
+\emph{Three-variable Mahler measures and special values of modular and
+Dirichlet $L$-series},
+Ramanujan J. \textbf{32} (2013), no.~2, 245--268.
+arXiv:1205.4803.
+
+\bibitem{Samart2015}
+D.~Samart,
+\emph{Mahler measures as linear combinations of $L$-values of multiple
+modular forms},
+Canad. J. Math. \textbf{67} (2015), no.~2, 424--449.
+\href{https://doi.org/10.4153/CJM-2014-012-8}
+{doi:10.4153/CJM-2014-012-8}.
+
+\bibitem{Samart2016}
+D.~Samart,
+\emph{The elliptic trilogarithm and Mahler measures of $K3$ surfaces},
+Forum Math. \textbf{28} (2016), no.~3, 405--423.
+\href{https://doi.org/10.1515/forum-2014-0045}
+{doi:10.1515/forum-2014-0045}.
+arXiv:1309.7730v2, whose numbering is followed here.
+
+\bibitem{Zheng2026}
+H.~Zheng,
+\emph{Samart's conjecture $n_4(81)=40M_7$: the exact CM evaluation and
+the two obstructions. A status report},
+arXiv:2608.02265v1 [math.NT], 2026.
+
+\end{thebibliography}
+
+\end{document}

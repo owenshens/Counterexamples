@@ -1,0 +1,185 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={The Wagner graph refutes an El Zein--Mortada local-girth conjecture},
+  pdfsubject={$S$-packing colorings of subcubic graphs},
+  pdfkeywords={$S$-packing coloring, Wagner graph, local girth}
+}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dist}{\operatorname{dist}}
+
+\title[A Wagner-graph counterexample]
+      {The Wagner graph refutes an El Zein--Mortada local-girth conjecture}
+
+\date{}
+
+\subjclass[2020]{05C15}
+\keywords{$S$-packing coloring, subcubic graph, Wagner graph, local girth}
+
+\begin{document}
+
+\begin{abstract}
+El Zein and Mortada list as conjectured that every $(3,3)$-saturated
+subcubic graph $G$ with $g_3(G)=4$ is $(1,2,2,2,2)$-packing colorable.
+The Wagner graph is a counterexample. Every vertex has local girth $4$,
+and the graph has diameter $2$ and independence number $3$; hence a
+$(1,2,2,2,2)$-packing coloring can cover at most $3+4=7$ of its eight
+vertices. We also prove that every subcubic graph on at most seven
+vertices is $(1,2,2,2,2)$-packing colorable, so order eight is minimum.
+Earlier computation of Gastineau and Togni already implied the existence
+of such an obstruction. The present contribution is a standard explicit
+witness and an elementary proof of minimum order.
+\end{abstract}
+
+\maketitle
+
+Throughout, graphs are finite and simple, and vertices in different
+components are taken to be at infinite distance. For a nondecreasing
+sequence $S=(s_1,\ldots,s_k)$, an \emph{$S$-packing coloring} of a graph
+$G$ is a partition
+\[
+  V(G)=V_1\mathbin{\dot\cup}\cdots\mathbin{\dot\cup}V_k
+\]
+such that $\dist_G(u,v)>s_i$ for all distinct $u,v\in V_i$.
+The local girth $g(v)$ is the length of a shortest cycle containing $v$,
+with $g(v)=\infty$ if no such cycle exists, and
+\[
+  g_3(G)=\max\{g(v):d_G(v)=3\}.
+\]
+Following El Zein and Mortada, a degree-three vertex is \emph{heavy} if
+all its neighbors have degree three, and a subcubic graph is
+$(3,k)$-saturated if every heavy vertex has at most $k$ heavy neighbors.
+Thus every subcubic graph is $(3,3)$-saturated.
+
+In version~1 of \cite{ElZeinMortadaImpact}, Table~1 lists the following
+assertion in its conjectured column; it is the $g_3(G)=4$ case of the
+first question in \cite[Problem~1]{ElZeinMortadaStep}:
+\begin{quote}
+\emph{Every $(3,3)$-saturated subcubic graph $G$ with $g_3(G)=4$ is
+$(1,2,2,2,2)$-packing colorable.}
+\end{quote}
+We refer to this assertion as the El Zein--Mortada local-girth conjecture.
+
+Let $W$ be the Wagner graph, with vertex set $\Z_8$ and edge set
+\[
+ E(W)=\bigl\{\{i,i+1\}:i\in\Z_8\bigr\}
+      \cup
+      \bigl\{\{i,i+4\}:i=0,1,2,3\bigr\},
+\]
+where all additions are modulo $8$.
+
+\begin{theorem}\label{thm:main}
+The graph $W$ is a $(3,3)$-saturated cubic graph with $g_3(W)=4$ that is
+not $(1,2,2,2,2)$-packing colorable. Moreover, every subcubic graph of
+order at most seven is $(1,2,2,2,2)$-packing colorable. Consequently,
+$W$ is a minimum-order counterexample to the El Zein--Mortada local-girth
+conjecture and to the first question in
+\cite[Problem~1]{ElZeinMortadaStep}.
+\end{theorem}
+
+\begin{proof}
+The graph $W$ is cubic, hence $(3,3)$-saturated. For every $i\in\Z_8$,
+\[
+  i,\ i+1,\ i+5,\ i+4
+\]
+induces a $4$-cycle. The neighbors $i-1,i+1,i+4$ of $i$ are pairwise
+nonadjacent, so no triangle contains $i$. Thus every vertex has local
+girth exactly $4$, and $g_3(W)=4$.
+
+Every two vertices are at distance at most two. Cyclic differences
+$1$ and $4$ give edges, difference $2$ is realized along the $8$-cycle,
+and for difference $3$ one may use the path
+$i,i+4,i+3$. Since $0$ and $2$ are nonadjacent,
+$\operatorname{diam}(W)=2$.
+
+The set $\{0,2,5\}$ is independent. An independent set of order four
+in the spanning cycle $C_8$ must be one of
+\[
+  \{0,2,4,6\},\qquad \{1,3,5,7\},
+\]
+and each contains antipodal edges of $W$. Hence $\alpha(W)=3$.
+In a $(1,2,2,2,2)$-packing coloring, the color-$1$ class therefore has
+at most three vertices. Each of the four color-$2$ classes has at most
+one vertex because $\operatorname{diam}(W)=2$. Such a coloring covers
+at most $3+4=7<8$ vertices, a contradiction.
+
+It remains to prove minimum order. Colors may be reused in different
+components, so it suffices to color each connected component. A
+component of order at most four can be colored by assigning its vertices
+distinct color-$2$ classes. Let $G$ be connected with
+$5\le |V(G)|\le7$. If $\Delta(G)\le2$, then $\chi(G)\le3$. If
+$\Delta(G)=3$, Brooks' theorem also gives $\chi(G)\le3$, since $G$ is
+neither $K_4$ nor an odd cycle. A largest class in a proper
+$3$-coloring has at least $\lceil |V(G)|/3\rceil$ vertices. Assign that
+independent class color $1$ and assign the remaining vertices distinct
+color-$2$ classes. This is possible because
+\[
+  |V(G)|-\left\lceil\frac{|V(G)|}{3}\right\rceil\le4
+  \qquad (5\le |V(G)|\le7).
+\]
+Thus every subcubic graph of order at most seven is
+$(1,2,2,2,2)$-packing colorable.
+\end{proof}
+
+\section*{Priority and scope}
+
+Gastineau and Togni's exhaustive table records two cubic graphs of order
+$8$ that are $(1,2,2,2,2,2)$-packing colorable but not
+$(1,2,2,2,2)$-packing colorable \cite[Table~1]{GastineauTogni}.
+The Wagner graph is one of them: the classes
+\[
+  \{0,2,5\},\ \{1\},\ \{3\},\ \{4\},\ \{6\},\ \{7\}
+\]
+give a $(1,2,2,2,2,2)$-packing coloring, while
+Theorem~\ref{thm:main} excludes $(1,2,2,2,2)$.
+
+Their computation already implied a negative answer to the later
+local-girth question. Indeed, if a vertex of an order-eight cubic graph
+belonged to no triangle or $4$-cycle, its radius-two ball would contain
+\[
+  1+3+3\cdot2=10
+\]
+distinct vertices. The absence of triangles makes the first and second
+layers disjoint, while the absence of $4$-cycles makes the six vertices
+in the second layer distinct across the three branches. Thus every
+vertex of an order-eight cubic graph has local girth at most $4$.
+
+Only the $(1,2,2,2,2)$ assertion is refuted. The Wagner graph is
+$(1,1,2,3)$-packing colorable, for example with color classes
+\[
+  \{0,2,5\},\qquad \{1,3,6\},\qquad \{4\},\qquad \{7\}.
+\]
+It therefore does not address the second question in
+\cite[Problem~1]{ElZeinMortadaStep} or Conjecture~1 of that paper.
+
+\begin{thebibliography}{9}
+
+\bibitem{ElZeinMortadaStep}
+A. El Zein and M. Mortada,
+\emph{A step toward an $S$-packing coloring conjecture for subcubic graphs},
+Australas. J. Combin. \textbf{95}(3) (2026), 459--467,
+\url{https://ajc.maths.uq.edu.au/pdf/95/ajc_v95_p459.pdf}.
+
+\bibitem{ElZeinMortadaImpact}
+A. El Zein and M. Mortada,
+\emph{Impact of local girth on the $S$-packing coloring of $k$-saturated
+subcubic graphs},
+\href{https://arxiv.org/abs/2603.25113v1}{arXiv:2603.25113v1} (2026).
+
+\bibitem{GastineauTogni}
+N. Gastineau and O. Togni,
+\emph{$S$-packing colorings of cubic graphs},
+Discrete Math. \textbf{339}(10) (2016), 2461--2470,
+\href{https://doi.org/10.1016/j.disc.2016.04.017}
+{doi:10.1016/j.disc.2016.04.017}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,182 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\title[A minimum-order cube counterexample]
+{A minimum-order counterexample to the generalized
+Alt\i n\i \c{s}\i k--Alt\i nta\c{s} cube conjecture}
+
+\date{}
+
+\subjclass[2020]{Primary 11C20; Secondary 06A12}
+\keywords{LCM matrix, gcd-closed set, singular matrix, meet semilattice,
+Boolean lattice}
+
+\begin{document}
+
+\begin{abstract}
+We exhibit a ten-element gcd-closed set whose LCM matrix is singular although
+its divisibility poset contains no order-embedded copy of the Boolean lattice
+$B_3$. This order is best possible, and adjoining fresh primes gives such
+examples of every order $n\geq 10$. This settles the cases $10$, $11$, and
+$12$ left open by Mattila, Haukkanen, and M\"antysalo for the unrestricted
+extension of the Alt\i n\i \c{s}\i k--Alt\i nta\c{s} cube conjecture.
+\end{abstract}
+
+\maketitle
+
+Let $S=\{x_1,\ldots,x_n\}$ be a finite set of distinct positive integers. It
+is \emph{gcd-closed} if $\gcd(x_i,x_j)\in S$ for all $i,j$, and its LCM matrix
+is
+\[
+ [S]=\bigl(\operatorname{lcm}(x_i,x_j)\bigr)_{i,j=1}^n.
+\]
+A \emph{cube subsemilattice} is a subsemilattice isomorphic to the Boolean
+lattice $B_3=(2^{\{1,2,3\}},\subseteq)$. We call a divisibility poset
+\emph{cube-free} if there is no injection $\phi:B_3\to S$ such that
+$X\subseteq Y$ if and only if $\phi(X)\mid\phi(Y)$. This implies, in
+particular, the absence of a cube subsemilattice.
+
+Conjecture~4.2 of Alt\i n\i \c{s}\i k and Alt\i nta\c{s} is stated only for
+nine-element gcd-closed sets~\cite[Conjecture~4.2]{AA17}. Mattila, Haukkanen,
+and M\"antysalo proved that statement and then considered the unrestricted
+assertion
+\begin{equation}\tag{GAA}\label{eq:generalized}
+ \det[S]=0
+ \quad\Longrightarrow\quad
+ (S,\mid)\text{ contains a cube subsemilattice}.
+\end{equation}
+We call~\eqref{eq:generalized} the \emph{generalized
+Alt\i n\i \c{s}\i k--Alt\i nta\c{s} cube conjecture}. They produced a
+counterexample of order $13$ and left the orders $10$, $11$, and $12$
+open~\cite[Sections~3--4]{MHM24}.
+
+\begin{theorem}\label{thm:main}
+For every integer $n\geq 10$, there is an $n$-element gcd-closed set $S$ such
+that $[S]$ is singular and $(S,\mid)$ is cube-free. The minimum possible order
+is $10$. One minimum-order example is
+\[
+ S_0=\{1,2,3,5,7,14,20,21,135,3780\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+ T=3780,\qquad A=\{2,3,5,7\},\qquad M=\{14,20,21,135\},
+\]
+so that $S_0=\{1\}\cup A\cup M\cup\{T\}$. Every element of $S_0$ divides
+$T$. The pairwise gcds between distinct elements of $M$ are
+\[
+\begin{aligned}
+ \gcd(14,20)&=2, & \gcd(14,21)&=7, & \gcd(14,135)&=1,\\
+ \gcd(20,21)&=1, & \gcd(20,135)&=5, & \gcd(21,135)&=3.
+\end{aligned}
+\]
+All remaining gcds are immediate, so $S_0$ is gcd-closed.
+
+Define $\varepsilon_s=-1$ for $s\in\{1\}\cup M$ and
+$\varepsilon_s=1$ for $s\in A\cup\{T\}$, and set
+\[
+ v_s=\frac{T\varepsilon_s}{s}\qquad(s\in S_0).
+\]
+In the displayed order of $S_0$,
+\[
+ v=(-3780,1890,1260,756,540,-270,-189,-180,-28,1)^{\mathsf T}.
+\]
+For every $x\in S_0$,
+\[
+ ([S_0]v)_x
+ =xT\sum_{s\in S_0}\frac{\varepsilon_s}{\gcd(x,s)}.
+\]
+The sum vanishes for $x=1$ because it is $-1+4-4+1$. If $x=a\in A$,
+then $a$ divides exactly two elements of $M$, and the sum is
+\[
+ (-1+3-2)+\left(\frac1a-\frac2a+\frac1a\right)=0.
+\]
+If $x=m\in M$, let $a,b\in A$ be the two elements dividing $m$. Among the
+other three elements of $M$, one has gcd $a$ with $m$, one has gcd $b$ with
+$m$, and one is coprime to $m$. Hence the sum is
+\[
+ (-1+2-1)
+ +\left(\frac1a-\frac1a\right)
+ +\left(\frac1b-\frac1b\right)
+ +\left(-\frac1m+\frac1m\right)=0.
+\]
+Finally, for $x=T$ the sum is
+\[
+ -1+\frac12+\frac13+\frac15+\frac17
+ -\frac1{14}-\frac1{20}-\frac1{21}-\frac1{135}
+ +\frac1{3780}=0,
+\]
+as is seen after multiplying by $3780$. Thus $[S_0]v=0$, so $[S_0]$ is
+singular.
+
+The Hasse diagram of $(S_0,\mid)$ has levels $\{1\}$, $A$, $M$, and
+$\{T\}$. The cover graph between $A$ and $M$ is the eight-cycle
+\[
+ 2-14-7-21-3-135-5-20-2.
+\]
+Suppose that $B_3$ admitted an order embedding into $(S_0,\mid)$. Its bottom
+has seven strict upper elements and must therefore map to $1$; dually, its top
+must map to $T$. Each atom of $B_3$ has three strict upper elements, so the
+three atoms must map into $A$. Each coatom has three strict lower elements, so
+the three coatoms must map into $M$. Thus one would obtain the atom--coatom
+incidence graph of $B_3$ by deleting one vertex from each part of the above
+eight-cycle. Those two deletions remove at least three edges, leaving at most
+five, whereas the atom--coatom incidence graph of $B_3$ is a six-cycle. This
+contradiction proves that $(S_0,\mid)$ is cube-free.
+
+Let $P$ be any finite set of distinct primes not dividing $T$, and put
+$S_P=S_0\cup P$. Then $S_P$ is gcd-closed. Extend $v$ by zero on $P$. The
+rows indexed by $S_0$ remain zero, while for $p\in P$,
+\[
+ ([S_P]v)_p
+ =\sum_{s\in S_0}\operatorname{lcm}(p,s)v_s
+ =p\sum_{s\in S_0}s v_s
+ =p([S_0]v)_1=0.
+\]
+Hence $[S_P]$ is singular. Each $p\in P$ is maximal in $(S_P,\mid)$ and has
+only one strict lower element, namely $1$. It cannot represent the top of an
+embedded $B_3$, which has seven strict lower elements, and every other element
+of $B_3$ has a strict upper element. Therefore $S_P$ is cube-free. Taking
+$|P|=n-10$ gives every order $n\geq10$.
+
+It remains to prove minimality. The nine-element theorem of Mattila,
+Haukkanen, and M\"antysalo excludes order $9$. Suppose that a cube-free
+singular example $S$ had $|S|<9$. Let $d$ be the gcd of all elements of $S$.
+Repeated gcd-closedness gives $d\in S$, and
+\[
+ S'=\{s/d:s\in S\}
+\]
+is gcd-closed, contains $1$, has the same divisibility poset, and satisfies
+$[S']=d^{-1}[S]$. Choose a nonzero vector $w\in\ker[S']$ and adjoin
+$9-|S|$ fresh primes, each coprime to every element of $S'$. Extending $w$ by
+zero gives a kernel vector exactly as above, because the row indexed by $1$
+gives $\sum_{s\in S'}s w_s=0$. The new primes cannot belong to an embedded
+cube, again by their upper and lower sets. This would produce a cube-free
+singular nine-element set, contradicting the cited theorem. Thus order $10$ is
+minimum.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{AA17}
+E.~Alt\i n\i \c{s}\i k and T.~Alt\i nta\c{s},
+\emph{A note on the singularity of LCM matrices on GCD-closed sets with
+9 elements}, J. Sci. Arts \textbf{17} (2017), no.~3(40), 413--422.
+
+\bibitem{MHM24}
+M.~Mattila, P.~Haukkanen, and J.~M\"antysalo,
+\emph{Some further applications of a lattice theoretic method in the study of
+singular LCM matrices}, Linear Algebra Appl. \textbf{693} (2024), 98--115.
+
+\end{thebibliography}
+
+\end{document}

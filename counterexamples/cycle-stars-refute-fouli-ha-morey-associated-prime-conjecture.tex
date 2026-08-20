@@ -1,0 +1,272 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to an Associated-Prime Conjecture of Fouli, Ha, and Morey}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Min}{Min}
+
+\title[Counterexamples to an associated-prime conjecture]
+{Counterexamples to an Associated-Prime Conjecture of Fouli, H\`a, and Morey}
+
+\date{}
+
+\keywords{edge ideal, associated prime, separated stars, cycle}
+
+\begin{document}
+
+\begin{abstract}
+We refute the only-if implication in Conjecture~3.7 of Fouli,
+H\`a, and Morey on associated primes obtained after adjoining
+separated stars to an edge ideal. A single star on the four-cycle
+already gives a counterexample, for which we determine the complete
+set of associated primes. More generally, over every field and for
+every $q\geq 1$, the cycle $C_{3q+1}$ admits $q$ pairwise separated
+stars such that the homogeneous maximal ideal is an embedded
+associated prime after adjoining the stars, but is not obtained from
+any minimal prime of the edge ideal in the conjectured manner.
+\end{abstract}
+
+\maketitle
+
+\section{A four-vertex counterexample}
+
+Let $I(G)$ denote the edge ideal of a finite simple graph $G$.
+Fouli, H\`a, and Morey conjectured that if $I=I(G)$ and
+$f_1,\ldots,f_q$ are separated stars on $I$, then
+\begin{equation}\label{eq:FHM}
+ P\in\Ass\bigl(R/(I,f_1,\ldots,f_q)\bigr)
+ \quad\Longleftrightarrow\quad
+ P=(Q,f_1,\ldots,f_q)
+\end{equation}
+for some $Q\in\Ass(R/I)=\Min(R/I)$; see
+\cite[Definitions~2.1--2.2 and Conjecture~3.7]{FHM26}.
+The following example disproves the only-if implication in
+\eqref{eq:FHM} with one star.
+
+\begin{theorem}\label{thm:C4}
+Let $K$ be any field and set
+\[
+ R=K[x_1,x_2,x_3,x_4],\qquad
+ I=(x_1x_2,x_1x_3,x_2x_4,x_3x_4).
+\]
+Let
+\[
+ f=x_1+x_2+x_3,\qquad J=(I,f),\qquad
+ \mathfrak m=(x_1,x_2,x_3,x_4).
+\]
+Then $f$ is a star on $I$, centered at $x_1$, and
+\[
+ (J:x_2+x_3)=\mathfrak m.
+\]
+Moreover,
+\[
+ \Ass(R/J)=
+ \bigl\{
+ (x_1,x_2,x_3),\
+ (x_1,x_4,x_2+x_3),\
+ \mathfrak m
+ \bigr\}.
+\]
+The first two primes are of the form predicted by
+\eqref{eq:FHM}, whereas the embedded prime $\mathfrak m$ is not.
+Consequently, the only-if implication in Conjecture~3.7 of
+Fouli, H\`a, and Morey is false.
+\end{theorem}
+
+\begin{proof}
+The generators of $I$ divisible by $x_1$ are $x_1x_2$ and
+$x_1x_3$, so $f$ is a star centered at $x_1$. Separation is
+vacuous for a single star.
+
+Eliminate $x_1$ using $f=0$ and put
+\[
+ u=x_2+x_3,\qquad v=x_3,\qquad w=x_4.
+\]
+Then
+\[
+ R/J\cong K[u,v,w]/L,
+ \qquad L=(u^2,uv,uw,vw).
+\]
+Since $u\notin L$ and
+\[
+ (L:u)=(u,v,w),
+\]
+the class of $u$ has annihilator $(u,v,w)$. Because $f\in J$,
+the preimage of this colon ideal in $R$ is $(J:x_2+x_3)$. Hence
+$(J:x_2+x_3)=\mathfrak m$ and
+$\mathfrak m\in\Ass(R/J)$.
+
+The irredundant primary decomposition
+\[
+ L=(u,v)\cap(u,w)\cap(u^2,v,w)
+\]
+yields
+\[
+ \Ass\bigl(K[u,v,w]/L\bigr)
+ =\{(u,v),(u,w),(u,v,w)\}.
+\]
+Pulling these primes back to $R$ gives the displayed set.
+Finally,
+\[
+ \Min(R/I)=\{(x_1,x_4),(x_2,x_3)\},
+\]
+and adjoining $f$ to these two primes gives, respectively,
+$(x_1,x_4,x_2+x_3)$ and $(x_1,x_2,x_3)$. Thus
+$\mathfrak m$ is the additional embedded associated prime.
+\end{proof}
+
+\section{Counterexamples with arbitrarily many stars}
+
+\begin{theorem}\label{thm:family}
+Fix $n\geq 1$ and a field $K$. Let $G_n=C_{3n+1}$ have vertices
+\[
+ a_1,c_1,b_1,\ldots,a_n,c_n,b_n,z
+\]
+in cyclic order
+\[
+ a_1-c_1-b_1-a_2-c_2-b_2-\cdots-a_n-c_n-b_n-z-a_1.
+\]
+Set
+\[
+ R=K[a_1,c_1,b_1,\ldots,a_n,c_n,b_n,z],
+ \qquad I=I(G_n),
+\]
+and let
+\[
+ f_i=a_i+c_i+b_i\quad(1\leq i\leq n),
+ \qquad J=(I,f_1,\ldots,f_n).
+\]
+Then $f_1,\ldots,f_n$ are pairwise separated stars on $I$. If
+\[
+ U=\prod_{i=1}^n(a_i+b_i),
+ \qquad
+ \mathfrak m=(a_1,c_1,b_1,\ldots,a_n,c_n,b_n,z),
+\]
+then
+\[
+ (J:U)=\mathfrak m.
+\]
+Consequently, $\mathfrak m$ is an embedded associated prime of
+$R/J$, but
+\[
+ \mathfrak m\neq(Q,f_1,\ldots,f_n)
+ \qquad\text{for every }Q\in\Ass(R/I)=\Min(R/I).
+\]
+\end{theorem}
+
+\begin{proof}
+The support of $f_i$ is the closed neighborhood of $c_i$.
+Thus $f_i$ is a star centered at $c_i$. The supports are pairwise
+disjoint, and no center is adjacent to a noncenter variable in
+another support, so the stars are pairwise separated.
+
+Write $u_i=a_i+b_i$, so $U=u_1\cdots u_n$. For each $i$,
+\[
+ a_i u_i=a_i f_i-a_i c_i\in J,\qquad
+ b_i u_i=b_i f_i-b_i c_i\in J,
+\]
+and
+\[
+ c_i u_i=c_i a_i+c_i b_i\in I.
+\]
+Multiplying by $\prod_{j\neq i}u_j$ shows that every
+$a_i,b_i,c_i$ belongs to $(J:U)$.
+
+We also have $zU\in I$. Indeed, every monomial term of $zU$ has
+the form
+\[
+ M=z\epsilon_1\cdots\epsilon_n,
+ \qquad \epsilon_i\in\{a_i,b_i\}.
+\]
+If $\epsilon_1=a_1$, then $za_1\mid M$. Otherwise
+$\epsilon_1=b_1$. Unless some edge $b_i a_{i+1}$ with
+$1\leq i<n$ divides $M$, induction gives $\epsilon_i=b_i$ for
+every $i$, and then $b_nz\mid M$.
+Thus every monomial term of $zU$ lies in the monomial ideal $I$.
+It follows that
+\[
+ \mathfrak m\subseteq(J:U).
+\]
+
+To prove that the colon is proper, let
+\[
+ A=K[t_1,\ldots,t_n]/(t_1^2,\ldots,t_n^2)
+\]
+and define a $K$-algebra homomorphism $\varphi:R\to A$ by
+\[
+ \varphi(a_i)=t_i,\qquad
+ \varphi(c_i)=-t_i,\qquad
+ \varphi(b_i)=0,\qquad
+ \varphi(z)=0.
+\]
+Every edge generator of $I$ and every $f_i$ maps to zero, while
+\[
+ \varphi(U)=t_1\cdots t_n\neq0,
+\]
+since the squarefree monomials form a $K$-basis of $A$. Hence
+$U\notin J$. Since $(J:U)$ is proper and contains the
+maximal ideal $\mathfrak m$, we obtain $(J:U)=\mathfrak m$.
+Therefore $\mathfrak m\in\Ass(R/J)$. Moreover, the prime ideal
+\[
+ H=(a_1,c_1,b_1,\ldots,a_n,c_n,b_n)
+\]
+satisfies $J\subseteq H\subsetneq\mathfrak m$, so
+$\mathfrak m$ is embedded.
+
+It remains to show that $\mathfrak m$ is not of the form in
+\eqref{eq:FHM}. Let $Q\in\Min(R/I)$. The variables outside $Q$
+form a maximal independent set $S$ of $G_n$, hence a dominating
+set. Each closed neighborhood in a cycle has three vertices, so
+\[
+ 3|S|\geq 3n+1,
+ \qquad\text{and therefore}\qquad |S|\geq n+1.
+\]
+Modulo $Q$, the degree-one component of $\mathfrak m/Q$ has
+dimension $|S|$, whereas the images of $f_1,\ldots,f_n$ span a
+space of dimension at most $n$. Hence
+$(Q,f_1,\ldots,f_n)\neq\mathfrak m$. Finally, $I$ is squarefree,
+so $\Ass(R/I)=\Min(R/I)$.
+\end{proof}
+
+\begin{remark}\label{rem:provenance}
+Up to relabeling, the linear forms in Theorem~\ref{thm:family}
+were recorded by Tran as an initially regular sequence realizing
+the depth of $C_{3n+1}$; see \cite[Remark~3.2]{Tran} and the
+general construction in \cite[Theorem~3.11]{FHM20}. The contribution
+here is the explicit annihilator $(J:U)=\mathfrak m$ and the
+resulting counterexamples to Conjecture~3.7. The reverse implication
+in \eqref{eq:FHM} is not addressed.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{FHM20}
+L. Fouli, T. H. H\`a, and S. Morey,
+\emph{Initially regular sequences and depths of ideals},
+J. Algebra \textbf{559} (2020), 33--57.
+
+\bibitem{FHM26}
+L. Fouli, T. H. H\`a, and S. Morey,
+\emph{Regular sequences of linear forms on monomial ideals},
+arXiv:2606.15125v1 [math.AC], 2026.
+
+\bibitem{Tran}
+L. Tran,
+\emph{Initially regular sequences on cycles and depth of unicyclic graphs},
+arXiv:2309.07286v1 [math.AC], 2023.
+
+\end{thebibliography}
+
+\end{document}

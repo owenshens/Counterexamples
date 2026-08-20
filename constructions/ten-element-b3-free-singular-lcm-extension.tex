@@ -1,0 +1,272 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Conjecture 4.2 of Altinisik and Altintas Does Not Extend to Ten Elements},
+  pdfsubject={Singular LCM matrices on gcd-closed sets},
+  pdfkeywords={LCM matrix, gcd-closed set, Boolean lattice, meet semilattice}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title[Conjecture 4.2 does not extend to ten elements]
+{Conjecture~4.2 of Alt\i n\i\c{s}\i k and Alt\i nta\c{s}
+Does Not Extend to Ten Elements}
+
+\date{}
+
+\subjclass[2020]{Primary 11C20; Secondary 15B36, 06A12}
+\keywords{LCM matrix, gcd-closed set, Boolean lattice, meet semilattice}
+
+\begin{document}
+
+\begin{abstract}
+Alt\i n\i\c{s}\i k and Alt\i nta\c{s} conjectured that a singular
+LCM matrix on a nine-element gcd-closed set forces a cube sublattice.
+Mattila, Haukkanen, and M\"antysalo proved the nine-element statement
+and left open whether its conclusion extends to cardinalities
+$10,11,12$. We give a ten-element gcd-closed set whose LCM matrix is
+singular although its divisibility poset contains no copy of the
+Boolean lattice $B_3$. An elementary stabilization yields such sets
+in every cardinality $n\ge 10$, and known results for $n\le 9$ show
+that ten is sharp.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For a finite set $S=\{x_1,\dots,x_n\}$ of distinct positive integers,
+write
+\[
+ [S]=\bigl(\operatorname{lcm}(x_i,x_j)\bigr)_{i,j=1}^n.
+\]
+The set $S$ is \emph{gcd-closed} if
+$\gcd(x_i,x_j)\in S$ for all $i,j$. We call $(S,\mid)$
+\emph{$B_3$-free} if no subset of $S$, with its inherited divisibility
+order, is isomorphic to the eight-element Boolean lattice $B_3$.
+In particular, a $B_3$-free poset contains no cube subsemilattice.
+
+Conjecture~4.2 of Alt\i n\i\c{s}\i k and Alt\i nta\c{s}
+\cite{AltinisikAltintas2017} states that if $|S|=9$ and $[S]$ is
+singular, then $(S,\mid)$ contains a cube sublattice. Mattila,
+Haukkanen, and M\"antysalo proved the nine-element statement, produced
+a thirteen-element counterexample to its cardinality extension, and
+explicitly left the cases $10,11,12$ open
+\cite{MattilaHaukkanenMantysalo2024}. The result below settles those
+cases. It is a counterexample to the cardinality extension of
+Conjecture~4.2, not to its literal nine-element formulation.
+
+\begin{theorem}\label{thm:main}
+For an integer $n\ge 1$, there exists an $n$-element gcd-closed set
+$S$ such that $[S]$ is singular and $(S,\mid)$ is $B_3$-free if and
+only if $n\ge 10$.
+\end{theorem}
+
+\section{The counterexample}
+
+Let
+\[
+ S_0=\{1,2,3,5,7,14,15,35,102,3570\},
+ \qquad T=3570.
+\]
+Set
+\[
+ A=\{2,3,5,7\},\qquad M=\{14,15,35,102\}.
+\]
+The elements of $M$ lie above the atom pairs
+\[
+ \{2,7\},\quad \{3,5\},\quad \{5,7\},\quad \{2,3\},
+\]
+respectively. Their atom-pair graph is the cycle
+$2-3-5-7-2$.
+
+\begin{proposition}\label{prop:base}
+The set $S_0$ is gcd-closed, the matrix $[S_0]$ is singular, and
+$(S_0,\mid)$ is $B_3$-free.
+\end{proposition}
+
+\begin{proof}
+Since
+\[
+ 102=2\cdot3\cdot17,
+ \qquad T=2\cdot3\cdot5\cdot7\cdot17,
+\]
+every element of $S_0$ divides $T$. Distinct elements of $A$ have
+gcd $1$, and for $p\in A$ and $m\in M$ one has
+$\gcd(p,m)=p$ if $p\mid m$ and $1$ otherwise. Among the elements of
+$M$,
+\[
+\begin{aligned}
+ \gcd(14,15)&=1, & \gcd(14,35)&=7, & \gcd(14,102)&=2,\\
+ \gcd(15,35)&=5, & \gcd(15,102)&=3, & \gcd(35,102)&=1.
+\end{aligned}
+\]
+Thus $S_0$ is gcd-closed.
+
+In the displayed order of $S_0$, let
+\[
+ v=(-3570,1785,1190,714,510,-255,-238,-102,-35,1)^{\mathsf T}.
+\]
+Equivalently,
+\[
+ v_x=\varepsilon_x\frac{T}{x},
+ \qquad
+ \varepsilon_x=
+ \begin{cases}
+ -1,&x\in\{1\}\cup M,\\
+  1,&x\in A\cup\{T\}.
+ \end{cases}
+\]
+For $s\in S_0$,
+\[
+ ([S_0]v)_s
+ =sT\sum_{x\in S_0}\frac{\varepsilon_x}{\gcd(s,x)}.
+\]
+The sum on the right is zero for every row type. Indeed,
+\[
+ -1+4-4+1=0
+\]
+when $s=1$. If $s=p\in A$, then, since every atom has degree two in
+the atom-pair graph, the sum is
+\[
+ -1+\left(3+\frac1p\right)
+ -\left(2+\frac2p\right)+\frac1p=0.
+\]
+If $s=m\in M$ lies above $p,q\in A$, it is
+\[
+ -1+\left(2+\frac1p+\frac1q\right)
+ -\left(1+\frac1p+\frac1q+\frac1m\right)+\frac1m=0.
+\]
+Finally, for $s=T$ it is
+\[
+ -1+\frac12+\frac13+\frac15+\frac17
+ -\frac1{14}-\frac1{15}-\frac1{35}-\frac1{102}
+ +\frac1{3570}=0,
+\]
+as is seen after multiplication by $3570$:
+\[
+ -3570+4199-630+1=0.
+\]
+Hence $[S_0]v=0$, so $[S_0]$ is singular.
+
+The divisibility poset has four levels,
+\[
+ \{1\},\qquad A,\qquad M,\qquad \{T\}.
+\]
+Every element of $B_3$ lies on a maximal chain of four elements,
+and every four-element chain in $(S_0,\mid)$ uses one element from
+each displayed level. Therefore any copy of $B_3$ in $(S_0,\mid)$
+would use $1$ and $T$ as its bottom and top, three elements of $A$ as
+its atoms, and three elements of $M$ as its coatoms. Those coatoms
+would represent the three pairs of the selected atoms and hence
+would form a triangle in the atom-pair graph. That graph is the
+triangle-free cycle $C_4$. Thus $(S_0,\mid)$ is $B_3$-free.
+\end{proof}
+
+\section{Larger orders and sharpness}
+
+The singularity-preserving construction below goes back to Hong
+\cite{Hong1999}; we record that it also preserves $B_3$-freeness.
+
+\begin{lemma}\label{lem:stabilization}
+Let $S$ be a finite gcd-closed set containing $1$, and let $a>1$ be an
+integer. Put
+\[
+ \sigma_a(S)=\{1\}\cup aS.
+\]
+If $[S]$ is singular, then $[\sigma_a(S)]$ is singular. If
+$(S,\mid)$ is $B_3$-free, then so is $(\sigma_a(S),\mid)$.
+\end{lemma}
+
+\begin{proof}
+Gcd-closure follows from $\gcd(1,ax)=1$ and
+$\gcd(ax,ay)=a\gcd(x,y)$, and
+$|\sigma_a(S)|=|S|+1$.
+Write $S=\{x_1,\dots,x_n\}$ with $x_1=1$ and
+$x=(x_1,\dots,x_n)^{\mathsf T}$. In the order
+$1,ax_1,\dots,ax_n$,
+\[
+ [\sigma_a(S)]
+ =
+ \begin{pmatrix}
+  1  & ax^{\mathsf T}\\
+  ax & a[S]
+ \end{pmatrix}.
+\]
+Choose $0\ne z\in\ker[S]$. The row of $[S]$ indexed by $1$ is
+$x^{\mathsf T}$, so $x^{\mathsf T}z=0$. Consequently,
+\[
+ [\sigma_a(S)]\binom{0}{z}=0.
+\]
+
+Suppose that $Q\subseteq\sigma_a(S)$ is a copy of $B_3$. If
+$1\notin Q$, then $Q\subseteq aS$, and division by $a$ gives a copy of
+$B_3$ in $S$. If $1\in Q$, then $1$ is the bottom of $Q$. The element
+$a$ cannot belong to $Q$: within $Q$ it would have six strict upper
+bounds, whereas a nonbottom element of $B_3$ has at most three.
+Thus
+\[
+ Q'=(Q\setminus\{1\})\cup\{a\}
+\]
+is a copy of $B_3$ in $aS$, and division by $a$ gives one in $S$.
+Thus $B_3$-freeness is preserved.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:base} gives the case $n=10$, and iterating
+Lemma~\ref{lem:stabilization} gives every $n\ge 10$.
+
+For the converse, Hong proved that every LCM matrix on a gcd-closed
+set with at most seven elements is nonsingular \cite{Hong1999}.
+Haukkanen, Mattila, and M\"antysalo proved that an eight-element
+singular example has divisibility poset isomorphic to $B_3$
+\cite{HaukkanenMattilaMantysalo2015}. Mattila, Haukkanen, and
+M\"antysalo proved that every nine-element singular example contains
+a cube subsemilattice \cite{MattilaHaukkanenMantysalo2024}.
+Consequently no $B_3$-free singular example has fewer than ten
+elements.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{AltinisikAltintas2017}
+E.~Alt\i n\i\c{s}\i k and T.~Alt\i nta\c{s},
+\emph{A note on the singularity of LCM matrices on GCD-closed sets
+with 9 elements},
+Journal of Science and Arts, no.~3(40) (2017), 413--422.
+
+\bibitem{HaukkanenMattilaMantysalo2015}
+P.~Haukkanen, M.~Mattila, and J.~M\"antysalo,
+\emph{Studying the singularity of LCM-type matrices via semilattice
+structures and their M\"obius functions},
+J. Combin. Theory Ser. A \textbf{135} (2015), 181--200,
+\href{https://doi.org/10.1016/j.jcta.2015.05.002}
+{doi:10.1016/j.jcta.2015.05.002}.
+
+\bibitem{Hong1999}
+S.~Hong,
+\emph{On the Bourque--Ligh conjecture of least common multiple
+matrices},
+J. Algebra \textbf{218} (1999), 216--228,
+\href{https://doi.org/10.1006/jabr.1998.7844}
+{doi:10.1006/jabr.1998.7844}.
+
+\bibitem{MattilaHaukkanenMantysalo2024}
+M.~Mattila, P.~Haukkanen, and J.~M\"antysalo,
+\emph{Some further applications of a lattice theoretic method in the
+study of singular LCM matrices},
+Linear Algebra Appl. \textbf{693} (2024), 98--115,
+\href{https://doi.org/10.1016/j.laa.2023.04.027}
+{doi:10.1016/j.laa.2023.04.027}.
+
+\end{thebibliography}
+
+\end{document}

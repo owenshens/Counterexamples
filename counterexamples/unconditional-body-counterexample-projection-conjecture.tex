@@ -1,0 +1,235 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rp}{\mathbb{R}_{+}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\area}{\operatorname{area}}
+
+\title[A counterexample to Conjecture 3]
+{A Counterexample to Conjecture 3 of Fradelizi--Manui--Meyer--Ndiaye}
+\date{}
+
+\subjclass[2020]{Primary 52A20; Secondary 52A40}
+\keywords{unconditional convex body, orthogonal projection, positive orthant,
+Rogers--Shephard inequality}
+
+\hypersetup{
+  pdftitle={A Counterexample to Conjecture 3 of Fradelizi--Manui--Meyer--Ndiaye},
+  pdfsubject={A counterexample for projections of unconditional convex bodies},
+  pdfkeywords={unconditional convex body, orthogonal projection, positive orthant, Rogers--Shephard inequality}
+}
+
+\begin{document}
+
+\begin{abstract}
+Fradelizi, Manui, Meyer, and Ndiaye conjectured that
+\[
+  |P_EK|_n\le 2^n\bigl|P_E(K\cap\R_+^m)\bigr|_n
+\]
+for every unconditional convex body $K\subset\R^m$ and every $n$-dimensional
+subspace $E\subset\R^m$. We give an exact counterexample for $(m,n)=(4,2)$,
+with ratio $1399/336>4$. A Cartesian-product construction yields
+counterexamples for every $m\ge4$ and $2\le n\le m-2$. Together with the
+positive cases established in the cited work and the elementary case $n=m$,
+this determines exactly the dimension pairs for which the inequality holds
+universally.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture and result}
+
+A convex body $K\subset\R^m$ is \emph{unconditional} if it is invariant under
+all coordinate sign changes. Let $P_E$ denote orthogonal projection onto a
+subspace $E$, and let $|\cdot|_n$ denote $n$-dimensional Lebesgue measure on
+$E$. Fradelizi, Manui, Meyer, and Ndiaye posed the following inequality as
+Conjecture~3 in \cite{FMMN}:
+\begin{equation}\label{eq:conjecture}
+  |P_EK|_n\le 2^n\bigl|P_E(K\cap\R_+^m)\bigr|_n,
+  \qquad \R_+^m=[0,\infty)^m.
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+For every $m\ge4$ and every $2\le n\le m-2$, there are an unconditional convex
+body $K\subset\R^m$ and an $n$-dimensional subspace $E\subset\R^m$ for which
+\[
+  |P_EK|_n>2^n\bigl|P_E(K\cap\R_+^m)\bigr|_n.
+\]
+Consequently, for $1\le n\le m$, inequality~\eqref{eq:conjecture} holds for
+all such $K$ and $E$ if and only if $n\in\{1,m-1,m\}$. In particular,
+Conjecture~3 of \cite{FMMN} is false.
+\end{theorem}
+
+\section{The counterexample}
+
+Set
+\begin{equation}\label{eq:K0}
+  K_0=\left\{x\in\R^4:
+  4|x_1|+3|x_3|+3|x_4|\le1,\quad
+  3|x_2|+4|x_3|\le1\right\},
+\end{equation}
+and let
+\[
+  b_1=(3,-1,1,2),\qquad b_2=(-3,1,2,0),\qquad
+  E_0=\operatorname{span}\{b_1,b_2\}.
+\]
+The set $K_0$ is a full-dimensional unconditional convex body. Let $B$ be the
+$4\times2$ matrix with columns $b_1,b_2$, and define
+\[
+  \Phi:\R^4\longrightarrow\R^2,\qquad \Phi(x)=B^{\mathsf T}x.
+\]
+Since
+\[
+  G=B^{\mathsf T}B=
+  \begin{pmatrix}15&-8\\-8&14\end{pmatrix},
+  \qquad \det G=146,
+\]
+one has, for every compact convex set $A\subset\R^4$,
+\begin{equation}\label{eq:chart}
+  \area\bigl(\Phi(A)\bigr)=\sqrt{146}\,|P_{E_0}A|_2.
+\end{equation}
+Indeed, $\Phi=\Phi\circ P_{E_0}$; if $y=Bc\in E_0$, then the Euclidean area
+element is $\sqrt{\det G}\,dc$, whereas $\Phi(y)=Gc$ has area element
+$(\det G)\,dc$.
+
+Write $K_+=K_0\cap\R_+^4$. The six inequalities defining $K_+$ have fifteen
+four-element active sets. Nine give feasible nonsingular intersections,
+namely
+\begin{align*}
+V_+=\bigl\{&
+(0,0,0,0),
+(0,0,0,\tfrac13),
+(0,0,\tfrac14,0),
+(0,0,\tfrac14,\tfrac1{12}),
+(0,\tfrac13,0,0),\\
+&
+(0,\tfrac13,0,\tfrac13),
+(\tfrac1{16},0,\tfrac14,0),
+(\tfrac14,0,0,0),
+(\tfrac14,\tfrac13,0,0)
+\bigr\}.
+\end{align*}
+The other six choices consist of four singular systems and the infeasible
+intersections $(0,0,\tfrac13,0)$ and $(0,-\tfrac19,\tfrac13,0)$. Thus $V_+$ is
+the complete vertex set of $K_+$. Unconditionality gives
+\begin{equation}\label{eq:signhull}
+  K_0=\conv\{\varepsilon\odot v:
+  v\in V_+,\ \varepsilon\in\{-1,1\}^4\},
+\end{equation}
+where $\odot$ denotes coordinatewise multiplication.
+
+Set $Q_+=\Phi(K_+)$ and $Q=\Phi(K_0)$. Applying $\Phi$ to the generators above
+gives the exact vertex descriptions
+\begin{align}
+Q_+=\conv\bigl\{&
+(-\tfrac13,\tfrac13),
+(\tfrac34,-\tfrac34),
+(\tfrac23,0),
+(\tfrac5{12},\tfrac12),
+(\tfrac14,\tfrac12)
+\bigr\},\label{eq:Qplus}\\[2mm]
+Q=\conv\bigl\{&
+(-\tfrac{13}{12},\tfrac{13}{12}),
+(-1,\tfrac13),
+(-\tfrac5{12},-\tfrac12),
+(-\tfrac1{16},-\tfrac{11}{16}),\notag\\
+&
+(\tfrac{13}{12},-\tfrac{13}{12}),
+(1,-\tfrac13),
+(\tfrac5{12},\tfrac12),
+(\tfrac1{16},\tfrac{11}{16})
+\bigr\}.\label{eq:Q}
+\end{align}
+The points are listed counterclockwise. For a compact exact certificate of
+these hulls, the corresponding half-space descriptions are
+\begin{align}
+Q_+=\{(s,t):\;&s+t\ge0,\quad 9s+t\le6,\quad 6s+3t\le4,\notag\\
+&2t\le1,\quad -2s+7t\le3\},\label{eq:HQplus}
+\end{align}
+and
+\begin{equation}\label{eq:HQ}
+\begin{aligned}
+Q=\{(s,t):\;&|27s+3t|\le26,\quad |30s+21t|\le23,\\
+              &|36s+68t|\le49,\quad |19s+55t|\le39\}.
+\end{aligned}
+\end{equation}
+Indeed, every projected generator satisfies the relevant inequalities, while
+the vertices of the two half-space intersections are exactly the points in
+\eqref{eq:Qplus} and \eqref{eq:Q}. Thus the hull calculations require only
+exact rational arithmetic.
+
+The shoelace formula gives
+\[
+  \area(Q_+)=\frac7{12},
+  \qquad
+  \area(Q)=\frac{1399}{576}.
+\]
+Combining this with \eqref{eq:chart},
+\begin{equation}\label{eq:ratio}
+  \frac{|P_{E_0}K_0|_2}{|P_{E_0}K_+|_2}
+  =\frac{1399/576}{7/12}
+  =\frac{1399}{336}
+  =4+\frac{55}{336}>4.
+\end{equation}
+Hence $(K_0,E_0)$ is a counterexample to \eqref{eq:conjecture} for
+$(m,n)=(4,2)$.
+
+\section{Product extension}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $m\ge4$ and $2\le n\le m-2$, and use the orthogonal coordinate
+decomposition
+\[
+  \R^m=\R^4\oplus\R^{n-2}\oplus\R^{m-n-2},
+\]
+with zero-dimensional factors omitted. Define
+\[
+  K=K_0\times[-1,1]^{m-4},
+  \qquad
+  E=E_0\oplus\R^{n-2}\oplus\{0\}^{m-n-2}.
+\]
+Then $K$ is unconditional and $\dim E=n$. Moreover,
+\begin{align*}
+  P_EK&=P_{E_0}K_0\times[-1,1]^{n-2},\\
+  P_E(K\cap\R_+^m)&=P_{E_0}K_+\times[0,1]^{n-2}.
+\end{align*}
+Therefore, by \eqref{eq:ratio},
+\[
+  \frac{|P_EK|_n}{|P_E(K\cap\R_+^m)|_n}
+  =2^{n-2}\frac{1399}{336}
+  >2^{n-2}\cdot4
+  =2^n.
+\]
+For the classification, the cases $n=m-1$ and $n=1$ are proved in
+\cite[Propositions~3 and~4]{FMMN}, respectively. If $n=m$, then $E=\R^m$ and
+unconditionality partitions $K$, up to null boundaries, into $2^m$ congruent
+orthant pieces, so \eqref{eq:conjecture} is an equality. These are all the
+remaining cases.
+\end{proof}
+
+\medskip
+\noindent\textit{Scope.}
+The body $K_0$ is neither an $\ell_q$-ball nor invariant under coordinate
+permutations. Thus the example disproves Conjecture~3 as stated, but it does
+not address Conjecture~2 of \cite{FMMN} or the restriction of Conjecture~3 to
+$1$-unconditional bodies in the terminology of that paper.
+
+\begin{thebibliography}{1}
+
+\bibitem{FMMN}
+M.~Fradelizi, A.~Manui, M.~Meyer, and C.~S.~Ndiaye,
+\emph{$L_p$-Rogers--Shephard type inequalities for $L_p$-zonoids and symmetric
+bodies}, arXiv:2607.03582v1 [math.MG], 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,168 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Nine Mutually Orthogonal Cyclic 9-Cycle Systems of K19},
+  pdfsubject={Mutually orthogonal cyclic cycle systems},
+  pdfkeywords={orthogonal cycle systems, cyclic cycle systems, cycle decompositions}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb Z}
+
+\title{Nine Mutually Orthogonal Cyclic $9$-Cycle Systems of $K_{19}$}
+\date{}
+
+\subjclass[2020]{05B30, 05C51}
+\keywords{mutually orthogonal cycle systems, cyclic cycle systems,
+cycle decompositions}
+
+\begin{document}
+
+\begin{abstract}
+Burgess, Cavenagh, and Pike reported eight mutually orthogonal cyclic
+$9$-cycle systems of $K_{19}$ and stated that they did not know whether a
+larger family exists. We give an explicit family of nine. Consequently,
+\[
+9\leq \mu'(9,19)\leq 16.
+\]
+\end{abstract}
+
+\maketitle
+
+An $\ell$-cycle system of $K_n$ is a partition of $E(K_n)$ into
+$\ell$-cycles. Two such systems are \emph{orthogonal} if every cycle in one
+shares at most one edge with every cycle in the other. A system on vertex
+set $\Z_n$ is \emph{cyclic} if it is invariant under translation. Let
+$\mu'(\ell,n)$ be the maximum size of a pairwise orthogonal family of cyclic
+$\ell$-cycle systems of $K_n$.
+
+Burgess, Cavenagh, and Pike found a family of size eight for
+$(\ell,n)=(9,19)$ and left open whether a larger family exists
+\cite[Appendix, Table~1]{BCP}. We answer this question affirmatively.
+
+\begin{theorem}\label{thm:main}
+There exist nine mutually orthogonal cyclic $9$-cycle systems of $K_{19}$.
+In particular, $\mu'(9,19)\geq 9$.
+\end{theorem}
+
+For the proof, let $C$ be a cycle in $\Z_{19}$ and, for $t\in\Z_{19}$, let
+$C+t$ be obtained by adding $t$ to every vertex. Set
+\[
+\mathcal O(C)=\{C+t:t\in\Z_{19}\}.
+\]
+The \emph{difference} of an edge $\{x,y\}$ is the unique
+$d\in\{1,\ldots,9\}$ such that $y-x\equiv\pm d\pmod{19}$.
+
+\begin{lemma}\label{lem:criterion}
+Let $C$ and $D$ be $9$-cycles, each containing exactly one edge of every
+difference $d\in\{1,\ldots,9\}$. Orient each difference-$d$ edge in the
+positive-$d$ direction, and let $a_d$ and $b_d$ be its tail in $C$ and $D$,
+respectively. Then $\mathcal O(C)$ and $\mathcal O(D)$ are orthogonal if and
+only if the residues
+\[
+a_d-b_d,\qquad 1\leq d\leq 9,
+\]
+are pairwise distinct modulo $19$.
+\end{lemma}
+
+\begin{proof}
+For $x,y\in\Z_{19}$, the difference-$d$ edges of $C+x$ and $D+y$ coincide
+if and only if
+\[
+a_d+x=b_d+y,
+\]
+or equivalently $a_d-b_d=y-x$. Thus the number of common edges of $C+x$
+and $D+y$ is the multiplicity of $y-x$ among the nine residues
+$a_d-b_d$. The result follows.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+All arithmetic is in $\Z_{19}$. Let
+\[
+C=(0,1,3,18,5,13,4,9,12)
+\qquad\text{and}\qquad
+\mathcal F_0=\mathcal O(C).
+\]
+Including the closing edge, the signed consecutive differences of $C$ are
+\[
+(1,2,-4,6,8,-9,5,3,7),
+\]
+so $C$ contains exactly one edge of every difference $1,\ldots,9$. For each
+$d$, translating its difference-$d$ edge gives all $19$ edges of that
+difference class exactly once. Since $9\cdot19=\binom{19}{2}$,
+$\mathcal F_0$ is a cyclic $9$-cycle system of $K_{19}$.
+
+The element $4\in\Z_{19}^{\times}$ has order $9$: one has
+$4^9\equiv1\pmod{19}$, whereas $4\not\equiv1$ and
+$4^3\equiv7\not\equiv1\pmod{19}$. For $0\leq r\leq8$, define
+\[
+\mathcal F_r=4^r\mathcal F_0.
+\]
+Multiplication by $4^r$ permutes $\Z_{19}$, and hence
+\[
+4^r\mathcal F_0
+ =\{4^rC+4^rt:t\in\Z_{19}\}
+ =\mathcal O(4^rC).
+\]
+Thus every $\mathcal F_r$ is a cyclic $9$-cycle system.
+
+For $\mathcal F_0$, the tails of the positively oriented difference-$d$
+edges, indexed by $d=1,\ldots,9$, are
+\[
+a^{(0)}=(0,1,9,18,4,18,12,5,4).
+\]
+Let $a^{(r)}$ be the corresponding tail vector for $4^rC$. Direct
+calculation gives
+\[
+\begin{array}{c|rrrrrrrrr}
+ r\backslash d&1&2&3&4&5&6&7&8&9\\ \hline
+ 1& 3& 6&16&18& 8& 4& 2&1&13\\
+ 2&16& 1&12&11& 5& 8& 9&6& 2\\
+ 3& 4&14& 3& 6& 2& 9&12&5&11\\
+ 4&11&12& 2&15& 6& 5&14&0& 4
+\end{array}
+\qquad
+\bigl(a^{(0)}_d-a^{(r)}_d\bigr)_{d=1}^{9}.
+\]
+Each row contains nine distinct residues modulo $19$. By
+Lemma~\ref{lem:criterion},
+\[
+\mathcal F_0\perp\mathcal F_r
+\qquad (1\leq r\leq4).
+\]
+
+Multiplication by a nonzero residue preserves edge intersections. Hence any
+pair $\mathcal F_i,\mathcal F_j$ is carried, after multiplication by
+$4^{-i}$, to $\mathcal F_0,\mathcal F_{j-i}$, with exponents modulo $9$.
+Orthogonality is symmetric, so the cases $r$ and $9-r$ are equivalent. The
+four checks above therefore cover every pair, and
+$\mathcal F_0,\ldots,\mathcal F_8$ are mutually orthogonal.
+\end{proof}
+
+By Theorem~\ref{thm:main} and the general bound
+$\mu'(\ell,n)\leq n-3$ from \cite[Lemma~6.4]{BCP},
+\[
+9\leq\mu'(9,19)\leq16.
+\]
+The construction does not rule out a family of size ten or larger.
+
+\begin{thebibliography}{1}
+
+\bibitem{BCP}
+A.~C. Burgess, N.~J. Cavenagh, and D.~A. Pike,
+\emph{Mutually orthogonal cycle systems},
+Ars Math. Contemp. \textbf{23} (2023), no.~2, Paper No.~P2.05, 20 pp.,
+\href{https://doi.org/10.26493/1855-3974.2692.86d}
+{doi:10.26493/1855-3974.2692.86d}.
+
+\end{thebibliography}
+
+\end{document}

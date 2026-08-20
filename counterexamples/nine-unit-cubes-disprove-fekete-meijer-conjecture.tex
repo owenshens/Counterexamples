@@ -1,0 +1,250 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Unit-Cube Box-Visibility Representation of K9},
+  pdfsubject={Box-visibility representations of complete graphs},
+  pdfkeywords={
+    box visibility,
+    unit cubes,
+    complete graphs,
+    geometric graph representations
+  }
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title[A unit-cube representation of $K_9$]
+{A Unit-Cube Box-Visibility Representation of $K_9$}
+
+\date{}
+
+\subjclass[2020]{05C62, 68U05}
+\keywords{
+box visibility,
+unit cubes,
+complete graphs,
+geometric graph representations
+}
+
+\begin{document}
+
+\begin{abstract}
+We give explicit coordinates for nine pairwise disjoint axis-parallel
+unit cubes whose box-visibility graph is $K_9$. This refutes
+Conjecture~26 of Fekete and Meijer. Together with their theorem that
+$K_{10}$ has no such representation, this determines $9$ as the
+maximum order of a complete graph representable by unit cubes.
+\end{abstract}
+
+\maketitle
+
+A box-visibility representation assigns pairwise disjoint
+axis-parallel boxes in $\mathbb R^3$ to the vertices of a graph, with
+two vertices adjacent exactly when their boxes can be joined by an
+axis-parallel cylindrical channel of positive radius whose ends lie
+in the box interiors and which meets no other box. Fekete and Meijer
+constructed such a representation of $K_8$ by unit cubes, proved that
+none exists for $K_{10}$, and conjectured the same for $K_9$
+\cite[Fig.~5, Theorem~25, and Conjecture~26]{FM}.
+
+\begin{theorem}\label{thm:main}
+There exist nine pairwise disjoint axis-parallel unit cubes whose
+box-visibility graph is $K_9$. In particular, Conjecture~26 of Fekete
+and Meijer is false.
+\end{theorem}
+
+\begin{proof}
+It is convenient to work at scale $16$. For $i=0,\ldots,8$, let
+\[
+ C_i
+ =
+ [x_i,x_i+16]
+ \times
+ [y_i,y_i+16]
+ \times
+ [z_i,z_i+16],
+\]
+where
+\begin{equation}\label{eq:coordinates}
+\begin{array}{c|rrrrrrrrr}
+ i   &0&1&2&3&4&5&6&7&8\\ \hline
+ x_i &0&9&-8&10&6&2&7&-5&5\\
+ y_i &0&2&3&-1&-7&11&-6&8&1\\
+ z_i &0&17&19&34&51&53&68&85&102.
+\end{array}
+\end{equation}
+The $z$-intervals overlap only for the pairs
+$\{1,2\},\{2,3\},\{4,5\},\{5,6\}$. The first two pairs are strictly
+separated in the $x$-direction, and the last two in the $y$-direction.
+Thus the cubes are pairwise disjoint. All minima and maxima are
+pairwise distinct in each coordinate direction.
+
+Write
+\[
+\begin{aligned}
+ \ell_x(a,b)&=\{(t,a,b):t\in\mathbb R\},\\
+ \ell_y(a,b)&=\{(a,t,b):t\in\mathbb R\},\\
+ \ell_z(a,b)&=\{(a,b,t):t\in\mathbb R\}.
+\end{aligned}
+\]
+The following table gives a visibility axis for every unordered pair;
+the label $ij:d(a,b)$ means the line $\ell_d(a,b)$ for the pair
+$\{C_i,C_j\}$.
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{7pt}
+\begin{tabular}{lll}
+\toprule
+$01:z(19/2,5/2)$
+&
+$02:z(1/2,7/2)$
+&
+$03:z(21/2,1/2)$
+\\
+$04:z(13/2,1/2)$
+&
+$05:z(17/2,23/2)$
+&
+$06:z(17/2,19/2)$
+\\
+$07:z(17/2,21/2)$
+&
+$08:z(11/2,3/2)$
+&
+$12:x(7/2,39/2)$
+\\
+$13:z(21/2,5/2)$
+&
+$14:z(19/2,5/2)$
+&
+$15:z(19/2,23/2)$
+\\
+$16:z(19/2,19/2)$
+&
+$17:z(19/2,21/2)$
+&
+$18:z(37/2,31/2)$
+\\
+$23:x(7/2,69/2)$
+&
+$24:z(13/2,7/2)$
+&
+$25:z(5/2,23/2)$
+\\
+$26:z(15/2,19/2)$
+&
+$27:z(-9/2,17/2)$
+&
+$28:z(11/2,7/2)$
+\\
+$34:z(21/2,-1/2)$
+&
+$35:z(21/2,23/2)$
+&
+$36:z(21/2,19/2)$
+\\
+$37:z(21/2,21/2)$
+&
+$38:z(23/2,21/2)$
+&
+$45:y(13/2,107/2)$
+\\
+$46:z(15/2,-11/2)$
+&
+$47:z(13/2,17/2)$
+&
+$48:z(13/2,3/2)$
+\\
+$56:y(15/2,137/2)$
+&
+$57:z(5/2,23/2)$
+&
+$58:z(23/2,23/2)$
+\\
+$67:z(15/2,17/2)$
+&
+$68:z(15/2,3/2)$
+&
+$78:z(11/2,17/2)$
+\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+
+For $d\in\{x,y,z\}$, write $p_d$ for the $d$-coordinate of
+$p\in\mathbb R^3$, and let $\pi_d$ denote projection onto the two
+coordinates transverse to $d$, ordered as in the definitions of
+$\ell_d$. Fix an entry $ij:d(a,b)$ and put $q=(a,b)$. After exchanging
+$i$ and $j$ if necessary, let $u$ be the upper $d$-face of the lower
+cube and $v$ the lower $d$-face of the upper cube. Direct substitution
+in~\eqref{eq:coordinates} gives, for every table entry,
+\begin{align*}
+ \operatorname{dist}_\infty\!\left(
+ q,\mathbb R^2\setminus\operatorname{int}(\pi_d(C_h))\right)
+ &\ge \frac12
+ &&(h\in\{i,j\}),\\
+ \operatorname{dist}_\infty(q,\pi_d(C_k))
+ &\ge \frac12
+ &&\left(
+ k\notin\{i,j\},\
+ I_k^d\cap[u-\tfrac14,v+\tfrac14]\ne\varnothing
+ \right),
+\end{align*}
+where $I_k^d$ is the $d$-interval of $C_k$. These are exact finite
+checks: the face coordinates are integers and the listed transverse
+coordinates are half-integers. Consequently the cylinder
+\[
+ \Gamma_{ij}
+ =
+ \left\{
+ p\in\mathbb R^3:
+ u-\tfrac14\le p_d\le v+\tfrac14,\
+ \|\pi_d(p)-q\|_2\le\tfrac14
+ \right\}
+\]
+has its end disks in the interiors of $C_i$ and $C_j$ and is disjoint
+from every other cube. Thus every pair of cubes is visible. Dividing
+all coordinates by $16$ gives unit cubes and visibility channels of
+radius $1/64$.
+\end{proof}
+
+The coordinates were found computationally, but the displayed
+certificate and its verification are exact.
+
+\begin{corollary}
+The largest $n$ for which $K_n$ has a box-visibility representation
+by axis-parallel unit cubes is $n=9$.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} gives the lower bound. Fekete and Meijer proved
+that $K_{10}$ has no such representation~\cite[Theorem~25]{FM}.
+A representation of any $K_n$ with $n>10$, restricted to any ten
+cubes, would give a representation of $K_{10}$, a contradiction.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{FM}
+S.~P. Fekete and H. Meijer,
+\emph{Rectangle and box visibility graphs in 3D},
+Internat. J. Comput. Geom. Appl.
+\textbf{9} (1999), no.~1, 1--27,
+\href{https://doi.org/10.1142/S0218195999000029}
+{doi:10.1142/S0218195999000029}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,157 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\perev}{\operatorname{per}^{\mathrm{ev}}}
+\newcommand{\Oev}{\Omega^{\mathrm{ev}}}
+\newcommand{\Sn}{\mathfrak S}
+\newcommand{\An}{\mathfrak A}
+
+\newtheorem{theorem}{Theorem}
+
+\title[An order-six Brualdi--Liu counterexample]
+{An order-six counterexample to the Brualdi--Liu even-permanent conjecture}
+
+\date{}
+
+\subjclass[2020]{15A15}
+\keywords{even permanent, even permutation polytope, doubly stochastic matrix}
+
+\begin{document}
+
+\begin{abstract}
+Brualdi and Liu conjectured that, for $n\ge 3$, every matrix $X$ in the convex
+hull $\Oev_n$ of the even permutation matrices satisfies
+$\perev(X)\ge n!/(2n^n)$. Wanless gave counterexamples for $n=4$ and
+$n=5$ and left open the possibility that the inequality might hold at larger
+orders. We settle the next order by giving an explicit $M\in\Oev_6$ with
+$\perev(M)=661/100000<5/648$. The inequality also fails on the relative
+interior of $\Oev_6$.
+\end{abstract}
+
+\maketitle
+
+For $\sigma\in\Sn_n$, let $P_\sigma$ be the permutation matrix with a $1$ in
+position $(i,\sigma(i))$, and set
+\[
+  \perev(X)=\sum_{\sigma\in\An_n}\prod_{i=1}^n x_{i,\sigma(i)},
+  \qquad
+  \Oev_n=\operatorname{conv}\{P_\sigma:\sigma\in\An_n\}.
+\]
+Brualdi and Liu conjectured that, for $n\ge 3$ and $X\in\Oev_n$,
+\begin{equation}\label{eq:BL}
+  \perev(X)\ge \frac{n!}{2n^n},
+\end{equation}
+with equality only at the matrix whose entries are all $1/n$
+\cite[Conjecture~2]{BrualdiLiu}. Wanless disproved \eqref{eq:BL} for
+$n=4$ and $n=5$ and left open whether it might hold for larger $n$
+\cite{Wanless}. We settle the next order.
+
+\begin{theorem}\label{thm:main}
+The Brualdi--Liu inequality fails for $n=6$. More precisely, there exists
+$M\in\Oev_6$ such that
+\[
+  \perev(M)=\frac{661}{100000}<\frac{5}{648}
+  =\frac{6!}{2\cdot6^6}.
+\]
+Moreover, \eqref{eq:BL} fails at points in the relative interior of
+$\Oev_6$.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+A=
+\begin{pmatrix}
+3&2&5&0&0&0\\
+0&3&2&3&0&2\\
+0&0&3&4&3&0\\
+2&3&0&3&2&0\\
+5&0&0&0&0&5\\
+0&2&0&0&5&3
+\end{pmatrix},
+\qquad
+M=\frac1{10}A.
+\]
+Define
+\[
+\begin{aligned}
+\pi_1&=(2\,4)(5\,6),
+&\pi_2&=(1\,2\,3\,4)(5\,6),\\
+\pi_3&=(1\,3\,5),
+&\pi_4&=(1\,3\,4\,5)(2\,6).
+\end{aligned}
+\]
+These permutations are even, and direct inspection gives
+\[
+  A=3P_{\pi_1}+2P_{\pi_2}+3P_{\pi_3}+2P_{\pi_4}.
+\]
+Hence $M\in\Oev_6$.
+
+Writing $\operatorname{inv}(\sigma)$ for the inversion number, a direct
+expansion over the support of $A$ gives exactly six nonzero even terms:
+\[
+\begin{array}{c@{\qquad}c@{\qquad}r}
+\toprule
+(\sigma(1),\ldots,\sigma(6))
+  & \operatorname{inv}(\sigma)
+  & \displaystyle\prod_{i=1}^6 a_{i,\sigma(i)}\\
+\midrule
+(1,3,4,5,6,2) & 4  & 480\\
+(1,4,3,2,6,5) & 4  & 2025\\
+(2,3,4,1,6,5) & 4  & 800\\
+(2,3,4,5,1,6) & 4  & 480\\
+(3,2,5,4,1,6) & 6  & 2025\\
+(3,6,4,5,1,2) & 10 & 800\\
+\bottomrule
+\end{array}
+\]
+Thus
+\[
+  \perev(M)
+  =\frac{480+2025+800+480+2025+800}{10^6}
+  =\frac{661}{100000}.
+\]
+The strict inequality follows from
+\[
+  661\cdot648=428328<500000=5\cdot100000.
+\]
+
+Let $J_6$ be the all-ones matrix. Since
+\[
+  \frac{J_6}{6}
+  =\frac1{360}\sum_{\sigma\in\An_6}P_\sigma,
+\]
+for every $t\in(0,1)$ the matrix
+\[
+  M_t=(1-t)M+t\frac{J_6}{6}
+\]
+has a positive coefficient on every vertex of $\Oev_6$, and hence belongs
+to its relative interior. Since $\perev$ is continuous and
+$\perev(M)<5/648$, the same strict inequality holds for all sufficiently
+small $t>0$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{BrualdiLiu}
+Richard A.~Brualdi and Bolian~Liu,
+\emph{The polytope of even doubly stochastic matrices},
+J. Combin. Theory Ser. A \textbf{57} (1991), no.~2, 243--253,
+\href{https://doi.org/10.1016/0097-3165(91)90048-L}
+{doi:10.1016/0097-3165(91)90048-L}.
+
+\bibitem{Wanless}
+Ian M.~Wanless,
+\emph{On the Brualdi--Liu conjecture for the even permanent},
+Electron. J. Linear Algebra \textbf{17} (2008), 284--286,
+\href{https://doi.org/10.13001/1081-3810.1263}
+{doi:10.13001/1081-3810.1263}.
+
+\end{thebibliography}
+
+\end{document}

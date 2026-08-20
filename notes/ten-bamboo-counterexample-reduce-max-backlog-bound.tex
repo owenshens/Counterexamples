@@ -1,0 +1,248 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Reduce-Max Exceeds Backlog 2 on Ten Bamboos}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\RM}{\textnormal{\textsc{Reduce-Max}}}
+\newcommand{\state}[2]{\bigl[#1\mid #2\bigr]}
+
+\title{Reduce-Max Exceeds Backlog~$2$ on Ten Bamboos}
+\date{}
+\subjclass[2020]{68W40}
+\keywords{bamboo garden trimming, greedy algorithm, backlog, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+After normalizing total daily growth to~$1$, D'Emidio, Di Stefano,
+and Navarra conjectured that the greedy bamboo-trimming rule \RM,
+which cuts a tallest bamboo in each round, has backlog at most~$2$.
+Jasi\'nska, Kuszmaul, and Lee disproved this conjecture with instances
+on $2000$ and $2702$ bamboos, and report that all of their
+counterexamples have between $1200$ and $3000$ bamboos and that
+similar steep distributions much smaller or larger yielded none.
+We give an exact ten-bamboo
+witness for which every tie-breaking rule has backlog
+\[
+\frac{1878}{937}=2+\frac{4}{937}>2.
+\]
+The maximum is attained in round~$60$, and from the post-round-$137$
+state onward the trajectory modulo permutation of six equal-rate
+bamboos is seven-periodic. The verification uses only integer
+arithmetic. As a consequence, positive-rate counterexamples exist for
+every number of bamboos $n\ge 10$.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+A bamboo instance has positive growth rates $r_1,\dots,r_n$ with
+$\sum_i r_i=1$. Initially all heights are zero. In each round, every
+bamboo grows by its rate and one bamboo of maximum height is then cut
+to height zero. The backlog is the supremum of the maximum pre-cut
+height over all rounds. This greedy rule is called \RM.
+
+D'Emidio, Di Stefano, and Navarra conjectured that \RM\ is
+$2$-approximating with respect to total daily growth; under the
+normalization above, this is the backlog bound~$2$
+\cite[Conjecture~1]{DDN19}. Here $2$-approximating is used in the
+sense of \cite{DDN19}, where the property observed in their
+experiments is recorded as $M(E)<2H$ with $H$ the sum of the growth
+rates; it is that inequality which fails below. Nothing here bears on
+the ratio of $M(E)$ to the optimal backlog of the individual instance.
+Jasi\'nska, Kuszmaul, and Lee disproved
+the conjecture, giving a $2000$-bamboo example with backlog $2.0004$
+and a $2702$-bamboo example yielding the stronger lower bound
+$2.076$~\cite[Section~4]{JKL26}. That disproof is theirs and no
+priority for it is claimed here: the contribution below is an exact
+witness with ten bamboos, and it does not improve the numerical lower
+bound $2.076$. What it does settle is a question of size left open
+in~\cite{JKL26}, where it is reported that ``all of our
+counter-examples have between $1200$ and $3000$ bamboos'', that
+``Examining similar steep distributions on much smaller or larger
+distributions did not yield examples with backlog greater than $2$'',
+and that this is ``likely because for smaller number of bamboos, the
+slower bamboos will not be numerous enough''~\cite[Section~4.1]{JKL26}.
+Theorem~\ref{thm:main} shows that ten bamboos suffice, two orders of
+magnitude below that range, so no such lower limit on the number of
+bamboos holds.
+
+\begin{theorem}\label{thm:main}
+For the rate vector
+\[
+ r=\frac{1}{937}
+ \bigl(313,261,131,118,19,19,19,19,19,19\bigr),
+\]
+every tie-breaking of \RM\ has backlog exactly $1878/937$.
+\end{theorem}
+
+\begin{proof}
+The numerator weights
+\[
+w=(313,261,131,118,19,19,19,19,19,19)
+\]
+sum to $937$. Scale all heights by $937$. Let $H(t)$ be the integer
+post-cut state after round $t$, with $H(0)=0$, and set
+\[
+\widehat H_i(t)=H_i(t-1)+w_i.
+\]
+If bamboo $j_t$ is cut in round $t$, then
+$H_{j_t}(t)=0$ and $H_i(t)=\widehat H_i(t)$ for $i\ne j_t$.
+Let $C(H)$ retain the first four coordinates and sort the last six in
+nondecreasing order.
+
+A symbol $k\in\{1,2,3,4\}$ means that bamboo $k$ is cut. A symbol $S$
+means that a bamboo of maximum pre-cut height among coordinates
+$5,\dots,10$ is cut. Since these six bamboos have the same rate, the
+resulting canonical state is independent of the choice among tied
+slow bamboos. For the indicated cut $j_t$, define the cross-rate gap
+\[
+\delta_t=
+\widehat H_{j_t}(t)-
+\max_{\,w_i\ne w_{j_t}}\widehat H_i(t).
+\]
+The following table is an exact certificate. The columns $m$, $M$,
+and $\Delta$ are, respectively, the minimum and maximum selected
+pre-cut heights and the minimum value of $\delta_t$ on the stated
+interval.
+
+\begin{table}[ht]
+\centering
+\caption{Integer certificate for the greedy trajectory.}
+\label{tab:certificate}
+\begin{tabular}{@{}cclrrr@{}}
+\toprule
+Rounds & Length & Cut word & $m$ & $M$ & $\Delta$ \\
+\midrule
+$1$--$6$     & $6$  & $121321$             & $313$ & $939$  & $2$  \\
+$7$--$42$    & $36$ & $(421321)^6$         & $708$ & $939$  & $4$  \\
+$43$--$60$   & $18$ & $SS214321SS21SS4321$ & $817$ & $1878$ & $1$  \\
+$61$--$72$   & $12$ & $(214321)^2$         & $522$ & $1252$ & $3$  \\
+$73$--$100$  & $28$ & $(S214321)^4$        & $570$ & $1252$ & $23$ \\
+$101$--$108$ & $8$  & $SS214321$           & $874$ & $1252$ & $27$ \\
+$109$--$137$ & $29$ & $(S214321)^4S$       & $684$ & $1252$ & $40$ \\
+$138$--$144$ & $7$  & $214321S$            & $783$ & $1252$ & $40$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For reference, the canonical post-cut states at the interval
+endpoints are
+\begin{align*}
+C(H(0))   &=\state{0,0,0,0}{0,0,0,0,0,0},\\
+C(H(6))   &=\state{0,261,262,708}{114,114,114,114,114,114},\\
+C(H(42))  &=\state{0,261,262,590}{798,798,798,798,798,798},\\
+C(H(60))  &=\state{0,261,262,354}{76,95,152,171,304,323},\\
+C(H(72))  &=\state{0,261,262,354}{304,323,380,399,532,551},\\
+C(H(100)) &=\state{0,261,262,354}{114,247,380,513,836,855},\\
+C(H(108)) &=\state{0,261,262,354}{114,133,266,399,532,665},\\
+C(H(137)) &=\state{313,522,393,472}{0,133,266,399,532,665},\\
+C(H(144)) &=\state{313,522,393,472}{0,133,266,399,532,665}.
+\end{align*}
+All entries follow directly from the recurrence above. The positive
+values of $\Delta$ show that every indicated cut is globally greedy:
+for a digit, its rate class is a singleton; for $S$, the selected
+bamboo is maximal within the slow class by definition. The only ties
+for the global maximum occur in rounds
+\[
+43,\ 44,\ 51,\ 52,\ 55,
+\]
+and each is among equal-rate, equal-height slow bamboos. Hence every
+tie-breaking induces the same canonical trajectory.
+
+The decisive comparisons in rounds $56$--$60$ (the multipliers count
+rounds since the most recent cut) are
+\begin{align*}
+56:&\quad 56\cdot19=1064>9\cdot118=1062,\\
+57:&\quad 10\cdot118=1180>9\cdot131=1179,\\
+58:&\quad 10\cdot131=1310>5\cdot261=1305,\\
+59:&\quad 6\cdot261=1566>5\cdot313=1565,\\
+60:&\quad 6\cdot313=1878=2\cdot937+4.
+\end{align*}
+Thus round~$60$ has pre-cut height $1878/937>2$. Table
+\ref{tab:certificate} shows that no other round through $144$ has a
+larger height. Moreover, $C(H(137))=C(H(144))$, and the intervening
+cut word is $214321S$. The canonical greedy evolution therefore
+repeats with period~$7$, with cycle peak $1252/937$. Consequently the
+global backlog is exactly $1878/937$, independently of tie-breaking.
+\end{proof}
+
+\begin{corollary}\label{cor:alln}
+For every integer $n\ge10$, there is a positive-rate $n$-bamboo
+instance for which every tie-breaking of \RM\ has backlog greater
+than $2$.
+\end{corollary}
+
+\begin{proof}
+Write $n=10+m$ with $m\ge0$. The case $m=0$ is
+Theorem~\ref{thm:main}. For $m\ge1$, multiply the ten rates in the
+theorem by $999/1000$ and add $m$ bamboos, each of rate
+$1/(1000m)$. The rates are positive and sum to~$1$.
+
+Through round~$60$, every selected bamboo in the original execution
+has pre-cut height at least $313/937$, by
+Table~\ref{tab:certificate}. Inductively, before any new bamboo has
+been cut, its height in a round $t\le60$ is at most
+\[
+\frac{t}{1000m}\le\frac{60}{1000}
+<\frac{999}{1000}\frac{313}{937}.
+\]
+Thus no new bamboo can affect the canonical evolution of the original
+ten during these rounds. In round~$60$, the scaled first bamboo
+reaches
+\[
+\frac{999}{1000}\frac{1878}{937}
+=2+\frac{2122}{937000}>2.
+\]
+The conclusion holds for every tie-breaking because the original
+ten-bamboo canonical trajectory is tie-independent.
+\end{proof}
+
+\begin{remark}
+The theorem gives a substantially smaller exact witness than the two
+examples displayed in~\cite{JKL26}, but it neither improves their
+lower bound $2.076$ nor proves minimality. In particular, no claim is
+made about the existence of a counterexample with at most nine
+bamboos. The instance also lies outside the exhaustive search that
+supported \cite[Conjecture~1]{DDN19}. Those experiments enumerated
+integer partitions of the total daily growth $H$, for
+$H\in\{5,10,\dots,35\}$
+\cite[Sections~4.1 and~4.2]{DDN19}. What excludes the rate vector of
+Theorem~\ref{thm:main} is the bound on $H$: in integer form it has
+$H=937$, so it was never enumerated there, even though its $n$ is
+only~$10$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{DDN19}
+M.~D'Emidio, G.~Di Stefano, and A.~Navarra,
+\emph{Bamboo garden trimming problem: priority schedulings},
+Algorithms \textbf{12} (2019), no.~4, Article~74.
+\href{https://doi.org/10.3390/a12040074}
+{doi:10.3390/a12040074}.
+
+\bibitem{JKL26}
+K.~Jasi\'nska, J.~Kuszmaul, and G.~Lee,
+\emph{Strengths and limitations of greedy in cup games},
+arXiv:2602.18610v1 [cs.DS], 2026.
+\href{https://doi.org/10.48550/arXiv.2602.18610}
+{doi:10.48550/arXiv.2602.18610}.
+
+\end{thebibliography}
+
+\end{document}

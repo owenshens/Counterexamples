@@ -1,0 +1,206 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Four-Vertex Counterexample to Conjecture 7.6 of Devriendt}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\one}{\mathbf{1}}
+
+\title[A four-vertex counterexample]
+{A Four-Vertex Counterexample to Conjecture 7.6 of Devriendt}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Conjecture~7.6 of Devriendt asserts that a normalized weighted graph with
+submodular resistance capacity has nonnegative resistance curvature. We
+give an exact counterexample on the diamond graph $K_4-e$: the weighting is
+normalized and its resistance capacity is submodular, but its curvature
+vector is $(2/5,2/5,7/30,-1/30)$. The example is vertex-minimal. It refutes
+Conjecture~7.6 but does not refute the graph-level Conjecture~7.7.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Let $G=(V,E)$ be a connected simple graph with positive conductances $c$.
+Write $\Omega=(\omega_{uv})_{u,v\in V}$ for its effective-resistance matrix
+and $K=\Omega^{-1}$. Following \cite{Devriendt}, the weighting is
+\emph{normalized} if
+\[
+\one^{\mathsf T}K\one=1.
+\]
+For a normalized weighting, the resistance capacity is the set function
+$\tau:2^V\to\mathbb R$ defined by
+\[
+\tau_{\varnothing}=0,
+\qquad
+\tau_{\{v\}}=\frac12,
+\qquad
+\tau_U=\frac12+\frac12
+\left(\one^{\mathsf T}\Omega[U]^{-1}\one\right)^{-1}
+\quad (|U|\ge2),
+\]
+where $\Omega[U]$ is the principal submatrix indexed by $U$. The resistance
+curvature is
+\[
+p_v=1-\frac12\sum_{e\ni v}c_e\omega_e.
+\]
+Conjecture~7.6 of \cite{Devriendt} states that, for a normalized weighting,
+submodularity of $\tau$ implies $p\ge0$.
+
+\begin{theorem}
+Let $V=\{0,1,2,3\}$ and
+\[
+E=\{02,03,12,13,23\},
+\]
+so that $G$ is the diamond graph with nonedge $01$. In the edge order
+$(02,03,12,13,23)$, set
+\[
+c=\frac{109}{300}(1,2,1,2,2).
+\]
+Then $c$ is normalized and $\tau$ is submodular, whereas
+\[
+p=\left(\frac25,\frac25,\frac7{30},-\frac1{30}\right).
+\]
+Consequently, Conjecture~7.6 is false.
+\end{theorem}
+
+\begin{proof}
+The weighted Laplacian is
+\[
+L=\frac{109}{300}
+\begin{pmatrix}
+ 3& 0&-1&-2\\
+ 0& 3&-1&-2\\
+-1&-1& 4&-2\\
+-2&-2&-2& 6
+\end{pmatrix}.
+\]
+Using
+\[
+L^{\dagger}
+=
+\left(L+\frac14\one\one^{\mathsf T}\right)^{-1}
+-\frac14\one\one^{\mathsf T}
+\]
+and
+$\omega_{uv}=(e_u-e_v)^{\mathsf T}L^{\dagger}(e_u-e_v)$ gives
+\[
+\Omega=\frac1{109}
+\begin{pmatrix}
+  0&200&140&110\\
+200&  0&140&110\\
+140&140&  0& 90\\
+110&110& 90&  0
+\end{pmatrix}.
+\]
+Direct inversion yields
+\[
+K\one=
+\left(\frac25,\frac25,\frac7{30},-\frac1{30}\right)^{\mathsf T},
+\qquad
+\one^{\mathsf T}K\one=1,
+\]
+so the weighting is normalized. Moreover, in the stated edge order,
+\[
+(c_e\omega_e)_{e\in E}
+=
+\frac1{15}(7,11,7,11,9).
+\]
+Substitution in the definition of curvature gives the displayed vector
+$p$.
+
+It remains to verify submodularity. For distinct $i,j\in V$ and
+$S\subseteq V\setminus\{i,j\}$, define the elementary slack
+\[
+\Delta_{ij}(S)
+=
+\tau_{S\cup\{i\}}+\tau_{S\cup\{j\}}
+-\tau_S-\tau_{S\cup\{i,j\}}.
+\]
+A set function is submodular if and only if all such slacks are
+nonnegative. Put $\Gamma_{ij}(S)=3924\,\Delta_{ij}(S)$. Substitution of
+$\Omega$ into the definition of $\tau$ gives the following complete list
+up to the automorphism $0\leftrightarrow1$:
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{ccrrrr}
+\toprule
+$ij$ & $\{a,b\}=V\setminus\{i,j\}$
+& $\Gamma_{ij}(\varnothing)$
+& $\Gamma_{ij}(\{a\})$
+& $\Gamma_{ij}(\{b\})$
+& $\Gamma_{ij}(\{a,b\})$\\
+\midrule
+$01$ & $\{2,3\}$ & 162  & 560  & 165 & 0\\
+$02$ & $\{1,3\}$ & 702  & 1100 & 414 & 249\\
+$03$ & $\{1,2\}$ & 972  & 975  & 684 & 124\\
+$23$ & $\{0,1\}$ & 1152 & 864  & 864 & 13\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The rows for $12$ and $13$ are obtained from those for $02$ and $03$ by
+swapping $0$ and $1$. Thus the table accounts for all $24$ elementary
+slacks, each of which is nonnegative. Hence $\tau$ is submodular, while
+$p_3=-1/30<0$.
+\end{proof}
+
+\begin{proposition}
+No positively weighted connected simple graph on two or three vertices has
+negative resistance curvature. Hence four is the smallest possible order
+of a counterexample.
+\end{proposition}
+
+\begin{proof}
+For an edge $e$, the quantity $c_e\omega_e$ is its inclusion probability
+in the weighted random spanning tree. It is therefore $1$ on a bridge and
+strictly less than $1$ on a nonbridge. The connected simple graphs on two
+or three vertices are $K_2$, $P_3$, and $K_3$. The first two are trees and
+have curvature vectors $(1/2,1/2)$ and $(1/2,0,1/2)$, respectively. In
+$K_3$, each vertex is incident to two nonbridges, so the sum of the two
+incident quantities $c_e\omega_e$ is strictly less than $2$ and every
+curvature coordinate is positive.
+\end{proof}
+
+\medskip
+\noindent\textbf{Scope.}
+Conjecture~7.7 of \cite{Devriendt} asks whether a graph admits a normalized
+weighting with submodular resistance capacity exactly when it admits a
+weighting with nonnegative resistance curvature. It does not require the
+same weighting in the two existence statements. The diamond graph is
+resistance positive: unit conductances give curvature
+\[
+\left(\frac38,\frac38,\frac18,\frac18\right),
+\]
+and a common rescaling normalizes the weighting without changing curvature.
+Thus the example refutes precisely the fixed-weight implication in
+Conjecture~7.6; it does not refute Conjecture~7.7.
+
+\begin{thebibliography}{1}
+
+\bibitem{Devriendt}
+K.~Devriendt,
+\emph{Graphs with nonnegative resistance curvature},
+Ann. Comb. \textbf{30} (2026), 415--438.
+\href{https://doi.org/10.1007/s00026-025-00774-x}
+{doi:10.1007/s00026-025-00774-x}.
+
+\end{thebibliography}
+
+\end{document}

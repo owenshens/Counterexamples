@@ -1,0 +1,229 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Cubic Graphs of Girth 11 on 138 and 142 Vertices}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\dist}{\operatorname{dist}}
+
+\title{Cubic Graphs of Girth 11 on 138 and 142 Vertices}
+\date{}
+\subjclass[2020]{05C35, 05C85}
+\keywords{cubic graph, girth, order spectrum, graph excision}
+
+\begin{document}
+
+\begin{abstract}
+We construct connected cubic graphs of girth $11$ on $138$ and $142$
+vertices. The order-$142$ graph is obtained by applying the standard
+two-edge subdivision construction to a recently reported order-$140$
+graph. The order-$138$ graph is obtained by Biggs's excision
+\cite[Theorem~4.2]{Biggs} applied to a recently reported cubic graph of
+order $152$ and girth $12$; the only points requiring verification there
+are that the result is connected and that its girth is $11$ rather than
+$12$. Together with the
+known order $140$ and the previously established spectrum from order
+$144$ onward, these constructions give $N(3,11)\leq 138$. Neither
+construction is new: both operations are due to earlier authors and are
+applied here without modification, so the contribution is the bound.
+\end{abstract}
+
+\maketitle
+
+A $(3,11)$-graph is a simple connected cubic graph of girth $11$.
+Let $\Spec(3,11)$ denote the set of its possible orders, and let
+$N(3,11)$ be the least even integer $N$ such that every even $n\geq N$
+belongs to $\Spec(3,11)$. Eze, Jajcay, Jajcayov\'a, and
+Z\'avack\'a~\cite{EzeEtAl} established $N(3,11)\leq 144$ and left the
+even orders $128$ through $142$ unresolved. Exoo, Goedgebeur, Jooken,
+Stubbe, and Van den Eede~\cite{ExooEtAl} subsequently constructed three
+$(3,11)$-graphs of order $140$ and a $(3,12)$-graph of order $152$.
+We apply standard insertion and excision operations to two of their
+publicly available graphs. Neither operation is ours: the insertion is
+Technique~1 of \cite[Section~5.1]{EzeEtAl}, and the excision is
+\cite[Theorem~4.2]{Biggs}, which applies unconditionally to any cubic
+graph of girth $12$, so that the order-$138$ case is a corollary of a
+$1998$ theorem. What is new here is only that these two operations are
+carried out on the graphs of \cite{ExooEtAl}, that the two resulting
+girths are verified to be exactly $11$, and the bound
+$N(3,11)\leq 138$ that follows.
+
+\begin{theorem}\label{thm:main}
+The orders $138$ and $142$ belong to $\Spec(3,11)$. Consequently,
+\[
+N(3,11)\leq 138.
+\]
+\end{theorem}
+
+All labels below are zero-based labels in the graph6 files contained in
+\path{genLifts/data/graphs/spectra.zip} in the data repository of
+\cite{ExooEtAl}.
+
+\begin{proposition}\label{prop:142}
+There is a $(3,11)$-graph on $142$ vertices.
+\end{proposition}
+
+\begin{proof}
+Let $G$ be the graph on the first line of
+\path{spectra/n140_k3_g11.g6}. Thus $G$ is connected and cubic, has
+order $140$, and has girth $11$. Put
+\[
+e_1=\{14,87\},\qquad e_2=\{85,99\}.
+\]
+Replace $e_1$ by the path $14-x-87$, replace $e_2$ by the path
+$85-y-99$, and add the edge $xy$, where $x=140$ and $y=141$. Denote
+the resulting graph by $G_{142}$. This is the standard two-edge
+subdivision construction of \cite[Section~5.1, Technique~1]{EzeEtAl};
+the girth is verified directly below rather than by appealing to the
+edge-distance hypothesis stated there, and the distances used are
+computed in $G-e_1-e_2$, whereas \cite{EzeEtAl} measure them in $G$.
+Since
+$e_1$ and $e_2$ are disjoint, $G_{142}$ is simple, connected, and cubic.
+
+In $G-e_1-e_2$, breadth-first search gives
+\[
+\dist(u,v)=8
+\quad\text{for all }u\in\{14,87\},\quad v\in\{85,99\}.
+\]
+Let $C$ be a cycle of $G_{142}$. If $C$ avoids $xy$, suppressing every
+subdivision vertex used by $C$ produces a cycle of $G$. Hence
+$|C|\geq 11$, and $|C|\geq 12$ whenever $C$ uses $x$ or $y$.
+If $C$ uses $xy$, the remainder of $C$ contains a path in
+$G-e_1-e_2$ between an endpoint of $e_1$ and an endpoint of $e_2$.
+Therefore
+\[
+|C|\geq 1+1+8+1=11.
+\]
+Thus $G_{142}$ has girth at least $11$. The cycle
+\[
+0,3,136,127,108,70,63,114,125,138,2,0
+\]
+avoids $e_1$ and $e_2$ and remains an $11$-cycle in $G_{142}$.
+Therefore $G_{142}$ has girth exactly $11$.
+\end{proof}
+
+\begin{proposition}\label{prop:138}
+There is a $(3,11)$-graph on $138$ vertices.
+\end{proposition}
+
+\begin{proof}
+Let $G$ be the graph in \path{spectra/n152_k3_g12.g6}. Thus $G$ is
+connected and cubic, has order $152$, and has girth $12$. Remove
+\[
+S=\{0,1,2,3,136,137,144,145,146,147,148,149,150,151\}
+\]
+and write $H=G-S$. The vertices of degree $2$ in $H$ are precisely
+\[
+D=\{112,113,118,119,122,123,130,131,
+     134,135,138,139,140,141,142,143\},
+\]
+and every other vertex of $H$ has degree $3$. Add the perfect matching
+\begin{align*}
+M=\{&
+\{112,118\},\{113,119\},\{122,130\},\{123,131\},\\
+&
+\{134,140\},\{135,141\},\{138,142\},\{139,143\}
+\}.
+\end{align*}
+Set $G_{138}=H+M$. This is precisely Biggs's excision, and not merely an
+operation of that type: by \cite[Theorem~4.2]{Biggs}, if there is a
+cubic graph with $n$ vertices and girth $g$, then there is a cubic graph
+with $n-\epsilon(g)$ vertices and girth $g-1$, where
+$\epsilon(g)=2^{r+1}-2$ for $g=4r$ or $g=4r+1$, so that
+$\epsilon(12)=2^{4}-2=14$; and the excised set $S$ above is Biggs's
+tree, an adjacent pair together with all vertices at distance at most
+$2$ from it (cf.\ \cite[Example~4.5]{Biggs}). Applied to the order-$152$
+graph of \cite{ExooEtAl}, that theorem already yields a cubic graph of
+order $138$ and girth at least $11$; what the remainder of this proof
+adds is only the verification that the graph so obtained is connected
+and that its girth is $11$ rather than $12$. For every edge
+$\{u,v\}\in M$, one has
+$\dist_H(u,v)=10$. Moreover, if $u$ and $v$ are endpoints of two
+distinct edges of $M$, then $\dist_H(u,v)\geq 5$. In particular, no
+edge of $M$ already belongs to $H$, so $G_{138}$ is simple. The stated
+degrees imply that it is cubic, and breadth-first search shows that it
+is connected.
+
+Let $C$ be a cycle in $G_{138}$ and put
+\[
+k=|E(C)\cap M|.
+\]
+If $k=0$, then $C$ is a cycle of $G$, so $|C|\geq 12$. If $k=1$,
+deleting the unique matching edge from $C$ leaves an $H$-path of length
+at least $10$, and hence $|C|\geq 11$. If $k\geq 2$, deleting the $k$
+matching edges decomposes $C$ into $k$ paths in $H$, each joining
+endpoints of distinct matching edges. Each such path has length at
+least $5$, so
+\[
+|C|\geq k+5k=6k\geq 12.
+\]
+Thus $G_{138}$ has girth at least $11$. Finally,
+\[
+4,34,97,128,141,135,124,69,49,93,32,4
+\]
+is an $11$-cycle in $G_{138}$, whose only edge in $M$ is
+$\{135,141\}$. Hence $G_{138}$ has girth exactly $11$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Propositions~\ref{prop:142} and~\ref{prop:138} give the two asserted
+orders. Eze et al.~\cite{EzeEtAl} established that every even order at
+least $144$ belongs to $\Spec(3,11)$, and Exoo et al.~\cite{ExooEtAl}
+supplied order $140$. Therefore every even order at least $138$ belongs
+to $\Spec(3,11)$.
+\end{proof}
+
+No assertion is made here about the orders
+$128,130,132,134,$ and $136$.
+
+\paragraph{Data and verification.}
+The parent archive is available in the repository
+\href{https://github.com/AGT-Kulak/smallRegGirthGraphs}%
+{\texttt{AGT-Kulak/smallRegGirthGraphs}} at commit
+\href{https://github.com/AGT-Kulak/smallRegGirthGraphs/commit/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc}%
+{\texttt{c2a1a4e334cd}}. At that commit the archive
+\path{genLifts/data/graphs/spectra.zip} has SHA-256 checksum
+\begin{center}
+\small\texttt{5fea94f6985d681adf33f4c104c391ea0f0ed8f80af82b4241500e5c84c9b3ac}
+\end{center}
+No verification script accompanies this note. Everything needed to
+reconstruct and recheck both graphs is stated above: the two source
+graphs and their locations in the archive, the edges $e_1$ and $e_2$,
+the excised set $S$, the matching $M$, the relevant distances, and an
+$11$-cycle in each of $G_{142}$ and $G_{138}$.
+
+\begin{thebibliography}{9}
+
+\bibitem{Biggs}
+N.~Biggs,
+\emph{Constructions for cubic graphs with large girth},
+Electron. J. Combin. \textbf{5} (1998), Article A1,
+\url{https://doi.org/10.37236/1386}.
+
+\bibitem{EzeEtAl}
+L.~C. Eze, R.~Jajcay, T.~Jajcayov\'a, and D.~Z\'avack\'a,
+\emph{Theoretical and computational approaches to determining sets of
+orders for $(k,g)$-graphs},
+Discrete Appl. Math. \textbf{380} (2026), 572--587,
+\url{https://doi.org/10.1016/j.dam.2025.10.049}.
+
+\bibitem{ExooEtAl}
+G.~Exoo, J.~Goedgebeur, J.~Jooken, L.~Stubbe, and T.~Van den Eede,
+\emph{New small regular graphs of given girth: the cage problem and
+beyond},
+arXiv:2511.07247v2, 22 July 2026,
+\url{https://arxiv.org/abs/2511.07247}.
+
+\end{thebibliography}
+
+\end{document}

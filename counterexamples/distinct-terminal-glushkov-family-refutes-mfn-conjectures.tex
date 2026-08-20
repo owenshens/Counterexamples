@@ -1,0 +1,195 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Minimum Memoization Need Not Lie in the Glushkov MFN Set}
+}
+
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\Gl}{\operatorname{Gl}}
+\newcommand{\MFN}{\operatorname{MFN}}
+
+\title[Memoization outside the Glushkov MFN set]
+{Minimum Memoization Need Not Lie in the Glushkov MFN Set}
+
+\date{}
+
+\subjclass[2020]{68Q45}
+\keywords{regular expressions, Glushkov automata, memoization, ambiguity,
+feedback vertex set}
+
+\begin{document}
+
+\begin{abstract}
+Berglund, van der Merwe, and le Roux conjectured that a minimum
+memoization set for a Thompson or Glushkov automaton can be chosen
+inside its Minimum Feedback Node set, equivalently that some ordering
+makes $\mathrm{IAR}^{+}$ return a minimum set.  We disprove the
+Glushkov assertions.  For every $k\geq2$, the Glushkov automaton of
+\[
+ \left(\left(a\mid
+ \underbrace{a^{+}\mid\cdots\mid a^{+}}_{k\ \mathrm{occurrences}}
+ \right)(b\mid c)\right)^{*}
+\]
+has MFN size $k+1$, but its unique minimum memoization set has size $2$
+and is disjoint from MFN.  The full MFN set is its only IDA-eliminating
+subset, so $\mathrm{IAR}^{+}$ returns all MFN states for every ordering.
+Both gaps are unbounded.  The Thompson assertions are not addressed.
+\end{abstract}
+
+\maketitle
+
+Berglund, van der Merwe, and le Roux introduced the Minimum Feedback
+Node scheme and conjectured that some minimum memoization set is
+contained in MFN, equivalently that some ordering of MFN makes
+$\mathrm{IAR}^{+}$ return a minimum set~\cite[Conjectures~1 and~2]{Berglund2026}.
+We refute the Glushkov clauses of both conjectures.
+
+For an automaton $A$, let $\mu(A)$ be the minimum number of memoized
+states needed to eliminate infinite degree of ambiguity (IDA), and set
+\[
+ \mu_{\mathrm{MFN}}(A)=
+ \min\bigl\{|M|:M\subseteq\MFN(A)\text{ and }M\text{ eliminates IDA}\bigr\}.
+\]
+
+\begin{theorem}\label{thm:main}
+For every $k\geq2$, let
+\[
+ R_k=\left(\left(a\mid
+ \underbrace{a^{+}\mid\cdots\mid a^{+}}_{k\ \mathrm{occurrences}}
+ \right)(b\mid c)\right)^{*},
+ \qquad G_k=\Gl(R_k).
+\]
+Then $\MFN(G_k)$ is the unique minimum directed feedback vertex set of
+$G_k$, and
+\[
+ \mu(G_k)=2,
+ \qquad
+ \mu_{\mathrm{MFN}}(G_k)=|\MFN(G_k)|=k+1.
+\]
+The unique minimum memoization set is disjoint from $\MFN(G_k)$, and
+$\mathrm{IAR}^{+}$ returns all $k+1$ MFN states for every ordering.
+\end{theorem}
+
+\begin{proof}
+We use the IDA characterization of van der Merwe et
+al.~\cite{VanderMerwe2021}, as stated in
+\cite[Theorem~1]{Berglund2026}: for a memoized state set $M$, IDA
+occurs if and only if there are distinct states $p,q$ and a word
+$v\in\Sigma^{+}$ with paths
+\[
+ p\xrightarrow{v}p,
+ \qquad p\xrightarrow{v}q,
+ \qquad q\xrightarrow{v}q,
+\]
+such that the displayed cycle at $q$ contains no state of $M$.  Only
+that cycle is required to avoid $M$.
+
+As in~\cite{Berglund2026}, positive closure is primitive.  We apply the
+Glushkov construction to the displayed syntax without algebraic
+simplification, so repeated alternatives are distinct positions.  Let
+$x_0$ be the position of the plain $a$, let $x_1,\ldots,x_k$ be the
+positions of the $k$ occurrences of $a^{+}$, let $y_b,y_c$ be the
+positions of $b,c$, and put
+\[
+ X_k=\{x_0,x_1,\ldots,x_k\}.
+\]
+With initial state $q_0$, the nonempty transition values of $G_k$ are
+\begin{align*}
+ \delta(q_0,a)=\delta(y_b,a)=\delta(y_c,a)&=X_k,\\
+ \delta(x_i,b)&=\{y_b\} &&(0\leq i\leq k),\\
+ \delta(x_i,c)&=\{y_c\} &&(0\leq i\leq k),\\
+ \delta(x_i,a)&=\{x_i\} &&(1\leq i\leq k).
+\end{align*}
+The final states are $q_0,y_b,y_c$.
+
+Every directed feedback vertex set contains $x_1,\ldots,x_k$, because
+each has a self-loop.  After deleting these states, the two cycles
+\[
+ x_0\longrightarrow y_b\longrightarrow x_0,
+ \qquad
+ x_0\longrightarrow y_c\longrightarrow x_0
+\]
+remain.  A single further vertex meets both only if it is $x_0$.
+Conversely, deleting $X_k$ leaves only $q_0,y_b,y_c$, with no
+transitions among them.  Thus $X_k$ is the unique minimum directed
+feedback vertex set.  The Glushkov MFN algorithm returns a minimum
+feedback vertex set~\cite[Theorem~4]{Berglund2026}, so
+\[
+ \MFN(G_k)=X_k.
+\]
+
+Memoizing $M_0=\{y_b,y_c\}$ eliminates IDA.  Every nonempty cycle
+avoiding $M_0$ is an $a$-self-loop at some $x_i$ with $i\geq1$,
+traversed one or more times, and therefore has label $a^r$ for some
+$r\geq1$.  If $p\xrightarrow{a^r}p$, then $p=x_j$ for some $j\geq1$,
+and the only path on $a^r$ from $x_j$ ends at $x_j$.  It cannot also
+end at a distinct state $q$.  Hence $\mu(G_k)\leq2$.
+
+Conversely, let $M$ eliminate IDA and suppose $|M|\leq2$.  If
+$y_b\notin M$, then $|X_k|=k+1\geq3$ permits a choice of
+$q\in X_k\setminus M$ and $p\in X_k\setminus\{q\}$.  There are paths
+\[
+ p\xrightarrow{ba}p,
+ \qquad p\xrightarrow{ba}q,
+ \qquad q\xrightarrow{ba}q.
+\]
+The last cycle visits only $q$ and $y_b$, neither in $M$, and is an IDA
+witness.  Therefore $y_b\in M$.  The same argument with $ca$ gives
+$y_c\in M$.  Thus $M_0$ is the unique IDA-eliminating set of size at
+most two, and $\mu(G_k)=2$.
+
+Finally, let $M\subsetneq X_k$.  Choose $q\in X_k\setminus M$ and
+$p\in X_k\setminus\{q\}$.  The same three paths on $ba$ form an IDA
+witness, because the cycle at $q$ visits only $q$ and
+$y_b\notin X_k$.  Hence no proper subset of $X_k$ eliminates IDA.
+Since deleting $X_k$ is acyclic, $X_k$ does eliminate IDA, and
+\[
+ \mu_{\mathrm{MFN}}(G_k)=k+1.
+\]
+Removing any state from the initial MFN set therefore reintroduces
+IDA, so $\mathrm{IAR}^{+}$ removes no state, regardless of the ordering.
+\end{proof}
+
+The strict inequality
+$\mu_{\mathrm{MFN}}(G_k)>\mu(G_k)$ refutes the Glushkov part of
+Conjecture~1 in~\cite{Berglund2026}, while the order-independent
+$\mathrm{IAR}^{+}$ conclusion refutes Conjecture~2 for Glushkov
+automata.  Moreover,
+\[
+ \mu_{\mathrm{MFN}}(G_k)-\mu(G_k)=k-1,
+ \qquad
+ \frac{\mu_{\mathrm{MFN}}(G_k)}{\mu(G_k)}=\frac{k+1}{2},
+\]
+so the additive and multiplicative gaps are unbounded.  The case
+$k=2$ gives the explicit five-position counterexample
+\[
+ \left((a\mid a^{+}\mid a^{+})(b\mid c)\right)^{*}.
+\]
+
+\begin{thebibliography}{9}
+
+\bibitem{Berglund2026}
+M.~Berglund, B.~van der Merwe, and I.~le Roux,
+\newblock Selective memoization for efficient backtracking regular expression matching,
+\newblock \emph{Electronic Proceedings in Theoretical Computer Science}
+\textbf{446} (2026), 1--17.
+\newblock \url{https://doi.org/10.4204/EPTCS.446.1}.
+
+\bibitem{VanderMerwe2021}
+B.~van der Merwe, J.~Mouton, S.~van Litsenborgh, and M.~Berglund,
+\newblock Memoized regular expressions,
+\newblock in \emph{Implementation and Application of Automata (CIAA 2021)},
+Lecture Notes in Computer Science, vol.~12803, Springer, 2021,
+pp.~39--52.
+\newblock \url{https://doi.org/10.1007/978-3-030-79121-6_4}.
+
+\end{thebibliography}
+
+\end{document}

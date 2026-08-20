@@ -1,0 +1,220 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdfsubject={Möbius uncertainty on locally finite posets},
+  pdfkeywords={Möbius inversion, uncertainty principle, locally finite poset, incidence algebra}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\supp}{\operatorname{supp}}
+
+\title[$\mathcal H_1$ and $\mathcal H_2$ do not characterize $\mathcal M$]
+{$\mathcal H_1$ and $\mathcal H_2$ Do Not Characterize Möbius Uncertainty}
+
+\date{}
+
+\subjclass[2020]{Primary 06A07; Secondary 11A25}
+\keywords{Möbius inversion, uncertainty principle, locally finite poset,
+incidence algebra}
+
+\begin{document}
+
+\begin{abstract}
+Sahay left open, while writing that he considered it ``quite unlikely'',
+whether the Möbius uncertainty property $\mathcal M$ of a locally finite
+poset with a minimum is characterized by the two necessary conditions
+$\mathcal H_1$ and $\mathcal H_2$. We confirm his expectation: the
+characterization fails. For every $r\geq 1$, we construct a countable
+locally finite poset $P_r$ with a minimum such that $P_r$ satisfies $\mathcal H_k$ exactly for
+$1\leq k\leq r$, but fails $\mathcal M$. Thus no finite family of the
+conditions $\mathcal H_k$ implies Möbius uncertainty.
+\end{abstract}
+
+\maketitle
+
+Let $P$ be a locally finite poset with minimum $\widehat 0$. For
+$f\colon P\to\mathbb C$, define
+\[
+  (Zf)(x)=\sum_{y\leq x}f(y),
+  \qquad
+  \supp(f)=\{x\in P:f(x)\neq 0\}.
+\]
+The poset $P$ has the \emph{Möbius uncertainty property} $\mathcal M$ if,
+for every nonzero $f$, at least one of $\supp(f)$ and $\supp(Zf)$ is
+infinite. For $k\geq 1$, it has property $\mathcal H_k$ if every
+$k$-element set $S\subseteq P$ contains some $z\in S$ for which there are
+infinitely many $x\in P$ such that
+\[
+  x\geq z
+  \quad\text{and}\quad
+  x\ngeq y\quad (y\in S\setminus\{z\}).
+\]
+
+Pollack proved the arithmetic uncertainty principle \cite{Pollack}, and
+Goh formulated and studied its poset analogue \cite{Goh}. Sahay introduced
+the properties $\mathcal H_k$ and proved
+\[
+  \mathcal H_{\mathbb N}\Longrightarrow\mathcal M
+  \Longrightarrow \mathcal H_1\text{ and }\mathcal H_2,
+\]
+where $\mathcal H_{\mathbb N}$ means that every $\mathcal H_k$ holds
+\cite[Theorems 1.2 and 1.5]{Sahay}. After showing that
+$\mathcal M\nRightarrow\mathcal H_3$ \cite[Theorem 1.11]{Sahay}, he wrote,
+immediately following that theorem \cite[p.~5]{Sahay}:
+\begin{quote}
+``This leaves open the possibility that
+\[
+  P\text{ has }\mathcal M\iff P\text{ has }\mathcal H_1\text{ and }
+  \mathcal H_2,
+\]
+for general posets, but I consider this quite unlikely.''
+\end{quote}
+
+\begin{theorem}\label{thm:main}
+For every integer $r\geq 1$, there is a countable locally finite poset
+$P_r$ with a minimum such that
+\[
+  P_r\text{ has }\mathcal H_k
+  \quad\Longleftrightarrow\quad
+  1\leq k\leq r,
+  \qquad
+  P_r\text{ does not have }\mathcal M.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal F(\mathbb N)$ be the poset of finite subsets of
+$\mathbb N=\{1,2,\ldots\}$ ordered by inclusion. For $1\leq i\leq r$, let
+\[
+  Q_i=\{A_i:A\in\mathcal F(\mathbb N)\}
+\]
+be a copy of this poset. Define
+\[
+  P_r=\{\widehat 0\}\sqcup\bigsqcup_{i=1}^r Q_i
+\]
+by placing $\widehat 0$ below every element, retaining inclusion within each
+$Q_i$, and imposing no comparabilities between distinct copies. The poset is
+countable and locally finite, since
+\[
+  [A_i,B_i]=\{C_i:A\subseteq C\subseteq B\},
+  \qquad
+  [\widehat 0,B_i]=\{\widehat 0\}\cup\{C_i:C\subseteq B\}.
+\]
+
+Fix $1\leq k\leq r$ and let $S\subseteq P_r$ have size $k$. If
+$\widehat 0\in S$, then the other $k-1$ elements occupy at most $r-1$
+copies. Choose a copy $Q_i$ disjoint from $S\setminus\{\widehat 0\}$. Taking
+$z=\widehat 0$, every element of $Q_i$ is an exclusive upper witness for
+$z$.
+
+Suppose $\widehat 0\notin S$. Choose an occupied copy $Q_i$, put
+$T=S\cap Q_i$, and choose $A_i\in T$ minimal under inclusion. For every
+$B_i\in T\setminus\{A_i\}$, choose $b_B\in B\setminus A$, and let
+\[
+  E=\{b_B:B_i\in T\setminus\{A_i\}\}.
+\]
+For each $c\in\mathbb N\setminus(A\cup E)$, set
+$X_c=(A\cup\{c\})_i$. Then $X_c\geq A_i$, while $B_i\nleq X_c$ for every
+$B_i\in T\setminus\{A_i\}$; elements of $S\setminus T$ lie in other copies
+and are incomparable with $X_c$. Since there are infinitely many choices of
+$c$, this proves $\mathcal H_k$.
+
+Now let $k\geq r+1$ and extend
+\[
+  S_0=\{\widehat 0,\varnothing_1,\ldots,\varnothing_r\}
+\]
+to a $k$-element set $S\subseteq P_r$. For $z=\widehat 0$, the only element
+above $z$ that is not above any other element of $S$ is $\widehat 0$ itself,
+since every nonminimum element lies above some $\varnothing_i$. For
+$z\neq\widehat 0$, every element above $z$ is also above $\widehat 0$.
+Thus $S$ has no element with infinitely many exclusive upper witnesses, and
+$P_r$ fails $\mathcal H_k$.
+
+Finally, define $f\colon P_r\to\mathbb C$ by
+\[
+  f(\widehat 0)=1,
+  \qquad
+  f(\varnothing_i)=-1\quad(1\leq i\leq r),
+  \qquad
+  f(x)=0\quad\text{otherwise}.
+\]
+For every $A_i\in Q_i$,
+\[
+  (Zf)(A_i)=f(\widehat 0)+f(\varnothing_i)=0,
+  \qquad
+  (Zf)(\widehat 0)=1.
+\]
+Hence both $f$ and $Zf$ are nonzero and finitely supported, so $P_r$ does
+not have $\mathcal M$.
+\end{proof}
+
+\begin{corollary}
+The possibility left open in \cite[p.~5]{Sahay} is false. More generally, no
+finite collection
+of the conditions $\mathcal H_k$ implies the Möbius uncertainty property for
+locally finite posets with a minimum.
+\end{corollary}
+
+\begin{proof}
+The first assertion is Theorem~\ref{thm:main} with $r=2$. Given a finite set
+$K\subseteq\mathbb N$, take $r\geq\max(K\cup\{1\})$; then $P_r$ has every
+$\mathcal H_k$ with $k\in K$ but does not have $\mathcal M$.
+\end{proof}
+
+\begin{remark}
+The displayed witness is support-minimal. Indeed, if
+$0\neq h\colon P_r\to\mathbb C$ has $s=|\supp(h)|\leq r$, then
+$\mathcal H_s$ supplies infinitely many $x$ for which
+$(Zh)(x)=h(z)\neq 0$ for some $z\in\supp(h)$. Thus every finitely supported
+witness to failure of $\mathcal M$ has support at least $r+1$, and the
+function $f$ above attains this bound.
+
+In $P_r$ the
+copies $Q_1,\ldots,Q_r$ are the up-sets of
+$\varnothing_1,\ldots,\varnothing_r$ and partition
+$P_r\setminus\{\widehat 0\}$. What makes $\mathcal H_1,\ldots,\mathcal H_r$
+survive is the number of copies rather than the partition alone: for
+$\widehat 0\in S$ it is the pigeonhole over exactly $r$ copies that leaves a
+copy free, while for $\widehat 0\notin S$ the witnesses are produced inside
+a single copy, for a set of any size. Among the sets of size $r+1$, the only
+one with no element having infinitely many exclusive upper witnesses is
+$S_0=\{\widehat 0,\varnothing_1,\ldots,\varnothing_r\}$, and the failure of
+$\mathcal H_k$ for $k\geq r+1$ comes from the extensions of $S_0$.
+For $r\geq 2$, the poset $P_r$ is not
+a join-semilattice, since elements in distinct copies have no common upper
+bound; hence the construction lies outside Sahay's join-semilattice theorem
+\cite[Theorem 1.10 and Section 4]{Sahay}.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Goh}
+M.~K. Goh,
+\emph{An uncertainty principle for Möbius inversion on posets},
+Contrib. Discrete Math. \textbf{21} (2026), no.~1, 142--148,
+\href{https://doi.org/10.55016/6ej3y980}{doi:10.55016/6ej3y980}.
+
+\bibitem{Pollack}
+P. Pollack,
+\emph{The Möbius transform and the infinitude of primes},
+Elem. Math. \textbf{66} (2011), no.~3, 118--120,
+\href{https://doi.org/10.4171/EM/178}{doi:10.4171/EM/178}.
+
+\bibitem{Sahay}
+A. Sahay,
+\emph{A note on the Möbius uncertainty principle for posets},
+\href{https://arxiv.org/abs/2603.01018}{arXiv:2603.01018v2}, 4 May 2026.
+
+\end{thebibliography}
+
+\end{document}

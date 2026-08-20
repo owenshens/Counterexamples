@@ -1,0 +1,310 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\dmg}{dmg}
+\DeclareMathOperator{\zdmg}{zdmg}
+
+\title[A claw-free zombie-damage counterexample]
+      {A counterexample to Davila's claw-free zombie-damage conjecture}
+\date{}
+
+\subjclass[2020]{05C57, 05C69, 68R10}
+\keywords{damage number, zombies and survivors, claw-free graph,
+pursuit-evasion, computer-assisted proof}
+
+\begin{document}
+
+\begin{abstract}
+Davila conjectured that every connected claw-free graph $G$ satisfies
+$\zdmg(G)\leq 4\dmg(G)$. We construct a connected claw-free graph on nine
+vertices with $(\dmg,\zdmg)=(2,9)$, disproving Conjecture~22 of
+\cite{Davila}. A ten-vertex extension has values $(2,10)$ and yields
+$c_3\geq 5$ in Davila's notation. An exact exhaustive computation shows
+that order nine is minimum and that there are exactly $151$ isomorphism
+classes of minimum-order counterexamples.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+All graphs are finite, simple, and connected. A graph is claw-free if it
+has no induced $K_{1,3}$. Write $N(v)$ and $N[v]$ for the open and closed
+neighborhoods of a vertex $v$. In the one-cop damage game, the cop and robber
+choose initial vertices in that order, the cop moves first, and both players
+may move to a neighbor or pass. Capture occurs when the cop moves onto the
+robber. A vertex occupied by the robber is \emph{damaged} if the robber
+survives the next cop move and then completes a move, possibly a pass, from
+that vertex. The damage number $\dmg(G)$ is the number of distinct damaged
+vertices under optimal play. In the zombie damage game, the pursuer must move
+at each turn to a neighbor one step closer to the survivor, while the survivor
+may move or pass; the corresponding value is $\zdmg(G)$. See
+\cite{CoxSanaei,Davila}.
+
+Davila's Conjecture~22 states that
+\begin{equation}\label{eq:davila}
+  \zdmg(G)\leq 4\dmg(G)
+\end{equation}
+for every connected claw-free graph $G$~\cite[Conjecture~22]{Davila}.
+
+We use the following local form of Davila's trace argument
+\cite[Lemma~12]{Davila}.
+
+\begin{lemma}[Local trace lemma]\label{lem:trace}
+Let
+\[
+  a_{-2},a_{-1},a_0,a_1,\ldots,a_m
+\]
+be a walk such that $a_{i-1}a_i a_{i+1}$ is the unique geodesic between
+$a_{i-1}$ and $a_{i+1}$ for every $-1\leq i\leq m-1$. If the zombie starts
+at $a_{-2}$ and the survivor starts at $a_0$, then the survivor can damage
+every vertex occurring among $a_0,\ldots,a_m$ by following the walk and
+passing once at $a_m$.
+\end{lemma}
+
+\begin{proof}
+Suppose immediately before a zombie move that the zombie is at $a_{i-2}$ and
+the survivor is at $a_i$. The unique-geodesic hypothesis forces the zombie
+to move to $a_{i-1}$. If $i<m$, the survivor moves to $a_{i+1}$ and damages
+$a_i$. Starting with $i=0$ and iterating gives the claim; when $i=m$, the
+survivor passes after the zombie moves to $a_{m-1}$, thereby damaging $a_m$.
+\end{proof}
+
+For $t\geq1$, define $G_t$ from the cycle
+\[
+  v_0v_1v_2v_3v_4v_5v_0
+\]
+by adding a vertex $x$ adjacent to $v_0$ and $v_1$ and a path
+\[
+  xu_1u_2\cdots u_t.
+\]
+Thus $|V(G_t)|=7+t$.
+
+\begin{theorem}\label{thm:values}
+For $t\in\{2,3\}$, the graph $G_t$ is connected and claw-free, and
+\[
+  \dmg(G_t)=2,
+  \qquad
+  \zdmg(G_t)=7+t.
+\]
+\end{theorem}
+
+\begin{proof}
+The only vertices of degree three are $v_0,v_1,x$. Their neighborhoods
+contain the edges $v_1x$, $v_0x$, and $v_0v_1$, respectively. Hence $G_t$
+is claw-free.
+
+Every vertex is within distance three of $x$, and $d(x,v_3)=3$, so
+$\operatorname{ecc}(x)=3$. Also $d(u_t,v_3)=t+3\geq5$. Therefore
+\[
+  3=\operatorname{ecc}(x)\geq\operatorname{rad}(G_t)
+  \geq\left\lceil\frac{\operatorname{diam}(G_t)}2\right\rceil\geq3,
+\]
+so $\operatorname{rad}(G_t)=3$. The bound
+$\dmg(G)\geq\operatorname{rad}(G)-1$ gives $\dmg(G_t)\geq2$
+\cite[Theorem~1.3]{HugganMessingerPorter}.
+
+For the reverse inequality, the cop starts at $x$. A robber starting at
+$v_0,v_1$, or $u_1$ is captured on the first cop move. If it starts at
+$u_j$ with $j\geq2$, the cop moves to $u_1$ and remains there, confining the
+robber to $\{u_2,\ldots,u_t\}$, a set of at most two vertices.
+
+For starts on the cycle, use the following two-vertex traps. When the robber
+occupies an endpoint of the listed edge, the cop occupies the corresponding
+guard vertex.
+\[
+\begin{array}{c|cc}
+\toprule
+\text{robber edge} & \text{guard at first endpoint} &
+                      \text{guard at second endpoint}\\
+\midrule
+v_2v_3 & v_0 & v_5\\
+v_3v_4 & v_1 & v_0\\
+v_4v_5 & v_2 & v_1\\
+\bottomrule
+\end{array}
+\]
+In each row the two guards are adjacent, and every move from the listed edge
+through an unlisted neighbor lands next to the current guard. Thus the cop
+can change guards when the robber crosses the edge and captures on the next
+cop move if the robber leaves it. A start at $v_2$ or $v_5$ is placed in the
+first or third trap by the move $x\to v_0$ or $x\to v_1$, respectively.
+For a start at $v_3$ or $v_4$, the cop passes at $x$ until the robber first
+makes a non-pass move and then moves to $v_0$ or $v_1$, respectively. If the
+robber never makes such a move, it damages only its initial vertex. Thus at
+most two vertices are damaged, proving $\dmg(G_t)\leq2$.
+
+It remains to prove full zombie damage. Write
+\[
+  U_t=(x,u_1,\ldots,u_t),
+\]
+and use $U_t$ as a terminal word in the displays below. For the indicated
+initial zombie vertices, consider the following walks; in each row the
+survivor starts at the third displayed vertex:
+\begin{align*}
+T_{v_0}&=(v_0,v_5,v_4,v_3,v_2,v_1,
+          v_0,v_5,v_4,v_3,v_2,v_1,U_t),\\
+T_{v_2}&=(v_2,v_1,v_0,v_5,v_4,v_3,v_2,v_1,U_t),\\
+T_{v_3}&=(v_3,v_2,v_1,v_0,v_5,v_4,v_3,v_2,v_1,U_t),\\
+T_x&=(x,v_1,v_2,v_3,v_4,v_5,v_0,
+      v_1,v_2,v_3,v_4,v_5,v_0,U_t),\\
+T_{u_1}&=(u_1,x,v_0,v_5,v_4,v_3,v_2,v_1,U_t).
+\end{align*}
+The survivor portion of every walk visits all vertices of $G_t$. Every
+length-two segment lying on the $6$-cycle or the pendant path is the unique
+geodesic between its endpoints. The remaining consecutive triples are, up
+to reversal,
+\[
+  (v_2,v_1,x),\quad (v_5,v_0,x),\quad
+  (v_1,x,u_1),\quad (v_0,x,u_1).
+\]
+For each of these four triples, the endpoints are nonadjacent and the
+displayed middle vertex is their unique common neighbor. Hence every
+consecutive triple satisfies the hypothesis of Lemma~\ref{lem:trace}.
+
+The automorphism interchanging
+\[
+  v_0\leftrightarrow v_1,\qquad
+  v_2\leftrightarrow v_5,\qquad
+  v_3\leftrightarrow v_4
+\]
+and fixing $x,u_1,\ldots,u_t$ covers initial zombie vertices
+$v_1,v_5,v_4$. Finally, if the zombie starts at $u_j$ with $j\geq2$, the
+survivor starts at $v_0$ and passes while the zombie is forced toward $u_1$.
+After the zombie first reaches $u_1$, the survivor passes once more; the next
+zombie turn then begins in the initial position of $T_{u_1}$. Thus the
+survivor damages every vertex against every initial zombie position, and
+$\zdmg(G_t)=|V(G_t)|=7+t$.
+\end{proof}
+
+Davila defines
+\[
+  c_3=\sup\left\{
+  \frac{\zdmg(G)}{\dmg(G)}:
+  G\text{ is connected and claw-free},\ \dmg(G)>0
+  \right\}.
+\]
+
+\begin{corollary}\label{cor:main}
+The graph $G_2$ disproves Davila's Conjecture~22, since
+\[
+  \zdmg(G_2)=9>8=4\dmg(G_2).
+\]
+Moreover,
+\[
+  \frac{\zdmg(G_3)}{\dmg(G_3)}=5,
+\]
+so $c_3\geq5$.
+\end{corollary}
+
+\section{Minimum order}
+
+\begin{proposition}\label{prop:minimality}
+No connected claw-free graph of order at most eight violates
+\eqref{eq:davila}. At order nine, exactly $151$ isomorphism classes violate
+\eqref{eq:davila}, all with $(\dmg,\zdmg)=(2,9)$. Hence $G_2$ has minimum
+possible order.
+\end{proposition}
+
+\begin{proof}[Computational proof]
+Let $P\in\{C,Z\}$ denote an ordinary cop or a zombie, write
+$\operatorname{val}_C(G)=\dmg(G)$ and
+$\operatorname{val}_Z(G)=\zdmg(G)$, and put
+\[
+  M_C(p,s)=N[p],
+  \qquad
+  M_Z(p,s)=\{p'\in N(p):d(p',s)=d(p,s)-1\}.
+\]
+Fix an integer $k$. A state $(D,p,s)$ consists of the damaged set $D$ and
+distinct current pursuer and survivor positions $p,s$, immediately before a
+pursuer move. Let $W_k^P$ be the least set of states that contains every
+state with $|D|\geq k$ and satisfies the following closure rule: add
+$(D,p,s)$ if, for every $p'\in M_P(p,s)$, one has $p'\neq s$ and either
+$|D\cup\{s\}|\geq k$ or there exists
+\[
+  s'\in N[s]\setminus\{p'\}
+\]
+with $(D\cup\{s\},p',s')\in W_k^P$.
+
+A state added after $r$ iterations is one from which the survivor can force
+$k$ damaged vertices within at most $r$ further rounds. Conversely, if a
+state is outside the stabilized set, failure of the closure rule gives the
+pursuer a move that either captures immediately or leaves every legal
+survivor reply outside the set while the damaged total remains below $k$.
+Repeating such choices prevents the threshold forever. Therefore
+\[
+  \operatorname{val}_P(G)\geq k
+  \quad\Longleftrightarrow\quad
+  \forall p\in V(G)\ \exists s\in V(G)\setminus\{p\}:
+  (\varnothing,p,s)\in W_k^P.
+\]
+
+We evaluated this recurrence exactly on one representative of each connected
+isomorphism class through order nine, generated by \texttt{geng -c n} from
+\textsc{nauty}~\cite{McKayPiperno}, and retained the claw-free graphs by
+checking every triple in each open neighborhood. The results were
+\[
+\begin{array}{rrrr}
+\toprule
+n & \text{connected classes} & \text{claw-free classes} &
+    \text{counterexample classes}\\
+\midrule
+1 & 1 & 1 & 0\\
+2 & 1 & 1 & 0\\
+3 & 2 & 2 & 0\\
+4 & 6 & 5 & 0\\
+5 & 21 & 14 & 0\\
+6 & 112 & 50 & 0\\
+7 & 853 & 191 & 0\\
+8 & 11117 & 881 & 0\\
+9 & 261080 & 4494 & 151\\
+\bottomrule
+\end{array}
+\]
+All $151$ counterexamples had values $(2,9)$. Using the vertex order
+\[
+  v_0,\ldots,v_5,x,u_1,\ldots,u_t,
+\]
+the graph6 strings of $G_2$ and $G_3$ are, respectively,
+\[
+  \texttt{HhEM?C@}
+  \qquad\text{and}\qquad
+  \texttt{IhEM?C@?G}.
+\]
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{CoxSanaei}
+D. Cox and A. Sanaei,
+\emph{The damage number of a graph},
+Australas. J. Combin. \textbf{75} (2019), no.~1, 1--16.
+
+\bibitem{Davila}
+R. Davila,
+\emph{The Zombie Damage Number of a Graph},
+arXiv:2607.16382v1 [math.CO], 2026.
+
+\bibitem{HugganMessingerPorter}
+M. A. Huggan, M. E. Messinger, and A. Porter,
+\emph{The damage number of the Cartesian product of graphs},
+Australas. J. Combin. \textbf{88} (2024), no.~3, 362--384.
+
+\bibitem{McKayPiperno}
+B. D. McKay and A. Piperno,
+\emph{Practical graph isomorphism, II},
+J. Symbolic Comput. \textbf{60} (2014), 94--112.
+
+\end{thebibliography}
+
+\end{document}

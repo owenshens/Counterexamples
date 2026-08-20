@@ -1,0 +1,202 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to Gui's Sorting Conjecture for Reduced Kronecker Coefficients}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\sort}{\operatorname{sort}}
+
+\title[Gui's sorting conjecture]
+{Counterexamples to Gui's Sorting Conjecture for Reduced Kronecker Coefficients}
+
+\date{}
+
+\subjclass[2020]{Primary 20C30; Secondary 05E10}
+\keywords{reduced Kronecker coefficient, stable Kronecker coefficient,
+sorting, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Gui conjectured that splitting the decreasing rearrangement of the combined
+parts of two partitions into its odd- and even-indexed subsequences produces a
+coefficientwise larger stable tensor product.  We disprove this conjecture with
+the infinite family
+\[
+  \overline g_{(k,1),(k-1)}^{(1)}=0<1=
+  \overline g_{(k),(k-1,1)}^{(1)}
+  \qquad(k\ge2).
+\]
+The case $k=2$ is, up to interchanging the factors, the unique counterexample
+among pairs of nonempty partitions with at most four boxes in total.  The same
+family also disproves the multipartition extension stated as Conjecture~5.7 in
+the published version of Gui's paper.
+\end{abstract}
+
+\maketitle
+
+Let $g_{\lambda,\mu}^{\nu}$ denote the ordinary Kronecker coefficient.  For a
+partition $\alpha$ and all sufficiently large $N$, set
+\[
+  \alpha[N]=(N-|\alpha|,\alpha).
+\]
+Murnaghan's stability theorem defines the reduced Kronecker coefficient by
+\[
+  \overline g_{\alpha,\beta}^{\gamma}
+  =\lim_{N\to\infty}g_{\alpha[N],\beta[N]}^{\gamma[N]};
+\]
+see \cite{Murnaghan}.
+
+For partitions $\lambda$ and $\mu$, let
+$(\delta_1,\delta_2,\ldots)$ be the decreasing rearrangement of all their
+parts, and define
+\[
+  \sort_1(\lambda,\mu)=(\delta_1,\delta_3,\ldots),
+  \qquad
+  \sort_2(\lambda,\mu)=(\delta_2,\delta_4,\ldots).
+\]
+Gui's Conjecture~5.5 \cite{Gui} asserts that
+\begin{equation}\label{eq:gui}
+  \overline g_{\sort_1(\lambda,\mu),\sort_2(\lambda,\mu)}^{\nu}
+  \ge \overline g_{\lambda,\mu}^{\nu}
+  \qquad\text{for every partition }\nu.
+\end{equation}
+
+For a partition $\alpha$, let $R(\alpha)$ be the set of partitions obtained by
+deleting one removable corner.  For a statement $P$, write $\mathbf 1[P]=1$
+if $P$ holds and $\mathbf 1[P]=0$ otherwise.
+
+\begin{lemma}\label{lem:one}
+For all partitions $\alpha$ and $\beta$,
+\[
+  \overline g_{\alpha,\beta}^{(1)}
+  =|R(\alpha)\cap R(\beta)|
+   +\mathbf 1[\alpha\in R(\beta)]
+   +\mathbf 1[\beta\in R(\alpha)].
+\]
+\end{lemma}
+
+\begin{proof}
+For a partition $\sigma\vdash N$, write $[\sigma]$ for the corresponding
+irreducible $S_N$-module.  The permutation module on $N$ letters is
+$[N]\oplus[N-1,1]$, and the tensor identity gives
+\[
+  [\sigma]\otimes\mathbb C^N
+  \cong
+  \operatorname{Ind}_{S_{N-1}}^{S_N}
+  \operatorname{Res}_{S_{N-1}}^{S_N}[\sigma].
+\]
+The branching rule therefore yields, for $N\ge2$ and
+$\sigma,\rho\vdash N$,
+\begin{equation}\label{eq:branching}
+  g_{\sigma,(N-1,1)}^{\rho}
+  =|R(\sigma)\cap R(\rho)|-\delta_{\sigma,\rho}.
+\end{equation}
+For all sufficiently large $N$,
+\[
+  R(\alpha[N])
+  =\{\alpha[N-1]\}\cup
+    \{\tau[N-1]:\tau\in R(\alpha)\},
+\]
+and likewise for $\beta$.  By symmetry of ordinary Kronecker coefficients,
+\eqref{eq:branching} with $\sigma=\alpha[N]$ and $\rho=\beta[N]$ computes
+$g_{\alpha[N],\beta[N]}^{(N-1,1)}$.  The two first-row removals coincide
+exactly when $\alpha=\beta$, and this contribution is cancelled by the
+Kronecker delta.  The lower-row removals contribute
+$|R(\alpha)\cap R(\beta)|$, while the two cross terms occur exactly when
+$\alpha\in R(\beta)$ or $\beta\in R(\alpha)$.  Taking the stable value proves
+the formula.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+For every integer $k\ge2$,
+\[
+  \overline g_{(k,1),(k-1)}^{(1)}=0,
+  \qquad
+  \overline g_{(k),(k-1,1)}^{(1)}=1.
+\]
+Consequently, Gui's Conjecture~5.5 is false.
+\end{theorem}
+
+\begin{proof}
+The partitions $(k)$ and $(k-1,1)$ have the common one-box predecessor
+$(k-1)$ and no other common predecessor.  Hence Lemma~\ref{lem:one} gives
+\[
+  \overline g_{(k),(k-1,1)}^{(1)}=1.
+\]
+The sizes of $(k,1)$ and $(k-1)$ differ by two, so every term on the
+right-hand side of Lemma~\ref{lem:one} vanishes.  Thus
+\[
+  \overline g_{(k,1),(k-1)}^{(1)}=0.
+\]
+Finally, the decreasing rearrangement of the parts of $(k)$ and $(k-1,1)$ is
+$(k,k-1,1)$, and therefore
+\[
+  \sort_1\bigl((k),(k-1,1)\bigr)=(k,1),
+  \qquad
+  \sort_2\bigl((k),(k-1,1)\bigr)=(k-1).
+\]
+At $\nu=(1)$, inequality \eqref{eq:gui} would therefore require $0\ge1$.
+\end{proof}
+
+\begin{corollary}\label{cor:minimal}
+Up to interchanging the factors, $((2),(1,1))$ is the unique pair of nonempty
+partitions $(\lambda,\mu)$ with $|\lambda|+|\mu|\le4$ for which
+\eqref{eq:gui} fails for some partition $\nu$.
+\end{corollary}
+
+\begin{proof}
+For total size at most three, sorting fixes the pair up to interchange, so
+\eqref{eq:gui} holds with equality.  At total size four, the only unordered
+pairs not fixed by sorting are
+\[
+  ((1),(1,1,1))
+  \qquad\text{and}\qquad
+  ((2),(1,1)).
+\]
+Gui's Theorem~5.6 \cite{Gui} proves \eqref{eq:gui} for the first pair, since
+both factors are columns.  The second pair fails by Theorem~\ref{thm:main}
+with $k=2$.
+\end{proof}
+
+\begin{corollary}
+The multipartition statement published as Gui's Conjecture~5.7 is false.
+\end{corollary}
+
+\begin{proof}
+For two input partitions, the two partitions denoted
+$(\lambda\cup\mu)^{[1,2]}$ and $(\lambda\cup\mu)^{[2,2]}$ in
+\cite[Conjecture~5.7]{Gui} are precisely
+$\sort_1(\lambda,\mu)$ and $\sort_2(\lambda,\mu)$.  Thus the two-factor case
+of that statement is Conjecture~5.5.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Gui}
+T.~Gui,
+\emph{Conjectures on the reduced Kronecker coefficients},
+S\'em. Lothar. Combin. \textbf{93B} (2025), Art.~1, 12~pp.,
+\href{https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2025/1.pdf}
+{published version}.
+
+\bibitem{Murnaghan}
+F.~D.~Murnaghan,
+\emph{The analysis of the Kronecker product of irreducible representations
+of the symmetric group},
+Amer. J. Math. \textbf{60} (1938), no.~3, 761--784,
+\href{https://doi.org/10.2307/2371610}{doi:10.2307/2371610}.
+
+\end{thebibliography}
+
+\end{document}

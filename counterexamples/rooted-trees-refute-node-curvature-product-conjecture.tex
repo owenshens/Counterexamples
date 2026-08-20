@@ -1,0 +1,181 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to a Cartesian-Product Conjecture for Node Resistance Curvature},
+  pdfsubject={Node resistance curvature in Cartesian graph products},
+  pdfkeywords={effective resistance, node resistance curvature, Cartesian product, spanning tree}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{conjecture}{Conjecture 4}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[Counterexample for node resistance curvature]
+{A Counterexample to a Cartesian-Product Conjecture\\
+for Node Resistance Curvature}
+
+\date{}
+
+\subjclass[2020]{05C50, 05C76}
+\keywords{effective resistance, node resistance curvature, Cartesian product,
+spanning tree}
+
+\begin{document}
+
+\begin{abstract}
+We disprove Conjecture~4 of Dawkins et al. as stated in
+arXiv:2403.01037v1. Two rooted trees on $5$ and $8$ vertices have root
+curvature zero, whereas the corresponding vertex in their Cartesian
+product has node resistance curvature
+$32552200/4351396379>0$. The verification uses exact integer
+arithmetic and the matrix-tree theorem.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Let $G=(V,E)$ be a finite connected simple graph with unit edge
+conductances, let $L_G$ be its Laplacian, and let $L_G^+$ be the
+Moore--Penrose pseudoinverse of $L_G$. For $u,v\in V$, write
+\[
+\omega_G(u,v)
+=(\mathbf e_u-\mathbf e_v)^{\mathsf T}
+L_G^+(\mathbf e_u-\mathbf e_v)
+\]
+for the effective resistance. The node resistance curvature introduced
+by Devriendt and Lambiotte~\cite{DL} is
+\[
+p_v(G)=1-\frac12\sum_{u\sim v}\omega_G(u,v).
+\]
+We write $G_1\square G_2$ for the Cartesian product.
+
+In arXiv:2403.01037v1, Dawkins et al.~\cite{DGKLQRS} state the
+following.
+
+\begin{conjecture}
+For graphs $G_1,G_2$ and vertices $i\in V(G_1)$ and $j\in V(G_2)$, if
+\[
+p_i(G_1)\le 0
+\qquad\text{and}\qquad
+p_j(G_2)\le 0,
+\]
+then
+\[
+p_{(i,j)}(G_1\square G_2)<0.
+\]
+\end{conjecture}
+
+\begin{theorem}
+Let $G_1$ have vertex set $\{0,1,2,3,4\}$ and edge set
+\[
+E(G_1)=\{01,02,13,34\},
+\]
+and let $G_2$ have vertex set $\{0,1,\ldots,7\}$ and edge set
+\[
+E(G_2)=\{01,02,03,04,15,56,57\},
+\]
+where $ab$ denotes the edge $\{a,b\}$. At the marked vertices $i=j=1$,
+\[
+p_i(G_1)=p_j(G_2)=0,
+\]
+but
+\[
+p_{(i,j)}(G_1\square G_2)
+=\frac{32552200}{4351396379}>0.
+\]
+Consequently, Conjecture~4 is false as stated.
+\end{theorem}
+
+\begin{proof}
+Both $G_1$ and $G_2$ are trees, and the marked vertex has degree $2$ in
+each. Every unit edge of a tree has effective resistance $1$, so
+\[
+p_i(G_1)=p_j(G_2)=1-\frac22=0.
+\]
+
+Set $H=G_1\square G_2$ and $x=(1,1)$. The neighbors of $x$ are
+\[
+(0,1),\qquad (3,1),\qquad (1,0),\qquad (1,5).
+\]
+For a connected graph $K$, let $\tau(K)$ denote its number of spanning
+trees. If $e=uv$ is a unit edge, then
+\[
+\omega_K(u,v)=\Pr(e\in\mathbf T)=\frac{\tau(K/e)}{\tau(K)},
+\]
+where $\mathbf T$ is a uniformly random spanning tree and $K/e$ is
+obtained by contracting $e$, with parallel edges retained with
+multiplicity. The first equality is the spanning-tree inclusion
+identity~\cite[Theorem~2]{DL}, and the second follows from the standard
+contraction bijection.
+
+Applying the matrix-tree theorem to the reduced Laplacians gives
+\[
+\tau(H)=723{,}963{,}572{,}556{,}125
+\]
+and the following four cofactors.
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lr@{}}
+\toprule
+contracted edge $e$ & $\tau(H/e)$ \\
+\midrule
+$\{x,(0,1)\}$ & $359{,}244{,}778{,}688{,}125$ \\
+$\{x,(3,1)\}$ & $359{,}244{,}778{,}688{,}125$ \\
+$\{x,(1,0)\}$ & $354{,}728{,}028{,}191{,}625$ \\
+$\{x,(1,5)\}$ & $363{,}877{,}814{,}994{,}375$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Therefore
+\[
+\begin{aligned}
+p_x(H)
+&=\frac{2\tau(H)-\sum_{e\ni x}\tau(H/e)}{2\tau(H)}\\
+&=\frac{10{,}831{,}744{,}550{,}000}
+        {1{,}447{,}927{,}145{,}112{,}250}\\
+&=\frac{32552200}{4351396379}>0.
+\end{aligned}
+\]
+This contradicts the asserted strict negativity.
+\end{proof}
+
+\begin{remark}
+The counterexample uses equality in both hypotheses. It therefore
+refutes Conjecture~4 as stated, but it does not address the variant with
+$p_i(G_1)<0$ and $p_j(G_2)<0$. No minimality claim is made.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{DGKLQRS}
+A.~Dawkins, V.~Gupta, M.~Kempton, W.~Linz, J.~Quail, D.~H.~Richman,
+and Z.~Stier,
+\newblock \emph{Node resistance curvature in Cartesian graph products},
+\newblock Journal of Combinatorics \textbf{16} (2025), no.~4, 575--589.
+\newblock
+\href{https://doi.org/10.4310/JOC.250923003413}
+{doi:10.4310/JOC.250923003413};
+\href{https://arxiv.org/abs/2403.01037v1}{arXiv:2403.01037v1}.
+
+\bibitem{DL}
+K.~Devriendt and R.~Lambiotte,
+\newblock \emph{Discrete curvature on graphs from the effective resistance},
+\newblock Journal of Physics: Complexity \textbf{3} (2022), no.~2,
+025008.
+\newblock
+\href{https://doi.org/10.1088/2632-072X/ac730d}
+{doi:10.1088/2632-072X/ac730d}.
+
+\end{thebibliography}
+
+\end{document}

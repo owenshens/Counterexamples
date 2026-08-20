@@ -1,0 +1,242 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A counterexample to Taranenko's diagonal-decomposition conjecture},
+  pdfkeywords={polystochastic matrix, diagonal decomposition, Birkhoff polytope}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\supp}{supp}
+
+\title[Taranenko's diagonal-decomposition conjecture]
+{A counterexample to Taranenko's diagonal-decomposition conjecture}
+\date{}
+\subjclass[2020]{15B51, 15A15, 52B05}
+\keywords{polystochastic matrix, diagonal decomposition, Birkhoff polytope}
+
+\begin{document}
+
+\begin{abstract}
+Taranenko conjectured that every polystochastic matrix of even dimension is a
+nonnegative linear combination of diagonal indicators. We show that the
+symmetric vertex $A_4\in\Omega_3^4$ from Taranenko's 2025 enumeration is not
+in this cone. The proof is an explicit linear functional that is positive on
+$A_4$ and nonpositive on every diagonal indicator. This disproves
+Taranenko's Conjecture~4, restated by Child and Wanless as Conjecture~1.9.
+The pair $(d,n)=(4,3)$ is componentwise minimal.
+\end{abstract}
+
+\maketitle
+
+Let $I_n=\{0,\ldots,n-1\}$. A $d$-dimensional matrix of order $n$ is an
+array $X=(X_x)_{x\in I_n^d}$. It is \emph{polystochastic} if $X_x\geq0$ and
+every line has sum $1$; write $\Omega_n^d$ for the set of such arrays. A
+\emph{diagonal} is a set $D\subset I_n^d$ of size $n$ such that every
+coordinate projection maps $D$ bijectively onto $I_n$. Let $P_D$ be its
+indicator array and set
+\[
+  \mathcal C_n^d=\operatorname{cone}\{P_D:D\text{ is a diagonal in }I_n^d\}.
+\]
+The arrays $P_D$ are the $(d-1)$-permutation matrices in the terminology of
+Child and Wanless \cite{ChildWanless2020}.
+
+Taranenko conjectured that $\Omega_n^d\subseteq\mathcal C_n^d$ whenever
+$d$ is even \cite[Conjecture~4]{Taranenko2016}. Child and Wanless restated
+this as Conjecture~1.9 in \cite{ChildWanless2020}; it also appears as
+Conjecture~16 in Taranenko's 2025 dissertation
+\cite{TaranenkoDissertation}. We give a counterexample in $\Omega_3^4$.
+
+Put $I=I_3$. For $x\in I^4$, define
+\[
+  \nu(x)=(\nu_0(x),\nu_1(x),\nu_2(x)),
+  \qquad
+  \nu_r(x)=\bigl|\{j:x_j=r\}\bigr|.
+\]
+Let $A=(A_x)_{x\in I^4}$ be given by
+\begin{equation}\label{eq:A}
+A_x=
+\begin{cases}
+1,
+  &\nu(x)\in\{(4,0,0),(0,4,0)\},\\[1mm]
+\tfrac12,
+  &\nu(x)\in\mathcal H,\\[1mm]
+0,
+  &\text{otherwise},
+\end{cases}
+\end{equation}
+where
+\begin{equation}\label{eq:H}
+\mathcal H=
+\bigl\{
+(0,1,3),(0,2,2),(1,0,3),(1,2,1),
+(2,0,2),(2,1,1),(2,2,0)
+\bigr\}.
+\end{equation}
+With rows indexed lexicographically by $(x_1,x_2)$ and columns by
+$(x_3,x_4)$, this is the symmetric vertex $A_4$ in
+\cite[Appendix, item~4]{Taranenko2025}.
+
+\begin{theorem}\label{thm:main}
+The array $A$ belongs to $\Omega_3^4\setminus\mathcal C_3^4$. Consequently,
+Conjecture~4 of \cite{Taranenko2016} and Conjecture~1.9 of
+\cite{ChildWanless2020} are false.
+\end{theorem}
+
+\begin{proof}
+Fix three coordinates and let $\mu=(\mu_0,\mu_1,\mu_2)$ record their
+multiplicities. If $e_r$ is the $r$th standard basis vector, then the three
+cells in the resulting line have types $\mu+e_0$, $\mu+e_1$, and
+$\mu+e_2$. For $\mu=(3,0,0)$ and $(0,3,0)$, the corresponding values are
+respectively $(1,0,0)$ and $(0,1,0)$. For each of the other eight weak
+compositions of $3$, they are a permutation of
+$(\tfrac12,\tfrac12,0)$. Thus every line has sum $1$, and
+$A\in\Omega_3^4$.
+
+Let $S=\supp(A)$ and define
+\[
+  S_+=\{x:\nu(x)\in\{(0,1,3),(1,0,3)\}\},
+  \qquad
+  S_-=\{x:\nu(x)=(2,2,0)\}.
+\]
+For any array $X$, set
+\begin{equation}\label{eq:g}
+  g(X)=
+  \sum_{x\in S_+}X_x
+  -\sum_{x\in S_-}X_x
+  -\sum_{x\notin S}X_x.
+\end{equation}
+Since $|S_+|=2\binom41=8$ and $|S_-|=\binom42=6$, all at value
+$\tfrac12$ in $A$,
+\begin{equation}\label{eq:gA}
+  g(A)=8\cdot\tfrac12-6\cdot\tfrac12=1.
+\end{equation}
+
+We show that $g(P_D)\leq0$ for every diagonal $D$. Every cell in $S_+$ has
+three coordinates equal to $2$. Hence any two cells in $S_+$ agree in at
+least one coordinate, so a diagonal contains at most one of them. It follows
+immediately that $g(P_D)\leq0$ if $D\cap S_+=\varnothing$. The same holds if
+$D\cap S_+\neq\varnothing$ but $D\nsubseteq S$: the possible contribution
+$+1$ from $S_+$ is offset by at least one contribution $-1$ from
+$I^4\setminus S$.
+
+It remains to consider a diagonal $D\subseteq S$ meeting $S_+$. The supported
+types are
+\[
+\begin{aligned}
+\mathcal T=\{&(4,0,0),(0,4,0),(0,1,3),(0,2,2),(1,0,3),\\
+              &(1,2,1),(2,0,2),(2,1,1),(2,2,0)\}.
+\end{aligned}
+\]
+The three type vectors of the cells of $D$ sum to $(4,4,4)$, because each
+coordinate position contains each symbol once along $D$. After fixing the
+$S_+$-cell, the $\nu_2$-components of the other two types sum to $1$.
+Among the supported types, those with $\nu_2=0$ are
+\[
+  (4,0,0),\quad(0,4,0),\quad(2,2,0),
+\]
+and those with $\nu_2=1$ are
+\[
+  (1,2,1),\quad(2,1,1).
+\]
+Matching the $\nu_0$- and $\nu_1$-components shows that the remaining types are
+\[
+\begin{cases}
+(2,1,1)\text{ and }(2,2,0),&\text{if the $S_+$-type is }(0,1,3),\\
+(1,2,1)\text{ and }(2,2,0),&\text{if the $S_+$-type is }(1,0,3).
+\end{cases}
+\]
+Thus every supported diagonal meeting $S_+$ also meets $S_-$, and again
+$g(P_D)\leq0$.
+
+If $A=\sum_D c_D P_D$ with $c_D\geq0$, then linearity and
+\eqref{eq:gA} give
+\[
+  1=g(A)=\sum_D c_D g(P_D)\leq0,
+\]
+a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:minimal}
+Within the class of even-dimensional polystochastic matrices, no
+counterexample exists when $d=2$ or $n\leq2$. Hence $(d,n)=(4,3)$ is
+componentwise minimal.
+\end{proposition}
+
+\begin{proof}
+For $d=2$, the assertion is the Birkhoff--von Neumann theorem. Order $1$ is
+trivial. Now let $X$ have order $2$ and even dimension $d$. Index its cells
+by $x\in\{0,1\}^d$ and put $t=X_{(0,\ldots,0)}\in[0,1]$. Since the
+two entries in every line sum to $1$, flipping one coordinate replaces a
+cell value by its complement. Hence
+\[
+  X_x=
+  \begin{cases}
+    t,&\sum_i x_i\equiv0\pmod2,\\
+    1-t,&\sum_i x_i\equiv1\pmod2.
+  \end{cases}
+\]
+For $\bar x=(1-x_1,\ldots,1-x_d)$, the pair $\{x,\bar x\}$ is a diagonal.
+Because $d$ is even, $x$ and $\bar x$ have the same parity. The complementary
+pairs partition each parity class, and therefore
+\[
+  X=
+  t\sum_{\substack{\{x,\bar x\}\text{ of even parity}}}
+       P_{\{x,\bar x\}}
+  +(1-t)\sum_{\substack{\{x,\bar x\}\text{ of odd parity}}}
+       P_{\{x,\bar x\}},
+\]
+where each unordered pair is counted once.
+\end{proof}
+
+\begin{remark}[Scope and provenance]
+The conjecture imposes no parity condition on the order, so the odd order of
+$A$ is permitted. This example does not address the additional variant in
+which the order is also required to be even. The array $A$ itself is not new;
+the contribution here is the separating certificate \eqref{eq:g}.
+Taranenko records $\operatorname{per}(A)=33/4>0$
+\cite[Appendix, item~4]{Taranenko2025}, so the example does not concern the
+separate positive-permanent conjecture.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{ChildWanless2020}
+B.~Child and I.~M. Wanless,
+\emph{Multidimensional permanents of polystochastic matrices},
+Linear Algebra Appl. \textbf{586} (2020), 89--102.
+\href{https://doi.org/10.1016/j.laa.2019.10.008}
+{doi:10.1016/j.laa.2019.10.008}.
+
+\bibitem{Taranenko2016}
+A.~A. Taranenko,
+\emph{Permanents of multidimensional matrices: properties and applications},
+J. Appl. Ind. Math. \textbf{10} (2016), no.~4, 567--604.
+\href{https://doi.org/10.1134/S1990478916040141}
+{doi:10.1134/S1990478916040141}.
+
+\bibitem{TaranenkoDissertation}
+A.~A. Taranenko,
+\emph{Multidimensional matrices in the algebraic theory of hypergraphs},
+doctoral dissertation, Sobolev Institute of Mathematics, Novosibirsk, 2025
+(in Russian).
+
+\bibitem{Taranenko2025}
+A.~A. Taranenko,
+\emph{Enumeration and constructions of vertices of the polytope of
+polystochastic matrices},
+\href{https://arxiv.org/abs/2502.09149}
+{arXiv:2502.09149 [math.CO]}, 2025.
+
+\end{thebibliography}
+
+\end{document}

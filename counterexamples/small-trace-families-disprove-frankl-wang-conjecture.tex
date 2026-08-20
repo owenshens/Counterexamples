@@ -1,0 +1,285 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Small Counterexamples to a Trace Conjecture of Frankl and Wang}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\tr}{\mathbin{|}}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cQ}{\mathcal Q}
+
+\title[Small counterexamples to a trace conjecture]
+{Small Counterexamples to a Trace Conjecture of Frankl and Wang}
+\date{}
+\subjclass[2020]{Primary 05D05; Secondary 05B07}
+\keywords{trace of a set family, arrow relation, extremal set theory,
+Kruskal--Katona theorem, Fano plane}
+
+\begin{document}
+
+\begin{abstract}
+Frankl and Wang conjectured an exact formula for
+$m(n,\ell+1,3\cdot2^{\ell-1}+1)$ for every $n>\ell>0$.
+We prove
+\[
+  m(6,5,25)=40,\qquad m(7,5,25)\ge58,\qquad
+  m(7,6,49)\ge80,
+\]
+where their formula gives $37$, $55$, and $73$, respectively.
+Thus the conjecture fails already at $n=\ell+2$ for $\ell=4$ and $5$.
+The first value is determined using the Kruskal--Katona theorem; the
+other counterexamples are explicit down-sets.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For $\cF\subseteq2^{[n]}$ and $Y\subseteq[n]$, let
+\[
+  \cF\tr_Y=\{F\cap Y:F\in\cF\}.
+\]
+The arrow relation $(n,m)\to(a,b)$ means that every
+$\cF\subseteq2^{[n]}$ with $|\cF|\ge m$ has an $a$-set $Y$ satisfying
+$|\cF\tr_Y|\ge b$. Write
+\[
+  m(n,a,b)=\min\{m:(n,m)\to(a,b)\}.
+\]
+Frankl and Wang conjectured \cite[Conjecture~1.3]{FW} that, for all
+$n>\ell>0$,
+\begin{equation}\label{eq:FW}
+  m\bigl(n,\ell+1,3\cdot2^{\ell-1}+1\bigr)
+  =1+\prod_{0\le i<\ell}
+  \left\lfloor\frac{n+\ell+i}{\ell}\right\rfloor.
+\end{equation}
+The same statement was subsequently recorded as an open problem in
+\cite[Conjecture~2]{LMR}.
+
+\begin{theorem}\label{thm:main}
+One has
+\[
+  m(6,5,25)=40,\qquad m(7,5,25)\ge58,
+  \qquad m(7,6,49)\ge80.
+\]
+Consequently, \eqref{eq:FW} is false for
+$(n,\ell)=(6,4),(7,4),(7,5)$.
+\end{theorem}
+
+For these parameters, the right-hand side of \eqref{eq:FW} is,
+respectively, $37$, $55$, and $73$. When $n=\ell+1$, the proposed
+threshold equals the target trace size, so the assertion is tautological.
+Thus $(6,4)$ and $(7,5)$ are the first nontrivial cases for $\ell=4$
+and $5$.
+
+All families constructed below are down-sets. For a down-set $\cF$,
+\begin{equation}\label{eq:downtrace}
+  \cF\tr_Y=\cF\cap2^Y.
+\end{equation}
+We write $ijk$ for $\{i,j,k\}$ and
+$\binom{X}{\le r}=\{S\subseteq X:|S|\le r\}$.
+
+\section{The exact value
+\texorpdfstring{$m(6,5,25)=40$}{m(6,5,25)=40}}
+
+Let
+\[
+  D=\{136,145,156,234,236,245\},\qquad
+  A=\{1235,1246,3456\},
+\]
+and define
+\begin{equation}\label{eq:F6}
+  \cF=\binom{[6]}{\le2}
+  \cup\left(\binom{[6]}3\setminus D\right)\cup A.
+\end{equation}
+No member of $D$ is contained in a member of $A$, so $\cF$ is a
+down-set. Moreover, $D$ is $3$-regular and $A$ is $2$-regular on
+$[6]$, while
+\[
+  |\cF|=22+(20-6)+3=39.
+\]
+For $Y_x=[6]\setminus\{x\}$, equation \eqref{eq:downtrace} gives
+\[
+  |\cF\tr_{Y_x}|
+  =\sum_{i=0}^{2}\binom5i+\bigl(\tbinom53-(6-3)\bigr)+(3-2)
+  =16+7+1=24.
+\]
+Hence $m(6,5,25)\ge40$.
+
+\begin{proposition}\label{prop:upper}
+Every $40$-member family in $2^{[6]}$ has a $5$-element trace of size
+at least $25$.
+\end{proposition}
+
+\begin{proof}
+Suppose otherwise. By the standard squashing lemma
+\cite[Lemma~1.1]{FW}, the family may be replaced by a $40$-member
+down-set with no larger traces. Denote this down-set by $\cF$ and put
+$\cG=2^{[6]}\setminus\cF$. Then $\cG$ is an up-set of size $24$.
+For $Y_x=[6]\setminus\{x\}$, the assumption and
+\eqref{eq:downtrace} imply
+\begin{equation}\label{eq:eight}
+  |\cG\cap2^{Y_x}|=32-|\cF\tr_{Y_x}|\ge8
+  \qquad(x\in[6]).
+\end{equation}
+
+The family $\cG$ contains no set of size at most one, since the upper
+cone of such a set has at least $32$ members. It also contains no pair.
+Indeed, suppose $\{u,v\}\in\cG$. Its upper cone has $16$ members, so
+exactly eight members of $\cG$ lie outside that cone. Equation
+\eqref{eq:eight} for $x=u$ forces all eight to avoid $u$, and the same
+equation for $x=v$ forces all eight to avoid $v$. If $E$ is one of
+them, then $E\cup\{u\}\in\cG$ because $\cG$ is an up-set. This set
+still avoids $v$, so it lies outside the cone, but it contains $u$, a
+contradiction.
+
+Thus every member of $\cG$ has size at least three. For each $x$,
+equation \eqref{eq:eight} gives some member of $\cG$ contained in
+$Y_x$; the up-set property then gives $Y_x\in\cG$. Hence all six
+$5$-sets and $[6]$ belong to $\cG$. Set
+\[
+  t=\left|\cG\cap\binom{[6]}3\right|,
+  \qquad
+  q=\left|\cG\cap\binom{[6]}4\right|.
+\]
+Then $t+q=17$, and double counting pairs $(x,G)$ with
+$G\in\cG\cap2^{Y_x}$ yields
+\[
+  48\le\sum_{x=1}^{6}|\cG\cap2^{Y_x}|=3t+2q+6.
+\]
+Consequently, $t\ge8$ and $q\le9$.
+
+Choose eight triples from $\cG$ and call the resulting family $\cH$.
+The $4$-element upper shadow of $\cH$ is contained in
+$\cG\cap\binom{[6]}4$. Under complementation in $[6]$, this upper
+shadow becomes the ordinary $2$-element lower shadow of the eight
+triples $\{[6]\setminus H:H\in\cH\}$. Since
+\[
+  8=\binom43+\binom32+\binom11,
+\]
+the Kruskal--Katona theorem \cite{Katona,Kruskal} gives
+\[
+  q\ge\binom42+\binom31+\binom10=10,
+\]
+contrary to $q\le9$.
+\end{proof}
+
+The construction \eqref{eq:F6} and Proposition~\ref{prop:upper} prove
+$m(6,5,25)=40$.
+
+\section{Two counterexamples on seven points}
+
+Let
+\[
+  \cL=\{123,145,167,246,257,347,356\}
+\]
+be the lines of a Fano plane on $[7]$, and set
+\[
+  \cF_4=\binom{[7]}{\le3}\setminus\cL.
+\]
+Then $|\cF_4|=64-7=57$. Every $5$-set is the complement of a pair.
+Exactly five Fano lines meet that pair, so exactly two Fano lines lie
+inside the $5$-set. Therefore every $5$-trace has size
+\[
+  \sum_{i=0}^{2}\binom5i+\binom53-2=24,
+\]
+and hence
+\begin{equation}\label{eq:m7525}
+  m(7,5,25)\ge58.
+\end{equation}
+
+For the final construction, let
+\[
+  C=\{1,4\},\qquad
+  \cM=\{123,456,147\},
+\]
+and define
+\[
+  \cQ=\left\{Q\in\binom{[7]}4:
+  Q\cap C\ne\varnothing\ \text{and}\ M\nsubseteq Q
+  \text{ for every }M\in\cM\right\}.
+\]
+There are $35-\binom54=30$ four-sets meeting $C$. Each member of
+$\cM$ has four four-set supersets, all meeting $C$, and these three
+upper cones are disjoint because the union of any two members of
+$\cM$ has size at least five. Thus $|\cQ|=30-12=18$.
+
+Now set
+\begin{equation}\label{eq:F7}
+  \cF_5=\binom{[7]}{\le2}
+  \cup\left(\binom{[7]}3\setminus\cM\right)\cup\cQ.
+\end{equation}
+By the definition of $\cQ$, this is a down-set, and
+\[
+  |\cF_5|=29+(35-3)+18=79.
+\]
+Let $Y_x=[7]\setminus\{x\}$. If $x\in C$, exactly one member of
+$\cM$ lies in $Y_x$. Moreover, $Y_x$ contains ten four-sets meeting
+$C$, exactly three of which contain that member of $\cM$; hence
+$|\cQ\cap2^{Y_x}|=7$. Therefore
+\[
+  |\cF_5\tr_{Y_x}|=22+(20-1)+7=48.
+\]
+If $x\notin C$, exactly two members of $\cM$ lie in $Y_x$. Among the
+fifteen four-sets in $Y_x$, exactly one is disjoint from $C$. Each of
+the two contained members of $\cM$ has three four-set supersets in
+$Y_x$, and no four-set contains both. Hence
+$|\cQ\cap2^{Y_x}|=14-6=8$, and
+\[
+  |\cF_5\tr_{Y_x}|=22+(20-2)+8=48.
+\]
+Thus
+\begin{equation}\label{eq:m7649}
+  m(7,6,49)\ge80.
+\end{equation}
+Equations \eqref{eq:m7525} and \eqref{eq:m7649} complete the proof of
+Theorem~\ref{thm:main}.
+
+Theorem~\ref{thm:main} disproves \eqref{eq:FW} as stated. It does not
+address whether the same formula might hold for all sufficiently large
+$n$ when $\ell$ is fixed.
+
+\begin{thebibliography}{9}
+
+\bibitem{FW}
+P.~Frankl and J.~Wang,
+\emph{Four-vertex traces of finite sets},
+Graphs Combin. \textbf{40} (2024), Art.~8,
+\href{https://doi.org/10.1007/s00373-023-02738-5}
+{doi:10.1007/s00373-023-02738-5}.
+
+\bibitem{Katona}
+G.~O.~H.~Katona,
+\emph{A theorem of finite sets},
+in Theory of Graphs (Proc. Colloq., Tihany, 1966),
+Academic Press, New York, 1968, pp.~187--207.
+
+\bibitem{Kruskal}
+J.~B.~Kruskal,
+\emph{The number of simplices in a complex},
+in Mathematical Optimization Techniques,
+University of California Press, Berkeley, 1963, pp.~251--278.
+
+\bibitem{LMR}
+M.~Li, J.~Ma, and M.~Rong,
+\emph{Recent advances in arrow relations and traces of sets},
+in Sum(m)it280, Bolyai Soc. Math. Stud. \textbf{32},
+Springer, Cham, 2026, pp.~327--354,
+\href{https://doi.org/10.1007/978-3-032-18810-6_14}
+{doi:10.1007/978-3-032-18810-6\_14}.
+
+\end{thebibliography}
+
+\end{document}

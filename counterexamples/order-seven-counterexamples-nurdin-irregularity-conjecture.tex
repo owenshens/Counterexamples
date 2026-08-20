@@ -1,0 +1,328 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Order-Minimal Pendant-Free Counterexamples to Conjecture 2 of Nurdin et al.}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\tvs}{\operatorname{tvs}}
+\newcommand{\wt}{\operatorname{wt}}
+
+\title[Order-minimal pendant-free counterexamples]
+{Order-Minimal Pendant-Free Counterexamples to Conjecture 2 of Nurdin et al.}
+
+\date{}
+
+\subjclass[2020]{05C78}
+\keywords{total vertex irregularity strength, total labeling, counterexample,
+graph atlas}
+
+\begin{document}
+
+\begin{abstract}
+Let $B(G)$ be the degree-count lower bound conjectured by Nurdin et al.\ to
+be equal to the total vertex irregularity strength $\tvs(G)$. We determine
+all connected simple graphs with minimum degree at least two and order at
+most seven for which $\tvs(G)>B(G)$. Exactly three occur, all on seven
+vertices: $K_{3,4}$ and two explicitly given non-complete-multipartite
+graphs. Each has $B(G)=2$ and $\tvs(G)=3$. The finite classification is
+certified by explicit $B(G)$-labelings for the other $580$ atlas graphs,
+while the three obstructions have elementary proofs. We also give a
+regular-core join construction which, together with the seven-vertex
+examples, yields non-complete-multipartite counterexamples of every order
+at least seven. Since $K_{3,4}$ appears to be covered already by a 2005
+complete-bipartite result, the contribution is the order-minimal
+classification and the regular-core extension, not the first
+counterexample.
+\end{abstract}
+
+\maketitle
+
+\section{Results}
+
+Let $G=(V,E)$ be a finite simple connected graph. A \emph{vertex-irregular
+total $k$-labeling} is a map
+\[
+  \phi:V\cup E\longrightarrow\{1,\ldots,k\}
+\]
+for which the vertex weights
+\[
+  \wt_\phi(v)=\phi(v)+\sum_{uv\in E}\phi(uv)
+\]
+are pairwise distinct. The least such $k$ is the \emph{total vertex
+irregularity strength} $\tvs(G)$, introduced by Ba\v{c}a et
+al.~\cite{Baca2007}.
+
+For each integer $j$, let $n_j$ be the number of vertices of degree $j$,
+and let $\delta$ and $\Delta$ be the minimum and maximum degrees. Nurdin et
+al.~\cite{Nurdin2010} proved the lower bound
+\[
+  B(G):=
+  \max_{\delta\le i\le\Delta}
+  \left\lceil
+    \frac{\delta+\sum_{j=\delta}^{i}n_j}{i+1}
+  \right\rceil
+  \le \tvs(G)
+\]
+and conjectured equality in \cite[Conjecture~2]{Nurdin2010}. Susanto,
+Simanjuntak, and Baskoro later produced infinite counterexample families
+and asked whether a counterexample can have no pendant
+vertices~\cite[Question~4.2]{Susanto2023}. That existence question may
+already have been settled by the earlier complete-bipartite work of Wijaya
+et al.~\cite{Wijaya2005}, which appears to contain $\tvs(K_{3,4})=3$,
+whereas $B(K_{3,4})=2$; we have not been able to consult that paper, and
+Susanto et al.\ do not cite it when posing Question~4.2. We therefore make
+no priority claim for pendant-free existence.
+
+Our first result gives the exact minimum-order classification.
+
+\begin{theorem}\label{thm:classification}
+Among connected simple graphs $G$ with $\delta(G)\ge2$ and $|V(G)|\le7$,
+the inequality $\tvs(G)>B(G)$ holds for exactly three isomorphism classes.
+They are $K_{3,4}$ and the graphs $G_1,G_2$ on $\{0,\ldots,6\}$ with
+\begin{align*}
+E(G_1)&=\{01,12,23,04,34,15,35,06,16\},\\
+E(G_2)&=\{01,02,23,14,34,05,45,06,36\},
+\end{align*}
+where $ij$ denotes the edge $\{i,j\}$. For all three graphs,
+\[
+  B(G)=2
+  \qquad\text{and}\qquad
+  \tvs(G)=3.
+\]
+\end{theorem}
+
+The graph6 strings of $G_1,G_2$, and the atlas representative of
+$K_{3,4}$ are, respectively,
+\[
+  \texttt{FhdU?},\qquad
+  \texttt{FpUK\_},\qquad
+  \texttt{FreRW}.
+\]
+The graphs $G_1$ and $G_2$ are nonisomorphic: $G_1$ contains a triangle,
+whereas $G_2$ is triangle-free. Neither is complete multipartite, since in
+each graph $0\not\sim3$ and $3\not\sim1$, but $0\sim1$; nonadjacency is
+transitive in every complete multipartite graph.
+
+Our second result extends the endpoint-weight obstruction from complete
+multipartite graphs to an arbitrary regular core.
+
+\begin{theorem}\label{thm:family}
+Let $t\ge1$ and $d\ge\max\{2t,t+2\}$. If $H$ is a
+$(d-t-2)$-regular simple graph on $d$ vertices, then
+\[
+  G=H\vee\overline{K}_{2t+2}
+\]
+satisfies $B(G)=2<\tvs(G)$.
+\end{theorem}
+
+\begin{corollary}\label{cor:orders}
+For every $n\ge7$, there is a connected non-complete-multipartite graph
+$G$ of order $n$ and minimum degree at least two such that
+$B(G)=2<\tvs(G)$.
+\end{corollary}
+
+\section{The three order-minimal graphs}
+
+The degree sequence of each of $G_1$ and $G_2$ is
+$(2,2,2,2,3,3,4)$. Hence
+\[
+ B(G_i)=\max\left\{
+ \left\lceil\frac{2+4}{3}\right\rceil,
+ \left\lceil\frac{2+6}{4}\right\rceil,
+ \left\lceil\frac{2+7}{5}\right\rceil
+ \right\}=2.
+\]
+
+\begin{proposition}\label{prop:small}
+Neither $G_1$ nor $G_2$ admits a vertex-irregular total $2$-labeling.
+\end{proposition}
+
+\begin{proof}
+Suppose that $G_i$ has such a labeling. Its four degree-$2$ vertices have
+four distinct weights in $\{3,4,5,6\}$, so they use all four values. The
+two degree-$3$ vertices must then have weights $7$ and $8$, and the unique
+degree-$4$ vertex $c$ has weight $9$ or $10$.
+
+Let $z$ be the degree-$2$ vertex of weight $3$. The label of $z$ and both
+incident edge labels are $1$. In $G_2$, every degree-$2$ vertex is adjacent
+to $c$ and to one degree-$3$ vertex. In $G_1$, exactly one degree-$2$
+vertex is adjacent to both degree-$3$ vertices; it cannot be $z$, because
+the degree-$3$ vertex of weight $8$ and all its incident edges have label
+$2$. Thus, in either graph, $z$ is adjacent to $c$ and to a degree-$3$
+vertex $a$.
+
+The edge $cz$ has label $1$, so $c$ cannot have weight $10$. Hence
+$\wt(c)=9$, and every contribution at $c$ other than $cz$ is $2$.
+Similarly, $\wt(a)=7$, and every contribution at $a$ other than $az$ is
+$2$. The other degree-$3$ vertex has weight $8$, so all four of its
+contributions are $2$. From the displayed edge sets, every degree-$2$
+vertex other than $z$ has both incident edges among these forced
+label-$2$ edges. Its weight is therefore at least $1+2+2=5$, contradicting
+the required degree-$2$ weight $4$.
+\end{proof}
+
+For $K_{3,4}$,
+\[
+ B(K_{3,4})=
+ \max\left\{
+ \left\lceil\frac{3+4}{4}\right\rceil,
+ \left\lceil\frac{3+7}{5}\right\rceil
+ \right\}=2.
+\]
+A total $2$-labeling would give seven distinct weights in the
+seven-integer interval $[4,10]$, so the weights would exhaust that
+interval. Weight $4$ forces a degree-$3$ vertex and its three incident
+edges to have label $1$, while weight $10$ forces a degree-$4$ vertex and
+its four incident edges to have label $2$. Those two vertices are
+adjacent, a contradiction.
+
+For completeness, the following certificates give total $3$-labelings.
+Vertices are ordered $0,1,\ldots,6$; edge labels are read in the displayed
+edge order for $G_1,G_2$, and in the order
+\[
+  03,04,05,06,13,14,15,16,23,24,25,26
+\]
+for $K_{3,4}$ with bipartition
+$\{0,1,2\}\cup\{3,4,5,6\}$.
+
+\begin{center}
+\small
+\begin{tabular}{@{}ccll@{}}
+\toprule
+Graph & vertex labels & edge labels & vertex weights \\
+\midrule
+$G_1$     & $3313233$ & $111111123$    & $7,9,3,6,4,5,8$ \\
+$G_2$     & $3123333$ & $111111132$    & $9,3,4,7,6,5,8$ \\
+$K_{3,4}$ & $2221222$ & $111211231233$ & $7,9,11,4,6,8,10$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Thus all three graphs have total vertex irregularity strength $3$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:classification}]
+The Read--Wilson graph atlas~\cite{ReadWilson1998} contains one
+representative of every simple graph of order at most seven. Filtering for
+connected graphs of minimum degree at least two gives
+\[
+\begin{array}{c|rrrrr}
+|V(G)|&3&4&5&6&7\\
+\hline
+\text{graphs}&1&3&11&61&507.
+\end{array}
+\]
+Each of the other $580$ graphs admits an explicit vertex-irregular total
+$B(G)$-labeling, located by exhaustive search as follows. Writing
+$\wt_\phi(v)=1+\deg(v)+a_v+b_v$ with $a_v=\phi(v)-1\in[0,k-1]$ and
+$b_v=\sum_{e\ni v}(\phi(e)-1)$, one enumerates the $k^{|E|}$ vectors of
+edge offsets $\phi(e)-1$, which determine the $b_v$, and tests by greedy
+interval matching on the length-$k$ intervals
+$[\deg(v)+b_v,\deg(v)+b_v+k-1]$ whether the $a_v$ can be chosen to make
+the weights pairwise distinct. Run over all $583$ graphs of the census at
+$k=B(G)$, this search returns a labeling for every graph except
+\texttt{FhdU?}, \texttt{FpUK\_}, and \texttt{FreRW}, and terminates in
+well under a second; it needs no ancillary data. The preceding hand
+proofs establish infeasibility at $k=2$ for those three graphs. Hence the
+classification is complete.
+\end{proof}
+
+\section{A regular-core construction}
+
+\begin{proof}[Proof of Theorem~\ref{thm:family}]
+The $2t+2$ vertices in the independent set have degree $d$, while each
+vertex of $H$ has degree
+\[
+  (d-t-2)+(2t+2)=d+t.
+\]
+Thus $G$ has order $n=d+2t+2$, minimum degree $d$, and maximum degree
+$d+t$. For $d\le i<d+t$, the cumulative degree count is $2t+2$, and
+\[
+  1<\frac{d+2t+2}{i+1}
+  \le\frac{d+2t+2}{d+1}\le2.
+\]
+At $i=d+t$, all vertices have been counted and
+\[
+  \frac{d+n}{d+t+1}
+  =\frac{2d+2t+2}{d+t+1}=2.
+\]
+Therefore $B(G)=2$.
+
+Assume that a vertex-irregular total $2$-labeling exists. The two degree
+classes have weight intervals
+\[
+  [d+1,2d+2]
+  \qquad\text{and}\qquad
+  [d+t+1,2d+2t+2].
+\]
+These intervals overlap, since $d+t+1\le2d+2$, and their union is the
+interval $[d+1,2d+2t+2]$. It contains exactly
+\[
+  (2d+2t+2)-(d+1)+1=d+2t+2=n
+\]
+integers. The $n$ distinct vertex weights must therefore exhaust this
+interval. Its minimum forces a degree-$d$ vertex and all its incident
+edges to have label $1$; its maximum forces a degree-$(d+t)$ vertex and
+all its incident edges to have label $2$. These vertices lie on opposite
+sides of the join and are adjacent, so their common edge would have both
+labels. This contradiction proves $\tvs(G)>2$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:orders}]
+For $n=7$, take $G_1$. For $n\ge8$, set $t=1$, $d=n-4$, and
+$H=\overline{C_d}$. Then $H$ is $(d-3)$-regular, so
+Theorem~\ref{thm:family} applies. Moreover,
+\[
+  \overline{H\vee\overline{K}_4}=C_d\cup K_4.
+\]
+Since $d\ge4$, this complement is not a disjoint union of cliques; hence
+the resulting graph is not complete multipartite.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{Baca2007}
+M. Ba\v{c}a, S. Jendro\v{l}, M. Miller, and J. Ryan,
+\emph{On irregular total labellings},
+Discrete Math. \textbf{307} (2007), 1378--1388.
+\href{https://doi.org/10.1016/j.disc.2005.11.075}
+{doi:10.1016/j.disc.2005.11.075}.
+
+\bibitem{Nurdin2010}
+Nurdin, E. T. Baskoro, A. N. M. Salman, and N. N. Gaos,
+\emph{On the total vertex irregularity strength of trees},
+Discrete Math. \textbf{310} (2010), 3043--3048.
+\href{https://doi.org/10.1016/j.disc.2010.06.041}
+{doi:10.1016/j.disc.2010.06.041}.
+
+\bibitem{ReadWilson1998}
+R. C. Read and R. J. Wilson,
+\emph{An Atlas of Graphs},
+Clarendon Press, Oxford, 1998.
+
+\bibitem{Susanto2023}
+F. Susanto, R. Simanjuntak, and E. T. Baskoro,
+\emph{Counterexamples to the total vertex irregularity strength's
+conjectures},
+Discrete Math. Lett. \textbf{12} (2023), 159--165.
+\href{https://doi.org/10.47443/dml.2023.111}
+{doi:10.47443/dml.2023.111}.
+
+\bibitem{Wijaya2005}
+K. Wijaya, Slamin, Surahmat, and S. Jendro\v{l},
+\emph{Total vertex irregular labeling of complete bipartite graphs},
+J. Combin. Math. Combin. Comput. \textbf{55} (2005), 129--136.
+
+\end{thebibliography}
+
+\end{document}

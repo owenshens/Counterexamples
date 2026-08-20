@@ -1,0 +1,318 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\setcounter{MaxMatrixCols}{20}
+
+\hypersetup{
+  pdftitle={An Order-14 Counterexample to Conjecture 4 of Pioge et al.}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\HH}{\mathcal H}
+\newcommand{\permanent}{\operatorname{per}}
+\newcommand{\Real}{\operatorname{Re}}
+
+\title{An Order-14 Counterexample to Conjecture 4 of Pioge et al.}
+\subjclass[2020]{15A15, 15A18}
+\keywords{permanent, positive semidefinite matrix, Gram matrix, counterexample}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Pioge, Pietrasz, Seron, Novo, and Cerf disproved their Conjecture~4
+with a positive semidefinite matrix of order $16$ and reported no
+counterexample of order $15$. We give an exact rank-two
+Gaussian-integer Gram matrix $A\in\HH_{14}$ such that
+\[
+  \lambda_{\max}(\Real F_A)>\permanent(A),
+  \qquad
+  (F_A)_{ij}=a_{ij}\permanent(A(i,j)).
+\]
+Thus the order of the published construction decreases from $16$ to
+$14$; no claim is made for orders at most $13$. The same witness gives
+an order-$14$ counterexample to Conjecture~3 of Pioge et al. It is also
+diagonally congruent to a rank-two orthogonal projection, yielding
+time-delay-induced anomalous bunching with $14$ photons in $14$ modes.
+\end{abstract}
+
+\maketitle
+
+\section{The exact counterexample}
+
+Let $\HH_n$ be the cone of $n\times n$ positive semidefinite Hermitian
+matrices. For $A=[a_{ij}]\in\HH_n$, let $A(i,j)$ be obtained by
+deleting row $i$ and column $j$, and define
+\[
+  (F_A)_{ij}=a_{ij}\permanent(A(i,j)).
+\]
+Here $\Real F_A$ denotes the entrywise real part of $F_A$; it is a real
+symmetric matrix. Conjecture~4 of Pioge et al.~\cite{PiogeEtAl}
+asserts that
+\begin{equation}\label{eq:conjecture}
+  \lambda_{\max}(\Real F_A)\leq \permanent(A)
+  \qquad (A\in\HH_n).
+\end{equation}
+They disproved \eqref{eq:conjecture} in order $16$ and reported an
+unsuccessful numerical search in order $15$. The conjecture is
+therefore already known to be false; our contribution is the following
+order reduction.
+
+\begin{lemma}\label{lem:rank-two}
+Let $X=(x_{rj})\in\mathbb C^{2\times n}$. For $I\subseteq[n]$, let
+$X_I$ be the submatrix formed by the columns indexed by $I$, and write
+\[
+  \prod_{j\in I}(x_{1j}t+x_{2j})
+  =\sum_{k=0}^{|I|}q_{I,k}t^k.
+\]
+If $|I|=|J|=m$, then
+\begin{equation}\label{eq:rank-two}
+  \permanent(X_I^*X_J)
+  =\sum_{k=0}^{m}k!(m-k)!\,\overline{q_{I,k}}q_{J,k}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Expand the two summands in each factor of the permanent. For fixed
+$k$ and fixed $k$-subsets $S\subseteq I$ and $T\subseteq J$, exactly
+$k!(m-k)!$ bijections from $I$ to $J$ map $S$ onto $T$. Summing first
+over such bijections and then over $S$ and $T$ gives
+\eqref{eq:rank-two}.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Conjecture~4 of Pioge et al. fails in order $14$, already for a
+rank-two Gaussian-integer Gram matrix.
+\end{theorem}
+
+\begin{proof}
+Let $A=X^*X$, where
+$X=X_R+\mathrm iX_I\in\mathbb Z[\mathrm i]^{2\times14}$ and
+\begingroup
+\scriptsize
+\setlength{\arraycolsep}{2.2pt}
+\[
+X_R=
+\begin{pmatrix}
+1178&-223&145&278&-388&-78&-9&163&-347&602&-344&529&-168&77\\
+-30&-50&68&-14&17&369&866&-686&-467&-88&-133&1199&-794&247
+\end{pmatrix},
+\]
+\[
+X_I=
+\begin{pmatrix}
+317&-59&327&310&426&-109&942&521&-1308&672&-52&117&-497&-368\\
+838&744&-92&-307&438&270&-403&-274&-107&907&-728&386&-41&166
+\end{pmatrix}.
+\]
+\endgroup
+Then $A\in\HH_{14}$, and
+\[
+  \det X_{\{1,2\}}=-350880+1045686\,\mathrm i\neq0,
+\]
+so $\operatorname{rank}A=2$.
+
+Take
+\[
+  v=(-24,3,24,17,14,-5,13,-16,22,-17,-12,-4,8,-23)^T.
+\]
+Then $\sum_i v_i=0$ and $v^Tv=3622$. Put $p=\permanent(A)$. Since
+no column of $X$ is zero, the polynomial in Lemma~\ref{lem:rank-two}
+for $I=[14]$ is nonzero; hence \eqref{eq:rank-two} gives $p>0$.
+Applying the lemma to $A$ and to all cofactors $A(i,j)$ gives, in exact
+integer arithmetic,
+\begin{align*}
+\Delta
+&:=v^T(\Real F_A)v-p\,v^Tv\\
+&=188\,558\,958\,243\,265\,516\,176\,136\,227\,271\,677\,528\,
+   258\,899\,031\\
+&\qquad{}\cdot10^{45}
+ +880\,644\,911\,529\,452\,618\,269\,391\,965\,199\,062\,697\,
+  646\,489\,600\\
+&>0.
+\end{align*}
+Therefore
+\[
+  \lambda_{\max}(\Real F_A)
+  \geq \frac{v^T(\Real F_A)v}{v^Tv}
+  >p.
+\]
+For reference, the certified Rayleigh ratio is
+\[
+  \frac{v^T(\Real F_A)v}{p\,v^Tv}
+  =1.001531003891338\ldots.
+\]
+\end{proof}
+
+\section{Consequences}
+
+\begin{corollary}\label{cor:orders}
+Conjecture~4 fails in every order $n\geq14$.
+\end{corollary}
+
+\begin{proof}
+For $k\geq0$, let $A_k=A\oplus I_k$. Block structure gives
+\[
+  \permanent(A_k)=p,
+  \qquad
+  F_{A_k}=F_A\oplus pI_k.
+\]
+Padding $v$ with $k$ zeros preserves the strict Rayleigh inequality.
+\end{proof}
+
+\begin{corollary}\label{cor:conjecture-three}
+There is an entrywise positive correlation matrix $B\in\HH_{14}$ such
+that
+\[
+  \permanent(A\circ B)>\permanent(A).
+\]
+Consequently, Conjecture~3 of Pioge et al.~\cite{PiogeEtAl} also fails
+in order $14$.
+\end{corollary}
+
+\begin{proof}
+Let $\tau=v/\sqrt{3622}$ and, for $\varepsilon>0$, define
+\[
+  (B_\varepsilon)_{ij}
+  =\frac{1+\varepsilon^2\tau_i\tau_j}
+  {\sqrt{(1+\varepsilon^2\tau_i^2)
+         (1+\varepsilon^2\tau_j^2)}}.
+\]
+This is the Gram matrix of the unit vectors
+\[
+  \frac{(1,\varepsilon\tau_i)^T}
+       {\sqrt{1+\varepsilon^2\tau_i^2}},
+\]
+so it is a correlation matrix and is entrywise positive for all
+sufficiently small $\varepsilon>0$. Laplace expansion gives every row
+and column sum of $F_A$ as $p$. Expanding at $\varepsilon=0$ therefore
+yields
+\[
+  \permanent(A\circ B_\varepsilon)
+  =p+\varepsilon^2
+  \bigl(\tau^T(\Real F_A)\tau-p\bigr)+O(\varepsilon^4).
+\]
+The quadratic coefficient is positive by Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{lemma}\label{lem:congruence}
+Let $D=\operatorname{diag}(d_1,\ldots,d_n)$ with $d_i>0$, and set
+$C=DAD$. Then
+\[
+  \permanent(C)=\rho\,\permanent(A),
+  \qquad
+  F_C=\rho F_A,
+  \qquad
+  \rho=\prod_{i=1}^n d_i^2.
+\]
+\end{lemma}
+
+\begin{proof}
+The first identity follows by extracting $d_i$ from row $i$ and column
+$i$. For each $i,j$,
+\[
+\begin{aligned}
+(C)_{ij}\permanent(C(i,j))
+&=d_i d_j a_{ij}
+  \left(\prod_{r\neq i}d_r\right)
+  \left(\prod_{s\neq j}d_s\right)
+  \permanent(A(i,j))\\
+&=\rho(F_A)_{ij}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:projection}
+There is a rank-two orthogonal projection $P\in\HH_{14}$ violating
+\eqref{eq:conjecture}. It yields time-delay-induced anomalous bunching
+with $14$ photons in a $14$-mode interferometer.
+\end{corollary}
+
+\begin{proof}
+Set
+\[
+\begin{gathered}
+ s=5\,975\,547\,235\,929,
+ \quad a=91\,619\,936\,424\,609,\\
+ b=170\,572\,929\,732\,992,
+ \quad c=119\,336\,587\,939\,769,
+\end{gathered}
+\]
+and
+\[
+  W=\operatorname{diag}(s,s,s,a,b,s,s,c,s,s,s,s,s,s).
+\]
+Direct integer multiplication gives
+\[
+  XWX^*=\eta I_2,
+  \qquad
+  \eta=144\,241\,568\,073\,276\,041\,742.
+\]
+Let $D=W^{1/2}$, $Y=\eta^{-1/2}XD$, and
+\[
+  P=Y^*Y=\eta^{-1}DAD.
+\]
+Then $YY^*=I_2$, so $P$ is a rank-two orthogonal projection. By
+Lemma~\ref{lem:congruence}, $F_P$ and $\permanent(P)$ are obtained from
+$F_A$ and $p$ by the same positive scalar factor. Hence the vector
+$\tau=v/\sqrt{3622}$ satisfies
+\[
+  \frac{\tau^T(\Real F_P)\tau}{\permanent(P)}
+  =1.001531003891338\ldots>1.
+\]
+
+For $d\geq0$, define the Gaussian time-delay Gram matrix
+\[
+  S_{ij}(d)=\exp\bigl(-d^2(\tau_i-\tau_j)^2\bigr).
+\]
+Using the row and column sums of $F_P$ and expanding at $d=0$ gives
+\begin{align*}
+  \frac{\permanent(P\circ S(d))}{\permanent(P)}
+  &=1+2\left(
+  \frac{\tau^T(\Real F_P)\tau}{\permanent(P)}-1
+  \right)d^2+O(d^4)\\
+  &=1+0.003062007782676\ldots\,d^2+O(d^4).
+\end{align*}
+Thus the ratio exceeds $1$ for all sufficiently small $d>0$, which is
+temporal anomalous bunching in the criterion of Pioge, Novo, and
+Cerf~\cite{PiogeNovoCerf}.
+
+Finally, the two rows of $Y\in\mathbb C^{2\times14}$ are orthonormal
+and can be completed to a unitary $U\in\mathbb C^{14\times14}$. For
+the first two output modes,
+\[
+  P_{ij}=\sum_{k=1}^2\overline{U_{ki}}U_{kj}.
+\]
+Injecting one photon into each input mode therefore realizes the
+claimed $14$-photon, $14$-mode configuration. This answers the
+fewer-than-$16$-photon question posed in \cite{PiogeNovoCerf}.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{PiogeEtAl}
+L.~Pioge, K.~K.~Pietrasz, B.~Seron, L.~Novo, and N.~J.~Cerf,
+\emph{A logical implication between two conjectures on matrix permanents},
+Linear Algebra Appl. \textbf{725} (2025), 309--318.
+\href{https://doi.org/10.1016/j.laa.2025.07.011}
+{doi:10.1016/j.laa.2025.07.011}.
+
+\bibitem{PiogeNovoCerf}
+L.~Pioge, L.~Novo, and N.~J.~Cerf,
+\emph{Limits of multimode bunching for boson sampling validation:
+anomalous bunching induced by time delays},
+arXiv:2601.13792 (2026).
+\href{https://arxiv.org/abs/2601.13792}
+{arXiv:2601.13792}.
+
+\end{thebibliography}
+
+\end{document}

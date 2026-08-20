@@ -1,0 +1,269 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Kite families with Theta(n^3) failure of the Zhou-Wang-Chai distance-Laplacian bound},
+  pdfkeywords={distance Laplacian matrix, Wiener index, eigenvalue sum, counterexample, unicyclic graph}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\DL}{D^{L}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\gap}{\Delta}
+
+\title[Cubic failure of the Zhou--Wang--Chai bound]{Kite Families with $\Theta(n^3)$ Failure of the Zhou--Wang--Chai Distance-Laplacian Bound}
+\date{}
+
+\subjclass[2020]{05C50, 05C12, 15A18}
+\keywords{distance Laplacian matrix, Wiener index, eigenvalue sum, counterexample, unicyclic graph}
+
+\begin{document}
+
+\begin{abstract}
+Let $\partial_1^L(G)\ge\cdots\ge\partial_n^L(G)=0$ be the distance Laplacian eigenvalues of a connected graph $G$, and write
+$U_r(G)=\sum_{i=1}^r\partial_i^L(G)$.
+Zhou, Wang, and Chai proposed the bound
+\[
+U_r(G)\le W(G)+\binom{r+2}{3}.
+\]
+Huang \cite{Huang} has already shown that this bound fails for $K_{1,3}$ at $r=2$ and for $K_{1,4}$ at $r=3$, so the unrestricted conjecture is false; our point is that the failure is neither sporadic nor small. We show that failure persists throughout an infinite unicyclic family. If $H_n$ is the kite graph obtained from the path $v_1v_2\cdots v_n$ by adding $v_1v_3$, then every $H_n$, $n\ge5$, violates the bound at $r=n-2$, with gap at least $(3n-14)/2$. Along $n=3m$, a second choice $r=2m$ gives a violation of order $n^3$. The graph $H_5$ has minimum possible order among unicyclic counterexamples.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexamples}
+
+For a connected graph $G$, let $D(G)=(d_G(u,v))$ be its distance matrix, let
+\[
+\tau_G(v)=\sum_{u\in V(G)}d_G(u,v),
+\qquad
+W(G)=\frac12\sum_{v\in V(G)}\tau_G(v),
+\]
+and let
+\[
+\DL(G)=\operatorname{diag}(\tau_G(v):v\in V(G))-D(G)
+\]
+be its distance Laplacian matrix \cite{AouchicheHansen}.
+Write
+\[
+\partial_1^L(G)\ge\cdots\ge\partial_n^L(G)=0,
+\qquad
+U_r(G)=\sum_{i=1}^r\partial_i^L(G),
+\]
+and define the excess
+\[
+\gap_r(G)=U_r(G)-W(G)-\binom{r+2}{3}.
+\]
+Zhou, Wang, and Chai \cite{ZhouWangChai} conjectured that $\gap_r(G)\le0$ for every connected graph and every $2\le r\le n$. A recent preprint of Huang \cite{Huang} classifies the diameter-two case and finds precisely the exceptional pairs $(K_{1,3},2)$ and $(K_{1,4},3)$. Our contribution is an infinite family inside the more restrictive class of unicyclic graphs.
+
+For $n\ge4$, let $H_n$ have vertex set $\{v_1,\ldots,v_n\}$ and edge set
+\[
+E(H_n)=\{v_iv_{i+1}:1\le i<n\}\cup\{v_1v_3\}.
+\]
+Thus $H_n$ is the standard kite graph $\operatorname{Ki}_{n,3}$: a triangle with a pendant path \cite{LinDuZhou}.
+
+\begin{theorem}\label{thm:main}
+For every $n\ge5$,
+\[
+\gap_{n-2}(H_n)\ge\frac{3n-14}{2}>0.
+\]
+Moreover, if $n=3m$ with $m\ge4$, then
+\[
+\gap_{2m}(H_{3m})
+\ge
+\frac{5m^3-12m^2-17m+12}{6}>0.
+\]
+In particular, the violation is $\Theta(n^3)$ along the subfamily $H_{3m}$.
+\end{theorem}
+
+\begin{proof}
+For every $x\in\mathbb R^{V(G)}$,
+\begin{equation}\label{eq:quadratic}
+x^{\mathsf T}\DL(G)x
+=\sum_{\{u,v\}\subseteq V(G)}d_G(u,v)(x_u-x_v)^2.
+\end{equation}
+Hence $\DL(G)$ is positive semidefinite and, since $G$ is connected,
+$\ker\DL(G)=\operatorname{span}\{\one\}$.
+Therefore
+\begin{equation}\label{eq:minmax}
+\partial_{n-1}^L(G)
+=
+\min_{\substack{x\ne0\\x\perp\one}}
+\frac{x^{\mathsf T}\DL(G)x}{x^{\mathsf T}x}.
+\end{equation}
+
+Only the distances $d(v_1,v_j)$, $3\le j\le n$, decrease when $v_1v_3$ is added to $P_n$, and each decreases by one. Thus
+\begin{equation}\label{eq:wiener}
+W(H_n)=W(P_n)-(n-2)=\binom{n+1}{3}-(n-2).
+\end{equation}
+Take $x=e_3-e_4$. The relevant transmissions are
+\[
+\tau_{H_n}(v_3)=2+\frac{(n-3)(n-2)}2
+=\frac{n^2-5n+10}{2}
+\]
+and
+\[
+\tau_{H_n}(v_4)=5+\frac{(n-4)(n-3)}2
+=\frac{n^2-7n+22}{2}.
+\]
+Since $x\perp\one$ and $d(v_3,v_4)=1$, equations \eqref{eq:quadratic}--\eqref{eq:minmax} give
+\[
+\partial_{n-1}^L(H_n)
+\le
+\frac{\tau_{H_n}(v_3)+\tau_{H_n}(v_4)+2}{2}
+=
+\frac{n^2-6n+18}{2}.
+\]
+Also $\operatorname{tr}\DL(H_n)=2W(H_n)$, so
+\[
+U_{n-2}(H_n)=2W(H_n)-\partial_{n-1}^L(H_n).
+\]
+Using \eqref{eq:wiener},
+\begin{align*}
+\gap_{n-2}(H_n)
+&\ge
+W(H_n)-\binom n3-\frac{n^2-6n+18}{2}\\
+&=
+\frac{3n-14}{2}.
+\end{align*}
+This proves the first assertion.
+
+Now let $n=3m$ and
+\[
+S=\{v_1,\ldots,v_m\}\cup\{v_{2m+1},\ldots,v_{3m}\}.
+\]
+Ky Fan's variational principle \cite{Fan} gives
+\begin{equation}\label{eq:kyfan}
+U_{2m}(H_{3m})
+=
+\max_{Q^{\mathsf T}Q=I_{2m}}
+\operatorname{tr}\!\left(Q^{\mathsf T}\DL(H_{3m})Q\right)
+\ge
+\sum_{v\in S}\tau_{H_{3m}}(v),
+\end{equation}
+where $Q$ ranges over real $3m\times2m$ matrices. For the path $P_{3m}$,
+\begin{align*}
+\sum_{v\in S}\tau_{P_{3m}}(v)
+&=
+2\sum_{i=1}^{m}
+\left[\binom{i}{2}+\binom{3m-i+1}{2}\right]\\
+&=
+\frac{20m^3-2m}{3}.
+\end{align*}
+Passing from $P_{3m}$ to $H_{3m}$ shortens the $3m-2$ pairs
+$\{v_1,v_j\}$, $3\le j\le3m$. Every such pair contributes once to the selected transmission sum through $v_1\in S$, and $2m-2$ of them contribute a second time because $v_j\in S$. Hence
+\begin{equation}\label{eq:selected}
+\sum_{v\in S}\tau_{H_{3m}}(v)
+=
+\frac{20m^3-2m}{3}-(5m-4)
+=
+\frac{20m^3-17m+12}{3}.
+\end{equation}
+Combining \eqref{eq:wiener}, \eqref{eq:kyfan}, and \eqref{eq:selected} yields
+\[
+\gap_{2m}(H_{3m})
+\ge
+\frac{5m^3-12m^2-17m+12}{6}.
+\]
+For $p(m)=5m^3-12m^2-17m+12$, one has $p(4)=72$ and
+\[
+p(m+1)-p(m)=3(m+1)(5m-8)>0
+\qquad(m\ge4),
+\]
+so the lower bound is positive. It is $\frac{5}{162}n^3+O(n^2)$, whereas
+$\gap_{2m}(H_{3m})\le U_{2m}(H_{3m})\le2W(H_{3m})=O(n^3)$.
+Thus the violation is $\Theta(n^3)$.
+\end{proof}
+
+\begin{remark}
+The unicyclic restriction is what separates Theorem~\ref{thm:main} from the unrestricted statement; it is not what makes the failure infinite, nor what makes it large. Under the unrestricted formulation, the same argument with $x=e_2-e_3$ gives
+\[
+\gap_{n-2}(P_n)\ge\frac{3n-10}{2}>0
+\qquad(n\ge4).
+\]
+Moreover, the sum $\sum_{v\in S}\tau_{P_{3m}}(v)$ evaluated in the proof of Theorem~\ref{thm:main} already exceeds $W(P_{3m})+\binom{2m+2}{3}$ for every $m\ge3$, so by Ky Fan's principle \cite{Fan} the paths $P_{3m}$ by themselves violate the bound by $\Theta(n^3)$. Thus paths already form an infinite family with cubic excess; Theorem~\ref{thm:main} shows that failure of both orders persists after imposing unicyclicity.
+\end{remark}
+
+\begin{corollary}\label{cor:five}
+The graph $H_5$ has minimum possible order among unicyclic counterexamples. Its distance Laplacian matrix is
+\[
+\DL(H_5)=
+\begin{pmatrix}
+ 7&-1&-1&-2&-3\\
+-1& 7&-1&-2&-3\\
+-1&-1& 5&-1&-2\\
+-2&-2&-1& 6&-1\\
+-3&-3&-2&-1& 9
+\end{pmatrix},
+\]
+and
+\[
+\det(xI-\DL(H_5))
+=x(x-6)(x-8)(x^2-20x+95).
+\]
+Consequently,
+\[
+\operatorname{Spec}(\DL(H_5))
+=\{10+\sqrt5,\,8,\,10-\sqrt5,\,6,\,0\},
+\]
+so $W(H_5)=17$ and
+\[
+U_3(H_5)=28>27=17+\binom53.
+\]
+\end{corollary}
+
+\begin{proof}
+The displayed matrix and characteristic polynomial follow directly from the distances in $H_5$. The only connected unicyclic graphs on fewer than five vertices are $C_3$, $C_4$, and $H_4$, whose distance Laplacian spectra are, respectively,
+\[
+\{3,3,0\},
+\qquad
+\{6,6,4,0\},
+\qquad
+\{7,5,4,0\}.
+\]
+These spectra verify the conjectured inequality for every relevant $r$, while the calculation above shows that $H_5$ violates it at $r=3$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{AouchicheHansen}
+M.~Aouchiche and P.~Hansen,
+\emph{Two Laplacians for the distance matrix of a graph},
+Linear Algebra Appl. \textbf{439} (2013), no.~1, 21--33.
+\href{https://doi.org/10.1016/j.laa.2013.02.030}{doi:10.1016/j.laa.2013.02.030}.
+
+\bibitem{Fan}
+K.~Fan,
+\emph{On a theorem of Weyl concerning eigenvalues of linear transformations I},
+Proc. Natl. Acad. Sci. USA \textbf{35} (1949), no.~11, 652--655.
+\href{https://doi.org/10.1073/pnas.35.11.652}{doi:10.1073/pnas.35.11.652}.
+
+\bibitem{Huang}
+S.~Huang,
+\emph{On a distance Laplacian analog of Brouwer's conjecture for several classes of graphs},
+arXiv:2606.06945 [math.CO], 2026.
+
+\bibitem{LinDuZhou}
+H.~Lin, Z.~Du, and B.~Zhou,
+\emph{On the first two largest distance Laplacian eigenvalues of unicyclic graphs},
+Linear Algebra Appl. \textbf{546} (2018), 289--307.
+\href{https://doi.org/10.1016/j.laa.2018.02.013}{doi:10.1016/j.laa.2018.02.013}.
+
+\bibitem{ZhouWangChai}
+Y.~Zhou, L.~Wang, and Y.~Chai,
+\emph{Brouwer type conjecture for the eigenvalues of distance Laplacian matrix of a graph},
+Comput. Appl. Math. \textbf{44} (2025), Paper No.~138.
+\href{https://doi.org/10.1007/s40314-025-03095-0}{doi:10.1007/s40314-025-03095-0}.
+
+\end{thebibliography}
+
+\end{document}

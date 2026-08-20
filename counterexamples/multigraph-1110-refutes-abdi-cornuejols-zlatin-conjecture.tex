@@ -1,0 +1,168 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\dc}{\operatorname{dc}}
+
+\title[A rank-zero counterexample]
+{A Rank-Zero Counterexample to Conjecture~8.4 of
+Abdi--Cornu\'ejols--Zlatin}
+
+\date{}
+
+\subjclass[2020]{05C20, 05C70}
+\keywords{dicut, dijoin, rounded $1$-factor, cubic bipartite multigraph,
+Hamiltonian cycle}
+
+\hypersetup{
+  pdftitle={
+    A Rank-Zero Counterexample to Conjecture 8.4 of
+    Abdi-Cornuejols-Zlatin
+  }
+}
+
+\begin{document}
+
+\begin{abstract}
+We disprove Conjecture~8.4 of Abdi, Cornu\'ejols, and Zlatin as
+stated. Orienting the eight-vertex planar cubic bipartite multigraph
+$1110$ of Exoo and Harary from one bipartition class to the other
+produces a planar sink-regular $(3,4)$-bipartite digraph $D$ with
+$\rho(3,D)=0$. The matroid $M_1(D,\mathbf{1})$ has unique basis
+$\varnothing$, while every rounded $1$-factor has disconnected
+complement.
+\end{abstract}
+
+\maketitle
+
+Conjecture~8.4 of Abdi, Cornu\'ejols, and Zlatin asserts that, for a
+planar sink-regular $(3,4)$-bipartite digraph $D=(V,A)$ and disjoint
+bases $Q_1,Q_2,Q_3$ of $M_1(D,\mathbf{1})$, there is a rounded
+$1$-factor $J$ such that $\dc(J)=Q_1$ and $D\setminus J$ is connected
+\cite[Conjecture~8.4]{ACZ}. Their conventions permit parallel arcs,
+and planarity and connectedness refer to the underlying undirected
+multigraph \cite[pp.~2418, 2427]{ACZ}.
+
+\begin{theorem}
+Conjecture~8.4 of \cite{ACZ} is false, already for an eight-vertex
+planar instance with $\rho(3,D)=0$.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+ S=\{u,b_1,b_2,b_3\},
+ \qquad
+ T=\{v,a_1,a_2,a_3\}.
+\]
+For each $i\in\{1,2,3\}$, add one edge $ua_i$, two parallel edges
+between $a_i$ and $b_i$, and one edge $b_iv$. This is the multigraph
+$1110$ in \cite[Figure~3]{EH}. Drawing its three $u$--$v$ strands in
+parallel shows that the resulting graph $G$ is planar; it is also
+connected, cubic, and bipartite.
+
+Orient every edge from $S$ to $T$, obtaining $D$. Let
+$\delta_D^+(U)$ be a dicut, and put $X=U\cap S$ and $Y=U\cap T$.
+Since $\delta_D^-(U)=\varnothing$,
+\[
+ |\delta_D^+(U)|
+ =\sum_{z\in U}\bigl(d_D^+(z)-d_D^-(z)\bigr)
+ =3|X|-3|Y|.
+\]
+The underlying graph is connected and $U$ is nonempty and proper, so
+the cut is nonempty. Thus every dicut has size at least $3$. Since
+all vertices have degree $3$, the digraph $D$ is planar and
+sink-regular $(3,4)$-bipartite.
+
+There are no active vertices, and
+\[
+ \disc(V)=|T|-|S|=0,
+ \qquad
+ \rho(3,D)=0
+\]
+by \cite[Lemma~3.7(1)]{ACZ}. Moreover, for every dicut shore $U$,
+\[
+ \disc(U)=|Y|-|X|
+ =-\frac{1}{3}|\delta_D^+(U)|\le -1.
+\]
+By \cite[Definition~4.7]{ACZ}, $\varnothing$ is therefore the unique
+basis of $M_1(D,\mathbf{1})$: it has cardinality $\disc(V)=0$ and
+satisfies
+\[
+ 0=|\varnothing\cap U|\ge 1+\disc(U)
+\]
+for every dicut shore. Set
+\[
+ Q_1=Q_2=Q_3=\varnothing.
+\]
+Each $Q_i$ is a basis, and $Q_i\cap Q_j=\varnothing$ whenever
+$i\ne j$.
+
+Let $J$ be a rounded $1$-factor. Since every vertex has degree $3$,
+Definition~3.3 of \cite{ACZ} gives $|J\cap\delta_D(z)|=1$ at every
+vertex $z$. Hence $J$ is a perfect matching and
+$\dc(J)=\varnothing=Q_1$.
+
+There is a unique $i$ for which $ua_i\in J$. The vertex $a_i$ is
+then matched to $u$, so neither parallel edge between $a_i$ and $b_i$
+belongs to $J$. Consequently $b_iv\in J$. After deleting $J$, the
+two parallel edges between $a_i$ and $b_i$ form a connected component
+of the underlying graph of $D\setminus J$. Hence $D\setminus J$ is
+disconnected. No rounded $1$-factor satisfies the conjectured
+conclusion.
+\end{proof}
+
+\begin{remark}[Scope]
+The example lies in the rank-zero case and is not $3$-connected:
+removing $u$ and $v$ leaves the three components $\{a_i,b_i\}$.
+Thus it does not address a positive-rank reformulation of
+Conjecture~8.4 or Barnette's conjecture. Nor does it disprove the
+planar three-dijoin statement in \cite[Theorem~8.5]{ACZ}; it only
+falsifies Conjecture~8.4 as published.
+
+More generally, the dicut and matroid calculations above apply to any
+connected cubic bipartite graph oriented from one bipartition class to
+the other, and a connected complement of a rounded $1$-factor would
+be a Hamiltonian circuit. Thus simplicity alone does not repair the
+statement: the $26$-vertex simple planar cubic bipartite
+non-Hamiltonian graph of Asano, Saito, Exoo, and Harary gives a simple
+counterexample \cite{ASEH}.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{ACZ}
+A.~Abdi, G.~Cornu\'ejols, and M.~Zlatin,
+\newblock \emph{On packing dijoins in digraphs and weighted digraphs},
+\newblock SIAM J. Discrete Math. \textbf{37} (2023), no.~4,
+2417--2461,
+\href{https://doi.org/10.1137/22M1506511}
+{doi:10.1137/22M1506511}.
+
+\bibitem{ASEH}
+T.~Asano, N.~Saito, G.~Exoo, and F.~Harary,
+\newblock \emph{The smallest $2$-connected cubic bipartite planar
+nonhamiltonian graph},
+\newblock Discrete Math. \textbf{38} (1982), no.~1, 1--6,
+\href{https://doi.org/10.1016/0012-365X(82)90162-5}
+{doi:10.1016/0012-365X(82)90162-5}.
+
+\bibitem{EH}
+G.~Exoo and F.~Harary,
+\newblock \emph{The smallest cubic multigraphs with prescribed
+bipartite, block, Hamiltonian and planar properties},
+\newblock Indian J. Pure Appl. Math. \textbf{13} (1982), no.~3,
+309--312.
+
+\end{thebibliography}
+
+\end{document}

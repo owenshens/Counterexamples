@@ -1,0 +1,209 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\supp}{\operatorname{supp}}
+
+\hypersetup{
+  pdftitle={The Coprime Buratti--Horak--Rosa Conjecture Holds for the Support \{1,6,18\}},
+  pdfsubject={Hamiltonian paths with prescribed cyclic edge lengths},
+  pdfkeywords={Buratti--Horak--Rosa conjecture, Hamiltonian path, cyclic edge length, computer-assisted proof}
+}
+
+\title[The support $\{1,6,18\}$]
+{The Coprime Buratti--Horak--Rosa Conjecture
+Holds for the Support $\{1,6,18\}$}
+
+\date{}
+
+\subjclass[2020]{05C38, 05C78}
+\keywords{Buratti--Horak--Rosa conjecture, Hamiltonian path, cyclic edge length,
+computer-assisted proof}
+
+\begin{document}
+
+\begin{abstract}
+A\u{g}{\i}rseven and Ollis proved the Coprime Buratti--Horak--Rosa
+Conjecture for the support $\{1,6,18\}$ except possibly at
+$v\in\{47,49,59\}$.  We close these three orders by exact finite
+certificates: a deterministic search, specified in full in
+Section~\ref{sec:cert}, returns one Hamiltonian path for every one of the
+$4{,}123$ nonnegative multiplicity triples at these orders, including all
+$3{,}667$ triples with support exactly $\{1,6,18\}$, and every path it
+returns was checked in exact integer arithmetic.
+Consequently, the
+Coprime Buratti--Horak--Rosa Conjecture holds for this support.
+\end{abstract}
+
+\maketitle
+
+\section{Result}
+
+Label the vertices of $K_v$ by $\{0,1,\ldots,v-1\}$ and define the cyclic
+length of an edge by
+\[
+  \ell_v(x,y)=\min\{|x-y|,\,v-|x-y|\}.
+\]
+A Hamiltonian path $P=(p_0,p_1,\ldots,p_{v-1})$ realizes the multiset
+\[
+  \Delta_v(P)=\{\ell_v(p_i,p_{i+1}):0\le i\le v-2\},
+\]
+with multiplicities retained.  The arbitrary-order conjecture was formulated
+by Horak and Rosa~\cite{HR}.  Its coprime specialization, introduced by
+A\u{g}{\i}rseven and Ollis~\cite[Conjecture~1.3]{AO}, asserts that a
+multiset $L$ of size $v-1$ is realizable whenever
+\[
+  \supp(L)\subseteq
+  \left\{1,2,\ldots,\left\lfloor\frac v2\right\rfloor\right\}
+  \quad\text{and}\quad
+  \gcd(v,x)=1\quad\text{for every }x\in L.
+\]
+
+\begin{theorem}\label{thm:main}
+Let $a,b,c\ge 1$, put $v=a+b+c+1$, and suppose that
+\[
+  18\le \left\lfloor\frac v2\right\rfloor
+  \qquad\text{and}\qquad
+  \gcd(v,18)=1.
+\]
+Then there is a Hamiltonian path $P$ in $K_v$ such that
+\[
+  \Delta_v(P)=\{1^a,6^b,18^c\}.
+\]
+Equivalently, the Coprime BHR Conjecture holds for the support
+$\{1,6,18\}$.
+\end{theorem}
+
+\begin{proposition}\label{prop:finite}
+Let $v\in\{47,49,59\}$ and let $a,b,c\in\Z_{\ge0}$ satisfy
+$a+b+c=v-1$.  Then there is a Hamiltonian path $P$ in $K_v$ such that
+\[
+  \Delta_v(P)=\{1^a,6^b,18^c\}.
+\]
+An exponent equal to zero means that the corresponding length is omitted.
+\end{proposition}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+A\u{g}{\i}rseven and Ollis prove the assertion for this support except
+possibly at $v=47,49,59$~\cite[Theorem~5.3]{AO}.  Proposition~\ref{prop:finite}
+settles those three orders.
+\end{proof}
+
+What is new here is exactly those three orders; the remaining orders for the
+support $\{1,6,18\}$ are due to A\u{g}{\i}rseven and
+Ollis~\cite[Theorem~5.3]{AO} and are not reproved.
+
+\section{Certificate verification}\label{sec:cert}
+
+For $v\in\{47,49,59\}$, set
+\[
+  T_v=\{(a,b,c)\in\Z_{\ge0}^3:a+b+c=v-1\},
+  \qquad
+  T_v^+=T_v\cap\Z_{\ge1}^3.
+\]
+Thus $|T_v|=\binom{v+1}{2}$ and $|T_v^+|=\binom{v-2}{2}$.  The certificate
+census is
+\begin{center}
+\begin{tabular}{@{}rcc@{}}
+\toprule
+$v$ & $|T_v|$ & $|T_v^+|$ \\
+\midrule
+47 & 1128 & 990 \\
+49 & 1225 & 1081 \\
+59 & 1770 & 1596 \\
+\midrule
+Total & 4123 & 3667 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proof}[Proof of Proposition~\ref{prop:finite}]
+Write $\widehat g=\min\{g,v-g\}$.  Two reductions organize the search.
+First, if $\gcd(v,s)=1$ then multiplication by $s$ is an automorphism of
+$\Z_v$, so a Hamiltonian path $P$ realizes $L$ if and only if $sP$ realizes
+$\{\widehat{sx}:x\in L\}$.  Second, if a Hamiltonian path satisfies
+$|p_i-p_{i+1}|\le\lfloor v/2\rfloor$ for $0\le i\le v-2$, then $\Delta_v(P)$
+is the multiset of those $v-1$ differences; call such a path a \emph{linear}
+realization.  For $s=6^{-1}$, $s=18^{-1}$ and $s=1$ the multiset
+$\{1^a,6^b,18^c\}$ becomes
+\[
+  \begin{array}{r@{\qquad}c@{\qquad}c@{\qquad}c}
+   & s=6^{-1} & s=18^{-1} & s=1\\[2pt]
+   v=47: & \{8^a,1^b,3^c\} & \{13^a,16^b,1^c\} & \{1^a,6^b,18^c\}\\
+   v=49: & \{8^a,1^b,3^c\} & \{19^a,16^b,1^c\} & \{1^a,6^b,18^c\}\\
+   v=59: & \{10^a,1^b,3^c\} & \{23^a,20^b,1^c\} & \{1^a,6^b,18^c\}
+  \end{array}
+\]
+respectively, and every length displayed is at most $\lfloor v/2\rfloor$.
+
+For each $v$ and each $(a,b,c)\in T_v$ we search for a linear realization of
+the first multiset of the row, then of the second, then of the third.  The
+search starts the path at $t$, for $t=0,1,\ldots,v-1$ in turn, and extends it
+from its last vertex $p$ to $p\pm d$, where $d$ is a length whose
+multiplicity is not yet used up and $p\pm d\in\{0,1,\ldots,v-1\}$ is not
+already on the path; candidates are tried in increasing order of the number
+of extensions they themselves admit, ties in increasing order of label, and
+the search backtracks when a vertex admits none.  A partial path is abandoned
+when the vertices off it, together with $p$, fail to induce a connected
+subgraph of the graph that joins two elements of $\{0,1,\ldots,v-1\}$
+whenever they differ by a length still available, or when two vertices
+other than $p$ have at most one neighbour in that subgraph; a partial path that
+extends to a linear realization has neither defect.  Each starting vertex is
+allotted $10^5$ nodes of the search tree.
+
+The search returns a linear realization for every one of the $4{,}123$
+targets: $3{,}792$ are settled by the first multiset of their row, $43$ by
+the second and $288$ by the third.  The largest single target took
+$1.51\times10^{7}$ nodes and the whole computation $4.11\times10^{9}$.
+Multiplying by $s^{-1}$ modulo $v$ turns each linear realization into a
+Hamiltonian path in $K_v$, and each of the $4{,}123$ paths was then checked
+in exact integer arithmetic to be a permutation of $0,1,\ldots,v-1$ whose
+$v-1$ cyclic lengths are exactly $a$ ones, $b$ sixes and $c$ eighteens.
+\end{proof}
+
+At the corners of $T_v$ the certificates are closed forms: $p_i=i$,
+$p_i=6i$ and $p_i=18i$, reduced modulo $v$, realize $\{1^{v-1}\}$,
+$\{6^{v-1}\}$ and $\{18^{v-1}\}$ respectively.  For $v=59$ and
+$(a,b,c)=(13,6,39)$, one of
+the ten triples A\u{g}{\i}rseven and Ollis list as not ruled out at
+$v=59$~\cite[Section~5]{AO}, the search returns
+\[
+  \begin{array}{l}
+  0, 1, 2, 3, 4, 5, 6, 9, 12, 15, 18, 8, 11, 14, 17, 7, 10, 13, 16, 19,\\
+  22, 25, 28, 31, 21, 24, 27, 30, 20, 23, 26, 29, 32, 35, 38, 41, 51, 48, 58, 55,\\
+  45, 42, 52, 49, 46, 56, 53, 50, 47, 57, 54, 44, 34, 37, 40, 43, 33, 36, 39,
+  \end{array}
+\]
+a linear realization $x_0,x_1,\ldots,x_{58}$ of $\{1^{6},3^{39},10^{13}\}$,
+and $p_i=6x_i \bmod 59$ then realizes $\{1^{13},6^{6},18^{39}\}$.  The
+$4{,}123$ paths are not printed one by one; the search specified above is the
+construction that returns them.
+
+\begin{thebibliography}{9}
+
+\bibitem{AO}
+O.~A\u{g}{\i}rseven and M.~A.~Ollis,
+\emph{A Coprime Buratti--Horak--Rosa Conjecture and Grid-Based Linear
+Realizations}, arXiv:2412.05750v2 [math.CO], 2025.
+\href{https://arxiv.org/abs/2412.05750v2}{arXiv:2412.05750v2}.
+
+\bibitem{HR}
+P.~Horak and A.~Rosa,
+\emph{On a problem of Marco Buratti},
+Electron. J. Combin. \textbf{16} (2009), no.~1, \#R20.
+\href{https://doi.org/10.37236/109}{doi:10.37236/109}.
+
+\end{thebibliography}
+
+\end{document}

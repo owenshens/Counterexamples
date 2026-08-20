@@ -1,0 +1,242 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to Kourovka Problem 20.28}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cs}{\operatorname{cs}}
+\newcommand{\F}{\mathbb F}
+
+\title{A Counterexample to Kourovka Problem 20.28}
+\subjclass[2020]{20E45, 20J06}
+\keywords{conjugacy class sizes, Schur multiplier, universal central extension,
+central product, isoclinism}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We give a negative answer to Kourovka Problem~20.28.  The group
+\[
+G=\{A\in \mathrm{GL}_2(5):\det A\in(\F_5^\times)^2\}
+\]
+has the same set of conjugacy-class sizes as \(\mathrm{SL}_2(5)\), namely
+\(\{1,12,20,30\}\), but is not \(\mathrm{SL}_2(5)\times A\) for any
+abelian group \(A\).  Thus the problem fails already for \(L=A_5\), and a
+published characterization of \(\mathrm{SL}_2(5)\) is false as stated.
+More generally, the same central enlargement gives a counterexample for every
+nonabelian finite simple group with nontrivial Schur multiplier.
+\end{abstract}
+
+\maketitle
+
+For a finite group \(X\), write
+\[
+\cs(X)=\{|x^X|:x\in X\}.
+\]
+Kourovka Problem~20.28 asks whether, for a nonabelian finite simple group
+\(L\) with universal perfect central extension \(H(L)\), the equality
+\(\cs(G)=\cs(H(L))\) forces \(G\cong H(L)\times A\) for some abelian group
+\(A\) \cite[Problem~20.28]{Kourovka}.  Gorshkov asserted this for
+\(L=A_5\), where \(H(L)\cong \mathrm{SL}_2(5)\)
+\cite[Theorem~1]{Gorshkov}.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+G=\{A\in \mathrm{GL}_2(5):\det A\in\{1,4\}\}.
+\]
+Then
+\[
+\cs(G)=\cs(\mathrm{SL}_2(5))=\{1,12,20,30\},
+\]
+but \(G\not\cong \mathrm{SL}_2(5)\times A\) for any abelian group
+\(A\).  Consequently, Kourovka Problem~20.28 has a negative answer, already
+for \(L=A_5\), and \cite[Theorem~1]{Gorshkov} is false as stated.
+\end{theorem}
+
+The construction is a central enlargement within an isoclinism family.
+We record it in a form that applies to every nontrivial Schur multiplier.
+
+\begin{proposition}\label{prop:central}
+Let \(H\) be a finite perfect group with \(Z(H)\ne 1\).  Choose a prime
+\(p\mid |Z(H)|\) and an element \(z\in Z(H)\) whose order \(p^a\) is
+maximal among the orders of the \(p\)-elements of \(Z(H)\).  Let
+\(C=\langle c\rangle\cong C_{p^{a+1}}\), and put
+\[
+E=\frac{H\times C}{\langle(z,c^{-p})\rangle}.
+\]
+Then
+\[
+\cs(E)=\cs(H),\qquad |E|=p|H|,\qquad E'=H,
+\]
+and \(E\not\cong H\times A\) for any abelian group \(A\).
+\end{proposition}
+
+\begin{proof}
+The natural map \(H\to E\) is injective, so we identify \(H\) with its
+image.  Let \(t\) be the image of \((1,c)\).  Then
+\[
+t^p=z,\qquad |t|=p^{a+1},\qquad
+E=H\langle t\rangle,\qquad H\cap\langle t\rangle=\langle z\rangle.
+\]
+In particular, \(|E|=p|H|\).  Since \(t\) is central, for
+\(h\in H\) and \(j\in\mathbb Z\),
+\[
+C_E(ht^j)=C_H(h)\langle t\rangle.
+\]
+The intersection of the two factors on the right is \(\langle z\rangle\),
+so
+\[
+|C_E(ht^j)|=p|C_H(h)|
+\quad\text{and hence}\quad
+|(ht^j)^E|=|h^H|.
+\]
+Thus \(\cs(E)=\cs(H)\).
+
+An element \(ht^j\) is central in \(E\) exactly when \(h\in Z(H)\), and
+therefore
+\[
+Z(E)=Z(H)\langle t\rangle.
+\]
+Also \(E/H\) is cyclic, so \(E'\le H\); since \(H\) is perfect,
+\(H=H'\le E'\), whence \(E'=H\).
+
+If \(E\cong H\times A\) with \(A\) abelian, then the order equality forces
+\(A\cong C_p\).  By the choice of \(z\), the largest order of a
+\(p\)-element of \(Z(H)\times C_p\) is \(p^a\), whereas
+\(t\in Z(E)\) has order \(p^{a+1}\).  The centers are therefore not
+isomorphic, a contradiction.
+\end{proof}
+
+\begin{remark}
+The groups \(H\) and \(E\) in Proposition~\ref{prop:central} are isoclinic
+in the sense of Hall \cite{Hall}: one has
+\(E/Z(E)\cong H/Z(H)\), \(E'=H\), and the commutator maps agree.  The
+calculation above makes the equality of class-size sets explicit.  It does
+not preserve multiplicities: every conjugacy class of \(H\) gives \(p\)
+conjugacy classes of \(E\) of the same size.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Set \(H=\mathrm{SL}_2(5)\), \(z=-I\), and \(s=2I\).  Then
+\[
+s^2=z,\qquad |s|=4,\qquad \det s=4.
+\]
+Since \((\F_5^\times)^2=\{1,4\}\), every element of \(G\) with determinant
+\(4\) lies in \(Hs\).  Hence
+\[
+G=H\langle s\rangle,
+\qquad H\cap\langle s\rangle=\langle z\rangle,
+\]
+and therefore
+\[
+G\cong
+\frac{H\times C_4}{\langle(z,c^2)\rangle}.
+\]
+Proposition~\ref{prop:central}, with \(p=2\) and \(a=1\), gives
+\(\cs(G)=\cs(H)\) and excludes an isomorphism \(G\cong H\times A\).
+
+It remains only to record \(\cs(H)\).  We have \(|H|=120\).  For a
+noncentral \(h\in H\), the characteristic polynomial is of exactly one of
+the following types.  If it has a repeated root \(\varepsilon=\pm1\), then
+\(h=\varepsilon I+N\) with \(N^2=0\ne N\); its centralizer algebra is
+\(\{aI+bN:a,b\in\F_5\}\), and the determinant-one units number
+\(2\cdot5=10\).  If the polynomial splits over \(\F_5\) with distinct
+roots, then \(C_H(h)\) is a split torus of order \(4\).  If it is
+irreducible over \(\F_5\), then \(\F_5[h]\cong\F_{25}\), and
+\(C_H(h)\) is the kernel of the norm
+\(\F_{25}^\times\to\F_5^\times\), so \(|C_H(h)|=6\).  All three cases
+occur, for example for
+\[
+\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+\begin{pmatrix}2&0\\0&3\end{pmatrix},\qquad
+\begin{pmatrix}0&-1\\1&1\end{pmatrix},
+\]
+respectively.  Thus the noncentral class sizes are
+\(120/10=12\), \(120/6=20\), and \(120/4=30\), proving
+\[
+\cs(H)=\{1,12,20,30\}.
+\]
+
+For later comparison, Proposition~\ref{prop:central} also gives
+\[
+G'=H,\qquad Z(G)=\langle s\rangle\cong C_4.
+\]
+Every nontrivial subgroup of \(Z(G)\) contains
+\(s^2=z\in G'\).  Hence \(G\) has no nontrivial abelian direct factor.
+\end{proof}
+
+\begin{corollary}\label{cor:general}
+Let \(L\) be a nonabelian finite simple group with nontrivial Schur
+multiplier \(M(L)\), and let \(H(L)\) be its universal perfect central
+extension.  Then there is a finite group \(G_L\) such that
+\[
+\cs(G_L)=\cs(H(L)),
+\qquad
+G_L\not\cong H(L)\times A
+\]
+for any abelian group \(A\).
+\end{corollary}
+
+\begin{proof}
+The group \(H(L)\) is perfect and
+\(Z(H(L))=M(L)\ne1\).  Apply Proposition~\ref{prop:central}.
+\end{proof}
+
+\section*{The gap in the published proof}
+
+At the end of the proof of \cite[Theorem~1]{Gorshkov}, a normal subgroup
+\(R\le Z(T)\) with \(T/R\cong A_5\) is obtained.  The proof then uses the
+absence of abelian direct factors to identify \(R\) as a Schur-multiplier
+kernel.  A covering kernel must, however, satisfy the stem condition
+\[
+R\le T'
+\]
+in addition to centrality.  The example above realizes the missing case:
+with \(T=G\) and \(R=Z(G)\),
+\[
+T/R\cong A_5,\qquad R\cong C_4,\qquad
+T'=\mathrm{SL}_2(5),\qquad R\nleq T',
+\]
+while \(T\) has no nontrivial abelian direct factor.  Thus the final
+inference does not apply.
+
+\begin{thebibliography}{9}
+
+\bibitem{Gorshkov}
+I.~Gorshkov,
+\emph{On characterization of a finite group by the set of conjugacy class
+sizes},
+J. Algebra Appl. \textbf{21} (2022), no.~11, Article ID 2250226, 8 pp.,
+\href{https://doi.org/10.1142/S0219498822502267}
+{doi:10.1142/S0219498822502267}.
+
+\bibitem{Hall}
+P.~Hall,
+\emph{The classification of prime-power groups},
+J. Reine Angew. Math. \textbf{182} (1940), 130--141,
+\href{https://doi.org/10.1515/crll.1940.182.130}
+{doi:10.1515/crll.1940.182.130}.
+
+\bibitem{Kourovka}
+E.~I. Khukhro and V.~D. Mazurov, eds.,
+\emph{Unsolved Problems in Group Theory. The Kourovka Notebook},
+no.~21, Sobolev Institute of Mathematics, Novosibirsk, 2026,
+\href{https://arxiv.org/abs/1401.0300v45}{arXiv:1401.0300v45}.
+
+\end{thebibliography}
+
+\end{document}
