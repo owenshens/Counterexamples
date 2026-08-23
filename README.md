@@ -18,9 +18,10 @@ Every paper is checkable from the document alone: the object is printed in full,
 computation is specified in the text. Each was checked against the cited source's own
 definitions, and an independent reviewer then tried to break the conclusion.
 
-Where a result rests on a computation too long to do by hand, a dependency-free Python
-verifier sits beside the paper together with the transcript of a run of it, so the
-computation can be repeated rather than taken on trust.
+Where a result rests on a computation too long to do by hand, the paper specifies that
+computation precisely enough to be repeated, and states what it does and does not
+establish. Verification code and run transcripts are held separately and are available
+on request.
 
 ```sh
 tectonic -X compile counterexamples/<name>.tex
