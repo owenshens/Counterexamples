@@ -1,0 +1,332 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to the Wide-Interval Case of Conjecture 4 of Gautschi and Leopardi}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Counterexamples to Conjecture 4]
+{Counterexamples to the Wide-Interval Case of Conjecture~4 of Gautschi and Leopardi}
+
+\date{}
+\subjclass[2020]{Primary 33C45; Secondary 26D05}
+\keywords{Jacobi polynomials, monotonicity, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Gautschi and Leopardi conjectured that, on $0<\theta<\pi$,
+validity at $n=1$ of a normalized comparison between consecutive
+Jacobi polynomials implies validity for every $n\ge1$. Let
+$\beta_*$ be the unique root in $(1,2)$ of
+$\beta^3+27\beta^2-10\beta-24=0$; numerically,
+$\beta_*=1.1186397525\ldots$. We show that every parameter pair
+$(\alpha,\beta)=(0,\beta)$ with $\beta>\beta_*$ is a counterexample:
+the comparison holds at $n=1$ for every $\theta\in(0,\pi)$ but fails
+at $n=2$ near $\theta=\pi$. For $\beta=2$ we give an exact interior
+witness.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexamples}
+
+For $\alpha,\beta>-1$, set
+\[
+\widetilde P_n^{(\alpha,\beta)}(x)
+=
+\frac{P_n^{(\alpha,\beta)}(x)}{P_n^{(\alpha,\beta)}(1)}.
+\]
+Gautschi and Leopardi considered
+\begin{equation}\label{eq:comparison}
+\widetilde P_n^{(\alpha,\beta)}
+ \!\left(\cos\frac{\theta}{n}\right)
+<
+\widetilde P_{n+1}^{(\alpha,\beta)}
+ \!\left(\cos\frac{\theta}{n+1}\right).
+\end{equation}
+Let $\Theta_1^{(\alpha,\beta)}\in(0,\pi)$ be defined by
+$P_1^{(\alpha,\beta)}(\cos\Theta_1^{(\alpha,\beta)})=0$. For each
+of the intervals $0<\theta<\Theta_1^{(\alpha,\beta)}$ and
+$0<\theta<\pi$, Conjecture~4 of Gautschi and Leopardi asserts that
+validity of \eqref{eq:comparison} for $n=1$ throughout the interval
+implies validity for every $n\ge1$ throughout that interval
+\cite[Conjecture~4]{GautschiLeopardi}.
+
+Gautschi and Leopardi report numerical evidence for both branches. In
+the passage below, which follows the statement of Conjecture~4, their
+(3.6) is \eqref{eq:comparison} and their (3.7) is the pair of intervals
+above \cite[Section~3.2]{GautschiLeopardi}:
+\begin{quote}
+The Matlab script of Section 2.2 is easily adapted to deal with the
+conjecture (3.6) for general Jacobi polynomials. When run with the
+same data as used to verify Conjecture 3, with $n=100$ and $N=1000$,
+similar results were obtained as in Section 3.1, i.e., a strong
+indication that (3.6) holds on either interval (3.7) for all
+$n\ge1$ whenever $\alpha>1$ and $\beta>-1$, while for $\alpha$ in the
+interval $(-1,1)$ the same is true for $\beta$ above a certain curve
+that extends from the point $(\alpha,\beta)=(-1,0)$ down to the point
+$(\alpha,\beta)=(1,-1)$. For $\beta$ below that curve, the conjecture
+fails consistently when $n=1$.
+\end{quote}
+The sweep used to verify Conjecture~3 takes
+$\alpha=0.9,0.8,\dots,-0.9$ and, for each of these, $\beta=20,19,
+\dots,0$ and then negative values down to $-0.999$
+\cite[Section~3.1]{GautschiLeopardi}; thus $(\alpha,\beta)=(0,2)$ is
+one of its nodes. The curve described in the passage runs from
+$(\alpha,\beta)=(-1,0)$ down to $(1,-1)$ and so nowhere exceeds
+$\beta=0$, whence that node lies well inside the region for which a positive
+indication is reported for both intervals.
+
+At that node the failure is not marginal. In the notation of the proof
+of Theorem~\ref{thm:family} with $\beta=2$ one has
+$\Delta_2(\pi)=-3/16$, and $\Delta_2$ changes sign at
+$\theta\approx2.8725$, that is at $\theta\approx0.9144\pi$. On the
+grid $\theta_\nu=\nu\pi/1001$, $\nu=1,\dots,1000$, of their routine
+for $0<\theta<\pi$ with $N=1000$, all $1000$ nodes satisfy
+\eqref{eq:comparison} at $n=1$, the smallest margin there being
+$3.7\times10^{-6}$, while $85$ of them violate it at
+$n=2$, the first of these being $\nu=916$:
+\[
+\Delta_2(\theta_{916})=-0.0013,\quad
+\Delta_2(\theta_{966})=-0.1032,\quad
+\Delta_2(\theta_{1000})=-0.1849.
+\]
+A plausible explanation is
+visible in the verification core printed in their Section~2.2, where
+the upper limit of the $\theta$-sweep is set by
+\texttt{th1=\allowbreak acos(\allowbreak-1/\allowbreak(2*a+1));} while
+the alternative
+\texttt{\% th1=pi;} is present but commented out. The script actually
+used for Conjecture~4 is described there only as an adaptation of that
+one and is not printed, so this explanation is circumstantial rather
+than documented.
+
+Koumandos proved \eqref{eq:comparison} for every $n\ge1$ and every
+$\theta\in(0,\pi)$ at
+$(\alpha,\beta)=(1/2,1/2),(1/2,-1/2),(-1/2,1/2)$ \cite{Koumandos};
+that is precisely the branch refuted below, so it is true at those
+three pairs and false at $(\alpha,\beta)=(0,\beta)$ for every
+$\beta>\beta_*$ (Theorem~\ref{thm:family}). Recent work explicitly
+distinguishes this polynomial-value problem from the corresponding
+questions for Jacobi zeros
+\cite[Section~1]{CastilloRafaeli}. For the zeros the analogous
+implication is already known to fail. Extend the notation above by
+letting $\cos\Theta_n^{(\alpha,\beta)}$ be the largest zero of
+$P_n^{(\alpha,\beta)}$. Conjecture~3 of \cite{GautschiLeopardi}
+asserts in the same way that validity at $n=1$ of
+$n\Theta_n^{(\alpha,\beta)}<(n+1)\Theta_{n+1}^{(\alpha,\beta)}$
+implies validity for every $n\ge1$. Gautschi disproved it on a very
+narrow lens-shaped region inside the square
+$\{-1<\alpha<-1/2,\ -1/2<\beta<0\}$ and there formulated a revised
+parameter domain \cite{Gautschi2008}; the conjectured domains for the
+zeros were then extended and modified in
+\cite{Gautschi2009a,Gautschi2009b}, with a further remark in
+\cite{Gautschi2011}. All four of those papers concern the zeros; none
+revisits the polynomial-value implication \eqref{eq:comparison}. To
+our knowledge, no counterexample to that implication has previously
+been recorded.
+
+\begin{theorem}\label{thm:family}
+Let $\beta_*\in(1,2)$ be the unique root in that interval of
+\[
+q(\beta)=\beta^3+27\beta^2-10\beta-24.
+\]
+For every $\beta>\beta_*$, the pair $(\alpha,\beta)=(0,\beta)$ is a
+counterexample to the $0<\theta<\pi$ branch of Conjecture~4. More
+precisely,
+\[
+P_1^{(0,\beta)}(\cos\theta)
+<
+P_2^{(0,\beta)}\!\left(\cos\frac{\theta}{2}\right)
+\qquad (0<\theta<\pi),
+\]
+whereas there exists $\varepsilon_\beta>0$ such that
+\[
+P_2^{(0,\beta)}\!\left(\cos\frac{\theta}{2}\right)
+>
+P_3^{(0,\beta)}\!\left(\cos\frac{\theta}{3}\right)
+\qquad (\pi-\varepsilon_\beta<\theta<\pi).
+\]
+\end{theorem}
+
+\begin{proof}
+Since $P_n^{(0,\beta)}(1)=1$, the normalization is immaterial. From
+\[
+P_n^{(0,\beta)}(1-2z)
+={}_2F_1(-n,n+\beta+1;1;z)
+\]
+we obtain
+\begin{align*}
+P_1^{(0,\beta)}(x)
+&=1-(\beta+2)z,\\
+P_2^{(0,\beta)}(x)
+&=1-2(\beta+3)z
+  +\frac{(\beta+3)(\beta+4)}{2}z^2,\\
+P_3^{(0,\beta)}(x)
+&=1-3(\beta+4)z
+  +\frac{3(\beta+4)(\beta+5)}{2}z^2
+  -\frac{(\beta+4)(\beta+5)(\beta+6)}{6}z^3,
+\end{align*}
+where $z=(1-x)/2$.
+
+Let $c=\cos(\theta/2)$ and $u=1-c$. Then $0<u<1$, and direct
+substitution gives
+\begin{equation}\label{eq:first-step}
+P_2^{(0,\beta)}(c)-P_1^{(0,\beta)}(\cos\theta)
+=
+u\left(\beta+1+\frac{\beta^2-\beta-4}{8}u\right).
+\end{equation}
+The affine factor in parentheses has endpoint values
+\[
+\beta+1
+\quad\text{and}\quad
+\frac{\beta^2+7\beta+4}{8},
+\]
+both positive because $\beta>\beta_*>1$. Thus
+\eqref{eq:first-step} is positive for every $0<\theta<\pi$.
+
+Now define
+\[
+\Delta_2(\theta)
+=
+P_3^{(0,\beta)}\!\left(\cos\frac{\theta}{3}\right)
+-
+P_2^{(0,\beta)}\!\left(\cos\frac{\theta}{2}\right).
+\]
+At the endpoint,
+\begin{equation}\label{eq:endpoint}
+\Delta_2(\pi)
+=
+P_3^{(0,\beta)}\!\left(\frac12\right)-P_2^{(0,\beta)}(0)
+=-\frac{q(\beta)}{384}.
+\end{equation}
+Since $q(1)=-6$, $q(2)=72$, and
+$q'(\beta)=3\beta^2+54\beta-10>0$ for $\beta\ge1$, the number
+$\beta_*$ is well defined and $q(\beta)>0$ for $\beta>\beta_*$. Hence
+\eqref{eq:endpoint} is negative. Continuity therefore gives
+$\Delta_2(\theta)<0$ whenever $\theta<\pi$ is sufficiently close to
+$\pi$.
+\end{proof}
+
+\begin{corollary}\label{cor:witness}
+At $(\alpha,\beta)=(0,2)$, let
+\[
+\theta_0=6\arccos\frac78.
+\]
+Then $0<\theta_0<\pi$, the comparison \eqref{eq:comparison} holds at
+$n=1$ for every $\theta\in(0,\pi)$, and it fails at $n=2$ and
+$\theta=\theta_0$.
+\end{corollary}
+
+\begin{proof}
+Put $\varphi=\arccos(7/8)$. Since $7/8>\sqrt3/2$, one has
+$0<\varphi<\pi/6$ and hence $0<\theta_0<\pi$. Moreover,
+\[
+\cos\frac{\theta_0}{2}=\cos(3\varphi)=\frac7{128},
+\qquad
+\cos\frac{\theta_0}{3}=\cos(2\varphi)=\frac{17}{32}.
+\]
+Using the formulas above,
+\[
+P_3^{(0,2)}\!\left(\frac{17}{32}\right)
+-P_2^{(0,2)}\!\left(\frac7{128}\right)
+=-\frac{6785}{65536}<0.
+\]
+The $n=1$ assertion follows from Theorem~\ref{thm:family}.
+\end{proof}
+
+\begin{remark}[Scope]
+The theorem refutes only the $0<\theta<\pi$ branch of
+Conjecture~4. It does not decide the
+$0<\theta<\Theta_1^{(\alpha,\beta)}$ branch, Conjecture~5 of
+\cite{GautschiLeopardi}, or any separate conjecture concerning Jacobi
+zeros. Nor is the family $\alpha=0$ minimal: with
+\[
+\widetilde P_n^{(\alpha,\beta)}(1-2z)
+={}_2F_1(-n,n+\alpha+\beta+1;\alpha+1;z),
+\]
+the same endpoint computation gives
+\[
+\widetilde P_3^{(\alpha,\beta)}\!\left(\tfrac12\right)
+-\widetilde P_2^{(\alpha,\beta)}(0)
+=-\tfrac{49}{320},\quad
+-\tfrac{167}{37440},\quad
+-\tfrac{151}{6720},\quad
+-\tfrac{5}{96}
+\]
+at $(\alpha,\beta)=(-\tfrac12,1)$, $(\tfrac14,\tfrac32)$,
+$(\tfrac12,2)$, $(1,3)$ respectively, so the pairs of
+Theorem~\ref{thm:family} form a slice of a
+two-dimensional region on which \eqref{eq:comparison} fails at $n=2$
+near $\theta=\pi$. We work with $\alpha=0$ because there the
+normalization is trivial and the witnesses are exactly rational.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{GautschiLeopardi}
+W.~Gautschi and P.~Leopardi,
+\emph{Conjectured inequalities for Jacobi polynomials and their
+largest zeros},
+Numer. Algorithms \textbf{45} (2007), no.~1--4, 217--230.
+\href{https://doi.org/10.1007/s11075-007-9067-5}
+{doi:10.1007/s11075-007-9067-5}.
+
+\bibitem{Gautschi2008}
+W.~Gautschi,
+\emph{On a conjectured inequality for the largest zero of Jacobi
+polynomials},
+Numer. Algorithms \textbf{49} (2008), 195--198.
+\href{https://doi.org/10.1007/s11075-008-9207-6}
+{doi:10.1007/s11075-008-9207-6}.
+
+\bibitem{Gautschi2009a}
+W.~Gautschi,
+\emph{On conjectured inequalities for zeros of Jacobi polynomials},
+Numer. Algorithms \textbf{50} (2009), 93--96.
+\href{https://doi.org/10.1007/s11075-008-9217-4}
+{doi:10.1007/s11075-008-9217-4}.
+
+\bibitem{Gautschi2009b}
+W.~Gautschi,
+\emph{New conjectured inequalities for zeros of Jacobi polynomials},
+Numer. Algorithms \textbf{50} (2009), 293--296.
+\href{https://doi.org/10.1007/s11075-008-9230-7}
+{doi:10.1007/s11075-008-9230-7}.
+
+\bibitem{Gautschi2011}
+W.~Gautschi,
+\emph{Remark on ``New conjectured inequalities for zeros of Jacobi
+polynomials''},
+Numer. Algorithms \textbf{57} (2011), 511.
+\href{https://doi.org/10.1007/s11075-010-9442-5}
+{doi:10.1007/s11075-010-9442-5}.
+
+\bibitem{Koumandos}
+S.~Koumandos,
+\emph{On a conjectured inequality of Gautschi and Leopardi for Jacobi
+polynomials},
+Numer. Algorithms \textbf{44} (2007), no.~3, 249--253.
+\href{https://doi.org/10.1007/s11075-007-9098-y}
+{doi:10.1007/s11075-007-9098-y}.
+
+\bibitem{CastilloRafaeli}
+K.~Castillo and F.~R.~Rafaeli,
+\emph{Affine scaling of Jacobi zeros: sharp orderings beyond
+Gautschi's conjectures},
+arXiv:2608.08258 [math.CA], 2026.
+
+\end{thebibliography}
+
+\end{document}

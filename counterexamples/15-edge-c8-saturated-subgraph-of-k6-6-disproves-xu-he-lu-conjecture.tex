@@ -1,0 +1,244 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to the Xu--He--Lu Conjecture on Partite Cycle Saturation}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\sat}{\operatorname{sat}}
+
+\title[The Xu--He--Lu partite saturation conjecture]
+{Counterexamples to the Xu--He--Lu Conjecture on Partite Cycle Saturation}
+
+\date{}
+
+\subjclass[2020]{05C35}
+\keywords{graph saturation, partite saturation, bipartite graph, even cycle}
+
+\begin{document}
+
+\begin{abstract}
+Xu, He, and Lu conjectured that, for $\ell\ge 4$ and
+$n_1,n_2\ge \ell+2$,
+\[
+\sat(K_{n_1,n_2},C_{2\ell})
+ =n_1+n_2+\ell^2-3\ell+1.
+\]
+For every $\ell\ge 4$, we construct a $C_{2\ell}$-saturated spanning
+subgraph of $K_{2\ell-2,2\ell-2}$ with $\ell^2-1$ edges. The
+conjectured value at these parameters is $\ell^2+\ell-3$, so the
+construction has $\ell-2$ fewer edges than the conjectured value and
+refutes the conjecture. The smallest example is a $15$-edge
+$C_8$-saturated subgraph of $K_{6,6}$, where the conjecture predicts
+$17$ edges.
+\end{abstract}
+
+\maketitle
+
+\section{Result}\label{sec:result}
+
+For graphs $F$ and $G$, a spanning subgraph $H\subseteq G$ is
+\emph{$F$-saturated relative to $G$} if $H$ is $F$-free but $H+e$
+contains a copy of $F$ for every $e\in E(G)\setminus E(H)$. The
+minimum number of edges in such a graph is denoted by $\sat(G,F)$.
+
+Xu, He, and Lu~\cite[Theorem~1.1]{XHL} proved that
+\begin{equation}\label{eq:XHLupper}
+\sat(K_{n_1,n_2},C_{2\ell})
+ \le n_1+n_2+\ell^2-3\ell+1
+\end{equation}
+for $\ell\ge 3$ and $n_1,n_2\ge \ell+2$, and conjectured that this
+upper bound is the exact value. Verbatim,
+\cite[Conjecture~6.2]{XHL} states: ``For $\ell\ge 4$ and
+$n_1,n_2\ge \ell+2$,
+$\sat(K_{n_1,n_2},C_{2\ell})=n_1+n_2+\ell^2-3\ell+1$.'' For reference
+below we display the asserted equality,
+\begin{equation}\label{eq:XHL}
+\sat(K_{n_1,n_2},C_{2\ell})
+ =n_1+n_2+\ell^2-3\ell+1
+\qquad(\ell\ge 4,\ n_1,n_2\ge \ell+2).
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+For every integer $\ell\ge 4$, there is a $C_{2\ell}$-saturated
+spanning subgraph $H_\ell\subseteq K_{2\ell-2,2\ell-2}$ with
+\[
+e(H_\ell)=\ell^2-1.
+\]
+Consequently,
+\[
+\sat(K_{2\ell-2,2\ell-2},C_{2\ell})\le \ell^2-1,
+\]
+and \cite[Conjecture~6.2]{XHL} is false for every $\ell\ge 4$.
+\end{theorem}
+
+Indeed, $2\ell-2\ge \ell+2$, while the right-hand side of
+\eqref{eq:XHL} at $n_1=n_2=2\ell-2$ is
+$\ell^2+\ell-3$, exceeding $\ell^2-1$ by $\ell-2$. Thus
+Theorem~\ref{thm:main} also improves the upper
+bound~\eqref{eq:XHLupper} by $\ell-2$ edges at $n_1=n_2=2\ell-2$,
+which for $\ell=4$ is the smallest admissible pair
+$n_1=n_2=\ell+2=6$. It refutes~\eqref{eq:XHL} only at these balanced
+parameters; whether the equality in~\eqref{eq:XHL} holds when $n_1$
+and $n_2$ are large relative to $\ell$ remains open.
+
+\section{Construction and proof}
+
+All path lengths below count edges. Fix $\ell\ge 4$ and put
+$r=\ell-1$. Let
+\[
+A_0=\{a_0,a_1,\ldots,a_{r-1}\},\qquad
+B_0=\{b_0,b_1,\ldots,b_{r-1}\},
+\]
+and
+\[
+X=\{x_1,\ldots,x_r\},\qquad
+Y=\{y_1,\ldots,y_r\}.
+\]
+Take $A=A_0\cup X$ and $B=B_0\cup Y$ as the two partite classes.
+Let
+\[
+R=K_{r,r}-a_0b_0
+\]
+on $A_0\cup B_0$, and add the edges of the path
+\begin{equation}\label{eq:Q}
+Q\colon a_0-y_1-x_1-y_2-x_2-\cdots-y_r-x_r-b_0.
+\end{equation}
+Call the resulting graph $H_\ell$. Its two parts have size $2r$, and
+\begin{equation}\label{eq:edgecount}
+e(H_\ell)=(r^2-1)+(2r+1)=r^2+2r=\ell^2-1.
+\end{equation}
+For vertices $u,v$ on $Q$, write $Q[u,v]$ for the unique $u$--$v$
+subpath of $Q$ and $|Q[u,v]|$ for its length.
+
+\begin{lemma}\label{lem:core}
+The graph $R$ contains
+\begin{enumerate}
+\item an $a_0$--$b_0$ path of every odd length $2s+1$ with
+      $1\le s\le r-1$;
+\item for each $a\in A_0\setminus\{a_0\}$, an $a$--$a_0$ path of
+      every even length $2s$ with $1\le s\le r-1$.
+\end{enumerate}
+The symmetric statement in $B_0$ also holds.
+\end{lemma}
+
+\begin{proof}
+For the first assertion, choose distinct
+$\alpha_1,\ldots,\alpha_s\in A_0\setminus\{a_0\}$ and distinct
+$\beta_1,\ldots,\beta_s\in B_0\setminus\{b_0\}$. Then
+\[
+a_0-\beta_1-\alpha_1-\beta_2-\alpha_2-\cdots-
+\beta_s-\alpha_s-b_0
+\]
+is a path of length $2s+1$.
+
+For the second, choose distinct
+$\beta_1,\ldots,\beta_s\in B_0\setminus\{b_0\}$ and distinct
+$\alpha_1,\ldots,\alpha_{s-1}\in
+A_0\setminus\{a_0,a\}$. The sequence of $\alpha_i$ is empty when
+$s=1$, and
+\[
+a-\beta_1-\alpha_1-\beta_2-\cdots-
+\alpha_{s-1}-\beta_s-a_0
+\]
+is a path of length $2s$. The assertion in $B_0$ follows by symmetry.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+We first show that $H_\ell$ is $C_{2\ell}$-free. A cycle contained
+in $R$ has length at most $2r=2\ell-2$. Every internal vertex of $Q$
+has degree two and no neighbor outside $Q$. Hence a cycle meeting an
+internal vertex of $Q$ must traverse all of $Q$ and then return from
+$b_0$ to $a_0$ through $R$. Since $a_0b_0\notin E(R)$, such a core
+path has length at least three. The cycle therefore has length at
+least
+\[
+(2r+1)+3=2r+4=2\ell+2.
+\]
+Thus $H_\ell$ contains no $C_{2\ell}$.
+
+It remains to show that the endpoints of every edge in
+$E(K_{2r,2r})\setminus E(H_\ell)$ are joined in $H_\ell$ by a simple
+path of length $2r+1=2\ell-1$. Adding the missing edge then closes
+this path to a $C_{2\ell}$. Along $Q$ we have
+\begin{align*}
+|Q[a_0,y_j]|&=2j-1, & |Q[y_j,b_0]|&=2r-2j+2,\\
+|Q[a_0,x_i]|&=2i,   & |Q[x_i,b_0]|&=2r-2i+1.
+\end{align*}
+
+The missing edge $a_0b_0$ is witnessed by $Q$ itself. Next consider
+a missing edge $ay_j$ with $a\in A_0$.
+If $a\ne a_0$ and $j=1$, concatenate the edge $ab_0$ with
+$Q[b_0,y_1]$; its length is $1+2r$.
+If $a\ne a_0$ and $j\ge2$, Lemma~\ref{lem:core} gives an
+$a$--$a_0$ path in $R$ of length $2(r-j+1)$, since
+$1\le r-j+1\le r-1$. Appending $Q[a_0,y_j]$ gives total length
+\[
+2(r-j+1)+(2j-1)=2r+1.
+\]
+If $a=a_0$ and $j\ge2$, take an $a_0$--$b_0$ path in $R$ of length
+$2j-1$ and append $Q[b_0,y_j]$; the total length is
+\[
+(2j-1)+(2r-2j+2)=2r+1.
+\]
+Each concatenation is simple because its core portion meets $Q$ only
+at the indicated endpoint or endpoints.
+
+The map determined by
+\[
+a_0\leftrightarrow b_0,\qquad
+a_k\leftrightarrow b_k\ (1\le k\le r-1),\qquad
+x_i\leftrightarrow y_{r-i+1}\ (1\le i\le r)
+\]
+preserves $R$ and reverses $Q$, and hence is an automorphism of
+$H_\ell$. It maps the missing edges between $A_0$ and $Y$ to those
+between $X$ and $B_0$, so the latter are handled as well.
+
+Finally, consider a missing edge $x_i y_j$. The edges with $j=i$,
+and with $j=i+1$ when $i<r$, already lie on $Q$.
+If $j\le i-1$, concatenate $Q[x_i,b_0]$, a $b_0$--$a_0$ path in $R$
+of length $2(i-j)+1$, and $Q[a_0,y_j]$. Lemma~\ref{lem:core}
+applies because $1\le i-j\le r-1$, and the total length is
+\[
+(2r-2i+1)+(2i-2j+1)+(2j-1)=2r+1.
+\]
+If $j\ge i+2$, concatenate $Q[x_i,a_0]$, an $a_0$--$b_0$ path in $R$
+of length $2(j-i)-1$, and $Q[b_0,y_j]$. Here
+$1\le j-i-1\le r-2$, and the total length is
+\[
+2i+(2j-2i-1)+(2r-2j+2)=2r+1.
+\]
+In both cases the two subpaths of $Q$ are vertex-disjoint, while the
+core path meets $Q$ only at $a_0$ and $b_0$; hence the concatenation is
+simple. These cases exhaust all missing edges of the host graph, so
+$H_\ell$ is $C_{2\ell}$-saturated. Equation~\eqref{eq:edgecount}
+completes the proof.
+\end{proof}
+
+For $\ell=4$, the construction is $K_{3,3}-a_0b_0$ together with a
+seven-edge $a_0$--$b_0$ path. It is a $15$-edge $C_8$-saturated
+spanning subgraph of $K_{6,6}$, whereas~\eqref{eq:XHL} gives $17$.
+
+\begin{thebibliography}{9}
+
+\bibitem{XHL}
+Y.~Xu, Z.~He, and M.~Lu,
+\emph{Partite saturation number of cycles},
+Discrete Math. \textbf{349} (2026), no.~3, Paper No.~114802.
+\href{https://doi.org/10.1016/j.disc.2025.114802}
+{doi:10.1016/j.disc.2025.114802};
+\href{https://arxiv.org/abs/2410.11194}{arXiv:2410.11194}.
+The theorem and conjecture numbers cited here, and the quotation in
+Section~\ref{sec:result}, follow version~2 of the e-print.
+
+\end{thebibliography}
+
+\end{document}

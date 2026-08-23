@@ -1,0 +1,341 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[
+  left=0.90in,
+  right=0.90in,
+  top=0.72in,
+  bottom=0.72in
+]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={
+    A Counterexample to He and Huang's Runge--Kutta Necessity Conjecture
+  }
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{A Counterexample to He and Huang's Runge--Kutta\\
+Necessity Conjecture}
+\date{}
+
+\subjclass[2020]{65L05, 65L06}
+\keywords{
+  explicit Runge--Kutta method, order conditions,
+  simplifying assumptions, counterexample
+}
+
+\begin{document}
+
+\begin{abstract}
+He and Huang conjectured that the sufficient \(Q\)- and \(D\)-condition
+package in their Theorem~1.2 is also necessary for Runge--Kutta order.
+We disprove the conjecture under the printed Hadamard condition
+\[
+QO(m): b\odot Q_m=\{0\}.
+\]
+For every internally consistent explicit tableau and every admissible
+order \(p\ge 5\), this condition forces \(b_2c_2^2=0\). The embedded
+formula in Verner's pair \(\mathrm{RK}(8\!-\!6{:}5)a\) has order
+exactly five and satisfies
+\[
+\widehat b_2=-\frac15,
+\qquad
+c_2=\frac15,
+\]
+so the proposed necessary package fails for every admissible pair
+\((m,n)\). The argument concerns the printed Hadamard product and does
+not apply to scalar orthogonality.
+\end{abstract}
+
+\maketitle
+
+\section{The obstruction}
+
+He and Huang define, for nonnegative integers \(r\),
+\[
+q_r
+ =A c^{\odot r}
+  -\frac{1}{r+1}c^{\odot(r+1)},
+\]
+and
+\[
+Q_1=\operatorname{span}\{q_0\},
+\qquad
+Q_2=\operatorname{span}
+ \{q_1,Aq_0,q_0\odot c,q_0\}.
+\]
+Their spaces satisfy
+\[
+Q_1\subseteq Q_2\subseteq Q_3\subseteq\cdots
+\]
+\cite[Defs.~3.4 and 3.9, Eq.~(16)]{HeHuangTheory}.
+The two entries in the bibliography below share the arXiv identifier
+2605.16995: that record was retitled and reduced to a technical appendix
+at v3, and v3 carries no definitions or notation of its own, recalling
+the general theory instead from the v1-titled work, which it cites under
+that title. We therefore cite definitions and notation to v1, and
+Theorem~1.2 and Conjecture~2.1 to v3.
+
+Theorem~1.2 of arXiv:2605.16995v3 states that an explicit Runge--Kutta
+method has order at least \(p\) if, for some nonnegative integers \(m,n\)
+with
+\[
+m\ge n-1,
+\qquad
+m+n+1\ge p,
+\]
+six conditions hold: the quadrature conditions \(B(p)\), the
+\(Q\)-orthogonality conditions
+\[
+QO(m):
+\qquad
+b\odot Q_m=\{0\},
+\]
+the \(D\)-orthogonality conditions \(DO(n)\), the weak mutual
+orthogonality conditions \(QD_{\mathrm{weak}}(m,n)\), the pivot residual
+condition \(PR(n)\), and the \(Q\)-ring condition \(QR(m)\)
+\cite[Thm.~1.2]{HeHuangDetails}. Conjecture~2.1 reads, verbatim
+\cite[Conj.~2.1]{HeHuangDetails}:
+\begin{quote}
+The set of conditions in [Theorem~1.2] is not only sufficent [sic] but also
+necessary for a vector-valued explicit/implicit RK method to achieve order
+\(p\).
+\end{quote}
+Here \(\odot\) is the componentwise Hadamard product; the same source
+uses \(\cdot\) for the scalar inner product
+\cite[Notations~2.1 and 2.3]{HeHuangTheory}.
+The Hadamard reading of \(QO(m)\) is forced by the source rather than
+inferred: all set operations there are declared to be Minkowski
+operations, so \(b\odot Q_m=\{0\}\) abbreviates
+\(\{b\odot q:q\in Q_m\}=\{0\}\), that is, \(b\odot q=0\) as a vector for
+every \(q\in Q_m\) \cite[Notation~2.5]{HeHuangTheory}. The choice of
+product is deliberate within Theorem~1.2 itself, whose conditions
+\(DO(n)\) and \(QD_{\mathrm{weak}}(m,n)\) are written with \(\cdot\) and
+not with \(\odot\).
+
+Necessity of the package asserts that every one of the six conditions
+holds whenever the method has order \(p\), so the conjecture is refuted
+by a single method of order \(p\) that violates a single condition for
+every admissible \((m,n)\). We exhibit one violating \(QO(m)\).
+
+\begin{proposition}\label{prop:obstruction}
+Let \((A,b,c)\) be an internally consistent explicit Runge--Kutta
+tableau, so that \(A\) is strictly lower triangular and
+\(c=A\mathbf 1\). Let \(p\ge 5\). If nonnegative integers \(m,n\)
+satisfy
+\[
+m\ge n-1,
+\qquad
+m+n+1\ge p,
+\]
+and \(QO(m)\) holds, then
+\[
+b_2c_2^2=0.
+\]
+\end{proposition}
+
+\begin{proof}
+Since \(A\) is strictly lower triangular its first row vanishes, so internal
+consistency gives \(c_1=(A\mathbf 1)_1=0\). The vector \(q_1\) is one of the
+listed generators of \(Q_2\), so in particular \(q_1\in Q_2\). The second
+row of \(A\) has \(a_{21}\) as its only possibly nonzero entry, so
+\[
+(q_1)_2
+ =(Ac)_2-\frac12c_2^2
+ =a_{21}c_1-\frac12c_2^2
+ =-\frac12c_2^2.
+\]
+
+Moreover, \(m\ge n-1\) implies \(n\le m+1\), whence
+\[
+p\le m+n+1\le 2m+2.
+\]
+Because \(p\ge 5\), one has \(m\ge 2\). Thus
+\[
+q_1\in Q_2\subseteq Q_m,
+\]
+and \(QO(m)\) gives
+\[
+0=(b\odot q_1)_2
+  =-\frac12b_2c_2^2.
+\]
+\end{proof}
+
+\section{An order-five counterexample}
+
+\begin{theorem}\label{thm:counterexample}
+Under the printed Hadamard definition of \(QO(m)\), Conjecture~2.1 in
+arXiv:2605.16995v3 is false. It already fails for an explicit
+Runge--Kutta method of order exactly five.
+\end{theorem}
+
+\begin{proof}
+Consider the embedded formula in Verner's eight-stage pair
+\(\mathrm{RK}(8\!-\!6{:}5)a\)
+\cite[Table~4 and Algorithm~1.2]{Verner2014}:
+\begin{center}
+\begingroup
+\renewcommand{\arraystretch}{1.35}
+\resizebox{0.99\textwidth}{!}{%
+\(
+\begin{array}{c|cccccccc}
+0\\
+\frac15
+ & \frac15\\
+\frac14
+ & \frac{3}{32}
+ & \frac{5}{32}\\
+\frac47
+ & \frac{60}{343}
+ & -\frac{440}{343}
+ & \frac{576}{343}\\
+\frac79
+ & \frac{847}{17496}
+ & \frac{770}{729}
+ & -\frac{17024}{19683}
+ & \frac{84721}{157464}\\
+\frac15
+ & \frac{523}{2240}
+ & 0
+ & -\frac5{57}
+ & \frac{245}{2496}
+ & -\frac{1215}{27664}\\
+1
+ & \frac{15}{2212}
+ & \frac{314}{395}
+ & \frac{3448}{1501}
+ & -\frac{2695}{4108}
+ & \frac{203391}{273182}
+ & -\frac{864}{395}\\
+\frac47
+ & \frac{1185}{10976}
+ & -\frac{2543}{1715}
+ & \frac{36262}{19551}
+ & -\frac{245}{1248}
+ & \frac{1215}{13832}
+ & \frac15
+ & 0\\
+\hline
+ & \frac{43}{560}
+ & -\frac15
+ & \frac{2816}{7695}
+ & -\frac{41}{84240}
+ & \frac{19683}{69160}
+ & \frac15
+ & \frac{79}{1080}
+ & \frac15
+\end{array}
+\)
+}%
+\endgroup
+\end{center}
+
+Let \(\widehat b\) denote the displayed weight vector. The order
+conditions are indexed by rooted trees: with elementary weights
+\(\Phi(\bullet)=\mathbf 1\) and
+\(\Phi([t_1,\dots,t_k])_i=\prod_{j=1}^k(A\Phi(t_j))_i\), and densities
+\(\gamma(\bullet)=1\) and \(\gamma(t)=|t|\prod_{j=1}^k\gamma(t_j)\), the
+method has order \(p\) precisely when
+\(\widehat b^{\mathsf T}\Phi(t)=1/\gamma(t)\) for every rooted tree \(t\)
+with \(|t|\le p\). There are \(1,1,2,4,9\) such trees at orders one
+through five, and all seventeen conditions hold exactly on the displayed
+tableau; of the twenty trees of order six, eight give conditions that
+fail. For instance, the chain conditions of orders three, four and five
+hold,
+\[
+\widehat b^{\mathsf T}Ac=\frac16,
+\qquad
+\widehat b^{\mathsf T}A^2c=\frac1{24},
+\qquad
+\widehat b^{\mathsf T}A^3c=\frac1{120},
+\]
+while the one of order six fails:
+\[
+\widehat b^{\mathsf T}A^4c
+ =\frac{1}{672}
+ \ne\frac{1}{720}.
+\]
+Thus the formula has order exactly five.
+
+For the displayed tableau,
+\[
+Ac
+ =\left(
+  0,0,\frac1{32},\frac8{49},\frac{49}{162},
+  0,\frac12,\frac8{49}
+ \right)^{\mathsf T},
+\]
+so that \((Ac)_i=\frac12c_i^2\) at the six stages \(i=1,3,4,5,7,8\),
+whereas the two remaining stages both have \(c_i=\frac15\) and
+\((Ac)_i=0\). Hence
+\[
+q_1
+ =Ac-\frac12c^{\odot2}
+ =\left(
+  0,-\frac1{50},0,0,0,-\frac1{50},0,0
+ \right)^{\mathsf T}.
+\]
+Consequently,
+\[
+\widehat b\odot q_1
+ =\left(
+  0,\frac1{250},0,0,0,-\frac1{250},0,0
+ \right)^{\mathsf T}
+ \ne0.
+\]
+
+At \(p=5\), every admissible pair \((m,n)\) has \(m\ge 2\), so
+\(q_1\in Q_m\) and \(QO(m)\) fails for every such pair. The method has
+order five nevertheless, disproving the conjectured necessity.
+\end{proof}
+
+\paragraph{Scope.}
+For the same formula,
+\[
+\widehat b^{\mathsf T}q_1=0.
+\]
+More generally, the third-order conditions imply
+\[
+b^{\mathsf T}q_1
+ =b^{\mathsf T}Ac-\frac12b^{\mathsf T}c^{\odot2}
+ =\frac16-\frac12\cdot\frac13
+ =0.
+\]
+Thus the result concerns the coordinatewise condition
+\(b\odot Q_m=\{0\}\) as printed and does not refute a modified
+conjecture based on scalar orthogonality. The sufficiency theorem
+itself is unaffected.
+
+\begin{thebibliography}{9}
+
+\bibitem{HeHuangTheory}
+J.~He and J.~Huang,
+\emph{Low stage high order explicit Runge--Kutta methods via
+\(Q\)- and \(D\)-conditions: general theory and efficient recursive
+construction},
+arXiv:2605.16995v1, 2026.
+
+\bibitem{HeHuangDetails}
+J.~He and J.~Huang,
+\emph{Low stage and high order explicit Runge--Kutta methods via
+\(Q\)- and \(D\)-conditions: several construction details},
+arXiv:2605.16995v3, 2026.
+
+\bibitem{Verner2014}
+J.~H.~Verner,
+\emph{Explicit Runge--Kutta pairs with lower stage-order},
+Numer. Algorithms \textbf{65} (2014), no.~3, 555--577,
+\href{https://doi.org/10.1007/s11075-013-9783-y}
+{doi:10.1007/s11075-013-9783-y}.
+
+\end{thebibliography}
+
+\end{document}

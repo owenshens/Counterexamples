@@ -1,0 +1,170 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Lau--Shiu--Ng Conjecture on Moebius Ladders}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\la}{\mathrm{la}}
+
+\title[The Lau--Shiu--Ng conjecture on M\"obius ladders]
+{A Counterexample to the Lau--Shiu--Ng Conjecture on M\"obius Ladders}
+
+\subjclass[2020]{05C78, 05C15}
+\keywords{local antimagic labeling, local antimagic chromatic number,
+M\"obius ladder, Wagner graph}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We give a local antimagic labeling of the eight-vertex M\"obius ladder
+$M_8$ with three induced colors and prove that
+$\chi_{\la}(M_8)=3$. This refutes Conjecture~3.14 of Lau, Shiu, and Ng
+at its first admissible parameter. The same labeling also gives a
+counterexample to Theorem~2.4 of arXiv:2203.06594v1, published as
+Acta Math. Hungar. \textbf{169} (2023), 108--133.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Let $G$ be a graph with $q$ edges. A \emph{local antimagic labeling} is
+a bijection
+\[
+f\colon E(G)\longrightarrow \{1,\dots,q\}
+\]
+such that the induced vertex sums
+\[
+f^+(x):=\sum_{e\ni x}f(e)
+\]
+satisfy $f^+(x)\ne f^+(y)$ whenever $xy\in E(G)$. The local antimagic
+chromatic number $\chi_{\la}(G)$ is the minimum number of distinct
+induced vertex sums over all local antimagic labelings of $G$.
+
+For $n\ge2$, let $M_{2n}$ be obtained from the cycle
+\[
+u_1u_2\cdots u_nv_1v_2\cdots v_nu_1
+\]
+by adding the edges $u_iv_i$ for $1\le i\le n$. Lau, Shiu, and Ng
+conjectured that $\chi_{\la}(M_{2n})=4$ for every even $n\ge4$
+\cite[Conjecture~3.14]{LauShiuNg}. The first case covered by the
+conjecture is $M_8$.
+
+\begin{theorem}
+The M\"obius ladder $M_8$ satisfies
+\[
+\chi_{\la}(M_8)=3.
+\]
+Consequently, Conjecture~3.14 of Lau, Shiu, and Ng is false.
+\end{theorem}
+
+\begin{proof}
+Define $f\colon E(M_8)\to\{1,\dots,12\}$ by
+\[
+\begin{array}{c@{\,\mapsto\,}r@{\qquad}
+                c@{\,\mapsto\,}r@{\qquad}
+                c@{\,\mapsto\,}r}
+\toprule
+u_1u_2&1&u_2u_3&8&u_3u_4&3\\
+u_4v_1&7&v_1v_2&5&v_2v_3&2\\
+v_3v_4&11&v_4u_1&4&u_1v_1&12\\
+u_2v_2&10&u_3v_3&6&u_4v_4&9\\
+\bottomrule
+\end{array}
+\]
+The labels are exactly $1,\dots,12$. Direct calculation gives
+\[
+\begin{array}{c|cccccccc}
+x&u_1&u_2&u_3&u_4&v_1&v_2&v_3&v_4\\
+\hline
+f^+(x)&17&19&17&19&24&17&19&24.
+\end{array}
+\]
+Thus the fibers of $f^+$ are
+\[
+\{u_1,u_3,v_2\},\qquad
+\{u_2,u_4,v_3\},\qquad
+\{v_1,v_4\},
+\]
+with induced colors $17$, $19$, and $24$, respectively. Each fiber is
+an independent set in $M_8$, so $f$ is a local antimagic labeling and
+$\chi_{\la}(M_8)\le3$.
+
+The vertices $u_1,u_2,u_3,u_4,v_1$ form a $5$-cycle. Hence
+$\chi(M_8)\ge3$. Since every local antimagic labeling induces a proper
+vertex coloring,
+\[
+\chi_{\la}(M_8)\ge\chi(M_8)\ge3.
+\]
+Therefore $\chi_{\la}(M_8)=3$. Since $M_8=M_{2n}$ for the admissible
+parameter $n=4$, the conjecture is false.
+\end{proof}
+
+\begin{remark}
+Theorem~2.4 of arXiv:2203.06594v1 reads, in the notation used here,
+``Suppose $G$ is a cubic graph of order $8$, then $\chi_{\la}(G)=4$''
+\cite{LauShiuPreprint}. It stands in a subsection titled ``Connected
+Cubic Graphs of Order at Most 8'', and its proof reduces the claim to
+the four graphs $M_8,H_1,H_2,H_3$ enumerated there, so the intended
+scope is the connected cubic graphs of order $8$. Since $M_8$ is a
+connected cubic graph of order $8$ (indeed the first of those four
+graphs), the theorem above also disproves that statement. That proof
+uses
+\[
+2x+3y+3z=132
+\]
+for a hypothetical three-coloring with color-class sizes $2,3,3$.
+For any labeling of a $12$-edge graph by $1,\dots,12$, however,
+\[
+\sum_{v\in V(G)}f^+(v)
+ =2\sum_{e\in E(G)}f(e)
+ =2\sum_{i=1}^{12}i
+ =156.
+\]
+The value $132$ equals $2\sum_{i=1}^{11}i$, so the labels were summed as
+if there were eleven of them rather than twelve. With the correct total,
+the last of the five pairs $(x,\{y,z\})$ that the source derives from its
+identity, namely $(12,\{17,19\})$, becomes $(24,\{17,19\})$, and this is
+the pair realized by the labeling above:
+\[
+2\cdot24+3\cdot17+3\cdot19=156.
+\]
+The quotation and the identity above are taken from the v1 e-print; we
+have not compared them with the corresponding text of the published
+version.
+The forward citations of \cite{LauShiuNg} and of arXiv:2203.06594 were
+surveyed; the value $\chi_{\la}(M_8)=3$ does not appear among them, and
+no erratum to either source is known to us.
+No claim is made here about $\chi_{\la}(M_{2n})$ for even $n\ge6$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{LauShiuNg}
+G.-C. Lau, W.-C. Shiu, and H.-K. Ng,
+\emph{On local antimagic chromatic number of cycle-related join graphs},
+Discuss. Math. Graph Theory \textbf{41} (2021), 133--152.
+\href{https://doi.org/10.7151/dmgt.2177}{doi:10.7151/dmgt.2177}.
+
+\bibitem{LauShiuPreprint}
+G.-C. Lau and W.-C. Shiu,
+\emph{On join product and local antimagic chromatic number of regular graphs},
+arXiv:2203.06594v1, 2022; published as
+Acta Math. Hungar. \textbf{169} (2023), 108--133,
+\href{https://doi.org/10.1007/s10474-023-01298-7}{doi:10.1007/s10474-023-01298-7}.
+
+\end{thebibliography}
+
+\end{document}

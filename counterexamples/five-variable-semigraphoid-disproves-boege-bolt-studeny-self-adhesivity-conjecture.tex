@@ -1,0 +1,331 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to a Self-Adhesivity Conjecture of Boege, Bolt, and Studeny}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\sg}{\mathfrak{sg}}
+\newcommand{\st}{\mathfrak{st}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\A}{\mathcal{A}}
+
+\title[Counterexample to a self-adhesivity conjecture]
+{A Counterexample to a Self-Adhesivity Conjecture of
+Boege, Bolt, and Studen\'y}
+
+\date{}
+
+\subjclass[2020]{62B10, 06A15, 05B35}
+\keywords{conditional independence, semi-graphoid, structural semi-graphoid,
+self-adhesivity, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Boege, Bolt, and Studen\'y asked whether
+\[
+  \sg^{\diamond}(N)\cap\st(N)=\st^{\diamond}(N)
+\]
+holds for every finite variable set~$N$.
+We give an explicit structural semi-graphoid on five variables that is
+self-adhesive relative to the semi-graphoid frame but not relative to the
+structural frame. This answers their Open Problem~3 in the negative and,
+by the four-variable computation of Boege, Bolt, and Studen\'y, five
+variables are minimal. The proof consists of an integer supermodular
+witness, exact semi-graphoid closure computations, and a short linear
+certificate for the failure of structural self-adhesivity.
+\end{abstract}
+
+\maketitle
+
+\section{Statement and notation}
+
+Let $\sg(N)$ and $\st(N)$ denote, respectively, the semi-graphoids and
+structural semi-graphoids on a finite variable set~$N$, and let
+$\mathfrak f^{\diamond}(N)$ denote the models self-adhesive relative to a
+frame~$\mathfrak f$; we use the definitions of~\cite{BBS}.
+Since $\st\subseteq\sg$, anti-extensivity and isotonicity of the
+self-adhesion operator~\cite[Lemma~5.2]{BBS} give
+\[
+  \st^{\diamond}(N)
+  \subseteq \sg^{\diamond}(N)\cap\st(N).
+\]
+Boege, Bolt, and Studen\'y verified equality computationally for $|N|=4$ and
+asked whether it holds in general. Their question, Open Problem~3
+of~\cite{BBS} and the question closing their Section~7.4, reads: ``We would
+like to know whether the relation
+$\sg^{\diamond}(N)\cap\st(N)=\st^{\diamond}(N)$ holds in general.''
+
+\begin{theorem}\label{thm:main}
+For $N=\{0,1,2,3,4\}$,
+\[
+  \st^{\diamond}(N)
+  \subsetneq \sg^{\diamond}(N)\cap\st(N).
+\]
+Equivalently, the conjectural equality in~\cite[Open Problem~3, the question
+closing Section~7.4]{BBS} fails on five variables, and this is the smallest
+possible cardinality.
+\end{theorem}
+
+An elementary conditional-independence statement is written $ij\mid K$,
+where $i,j\in N$ are distinct and $K\subseteq N\setminus\{i,j\}$.
+For a set function $f\colon 2^N\to\mathbb R$, write
+\[
+  \Delta_f(ij\mid K)
+  :=f(ijK)+f(K)-f(iK)-f(jK).
+\]
+The function $f$ is supermodular when all elementary differences are
+nonnegative, and it induces the structural semi-graphoid
+\[
+  \M_f:=\{ij\mid K:\Delta_f(ij\mid K)=0\}.
+\]
+For pairwise disjoint $A,B,C$, let $[A,B\mid C]$ denote the set of all
+$ij\mid K$ with $i\in A$, $j\in B$, and
+$C\subseteq K\subseteq ABC\setminus\{i,j\}$.
+
+\section{The counterexample}
+
+Let
+\begin{align*}
+\M=\{&
+01\mid\varnothing,
+01\mid4,
+01\mid23,
+01\mid24,
+01\mid234,
+02\mid13,
+03\mid4,
+03\mid12,
+04\mid12,\\
+&12\mid\varnothing,
+12\mid03,
+13\mid\varnothing,
+13\mid02,
+14\mid\varnothing,
+14\mid0,
+23\mid01,\\
+&24\mid\varnothing,
+24\mid0,
+24\mid3,
+34\mid0
+\}.
+\end{align*}
+Juxtaposition denotes union. Define the standardized integer-valued set
+function $f\colon 2^N\to\mathbb Z$ by
+\[
+\begin{array}{c@{\qquad}l}
+\toprule
+f(S)&S\\
+\midrule
+0&|S|\leq1,\ 01,12,13,14,24\\
+1&02,03,23,34\\
+2&04,014,234\\
+3&012,013,123,024,124,034,134\\
+4&023\\
+6&0123,0124\\
+7&0134,0234,1234\\
+12&01234\\
+\bottomrule
+\end{array}
+\]
+
+\begin{lemma}\label{lem:structural}
+The function $f$ is supermodular and $\M_f=\M$. Hence $\M\in\st(N)$.
+\end{lemma}
+
+\begin{proof}
+There are $\binom52 2^3=80$ elementary differences. Exact evaluation gives
+\[
+  \bigl(\#\{s:\Delta_f(s)=r\}\bigr)_{r=0}^{4}
+  =(20,20,25,14,1),
+\]
+and the twenty zero differences are precisely the statements listed in
+$\M$. Thus every elementary difference is nonnegative and $\M_f=\M$.
+\end{proof}
+
+\begin{remark}\label{rem:noncoatom}
+The twenty active elementary equalities have rank $19$ in the
+$26$-dimensional space of standardized set functions. Thus $f$ lies in a
+seven-dimensional face of the supermodular cone. The coatoms of
+$(\st(N),\subseteq)$ correspond to the extreme rays of the cone of
+standardized supermodular functions, and a seven-dimensional face is not an
+extreme ray. Hence this model is not a coatom, and it lies outside the
+$1319$ permutational types of five-variable coatoms tested
+in~\cite[Section~7.6]{BBS}.
+\end{remark}
+
+\begin{lemma}\label{lem:sg}
+The model $\M$ belongs to $\sg^{\diamond}(N)$.
+\end{lemma}
+
+\begin{proof}
+Fix $L\subseteq N$ and a canonical copy $b_L\colon N\to N_L$ fixing~$L$.
+Put
+\[
+  \A_L
+  :=\M\cup b_L(\M)
+    \cup[N\setminus N_L,N_L\setminus N\mid L].
+\]
+By Remark~1 after Definition~4.3 and Lemma~4.5 of~\cite{BBS}, one
+canonical copy suffices and
+\[
+  \sg^{\diamond}(\M\mid L)
+  =\sg(\A_L)\mathbin{\downarrow}N,
+\]
+where $\sg(\A_L)$ is the closure under the elementary semi-graphoid rule
+\[
+ \{ij\mid K,\ i\ell\mid jK\}
+ \quad\Longleftrightarrow\quad
+ \{i\ell\mid K,\ ij\mid \ell K\}.
+\]
+Corollary~4.12 of~\cite{BBS} covers $|L|\leq1$, and Lemmas~4.15--4.16 there
+cover the co-singletons $|L|=4$; the semi-graphoid frame satisfies the
+hypotheses of these results, and of Lemma~4.5, by \cite[Lemmas~3.1, 4.10,
+and~4.15]{BBS}. With the trivial case $L=N$, only $|L|\in\{2,3\}$ requires
+computation. Exact saturation gives the following sizes; in every row the
+$N$-marginal of the closure is exactly the twenty-statement model~$\M$.
+\[
+\begin{array}{c@{\quad}rr@{\qquad}c@{\quad}rr}
+\toprule
+L&|\A_L|&|\sg(\A_L)|&L&|\A_L|&|\sg(\A_L)|\\
+\midrule
+01&183&430&012&54&172\\
+02&184&494&013&54&154\\
+03&184&437&014&52&52\\
+04&184&577&023&56&169\\
+12&183&419&024&54&81\\
+13&183&374&034&54&67\\
+14&183&346&123&54&165\\
+23&184&405&124&53&108\\
+24&183&248&134&54&67\\
+34&184&325&234&54&60\\
+\bottomrule
+\end{array}
+\]
+Therefore $\sg^{\diamond}(\M\mid L)=\M$ for every $L\subseteq N$, and
+$\M\in\sg^{\diamond}(N)$.
+\end{proof}
+
+\begin{lemma}\label{lem:notst}
+The model $\M$ does not belong to $\st^{\diamond}(N)$.
+\end{lemma}
+
+\begin{proof}
+Take $L=012$, let $N'=\{0,1,2,5,6\}$, and define the copy
+$b\colon N\to N'$ by
+\[
+  b(0)=0,\qquad b(1)=1,\qquad b(2)=2,\qquad b(3)=5,\qquad b(4)=6.
+\]
+Suppose that a structural adhesion exists. It is induced by a
+supermodular function $g\colon2^{\{0,\ldots,6\}}\to\mathbb R$.
+Write $\delta_{ij\mid K}:=\Delta_g(ij\mid K)$. Exact equality of the two
+marginals and the adhesion condition imply
+\[
+  \delta_s=0
+  \qquad
+  \text{for every }s\in
+  \M\cup b(\M)\cup[34,56\mid012].
+\]
+A coefficientwise expansion of elementary differences gives the identity
+\begin{align}
+&\delta_{04\mid3}
+ +\delta_{01\mid235}
+ +\delta_{01\mid245}
+ +\delta_{05\mid234}
+ +\delta_{15\mid0234}\notag\\
+&\quad
+ +\delta_{34\mid25}
+ +\delta_{35\mid02}
+ +\delta_{35\mid12}
+ +\delta_{45\mid02}
+ +\delta_{45\mid12}
+\label{eq:certificate}\\
+={}&
+ \underbrace{
+ \delta_{01\mid23}
+ +\delta_{04\mid12}
+ -\delta_{24\mid0}
+ +\delta_{24\mid3}
+ +\delta_{34\mid0}}_{\text{statements in }\M}
+ \notag\\
+&+
+ \underbrace{
+ \delta_{01\mid25}
+ +\delta_{05\mid12}
+ +\delta_{15\mid02}}_{\text{statements in }b(\M)}
+ \notag\\
+&+
+ \underbrace{
+ 2\delta_{35\mid012}
+ +\delta_{45\mid012}
+ +\delta_{45\mid0123}}_{\text{statements in }[34,56\mid012]}.
+ \notag
+\end{align}
+The right-hand side is zero. Every term on the left-hand side is
+nonnegative by supermodularity, so all of them vanish. In particular,
+$\delta_{04\mid3}=0$, and the marginal on $N$ contains $04\mid3$.
+This contradicts the required marginal $\M$, because $04\mid3\notin\M$;
+indeed,
+\[
+  \Delta_f(04\mid3)=1.
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemmas~\ref{lem:structural}, \ref{lem:sg}, and~\ref{lem:notst} give
+\[
+  \M\in\sg^{\diamond}(N)\cap\st(N)
+  \setminus\st^{\diamond}(N).
+\]
+For $|N|\leq3$, the two frames coincide and are fixed by self-adhesion
+\cite[Corollary~4.17]{BBS}; for $|N|=4$, the asserted equality was
+established in~\cite[Section~7.4]{BBS}. The case $|N|=4$ rests on the
+SAT and LP computations reported there rather than on a proof, and we
+inherit it as stated. Hence five variables are minimal.
+\end{proof}
+
+\section*{Exact verification}
+
+The ancillary file \texttt{verify\_selfadhesivity\_counterexample.py} uses
+only the Python standard library and exact integer and rational arithmetic.
+All computations above are also determined by the data printed here and are
+reproducible by hand. From the table
+defining $f$ one evaluates the $80$ elementary differences
+$\Delta_f(ij\mid K)$ and compares their multiset with the histogram in
+Lemma~\ref{lem:structural} and their zero set with~$\M$. The rank assertion
+of Remark~\ref{rem:noncoatom} is a row reduction of the twenty
+corresponding equality functionals in the $26$ coordinates indexed by the
+subsets of~$N$ of size at least two. For each of the twenty sets $L$ with
+$|L|\in\{2,3\}$, the set $\A_L$ is read off from~$\M$ and saturated under
+the elementary semi-graphoid rule on $N\cup N_L$, which returns the sizes
+tabulated in Lemma~\ref{lem:sg} and the $N$-marginal~$\M$. Finally,
+identity~\eqref{eq:certificate} is an identity between integer combinations
+of the $128$ values of $g$ and is checked by expanding both sides
+coefficient by coefficient. No floating-point computation is involved.
+
+\begin{thebibliography}{1}
+
+\bibitem{BBS}
+T.~Boege, J.~H. Bolt, and M.~Studen\'y,
+\emph{Self-adhesivity in lattices of abstract conditional independence
+models},
+Discrete Appl. Math. \textbf{361} (2025), 196--225.
+\href{https://doi.org/10.1016/j.dam.2024.10.006}
+{doi:10.1016/j.dam.2024.10.006}.
+Numbering of results and open problems above follows the authors' e-print
+\href{https://arxiv.org/abs/2402.14053v3}{arXiv:2402.14053v3}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,290 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Unrestricted Dargad--Larsson Domination Problem}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\TS}{\mathcal{T}}
+
+\title{A Counterexample to the Unrestricted Dargad--Larsson Domination Problem}
+\date{}
+
+\subjclass[2020]{91A46, 91A05}
+\keywords{partizan subtraction game, truncated support, dominated option,
+game order}
+
+\begin{document}
+
+\begin{abstract}
+Dargad and Larsson asked in Problem~7.1 whether their Proposition~7.2
+accounts for all dominated options in truncated-support games at the
+knife's edge. We determine the complete order among the periodic game
+values. Writing
+\[
+G_n=\TS_{b-a}(n;a,b),\qquad q=b-a+1,
+\]
+we prove, for $0\le r,s\le b$, that
+\[
+G_r\le G_s
+\quad\Longleftrightarrow\quad
+\left\lfloor\frac rq\right\rfloor=
+\left\lfloor\frac sq\right\rfloor
+\ \text{and}\ r\le s.
+\]
+Thus the values form increasing chains on consecutive $q$-blocks and
+are incomparable across blocks. This confirms the contextual reading of
+Problem~7.1 for the $b+1$ representative positions. Under its
+unrestricted wording, the comparisons in the source are complete if and
+only if $q\mid(a-1)$. Otherwise the statement is false: for
+$(a,b)=(3,5)$, the Left option $G_4$ of $G_6$ is dominated by $G_5$, a
+comparison outside the range of Proposition~7.2.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+In a partizan subtraction game, Left and Right remove tokens from a
+single heap according to different subtraction sets; see
+\cite{DHNP}. Dargad and Larsson introduced the truncated-support game
+$\TS_\tau(n;a,b)$, in which
+\[
+S_L=\{1,\dots,a\},\qquad S_R=\{\tau+1,\dots,b\},
+\qquad 0<a<b.
+\]
+At the knife-edge truncation $\kappa=b-a$, they proved the game-value
+periodicity
+\begin{equation}\label{eq:periodicity}
+\TS_\kappa(n;a,b)=\TS_\kappa(t;a,b),
+\qquad t\equiv n\pmod{b+1},\quad 0\le t\le b,
+\end{equation}
+and asked whether the only dominated options are those given by their
+Proposition~7.2 \cite[Problem~7.1]{DL}; that proposition is stated
+there under the hypothesis $3\le a<b$.
+
+The paragraph preceding that proposition restricts attention to the
+representatives with heap sizes $0,\dots,b$, whose options have heap
+sizes at most $b-1$. This is why the comparison range of
+Proposition~7.2, quoted at the end of this section, ends at $b-2$: the
+last consecutive pair of option heap
+sizes available to a representative is $(b-2,b-1)$. Heap size $b+1$ is
+the first position with an option of heap size $b$, and the residue $b$
+is the one the source's comparisons never reach. The printed
+question itself contains no restriction on $n$. We resolve both
+readings. The structural result is the exact
+partial order on the $b+1$ periodic values; the unrestricted reading
+then has the counterexample stated in the abstract.
+
+Put
+\[
+q=b-a+1,\qquad G_n=\TS_{b-a}(n;a,b).
+\]
+At the knife edge, Left removes an element of $\{1,\dots,a\}$ and Right
+removes an element of $\{q,\dots,b\}$. Hence, for $0\le n\le b$,
+\begin{equation}\label{eq:recursion}
+G_n=
+\left\{
+G_{n-i}:1\le i\le\min(a,n)
+\ \middle|\
+G_{n-j}:q\le j\le\min(b,n)
+\right\}.
+\end{equation}
+
+\subsection*{Statements from the source}
+
+We reproduce the three statements of \cite{DL} on which the discussion
+below turns; the only changes are the symbol $\TS$ for the ruleset and
+ordinary set notation. Observation~5.2 reads: ``Let $a,b$ and $\tau$ be
+positive integers such that $a<b$ and $\tau<b$. If $n\le\tau$, then
+Right does not have any move, whereas Left can remove tokens one by
+one. Thus, for all $1\le n\le\tau$, $\TS_\tau(n;a,b)=n$.''
+Proposition~7.2 reads: ``Consider $G=\TS_\kappa(n;a,b)$ and
+$H=\TS_\kappa(n+1;a,b)$ where $3\le a<b$. Then, $G\le H$ for all
+$n\in\{b-a+1,\dots,b-3,b-2\}\setminus Q$'', where
+\[
+Q=\{(m+1)(b-a)+m:m\in\mathbb{Z}_{\ge1}\}=\{(m+1)q-1:m\ge1\}
+\]
+is the set introduced in the paragraph preceding it. That paragraph
+presents the games $\TS_\kappa(n;a,b)$ with $0\le n\le b$ as
+representatives of the canonical forms, and records: ``The options of
+these games have heap sizes ranging from $0$ to $b-1$. Thus, only the
+games with heap sizes $0,1,\dots,b-1$ are required to be compared.''
+Problem~7.1 reads:
+``Is it true that the only dominated options of $\TS_{b-a}(n;a,b)$ are
+given by Proposition~7.2.''
+
+\section{The order of the periodic values}
+
+\begin{theorem}\label{thm:order}
+For all $0\le r,s\le b$,
+\begin{equation}\label{eq:order}
+G_r\le G_s
+\quad\Longleftrightarrow\quad
+\left\lfloor\frac rq\right\rfloor=
+\left\lfloor\frac sq\right\rfloor
+\ \text{and}\ r\le s.
+\end{equation}
+Consequently, if
+\[
+B_m=\{mq,mq+1,\dots,\min((m+1)q-1,b)\},
+\]
+then the order on $G_0,\dots,G_b$ is the disjoint union of the strict
+chains indexed by the nonempty blocks $B_m$. In particular, these
+$b+1$ values are pairwise distinct, and $b+1$ is the least positive
+period in \eqref{eq:periodicity}.
+\end{theorem}
+
+\begin{proof}
+We use strong induction on $r+s$. The case $r=s=0$ is immediate. Recall
+that, for short games, $X\le Y$ if and only if no Left option $X^L$
+satisfies $Y\le X^L$ and no Right option $Y^R$ satisfies $Y^R\le X$
+\cite{Siegel}.
+
+Suppose first that $r$ and $s$ lie in the same $q$-block and $r\le s$.
+Every Left option $G_u$ of $G_r$ has $u<r\le s$, so the induction
+hypothesis gives $G_s\nleq G_u$. Every Right option $G_v$ of $G_s$
+satisfies $v\le s-q$ and therefore lies in a block strictly before the
+common block of $r$ and $s$; in the first block there are no Right
+options. Hence $G_v\nleq G_r$ by induction, and the comparison criterion
+gives $G_r\le G_s$.
+
+If $r$ and $s$ lie in the same block and $r>s$, then $G_{r-1}$ is a
+Left option of $G_r$, and $r-1$ remains in that block. By induction,
+$G_s\le G_{r-1}$, so $G_r\nleq G_s$.
+
+Now suppose that the block of $r$ is later than the block of $s$, and
+set
+\[
+u=\max\{s,r-a\}.
+\]
+Since $r\le b=a+q-1$, we have $r-a\le q-1$. If $s<q$, then $u<q$;
+if $s\ge q$, then $u=s$. Thus $u$ lies in the same block as $s$.
+Moreover, $r-a\le u<r$, so $G_u$ is a Left option of $G_r$. Induction
+gives $G_s\le G_u$, and therefore $G_r\nleq G_s$.
+
+Finally, suppose that the block of $r$ is earlier than the block of
+$s$, and set
+\[
+v=\min\{r,s-q\}.
+\]
+Writing $i=\lfloor r/q\rfloor$ and $j=\lfloor s/q\rfloor$, we have
+$j>i$ and
+\[
+s-q\ge(j-1)q\ge iq,
+\qquad r<(i+1)q.
+\]
+Hence $v$ lies in the same block as $r$. Also $q\le s-v\le b$, so
+$G_v$ is a Right option of $G_s$. By induction, $G_v\le G_r$, and
+therefore $G_r\nleq G_s$. This proves \eqref{eq:order}.
+\end{proof}
+
+\section{Domination and the counterexample}
+
+For a heap size $n$, reduce each option's target heap size modulo
+$p=b+1$ to a residue in $\{0,\dots,b\}$. Distinct options of the same
+player have distinct residues: the difference between two legal move
+sizes is at most $a-1<p$. Theorem~\ref{thm:order} therefore gives the
+complete domination rule.
+
+\begin{corollary}\label{cor:domination}
+Among Left options whose target residues lie in one $q$-block, every
+option except the one with largest residue is dominated. Among Right
+options whose target residues lie in one $q$-block, every option except
+the one with smallest residue is dominated. No domination occurs
+between options whose target residues lie in different blocks.
+\end{corollary}
+
+Throughout, ``given by Proposition~7.2'' means ``derivable from
+Observation~5.2 and Proposition~7.2 by transitivity and the periodicity
+\eqref{eq:periodicity}''. This is the reading intended by the paragraph
+preceding Proposition~7.2, and both verdicts below are
+taken under it.
+Without that latitude the answer is negative for every $a\ge2$, and for
+a trivial reason: the comparisons inside the first block come from
+Observation~5.2 and not from Proposition~7.2, whose range begins at $q$.
+
+Recall that $Q=\{(m+1)q-1:m\ge1\}$ is the exceptional set of
+Proposition~7.2. For $q\le n\le b-1$, Theorem~\ref{thm:order} gives
+\[
+G_n<G_{n+1}\quad\Longleftrightarrow\quad n\notin Q;
+\]
+when $n\in Q$, the two values are incomparable. Thus, for $3\le a<b$,
+Proposition~7.2 of \cite{DL} supplies all consecutive comparisons
+required among the option values $G_0,\dots,G_{b-1}$ of the
+representative positions, while Observation~5.2 supplies the first
+block. This answers the
+contextual, representative-position reading of Problem~7.1
+affirmatively.
+
+For the unrestricted reading, the omitted residue $b$ is decisive.
+Since
+\[
+b=q+a-1,
+\]
+the final block is the singleton $\{b\}$ exactly when $q\mid(a-1)$.
+In that case Corollary~\ref{cor:domination} gives no comparison involving
+$G_b$, so Observation~5.2 and Proposition~7.2, together with
+transitivity and periodicity, account for every dominated option at
+every heap size.
+
+If $q\nmid(a-1)$, then $b-1$ and $b$ lie in the same block, and
+Theorem~\ref{thm:order} gives
+\[
+G_{b-1}<G_b.
+\]
+Since $q\mid0$, the hypothesis $q\nmid(a-1)$ forces $a\ge2$, so both
+values are Left options of $G_{b+1}$, reached by removing $2$ and $1$
+tokens, respectively. Hence the option $G_{b-1}$ is dominated by
+$G_b$. The comparison occurs at index $b-1$, outside the printed range
+$n\le b-2$ of Proposition~7.2. Thus, under the convention above, the
+unrestricted statement holds if and only if $q\mid(a-1)$.
+
+The two values of $a$ outside the hypothesis of Proposition~7.2 agree
+with this. For $a=1$ each player has a single legal move size, so no
+position has two options of the same player and nothing is dominated;
+the statement is true, and indeed $q=b$ divides $a-1=0$. For $a=2$ the
+range $\{q,\dots,b-2\}$ of Proposition~7.2 is empty, so the proposition
+supplies nothing, while Observation~5.2 covers exactly the first block
+$B_0=\{0,\dots,b-2\}$; since $q=b-1$ does not divide $a-1=1$, the
+comparison $G_{b-1}<G_b$ is again unsupplied and the statement is
+false.
+
+In particular, for $(a,b)=(3,5)$ one has $q=3$ and
+\[
+G_3<G_4<G_5.
+\]
+At heap size $6$, Left may move to $G_5,G_4$, or $G_3$, so $G_4$ is
+dominated by $G_5$. Proposition~7.2 supplies only the comparison
+$G_3\le G_4$ for this ruleset. Thus the unrestricted form of
+Dargad and Larsson's Problem~7.1 is false.
+
+\begin{thebibliography}{9}
+
+\bibitem{DHNP}
+E.~Duch\^ene, M.~Heinrich, R.~J.~Nowakowski, and A.~Parreau,
+\emph{Partizan subtraction games},
+Integers \textbf{21B} (2021), Paper A8.
+
+\bibitem{DL}
+A.~Dargad and U.~Larsson,
+\emph{Partizan subtraction with full and truncated support},
+arXiv:2607.27989v1 [math.CO], 2026.
+
+\bibitem{Siegel}
+A.~N.~Siegel,
+\emph{Combinatorial Game Theory},
+Graduate Studies in Mathematics, vol.~146,
+American Mathematical Society, Providence, RI, 2013.
+
+\end{thebibliography}
+
+\end{document}

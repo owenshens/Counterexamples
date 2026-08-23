@@ -1,0 +1,322 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to Lew's H-Free Laplacian Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ex}{\operatorname{ex}}
+
+\title[Counterexamples to Lew's conjecture]
+{Counterexamples to Lew's
+\texorpdfstring{$H$}{H}-Free Laplacian Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C50, 05C35}
+\keywords{Laplacian eigenvalue sums, forbidden subgraphs, Tur\'an numbers,
+Brouwer-type inequalities}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$, let
+\[
+\eps_k(G)=\sum_{i=1}^k\lambda_i(L(G))-|E(G)|,
+\]
+where the Laplacian eigenvalues are ordered nonincreasingly. Lew conjectured
+that every $H$-free graph $G$ with $|V(G)|\ge k$ satisfies
+$\eps_k(G)\le \ex(k+1;H)$. We disprove the conjecture as stated: the path
+$P_4$ is triangle-free, but
+\[
+\eps_2(P_4)=1+\sqrt2>2=\ex(3;K_3).
+\]
+This example is minimal in both $k$ and $|V(G)|$ when the forbidden graph has
+an edge and no isolated vertices. More generally, every graph $H$ with
+$\delta(H)\ge2$ admits a connected $H$-free counterexample, and for every
+$r\ge3$ and $k\ge r-1$ there is a connected $K_r$-free counterexample at
+parameter $k$.
+\end{abstract}
+
+\maketitle
+
+\section{The smallest counterexample}
+
+All graphs are finite and simple, and $H$-free means containing no copy of
+$H$ as a subgraph. Let
+\[
+\lambda_1(L(G))\ge\cdots\ge\lambda_{|V(G)|}(L(G))=0
+\]
+be the Laplacian eigenvalues of $G$, and let $\ex(n;H)$ be the maximum number
+of edges in an $n$-vertex $H$-free graph. Conjecture~7.1 of
+Lew~\cite{Lew} asserts that
+\begin{equation}\label{eq:lew}
+  \eps_k(G)\le \ex(k+1;H)
+\end{equation}
+for every $k\ge1$, every graph $H$, and every $H$-free graph $G$ with
+$|V(G)|\ge k$. Verbatim, Conjecture~7.1 of \cite{Lew} reads: ``Let $k\ge1$, and
+let $H$ be a graph. Then, for every $H$-free graph $G=(V,E)$ with $|V|\ge k$,
+$\eps_k(G)\le\ex(k+1;H)$.'' It is this statement, with no restriction on $H$
+beyond being a graph, that we refute.
+
+We write $P_j$ for the path on $j$ vertices.
+
+\begin{theorem}\label{thm:p4}
+The inequality~\eqref{eq:lew} is false. Specifically, for $k=2$, $H=K_3$,
+and $G=P_4$,
+\[
+  \eps_2(G)=1+\sqrt2>2=\ex(3;K_3).
+\]
+\end{theorem}
+
+\begin{proof}
+A direct calculation gives
+\[
+\det(tI-L(P_4))=t(t-2)(t^2-4t+2),
+\]
+so the Laplacian eigenvalues of $P_4$ are
+\[
+2+\sqrt2,\qquad 2,\qquad 2-\sqrt2,\qquad 0.
+\]
+Since $P_4$ has three edges,
+\[
+\eps_2(P_4)=(2+\sqrt2)+2-3=1+\sqrt2.
+\]
+The graph $P_4$ is triangle-free, while Mantel's theorem gives
+$\ex(3;K_3)=2$.
+\end{proof}
+
+\section{Pendant amplification}
+
+For a graph $F$ and an integer $N\ge1$, let $F^{\langle N\rangle}$ be the
+graph obtained by attaching $N$ new pendant vertices to each vertex of $F$.
+
+\begin{lemma}\label{lem:pendant}
+Let $F$ be a connected graph with $k\ge2$ vertices, $e$ edges, and Laplacian
+eigenvalues $\mu_1,\ldots,\mu_k$. Put $G=F^{\langle N\rangle}$. Then the
+Laplacian spectrum of $G$ consists of $1$ with multiplicity $k(N-1)$ and,
+for each $i$, two numbers $\alpha_i,\beta_i$ that are the roots of
+\begin{equation}\label{eq:quadratic}
+  t^2-(N+1+\mu_i)t+\mu_i=0
+\end{equation}
+ordered so that $0\le\alpha_i<1<\beta_i$. Moreover,
+\begin{equation}\label{eq:pendant-bound}
+  \eps_k(G)
+  =k+e-\sum_{i=1}^k\alpha_i
+  >k+e-\frac{2e}{N+1}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For each vertex of $F$, the vectors supported on its $N$ pendant neighbors
+and having coordinate sum zero give the eigenvalue $1$. Their total dimension
+is $k(N-1)$.
+
+Let $x$ be a Laplacian eigenvector of $F$ with eigenvalue $\mu$. On vectors
+whose core coordinates are $ax$ and whose pendant coordinates adjacent to the
+$i$th core vertex are all $bx_i$, the Laplacian acts on $(a,b)$ through
+\[
+\begin{pmatrix}
+\mu+N&-N\\
+-1&1
+\end{pmatrix}.
+\]
+Its characteristic polynomial is \eqref{eq:quadratic}. The pendant-difference
+vectors of the previous paragraph vanish on the core and have coordinate sum
+zero on each pendant block, whereas the vectors just described are constant on
+each pendant block; hence the two families are orthogonal, and in particular
+linearly independent. Since $k(N-1)+2k=k(N+1)=|V(G)|$, together they form a
+basis of $\mathbb{R}^{V(G)}$, so the numbers listed above are the whole
+Laplacian spectrum of $G$.
+
+For $\mu>0$, the polynomial in \eqref{eq:quadratic} is positive at $0$ and
+negative at both $1$ and $N+1$. Hence its smaller root lies in $(0,1)$ and
+its larger root exceeds $N+1$. For $\mu=0$, the roots are $0$ and $N+1$.
+Thus the $k$ largest Laplacian eigenvalues of $G$ are the $\beta_i$.
+
+Since $\alpha_i+\beta_i=N+1+\mu_i$ and $\sum_i\mu_i=2e$,
+\[
+\sum_{i=1}^k\beta_i
+=k(N+1)+2e-\sum_{i=1}^k\alpha_i.
+\]
+The graph $G$ has $kN+e$ edges, which gives the identity in
+\eqref{eq:pendant-bound}. Finally,
+$\alpha_i\beta_i=\mu_i$ and $\beta_i>N+1$ whenever $\mu_i>0$, so
+\[
+\sum_{i=1}^k\alpha_i
+<\frac{\sum_i\mu_i}{N+1}
+=\frac{2e}{N+1}.
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:amplification}
+Let $H$ satisfy $\delta(H)\ge2$, and let $F$ be a connected $H$-free graph
+with $k\ge2$ vertices and $e$ edges. Set
+\[
+  d=k+e-\ex(k+1;H).
+\]
+If $d>0$ and $2e/(N+1)\le d$, then $F^{\langle N\rangle}$ is a connected
+$H$-free counterexample to \eqref{eq:lew} at parameter $k$.
+\end{proposition}
+
+\begin{proof}
+A copy of $H$ cannot use a pendant vertex, because every vertex of $H$ has
+degree at least two. Hence $F^{\langle N\rangle}$ is $H$-free, and it is
+connected because $F$ is connected. Lemma~\ref{lem:pendant} gives
+\[
+\eps_k\bigl(F^{\langle N\rangle}\bigr)
+>k+e-\frac{2e}{N+1}
+\ge k+e-d
+=\ex(k+1;H).
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:all-H}
+For every graph $H$ with $\delta(H)\ge2$, there is a connected $H$-free
+counterexample to \eqref{eq:lew}.
+\end{corollary}
+
+\begin{proof}
+Let $h=|V(H)|$, set $k=h-1$, and take $F=K_k$. Since $\delta(H)\ge2$ while
+degrees in a simple graph are at most $h-1$, we have $h\ge3$; hence $k=h-1\ge2$
+and
+$e=\binom{k}{2}\ge1$, as required by Lemma~\ref{lem:pendant} and
+Proposition~\ref{prop:amplification} and so that $N=2e\ge1$. Then $F$ is
+connected and $H$-free. Moreover,
+\[
+k+e=\binom{h}{2}
+\quad\text{and}\quad
+\ex(h;H)\le\binom{h}{2}-1,
+\]
+because $K_h$ contains $H$. Thus $d\ge1$. Since $2e/(2e+1)<1$, taking
+$N=2e$ in Proposition~\ref{prop:amplification} proves the claim.
+\end{proof}
+
+\begin{corollary}\label{cor:complete}
+For every $r\ge3$ and every $k\ge r-1$, there is a connected $K_r$-free
+graph $G$ such that
+\[
+  \eps_k(G)>\ex(k+1;K_r).
+\]
+\end{corollary}
+
+\begin{proof}
+Let $F=T_{r-1}(k)$ be the balanced complete $(r-1)$-partite graph on $k$
+vertices, and write
+\[
+q=|E(F)|=\ex(k;K_r).
+\]
+By Tur\'an's theorem, adding one vertex to a smallest part gives
+\[
+\ex(k+1;K_r)-\ex(k;K_r)
+=k-\left\lfloor\frac{k}{r-1}\right\rfloor.
+\]
+Consequently,
+\[
+k+q-\ex(k+1;K_r)
+=\left\lfloor\frac{k}{r-1}\right\rfloor\ge1.
+\]
+The graph $F$ is connected because $k\ge r-1$. Since
+$2q/(2q+1)<1$, Proposition~\ref{prop:amplification}, applied with
+$H=K_r$ and $N=2q$, proves the claim.
+\end{proof}
+
+\begin{remark}\label{rem:size}
+The violation produced above is small. By the identity in
+\eqref{eq:pendant-bound}, with $\alpha_i$ as in Lemma~\ref{lem:pendant} and
+$F=T_{r-1}(k)$, the graph $G=T_{r-1}(k)^{\langle2q\rangle}$ satisfies
+\[
+\eps_k(G)-\ex(k+1;K_r)
+=\left\lfloor\frac{k}{r-1}\right\rfloor-\sum_{i=1}^k\alpha_i
+<\left\lfloor\frac{k}{r-1}\right\rfloor,
+\]
+so the excess is $O(k)$, while $\ex(k+1;K_r)=\Theta(k^2)$. The reason is
+visible in \eqref{eq:pendant-bound}: pendant amplification gains less than $k$
+over $|E(F)|$, whereas passing from $k$ to $k+1$ vertices raises the Tur\'an
+number by $k-\lfloor k/(r-1)\rfloor$, falling short of $k$ by exactly
+$\lfloor k/(r-1)\rfloor$. Thus it is the exact inequality \eqref{eq:lew} that
+fails, and not its asymptotic form: the counterexamples are consistent with the
+bound $\eps_k(G)\le\ex(k;H)+(4k-2)\sqrt k$, valid for every $H$-free graph $G$
+and every $1\le k\le|V(G)|$, recorded in \cite[Section~7]{Lew}, and we
+do not know whether \eqref{eq:lew} holds up to a multiplicative $1+o(1)$ or an
+additive $o(k^2)$ error.
+\end{remark}
+
+\section{Minimality}
+
+\begin{proposition}\label{prop:minimality}
+Suppose that $H$ has at least one edge and no isolated vertices. Then
+\eqref{eq:lew} holds when $k=1$, and it also holds whenever
+$|V(G)|\le k+1$. Hence every counterexample under these assumptions satisfies
+\[
+k\ge2,
+\qquad
+|V(G)|\ge k+2\ge4.
+\]
+The example in Theorem~\ref{thm:p4} attains both lower bounds.
+\end{proposition}
+
+\begin{proof}
+First let $k=1$. If $G$ is edgeless, then $\eps_1(G)=0$. Otherwise choose a
+connected component $C$ with
+$\lambda_1(L(C))=\lambda_1(L(G))$, and put $t=|V(C)|$. Since $C$ is
+connected,
+\[
+t\le |E(C)|+1\le |E(G)|+1.
+\]
+Also $\lambda_1(L(C))\le t$: on the orthogonal complement of the all-ones
+vector,
+\[
+L(C)+L(\overline C)=tI.
+\]
+Therefore $\eps_1(G)\le1$. If $H=K_2$, every $H$-free graph is edgeless. If
+$H\ne K_2$, then $\ex(2;H)=1$. Thus \eqref{eq:lew} holds for $k=1$.
+
+Now let $n=|V(G)|\le k+1$. Since $n\ge k$, either $k=n$ or $k=n-1$.
+In both cases the sum of the $k$ largest Laplacian eigenvalues is
+$2|E(G)|$, so
+\[
+\eps_k(G)=|E(G)|.
+\]
+If $n=k+1$, the definition of $\ex(k+1;H)$ gives the desired bound. If
+$n=k$, add one isolated vertex to $G$. Because $H$ has no isolated vertices,
+the resulting $(k+1)$-vertex graph remains $H$-free, and the same bound
+follows.
+\end{proof}
+
+\begin{remark}
+The no-isolated-vertices hypothesis in Proposition~\ref{prop:minimality} is
+necessary. For
+\[
+H=K_2\cup K_1,\qquad G=K_2,\qquad k=2,
+\]
+one has $\eps_2(G)=1>0=\ex(3;H)$. In particular, since \eqref{eq:lew} is
+asserted for every graph $H$, the conjecture in its literal form already fails
+for $G=K_2$ at $k=2$, with only two vertices. The minimality assertion of
+Proposition~\ref{prop:minimality} concerns forbidden graphs with an edge and
+no isolated vertices, and it is in that regime that $P_4$ is smallest.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Lew}
+A.~Lew,
+\emph{An approximate version of Brouwer's Laplacian conjecture},
+arXiv:2601.17575v1 [math.CO], 2026.
+
+\end{thebibliography}
+
+\end{document}

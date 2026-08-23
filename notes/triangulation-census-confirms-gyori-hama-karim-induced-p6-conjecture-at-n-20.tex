@@ -1,0 +1,251 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The n=20 Case of the Induced Planar P6-Turan Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\exP}{\operatorname{ex}_{\cP}}
+\newcommand{\ind}{\mathrm{ind}}
+
+\title[The induced planar $P_6$-Tur\'an conjecture at $n=20$]
+{The $n=20$ Case of the Induced Planar $P_6$-Tur\'an Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C35, 05C10}
+\keywords{induced planar Tur\'an number, induced path, planar triangulation,
+exhaustive computation}
+
+\begin{document}
+
+\begin{abstract}
+Gy\H{o}ri and Hama Karim conjectured an exact formula for the induced planar
+Tur\'an number of the six-vertex path. We verify its first case below
+Euler's planar bound:
+\[
+  \exP(20,P_6^{\ind})=53.
+\]
+The lower bound is their construction. The upper bound follows from a
+computer-assisted census: the unique induced-$P_6$-free triangulation on
+$19$ vertices has no induced-$P_6$-free facial extension, and no
+$20$-vertex triangulation of minimum degree at least four is
+induced-$P_6$-free.
+\end{abstract}
+
+\maketitle
+
+\section{The exact value}
+
+All graphs are finite and simple. A triangulation is a plane graph in which
+every face is bounded by a triangle. For a graph $F$, let
+$\exP(n,F^{\ind})$ denote the maximum number of edges in an $n$-vertex
+planar graph containing no induced copy of $F$.
+
+Gy\H{o}ri and Hama Karim \cite[Conjecture~5.1]{GyoriKarim} conjectured
+that, for every $n\geq 3$,
+\begin{equation}\label{eq:conjecture}
+\exP(n,P_6^{\ind})=
+\begin{cases}
+3n-6, & n\leq 19,\\[1mm]
+\left\lfloor \dfrac{50}{17}(n-2)\right\rfloor+1, & n\geq 20.
+\end{cases}
+\end{equation}
+At $n=20$, the proposed value is $53$, whereas Euler's bound is $54$.
+
+\begin{theorem}\label{thm:main}
+The $n=20$ case of \eqref{eq:conjecture} holds; namely,
+\[
+  \exP(20,P_6^{\ind})=53.
+\]
+\end{theorem}
+
+No claim is made here for $n\geq 21$.
+
+We describe the lower-bound graph without a drawing. Begin with a path
+$c_0c_1c_2c_3c_4$. Add adjacent vertices $a,b$, and join each of them to
+every $c_i$. For $0\leq i\leq 3$, insert $u_i$ into the face
+$ac_ic_{i+1}$ and $v_i$ into the face $bc_ic_{i+1}$; then insert $w_i$
+into the face $u_ic_ic_{i+1}$. The resulting triangulation $T$ has
+$19$ vertices and $51$ edges.
+
+Place a new vertex $x$ in the face $abc_0$ and add the two edges $xa$ and
+$xb$, but not $xc_0$. The resulting planar graph $W$ has $20$ vertices
+and $53$ edges. It is the $n=20$ member of the construction in
+\cite[Figure~5 and the preceding paragraph]{GyoriKarim}.
+
+The triangulation $T$ is the one drawn in that figure, which the source
+asserts, without proof, to contain no induced $P_6$;
+Proposition~\ref{prop:census} below confirms the assertion. The source also
+observes that repeatedly deleting a degree-three vertex from it yields an
+induced-$P_6$-free triangulation for every smaller $n$, so the $n\leq 19$
+branch of \eqref{eq:conjecture} is already settled there.
+
+\section{Computational census}
+
+Let $\cL_n$ be a set containing one representative from each isomorphism
+class of induced-$P_6$-free triangulations on $n$ vertices.
+
+\begin{lemma}\label{lem:m4}
+No simple triangulation of minimum degree at least four on $n$ vertices,
+$12\leq n\leq 20$, is induced-$P_6$-free.
+\end{lemma}
+
+The upper bound rests on Lemma~\ref{lem:m4} twice: it empties the
+minimum-degree-four branch of the recursion below at every order from $12$ to
+$19$, and it is the minimum-degree-four half of $\cL_{20}=\varnothing$. Its
+content is a single sweep. For $12\leq n\leq 20$ the command
+\texttt{plantri -m4 $n$} of \texttt{plantri} version~5.8 generates
+$78{,}435{,}562$ isomorphism classes in total, and the induced-path test
+described below rejected every one of them. The remaining orders of that
+branch are small: for $6\leq n\leq 11$ the same command produces $55$ classes
+altogether. The other branch is small as well: it tests $|\cL_{n-1}|(2n-6)$
+facial insertions at order $n$, and $20{,}196$ candidates over
+$5\leq n\leq 20$ in all.
+
+\begin{proposition}\label{prop:census}
+The graph $W$ is induced-$P_6$-free, and
+\[
+  \cL_{19}=\{T\},\qquad \cL_{20}=\varnothing.
+\]
+More specifically, no $20$-vertex triangulation of minimum degree at least
+four is induced-$P_6$-free, and each of the $34$ facial insertions of $T$
+contains an induced $P_6$.
+\end{proposition}
+
+\begin{proof}
+For each $6\leq n\leq 20$, the minimum-degree-four branch was generated
+with \texttt{plantri} version~5.8 \cite{Plantri,BrinkmannMcKay}, using
+\[
+  \texttt{plantri -m4 $n$}.
+\]
+The range starts at $6$ because there is no simple triangulation of minimum
+degree at least four on fewer than six vertices: $K_4$ has all degrees three,
+and the unique five-vertex triangulation has two degree-three vertices.
+Since simple triangulations are $3$-connected, the generated plane-isomorphism
+classes are also abstract isomorphism classes. The runs at orders $19$ and
+$20$ produced, respectively,
+\[
+  11{,}284{,}042
+  \qquad\text{and}\qquad
+  64{,}719{,}885
+\]
+triangulations, in agreement with the published enumeration
+\cite[Table~3]{BrinkmannMcKayFull}. At orders $19$ and $20$, none passed the
+induced-$P_6$ test. Over the whole branch the test was passed only at orders
+$6\leq n\leq 10$; for every $11\leq n\leq 20$ the branch contributed no
+induced-$P_6$-free triangulation at all. This proves Lemma~\ref{lem:m4}.
+
+The remaining triangulations were generated recursively. Every simple
+triangulation has minimum degree at least three. If it has a degree-three
+vertex, deleting that vertex leaves a smaller triangulation; conversely,
+the original graph is recovered by inserting a vertex into a triangular
+face. Since induced-$P_6$-freeness is hereditary under vertex deletion,
+starting from $\cL_4=\{K_4\}$, adjoining the induced-$P_6$-free
+minimum-degree-four outputs and the induced-$P_6$-free facial extensions of
+members of $\cL_{n-1}$, followed by canonical-label isomorphism
+rejection, yields exactly $\cL_n$. The two branches are disjoint, since a
+triangulation of minimum degree at least four has no degree-three vertex and
+so is not a facial extension of a smaller triangulation. Consequently
+$|\cL_n|$ is the number of induced-$P_6$-free classes in the output of
+\texttt{plantri -m4 $n$} plus the number of induced-$P_6$-free classes
+obtained by facial extension from $\cL_{n-1}$, and by the previous paragraph
+the first summand vanishes for $11\leq n\leq 20$. The computation gives
+\[
+  \bigl(|\cL_n|\bigr)_{n=4}^{20}
+  =(1,1,2,5,13,36,77,126,169,190,154,101,47,20,4,1,0).
+\]
+The unique class at order $19$ is isomorphic to $T$.
+
+For the induced-path test, starting from every oriented edge, a partial path
+$z_1\ldots z_t$ was extended only to a vertex
+\[
+  y\in N(z_t)\setminus\{z_1,\ldots,z_t\}
+  \quad\text{with}\quad
+  N(y)\cap\{z_1,\ldots,z_{t-1}\}=\varnothing.
+\]
+Reaching six vertices is therefore equivalent to finding an induced
+$P_6$. A separate six-subset implementation used the equivalent criterion
+that the induced graph be connected, have five edges, and have degree
+multiset $\{1,1,2,2,2,2\}$. The two implementations returned identical
+results. The subset test also verifies directly that $W$ is
+induced-$P_6$-free and supplies an induced path for each of the $34$ facial
+insertions of $T$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:census} gives the lower bound
+$\exP(20,P_6^{\ind})\geq 53$ through the graph $W$.
+
+Suppose that an induced-$P_6$-free planar graph $G$ on $20$ vertices has
+$54$ edges. Equality in Euler's bound forces $G$ to be a triangulation.
+If $\delta(G)\geq 4$, this contradicts Proposition~\ref{prop:census}.
+Otherwise, $G$ has a degree-three vertex $v$. Then $G-v$ is an
+induced-$P_6$-free triangulation on $19$ vertices, and hence $G-v\cong T$.
+A simple triangulation is $3$-connected and has a unique spherical embedding
+up to reflection, so $G$ is obtained by inserting $v$ into one of the
+$34$ faces of $T$. This again contradicts
+Proposition~\ref{prop:census}. Therefore $54$ edges are impossible, and
+the upper bound is $53$.
+\end{proof}
+
+\section*{Reproducibility}
+
+The census used \texttt{plantri} version~5.8 \cite{Plantri} and the two
+implementations of the induced-$P_6$ test described in the proof of
+Proposition~\ref{prop:census}. The source code, the \texttt{plantri} source
+used and its SHA-256 hash, the compilation and execution commands, the logs,
+and an induced $P_6$ for each of the $34$ facial insertions of $T$ are to be
+deposited as ancillary files; none of them is needed for the argument above.
+
+The two graphs the reader may wish to recheck are recorded here directly. In
+\texttt{graph6} format, with the vertices in the order
+$a$, $b$, $c_0,\ldots,c_4$, $u_0,\ldots,u_3$, $v_0,\ldots,v_3$,
+$w_0,\ldots,w_3$, and $x$ last,
+\begin{center}
+\verb+R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?+
+\end{center}
+encodes $T$, and
+\begin{center}
+\verb+S~vMLaWbCKM?U?R?Go@a?EG?KO?KOE???+
+\end{center}
+encodes $W$.
+
+\begin{thebibliography}{9}
+
+\bibitem{BrinkmannMcKay}
+G.~Brinkmann and B.~D.~McKay,
+\emph{Fast generation of planar graphs},
+MATCH Commun. Math. Comput. Chem. \textbf{58} (2007), no.~2, 323--357.
+
+\bibitem{BrinkmannMcKayFull}
+G.~Brinkmann and B.~D.~McKay,
+\emph{Fast generation of planar graphs}, expanded edition, which contains
+tables absent from the journal version,
+\url{https://users.cecs.anu.edu.au/~bdm/papers/plantri-full.pdf}.
+
+\bibitem{Plantri}
+G.~Brinkmann, H.~Van den Camp, and B.~D.~McKay,
+\emph{plantri}, version 5.8, 2026,
+\url{https://users.cecs.anu.edu.au/~bdm/plantri/}.
+
+\bibitem{GyoriKarim}
+E.~Gy\H{o}ri and H.~Hama Karim,
+\emph{Induced planar Tur\'an numbers},
+arXiv:2604.25829 [math.CO], 2026,
+\url{https://doi.org/10.48550/arXiv.2604.25829}.
+
+\end{thebibliography}
+
+\end{document}

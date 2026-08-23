@@ -1,0 +1,173 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Gurvich--Naumova GM-Strategy Conjecture Fails with Three Piles}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\NIM}{\operatorname{NIM}}
+
+\title[The GM-strategy conjecture]
+{The Gurvich--Naumova GM-Strategy Conjecture Fails with Three Piles}
+\date{}
+
+\subjclass[2020]{91A46, 91A06, 91A10}
+\keywords{exact slow NIM, GM strategy, Nash equilibrium, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Gurvich and Naumova conjectured that, in the $\ell$-player version of
+exact slow $\NIM(n,n-1)$, the profile in which every player follows the
+GM strategy is a uniform Nash equilibrium. We disprove the conjecture
+for every $\ell\ge 3$, already with three piles. From the initial
+position $(2,\ell+1,\ell+1)$, all-GM play lasts $\ell+2$ moves, whereas
+player~1 can keep the pile of size $2$ on the first move and follow GM
+thereafter, producing a play of length $\ell+1$. Player~1 remains a
+winner and improves his payoff by $1/(\ell-1)$. We also show that three
+is the least possible number of piles for such a counterexample.
+\end{abstract}
+
+\maketitle
+
+\section{Counterexample and minimality}
+
+Gurvich and Naumova conjectured that the $\ell$ GM strategies form a
+uniform Nash equilibrium in the $\ell$-player game
+$\NIM(n,n-1)$~\cite[Section~6.5, Conjecture~1]{GN}, whose statement
+reads: ``The set of $\ell$ GM-strategies form a (uniform) Nash
+equilibrium.'' (Here and below the numbering is that of the e-print
+arXiv:2312.08382.) They note that the conjecture holds for $\ell=2$.
+We disprove it for every $\ell\ge 3$, already for $n=3$.
+
+A position of $\NIM(3,2)$ is a nonnegative triple, written in
+nondecreasing order. A move keeps one coordinate and decreases the
+other two by one; the decreased coordinates must therefore be
+positive. In $\NIM(n,n-1)$ a position is terminal when at least two of
+its coordinates are non-positive~\cite[Section~6.5]{GN}; for $n=3$ this
+says that at most one coordinate is positive, and for $n=2$ that the
+only terminal position is $(0,0)$. Players $1,\ldots,\ell$ move
+cyclically, with player~1 first, and the player whose turn follows the
+last move is the loser. For a
+fixed constant $C$ larger than the length of every play from the given
+initial position, the loser has payoff $L-C$, while each winner has
+payoff
+\[
+  \frac{C-L}{\ell-1},
+\]
+where $L$ is the length of the play.
+
+For $\NIM(3,2)$, the GM strategy keeps a smallest coordinate divisible
+by $\ell$, ties being broken in favour of the rightmost such coordinate
+in the nondecreasing ordering; if no coordinate is divisible by $\ell$,
+it keeps a largest coordinate.
+
+\begin{theorem}\label{thm:main}
+For every integer $\ell\ge 3$, in the $\ell$-player game
+$\NIM(3,2)$ initialized at
+\[
+  x^0=(2,\ell+1,\ell+1),
+\]
+the all-GM profile is not a Nash equilibrium. Player~1 has a
+unilateral deviation that increases his payoff by $1/(\ell-1)$.
+\end{theorem}
+
+\begin{proof}
+At $x^0$, no coordinate is divisible by $\ell$, so GM keeps a largest
+coordinate. At the next position, the coordinate $\ell$ is the unique
+multiple of $\ell$ and is kept. Thereafter the zero coordinate must be
+kept. Hence all-GM play is
+\[
+\begin{aligned}
+(2,\ell+1,\ell+1)
+&\longrightarrow (1,\ell,\ell+1)
+ \longrightarrow (0,\ell,\ell)\\
+&\longrightarrow (0,\ell-1,\ell-1)
+ \longrightarrow \cdots
+ \longrightarrow (0,0,0).
+\end{aligned}
+\]
+The tail from $(0,\ell,\ell)$ has $\ell$ moves, so the total length is
+$L_{\mathrm{GM}}=\ell+2$. Thus player~3 is the loser and player~1 is a
+winner.
+
+Let $\sigma^{\mathrm{GM}}$ denote the GM strategy. Define a strategy
+$\tau_1$ for player~1 that agrees with $\sigma^{\mathrm{GM}}$ at every
+position except $x^0$, where it keeps the pile of size $2$. Since
+$\ell\ge 3$, the coordinate $2$ is not a multiple of $\ell$, so at
+$(2,\ell,\ell)$ GM keeps a coordinate $\ell$; at $(1,\ell-1,\ell)$ the
+coordinate $\ell$ is the unique multiple of $\ell$ and is kept;
+thereafter the zero coordinate must be kept. Hence, against GM play by
+all other players, the resulting path is
+\[
+\begin{aligned}
+(2,\ell+1,\ell+1)
+&\longrightarrow (2,\ell,\ell)
+ \longrightarrow (1,\ell-1,\ell)\\
+&\longrightarrow (0,\ell-2,\ell)
+ \longrightarrow \cdots
+ \longrightarrow (0,0,2).
+\end{aligned}
+\]
+The tail from $(0,\ell-2,\ell)$ has $\ell-2$ moves, so
+$L_{\mathrm{dev}}=\ell+1$. Now player~2 is the loser, and player~1 is
+again a winner. His payoff therefore changes by
+\[
+  \frac{C-(\ell+1)}{\ell-1}
+  -\frac{C-(\ell+2)}{\ell-1}
+  =\frac{1}{\ell-1}>0.
+\]
+Both ties encountered above, at $x^0$ and at $(2,\ell,\ell)$, are
+between coordinates of equal value, so neither of the two plays depends
+on the tie-breaking rule. Thus $\tau_1$ is a profitable unilateral
+deviation.
+\end{proof}
+
+The strategies in question do not depend on the initial position: ``By
+definition, the GM-strategies are uniform, that is, independent of
+$x^0$''~\cite[Section~6.5]{GN}. A Nash equilibrium in GM-strategies
+would therefore have to hold at every initial position, so the failure
+at the single position $x^0=(2,\ell+1,\ell+1)$ refutes Conjecture~1 for
+every $\ell\ge 3$.
+
+The hypothesis $\ell\ge 3$ is used only to ensure that $2$ is not a
+multiple of $\ell$ (and that player~3 exists). For $\ell=2$ the GM move
+at $x^0$ already keeps the pile of size $2$, so $\tau_1$ coincides with
+the GM strategy and the construction degenerates.
+
+\begin{corollary}\label{cor:minimal}
+Among the games $\NIM(n,n-1)$ with $n\ge 2$, three is the least number
+of piles for which the all-GM profile can fail to be a Nash equilibrium.
+\end{corollary}
+
+\begin{proof}
+For $n=2$, the game is $\NIM(2,1)$. Every move decreases the total
+number of stones by exactly one, and by the terminality convention
+above the only terminal position is $(0,0)$. Thus
+every play from $(a,b)$ has length $a+b$, independently of all
+strategic choices. The loser and all payoffs are consequently fixed,
+so no unilateral deviation is profitable. Theorem~\ref{thm:main}
+shows that $n=3$ is attainable.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{GN}
+V.~Gurvich and M.~Naumova,
+\emph{Screw discrete dynamical systems and their applications to exact
+slow NIM},
+Discrete Appl. Math. \textbf{358} (2024), 382--394;
+e-print \href{https://arxiv.org/abs/2312.08382}{arXiv:2312.08382}.
+\href{https://doi.org/10.1016/j.dam.2024.07.018}
+{doi:10.1016/j.dam.2024.07.018}.
+
+\end{thebibliography}
+
+\end{document}

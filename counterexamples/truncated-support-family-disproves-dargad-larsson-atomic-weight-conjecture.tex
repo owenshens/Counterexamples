@@ -1,0 +1,203 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Infinite Family of Counterexamples to an Atomic-Weight Conjecture of Dargad and Larsson}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\TS}{\mathcal{T}}
+\newcommand{\Up}{\mathord{\uparrow}}
+\newcommand{\Down}{\mathord{\downarrow}}
+\newcommand{\aw}{\operatorname{aw}}
+
+\title[Counterexamples to an atomic-weight conjecture]
+{An Infinite Family of Counterexamples to an Atomic-Weight Conjecture
+of Dargad and Larsson}
+
+\date{}
+
+\subjclass[2020]{91A46, 91A05}
+\keywords{partizan subtraction game, truncated support, atomic weight, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Dargad and Larsson conjectured an atomic-weight formula for
+truncated-support partizan subtraction games. We prove that, for every
+integer $t\geq1$,
+\[
+  \TS_t(2t+4;1,2t+1)=\Down.
+\]
+Its atomic weight is $-1$, whereas Conjecture~7.1 in version~1 of their
+preprint predicts $0$. In these instances $a=1$, and the formula fails
+already at the smallest heap size it governs. The equality
+$\tau=(b-a)/2$, which these instances also satisfy, is not itself the
+obstruction: the formula does hold at that boundary in instances
+tabulated by Dargad and Larsson. Their theorem for $\tau<(b-a)/2$ is
+unaffected.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexamples}
+
+In the truncated-support game $\TS_\tau(n;a,b)$, Left may subtract any
+integer in $[a]=\{1,\dots,a\}$ from a heap of size $n$, while Right may
+subtract any integer in $\{\tau+1,\dots,b\}$
+\cite[Definition~5.1]{DL}. Play is normal: a player with no legal move
+loses \cite{ANW}. In version~1 of their preprint, Dargad and
+Larsson conjectured that, for $a<b$, $\tau<b-a$, and
+$n\geq R_{\widehat\beta}$,
+\begin{equation}\label{eq:conjecture}
+  \aw\bigl(\TS_\tau(n;a,b)\bigr)
+  =-
+  \left\lfloor
+    \frac{n-R_{\widehat\beta}}{a}
+  \right\rfloor,
+\end{equation}
+where
+\[
+  \widehat\beta=
+  \left\lfloor\frac{b-a}{b-a-\tau}\right\rfloor,
+  \qquad
+  R_{\widehat\beta}=\widehat\beta(a+\tau+1)
+\]
+\cite[Equations~(5), (13), and Conjecture~7.1]{DL}.
+
+We use the standard notation
+\[
+  *=\{0\mid0\},
+  \qquad
+  \Up=\{0\mid *\},
+  \qquad
+  \Down=\{*\mid0\}=-\Up.
+\]
+We also use the standard fact that a short game equals $0$ precisely
+when the second player wins, whether the second player is Left or Right
+\cite{ANW}.
+
+\begin{theorem}\label{thm:family}
+Fix an integer $t\geq1$ and write
+\[
+  H_n=\TS_t(n;1,2t+1).
+\]
+Then
+\[
+  H_{2t+2}=0,
+  \qquad
+  H_{2t+3}=*,
+  \qquad
+  H_{2t+4}=\Down.
+\]
+\end{theorem}
+
+\begin{proof}
+Here Left removes one token, while Right removes any number from
+$t+1$ through $2t+1$.
+
+First, $H_{2t+2}=0$. If Left starts, she leaves $2t+1$ tokens and Right
+removes the entire heap. If Right starts, he leaves a heap of size
+$m\in\{1,\dots,t+1\}$; Left moves to $m-1\leq t$, after which Right has
+no legal move.
+
+Next consider $H_{2t+3}+*$. If Left first moves in the heap, Right moves
+$*\to0$, leaving $H_{2t+2}=0$. If Left instead moves $*\to0$, Right
+reduces the heap to $t+2$, after which the heap moves
+\[
+  t+2\xrightarrow{\mathrm L}t+1\xrightarrow{\mathrm R}0
+\]
+finish the game.
+
+Suppose instead that Right starts. If he moves $*\to0$, Left reduces the
+heap to $2t+2$. If he moves in the heap, he leaves
+$m\in\{2,\dots,t+2\}$, and Left moves to
+$k=m-1\in\{1,\dots,t+1\}$. A subsequent move $*\to0$ by Right is
+answered by $k\to k-1\leq t$, leaving Right without a legal move. A
+subsequent heap move by Right is possible only when $k=t+1$, and Left
+then moves $*\to0$. Thus $H_{2t+3}+*=0$, so $H_{2t+3}=*$.
+
+Finally consider $H_{2t+4}+\Up$. If Left first moves in the heap, Right
+moves $\Up\to *$, leaving $H_{2t+3}+*=0$. If Left instead moves
+$\Up\to0$, Right reduces the heap to $t+2$, and the same two heap moves
+as above finish the game.
+
+Suppose that Right starts. If he moves $\Up\to *$, Left reduces the heap
+to $2t+3$, again leaving $H_{2t+3}+*=0$. If he moves in the heap, he
+leaves $m\in\{3,\dots,t+3\}$, and Left moves to
+$k=m-1\in\{2,\dots,t+2\}$. If Right next moves in the heap, at most one
+token remains; Left moves $\Up\to0$, and Right has no legal move. If
+Right instead moves $\Up\to *$, Left reduces the heap to
+$k-1\leq t+1$. A move $*\to0$ by Right is then answered by one further
+Left heap move, leaving at most $t$ tokens. The only alternative is a
+Right heap move, which is possible only from a heap of size $t+1$ and
+is answered by $*\to0$. Hence $H_{2t+4}+\Up=0$, and therefore
+$H_{2t+4}=-\Up=\Down$.
+\end{proof}
+
+\begin{corollary}
+Conjecture~7.1 in version~1 of Dargad and Larsson \cite{DL} is false
+as stated.
+\end{corollary}
+
+\begin{proof}
+For any $t\geq1$, take
+\[
+  (a,b,\tau,n)=(1,2t+1,t,2t+4).
+\]
+Then $\tau=t<2t=b-a$, and
+\[
+  \widehat\beta
+  =\left\lfloor\frac{2t}{t}\right\rfloor=2,
+  \qquad
+  R_{\widehat\beta}=2(1+t+1)=2t+4=n.
+\]
+Formula~\eqref{eq:conjecture} therefore predicts atomic weight $0$.
+By Theorem~\ref{thm:family}, however, the game is $\Down$. Since
+$\aw(\Up)=1$ and $\aw(-G)=-\aw(G)$,
+\[
+  \aw(\Down)=-1
+\]
+\cite[Definition~A.17 and Lemma~A.19(1)]{DL}. This is a contradiction.
+\end{proof}
+
+\begin{remark}
+Every instance above has $a=1$ and $\widehat\beta=2$, so the failure
+occurs at $n=R_{\widehat\beta}$, the smallest heap size to which
+\eqref{eq:conjecture} applies. These instances also satisfy
+$\tau=(b-a)/2$, but that equality is not itself the obstruction: for
+$(a,b)=(3,7)$ and $\tau=2=(b-a)/2$ one has $\widehat\beta=2$ and
+$R_{\widehat\beta}=12$, and the atomic weights tabulated in
+\cite[Table~4]{DL} agree with \eqref{eq:conjecture} for every tabulated
+$n$ with $12\leq n\leq34$. The theorem proved in
+\cite[Theorem~1.5]{DL} assumes the strict inequality
+$1\leq\tau<(b-a)/2$ and is therefore unaffected. We do not determine
+here how far beyond the family of Theorem~\ref{thm:family} the failure
+of \eqref{eq:conjecture} extends.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{ANW}
+M.~H. Albert, R.~J. Nowakowski, and D. Wolfe,
+\emph{Lessons in Play: An Introduction to Combinatorial Game Theory},
+2nd ed., A K Peters/CRC Press, 2019.
+
+\bibitem{DL}
+A. Dargad and U. Larsson,
+\emph{Partizan Subtraction with Full and Truncated Support},
+\href{https://arxiv.org/abs/2607.27989v1}{arXiv:2607.27989v1}
+[math.CO], 2026.
+
+\end{thebibliography}
+
+\end{document}

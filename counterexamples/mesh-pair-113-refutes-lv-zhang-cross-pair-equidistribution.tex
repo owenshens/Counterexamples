@@ -1,0 +1,258 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Mesh-pattern pairs 113-116 are not equidistributed with
+  the X\textasciicircum(1)/Y\textasciicircum(1) family: a
+  counterexample to an open problem of Lv and Zhang}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{plain}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sn}{\mathfrak{S}_n}
+\newcommand{\occ}{\operatorname{occ}}
+
+\title[Mesh-pattern pairs $113$--$116$ are not equidistributed]
+{Mesh-pattern pairs $113$--$116$ are not equidistributed with
+the $X^{(1)}/Y^{(1)}$ family: a counterexample to an open problem of
+Lv and Zhang}
+\date{}
+
+\subjclass[2020]{05A05, 05A15}
+\keywords{mesh pattern, joint distribution, permutation pattern, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+In the concluding remark of their paper on joint equidistributions of
+the mesh patterns $123$ and $132$ with minus antipodal shadings, Lv and
+Zhang record an unnumbered assertion, suggested by computer experiments
+and left there explicitly as an open problem: the four mesh-pattern
+pairs labelled $113$--$116$ have the same bivariate occurrence
+distribution as the pairs $X_i^{(1)}$ and $Y_i^{(1)}$, $9\le i\le18$.
+We disprove it on $\mathfrak S_4$. The former pairs have no
+permutation with occurrence vector $(2,0)$, whereas every pair in
+the latter family has exactly one. More generally, for every
+$n\ge4$ the respective counts are $0$ and at least $(n-1)!/6$. The
+failure is immediate from Lv and Zhang's own Theorems~6.1 and~6.2,
+in Section~6 of the same paper, so the assertion is best read as a
+slip in the concluding remark rather than as a conjecture.
+\end{abstract}
+
+\maketitle
+
+All pair labels follow Lv and Zhang~\cite{LvZhang}. For an ordered
+pair $P=(p_1,p_2)$ of mesh patterns, set
+\[
+T^P_{n,k,\ell}
+=
+\bigl|\{\pi\in\Sn:
+\occ_{p_1}(\pi)=k,\ \occ_{p_2}(\pi)=\ell\}\bigr|.
+\]
+Write $c(r,s)$ for the unsigned Stirling number of the first kind.
+Let $\mathcal P$ be the four pairs labelled $113,114,115,116$, and let
+\[
+\mathcal Q
+=
+\{X_i^{(1)}:9\le i\le18\}
+\cup
+\{Y_i^{(1)}:9\le i\le18\}.
+\]
+Section~7 of~\cite{LvZhang}, headed ``Concluding remark'', contains the
+following unnumbered sentence, in which equations~(1) and~(2) are the
+two displays of Theorem~2.4 of that paper, giving respectively the
+joint distribution of the pairs in $\mathcal Q$ and its generating
+function: ``In fact, computer experiments suggest that pairs $113$ to
+$116$ have the same joint distribution as pairs
+$\{X^{(1)}_i\}_{i=9}^{18}$ and $\{Y^{(1)}_i\}_{i=9}^{18}$, satisfying
+(1) and (2); we leave justifying this observation as an open problem.''
+Formalised, and weakened to the part of it that we shall use, this is
+the following statement. It is unnumbered in~\cite{LvZhang} and is not
+the only cross-pair statement made in that section, so we do not give
+it a name beyond its location.
+
+\begin{conjecture}[{\cite[Section~7]{LvZhang}}, unnumbered]
+\label{conj:cross}
+For every $P\in\mathcal P$, $Q\in\mathcal Q$, $n\ge1$, and
+$k,\ell\ge0$,
+\[
+T^P_{n,k,\ell}=T^Q_{n,k,\ell}.
+\]
+\end{conjecture}
+
+Two remarks on the standing of this assertion. First, its failure is
+immediate from Theorems~6.1 and~6.2 of~\cite{LvZhang}, proved in
+Section~6 of that paper, which show that each component of each of the
+pairs $113$--$116$ has at most one occurrence in any permutation: the
+joint distribution of such a pair is supported on $\{0,1\}^2$, while
+the distribution asserted for it, equation~(1) of~\cite{LvZhang}, is
+not. Second, Conjecture~4 of~\cite{LvZhang}, stated in the same
+section, asserts of the eight pairs $119$--$126$ exactly what the
+sentence above asserts of $113$--$116$, namely that they ``have the
+same joint distribution as $\{X^{(1)}_i\}_{i=9}^{18}$ and
+$\{Y^{(1)}_i\}_{i=9}^{18}$''. The sentence is therefore best read as a
+slip in the concluding remark rather than as a conjecture. What follows
+records the refutation and the minimal order at which it takes effect.
+
+\begin{theorem}
+For every $P\in\mathcal P$, $Q\in\mathcal Q$, and $n\ge4$,
+\[
+T^P_{n,2,0}=0,
+\qquad
+T^Q_{n,2,0}
+=
+(n-1)!\sum_{j=2}^{n-1}\frac{c(j-1,2)}{j!}
+\ge \frac{(n-1)!}{6}>0.
+\]
+At $n=4$, one has $T^Q_{4,2,0}=1$. Consequently,
+Conjecture~\ref{conj:cross} is false, and $n=4$ is the first
+order at which it fails.
+\end{theorem}
+
+\begin{proof}
+The proofs of Theorems~6.1 and~6.2 of~\cite{LvZhang} show that each
+component of the pairs labelled $113$ and $115$ occurs at most once
+in any permutation. The same conclusion for $114$ and $116$ follows
+by inversion. Hence
+\[
+T^P_{n,2,0}=0
+\qquad(P\in\mathcal P).
+\]
+
+For every $Q\in\mathcal Q$, Theorem~2.4, equation~(1),
+of~\cite{LvZhang} gives, whenever $(k,\ell)\ne(0,0)$,
+\[
+T^Q_{n,k,\ell}
+=
+(n-1)!\binom{k+\ell}{k}
+\sum_{j=2}^{n-1}\frac{c(j-1,k+\ell)}{j!}.
+\]
+Therefore
+\[
+T^Q_{n,2,0}
+=
+(n-1)!\sum_{j=2}^{n-1}\frac{c(j-1,2)}{j!}.
+\]
+For $n\ge4$, the term $j=3$ is present, all terms are nonnegative,
+and $c(2,2)=1$. Thus
+\[
+T^Q_{n,2,0}
+\ge
+\frac{(n-1)!}{3!}.
+\]
+For $n=4$, the only nonzero term is $j=3$, since $c(1,2)=0$; so
+$T^Q_{4,2,0}=1$.
+
+For $n\le2$, no length-three pattern occurs. For $n=3$, the only
+three-term subsequence is the whole permutation, so the shading is
+vacuous; every pair considered here has one permutation with vector
+$(1,0)$, one with vector $(0,1)$, and four with vector $(0,0)$.
+Hence $n=4$ is minimal.
+\end{proof}
+
+\begin{remark}[An explicit counterexample]
+In the standard notation $(\sigma,R)$ for a mesh pattern, the pair
+labelled $113$ and the pair $X_9^{(1)}$ are
+\[
+P_{113}
+=
+\bigl((123,R_{113}),(132,R_{113})\bigr),
+\qquad
+X_9^{(1)}
+=
+\bigl((123,R_9),(132,R_9)\bigr),
+\]
+where
+\begin{align*}
+R_{113}
+&=
+\{(0,1),(0,2),(1,1),(1,2),(2,2),
+  (3,0),(3,1),(3,2),(3,3)\},\\
+R_9
+&=
+\{(0,0),(0,1),(0,2),(0,3),
+  (1,1),(1,2),(3,1),(3,2)\}.
+\end{align*}
+For $P_{113}$, the shaded rightmost column forces every occurrence
+to end at the final entry. The shaded cells $(a,2)$,
+$0\le a\le3$, then force the middle-position entry to equal the
+final entry minus $1$ for the $123$ component, or plus $1$ for the
+$132$ component. The first entry must be the largest entry to the
+left of the middle-position entry that is smaller than it, and is
+therefore unique. Thus each component occurs at most once.
+
+For $X_9^{(1)}$, the permutation $1234$ has two occurrences of its
+$123$ component, on positions $(1,2,3)$ and $(1,2,4)$. The unused
+point lies in the unshaded cell $(3,3)$ for the first occurrence and
+in the unshaded cell $(2,2)$ for the second; the other two increasing
+triples are excluded by the shaded cells $(1,1)$ and $(0,0)$. Since
+$1234$ has no classical $132$ occurrence, its occurrence vector is
+$(2,0)$.
+
+The discrepancy is not confined to the cell $(2,0)$. On
+$\mathfrak S_4$ the joint distribution of $P_{113}$ is
+\[
+(0,0)\mapsto12,\;
+(0,1)\mapsto5,\;
+(1,0)\mapsto5,\;
+(1,1)\mapsto2,
+\]
+while that of $X_9^{(1)}$ is
+\[
+(0,0)\mapsto12,\;
+(0,1)\mapsto4,\;
+(0,2)\mapsto1,\;
+(1,0)\mapsto4,\;
+(1,1)\mapsto2,\;
+(2,0)\mapsto1,
+\]
+so the two already differ in the cells $(0,1)$ and $(1,0)$ as well.
+The cell $(0,0)$, on the other hand, agrees: direct enumeration gives
+$T^{P_{113}}_{n,0,0}=2(n-1)!$ for $2\le n\le7$, which is exactly the
+value of the $k=\ell=0$ branch of equation~(1) of~\cite{LvZhang}. A
+computation testing only avoidance would therefore not have detected
+the failure.
+\end{remark}
+
+\begin{remark}[Scope]
+The assertion refuted here is the unnumbered cross-pair statement in
+Section~7 of~\cite{LvZhang}. It is distinct from the seven within-pair
+symmetry conjectures involving fourteen labelled patterns in
+Table~11, which were proved by Fang, Fu, Kitaev, and
+Li~\cite{FangFuKitaevLi}. The other comparisons between different
+pairs proposed by Lv and Zhang, namely Conjectures~3 and~4
+of~\cite{LvZhang} on the pairs $117$, $118$ and $119$--$126$, are not
+considered here.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{LvZhang}
+S.~Lv and P.~B. Zhang,
+\newblock Joint equidistributions of mesh patterns 123 and 132 with
+minus antipodal shadings,
+\newblock \emph{Discrete Appl. Math.} \textbf{379} (2026), 419--433,
+\newblock
+\href{https://doi.org/10.1016/j.dam.2025.09.002}
+{doi:10.1016/j.dam.2025.09.002}.
+
+\bibitem{FangFuKitaevLi}
+Q.~Fang, S.~Fu, S.~Kitaev, and H.~Li,
+\newblock On fourteen equidistribution conjectures of Lv and Zhang
+and monotone mesh patterns with corner shadings,
+\newblock
+\href{https://arxiv.org/abs/2507.04698}
+{arXiv:2507.04698}, 2025.
+
+\end{thebibliography}
+
+\end{document}

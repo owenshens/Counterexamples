@@ -1,0 +1,280 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Hessian Arrangement Requires Four Added Lines for Supersolvability}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Sing}{\operatorname{Sing}}
+\newcommand{\extSS}{\operatorname{extSS}}
+
+\title{The Hessian Arrangement Requires Four Added Lines for Supersolvability}
+\subjclass[2020]{52C35, 32S22}
+\keywords{Hessian arrangement, line arrangement, supersolvable arrangement,
+modular point, extension to supersolvability}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Let $\mathcal H$ be the twelve-line Hessian arrangement in
+$\PP^2_{\mathbb C}$. We prove that $\extSS(\mathcal H)=4$. Thus no
+extension of $\mathcal H$ by one line is supersolvable. Since
+$\mathcal H$ is free with exponents $(4,7)$ and has maximal
+multiplicity $4$, this gives a negative answer to the
+supersolvable-extension question of Dimca, K\"uhne, and Pokora.
+Dimca had already exhibited the relevant exceptional collinearity;
+the contribution here is the obstruction for every possible modular
+point and the exact extension number.
+\end{abstract}
+
+\maketitle
+
+\section{Statement}
+
+Let $\mathcal A$ be a line arrangement in $\PP^2_{\mathbb C}$. A point
+$p\in\Sing(\mathcal A)$ is \emph{modular} if the line $pq$ belongs to
+$\mathcal A$ for every $q\in\Sing(\mathcal A)\setminus\{p\}$. The
+arrangement is \emph{supersolvable} if it has a modular point. For line
+arrangements, that is, in rank three, this is equivalent to
+supersolvability of the intersection lattice $L(\mathcal A)$, which is
+the definition used in~\cite[Definition~1.1]{Kabat}; see~\cite{OT}, and
+compare~\cite{DKP}, where a line arrangement having a modular point is
+called supersolvable. Following
+Kabat~\cite[Definition~1.3]{Kabat}, define
+\[
+\extSS(\mathcal A)
+ =\min\bigl\{|\mathcal B\setminus\mathcal A|:
+ \mathcal A\subseteq\mathcal B,\ \mathcal B\text{ supersolvable}\bigr\}.
+\]
+For line arrangements this is equivalent to Kabat's definition by
+supersolvable resolutions, since the added lines may be ordered
+arbitrarily.
+
+Let $\omega$ be a primitive cube root of unity. The Hessian arrangement
+is
+\begin{equation}\label{eq:Hessian}
+\mathcal H:\quad
+xyz\bigl((x^3+y^3+z^3)^3-27x^3y^3z^3\bigr)=0.
+\end{equation}
+Its twelve lines are
+\[
+x=0,\qquad y=0,\qquad z=0,
+\qquad x+\omega^a y+\omega^b z=0
+\quad(a,b\in\mathbb Z/3\mathbb Z).
+\]
+Dimca~\cite[Example~6.5(i)]{Dimca} records that $\mathcal H$ is free
+with first exponent $4=m(\mathcal H)$; hence its exponents are $(4,7)$.
+
+\begin{theorem}\label{thm:main}
+The Hessian arrangement satisfies
+\[
+\extSS(\mathcal H)=4.
+\]
+\end{theorem}
+
+We recall the question this answers. Let $\mathcal A$ be an arrangement
+of $d$ lines with first exponent $d_1$, and let $p\in\mathcal A$ be a
+point of multiplicity $m_p$ with
+\[
+m_p\le d_1+1<d-m_p+1 .
+\]
+Then~\cite[Theorem~1.12(2)]{Dimca} states that if $m_p=d_1$ and
+$m_p=m(\mathcal A)$, the maximal multiplicity of points of
+$\mathcal A$, then all the other multiple points of $\mathcal A$ that
+are not connected to $p$ by lines of $\mathcal A$ lie on a single line
+$L$. Assuming $d_1=m(\mathcal A)$, Dimca, K\"uhne, and Pokora ask
+in~\cite[Remark~2.3]{DKP} ``whether the line $L$
+in~\cite[Theorem~1.12(2)]{Dimca} can be always chosen such that
+$\mathcal A\cup L$ is supersolvable''. For $\mathcal H$ one has $d=12$
+and $d_1=4=m(\mathcal H)$, and for a
+point $p$ of multiplicity $m_p=4$ the hypothesis above reads
+$4\le5<9$; thus $\mathcal H$ is in the scope of the question.
+Theorem~\ref{thm:main} gives a negative answer.
+
+\section{Incidences}
+
+The singular points of $\mathcal H$ are
+\begin{align*}
+\mathcal P
+ &=\bigl\{(0:1:-\omega^j),(1:0:-\omega^j),(1:-\omega^j:0):
+ j\in\mathbb Z/3\mathbb Z\bigr\},\\
+\mathcal V
+ &=\bigl\{(1:0:0),(0:1:0),(0:0:1)\bigr\}
+   \cup
+   \bigl\{(1:\omega^r:\omega^s):
+   r,s\in\mathbb Z/3\mathbb Z\bigr\}.
+\end{align*}
+Direct substitution shows that the nine points of $\mathcal P$ have
+multiplicity four, the twelve points of $\mathcal V$ have multiplicity
+two, and each line of $\mathcal H$ contains three points of
+$\mathcal P$ and two points of $\mathcal V$. Moreover,
+\[
+9\binom42+12\binom22=66=\binom{12}{2},
+\]
+so these are all the singular points.
+
+\begin{lemma}\label{lem:incidence}
+The following hold.
+\begin{enumerate}
+\item Every two points of $\mathcal P$ lie on a line of $\mathcal H$.
+\item For each $p\in\mathcal P$, exactly four points of $\mathcal V$
+are not joined to $p$ by a line of $\mathcal H$. Those four points are
+collinear on a line not containing $p$.
+\item Let $v\in\mathcal V$. The two lines of $\mathcal H$ through $v$
+contain six points of $\mathcal P$. If $b_1,b_2,b_3$ are the remaining
+points of $\mathcal P$, then each line $vb_i$ contains no point of
+$\mathcal V$ other than $v$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Each line of $\mathcal H$ contains three points of $\mathcal P$, and
+\[
+12\binom32=\binom92.
+\]
+No pair is counted twice, since two distinct points determine a unique
+projective line. This proves~(1).
+
+Coordinate permutations and diagonal maps
+\[
+(x:y:z)\longmapsto(\omega^a x:\omega^b y:\omega^c z)
+\]
+preserve $\mathcal H$ and act transitively on $\mathcal P$. For~(2), it
+therefore suffices to take $p=(1:-1:0)$. The four exceptional points are
+\[
+(0:0:1),\qquad (1:1:1),\qquad
+(1:1:\omega),\qquad (1:1:\omega^2).
+\]
+They lie on $x-y=0$, which does not contain $p$.
+
+The same symmetries have two orbits on $\mathcal V$: the coordinate
+vertices and the points with all coordinates nonzero. For
+$v=(0:0:1)$, the two old lines through $v$ are $x=0$ and $y=0$, and the
+remaining points of $\mathcal P$ are
+\[
+b_j=(1:-\omega^j:0),\qquad j\in\mathbb Z/3\mathbb Z.
+\]
+Their joins with $v$ are $\omega^j x+y=0$. None contains another point
+of $\mathcal V$: substituting $(1:0:0)$ gives $\omega^j\ne0$ and
+substituting $(0:1:0)$ gives $1\ne0$, while at $(1:\omega^r:\omega^s)$
+the equation would force $\omega^j+\omega^r=0$, which is impossible for
+cube roots of unity.
+
+For $v=(1:1:1)$, the remaining points of $\mathcal P$ are
+\[
+(0:1:-1),\qquad (1:0:-1),\qquad (1:-1:0),
+\]
+and their joins with $v$ are
+\[
+2x-y-z=0,\qquad x-2y+z=0,\qquad x+y-2z=0.
+\]
+The first contains no coordinate vertex. At a point
+$(1:\omega^r:\omega^s)$, its equation gives
+$\omega^r+\omega^s=2$, hence $r=s=0$. The other two cases follow by
+permuting the coordinates. This proves~(3).
+\end{proof}
+
+\section{Proof}
+
+Let $\mathcal B\supseteq\mathcal H$ be supersolvable, set
+$k=|\mathcal B\setminus\mathcal H|$, and let $X$ be a modular point of
+$\mathcal B$.
+
+Suppose first that $X\in\mathcal P$. By
+Lemma~\ref{lem:incidence}(2), there are four points
+$v_1,\dots,v_4\in\mathcal V$ not joined to $X$ by old lines. Modularity
+forces the four joins $Xv_i$ to belong to $\mathcal B$. They are
+outside $\mathcal H$ and are distinct: the points $v_i$ lie on a line
+not containing $X$, so no line through $X$ contains two of them. Thus
+$k\ge4$.
+
+Suppose next that $X\in\mathcal V$. The two old lines through $X$
+contain six points of $\mathcal P$. The remaining three points require
+three distinct added lines through $X$, because a line outside
+$\mathcal H$ contains at most one point of $\mathcal P$ by
+Lemma~\ref{lem:incidence}(1). By Lemma~\ref{lem:incidence}(3), none of
+these three lines contains a point of $\mathcal V\setminus\{X\}$. The
+union of the two old lines through $X$ contains only three points of
+$\mathcal V$, including $X$. Hence some point of $\mathcal V$ requires
+a fourth added line through $X$, and again $k\ge4$.
+
+Finally, suppose that $X\notin\Sing(\mathcal H)$. Every point of
+$\mathcal P$ remains singular in $\mathcal B$, so modularity requires
+its join with $X$ to belong to $\mathcal B$. At most one old line
+passes through $X$, and it contains at most three points of
+$\mathcal P$. Every added line through $X$ contains at most one point
+of $\mathcal P$. If $k\le3$, at most six of the nine points of
+$\mathcal P$ can be joined to $X$, a contradiction. Therefore
+\[
+\extSS(\mathcal H)\ge4.
+\]
+The three cases give lower bounds only; the individual counts are not
+claimed to be sharp, and $k\ge4$ is all that is needed.
+
+For the reverse inequality, take $p=(1:-1:0)$ and set
+\[
+\mathcal B=\mathcal H
+\cup\{x+y=0\}
+\cup\{x+y-2\omega^jz=0:j\in\mathbb Z/3\mathbb Z\}.
+\]
+These are precisely the four joins from $p$ to the exceptional points
+in Lemma~\ref{lem:incidence}(2). Every old singular point is joined to
+$p$ by a line of $\mathcal B$. If
+$q\in\Sing(\mathcal B)\setminus\Sing(\mathcal H)$, then the
+intersection defining $q$ involves an added line; hence $q$ lies on an
+added line through $p$. Thus $p$ is modular in $\mathcal B$, and
+\[
+\extSS(\mathcal H)\le4.
+\]
+This proves Theorem~\ref{thm:main}.
+
+For $p=(1:-1:0)$, the four singular points not joined to $p$ by lines
+of $\mathcal H$ are distinct and determine the unique line $x-y=0$.
+Thus this is the line supplied by~\cite[Theorem~1.12(2)]{Dimca}.
+Since no one-line extension of $\mathcal H$ is supersolvable, this
+proves the claimed negative answer to~\cite[Remark~2.3]{DKP}.
+
+\begin{thebibliography}{9}
+
+\bibitem{Dimca}
+A.~Dimca,
+\emph{On the module of derivations of a line arrangement},
+to appear in Publ. Mat.;
+\href{https://arxiv.org/abs/2503.01624v7}{arXiv:2503.01624v7}.
+
+\bibitem{DKP}
+A.~Dimca, L.~K\"uhne, and P.~Pokora,
+\emph{Free line arrangements with low maximal multiplicity},
+J. Algebraic Combin. \textbf{63} (2026), Art.~45,
+\href{https://doi.org/10.1007/s10801-026-01533-8}
+{doi:10.1007/s10801-026-01533-8};
+\href{https://arxiv.org/abs/2505.01733v4}{arXiv:2505.01733v4}.
+Numbering and the quotation in the text follow the preprint.
+
+\bibitem{Kabat}
+J.~Kabat,
+\emph{Supersolvable resolutions of line arrangements},
+Hokkaido Math. J. \textbf{52} (2023), no.~2, 301--313,
+\href{https://doi.org/10.14492/hokmj/2021-540}
+{doi:10.14492/hokmj/2021-540};
+\href{https://arxiv.org/abs/2201.04856v1}{arXiv:2201.04856v1}.
+Numbering of definitions follows the preprint.
+
+\bibitem{OT}
+P.~Orlik and H.~Terao,
+\emph{Arrangements of hyperplanes},
+Springer-Verlag, Berlin, 1992.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,324 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Negative Answer to Problem 8.8 of Galetto, Montano, and Wellner}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\VR}{\operatorname{VR}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\diameter}{\operatorname{diam}}
+\newcommand{\stype}[1]{\texttt{#1}}
+
+\title[A negative answer to Problem 8.8]
+{A Negative Answer to Problem~8.8 of Galetto, Monta\~no, and Wellner}
+
+\date{}
+
+\subjclass[2020]{Primary 05E18; Secondary 05E45, 55N31}
+\keywords{Vietoris--Rips complex, hypercube, hyperoctahedral group,
+multiplicity-free representation, Lefschetz number}
+
+\begin{document}
+
+\begin{abstract}
+Let $K=\VR(Q_6;4)$ and $G=\Aut(Q_6)$. We prove that, over every field
+$\Bbbk$ of characteristic zero, and conditional on the Betti numbers of $K$
+computed in \cite[Appendix~C.3]{GMW},
+\[
+\dim_{\Bbbk}H_7(K;\Bbbk)^G+
+\dim_{\Bbbk}H_{15}(K;\Bbbk)^G=3.
+\]
+Thus the trivial representation occurs with multiplicity at least two in one
+of these two homology groups. This gives a negative answer to Problem~8.8 of
+Galetto, Monta\~no, and Wellner. The proof is an exact Lefschetz computation
+on the $65$ conjugacy classes of the hyperoctahedral group.
+\end{abstract}
+
+\maketitle
+\raggedbottom
+
+\section{The counterexample}
+
+Let $Q_n$ be the $n$-dimensional hypercube graph, and identify it throughout
+with its vertex set $\{0,1\}^n$ carrying the Hamming metric $d$, which is the
+graph metric of $Q_n$. In particular $\Aut(Q_n)$ is simultaneously the
+automorphism group of the graph and the isometry group of the metric space,
+and the Vietoris--Rips complex below is taken on that vertex set:
+\[
+X^{n,r}=\VR(Q_n;r)
+=\{\sigma\subseteq Q_n:d(x,y)\le r\text{ for all }x,y\in\sigma\}.
+\]
+The hyperoctahedral group
+\[
+\mathfrak H_n=\Aut(Q_n)\cong \F_2^n\rtimes\mathfrak S_n
+\]
+acts simplicially on $X^{n,r}$. Galetto, Monta\~no, and Wellner proved
+multiplicity-freeness of the nonzero homology representations at scales
+$r\le3$ and $r=n-1$, and asked whether $H_i(X^{n,r})$ is multiplicity-free
+for all $n,r,i$ \cite[Problem~8.8]{GMW}. The smallest pair with
+$4\le r\le n-2$ is $(n,r)=(6,4)$. They also computed
+\begin{equation}\label{eq:homology}
+\widetilde H_i(X^{6,4};\Q)\cong
+\begin{cases}
+\Q^{239},&i=7,\\
+\Q^{14},&i=15,\\
+0,&i\notin\{7,15\}.
+\end{cases}
+\end{equation}
+See \cite[Appendix~C.3]{GMW}. Equation~\eqref{eq:homology} is a machine
+computation of theirs which we do not reproduce; it is the only computational
+input taken as given here, and Theorem~\ref{thm:main} is conditional on it,
+both for the vanishing of $\widetilde H_i(X^{6,4};\Q)$ outside $\{7,15\}$ and
+for the parity of the two surviving degrees.
+
+\begin{theorem}\label{thm:main}
+Let $K=X^{6,4}$ and $G=\mathfrak H_6$. For every field $\Bbbk$ of
+characteristic zero,
+\[
+\dim_{\Bbbk}H_7(K;\Bbbk)^G+
+\dim_{\Bbbk}H_{15}(K;\Bbbk)^G=3.
+\]
+Consequently, at least one of the $G$-representations $H_7(K;\Bbbk)$ and
+$H_{15}(K;\Bbbk)$ is not multiplicity-free.
+\end{theorem}
+
+The argument identifies the counterexample at $(n,r)=(6,4)$ but does not
+determine which of the two degrees contains the repeated trivial constituent.
+
+\section{A fixed-orbit Lefschetz formula}
+
+For $g\in G$, define
+\[
+\Psi(g)=\sum_{i\ge0}(-1)^{i+1}
+\operatorname{tr}\!\left(g\mid\widetilde H_i(K;\Q)\right).
+\]
+Let $\mathcal O_g$ be the set of $g$-orbits on $Q_6$ with internal Hamming
+diameter at most $4$. Define a graph $F_g$ on $\mathcal O_g$ by joining
+$O,O'$ when
+\[
+\diameter(O\cup O')>4.
+\]
+For a graph $F$, write
+\[
+I(F;t)=\sum_{S\in\Ind(F)}t^{|S|}
+\]
+for its independence polynomial.
+
+\begin{lemma}\label{lem:fixed-orbit}
+For every $g\in G$,
+\[
+\Psi(g)=I(F_g;-1).
+\]
+\end{lemma}
+
+\begin{proof}
+A simplex fixed setwise by $g$ is a union of vertex orbits. Such a union is a
+simplex of $K$ exactly when the selected orbits form an independent set of
+$F_g$.
+
+Suppose a fixed simplex $\sigma$ has $s$ vertices and is the union of $c$
+vertex orbits. The induced permutation of its vertices has $c$ cycles, hence
+orientation sign $(-1)^{s-c}$. Since $\sigma$ lies in chain degree $s-1$, its
+contribution to the reduced Lefschetz number is
+\[
+(-1)^{s-1}(-1)^{s-c}=(-1)^{c+1}.
+\]
+The empty simplex in degree $-1$ contributes $-1$, which is the same formula
+for $c=0$. The Hopf trace formula, applied to the augmented chain complex
+(indexed by $i\ge-1$) and its reduced homology, therefore gives
+\[
+\sum_{i\ge-1}(-1)^i\operatorname{tr}
+ \left(g\mid\widetilde H_i(K;\Q)\right)
+=-\sum_{S\in\Ind(F_g)}(-1)^{|S|}.
+\]
+Here $\widetilde H_{-1}(K)=0$ because $K$ is nonempty, so the left-hand side
+reduces to the sum over $i\ge0$, which equals $-\Psi(g)$.
+Multiplying by $-1$ proves the claim.
+\end{proof}
+
+\section{Exact class computation}
+
+Write $g=(a,\pi)\in\F_2^6\rtimes\mathfrak S_6$, acting by
+$x\mapsto a+\pi x$. For each cycle $C$ of $\pi$, the parity
+$\sum_{j\in C}a_j\in\F_2$ is invariant under conjugacy. These parities,
+together with the cycle lengths, form a complete invariant: conjugacy classes
+are indexed by bipartitions $(\alpha;\beta)$ of $6$, where $\alpha$ records
+the even-parity cycles and $\beta$ the odd-parity cycles
+\cite[Section~5.2]{GMW}.
+
+If $m_j(\lambda)$ is the multiplicity of $j$ in a partition $\lambda$, set
+\[
+z_\lambda=\prod_{j\ge1}j^{m_j(\lambda)}m_j(\lambda)!.
+\]
+A signed cycle of length $j$ contributes a factor $2j$ to the centralizer,
+and signed cycles of the same length and parity may be permuted. Hence
+\begin{equation}\label{eq:class-size}
+|C_{\alpha,\beta}|=
+\frac{2^6 6!}{2^{\ell(\alpha)+\ell(\beta)}z_\alpha z_\beta}.
+\end{equation}
+There are $65$ bipartitions of $6$.
+
+For each type $(\alpha;\beta)$, choose disjoint cycles on consecutive
+coordinate blocks, take $a=0$ on every $\alpha$-cycle, and put a single $1$
+in $a$ on every $\beta$-cycle. Lemma~\ref{lem:fixed-orbit} then reduces the
+class value to an exact graph computation. If $J(F)=I(F;-1)$ and $N[v]$ is
+the closed neighborhood of $v$, then
+\begin{equation}\label{eq:recurrence}
+J(F)=J(F-v)-J(F-N[v]),\qquad J(\varnothing)=1,
+\end{equation}
+and $J$ is multiplicative over connected components.
+
+Appendix~\ref{app:table} lists the resulting value for every class. Together
+with \eqref{eq:class-size} and \eqref{eq:recurrence} the table is a
+self-contained certificate: the recipe of the preceding paragraph fixes a
+representative of each of the $65$ classes, the $g$-orbits on $Q_6$ and the
+graph $F_g$ are read off from that representative, \eqref{eq:recurrence}
+evaluates $J(F_g)$ in integer arithmetic, and \eqref{eq:class-size} supplies
+the class size. Both sums below are then finite sums of $65$ integers, which a
+reader can recompute directly.
+
+The identity class also checks the one input we take as given. Since $7$ and
+$15$ are odd, \eqref{eq:homology} forces $\Psi(1)=239+14=253$, and the value
+computed here from $F_1$ by \eqref{eq:recurrence} is the entry $253$ at type
+\stype{111111|-} in Appendix~\ref{app:table}. Thus the reduced Euler
+characteristic $\widetilde\chi(X^{6,4})=-253$ is recovered from the
+fixed-orbit data alone, and an error in the Betti numbers of
+\cite[Appendix~C.3]{GMW} would have to leave their alternating sum intact.
+
+\begin{proposition}\label{prop:average}
+The class function $\Psi$ satisfies
+\[
+\sum_{g\in G}\Psi(g)=138240,
+\qquad
+\frac1{|G|}\sum_{g\in G}\Psi(g)=3.
+\]
+\end{proposition}
+
+\begin{proof}
+Using \eqref{eq:class-size} and the values in Appendix~\ref{app:table}, exact
+summation gives
+\[
+\sum_{\alpha,\beta}|C_{\alpha,\beta}|=46080=2^6 6!,
+\qquad
+\sum_{\alpha,\beta}|C_{\alpha,\beta}|\Psi(\alpha;\beta)=138240.
+\]
+Division gives the stated average.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For a finite-dimensional $G$-representation $V$ over $\Q$, character
+averaging gives
+\[
+\frac1{|G|}\sum_{g\in G}\operatorname{tr}(g\mid V)=\dim_{\Q}V^G.
+\]
+By \eqref{eq:homology}, the only nonzero reduced homology groups occur in the
+odd degrees $7$ and $15$. Moreover $H_i(K;\Bbbk)=\widetilde H_i(K;\Bbbk)$ for
+$i\ge1$, so the two degrees in question are unaffected by the passage between
+reduced and unreduced homology. Proposition~\ref{prop:average} therefore
+yields
+\[
+3=\dim_{\Q}H_7(K;\Q)^G+
+  \dim_{\Q}H_{15}(K;\Q)^G.
+\]
+At least one summand is at least $2$. Since $\Q[G]$ is semisimple, this
+summand is the multiplicity of the trivial representation.
+
+For any characteristic-zero field $\Bbbk$, extension of scalars gives
+\[
+H_i(K;\Bbbk)\cong H_i(K;\Q)\otimes_{\Q}\Bbbk.
+\]
+Invariants commute with this extension because they are the image of the
+Reynolds idempotent $|G|^{-1}\sum_{g\in G}g$. Thus the same equality and
+conclusion hold over $\Bbbk$.
+\end{proof}
+
+\appendix
+\section{Conjugacy-class certificate}\label{app:table}
+
+Partitions are written by concatenating their parts, and \stype{-} denotes
+the empty partition. Thus \stype{22|11} denotes $((2,2);(1,1))$; the first
+partition records even-parity cycles and the second odd-parity cycles.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrr@{\qquad}lrr@{\qquad}lrr@{}}
+\toprule
+Type & $|C|$ & $\Psi$ & Type & $|C|$ & $\Psi$ & Type & $|C|$ & $\Psi$\\
+\midrule
+\stype{-|111111} & 1 & 1 & \stype{-|21111} & 30 & 1
+  & \stype{-|2211} & 180 & 17 \\
+\stype{-|222} & 120 & 1 & \stype{-|3111} & 160 & 1
+  & \stype{-|321} & 960 & 1 \\
+\stype{-|33} & 640 & 1 & \stype{-|411} & 720 & 1
+  & \stype{-|42} & 1440 & 1 \\
+\stype{-|51} & 2304 & 1 & \stype{-|6} & 3840 & 1
+  & \stype{1|11111} & 6 & 1 \\
+\stype{1|2111} & 120 & 5 & \stype{1|221} & 360 & 17
+  & \stype{1|311} & 480 & 1 \\
+\stype{1|32} & 960 & 5 & \stype{1|41} & 1440 & 5
+  & \stype{1|5} & 2304 & 1 \\
+\stype{11|1111} & 15 & 53 & \stype{11|211} & 180 & 5
+  & \stype{11|22} & 180 & 5 \\
+\stype{11|31} & 480 & 5 & \stype{11|4} & 720 & 5
+  & \stype{111|111} & 20 & 53 \\
+\stype{111|21} & 120 & 9 & \stype{111|3} & 160 & 5
+  & \stype{1111|11} & 15 & 9 \\
+\stype{1111|2} & 30 & 9 & \stype{11111|1} & 6 & 9
+  & \stype{111111|-} & 1 & 253 \\
+\stype{2|1111} & 30 & 3 & \stype{2|211} & 360 & -1
+  & \stype{2|22} & 360 & 3 \\
+\stype{2|31} & 960 & 3 & \stype{2|4} & 1440 & -1
+  & \stype{21|111} & 120 & 3 \\
+\stype{21|21} & 720 & 3 & \stype{21|3} & 960 & 3
+  & \stype{211|11} & 180 & 7 \\
+\stype{211|2} & 360 & 3 & \stype{2111|1} & 120 & 7
+  & \stype{21111|-} & 30 & 11 \\
+\stype{22|11} & 180 & 9 & \stype{22|2} & 360 & 1
+  & \stype{221|1} & 360 & 9 \\
+\stype{2211|-} & 180 & 29 & \stype{222|-} & 120 & 3
+  & \stype{3|111} & 160 & -1 \\
+\stype{3|21} & 960 & 3 & \stype{3|3} & 1280 & 5
+  & \stype{31|11} & 480 & 3 \\
+\stype{31|2} & 960 & 3 & \stype{311|1} & 480 & 3
+  & \stype{3111|-} & 160 & 7 \\
+\stype{32|1} & 960 & 1 & \stype{321|-} & 960 & 5
+  & \stype{33|-} & 640 & 13 \\
+\stype{4|11} & 720 & 3 & \stype{4|2} & 1440 & 3
+  & \stype{41|1} & 1440 & 3 \\
+\stype{411|-} & 720 & 7 & \stype{42|-} & 1440 & 5
+  & \stype{5|1} & 2304 & -1 \\
+\stype{51|-} & 2304 & 3 & \stype{6|-} & 3840 & 3
+  & & & \\
+\bottomrule
+\end{tabular}
+\caption{Exact values of $\Psi(g)=I(F_g;-1)$ on all conjugacy classes.}
+\label{tab:certificate}
+\end{table}
+
+\begin{thebibliography}{9}
+
+\bibitem{GMW}
+F.~Galetto, J.~Monta\~no, and Z.~Wellner,
+\emph{Homology of Vietoris--Rips complexes of hypercube graphs via group
+actions},
+\href{https://arxiv.org/abs/2606.20784}{arXiv:2606.20784v1}, 2026.
+
+\end{thebibliography}
+
+\end{document}

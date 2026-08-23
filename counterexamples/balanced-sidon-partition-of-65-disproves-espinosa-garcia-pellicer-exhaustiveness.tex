@@ -1,0 +1,149 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample for [65] to an Exhaustiveness Conjecture
+    of Espinosa-Garcia and Pellicer},
+  pdfkeywords={Sidon set, Sidon--Ramsey partition, balanced partition,
+    counterexample}
+}
+
+\newtheorem{theorem}{Theorem}
+
+\title[A counterexample to an exhaustiveness conjecture]
+{A Counterexample for $[65]$ to an Exhaustiveness Conjecture
+of Espinosa-Garc\'ia and Pellicer}
+
+\subjclass[2020]{Primary 11B75; Secondary 05D10}
+\keywords{Sidon set, Sidon--Ramsey partition, balanced partition, counterexample}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We exhibit a balanced partition of $[65]$ into seven Sidon sets that is
+not among the five partitions displayed by Espinosa-Garc\'ia and Pellicer
+or their reflections. This refutes their exhaustiveness conjecture in
+arXiv:2309.08553v1; reflection gives a second distinct omitted partition.
+\end{abstract}
+
+\maketitle
+
+Write $[n]=\{1,\ldots,n\}$. A finite set $A\subset\mathbb Z$ is
+\emph{Sidon} if every integer has at most one representation $a+b$ with
+$a,b\in A$ and $a\le b$. A partition of $[n]$ into Sidon sets is a
+\emph{Sidon--Ramsey partition}; it is \emph{balanced} if any two part
+sizes differ by at most one.
+
+Espinosa-Garc\'ia and Pellicer display five balanced partitions of
+$[65]$ into seven Sidon sets and then write, in unnumbered prose
+immediately after the displays \cite[arXiv v1, p.~6]{EGP}:
+\begin{quote}
+These partitions have two parts of $10$ elements each, and five parts
+with $9$ elements each. We conjecture that these and their reflected
+partitions (constructed by including the numbers $66-x$ instead of $x$
+in each part) are all balanced Sidon-Ramsey partitions with those
+parameters.
+\end{quote}
+We call this their \emph{exhaustiveness conjecture}; it carries no
+number in \cite{EGP}. Since $65=7\cdot9+2$, every such partition has two
+parts of size $10$ and five of size $9$, in agreement with the quoted
+sentence.
+
+\begin{theorem}
+The exhaustiveness conjecture quoted above is false.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal P=\{A_1,\ldots,A_7\}$, where
+\begin{align*}
+A_1&=\{1,5,13,23,26,28,37,56,57,63\},&
+A_2&=\{2,20,21,24,33,44,50,58,60,65\},\\
+A_3&=\{3,4,27,30,32,39,43,49,64\},&
+A_4&=\{6,15,16,22,36,40,48,51,53\},\\
+A_5&=\{7,14,19,25,29,38,52,54,55\},&
+A_6&=\{8,11,17,34,41,45,46,59,61\},\\
+A_7&=\{9,10,12,18,31,35,42,47,62\}.&&
+\end{align*}
+The listed integers are pairwise distinct and have union $[65]$; the
+part sizes are $10,10,9,9,9,9,9$.
+
+For finite $A\subset\mathbb Z$, put
+\[
+  \Sigma(A)=\{a+b:a,b\in A,\ a\le b\}.
+\]
+Then $A$ is Sidon exactly when
+$|\Sigma(A)|=\binom{|A|+1}{2}$. Exact addition gives
+\[
+\begin{array}{c|ccccccc}
+ i&1&2&3&4&5&6&7\\ \hline
+ |A_i|&10&10&9&9&9&9&9\\
+ |\Sigma(A_i)|&55&55&45&45&45&45&45
+\end{array}
+\]
+so every $A_i$ is Sidon and $\mathcal P$ is a balanced Sidon--Ramsey
+partition of $[65]$. Equivalently, $A$ is Sidon precisely when the
+$\binom{|A|}{2}$ differences $b-a$ with $a<b$ in $A$ are pairwise
+distinct. That is a check on $45$ differences for each of $A_1$ and
+$A_2$ and on $36$ for each of the remaining five parts, $270$ in all,
+and in each part these differences are pairwise distinct.
+
+We regard partitions as unordered families of parts. The ten
+$10$-element parts occurring in the five partitions displayed in
+\cite[arXiv v1, p.~6]{EGP} are the eight distinct sets
+\begin{align*}
+ &\{1,3,15,22,30,33,46,50,55,56\},&
+&\{2,4,16,23,31,34,47,51,56,57\},\\
+ &\{2,9,17,21,26,27,47,49,60,63\},&
+&\{2,6,14,24,27,29,38,57,58,64\},\\
+ &\{7,10,15,19,33,43,44,50,63,65\},&
+&\{3,9,10,29,38,40,43,53,61,65\},\\
+ &\{3,5,17,24,32,35,48,52,57,58\},&
+&\{2,6,14,16,19,37,38,44,53,64\},
+\end{align*}
+of which the first two occur twice: the first is a part of the first and
+of the second displayed partition, the second a part of the third and of
+the fourth. None of the eight contains $\{2,65\}$ and none contains
+$\{1,64\}$. Therefore no $10$-element part in those partitions or their
+reflections contains $\{2,65\}$. Since $\{2,65\}\subset A_2$, the
+partition $\mathcal P$ is not in the conjectured family.
+
+Let $\rho(x)=66-x$ and apply $\rho$ elementwise to sets and partitions.
+Reflection preserves sizes and the Sidon property, and the conjectured
+family is $\rho$-invariant. Hence $\rho(\mathcal P)$ is another omitted
+partition. It is distinct from $\mathcal P$: the $10$-element part
+$\rho(A_2)$ contains $\{1,64\}$, whereas neither $10$-element part of
+$\mathcal P$ does.
+\end{proof}
+
+The result concerns precisely the statement quoted above, as it appears
+on p.~6 of arXiv:2309.08553v1; no complete census of the balanced
+Sidon--Ramsey partitions of $[65]$ with seven parts is asserted.
+
+We have not been able to consult the published version listed in
+\cite{EGP}, and the e-print stands unrevised at v1, so whether the
+quoted sentence appears unchanged there is left open. The mathematical
+content does not depend on this: $\mathcal P$ and $\rho(\mathcal P)$ are
+balanced Sidon--Ramsey partitions of $[65]$ into seven Sidon sets, and
+by the argument above neither is one of the five partitions displayed in
+\cite{EGP} nor a reflection of one.
+
+\begin{thebibliography}{1}
+
+\bibitem{EGP}
+M.~A. Espinosa-Garc\'ia and D.~Pellicer,
+\emph{Update on Sidon--Ramsey numbers},
+\href{https://arxiv.org/abs/2309.08553v1}{arXiv:2309.08553v1}
+[math.CO] (2023); published in
+\emph{Discrete Appl. Math.} \textbf{378} (2026), 120--124,
+\href{https://doi.org/10.1016/j.dam.2025.07.002}
+{doi:10.1016/j.dam.2025.07.002}.
+
+\end{thebibliography}
+
+\end{document}

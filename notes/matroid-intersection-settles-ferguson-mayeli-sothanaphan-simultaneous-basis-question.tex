@@ -1,0 +1,251 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Simultaneous Exponential Basis for Two Subsets of a Finite Abelian Group}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{tr}}
+
+\title[A simultaneous exponential basis]
+{A Simultaneous Exponential Basis for Two Subsets of a Finite Abelian Group}
+
+\date{}
+
+\subjclass[2020]{Primary 43A40, 42C15; Secondary 05B35}
+\keywords{Finite abelian group, exponential Riesz basis, tight frame,
+matroid intersection}
+
+\begin{document}
+
+\begin{abstract}
+We answer Question~1.8 of Ferguson, Mayeli, and Sothanaphan
+affirmatively: every two nonempty subsets of equal cardinality in a
+finite abelian group admit a simultaneous exponential Riesz basis.
+More generally, two equal-norm tight frames with a common index set
+have a common set of indices, of cardinality the smaller frame
+dimension, selecting vectors that are linearly independent in both
+frames. The proof is a direct application of Edmonds' matroid
+intersection theorem.
+\end{abstract}
+
+\maketitle
+
+\section{The result}
+
+Let $G$ be a finite abelian group with character group $\widehat G$.
+For $E\subseteq G$ and $\Lambda\subseteq\widehat G$, write
+\[
+  \mathcal F(E,\Lambda)
+  =
+  \bigl(\chi(x)\bigr)_{x\in E,\,\chi\in\Lambda}.
+\]
+Ferguson, Mayeli, and Sothanaphan asked whether every pair of
+nonempty equal-cardinality subsets of $G$ has a simultaneous
+exponential Riesz basis \cite[Question~1.8]{FMS}:
+\begin{quote}
+Is it true that for every finite abelian group $G$, and every pair of
+nonempty subsets $E_{1}, E_{2}$ of $G$ such that $|E_{1}|=|E_{2}|$,
+there exists a collection of exponentials
+$\Lambda\subseteq\widehat{G}$ such that the restrictions of the
+exponentials to $E_{1}$ form a Riesz basis for $E_{1}$ and the
+restrictions to $E_{2}$ form a Riesz basis for $E_{2}$?
+\end{quote}
+The question was open as of the latest version of \cite{FMS} (arXiv
+v6, 19 January 2021), which records that ``the above question for two
+subsets is unresolved''; to our knowledge it has not been resolved
+since.
+
+\begin{theorem}\label{thm:main}
+Let $E_1,E_2\subseteq G$ be nonempty and satisfy
+$|E_1|=|E_2|=k$. Then there is a set
+$\Lambda\subseteq\widehat G$, with $|\Lambda|=k$, such that both
+$\mathcal F(E_1,\Lambda)$ and $\mathcal F(E_2,\Lambda)$ are
+nonsingular. Equivalently, the characters in $\Lambda$ restrict to a
+Riesz basis of $L^2(E_i)$ for $i=1,2$.
+\end{theorem}
+
+For cyclic $G$ the existence of a simultaneous basis for an arbitrary
+family of subsets of equal size is due to Kolountzakis; see
+\cite[Prop.~7.3]{FMS}, where the observation is credited to him and
+proved by taking $\Lambda=\{0,1,\ldots,k-1\}$ under the canonical
+identification of $\widehat G$ with $G$ and evaluating a Vandermonde
+determinant. Theorem~\ref{thm:main} removes the cyclicity hypothesis,
+at the cost of restricting to two subsets.
+
+\section{A common set of frame indices}
+
+Write $[n]=\{1,\ldots,n\}$. For a matrix
+$X\in\C^{k\times n}$ and $A\subseteq[n]$, let $X_A$ denote the
+submatrix formed by the columns indexed by $A$.
+
+\begin{proposition}\label{prop:frames}
+For $i=1,2$, let
+\[
+  X_i=
+  \begin{bmatrix}
+    x_{i1}&\cdots&x_{in}
+  \end{bmatrix}
+  \in\C^{k_i\times n}
+\]
+satisfy
+\[
+  X_iX_i^*=\alpha_i I_{k_i},
+  \qquad
+  \|x_{ij}\|_2^2=\frac{\alpha_i k_i}{n}
+  \quad (j\in[n]),
+\]
+where $\alpha_i>0$. Then there is a set $B\subseteq[n]$, with
+$|B|=\min\{k_1,k_2\}$, such that the columns of both $X_{1,B}$ and
+$X_{2,B}$ are linearly independent.
+\end{proposition}
+
+\begin{proof}
+Let $M_i$ be the linear matroid on $[n]$ represented by the columns
+of $X_i$, and write
+\[
+  r_i(A)=\rank X_{i,A}.
+\]
+Since $X_iX_i^*=\alpha_i I_{k_i}$, the rank of $M_i$ is $k_i$.
+For $A\subseteq[n]$, set
+\[
+  Q_i(A)=X_{i,A}X_{i,A}^*.
+\]
+Since
+\[
+  X_iX_i^*-Q_i(A)
+  =X_{i,[n]\setminus A}X_{i,[n]\setminus A}^*\succeq0,
+\]
+we have
+\[
+  0\preceq Q_i(A)\preceq X_iX_i^*=\alpha_i I_{k_i}.
+\]
+The matrix $Q_i(A)$ has rank $r_i(A)$, and each of its nonzero
+eigenvalues is at most $\alpha_i$. Hence
+\[
+  \alpha_i r_i(A)
+  \geq \tr Q_i(A)
+  =\sum_{j\in A}\|x_{ij}\|_2^2
+  =\frac{\alpha_i k_i|A|}{n},
+\]
+so
+\begin{equation}\label{eq:density}
+  r_i(A)\geq\frac{k_i|A|}{n}.
+\end{equation}
+
+Assume without loss of generality that $k_1\leq k_2$. Edmonds'
+matroid intersection theorem \cite{Edmonds} gives
+\[
+  \max\bigl\{|I|: I\text{ is independent in both }M_1\text{ and }M_2\bigr\}
+  =
+  \min_{A\subseteq[n]}
+  \bigl(r_1(A)+r_2([n]\setminus A)\bigr).
+\]
+Using \eqref{eq:density}, for every $A\subseteq[n]$ we have
+\[
+  r_1(A)+r_2([n]\setminus A)
+  \geq
+  \frac{k_1|A|+k_2(n-|A|)}{n}
+  \geq k_1.
+\]
+Thus there is a common independent set of size $k_1$, which is the
+largest possible size in $M_1$.
+\end{proof}
+
+\begin{remark}\label{rem:density}
+The inequalities \eqref{eq:density} are the uniform-density
+conditions for the two column matroids: a loopless matroid on $n$
+elements, of rank $r$ and with rank function $A\mapsto r(A)$, is
+\emph{uniformly dense} if $r(A)\geq r|A|/n$ for every subset $A$ of
+its ground set, equivalently if the density $\rho(A)=|A|/r(A)$ never
+exceeds the density $n/r$ of the ground set itself. This is
+condition~(2) of
+\cite[Theorem~1.1]{DevriendtMulas}. The proof above applies verbatim
+to show that two uniformly dense matroids on a common ground set have
+a common independent set whose size is the smaller of their ranks.
+
+The passage from an equal-norm tight frame to a uniformly dense column
+matroid is the complex counterpart of one of the applications of that
+theorem in \cite{DevriendtMulas}, where a real representable matroid
+is shown to admit a projection representation with constant diagonal
+equal to the reciprocal of its density precisely when it is strictly
+uniformly dense in the sense used there.
+Proposition~\ref{prop:frames} is thus not offered as new in isolation;
+the new content is the resolution of \cite[Question~1.8]{FMS}.
+\end{remark}
+
+\section{Proof of the simultaneous-basis theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Set $n=|G|=|\widehat G|$. For $E\subseteq G$, $|E|=k$, let
+\[
+  F_E=
+  \bigl(\chi(x)\bigr)_{x\in E,\,\chi\in\widehat G}
+  \in\C^{k\times n}.
+\]
+Character orthogonality gives
+\[
+  (F_EF_E^*)_{x,y}
+  =
+  \sum_{\chi\in\widehat G}\chi(x)\overline{\chi(y)}
+  =n\,\delta_{x,y},
+\]
+and therefore $F_EF_E^*=nI_k$. Every column of $F_E$ has squared
+norm $k$, since $|\chi(x)|=1$. Thus $F_E$ satisfies
+Proposition~\ref{prop:frames} with $\alpha=n$.
+
+Apply the proposition to $F_{E_1}$ and $F_{E_2}$, with their columns
+indexed by $\widehat G$. It yields a set
+$\Lambda\subseteq\widehat G$ of cardinality $k$ for which both
+$\mathcal F(E_1,\Lambda)$ and $\mathcal F(E_2,\Lambda)$ have
+linearly independent columns. These square matrices are therefore
+nonsingular. In finite dimension every basis is a Riesz basis.
+\end{proof}
+
+\begin{remark}
+The theorem is sharp with respect to the number of subsets:
+three two-element subsets of $\mathbb Z_2^2$ need not admit a
+simultaneous basis \cite[Example~7.2]{FMS}, where this case is
+likewise credited to Kolountzakis. The argument above is
+qualitative and gives no uniform bound on the condition numbers of
+the two Fourier submatrices. It also applies verbatim to any two
+row restrictions of equal size in a complex Hadamard matrix normalized
+by $HH^*=nI_n$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{DevriendtMulas}
+K.~Devriendt and R.~Mulas,
+\emph{Uniform density in matroids, matrices and graphs},
+Australas. J. Combin. \textbf{94} (2026), no.~1, 145--176.
+
+\bibitem{Edmonds}
+J.~Edmonds,
+\emph{Matroid intersection},
+Ann. Discrete Math. \textbf{4} (1979), 39--49,
+\href{https://doi.org/10.1016/S0167-5060(08)70817-3}
+{doi:10.1016/S0167-5060(08)70817-3}.
+
+\bibitem{FMS}
+S.~Ferguson, A.~Mayeli, and N.~Sothanaphan,
+\emph{Riesz bases of exponentials and multi-tiling in finite abelian
+groups},
+\href{https://arxiv.org/abs/1904.04487}
+{arXiv:1904.04487v6} (2021).
+
+\end{thebibliography}
+
+\end{document}

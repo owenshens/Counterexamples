@@ -1,0 +1,286 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\Av}{\operatorname{Av}}
+\newcommand{\inv}{\operatorname{inv}}
+
+\title[Frankl\'{\i}n's conjecture on $(321,1342)$-avoiders]
+{A Counterexample to a Conjecture of Frankl\'{\i}n on
+$(321,1342)$-Avoiders}
+
+\subjclass[2020]{05A05, 05A15}
+\keywords{permutation patterns, inversions, indecomposable permutations}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Frankl\'{\i}n conjectured that the number of indecomposable permutations
+avoiding $321$ and $1342$ with exactly $k$ inversions is
+$1+\binom{k+1}{2}$. The case $k=1$ already gives a counterexample.
+Using a disjoint structural cover of $\Av(321,1342)$, we determine the
+bivariate generating function of the indecomposable members by length
+and inversions and prove that the exact count is $1+\binom{k}{2}$, so
+the conjectured sequence is the correct one shifted by one in the index.
+The number of indecomposable avoiders of length $n$ is $1+\binom{n}{3}$.
+\end{abstract}
+
+\maketitle
+
+\section{Exact enumeration}
+
+For a set $B$ of patterns, let $\Av(B)$ denote the permutations avoiding
+every pattern in $B$, and let $\inv(\pi)$ be the inversion number of
+$\pi$. A nonempty permutation $\pi=\pi_1\cdots\pi_n$ is
+\emph{indecomposable} if no proper prefix $\pi_1\cdots\pi_j$ has value
+set $\{1,\ldots,j\}$. Define
+\[
+I_k=
+\{\pi\in\Av(321,1342):
+  \pi\text{ is indecomposable and }\inv(\pi)=k\},
+\]
+and let $S_n^*$ be the indecomposable members of $\Av(321,1342)$ of
+length $n$. These are the sets written $I_k(321,1342)$ and
+$S_n^*(321,1342)$ in \cite{Franklin2025}, where the bare symbols $I_k$
+and $S_n^*$ denote the corresponding sets of all indecomposable
+permutations; we use the abbreviated symbols throughout. As recorded in
+\cite{Franklin2025}, an indecomposable permutation of length $n$ has at
+least $n-1$ inversions, so $I_k$ consists of permutations of length at
+most $k+1$ and is in particular finite; this is what makes enumeration
+by inversions possible at all. For the members of $\Av(321,1342)$ the
+same bound is recovered in the proof of Theorem~\ref{thm:main}.
+
+In an unnumbered remark in the introduction of
+\cite[p.~3]{Franklin2025}, offered on the basis of numerical evidence,
+Frankl\'{\i}n writes: ``Another case is $I_k(321,1342)$, which we
+conjecture to have $k(k+1)/2+1$ elements.'' In the abbreviated notation
+this is the assertion
+\[
+|I_k|=1+\binom{k+1}{2}.
+\]
+By Theorem~\ref{thm:main}, the conjectured value $1+\binom{k+1}{2}$ is
+precisely $|I_{k+1}|$, so the conjectured sequence is the correct one
+shifted by one in the index. The shift is not a difference of
+convention: in \cite{Franklin2025} as here, $k$ is the number of
+inversions of the permutation and $I_0=\{1\}$.
+
+A permutation with one inversion is obtained from the identity by
+interchanging two adjacent consecutive values, and it is indecomposable
+only in the case $21$. Hence $I_1=\{21\}$, whereas the conjectured
+formula gives $|I_1|=2$.
+
+The same passage of \cite{Franklin2025} reports experimental evidence
+that $S_n^*(321,1342)$ grows like $n^3/6$; the second formula of
+Theorem~\ref{thm:main} confirms that prediction and sharpens it to the
+closed form $1+\binom{n}{3}$. The asymptotic bound on $S_n^*(321,1342)$
+drawn there from the conjectured count is unaffected by the correction,
+since $1+\binom{k}{2}$ and $1+\binom{k+1}{2}$ are both asymptotic to
+$k^2/2$. The following theorem gives the exact correction.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+J(x,q)=
+\sum_{\substack{\pi\in\Av(321,1342)\\
+                 \pi\text{ indecomposable}}}
+x^{|\pi|}q^{\inv(\pi)}.
+\]
+Then
+\begin{equation}\label{eq:J}
+J(x,q)
+=
+\frac{x}{1-xq}
++
+\frac{x^3q^2}{1-xq}
+\sum_{a\ge0}
+\frac{(xq)^a}
+     {(1-xq^{a+1})(1-xq^{a+2})}.
+\end{equation}
+Consequently, for every $k\ge0$ and $n\ge1$,
+\[
+|I_k|=1+\binom{k}{2},
+\qquad
+|S_n^*|=1+\binom{n}{3}.
+\]
+In particular, the conjectured formula is false for every $k\ge1$.
+\end{theorem}
+
+\begin{proof}
+The disjoint structural cover of Bean, Gudmundsson, and Ulfarsson
+\cite[Proposition~7 and Equation~(6)]{BeanGudmundssonUlfarsson2019}
+shows that every nonempty member of $\Av(321,1342)$ has a unique
+representation of one of the following two types. The cover is stated
+there as a gridded tiling, in which the maximum shares a column with an
+increasing cell and hence interleaves it; we have unpacked it into the
+explicit block form below. All displayed blocks may be empty, and
+inequalities involving blocks are understood elementwise.
+
+In the first type,
+\[
+\pi=\alpha\,n\,\beta,
+\]
+where $\alpha\in\Av(321,1342)$, the block $\beta$ is increasing, and
+all entries of $\alpha$ are smaller than all entries of $\beta$. If
+$\alpha$ is nonempty, its entries are $1,\ldots,|\alpha|$, so $\pi$ is
+decomposable. Thus the indecomposable permutations of this type are
+\[
+n\,1\,2\cdots(n-1),\qquad n\ge1,
+\]
+and their contribution to $J(x,q)$ is
+\[
+\sum_{n\ge1}x^nq^{n-1}
+=
+\frac{x}{1-xq}.
+\]
+
+In the second type,
+\[
+\pi=c\,\gamma_1\gamma_2\,n\,b\,\delta_1\delta_2,
+\]
+where the four blocks are increasing and
+\[
+\gamma_2<b<\delta_1<c<\gamma_1<\delta_2<n.
+\]
+Every such permutation is indecomposable. Indeed, a proper prefix
+ending before $n$ contains $c$ but omits the smaller entry $b$, while a
+proper prefix of length $j<n$ containing $n$ contains a value larger
+than $j$.
+
+Set
+\[
+a=|\gamma_1|,
+\qquad
+u=|\gamma_2|,
+\qquad
+v=|\delta_1|,
+\qquad
+w=|\delta_2|.
+\]
+The length is $3+a+u+v+w$. The inversions are those from $c$ to
+$\gamma_2,b,\delta_1$, from each entry of $\gamma_1$ to
+$\gamma_2,b,\delta_1$, and from $n$ to $b,\delta_1,\delta_2$. Hence
+\[
+\inv(\pi)
+=
+(u+1+v)+a(u+1+v)+(1+v+w)
+=
+2+a(u+v)+a+u+2v+w.
+\]
+Therefore the second type contributes
+\begin{align*}
+&\sum_{a,u,v,w\ge0}
+x^{3+a+u+v+w}
+q^{2+a(u+v)+a+u+2v+w}
+\\
+&\qquad=
+\frac{x^3q^2}{1-xq}
+\sum_{a\ge0}
+\frac{(xq)^a}
+     {(1-xq^{a+1})(1-xq^{a+2})},
+\end{align*}
+which proves \eqref{eq:J}.
+
+As a check on the transcription, the two types give, ignoring
+inversions, the functional equation
+\[
+F(x)
+=
+1
++
+\frac{xF(x)}{1-x}
++
+\frac{x^3}{(1-x)^4}
+\]
+for the generating function $F$ of $\Av(321,1342)$ by length, the
+summand $1$ accounting for the empty permutation. Hence
+\begin{align*}
+F(x)
+&=
+\frac{(1-x)^4+x^3}{(1-x)^3(1-2x)}
+=
+\frac{1-4x+6x^2-3x^3+x^4}{1-5x+9x^2-7x^3+2x^4}
+\\
+&=
+1+x+2x^2+5x^3+13x^4+32x^5+\cdots,
+\end{align*}
+which is the generating function of the class recorded in
+\cite{BeanGudmundssonUlfarsson2019}.
+
+For the first type, $\inv(\pi)=|\pi|-1$; for the second,
+\[
+\inv(\pi)-(|\pi|-1)
+=
+a(u+v)+v
+\ge0.
+\]
+Thus setting $x=1$ is well defined coefficientwise. For every $A\ge0$,
+\[
+\sum_{a=0}^{A}
+\frac{q^a}{(1-q^{a+1})(1-q^{a+2})}
+=
+\frac{1}{1-q}
+\left(
+\frac{1}{1-q}
+-
+\frac{q^{A+1}}{1-q^{A+2}}
+\right).
+\]
+Letting $A\to\infty$ coefficientwise gives
+\[
+\sum_{a\ge0}
+\frac{q^a}{(1-q^{a+1})(1-q^{a+2})}
+=
+\frac{1}{(1-q)^2}.
+\]
+Consequently,
+\[
+J(1,q)
+=
+\frac{1}{1-q}
++
+\frac{q^2}{(1-q)^3},
+\]
+and coefficient extraction yields
+\[
+|I_k|
+=
+1+\binom{k}{2}.
+\]
+Finally, setting $q=1$ in \eqref{eq:J} gives
+\[
+J(x,1)
+=
+\frac{x}{1-x}
++
+\frac{x^3}{(1-x)^4},
+\]
+whose coefficient of $x^n$ is $1+\binom{n}{3}$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{BeanGudmundssonUlfarsson2019}
+C.~Bean, B.~A.~Gudmundsson, and H.~\'{U}lfarsson,
+\emph{Automatic discovery of structural rules of permutation classes},
+Math. Comp. \textbf{88} (2019), no.~318, 1967--1990.
+\href{https://doi.org/10.1090/mcom/3386}
+{doi:10.1090/mcom/3386}.
+
+\bibitem{Franklin2025}
+A.~F.~Frankl\'{\i}n,
+\emph{Pattern avoiding permutations enumerated by inversions},
+Discrete Math. Theor. Comput. Sci. \textbf{27} (2025), no.~1,
+Paper No.~5, 21~pp.
+\href{https://doi.org/10.46298/dmtcs.14437}
+{doi:10.46298/dmtcs.14437}.
+
+\end{thebibliography}
+
+\end{document}

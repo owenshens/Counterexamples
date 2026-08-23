@@ -1,0 +1,323 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to Wirdane's Cyclotomic Catalan Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Cat}{\operatorname{Cat}}
+
+\title[Counterexamples to a Cyclotomic Catalan Conjecture]
+{Counterexamples to Wirdane's Cyclotomic Catalan Conjecture}
+
+\subjclass[2020]{Primary 05A15; Secondary 05A30}
+\keywords{$q$-Catalan numbers, roots of unity, cyclotomic specialization}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We disprove the literal form of Wirdane's Cyclotomic Catalan
+Conjecture, Conjecture~6.6 in arXiv:2605.14682v1. For nontrivial
+cyclotomic orders, the first counterexample in the parameter $n$ is
+$(n,\mu)=(2,3)$. We also give three infinite families of
+counterexamples: $(2m+1,2)$ for $m\ge1$, $(3r+2,3)$ for $r\ge0$,
+and $(p-1,p)$ for every odd prime $p$.
+\end{abstract}
+
+\maketitle
+
+Let $C_0(q)=1$ and, for $n\ge1$, let
+\begin{equation}\label{eq:recurrence}
+  C_n(q)=\sum_{k=0}^{n-1}q^k C_k(q)C_{n-1-k}(q)
+\end{equation}
+be the F\"urlinger--Hofbauer $q$-Catalan numbers~\cite{FH}. Write
+\[
+  \Cat_m=\frac{1}{m+1}\binom{2m}{m},
+  \qquad
+  \mathcal C(t)=\sum_{m\ge0}\Cat_m t^m
+               =1+t\mathcal C(t)^2.
+\]
+At $q=1$, recurrence~\eqref{eq:recurrence} is the Catalan recurrence,
+so $C_n(1)=\Cat_n$.
+
+Fix $\mu\ge2$ and $\zeta_\mu=e^{2\pi i/\mu}$. We first recall the
+objects in terms of which Conjecture~6.6 of~\cite{Wirdane} is stated.
+Let $S_n(312)$ be the set of $312$-avoiding permutations of
+$\{1,\ldots,n\}$, let $S_{n,k}(312)=\{\pi\in S_n(312):\pi_{k+1}=n\}$
+for $0\le k\le n$, and let
+$S'_{n,k}(312)=\bigsqcup_{j=0}^{k}S_{n,j}(312)$. The value $n$ occupies
+exactly one position of each $\pi\in S_n(312)$, so
+$S_{n,0}(312),\ldots,S_{n,n-1}(312)$ partition $S_n(312)$ while
+$S_{n,n}(312)=\varnothing$; hence
+\begin{equation}\label{eq:sprime}
+  S'_{n,n}(312)=S_n(312).
+\end{equation}
+For $1\le i\le\mu$, the $i$-inversions of $\pi$ are counted by
+\[
+  \operatorname{inv}_i(\pi)
+  =\#\bigl\{(a,b):1\le a<b\le n,\ \pi_a>\pi_b,\
+      \pi_a\equiv i\ (\mathrm{mod}\ \mu)\bigr\}
+\]
+\cite[Definition~6.1]{Wirdane}, and the multivariate $q$-Catalan
+triangle is
+\[
+  C_{n,k}(q_1,\ldots,q_\mu)
+  =\sum_{\pi\in S'_{n,k}(312)}\prod_{i=1}^{\mu}
+     q_i^{\operatorname{inv}_i(\pi)}
+\]
+\cite[Definition~6.2]{Wirdane}, its cyclotomic analogue being
+$C_{n,k}^{(\mu)}=C_{n,k}(\zeta_\mu,\ldots,\zeta_\mu)$. Because
+$1,\ldots,\mu$ is a complete residue system modulo $\mu$, each
+inversion $(a,b)$ of $\pi$ is counted by exactly one of the
+$\operatorname{inv}_i$, so
+$\sum_{i=1}^{\mu}\operatorname{inv}_i(\pi)=\operatorname{inv}(\pi)$,
+the inversion number. With~\eqref{eq:sprime} this gives
+\begin{align}\label{eq:diagonal}
+  C_{n,n}^{(\mu)}
+  &=\sum_{\pi\in S_n(312)}
+       \zeta_\mu^{\sum_{i=1}^{\mu}\operatorname{inv}_i(\pi)}
+    =\sum_{\pi\in S_n(312)}
+       \zeta_\mu^{\operatorname{inv}(\pi)}
+    =C_n(\zeta_\mu),
+\end{align}
+the last equality being the interpretation
+\[
+  C_n(q)=\sum_{\pi\in S_n(312)}q^{\operatorname{inv}(\pi)}
+\]
+of~\cite{FH}, recorded in~\cite{Wirdane} as equation~(2) and again as
+Remark~3.4. Equivalently, one may specialize all $q_i$ to a common $q$
+by \cite[Corollary~6.5]{Wirdane} and then invoke
+\cite[Theorem~3.3]{Wirdane}, namely
+$C_{n,k}(q)=\sum_{\pi\in S'_{n,k}(312)}q^{\operatorname{inv}(\pi)}$.
+We do not use \cite[Proposition~2.4]{Wirdane}, which asserts
+$C_{n,n}(q)=C_n(q)$ outright, its proof being deferred there to a work
+in preparation.
+Conjecture~6.6 of~\cite{Wirdane} reads, in full: ``If $\mu\mid(n+1)$:
+$C_{n,n}^{(\mu)}=\frac{1}{\mu}\binom{n+1}{(n+1)/\mu}$.'' By
+\eqref{eq:diagonal} it asserts that, whenever $\mu\mid n+1$,
+\begin{equation}\label{eq:conjecture}
+  C_n(\zeta_\mu)
+  =\frac{1}{\mu}\binom{n+1}{(n+1)/\mu}.
+\end{equation}
+As printed the conjecture places no restriction on $\mu$, and the case
+$\mu=1$ is discussed in \cite[Remark~6.4]{Wirdane}; we standardize on
+$\mu\ge2$ because $\mu=1$ is a degenerate reading of ``cyclotomic'',
+and dispose of $\mu=1$ separately in the closing Remark.
+
+\begin{theorem}\label{thm:main}
+Equation~\eqref{eq:conjecture} is false. Each of the following is an
+infinite family of counterexamples:
+\[
+  (n,\mu)=(2m+1,2)\quad(m\ge1),
+  \qquad
+  (n,\mu)=(3r+2,3)\quad(r\ge0),
+\]
+\[
+  (n,\mu)=(p-1,p)\quad(p\text{ an odd prime}).
+\]
+Among $\mu\ge2$, the least value of $n$ occurring in a counterexample
+is $n=2$, with $\mu=3$.
+\end{theorem}
+
+\begin{proof}
+All generating functions below are formal power series. Set
+\[
+  F_q(z)=\sum_{n\ge0}C_n(q)z^n.
+\]
+Recurrence~\eqref{eq:recurrence} is equivalent to
+\begin{equation}\label{eq:functional}
+  F_q(z)=1+zF_q(z)F_q(qz).
+\end{equation}
+
+\medskip
+\noindent\emph{Order two.}
+Put $F(z)=F_{-1}(z)$. Applying~\eqref{eq:functional} at $z$ and
+$-z$ gives
+\[
+  F(z)=1+zF(z)F(-z),
+  \qquad
+  F(-z)=1-zF(-z)F(z),
+\]
+so $F(z)+F(-z)=2$. Thus, for $H(z)=F(z)-1$,
+\[
+  H(z)=z\bigl(1-H(z)^2\bigr).
+\]
+The unique solution with zero constant term is
+$H(z)=z\mathcal C(-z^2)$. Consequently,
+\begin{equation}\label{eq:minusone}
+  C_{2m}(-1)=0\quad(m\ge1),
+  \qquad
+  C_{2m+1}(-1)=(-1)^m\Cat_m\quad(m\ge0).
+\end{equation}
+For $n=2m+1$, the conjectured value is
+\[
+  \frac12\binom{2m+2}{m+1}=(2m+1)\Cat_m,
+\]
+which differs from~\eqref{eq:minusone} for every $m\ge1$.
+
+\medskip
+\noindent\emph{Order three.}
+Let $\omega=\zeta_3$ and put $A(z)=\mathcal C(z^3)$. Define
+\[
+  G(z)=\frac{1+\omega z^2A(z)}{1-z}.
+\]
+Since $A(z)=1+z^3A(z)^2$ and $1+\omega+\omega^2=0$,
+\[
+  (1+\omega zA(z))(1-\omega z)
+  =(1+\omega z^2A(z))(1+z^2A(z)).
+\]
+Moreover,
+\[
+  G(\omega z)=\frac{1+z^2A(z)}{1-\omega z},
+\]
+so the displayed identity gives $G(z)-1=zG(z)G(\omega z)$. The
+functional equation~\eqref{eq:functional} determines its coefficients
+recursively, so
+\begin{equation}\label{eq:omegaGF}
+  F_\omega(z)=\frac{1+\omega z^2\mathcal C(z^3)}{1-z}.
+\end{equation}
+Therefore, for $r\ge0$,
+\begin{equation}\label{eq:omegaeval}
+  C_{3r+2}(\omega)
+  =1+\omega\sum_{j=0}^{r}\Cat_j.
+\end{equation}
+Its imaginary part is positive, whereas the right side of
+\eqref{eq:conjecture} is real. Thus every $(3r+2,3)$ is a
+counterexample. In particular,
+\[
+  C_2(\omega)=1+\omega\ne1
+  =\frac13\binom31.
+\]
+
+\medskip
+\noindent\emph{Odd prime orders.}
+Let $p$ be an odd prime, $\zeta=\zeta_p$, and
+$\mathfrak p=(1-\zeta)\subset\mathbb Z[\zeta]$. Since
+$\Phi_p(1)=p$,
+\[
+  \mathbb Z[\zeta]/\mathfrak p\cong\mathbb F_p,
+  \qquad \zeta\equiv1\pmod{\mathfrak p}.
+\]
+Hence
+\[
+  C_{p-1}(\zeta)
+  \equiv C_{p-1}(1)
+  =\Cat_{p-1}\pmod{\mathfrak p}.
+\]
+Moreover,
+\[
+  (2p-1)\Cat_{p-1}
+  =\binom{2p-1}{p-1}
+  =\prod_{j=1}^{p-1}\frac{p+j}{j}
+  \equiv1\pmod p,
+\]
+so $\Cat_{p-1}\equiv-1\pmod p$. Therefore
+\[
+  C_{p-1}(\zeta_p)\equiv-1\not\equiv1\pmod{\mathfrak p},
+\]
+the two residues being distinct because $p$ is odd. The value
+predicted by~\eqref{eq:conjecture} at $(n,\mu)=(p-1,p)$
+is $\frac1p\binom p1=1$, proving the prime family.
+
+Finally, no $\mu\ge2$ divides $n+1$ when $n=0$. When $n=1$, the
+only admissible order is $\mu=2$, and both sides of
+\eqref{eq:conjecture} equal $1$. Thus $(2,3)$ has the least possible
+value of $n$.
+\end{proof}
+
+\begin{remark}
+The three families are far from exhausting the failures. Among the
+$81$ pairs $(n,\mu)$ with $\mu\ge2$, $\mu\mid n+1$ and $n\le29$,
+reducing $C_n(q)$ modulo the cyclotomic polynomial $\Phi_\mu(q)$
+shows that~\eqref{eq:conjecture} holds at exactly one of them,
+$(n,\mu)=(1,2)$, and fails at the remaining $80$; the three families
+of Theorem~\ref{thm:main} account for $32$ of the $81$. The
+order-three argument is also the cheapest of the three, using only
+that the left side of~\eqref{eq:conjecture} is not real while the
+right side is; that observation alone disposes of $66$ of the $81$
+pairs, against the $9$ reached by the congruence for odd prime orders.
+\end{remark}
+
+\begin{remark}
+For $\mu=2$, Conjecture~6.6 is in conflict with an assertion made one
+line later in~\cite{Wirdane}. Remark~6.7 there states: ``For $\mu=2$:
+$C_{n,k}^{(2)}=(-1)^{\lfloor n/2\rfloor}C_{n,k}$ (verified for
+$n\le5$).'' Here $C_{n,k}$ is the classical Catalan triangle, obtained
+by setting every $q_i=1$ in Definition~6.2
+\cite[Corollary~6.5]{Wirdane}; the computation
+giving~\eqref{eq:diagonal} then yields $C_{n,n}=C_n(1)=\Cat_n$ on the
+diagonal, so Remark~6.7 asserts that
+$C_n(-1)=(-1)^{\lfloor n/2\rfloor}\Cat_n$. This is false for every
+even $n\ge2$, because $\Cat_n\ne0$ whereas $C_n(-1)=0$
+by~\eqref{eq:minusone}; the smallest instance is $n=2$, where it
+predicts $-\Cat_2=-2$ against $C_2(-1)=0$. At $n=k=3$ three values
+collide: the true one is $C_{3,3}^{(2)}=C_3(-1)=-1$, visible both
+from~\eqref{eq:minusone} and from the value
+$C_{3,3}(q)=1+2q+q^2+q^3$ tabulated in~\cite{Wirdane}; Remark~6.7
+predicts $-\Cat_3=-5$; and Conjecture~6.6 predicts
+$\frac12\binom42=3$. The $\mu=2$ branch of Conjecture~6.6 is
+therefore already contradicted inside~\cite{Wirdane}, independently of
+the counterexamples above.
+\end{remark}
+
+\begin{remark}
+Reference~\cite{Wirdane} commits to the
+Carlitz--F\"urlinger--Hofbauer normalization, through its equation~(1),
+which is~\eqref{eq:recurrence}, and through its Theorem~3.3 and
+Proposition~2.4. Take instead the Gaussian $q$-Catalan number
+\[
+  \widetilde{\Cat}_n(q)=\frac{1}{[n+1]_q}\binom{2n}{n}_{\!q},
+  \qquad [j]_q=1+q+\cdots+q^{j-1},
+\]
+where $\binom{2n}{n}_{\!q}$ is the Gaussian binomial coefficient. Then
+the right-hand side of~\eqref{eq:conjecture} is reproduced exactly at
+$\mu=2$: one has
+$\widetilde{\Cat}_n(-1)=\frac12\binom{n+1}{(n+1)/2}$ for every odd
+$n\le11$, the common values being $1$, $3$, $10$, $35$, $126$, $462$.
+At order three, by contrast,
+$\widetilde{\Cat}_2(q)=1+q^2$, so
+$\widetilde{\Cat}_2(\zeta_3)=1+\zeta_3^2=\frac12-\frac{\sqrt3}{2}i
+\ne1$.
+\end{remark}
+
+\begin{remark}
+The theorem concerns the literal formulation of Conjecture~6.6 in
+arXiv:2605.14682v1, with the cyclotomic specialization derived directly
+from Definitions~6.1 and~6.2 as in~\eqref{eq:diagonal}; no other
+specialization assertion in~\cite{Wirdane} is used. The theorem makes
+no assertion about a later revised formulation. If the trivial order $\mu=1$ is
+admitted, the same formula already fails at $n=2$. The case $p=3$ in
+the prime family coincides with the first member of the order-three
+family.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{FH}
+J.~F\"urlinger and J.~Hofbauer,
+\emph{$q$-Catalan numbers},
+J. Combin. Theory Ser. A \textbf{40} (1985), no.~2, 248--264.
+\href{https://doi.org/10.1016/0097-3165(85)90089-5}
+{doi:10.1016/0097-3165(85)90089-5}.
+
+\bibitem{Wirdane}
+Y.~Wirdane,
+\emph{Combinatorial study of the $q$-Catalan triangle and its
+generalizations},
+arXiv:2605.14682v1 [math.CO], 2026.
+\href{https://arxiv.org/abs/2605.14682v1}
+{arXiv:2605.14682v1}.
+
+\end{thebibliography}
+
+\end{document}

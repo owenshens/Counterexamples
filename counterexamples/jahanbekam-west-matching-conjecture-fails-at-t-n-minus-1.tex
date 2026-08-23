@@ -1,0 +1,130 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Jahanbekam--West Matching Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[Counterexample to the Jahanbekam--West conjecture]
+{A Counterexample to the Jahanbekam--West Matching Conjecture}
+
+\subjclass[2020]{Primary 05C70; Secondary 05C15}
+\keywords{rainbow perfect matching, edge coloring, Jahanbekam--West conjecture, counterexample}
+\date{}
+
+\begin{document}
+\raggedbottom
+
+\begin{abstract}
+Let $m(n,t)$ be the maximum number of colors in an edge-coloring of $K_n$
+containing no $t$ edge-disjoint rainbow perfect matchings. Jahanbekam and
+West conjectured that
+\[
+  m(n,t)=\binom{n-2}{2}+t
+\]
+for even $n>4$ and $2\le t<n$. For every even $n\ge6$, we construct a
+coloring of $K_n$ with $\binom{n-2}{2}+n$ colors and no $n-1$
+edge-disjoint rainbow perfect matchings. Thus the conjecture fails for
+$t=n-1$.
+\end{abstract}
+
+\maketitle
+
+A subgraph of an edge-colored graph is \emph{rainbow} if its edges have
+pairwise distinct colors. For even $n$ and $2\le t<n$, let $m(n,t)$ denote
+the maximum number of colors in an edge-coloring of $K_n$ containing no
+$t$ edge-disjoint rainbow perfect matchings. Jahanbekam and West
+\cite[Theorem~1.1]{JW} proved that
+\[
+  m(n,t)\ge \binom{n-2}{2}+t,
+\]
+with equality when $n>4t+10$. Immediately after that theorem they write
+``We believe that equality holds whenever $n>t\ge2$ if $n>4$; note that
+$m(n,t)=\binom{n-2}{2}+t+1$ when $n=4$'', and at the start of
+\cite[Section~4]{JW}, having described the construction that gives the
+lower bound, ``We conjecture that the construction is optimal for
+$n>t$''. The conjectured range thus includes $t=n-1$, whereas the range
+$n>4t+10$ in which equality is proved never does, since $t=n-1$ there
+would require $n>4n+6$.
+
+The exception at $n=4$ recorded in the first of these sentences is the
+seed of the coloring below. For $n=4$ the set $B$ defined in the proof is
+itself a perfect matching of $K_4$; giving its two edges a common color
+leaves $1+\binom{4}{2}-2=5=\binom{2}{2}+3+1$ colors and, since the three
+perfect matchings of $K_4$ partition $E(K_4)$, no three edge-disjoint
+rainbow perfect matchings. That coloring therefore realizes the value $m(4,3)$
+recorded by Jahanbekam and West, and what follows is the observation that
+the same configuration keeps working at $t=n-1$ for every even $n\ge6$.
+Accordingly, the conjecture should be restated as
+$m(n,t)=\binom{n-2}{2}+t$ for even $n>4$ and $2\le t\le n-2$.
+
+\begin{theorem}
+For every even integer $n\ge6$,
+\[
+  m(n,n-1)\ge \binom{n-2}{2}+n
+  >\binom{n-2}{2}+(n-1).
+\]
+Consequently, the Jahanbekam--West matching conjecture is false at
+$t=n-1$.
+\end{theorem}
+
+\begin{proof}
+Choose distinct vertices $x,y,z\in V(K_n)$ and set
+\[
+  B=\{xv:v\in V(K_n)\setminus\{x,y,z\}\}\cup\{yz\}.
+\]
+Color all edges in $B$ with one color, and give each edge outside $B$ a
+distinct new color. Since $|B|=n-2$, this coloring uses
+\[
+  1+\binom{n}{2}-(n-2)=\binom{n-2}{2}+n
+\]
+colors.
+
+Suppose that $M_1,\ldots,M_{n-1}$ are pairwise edge-disjoint perfect
+matchings. They contain
+\[
+  (n-1)\frac n2=\binom n2
+\]
+edges altogether, and hence partition $E(K_n)$. Let $M_j$ be the matching
+containing $yz$. Since $y$ and $z$ are matched to each other in $M_j$,
+the vertex $x$ is matched in $M_j$ to some
+$v\in V(K_n)\setminus\{x,y,z\}$. Thus $M_j$ contains both $yz$ and $xv$,
+which have the same color. Therefore $M_j$ is not rainbow. The coloring
+contains no $n-1$ edge-disjoint rainbow perfect matchings.
+\end{proof}
+
+\begin{remark}
+The construction gives only the displayed lower bound for $m(n,n-1)$; it
+does not determine this parameter exactly. Nor does it bear on $t\le n-2$.
+Indeed, delete from a $1$-factorization of $K_n$, which exists because $n$
+is even, the factor containing $yz$. Each of the remaining $n-2$ factors
+avoids $yz$ and contains exactly one edge at $x$, so it meets $B$ in at
+most one edge and is therefore rainbow. Hence the coloring above does
+admit $n-2$ pairwise edge-disjoint rainbow perfect matchings, and the
+conjecture is untouched for $t\le n-2$.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{JW}
+S.~Jahanbekam and D.~B. West,
+\newblock \emph{Anti-Ramsey problems for $t$ edge-disjoint rainbow spanning
+subgraphs: cycles, matchings, or trees},
+\newblock J. Graph Theory \textbf{82} (2016), no.~1, 75--89,
+\newblock
+\href{https://doi.org/10.1002/jgt.21888}{doi:10.1002/jgt.21888}.
+\newblock Quoted here from the authors' revised version of April 2015,
+\url{https://dwest.web.illinois.edu/pubs/aramcmt.pdf}.
+
+\end{thebibliography}
+
+\end{document}

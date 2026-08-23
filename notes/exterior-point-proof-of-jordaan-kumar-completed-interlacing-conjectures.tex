@@ -1,0 +1,469 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Exterior-Point Proof of Two Completed-Interlacing Conjectures}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\title[Two completed-interlacing conjectures]
+{An Exterior-Point Proof of Two Completed-Interlacing Conjectures}
+
+\date{}
+
+\subjclass[2020]{33C45, 42C05}
+\keywords{zero interlacing, Meixner--Pollaczek polynomials,
+pseudo-Jacobi polynomials}
+
+\begin{document}
+
+\begin{abstract}
+We prove Conjectures~1 and~2 of Jordaan and Kumar on two-point completed
+interlacing for Meixner--Pollaczek and pseudo-Jacobi polynomials.  The common
+mechanism is an exterior-point criterion: in the relevant mixed recurrence,
+the zero of the linear coefficient lies outside the interval between the two
+completion points.  For pseudo-Jacobi polynomials, we also give a
+three-term-recurrence proof, independent of orthogonality, of the
+consecutive-degree interlacing needed throughout the conjectured parameter
+range.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For monic polynomials $G$ and $Q$ of degrees $n+1$ and $n$, respectively, we
+write $G\prec Q$ when their zeros are real and simple and, in increasing order,
+satisfy
+\[
+ y_1<q_1<y_2<\cdots<q_n<y_{n+1}.
+\]
+Jordaan and Kumar developed a general framework for completing interlacing by
+two additional points~\cite{JordaanKumar}.  In the configuration relevant here,
+their Theorem~2.2(e) yields the desired completed interlacing provided that,
+inside the gap of the higher-degree polynomial containing a completion point,
+two consecutive zeros of the lower-degree polynomial straddle that point: with
+$E_1,E_2$ the two completion points, $y_{1,n+1}<\cdots<y_{n+1,n+1}$ the zeros of
+the higher-degree polynomial and $z_{1,n}<\cdots<z_{n,n}$ those of the
+lower-degree one, the hypothesis is
+\[
+ y_{k,n+1}<z_{l,n}<E_1<z_{l+1,n}<y_{k+1,n+1}
+\]
+for the first of the two conclusions, and the analogous condition at $E_2$ for
+the second.  Their Conjectures~1 and~2 assert, for Meixner--Pollaczek and
+pseudo-Jacobi polynomials, that the corresponding completed interlacing holds
+without this extra placement hypothesis whenever the two completion points lie
+in distinct interior gaps of the higher-degree polynomial.
+
+We prove both conjectures.  The key observation is that each mixed recurrence
+has the form
+\[
+ A(x)P(x)=-(x-c)G(x)+(x-r_-)(x-r_+)Q(x),
+\]
+and the distinguished point $c$ lies outside $[r_-,r_+]$.  A direct sign count
+then forces the required local zero configuration and proves the completed
+interlacing without assuming in advance that $P$ is real-rooted or coprime to
+$G$.  The two conjectures are vacuous for $n=1$, so the applications below are
+stated for $n\ge2$.
+
+In the pseudo-Jacobi case the conjectured parameter range is strictly wider than
+the range of the corresponding result in~\cite{JordaanKumar}: Conjecture~2
+allows every $a$ satisfying \eqref{eq:PJrange}, whereas
+\cite[Corollary~6.1]{JordaanKumar} assumes $a<-n-2$.  The residual band
+\[
+ -n-2<a<\frac{-3n-5-\sqrt{n^2+2n+5}}4
+\]
+is nonempty for every $n\ge1$, since $n+3>\sqrt{n^2+2n+5}$, and it is exactly
+the band on which the labels $E_1,E_2$ of~\cite{JordaanKumar} occur in reverse
+order; see Remark~\ref{rem:ordering}.
+
+\section{An exterior-point criterion}
+
+\begin{lemma}[Exterior-point criterion]\label{lem:criterion}
+Let $P,Q,G$ be monic real polynomials of degrees $n,n,n+1$, respectively, with
+$G\prec Q$.  Suppose
+\begin{equation}\label{eq:mixed-general}
+ A(x)P(x)=-(x-c)G(x)+(x-r_-)(x-r_+)Q(x),
+\end{equation}
+where $A(x)>0$ for every $x\in\R$ and $r_-<r_+$.  Assume that $r_-$ and $r_+$
+lie in distinct interior gaps of the zeros of $G$ and that
+\[
+ (c-r_-)(c-r_+)>0.
+\]
+Then
+\begin{align*}
+ c<r_-&\quad\Longrightarrow\quad
+ (x-r_-)G(x)\prec(x-r_+)P(x),\\
+ c>r_+&\quad\Longrightarrow\quad
+ (x-r_+)G(x)\prec(x-r_-)P(x).
+\end{align*}
+\end{lemma}
+
+The positivity hypothesis on $A$ is less general than it appears.  Since
+$G,Q,P$ are monic, the two degree-$(n+2)$ terms on the right of
+\eqref{eq:mixed-general} cancel, so $\deg AP\le n+1$; a polynomial $A$ is
+therefore of degree at most one, and positivity on $\R$ forces $A$ to be a
+positive constant.  This is what both applications below supply.
+
+\begin{proof}
+Let $y_1<\cdots<y_{n+1}$ be the zeros of $G$, put
+$R(x)=(x-r_-)(x-r_+)$, and set $F=RP$.  Since $r_\pm$ lie in gaps of $G$ and
+$c\notin[r_-,r_+]$, evaluating \eqref{eq:mixed-general} at $r_\pm$ shows that
+$P(r_\pm)\ne0$.  At each $y_j$ we have
+\begin{equation}\label{eq:Fsign}
+ A(y_j)F(y_j)=R(y_j)^2Q(y_j)\ne0.
+\end{equation}
+Because $G\prec Q$, the values $Q(y_j)$ alternate in sign.  Hence $F$ has a
+zero in every interval $(y_j,y_{j+1})$.
+
+Suppose first that $c<r_-$, and let $r_-\in(y_k,y_{k+1})$.  The gap containing
+$r_+$ lies to the right, so
+\[
+ R(y_k)>0>R(y_{k+1}).
+\]
+Monicity and $G\prec Q$ give
+\[
+ \sgn Q(y_k)=\sgn G(r_-)=-\sgn Q(y_{k+1}).
+\]
+Using \eqref{eq:mixed-general} at $y_k,y_{k+1}$ and at $r_-$ therefore yields
+\[
+ \sgn P(y_k)=\sgn P(y_{k+1})=\sgn G(r_-),
+ \qquad
+ \sgn P(r_-)=-\sgn G(r_-).
+\]
+Thus $P$ has a zero in each of $(y_k,r_-)$ and $(r_-,y_{k+1})$.  Consequently,
+$F$ has at least three distinct zeros in this gap and at least one in each of
+the other $n-1$ interior gaps.  Since $\deg F=n+2$, these are all its zeros and
+all are simple.  In particular, the gap containing $r_+$ has $r_+$ as its
+unique zero of $F$.  Removing the zero $r_-$ from $F=(x-r_-)(x-r_+)P$ shows
+that the zeros of $(x-r_+)P$ occupy exactly the intervals between consecutive
+zeros of $(x-r_-)G$.  This proves the first conclusion.  The case $c>r_+$ is
+symmetric.
+\end{proof}
+
+\section{Meixner--Pollaczek polynomials}
+
+Let $P_m^{(\lambda)}(x;\phi)$ be the monic Meixner--Pollaczek polynomial,
+normalised by $P_{-1}^{(\lambda)}=0$, $P_0^{(\lambda)}=1$ and the
+three-term recurrence
+\begin{equation}\label{eq:MPrec}
+ P_{m+1}^{(\lambda)}(x;\phi)
+ =\bigl(x+(m+\lambda)\cot\phi\bigr)P_m^{(\lambda)}(x;\phi)
+ -\frac{m(m+2\lambda-1)}{4\sin^2\phi}\,P_{m-1}^{(\lambda)}(x;\phi),
+\end{equation}
+valid for $\lambda>0$ and $\phi\in(0,\pi)$.  This fixes the normalisation used
+below; for the family and its orthogonality weight see
+\cite[\href{https://dlmf.nist.gov/18.19}{\S18.19}]{DLMF}.
+For $n\ge2$ and $\lambda>0$, set
+\[
+ \phi_c=\frac12\arccos\!\left(\frac{2\lambda-n-1}{2\lambda+n+1}\right)
+ \in\left(0,\frac\pi2\right)
+\]
+and assume
+\[
+ \phi\in(0,\phi_c)\cup(\pi-\phi_c,\pi).
+\]
+The quadratic
+\begin{equation}\label{eq:T}
+ T(x)=(1-\cos2\phi)x^2+(n+1)\sin2\phi\,x
+ +\lambda^2-\bigl(\lambda^2+(n+1)\lambda\bigr)\cos2\phi
+\end{equation}
+has two distinct real roots $E_1<E_2$ by
+\cite[Lemma~5.1]{JordaanKumar}.  Here $T$ is~\cite[(5.3)]{JordaanKumar} and the
+displayed range of $\phi$ is~\cite[(5.4)]{JordaanKumar}, while the explicit
+roots \cite[(5.7)--(5.8)]{JordaanKumar} are labelled there with $E_1<E_2$, so
+the two labellings agree.  Conjecture~1 of~\cite{JordaanKumar} reads as
+follows, quoted in the source's notation.
+
+\begin{quote}
+\emph{Let $\{y_{k,n+1}\}_{k=1}^{n+1}$ denote the zeros
+of $P_{n+1}^{(\lambda+1)}(x;\phi)$.  Let $E_1, E_2$ be as defined
+in~\textup{(5.7)} and~\textup{(5.8)}, respectively, for $\lambda>0$ and $\phi$
+satisfying~\textup{(5.4)}.  If there exist distinct $k, k' \in \{1, \dots, n\}$
+such that $y_{k,n+1} < E_1 < y_{k+1,n+1}$ and
+$y_{k',n+1} < E_2 < y_{k'+1,n+1}$, then
+\begin{gather*}
+ (x-E_1)P_{n+1}^{(\lambda+1)}(x;\phi) \prec (x-E_2)P_{n}^{(\lambda)}(x;\phi)\\
+ \text{or}\quad
+ (x-E_2)P_{n+1}^{(\lambda+1)}(x;\phi) \prec (x-E_1)P_{n}^{(\lambda)}(x;\phi)
+\end{gather*}
+holds.}
+\end{quote}
+
+\noindent
+Its hypothesis says that $E_1$ and $E_2$ lie in distinct interior gaps of the
+zeros of $P_{n+1}^{(\lambda+1)}(x;\phi)$, and its conclusion is the disjunction
+of the two alternatives below.
+
+\begin{theorem}\label{thm:MP}
+Suppose $E_1$ and $E_2$ lie in distinct interior gaps of the zeros of
+$P_{n+1}^{(\lambda+1)}(x;\phi)$.  Then
+\begin{align*}
+ 0<\phi<\phi_c
+ &\quad\Longrightarrow\quad
+ (x-E_2)P_{n+1}^{(\lambda+1)}(x;\phi)
+ \prec (x-E_1)P_n^{(\lambda)}(x;\phi),\\
+ \pi-\phi_c<\phi<\pi
+ &\quad\Longrightarrow\quad
+ (x-E_1)P_{n+1}^{(\lambda+1)}(x;\phi)
+ \prec (x-E_2)P_n^{(\lambda)}(x;\phi).
+\end{align*}
+In particular, Conjecture~1 of~\cite{JordaanKumar} holds.
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+ P=P_n^{(\lambda)}(x;\phi),\qquad
+ G=P_{n+1}^{(\lambda+1)}(x;\phi),\qquad
+ Q=P_n^{(\lambda+1)}(x;\phi),\qquad
+ c=\lambda\cot\phi.
+\]
+The mixed recurrence in~\cite[(5.10)]{JordaanKumar}, together with
+$1-\cos2\phi=2\sin^2\phi$, is
+\begin{equation}\label{eq:MPmixed}
+ \frac{(2\lambda+n)(2\lambda+n+1)}{2(1-\cos2\phi)}P
+ =-(x-c)G+(x-E_1)(x-E_2)Q.
+\end{equation}
+Both sides of \eqref{eq:MPmixed} have degree at most $n+1$, the
+degree-$(n+2)$ terms on the right cancelling as noted after
+Lemma~\ref{lem:criterion}; the identity may therefore be checked from
+\eqref{eq:MPrec} at $n+2$ points.
+
+The left coefficient is positive.  Also $G$ and $Q$ are Meixner--Pollaczek
+polynomials of consecutive degrees with the same parameters, hence orthogonal
+with respect to a common weight on $\R$
+\cite[\href{https://dlmf.nist.gov/18.19}{\S18.19}]{DLMF}, and the zeros of
+consecutive orthogonal polynomials separate each other
+\cite[\href{https://dlmf.nist.gov/18.2.vi}{\S18.2(vi)}]{DLMF}; thus
+$G\prec Q$.
+Since $T(x)=(1-\cos2\phi)(x-E_1)(x-E_2)$, direct substitution gives
+\[
+ (c-E_1)(c-E_2)
+ =\frac{T(c)}{1-\cos2\phi}
+ =\frac{\lambda(2\lambda+n+1)}{1-\cos2\phi}>0.
+\]
+Thus Lemma~\ref{lem:criterion} applies.  Moreover,
+\[
+ T'(c)=(2\lambda+n+1)\sin2\phi.
+\]
+Because $T$ opens upward and $c\notin[E_1,E_2]$, the derivative is positive
+exactly when $c>E_2$ and negative exactly when $c<E_1$.  It is positive on
+$(0,\phi_c)$ and negative on $(\pi-\phi_c,\pi)$, so the two conclusions follow.
+\end{proof}
+
+\section{Pseudo-Jacobi polynomials}
+
+Let $P_m(x;\alpha,b)$ denote the monic pseudo-Jacobi polynomial; see
+\cite{JordaanTookos,JordaanKumar}.  As in the previous section we fix the
+normalisation by a recurrence: throughout, $P_m(x;\alpha,b)$ is determined by
+$P_{-1}=0$, $P_0=1$ and \eqref{eq:PJrec} below.  We first record a proof of the
+consecutive-degree interlacing needed later, using nothing beyond that
+recurrence.
+
+\begin{lemma}\label{lem:PJinterlace}
+Let
+\[
+ n\ge1,\qquad b\in\R,\qquad
+ \alpha<-n-\tfrac12,\qquad \alpha\ne-n-1.
+\]
+Then
+\[
+ P_{n+1}(x;\alpha,b)\prec P_n(x;\alpha,b).
+\]
+\end{lemma}
+
+\begin{proof}
+We first record that \eqref{eq:PJrec} is the recurrence of the classical
+family, so that the normalisation fixed above is the usual one; the interlacing
+argument itself uses \eqref{eq:PJrec}--\eqref{eq:gamma} alone.
+Comparing the pseudo-Jacobi definition with the Jacobi hypergeometric formula
+\cite[\href{https://dlmf.nist.gov/18.5.E7}{(18.5.7)}]{DLMF} gives
+\[
+ P_m(x;\alpha,b)
+ =i^{-m}\widehat P_m^{(\alpha+ib,\alpha-ib)}(ix),
+\]
+where $\widehat P_m^{(\mu,\nu)}$ is the monic Jacobi polynomial.  The monic
+Jacobi recurrence coefficients
+\cite[\href{https://dlmf.nist.gov/3.5.E33_1}{(3.5.33\_1)}]{DLMF} are rational in
+the parameters and therefore extend wherever their denominators are nonzero.
+Substitution yields, for $0\le m\le n$,
+\begin{equation}\label{eq:PJrec}
+ P_{m+1}(x;\alpha,b)
+ =\left(x+\frac{\alpha b}{(m+\alpha)(m+\alpha+1)}\right)P_m(x;\alpha,b)
+ -\gamma_mP_{m-1}(x;\alpha,b),
+\end{equation}
+where $P_{-1}=0$, $P_0=1$, and
+\begin{equation}\label{eq:gamma}
+ \gamma_m
+ =-\frac{m(m+2\alpha)\bigl((m+\alpha)^2+b^2\bigr)}
+ {(m+\alpha)^2(2m+2\alpha-1)(2m+2\alpha+1)}.
+\end{equation}
+The stated assumptions make every denominator in
+\eqref{eq:PJrec}--\eqref{eq:gamma} nonzero.  For $1\le m\le n$, the three
+factors $m+2\alpha$, $2m+2\alpha-1$, and $2m+2\alpha+1$ are negative, and hence
+$\gamma_m>0$.
+
+Thus $P_m$ is the characteristic polynomial of the leading $m\times m$
+principal block of a real symmetric tridiagonal matrix whose off-diagonal
+entries are $\sqrt{\gamma_m}$.  The matrix is irreducible, so strict
+principal-minor interlacing gives the result.  Equivalently, equality at a
+putative common zero would propagate backward through \eqref{eq:PJrec} to
+$P_0=0$, a contradiction.
+\end{proof}
+
+Assume henceforth that
+\begin{equation}\label{eq:PJrange}
+ a<\frac{-3n-5-\sqrt{n^2+2n+5}}4,
+ \qquad a\ne-n-2,
+\end{equation}
+and
+\begin{equation}\label{eq:brange}
+ |b|>
+ \sqrt{\frac{4(a+n+1)^2(a+n+2)^2(-2a-n-2)}
+ {(n+1)\left|4(a+n+1)^2-(2n-2)(a+n+1)-(n+1)\right|}}.
+\end{equation}
+Define
+\begin{equation}\label{eq:R}
+ R_{n,a,b}(x)
+ =x^2-\frac{b(n+1)}{(a+n+1)(a+n+2)}x
+ +\frac{(a+n+1)(a+n+2)(2a+n+2)+b^2(n+1)}
+ {(a+n+1)(a+n+2)(2a+2n+3)}.
+\end{equation}
+Under \eqref{eq:PJrange}--\eqref{eq:brange}, this polynomial has two distinct
+real roots by~\cite[Lemma~6.1]{JordaanKumar}; write them in increasing order as
+$e_-<e_+$.  Here \eqref{eq:R}, \eqref{eq:PJrange} and \eqref{eq:brange}
+are~\cite[(6.2), (6.3), (6.4)]{JordaanKumar}, and the explicit roots
+\cite[(6.8)--(6.9)]{JordaanKumar} are labelled there $E_1,E_2$.  Conjecture~2
+of~\cite{JordaanKumar} reads as follows, quoted in the source's notation.
+
+\begin{quote}
+\emph{Let $\{y_{k,n+1}\}_{k=1}^{n+1}$ be the zeros of
+$P_{n+1}(x;a+1,b)$. Let $E_1$ and $E_2$ be given by~\textup{(6.8)}
+and~\textup{(6.9)}, where $a$ and $b$ satisfy the corresponding
+conditions~\textup{(6.3)} and~\textup{(6.4)}.  If there exist distinct
+$k, k' \in \{1, \dots, n\}$ such that $y_{k,n+1} < E_1 < y_{k+1,n+1}$ and
+$y_{k',n+1} < E_2 < y_{k'+1,n+1}$, then
+\begin{gather*}
+ (x-E_1) P_{n+1}(x;a+1,b) \prec (x-E_2)P_{n}(x;a,b)\\
+ \text{or}\quad
+ (x-E_2)P_{n+1}(x;a+1,b) \prec (x-E_1)P_{n}(x;a,b)
+\end{gather*}
+holds.}
+\end{quote}
+
+\noindent
+Again the hypothesis says that the two completion points lie in distinct
+interior gaps of the zeros of $P_{n+1}(x;a+1,b)$, and the conclusion is a
+disjunction; see Remark~\ref{rem:ordering} for the labelling.
+
+\begin{theorem}\label{thm:PJ}
+Let $n\ge2$, and suppose $e_-$ and $e_+$ lie in distinct interior gaps of the
+zeros of $P_{n+1}(x;a+1,b)$.  Set
+\[
+ \Delta_c=\frac{b(2a+n+3)}{(a+n+1)(a+n+2)}.
+\]
+Then $\Delta_c\ne0$ and
+\begin{align*}
+ \Delta_c<0
+ &\quad\Longrightarrow\quad
+ (x-e_-)P_{n+1}(x;a+1,b)
+ \prec (x-e_+)P_n(x;a,b),\\
+ \Delta_c>0
+ &\quad\Longrightarrow\quad
+ (x-e_+)P_{n+1}(x;a+1,b)
+ \prec (x-e_-)P_n(x;a,b).
+\end{align*}
+In particular, Conjecture~2 of~\cite{JordaanKumar} holds.
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+ u=a+n+1,\qquad c=\frac bu,
+\]
+and
+\[
+ P=P_n(x;a,b),\qquad
+ G=P_{n+1}(x;a+1,b),\qquad
+ Q=P_n(x;a+1,b).
+\]
+The mixed recurrence~\cite[(6.10)]{JordaanKumar}, valid whenever its
+coefficients are defined, is
+\begin{equation}\label{eq:PJmixed}
+ AP=-(x-c)G+R_{n,a,b}(x)Q,
+\end{equation}
+where
+\[
+ A=\frac{2(2u-n-1)(2u-n)(u^2+b^2)}
+ {u(2u-1)(2u)(2u+1)}.
+\]
+The bound \eqref{eq:PJrange} is strictly smaller than $-n-\tfrac32$, so
+$u<-\tfrac12$ and therefore $A>0$.  It also gives
+$a+1<-n-\tfrac12$, while $a\ne-n-2$ gives $a+1\ne-n-1$.
+Lemma~\ref{lem:PJinterlace} therefore yields $G\prec Q$.
+
+A direct calculation gives
+\begin{equation}\label{eq:Rc}
+ R_{n,a,b}(c)
+ =\frac{(2u-n)(u^2+b^2)}{u^2(2u+1)}>0.
+\end{equation}
+Since $R_{n,a,b}$ is monic with roots $e_-<e_+$, it follows that
+$c\notin[e_-,e_+]$, and Lemma~\ref{lem:criterion} applies.  Finally,
+\[
+ R_{n,a,b}'(c)=\Delta_c.
+\]
+For an upward-opening quadratic at a point outside its root interval,
+$R'(c)<0$ exactly when $c<e_-$ and $R'(c)>0$ exactly when $c>e_+$.
+The stated alternatives follow, and $\Delta_c\ne0$.
+\end{proof}
+
+\begin{remark}[Ordering of the completion points]\label{rem:ordering}
+The formulas labelled $E_1,E_2$ in~\cite[(6.8)--(6.9)]{JordaanKumar} are
+in increasing order when $a<-n-2$ and in reverse order on the remaining
+admissible band.  Using $e_-<e_+$ removes this notational reversal.
+Conjecture~2 is a disjunction of the two displayed interlacings and is
+invariant under exchanging the two labels, so Theorem~\ref{thm:PJ} proves the
+conjecture exactly as stated.
+\end{remark}
+
+\small
+\begin{thebibliography}{9}
+
+\bibitem{DLMF}
+NIST Digital Library of Mathematical Functions,
+\url{https://dlmf.nist.gov/}, Release 1.2.7 of 2026-06-15,
+F.~W.~J. Olver, A.~B. Olde Daalhuis, D.~W. Lozier, B.~I. Schneider,
+R.~F. Boisvert, C.~W. Clark, B.~R. Miller, B.~V. Saunders, H.~S. Cohl,
+and M.~A. McClain, eds.
+
+\bibitem{JordaanKumar}
+K.~Jordaan and V.~Kumar,
+\emph{Two-point completion of zero interlacing and Wronskian-type bounds,
+with applications to Jacobi and other orthogonal polynomials},
+\href{https://arxiv.org/abs/2604.25692v2}
+{arXiv:2604.25692v2 [math.CA]}, 2026.
+
+\bibitem{JordaanTookos}
+K.~Jordaan and F.~To\'okos,
+\emph{Orthogonality and asymptotics of pseudo-Jacobi polynomials for
+non-classical parameters},
+J. Approx. Theory \textbf{178} (2014), 1--12,
+\href{https://doi.org/10.1016/j.jat.2013.10.003}
+{doi:10.1016/j.jat.2013.10.003}.
+
+\end{thebibliography}
+
+\end{document}

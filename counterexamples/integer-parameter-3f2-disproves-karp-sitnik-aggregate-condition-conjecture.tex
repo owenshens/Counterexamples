@@ -1,0 +1,285 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Aggregate-Condition Form of Karp--Sitnik Conjecture 1}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{A Counterexample to the Aggregate-Condition Form of
+Karp--Sitnik Conjecture 1}
+\subjclass[2020]{Primary 33C20; Secondary 26D15}
+\keywords{generalized hypergeometric function, Karp--Sitnik conjecture,
+aggregate condition, majorization, counterexample}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+We consider the nonredundant aggregate-condition form of Conjecture~1 of
+Karp and Sitnik, in which the componentwise conditions $b_i>a_i>0$ are
+replaced by $\sum_i(b_i-a_i)>0$ while positivity is retained. We give the
+exact counterexample
+\[
+ {}_3F_2\!\left(
+ \begin{matrix}2,2,2\\1,5\end{matrix};-\frac12
+ \right)
+ =1032-2544\log\frac32<\frac{25}{49}.
+\]
+Thus the aggregate condition is insufficient already for $q=2$, $\sigma=2$,
+positive integer parameters, and $\prod_i a_i/b_i<1$. A quadratic expansion
+also gives an infinite family of counterexamples for every $\sigma>0$.
+\end{abstract}
+
+\maketitle
+
+Let $q\ge1$. For $A=(a_1,\ldots,a_q)$ and $B=(b_1,\ldots,b_q)$ in
+$(0,\infty)^q$, set
+\[
+ H_{\sigma,A,B}(x)
+ :=
+ {}_{q+1}F_q\!\left(
+ \begin{matrix}
+ \sigma,a_1,\ldots,a_q\\
+ b_1,\ldots,b_q
+ \end{matrix};-x
+ \right),
+ \qquad
+ \mu(A,B):=\prod_{i=1}^q\frac{a_i}{b_i}.
+\]
+Karp and Sitnik proved that for $b_i>a_i>0$, $\sigma\ge1$ and $x>-1$,
+\begin{equation}\label{eq:bound}
+ (1+\mu(A,B)x)^{-\sigma}<H_{\sigma,A,B}(x),
+\end{equation}
+\cite[Theorem~3]{KS}. Their Conjecture~1 reads, in full, ``Theorem~3 is
+true for all $\sigma>0$ and $\sum_{i=1}^{q}(b_i-a_i)>0$''
+\cite[Conjecture~1]{KS}. We read the condition
+\begin{equation}\label{eq:aggregate}
+ \sum_{i=1}^q(b_i-a_i)>0
+\end{equation}
+as replacing the componentwise inequalities $b_i>a_i$ of Theorem~3, all
+parameters remaining positive. Three features of \cite{KS} force this
+reading. First, \eqref{eq:aggregate} is automatic under $b_i>a_i$, so on
+the componentwise reading it would be an idle clause. Second, Conjecture~2
+of \cite{KS} lists ``$0<\sigma\le\min(a_1,a_2,\ldots,a_q)$,
+$\sum_{i=1}^{q}(b_i-a_i)>0$ and $x>0$'' as its complete parameter
+hypothesis, with no componentwise clause; in \cite{KS} the aggregate
+condition is thus used as a substitute for $b_i>a_i$ and not as an addition
+to it. Third, in the discussion following Theorem~3 the authors record that
+\eqref{eq:bound} for $b_i\ge a_i>0$, $\sigma>0$ and $x>0$ is already due to
+Luke, and that under the componentwise hypotheses the only case left open
+is $0<\sigma<1$ with $-1<x<0$, which they conjecture there in prose; a
+componentwise Conjecture~1 would therefore restate a theorem they credit to
+Luke on $x>0$ and that prose conjecture on $-1<x<0$.
+
+The two halves of Conjecture~1 have fared differently. The relaxation of
+$\sigma\ge1$ to $\sigma>0$ is established on ranges controlled by
+majorization, in \cite[Theorem~5]{KP} and, on a wider Meijer-$G$ range, in
+\cite{Derbazi}, where the resulting lower bound is described as settling
+``Conjecture~1 of \cite{KS} on that range'', with the remark that neither
+bound obtained there ``addresses the broader conjectural condition
+$\sum_i(b_i-a_i)>0$'' \cite[discussion following
+Proposition~3.3]{Derbazi}. It is that broader condition, the replacement of
+$b_i>a_i>0$ by \eqref{eq:aggregate}, which fails. The counterexample below
+is taken at $x=1/2$, which lies in the range $x>-1$ of Theorem~3 as well as
+in the range $x>0$ of the bound credited to Luke in \cite{KS}, so the
+refutation does not depend on which of the two $x$-ranges is attached to
+Conjecture~1.
+
+\begin{theorem}\label{thm:counterexample}
+The aggregate-condition form of Conjecture~1 of Karp and Sitnik is false.
+In fact,
+\[
+ H_{2,(2,2),(1,5)}\!\left(\frac12\right)
+ <
+ \left(1+\frac45\cdot\frac12\right)^{-2}
+ =\frac{25}{49}.
+\]
+\end{theorem}
+
+\begin{proof}
+The parameters satisfy
+\[
+ (1-2)+(5-2)=2>0,
+ \qquad
+ \mu((2,2),(1,5))=\frac45.
+\]
+The coefficient of $z^n$ in ${}_3F_2(2,2,2;1,5;z)$ is
+\[
+ \frac{(2)_n^3}{(1)_n(5)_n n!}
+ =
+ \frac{24(n+1)^2}{(n+2)(n+3)(n+4)}
+ =
+ \frac{12}{n+2}-\frac{96}{n+3}+\frac{108}{n+4}.
+\]
+For $0<|z|<1$ and an integer $r\ge1$,
+\[
+ \sum_{n=0}^{\infty}\frac{z^n}{n+r}
+ =
+ z^{-r}\left(
+ -\log(1-z)-\sum_{j=1}^{r-1}\frac{z^j}{j}
+ \right).
+\]
+Substituting $z=-1/2$ gives
+\begin{equation}\label{eq:closed}
+ {}_3F_2\!\left(
+ \begin{matrix}2,2,2\\1,5\end{matrix};-\frac12
+ \right)
+ =
+ 1032-2544\log\frac32.
+\end{equation}
+Moreover,
+\[
+ \log\frac32
+ =
+ 2\operatorname{artanh}\frac15
+ =
+ 2\sum_{k=0}^{\infty}\frac{1}{(2k+1)5^{2k+1}}
+ >
+ 2\left(\frac15+\frac1{375}+\frac1{15625}\right)
+ =
+ \frac{19006}{46875}.
+\]
+Therefore
+\[
+ 1032-2544\log\frac32
+ <
+ \frac{7912}{15625}
+ <
+ \frac{25}{49},
+\]
+where the last inequality follows from
+\[
+ 25\cdot15625-49\cdot7912=2937>0.
+\]
+\end{proof}
+
+The value $q=2$ is minimal for this phenomenon, since for $q=1$ condition
+\eqref{eq:aggregate} is exactly $b_1>a_1$.
+
+\begin{proposition}\label{prop:local}
+Let $A,B\in(0,\infty)^q$ and $\sigma>0$, and define
+\[
+ P_A:=\prod_{i=1}^q\left(1+\frac1{a_i}\right),
+ \qquad
+ P_B:=\prod_{i=1}^q\left(1+\frac1{b_i}\right).
+\]
+If $P_B>P_A$, then there exists $\varepsilon>0$ such that
+\[
+ H_{\sigma,A,B}(x)<(1+\mu(A,B)x)^{-\sigma}
+ \qquad (0<x<\varepsilon).
+\]
+\end{proposition}
+
+\begin{proof}
+As $x\to0$,
+\begin{align*}
+ H_{\sigma,A,B}(x)
+ &=
+ 1-\sigma\mu x
+ +\frac{\sigma(\sigma+1)}2
+  \mu^2\frac{P_A}{P_B}x^2
+ +O(x^3),\\
+ (1+\mu x)^{-\sigma}
+ &=
+ 1-\sigma\mu x
+ +\frac{\sigma(\sigma+1)}2\mu^2x^2
+ +O(x^3),
+\end{align*}
+where $\mu=\mu(A,B)$. Hence
+\[
+ H_{\sigma,A,B}(x)-(1+\mu x)^{-\sigma}
+ =
+ \frac{\sigma(\sigma+1)}2\mu^2
+ \left(\frac{P_A}{P_B}-1\right)x^2
+ +O(x^3),
+\]
+whose leading coefficient is negative when $P_B>P_A$. The difference is
+therefore negative for all sufficiently small $x>0$.
+\end{proof}
+
+\begin{corollary}\label{cor:family}
+For every integer $m\ge2$ and every $\sigma>0$, let
+\[
+ A=(m,m),
+ \qquad
+ B=(1,m^2+1).
+\]
+Then \eqref{eq:aggregate} holds and $\mu(A,B)<1$, but \eqref{eq:bound} fails
+for all sufficiently small $x>0$.
+\end{corollary}
+
+\begin{proof}
+Here
+\[
+ \sum_{i=1}^2(b_i-a_i)=m^2-2m+2>0,
+ \qquad
+ \mu(A,B)=\frac{m^2}{m^2+1}<1.
+\]
+Also
+\[
+ P_A=\left(1+\frac1m\right)^2,
+ \qquad
+ P_B=2\left(1+\frac1{m^2+1}\right).
+\]
+For $m=2$,
+\[
+ P_A=\frac94<\frac{12}{5}=P_B;
+\]
+for $m\ge3$,
+\[
+ P_A\le\frac{16}{9}<2<P_B.
+\]
+Proposition~\ref{prop:local} applies.
+\end{proof}
+
+Karp and Prilepkina later proved \eqref{eq:bound} for every $\sigma>0$
+under weak supermajorization \cite[Theorem~5]{KP}; there $B\prec^W A$ means
+that, both vectors being arranged increasingly,
+$\sum_{i=1}^{k}a_i\le\sum_{i=1}^{k}b_i$ for $k=1,\ldots,q$. The present
+example is not covered: after increasing rearrangement the case $k=1$ of
+this condition would require $a_1\le b_1$, that is, $2\le1$. Its case
+$k=q$, on the other hand, is \eqref{eq:aggregate} with equality allowed, so
+Theorem~\ref{thm:counterexample} shows that the hypothesis $B\prec^W A$ in
+\cite[Theorem~5]{KP} cannot be weakened to that final partial sum alone.
+
+\begin{thebibliography}{9}
+\small
+
+\bibitem{KS}
+D. Karp and S. M. Sitnik,
+\emph{Inequalities and monotonicity of ratios for generalized hypergeometric
+function},
+J. Approx. Theory \textbf{161} (2009), no.~1, 337--352.
+\href{https://doi.org/10.1016/j.jat.2008.10.002}
+{doi:10.1016/j.jat.2008.10.002};
+\href{https://arxiv.org/abs/math/0703084}
+{arXiv:math/0703084v2}.
+The theorem and conjecture numbers cited above are those of the arXiv
+version.
+
+\bibitem{Derbazi}
+Z. Derbazi,
+\emph{A probabilistic sign rule for quotients of positive series and integral
+transforms},
+\href{https://arxiv.org/abs/2607.02511}
+{arXiv:2607.02511v1 [math.CA]}, 2026.
+
+\bibitem{KP}
+D. Karp and E. Prilepkina,
+\emph{Hypergeometric functions as generalized Stieltjes transforms},
+J. Math. Anal. Appl. \textbf{393} (2012), no.~2, 348--359.
+\href{https://doi.org/10.1016/j.jmaa.2012.03.044}
+{doi:10.1016/j.jmaa.2012.03.044}.
+
+\end{thebibliography}
+
+\end{document}

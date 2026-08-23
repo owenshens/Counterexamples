@@ -1,0 +1,200 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Class 69 Equidistribution Conjecture on Involutions}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sn}{\mathfrak{S}_n}
+\newcommand{\In}{\mathcal{I}_n}
+\newcommand{\occ}{\operatorname{occ}}
+
+\title[Class 69 on involutions]
+{A Counterexample to the Class 69 Equidistribution Conjecture on Involutions}
+\date{}
+
+\subjclass[2020]{05A05, 05A15}
+\keywords{mesh pattern, permutation pattern, involution, equidistribution,
+counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Fang, Fu, Kitaev, Li, Su, and Sun conjectured that the four length-two
+mesh patterns in Class~69 are equidistributed on involutions. We
+refute their conjecture, as stated in arXiv:2606.14367v1, at the
+minimal size $n=3$. The two reverse-complement pairs have involution
+distribution polynomials $2+q+q^2$ and $1+2q+q^2$, respectively; in
+particular, their avoidance counts are different.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Mesh patterns were introduced by Br\"and\'en and Claesson~\cite{BC11}.
+Using the convention that a mesh cell is indexed by the coordinates of
+its lower-left corner, let $p_r=(12,R_r)$, where the four Class~69
+patterns are listed in the order of Fang et al.~\cite[Conjecture~1]{FFKLSS26}:
+\[
+\begin{aligned}
+R_1&=\{(0,0),(1,1),(1,2),(2,1)\},\\
+R_2&=\{(0,1),(1,0),(1,1),(2,2)\},\\
+R_3&=\{(0,2),(1,0),(1,1),(2,1)\},\\
+R_4&=\{(0,1),(1,1),(1,2),(2,0)\}.
+\end{aligned}
+\]
+Class~69 is the class of that name in \cite[Remark~1.3]{FFKLSS26},
+described there as the only remaining conjectural equidistribution class
+for mesh patterns of length two.
+
+For completeness, let $p=(12,R)$ and $\sigma\in\Sn$. Given
+$i<j$ with $\sigma_i<\sigma_j$, set
+\[
+ x_0=0,\quad x_1=i,\quad x_2=j,\quad x_3=n+1
+\]
+and
+\[
+ y_0=0,\quad y_1=\sigma_i,\quad y_2=\sigma_j,\quad y_3=n+1.
+\]
+The pair $(i,j)$ is an occurrence of $p$ if, for every $(a,b)\in R$,
+there is no $k$ satisfying
+\[
+ x_a<k<x_{a+1}
+ \qquad\text{and}\qquad
+ y_b<\sigma_k<y_{b+1}.
+\]
+Here an occurrence is indexed by the pair of positions $(i,j)$, whereas
+Fang et al.\ index it by the pair of values $(\sigma_i,\sigma_j)$; since
+$i\mapsto\sigma_i$ is a bijection, the two conventions describe the same
+occurrences and give the same count.
+Write $\occ_p(\sigma)$ for the number of occurrences. For
+\[
+ \In=\{\sigma\in\Sn:\sigma^2=\mathrm{id}\},
+\]
+define
+\[
+ F^{\mathcal I}_{n,p}(q)
+ =\sum_{\sigma\in\In}q^{\occ_p(\sigma)}.
+\]
+Equidistribution on involutions means equality of these polynomials
+for every $n$.
+
+The conjecture we refute is stated in the concluding remarks
+of~\cite{FFKLSS26} and reads:
+\begin{quote}
+The patterns in the set $\{p_1,p_2,p_3,p_4\}$ are equidistributed on
+involutions. (The first two patterns, as well as the last two patterns,
+are trivially equidistributed via the composition of reverse and
+complement.)
+\end{quote}
+In the source the four patterns are displayed as grid diagrams rather
+than named; substituting $p_1,p_2,p_3,p_4$ for those diagrams, in the
+order in which they appear there, is the only alteration we have made to
+the quoted sentence.
+
+\begin{theorem}
+Conjecture~1 of Fang et al.~\cite{FFKLSS26}, as stated in
+arXiv:2606.14367v1, is false. At $n=3$,
+\[
+ F^{\mathcal I}_{3,p_1}(q)
+ =F^{\mathcal I}_{3,p_2}(q)
+ =2+q+q^2,
+\]
+whereas
+\[
+ F^{\mathcal I}_{3,p_3}(q)
+ =F^{\mathcal I}_{3,p_4}(q)
+ =1+2q+q^2.
+\]
+\end{theorem}
+
+\begin{proof}
+The involutions in $\mathfrak S_3$ are
+\[
+ \mathcal I_3=\{123,132,213,321\}.
+\]
+For an increasing pair, the unique unused plot point lies in exactly
+one mesh cell, and the pair is an occurrence of $p_r$ precisely when
+that cell is not in $R_r$.
+
+For $123$, the pairs $(1,2)$, $(1,3)$, and $(2,3)$ have unused-point
+cells $(2,2)$, $(1,1)$, and $(0,0)$, respectively. For $132$, the
+pairs $(1,2)$ and $(1,3)$ have cells $(2,1)$ and $(1,2)$. For $213$,
+the pairs $(1,3)$ and $(2,3)$ have cells $(1,0)$ and $(0,1)$.
+Finally, $321$ has no increasing pair. Hence
+\[
+\begin{array}{c@{\qquad}cccc}
+\toprule
+ &123&132&213&321\\
+\midrule
+\occ_{p_1}&1&0&2&0\\
+\occ_{p_2}&1&2&0&0\\
+\occ_{p_3}&2&1&1&0\\
+\occ_{p_4}&2&1&1&0\\
+\bottomrule
+\end{array}
+\]
+and summing the corresponding powers of $q$ gives the stated
+polynomials. In particular, the avoidance counts are $2$ for $p_1$
+and $p_2$, but $1$ for $p_3$ and $p_4$.
+
+The separation is already visible in a coarser invariant. The seven
+increasing pairs listed above occupy seven distinct cells, namely every
+cell except $(0,2)$ and $(2,0)$. Hence $R_1$ and $R_2$, which contain
+neither of these two cells, each block four of the seven pairs, while
+$R_3$ contains $(0,2)$ and $R_4$ contains $(2,0)$, so each blocks only
+three. The total occurrence counts
+$\sum_{\sigma\in\mathcal I_3}\occ_{p_r}(\sigma)$, that is, the values
+$\frac{d}{dq}F^{\mathcal I}_{3,p_r}(q)\big|_{q=1}$, are therefore
+$3,3,4,4$.
+\end{proof}
+
+\begin{remark}
+The counterexample is minimal. For $n=0$ and $n=1$, no length-two
+pattern can occur. For $n=2$, the involution $12$ has one occurrence
+of every $p_r$, while $21$ has none, so
+$F^{\mathcal I}_{2,p_r}(q)=1+q$ for all $r$.
+\end{remark}
+
+\begin{remark}
+Zhang and Zhao~\cite[Theorem~1.1]{ZZ26} later proved the corresponding
+Class~69 equidistribution on the full symmetric groups $\mathfrak S_n$.
+The theorem above shows that this equivalence is not preserved after
+restriction to involutions.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{BC11}
+P.~Br\"and\'en and A.~Claesson,
+\emph{Mesh patterns and the expansion of permutation statistics as
+sums of permutation patterns},
+Electron. J. Combin. \textbf{18} (2011), no.~2, Paper P5, 14~pp.,
+doi:10.37236/2001.
+
+\bibitem{FFKLSS26}
+Q.~Fang, S.~Fu, S.~Kitaev, H.~Li, X.~Su, and Z.~Sun,
+\emph{On mesh patterns of short length: Equidistribution and
+enumeration},
+arXiv:2606.14367v1 [math.CO], 2026.
+
+\bibitem{ZZ26}
+Z.-R.~Zhang and H.~Zhao,
+\emph{The last distribution-equivalence class of mesh patterns of
+length 2},
+arXiv:2607.04111v1 [math.CO], 2026.
+
+\end{thebibliography}
+
+\end{document}
