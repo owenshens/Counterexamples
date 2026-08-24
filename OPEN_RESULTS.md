@@ -3,7 +3,7 @@
 The list is in two parts: the first three sections are the original collection, and
 **Round 5** at the end holds the papers added afterwards.
 
-**63 refuted conjectures**, **13 settled existence questions** and **4 conjectures or open problems settled affirmatively**, across 88 papers.
+**119 papers** acting on **116 distinct statements**: 86 refute a published conjecture or question, 20 exhibit an object whose existence was open, and 13 prove a conjecture or record a note.
 
 The two categories are reported separately and never added together: refuting a published conjecture
 and settling an open existence question are different kinds of contribution.
@@ -131,3 +131,55 @@ Where one statement is addressed by more than one paper, those papers exhibit **
 | **[An Exterior-Point Proof of Two Completed-Interlacing Conjectures](notes/exterior-point-proof-of-jordaan-kumar-completed-interlacing-conjectures.pdf)** | Jordaan and Kumar's Conjectures 1 and 2 on two-point completed zero interlacing are proved for Meixner-Pollaczek and pseudo-Jacobi polynomials by an exterior-point criterion on the relevant mixed three-term recurrences, without their coprimality or zero-placement hypotheses and over the full conjectured parameter range. |
 | **[The $n=20$ Case of the Induced Planar $P_6$-Turán Conjecture](notes/triangulation-census-confirms-gyori-hama-karim-induced-p6-conjecture-at-n-20.pdf)** | A computer-assisted census of induced-P6-free planar triangulations confirms the n=20 case of Gyori and Hama Karim's conjecture, ex_P(20, P_6^ind) = 53, the first case in which the conjectured value falls below Euler's bound of 3n-6. |
 | **[The Minimum Dimension of a Maximal Face of the $66$ Completely Positive Cone](notes/cp6-maximal-face-minimum-dimension-is-seven.pdf)** | The minimum dimension of a maximal proper face of the 6x6 completely positive cone is exactly 7, settling the n=6 case of the open problem on low(n) for even n raised by Dickinson and restated by Kostyukova and Tchemisova. |
+
+---
+
+## Round 6 (added later)
+
+31 further papers: 19 refuted conjectures, 6 settled existence questions, 6 conjectures or open problems settled affirmatively.
+
+### Refuted (19)
+
+| paper | what it establishes |
+|---|---|
+| **[$\alpha$-Valuations of $C_4$-Bouquets](counterexamples/alpha-valuations-of-c4-bouquets.pdf)** | For $n\ge1$, let $B_n$ be the bouquet obtained by identifying one vertex in each of $n$ copies of $C_4$. |
+| **[A $z$-Visibility Representation of \texorpdfstring{$K_{6,6}$}{K6,6} Minus a Perfect Matching](counterexamples/a-z-visibility-representation-of-k6-6-minus-a-perfect-matching.pdf)** | We exhibit an integral-coordinate $z$-visibility representation of $K_{6,6}$ minus a perfect matching. |
+| **[A Counterexample at $n=6$ to Mili\'cevi\'c's Blocking-Point Conjecture](counterexamples/a-counterexample-at-n-6-to-milicevic-blocking-point-conjecture.pdf)** | Mili\'cevi\'c conjectured that if $n$ points in general position are blocked by $n$ additional points, then all $2n$ points lie on a cubic curve. |
+| **[A Counterexample to a Rainbow-Domination Implication of \v{Z}erovnik](counterexamples/a-counterexample-to-a-rainbow-domination-implication-of-zerovnik.pdf)** | Let $T$ be the Tutte--Coxeter graph. |
+| **[A Counterexample to the Etzion--Vardy--Yaakobi Conference-Matrix Conjecture](counterexamples/a-counterexample-to-the-etzion-vardy-yaakobi-conference-matrix-conjecture.pdf)** | Etzion, Vardy, and Yaakobi conjectured that, for prime $p$, every conference matrix of order $p+1$, reduced modulo $p$, generates an MDS code over $\F_p$. |
+| **[A Counterexample to the Hibi--Seyed Fakhari Conjecture on Join--Meet Ideals](counterexamples/a-counterexample-to-the-hibi-seyed-fakhari-conjecture-on-join-meet-ideals.pdf)** | Hibi and Seyed Fakhari conjectured that the join--meet ideal of every nonmodular finite lattice is not linearly related. |
+| **[A Length-14 Negative Answer to Alderson's $q=4$ Optimality Question](counterexamples/a-length-14-negative-answer-to-alderson-q-4-optimality-question.pdf)** | Alderson constructed an extendable, additively maximal additive $(112,2,104)_{16/4}$-code and asked whether length $112$ is optimal for $q=4$. |
+| **[A Nine-Element Counterexample to Sinclair's Front-Loading Conjecture](counterexamples/a-nine-element-counterexample-to-sinclair-front-loading-conjecture.pdf)** | Sinclair's Conjecture~C asserts that the defect of every simple matroid is front-loaded. |
+| **[A Ten-Vertex Counterexample to an Endpoint Dichotomy for Facet Ideals of Graphic Matroids, Answering a Question of DiPasquale, Fouli, and Kumar](counterexamples/a-ten-vertex-counterexample-to-an-endpoint-dichotomy-for-facet-ideals-of-graphic.pdf)** | DiPasquale, Fouli, and Kumar asked whether the asymptotic resurgence of the facet ideal of the graphic matroid of every simple $2$-connected graph is always one of two extremal values. |
+| **[A Third-Derivative Counterexample for Chromatic Polynomials](counterexamples/a-third-derivative-counterexample-for-chromatic-polynomials.pdf)** | Let $P(G,x)$ be the chromatic polynomial of an $n$-vertex graph $G$. |
+| **[An Order-Three Counterexample to the Bar\'at--Korondi--Varga Projection-Area Conjecture](counterexamples/an-order-three-counterexample-to-the-barat-korondi-varga-projection-area-conjecture.pdf)** | Bar\'at, Korondi, and Varga conjectured that every solution to the three-dimensional cube-dismantling problem has total orthogonal projection area at least $n^2+6n-4$. |
+| **[Counterexamples to Conjecture~6.18 in Sullivan's Caccetta--H\"aggkvist Survey](counterexamples/counterexamples-to-conjecture-6-18-in-sullivan-caccetta-haggkvist-survey.pdf)** | Sullivan recorded a conjecture attributed to Charbit asserting that every $n$-vertex digraph $D$ with adjacency spectral radius $\rho(D)\ge n/k$ contains a cycle of length at most $k$, where, as throughout that survey, a cycle in a digraph means a directed cycle. |
+| **[Counterexamples to Gyoda's Injectivity Conjecture for Generalized Markov Trees](counterexamples/counterexamples-to-gyoda-injectivity-conjecture-for-generalized-markov-trees.pdf)** | Gyoda conjectured that, in each fixed generalized Markov tree, equality of numerical labels $n_s=n_t$ forces equality of the corresponding Farey labels. |
+| **[Counterexamples to the Zhang--Wan Deep-Hole Completeness Conjecture](counterexamples/counterexamples-to-the-zhang-wan-deep-hole-completeness-conjecture.pdf)** | Let $E/\F_q$ be an elliptic curve of odd characteristic, let $N=\#E(\F_q)\ge q+4$, and put $D=E(\F_q)\setminus\{O\}$. |
+| **[Positive Generalized Corner-Vector Designs on $\Sph^3$ Have Degree at Most 13](counterexamples/positive-generalized-corner-vector-designs-on-s3-have-degree-at-most-13.pdf)** | Tanino, Tamaru, Hirao, and Sawa have proved that positive weighted spherical designs obtained from generalized corner-vector orbits in dimension four have degree at most $15$, and asked whether a weighted $15$-design on $\Sph^3$ with more than five proper orbits exists. |
+| **[Short-Cycle Counterexamples to Conjecture~12 of Berman--G\'evay--Pisanski](counterexamples/short-cycle-counterexamples-to-conjecture-12-of-berman-gevay-pisanski.pdf)** | Berman, G\'evay, and Pisanski proposed two parameterized cyclic-voltage families for geometric $(7m)_4$ configurations, while noting that further parameter restrictions might be necessary. |
+| **[The Hafnian van der Waerden Conjecture Fails in Order Six](counterexamples/the-hafnian-van-der-waerden-conjecture-fails-in-order-six.pdf)** | Friedland formulated a hafnian analogue of the van der Waerden--Tverberg formula and reported that Gurvits had conjectured its perfect-matching case. |
+| **[The Holtz--Sturmfels Ideal-Generation Conjecture Fails for \(n\geq5\)](counterexamples/the-holtz-sturmfels-ideal-generation-conjecture-fails-for-n-at-least-5.pdf)** | Let \(P_n\) be the homogeneous prime ideal of the projective variety of principal minors of symmetric \(n\times n\) matrices, and let \(J_n\) be the ideal generated by the hyperdeterminantal module \(\HD(n)\). |
+| **[The Least Counterexample to Conjecture 4.3 of Dolfi, Hafezieh, and Spiga](counterexamples/the-least-counterexample-to-conjecture-4-3-of-dolfi-hafezieh-and-spiga.pdf)** | Dolfi, Hafezieh, and Spiga conjectured that if a positive integer $n$ has $\ell\ge 3$ distinct prime divisors and $\gcd(2^n-1,n)=1$, then $2^n-1$ has at least $2^\ell$ distinct prime divisors. |
+
+### Settled existence questions (6)
+
+| paper | what it establishes |
+|---|---|
+| **[Constrained Ramsey Numbers for the Loose 3-Uniform Path](constructions/constrained-ramsey-numbers-for-the-loose-3-uniform-path.pdf)** | Let $\Lpath$ be the loose $3$-uniform path of length three. |
+| **[Eliminating the $4r-7$ Alternative for Diameter-Two Mixed Almost Moore Graphs](constructions/eliminating-the-4r-7-alternative-for-diameter-two-mixed-almost-moore-graphs.pdf)** | L\'opez and Miret derived two arithmetic alternatives for the parameters of a totally regular mixed almost Moore graph of diameter two. |
+| **[The Harborth Constant of $C_9\oplus C_9$](constructions/the-harborth-constant-of-c9-plus-c9.pdf)** | For a finite abelian group $G$, let $\mathsf g(G)$ be the least integer $k$ such that every subset of $G$ with at least $k$ elements contains an $\exp(G)$-element zero-sum subset. |
+| **[The Ivan--Wang Conjecture on Induced $\mathcal N$-Saturation for $1\leq n\leq 5$](constructions/the-ivan-wang-conjecture-on-induced-n-saturation-for-1-n-5.pdf)** | Let $\Nposet$ be the four-element poset with relations $a<b$, $c<b$, and $c<d$. |
+| **[The Saturation Number of $K_3\cup2K_2$](constructions/the-saturation-number-of-k3-union-2k2.pdf)** | Let $F=K_3\cup2K_2$. |
+| **[Verification of the Weighted Szeged Tree-Minimizer Conjecture Through Order Eleven](constructions/verification-of-the-weighted-szeged-tree-minimizer-conjecture-through-order-eleven.pdf)** | Conjecture~2 of Bok, Furtula, Jedli\v{c}kov\'a, and \v{S}krekovski asserts that, among connected graphs of a fixed order, a tree attains the minimum weighted Szeged index. |
+
+### Settled affirmatively (6)
+
+| paper | what it establishes |
+|---|---|
+| **[A Proof of a Conjecture of B\u{a}l\u{a}nescu and Cimpoea\c{s} on the Hilbert Depth of Intersections of Monomial Primes](notes/a-proof-of-a-conjecture-of-balanescu-and-cimpoeas-on-the-hilbert-depth-of-intersections.pdf)** | Let $S=K[x_1,\ldots,x_N]$, and let $I$ be the intersection of monomial prime ideals generated by pairwise disjoint blocks of variables of sizes $n_1,\ldots,n_r$, where $N=n_1+\cdots+n_r$. |
+| **[An Exhaustive Census for the $n=20$ Case of the Aouchiche--Caporossi--Hansen Tricyclic-Energy Conjecture](counterexamples/an-exhaustive-census-for-the-n-20-case-of-the-aouchiche-caporossi-hansen-tricyclic.pdf)** | Aouchiche, Caporossi, and Hansen conjectured that every tricyclic graph $G$ on $n=20$ or $n\ge 22$ vertices satisfies $\energy(G)\le \energy(P_n^{6,6,6})$, with equality only for $G\cong P_n^{6,6,6}$. |
+| **[The $p=3$ Case of a Conjecture of Chauhan, Shukla, and Vinayak](notes/the-p-3-case-of-a-conjecture-of-chauhan-shukla-and-vinayak.pdf)** | We prove the $p=3$ case of Conjecture~4.2(ii) of Chauhan, Shukla, and Vinayak on $3$-cut complexes of powers of cycles. |
+| **[The Gaetz--Gao Closure Conjecture for Finite Coxeter Systems](notes/the-gaetz-gao-closure-conjecture-for-finite-coxeter-systems.pdf)** | Gaetz and Gao conjectured that, for every Coxeter system $(W,S)$ and $w\in W$, the family of parabolic subsets giving Billey--Postnikov decompositions of $w$ is closed under union and intersection. |
+| **[The Maximum Binary Case of Ribot's Zariski-Closedness Conjecture](notes/the-maximum-binary-case-of-ribot-zariski-closedness-conjecture.pdf)** | Ribot conjectured that the orthogonal orbit of the coordinate subspace supported on any partial Latin hyperrectangle is real Zariski closed. |
+| **[Vu's Cover-Ideal Linearity Question Through Twelve Nonisolated Vertices](notes/vu-cover-ideal-linearity-question-through-twelve-nonisolated-vertices.pdf)** | Vu asked whether $v(J(G)^t)$ is linear in $t$ for every bipartite graph $G$. |

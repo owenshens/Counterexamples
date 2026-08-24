@@ -1,0 +1,283 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Ten-Vertex Counterexample to an Endpoint Dichotomy for
+Facet Ideals of Graphic Matroids, Answering a Question of DiPasquale,
+Fouli, and Kumar}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\ahat}{\widehat{\alpha}}
+\newcommand{\rhat}{\widehat{\rho}}
+\newcommand{\rk}{\operatorname{rk}}
+
+\title[A ten-vertex counterexample]
+{A Ten-Vertex Counterexample to an Endpoint Dichotomy for Facet Ideals
+of Graphic Matroids, Answering a Question of DiPasquale, Fouli, and
+Kumar}
+
+\date{}
+
+\subjclass[2020]{13A15, 13F55, 05E40, 05B35}
+\keywords{asymptotic resurgence, Waldschmidt constant, facet ideal,
+graphic matroid}
+
+\begin{document}
+
+\begin{abstract}
+DiPasquale, Fouli, and Kumar asked whether the asymptotic resurgence
+of the facet ideal of the graphic matroid of every simple
+$2$-connected graph is always one of two extremal values. We give a
+ten-vertex graph $W$ for which
+\[
+c(W)=8,\qquad
+\ahat(I(M(W)))=\frac{11}{2},\qquad
+\rhat(I(M(W)))=\frac{16}{9}.
+\]
+Thus
+$2-2/c(W)=7/4<16/9<9/5=2-2/|V(W)|$, answering their
+Question~7.2 in the negative.
+\end{abstract}
+
+\maketitle
+
+For a connected graph $G$, let $M(G)$ be its graphic matroid and let
+$I(M(G))\subseteq \Bbbk[x_e:e\in E(G)]$ be its facet ideal. Write
+$c(G)$ for the circumference of $G$. DiPasquale, Fouli, and Kumar
+proved that every simple $2$-connected graph $G$ satisfies
+\[
+2-\frac{2}{c(G)}
+\le \rhat(I(M(G)))
+\le 2-\frac{2}{|V(G)|},
+\]
+the upper bound being \cite[Theorem~5.5]{DFK}, and asked whether the
+asymptotic resurgence is always one of the two endpoints
+\cite[Question~7.2]{DFK}. Only the upper bound is used below; the lower
+bound is quoted here as context for the question.
+
+Let $W$ be the graph on $\{0,1,\ldots,9\}$ with
+\begin{equation}\label{eq:edges}
+\begin{split}
+E(W)=\{&05,15,06,26,17,27,08,38,48,58,\\
+       &29,39,49,79\}.
+\end{split}
+\end{equation}
+Here $ij$ abbreviates the edge $\{i,j\}$. Its graph6 code is
+\texttt{I?BDBA[MO}. Deleting vertex $3$ gives the graph in
+\cite[Example~6.1]{DFK} under
+$(v_1,w_1,u_1,p,q,r,v_2,w_2,u_2)=(8,5,0,4,6,1,9,7,2)$; thus $W$
+is obtained from that graph by duplicating one of its degree-two
+vertices, $p$.
+
+\begin{theorem}\label{thm:main}
+The graph $W$ is simple and $2$-connected, and
+\[
+c(W)=8,\qquad
+\ahat(I(M(W)))=\frac{11}{2},\qquad
+\rhat(I(M(W)))=\frac{16}{9}.
+\]
+Consequently, $W$ is a counterexample to the endpoint dichotomy in
+\cite[Question~7.2]{DFK}.
+\end{theorem}
+
+\begin{proof}
+The graph is simple, and
+\[
+0-5-1-7-2-6-0,
+\quad 0-8-5,
+\quad 2-9-7,
+\quad 8-3-9,
+\quad 8-4-9
+\]
+is an open-ear decomposition, so $W$ is $2$-connected.
+
+Vertices $3$ and $4$ are nonadjacent twins with neighborhood
+$\{8,9\}$. Any cycle containing both is therefore the $4$-cycle
+$8-3-9-4-8$, so $W$ has no $10$-cycle.
+
+A $9$-cycle would omit exactly one of $3,4$; by symmetry, suppose it
+omits $4$. In $W-4$, the degree-two vertices $1,3,6$ force the paths
+\[
+5-1-7,\qquad 8-3-9,\qquad 0-6-2.
+\]
+The remaining cycle edges would form a perfect matching on their six
+endpoints. The available edges on those endpoints form the disjoint
+triangles
+\[
+W[\{0,5,8\}]\cong K_3,
+\qquad
+W[\{2,7,9\}]\cong K_3,
+\]
+which have no perfect matching. Hence no $9$-cycle exists. Since
+\[
+5-0-8-3-9-2-7-1-5
+\]
+is an $8$-cycle, $c(W)=8$.
+
+We next compute the Waldschmidt constant. For
+$x\in\mathbb R_{\ge0}^{E(W)}$ and $F\subseteq E(W)$, put
+$x(F)=\sum_{e\in F}x_e$. The bond description of the symbolic
+polyhedron and its linear-programming formula give
+\begin{equation}\label{eq:lp}
+\ahat(I(M(W)))
+=
+\min\bigl\{
+ x(E(W)):
+ x(B)\ge1\text{ for every bond }B\text{ of }W
+\bigr\}
+\end{equation}
+\cite[Corollary~2.2 and Theorem~2.3]{DFK}.
+
+Because $W$ is $2$-connected, every incident edge cut $\delta(v)$ is
+a bond. Put
+\[
+S=\{3,4,8,9\},
+\qquad
+B_0=\delta(S)=\{08,58,29,79\}.
+\]
+Both $W[S]$ and $W[V(W)\setminus S]$ are cycles, so $B_0$ is a bond.
+Every edge of $W$ occurs exactly twice in the following weighted sum
+of bond inequalities. Thus every feasible $x$ in \eqref{eq:lp}
+satisfies
+\[
+\begin{split}
+2x(E(W))
+={}&\sum_{v\in\{0,1,2,5,6,7\}}x(\delta(v))
+   +2x(\delta(3))+2x(\delta(4))+x(B_0)\\
+\ge{}&11.
+\end{split}
+\]
+Hence $\ahat(I(M(W)))\ge 11/2$.
+
+For the reverse inequality, let $J$ be the spanning subgraph formed
+by the two cycles
+\[
+8-0-6-2-7-1-5-8
+\qquad\text{and}\qquad
+8-3-9-4-8,
+\]
+of lengths $7$ and $4$. The graph $J$ is connected and bridgeless and
+has $7+4=11$ edges. Set
+$x_e=1/2$ for $e\in E(J)$ and $x_e=0$ otherwise. If
+$B=\delta_W(A)$ is a bond of $W$, then
+\[
+B\cap E(J)=\delta_J(A).
+\]
+Since $J$ is connected and bridgeless, $|\delta_J(A)|\ge2$; hence
+$x(B)\ge1$. This $x$ is feasible in \eqref{eq:lp} and has total
+weight $11/2$. Therefore
+\begin{equation}\label{eq:alpha}
+\ahat(I(M(W)))=\frac{11}{2}.
+\end{equation}
+
+By the identification above,
+\[
+M(W-3)=M(W)\setminus\{38,39\}.
+\]
+The graph $W-3$ is the graph of \cite[Example~6.1]{DFK}, whose facet
+ideal has asymptotic resurgence $16/9$. Minor monotonicity
+\cite[Proposition~2.4]{DFK} therefore gives
+\begin{equation}\label{eq:lower}
+\rhat(I(M(W)))\ge\frac{16}{9}.
+\end{equation}
+Since $|V(W-3)|=9$, the value $16/9$ equals $2-2/|V(W-3)|$: the graph
+of \cite[Example~6.1]{DFK} sits at the upper endpoint of its own bound
+and is not itself a counterexample to Question~7.2.
+
+Since $M(W)$ is simple of rank $9$, the contraction formula
+\cite[Theorem~2.5]{DFK} yields
+\begin{equation}\label{eq:contraction}
+\rhat(I(M(W)))
+=
+\max\left\{
+\frac{9}{\ahat(I(M(W)))},
+\max_{e\in E(W)}\rhat(I(M(W)/e))
+\right\}.
+\end{equation}
+The first term is $18/11<16/9$ by \eqref{eq:alpha}.
+
+We use the following consequence of the reduction results in
+\cite{DFK}: if $N$ is a loopless graphic matroid of rank $r$, then
+\begin{equation}\label{eq:graphic-bound}
+\rhat(I(N))\le 2-\frac{2}{r+1}.
+\end{equation}
+Indeed, simplification preserves asymptotic resurgence, and the
+asymptotic resurgence of a direct sum is the maximum over its
+matroid-connected components \cite[Theorems~3.2 and~3.3]{DFK}. A
+rank-one component contributes $1$. A simple connected graphic
+component of rank $s\ge2$ is represented by a simple $2$-connected
+graph on $s+1$ vertices, so \cite[Theorem~5.5]{DFK} gives the bound
+$2-2/(s+1)\le 2-2/(r+1)$.
+
+For each $e\in E(W)$, the matroid $M(W)/e$ is loopless, graphic, and
+of rank $8$. Hence \eqref{eq:graphic-bound} gives
+\[
+\rhat(I(M(W)/e))\le\frac{16}{9}.
+\]
+Equation \eqref{eq:contraction} now gives the reverse inequality to
+\eqref{eq:lower}, and therefore
+\[
+\rhat(I(M(W)))=\frac{16}{9}.
+\]
+The claimed strict inequalities follow from $c(W)=8$ and
+$|V(W)|=10$.
+\end{proof}
+
+\begin{remark}
+DiPasquale, Fouli, and Kumar record that they expect a negative answer
+to Question~7.2, while their Sage computations indicate that the answer
+is yes for every $2$-connected graph on nine vertices or less
+\cite[Table~1 and the discussion following Question~7.2]{DFK}. The
+content of Theorem~\ref{thm:main} is therefore the explicit ten-vertex
+witness, not a reversal of the source authors' expectation. Concretely,
+duplicating $p$ raises the order from $9$ to $10$ and leaves the
+asymptotic resurgence at $16/9$, while the upper endpoint moves from
+$2-2/9=16/9$ to $2-2/10=9/5$; the value that is extremal for $W-3$ is
+therefore strictly interior for $W$. Conditional
+on their computation, $W$ has minimum possible order; we do not repeat
+that enumeration here. Nothing above determines which values other than
+$16/9$ occur strictly between the two endpoints, nor whether $W$ is the
+only ten-vertex example.
+\end{remark}
+
+\begin{remark}
+Every numbered result quoted above is numbered as in \cite{DFK}, and
+several of them originate elsewhere. The linear-programming formula for
+the Waldschmidt constant, \cite[Theorem~2.3]{DFK}, is stated there with
+attribution to Cooper, Embree, H\`a, and Hoefel. The contraction
+formula, \cite[Theorem~2.5]{DFK}, is stated there with the citation
+\cite[Proposition~3.8 and Theorem~3.9]{DFKmat} attached, \cite{DFKmat}
+being the same three authors' companion paper on matroids; minor
+monotonicity, \cite[Proposition~2.4]{DFK}, is by contrast a result of
+\cite{DFK} itself, proved there from \cite[Corollary~3.4 and
+Remark~3.7]{DFKmat}. The remaining items used
+above, namely \cite[Corollary~2.2]{DFK},
+\cite[Theorems~3.2, 3.3 and~5.5]{DFK}, \cite[Example~6.1]{DFK} and
+\cite[Table~1]{DFK}, are from \cite{DFK} itself.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{DFK}
+M.~DiPasquale, L.~Fouli, and A.~Kumar,
+\emph{Asymptotic resurgence of facet ideals of graphic matroids},
+arXiv:2607.26294v1 [math.AC], 2026.
+
+\bibitem{DFKmat}
+M.~DiPasquale, L.~Fouli, and A.~Kumar,
+\emph{Asymptotic resurgence of facet and Stanley--Reisner ideals of
+matroids},
+arXiv:2607.20892 [math.AC], 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,314 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+
+\hypersetup{
+  pdftitle={An Exhaustive Census for the n=20 Case of the Aouchiche--Caporossi--Hansen Tricyclic-Energy Conjecture}
+}
+
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{result}{Computational Result}
+
+\newcommand{\energy}{\mathcal E}
+\newcommand{\cenergy}{\widehat{\mathcal E}}
+\newcommand{\target}{P_{20}^{6,6,6}}
+
+\title[The $n=20$ tricyclic-energy census]
+{An Exhaustive Census for the \texorpdfstring{$n=20$}{n=20} Case of the\\
+Aouchiche--Caporossi--Hansen Tricyclic-Energy Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C50, 05C35, 68R10}
+\keywords{graph energy, tricyclic graph, exhaustive enumeration, nauty}
+
+\begin{document}
+
+\begin{abstract}
+Aouchiche, Caporossi, and Hansen conjectured that every tricyclic graph
+$G$ on $n=20$ or $n\ge 22$ vertices satisfies
+$\energy(G)\le \energy(P_n^{6,6,6})$, with equality only for
+$G\cong P_n^{6,6,6}$. We report an exhaustive binary64 census for the
+finite case $n=20$. The census contains $3\,288\,208\,176$
+isomorphism classes of connected simple graphs with $20$ vertices and
+$22$ edges. Its unique computed maximizer is $\target$; the computed
+runner-up is separated from it by approximately $1.3061\times10^{-2}$.
+Exact characteristic polynomials for both graphs are given. Because
+the global comparison was performed in binary64 arithmetic without a
+uniform interval certificate, the result is stated as an exhaustive
+numerical verification, not as a proof of the conjecture.
+\end{abstract}
+
+\maketitle
+
+\section{The finite case}
+
+For a graph $G$ with adjacency eigenvalues
+$\lambda_1,\ldots,\lambda_n$, its energy is
+\[
+  \energy(G)=\sum_{i=1}^n |\lambda_i|.
+\]
+A connected simple graph is tricyclic when
+$|E(G)|=|V(G)|+2$. For $n\ge20$, let $P_n^{6,6,6}$ be the graph
+obtained from three copies of $C_6$ and a path $P_{n-18}$ by adding a
+single edge between each of two copies of $C_6$ and one endpoint of the
+path, and a single edge between the third copy of $C_6$ and the other
+endpoint of the path. It has $n$ vertices and $n+2$ edges; no vertices
+are identified.
+
+\begin{conjecture}[Aouchiche--Caporossi--Hansen \cite{ACH}, in the form
+restated in \cite{LSWL}]
+If $G$ is tricyclic on $n=20$ or $n\ge22$ vertices, then
+\[
+  \energy(G)\le \energy(P_n^{6,6,6}),
+\]
+with equality if and only if $G\cong P_n^{6,6,6}$.
+\end{conjecture}
+
+Let $\cenergy(G)$ denote the energy returned by the binary64
+eigensolver used in the census.
+
+\begin{result}\label{res:main}
+Among all $3\,288\,208\,176$ isomorphism classes of connected simple
+graphs on $20$ vertices and $22$ edges, the reported census found
+$\target$ to be the unique maximizer of $\cenergy$. The two largest
+computed values are approximately
+\[
+  27.2903786151833
+  \qquad\text{and}\qquad
+  27.2773174852287.
+\]
+\end{result}
+
+For an explicit model of $\target$, take $6$-cycles, in their natural
+cyclic orders, on $\{0,\ldots,5\}$, $\{6,\ldots,11\}$, and
+$\{12,\ldots,17\}$, and add
+\[
+  \{0,18\},\qquad
+  \{6,18\},\qquad
+  \{18,19\},\qquad
+  \{12,19\}.
+\]
+Its characteristic polynomial is
+\begin{equation}\label{eq:target-poly}
+  \phi_{\target}(x)
+  =(x^2-4)(x^2-1)^4
+   (x^4-7x^2+8)
+   (x^6-7x^4+12x^2-2),
+\end{equation}
+and hence
+\[
+  \energy(\target)
+  =27.2903786151832973536\ldots .
+\]
+
+The runner-up record is isomorphic to the graph
+\[
+  Q=\target-\{6,18\}+\{5,10\}.
+\]
+It is not isomorphic to $\target$; for example, $Q$ has six
+articulation vertices, whereas $\target$ has five. Its characteristic
+polynomial is
+\begin{align}\label{eq:runner-poly}
+  \phi_Q(x)
+  &=(x^2-1)^2\bigl(
+  x^{16}-20x^{14}+162x^{12}-686x^{10}+1638x^8 \notag\\
+  &\hspace{29mm}{}-2219x^6+1621x^4-557x^2+64\bigr),
+\end{align}
+so that
+\[
+  \energy(Q)
+  =27.2773174852287231601\ldots
+\]
+and
+\[
+  \energy(\target)-\energy(Q)
+  =0.0130611299545741935\ldots .
+\]
+
+\section{Census}
+
+The program \texttt{geng} from \emph{nauty/Traces} \cite{MP} generates
+one representative of each graph isomorphism class. The census was
+split into $997$ disjoint shards using
+\[
+  \texttt{geng -q -c 20 22:22 r/997},
+  \qquad 0\le r<997.
+\]
+The shard counts sum to
+\[
+  3\,288\,208\,176,
+\]
+which agrees with the independently tabulated value in OEIS
+A001436 \cite{OEIS}. A second count-only run with $512$ shards gave
+the same total.
+
+For each graph6 record, the adjacency eigenvalues were computed by
+Householder tridiagonalization followed by implicit QL iteration, and
+their absolute values were summed. Besides the two threshold counters
+displayed next, the scan retained the two largest computed values and
+one record attaining each; these are the source of the second value in
+Result \ref{res:main} and of the runner-up $Q$. The scan returned
+\[
+\begin{aligned}
+  \#\{G:\cenergy(G)>\cenergy(\target)+10^{-7}\}&=0,\\
+  \#\{G:|\cenergy(G)-\cenergy(\target)|\le10^{-7}\}&=1.
+\end{aligned}
+\]
+The unique record in the second set was verified to be isomorphic to
+the explicit graph above, and its exact characteristic polynomial
+agrees with \eqref{eq:target-poly}. On a comparison sample of
+$20\,000$ generated graphs, a second symmetric eigensolver differed
+in energy by at most $5.15\times10^{-13}$.
+
+\section{Status and scope}
+
+The observed gap is approximately $1.31\times10^{-2}$, far larger
+than the discrepancies observed in the solver comparison. This is
+strong numerical evidence for the $n=20$ case. It is not, however, a
+uniform error bound over all $3.288$ billion comparisons. Result
+\ref{res:main} is therefore a statement about the exhaustive
+floating-point census, not an exact-arithmetic theorem.
+
+A proof-level computer-assisted resolution requires a reproducible
+archive containing the source, software and build information,
+per-shard record accounting, and a validated error bound or interval
+certificate sufficient to separate every competitor from $\target$.
+What is missing is not margin. Every graph in the census satisfies
+$\|A\|_2^2\le\sum_i\lambda_i^2=2|E|=44$, hence $\|A\|_2<7$, and the
+standard backward-stability analysis of Householder tridiagonalization
+followed by QL iteration bounds the error in each computed eigenvalue
+by $c(n)\,\varepsilon\,\|A\|_2$, with $\varepsilon=2^{-53}$ and $c(n)$
+a modest polynomial in $n=20$; summed over $20$ eigenvalues, any such
+bound stays many orders of magnitude below the observed gap. The
+shortfall to a proof therefore lies not in the size of that gap but in
+two places no margin can cover: the completeness of the generation
+performed by \texttt{geng}, and the applicability of that error model
+to the code actually executed on each of the $3.288$ billion inputs.
+
+The present computation concerns only $n=20$ and makes no claim for
+$n\ge22$. The maximizer itself is not new here: $\target$ is the graph
+already named in the conjecture, so the census confirms a candidate
+that was on record beforehand rather than discovering one. The
+conjecture in turn came out of heuristic search, in its case the
+AutoGraphiX experiments of \cite{ACH}; earlier searches of the same
+non-exhaustive kind had been run on related classes, among them the
+Monte Carlo-type computer experiment of Gutman and Vidovi\'c on
+molecular $(n,m)$-graphs, which recorded the largest-energy graphs the
+search found -- not provably maximal ones -- and offered a tentative
+guess at the form of the maximal-energy molecular graphs for even $n$
+\cite{GV}. What the present census adds is exhaustiveness over all
+$3\,288\,208\,176$ isomorphism classes, not the identification of the
+maximizer. Previous work proves
+the conjecture inside $G(n;a,b,k)$, the connected bipartite tricyclic
+graphs on $n\ge20$ vertices with three vertex-disjoint cycles $C_a$,
+$C_b$, $C_k$, for most but not all of that class: nine families of
+exceptions remain in \cite{LSWL}, and \cite{LMW} continues the analysis
+in the same class. Accordingly, this note records an exhaustive
+numerical verification of the $n=20$ case; it does not settle the
+conjecture.
+
+\section{Exact verification}
+
+Everything this paper asserts about the two exhibited graphs, together
+with the census total itself, can be recomputed from the data printed
+above in exact integer or rational arithmetic, with no floating-point
+eigensolver and no graph-isomorphism package. That recomputation has
+been carried out by a second program, written from the definitions and
+run independently of the one that produced the census.
+It uses its language's standard library only -- no \texttt{nauty}, no
+numerical library -- and every decision it takes is made exactly. It
+reports $64$ checks and all $64$ pass, but they are not all tests of
+this paper. A sizeable part of the count tests the program itself:
+that its subclass enumerator is complete and sound, verified
+exhaustively against brute force at $n\le10$, and that the auxiliary
+count tables it builds along the way reproduce independently tabulated
+integer sequences. Those checks license the rest rather than
+corroborating anything printed here. What the rest do corroborate, and
+what a referee can accordingly redo from this paper alone, is the
+following: the explicit model of $\target$ and its
+tricyclicity, bipartiteness, degree sequence and three vertex-disjoint
+$6$-cycles; the articulation counts $5$ and $6$, and with them the
+non-isomorphism of $\target$ and $Q$, established twice over, by
+invariants and by an exhaustive backtracking isomorphism search; the
+characteristic polynomials
+\eqref{eq:target-poly} and \eqref{eq:runner-poly}, each recomputed from
+the adjacency matrix and then confirmed a second time by an independent
+determinant routine; the energies of $\target$ and $Q$ and their
+difference, as rigorous rational enclosures matching every digit
+printed here; and the census total $3\,288\,208\,176$, re-derived by
+Burnside--P\'olya counting with the multiset logarithm, without
+\texttt{geng}. The program and its transcript are retained in an
+auxiliary archive, available on request; no claim made here depends on
+consulting it, since every check just listed can be reproduced from the
+data printed in this paper.
+
+What this recomputation does not do should be stated plainly, since
+agreement does not extend to it. It does not repeat the energy scan over all
+$3\,288\,208\,176$ classes, which is thousands of CPU-hours. In place
+of that it scans exhaustively, with rigorous enclosures, the $8157$
+isomorphism classes of connected $20$-vertex $22$-edge graphs all of
+whose degrees lie in $\{2,3\}$ -- about $2.5\times10^{-6}$ of the
+census, containing both $\target$ and $Q$, and over which $\target$ is
+again the unique maximizer and $Q$ the runner-up -- together with the
+complete one-edge-swap neighbourhood of $\target$ ($3363$ connected
+graphs, most of them outside that class), in which no graph other than
+a copy of $\target$ has energy at least $\energy(\target)$. The
+remaining classes of the census are not rescanned. Nor does it
+reproduce the shard bookkeeping of the $997$- and $512$-shard runs, or
+the two binary64 figures of Section 2 -- the counts $0$ and $1$ at the
+$10^{-7}$ threshold and the $5.15\times10^{-13}$ solver agreement --
+since it replaces floating-point arithmetic by exact enclosures instead
+of re-measuring it. The conjecture for $n\ge22$ is outside the scope of
+both computations. The exact verification agrees with everything it
+checks; it neither extends the census nor turns it into a proof.
+
+\begin{thebibliography}{9}
+
+\bibitem{ACH}
+M.~Aouchiche, G.~Caporossi, and P.~Hansen,
+\emph{Open problems on graph eigenvalues studied with AutoGraphiX},
+EURO J. Comput. Optim. \textbf{1} (2013), 181--199.
+\href{https://doi.org/10.1007/s13675-012-0001-9}
+{doi:10.1007/s13675-012-0001-9}.
+
+\bibitem{GV}
+I.~Gutman and D.~Vidovi\'c,
+\emph{Quest for molecular graphs with maximal energy: a computer
+experiment},
+J. Chem. Inf. Comput. Sci. \textbf{41} (2001), 1002--1005.
+\href{https://doi.org/10.1021/ci000164z}
+{doi:10.1021/ci000164z}.
+
+\bibitem{LSWL}
+X.~Li, Y.~Shi, M.~Wei, and J.~Li,
+\emph{On a conjecture about tricyclic graphs with maximal energy},
+MATCH Commun. Math. Comput. Chem. \textbf{72} (2014), 183--214.
+\href{https://arxiv.org/abs/1312.0204}{arXiv:1312.0204}.
+
+\bibitem{LMW}
+X.~Li, Y.~Mao, and M.~Wei,
+\emph{More on a conjecture about tricyclic graphs with maximal energy},
+MATCH Commun. Math. Comput. Chem. \textbf{73} (2015), 11--26.
+
+\bibitem{MP}
+B.~D. McKay and A.~Piperno,
+\emph{Practical graph isomorphism, II},
+J. Symbolic Comput. \textbf{60} (2014), 94--112.
+\href{https://doi.org/10.1016/j.jsc.2013.09.003}
+{doi:10.1016/j.jsc.2013.09.003}.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+Sequence A001436.
+\url{https://oeis.org/A001436}.
+
+\end{thebibliography}
+
+\end{document}

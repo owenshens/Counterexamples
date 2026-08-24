@@ -1,0 +1,259 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Hafnian van der Waerden Conjecture Fails in Order Six}
+}
+
+\newcommand{\haf}{\operatorname{haf}}
+\newcommand{\conv}{\operatorname{conv}}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Order-six failure of the hafnian conjecture]
+{The Hafnian van der Waerden Conjecture Fails in Order Six}
+
+\date{}
+
+\subjclass[2020]{05C70, 15A15}
+\keywords{hafnian, perfect matching polytope, van der Waerden conjecture,
+minimal counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Friedland formulated a hafnian analogue of the van der Waerden--Tverberg
+formula and reported that Gurvits had conjectured its perfect-matching case.
+Friedland also records that this case is false once $n$ is sufficiently large,
+an observation he credits to S.~Norin. This note locates the least
+order at which failure occurs: it is $n=3$, on six vertices. For an explicit
+matrix $B\in\Psi_6$,
+\[
+  \haf(B)=\frac{29}{243}<\frac{3}{25}
+  =\haf\!\left(\frac{1}{5}A(K_6)\right),
+\]
+so the conjectured minimum fails at $n=3$. Failure cannot occur earlier: the
+conjecture holds at $n=2$, a case subsumed by Friedland's Lemma~3.1, for which
+we include a short direct argument. What is new here is the explicit
+order-six matrix and the minimal order it fixes, not the failure of the
+conjecture itself. We do not determine the exact minimum on $\Psi_6$.
+\end{abstract}
+
+\maketitle
+
+For a perfect matching $M$ of $K_{2n}$, let $A(M)$ denote its symmetric
+adjacency matrix, and set
+\[
+  \Psi_{2n}:=
+  \conv\{A(M):M\text{ is a perfect matching of }K_{2n}\}.
+\]
+This is the set called $\Psi_{2n}$ in \cite{Friedland2011,Friedland2012}, where
+it is introduced as the convex set of symmetric doubly stochastic matrices with
+zero diagonal whose extreme points are the symmetric permutation matrices with
+zero diagonal, and is then described by Edmonds' odd-set inequalities
+\cite[Eq.~(1.2)]{Friedland2011}. Those inequalities are part of the
+description, so the domain of the conjecture is the perfect matching polytope
+displayed above, and not the set cut out by symmetry, nonnegativity, zero
+diagonal and double stochasticity alone.
+For a symmetric matrix
+$C=[c_{ij}]\in\mathbb R_{\ge0}^{2n\times2n}$ with zero diagonal, define
+\[
+  \haf(C):=
+  \sum_M\prod_{\{i,j\}\in M}c_{ij},
+\]
+where the sum is over the perfect matchings of $K_{2n}$, and let
+\[
+  \mu_n:=\min_{C\in\Psi_{2n}}\haf(C).
+\]
+Friedland formulated the corresponding family of hafnian conjectures and
+reported that Gurvits had stated the perfect-matching case
+\cite[Eq.~(1.4) and the discussion following it]{Friedland2011}; see also
+\cite[Eq.~(6.3)]{Friedland2012}. That family is indexed by the size $k$ of the
+matchings counted, and the perfect-matching case is $k=n$. In the present
+notation, the perfect-matching hafnian van der Waerden conjecture asserts
+\begin{equation}\label{eq:conjecture}
+  \mu_n=
+  \haf\!\left(\frac{1}{2n-1}A(K_{2n})\right),
+  \qquad n\ge2.
+\end{equation}
+That \eqref{eq:conjecture} is false for large $n$ is stated outright in both
+printings: ``for $k=n$ and $n$ big enough (1.4) is wrong''
+\cite[following Eq.~(1.4)]{Friedland2011}, and likewise for (6.3) in
+\cite[\S6]{Friedland2012}. Friedland thanks S.~Norin for pointing out that
+failure, and the argument recorded there proceeds through a family of graphs of
+Cygan, Pilipczuk and \v{S}krekovski \cite{CPS}; neither that assertion nor its
+proof is claimed here.
+What follows instead is the least order at which failure occurs, together with
+an explicit matrix that witnesses it.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+B=\frac{1}{9}
+\begin{pmatrix}
+0&3&3&1&1&1\\
+3&0&3&1&1&1\\
+3&3&0&1&1&1\\
+1&1&1&0&3&3\\
+1&1&1&3&0&3\\
+1&1&1&3&3&0
+\end{pmatrix}.
+\]
+Then $B\in\Psi_6$ and
+\[
+  \haf(B)=\frac{29}{243}
+  <\frac{3}{25}
+  =\haf\!\left(\frac{1}{5}A(K_6)\right).
+\]
+Consequently, \eqref{eq:conjecture} fails at $n=3$. It holds at $n=2$, a case
+subsumed by \cite[Lemma~3.1]{Friedland2011} and reproved directly below, so
+$n=3$ is the least admissible value for which it fails.
+\end{theorem}
+
+\begin{proof}
+Partition $[6]$ into
+\[
+  T_1=\{1,2,3\},
+  \qquad
+  T_2=\{4,5,6\}.
+\]
+For $i\in T_1$ and $j\in T_2$, define the perfect matching
+\[
+  M_{ij}:=
+  \bigl\{\{i,j\},\,T_1\setminus\{i\},\,T_2\setminus\{j\}\bigr\};
+\]
+the last two sets have cardinality two and hence represent edges. Every edge
+between $T_1$ and $T_2$ occurs in exactly one $M_{ij}$, whereas every edge
+inside either triangle occurs in exactly three of them. Therefore
+\[
+  B=\frac{1}{9}
+  \sum_{i\in T_1}\sum_{j\in T_2}A(M_{ij}),
+\]
+so $B\in\Psi_6$.
+
+Every perfect matching of $K_6$ uses an odd number of edges between $T_1$ and
+$T_2$, hence either one or three. There are nine matchings with one such edge,
+each of weight
+\[
+  \frac{1}{9}\left(\frac{1}{3}\right)^2=\frac{1}{81},
+\]
+and six matchings with three such edges, each of weight $1/9^3$. Thus
+\[
+  \haf(B)
+  =9\left(\frac{1}{81}\right)
+   +6\left(\frac{1}{729}\right)
+  =\frac{29}{243}.
+\]
+Since $K_6$ has $5!!=15$ perfect matchings,
+\[
+  \haf\!\left(\frac{1}{5}A(K_6)\right)
+  =\frac{15}{5^3}
+  =\frac{3}{25},
+\]
+and
+\[
+  \frac{3}{25}-\frac{29}{243}
+  =\frac{4}{6075}>0.
+\]
+
+It remains to verify minimality of the order. Let $M_1,M_2,M_3$ be the three
+perfect matchings of $K_4$. Every $C\in\Psi_4$ has the form
+\[
+  C=\alpha A(M_1)+\beta A(M_2)+\gamma A(M_3),
+  \qquad
+  \alpha,\beta,\gamma\ge0,
+  \qquad
+  \alpha+\beta+\gamma=1.
+\]
+The three matchings partition the edges of $K_4$, and therefore
+\[
+  \haf(C)=\alpha^2+\beta^2+\gamma^2
+  \ge\frac{(\alpha+\beta+\gamma)^2}{3}
+  =\frac{1}{3}.
+\]
+Equality holds precisely at $\alpha=\beta=\gamma=1/3$, which gives
+$C=\frac13A(K_4)$ and
+\[
+  \haf\!\left(\frac13A(K_4)\right)
+  =3\left(\frac13\right)^{2}
+  =\frac13 ;
+\]
+so $\mu_2=\frac13$, attained at $\frac13A(K_4)$ and nowhere else. Hence
+\eqref{eq:conjecture} holds at $n=2$; this is subsumed by the case $k=2$ of
+\cite[Lemma~3.1]{Friedland2011}, and the short direct argument is included only
+to keep the minimality half of the theorem self-contained.
+\end{proof}
+
+\begin{remark}[Consistency with local minimality]
+Friedland proved that $(2n-1)^{-1}A(K_{2n})$ is a strict local minimizer of the
+hafnian on $\Psi_{2n}$ \cite[Lemma~3.1]{Friedland2011}.
+Theorem~\ref{thm:main} shows that it is already not a global minimizer at
+$n=3$. The two are compatible because $B$ is nowhere near
+$\frac15A(K_6)$. Indeed a perfect matching of $K_6$ has at most one edge inside
+the triple $T_1=\{1,2,3\}$, so every $C=[c_{ij}]\in\Psi_6$ satisfies
+$\sum_{\{i,j\}\subseteq T_1}c_{ij}\le1$; this is tight
+at $B$, whose entries inside $T_1$ sum to $1$, and strict at $\frac15A(K_6)$,
+where they sum to $3/5$. So $B$ lies on the boundary of $\Psi_6$, in a
+supporting hyperplane that $\frac15A(K_6)$ misses. Quantitatively, set
+$C_t:=(1-t)\frac15A(K_6)+tB$ for $t\in[0,1]$. Each $C_t$ again has constant
+entries $(3+2t)/15$ inside the two triples and $(9-4t)/45$ between them, so the
+same $9+6$ decomposition gives
+\begin{align*}
+  \haf(C_t)
+  &=\frac{9(9-4t)(3+2t)^2}{45\cdot15^2}
+   +\frac{6(9-4t)^3}{45^3}\\
+  &=\frac{729+108t^2-112t^3}{6075}
+  =\frac{3}{25}+\frac{4t^2(27-28t)}{6075}.
+\end{align*}
+Thus $\haf(C_t)>\frac3{25}$ for $0<t<\frac{27}{28}$, with equality at
+$t=\frac{27}{28}$: the hafnian rises out of $\frac15A(K_6)$, peaks at
+$t=\frac9{14}$, and drops below the conjectured value only on the final
+$\frac1{28}$ of the segment.
+\end{remark}
+
+\begin{remark}[Scope and prior work]\label{rem:scope}
+Theorem~\ref{thm:main} refutes \eqref{eq:conjecture} at $n=3$ by an explicit
+witness and fixes $n=3$ as the least order at which a witness can exist. It is
+not the first refutation of \eqref{eq:conjecture}: both \cite{Friedland2011} and
+\cite{Friedland2012} state that the conjecture is wrong for $k=n$ with $n$
+large, and no novelty is claimed for that assertion or for the asymptotic
+argument behind it. Nor is the case $n=2$ new; it is subsumed by the case $k=2$
+of \cite[Lemma~3.1]{Friedland2011}. What is offered here is the matrix $B$, the
+exact value $\haf(B)=29/243$, and the resulting identification of $n=3$ as the
+minimal order. Theorem~\ref{thm:main} gives only $\mu_3\le29/243$; no equality
+claim is made, and the status of the other members of Friedland's family of
+hafnian conjectures is not addressed.
+\end{remark}
+
+\begin{thebibliography}{3}
+
+\bibitem{CPS}
+M.~Cygan, M.~Pilipczuk and R.~\v{S}krekovski,
+\emph{A bound on the number of perfect matchings in Klee-graphs},
+Discrete Math. Theor. Comput. Sci. \textbf{15} (2013), no.~1, 37--54,
+\href{https://doi.org/10.46298/dmtcs.633}{doi:10.46298/dmtcs.633};
+cited in \cite{Friedland2011} as a 2009 preprint.
+
+\bibitem{Friedland2011}
+S.~Friedland,
+\emph{Analogs of the van der Waerden and Tverberg conjectures for haffnians},
+\href{https://arxiv.org/abs/1102.2542}{arXiv:1102.2542v2}
+[math.CO] (2011).
+
+\bibitem{Friedland2012}
+S.~Friedland,
+\emph{Results and open problems in matchings in regular graphs},
+Electron. J. Linear Algebra \textbf{24} (2012), 18--33,
+\href{https://doi.org/10.13001/1081-3810.1577}
+{doi:10.13001/1081-3810.1577}.
+
+\end{thebibliography}
+
+\end{document}

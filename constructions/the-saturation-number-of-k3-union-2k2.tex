@@ -1,0 +1,294 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Saturation Number of K3 Union 2K2}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\DeclareMathOperator{\sat}{sat}
+
+\title[The saturation number of $K_3\cup2K_2$]
+      {The Saturation Number of $K_3\cup2K_2$}
+\date{}
+\subjclass[2020]{05C35}
+\keywords{graph saturation, disjoint union of cliques, exhaustive enumeration}
+
+\begin{document}
+
+\begin{abstract}
+Let $F=K_3\cup2K_2$. Lin, He, and Xu recently proved that
+$\sat(n,F)=15$, with unique extremal graph $K_6\cup I_{n-6}$, for
+$n\ge31$. We determine all remaining orders:
+\[
+\sat(n,F)=
+\begin{cases}
+\binom{n}{2},&1\le n\le6,\\
+n+2,&7\le n\le12,\\
+15,&n\ge13.
+\end{cases}
+\]
+For every $n\ge14$, the unique extremal graph is $K_6\cup I_{n-6}$;
+the threshold is sharp because nonisomorphic extremal graphs occur at $n=13$.
+Thus the $(p,q,r)=(2,2,3)$ instance of the three-clique saturation problem is
+settled for all orders. The finite verification exhausts all isolate-free graphs
+through $14$ edges and all relevant $15$-edge graphs of order at least $14$.
+\end{abstract}
+
+\maketitle
+
+\section{Main result}
+
+All graphs are finite, simple, and undirected, and copies are not required to be
+induced. A graph $G$ is $F$-saturated if it is $F$-free but $G+e$ contains a copy
+of $F$ for every nonedge $e$ of $G$. The saturation number $\sat(n,F)$ is the
+minimum number of edges in an $n$-vertex $F$-saturated graph. Write $I_m$ for
+the edgeless graph on $m$ vertices.
+
+Currie, Faudree, Faudree, and Schmitt record the determination of
+$\sat(n,K_p\cup K_q\cup K_r)$ and $\sat(n,2K_p\cup K_q)$ as
+Problem~3 of their survey~\cite{CurrieEtAl}. Lin, He, and Xu prove that, when
+$2\le p\le q<r<p+q$ and
+\[
+n>3(p-2)+(q+r)(q+r+1),
+\]
+the saturation number and the unique extremal graph are determined
+\cite{LinHeXu}. For $(p,q,r)=(2,2,3)$, their theorem applies for $n\ge31$ and
+gives the value $15$ with extremal graph $K_6\cup I_{n-6}$. We complete this
+parameter instance and determine the sharp uniqueness threshold.
+
+\begin{theorem}\label{thm:main}
+For $F=K_3\cup2K_2$,
+\[
+\sat(n,F)=
+\begin{cases}
+\binom{n}{2},&1\le n\le6,\\
+n+2,&7\le n\le12,\\
+15,&n\ge13.
+\end{cases}
+\]
+For every $n\ge14$, the unique extremal graph up to isomorphism is
+$K_6\cup I_{n-6}$. At $n=13$ there are nonisomorphic extremal graphs, so the
+uniqueness threshold is sharp.
+\end{theorem}
+
+\section{Constructions}
+
+\begin{lemma}\label{lem:upper}
+For every $n\ge7$,
+\[
+\sat(n,F)\le \min\{n+2,15\}.
+\]
+\end{lemma}
+
+\begin{proof}
+The graph $K_6\cup I_{n-6}$ is $F$-free because it has only six nonisolated
+vertices. Every nonedge has an isolated endpoint; after adding it, use the new
+edge as one $K_2$ and choose a disjoint $K_3\cup K_2$ among the remaining
+vertices of $K_6$. Hence $\sat(n,F)\le15$.
+
+For $n\ge8$, let $B_n$ be obtained from a core $K_4$ on
+$u_1,u_2,u_3,u_4$ by attaching one leaf to each $u_i$ and attaching the
+remaining $n-8$ leaves to $u_1$. Then $e(B_n)=n+2$. Every triangle lies in the
+core, and deleting its vertices leaves a star and isolated vertices; hence
+$B_n$ is $F$-free.
+
+Let $s(x)$ denote the support of a leaf $x$. If the nonedge $xu_i$ is added with
+$u_i\ne s(x)$, then $\{x,u_i,s(x)\}$ is a triangle, while pendant edges at the
+two remaining core vertices supply the two disjoint edges. If a nonedge $xy$
+between leaves with distinct supports is added, use $xy$ as one edge, a pendant
+edge at a core vertex outside $\{s(x),s(y)\}$ as the other, and the other three
+core vertices as the triangle. If $s(x)=s(y)$, then $\{x,y,s(x)\}$ is a
+triangle and pendant edges at two other core vertices complete a copy of $F$.
+Thus $B_n$ is $F$-saturated.
+
+For $n=7$, take vertices
+$A=\{a_1,a_2,a_3\}$, $X=\{x_1,x_2,x_3\}$, and $s$, with
+\[
+E(G_7)=\{a_ia_j:1\le i<j\le3\}\cup\{a_ix_i,sx_i:1\le i\le3\}.
+\]
+The only triangle is $A$, and $G_7-A$ is a star, so $G_7$ is $F$-free. Its
+nonedges are $x_ix_j$, $sa_i$, and $a_ix_j$ for $i\ne j$. For
+$\{i,j,k\}=\{1,2,3\}$, adding $x_ix_j$ gives the triangle $A$ and the disjoint
+edges $x_ix_j,sx_k$; adding $sa_i$ gives the triangle $\{s,x_i,a_i\}$ and the
+disjoint edges $a_jx_j,a_kx_k$; and adding $a_ix_j$ gives the triangle
+$\{a_i,a_j,x_j\}$ and the disjoint edges $sx_i,a_kx_k$. Hence $G_7$ is
+$F$-saturated and has $9$ edges.
+\end{proof}
+
+\section{Lower bound}
+
+We first remove graphs with isolated vertices from the finite search. We use the
+following immediate specialization of Proposition~3.4 of Lin, He, and
+Xu~\cite{LinHeXu}.
+
+\begin{lemma}\label{lem:dichotomy}
+Let $H$ be a nonempty graph such that
+\begin{enumerate}
+\item $H$ contains no pairwise vertex-disjoint copies of $K_2,K_2,K_3$;
+\item for every $z\in V(H)$, the graph $H-z$ contains vertex-disjoint copies of
+$K_2$ and $K_3$.
+\end{enumerate}
+Then $H$ contains either two vertex-disjoint triangles or vertex-disjoint copies
+of $K_2$ and $K_4$.
+\end{lemma}
+
+\begin{proof}
+If neither configuration occurred, then $H$ would contain neither disjoint
+$K_3,K_3$ nor disjoint $K_2,K_4$. Together with the two stated hypotheses,
+these are precisely the assumptions of Proposition~3.4 of~\cite{LinHeXu} with
+$(q,r)=(2,3)$, which asserts that no such nonempty graph exists.
+\end{proof}
+
+\begin{lemma}\label{lem:isolate}
+Let $n\ge7$. If an $n$-vertex $F$-saturated graph has an isolated vertex, then
+it is isomorphic to $K_6\cup I_{n-6}$.
+\end{lemma}
+
+\begin{proof}
+Let $I$ be the set of isolated vertices of an $F$-saturated graph $G$, and put
+$H=G-I$. Then $H$ is nonempty and has no isolated vertices. Fix $v\in I$. For
+every $z\in V(H)$, the copy of $F$ created by adding $vz$ must use $vz$ as one
+of its two $K_2$ components. Hence $H-z$ contains vertex-disjoint copies of
+$K_2$ and $K_3$. Since $G$ is $F$-free, $H$ contains no pairwise disjoint
+$K_2,K_2,K_3$, so Lemma~\ref{lem:dichotomy} applies.
+
+Suppose first that $H$ contains disjoint triangles $A$ and $B$. If
+$x\notin A\cup B$, choose an edge $xy$ incident with $x$. If $y\in A$, then
+$xy$, the edge of $A$ avoiding $y$, and the triangle $B$ form $F$; the case
+$y\in B$ is symmetric. If $y\notin A\cup B$, use $xy$, any edge of $B$, and
+the triangle $A$. Thus no such $x$ exists.
+
+Now suppose that $H$ contains a disjoint edge $ab$ and a $K_4$ on a set $B$.
+Put $X=V(H)\setminus(\{a,b\}\cup B)$. The set $X$ is independent, and there
+are no edges from $X$ to $B$, since either type of edge together with $ab$ and
+a suitable triangle of $B$ would form $F$. As $H$ has no isolated vertices,
+each $x\in X$ is adjacent to $a$ or $b$, but not both: otherwise $xab$ is a
+triangle disjoint from a matching of size two in $B$. If, say, $xa\in E(H)$,
+then $x$ is isolated in $H-a$, whereas $H-a$ contains a disjoint
+$K_2\cup K_3$; together with $xa$ this forms $F$. Hence $X=\varnothing$.
+
+In either case $|V(H)|=6$. If $H$ had a nonedge, adding it would leave every
+vertex of $I$ isolated and therefore could not create the seven-vertex graph
+$F$. Thus $H=K_6$.
+\end{proof}
+
+The remaining statement is finite and was verified exactly.
+
+\begin{lemma}[Computer verification]\label{lem:computer}
+Among isolate-free $F$-saturated graphs with at most $14$ edges, the minimum
+edge counts for orders $7\le v\le12$ are
+\[
+\begin{array}{c|rrrrrr}
+v&7&8&9&10&11&12\\ \hline
+\min e&9&10&11&12&13&14.
+\end{array}
+\]
+There is no isolate-free $F$-saturated graph with at most $14$ edges and order
+at least $13$, and there is no isolate-free $F$-saturated graph with $15$ edges
+and order at least $14$.
+\end{lemma}
+
+\begin{proof}
+For each $1\le e\le14$, we processed McKay's complete \texttt{graph6}
+catalogue of nonisomorphic simple graphs with exactly $e$ edges and no isolated
+vertices~\cite{McKayData,McKayPiperno}. These catalogues contain
+$1{,}008{,}629$ graphs in total.
+
+The verifier uses the following exact criterion. A graph $C$ is $F$-free if and
+only if
+\[
+\nu(C-T)\le1
+\quad\text{for every triangle }T\subseteq C,
+\]
+where $\nu$ denotes matching number. Once this condition is checked, a nonedge
+$xy$ is saturating if and only if either
+\begin{enumerate}
+\item $C-\{x,y\}$ contains vertex-disjoint copies of $K_3$ and $K_2$, or
+\item some common neighbor $z$ of $x$ and $y$ satisfies
+$\nu(C-\{x,y,z\})\ge2$.
+\end{enumerate}
+Indeed, every new copy of $F$ must use $xy$, and these alternatives correspond
+to $xy$ being a $K_2$ component or lying in the triangle. Exhausting all
+nonedges gives the table and excludes every order at least $13$ through
+$14$ edges.
+
+For the $15$-edge layer, delete an edge from an isolate-free graph and then
+remove any endpoints that become isolated. The resulting isolate-free graph has
+$14$ edges. Reversing this operation shows that every isolate-free $15$-edge
+graph is obtained from an isolate-free $14$-edge graph by adding an edge between
+two existing nonadjacent vertices, attaching a new leaf, or adjoining a
+disjoint $K_2$. Applying these extensions, subject to resulting order at least
+$14$, to the $740{,}226$ isolate-free $14$-edge representatives produces
+$25{,}937{,}431$ candidates, with repetitions allowed. None is $F$-saturated.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $n\le6$, adding one edge cannot create the seven-vertex graph $F$, so the
+only $F$-saturated graph is $K_n$.
+
+Let $n\ge7$. By Lemma~\ref{lem:upper}, an extremal graph $G$ has at most $15$
+edges. If $G$ has an isolated vertex, Lemma~\ref{lem:isolate} gives
+$G\cong K_6\cup I_{n-6}$ and $e(G)=15$. Otherwise $\delta(G)\ge1$, so
+$n\le2e(G)\le30$, and Lemma~\ref{lem:computer}, together with
+Lemma~\ref{lem:upper}, gives the asserted values.
+
+For $n\ge14$, Lemma~\ref{lem:computer} excludes an isolate-free extremal graph,
+and Lemma~\ref{lem:isolate} gives uniqueness. At $n=13$, the graphs $B_{13}$
+and $K_6\cup I_7$ are nonisomorphic and extremal.
+\end{proof}
+
+\medskip
+\noindent\textbf{Exact verification.}
+The finite part of the proof is recomputable from the data printed here. One
+reads McKay's catalogues of nonisomorphic isolate-free graphs with exactly $e$
+edges for $1\le e\le14$~\cite{McKayData}, $1{,}008{,}629$ graphs in all, of
+which $740{,}226$ have $14$ edges; applies the $F$-freeness and saturation
+criteria displayed in the proof of Lemma~\ref{lem:computer}, which use nothing
+beyond triangle enumeration and matching number; and expands the $14$-edge
+layer by the three extensions listed there to the $25{,}937{,}431$ candidates
+of order at least $14$. This returns the minimum edge counts
+$9,10,11,12,13,14$ for $7\le v\le12$, no $F$-saturated graph of order at least
+$13$ with at most $14$ edges, and none of order at least $14$ with $15$ edges.
+Every step is exact: all arithmetic is on integers, no floating-point
+computation is involved, and no isomorphism test beyond the published
+catalogues is used. The program and its transcript are retained in an
+auxiliary archive available on request.
+
+\begin{thebibliography}{9}
+
+\bibitem{CurrieEtAl}
+B.~L. Currie, J.~R. Faudree, R.~J. Faudree, and J.~R. Schmitt,
+\emph{A survey of minimum saturated graphs},
+Electron. J. Combin., Dynamic Survey DS19, second edition, 2021,
+\href{https://doi.org/10.37236/41}{doi:10.37236/41}.
+
+\bibitem{LinHeXu}
+H.~Lin, Z.~He, and Y.~Xu,
+\emph{A note on the saturation number for unions of three cliques},
+arXiv:2608.00459v1 [math.CO], 2026,
+\href{https://doi.org/10.48550/arXiv.2608.00459}
+{doi:10.48550/arXiv.2608.00459}.
+
+\bibitem{McKayData}
+B.~D. McKay,
+\emph{Simple graphs by number of edges}, Combinatorial Data,
+\url{https://users.cecs.anu.edu.au/~bdm/data/graphs.html},
+accessed 23 August 2026.
+
+\bibitem{McKayPiperno}
+B.~D. McKay and A.~Piperno,
+\emph{Practical graph isomorphism, II},
+J. Symbolic Comput. \textbf{60} (2014), 94--112,
+\href{https://doi.org/10.1016/j.jsc.2013.09.003}
+{doi:10.1016/j.jsc.2013.09.003}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,361 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+
+\hypersetup{
+  pdftitle={The Least Counterexample to Conjecture 4.3 of Dolfi, Hafezieh, and Spiga}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ord}{ord}
+
+\title[Least Counterexample to Conjecture 4.3]
+{The Least Counterexample to Conjecture 4.3 of Dolfi, Hafezieh, and Spiga}
+
+\date{}
+
+\subjclass[2020]{11A51; 11A41, 20C15}
+\keywords{Mersenne number, cyclotomic polynomial, prime divisor,
+counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Dolfi, Hafezieh, and Spiga conjectured that if a positive integer $n$
+has $\ell\ge 3$ distinct prime divisors and $\gcd(2^n-1,n)=1$, then
+$2^n-1$ has at least $2^\ell$ distinct prime divisors. We observe that
+the conjecture is false as stated and prove that its least counterexample
+is $n=170$:
+\[
+\gcd(2^{170}-1,170)=1,
+\qquad
+\omega(2^{170}-1)=7<8=2^{\omega(170)}.
+\]
+The factorization itself appears in prior data; the point of the note is
+to identify its consequence for the conjecture and prove minimality.
+Since $170$ is even, this does not address the odd-exponent case
+motivating the original group-theoretic construction.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+For a positive integer $m$, let $\omega(m)$ be the number of distinct
+prime divisors of $m$, and let $\tau(m)$ be the number of positive
+divisors of $m$. Conjecture~4.3 of Dolfi, Hafezieh, and Spiga
+\cite{DHS} reads, in full:
+\begin{quote}
+``Let $n$ be divisible by $\ell$ distinct primes and assume
+$\gcd(2^n-1,n)=1$. If $\ell\ge3$, then $2^n-1$ is divisible by at
+least $2^\ell$ distinct primes.''
+\end{quote}
+That is,
+\[
+\gcd(2^n-1,n)=1,
+\quad \omega(n)=\ell\ge 3
+\quad\Longrightarrow\quad
+\omega(2^n-1)\ge 2^\ell,
+\]
+with no hypothesis of oddness on $n$. Immediately before the
+conjecture the same authors write: ``Except when $\ell\le2$, we have no
+examples where $2^n-1$ has exactly $2^{|\pi(n)|}-1$ distinct prime
+divisors.'' Here $|\pi(n)|=\omega(n)$, and the exponent exhibited below
+is such an example.
+
+\begin{theorem}\label{thm:main}
+The least positive integer violating Conjecture~4.3 of \cite{DHS} is
+\[
+n=170=2\cdot5\cdot17.
+\]
+More precisely,
+\[
+\gcd(2^{170}-1,170)=1
+\quad\text{and}\quad
+\omega(2^{170}-1)=7.
+\]
+\end{theorem}
+
+We use the following specialization of \cite[Lemma~4.2]{DHS}.
+
+\begin{lemma}\label{lem:cyclotomic}
+If $\gcd(2^n-1,n)=1$, then
+\[
+\omega(2^n-1)\ge \tau(n)-1.
+\]
+\end{lemma}
+
+\begin{proof}
+For every divisor $d>1$ of $n$, one has $\Phi_d(2)>1$; choose a prime
+$r_d\mid\Phi_d(2)$. Then $r_d\mid2^n-1$, so the gcd hypothesis gives
+$r_d\nmid n$, and hence $r_d\nmid d$. We claim that
+$\ord_{r_d}(2)=d$. Since $r_d\mid\Phi_d(2)\mid 2^d-1$, the order
+$o=\ord_{r_d}(2)$ divides $d$; suppose $o<d$. Modulo $r_d$, the element
+$2$ is a root of $x^o-1=\prod_{e\mid o}\Phi_e(x)$ and therefore of some
+$\Phi_e(x)$ with $e\mid o$, and $e\le o<d$ forces $e\ne d$. Thus $e$
+and $d$ are distinct divisors of $d$, so $\Phi_e\Phi_d$ divides
+$x^d-1$, and $2$ is a repeated root of $x^d-1$ over
+$\mathbf F_{r_d}$. This is impossible because $x^d-1$ is squarefree
+over $\mathbf F_{r_d}$ when $r_d\nmid d$. Therefore the primes $r_d$
+are distinct as $d$ varies, giving $\tau(n)-1$ distinct prime divisors
+of $2^n-1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Direct evaluation of the cyclotomic factors for the divisors of $170$
+gives
+\begin{equation}\label{eq:factorization}
+\begin{split}
+2^{170}-1={}&3\cdot11\cdot31\cdot43691\cdot131071\\
+&{}\cdot9520972806333758431
+\cdot26831423036065352611.
+\end{split}
+\end{equation}
+The first five factors are prime by trial division, and
+Proposition~\ref{prop:large-primes} gives deterministic primality
+certificates for the last two. Thus $\omega(2^{170}-1)=7$.
+
+Moreover, $2^{170}-1$ is odd. Since $\ord_5(2)=4$ and
+$\ord_{17}(2)=8$, while neither $4$ nor $8$ divides $170$, neither $5$
+nor $17$ divides $2^{170}-1$. Hence
+\[
+\gcd(2^{170}-1,170)=1,
+\]
+so $170$ is a counterexample.
+
+It remains to prove minimality. Suppose that $n<170$ satisfies the gcd
+hypothesis, has $\ell=\omega(n)\ge3$, and violates the conjectured bound.
+If $n$ is not squarefree, then
+\[
+\tau(n)\ge3\cdot2^{\ell-1},
+\]
+and Lemma~\ref{lem:cyclotomic} yields
+\[
+\omega(2^n-1)\ge\tau(n)-1
+\ge3\cdot2^{\ell-1}-1\ge2^\ell,
+\]
+a contradiction. Thus $n$ is squarefree. Since
+$2\cdot3\cdot5\cdot7=210$, we must have $\ell=3$.
+
+The squarefree products of three distinct primes below $170$ are
+\[
+30,42,66,70,78,102,105,110,114,130,138,154,165.
+\]
+Every value divisible by $6$ fails the gcd hypothesis because
+$3\mid n$ and, $n$ being even, $3\mid 2^n-1$ as well; hence
+$3\mid\gcd(2^n-1,n)$. The value $105$ fails because
+$\ord_7(2)=3\mid105$, and $110$ fails because
+$\ord_{11}(2)=10\mid110$. Hence any counterexample below $170$ must lie
+in
+\[
+\{70,130,154,165\}.
+\]
+For each remaining value, the proof of Lemma~\ref{lem:cyclotomic}
+shows that every prime divisor of $\Phi_d(2)$ has order $d$; each such
+$n$ is squarefree with three prime factors, so $\tau(n)=8$, and hence
+the seven nontrivial cyclotomic factors contribute disjoint sets of
+primes. The following factorizations show that one such set has at
+least two members:
+\[
+\begin{array}{c|c}
+ n & \text{a factored cyclotomic value }\Phi_d(2),\ d\mid n\\
+\hline
+70  & \Phi_{35}(2)=71\cdot122921,\\
+130 & \Phi_{130}(2)=131\cdot409891\cdot7623851,\\
+154,165 & \Phi_{11}(2)=23\cdot89.
+\end{array}
+\]
+All displayed factors are prime by trial division. Thus
+$\omega(2^n-1)\ge8$ in every remaining case, completing the proof.
+\end{proof}
+
+\begin{remark}[Scope, source of the wording, and prior data]
+\label{rem:scope}
+The counterexample concerns the unrestricted wording of
+Conjecture~4.3 quoted in Section~1. That wording is the one printed in
+the preprint version of \cite{DHS}, which is the version we were able
+to consult; the statement number is corroborated for the version of
+record only indirectly, by \cite{LLRS}, who cite ``Conjecture 4.3 on
+page 351''. If the published version carries an additional hypothesis,
+then what Theorem~\ref{thm:main} refutes is the sentence displayed in
+Section~1.
+
+The construction in Section~3 of \cite{DHS} assumes more than the
+conjecture does: it opens ``let $n$ be an odd positive integer such
+that $n\ne p$, $n_3=3$ and $\gcd(p^n-1,n)=1$''. Since $170$ is even
+and $3\nmid170$, Theorem~\ref{thm:main} says nothing about that
+regime, and the group-theoretic construction resting on it is
+untouched.
+
+The factorization itself is not new. It is classical
+Cunningham-project data: $2^{170}-1=(2^{85}-1)(2^{85}+1)$, and both
+factors are recorded in the tables of Brillhart, Lehmer, Selfridge,
+Tuckerman, and Wagstaff \cite{BLSTW}, which OEIS A046800 also lists
+among its references; A046800 records $\omega(2^{170}-1)=7$
+\cite{OEIS}.
+Example~3.8 of Laubacher, Lewis, Ravaglia, and Summers \cite{LLRS}
+records the six factors in \eqref{eq:factorization} other than $3$ by
+taking $p_1=5$ and $p_2=17$, and cites Conjecture~4.3 on the following
+page without connecting the two, their construction being confined to
+odd exponents. No novelty is claimed for the factorization; the point
+of the note is its consequence for Conjecture~4.3 and the proof of
+minimality.
+\end{remark}
+
+\section{Primality certificates}
+
+We include short Pocklington certificates for the two large factors in
+\eqref{eq:factorization}.
+
+\begin{lemma}[Pocklington criterion]\label{lem:pocklington}
+Let $N>1$ be odd, and let $F$ be a squarefree divisor of $N-1$ whose
+prime factorization is known. Suppose that $F^2>N$ and that an integer
+$a$ satisfies
+\[
+a^{N-1}\equiv1\pmod N,
+\qquad
+\gcd\bigl(a^{(N-1)/q}-1,N\bigr)=1
+\]
+for every prime $q\mid F$. Then $N$ is prime.
+\end{lemma}
+
+\begin{proof}
+Let $r$ be a prime divisor of $N$. For every $q\mid F$, the displayed
+conditions imply that $q\mid\ord_r(a)$, and hence $q\mid r-1$.
+Therefore $F\mid r-1$, so $r>F>\sqrt N$. A composite $N$ has a prime
+divisor at most $\sqrt N$, a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:large-primes}
+The integers
+\[
+P=9520972806333758431,
+\qquad
+Q=26831423036065352611
+\]
+are prime.
+\end{proposition}
+
+\begin{proof}
+The integers
+\[
+709,\ 2437,\ 2857,\ 6367,\ 27953
+\]
+are prime by trial division. In each row of the following table,
+$F\mid N-1$, $F^2>N$, and the displayed witness $a$ satisfies the two
+conditions in Lemma~\ref{lem:pocklington} for every prime $q\mid F$.
+The rows are read from top to bottom within each of the two certificate
+chains.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{r@{\qquad}l@{\qquad}c}
+\toprule
+$N$ & $F$ & $a$\\
+\midrule
+$2598660833$ & $709\cdot2437$ & $3$\\
+$P$ & $27953\cdot2598660833$ & $15$\\[1mm]
+$114281$ & $2857$ & $6$\\
+$10285291$ & $114281$ & $2$\\
+$204710635813423$ & $6367\cdot10285291$ & $3$\\
+$Q$ & $204710635813423$ & $3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Successive applications of Lemma~\ref{lem:pocklington} prove every
+non-base entry prime, in particular $P$ and $Q$.
+\end{proof}
+
+\medskip
+\noindent
+\textbf{Exact verification.}
+Every arithmetic assertion above is a finite computation in exact
+integer arithmetic on the data printed in this paper, and can be redone
+from the paper alone: multiply the seven factors
+in~\eqref{eq:factorization} and compare the product with $2^{170}-1$;
+confirm the five small factors of~\eqref{eq:factorization} and the five
+base primes $709,2437,2857,6367,27953$ by trial division; for each row
+of the table above check that $F\mid N-1$, that $F^2>N$, and that the
+displayed witness $a$ satisfies the two conditions of
+Lemma~\ref{lem:pocklington} at every prime $q\mid F$; compute
+$\gcd(2^{170}-1,170)$ and the orders $\ord_5(2)=4$ and
+$\ord_{17}(2)=8$; check that the squarefree products of three distinct
+primes below $170$ are exactly the thirteen values displayed in the
+proof of Theorem~\ref{thm:main}, that the three stated exclusions
+remove all but $\{70,130,154,165\}$, and that the cyclotomic
+factorizations of $\Phi_{35}(2)$, $\Phi_{130}(2)$ and $\Phi_{11}(2)$
+displayed there are correct.
+
+The computation was also re-run from scratch and independently, on a
+separate machine, by a program that takes the numbers claimed here as
+its input and recomputes everything else: all $36$ of its checks agreed
+with the statements above. That re-run went beyond the list just given
+in three ways: it proved $P$ and $Q$ prime a second time by Lucas
+certificates built independently of the Pocklington chains, it
+factored $2^n-1$ completely for each of the four exponents below $170$
+that satisfy both hypotheses, and it confirmed by mutation that the
+same predicates report failure when the exhibited factorization or
+either large factor is perturbed. The program and its transcript are
+retained in an auxiliary archive, available on request. Two things the
+re-run did not settle. A supplementary sweep of the bound of
+Lemma~\ref{lem:cyclotomic} was carried out only for $n\le100$, because
+factoring $2^n-1$ for prime exponents near $170$ was outside its
+budget; that sweep is an extra, and the bound is proved above rather
+than computed. And the bibliographic attributions in
+Remark~\ref{rem:scope} are not checkable by machine; they were
+confirmed by reading the sources. An independent re-run that agrees is
+evidence that the computation is right; the proofs above, not the
+program, are what is offered as the argument.
+
+\begin{thebibliography}{9}
+
+\bibitem{BLSTW}
+J.~Brillhart, D.~H. Lehmer, J.~L. Selfridge, B.~Tuckerman, and
+S.~S. Wagstaff,~Jr.,
+\emph{Factorizations of $b^n\pm1$, $b=2,3,5,6,7,10,11,12$ up to high
+powers}, 3rd ed., Contemp. Math. \textbf{22},
+Amer. Math. Soc., Providence, RI, 2002.
+\href{https://doi.org/10.1090/conm/022}{doi:10.1090/conm/022}.
+
+\bibitem{DHS}
+S.~Dolfi, R.~Hafezieh, and P.~Spiga,
+\emph{On the structure of the character degree graphs having diameter three},
+J. Algebra \textbf{685} (2026), 337--360.
+\href{https://doi.org/10.1016/j.jalgebra.2025.08.002}
+{doi:10.1016/j.jalgebra.2025.08.002};
+preprint \href{https://arxiv.org/abs/2402.19335}{arXiv:2402.19335v1}
+[math.GR], 2024. Conjecture~4.3 is quoted above from the preprint.
+
+\bibitem{LLRS}
+J.~Laubacher, M.~L. Lewis, L.~Ravaglia, and A.~Summers,
+\emph{Constructing solvable groups whose character degree graphs
+generalize the bowtie},
+\href{https://arxiv.org/abs/2608.19374}{arXiv:2608.19374v1}
+[math.GR], 2026.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+Sequence A046800, ``Number of distinct prime factors of $2^n-1$,''
+accessed August 22, 2026.
+\href{https://oeis.org/A046800}{oeis.org/A046800}.
+The terms displayed on the sequence's page stop at $n=101$; the value
+at $n=170$ is in the linked b-file, which tabulates $a(n)$ for
+$n=0,\dots,1206$.
+
+\end{thebibliography}
+
+\end{document}

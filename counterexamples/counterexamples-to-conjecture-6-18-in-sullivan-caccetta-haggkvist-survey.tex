@@ -1,0 +1,228 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to Conjecture 6.18 in Sullivan's
+  Caccetta-Haggkvist Survey}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Conjecture~6.18 in Sullivan's survey]
+      {Counterexamples to Conjecture~6.18 in Sullivan's
+       Caccetta--H\"aggkvist Survey}
+\date{}
+
+\subjclass[2020]{05C50, 05C20, 05C38}
+\keywords{directed cycle, spectral radius, directed girth, lexicographic product}
+
+\begin{document}
+
+\begin{abstract}
+Sullivan recorded a conjecture attributed to Charbit asserting that every
+$n$-vertex digraph $D$ with adjacency spectral radius $\rho(D)\ge n/k$
+contains a cycle of length at most $k$, where, as throughout that survey,
+a cycle in a digraph means a directed cycle. We show that the assertion
+holds exactly for $k=1,2$, vacuously for $k=1$. For every $k\ge3$, the
+lexicographic product $\vec C_{k+1}[T_5]$ is a strongly connected oriented
+graph of directed girth $k+1$ and spectral radius
+$1/(2^{1/5}-1)>5(k+1)/k$, and hence is a counterexample.
+\end{abstract}
+
+\maketitle
+
+Throughout, digraphs are finite, nonempty, and loopless, with no parallel
+arcs; antiparallel pairs are permitted. For a digraph $D$, let $A(D)$ be
+its adjacency matrix, with $A(D)_{uv}=1$ when $u\to v$, and let
+$\rho(D)=\rho(A(D))$. The directed girth of $D$ is the length of a shortest
+directed cycle.
+
+Sullivan \cite[Conjecture~6.18]{Sullivan} recorded the following conjecture,
+attributed to Charbit: if $D$ has $n$ vertices and $\rho(D)\ge n/k$, then
+$D$ contains a directed cycle of length at most $k$. For a positive integer
+$k$, denote this assertion by $(\mathsf C_k)$.
+
+The source states the conclusion with the bare word ``cycle'': ``If the
+spectral radius of $A$ is at least $n/k$, then $G$ has a cycle of length
+$\le k$'' \cite[Conjecture~6.18]{Sullivan}. Here, as throughout
+\cite{Sullivan}, a cycle in a digraph means a directed cycle. That is the
+convention of the survey's headline statement, the Caccetta--H\"aggkvist
+conjecture, recorded there as ``Every simple $n$-vertex digraph with
+minimum out-degree at least $r$ has a cycle with length at most
+$\lceil n/r\rceil$'' \cite[Conjecture~2.1]{Sullivan}. The survey then
+fixes the meaning of that conclusion itself, by restating the same
+conjecture in matrix form immediately afterwards: for a $0$-$1$ matrix $A$
+in which $a_{ij}=1$ implies $a_{ji}\ne1$ for $i\ne j$, and $a_{ii}=1$ for
+all $i$, ``if the sum of every row in $A$ is at least $r+1$,
+$A^{\lceil n/r\rceil}$ has trace greater than $n$'' \cite[\S2]{Sullivan}.
+Powers of such a matrix record directed walks and nothing else, so, the
+diagonal being all ones, $\operatorname{tr}A^{t}>n$ holds exactly when
+some vertex carries a closed directed walk of length $t$ other than the
+all-loops one, that is, exactly when the digraph has a directed cycle of
+length at most $t$; a cycle of the underlying graph contributes to no
+power of $A$. The same dictionary governs the subsection in which
+Conjecture~6.18 appears, where a trace condition of this kind is spelled
+out as asking for a ``non-trivial (i.e.\ not all horizontal edges) path''
+from one copy of a vertex to a later copy of the same vertex
+\cite[Conjecture~6.17]{Sullivan}. This reading is load-bearing rather than
+cosmetic, and Remark~\ref{rem:reading} records what the counterexamples
+below do and do not refute under it.
+
+\begin{theorem}\label{thm:main}
+The assertion $(\mathsf C_k)$ holds if and only if $k\in\{1,2\}$. For every
+$k\ge3$, it fails even among strongly connected oriented graphs.
+\end{theorem}
+
+\section{The construction}
+
+Let $\vec C_g$ be the directed cycle on $\mathbb Z_g$, and let $T_m$ be the
+transitive tournament on $[m]=\{1,\dots,m\}$, with $j\to\ell$ when
+$j<\ell$. Define $D_{g,m}=\vec C_g[T_m]$ on $\mathbb Z_g\times[m]$ by
+\[
+ (i,j)\to(i,\ell)\quad(j<\ell),
+ \qquad
+ (i,j)\to(i+1,\ell)\quad(\ell\in[m]),
+\]
+where the first coordinate is taken modulo $g$, and there are no other arcs.
+
+\begin{proposition}\label{prop:family}
+For all $g\ge2$ and $m\ge1$, the digraph $D_{g,m}$ is strongly connected,
+has order $gm$, directed girth $g$, and
+\[
+ \rho(D_{g,m})=\frac{1}{2^{1/m}-1}.
+\]
+It is oriented whenever $g\ge3$.
+\end{proposition}
+
+\begin{proof}
+Every vertex in one block has an arc to every vertex in the next block.
+Following such arcs, and making a full turn when necessary, gives a directed
+path between any ordered pair of vertices. Thus $D_{g,m}$ is strongly
+connected. If $g\ge3$, neither the arcs inside a block nor the arcs between
+consecutive blocks form an antiparallel pair, so $D_{g,m}$ is oriented.
+
+Along each arc, the first coordinate either stays fixed or advances by one.
+Hence a directed cycle uses a positive multiple of $g$ advancing arcs: zero
+is impossible because every block induces the acyclic tournament $T_m$.
+Its length is therefore at least $g$. Choosing one vertex from each block
+gives a directed $g$-cycle, so the directed girth is $g$.
+
+Set
+\[
+ r=2^{1/m},\qquad \lambda=\frac{1}{r-1},\qquad
+ y_j=r^{m-j}\quad(j\in[m]),
+\]
+and define $x_{(i,j)}=y_j$. Since $r^m=2$,
+\[
+ \sum_{\ell=1}^m y_\ell=\frac{r^m-1}{r-1}=\lambda.
+\]
+For every $(i,j)$,
+\[
+ \begin{aligned}
+ (A(D_{g,m})x)_{(i,j)}
+ &=\sum_{\ell=1}^m y_\ell+\sum_{\ell=j+1}^m y_\ell \\
+ &=\lambda+\frac{r^{m-j}-1}{r-1}
+ =\lambda y_j.
+ \end{aligned}
+\]
+Thus $x>0$ is an eigenvector with eigenvalue $\lambda$. By
+Perron--Frobenius, $\rho(D_{g,m})=\lambda$.
+\end{proof}
+
+\section{Proof of the classification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $k=1$, every row sum of $A(D)$ is at most $n-1$, and hence
+$\rho(D)\le n-1<n$. Thus the hypothesis of $(\mathsf C_1)$ is impossible.
+
+For $k=2$, suppose that $D$ has no directed cycle of length at most $2$.
+Then $D$ has no antiparallel pair. Let $x\ne0$ be a nonnegative Perron
+eigenvector of $A(D)$. Since every unordered pair supports at most one arc,
+\[
+ \begin{aligned}
+ \rho(D)\lVert x\rVert_2^2
+ &=\sum_{u\to v}x_ux_v \\
+ &\le \frac12\sum_{u\to v}(x_u^2+x_v^2) \\
+ &=\frac12\sum_{v\in V(D)}
+     \bigl(d^+(v)+d^-(v)\bigr)x_v^2 \\
+ &\le \frac{n-1}{2}\lVert x\rVert_2^2.
+ \end{aligned}
+\]
+Therefore $\rho(D)\le(n-1)/2<n/2$, proving $(\mathsf C_2)$.
+
+Now let $k\ge3$ and take $D=D_{k+1,5}$. By
+Proposition~\ref{prop:family}, $D$ is a strongly connected oriented graph
+of order $n=5(k+1)$ and directed girth $k+1$. Moreover,
+\[
+ \rho(D)=\frac{1}{2^{1/5}-1}>\frac{20}{3}
+ \ge \frac{5(k+1)}{k}=\frac{n}{k}.
+\]
+Indeed, $23^5>2\cdot20^5$ gives $2^{1/5}<23/20$ and hence the strict
+inequality, while
+\[
+ \frac{20}{3}-\frac{5(k+1)}{k}
+ =\frac{5(k-3)}{3k}\ge0.
+\]
+Thus $D$ satisfies the spectral hypothesis but has no directed cycle of
+length at most $k$. Hence $(\mathsf C_k)$ fails for every $k\ge3$.
+\end{proof}
+
+\begin{remark}[Reading and scope]\label{rem:reading}
+What is refuted is $(\mathsf C_k)$ for $k\ge3$, on the directed reading of
+``cycle'' fixed above, and only that. The refutation does not survive
+replacing directed cycles by cycles of the underlying graph: each block of
+$D_{k+1,5}$ induces an underlying $K_5$, so the underlying graph of
+$D_{k+1,5}$ contains triangles, and $3\le k$ for every $k\ge3$.
+
+The counterexamples are, on the other hand, insensitive to the other
+matrix convention that appears in \cite{Sullivan}, the unit diagonal used
+in the restatement of the Caccetta--H\"aggkvist conjecture there.
+Conjecture~6.18 fixes a zero diagonal, which is the convention used above;
+but for the positive eigenvector $x$ of Proposition~\ref{prop:family} one
+has $(A(D)+I)x=(\rho(D)+1)x$, so
+$\rho(A(D)+I)=\rho(D)+1>\rho(D)\ge n/k$ for $D=D_{k+1,5}$ and $k\ge3$.
+The spectral hypothesis therefore holds under either normalisation, the
+diagonal entries being a feature of the matrix and not arcs of $D$, which
+remains loopless of directed girth $k+1$.
+
+No minimality is claimed for $D_{k+1,5}$, either within this family or
+among digraphs generally, and nothing here bears on the
+Caccetta--H\"aggkvist conjecture \cite[Conjecture~2.1]{Sullivan} itself,
+whose minimum-outdegree hypothesis the family fails, as recorded below.
+\end{remark}
+
+\begin{remark}
+For $k=5$, the smaller graph $D_{6,2}$ has order $12$, directed girth $6$,
+and spectral radius $1+\sqrt2>12/5$. The construction does not satisfy the
+Caccetta--H\"aggkvist minimum-outdegree hypothesis: for every $m$,
+\[
+ \delta^+(D_{k+1,m})=m<\frac{m(k+1)}{k}
+ =\frac{|V(D_{k+1,m})|}{k}.
+\]
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{Sullivan}
+B.~D. Sullivan,
+\emph{A summary of problems and results related to the
+Caccetta--H\"aggkvist conjecture},
+AIM Preprint 2006-13 (2006),
+\href{https://arxiv.org/abs/math/0605646}{arXiv:math/0605646};
+also circulated by the American Institute of Mathematics, with the title
+words in the order \emph{results and problems}, at
+\href{https://aimath.org/WWN/caccetta/caccetta.pdf}
+{aimath.org/WWN/caccetta/caccetta.pdf},
+where the item cited here is printed as ``Conjecture 6.18. (Charbit)''.
+
+\end{thebibliography}
+
+\end{document}

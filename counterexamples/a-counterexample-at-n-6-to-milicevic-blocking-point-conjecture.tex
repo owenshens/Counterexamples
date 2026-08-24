@@ -1,0 +1,195 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\title[A counterexample to Mili\'cevi\'c's conjecture]{A Counterexample at \texorpdfstring{$n=6$}{n=6} to Mili\'cevi\'c's Blocking-Point Conjecture}
+\date{}
+\subjclass[2020]{Primary 52C10; Secondary 52C30, 51A20, 14H50}
+\keywords{blocking set, points in general position, spanned line,
+cubic curve, plane configuration, counterexample}
+
+\hypersetup{
+  pdftitle={A Counterexample at n=6 to Milicevic's Blocking-Point Conjecture}
+}
+
+\begin{document}
+
+\begin{abstract}
+Mili\'cevi\'c conjectured that if $n$ points in general position are
+blocked by $n$ additional points, then all $2n$ points lie on a cubic
+curve. We give an explicit configuration defined over
+$\mathbb{Q}(\sqrt5)$ with $n=6$ that satisfies the blocking hypothesis
+but lies on no cubic. Together with the theorem of Bhore and Swanepoel
+for $n=5$, this shows that $n=6$ is the least possible counterexample.
+\end{abstract}
+
+\maketitle
+
+\section{The counterexample}
+
+Let $B$ be a set of $n$ points in the real affine plane, no three
+collinear, and let $R$ be a disjoint set of $n$ points such that every
+line spanned by two points of $B$ contains a point of $R$.
+Mili\'cevi\'c conjectured that $B\cup R$ lies on a cubic curve
+\cite[Conjecture~5]{Milicevic}. Keller and Pinchasi proved the conjecture
+under the additional requirement that every blue pair has a blocker
+outside the segment joining it
+\cite[Conjecture~1.2 and Theorem~1.3]{KellerPinchasi}. Bhore and
+Swanepoel proved the case $n=5$ \cite[Theorem~2.9]{BhoreSwanepoel}.
+For $n\leq4$, the conclusion follows from the ten-dimensionality of the
+space of homogeneous plane cubics. Thus the following theorem treats
+the first possible value of $n$. Throughout, a cubic is the zero set in
+$\mathbb{P}^2$ of a nonzero homogeneous polynomial of degree three;
+reducible and nonreduced cubics are included.
+
+\begin{theorem}\label{thm:main}
+There exist disjoint six-point sets $B$ and $R$ in the real affine
+plane such that no three points of $B$ are collinear and every line
+spanned by two points of $B$ contains a point of $R$, but $B\cup R$ is
+contained in no cubic curve.
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+ p=\frac{3-\sqrt5}{2}.
+\]
+Then $p^2=3p-1$ and $0<p<\tfrac12$. In $\mathbb{P}^2(\mathbb{R})$, let
+\[
+\begin{aligned}
+ b_1&=(1:0:0), & b_2&=(0:1:0), & b_3&=(0:0:1),\\
+ b_4&=(1:1:1), & b_5&=(p:1-p:1), & b_6&=(1-p:p:1),
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+ r_1&=(p:0:1), & r_2&=(1-p:1:1), & r_3&=(1:1-p:1),\\
+ r_4&=(0:p:1), & r_5&=(-1:-1:0), & r_6&=(1:1:2).
+\end{aligned}
+\]
+The three points with $z=0$ are distinct. After normalization to
+$z=1$, the remaining nine points are also distinct because
+$0<p<\tfrac12$. Hence all twelve points are distinct. Moreover,
+$x+y+z$ takes only the nonzero values
+\[
+ 1,\ 2,\ 3,\ 1+p,\ 3-p,\ -2,\ 4
+\]
+on these points. We therefore regard
+$\mathbb{P}^2\setminus\{x+y+z=0\}$ as a common affine chart.
+
+For $i<j<k$, write
+\[
+ [ijk]=\det(b_i,b_j,b_k),
+\]
+with the coordinate vectors as columns. Reduction by $p^2=3p-1$
+gives the complete list
+\[
+\begin{array}{c|l}
+\text{value of }[ijk] & \text{triples }ijk\\ \hline
+ 1 & 123,124,125,126,234\\
+ -1 & 134\\
+ p & 145,235\\
+ -p & 136,246\\
+ 1-p & 146,236\\
+ -(1-p) & 135,245\\
+ 1-2p & 156,256,345,456\\
+ -(1-2p) & 346,356
+\end{array}
+\]
+All these values are nonzero, so no three points of $B$ are collinear.
+
+Write $ij$ for the line through $b_i$ and $b_j$. Direct evaluation of
+$\det(b_i,b_j,r_k)$ gives exactly the following incidences:
+\[
+\begin{array}{c|l}
+\text{red point} & \text{blue pairs blocked}\\ \hline
+ r_1 & 13,25,46\\
+ r_2 & 14,26,35\\
+ r_3 & 15,24,36\\
+ r_4 & 16,23,45\\
+ r_5 & 12,34\\
+ r_6 & 34,56
+\end{array}
+\]
+Every one of the fifteen blue pairs occurs, so $R$ blocks all lines
+spanned by $B$. The stronger hypothesis of Keller and Pinchasi is not
+satisfied: using the normalized representatives with $x+y+z=1$, one has
+\[
+ r_5=\frac{b_1+b_2}{2},
+ \qquad
+ r_6=\frac{b_5+b_6}{2},
+\]
+and the incidence table shows that these are the only red points on
+$12$ and $56$, respectively.
+
+It remains to exclude a cubic. Suppose that a nonzero homogeneous
+cubic $F(x,y,z)$ vanishes at all twelve points. The four distinct points
+\[
+ b_3,\quad b_4,\quad r_5,\quad r_6
+\]
+lie on the line $x-y=0$. The restriction of $F$ to this line is a
+binary cubic with four distinct zeros, hence is identically zero.
+Therefore
+\[
+ F=(x-y)Q,
+ \qquad
+ Q=Ax^2+By^2+Cz^2+Dxy+Exz+Gyz.
+\]
+The points $b_1,b_2,r_1,r_4,b_5,r_2$ lie off $x-y=0$, so $Q$ vanishes
+at each of them. Evaluation at $b_1$ and $b_2$ gives $A=B=0$, while
+evaluation at $r_1$ and $r_4$ gives
+\[
+ C+pE=0,
+ \qquad
+ C+pG=0.
+\]
+If $C=0$, then $E=G=0$, and evaluation at $b_5$ gives
+$Dp(1-p)=0$, hence $D=0$, contradicting $F\neq0$. Thus $C\neq0$.
+After scaling, take $C=p^2$. Then $E=G=-p$, and evaluation at $b_5$
+gives
+\[
+ 0=Q(b_5)=p(1-p)(D-1),
+\]
+so $D=1$. Consequently,
+\[
+ Q=xy-pxz-pyz+p^2z^2=(x-pz)(y-pz).
+\]
+At $r_2=(1-p:1:1)$, however,
+\[
+ F(r_2)=(-p)(1-2p)(1-p)\neq0,
+\]
+a contradiction. Hence no cubic contains $B\cup R$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{BhoreSwanepoel}
+S.~Bhore and K.~Swanepoel,
+\emph{On sets of monochromatic objects in bicolored point sets},
+\href{https://arxiv.org/abs/2602.17637}{arXiv:2602.17637}, 2026.
+
+\bibitem{KellerPinchasi}
+C.~Keller and R.~Pinchasi,
+\emph{On sets of $n$ points in general position that determine lines
+that can be pierced by $n$ points},
+Discrete Comput. Geom. \textbf{64} (2020), no.~3, 905--915.
+\href{https://doi.org/10.1007/s00454-020-00201-3}
+{doi:10.1007/s00454-020-00201-3}
+
+\bibitem{Milicevic}
+L.~Mili\'cevi\'c,
+\emph{Classification theorem for strong triangle blocking arrangements},
+Publ. Inst. Math. (Beograd) (N.S.) \textbf{107}(121) (2020), 1--36.
+\href{https://doi.org/10.2298/PIM2021001M}
+{doi:10.2298/PIM2021001M}
+
+\end{thebibliography}
+
+\end{document}

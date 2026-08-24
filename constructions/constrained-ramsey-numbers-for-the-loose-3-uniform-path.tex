@@ -1,0 +1,348 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Constrained Ramsey Numbers for the Loose 3-Uniform Path}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Lpath}{\mathcal L}
+\newcommand{\Z}{\mathbb Z}
+
+\title[Constrained Ramsey numbers for the loose path]{Constrained Ramsey Numbers for the Loose 3-Uniform Path}
+\date{}
+\subjclass[2020]{05C55, 05D10}
+\keywords{constrained Ramsey number, rainbow Ramsey number,
+3-uniform hypergraph, loose path}
+
+\begin{document}
+
+\begin{abstract}
+Let $\Lpath$ be the loose $3$-uniform path of length three. We prove that
+\[
+  f(H,\Lpath)=\max\{R_2(H),7\}
+\]
+for every $3$-graph $H$ with at least two edges. The new case is the order
+boundary $R_2(H)=|V(H)|\ge 7$, and therefore the result answers
+Problem~7.2 of Li and Wang. The proof uses their structural theorem for
+rainbow-$\Lpath$-free colorings, their transfer argument for the second
+structural case, and a necessary structural condition on $3$-graphs
+attaining the order bound for their two-color Ramsey number.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let
+\[
+\Lpath=
+\bigl\{
+  \{v_1,v_2,v_3\},
+  \{v_3,v_4,v_5\},
+  \{v_5,v_6,v_7\}
+\bigr\}
+\]
+be the loose $3$-uniform path of length three. For a $3$-graph $H$, let
+$R_2(H)$ be the least $n$ such that every two-coloring of $K_n^{(3)}$
+contains a monochromatic copy of $H$. For $3$-graphs $H$ and $G$, let
+$f(H,G)$ be the least $n$ such that every edge-coloring of $K_n^{(3)}$,
+with an arbitrary number of colors, contains either a monochromatic $H$
+or a rainbow $G$. Every copy of $H$ in $K_n^{(3)}$ occupies $|V(H)|$
+vertices, so $K_n^{(3)}$ contains no copy of $H$ at all when
+$n<|V(H)|$; hence we have the \emph{order bound}
+\[
+  R_2(H)\ge|V(H)|.
+\]
+This inequality is used twice in the proof of Theorem~\ref{thm:main}.
+
+Liu proved $f(H,\Lpath)=R_2(H)$ when
+$R_2(H)\ge\max\{|V(H)|+3,10\}$~\cite{Liu}. Li and Wang improved this to
+\[
+  R_2(H)\ge\max\{|V(H)|+1,7\}
+\]
+and asked whether equality still holds at the remaining boundary
+$R_2(H)=|V(H)|\ge7$~\cite[Theorem~1.10 and Problem~7.2]{LiWang}.
+We answer their problem affirmatively and obtain the complete formula.
+
+\begin{theorem}\label{thm:main}
+For every $3$-graph $H$ with at least two edges,
+\[
+  f(H,\Lpath)=\max\{R_2(H),7\}.
+\]
+\end{theorem}
+
+For a $3$-graph with one edge, one trivially has
+$f(H,\Lpath)=R_2(H)=|V(H)|$. Thus Theorem~\ref{thm:main} determines
+$f(H,\Lpath)$ for every nonempty $3$-graph $H$.
+
+We use the following theorem of Li and Wang~\cite[Theorem~1.5]{LiWang}.
+
+\begin{theorem}[Li--Wang]\label{thm:LW}
+Let $n\ge7$, and let $c$ be an edge-coloring of $K_n^{(3)}$ using at
+least three colors and containing no rainbow $\Lpath$. Then at least one
+of the following holds:
+\begin{enumerate}
+\item there is a vertex $u$ such that $K_n^{(3)}-u$ is monochromatic;
+\item there are an edge $e$ and a color $\alpha\ne c(e)$ such that every
+edge $f\ne e$ with $c(f)\ne\alpha$ satisfies $|e\cap f|=2$.
+\end{enumerate}
+\end{theorem}
+
+\section{The order boundary}
+
+A $3$-graph $H$ is a \emph{cone} over a graph $J$ if
+\[
+  V(H)=\{x\}\cup V(J),
+  \qquad
+  E(H)=\bigl\{\{x,p,q\}:pq\in E(J)\bigr\}.
+\]
+The vertex $x$ is the cone vertex and $J$ is its link graph. We write
+$K_a+K_b$ for the disjoint union of $K_a$ and $K_b$.
+
+\begin{lemma}[Boundary structure]\label{lem:boundary}
+Let $H$ be a $3$-graph on $n\ge7$ vertices with $R_2(H)=n$. Then either
+$H$ has an isolated vertex or $H$ is a cone over a graph $J$ with
+$\delta(J)=1$.
+\end{lemma}
+
+\begin{proof}
+Fix $z\in V(K_n^{(3)})$, and color a triple red if it contains $z$ and
+blue otherwise. Since every copy of $H$ in $K_n^{(3)}$ is spanning, a
+red copy makes $H$ a cone and a blue copy gives an isolated vertex. Thus,
+if $H$ has no isolated vertex, it is a cone over a graph $J$ on
+$m=n-1$ vertices, and $\delta(J)\ge1$.
+
+Suppose that $\delta(J)\ge2$. For $A\subseteq V(K_n^{(3)})$, color each
+triple $T$ by $|T\cap A|\pmod 2$. If $|A|=a$, then the two links at a
+vertex are
+\[
+\begin{cases}
+K_{a-1,n-a}\ \text{and}\ K_{a-1}+K_{n-a},&y\in A,\\
+K_{a,n-a-1}\ \text{and}\ K_a+K_{n-a-1},&y\notin A.
+\end{cases}
+\]
+A monochromatic copy of the cone would place a spanning copy of $J$ in
+one of these links.
+
+First assume $n\ge8$, so $m\ge7$. With $a=2$, either the coloring avoids
+$H$, or $J$ is a spanning subgraph of one of
+\[
+  K_{1,m-1},\quad K_1+K_{m-1},\quad
+  K_{2,m-2},\quad K_2+K_{m-2}.
+\]
+The minimum-degree condition excludes all but $K_{2,m-2}$ and then forces
+$J\cong K_{2,m-2}$. Taking $a=4$, the possible links are
+\[
+  K_{3,m-3},\quad K_3+K_{m-3},\quad
+  K_{4,m-4},\quad K_4+K_{m-4}.
+\]
+None contains a spanning $K_{2,m-2}$: the disconnected links cannot
+contain a connected spanning graph, while a connected bipartite graph has
+a unique bipartition and the complete bipartite links have different part
+sizes. Hence one of the two parity colorings avoids $H$, contradicting
+$R_2(H)=n$.
+
+It remains to treat $n=7$. The $a=2$ coloring either avoids $H$ or forces
+$J\cong K_{2,4}$. In the latter case, work on $\Z_7$ and set
+\[
+  D_1=\{0,1,3\},\qquad D_2=\{0,2,3\},\qquad
+  \mathcal B_i=\{t+D_i:t\in\Z_7\}.
+\]
+The ordered nonzero differences of each $D_i$ are all six nonzero
+residues, so each $\mathcal B_i$ is a Steiner triple system. The two
+systems are disjoint: the translates of $D_1$ containing $0$ are
+$\{0,1,3\}$, $\{0,2,6\}$, and $\{0,4,5\}$, none of which equals $D_2$.
+Color the fourteen blocks in $\mathcal B_1\cup\mathcal B_2$ red and all
+other triples blue. At every vertex, the red link is the union of two
+edge-disjoint perfect matchings, hence a $6$-cycle; the blue link is its
+$3$-regular complement in $K_6$. Neither link contains a spanning
+$K_{2,4}$: the red link has six edges and the blue link has maximum degree
+three. This again contradicts $R_2(H)=7$.
+
+Therefore $\delta(J)=1$.
+\end{proof}
+
+The next lemma is not new: it is the argument Li and Wang give for
+case~(ii), which is part~(2) above, in their proof of
+\cite[Theorem~1.10]{LiWang}, where the
+recoloring is set up through the two isomorphic spanning subgraphs
+$F_1'=\{v_iv_jv_\ell:i,j\in[3],\ \ell\notin[3]\}\cup\{v_1v_2v_3\}$ and
+$F_2'$ defined in the same way from $\{v_4,v_5,v_6\}$; the permutation
+$\pi$ below is their isomorphism $F_1'\to F_2'$. Their proof is stated
+for $n=R_2(H)$, and it extends without change to $n\ge R_2(H)$, which is
+the only form we need. We include it for completeness and because the
+proof of Theorem~\ref{thm:main} applies it at $N=\max\{R_2(H),7\}$.
+
+\begin{lemma}[Transfer; Li and Wang \cite{LiWang}]\label{lem:transfer}
+Let $n\ge7$, let $R_2(H)\le n$, and suppose that a rainbow-$\Lpath$-free
+coloring of $K_n^{(3)}$ satisfies part~(2) of
+Theorem~\ref{thm:LW}. Then it contains a monochromatic copy of $H$.
+\end{lemma}
+
+\begin{proof}
+Relabel so that $e=\{1,2,3\}$, choose distinct vertices $4,5,6$ outside
+$e$, and let
+\[
+  \pi=(1\ 4)(2\ 5)(3\ 6)
+\]
+fix all remaining vertices. Let $S$ be the set of edges whose color is
+not $\alpha$. If $f=e$, then $\pi(f)$ is disjoint from $e$; if $f\ne e$,
+then $|f\cap e|=2$ and $|\pi(f)\cap e|\le1$. In either case
+$\pi(f)\ne e$, so the contrapositive of part~(2) gives
+$c(\pi(f))=\alpha$.
+
+Recolor the edges in $S$ blue and all other edges red. Since
+$R_2(H)\le n$, this two-coloring contains a monochromatic $H$. A red copy
+is already $\alpha$-monochromatic in the original coloring, while the
+image under $\pi$ of a blue copy is $\alpha$-monochromatic.
+\end{proof}
+
+\section{Proof of the formula}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Write $r=R_2(H)$ and $N=\max\{r,7\}$. A two-coloring of
+$K_{r-1}^{(3)}$ without a monochromatic $H$ contains no rainbow
+$\Lpath$, so $f(H,\Lpath)\ge r$. Also, coloring all triples of
+$K_6^{(3)}$ differently gives neither a monochromatic $H$ nor a rainbow
+$\Lpath$. Hence $f(H,\Lpath)\ge N$.
+
+For the reverse inequality, let $c$ be a rainbow-$\Lpath$-free coloring
+of $K_N^{(3)}$. If at most two colors occur, then $c$ contains a
+monochromatic $H$ because $N\ge r$. Assume that at least three colors
+occur and apply Theorem~\ref{thm:LW}.
+
+If part~(2) holds, Lemma~\ref{lem:transfer} gives a monochromatic $H$.
+Suppose part~(1) holds, and let $u$ be such that all triples in
+$W=V(K_N^{(3)})\setminus\{u\}$ have one color, say $\alpha$.
+
+If $r\le6$, then $N=7$ and, by the order bound, $|V(H)|\le r\le6$, so
+the monochromatic $K_6^{(3)}$ on $W$ contains $H$. Now let $r\ge7$, so
+$N=r$. If $r\ge|V(H)|+1$, the same conclusion is immediate; this is the
+step Li and Wang use for case~(i), that is part~(1), in their proof of
+\cite[Theorem~1.10]{LiWang}. By the order bound it remains only to
+consider
+\[
+  r=|V(H)|\ge7.
+\]
+By Lemma~\ref{lem:boundary}, either $H$ has an isolated vertex or $H$ is
+a cone over a graph $J$ with $\delta(J)=1$. In the first case, map an
+isolated vertex to $u$ and all remaining vertices bijectively to $W$.
+This gives an $\alpha$-monochromatic copy of $H$.
+
+In the second case, let $x$ be the cone vertex, choose a leaf $p$ of $J$,
+and let $q$ be its unique neighbor. If
+$c(\{u,y,w\})=\alpha$ for some distinct $y,w\in W$, map
+$x,p,q$ to $y,u,w$, respectively, and extend bijectively. The edge
+corresponding to $pq$ maps to $\{u,y,w\}$, and every other edge maps into
+$W$; hence the resulting copy of $H$ is $\alpha$-monochromatic.
+
+We may therefore assume that every triple through $u$ has color different
+from $\alpha$. Color each pair $ab\in\binom{W}{2}$ by
+$c(\{u,a,b\})$. If $ab$ and $cd$ are disjoint, choose distinct
+$r',s'\in W\setminus\{a,b,c,d\}$. Then
+\[
+  \{u,a,b\},\qquad \{u,c,d\},\qquad \{c,r',s'\}
+\]
+form a copy of $\Lpath$, and the last edge has color $\alpha$. The first
+two edges must therefore have the same color. The graph on
+$\binom{W}{2}$ joining disjoint pairs is connected for $|W|\ge6$: two
+distinct intersecting pairs have a common disjoint pair. Thus all triples
+through $u$ have one common color, different from $\alpha$. Hence $c$
+uses only two colors, a contradiction.
+
+Every rainbow-$\Lpath$-free coloring of $K_N^{(3)}$ contains a
+monochromatic $H$. Hence $f(H,\Lpath)\le N$, completing the proof.
+\end{proof}
+
+The case $R_2(H)=|V(H)|\ge7$ in the proof gives, in particular, an
+affirmative answer to Problem~7.2 of Li and Wang.
+
+\section*{Status and scope}
+
+What is settled is Problem~7.2 of \cite{LiWang} as stated there: for every
+$3$-graph $H$ with $R_2(H)=|V(H)|\ge7$ one has $f(H,\Lpath)=R_2(H)$.
+Problem~7.2 imposes no restriction on the number of edges of $H$;
+Theorem~\ref{thm:main} assumes $|E(H)|\ge2$, and the one-edge case is
+disposed of in the paragraph following it, so the problem is answered in
+full.
+
+Two of the ingredients are due to Li and Wang.
+Theorem~\ref{thm:LW} is \cite[Theorem~1.5]{LiWang}, and
+Lemma~\ref{lem:transfer} is the case-(ii) argument in their proof of
+\cite[Theorem~1.10]{LiWang}, in different notation and with $n=R_2(H)$
+relaxed to $n\ge R_2(H)$; the step that disposes of $r\ge|V(H)|+1$ in
+case~(1) is likewise theirs. We have not been able to consult the full
+text of \cite{Liu}, so we do not know whether the recoloring-and-transfer
+device of Lemma~\ref{lem:transfer} originates with \cite{LiWang} or
+already with Liu; in either case it is not new here. What is new is
+Lemma~\ref{lem:boundary} together with the treatment of case~(1) at
+$r=|V(H)|$, which is the case Problem~7.2 asks about.
+
+Lemma~\ref{lem:boundary} states a necessary condition and nothing more. It
+does not classify the $3$-graphs with $R_2(H)=|V(H)|\ge7$, and no converse
+is proved or claimed: a $3$-graph with an isolated vertex, or a cone over a
+graph of minimum degree~$1$, need not attain the order bound.
+
+The coloring used in the proof of Lemma~\ref{lem:boundary} for $n=7$ is a
+pair of disjoint Steiner triple systems on $\Z_7$, that is, a pair of
+disjoint Fano planes. Such a pair is classical and is not claimed here as a
+new object; what is used is only that the two links it produces at a
+vertex, a $6$-cycle and its $3$-regular complement in $K_6$, both fail to
+contain a spanning $K_{2,4}$, which is what rules out a monochromatic cone
+over $K_{2,4}$ in $K_7^{(3)}$.
+
+\paragraph{Exact verification.}
+Every verification above is finite and hand-sized, and each one is carried out
+from the data printed in this paper: the six ordered nonzero differences of
+each of $D_1=\{0,1,3\}$ and $D_2=\{0,2,3\}$, which give the Steiner property
+of $\mathcal B_1$ and $\mathcal B_2$; the three translates of $D_1$ containing
+$0$, which give their disjointness; and the two links at a vertex of the
+resulting coloring of $K_7^{(3)}$, which give the failure of a spanning
+$K_{2,4}$. All seventeen of these checks were recomputed a second time,
+independently and from the printed residues alone, and every one agreed. No
+program is needed and none accompanies this paper; a reader can redo every
+step from the paper by hand.
+
+We have found no answer to Problem~7.2 in
+the literature: the only paper we found citing \cite{LiWang} is the
+companion paper \cite{LiLiu}, on graphs and rainbow $P_5$, which does not
+address $f(H,\Lpath)$; we found no journal version of \cite{LiWang}, and
+its latest arXiv revision still records Problem~7.2 as open. Our search
+is not exhaustive, and the result is offered subject to external
+prior-art review.
+
+\begin{thebibliography}{9}
+
+\bibitem{Liu}
+X.~Liu,
+\emph{Constrained Ramsey numbers for the loose path, cycle and star},
+Discrete Math.\ \textbf{347} (2024), no.~1, Paper No.~113697, 11 pp.
+\href{https://doi.org/10.1016/j.disc.2023.113697}
+{doi:10.1016/j.disc.2023.113697}.
+
+\bibitem{LiWang}
+X.~Li and R.~Wang,
+\emph{Edge-colored $3$-uniform hypergraphs without rainbow paths of
+length $3$ and its applications to Ramsey theory},
+preprint, \href{https://arxiv.org/abs/2510.18246}{arXiv:2510.18246v2}
+[math.CO] (2025);
+\href{https://doi.org/10.48550/arXiv.2510.18246}
+{doi:10.48550/arXiv.2510.18246}.
+
+\bibitem{LiLiu}
+X.~Li and X.~Liu,
+\emph{Constrained Ramsey numbers for rainbow $P_5$},
+preprint, \href{https://arxiv.org/abs/2510.18243}{arXiv:2510.18243v2}
+[math.CO] (2025).
+
+\end{thebibliography}
+
+\end{document}

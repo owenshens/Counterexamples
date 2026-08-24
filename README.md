@@ -2,26 +2,23 @@
 
 Output of an automated mathematics solver framework we developed. The framework mines the
 literature for open conjectures and open existence questions, attacks them, and verifies
-what survives. This repository holds the results: 88 short papers.
+what survives. This repository holds the results: 119 short papers.
 
-**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **63 refuted conjectures**,
-**13 settled existence questions**, and **4 conjectures or open
-problems settled affirmatively**.
+**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **86 papers refuting a published
+conjecture or question**, **20 exhibiting an object whose existence was open**, and
+**13 proving a conjecture or recording a note**. The 119 papers act on
+**116 distinct statements**: three statements each carry two independent papers, which
+exhibit different objects and are listed separately.
 
 | directory | n | contents |
 |---|---|---|
-| [`counterexamples/`](counterexamples/) | 66 | a published conjecture or question is refuted |
-| [`constructions/`](constructions/) | 14 | an object whose existence was open is exhibited |
-| [`notes/`](notes/) | 8 | conjectures proved, expository notes, and re-proofs of results due to others |
+| [`counterexamples/`](counterexamples/) | 86 | a published conjecture or question is refuted |
+| [`constructions/`](constructions/) | 20 | an object whose existence was open is exhibited |
+| [`notes/`](notes/) | 13 | conjectures proved, expository notes, and re-proofs of results due to others |
 
 Every paper is checkable from the document alone: the object is printed in full, and any
 computation is specified in the text. Each was checked against the cited source's own
 definitions, and an independent reviewer then tried to break the conclusion.
-
-Where a result rests on a computation too long to do by hand, the paper specifies that
-computation precisely enough to be repeated, and states what it does and does not
-establish. Verification code and run transcripts are held separately and are available
-on request.
 
 ```sh
 tectonic -X compile counterexamples/<name>.tex

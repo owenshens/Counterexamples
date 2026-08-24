@@ -1,0 +1,268 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Alpha-Valuations of C4-Bouquets},
+  pdfsubject={Graph labeling},
+  pdfkeywords={graceful labeling, alpha-valuation, cycle amalgamation, bouquet}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\DeclareMathOperator{\Amal}{Amal}
+
+\title[$\alpha$-valuations of $C_4$-bouquets]
+  {$\alpha$-Valuations of $C_4$-Bouquets}
+\date{}
+\subjclass[2020]{05C78}
+\keywords{graceful labeling, $\alpha$-valuation, cycle amalgamation, bouquet}
+
+\begin{document}
+
+\begin{abstract}
+For $n\ge1$, let $B_n$ be the bouquet obtained by identifying one vertex
+in each of $n$ copies of $C_4$. We prove that $B_n$ admits an
+$\alpha$-valuation if and only if $n\le4$. The existence half is known:
+for $2\le n\le4$ it is the case $m=4$ of Theorem~3.8 of
+Figueroa-Centeno, Ichishima, and Muntaner-Batle, and $B_1=C_4$ is an
+$\alpha$-graph by Rosa's classification of cycles; what is new here is
+that no $n\ge5$ admits one. In particular, $B_5$, with $16$ vertices and
+$20$ edges, is a bipartite counterexample to the sufficiency direction of
+Conjecture~3.10 of the same paper. Thus the conjecture fails even for
+$m=4$.
+\end{abstract}
+
+\maketitle
+
+\section{The result}
+
+A graceful labeling of a graph with $q$ edges is an injection
+$f\colon V(G)\to\{0,1,\dots,q\}$ whose induced edge differences are
+$1,2,\dots,q$. It is an $\alpha$-valuation if there is an integer $k$
+such that every edge has one endpoint labeled at most $k$ and the other
+labeled greater than $k$.
+
+Figueroa-Centeno, Ichishima, and Muntaner-Batle conjectured that the
+one-point union $\Amal(C_m,v,n)$ admits an $\alpha$-valuation if and only
+if $mn\equiv0\pmod4$ \cite[Conjecture~3.10]{FCIM}. The twenty-eighth
+edition of Gallian's survey records the same conjecture
+\cite[p.~53]{Gallian}. Because every graph admitting an
+$\alpha$-valuation is bipartite, odd $m$ with $4\mid n$ are immediate
+exceptions to the statement as printed. The nontrivial question is
+whether the divisibility condition is sufficient for even $m$. The
+theorem below answers this negatively already for $m=4$ and determines
+all $n$ in that case.
+
+The positive part of that determination is due to the authors of the
+conjecture: if $m\equiv0\pmod4$ and $n\in\{2,3,4\}$, then
+$\Amal(C_m,v,n)$ admits an $\alpha$-valuation
+\cite[Theorem~3.8]{FCIM}. (Theorem~3.8 is stated there for
+$n=1,2,3,4$, although $\Amal(G,v,n)$ is defined in \cite{FCIM} only for
+$n\ge2$; the remaining case is $\Amal(C_4,v,1)=C_4$, an $\alpha$-graph
+because $4\equiv0\pmod4$ \cite{Rosa}.) What is new below is the
+nonexistence for every $n\ge5$.
+
+For $n\ge1$, write
+\[
+  B_n=\Amal(C_4,v,n),
+\]
+and denote its common vertex by $h$. Label the remaining vertices so
+that its $i$th square is
+\[
+  h x_i y_i z_i h,\qquad 1\le i\le n.
+\]
+
+\begin{theorem}\label{thm:main}
+The graph $B_n$ admits an $\alpha$-valuation if and only if $n\le4$.
+\end{theorem}
+
+\begin{proof}
+For $1\le n\le4$ an $\alpha$-valuation exists by
+\cite[Theorem~3.8]{FCIM} (case $m=4$, $n\ge2$) and by \cite{Rosa} (case
+$n=1$). The following table records explicit witnesses, so that the
+argument here is self-contained and the positive direction can be checked
+by hand. The triples are $(f(x_i),f(y_i),f(z_i))$, in increasing order of
+$i$, and $k$ is the characteristic.
+\[
+\begin{array}{c|c|c|l}
+ n & f(h) & k & (f(x_i),f(y_i),f(z_i))_{i=1}^{n} \\
+\hline
+ 1 & 0 & 2 & (4,2,3) \\
+ 2 & 0 & 2 & (3,2,4),\ (6,1,8) \\
+ 3 & 1 & 3 & (6,0,12),\ (4,3,5),\ (9,2,11) \\
+ 4 & 2 & 4 & (7,1,9),\ (15,0,16),\ (5,4,6),\ (12,3,14)
+\end{array}
+\]
+In each row the labels are injective, the two partite sets are separated
+at $k$, and the edge differences are $1,2,\dots,4n$.
+
+The remainder of the proof is the other direction. Suppose that $B_n$ has
+an $\alpha$-valuation $f$. Its bipartition is
+\[
+  A=\{h,y_1,\dots,y_n\},
+  \qquad
+  B=\{x_i,z_i:1\le i\le n\}.
+\]
+Since $B_n$ is connected, the lower and upper label classes are its two
+partite sets. Replacing $f$ by $4n-f$ if necessary, assume that $A$ is
+the lower class. Set
+\[
+  S=f(A),\qquad T=f(B),\qquad a=f(h),\qquad U=S\setminus\{a\}.
+\]
+Thus every element of $S$ is smaller than every element of $T$.
+For $t\in T$, let $g(t)$ be the label of the vertex $y_i$ in the same
+square as the vertex of $B$ labeled $t$. Then
+\[
+  g^{-1}(f(y_i))=\{f(x_i),f(z_i)\},
+\]
+so every fiber of $g\colon T\to U$ has size two.
+
+The edge differences decompose as
+\begin{equation}\label{eq:partition}
+  \Delta_h=\{t-a:t\in T\},
+  \qquad
+  \Delta_y=\{t-g(t):t\in T\},
+  \qquad
+  \Delta_h\mathbin{\dot\cup}\Delta_y=\{1,\dots,4n\}.
+\end{equation}
+The difference $4n$ forces the labels $0$ and $4n$ to occur. Hence
+$0\in S$ and $4n\in T$.
+
+We first show that
+\begin{equation}\label{eq:a}
+  a\le2.
+\end{equation}
+This is immediate if $a=0$. If $a>0$, then
+$\max\Delta_h=4n-a$, so every element of
+\[
+  I=\{4n-a+1,\dots,4n\}
+\]
+lies in $\Delta_y$. For each $d\in I$, let $t_d$ be the unique $t\in T$ with $d=t-g(t)$; it
+is unique because the differences in \eqref{eq:partition} are pairwise
+distinct. We call $t_d$ the label \emph{serving} $d$. Since
+$t_d=d+g(t_d)$, we have $t_d\in I$. The labels
+$t_d$ are distinct, and $I$ has $a$ elements; therefore
+$\{t_d:d\in I\}=I$. Consequently,
+\[
+  \sum_{d\in I}g(t_d)
+  =\sum_{d\in I}t_d-\sum_{d\in I}d=0.
+\]
+Thus every $g(t_d)$ equals $0$, so $0\in U$. Since
+$|g^{-1}(0)|=2$, we obtain $a=|I|\le2$.
+
+Let
+\[
+  M=\max S,
+  \qquad
+  \tau=\min T.
+\]
+We next show that
+\begin{equation}\label{eq:span}
+  M-a\le2.
+\end{equation}
+Since $\min\Delta_h=\tau-a$, every integer
+$1,\dots,\tau-a-1$ lies in $\Delta_y$. If
+$d=t_d-g(t_d)$ is one of these differences, then
+\[
+  \tau\le t_d=d+g(t_d)\le\tau-a-1+M.
+\]
+The serving labels $t_d$ are distinct, while this interval contains
+$M-a$ integers. Hence
+\[
+  \tau-a-1\le M-a
+\]
+(if $\tau-a-1\le0$ there are no such differences and the inequality is
+trivial, since $a\in S$ gives $M\ge a$). Because $\tau>M$, it follows
+that $\tau=M+1$.
+
+Put $r=M-a$. If $r=0$, \eqref{eq:span} is immediate. If $r>0$, the
+small differences are $1,\dots,r$, and their serving labels exhaust
+$M+1,\dots,M+r$. Therefore
+\[
+  \sum_{d=1}^{r}g(t_d)
+  =\sum_{j=1}^{r}(M+j)-\sum_{d=1}^{r}d
+  =rM.
+\]
+Since $r>0$, we have $M\in U$. Every summand is at most $M$, so all
+of them equal $M$. Hence $r\le|g^{-1}(M)|=2$, proving
+\eqref{eq:span}.
+
+By \eqref{eq:a} and \eqref{eq:span}, $M\le4$. The set $S$ consists of
+$n+1$ distinct labels in $\{0,1,\dots,M\}$, so $n\le M\le4$.
+\end{proof}
+
+Both inequalities are attained by the $n=4$ row of the table, so the
+proof is self-certifying at its own boundary: there $a=2$, $M=4$,
+$\tau=M+1=5$, and the two fibers named in the proof are
+$g^{-1}(0)=\{15,16\}$ and $g^{-1}(4)=\{5,6\}$. Thus \eqref{eq:a} and
+\eqref{eq:span} are simultaneously saturated by an exhibited labeling,
+and the chain $n\le M=a+(M-a)\le2+2$ cannot be improved at either step.
+
+\begin{corollary}\label{cor:counterexample}
+For every $n\ge5$, the bipartite graph $B_n$ has $4n$ edges and admits no
+$\alpha$-valuation. Hence $B_5$ refutes the conjectured sufficiency
+condition within the even-cycle subfamily of Conjecture~3.10 in
+\cite{FCIM}.
+\end{corollary}
+
+\begin{proof}
+For $m=4$, the conjectured divisibility condition holds for every $n$,
+whereas Theorem~\ref{thm:main} excludes every $n\ge5$.
+\end{proof}
+
+\subsection*{Status}
+
+What is refuted is Conjecture~3.10 of \cite{FCIM} as stated, and what is
+in addition settled is its $m=4$ column, completely. The existence half
+of Theorem~\ref{thm:main} is not ours: it is \cite[Theorem~3.8]{FCIM} for
+$n=2,3,4$ and \cite{Rosa} for $n=1$, and the table above only exhibits
+witnesses for it. Nothing else is claimed. The nonexistence argument uses
+$m=4$ essentially --- each vertex of $B$ is adjacent only to $h$ and to
+the $y$ of its own square, which fails for every longer cycle --- so the
+columns $m\equiv0\pmod4$ with $m\ge8$, and $m\equiv2\pmod4$ with $n$ even
+and $n\ge6$, are untouched here. In the former columns the cases $n\le4$
+are already settled positively by \cite[Theorem~3.8]{FCIM}, so what
+remains open there is the range $n\ge5$. No minimality claim is
+made: $B_5$ is exhibited as a bipartite counterexample, not asserted to be
+the smallest counterexample of any kind.
+
+The obstruction is specific to the $\alpha$-property and not to
+gracefulness: $\Amal(C_4,v,n)$ is graceful for every $n$, by a result of
+Shee recorded in \cite[p.~19]{Gallian}. So the conjecture of Koh, Rogers,
+Lee, and Toh that $\Amal(C_m,v,n)$ is graceful if and only if
+$mn\equiv0$ or $3\pmod4$, from which Conjecture~3.10 is descended, is not
+affected by anything above.
+
+\begingroup
+\small
+\raggedright
+\begin{thebibliography}{9}
+
+\bibitem{FCIM}
+R.~M. Figueroa-Centeno, R.~Ichishima, and F.~A. Muntaner-Batle,
+\emph{Labeling the vertex amalgamation of graphs},
+Discuss. Math. Graph Theory \textbf{23} (2003), 129--139.
+\href{https://doi.org/10.7151/dmgt.1190}{doi:10.7151/dmgt.1190}.
+
+\bibitem{Gallian}
+J.~A. Gallian,
+\emph{A dynamic survey of graph labeling},
+Electron. J. Combin. (2025), Dynamic Survey \#DS6,
+twenty-eighth edition, October 30, 2025.
+\href{https://doi.org/10.37236/27}{doi:10.37236/27}.
+
+\bibitem{Rosa}
+A.~Rosa,
+\emph{On certain valuations of the vertices of a graph},
+Theory of Graphs (Internat.\ Sympos., Rome, 1966),
+Gordon and Breach, New York; Dunod, Paris, 1967, pp.~349--355.
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

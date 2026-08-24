@@ -1,0 +1,369 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Torus}{\mathbb{T}}
+\newcommand{\OO}{\operatorname{O}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Imag}{\operatorname{Im}}
+
+\title[Maximum Binary Case of Ribot's Zariski-Closedness]{The Maximum Binary Case of Ribot's Zariski-Closedness Conjecture}
+\date{}
+
+\subjclass[2020]{Primary 14P05; Secondary 15A69, 14L30, 22C05, 05B15}
+\keywords{real Zariski closure, orbit of the orthogonal group, tensor,
+partial Latin hyperrectangle, parity class, character duality, compact torus}
+
+\hypersetup{
+  pdftitle={The Maximum Binary Case of Ribot's Zariski-Closedness Conjecture}
+}
+
+\begin{document}
+
+\begin{abstract}
+Ribot conjectured that the orthogonal orbit of the coordinate subspace
+supported on any partial Latin hyperrectangle is real Zariski closed. We
+prove the conjecture for every maximum-cardinality support in binary format.
+Such supports are exactly the two parity classes in $\{0,1\}^d$. A Fourier
+change of coordinates diagonalizes the action of $\SO(2)^d$, and character
+duality for compact tori gives explicit polynomial equations indexed by the
+integer relations among the resulting characters. In format
+$2\times2\times2$, the relation lattice is cyclic and the resulting quartic
+is a nonzero scalar multiple of Ribot's quartic for the seven-dimensional
+component. Thus the orbit itself, not merely its Zariski closure, is that
+hypersurface.
+\end{abstract}
+
+\maketitle
+
+\section{Statement}
+
+For $x=(x_1,\ldots,x_d)\in\{0,1\}^d$, write
+\[
+e_x=e_{x_1}\otimes\cdots\otimes e_{x_d}.
+\]
+Given $L\subseteq\{0,1\}^d$, set
+\[
+V_L=\operatorname{span}_{\R}\{e_x:x\in L\},
+\qquad
+X_L=\OO(2)^d\cdot V_L\subseteq(\R^2)^{\otimes d}.
+\]
+A partial Latin hyperrectangle is a set whose distinct elements have Hamming
+distance at least two. Ribot conjectured that $X_L$ is Zariski closed for
+every such support~\cite[Conjecture~4.4]{Ribot}. Known positive cases include
+matrices and orthogonally decomposable tensors~\cite{BDHR,Ribot}.
+
+For $\delta\in\{0,1\}$, define the parity support
+\[
+E_\delta=\{x\in\{0,1\}^d:|x|\equiv\delta\pmod 2\}.
+\]
+Choose $\Omega\subseteq\{\pm1\}^d$ containing one vector from each antipodal
+pair. For a real tensor $T=\sum_x t_xe_x$, put
+\[
+p_\varepsilon(T)
+=2^{-d}\sum_{x\in\{0,1\}^d}t_x i^{|x|}\varepsilon^x,
+\qquad
+\varepsilon^x=\prod_{k=1}^d\varepsilon_k^{x_k}.
+\]
+Let
+\[
+A:\Z^\Omega\longrightarrow\Z^d,
+\qquad
+A(m)=\sum_{\varepsilon\in\Omega}m_\varepsilon\varepsilon,
+\qquad
+\Lambda=\ker A,
+\]
+and write $m_\varepsilon^+=\max\{m_\varepsilon,0\}$ and
+$m_\varepsilon^-=\max\{-m_\varepsilon,0\}$. For $m\in\Lambda$, define
+\[
+\Phi_m(T)=
+\Imag\!\left(
+\prod_{\varepsilon\in\Omega}
+p_\varepsilon(T)^{m_\varepsilon^+}
+\overline{p_\varepsilon(T)}^{m_\varepsilon^-}
+\right).
+\]
+Each $\Phi_m$ is a real homogeneous polynomial in the entries of $T$.
+
+\begin{theorem}\label{thm:main}
+For every $d\ge2$,
+\[
+X_{E_0}=X_{E_1}
+=\{T:\Phi_m(T)=0\text{ for every }m\in\Lambda\}.
+\]
+Consequently, $X_{E_0}$ and $X_{E_1}$ are real Zariski closed. Moreover,
+\[
+\operatorname{rank}\Lambda=2^{d-1}-d.
+\]
+\end{theorem}
+
+\begin{corollary}\label{cor:maximum}
+Ribot's Conjecture~4.4 holds for every maximum-cardinality partial Latin
+hyperrectangle in $\{0,1\}^d$.
+\end{corollary}
+
+\begin{remark}
+Combining Corollary~\ref{cor:maximum} with Ribot's dimension formula and
+component classification~\cite[Lemma~4.5 and Theorem~1.7]{Ribot} shows that
+$X_{E_0}$ is the unique top-dimensional irreducible component of Ribot's
+bato variety in $(\R^2)^{\otimes d}$; its dimension is $2^{d-1}+d$.
+\end{remark}
+
+\begin{remark}
+Although Theorem~\ref{thm:main} is stated using all $m\in\Lambda$, finitely
+many of the equations $\Phi_m=0$ suffice, since the real polynomial ring in
+the entries of $T$ is Noetherian.
+\end{remark}
+
+\section{Proof}
+
+Every element of $\OO(2)$ has the form $R_\theta D^a$, where
+$R_\theta\in\SO(2)$, $a\in\{0,1\}$, and $D=\operatorname{diag}(1,-1)$.
+Since $D$ preserves every coordinate subspace $V_L$,
+\begin{equation}\label{eq:SO-reduction}
+X_L=\SO(2)^d\cdot V_L.
+\end{equation}
+Swapping $e_0$ and $e_1$ in one factor sends $E_0$ to $E_1$, so
+$X_{E_0}=X_{E_1}$.
+
+\begin{lemma}\label{lem:fourier}
+For $T\in(\R^2)^{\otimes d}$ and $\varepsilon\in\{\pm1\}^d$,
+\[
+p_{-\varepsilon}(T)=\overline{p_\varepsilon(T)}.
+\]
+If $\theta=(\theta_1,\ldots,\theta_d)$, then
+\[
+p_\varepsilon\bigl((R_{\theta_1},\ldots,R_{\theta_d})\cdot T\bigr)
+=e^{i\langle\varepsilon,\theta\rangle}p_\varepsilon(T).
+\]
+Finally,
+\[
+T\in V_{E_0}
+\quad\Longleftrightarrow\quad
+p_\varepsilon(T)\in\R
+\text{ for every }\varepsilon\in\Omega.
+\]
+\end{lemma}
+
+\begin{proof}
+Set $f_\sigma=e_0-i\sigma e_1$ for $\sigma\in\{\pm1\}$. Then
+$R_\theta f_\sigma=e^{i\sigma\theta}f_\sigma$, and the coefficient of
+$f_{\varepsilon_1}\otimes\cdots\otimes f_{\varepsilon_d}$ in $T$ is
+$p_\varepsilon(T)$. This proves the first two assertions.
+
+If $T\in V_{E_0}$, the defining sum for $p_\varepsilon(T)$ is real.
+Conversely, if the representative coordinates are real, then
+$p_{-\varepsilon}=p_\varepsilon$ for every $\varepsilon$. Fourier inversion
+gives
+\[
+t_x=(-i)^{|x|}
+\sum_{\varepsilon\in\{\pm1\}^d}p_\varepsilon(T)\varepsilon^x.
+\]
+Pairing $\varepsilon$ with $-\varepsilon$ makes the sum zero when $|x|$ is
+odd. Hence $T\in V_{E_0}$.
+\end{proof}
+
+\begin{lemma}[Character duality]\label{lem:torus}
+Let $a_1,\ldots,a_N\in\Z^d$, define
+\[
+B:\Z^N\longrightarrow\Z^d,
+\qquad B(m)=\sum_{j=1}^Nm_ja_j,
+\]
+and let
+\[
+\phi:\Torus^d\longrightarrow\Torus^N,
+\qquad
+\phi(z)_j=z^{a_j}=\prod_{k=1}^dz_k^{(a_j)_k},
+\]
+where $\Torus=S^1$. Then
+\[
+\operatorname{im}\phi
+=
+\{u\in\Torus^N:u^m=1\text{ for every }m\in\ker B\},
+\qquad
+u^m=\prod_{j=1}^Nu_j^{m_j}.
+\]
+\end{lemma}
+
+\begin{proof}
+The forward inclusion is immediate. For the reverse inclusion, put the
+integer matrix of $B$ into Smith normal form. The associated unimodular
+changes of coordinates induce automorphisms of the source and target tori,
+reducing $\phi$ to
+\[
+(z_1,\ldots,z_d)
+\longmapsto
+(z_1^{s_1},\ldots,z_r^{s_r},1,\ldots,1).
+\]
+Every power map on $S^1$ is surjective, so this image is exactly the
+annihilator of the kernel of the diagonal integer map.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Identify $z=(e^{i\theta_1},\ldots,e^{i\theta_d})\in\Torus^d$ with
+$(R_{\theta_1},\ldots,R_{\theta_d})\in\SO(2)^d$. By
+\eqref{eq:SO-reduction} and Lemma~\ref{lem:fourier}, a tensor $T$ belongs to
+$X_{E_0}$ if and only if there are $z\in\Torus^d$ and
+$a_\varepsilon\in\R$ such that
+\begin{equation}\label{eq:phase-form}
+p_\varepsilon(T)=z^\varepsilon a_\varepsilon
+\qquad(\varepsilon\in\Omega).
+\end{equation}
+If \eqref{eq:phase-form} holds and $m\in\Lambda$, then the torus factor in
+the monomial defining $\Phi_m$ is $z^{A(m)}=1$; hence $\Phi_m(T)=0$.
+
+Conversely, suppose that $\Phi_m(T)=0$ for every $m\in\Lambda$. Let
+\[
+S=\{\varepsilon\in\Omega:p_\varepsilon(T)\ne0\},
+\qquad
+u_\varepsilon=\frac{p_\varepsilon(T)}{|p_\varepsilon(T)|}
+\quad(\varepsilon\in S).
+\]
+For every $m\in\ker(A|_{\Z^S})$, extend $m$ by zero outside $S$. The
+corresponding nonzero monomial has phase $u^m$, so its imaginary part
+vanishes only if $u^m\in\{\pm1\}$. Thus
+$q=(u_\varepsilon^2)_{\varepsilon\in S}$ satisfies $q^m=1$ for every such
+$m$. Lemma~\ref{lem:torus} gives $w\in\Torus^d$ with
+$q_\varepsilon=w^\varepsilon$. Choose $z\in\Torus^d$ coordinatewise so that
+$z^2=w$. Then
+\[
+\left(\frac{u_\varepsilon}{z^\varepsilon}\right)^2=1,
+\]
+so $p_\varepsilon(T)/z^\varepsilon$ is real for $\varepsilon\in S$ and is
+zero for $\varepsilon\notin S$. Lemma~\ref{lem:fourier} yields
+$z^{-1}\cdot T\in V_{E_0}$, hence $T\in X_{E_0}$.
+
+The common zero set of the real polynomials $\Phi_m$ is Zariski closed.
+Finally, $|\Omega|=2^{d-1}$. The sign vectors span $\mathbb{Q}^d$: if
+$v=(1,\ldots,1)$ and $v_j$ is obtained from $v$ by flipping its $j$th
+coordinate, then the $j$th standard basis vector is $(v-v_j)/2$. Choosing
+one vector from each antipodal pair does not change the span. Therefore
+$A$ has rank $d$, and
+\[
+\operatorname{rank}\Lambda=2^{d-1}-d.
+\]
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:maximum}]
+A partial Latin hyperrectangle in $\{0,1\}^d$ is an independent set in the
+hypercube graph $Q_d$. A perfect matching gives $|L|\le2^{d-1}$, and the
+bipartition classes $E_0,E_1$ attain equality.
+
+Suppose $|L|=2^{d-1}$ and write $A=L\cap E_0$ and $B=L\cap E_1$. Then
+$|E_1\setminus B|=|A|$. Since $L$ is independent, every edge from $A$ ends
+in $E_1\setminus B$, so exactly $d|A|$ edges join these two sets. This is
+the full degree sum $d|E_1\setminus B|$ of $E_1\setminus B$; hence there is
+no edge between $E_0\setminus A$ and $E_1\setminus B$. There is also no edge
+between $A$ and $B$. Thus $A\cup(E_1\setminus B)$ has no edge to its
+complement. Since $Q_d$ is connected, this set is empty or all of $Q_d$.
+Accordingly, $L=E_1$ or $L=E_0$, and the result follows from
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{The \texorpdfstring{$2\times2\times2$}{2 x 2 x 2} quartic}
+
+Under the identification $x_k=i_k-1$, the even parity class is Ribot's
+support
+\[
+L_2=\{(1,1,1),(1,2,2),(2,1,2),(2,2,1)\}.
+\]
+Take
+\[
+\Omega=\{\alpha,\beta,\gamma,\delta\},
+\quad
+\alpha=(1,1,1),
+\quad
+\beta=(1,1,-1),
+\quad
+\gamma=(1,-1,1),
+\quad
+\delta=(-1,1,1).
+\]
+The relation lattice is generated by
+\[
+\alpha-\beta-\gamma-\delta=0.
+\]
+With
+\[
+P=8p_\alpha,\qquad Q=8p_\beta,
+\qquad R=8p_\gamma,\qquad S=8p_\delta,
+\]
+Theorem~\ref{thm:main} gives
+\begin{equation}\label{eq:H}
+X_{L_2}=\{T:H(T)=0\},
+\qquad
+H(T)=\Imag(P\overline Q\,\overline R\,\overline S).
+\end{equation}
+
+Ribot~\cite[Example~4.1]{Ribot} gives the Zariski closure associated with
+$L_2$ by the quartic
+\begin{equation}\label{eq:F}
+F(T)=
+\sum_{i,j,k\in\{1,2\}}(-1)^{i+j+k}t_{ijk}\,
+g(t_{i+1,j,k},t_{i,j+1,k},t_{i,j,k+1},t_{i+1,j+1,k+1}),
+\end{equation}
+where shifted indices are read modulo $2$ and
+\[
+g(w,x,y,z)=2wxy+w^2z+x^2z+y^2z-z^3.
+\]
+
+\begin{proposition}\label{prop:quartic}
+As polynomials in the eight real entries of $T$, one has $H=4F$.
+Consequently,
+\[
+X_{L_2}=\{T:F(T)=0\}.
+\]
+\end{proposition}
+
+\begin{proof}
+The Fourier formula gives
+\begin{align*}
+P&=t_{111}-t_{122}-t_{212}-t_{221}
+   +i(t_{112}+t_{121}+t_{211}-t_{222}),\\
+Q&=t_{111}+t_{122}+t_{212}-t_{221}
+   +i(-t_{112}+t_{121}+t_{211}+t_{222}),\\
+R&=t_{111}+t_{122}-t_{212}+t_{221}
+   +i(t_{112}-t_{121}+t_{211}+t_{222}),\\
+S&=t_{111}-t_{122}+t_{212}+t_{221}
+   +i(t_{112}+t_{121}-t_{211}+t_{222}).
+\end{align*}
+Substitution into \eqref{eq:H} and collection of degree-four monomials gives
+$H=4F$; equivalently, the two sides have the same forty nonzero monomial
+coefficients in $\Z[t_{ijk}:i,j,k\in\{1,2\}]$.
+\end{proof}
+
+Thus Conjecture~4.4 of~\cite{Ribot} holds for every maximum-cardinality
+binary support. The argument does not treat non-parity binary supports or
+formats with a mode of dimension at least three, and the conjecture remains
+open in general.
+
+\begin{thebibliography}{9}
+
+\bibitem{BDHR}
+A.~Boralevi, J.~Draisma, E.~Horobe\c{t}, and E.~Robeva,
+\emph{Orthogonal and unitary tensor decomposition from an algebraic
+perspective},
+Israel J. Math. \textbf{222} (2017), no.~1, 223--260.
+
+\bibitem{Ribot}
+\'A.~Ribot,
+\emph{Unifying singular value decompositions of tensors via aligned
+orthogonality},
+arXiv:2608.03202v1 [math.AG], 2026.
+
+\end{thebibliography}
+
+\end{document}

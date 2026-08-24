@@ -1,0 +1,383 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The p=3 Case of a Conjecture of Chauhan, Shukla, and Vinayak},
+  pdfsubject={Cut complexes and shellability},
+  pdfkeywords={cut complex, shellability, power of a cycle, computer-assisted proof}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Sph}{\mathbb S}
+\newcommand{\triple}[3]{\{#1,#2,#3\}}
+
+\title[The $p=3$ case of a 3-cut conjecture]
+{The $p=3$ Case of a Conjecture of
+Chauhan, Shukla, and Vinayak}
+
+\date{}
+
+\subjclass[2020]{Primary 05E45; Secondary 05C69, 55U05}
+\keywords{cut complex, shellability, power of a cycle, computer-assisted proof}
+
+\begin{document}
+
+\begin{abstract}
+We prove the $p=3$ case of Conjecture~4.2(ii) of Chauhan, Shukla,
+and Vinayak on $3$-cut complexes of powers of cycles.  Within the
+conjectured $p=3$ range, the only cases not covered by the theorem of Chauhan
+and Shukla are $n=13$ and $n=14$.
+By locally reordering, in their explicit facet order, a block of six facets
+(five of which change position) and a block of ten, we obtain shellings with
+one and eight spanning facets.  Hence
+\[
+  \Delta_3(C_{13}^3)\simeq \Sph^9,
+  \qquad
+  \Delta_3(C_{14}^3)\simeq \bigvee^8 \Sph^{10}.
+\]
+The finite verification is exact.  Both reordered blocks are printed in full
+below; the underlying facet order is the one defined by Chauhan and Shukla,
+specialized to $p=3$, and is not reproduced here.
+\end{abstract}
+
+\maketitle
+
+\section{Main result}
+
+For a graph $G$ on vertex set $V$, the $3$-cut complex $\Delta_3(G)$ is the
+pure simplicial complex whose facets are the sets $V\setminus T$, where
+$T\subseteq V$ has cardinality three and $G[T]$ is disconnected
+\cite{BayerEtAl,CSV}.  Write $C_n^p$ for the $p$th power of the cycle $C_n$.
+
+Conjecture~4.2(ii) of Chauhan, Shukla, and Vinayak asserts that for $p\ge3$
+and $n\ge4p+1$,
+\begin{equation}\label{eq:conjecture}
+  \Delta_3(C_n^p)
+  \simeq
+  \bigvee^{(n^2-4np-n+2)/2}\Sph^{n-4},
+\end{equation}
+and, more strongly, that the complex is shellable
+\cite[Conjecture~4.2(ii)]{CSV}.  Chauhan and Shukla proved this for
+$n\ge6p-3$ \cite[Theorem~1.4]{CS}.  At $p=3$, their result begins at
+$n=15$, whereas the conjectured range begins at $n=13$.
+
+\begin{theorem}\label{thm:main}
+Part~\textup{(ii)} of Conjecture~4.2 of Chauhan--Shukla--Vinayak holds for
+$p=3$.  Thus, for every $n\ge13$, the complex $\Delta_3(C_n^3)$ is
+shellable and
+\[
+  \Delta_3(C_n^3)
+  \simeq
+  \bigvee^{(n^2-13n+2)/2}\Sph^{n-4}.
+\]
+\end{theorem}
+
+The proof is the two explicit certificates of Section~2, for $n=13$ and
+$n=14$, combined with \cite[Theorem~1.4]{CS} for $n\ge15$.  The infinite part
+of the range is thus that theorem's, and \cite{CS} is at the time of writing
+an unrefereed preprint; the content contributed here is exactly the two
+boundary cases.  Part~\textup{(i)} of Conjecture~4.2, and the cases $p\ge4$
+of part~\textup{(ii)}, are untouched.
+
+The integral homology ranks for the two boundary cases already appear in
+Table~2 of \cite{CSV}.  The new point is an explicit shelling certificate,
+which proves shellability and the asserted homotopy types.
+
+\section{The two boundary certificates}
+
+Let $V_n=\Z/n\Z=\{0,1,\ldots,n-1\}$ and
+\[
+  d_n(a,b)=\min\{|a-b|,n-|a-b|\}.
+\]
+Two vertices are adjacent in $C_n^3$ exactly when $d_n(a,b)\le3$.
+We encode a facet $F=V_n\setminus T$ by its omitted triple $T$.
+A graph on three vertices is disconnected exactly when it has at most one
+edge; hence the omitted triples are precisely the triples containing at most
+one pair at circular distance at most three.
+
+For a shelling $F_1,\ldots,F_m$, a facet $F_j$ is \emph{spanning} if
+$\partial F_j\subseteq\bigcup_{i<j}F_i$.
+The following elementary criterion is convenient for exact verification.
+
+\begin{lemma}\label{lem:criterion}
+Let $T_1,\ldots,T_m$ be distinct omitted triples, set
+$F_j=V_n\setminus T_j$, and, for $j\ge2$, define
+\[
+  R_j=\left\{
+  x\in V_n\setminus T_j:
+  T_r=(T_j\setminus\{y\})\cup\{x\}
+  \text{ for some }r<j\text{ and }y\in T_j
+  \right\}.
+\]
+Then $F_1,\ldots,F_m$ is a shelling order if and only if
+\begin{equation}\label{eq:exchange}
+  (T_i\setminus T_j)\cap R_j\ne\varnothing
+  \qquad\text{for every }i<j.
+\end{equation}
+Moreover, $F_j$ is spanning if and only if
+$R_j=V_n\setminus T_j$.
+\end{lemma}
+
+\begin{proof}
+The standard shelling criterion requires, for every $i<j$, an index $r<j$
+and a vertex $x\in F_j\setminus F_i$ such that
+$F_r\cap F_j=F_j\setminus\{x\}$; see \cite[Definition~2.2]{CS}.
+Here $F_j\setminus F_i=T_i\setminus T_j$, while
+\[
+  F_r\cap F_j=F_j\setminus\{x\}
+  \quad\Longleftrightarrow\quad
+  T_r=(T_j\setminus\{y\})\cup\{x\}
+\]
+for some $y\in T_j$.  This gives \eqref{eq:exchange}.  Applying the same
+condition to every $x\in F_j$ gives the spanning criterion.
+\end{proof}
+
+Let $L_n$ be the order obtained by specializing to $p=3$ the explicit order
+of Chauhan and Shukla in Section~3 of \cite{CS}, culminating in their
+Definition~3.10.  We use only the defining formulas and verify the resulting
+finite lists directly.  This is deliberate: Section~3 of \cite{CS} is written
+under the hypothesis $n\ge6p-3$, that is $n\ge15$ at $p=3$, so at $n=13,14$
+its formulas are being evaluated outside the range in which \cite{CS} use
+them, and none of the lemmas proved there is invoked below.  That the blocks
+partition the facet set, that $L_n$ lists every disconnected triple exactly
+once, and that the exchange condition holds are all checked on the two finite
+lists themselves.  All positions below are one-based.
+
+For $n=13$, replace positions $112$--$117$ of $L_{13}$ by
+\begin{equation}\label{eq:r13}
+\begin{aligned}
+(&\triple{3}{5}{12},\triple{4}{5}{11},\triple{4}{5}{12},
+  \triple{5}{9}{12},\triple{5}{10}{12},\triple{5}{11}{12})
+\quad\longmapsto\quad{}&\\[-0.3em]
+(&\triple{4}{5}{11},\triple{5}{11}{12},\triple{5}{10}{12},
+  \triple{5}{9}{12},\triple{3}{5}{12},\triple{4}{5}{12}).&
+\end{aligned}
+\end{equation}
+For $n=14$, replace positions $146$--$155$ of $L_{14}$ by
+\begin{equation}\label{eq:r14}
+\begin{aligned}
+(&\triple{3}{5}{13},\triple{4}{5}{11},\triple{4}{5}{12},
+  \triple{4}{5}{13},\triple{5}{9}{12},\triple{5}{9}{13},\\[-0.3em]
+ &\triple{5}{10}{12},\triple{5}{10}{13},\triple{5}{11}{12},
+  \triple{5}{11}{13})
+\quad\longmapsto\quad{}&\\[-0.3em]
+(&\triple{4}{5}{11},\triple{4}{5}{12},\triple{5}{9}{12},
+  \triple{5}{10}{12},\triple{5}{11}{12},\triple{5}{11}{13},\\[-0.3em]
+ &\triple{5}{10}{13},\triple{5}{9}{13},\triple{3}{5}{13},
+  \triple{4}{5}{13}).&
+\end{aligned}
+\end{equation}
+Denote the repaired orders by $\widehat L_{13}$ and $\widehat L_{14}$.
+Both edits are permutations of a block: the facet set, and the set of triples
+occurring before any position outside the block, are unchanged.  Since an
+internal permutation of a block changes neither the set of predecessors of a
+position outside the block nor the set of earlier triples seen from it,
+condition \eqref{eq:exchange} and the spanning criterion can change only at
+the $6$ and $10$ edited positions.  In particular no facet outside the two
+windows is affected, and the spanning facets listed in
+Proposition~\ref{prop:certificates} all lie outside them.
+
+The unrepaired orders fail Lemma~\ref{lem:criterion} only through the
+following obstruction pairs:
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}l}
+\toprule
+n & j & T_j & \text{earlier witness triples }T_i\\
+\midrule
+13 & 112 & \triple{3}{5}{12} & \triple{2}{5}{9}\\
+13 & 114 & \triple{4}{5}{12} & \triple{2}{5}{9},\ \triple{2}{5}{10}\\
+14 & 146 & \triple{3}{5}{13} & \triple{2}{5}{9}\\
+14 & 149 & \triple{4}{5}{13} & \triple{2}{5}{9},\ \triple{2}{5}{10}\\
+\bottomrule
+\end{array}
+\]
+
+\begin{proposition}\label{prop:certificates}
+The orders $\widehat L_{13}$ and $\widehat L_{14}$ are shelling orders for
+$\Delta_3(C_{13}^3)$ and $\Delta_3(C_{14}^3)$, respectively.  Their spanning
+facets are the complements of the omitted triples
+\[
+  \mathcal S_{13}=\{\triple{4}{10}{12}\}
+\]
+and
+\[
+\begin{aligned}
+  \mathcal S_{14}=\{&\triple{0}{7}{13},\triple{6}{12}{13},
+  \triple{1}{8}{13},\triple{5}{12}{13},
+  \triple{2}{9}{13},\\
+  &\triple{4}{10}{13},\triple{4}{11}{13},
+  \triple{3}{10}{13}\}.
+\end{aligned}
+\]
+In particular, the two orders have one and eight spanning facets.
+\end{proposition}
+
+\begin{proof}
+The verification described in the section \emph{Exact verification} below
+reconstructs $L_n$ from the defining formulas in \cite{CS}, checks that the
+blocks used there form a disjoint partition of the facet set, and applies
+\eqref{eq:r13}--\eqref{eq:r14}.  It then performs the following exact checks
+for each $n\in\{13,14\}$:
+\begin{enumerate}
+\item the listed triples are exactly the disconnected triples, without
+      omission or repetition;
+\item condition \eqref{eq:exchange} holds for every pair $i<j$;
+\item independently, for each $j$, every inclusion-maximal member of
+      $\{F_i\cap F_j:i<j\}$ has cardinality $|F_j|-1$;
+\item the spanning triples are exactly those displayed above.
+\end{enumerate}
+The audit is
+\[
+\begin{array}{c@{\quad}r@{\quad}r@{\quad}c@{\quad}c@{\quad}c}
+\toprule
+n & \text{facets} & \text{pairs} & \text{exch. fail.} &
+\text{purity fail.} & \text{spanning}\\
+\midrule
+13 & 169 & 14{,}196 & 0 & 0 & 1\\
+14 & 238 & 28{,}203 & 0 & 0 & 8\\
+\bottomrule
+\end{array}
+\]
+Lemma~\ref{lem:criterion} now proves the proposition.
+\end{proof}
+
+\begin{remark}\label{rem:forced}
+The two spanning counts are not independent data.  For a pure shellable
+$d$-complex the number of spanning facets equals $h_{d+1}$, and this in turn
+equals $|\widetilde\chi|$; the reduced Euler characteristics of
+$\Delta_3(C_{13}^3)$ and $\Delta_3(C_{14}^3)$ are $-1$ and $+8$, as one
+computes directly from their face numbers, with the sign $(-1)^{n-4}$.  Hence
+once shellability is known the counts $1$ and $8$ are forced by the two
+complexes themselves, independently of any order, and they act as a
+consistency check on the verification rather than as a separate claim.  What
+is not forced is which facets are spanning: that depends on the order.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:certificates} treats $n=13,14$.  Since every facet has
+$n-3$ vertices, these complexes have dimension $n-4$.  A pure shellable
+$d$-complex with $\beta$ spanning facets is homotopy equivalent to a wedge of
+$\beta$ copies of $\Sph^d$ \cite[Theorem~12.3]{Kozlov}; see also
+\cite[Theorem~2.3]{CS}.  This gives $\Sph^9$ and
+$\bigvee^8\Sph^{10}$ in the two boundary cases.  For $n\ge15$, the result is
+\cite[Theorem~1.4]{CS}.  Finally,
+\[
+  \binom{n-6}{2}-20=\frac{n^2-13n+2}{2},
+\]
+so the multiplicity agrees with \eqref{eq:conjecture} at $p=3$.
+\end{proof}
+
+\section*{Exact verification}
+
+Every computation above is finite and exact, carried out in integer
+arithmetic on subsets of $\Z/n\Z$; no floating-point arithmetic is involved.
+From the facet criterion of Section~2 one enumerates the $169$ and $238$
+disconnected triples.  The order $L_n$ is generated from the defining
+formulas of \cite[Section~3]{CS} at $p=3$, the blocks \eqref{eq:r13} and
+\eqref{eq:r14} are substituted, and condition \eqref{eq:exchange} is then
+evaluated on all $14{,}196$ and $28{,}203$ pairs $i<j$, together with the
+purity and spanning tests listed in the proof of
+Proposition~\ref{prop:certificates}.  As a control, the same four checks were
+applied to the order of \cite[Section~3]{CS} at $n=15,16$, inside the range
+$n\ge15$ covered by \cite[Theorem~1.4]{CS}, and returned the expected spanning
+counts $16$ and $25$.  No data file or program accompanies this paper: every
+quantity quoted above is either printed here or recomputable from the criteria
+of Section~2 together with the definitions of \cite[Section~3]{CS}, and the
+program used and its transcript are retained in an auxiliary archive,
+available on request.  What a reader can and cannot check from the data
+printed here is set out next.
+
+\paragraph{Status.}
+The orders $\widehat L_{13}$ and $\widehat L_{14}$ are not printed here.
+Reconstructing them requires the definitions of \cite[Section~3]{CS}
+specialized to $p=3$; given those, the two blocks \eqref{eq:r13} and
+\eqref{eq:r14} determine the certificates completely.  Consequently the
+following are supported by the computation just described, but are not
+checkable from this text alone: the zero failure counts of the audit table;
+the assertion that the four pairs tabulated in Section~2 are the
+\emph{only} obstructions of $L_{13}$ and $L_{14}$; and the identity---as
+opposed to the number---of the spanning facets in $\mathcal S_{13}$ and
+$\mathcal S_{14}$.  For the same reason the printed data pin the internal
+order of each block only up to permutations with the same in-block discharge
+pattern, and do not pin the identity of the witness triples $T_i$.  What
+\emph{is} checkable from the printed data is the local part of the argument:
+that the six and ten listed triples are omitted triples of $C_{13}^3$ and
+$C_{14}^3$; that each new block is a permutation of the old one, so that
+by the locality observation of Section~2 nothing outside the two windows can
+change; that the four tabulated obstructions are discharged by the
+reordering, each through the one vertex of $T_i\setminus T_j$ that can ever
+enter $R_j$; that all $15$ pairs internal to the $n=13$ window and $44$ of
+the $45$ internal to the $n=14$ window are discharged from in-block
+predecessors alone, the exception being the pair at positions $147$ and
+$154$, which requires a witness from the unprinted prefix; and, once
+shellability is granted, the counts $1$ and $8$, which
+Remark~\ref{rem:forced} then forces from the face numbers alone.
+Shellability itself is not among these checkable items.
+
+\paragraph{Independent recomputation.}
+The computation was re-run independently, by a program written against the
+statements printed above, and all $138$ of its checks agreed.  Its reach is
+narrower than the paper's in three respects.  It does not rebuild
+$\widehat L_{13}$ and $\widehat L_{14}$, which cannot be rebuilt from this
+text, so the zero failure counts of the audit table and the identity of
+$\mathcal S_{13}$ and $\mathcal S_{14}$ as the spanning sets \emph{of those
+two orders} are not re-established by it.  What it does re-establish is the
+conclusion together
+with the repair mechanism: shelling orders for $\Delta_3(C_{13}^3)$ and
+$\Delta_3(C_{14}^3)$, constructed independently and verified on all
+$14{,}196$ and $28{,}203$ pairs, pure of dimensions $9$ and $10$, with exactly
+$1$ and $8$ spanning facets and realizing $\mathcal S_{13}$ and
+$\mathcal S_{14}$; and every assertion of Section~2 that depends only on the
+printed blocks.  Its census of explicitly constructed shellings covers
+$13\le n\le32$, its reduced Euler characteristics $13\le n\le22$, and its
+homology with $\mathbb F_2$ coefficients $13\le n\le20$; the range $n\ge15$ of
+Theorem~\ref{thm:main} rests on \cite[Theorem~1.4]{CS} and not on computation.
+Odd torsion below the top degree is not excluded by that $\mathbb F_2$
+computation; it is excluded by shellability together with
+\cite[Theorem~12.3]{Kozlov}.  A recomputation that agrees is evidence about
+the computation, not a second proof.
+
+\begin{thebibliography}{9}
+
+\bibitem{BayerEtAl}
+M.~Bayer, M.~Denker, M.~Jeli\'c Milutinovi\'c, R.~Rowlands, S.~Sundaram,
+and L.~Xue,
+\emph{Topology of cut complexes of graphs},
+SIAM J. Discrete Math. \textbf{38} (2024), no.~2, 1630--1675.
+\href{https://doi.org/10.1137/23M1569034}{doi:10.1137/23M1569034}.
+
+\bibitem{CSV}
+P.~Chauhan, S.~Shukla, and K.~Vinayak,
+\emph{Shellability of $3$-cut complexes of squared cycle graphs},
+J. Homotopy Relat. Struct. \textbf{20} (2025), 163--193.
+\href{https://doi.org/10.1007/s40062-025-00365-w}
+{doi:10.1007/s40062-025-00365-w}.
+
+\bibitem{CS}
+P.~Chauhan and S.~Shukla,
+\emph{Shellability of $3$-cut complexes of powers of cycle graphs},
+\href{https://arxiv.org/abs/2603.23155}{arXiv:2603.23155v1} [math.CO] (2026).
+
+\bibitem{Kozlov}
+D.~Kozlov,
+\emph{Combinatorial Algebraic Topology},
+Algorithms and Computation in Mathematics, vol.~21,
+Springer, Berlin--Heidelberg, 2008.
+\href{https://doi.org/10.1007/978-3-540-71962-5}
+{doi:10.1007/978-3-540-71962-5}.
+
+\end{thebibliography}
+
+\end{document}

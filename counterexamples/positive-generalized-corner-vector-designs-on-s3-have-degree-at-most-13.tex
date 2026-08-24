@@ -1,0 +1,308 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Positive Generalized Corner-Vector Designs on S3 Have Degree at Most 13},
+  pdfsubject={Spherical designs and positive cubature},
+  pdfkeywords={spherical design, cubature formula, hyperoctahedral group, generalized corner vector, Bernstein basis}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sph}{\mathbb{S}}
+\newcommand{\mean}[1]{\left\langle #1\right\rangle}
+
+\title[Generalized Corner-Vector Designs on $\Sph^3$]
+{Positive Generalized Corner-Vector Designs on
+\texorpdfstring{$\Sph^3$}{S3} Have Degree at Most 13}
+
+\date{}
+
+\subjclass[2020]{Primary 65D32; Secondary 05B30}
+\keywords{spherical design, cubature formula, hyperoctahedral group,
+generalized corner vector, separating polynomial, Bernstein basis}
+
+\begin{document}
+
+\begin{abstract}
+Tanino, Tamaru, Hirao, and Sawa have proved that positive weighted
+spherical designs obtained from generalized corner-vector orbits in
+dimension four have degree at most $15$, and asked whether a weighted
+$15$-design on $\Sph^3$ with more than five proper orbits exists. We
+give a $B_4$-invariant polynomial of degree $14$ that is positive on
+every generalized corner-vector orbit but has negative spherical mean.
+Consequently, every positive design of this type on $\Sph^3$ has degree
+at most $13$. This gives a negative answer, for positive weights, to
+their Problem~6.1, independently of the number of proper orbits.
+\end{abstract}
+
+\maketitle
+
+\section{The obstruction}
+
+Let $B_4$ act on $\mathbb{R}^4$ by signed coordinate permutations. For
+$a>0$ and $s\in\{0,1,2,3\}$, set
+\[
+v_{a,s}
+=
+\frac{1}{\sqrt{a^2+s}}
+\bigl(a,\underbrace{1,\ldots,1}_{s},0,\ldots,0\bigr)
+\in\Sph^3,
+\]
+and denote its $B_4$-orbit by $v_{a,s}^{B_4}$. These are the
+generalized corner-vector orbits of Tanino--Tamaru--Hirao--Sawa
+\cite[Definition~2.19]{TTHS}; the orbit is called proper when $a\ne1$.
+They proved that a positive weighted design assembled from such orbits
+has degree at most $15$ in dimension four \cite[Theorem~3.1]{TTHS}, and
+they asked \cite[Problem~6.1]{TTHS}:
+\begin{quote}
+Does there exist a weighted $15$-design on $\Sph^3$ of type~(1) with
+more than $5$ proper orbits?
+\end{quote}
+Their ``type~(1)'' is the display numbered~(1) on p.~1388 of
+\cite{TTHS}: a cubature formula for normalized surface measure whose
+node set is a union of generalized corner-vector orbits, carrying one
+weight per orbit. That is the class of formula~\eqref{eq:cubature}
+below, and it is also the class occurring in the hypothesis of
+\cite[Theorem~3.1]{TTHS}, whose formula~(11) has the same shape. Let
+$\sigma$ denote normalized surface measure on $\Sph^3$.
+
+\begin{theorem}\label{thm:main}
+Let $m\ge1$, $a_i>0$, $s_i\in\{0,1,2,3\}$, and $W_i>0$. The formula
+\begin{equation}\label{eq:cubature}
+\int_{\Sph^3} f\,d\sigma
+=
+\sum_{i=1}^{m}W_i\sum_{x\in v_{a_i,s_i}^{B_4}}f(x)
+\end{equation}
+cannot be exact for every polynomial $f$ of degree at most $14$.
+\end{theorem}
+
+\begin{corollary}\label{cor:problem}
+Every positive weighted spherical design of generalized corner-vector
+type on $\Sph^3$ has degree at most $13$. In particular,
+Problem~6.1 of \cite{TTHS} has a negative answer for positive weights,
+as required of a weighted design by \cite[Definition~2.2]{TTHS},
+regardless of the number of proper orbits.
+\end{corollary}
+
+Put $y_i=x_i^2$, and let $e_j=e_j(y_1,y_2,y_3,y_4)$ be the $j$th
+elementary symmetric polynomial. Define
+\begin{align}\label{eq:p}
+p={}&
+2+240e_2+1345e_3+227924e_4
+-3518e_2^2-448e_2e_3+283604e_3^2 \notag\\
+&-1529173e_2e_4+12886e_2^3
++4855151e_3e_4-132972e_2^2e_3.
+\end{align}
+Then $p$ is $B_4$-invariant and has degree $14$ in
+$x_1,\ldots,x_4$. For a polynomial $f$ on $\Sph^3$, write
+\[
+\mean{f}=\int_{\Sph^3}f\,d\sigma.
+\]
+
+\begin{lemma}\label{lem:mean}
+The spherical mean of $p$ is negative:
+\[
+\mean{p}=-\frac{60763}{143360}<0.
+\]
+\end{lemma}
+
+\begin{proof}
+For a uniformly distributed point of $\Sph^3$, the vector
+$(y_1,y_2,y_3,y_4)$ has the Dirichlet distribution with parameters
+$(1/2,1/2,1/2,1/2)$. Hence, for
+$\alpha_i\in\mathbb{Z}_{\ge0}$,
+\[
+\mean{y_1^{\alpha_1}\cdots y_4^{\alpha_4}}
+=
+\frac{\prod_{i=1}^{4}(1/2)_{\alpha_i}}
+     {(2)_{\alpha_1+\cdots+\alpha_4}},
+\qquad (z)_0=1.
+\]
+Expanding \eqref{eq:p} and applying this identity gives the stated
+value.
+\end{proof}
+
+\begin{lemma}\label{lem:positive}
+For every $a>0$ and $s\in\{0,1,2,3\}$,
+\[
+p(v_{a,s})>0.
+\]
+\end{lemma}
+
+\begin{proof}
+For $s=0$, one has $v_{a,0}=(1,0,0,0)$ and $p(v_{a,0})=2$.
+Let $s\in\{1,2,3\}$ and set
+\[
+u=\frac{a^2}{a^2+s}\in(0,1),
+\qquad
+c=\frac{1-u}{s}.
+\]
+Since $p$ is a symmetric function of the $y_i$, we may take the squared
+coordinates of $v_{a,s}$ to be
+$(u,c,\ldots,c,0,\ldots,0)$, with $c$ repeated $s$ times. Direct
+substitution into \eqref{eq:p} gives
+\[
+p(v_{a,1})=H_1(u),\qquad
+32p(v_{a,2})=H_2(u),\qquad
+729p(v_{a,3})=H_3(u),
+\]
+where
+\begin{align*}
+H_1(u)={}&
+-12886u^6+38658u^5-42176u^4+19922u^3
+-3758u^2+240u+2,\\
+H_2(u)={}&
+-598374u^7+2387827u^6-3979288u^5+3540713u^4\\
+&-1750294u^3+440357u^2-42268u+1391,\\
+H_3(u)={}&
+-51606520u^7+213893327u^6-355558770u^5+299081978u^4\\
+&-130946506u^3+26917938u^2-1819702u+39713.
+\end{align*}
+
+We certify positivity by exact Bernstein coefficients. For an interval
+$I=[r,q]\subseteq[0,1]$ and a polynomial $H$ of degree $d$, write
+\[
+H(r+(q-r)z)
+=
+\sum_{k=0}^{d}\beta_{I,k}(H)
+\binom{d}{k}z^k(1-z)^{d-k}.
+\]
+If $H(r+(q-r)z)=\sum_{j=0}^{d}c_jz^j$, then
+\begin{equation}\label{eq:bernstein}
+\beta_{I,k}(H)
+=
+\sum_{j=0}^{k}c_j
+\frac{\binom{k}{j}}{\binom{d}{j}}.
+\end{equation}
+For each $s$, the following table gives a subdivision
+$0=r_0<r_1<r_2<r_3=1$ and the minimum Bernstein coefficient on each
+successive interval, where $d=\deg H_s$, so that $d=6$ for $s=1$ and
+$d=7$ for $s=2,3$. The coefficients \eqref{eq:bernstein} depend on $d$;
+in particular $H_1$ is not to be padded to degree $7$.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}c c c@{}}
+\toprule
+$s$ & $(r_0,r_1,r_2,r_3)$
+& $\bigl(\min_k\beta_{[r_{j-1},r_j],k}(H_s)\bigr)_{j=1}^{3}$ \\
+\midrule
+$1$ & $\left(0,\frac16,\frac56,1\right)$
+& $\left(\frac{14287}{7776},\frac{46531}{23328},
+          \frac{14287}{7776}\right)$ \\[1.5ex]
+$2$ & $\left(0,\frac1{12},\frac34,1\right)$
+& $\left(\frac{137627845}{2985984},
+          \frac{414113333}{5971968},\frac{219941}{5376}\right)$ \\[1.5ex]
+$3$ & $\left(0,\frac1{20},\frac35,1\right)$
+& $\left(\frac{542097724127}{448000000},
+          \frac{17317137}{15625},\frac{4479262}{3125}\right)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every displayed number is positive. Since the Bernstein basis
+functions are nonnegative on $[0,1]$ and sum to $1$, it follows that
+$H_s(u)>0$ on every listed interval, hence on $[0,1]$. Therefore
+$p(v_{a,s})>0$ for $s=1,2,3$ as well.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Assume that \eqref{eq:cubature} is exact through degree $14$. Applying
+it to the polynomial $p$ and using its $B_4$-invariance gives
+\[
+-\frac{60763}{143360}
+=
+\mean{p}
+=
+\sum_{i=1}^{m}
+W_i\lvert v_{a_i,s_i}^{B_4}\rvert p(v_{a_i,s_i}).
+\]
+The right-hand side is strictly positive by $W_i>0$ and
+Lemma~\ref{lem:positive}, contradicting Lemma~\ref{lem:mean}.
+\end{proof}
+
+\begin{remark}
+Since $-I\in B_4$, every formula of the form \eqref{eq:cubature} is
+antipodal. Exactness through degree $14$ is therefore equivalent to
+exactness through degree $15$.
+
+Positivity is essential, and the positive-weight reading is the one
+intended in \cite{TTHS}: a weighted design there carries by definition a
+weight function with values in $\mathbb{R}_{>0}$
+\cite[Definition~2.2]{TTHS}, so the hypothesis $W_i>0$ of
+Theorem~\ref{thm:main} is theirs and not a restriction added here. The
+displays \cite[(1) and~(11)]{TTHS} do not repeat the sign condition; that
+the positive reading is nonetheless the intended one is confirmed by
+\cite[\S6]{TTHS}, where it is recorded, immediately before Problem~6.1
+is posed, that $15$-designs on $\Sph^3$ with negative weights do exist.
+Theorem~\ref{thm:main} accordingly says nothing about signed cubature
+formulas, nor about node families outside the generalized corner-vector
+construction. Degree $13$ is attained within this class: \cite[\S6]{TTHS}
+reports two weighted $13$-designs on $\Sph^3$ of this type, each with
+five orbits and positive weights, with nodes and weights given there
+numerically to six significant figures. On the evidence of those
+examples the bound of Corollary~\ref{cor:problem} is sharp; verifying
+them exactly is not attempted here.
+\end{remark}
+
+\paragraph{Exact verification.}
+Everything above is finite and exact, and is recomputable from the data
+printed here; the only mathematical input is the eleven coefficients
+of \eqref{eq:p}. From them one expands $p$ into its $130$ monomials in
+the $y_i$ and confirms its $B_4$-invariance and its degree $14$ in
+$x_1,\ldots,x_4$; evaluates $\mean{p}=-60763/143360$ by two routes,
+direct expansion against the Dirichlet moment functional of
+Lemma~\ref{lem:mean} and a harmonic route through the Laplacian, the
+moment functional itself being cross-validated against the $24$-cell
+through degree $5$ and against an iterated-Laplacian formula on all
+$330$ even monomials of degree at most $14$; substitutes the profiles
+of Lemma~\ref{lem:positive} to recover $H_1,H_2,H_3$ with their
+integrality scalings $1$, $32$, $729$; verifies the identity
+\eqref{eq:bernstein} itself, rather than assuming it, and with it all
+nine minimum Bernstein coefficients of the table; and re-certifies
+positivity of $H_1,H_2,H_3$ on $[0,1]$ a second way, by exact Sturm
+root counting. No floating-point arithmetic enters at any stage. This
+computation was re-run independently in exact rational arithmetic, and
+all $48$ of its checks agree with the numbers printed here. The program
+and its output log are retained in an auxiliary archive, available on
+request; nothing above depends on them, since the Bernstein table is
+itself the certificate.
+
+\medskip
+
+\paragraph{Scope.}
+Two limits belong with that statement. First, the claim quantifies over
+the continuum $a>0$, so no census is possible and none was attempted:
+the universal statement is discharged exactly by the Bernstein
+certificate over the tabulated partition, re-certified by Sturm, with
+exact evaluation of $p$ at $609$ genuine orbit points as a further
+check. Second, agreement is what is claimed for the independent re-run,
+not a second proof: a few of its checks are self-tests of its own
+construction, which no object could fail, and the agreement of the
+Pochhammer and double-factorial forms of the Dirichlet moment is an
+algebraic rewriting rather than an independent derivation.
+
+\begin{thebibliography}{1}
+
+\bibitem{TTHS}
+K.~Tanino, T.~Tamaru, M.~Hirao, and M.~Sawa,
+\newblock More on the corner-vector construction for spherical designs,
+\newblock \emph{Algebraic Combinatorics} \textbf{8} (2025), no.~5,
+1387--1414,
+\newblock \href{https://doi.org/10.5802/alco.441}{doi:10.5802/alco.441}.
+
+\end{thebibliography}
+
+\end{document}
