@@ -1,19 +1,19 @@
 # Results
 
-The list is in two parts: the first three sections are the original collection, and
-**Round 5** at the end holds the papers added afterwards.
+The first three sections are the original collection; **Round 5** and **Round 6** at the end hold the
+papers added afterwards.
 
-**119 papers** acting on **116 distinct statements**: 86 refute a published conjecture or question, 20 exhibit an object whose existence was open, and 13 prove a conjecture or record a note.
+**117 papers** acting on **115 distinct statements**: 85 refute a published conjecture or question, 19 exhibit an object whose existence was open, and 13 prove a conjecture or record a note.
 
-The two categories are reported separately and never added together: refuting a published conjecture
-and settling an open existence question are different kinds of contribution.
+The three kinds are reported separately and never added together: refuting a published conjecture,
+settling an open existence question, and proving a conjecture are different contributions.
 
 Each object is printed in full in its paper, so every claim can be checked from the paper alone.
 Where one statement is addressed by more than one paper, those papers exhibit **different** objects.
 
 ---
 
-## Counterexamples (42)
+## Counterexamples (41)
 
 | paper | what it establishes |
 |---|---|
@@ -54,19 +54,17 @@ Where one statement is addressed by more than one paper, those papers exhibit **
 | **[Disconnected Counterexamples to a Real-Rootedness Conjecture for Weighted Bond Posets](counterexamples/disconnected-triangles-refute-weighted-bond-real-rootedness.pdf)** | Conjecture~4.13(2) of González D'León and Wachs GDLW asserts that a signed difference of weighted-bond-poset Möbius polynomials is real-rooted whenever the underlying graphs have the same numbers of vertices and connected components and one ... |
 | **[Edge-Deletion Counterexamples to the Aliabadi--Krop Sharp Uniform-Gap Formula](counterexamples/edge-deleted-bipartite-disprove-aliabadi-krop-gap.pdf)** | Aliabadi and Krop asked for the sharp normalized perfect-matching count below the Alon--Friedland bound among non-extremal graphs of maximum degree at most . |
 | **[Kite Families with $\Theta(n^3)$ Failure of the Zhou--Wang--Chai Distance-Laplacian Bound](counterexamples/kite-counterexamples-zhou-wang-chai-distance-laplacian.pdf)** | Let be the distance Laplacian eigenvalues of a connected graph , and write . |
-| **[Minimum Memoization Need Not Lie in the Glushkov MFN Set](counterexamples/distinct-terminal-glushkov-family-refutes-mfn-conjectures.pdf)** | Berglund, van der Merwe, and le Roux conjectured that a minimum memoization set for a Thompson or Glushkov automaton can be chosen inside its Minimum Feedback Node set, equivalently that some ordering makes return a minimum set. |
 | **[Nine additional counterexamples to Conjecture 5 of Sondow, Nicholson, and Noe](counterexamples/ramanujan-exceptions-refute-sondow-nicholson-noe-conjecture-five.pdf)** | Let be the th Ramanujan prime and put . The clause of Conjecture~5 of Sondow, Nicholson, and Noe asserts that for every . |
 | **[Order-Minimal Pendant-Free Counterexamples to Conjecture 2 of Nurdin et al.](counterexamples/order-seven-counterexamples-nurdin-irregularity-conjecture.pdf)** | Let be the degree-count lower bound conjectured by Nurdin et al.\ to be equal to the total vertex irregularity strength . |
 | **[Small Counterexamples to a Trace Conjecture of Frankl and Wang](counterexamples/small-trace-families-disprove-frankl-wang-conjecture.pdf)** | Frankl and Wang conjectured an exact formula for for every . |
 | **[Two counterexamples to a packing-coloring problem of Mortada, El Zein, and Al Hajjar](counterexamples/order-36-counterexamples-mortada-packing-coloring-problem.pdf)** | Mortada, El Zein, and Al Hajjar asked whether every connected claw-free subcubic graph other than a specified graph is -packing colorable. |
 
-## Constructions (14)
+## Constructions (13)
 
 | paper | what it establishes |
 |---|---|
 | **[A Certified $\RM(7,3,2)$ Mixed Radial Moore Graph](constructions/rm-7-3-2-construction-corrects-status-table.pdf)** | We give an explicit mixed graph on vertices that is totally -regular and has radius and diameter . |
 | **[A Characteristic-Two Counterexample to the Shalev--Smoktunowicz Conjecture](constructions/powerful-two-group-braces-answer-verbeken-question-10-2.pdf)** | We construct, for every , a left brace of order whose additive group is elementary abelian and whose multiplicative group is a powerful -group of nilpotency class two, while is not right nilpotent. |
-| **[A minimum-order counterexample to the generalized Alt\i n\i \c{s}\i k--Alt\i nta\c{s} cube conjecture](constructions/ten-element-cube-free-singular-lcm-settles-orders-ten-twelve.pdf)** | We exhibit a ten-element gcd-closed set whose LCM matrix is singular although its divisibility poset contains no order-embedded copy of the Boolean lattice . |
 | **[A Mixed Radial Moore Graph with Parameters $(5,2,2)$](constructions/mixed-radial-moore-graph-resolves-5-2-2-existence.pdf)** | We give an explicit totally -regular mixed graph on vertices with radius and diameter . |
 | **[A Non-Cayley Vertex-Transitive 3-Rainbow Domination Regular Graph](constructions/cvt10842-settles-kuzman-noncayley-3rdr-question.pdf)** | We exhibit a connected cubic vertex-transitive graph of order such that and is not a Cayley graph. |
 | **[A Steiner Quadruple System of Order 38 with Minimum-Colorable Derived Designs](constructions/mcdsqs-38-settles-tan-zhou-smallest-unknown-case.pdf)** | We construct a Steiner quadruple system of order whose derived Steiner triple system at every point has block-chromatic index . |

@@ -22,6 +22,10 @@
 
 \date{}
 
+\subjclass[2020]{68Q45}
+\keywords{regular expressions, Glushkov automata, memoization, ambiguity,
+feedback vertex set}
+
 \begin{document}
 
 \begin{abstract}
@@ -230,6 +234,83 @@ Consequently, no minimum memoization set is contained in MFN. The
 theorem also shows that every ordering of $\IARp$ returns $X_k$. The
 ratios follow from $|X_k|=k$ and $\mu(A_k)=1$.
 \end{proof}
+
+\subsection{A second family}
+
+The same two failures occur with distinct terminal letters and a
+minimum memoization set of size $2$. For $k\ge 2$, let
+\[
+S_k=
+\Bigl(
+  \bigl(
+    a\mid\underbrace{a^+\mid\cdots\mid a^+}_{k\text{ occurrences}}
+  \bigr)(b\mid c)
+\Bigr)^*,
+\qquad
+G_k=\Gl(S_k),
+\]
+again constructed from the displayed syntax without algebraic
+simplification, so that the repeated alternatives are distinct
+positions. Let $z_0$ be the position of the plain $a$, let
+$z_1,\ldots,z_k$ be the positions of the $k$ occurrences of $a^+$, let
+$y_b$ and $y_c$ be the positions labelled $b$ and $c$, and put
+$Z_k=\{z_0,z_1,\ldots,z_k\}$. Besides the initial state $q_0$, the
+nonempty transitions are
+\[
+\delta(q_0,a)=\delta(y_b,a)=\delta(y_c,a)=Z_k,
+\qquad
+\delta(z_i,b)=\{y_b\},
+\qquad
+\delta(z_i,c)=\{y_c\}
+\]
+for $0\le i\le k$, together with $\delta(z_i,a)=\{z_i\}$ for
+$1\le i\le k$. The final states are $q_0$, $y_b$ and $y_c$.
+
+Here $Z_k$ is the unique minimum directed feedback vertex set of $G_k$:
+each $z_i$ with $i\ge 1$ carries a self-loop and hence lies in every
+feedback vertex set; deleting those $k$ states leaves the two cycles
+$z_0\to y_b\to z_0$ and $z_0\to y_c\to z_0$, of which $z_0$ is the only
+common state; and deleting $Z_k$ leaves $q_0,y_b,y_c$ with no
+transitions among them. Since the MFN algorithm returns a minimum
+feedback vertex set \cite[Theorem~4]{BerglundEtAl2026},
+\[
+\MFN(G_k)=Z_k,
+\qquad
+|\MFN(G_k)|=k+1.
+\]
+Memoizing $\{y_b,y_c\}$ eliminates IDA: every directed cycle avoiding
+that set is a self-loop at some $z_j$ with $j\ge 1$, so its label is
+$a^r$ with $r\ge 1$, and any state returning to itself on $a^r$ is such
+a $z_j$; as $\delta(z_j,a^r)=\{z_j\}$ is a singleton, the two states of
+the IDA criterion coincide. Conversely, suppose $M$ eliminates IDA and
+$|M|\le 2$. If $y_b\notin M$, then, since $|Z_k|=k+1\ge 3$, we may
+choose $q\in Z_k\setminus M$ and $p\in Z_k\setminus\{q\}$, and
+\[
+p\xrightarrow{ba}p,
+\qquad
+p\xrightarrow{ba}q,
+\qquad
+q\xrightarrow{ba}q,
+\]
+where the $q$-cycle visits only $q$ and $y_b$, neither in $M$; so
+$y_b\in M$, and the word $ca$ gives $y_c\in M$ in the same way. Hence
+\[
+\mu(G_k)=2,
+\]
+and $\{y_b,y_c\}$ is the unique minimum memoization set. It is disjoint
+from $\MFN(G_k)$. The same $ba$ witness applies to every proper subset
+of $Z_k$, since $y_b\notin Z_k$, so no state of the initial MFN set is
+removable and $\IARp_{\prec}(G_k)=Z_k$ for every ordering $\prec$. Thus
+$S_k$ refutes the same two Glushkov assertions, with
+\[
+\frac{|\MFN(G_k)|}{\mu(G_k)}
+=
+\frac{|\IARp_{\prec}(G_k)|}{\mu(G_k)}
+=
+\frac{k+1}{2},
+\]
+which is again unbounded. For $k=2$ this is the five-position
+expression $\bigl((a\mid a^+\mid a^+)(b\mid c)\bigr)^*$.
 
 \begin{thebibliography}{9}
 
