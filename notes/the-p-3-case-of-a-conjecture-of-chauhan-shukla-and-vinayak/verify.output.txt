@@ -1,0 +1,253 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  aebe853ec86c85852da1923fb2af01bb2e2782d456042fd852c191acfdcd86d5
+python:  Python 3.9.25
+=== program output follows ===
+# verify.py -- Delta_3(C_n^3), p=3 case of CSV Conjecture 4.2(ii)
+# python 3.9.25
+# configured ranges: shelling census n <= 32, f-vector / Euler characteristic n <= 22, GF(2) homology n <= 20
+# COST: this is a long single-threaded run, not a quick smoke test.
+#    Section E enumerates all 2^n vertex subsets for n up to 22; its
+#    GF(2) elimination at n = 20 reduces boundary matrices of order
+#    10^5 rows by 10^5 columns whose rows are single Python integers
+#    of about 20 KB each; and Section G evaluates condition (2) on
+#    all C(m,2) pairs for n up to 32, more than 5*10^7 pairs in all.
+#    Budget hours of CPU time and several GB of memory.  The measured
+#    wall clock is printed on the 'elapsed' line at the very end, and
+#    that line -- not any figure quoted about this program elsewhere
+#    -- is this program's own statement of what it cost to run.
+# === SECTION A: the exhibited object, decoded and printed back ===
+# n=13  L_13 positions 112-117
+#    before: ({3,5,12}, {4,5,11}, {4,5,12}, {5,9,12}, {5,10,12}, {5,11,12})
+#    after : ({4,5,11}, {5,11,12}, {5,10,12}, {5,9,12}, {3,5,12}, {4,5,12})
+#    S_13  : {{4,10,12}}  (1 facet)
+PASS A1_wellformed_triples_n13 [all entries are strictly increasing 3-subsets of Z/13Z]
+PASS A2_no_repetition_n13 [old block 6/6 distinct, new block 6/6 distinct, S_13 1/1 distinct]
+PASS A3_block_size_n13 [block size 6 = window 112-117 of length 6; 5 of 6 positions change]
+PASS A4_new_block_is_permutation_of_old_n13 [multiset equality: the repair reorders, it does not change the facet set]
+PASS A5_window_inside_order_n13 [positions 112-117 lie in 1..169, where 169 is the facet count derived from the definition (the audit table also says 169)]
+PASS A6_spanning_disjoint_from_block_n13 [no member of S_13 lies in the edited window, so its spanning status is untouched by the reordering]
+# n=14  L_14 positions 146-155
+#    before: ({3,5,13}, {4,5,11}, {4,5,12}, {4,5,13}, {5,9,12}, {5,9,13}, {5,10,12}, {5,10,13}, {5,11,12}, {5,11,13})
+#    after : ({4,5,11}, {4,5,12}, {5,9,12}, {5,10,12}, {5,11,12}, {5,11,13}, {5,10,13}, {5,9,13}, {3,5,13}, {4,5,13})
+#    S_14  : {{0,7,13}, {6,12,13}, {1,8,13}, {5,12,13}, {2,9,13}, {4,10,13}, {4,11,13}, {3,10,13}}  (8 facets)
+PASS A1_wellformed_triples_n14 [all entries are strictly increasing 3-subsets of Z/14Z]
+PASS A2_no_repetition_n14 [old block 10/10 distinct, new block 10/10 distinct, S_14 8/8 distinct]
+PASS A3_block_size_n14 [block size 10 = window 146-155 of length 10; 10 of 10 positions change]
+PASS A4_new_block_is_permutation_of_old_n14 [multiset equality: the repair reorders, it does not change the facet set]
+PASS A5_window_inside_order_n14 [positions 146-155 lie in 1..238, where 238 is the facet count derived from the definition (the audit table also says 238)]
+PASS A6_spanning_disjoint_from_block_n14 [no member of S_14 lies in the edited window, so its spanning status is untouched by the reordering]
+# === SECTION B: hypotheses of Conjecture 4.2(ii) at p=3 ===
+PASS B1_conjecture_range_start [4p+1 = 13 at p=3, and the two exhibited cases are n=13,14 >= 13]
+PASS B2_cited_theorem_threshold [6p-3 = 15 at p=3 (paper says 15), so the range left open by [CS, Thm 1.4] is exactly {13,14}]
+PASS B3_gap_is_two_cases [{n : 4p+1 <= n < 6p-3} = {13,14}]
+PASS B4_exponent_reduces_at_p3 [(n^2-4np-n+2)/2 = (n^2-13n+2)/2 for n=13..200, exact integers]
+PASS B5_exponent_is_an_integer [n^2-13n+2 is even for every n=13..200]
+PASS B6_binom_identity [C(n-6,2)-20 = (n^2-13n+2)/2 for n=13..200; values 1,8,16,25 at n=13,14,15,16]
+PASS B7_disconnected_triple_criterion ['at most one edge' agrees with explicit connectivity of G[T] on all 3161 triples for n=13..18]
+PASS B8_facet_test_discriminates [{0,1,4} (2 edges) rejected, {0,1,5} (1 edge) accepted at n=13]
+PASS B9_block_triples_are_facets_n13 [all 6 distinct block triples induce at most one edge of C_13^3]
+PASS B10_spanning_triples_are_facets_n13 [all 1 member(s) of S_13 are genuine omitted triples]
+PASS B9_block_triples_are_facets_n14 [all 10 distinct block triples induce at most one edge of C_14^3]
+PASS B10_spanning_triples_are_facets_n14 [all 8 member(s) of S_14 are genuine omitted triples]
+# === SECTION C: shellability and spanning counts, computed ===
+PASS C1_facet_count_n13 [169 disconnected triples; audit table says 169]
+PASS C2_shelling_constructed_n13 [independent greedy order of length 169]
+PASS C3_list_is_exactly_the_facet_set_n13 [169 listed, 169 distinct, set equality with the enumerated facet set]
+PASS C4_pair_count_n13 [C(169,2) = 14196 pairs examined; paper says 14196]
+PASS C5_exchange_condition_all_pairs_n13 [condition (2) holds for all 14196 pairs i<j (0 failures)]
+PASS C6_purity_condition_n13 [every inclusion-maximal F_i cap F_j has cardinality |F_j|-1 = 9 (0 failures)]
+PASS C7_spanning_count_n13 [1 spanning facets; paper says 1]
+PASS C8_pure_of_dimension_n_minus_4_n13 [all 169 inclusion-maximal faces found by sweeping the 2^13 vertex subsets have 10 = n-3 vertices, so the complex is pure of dim 9 = n-4, and their count reproduces the 169 facets by a third independent route]
+PASS C9_sphere_dimension_n13 [abstract asserts S^9; computed dim = 9]
+PASS C12_restriction_sizes_match_h_vector_n13 [|R_j| distribution [1, 3, 6, 10, 15, 21, 28, 36, 32, 16, 1] equals the h-vector of the complex, whose last entry h_10 = 1 is the spanning count]
+PASS C1_facet_count_n14 [238 disconnected triples; audit table says 238]
+PASS C2_shelling_constructed_n14 [independent greedy order of length 238]
+PASS C3_list_is_exactly_the_facet_set_n14 [238 listed, 238 distinct, set equality with the enumerated facet set]
+PASS C4_pair_count_n14 [C(238,2) = 28203 pairs examined; paper says 28203]
+PASS C5_exchange_condition_all_pairs_n14 [condition (2) holds for all 28203 pairs i<j (0 failures)]
+PASS C6_purity_condition_n14 [every inclusion-maximal F_i cap F_j has cardinality |F_j|-1 = 10 (0 failures)]
+PASS C7_spanning_count_n14 [8 spanning facets; paper says 8]
+PASS C8_pure_of_dimension_n_minus_4_n14 [all 238 inclusion-maximal faces found by sweeping the 2^14 vertex subsets have 11 = n-3 vertices, so the complex is pure of dim 10 = n-4, and their count reproduces the 238 facets by a third independent route]
+PASS C9_sphere_dimension_n14 [abstract asserts S^10; computed dim = 10]
+PASS C12_restriction_sizes_match_h_vector_n14 [|R_j| distribution [1, 3, 6, 10, 15, 21, 28, 36, 45, 41, 24, 8] equals the h-vector of the complex, whose last entry h_11 = 8 is the spanning count]
+PASS C1_facet_count_n15 [320 disconnected triples; audit table says 320]
+PASS C2_shelling_constructed_n15 [independent greedy order of length 320]
+PASS C3_list_is_exactly_the_facet_set_n15 [320 listed, 320 distinct, set equality with the enumerated facet set]
+PASS C5_exchange_condition_all_pairs_n15 [condition (2) holds for all 51040 pairs i<j (0 failures)]
+PASS C6_purity_condition_n15 [every inclusion-maximal F_i cap F_j has cardinality |F_j|-1 = 11 (0 failures)]
+PASS C7_spanning_count_n15 [16 spanning facets; paper says 16]
+PASS C8_pure_of_dimension_n_minus_4_n15 [all 320 inclusion-maximal faces found by sweeping the 2^15 vertex subsets have 12 = n-3 vertices, so the complex is pure of dim 11 = n-4, and their count reproduces the 320 facets by a third independent route]
+PASS C12_restriction_sizes_match_h_vector_n15 [|R_j| distribution [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 51, 33, 16] equals the h-vector of the complex, whose last entry h_12 = 16 is the spanning count]
+PASS C1_facet_count_n16 [416 disconnected triples; audit table says 416]
+PASS C2_shelling_constructed_n16 [independent greedy order of length 416]
+PASS C3_list_is_exactly_the_facet_set_n16 [416 listed, 416 distinct, set equality with the enumerated facet set]
+PASS C5_exchange_condition_all_pairs_n16 [condition (2) holds for all 86320 pairs i<j (0 failures)]
+PASS C6_purity_condition_n16 [every inclusion-maximal F_i cap F_j has cardinality |F_j|-1 = 12 (0 failures)]
+PASS C7_spanning_count_n16 [25 spanning facets; paper says 25]
+PASS C8_pure_of_dimension_n_minus_4_n16 [all 416 inclusion-maximal faces found by sweeping the 2^16 vertex subsets have 13 = n-3 vertices, so the complex is pure of dim 12 = n-4, and their count reproduces the 416 facets by a third independent route]
+PASS C12_restriction_sizes_match_h_vector_n16 [|R_j| distribution [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 62, 43, 25] equals the h-vector of the complex, whose last entry h_13 = 25 is the spanning count]
+# === SECTION C2: the claimed spanning sets S_13, S_14 ===
+PASS C13_spanning_set_size_n13 [|S_13| = 1, the paper's count is 1, and h_top of the complex is 1 -- the number is forced by the complex]
+PASS C10_spanning_necessary_condition_n13 [every member of S_13 passes the order-independent test 'for each x outside T some (T\{y})u{x} is a facet'; 91 of 169 facets pass it]
+PASS C11_S_n_realized_by_a_verified_shelling_n13 [a shelling order verified on all 14196 pairs has spanning set exactly S_13]
+PASS C13_spanning_set_size_n14 [|S_14| = 8, the paper's count is 8, and h_top of the complex is 8 -- the number is forced by the complex]
+PASS C10_spanning_necessary_condition_n14 [every member of S_14 passes the order-independent test 'for each x outside T some (T\{y})u{x} is a facet'; 154 of 238 facets pass it]
+PASS C11_S_n_realized_by_a_verified_shelling_n14 [a shelling order verified on all 28203 pairs has spanning set exactly S_14]
+# C11 shows S_13 and S_14 ARE the spanning set of some verified shelling; it does not certify that they are the spanning set of the paper's own order L-hat_n, which the paper never prints.
+# === SECTION D: the four obstructions and their repair ===
+PASS D1_obstruction_position_n13_j112 [position 112 of L_13 is entry 1 of the original block, and it holds {3,5,12} as the table says]
+PASS D2_obstruction_witnesses_are_facets_n13_j112 [witnesses {2,5,9} are genuine omitted triples]
+PASS D3_dead_exchange_direction_n13_j112_Ti259 [T_i\T_j = [2, 9]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [9]]
+PASS D4_repaired_block_discharges_n13_j112_Ti259 [in the repaired order {5,9,12} precedes {3,5,12} inside the block and supplies [9]]
+PASS D5_original_block_does_not_discharge_n13_j112_Ti259 [in the original order no in-block predecessor of {3,5,12} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n13_j112_Ti259 [{5,9,12} is in the block at position 115, after {3,5,12} (position 112) before the repair and before {3,5,12} (position 116) after it: the reordering, and nothing else, discharges the pair]
+PASS D1_obstruction_position_n13_j114 [position 114 of L_13 is entry 3 of the original block, and it holds {4,5,12} as the table says]
+PASS D2_obstruction_witnesses_are_facets_n13_j114 [witnesses {2,5,9}, {2,5,10} are genuine omitted triples]
+PASS D3_dead_exchange_direction_n13_j114_Ti259 [T_i\T_j = [2, 9]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [9]]
+PASS D4_repaired_block_discharges_n13_j114_Ti259 [in the repaired order {5,9,12} precedes {4,5,12} inside the block and supplies [9]]
+PASS D5_original_block_does_not_discharge_n13_j114_Ti259 [in the original order no in-block predecessor of {4,5,12} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n13_j114_Ti259 [{5,9,12} is in the block at position 115, after {4,5,12} (position 114) before the repair and before {4,5,12} (position 117) after it: the reordering, and nothing else, discharges the pair]
+PASS D3_dead_exchange_direction_n13_j114_Ti2510 [T_i\T_j = [2, 10]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [10]]
+PASS D4_repaired_block_discharges_n13_j114_Ti2510 [in the repaired order {5,10,12} precedes {4,5,12} inside the block and supplies [10]]
+PASS D5_original_block_does_not_discharge_n13_j114_Ti2510 [in the original order no in-block predecessor of {4,5,12} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n13_j114_Ti2510 [{5,10,12} is in the block at position 116, after {4,5,12} (position 114) before the repair and before {4,5,12} (position 117) after it: the reordering, and nothing else, discharges the pair]
+PASS D1_obstruction_position_n14_j146 [position 146 of L_14 is entry 1 of the original block, and it holds {3,5,13} as the table says]
+PASS D2_obstruction_witnesses_are_facets_n14_j146 [witnesses {2,5,9} are genuine omitted triples]
+PASS D3_dead_exchange_direction_n14_j146_Ti259 [T_i\T_j = [2, 9]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [9]]
+PASS D4_repaired_block_discharges_n14_j146_Ti259 [in the repaired order {5,9,13} precedes {3,5,13} inside the block and supplies [9]]
+PASS D5_original_block_does_not_discharge_n14_j146_Ti259 [in the original order no in-block predecessor of {3,5,13} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n14_j146_Ti259 [{5,9,13} is in the block at position 151, after {3,5,13} (position 146) before the repair and before {3,5,13} (position 154) after it: the reordering, and nothing else, discharges the pair]
+PASS D1_obstruction_position_n14_j149 [position 149 of L_14 is entry 4 of the original block, and it holds {4,5,13} as the table says]
+PASS D2_obstruction_witnesses_are_facets_n14_j149 [witnesses {2,5,9}, {2,5,10} are genuine omitted triples]
+PASS D3_dead_exchange_direction_n14_j149_Ti259 [T_i\T_j = [2, 9]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [9]]
+PASS D4_repaired_block_discharges_n14_j149_Ti259 [in the repaired order {5,9,13} precedes {4,5,13} inside the block and supplies [9]]
+PASS D5_original_block_does_not_discharge_n14_j149_Ti259 [in the original order no in-block predecessor of {4,5,13} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n14_j149_Ti259 [{5,9,13} is in the block at position 151, after {4,5,13} (position 149) before the repair and before {4,5,13} (position 155) after it: the reordering, and nothing else, discharges the pair]
+PASS D3_dead_exchange_direction_n14_j149_Ti2510 [T_i\T_j = [2, 10]; vertex [2] has NO facet of the form (T_j\{y})u{x}, so it can never enter R_j in any order; the pair can only be discharged through [10]]
+PASS D4_repaired_block_discharges_n14_j149_Ti2510 [in the repaired order {5,10,13} precedes {4,5,13} inside the block and supplies [10]]
+PASS D5_original_block_does_not_discharge_n14_j149_Ti2510 [in the original order no in-block predecessor of {4,5,13} has the required form, which is exactly the obstruction the table reports]
+PASS D5b_repair_moves_the_witness_across_n14_j149_Ti2510 [{5,10,13} is in the block at position 153, after {4,5,13} (position 149) before the repair and before {4,5,13} (position 155) after it: the reordering, and nothing else, discharges the pair]
+# === SECTION D2: in-block pair audit of the repaired blocks ===
+PASS D6_inblock_pairs_discharged_n13 [15 of 15 pairs internal to the 6-position window are discharged from in-block predecessors alone, the count this program publishes for the printed block]
+PASS D7_no_structurally_impossible_inblock_pair_n13 [each of the 0 residual in-block pair(s) still has at least one genuine facet that could discharge it from the prefix]
+PASS D8_residual_pairs_are_the_published_ones_n13 [the residual in-block pairs are exactly none, each with the published number of surviving facet witnesses -]
+PASS D6_inblock_pairs_discharged_n14 [44 of 45 pairs internal to the 10-position window are discharged from in-block predecessors alone, the count this program publishes for the printed block]
+#    residual pair: position 147 {4,5,12} vs position 154 {3,5,13}, T_i\T_j = [4, 12], 4 facet exchange candidate(s) available from the unprinted prefix: {3,4,13}, {5,12,13}, {3,12,13}, {3,5,12}
+PASS D7_no_structurally_impossible_inblock_pair_n14 [each of the 1 residual in-block pair(s) still has at least one genuine facet that could discharge it from the prefix]
+PASS D8_residual_pairs_are_the_published_ones_n14 [the residual in-block pairs are exactly [(147, 154)], each with the published number of surviving facet witnesses [((147, 154), 4)]]
+# === SECTION E: Euler characteristic and GF(2) homology ===
+PASS E1_reduced_euler_forces_multiplicity_n13 [chi-tilde = -1, dim = 9, so |chi-tilde| = 1 = (n^2-13n+2)/2 with the sign (-1)^(n-4); paper's spanning count 1]
+#    f-vector n=13: [1, 13, 78, 286, 715, 1287, 1716, 1716, 1274, 650, 169, 0, 0, 0]
+PASS E1_reduced_euler_forces_multiplicity_n14 [chi-tilde = +8, dim = 10, so |chi-tilde| = 8 = (n^2-13n+2)/2 with the sign (-1)^(n-4); paper's spanning count 8]
+#    f-vector n=14: [1, 14, 91, 364, 1001, 2002, 3003, 3432, 3003, 1988, 931, 238, 0, 0, 0]
+PASS E1_reduced_euler_forces_multiplicity_n15 [chi-tilde = -16, dim = 11, so |chi-tilde| = 16 = (n^2-13n+2)/2 with the sign (-1)^(n-4); paper's spanning count 16]
+PASS E1_reduced_euler_forces_multiplicity_n16 [chi-tilde = +25, dim = 12, so |chi-tilde| = 25 = (n^2-13n+2)/2 with the sign (-1)^(n-4); paper's spanning count 25]
+PASS E1_reduced_euler_forces_multiplicity_n17 [chi-tilde = -35, dim = 13, so |chi-tilde| = 35 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E1_reduced_euler_forces_multiplicity_n18 [chi-tilde = +46, dim = 14, so |chi-tilde| = 46 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E1_reduced_euler_forces_multiplicity_n19 [chi-tilde = -58, dim = 15, so |chi-tilde| = 58 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E1_reduced_euler_forces_multiplicity_n20 [chi-tilde = +71, dim = 16, so |chi-tilde| = 71 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E1_reduced_euler_forces_multiplicity_n21 [chi-tilde = -85, dim = 17, so |chi-tilde| = 85 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E1_reduced_euler_forces_multiplicity_n22 [chi-tilde = +100, dim = 18, so |chi-tilde| = 100 = (n^2-13n+2)/2 with the sign (-1)^(n-4)]
+PASS E2_gf2_reduced_homology_n13 [reduced H_k(.;GF(2)) = 0 for k != 9 and = GF(2)^1 for k = 9; matches S^9 with multiplicity 1]
+PASS E2_gf2_reduced_homology_n14 [reduced H_k(.;GF(2)) = 0 for k != 10 and = GF(2)^8 for k = 10; matches S^10 with multiplicity 8]
+PASS E2_gf2_reduced_homology_n15 [reduced H_k(.;GF(2)) = 0 for k != 11 and = GF(2)^16 for k = 11; matches S^11 with multiplicity 16]
+PASS E2_gf2_reduced_homology_n16 [reduced H_k(.;GF(2)) = 0 for k != 12 and = GF(2)^25 for k = 12; matches S^12 with multiplicity 25]
+PASS E2_gf2_reduced_homology_n17 [reduced H_k(.;GF(2)) = 0 for k != 13 and = GF(2)^35 for k = 13]
+PASS E2_gf2_reduced_homology_n18 [reduced H_k(.;GF(2)) = 0 for k != 14 and = GF(2)^46 for k = 14]
+PASS E2_gf2_reduced_homology_n19 [reduced H_k(.;GF(2)) = 0 for k != 15 and = GF(2)^58 for k = 15]
+PASS E2_gf2_reduced_homology_n20 [reduced H_k(.;GF(2)) = 0 for k != 16 and = GF(2)^71 for k = 16]
+# Over GF(2) rank(d) <= rank_Q(d), so a vanishing GF(2) homology group forces the rational one to vanish; with the Euler characteristic this pins the rational homology of Delta_3(C_n^3) exactly, and by universal coefficients excludes all 2-torsion.
+# === SECTION F: negative controls (every guard's failing path) ===
+PASS F1_reversed_order_rejected_n13 [reversing the verified shelling produces 110 exchange failures out of 14196 pairs]
+PASS F2_reversed_order_fails_purity_n13 [the same reversed order produces 86 purity failures]
+PASS F3_rotated_order_rejected_n13 [moving the last facet to position 1 produces 51 exchange failures]
+PASS F4_spanning_test_is_not_vacuous_n13 [1 of 169 facets are spanning, and the first facet (R_1 empty) is not among them]
+PASS F1_reversed_order_rejected_n14 [reversing the verified shelling produces 151 exchange failures out of 28203 pairs]
+PASS F2_reversed_order_fails_purity_n14 [the same reversed order produces 127 purity failures]
+PASS F3_rotated_order_rejected_n14 [moving the last facet to position 1 produces 74 exchange failures]
+PASS F4_spanning_test_is_not_vacuous_n14 [8 of 238 facets are spanning, and the first facet (R_1 empty) is not among them]
+PASS F5_non_facet_in_block_rejected [replacing {5,9,13} by the connected triple {0,1,2} is rejected by the facet test of B9]
+PASS F6_non_permutation_rejected [duplicating a block entry is rejected by the multiset test of A4]
+PASS F7_broken_repair_rejected [moving {5,9,12} after {3,5,12} inside the n=13 block destroys the witness, and the D4 test detects it]
+PASS F8_spanning_necessary_condition_discriminates [78 of 169 facets FAIL the order-independent spanning test (e.g. {0,1,5}), while S_13 = {4,10,12} passes it]
+PASS F9_inblock_discharge_count_is_order_sensitive_n13 [3 of the 15 transpositions of the repaired block strictly lower the in-block discharge count (swapping entries 2 and 3 gives 14 instead of 15), so D6 rejects a reordered window]
+PASS F9_inblock_discharge_count_is_order_sensitive_n14 [29 of the 45 transpositions of the repaired block strictly lower the in-block discharge count (swapping entries 1 and 6 gives 41 instead of 44), so D6 rejects a reordered window]
+PASS F10_maximal_face_sweep_discriminates [the sweep returns {10: 169} for Delta_3(C_13^3) and {10: 78} for Delta_3(C_13^4): the purity route depends on the graph]
+# === SECTION G: independent census, n = 13..32 ===
+#    n  facets      pairs  exch.fail  purity.fail  spanning  formula
+#   13     169      14196          0            0         1        1
+#   14     238      28203          0            0         8        8
+#   15     320      51040          0            0        16       16
+#   16     416      86320          0            0        25       25
+#   17     527     138601          0            0        35       35
+#   18     654     213531          0            0        46       46
+#   19     798     318003          0            0        58       58
+#   20     960     460320          0            0        71       71
+#   21    1141     650370          0            0        85       85
+#   22    1342     899811          0            0       100      100
+#   23    1564    1222266          0            0       116      116
+#   24    1808    1633528          0            0       133      133
+#   25    2075    2151775          0            0       151      151
+#   26    2366    2797795          0            0       170      170
+#   27    2682    3595221          0            0       190      190
+#   28    3024    4570776          0            0       211      211
+#   29    3393    5754528          0            0       233      233
+#   30    3790    7180155          0            0       256      256
+#   31    4216    8885220          0            0       280      280
+#   32    4672   10911456          0            0       305      305
+PASS G1_census_shellable_with_right_multiplicity [for every n = 13..32 an explicit shelling of Delta_3(C_n^3) was built and verified on all C(m,2) pairs, and its spanning count is exactly (n^2-13n+2)/2 (20 values of n)]
+# 
+# === NOT REPRODUCED ===
+# 1. The paper's OWN two orders, L-hat_13 and L-hat_14, are not
+#    rebuilt here, and cannot be rebuilt from the manuscript: the
+#    base order L_n is specified only as 'the order of Chauhan and
+#    Shukla, Section 3 / Definition 3.10, specialized to p=3', the
+#    169 and 238 triples are never printed, and the paper's 'Exact
+#    verification' section states that no data file and no copy of
+#    the program that produced the certificates accompanies it --
+#    that program and its transcript are held in an archive
+#    available on request, and are not inputs to this file.
+#    Consequently the audit-table entries
+#    'exch. fail. 0' and 'purity fail. 0' FOR THE PAPER'S ORDERS, and
+#    the claim that S_13, S_14 are the spanning facets OF THOSE
+#    ORDERS, are not re-run.  What is re-run instead: the whole of
+#    the repair mechanism from the printed blocks (Section D), and
+#    the paper's CONCLUSION -- shellability of Delta_3(C_13^3) and
+#    Delta_3(C_14^3) with 1 and 8 spanning facets -- via orders this
+#    program builds and verifies itself (Sections C, E, G).
+# 1a. Three further identities are NOT pinned, each verified by
+#    deliberate substitution to survive every check in this program:
+#    (i) the ORDER of the printed block is pinned only up to
+#    permutations with the same in-block discharge structure -- e.g.
+#    exchanging the two obstruction targets {3,5,12} and {4,5,12} in
+#    equation (3) still gives 15 of 15 and still discharges all four
+#    listed obstructions, so no check on the printed data can see it;
+#    (ii) the IDENTITY of the earlier witness triples T_i in the
+#    Section 2 table -- replacing {2,5,9} by {2,5,11} at n=13, j=112
+#    yields another facet with the same dead vertex 2 and a live
+#    vertex that the same reordering discharges, so D2-D5b cannot
+#    distinguish them; the table's claim that these are the ONLY
+#    obstruction pairs of L_n is likewise unverifiable without L_n;
+#    (iii) the members of S_13 and S_14 -- see 1b.
+#    All three are consequences of one omission: L_n is not printed.
+# 1b. In particular the IDENTITY of the members of S_13 and S_14 is
+#    not pinned by this program.  Their NUMBER is forced (Sections C
+#    and E: h_{d+1} = |chi-tilde| = 1 and 8), every member is a
+#    genuine facet passing the order-independent spanning test (C10),
+#    and both sets are realised exactly by a shelling verified here
+#    (C11) -- but a different realisable set of the same size would
+#    also pass C10 and C11, because which facets are spanning depends
+#    on the order and the paper's order is not printed.
+# 2. The census stops at n = 32.  Theorem 1 claims every n >= 13;
+#    n > 32 is not machine-checked here (the paper obtains it from
+#    [CS, Theorem 1.4], not from computation).  The Euler-
+#    characteristic check stops at n = 22 and the GF(2) homology at
+#    n = 20, both for cost: they enumerate all 2^n vertex subsets.
+# 3. Integral ODD torsion in degrees below the top is not excluded by
+#    the GF(2) computation of Section E; it is excluded instead by
+#    shellability plus [Kozlov, Thm 12.3], which Sections C and G
+#    establish computationally for the two boundary cases.
+# elapsed 173.0 s
+VERDICT: ALL 138 CHECKS PASS
+=== program exited with status 0 ===

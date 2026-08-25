@@ -1,0 +1,372 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={
+    Counterexamples to Gyoda's Injectivity Conjecture
+    for Generalized Markov Trees
+  }
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\GMT}{\mathrm{M}\mathbb{T}}
+\newcommand{\id}{\mathrm{id}}
+
+\title[Gyoda's injectivity conjecture]{
+  Counterexamples to Gyoda's Injectivity Conjecture
+  for Generalized Markov Trees
+}
+\date{}
+
+\subjclass[2020]{11D25, 11B39}
+\keywords{
+  generalized Markov equation, generalized Markov tree, Farey labeling,
+  uniqueness conjecture, Fibonacci numbers}
+
+\begin{document}
+\raggedbottom
+
+\begin{abstract}
+Gyoda conjectured that, in each fixed generalized Markov tree, equality of
+numerical labels $n_s=n_t$ forces equality of the corresponding Farey labels.
+We refute this conjecture by the collision
+\[
+ n_{1/4}=n_{2/3}=889
+ \quad\text{in}\quad
+ \GMT(22,0,5,\id),
+\]
+whose parameter triple is pairwise distinct. We also construct infinitely
+many counterexample trees, beginning with
+$n_{1/5}=n_{2/3}=89$ in $\GMT(6,0,0,\id)$. In all of these examples the
+equal numerical labels have different coordinate-position tags; thus the
+result concerns the map $t\mapsto n_t$, exactly as in the stated conjecture.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture and the result}
+
+For $k_1,k_2,k_3\in\mathbb Z_{\ge 0}$, the generalized Markov equation is
+\begin{equation}\label{eq:GM}
+ x^2+y^2+z^2+k_1yz+k_2zx+k_3xy
+ =(3+k_1+k_2+k_3)xyz.
+\end{equation}
+Gyoda and Matsushita introduced its mutation structure
+in~\cite{GyodaMatsushita}. Gyoda subsequently synchronized the resulting
+binary trees with the Farey tree and formulated the following assertion as
+Conjecture~7.6 in~\cite{Gyoda}, where he recorded that no counterexample was
+known: for every fixed tree $\GMT(k_1,k_2,k_3,\sigma)$ and irreducible
+fractions $s,t\in[0,1]$,
+\[
+ n_s=n_t \quad\Longrightarrow\quad s=t.
+\]
+Here $(n_t,i_t)$ denotes the generalized Markov number and its coordinate
+position at the node whose middle Farey label is $t$. A different
+generalization of the uniqueness conjecture for the same
+equation~\eqref{eq:GM}, stated for size-ordered triples rather than for the
+labeling $t\mapsto n_t$, had been proposed shortly before by Chen and Jia
+\cite[Conjecture~8.2]{ChenJia}; it is delimited from Conjecture~7.6 in the
+Status and scope section below.
+
+For completeness, we recall the part of the construction used below. The
+Farey tree has root $(0/1,1/1,1/0)$, and the children of a Farey triple
+$(r,t,s)$ are
+\[
+ (r,r\mathbin\oplus t,t)
+ \quad\text{and}\quad
+ (t,t\mathbin\oplus s,s),
+ \qquad
+ \frac ab\mathbin\oplus\frac cd:=\frac{a+c}{b+d}.
+\]
+For $\sigma=\id$, the corresponding generalized Markov tree has root
+\[
+ ((1,1),(k_2+2,2),(1,3)).
+\]
+If $v=((a,h),(b,i),(c,j))$, its left and right children are
+\begin{align*}
+ L(v)
+ &=
+ \left(
+   (a,h),
+   \left(\frac{a^2+k_jab+b^2}{c},j\right),
+   (b,i)
+ \right),\\
+ R(v)
+ &=
+ \left(
+   (b,i),
+   \left(\frac{b^2+k_hbc+c^2}{a},h\right),
+   (c,j)
+ \right).
+\end{align*}
+The middle pair at the node corresponding to $(r,t,s)$ is $(n_t,i_t)$.
+
+\begin{theorem}\label{thm:main}
+Gyoda's Conjecture~7.6 is false.
+\begin{enumerate}
+\item
+In $\GMT(22,0,5,\id)$,
+\[
+ (n_{1/4},i_{1/4})=(889,3),
+ \qquad
+ (n_{2/3},i_{2/3})=(889,1).
+\]
+In particular, the conjecture fails for a pairwise distinct parameter triple.
+
+\item
+Let $F_0=0$, $F_1=1$, and
+$F_{r+1}=F_r+F_{r-1}$ for $r\ge1$. For every $m\ge0$, set
+\[
+ d_m=30m+5,
+ \qquad
+ q_m=\frac{F_{60m+11}-29}{10}.
+\]
+Then $q_m\in\mathbb Z_{\ge0}$ and, in $\GMT(q_m,0,0,\id)$,
+\[
+ (n_{1/d_m},i_{1/d_m})=(F_{60m+11},2),
+ \qquad
+ (n_{2/3},i_{2/3})=(F_{60m+11},1).
+\]
+For $m=0$, this is the collision
+$n_{1/5}=n_{2/3}=89$ in $\GMT(6,0,0,\id)$.
+\end{enumerate}
+\end{theorem}
+
+\section{A pairwise distinct counterexample}
+
+Take $(k_1,k_2,k_3)=(22,0,5)$. Starting at the root, three left mutations
+give
+\begin{align*}
+ ((1,1),(2,2),(1,3))
+ &\xrightarrow{L}((1,1),(15,3),(2,2))\\
+ &\xrightarrow{L}((1,1),(113,2),(15,3))\\
+ &\xrightarrow{L}((1,1),(889,3),(113,2)),
+\end{align*}
+where
+\begin{gather*}
+ 15=1^2+5(1)(2)+2^2,
+ \qquad
+ 113=\frac{1^2+15^2}{2},\\
+ 889=\frac{1^2+5(1)(113)+113^2}{15}.
+\end{gather*}
+The middle Farey labels along this path are $1/2$, $1/3$, and $1/4$.
+On the other hand, the right child of the $1/2$ node is
+\begin{gather*}
+ R\bigl(((1,1),(15,3),(2,2))\bigr)
+ =((15,3),(889,1),(2,2)),\\
+ 889=15^2+22(15)(2)+2^2,
+\end{gather*}
+whose middle Farey label is $2/3$. Hence
+\[
+ (n_{1/4},i_{1/4})=(889,3),
+ \qquad
+ (n_{2/3},i_{2/3})=(889,1).
+\]
+The position tags correspond to the ordered solutions
+$(x,y,z)=(1,113,889)$ and $(x,y,z)=(889,2,15)$ of
+\[
+ x^2+y^2+z^2+22yz+5xy=30xyz,
+\]
+as substitution verifies:
+\begin{align*}
+ 1+113^2+889^2+22(113)(889)+5(1)(113)
+ &=3013710=30(1)(113)(889),\\
+ 889^2+2^2+15^2+22(2)(15)+5(889)(2)
+ &=800100=30(889)(2)(15).
+\end{align*}
+This proves Theorem~\ref{thm:main}(1).
+
+One remark on the pair, used nowhere in the proofs. The two colliding labels lie
+at different depths of the Farey tree, $1/4$ at depth $3$ and $2/3$ at depth
+$2$, but they have the same weight, that is, the same sum of numerator and
+denominator, $1+4=2+3=5$; and $\{1/4,2/3\}$ is the first pair of distinct
+irreducible fractions in $[0,1]$ of equal weight. A search for collisions that
+enumerates Farey labels by weight rather than by depth therefore reaches this
+pair first.
+
+\section{An infinite family}
+
+\begin{lemma}\label{lem:spine}
+Fix $q\in\mathbb Z_{\ge0}$. In $\GMT(q,0,0,\id)$,
+\[
+ n_{1/d}=F_{2d+1}\quad(d\ge1),
+ \qquad
+ n_{2/3}=29+10q.
+\]
+Moreover, $i_{1/d}=2$ for odd $d$ and $i_{1/d}=3$ for even $d$, while
+$i_{2/3}=1$.
+\end{lemma}
+
+\begin{proof}
+Write $u_d=n_{1/d}$ and $i_d=i_{1/d}$. Since $k_2=0$, the root is
+\[
+ ((1,1),(2,2),(1,3)),
+\]
+whose middle Farey label is $1/1$, so $u_1=2$ and $i_1=2$. Its left child
+is
+\begin{align*}
+ L\bigl(((1,1),(2,2),(1,3))\bigr)
+ &=\left((1,1),\left(\frac{1^2+k_3(1)(2)+2^2}{1},3\right),(2,2)\right)\\
+ &=((1,1),(5,3),(2,2)),
+\end{align*}
+with middle Farey label $1/2$; hence $u_2=5$ and $i_2=3$.
+
+Along the left spine the first entry stays $(a,h)=(1,1)$, so the node labeled
+$1/d$ is $((1,1),(u_d,i_d),(u_{d-1},i_{d-1}))$ and its left child is
+\[
+ \left(
+  (1,1),
+  \left(\frac{1+k_{i_{d-1}}u_d+u_d^2}{u_{d-1}},\,i_{d-1}\right),
+  (u_d,i_d)
+ \right).
+\]
+The new entry therefore inherits the tag of the third component of its
+parent, and all tags occurring along the spine lie in $\{2,3\}$, where
+$k_2=k_3=0$. Hence
+\[
+ u_{d+1}=\frac{u_d^2+1}{u_{d-1}},
+ \qquad
+ i_{d+1}=i_{d-1}
+ \qquad(d\ge2),
+\]
+so the position tags alternate: with $i_1=2$ and $i_2=3$ we get $i_{1/d}=2$
+for odd $d$ and $i_{1/d}=3$ for even $d$. The Fibonacci identity
+\[
+ F_{2d-1}F_{2d+3}=F_{2d+1}^2+1,
+\]
+which is the case $n=2d+1$, $r=2$ of Catalan's identity
+$F_n^2-F_{n-r}F_{n+r}=(-1)^{n-r}F_r^2$, together with
+$u_1=2=F_3$ and $u_2=5=F_5$, therefore proves by induction that
+$u_d=F_{2d+1}$.
+
+The node labeled $1/2$ is $((1,1),(5,3),(2,2))$. Its right child is
+\[
+ \left((5,3),\left(\frac{5^2+k_1(5)(2)+2^2}{1},1\right),(2,2)\right)
+ =((5,3),(29+10q,1),(2,2)),
+\]
+which proves the remaining assertions.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(2)]
+A direct iteration of the Fibonacci recurrence modulo $10$ gives
+\[
+ (F_{60},F_{61})\equiv(0,1)\pmod{10}.
+\]
+The recurrence then implies
+$F_{r+60}\equiv F_r\pmod{10}$ for every $r\ge0$. Hence
+\[
+ F_{60m+11}\equiv F_{11}=89\equiv9\pmod{10},
+\]
+so $q_m$ is an integer. Since $F_{60m+11}\ge F_{11}=89$, one also has
+$q_m\ge6$.
+
+Because $2d_m+1=60m+11$, Lemma~\ref{lem:spine} yields
+\[
+ n_{1/d_m}
+ =F_{60m+11}
+ =29+10q_m
+ =n_{2/3}.
+\]
+Furthermore, $d_m$ is odd, so the corresponding position tags are $2$ and
+$1$. Finally, $d_m\ge5$, and hence $1/d_m\ne2/3$. Since $q_m$ is strictly
+increasing, these are infinitely many distinct counterexample trees.
+\end{proof}
+
+\section*{Status and scope}
+
+The equal numerical labels in Theorem~\ref{thm:main} have different position
+tags. Thus the theorem refutes Conjecture~7.6 exactly as stated, namely the
+injectivity of $t\mapsto n_t$; it does not address injectivity of
+$t\mapsto(n_t,i_t)$. Part~(2) gives infinitely many counterexample trees,
+not infinitely many collisions in one fixed tree. No claim is made about
+global minimality, the classical case $(0,0,0)$, or the symmetric locus
+$k_1=k_2=k_3$.
+
+Theorem~\ref{thm:main} is also not a restatement of an already known failure.
+Question~7.3 of~\cite{Gyoda} --- whether a generalized Markov number
+determines the generalized Markov triple in which it is the largest member ---
+is the direct transcription of Frobenius's uniqueness conjecture, and
+\cite{Gyoda} records that it is already answered in the negative; Conjecture~7.6
+is the generalization of an equivalent reformulation that Gyoda states instead,
+and for which he records that no counterexample was known. What
+Theorem~\ref{thm:main}(1) exhibits is a collision inside a single tree. The
+nodes at $1/4$ and $2/3$ of $\GMT(22,0,5,\id)$ are distinct, namely
+$((1,1),(889,3),(113,2))$ and $((15,3),(889,1),(2,2))$, yet $889$ stands in the
+second of the three components at each --- the component recorded by the Farey
+label --- so that $n_{1/4}=n_{2/3}=889$. Their position tags present the two
+nodes as the ordered solutions $(1,113,889)$ and $(889,2,15)$
+of~\eqref{eq:GM} at $(k_1,k_2,k_3)=(22,0,5)$. In each of these $889$ is the
+largest entry in size, while its coordinate position is $3$ in the first and
+$1$ in the second; and the ordering is not free, since of the six orderings of
+$2$, $15$, $889$ only $(889,2,15)$ satisfies the equation. That is precisely
+what Conjecture~7.6 forbids.
+
+A different generalization of the uniqueness conjecture for
+equation~\eqref{eq:GM} was proposed, under the name \emph{Generalized
+Uniqueness Conjecture}, by Chen and Jia \cite[Conjecture~8.2]{ChenJia}, posted
+on 5~November~2025 and so before~\cite{Gyoda}; Section~8.2 of~\cite{ChenJia}
+develops a heuristic method for locating counterexamples to it. That
+conjecture is a statement about triples ordered by size rather than about the
+labeling $t\mapsto n_t$ of a fixed tree, and \eqref{eq:GM} is not symmetric in
+$x,y,z$ unless $k_1=k_2=k_3$: the two solutions exhibited in Section~2 occupy
+different coordinate positions, $(1,113,889)$ having its largest entry in
+position~$3$ and $(889,2,15)$ in position~$1$. We make no claim about
+\cite[Conjecture~8.2]{ChenJia} and do not address it here.
+
+We have not found a previous refutation of Conjecture~7.6, nor a
+previous appearance of the collision at $889$: a search of the generalized
+Markov literature, including \cite{ChenJia,Gyoda,GyodaMatsushita}, turned up
+the conjecture itself and the heuristic search method of
+\cite[Section~8.2]{ChenJia}, but no counterexample. That search was not
+exhaustive and has not been through external review, so any earlier refutation
+we have missed takes precedence over this note.
+
+\paragraph{Exact verification.}
+Every assertion above is a finite computation with integers, and the data
+printed here fix it completely: the four mutation evaluations of Section~2 ---
+$15$, $113$ and $889$ along the left spine, and $889$ at the right child of the
+$1/2$ node --- the two substitutions displayed there, and, for
+Theorem~\ref{thm:main}(2), Lemma~\ref{lem:spine} together with the congruence
+$F_{r+60}\equiv F_r\pmod{10}$. All arithmetic is exact integer arithmetic, each
+division performed by a mutation being exact; no floating-point arithmetic and no
+randomness are involved. It was recomputed once independently from that data
+alone --- the six checks of Section~2, and, for each $m$ with $0\le m\le10$, the
+integrality of $q_m$ and the two labels $n_{1/d_m}$ and $n_{2/3}$ obtained by
+mutating $\GMT(q_m,0,0,\id)$ from its root instead of quoting
+Lemma~\ref{lem:spine} --- and every check agreed with what is reported here. A
+program accompanying this note carries out that recomputation, and in addition
+re-derives the same facts over wider ranges of the parameters; no part of the
+verification depends on it beyond what is printed above.
+
+\begin{thebibliography}{9}
+
+\bibitem{ChenJia}
+Z.~Chen and Z.~Jia,
+\emph{Tropicalization and cluster asymptotic phenomenon of generalized Markov
+equations},
+\href{https://arxiv.org/abs/2511.03428v2}
+{arXiv:2511.03428v2 [math.NT]} (2025).
+
+\bibitem{Gyoda}
+Y.~Gyoda,
+\emph{Generalized discrete Markov spectra},
+\href{https://arxiv.org/abs/2512.04547v4}
+{arXiv:2512.04547v4 [math.NT]} (2025), revised 2026.
+
+\bibitem{GyodaMatsushita}
+Y.~Gyoda and K.~Matsushita,
+\emph{Generalization of Markov Diophantine equation via generalized cluster
+algebra},
+Electron. J. Combin. \textbf{30} (2023), no.~4, Paper No.~P4.10,
+\href{https://doi.org/10.37236/11420}{doi:10.37236/11420}.
+
+\end{thebibliography}
+
+\end{document}

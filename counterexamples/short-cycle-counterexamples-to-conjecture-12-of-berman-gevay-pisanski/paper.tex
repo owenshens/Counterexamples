@@ -1,0 +1,358 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Short-Cycle Counterexamples to Conjecture 12 of Berman--Gevay--Pisanski}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\GammaOne}{\Gamma_1(m;a,b)}
+\newcommand{\GammaTwo}{\Gamma_2(m;a,b)}
+
+\title[Short-cycle counterexamples]
+{Short-Cycle Counterexamples to Conjecture~12 of
+Berman--G\'evay--Pisanski}
+
+\date{}
+
+\subjclass[2020]{Primary 05B30; Secondary 51E30, 05C25, 52C30}
+\keywords{polycyclic configuration, voltage graph, Levi graph, girth}
+
+\begin{document}
+
+\begin{abstract}
+Berman, G\'evay, and Pisanski proposed two parameterized cyclic-voltage
+families for geometric $(7m)_4$ configurations, while noting that further
+parameter restrictions might be necessary. We determine exactly when the
+corresponding derived multigraphs avoid cycles of length two and four. This
+refutes the sufficiency of the parameter ranges displayed in their
+Conjecture~12: the
+derived graph of $F_2(m;2,1)$ has a $4$-cycle for every $m\ge5$, and that of
+$F_1(m;m/2,b)$ has a $4$-cycle for every even $m\ge4$ and every
+$1\le b\le m/2$. Hence these assignments do not yield even combinatorial
+configurations. We do not address geometric realizability of the surviving
+lifts.
+\end{abstract}
+
+\maketitle
+
+\section{The voltage families}
+
+For $m>3$, Berman, G\'evay, and Pisanski introduced a generic reduced Levi
+graph $H=\operatorname{RLG}(B)$ and, in Conjecture~12 of~\cite{BGP}
+(Conjecture~7.1 of the preprint version listed there, whose statement is
+identical), proposed two families of cyclic voltage assignments over $\Z_m$,
+in the parameter order
+\[
+(a,c,d,e,f,g,q,a',c',d',e',f',g',q',t):
+\]
+\begin{align*}
+F_1(m;a,b)
+ &= (a,-a,a,b,b,-a,-2a,
+     a,-a,a,b,b,-a,-2a,0),\\
+F_2(m;a,b)
+ &= (a,b,b,b,b,b,b,
+     a,b,b,b,b,b,b,0).
+\end{align*}
+The displayed range for $F_1$ is
+\[
+a\ge b,\qquad 1\le a,b\le m/2,
+\]
+and that for $F_2$ is
+\[
+a\ge b,\qquad a\ne m/2.
+\]
+The conjecture is stated with the proviso that ``there may be other
+constraints on $a$ and $b$ that have not yet been identified''~\cite{BGP}.
+Our purpose is to determine exactly the constraints forced by cycles of
+length at most four.
+
+The line-orbit vertices of $H$ are
+\[
+M,R,P,B,C,Y,G,
+\]
+and the point-orbit vertices are
+\[
+r,m,p,y,g,c,b.
+\]
+This notation is inherited from~\cite{BGP} and overloads four letters: $b$,
+$c$ and $g$ name both point orbits and voltages, and $m$ is both the modulus
+and a point orbit. Subscripted lower-case letters always denote lifted
+points, so $m_1$ in the proof of Corollary~\ref{cor:counterexamples} is a
+point of the derived graph and not the modulus.
+
+Using the standard cyclic-voltage formalism for polycyclic
+configurations \cite{BP}, and following~\cite[Sec.~2]{BGP}, an edge of
+voltage $\alpha\in\Z_m$ means that the lifted line $L_i$ is incident with
+the lifted point $v_{i+\alpha}$. Transcribing the generic assignment drawn in
+Figure~4(b) of~\cite{BGP} into incidence form gives
+\begin{equation}\label{eq:incidences}
+\begin{aligned}
+M&:\ r(0),r(a),y(c),p(q),
+& R&:\ m(0),m(a'),g(d),p(0),\\
+P&:\ r(0),y(0),g(0),m(q'),
+& B&:\ y(e'),g(0),c(g),c(t),\\
+C&:\ y(0),g(f'),b(0),b(g'),
+& Y&:\ m(c'),b(e),c(0),p(0),\\
+G&:\ r(d'),b(0),c(f),p(0).
+\end{aligned}
+\end{equation}
+
+\medskip
+\noindent\textbf{Provenance of \eqref{eq:incidences}.}
+Figure~4(b) of~\cite{BGP} is a drawing, so \eqref{eq:incidences} is a
+transcription of it rather than a quotation, and everything below is a
+statement about the graph that \eqref{eq:incidences} specifies. We therefore
+print the transcription in full and record the checks that pin it down. Of
+the two checks that follow, the structural one is internal to
+\eqref{eq:incidences} and can be carried out from the displayed data alone;
+the numerical one is the single point at which this note appeals to data
+outside it, namely the incidence table of~\cite[Table~1]{BGP}, which we do
+not reproduce here.
+
+Structurally, \eqref{eq:incidences} lists $28$ edges on the $14$ vertices of
+$H$, four at each vertex; the $13$ edges of voltage $0$ form a spanning tree
+of $H$, and the $15$ named voltages occupy the $15$ remaining edges, one
+each. This is the normalization realized by the fifteen edge labels
+$a,c,d,e,f,g,q,a',c',d',e',f',g',q',t$ carried by the figure.
+
+Numerically, substituting $F_1(3;1,1)$, that is
+\begin{multline*}
+(a,c,d,e,f,g,q,a',c',d',e',f',g',q',t)\\
+=(1,2,1,1,1,2,1,1,2,1,1,1,2,1,0)\quad\text{in }\Z_3,
+\end{multline*}
+into \eqref{eq:incidences} reproduces all $28$ incidences of the incidence
+table of $B(21_4)$ in~\cite[Table~1]{BGP} after the relabelling
+$i\mapsto-i$ of $\Z_3$, and \cite{BGP} record that $F_1(3;1,1)$ is isomorphic
+to $B(21_4)$. The relabelling is harmless, because $i\mapsto-i$
+is an automorphism of the derived graph and so preserves girth. In particular
+the four parallel pairs of
+\eqref{eq:incidences}, namely $Mr=\{0,a\}$, $Rm=\{0,a'\}$, $Bc=\{g,t\}$ and
+$Cb=\{0,g'\}$, then carry the voltage differences $1,1,2,2$, matching the
+four points of that table which lie on two lines of a single orbit: $r_0$ on
+$M_0,M_1$; $m_0$ on $R_0,R_1$; $c_0$ on $B_0,B_2$; $b_0$ on $C_0,C_2$.
+
+At $m=3$ with $a=b=1$ several of the fifteen voltages take equal values, so
+this comparison alone cannot detect a permutation of labels within a block of
+equal values. The degeneracy is genuine: at $F_1(3;1,1)$ the generic values
+$a$, $b$ and $-2a$ all equal $1$ in $\Z_3$, so the comparison of parallel
+pairs shows only that the label carried by $Mr$ has generic value $a$, $b$ or
+$-2a$, and not that it is $a$ itself. We therefore do not claim that
+\eqref{eq:incidences} is the only reading of Figure~4(b) compatible with these
+checks, and we claim nothing beyond it: Theorem~\ref{thm:classification} and
+Corollary~\ref{cor:counterexamples} are assertions about the graph that
+\eqref{eq:incidences} specifies. Consequently a reader without
+\cite[Table~1]{BGP} at hand can still check everything in the sections that
+follow, taking \eqref{eq:incidences} as the definition of $H$ and of its
+voltages; what rests on the comparison with that table is only the
+identification of this graph with the one drawn in Figure~4(b)
+of~\cite{BGP}, and hence the bearing of our results on Conjecture~12 as its
+authors intended it. The four parallel pairs and the ten
+quadrilaterals used in the proof below are features of $H$ itself, so a reader
+who reads the figure differently need only substitute that reading into
+\eqref{eq:incidences} and repeat the proof with the labels permuted
+accordingly.
+
+\medskip
+Let $\Gamma_i(m;a,b)$ denote the derived multigraph associated with
+$F_i(m;a,b)$. A Levi graph of a combinatorial point-line configuration is
+simple and has no $4$-cycle; thus the relevant derived graph must have
+girth at least six, where a parallel pair is regarded as a cycle of length
+two.
+
+\section{Short-cycle classification}
+
+\begin{theorem}\label{thm:classification}
+Let $m\ge2$ and let $a,b\in\Z_m$.
+\begin{enumerate}
+\item
+The graph $\GammaOne$ has girth at least six if and only if
+\[
+a\ne0,\qquad b\ne0,\qquad 2a\ne0,\qquad 2b\ne0
+\quad\text{in }\Z_m.
+\]
+\item
+The graph $\GammaTwo$ has girth at least six if and only if
+\[
+a,b,2a,2b,a-b,a-2b\ne0
+\quad\text{in }\Z_m.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A cycle in a derived voltage graph projects to a cyclically reduced closed
+walk of the same length in the base graph, and the net voltage of that walk
+is zero. Conversely, a cyclically reduced zero-voltage closed walk lifts to
+a nonbacktracking closed walk and therefore contains a cycle of no greater
+length. Since the derived graphs are bipartite, it is enough to enumerate
+the projected closed walks of lengths two and four.
+
+The four parallel pairs in $H$ are $Mr$, $Rm$, $Bc$, and $Cb$. Their
+voltage differences, up to sign, are
+\[
+a,\qquad a',\qquad g-t,\qquad g',
+\]
+and traversing a parallel pair twice gives
+\[
+2a,\qquad 2a',\qquad 2(g-t),\qquad 2g'.
+\]
+The four parallel pairs are pairwise vertex-disjoint, so no vertex of $H$
+lies in two of them. A cyclically reduced closed walk of length four visits
+four, three, or two distinct vertices. On three vertices it has the form
+$L-v_1-L-v_2-L$ or $L_1-v-L_2-v-L_1$; the first requires the two pairs
+$Lv_1$ and $Lv_2$ to be parallel and the second requires $vL_1$ and $vL_2$ to
+be parallel, so each would place the repeated vertex, $L$ respectively $v$,
+in two distinct parallel pairs, and both are excluded. On two vertices it
+traverses a single parallel pair twice, which is the case already treated.
+Hence every remaining cyclically reduced closed walk of length four visits
+four distinct base vertices and traces one of the ten quadrilaterals below.
+Directly
+from~\eqref{eq:incidences}, their net voltages are as follows, up to sign:
+\[
+\begin{array}{c|c@{\qquad}c|c}
+\text{walk} & \text{net voltage} & \text{walk} & \text{net voltage}\\ \hline
+MrPyM & c,\ a-c
+  & RmYpR & c',\ a'-c'\\
+GbYpG & e
+  & GcYpG & f\\
+GbYcG & e+f
+  & ByPgB & e'\\
+CyPgC & f'
+  & ByCgB & e'+f'\\
+GrMpG & d'+q,\ a-d'-q
+  & PgRmP & d+q',\ a'-d-q'
+\end{array}
+\]
+These four parallel pairs and ten quadrilaterals exhaust the cyclically
+reduced closed walks of lengths two and four in $H$.
+
+Substitution of $F_1$ leaves, up to sign, precisely
+\[
+a,\qquad b,\qquad 2a,\qquad 2b.
+\]
+Substitution of $F_2$ leaves, up to sign, precisely
+\[
+a,\qquad b,\qquad 2a,\qquad 2b,\qquad a-b,\qquad a-2b.
+\]
+The two assertions follow.
+\end{proof}
+
+\begin{corollary}\label{cor:counterexamples}
+The displayed parameter ranges in Conjecture~12 of~\cite{BGP} are not
+sufficient.
+\begin{enumerate}
+\item
+For every $m\ge5$, the assignment $F_2(m;2,1)$ satisfies the displayed
+conditions, and even
+\[
+1\le1<2<m/2,
+\]
+but its derived graph has a $4$-cycle. In particular,
+\[
+F_2(5;2,1)
+=(2,1,1,1,1,1,1,2,1,1,1,1,1,1,0)
+\]
+does not yield a $(35_4)$ configuration, geometric or combinatorial.
+\item
+For every even $m\ge4$ and every $1\le b\le m/2$, the assignment
+$F_1(m;m/2,b)$ satisfies the displayed conditions but its derived graph
+has a $4$-cycle.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+For $F_2(m;2,1)$, equation~\eqref{eq:incidences} gives
+\[
+P_0\sim g_0,m_1,
+\qquad
+R_{-1}\sim g_0,m_1.
+\]
+The vertices $P_0,R_{-1},g_0,m_1$ are distinct, so
+\[
+P_0-g_0-R_{-1}-m_1-P_0
+\]
+is a $4$-cycle. Equivalently, the obstruction $a-2b$ in
+Theorem~\ref{thm:classification} vanishes. For $m\ge5$, the choice
+$(a,b)=(2,1)$ satisfies the displayed conditions of Conjecture~12 and also
+the stated strict half-range.
+
+Now let $m$ be even and set $a=m/2$. The two lifted lines $M_0$ and $M_a$
+both contain the two distinct points $r_0$ and $r_a$, because $2a=0$ in
+$\Z_m$. Hence
+\[
+M_0-r_0-M_a-r_a-M_0
+\]
+is a $4$-cycle. A point-line configuration cannot have two distinct lines
+through two distinct common points, so none of these assignments yields the
+asserted configuration.
+\end{proof}
+
+\begin{remark}
+Conjecture~12 explicitly allows that further restrictions may be necessary.
+Accordingly, the result above corrects the displayed sufficiency ranges; it
+does not settle geometric realizability for the remaining parameter values.
+
+Since $\Gamma_i(m;a,b)$ is bipartite and $4$-regular with parts of size $7m$,
+girth at least six is not merely necessary but equivalent to the lift being a
+combinatorial $(7m)_4$ configuration. Theorem~\ref{thm:classification}
+therefore determines exactly which of these assignments yield combinatorial
+configurations, and geometric realizability is the only question it leaves
+open.
+
+Within the printed range for $F_1$, Theorem~\ref{thm:classification} says
+that the short-cycle condition is exactly $a<m/2$. The printed range for
+$F_2$ places no upper bound on $a$ and does not separate $a$ from $b$, so
+besides $a=2b$ it also admits $a=b$, for instance $F_2(m;1,1)$ for every
+$m>3$, and $b=m/2$ with
+$a>m/2$, for instance $F_2(6;4,3)$; these make $a-b$ and $2b$ vanish
+respectively. The $F_2$ range is thus insufficient for every $m>3$, not only
+for $m\ge5$. Within the stronger range $1\le b<a<m/2$ it is exactly
+$a\ne2b$.
+
+None of this contradicts an assignment displayed in~\cite{BGP}. The
+illustrated examples $F_1(4;1,1)$, $F_1(5;2,2)$, $F_1(6;2,1)$ and
+$F_2(4;3,1)$, $F_2(5;3,1)$, $F_2(6;4,1)$ of~\cite[Figs.~11 and~12]{BGP} all
+satisfy the criteria of Theorem~\ref{thm:classification}: in each of the three
+$F_1$ examples none of $a$, $b$, $2a$, $2b$ vanishes, and in each of the three
+$F_2$ examples $a-b$ and $a-2b$ do not vanish either. The two lists of
+criteria differ, and the $F_1$ example $F_1(6;2,1)$ does have $a=2b$; by
+Theorem~\ref{thm:classification} that is an obstruction for $F_2$ and not for
+$F_1$. The counterexamples above occupy parameter values that
+lie inside the printed ranges but were not illustrated. That $F_2(4;3,1)$ has
+$a>m/2$ also confirms that the bound $1\le a,b\le m/2$ is imposed on $F_1$
+alone. We are not aware of prior work identifying the missing constraints.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{BGP}
+L.~W. Berman, G. G\'evay, and T. Pisanski,
+\emph{On a new $(21_4)$ polycyclic configuration},
+Electron. J. Combin. \textbf{31} (2024), no.~4,
+Paper No.~P4.54, 26~pp.,
+\href{https://doi.org/10.37236/12405}{doi:10.37236/12405};
+preprint version \href{https://arxiv.org/abs/2309.12992}{arXiv:2309.12992},
+in which the statement cited here as Conjecture~12 is numbered
+Conjecture~7.1.
+
+\bibitem{BP}
+M. Boben and T. Pisanski,
+\emph{Polycyclic configurations},
+European J. Combin. \textbf{24} (2003), no.~4, 431--457,
+\href{https://doi.org/10.1016/S0195-6698(03)00031-3}
+{doi:10.1016/S0195-6698(03)00031-3}.
+
+\end{thebibliography}
+
+\end{document}

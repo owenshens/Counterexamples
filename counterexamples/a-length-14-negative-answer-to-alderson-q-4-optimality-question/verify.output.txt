@@ -1,0 +1,104 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  381a65cf99c1c9cabd3ab031fefa06645b4ccd0637a035f0e64176f68532d1d0
+python:  Python 3.9.25
+=== program output follows ===
+# verify.py -- A Length-14 Negative Answer to Alderson's q=4 Optimality Question
+# EXHIBITED OBJECT (decoded from the paper)
+#   E = F_4^4, w^2+w+1 = 0, B = PG(F_2^4) has 15 points, |PG(3,4)| = 85
+#   T row 1 = ['0', '0', '1', '0']
+#   T row 2 = ['1', '0', '1', '0']
+#   T row 3 = ['0', '1', '0', '0']
+#   T row 4 = ['0', '0', '0', '1']
+#   u  = ['1', '0', '0', 'w']   v  = ['0', '1', 'w2', '0']
+#   u' = ['1', '0', '0', 'w2']   v' = ['0', '1', 'w', '0']
+#   l_1  = 01w20 100w 11w2w 1w1w 1w2ww
+#   l_2  = 010w 10ww 11w0 1ww1 1w2ww2
+#   l_3  = 001w 1w01 1w1w2 1www 1ww20
+#   l_4  = 01w1 10ww2 110w 1w11 1w2w20
+#   l_5  = 011w 10w1 11w2w2 1w0w 1w210
+#   l_6  = 01ww 10w20 111w 1w0w2 1w2w1
+#   l_7  = 01ww2 101w 11w21 1www2 1w200
+#   l_8  = 01w0 100w2 11ww2 1ww2w2 1w21w2
+#   l_9  = 010w2 10w2w2 11w20 1ww2w 1w2w21
+#   l_10 = 001w2 1w201 1w21w 1w2w0 1w2w2w2
+#   l_11 = 01w21 10w2w 110w2 1ww0 1w211
+#   l_12 = 011w2 10w21 11ww 1w10 1w20w2
+#   l_13 = 01w2w2 10w0 111w2 1ww21 1w20w
+#   l_14 = 01w2w 101w2 11w1 1w00 1w2w2w
+# recomputed weight enumerator: 1z^0 + 210z^13 + 45z^14
+# NOTE: every enumeration below is exhaustive and complete: all 85 points and all 357 lines of PG(3,4), all 256 codewords of C and of C^+, all 357 two-dimensional F_4-subspaces of E, and all 4^8 = 65536 F_4-linear maps E -> F_16.  Nothing in the paper's claim was sampled, truncated or assumed.
+PASS f4_model_is_a_field_of_order_4 [|F_4|=4]
+PASS f4_omega_satisfies_X2_plus_X_plus_1 [w^2=w2]
+PASS f16_model_is_a_field_of_order_16 [|F_16|=16]
+PASS f16_multiplicative_order_of_x_is_15 [ord(x)=15]
+PASS f16_contains_f4_as_the_subfield_of_scalars [|subfield|=4]
+PASS pg_3_4_has_85_points [85 points]
+PASS pg_3_4_has_357_lines [357 lines]
+PASS baer_subgeometry_B_has_15_points [|B|=15]
+PASS T_has_F2_entries_and_is_invertible [det T = 1]
+PASS T_has_multiplicative_order_exactly_7 [order = 7]
+PASS T_upper_left_block_has_min_poly_X3_plus_X_plus_1 [M^3+M+I=0 : True, deg 3 : True]
+PASS L_and_Lprime_are_2dimensional_F4_subspaces [dim L = 2, dim L' = 2]
+PASS Lprime_is_the_Frobenius_conjugate_of_L [|phi(L)|=16]
+PASS PG_L_five_points_are_the_paper_representatives [5 distinct, normalized=True]
+PASS PG_L_representatives_each_have_a_coordinate_outside_F2 [outside_F2=True, meets B in 0]
+PASS PG_Lprime_five_points_are_the_paper_representatives [5 distinct, normalized=True]
+PASS PG_Lprime_representatives_each_have_a_coordinate_outside_F2 [outside_F2=True, meets B in 0]
+PASS det_u_v_Tku_Tkv_k1to6_matches_paper [computed w,1,w2,w2,1,w, paper w,1,w2,w2,1,w]
+PASS det_up_vp_Tkup_Tkvp_k1to6_matches_paper [computed w2,1,w,w,1,w2, paper w2,1,w,w,1,w2]
+PASS det_u_v_Tkup_Tkvp_k0to6_matches_paper [computed 1,w,w,w2,w,w2,w2, paper 1,w,w,w2,w,w2,w2]
+PASS all_19_determinants_are_nonzero [19 values, 0 zero]
+PASS fourteen_lines_each_carry_exactly_5_points [14 lines, sizes [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+PASS fourteen_lines_are_genuine_lines_of_PG_3_4 [all 14 occur in the 357-line enumeration: True]
+PASS fourteen_lines_are_pairwise_disjoint [0 of 91 pairs meet]
+PASS fourteen_lines_are_disjoint_from_the_Baer_subgeometry [0 lines meet B]
+PASS union_of_the_fourteen_lines_has_70_points [|union| = 70, 14*5 = 70]
+PASS mixed_partition_B_plus_14_lines_equals_PG_3_4 [70+15=85, |PG(3,4)|=85, covered=True]
+PASS every_point_outside_B_lies_on_exactly_one_of_the_14_lines [multiplicities over the 85 points: [0, 1]]
+PASS no_line_of_PG_3_4_lies_inside_B [max |line cap B| = 3 over 357 lines; 35 are 3-secants]
+PASS B_has_no_2_secant_so_two_points_of_B_span_an_F2_subline [line-B intersection sizes [(0, 112), (1, 210), (3, 35)]]
+PASS T_permutes_the_14_lines_as_two_7_cycles [image indices [2, 3, 4, 5, 6, 7, 1, 9, 10, 11, 12, 13, 14, 8]]
+PASS rho_1_to_rho_14_exist_with_kernels_V_1_to_V_14
+PASS each_ker_rho_i_equals_V_i_and_rho_i_is_onto_F16 [kernels agree with V_1..V_14 : True ; image sizes [16]]
+PASS C_has_256_words_and_a_to_c_a_is_injective [|C| = 256 = 16^2]
+PASS C_is_an_F4_subspace_of_F16_14_of_F4_dimension_4 [F_4-dim = 4, |C| = 256, F_4-linear = True]
+PASS C_is_faithful_every_coordinate_projection_is_onto_F16 [14 coordinates, image sizes [16]]
+PASS zero_coordinates_of_c_a_are_exactly_the_lines_through_a [checked all 255 nonzero a]
+PASS weight_enumerator_is_1_plus_210z13_plus_45z14 [computed [(0, 1), (13, 210), (14, 45)], paper [(0, 1), (13, 210), (14, 45)]]
+PASS weight_counts_equal_3x_the_geometric_point_counts [45 = 3*15 ; 210 = 3*70]
+PASS minimum_distance_of_C_is_13 [d = 13 (over all 32640 unordered pairs)]
+PASS C_is_MDS_singleton_bound_is_attained [n=14, k=log_16|C|=2, d=13, n-k+1=13]
+PASS length_14_is_forced_by_the_partition_85_minus_15_over_5 [(85-15)/5 = 14 coordinates]
+PASS C_is_a_14_2_13_code_over_F16_additive_over_F4 [(n,k,d) = (14,2,13)]
+PASS C_is_genuinely_additive_and_not_F16_linear [closed under multiplication by the primitive x of F_16 : False]
+PASS tau_is_an_F2_linear_isomorphism_E_mod_U_onto_F16 [|image| = 16, kernel = U (16 vectors), F_2-linear = True]
+PASS C_plus_has_256_words_of_length_15_and_punctures_back_to_C [|C^+| = 256, punctured = C : True]
+PASS minimum_distance_of_C_plus_is_14_so_C_is_extendable [d(C^+) = 14 (all 32640 unordered pairs)]
+PASS C_plus_is_F2_linear_but_not_F4_additive [F_2-closed = True, closed under w = False]
+PASS weight14_vectors_are_exactly_the_F4_cone_over_B [45 weight-14 vectors, |cone over B| = 45]
+PASS all_357_two_dim_subspaces_contain_a_weight13_vector [357 subspaces enumerated, 0 lie inside the cone over B]
+PASS no_F4_linear_rho_extends_C_to_distance_14 [0 of 65536 F_4-linear maps E->F_16 reach d >= 14]
+PASS all_65536_F4_linear_maps_were_examined [65536 pairs examined, 65536 distinct maps, = every element of F_16^4 : True]
+PASS best_F4_additive_extension_has_distance_13_not_14 [max over all rho of the computed d({(c(a),rho(a))}) = 13]
+PASS maximality_search_finds_d14_on_a_positive_control [control with one 2-dim subspace removed from S_13 yields 180 maps (|GL(2,4)| = 180) and d = 14]
+PASS claims_are_independent_of_the_choice_of_rho_i [4 of 4 alternative complement choices reproduce W_C, faithfulness, S_13 and d(C^+)=14]
+PASS d_C_plus_is_14_for_every_tested_choice_of_tau [4 of 4 tau are F_2-linear isomorphisms with kernel U; recomputed d(C^+) values [14, 14, 14, 14]]
+PASS problem_9_2_hypotheses_all_verified_for_this_code [7 of 7 required properties hold: none missing]
+PASS negative_answer_length_14_is_below_Alderson_112 [exhibited length 14 < 112, so 112 is not optimal]
+PASS primary_battery_ran_to_completion_without_error [no exception raised while checking the paper's object]
+PASS corrupting_T_entry_flipped_is_detected [26 of 48 checks fail; first = T_has_F2_entries_and_is_invertible]
+PASS corrupting_T_transposed_is_detected [2 of 48 checks fail; first = det_u_v_Tku_Tkv_k1to6_matches_paper]
+PASS corrupting_T_entry_outside_F2_is_detected [25 of 48 checks fail; first = T_has_F2_entries_and_is_invertible]
+PASS corrupting_u_moved_into_F2_4_is_detected [11 of 48 checks fail; first = Lprime_is_the_Frobenius_conjugate_of_L]
+PASS corrupting_u_last_coordinate_w2_not_w_is_detected [21 of 48 checks fail; first = Lprime_is_the_Frobenius_conjugate_of_L]
+PASS corrupting_v_third_coordinate_w_not_w2_is_detected [21 of 48 checks fail; first = Lprime_is_the_Frobenius_conjugate_of_L]
+PASS corrupting_Lprime_replaced_by_L_is_detected [22 of 48 checks fail; first = Lprime_is_the_Frobenius_conjugate_of_L]
+PASS regular_spread_of_PG_3_4_is_17_disjoint_lines_partitioning_Pi [17 subspaces, all of F_4-dimension 2: True, pairwise intersection trivial: True, all genuine lines of PG(3,4): True, 85 of 85 points covered with 17*5 = 85 incidences]
+PASS control_hole_set_is_three_disjoint_lines_and_does_contain_lines [3 hole lines, pairwise disjoint: True, 15 hole points; 3 of the 357 two-dimensional subspaces lie inside the hole set, and they are exactly the three holes (the paper's Baer hole set admits none, which is the whole difference)]
+PASS control_code_from_14_spread_lines_has_enumerator_1_210_45 [computed enumerator [(0, 1), (13, 210), (14, 45)]; its 45 weight-14 vectors are exactly the 45 nonzero vectors of the three hole subspaces: True]
+PASS spread_positive_control_accepts_540_of_the_65536_maps [the same exhaustive search accepts 540 of 65536 maps and attains d = 14; derived count 180 + 180 + 180 = 540 = 3|GL(2,4)|]
+PASS the_540_accepted_maps_are_the_180_with_each_hole_as_kernel [540 maps exhibited, 180 per hole line, each with kernel exactly that hole and recomputed d = 14: True; that equals the 540 the search accepted, so the accepted set is exactly these]
+NOTE NOT RE-RUN: five things above are inputs taken from the literature and are recomputed by no check in this transcript. (1) Alderson's Problem 9.2 itself, together with his Theorem 6.6 and its parameters (112,2,104)_{16/4}: this program reads no external paper, so the statement being answered and the comparison length 112 are transcriptions, and a misreading of either would be caught by nothing above. (2) The definitions of 'extendable' and of 'additively maximal': the 7 properties counted in problem_9_2_hypotheses_all_verified_for_this_code are this program's rendering of those definitions, not a derivation of them. (3) The Remark's projective-equivalence claim. The 112 lines external to B counted above are external to THIS B; that Alderson's scattered F_2-linear set for t=2 is a Baer subgeometry projectively equivalent to it, and hence that these fourteen lines are fourteen of his own 112 external lines, is not checked here. (4) The spread classifications of van Dam and of Mellinger. The fourteen explicit lines are verified above to partition Pi together with B, which is a self-contained substitute, but no classification is confirmed and it is not tested that this spread lies in one of their three orbits. (5) Faithfulness, tested only in the paper's own sense that every coordinate projection is onto F_16; a stronger notion is not tested. Also NOT attempted: any lower bound, and any search for the global minimum length -- what is established above is 14 < 112, not that 14 is optimal, and the nonsquare, nonprime clause of Problem 9.2 is untouched. Apart from the five items above, the only paper values this program reads are the three determinant tuples and the weight enumerator W_C, and those are quoted solely as comparison targets printed beside independently recomputed values.
+VERDICT: ALL 71 CHECKS PASS
+=== program exited with status 0 ===

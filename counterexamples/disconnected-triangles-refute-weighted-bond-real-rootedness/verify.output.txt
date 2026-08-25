@@ -1,0 +1,50 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  3da8de4440e9a8a4aac4dc73eba495909121804444346982a2589d05e67f21d1
+python:  Python 3.9.25
+=== program output follows ===
+verification of the disconnected pairs rK_3 vs rP_3 against a real-rootedness conjecture for weighted bond posets
+python 3.9.25, exact integer and Fraction arithmetic only
+INPUTS quoted from the paper, not derived here: A = mu_{K_3} = 2+5*t+2*t^2, B = mu_{P_3} = 1+3*t+1*t^2, and mu_{rX} = mu_X^r
+checks named 'consistency' compare two quantities the paper prints; they test its expansions, not those inputs
+NOTE for r = 1..8, rK_3 has 3r vertices, 3r edges and r components and rP_3 has 3r vertices, 2r edges and r components
+PASS both_graphs_have_3r_vertices
+PASS both_graphs_have_exactly_r_connected_components_by_union_find
+PASS rP3_is_a_proper_spanning_subgraph_with_one_edge_deleted_per_copy [E(rP_3) is a proper subset of E(rK_3) and the sizes differ by r]
+PASS sign_exponent_3r_minus_r_is_even_so_the_conjectures_sign_is_plus_one [3r - r = 2r for r = 1..8]
+PASS consistency_A_minus_B_equals_one_plus_t_squared [A - B = 1+2*t+1*t^2]
+PASS A_and_B_both_take_the_value_minus_one_at_t_equals_minus_one [A(-1) = -1, B(-1) = -1]
+PASS A_and_B_are_coprime_so_they_share_no_zero_at_all [monic gcd = 1, Res_t(A, B) = 1]
+PASS A_equals_2X_plus_t_and_B_equals_X_plus_t_for_X_equal_one_plus_t_squared
+PASS control_resultant_routine_reproduces_known_values [Res(t-1,t-2) = -1, Res(A,A) = 0, Res(t^2+1,t+1) = 2]
+PASS sum_of_squares_identity_for_Q_holds_identically_in_Z_c_t [A^2 - 2cAB + B^2 = (A - cB)^2 + (1 - c^2)B^2, coefficientwise in c]
+PASS leading_coefficient_of_Q_in_t_is_five_minus_four_c [deg_t Q = 4, leading coefficient = 5-4*c]
+NOTE Res_t(A - cB, B) = 1, a nonzero CONSTANT in c, so A - cB and B have no common zero for any c whatever; with the identity above that is why Q(t) > 0 for every real t as soon as 1 - c^2 > 0
+PASS resultant_of_A_minus_cB_and_B_is_the_constant_one_for_every_c
+PASS Q_has_no_real_zero_at_every_rational_c_in_the_open_unit_interval [47 values c = k/24 with |k| < 24, each with leading and constant coefficient 5 - 4c > 0 and no real zero]
+PASS control_at_c_equal_plus_or_minus_one_Q_does_have_real_zeros [Q at c=1 is (A-B)^2 = (1+t)^4 with 4 real zeros counted with multiplicity, Q at c=-1 is (A+B)^2 with 4]
+NOTE A^3 - B^3 = 7+51*t+144*t^2+200*t^3+144*t^4+51*t^5+7*t^6
+PASS consistency_printed_factorization_of_A_cubed_minus_B_cubed [(1+t)^2 * (7+37*t+63*t^2+37*t^3+7*t^4) expands to the same polynomial]
+NOTE at r = 3 the parameter is c = cos(2 pi/3) = -1/2, so the factor Q is rational and can be compared exactly
+PASS the_quartic_cofactor_equals_A2_plus_AB_plus_B2_and_equals_Q_at_c_minus_half [cofactor = 7+37*t+63*t^2+37*t^3+7*t^4]
+PASS leading_coefficient_of_the_quartic_is_five_minus_four_c_equals_seven
+PASS the_quartic_is_palindromic [coefficients 7+37*t+63*t^2+37*t^3+7*t^4]
+PASS reduction_by_u_equals_t_plus_one_over_t_reproduces_the_quartic [t^2 * (49+37*u+7*u^2) = 7+37*t+63*t^2+37*t^3+7*t^4]
+PASS discriminant_of_the_reduced_quadratic_is_minus_three_so_it_is_positive [disc = 37^2 - 4*7*49 = -3]
+PASS quartic_has_no_real_zero_by_an_independent_sturm_count
+PASS control_a_one_unit_mutation_of_A_breaks_the_printed_factorization [with A = 2+6*t+2*t^2 the printed factorization fails and (1+t)^2 no longer divides the difference]
+PASS control_real_zero_counter_agrees_with_known_counts [8 control polynomials]
+PASS control_squarefree_decomposition_reconstructs_the_control_polynomials
+NOTE real zeros of A^r - B^r counted with multiplicity, against the degree 2r: r=1: 2 of 2, r=2: 4 of 4, r=3: 2 of 6, r=4: 4 of 8, r=5: 2 of 10, r=6: 4 of 12, r=7: 2 of 14, r=8: 4 of 16, r=9: 2 of 18, r=10: 4 of 20, r=11: 2 of 22, r=12: 4 of 24
+PASS squarefree_decomposition_reconstructs_every_A_r_minus_B_r [r = 1..12]
+PASS real_zero_count_is_two_for_odd_r_and_four_for_even_r [the double zero of (1+t)^2, together with the two zeros of A+B when r is even, and nothing else]
+PASS REFUTATION_A_r_minus_B_r_is_not_real_rooted_for_every_r_from_three [for r = 3..12 the real zeros number [2, 4, 2, 4, 2, 4, 2, 4, 2, 4] against degrees [6, 8, 10, 12, 14, 16, 18, 20, 22, 24]]
+PASS the_members_r_equal_one_and_two_ARE_real_rooted_so_the_threshold_is_exact [r=1: 2 of 2, r=2: 4 of 4]
+PASS consistency_printed_factorization_of_A_squared_minus_B_squared [A^2 - B^2 = (1+t)^2 * (3+8*t+3*t^2), and A + B = 3+8*t+3*t^2]
+PASS discriminant_of_the_r_equal_two_factor_is_twenty_eight_and_positive [disc = 28, and Sturm finds two real zeros]
+NOTE the j = r term of the gamma-expansion carries the coefficient C(r,r)(2^0 - 1) = 0, which is why the sum stops at j = r-1
+PASS gamma_expansion_identity_holds_for_every_r_in_range [A^r - B^r = sum_j C(r,j)(2^{r-j} - 1) t^j (1+t)^{2r-2j}, r = 1..12]
+PASS gamma_coefficients_are_positive_and_dropping_the_last_term_breaks_it [so the difference is gamma-positive, and no term of the sum is idle]
+NOT RE-RUN: (i) the Moebius polynomials mu_{K_3} = 2 + 5t + 2t^2 and mu_{P_3} = 1 + 3t + t^2, and the multiplicativity mu_{rX} = mu_X^r, are INPUTS here, quoted by the paper from Equation (1.5) and Proposition 2.2 of the cited article; the definition of the weighted bond poset is in that article and is not reproduced in this folder, so no poset is enumerated and the identification of A and B with mu_{K_3} and mu_{P_3} is not checked. (ii) Also transcribed rather than checked: the numbering of Conjectures 4.13(2), 4.13(1) and 4.12(2), and the reading that 4.13(2) is stated there for arbitrary k with no connectivity hypothesis, which is the scope claim on which admitting disconnected graphs depends. (iii) The exact real-zero count with multiplicity is carried out for r = 1..12 only; for larger r the theorem rests on the paper's Q_r argument, whose ingredients are verified above in the parameter c -- the sum-of-squares identity in Z[c][t], Res_t(A - cB, B) = 1 for every c, the leading coefficient 5 - 4c, and no real zero at 47 rational c in (-1,1) -- while the factorization A^r - B^r = prod_j (A - zeta^j B) over C and the value c = cos(2 pi/r) are taken as read, except at r = 3, where c = -1/2 is rational and the factor is verified exactly. (iv) Two further truncations of quantifiers over r: the graph-family checks -- 3r vertices, exactly r components by union-find, rP_3 a proper spanning subgraph with one edge deleted per copy, and the even sign exponent 3r - r -- run for r = 1..8 only, and the gamma-expansion identity together with the positivity of its coefficients C(r,j)(2^{r-j} - 1) runs for r = 1..12 only, whereas the paper asserts the graph-family facts for every r >= 3 and gamma-positivity for every r >= 1; both constructions are uniform in r, but neither quantifier is exhausted here and no induction is machine-checked. (v) No trigonometric or complex arithmetic occurs anywhere in this program: that zeta = e^{2 pi i/r} is nonreal with |c| = |cos(2 pi/r)| < 1 for every r >= 3, that the leading coefficient |2 - zeta|^2 equals 5 - 4c, and that Q_r divides A^r - B^r are all taken as read -- the last verified only at r = 3 -- and the c-grid is 47 rationals k/24, which contains a genuine cos(2 pi/r) only in that same r = 3 case; the passage from the ingredients checked above to the paper's conclusions that Q_r(t) > 0 for every real t and hence that A^r - B^r fails to be real-rooted for every r >= 3 -- beyond the members r = 3..12 decided outright above -- is its own inference, printed here as a NOTE and not as a check. (vi) Nothing bibliographic or editorial is fetched or tested: the existence, authorship and contents of arXiv:2608.08692v1, the novelty or priority of the refutation, and the paper's negative scope claims -- that the connected restriction is not addressed, that no assertion is made about Conjecture 4.13(1), and that these examples do not refute the gamma-positivity Conjecture 4.12(2) -- are transcribed, as is the convention that 'real-rooted' means all 2r zeros real, which is the standard against which the counts above are compared. (vii) Checks named 'consistency' compare two printed quantities, as disclosed above.
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

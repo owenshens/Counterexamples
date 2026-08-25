@@ -1,0 +1,43 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  4b405c18a5df23b10a5ed43db068db2677bc84e5f976c5189dc4a00c0d31aba4
+python:  Python 3.9.25
+=== program output follows ===
+the exhibited object, decoded and printed back (scale 16):
+  C_0 = [   0,  16] x [   0,  16] x [   0,  16]
+  C_1 = [   9,  25] x [   2,  18] x [  17,  33]
+  C_2 = [  -8,   8] x [   3,  19] x [  19,  35]
+  C_3 = [  10,  26] x [  -1,  15] x [  34,  50]
+  C_4 = [   6,  22] x [  -7,   9] x [  51,  67]
+  C_5 = [   2,  18] x [  11,  27] x [  53,  69]
+  C_6 = [   7,  23] x [  -6,  10] x [  68,  84]
+  C_7 = [  -5,  11] x [   8,  24] x [  85, 101]
+  C_8 = [   5,  21] x [   1,  17] x [ 102, 118]
+PASS cube_count_is_nine [9 boxes, 9 distinct, coordinate list lengths [9]]
+PASS boxes_are_nondegenerate_products_of_closed_intervals [each box is an interval product in x, y, z with lo < hi, hence axis-parallel with nonempty interior]
+PASS every_box_is_a_cube_of_side_16 [the 27 edge lengths take the values [16]]
+PASS cubes_pairwise_disjoint [36 pairs, each separated in >=1 direction]
+PASS z_overlapping_pairs_are_exactly_the_four_listed [pairs with meeting z-intervals: [(1, 2), (2, 3), (4, 5), (5, 6)]]
+PASS those_four_pairs_are_separated_in_x_x_y_y [{(1, 2): ['x'], (2, 3): ['x'], (4, 5): ['y'], (5, 6): ['y']}]
+PASS all_18_face_coordinates_distinct_in_each_direction [18 distinct per direction]
+PASS table_lists_one_axis_for_each_of_the_36_pairs [36 labels, 36 distinct pairs, C(9,2)=36]
+PASS table_axes_are_half_integer_lines_in_x_y_or_z [directions used: ['x', 'y', 'z']; every listed coordinate is a half-integer: True]
+PASS all_36_exhibited_channels_are_valid [36/36 cylinders of radius 1/4 have both end disks interior and miss all other cubes]
+PASS uniform_sup_norm_margin_is_at_least_one_half [smallest of the 182 sup-norm margins = 1/2 (paper claims >= 1/2), channel radius 1/4]
+PASS independent_search_finds_all_36_pairs_visible [edges found 36 of 36; missing []]
+PASS box_visibility_graph_equals_K_9 [9 vertices, 36 edges, degree sequence [8, 8, 8, 8, 8, 8, 8, 8, 8] -> K_9]
+PASS independent_witnesses_use_the_paper_s_directions [36 of 36 pairs first become visible along the direction the paper names]
+PASS search_agrees_under_fourfold_grid_refinement [coarse 36 edges, refined 36 edges, identical: True, both complete: True]
+PASS refinement_invents_no_edge_in_the_blocked_stack [the column still has 8 edges on the finer lattice]
+PASS unit_cubes_after_dividing_by_16 [the 27 edge lengths all equal 1]
+PASS certificate_still_valid_at_unit_scale_radius_1_64 [36/36 channels of radius 1/64, smallest margin 1/32]
+PASS unit_cubes_still_pairwise_disjoint [all 36 pairs separated in some direction at unit scale]
+PASS control_overlapping_cubes_are_detected [cloning C_1 onto C_2 leaves no separating direction]
+PASS control_perturbed_coordinates_are_rejected [shifting C_5 by +1 in x breaks 3 of the 36 channel tests (containment clause fired: True, blocking clause fired: True)]
+PASS control_blocked_channel_is_rejected [moving the 0-8 axis to (11/2,7/2) is reported as blocked: 08: cylinder meets cube 2]
+PASS control_end_disk_outside_a_thin_box_is_rejected [a slab of thickness 1/8 cannot hold an end disk 1/4 deep: 01: lower end disk not inside the lower cube; 01: upper end disk not inside the upper cube]
+PASS control_blocked_stack_is_not_complete [a straight column of nine unit cubes yields 8 edges, not 36]
+nine pairwise disjoint axis-parallel unit cubes whose box-visibility graph is complete: the K_9 conjecture is refuted.
+NOT RE-RUN: the cited nonexistence result for K_10 and the cited K_8 construction are external and are not recomputed here; only the K_9 representation is verified.
+VERDICT: ALL 24 CHECKS PASS
+=== program exited with status 0 ===

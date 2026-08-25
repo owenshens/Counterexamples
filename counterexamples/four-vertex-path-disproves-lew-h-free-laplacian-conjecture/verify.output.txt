@@ -1,0 +1,53 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  0a3c429c34286bf0cd2699b8314167bd979711f13c08649bd8182c7dfa535325
+python:  Python 3.9.25
+=== program output follows ===
+object: n=4, |E|=3, edges=[(1, 2), (2, 3), (3, 4)]
+object: degree sequence [1, 1, 2, 2], Laplacian rows [[1, -1, 0, 0], [-1, 2, -1, 0], [0, -1, 2, -1], [0, 0, -1, 1]]
+PASS exhibited_graph_is_P4 [4 vertices, 3 edges, connected, degrees 1,2,2,1]
+PASS P4_edge_count_matches_paper_3 [|E(P_4)| = 3]
+PASS P4_is_triangle_free [no K_3 by clique search and by injection search]
+charpoly(L(P_4)) low->high = [0, -4, 10, -6, 1] ; paper factorisation expands to [0, -4, 10, -6, 1]
+PASS P4_charpoly_equals_paper_factorisation [t^4-6t^3+10t^2-4t from det(tI-L) and from t(t-2)(t^2-4t+2)]
+PASS P4_claimed_spectrum_are_the_roots [2+r2, 2, 2-r2, 0 all annihilate the degree-4 charpoly and are distinct]
+PASS P4_spectrum_trace_identity [sum of claimed eigenvalues = trace L = 2|E| = 6]
+PASS P4_spectrum_strictly_decreasing [2+r2 > 2 > 2-r2 > 0, and each is the root of that rank in det(tI-L)]
+PASS P4_bisection_brackets_agree_with_closed_forms [mu_1 in (3.414213562, 3.414213562]; mu_2 in (2.000000000, 2.000000000]; mu_3 in (0.585786438, 0.585786438]; mu_4 in (-0.000000000, 0.000000000]]
+PASS eps2_P4_equals_1_plus_sqrt2 [top two roots of det(tI-L) are 2+r2 and 2, and (2+r2) + 2 - 3 = 1 + r2 exactly]
+eps_2(P_4) enclosure (2.414213562373, 2.414213562373]; 1+sqrt2 in (2.414213562000, 2.414213563000)
+PASS eps2_P4_enclosure_contains_1_plus_sqrt2 [independent bisection enclosure of width < 1e-6 straddles 1+sqrt2]
+PASS ex_3_K3_equals_2_by_enumeration [brute force over all 8 graphs on 3 vertices gives ex(3;K_3) = 2]
+PASS conjecture_hypotheses_all_met [k = 2 >= 1, |V(G)| = 4 >= k, G is K_3-free]
+PASS REFUTATION_eps2_P4_strictly_exceeds_ex3_K3 [2.414213562373 > 2, margin >= 0.414213562373]
+PASS REFUTATION_exact_gap_is_sqrt2_minus_1_positive [eps_2(P_4) - ex(3;K_3) = sqrt2 - 1 > 0]
+PASS ex_2_K3_equals_1_by_enumeration [ex(2;K_3) = 1]
+PASS minimality_in_k_no_counterexample_at_k_equals_1 [eps_1(G) <= 1 = ex(2;K_3) for every one of the 33867 labelled graphs on <= 6 vertices]
+PASS small_order_eps_k_equals_edge_count [eps_k(G) = |E(G)| verified on 2196 (graph, k) pairs with n-1 <= k <= n, n <= 5]
+PASS minimality_in_order_no_counterexample_when_nV_le_k_plus_1 [eps_k(G) = |E(G)| <= ex(k+1;K_3), no violation certificate, for every triangle-free G on n <= 5 vertices with k in {n-1, n}]
+PASS minimality_in_order_none_below_four_vertices [no triangle-free graph on 2 or 3 vertices violates the bound at k = 2]
+PASS order_four_census_P4_is_the_only_violator [12 labelled triangle-free 4-vertex violators at k=2, all isomorphic to P_4 (12 = 4!/2)]
+PASS turan_numbers_match_enumeration [ex(n;K_r) = |E(T_{r-1}(n))| for all 2 <= n <= 6, r in {3,4,5}]
+PASS turan_increment_and_deficit_formulas [ex(k+1;K_r)-ex(k;K_r) = k-floor(k/(r-1)) and k+ex(k;K_r)-ex(k+1;K_r) = floor(k/(r-1)) >= 1, r <= 7, k <= 40]
+PASS pendant_lemma_charpoly_identity [det(tI-L(F^<N>)) equals the lemma's product formula for F in K_2,P_3,K_3,P_4]
+PASS pendant_lemma_eigenvalue_one_multiplicity [eigenvalue 1 has multiplicity exactly k(N-1) in every case]
+PASS pendant_lemma_k_largest_are_the_beta_i [exactly k Laplacian eigenvalues of F^<N> are > 1, and exactly k are >= N+1]
+PASS pendant_eps_identity_k_plus_e_minus_sum_alpha [eps_k(F^<N>) from the top k eigenvalues agrees with k+e-sum(alpha_i) from the bottom k]
+PASS pendant_strict_bound_eps_k_gt_k_plus_e_minus_2e_over_N1 [strict inequality of the lemma holds in every case]
+PASS pendant_sum_alpha_below_2e_over_N_plus_1 [0 <= sum(alpha_i) < 2e/(N+1) in every case]
+pendant amplification instances: K_3: |V|=6, eps_2>=2.561553 vs ex(3;K_3)=2; C_4: |V|=21, eps_3>=5.380832 vs ex(4;C_4)=4
+PASS amplified_graphs_are_connected_and_H_free [K_2^<2> is K_3-free, K_3^<6> is C_4-free, both connected]
+PASS amplification_deficit_d_at_least_one [k+e = C(h,2) and ex(h;H) <= C(h,2)-1, so d >= 1 for H = K_3, C_4]
+PASS corollary_every_H_with_min_degree_two_has_counterexample [Corollary 4: eps_k(K_{h-1}^<2e>) > ex(k+1;H) for H = K_3, C_4]
+Turan-based instances: r=3,k=3: |V|=15, eps_3 in (4.433978,4.433978], ex(4;K_3)=4; r=3,k=4: |V|=36, eps_4 in (7.314804,7.314804], ex(5;K_3)=6; r=4,k=3: |V|=21, eps_3 in (5.380832,5.380832], ex(4;K_4)=5
+PASS Kr_free_instances_are_connected_and_Kr_free [T_{r-1}(k)^<2q> is connected and K_r-free for (r,k) in {(3,3),(3,4),(4,3)}]
+PASS corollary_Kr_free_counterexample_at_parameter_k [Corollary 5: |E(T_{r-1}(k))| = ex(k;K_r) and eps_k > ex(k+1;K_r) in every instance]
+PASS excess_positive_but_below_floor_k_over_r_minus_1 [Remark 6 (excess): 0 < eps_k(G) - ex(k+1;K_r) < floor(k/(r-1)) in every instance]
+PASS remark_six_all_counterexample_instances_registered [6 of 6 expected instances registered upstream (P_4, 2 from Corollary 4, 3 from Corollary 5)]
+Remark 6 approximate-bound instances: P_4 (Theorem 1), H=K_3: eps_2 <= 2.414214, ex(2;H) = 1, allowance 6*sqrt(2); K_2^<2e> (Corollary 4), H=K_3: eps_2 <= 2.561553, ex(2;H) = 1, allowance 6*sqrt(2); K_3^<2e> (Corollary 4), H=C_4: eps_3 <= 5.380832, ex(3;H) = 3, allowance 10*sqrt(3); T_2(3)^<2q> (Corollary 5), H=K_3: eps_3 <= 4.433978, ex(3;H) = 2, allowance 10*sqrt(3); T_2(4)^<2q> (Corollary 5), H=K_3: eps_4 <= 7.314804, ex(4;H) = 4, allowance 14*sqrt(4); T_3(3)^<2q> (Corollary 5), H=K_4: eps_3 <= 5.380832, ex(3;H) = 3, allowance 10*sqrt(3)
+PASS remark_six_instances_consistent_with_approximate_bound [eps_k(G) <= ex(k;H) + (4k-2)sqrt(k) for all 6 instances, decided by exact squaring]
+PASS ex_3_K2_plus_K1_equals_0 [every 3-vertex graph with an edge contains K_2 + K_1, so ex(3;H) = 0]
+PASS remark_K2_violates_at_k_two_with_isolated_vertex_H [Remark 8: K_2 is (K_2+K_1)-free and eps_2(K_2) in (1.000000, 1.000000] > 0]
+NOT RE-RUN: no exhaustive census beyond the ranges printed above -- the k=1 census covers all labelled graphs on at most 6 vertices, the order censuses all graphs on at most 5 vertices (all triangle-free graphs on exactly 4 vertices at k=2), Turan numbers are enumerated for n <= 6 and the increment formula is checked for r <= 7, k <= 40; the general theorems for arbitrary H and k are verified only on the listed instances. Remark 6 is only partly evaluated: its consistency assertion eps_k <= ex(k;H)+(4k-2)sqrt(k) is tested on the six instances listed above and not for all r and k, and its asymptotic comparison (excess O(k) against ex(k+1;K_r) = Theta(k^2)) is verified only through the per-instance excess bound, not in general. NOT CHECKED AGAINST ANY SOURCE: the wording and hypotheses of Conjecture 7.1, and the approximate bound, are transcribed from the paper's own quotation of arXiv:2601.17575v1; this program has no access to that preprint, so a transcription error in the conjecture -- for instance a dropped hypothesis on H, which Remark 8 shows would matter -- would not be detected here.
+VERDICT: ALL 38 CHECKS PASS
+=== program exited with status 0 ===

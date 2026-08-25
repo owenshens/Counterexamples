@@ -1,0 +1,72 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a23614b99c13aaf54da969bf59accb6221bdad7e728dbbcf9035f7e1d87a4515
+python:  Python 3.9.25
+=== program output follows ===
+# verify.py -- Conjecture 4.3 of Dolfi-Hafezieh-Spiga, least counterexample n = 170
+# python 3.9.25, standard library only, exact integer arithmetic
+# ---- A. the exhibited object ----
+# n = 170, 2^n - 1 = 1496577676626844588240573268701473812127674924007423 (52 decimal digits)
+PASS A1.n_equals_product_of_its_primes [2 * 5 * 17 -> 170]
+PASS A2.independent_factorisation_of_n_matches_paper [trial division gives [2, 5, 17], omega=3]
+PASS A3.product_of_paper_factors_equals_2^n-1 [product has 52 digits, 2^170-1 has 52]
+PASS A4.paper_factors_distinct_and_gt_1 [7 factors, ascending]
+PASS A5.five_small_factors_prime_by_trial_division [3,11,31,43691,131071 all prime]
+PASS A6.five_certificate_base_primes_prime_by_trial_division [709,2437,2857,6367,27953]
+# ---- B. primality of the two large factors ----
+PASS B1.pocklington_chain_proves_P [2598660833 ok (F=1727833, F^2-N=2982808215056); 9520972806333758431 ok (F=72640366264849, F^2-N=5276622801570439853279234370)]
+PASS B2.pocklington_chain_proves_Q [114281 ok (F=2857, F^2-N=8048168); 10285291 ok (F=114281, F^2-N=13049861670); 204710635813423 ok (F=65486447797, F^2-N=4288474640358570339786); 26831423036065352611 ok (F=204710635813423, F^2-N=41906444388304480332801624318)]
+PASS B3.chain_endpoints_are_the_two_large_factors_of_2^n-1 [P=9520972806333758431, Q=26831423036065352611]
+PASS B4.independent_lucas_certificates_for_P_and_Q [P prime=True, Q prime=True (n-1 factorisations computed here)]
+# ---- C. omega(2^170-1) = 7 ----
+PASS C1.omega_2^n-1_is_exactly_7 [complete factorisation into 7 certified distinct primes]
+PASS C2.independent_refactorisation_reproduces_the_seven_primes [cyclotomic sieve gives [3, 11, 31, 43691, 131071, 9520972806333758431, 26831423036065352611] (omega=7)]
+# Phi_d(2) for d | 170: 1:1, 2:3, 5:31, 10:11, 17:131071, 34:43691, 85:9520972806333758431, 170:26831423036065352611
+PASS C3.nontrivial_cyclotomic_values_are_the_paper_factors [each Phi_d(2), d>1, is prime here so the 7 factors are the 7 cyclotomic values]
+PASS C4.cyclotomic_values_reconstructed_in_Z[x]_and_divide_2^n-1 [all 8 values divide, and agree with Phi_d(x) built by long division in Z[x] (monic, deg = phi(d))]
+# ---- D. hypotheses hold, conclusion fails ----
+PASS D1.gcd_2^n-1_n_equals_1 [gcd = 1]
+PASS D2.gcd_mechanism_orders_of_2_mod_5_and_17 [2^n-1 odd; ord_5(2)=4, ord_17(2)=8, neither divides 170; 5 and 17 do not divide 2^n-1]
+PASS D3.hypothesis_omega_n_at_least_3 [omega(170) = 3]
+PASS D4.CONCLUSION_FAILS_omega_2^n-1_lt_2^omega_n [omega(2^170-1) = 7 < 8 = 2^3  ==> Conjecture 4.3 is false]
+PASS D5.tau_n_and_lemma_2_bound_are_tight [tau(170) = 8, omega(2^n-1) = 7 = tau(n) - 1]
+PASS D6.lemma_mechanism_every_prime_of_Phi_d(2)_has_order_d [d -> ord_r(2) for the prime r | Phi_d(2): 2->2, 5->5, 10->10, 17->17, 34->34, 85->85, 170->170]
+# ---- E. minimality census over 1 <= n < 170 ----
+# 23 integers below 170 have omega >= 3; 4 of them satisfy the gcd hypothesis
+PASS E1.exhaustive_census_of_hypothesis_satisfiers_below_n [computed [70, 130, 154, 165], paper claims [70, 130, 154, 165]]
+PASS E2.squarefree_three_prime_products_below_n_match_paper_list [13 values, computed == paper: True]
+PASS E3.no_integer_below_n_has_four_distinct_prime_factors [found []; 2*3*5*7 = 210 > 170 so l = 3 is forced]
+PASS E4.non_squarefree_case_is_killed_by_the_tau_bound [10 non-squarefree candidates, all with tau(n)-1 >= 2^omega(n); 3*2^(l-1)-1 >= 2^l for l <= 64]
+PASS E5.every_multiple_of_6_fails_the_gcd_hypothesis_via_3 [7 of the 13 computed values are divisible by 6; 3 | gcd for each: [30, 42, 66, 78, 102, 114, 138]]
+PASS E6.the_values_105_and_110_fail_via_orders_of_2_mod_7_and_11 [n=105: ord_7(2)=3 divides n, so 7 | gcd; n=110: ord_11(2)=10 divides n, so 11 | gcd]
+PASS E7.the_stated_exclusions_leave_exactly_the_paper_census [13 - 7 (mult. of 6) - 2 (105,110) = [70, 130, 154, 165], and this equals the independently computed census]
+#   n=70: omega(n)=3, tau(n)=8, omega(2^n-1)=9, need >= 8 -> no counterexample
+#   n=130: omega(n)=3, tau(n)=8, omega(2^n-1)=9, need >= 8 -> no counterexample
+#   n=154: omega(n)=3, tau(n)=8, omega(2^n-1)=10, need >= 8 -> no counterexample
+#   n=165: omega(n)=3, tau(n)=8, omega(2^n-1)=10, need >= 8 -> no counterexample
+PASS E8.MINIMALITY_no_n_below_170_violates_the_conjectured_bound [all 4 hypothesis satisfiers below 170 have omega(2^n-1) >= 2^3 = 8]
+PASS E9.lemma_2_bound_holds_on_every_census_member [omega(2^n-1) >= tau(n) - 1 for n in [70, 130, 154, 165]]
+PASS E10.displayed_cyclotomic_factorisations_of_the_table_are_correct [n=70: Phi_35(2)=8727391=71*122921; n=130: Phi_130(2)=409368176241571=131*409891*7623851; n=154: Phi_11(2)=2047=23*89; n=165: Phi_11(2)=2047=23*89]
+# ---- F. theorem recomputed, and mutation self-tests ----
+PASS F1.THEOREM_least_counterexample_recomputed_is_170 [smallest counterexample found by scanning n = 1..170 is 170; undecided exponents: none]
+PASS F2.selftest_corrupted_factorisations_are_rejected [43691 -> 43693 rejected; the product-preserving merge 3*11 -> 33 is also rejected (same product, not a prime factorisation); the true list is accepted]
+PASS F3.selftest_corrupted_P_and_Q_rejected_by_both_primality_proofs [P+2 rejected (F does not divide N-1) and Q+2 rejected (F does not divide N-1) by their Pocklington rows, and both by the Lucas certifier; the true P and Q still certify prime]
+PASS F4.selftest_violation_predicate_is_false_on_non_counterexamples [n=70 (omega(2^n-1)=9 vs 2^omega(n)=8), n=30 (gcd != 1)]
+PASS F5.selftest_certifier_rejects_known_composites [rejected 2^170-1, Phi_130(2), the strong pseudoprime 3215031751, and 3P]
+# ---- G. supplementary, beyond the paper's claim ----
+PASS G1.lemma_2_holds_for_every_exponent_up_to_100_with_gcd_1 [omega(2^n-1) >= tau(n)-1 verified for all 78 such n <= 100; violations: []]
+# supplementary: 101 integers in (170, 1000] also satisfy the two hypotheses ([182, 190, 195, 230, 238, 255] ...); the paper makes no claim about them and they are not factored here
+# SCOPE: the census in E and F is the paper's COMPLETE minimality
+#   claim: all 169 integers below 170 are enumerated, the 23 with
+#   omega >= 3 are tested against the gcd hypothesis, and each of
+#   the 4 survivors has 2^n-1 factored completely.  Nothing in the
+#   paper's claim is left unverified or narrowed.
+# NOT re-run: (i) the supplementary sweep G1 stops at n = 100,
+#   because factoring 2^n-1 for prime exponents near 170 (e.g.
+#   n = 167) is far outside the budget -- G1 is an extra, not part
+#   of the paper's claim, whose Lemma 2 is proved, not computed;
+#   (ii) the bibliographic attributions in Remark 3 ([LLRS]
+#   Example 3.8, OEIS A046800) are not checkable offline.
+# elapsed 0.70 s
+VERDICT: ALL 36 CHECKS PASS
+=== program exited with status 0 ===

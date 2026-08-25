@@ -1,0 +1,78 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  088e81e998a1dae913ee32236c53b58bbe257efef66c53e4ece47172b470f734
+python:  Python 3.9.25
+=== program output follows ===
+NOTE verify.py -- g(C_9 (+) C_9) = 17, the n = 9 case of Gao-Thangadurai
+NOTE exact integer arithmetic only; n = 9 census budget 1080 s
+PASS A_is_a_set_of_16_points_of_G [16 transcribed pairs, 16 distinct, all in (Z/9Z)^2]
+PASS A_equals_the_printed_description [{0,...,7} x {0,1}]
+NOTE A (by integer representative x + 9y) = [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16]
+NOTE A (as points) = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0), (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)]
+PASS A_has_g_minus_one_elements [|A| = 16 = 17 - 1 = 2n-2]
+PASS claimed_value_is_the_Gao_Thangadurai_value [n = 9 odd, 2n-1 = 17]
+PASS A_contains_the_normalizing_pair_B [B = [(0, 0), (1, 0)]]
+PASS A_has_no_9_element_zero_sum_subset [all 11440 of the 9-element subsets of A examined, 0 zero-sum]
+PASS A_layer_argument_holds [every 9-subset has 1 <= t <= 8 points in the upper layer and second-coordinate sum t mod 9 != 0]
+PASS lower_bound_g_at_least_17 [a 16-element set with no 9-element zero-sum subset exists]
+PASS every_17_element_superset_of_A_has_a_zero_sum_subset [65 extensions, each with an explicit 9-element zero-sum witness; e.g. z = (8, 0) with [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)]]
+PASS translation_is_exact_bit_permutation [107 masks x 81 shifts against coordinate addition]
+PASS subsum_states_match_brute_force [12 random partial sets, all Sigma_j for j <= 8]
+PASS admissibility_rule_matches_definition [-z in Sigma_8(P) tested against all (n-1)-subsets of a random P with |P| = 10]
+PASS nonedge_rule_yields_a_real_zero_sum_subset [witness (0, 0) + (1, 0) + [(4, 5), (6, 0), (7, 7), (1, 1), (2, 2), (6, 1), (0, 2)] sums to 0]
+PASS three_G_is_a_subgroup_of_order_9 [3G = [(0, 0), (0, 3), (0, 6), (3, 0), (3, 3), (3, 6), (6, 0), (6, 3), (6, 6)]]
+PASS lemma_primitive_difference [the relation u-v in 3G is an equivalence with 9 classes of size 9, so any set of more than 9 points has a primitive difference]
+PASS normalization_hypothesis_holds_for_17_element_sets [the largest coset of 3G has 9 elements and 17 > 9, so every 17-element subset of G meets two cosets and therefore has a primitive difference: Lemma 4 does apply to the candidates]
+PASS GL2_over_Z9_enumerated [3888 invertible matrices, every inverse verified]
+PASS primitive_vectors_are_exactly_the_normalizable_ones [72 primitive vectors, each with an explicit M in GL_2 sending it to e_1; no vector of 3G is normalizable]
+PASS exponent_of_G_is_the_zero_sum_size [element orders {1: 1, 9: 72, 3: 8}, exp(G) = 9, and exp(G)*c = 0 for every c, so an exp(G)-term sum is affine-invariant]
+PASS affine_maps_preserve_9_element_zero_sums [400 random affine maps x random 9-subsets (NOTE: the three tests behind this count are algebraic identities -- for any M and c the translation part contributes n*c = 0 -- so this check exercises the arithmetic code, not the paper; the substantive form of Lemma 4's invariance is the next check)]
+PASS affine_maps_transport_freeness_of_whole_sets [under 6 random affine maps the image of the free 16-set A is still free while the image of a from-scratch non-free 16-set is still non-free (all 11440 nine-subsets summed each time)]
+PASS E_has_79_elements_ordered_by_x_plus_9y [position p carries group index p+2, p = 0..78]
+PASS engine_forced_points_are_exactly_B_in_E_position_order [shift = 2 makes the DFS force [(0, 0), (1, 0)] = B, and its position p <-> group index p+2 convention reproduces E[p] for all 79 positions]
+PASS stabilizer_order_is_108 [brute force over all 314928 affine maps of G]
+PASS stabilizer_equals_the_printed_two_families [|R^x| = 6 and 2*9*6 = 108; the two printed families give exactly the 108 brute-forced maps]
+PASS stabilizer_is_a_group [11664 compositions, all inside Gamma]
+PASS gamma_permutes_the_79_positions [each of the 108 maps induces a bijection of {0,...,78}]
+PASS position_action_is_a_group_action [300 random pairs: pi_{gh} = pi_g o pi_h]
+PASS canonical_triples_direct_enumeration [992 of the 79079 triples of positions are canonical]
+PASS gamma_is_generated_by_3_of_its_elements [closure of 3 generators has order 108]
+PASS orbit_count_confirms_canonical_count [992 Gamma-orbits on 3-subsets by union-find, exactly one canonical triple in each]
+PASS burnside_confirms_canonical_count [(1/|Gamma|) sum of fixed 3-subsets = 107136/108 = 992]
+PASS feasible_prefixes_and_lossless_bound [831 canonical triples have p_3 <= 66 = 78-12, and the 161 discarded ones admit 0 completions]
+PASS equation_2_completion_count [sum of C(78-p_3,12) = 811509569804714]
+PASS counted_family_is_large_enough_to_meet_every_orbit [811509569804714 counted >= 5391644226101705/108 = 49922631723164 needed]
+PASS lemma_6_sampled_on_random_15_subsets [200 random 15-subsets: the lexicographically least image always begins with a canonical triple (sampled, not exhaustive)]
+PASS brute_force_g_C2_plus_C2_equals_5 [all 2^4 subsets inspected, 0 zero-sum 2-subsets of G, largest set with none has 4 elements -> g = 5, eq. (1) gives 5; extremal example [(0, 0), (1, 0), (0, 1), (1, 1)]]
+PASS brute_force_g_C3_plus_C3_equals_5 [all 2^9 subsets inspected, 12 zero-sum 3-subsets of G, largest set with none has 4 elements -> g = 5, eq. (1) gives 5; extremal example [(0, 0), (1, 0), (0, 1), (1, 1)]]
+PASS brute_force_g_C4_plus_C4_equals_9 [all 2^16 subsets inspected, 116 zero-sum 4-subsets of G, largest set with none has 8 elements -> g = 9, eq. (1) gives 9; extremal example [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1), (2, 1), (3, 1)]]
+PASS engine_finds_a_4_element_free_set_in_C3_plus_C3 [unbiased DFS returns [(0, 0), (1, 0), (0, 1), (1, 1)], brute-force free of 3-element zero-sum subsets; it is {0,...,1} x {0,1}]
+PASS normalized_census_complete_C3_plus_C3 [all 35 completions of B to a 5-element set accounted for in 5 nodes; none is free]
+PASS unnormalized_census_complete_C3_plus_C3 [all 126 subsets of size 5 of G accounted for in 33 nodes with no normalization and no symmetry reduction; none is free]
+PASS harborth_constant_C3_plus_C3_is_5 [lower bound from the 4-element free set, upper bound from the exhaustive census: g = 5 = 2n-1, the odd branch of eq. (1)]
+PASS engine_finds_a_8_element_free_set_in_C5_plus_C5 [unbiased DFS returns [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1), (2, 1), (3, 1)], brute-force free of 5-element zero-sum subsets; it is {0,...,3} x {0,1}]
+PASS normalization_reduction_valid_for_n5 [non-primitive set has order 1 and is a subgroup, its 25 cosets have size 1, GL_2(Z/5Z) (order 480) moves every one of the 24 primitive vectors to e_1, exp(G)*c = 0, and 2n-1 = 9 > 1]
+PASS normalized_census_complete_C5_plus_C5 [all 245157 completions of B to a 9-element set accounted for in 3185 nodes; none is free]
+PASS unnormalized_census_complete_C5_plus_C5 [all 2042975 subsets of size 9 of G accounted for in 43881 nodes with no normalization and no symmetry reduction; none is free]
+PASS harborth_constant_C5_plus_C5_is_9 [lower bound from the 8-element free set, upper bound from the exhaustive census: g = 9 = 2n-1, the odd branch of eq. (1)]
+PASS engine_finds_a_12_element_free_set_in_C7_plus_C7 [unbiased DFS returns [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1)], brute-force free of 7-element zero-sum subsets; it is {0,...,5} x {0,1}]
+PASS normalization_reduction_valid_for_n7 [non-primitive set has order 1 and is a subgroup, its 49 cosets have size 1, GL_2(Z/7Z) (order 2016) moves every one of the 48 primitive vectors to e_1, exp(G)*c = 0, and 2n-1 = 13 > 1]
+PASS normalized_census_complete_C7_plus_C7 [all 17417133617 completions of B to a 13-element set accounted for in 3187545 nodes; none is free]
+PASS harborth_constant_C7_plus_C7_is_13 [lower bound from the 12-element free set, upper bound from the exhaustive census: g = 13 = 2n-1, the odd branch of eq. (1)]
+PASS engine_rediscovers_A_at_size_16 [the DFS at k = 16 returns [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0), (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)] in 15 nodes; brute force over all C(16,9) subsets confirms it is free, and it is exactly A]
+PASS prefix_code_path_can_report_a_free_set [the same prefix-driven code path used for the n = 9 census finds A below the canonical prefix (0,1,2), so a survivor would not be silently dropped]
+PASS engine_agrees_with_a_definition_only_reference_on_every_prefix [642 free prefixes over 4 cases: the engine returned exactly the lexicographically least free completion the unpruned reference enumerator found (3029 free sets enumerated in total), and None exactly when there is none]
+PASS engine_rule1_and_rule3_masks_equal_their_definitions [the masks _make_dfs itself computed at 4807 rule-1 and 2537 rule-3 nodes (n = 5 and n = 9) agree everywhere with '-z not in Sigma_8(P)' and '-(u+v) not in Sigma_7(P)' recomputed by brute force from the selected points]
+PASS pruning_never_rejects_the_branch_containing_A [for each of the 14 prefixes of A's own position sequence the DFS still returns A, so no rejection rule discards a subfamily that does contain a known free set]
+PASS n9_census_accounting_is_exact [after each of the 108 fully searched prefixes the credited completion count equalled the independent binomial total exactly]
+PASS n9_census_no_free_17_element_set_in_the_searched_range [72315063 nodes searched, no 17-element normalized set survives]
+PASS n9_census_coverage_is_sound_and_nonempty [216324289945583 of 811509569804714 completions of eq. (2) examined or soundly rejected (26.657%), 108 of 831 prefixes finished, 72315063 nodes, 1080 s]
+NOTE NOT RE-RUN: 595185279859131 of the 811509569804714 completions of eq. (2) (26.657% of the census was covered here). The paper's upper bound is an exhaustive search over all 831 feasible canonical prefixes; at the rate measured above (2e+11 completions/s in pure Python) finishing it needs of the order of 2971 s more, single process, which exceeds this program's budget -- and the prefixes not yet touched are the less efficient ones, so that is a lower estimate. Run 'python3 verify.py --full' to reproduce the census in full; no --full run accompanies this transcript, so the time above is an estimate extrapolated from the covered part and not a measurement.
+NOTE what IS re-derived exactly at n = 9: the 16-element lower-bound set and its maximality, the stabilizer of order 108, the 992 canonical triples, the 831 feasible prefixes and the integer 811509569804714 of eq. (2); and the identical search engine settles n = 3, 5, 7 exhaustively.
+NOTE the paper's node count 879672298 is not reproduced: this program prunes with degree peeling plus a greedy-colouring clique bound rather than an exact clique search, so its node count (72315063 here) is a property of the implementation, not a mathematical claim.
+NOTE NOT CHECKED: the authors' own census code, and the complete independent re-run of it reported in the paper. This program is standard-library only and reads no external file; it re-derives the mathematics instead.
+PASS program_ran_to_completion [every stage returned]
+NOTE g(C_9 (+) C_9) >= 17 is fully re-derived here; g <= 17 is re-derived only over the covered part of the census, as reported above.
+NOTE elapsed 1144.4 s
+VERDICT: ALL 61 CHECKS PASS
+=== program exited with status 0 ===

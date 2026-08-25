@@ -1,0 +1,82 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d5b8d73e8974bee16e1f115cb86dbccc2208fc1507f01977cacc0aa85561e811
+python:  Python 3.9.25
+=== program output follows ===
+Verification of an RM(7,3,2) mixed radial Moore graph on 104
+vertices, recomputed from the printed adjacency certificate.
+
+PASS certificate_parses [104 rows decoded]
+PASS certificate_rows_are_vertices_0_to_n_minus_1 [n=104, labels 0..103 in order: True]
+PASS order_is_104 [|V|=104]
+PASS all_entries_in_vertex_range [offending rows: []]
+PASS no_loops [rows with a self-reference: []]
+PASS no_repeated_entries_within_a_row [rows with repeats: []]
+PASS every_row_lists_7_neighbours_and_3_arc_heads [(|U|,|A+|) values present: [(7, 3)]]
+PASS undirected_adjacency_is_symmetric [unmatched pairs: 0, first: []]
+PASS edge_count_is_364 [|E|=364, 104*7/2=364]
+PASS arc_count_is_312 [|A|=312, 104*3=312]
+PASS no_directed_digons [digons: 0, first: []]
+PASS no_edge_arc_conflicts [conflicting pairs: 0, first: []]
+PASS undirected_degree_is_7_at_every_vertex [offenders: []]
+PASS arc_out_degree_is_3_at_every_vertex [offenders: []]
+PASS every_vertex_is_an_arc_head_exactly_3_times [in-degree values present: [3]]
+PASS out_neighbourhood_size_is_r_plus_z_equals_10 [sizes present: [10]]
+PASS every_vertex_reaches_all_104_vertices [vertices with incomplete reach: []]
+PASS bfs_and_relation_closure_distances_coincide [sources with differing distance rows: 0]
+PASS eccentricity_multiset_is_2_once_and_3_a_hundred_and_three_times [computed: [(2, 1), (3, 103)]]
+PASS radius_equals_k_equals_2 [radius=2]
+PASS diameter_equals_k_plus_1_equals_3 [diameter=3]
+PASS unique_central_vertex [centre=[0]]
+PASS central_layer_profile_is_1_10_93 [profile at vertex 0: [1, 10, 93]]
+PASS vertex_0_is_central_with_neighbours_1_to_7_and_arcs_to_8_9_10 [centre=[0], U(0)=[1, 2, 3, 4, 5, 6, 7], A+(0)=[8, 9, 10]]
+PASS moore_bound_M_7_3_2_equals_104_equals_order [M(7,3,2)=104, |V|=104]
+PASS orders_104_and_108_both_force_s_equals_10 [s admissible for 104: [10]; for 108: [10]]
+PASS order_104_forces_r_7_z_3 [solutions of M(r,z,2)=104: [(7, 3)]]
+PASS order_108_forces_r_3_z_7 [solutions of M(r,z,2)=108: [(3, 7)]]
+PASS two_ball_deficiency_equals_distance_three_count [vertices where |B_2(v)| + q(v) != 104: []]
+PASS moore_bound_attained_by_exactly_one_2_ball [vertices with |B_2| = 104: [0] (max |B_2| = 104)]
+PASS moore_status_sigma_M_equals_196 [1*10 + 2*93 = 196]
+PASS status_identity_sigma_v_equals_196_plus_q_v [vertices where the identity fails: []]
+PASS exactly_ten_vertices_at_distance_one_from_every_vertex [distance-1 counts present: [10]]
+PASS total_status_is_23762 [sum of sigma = 23762]
+PASS status_1_norm_N1_equals_3378 [N_1 = 3378 (and total - 104*196 = 3378)]
+PASS ordered_pairs_at_distance_three_equals_N1 [pairs at distance 3 = 3378]
+PASS RM_7_3_2_graph_exists_all_defining_conditions_hold [unmet conditions: none]
+PASS witness_is_a_radial_not_a_full_moore_graph [radius 2 < diameter 3, |centre|=1]
+PASS expanded_and_closed_forms_of_the_moore_bound_agree [pairs where 1+(r+z)+r(r-1+z)+z(r+z) != (r+z)^2+z+1: []]
+PASS directed_degree_recovered_from_the_order_is_7_at_108_and_3_at_104 [order 108 -> (r,z)=(3,7); order 104 -> (r,z)=(7,3)]
+PASS length_108_with_baseline_204_pins_r_3_z_7_using_no_table_layout [(r,z) of order 108 with baseline 204: [(3, 7)]; of order 104 with baseline 204: []]
+PASS quoted_status_vector_has_108_entries_not_104 [length 108; order of the exhibited graph is 104]
+PASS order_108_moore_status_baseline_is_204 [baseline 204, M(3,7,2)=108]
+PASS quoted_vector_has_status_norm_18 [8*(205-204) + 2*(209-204) = 18]
+PASS the_two_cells_have_different_orders_and_baselines [(3,7): order 108 baseline 204; (7,3): order 104 baseline 196]
+
+Echo of the decoded object: 104 vertices, undirected degree 7,
+arc out-degree 3, radius 2, diameter 3, centre [0].
+NOT RE-RUN HERE, stated explicitly:
+ (a) the bibliographic claim that a particular printed table
+     carries the entry 18 in the cell (r,z) = (7,3) is a fact
+     about published pages and cannot be checked by this
+     program.  Concretely, the row and column headers of the
+     two disputed tables are NOT reproduced anywhere in this
+     program or in the paper, so nothing here excludes a table
+     whose axes are indexed the other way round, i.e. by
+     (z,r); on that reading the 'transposed cell' correction
+     would itself be a misreading of a correctly printed
+     table, and no check above would detect it.  The same
+     holds for the paper's supporting quotation that the
+     source text names the vector s_{3,7,2}.  What IS checked
+     is the parameter arithmetic, which uses no table layout
+     at all: order 108 with baseline 204 forces undirected
+     degree 3 and directed degree 7, whereas (r,z) = (7,3) has
+     order 104 and baseline 196.
+ (b) no census over an external catalogue of mixed graphs is
+     attempted, and no minimality of N_1 = 3378 is tested;
+     the paper makes no optimality claim either.
+ (c) the exhaustive parameter search above ranges over the
+     pairs (r,z) with 0 <= r,z <= 40, which covers every pair
+     with M(r,z,2) <= 1681 and so both orders in question.
+
+VERDICT: ALL 45 CHECKS PASS
+=== program exited with status 0 ===

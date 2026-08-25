@@ -1,0 +1,52 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a2807bd5c9149cf306490caadfa1fc4b1182a04b2d8dc067c864f34b4f21293c
+python:  Python 3.9.25
+=== program output follows ===
+Counterexample to the aggregate-condition form of Karp-Sitnik Conjecture 1
+object: 3F2(2,2,2; 1,5; -1/2) with sigma=2, A=(2,2), B=(1,5), x=1/2
+CONJECTURE ACTED ON (Conjecture 1 of Karp-Sitnik, in the arXiv numbering), TRANSCRIBED BY HAND, NOT READ FROM THE SOURCE: "Theorem 3 is true for all sigma>0 and sum_{i=1}^{q}(b_i-a_i)>0"
+READING ENCODED BELOW (a premise taken from the paper, not verifiable here): sum(b_i-a_i)>0 REPLACES the componentwise inequalities b_i>a_i, all parameters remaining positive
+all arithmetic is exact over the rationals; every inequality is decided by
+integer cross-multiplication of certified rational enclosures
+
+PASS exhibited-object-is-3F2-with-stated-integer-parameters [top=(2, 2, 2) bot=(1, 5) argument=-1/2 q=2 sigma=2]
+PASS aggregate-hypothesis-holds-and-parameters-positive [sum(b_i-a_i)=2>0, all parameters>0, sigma=2>=1]
+PASS componentwise-hypothesis-b_i>a_i-fails-so-Theorem-3-does-not-apply [pairs (a_i,b_i) = [(2, 1), (2, 5)]; b_i>a_i holds for 1 of 2]
+PASS mu-equals-4/5-and-is-less-than-1 [mu=4/5]
+PASS right-hand-side-(1+mu*x)^-sigma-equals-25/49 [(1+4/5*1/2)^-2 = 25/49]
+PASS coefficient-equals-24(n+1)^2/((n+2)(n+3)(n+4)) [n=0..300 exact; c_0,c_1,c_2 = 1, 8/5, 9/5]
+PASS coefficient-partial-fractions-12/(n+2)-96/(n+3)+108/(n+4) [n=0..300 exact]
+PASS generic-term-generator-agrees-with-explicit-coefficients [n=0..40 exact]
+PASS certified-ratio-bound-for-the-series-tail [enclosure width < 10^-40]
+PASS H-is-strictly-below-(1+mu*x)^-sigma--CONCLUSION-FAILS [H in [0.496764972829812247934634258695796560856362711, 0.496764972829812247934634258695796560856362711], rhs = 0.510204081632653061224489795918367346938775510, gap >= 0.013439108802840813289855537222570786082412798]
+PASS H-lies-in-(0,1)-so-the-series-value-is-sane [H ~ 0.49676497282981224793]
+PASS H-is-below-the-paper-intermediate-bound-7912/15625 [H <= 0.49676497282981224793 < 0.50636800000000000000 = 7912/15625]
+PASS closed-form-1032-2544log(3/2)-matches-the-summed-series [closed form in [0.496764972829812247934634258695796560856362711, 0.496764972829812247934634258695796560856362711]]
+PASS log(3/2)-enclosure-is-consistent-with-exp-(independent-check) [exp(lo) <= 3/2 <= exp(hi); (1+1/5)/(1-1/5)=3/2]
+PASS paper-lower-bound-log(3/2)>19006/46875-is-correct [log(3/2) > 0.40546133333333333333 = 19006/46875]
+PASS partial-fraction-sums-combine-to-1032-2544log(3/2) [const=1032 coefficient of log(3/2)=-2544]
+PASS closed-form-of-sum-z^n/(n+r)-verified-against-its-series-r=2,3,4 [z=-1/2, 201 exact terms with tail bound]
+PASS 1032-2544*(19006/46875)-equals-7912/15625 [value = 7912/15625]
+PASS cross-multiplied-discriminant-2937-shows-7912/15625<25/49 [25*15625 - 49*7912 = 2937]
+PASS linear-Taylor-coefficients-of-both-sides-agree--sigma*mu [16 parameter sets]
+PASS quadratic-Taylor-coefficient-is-sigma(sigma+1)/2*mu^2*P_A/P_B [16 parameter sets]
+PASS quadratic-difference-is-negative-exactly-when-P_B>P_A [16 parameter sets]
+PASS family-A=(m,m)-B=(1,m^2+1)-satisfies-aggregate-mu<1-and-P_B>P_A [m=2..400; at m=2, P_A=9/4 < 12/5=P_B; m>=3: P_A<=16/9<2<P_B]
+PASS infinite-family-violates-the-bound-at-x=1/1000-for-every-sigma-tested [95 cases: m=2..20 x sigma in {1/3,1/2,1,2,3}]
+PASS Karp-Sitnik-Theorem-3-holds-on-componentwise-admissible-parameters [288 cases strictly satisfy the lower bound]
+PASS exhibited-object-fails-b_i>=a_i-too-so-the-non-strict-reading-is-untouched [pairs (a_i,b_i) = [(2, 1), (2, 5)]; b_i>=a_i holds for 1 of 2, so the object is void under the reading 'b_i>=a_i and sum(b_i-a_i)>0']
+PASS bound-holds-on-non-strict-componentwise-parameters-b_i>=a_i-at-x>0 [180 cases with b_i>=a_i, sum(b_i-a_i)>0, x>0 all satisfy the bound strictly, as the result credited to Luke requires; the non-strict reading of Conjecture 1 is NOT refuted by this bundle]
+PASS no-q=1-parameter-pair-with-the-aggregate-condition-violates-the-bound [360 pairs/sigma/x combinations, all satisfy the bound]
+PASS weak-supermajorization-fails-at-k=1-while-its-final-sum-holds [k=1 needs a_1<=b_1 i.e. 2<=1 (false); k=2: 4<=6 (true)]
+PASS census-x=1/2-sigma-in-{1,2}-parameters-in-1..6-reproduces-the-example [36 violating parameter sets found, exhibited one among them; no componentwise-admissible set violates]
+
+NOTE: the quantifiers 'for every sigma>0' and 'for all sufficiently small x>0' are
+NOTE: infinite; they are checked here at the Taylor-coefficient level plus concrete
+NOTE: rational samples (sigma in {1/3,1/2,1,2,3}, m=2..20, x=1/1000).
+
+NOT RE-RUN: the READING of Conjecture 1 that makes the object above a counterexample. This program decides inequalities about hypergeometric series; it cannot decide what the authors of [KS] meant. What is refuted above is the form of Conjecture 1 whose parameter hypothesis is sum(b_i-a_i)>0 together with positivity, i.e. the form in which the aggregate condition REPLACES b_i>a_i. It is NOT a refutation of the rival reading 'b_i>=a_i>0 together with sum(b_i-a_i)>0', under which the aggregate clause is not idle (it excludes only A=B) and under which the exhibited object is void, since b_1=1>=a_1=2 fails; the two checks exhibited-object-fails-b_i>=a_i-too... and bound-holds-on-non-strict-componentwise-parameters... record that shortfall as computed facts, and no counterexample to that rival reading is claimed here or in the paper.
+NOT RE-RUN: the quoted source text. No external table, catalogue, preprint or journal page is consulted by this program, and none is needed for the inequality; but the paper's contribution is a reading of other authors' text, so none of the following is machine-checked here: that Conjecture 1 of [KS] reads verbatim as printed at the head of this transcript; that Conjecture 2 of [KS] lists exactly the hypotheses quoted in the paper, with no componentwise clause; that those numbers are the ones carried by the arXiv version cited; that Theorem 3 of [KS], the bound credited there to Luke, and Theorem 5 of [KP] have the hypotheses assumed above; and that [Derbazi] is the preprint cited, of the version cited, containing the quoted sentence about the broader conjectural condition at the place cited. A referee must compare every quotation, arXiv identifier and statement number in the paper against the sources by eye.
+
+VERDICT: ALL 30 CHECKS PASS
+=== program exited with status 0 ===

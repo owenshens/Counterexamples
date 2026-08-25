@@ -1,0 +1,246 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  4b3e3b2cfbf3aba126bf5b4220a2405793a31a8c408c3b35f29715a334f9ceee
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- counterexample to the Espinosa-Garcia / Pellicer
+exhaustiveness conjecture for balanced Sidon-Ramsey partitions of [65]
+Exact integer arithmetic only; no floating point, no tolerances.
+
+=== (1)-(2)  the exhibited partition W = {A_1,...,A_7} ===
+    W: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    W: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    W: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    W: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    W: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+      part 1 (|A|=10): [1, 5, 13, 23, 26, 28, 37, 56, 57, 63]
+        |Sigma| = 55, target 55, max sum-multiplicity = 1, differences 45 all distinct = True
+      part 2 (|A|=10): [2, 20, 21, 24, 33, 44, 50, 58, 60, 65]
+        |Sigma| = 55, target 55, max sum-multiplicity = 1, differences 45 all distinct = True
+      part 3 (|A|=9): [3, 4, 27, 30, 32, 39, 43, 49, 64]
+        |Sigma| = 45, target 45, max sum-multiplicity = 1, differences 36 all distinct = True
+      part 4 (|A|=9): [6, 15, 16, 22, 36, 40, 48, 51, 53]
+        |Sigma| = 45, target 45, max sum-multiplicity = 1, differences 36 all distinct = True
+      part 5 (|A|=9): [7, 14, 19, 25, 29, 38, 52, 54, 55]
+        |Sigma| = 45, target 45, max sum-multiplicity = 1, differences 36 all distinct = True
+      part 6 (|A|=9): [8, 11, 17, 34, 41, 45, 46, 59, 61]
+        |Sigma| = 45, target 45, max sum-multiplicity = 1, differences 36 all distinct = True
+      part 7 (|A|=9): [9, 10, 12, 18, 31, 35, 42, 47, 62]
+        |Sigma| = 45, target 45, max sum-multiplicity = 1, differences 36 all distinct = True
+PASS W: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS W: union of the parts is exactly [1..65]
+PASS W: exactly 7 parts
+PASS W: balanced -- max size - min size = 1 <= 1
+PASS W: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS W: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+    paper's printed |A_i| row      = [10, 10, 9, 9, 9, 9, 9]
+    derived |A_i| row (same order) = [10, 10, 9, 9, 9, 9, 9]
+PASS W: derived part sizes equal the paper's table row 10,10,9,9,9,9,9
+PASS W: derived size multiset is {10,10,9,9,9,9,9}
+    paper's printed |Sigma(A_i)| row = [55, 55, 45, 45, 45, 45, 45]
+    derived |Sigma(A_i)| row         = [55, 55, 45, 45, 45, 45, 45]
+PASS W: derived |Sigma(A_i)| row equals the paper's table row 55,55,45,45,45,45,45
+PASS W: |Sigma(A_i)| = C(|A_i|+1,2) for every i, so every A_i is Sidon
+    derived per-part difference counts = [45, 45, 36, 36, 36, 36, 36]
+    derived total difference count = 270 | paper's stated total = 270
+PASS W: the derived total number of positive pairwise differences is 270, matching the paper's stated 270
+PASS W: per-part difference counts are 45,45 and 36 five times, as the paper states
+PASS W: in every part the positive pairwise differences are distinct
+PASS W is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+
+=== (3)  balanced size profiles of 7 parts summing to 65 ===
+    partitions of 65 into exactly 7 positive parts (enumerated) = 37108
+    of those, balanced (max - min <= 1) = 1 -> [(9, 9, 9, 9, 9, 10, 10)]
+PASS exactly one balanced size profile exists for 7 parts summing to 65 (derived count = 1)
+PASS that unique balanced profile is (9,9,9,9,9,10,10)
+PASS the enumeration was not vacuous: 37108 profiles in total, of which 37107 are unbalanced
+
+=== (4)  the five partitions displayed on p.6 of arXiv:2309.08553v1 ===
+    P1: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    P1: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    P1: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    P1: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    P1: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS P1: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS P1: union of the parts is exactly [1..65]
+PASS P1: exactly 7 parts
+PASS P1: balanced -- max size - min size = 1 <= 1
+PASS P1: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS P1: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS P1 is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+PASS P1 has size multiset {10,10,9,9,9,9,9} (derived [9, 9, 9, 9, 9, 10, 10])
+    P2: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    P2: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    P2: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    P2: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    P2: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS P2: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS P2: union of the parts is exactly [1..65]
+PASS P2: exactly 7 parts
+PASS P2: balanced -- max size - min size = 1 <= 1
+PASS P2: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS P2: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS P2 is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+PASS P2 has size multiset {10,10,9,9,9,9,9} (derived [9, 9, 9, 9, 9, 10, 10])
+    P3: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    P3: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    P3: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    P3: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    P3: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS P3: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS P3: union of the parts is exactly [1..65]
+PASS P3: exactly 7 parts
+PASS P3: balanced -- max size - min size = 1 <= 1
+PASS P3: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS P3: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS P3 is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+PASS P3 has size multiset {10,10,9,9,9,9,9} (derived [9, 9, 9, 9, 9, 10, 10])
+    P4: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    P4: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    P4: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    P4: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    P4: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS P4: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS P4: union of the parts is exactly [1..65]
+PASS P4: exactly 7 parts
+PASS P4: balanced -- max size - min size = 1 <= 1
+PASS P4: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS P4: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS P4 is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+PASS P4 has size multiset {10,10,9,9,9,9,9} (derived [9, 9, 9, 9, 9, 10, 10])
+    P5: parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    P5: derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    P5: derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    P5: required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    P5: derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS P5: the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS P5: union of the parts is exactly [1..65]
+PASS P5: exactly 7 parts
+PASS P5: balanced -- max size - min size = 1 <= 1
+PASS P5: every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS P5: Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS P5 is a balanced Sidon-Ramsey partition of [65] into 7 Sidon sets
+PASS P5 has size multiset {10,10,9,9,9,9,9} (derived [9, 9, 9, 9, 9, 10, 10])
+PASS the five displayed partitions are pairwise distinct as unordered families (derived 5 distinct)
+
+=== (5)  the conjectured family F = FIVE union rho(FIVE) ===
+    distinct canonical forms among the five displayed  = 5
+    distinct canonical forms among their reflections   = 5
+    overlap (a displayed partition equal to a reflected one) = 0
+    |F| = 10
+PASS |F| = 10, i.e. the ten members of the conjectured family are pairwise distinct (expected 10)
+PASS the five reflected partitions are pairwise distinct (derived 5)
+PASS no displayed partition equals a reflected one, so the reflections are five genuinely new members (derived overlap 0)
+PASS F is rho-invariant: reflecting every member of F reproduces F exactly.  NOTE: this holds by construction -- F = D union rho(D) and rho is an involution, so rho(F) = rho(D) union D = F for ANY input; the check confirms the code, not the paper.  The falsifiable content is the two checks above
+PASS all 10 members of F are balanced Sidon-Ramsey partitions of [65] with sizes (10,10,9,9,9,9,9) (derived over 10 members)
+    rho([1..65]) has 65 elements; equals [1..65]: True
+PASS rho(x) = 66 - x maps [1..65] onto itself and is an involution (identity in the integers: no input could make this fail)
+PASS rho preserves the Sidon property on each of the 42 parts occurring here, all 42 of which are themselves Sidon (theorem, so this cannot fail either; the part count is asserted so the quantifier is not vacuous)
+
+=== (6)  direct membership test of W and rho(W) against F ===
+    W        = [[1, 5, 13, 23, 26, 28, 37, 56, 57, 63], [2, 20, 21, 24, 33, 44, 50, 58, 60, 65], [3, 4, 27, 30, 32, 39, 43, 49, 64], [6, 15, 16, 22, 36, 40, 48, 51, 53], [7, 14, 19, 25, 29, 38, 52, 54, 55], [8, 11, 17, 34, 41, 45, 46, 59, 61], [9, 10, 12, 18, 31, 35, 42, 47, 62]]
+    rho(W)   = [[1, 6, 8, 16, 22, 33, 42, 45, 46, 64], [2, 17, 23, 27, 34, 36, 39, 62, 63], [3, 9, 10, 29, 38, 40, 43, 53, 61, 65], [4, 19, 24, 31, 35, 48, 54, 56, 57], [5, 7, 20, 21, 25, 32, 49, 55, 58], [11, 12, 14, 28, 37, 41, 47, 52, 59], [13, 15, 18, 26, 30, 44, 50, 51, 60]]
+    canon(W) in F      -> False
+    canon(rho(W)) in F -> False
+PASS W is NOT a member of the conjectured family F (direct set comparison against all 10 members)
+PASS rho(W) is NOT a member of the conjectured family F
+PASS rho(W) != W, so the counterexample paper exhibits two distinct omitted partitions
+    rho(W): parts = 7 | integers listed = 65 | distinct = 65 | min = 1 | max = 65
+    rho(W): derived size profile = [9, 9, 9, 9, 9, 10, 10]
+    rho(W): derived |Sigma(A_i)| (parts in given order) = [55, 55, 45, 45, 45, 45, 45]
+    rho(W): required C(|A_i|+1,2)                       = [55, 55, 45, 45, 45, 45, 45]
+    rho(W): derived difference counts C(|A_i|,2) = [45, 45, 36, 36, 36, 36, 36] | total = 270
+PASS rho(W): the 65 listed integers are pairwise distinct (derived 65 listed, 65 distinct)
+PASS rho(W): union of the parts is exactly [1..65]
+PASS rho(W): exactly 7 parts
+PASS rho(W): balanced -- max size - min size = 1 <= 1
+PASS rho(W): every part is Sidon by |Sigma(A)| = C(|A|+1,2)
+PASS rho(W): Sidon reconfirmed from the definition (no sum has two representations) and by distinctness of differences; all three criteria agree part by part
+PASS rho(W) is itself a balanced Sidon-Ramsey partition of [65] with sizes (10,10,9,9,9,9,9)
+    maximum number of parts W shares with any member of F = 1 out of 7
+    closest member of F to W = [[1, 5, 13, 23, 26, 28, 37, 56, 57, 63], [2, 4, 14, 30, 31, 34, 39, 45, 52], [3, 7, 20, 25, 41, 48, 49, 51, 60], [6, 16, 18, 24, 27, 40, 54, 55, 59], [8, 12, 33, 36, 38, 46, 47, 53, 65], [9, 10, 15, 19, 32, 35, 43, 50, 62, 64], [11, 17, 21, 22, 29, 42, 44, 58, 61]]
+    parts of W absent from that member = [[2, 20, 21, 24, 33, 44, 50, 58, 60, 65], [3, 4, 27, 30, 32, 39, 43, 49, 64], [6, 15, 16, 22, 36, 40, 48, 51, 53], [7, 14, 19, 25, 29, 38, 52, 54, 55], [8, 11, 17, 34, 41, 45, 46, 59, 61], [9, 10, 12, 18, 31, 35, 42, 47, 62]]
+PASS W shares at most 1 of its 7 parts with any single member of F
+
+=== (7)  the paper's shortcut argument, re-derived ===
+    10-element part slots across the five partitions = 10
+    distinct 10-element sets among them             = 8
+PASS the five displayed partitions contribute exactly 10 ten-element part slots (derived 10)
+PASS only 8 of those 10 slots are distinct sets, as the paper says
+PASS the eight sets printed in the paper are themselves pairwise distinct
+PASS the distinct 10-element parts derived from the EGP source are exactly the eight sets printed in the paper
+    repeated 10-element part (occurs 2 times): [1, 3, 15, 22, 30, 33, 46, 50, 55, 56]
+    repeated 10-element part (occurs 2 times): [2, 4, 16, 23, 31, 34, 47, 51, 56, 57]
+PASS the repeated 10-element parts are exactly the first two of the paper's eight, read row-major, each occurring twice
+PASS each of the two repeated parts occurs exactly twice (10 slots = 8 distinct + 2 repeats)
+    displayed partitions owning each repeated 10-element part = [[1, 2], [3, 4]]
+PASS the first repeated part belongs to displays 1 and 2 and the second to displays 3 and 4, exactly as the paper states (derived [[1, 2], [3, 4]])
+
+=== (7b)  the {2,65} / {1,64} obstruction ===
+    rho({2,65}) = [1, 64] so {1,64} is the reflected pair
+PASS rho({2,65}) = {1,64}, so the two pair conditions are reflections of each other
+    displayed 10-element slots containing {2,65} = []
+    displayed 10-element slots containing {1,64} = []
+PASS no 10-element part of the five displayed partitions contains {2,65}
+PASS no 10-element part of the five displayed partitions contains {1,64}
+    members of F having a 10-element part containing {2,65} = 0
+    members of F having a 10-element part containing {1,64} = 0
+PASS no member of F (displayed or reflected) has a 10-element part containing {2,65}
+PASS no member of F has a 10-element part containing {1,64}
+    A_2 = [2, 20, 21, 24, 33, 44, 50, 58, 60, 65] | |A_2| = 10
+PASS {2,65} is contained in the 10-element part A_2 of W, hence W cannot be a member of F
+    derived rho(A_2)      = [1, 6, 8, 16, 22, 33, 42, 45, 46, 64]
+    hand-computed value   = [1, 6, 8, 16, 22, 33, 42, 45, 46, 64]
+PASS derived rho(A_2) equals {1,6,8,16,22,33,42,45,46,64}, the set {66-a : a in A_2} reflected by hand from the paper's A_2 display; this cross-checks the code's rho, and a referee can redo it by hand
+PASS {1,64} is contained in rho(A_2), hence rho(W) cannot be a member of F either
+    10-element parts of W = [[1, 5, 13, 23, 26, 28, 37, 56, 57, 63], [2, 20, 21, 24, 33, 44, 50, 58, 60, 65]] | any containing {1,64}: False
+PASS neither 10-element part of W contains {1,64}, which is the paper's reason for rho(W) != W
+
+=== (8)  optional source re-check: SKIPPED (no argument) ===
+    Pass the path to Further.tex from the arXiv:2309.08553v1
+    e-print tarball (https://arxiv.org/e-print/2309.08553v1) to
+    re-verify the transcription of the five displayed partitions
+    and of the quoted conjecture against the source itself:
+        python3 verify.py /path/to/Further.tex
+    The mathematical checks above do not depend on it.
+
+=== theorem ===
+PASS THEOREM: W and rho(W) are two distinct balanced Sidon-Ramsey partitions of [65] with two parts of size 10 and five of size 9, and neither is among the five partitions displayed in arXiv:2309.08553v1 or their reflections -- so the exhaustiveness conjecture quoted on p.6 of that e-print is FALSE, subject to the three non-machine-checkable steps listed in the gaps block below
+
+=== gaps: steps between the checked facts and the paper's claim ===
+    The checks above establish, exactly and without tolerance, that W
+    and rho(W) are two distinct balanced Sidon-Ramsey partitions of
+    [65] with profile (10,10,9,9,9,9,9) lying outside the ten-member
+    family F.  Three steps from there to the paper's sentence are NOT
+    covered by any check above and are not counted as passing:
+
+    (i)  READING OF THE QUOTED SENTENCE.  'We conjecture that these
+         and their reflected partitions ... are all balanced Sidon-
+         Ramsey partitions with those parameters' is read as an
+         exhaustiveness claim (these are all of them).  Under the
+         weak reading (each of these is one) the sentence is true and
+         the refutation does not apply.  No program can settle this.
+         Two textual facts favour the strong reading and a reader
+         should weigh them: the preceding sentence already gives the
+         parameters, so the weak reading is redundant; and the
+         paragraph opens 'So far we have found $5$ ...', i.e. it is
+         about how many such partitions exist.
+    (ii) TRANSCRIPTION OF THE FIVE DISPLAYED PARTITIONS.  F was
+         built from partitions transcribed by hand from
+         arXiv:2309.08553v1, Further.tex lines 34-77.  With no
+         source file supplied, NOTHING here rules out a sixth
+         displayed partition, or a dropped part, which would make
+         F too small and could admit a genuine family member as a
+         counterexample.  Run
+             python3 verify.py /path/to/Further.tex
+         to close this gap; section (8) then checks it in both
+         directions, not merely that each transcribed part occurs.
+    (iii) VERSION OF RECORD.  Whether the quoted sentence survives
+         into Discrete Appl. Math. 378 (2026), 120-124,
+         doi:10.1016/j.dam.2025.07.002 cannot be decided here: the
+         article is paywalled.  The paper scopes its claim to
+         arXiv:2309.08553v1, which is what is checked.  A human with
+         journal access should read around p.123.
+
+VERDICT: ALL 93 CHECKS PASS
+=== program exited with status 0 ===

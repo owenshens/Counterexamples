@@ -1,0 +1,50 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  06483ebc3042d86926e8807bf2a93736559745a87154699d9dd42435fed159bf
+python:  Python 3.9.25
+=== program output follows ===
+PASS X_shape_2_by_14_gaussian_integers [rows [14, 14, 14, 14], witness length 14]
+PASS X_has_14_nonzero_columns [14 of 14 columns nonzero, so the degree-14 product is nonzero]
+PASS A_is_14_by_14 [order 14, 196 entries]
+  A[0][0..3] = (2191317, 0) (343575, 20769) (195333, 285017) (168908, 297996)
+  diag(A)    = 2191317 609246 141042 267829 524153 227026 1799810 843682 2060811 1644381 668713 1880127 907350 229918
+PASS A_is_hermitian [0 violations]
+PASS A_diagonal_real_positive [min diag 141042]
+PASS A_all_3x3_principal_minors_vanish [0 of 364 nonzero]
+PASS A_rank_exactly_two [largest 2x2 principal minor = 3779096498725 > 0]
+PASS A_is_positive_semidefinite [0 negative 1x1, 0 negative 2x2 principal minors]
+PASS det_of_first_two_columns_matches_paper [computed -350880+1045686i]
+PASS ryser_oracle_reproduces_closed_form_permanents [per(J_n)=n!, per(I_n)=1 for n<=7, plus two hand-checked cases]
+PASS gram_entries_agree_with_the_rank_two_formula_at_m_equals_one [0 of 196 entries disagree]
+PASS rank_two_permanent_formula_matches_ryser [5 of 5 submatrix pairs agree]
+PASS permanent_of_A_is_a_positive_integer [per(A) = 34003406677011765863775403593279301190065932526454645904198311638580921502624278258688000 (89 digits), Im = 0]
+PASS permanent_of_A_agrees_with_ryser [ryser gives (34003406677011765863775403593279301190065932526454645904198311638580921502624278258688000, 0)]
+PASS sampled_cofactor_permanents_agree_with_ryser [196 of 196 order-13 cofactors re-run by ryser]
+PASS cofactor_permanents_are_hermitian_conjugates [0 violations]
+PASS F_A_is_hermitian_so_Re_F_A_is_symmetric [0 violations]
+PASS every_row_and_column_sum_of_F_A_equals_per_A [14 rows and 14 columns equal per(A)]
+PASS witness_vector_sums_to_zero_and_has_norm_3622 [sum = 0, v^T v = 3622]
+PASS quadratic_form_of_imaginary_part_vanishes [v^T Im(F_A) v = 0]
+PASS delta_matches_the_published_integer [computed 90 digits, equal]
+PASS conclusion_of_conjecture_4_is_violated [lambda_max(Re F_A) >= v^T(Re F_A)v / v^T v > per(A) since v^T(Re F_A)v - per(A)*v^T v = 188558958243265516176136227271677528258899031880644911529452618269391965199062697646489600 > 0]
+PASS rayleigh_ratio_digits_match_paper [computed 1.001531003891338, paper 1.001531003891338]
+PASS bunching_coefficient_digits_match_paper [computed 0.003062007782676, paper 0.003062007782676]
+PASS conjecture_3_quadratic_coefficient_is_positive [tau^T(Re F_A)tau - per(A) = 52059347941266017718425242206426705758945066780962151167711932156099382992562865170206.957 > 0]
+PASS control_rank_two_gram_matrices_show_no_violation [0 of 12 pseudorandom controls violate the inequality]
+PASS all_ones_gram_matrix_attains_equality_in_the_conjecture [per(J_14) = 14! and the gap at the all-ones vector is exactly 0, so the bound is tight and the test is calibrated]
+PASS hadamard_witness_C_is_entrywise_positive_and_psd_of_rank_two [min entry 3046, all 3x3 minors vanish]
+PASS permanent_of_hadamard_product_is_real [Im = 0]
+PASS conjecture_3_fails_in_order_14_exactly [per(A o B) - per(A) > 0 with relative excess 0.003857509]
+PASS hadamard_expansion_coefficient_approached_from_above [c = 0.001531003891 < 0.001589650775 < 0.002074359277]
+PASS time_delay_quadratic_coefficient_recomputed_independently [sum (v_i-v_j)^2 (F_A)_ij = -2*gap, coefficient 0.003062007782676]
+PASS diagonal_congruence_lemma_holds_on_a_rank_two_gram_block [per scaling True, F scaling True]
+PASS scaling_weights_are_positive_integers [min weight 5975547235929]
+PASS X_W_Xstar_equals_eta_times_identity [computed [[(144241568073276041742, 0),(0, 0)],[(0, 0),(144241568073276041742, 0)]]]
+PASS P_is_idempotent_via_exact_identity_AWA_equals_eta_A [A W A = eta A entrywise: True]
+PASS projection_has_trace_two_and_diagonal_in_unit_interval [trace = 2, max diagonal entry = 0.698010]
+PASS padded_order_15_matrix_has_the_same_permanent [per(A (+) I_1) = per(A): True]
+PASS padded_F_matrix_is_the_direct_sum_F_A_plus_per_A [F_{A_1} = F_A (+) per(A) I_1: True]
+PASS conjecture_4_also_fails_in_order_15 [order-15 gap equals the order-14 gap and is positive: True]
+NOT RE-RUN: the original authors' unsuccessful numerical search in order 15; orders at most 13, about which the paper claims nothing; the padding corollary beyond k = 1, i.e. orders 16 and above are not each recomputed, only the order-15 instance of the same block identity; the explicit unitary completion U in C^{14x14} of the two orthonormal rows of Y = eta^{-1/2} X W^{1/2}, which is not constructed here and is not exactly representable, eta^{-1/2} being irrational -- what is checked instead is X W X^* = eta I_2, i.e. that those two rows are orthonormal, together with A W A = eta A and the trace-2 identity, so that P = eta^{-1} D A D is an exact Hermitian rank-two idempotent and the completion follows by Gram-Schmidt; and the transcendental Gaussian time-delay matrix S(d) itself, whose d^2 coefficient is instead obtained exactly from F_A by the two independent routes checked above.
+VERDICT: ALL 40 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,43 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8932406ee1a809f15d99afc8e024085f2f3e7e5f4bb1e64f07e735ba443ac6a1
+python:  Python 3.9.25
+=== program output follows ===
+Exhibited objects, decoded:
+    R113 (|R| = 9): [(0, 1), (0, 2), (1, 1), (1, 2), (2, 2), (3, 0), (3, 1), (3, 2), (3, 3)]
+    R9 (|R| = 8): [(0, 0), (0, 1), (0, 2), (0, 3), (1, 1), (1, 2), (3, 1), (3, 2)]
+PASS shading_well_formed [both shadings are subsets of {0..3}^2; |R113|=9 (9), |R9|=8 (8)]
+PASS shadings_distinct [symmetric difference has 5 cells]
+PASS R113_matches_verbal_description [column a=3 shaded, row b=2 shaded, remainder {(0,1),(1,1)}]
+PASS stirling_recurrence [row sums equal r! and c(r,1) = (r-1)! for r <= 8]
+PASS stirling_values_used_in_proof [c(1,2)=0, c(2,2)=1, c(3,2)=3, c(4,2)=11, c(5,2)=50, c(6,2)=274]
+PASS pair_shape [components (123,R) and (132,R): classical patterns 123 and 132, one shading per pair, length 3]
+PASS no_occurrences_below_order_three [all occurrence counts vanish on S_1 and S_2]
+PASS witness_1234_vector_two_zero [1234: occ_(123,R9) = 2, occ_(132,R9) = 0, vector (2,0)]
+PASS witness_1234_occurrence_positions [surviving position triples [(1, 2, 3), (1, 2, 4)] (paper: (1,2,3) and (1,2,4))]
+PASS witness_1234_cell_bookkeeping [unused point lies in cell (1, 2, 3)->(3, 3), (1, 2, 4)->(2, 2), (1, 3, 4)->(1, 1), (2, 3, 4)->(0, 0); exactly the two shaded ones are excluded]
+PASS witness_1234_no_classical_132 [1234 contains no classical 132 pattern]
+    computed T^113_{4,.,.} = [((0, 0), 12), ((0, 1), 5), ((1, 0), 5), ((1, 1), 2)]
+    computed T^X9_{4,.,.}  = [((0, 0), 12), ((0, 1), 4), ((0, 2), 1), ((1, 0), 4), ((1, 1), 2), ((2, 0), 1)]
+PASS s4_distribution_pair_113 [matches the printed distribution, total 24]
+PASS s4_distribution_X9 [matches the printed distribution, total 24]
+PASS s4_distributions_total_24 [both distributions sum to 4! = 24]
+PASS s4_cells_01_and_10_also_differ [cell (0,1): 5 vs 4; cell (1,0): 5 vs 4]
+PASS conclusion_violated_at_cell_2_0 [n=4: T^113=0 vs T^X9=1, n=5: T^113=0 vs T^X9=7, n=6: T^113=0 vs T^X9=46, n=7: T^113=0 vs T^X9=326, n=8: T^113=0 vs T^X9=2556]
+PASS distributions_differ_somewhere [the two bivariate distributions are unequal for every n >= 4 tested]
+PASS pair_113_support_in_zero_one_square [max (occ_123, occ_132) over S_n, n <= 8, is (1, 1)]
+PASS pair_113_cell_2_0_empty [T^113_{n,2,0} = 0 for every n <= 8]
+PASS quoted_formula_reproduces_X9 [206 (n,k,l) cells agree with (n-1)!C(k+l,k)sum c(j-1,k+l)/j!; first mismatch none]
+PASS cell_2_0_closed_form_and_bound [counts n=4: 1; n=5: 7; n=6: 46; n=7: 326; n=8: 2556; each an integer, each >= (n-1)!/6 > 0]
+PASS cell_2_0_equals_one_at_order_four [T^X9_{4,2,0} = 1, the only surviving term being j = 3 since c(1,2)=0]
+PASS orders_below_four_agree [distributions coincide for n = 1,2,3 and differ at n = 4]
+PASS order_three_profile [on S_3 both pairs give one (1,0), one (0,1), four (0,0)]
+PASS zero_cell_is_twice_factorial_and_agrees [T^113_{n,0,0} = T^X9_{n,0,0} = 2(n-1)!: n=2: 2; n=3: 4; n=4: 12; n=5: 48; n=6: 240; n=7: 1440; n=8: 10080]
+PASS shading_sensitivity_on_witness [occ_123(1234): R9 = 2, +(2,2) = 1, +(3,3) = 1, -(0,0) = 3]
+PASS shading_sensitivity_on_pair_113 [unshading column a=3 of R113 admits 3 occurrences on some permutation of S_5, so the bound is not vacuous]
+PASS cell_index_convention [in 213: shading {(1,0)} leaves [(2, 3)], shading {(0,1)} leaves [(1, 3)]]
+PASS inversion_transposes_the_shading [occ_{(sigma,R^T)}(pi) = occ_{(sigma,R)}(pi^{-1}) on all 720 permutations of S_6, for both components of the 113 pair]
+PASS inverted_pair_also_avoids_cell_2_0 [the inverse of the 113 pair has support in {0,1}^2 for n <= 6, so its cell (2,0) is empty as well]
+NOT RE-RUN: the enumeration above covers S_n for every n <= 8, for the two pairs the paper exhibits in full -- the pair labelled 113 and the pair X_9^(1) -- and, over S_n for n <= 6, for the inverse of the 113 pair, which the paper's own argument identifies with a second member of the four-pair family. The two other members of that four-pair family, labelled 115 and 116, and the remaining nineteen members of the X^(1)/Y^(1) family, are named only by label in the source paper, whose shading tables are not reproduced here, so their distributions were not recomputed: two of the four P-pairs are not enumerated here at all and rest entirely on the citation to Lv and Zhang's Theorems 6.1 and 6.2, and for the nineteen unenumerated Q-pairs the refutation rests on the closed form quoted for that family, which is checked here cell by cell against the directly enumerated distribution of X_9^(1).
+VERDICT: ALL 30 CHECKS PASS
+=== program exited with status 0 ===

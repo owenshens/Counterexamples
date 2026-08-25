@@ -1,0 +1,63 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a400331eee18a94a2f183746228e07fed48b769a99646a56d88552cef13e5df4
+python:  Python 3.9.25
+=== program output follows ===
+# tau0 = 1/2 + i*sqrt(6)/4 = 0.500000000000000 +0.612372435695794i
+# grid 512^2, quantisation 1/4096, c* = 177/200(1-i), delta = 123/3125
+PASS object_tau0_exact_form [(2 + sqrt(-6))/4 has Re = 1/2 and (Im)^2 = 3/8]
+PASS object_tau0_float_decode [second transcription 1/2 + i sqrt(6)/4 gives Re 1/2, (Im)^2 3/8; sqrt(6) bracketed to 1e-30 and matches math.sqrt; tau0 = 0.500000000000000+0.612372435695794i]
+PASS object_tau0_is_half_shift_image [(tau-1)/(2tau) at tau = 2i/sqrt(6) = 0.500000000000000+0.612372435695794i, 1/(4y^2) = 3/8]
+PASS hypothesis_re_is_one_half [Re tau0 = 1/2, so the half-shift clause tau = 1/2 + iy applies]
+PASS hypothesis_y_gt_one_half [(Im tau0)^2 = 3/8 > 1/4 = (1/2)^2, so y > 1/2 as the clause requires]
+PASS clause_isolation_y_lt_inv_sqrt2 [(Im tau0)^2 = 3/8 < 1/2, so the tau = iy clause cannot cover tau0]
+PASS eta_tail_bound_N30 [max |R_30 - 1| over tau0,2tau0,4tau0 = 1.614e-52]
+PASS eta_truncation_stable [|c(N=30) - c(N=200)| = 0.000e+00]
+PASS c_in_paper_box [c(tau0) = 0.885084076266245 -0.885084076266242i]
+PASS c_printed_digits [Re c - 0.8850840762662 = 4.50e-14 ; Im c + 0.8850840762662 = -4.22e-14]
+PASS c_anti_diagonal [Re c + Im c = 2.78e-15 (c is a positive multiple of 1-i)]
+PASS c_distance_to_c_star [|c-c*| = 1.189e-04 < sqrt2/200 = 7.071e-03]
+PASS c_modulus_bound [box corner |c|^2 <= 7921/5000 < (63/50)^2 = 3969/2500 ; |c| = 1.251698]
+PASS rational_pi_bracket [Machin bracket brackets pi, width 1.22e-56, and pi < 355/113]
+PASS rational_sqrt2_bound [(99/70)^2 = 9801/4900 > 2, so sqrt2 < 99/70]
+PASS delta_covers_cell_radius [263*(355/113)/25600 + (99/70)/200 = 0.039346387 < delta = 0.039360000]
+PASS derivative_bound_arithmetic [2 + (63/50)/2 = 263/100 = 263/100]
+PASS derivative_bound_sampled [max sampled |grad a_c| = 2.625848952 <= 2.63 [sample: 57600 points on the torus; the bound itself is the exact triangle-inequality one checked above]]
+PASS cell_covering_within_delta [max resampled deviation 0.032217397 < delta 0.039360000 (ratio 0.8185) [sample: 1600 of 262144 cells, every 13th index, 9x9 points per cell]]
+PASS cell_lower_bound_end_to_end [5476 cells resampled 7x7: min_cell J(a_c) >= r/4096 in all of them, worst slack +2.652e-05 [sample: 5476 of 262144 cells, every 7th index]]
+PASS census_sum_r [recomputed sum_{j,k} r_{jk} = 606722604 (paper 606722604)]
+PASS census_zero_cells [31988 cells with r=0, 230156 with r>0 (paper 31988 / 230156)]
+PASS census_r_range [nonzero r in [8,5121] (paper [8,5121])]
+PASS census_named_cells [r_00=4050 r_255,255=1803 r_511,511=4080 sum_k r_0k=1687754]
+PASS census_floor_margin [min distance of 4096*arcosh(X) to Z over r>0 cells = 1.5138e-06 at (30, 330)]
+PASS decimal_stack_pinned [pi constant inside the rational bracket; sin/cos vs binary64 4.44e-16; max |sin^2+cos^2-1| 6.00e-60]
+PASS decimal_arcosh_pinned [max |log(x+sqrt(x^2-1)) at 60 digits - math.acosh| over 39 x = 4.44e-16]
+PASS census_binary64_not_deciding [190 cells recomputed at 60 digits, 0 disagreements]
+PASS floor_margin_beats_binary64_budget [min distance to Z 1.5138e-06 > binary64 error budget 2.98e-08 = 4096 * 64*2^-52 / sinh(8/4096) (factor 50.8); a budget argument on the floors, not an enclosure]
+PASS mahler_bound_exact_rational [4*606722604/(512^2*4096) = 151680651/67108864 = 2.2602178305 (paper 151680651/67108864)]
+PASS mahler_bound_exceeds_226 [151680651/67108864 - 113/50 = 365459/1677721600 > 0]
+PASS jensen_substitution_determinant [det = 16 and row sums [1, 1, 1] (so uvw = xyz)]
+PASS jensen_arcosh_matches_roots [max |log max(1,|rho|) - J(a_c)| over 1200 samples = 2.657e-14]
+PASS jensen_reduction_2d_vs_3d [2-D Jensen 2.439899433 vs direct 3-D torus average 2.439923944, diff -2.45e-05]
+PASS fourth_root_independence [n_4 under c -> i^k c: spread 3.15e-14]
+PASS ek_m0_row_is_6zeta4 [sum_{0<|n|<=500} F(n) = 6.49393938631477, pi^4/15 = 6.49393940226683, deficit 1.595e-08 < 1.600e-08]
+PASS ek_row_identity [max |Im((jm tau+n)^-3/m) + j Im(tau) F| = 1.388e-17]
+PASS ek_tail_bound_M20 [max U_j tail at M=20 = 9.782e-35]
+PASS ek_series_stable [|E_4(M=20) - E_4(M=80)| = 0.00e+00]
+PASS ek_printed_digits [E_4(tau0) = 2.2251552127393 (paper 2.2251552127...)]
+PASS ek_below_222516 [E_4(tau0) = 2.2251552127393 < 2.22516]
+PASS ek_direct_lattice_agrees [direct sum over |m|,|n|<=300 gives 2.225141526 vs series 2.225155213, diff -1.37e-05]
+PASS s4_known_cm_values [s_4(i) = 648.000000000 (648), s_4(i/sqrt2) = 256.000000000 (256)]
+PASS s4_at_tau0_negative_real [s_4(tau0) = -2.454698180 -1.53e-14i (the s<0 branch)]
+PASS refutation_lower_bound_exceeds_ek [n_4 >= 151680651/67108864 = 2.2602178305, E_4 < 2.22516: gap >= 0.0350578305]
+PASS refutation_against_computed_ek [certified 2.2602178305 > recomputed E_4 2.2251552127, margin 0.035063]
+PASS certificate_not_over_claimed [certified lower bound 2.260217831 <= independently integrated n_4 2.439899433]
+PASS identity_fails_at_tau0 [n_4(s_4(tau0)) = 2.439899433, E_4(tau0) = 2.225155213, difference +0.214744221]
+PASS scan_identity_holds_where_asserted_true [max |n_4 - E_4| = 2.05e-08 over 0.00+0.7071i:2.0e-08,0.00+0.8000i:4.7e-14,0.00+1.0000i:8.3e-14,0.00+1.2000i:1.4e-13,0.50+0.7000i:3.5e-12,0.50+0.8000i:1.1e-13,0.50+1.0000i:8.1e-14]
+PASS scan_identity_fails_below_threshold [min |n_4 - E_4| = 3.93e-03 over 0.50+0.5200i:+1.2779,0.50+0.5500i:+0.7980,0.50+0.6000i:+0.2952,0.50+0.6124i:+0.2147,0.50+0.6500i:+0.0546,0.50+0.6800i:+0.0039,0.00+0.5500i:-0.2257,0.00+0.6000i:-0.0624,0.00+0.6500i:-0.0084]
+PASS scan_holds_below_inv_sqrt2_on_half_line [at tau = 1/2+0.7000i, y^2 = 0.490000 < 1/2 so y < 1/sqrt2, yet |n_4 - E_4| = 3.52e-12; the largest y on Re tau = 1/2 at which this scan exhibits a failure is 0.6800 (diff 3.9e-03). So the blanket statement quoted in the paper from earlier work, that the identity fails everywhere below 1/sqrt2, is not true on the half-shift line; Theorem 1 is unaffected (midpoint quadratures, not enclosures)]
+# NOT RE-RUN HERE: the paper's own run used a multiprecision interval library; this program reproduces the certificate in binary64 and confirms on a sample of 190 of the 262144 cells at 60 decimal digits that the floors do not depend on that. NO ARM OF THIS PROGRAM IS AN ENCLOSURE: the trusted computing base the paper's Reproducibility paragraph pins down -- an interval context at 80 decimal digits, with each binary64 result enlarged outward by nextafter -- is not exercised here, and neither is directed interval arithmetic for the per-cell lower bounds on |a_{c*} +- 2|; the 512^2 census is evaluated at binary64 point values and the 60-digit arm at Decimal point values. What stands in for those semantics is the pair census_binary64_not_deciding and floor_margin_beats_binary64_budget, the latter showing that the census's own minimal distance from 4096*arcosh(X) to an integer exceeds a 64-ulp binary64 error budget (2.98e-08) by a factor of 50.8. That is a budget argument about the floors, not a rigorous enclosure, so a referee wanting the interval semantics themselves must still consult the paper's own run. The values of n_4 used for the consistency and scan checks are midpoint quadratures, not enclosures; the certified bound 151680651/67108864 is the exact rational one and is what the refutation rests on.
+# NOT RE-RUN HERE (covering hypothesis, sampling): the two checks that touch sup|a_c - a_{c*}| < delta empirically are SUBSAMPLES, not cell-by-cell verifications. cell_covering_within_delta visits 1600 of the 262144 cells (every 13th index in each direction) and evaluates a 9x9 sub-lattice inside each; cell_lower_bound_end_to_end visits 5476 of the 262144 cells (every 7th index) and takes a 7x7 minimum inside each. A sampled maximum is not a supremum and a sampled minimum is not an infimum, so neither check would detect a violation confined to an unvisited cell or to a point between sample nodes; they corroborate the hypothesis, they do not establish it. What establishes it is the exact-rational pair derivative_bound_arithmetic (|grad a_c| <= 2 + |c|/2 = 263/100 on the whole torus, from the triangle inequality) and delta_covers_cell_radius (263*(355/113)/25600 + (99/70)/200 < 123/3125 with pi and sqrt2 bracketed rationally), which together bound the deviation over every cell without sampling; derivative_bound_sampled is likewise only a 57600-point corroboration of that analytic bound. The census lower bound therefore rests on the analytic covering argument, not on these samples.
+# OBSERVED HERE, AND NARROWER THAN THE PAPER'S CONCESSION TO EARLIER WORK: the paper concedes that the blanket statement it quotes from an earlier status report, that below Im tau = 1/sqrt2 the identity fails everywhere, already covers tau0. This program's scan does not support that statement on the half-shift line Re tau = 1/2: at tau = 1/2+0.7000i, with y^2 = 0.490000 < 1/2, the two sides agree to 3.52e-12, while the largest y on that line at which the scan exhibits a failure is 0.6800 (diff 3.9e-03); the earlier evidence was gathered on Re tau = 0 and Re tau = 1/4. See scan_holds_below_inv_sqrt2_on_half_line. This makes the paper's contribution larger rather than smaller and does not touch Theorem 1, whose refutation rests on the exact rational certificate at tau0; the scan values are midpoint quadratures, not enclosures.
+VERDICT: ALL 51 CHECKS PASS
+=== program exited with status 0 ===

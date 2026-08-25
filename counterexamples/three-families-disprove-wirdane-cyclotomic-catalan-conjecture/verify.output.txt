@@ -1,0 +1,256 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  dc87789a14e22ca7a474d3ecd4d57d2eaa19332cfadea0c15f70cc7954732604
+python:  Python 3.9.25
+=== program output follows ===
+==========================================================================
+verify.py -- Counterexamples to Wirdane's Cyclotomic Catalan
+                Conjecture (Conjecture 6.6 of arXiv:2605.14682v1)
+==========================================================================
+Exact arithmetic only: Python ints and fractions.Fraction.
+No floating point appears in any certificate.  Values in
+Z[zeta_mu] are canonical residues in Z[q]/(Phi_mu(q)), so equality
+of residues is equality of algebraic numbers.
+
+Building C_n(q) for 0 <= n <= 30 from the recurrence, eq. (1) ...
+done; deg C_30 = 435, 436 nonzero coefficients.
+
+--- A.  eq. (1), C_n(1) = Cat_n, eq. (5) -------------------------
+      C_1(q) = 1
+      C_2(q) = 1 + q
+      C_3(q) = 1 + 2*q + q^2 + q^3
+      C_4(q) = 1 + 3*q + 3*q^2 + 3*q^3 + 2*q^4 + q^5 + q^6
+      deg C_n = binom(n,2) for n <= 30 : True
+      C_n(1) for n=0..10 : [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
+      Cat_n  for n=0..10 : [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
+      C_30(1) = 3814986502092304 ; Cat_30 = 3814986502092304
+PASS A1  C_n(1) = Cat_n for all 0 <= n <= 30 (31 values)
+PASS A2  eq. (5), F_q(z) = 1 + z F_q(z) F_q(qz), holds coefficientwise through z^30  [TAUTOLOGICAL: this is eq. (1) reindexed by k = n-1-l, so it cannot fail; implementation check only]
+PASS A3  sum_{l<n} q^l C_{n-1-l}(q) C_l(q) = C_n(q) for 1 <= n <= 30  [TAUTOLOGICAL, as A2: implementation check only]
+
+--- B.  order two: C_n(-1) and the family (2m+1,2) ---------------
+      derived C_n(-1), n = 0..13 : [1, 1, 0, -1, 0, 2, 0, -5, 0, 14, 0, -42, 0, 132]
+      comparison target (P8)     : [1, 1, 0, -1, 0, 2, 0, -5, 0, 14, 0, -42, 0, 132]
+      (the PAPER prints no such table -- only the closed form, equation (6), which is what B2/B3 decide)
+PASS B1  derived C_n(-1) for n = 0..13 matches the 14-term comparison target fixed here (NOT a figure printed in the paper)
+PASS B2  C_{2m}(-1) = 0 for all 1 <= m <= 15
+PASS B3  C_{2m+1}(-1) = (-1)^m Cat_m for all 0 <= m <= 14
+      Phi_2(q) = 1 + q
+PASS B4  reduction of C_n(q) mod Phi_2 agrees with evaluation at q = -1
+      (1/2)binom(2m+2,m+1) for m=0..6 : ['1', '3', '10', '35', '126', '462', '1716']
+      (2m+1)Cat_m          for m=0..6 : ['1', '3', '10', '35', '126', '462', '1716']
+PASS B5  (1/2)binom(2m+2,m+1) = (2m+1)Cat_m for 0 <= m <= 14
+        n =  1 : C_n(-1) = 1        conjectured 1       AGREE
+        n =  3 : C_n(-1) = -1       conjectured 3       differ
+        n =  5 : C_n(-1) = 2        conjectured 10      differ
+        n =  7 : C_n(-1) = -5       conjectured 35      differ
+        n =  9 : C_n(-1) = 14       conjectured 126     differ
+        n = 11 : C_n(-1) = -42      conjectured 462     differ
+PASS B6  C_{2m+1}(-1) != (1/2)binom(2m+2,m+1) for every 1 <= m <= 14 (family (2m+1,2))
+PASS B7  the two sides do agree at m = 0, i.e. at (n,mu) = (1,2)
+
+--- C.  order three: C_n(omega) in Z[omega], family (3r+2,3) ------
+      Phi_3(q) = 1 + q + q^2   (omega^2 = -1 - omega)
+        C_0 (omega) = 1 + 0*omega
+        C_1 (omega) = 1 + 0*omega
+        C_2 (omega) = 1 + 1*omega
+        C_3 (omega) = 1 + 1*omega
+        C_4 (omega) = 1 + 1*omega
+        C_5 (omega) = 1 + 2*omega
+        C_6 (omega) = 1 + 2*omega
+        C_7 (omega) = 1 + 2*omega
+        C_8 (omega) = 1 + 4*omega
+        C_9 (omega) = 1 + 4*omega
+        C_10(omega) = 1 + 4*omega
+        C_11(omega) = 1 + 9*omega
+        C_12(omega) = 1 + 9*omega
+PASS C1  C_n(omega) = 1 + omega*sum_{j <= (n-2)/3} Cat_j for ALL 0 <= n <= 30 (from eq. (7), stronger than eq. (8))
+PASS C2  the omega-coefficient of C_n(omega) is strictly positive for every 2 <= n <= 30, i.e. Im C_n(omega) = b*sqrt(3)/2 > 0
+PASS C3  the conjugation test (q -> q^2 mod Phi_3) calls C_n(omega) real exactly when its omega-coefficient vanishes
+        n =  2 : C_n(zeta_3) = 1 + 1*omega   conjectured 1   residue of difference = q
+        n =  5 : C_n(zeta_3) = 1 + 2*omega   conjectured 5   residue of difference = -4 + 2*q
+        n =  8 : C_n(zeta_3) = 1 + 4*omega   conjectured 28   residue of difference = -27 + 4*q
+        n = 11 : C_n(zeta_3) = 1 + 9*omega   conjectured 165   residue of difference = -164 + 9*q
+        n = 14 : C_n(zeta_3) = 1 + 23*omega   conjectured 1001   residue of difference = -1000 + 23*q
+      family members tested = 10 (independently counted as the n <= 29 with n = 2 mod 3: 10)
+PASS C4  for every r with 0 <= r <= 9 -- all 10 of them, count checked so the quantifier is not vacuous -- the value C_{3r+2}(zeta_3) is non-real and differs from (1/3)binom(3r+3,r+1) (family (3r+2,3))
+PASS C5  the smallest instance: C_2(zeta_3) = 1 + zeta_3 against the conjectured (1/3)binom(3,1) = 1
+
+--- D.  odd prime orders: the family (p-1,p) ----------------------
+      primes used: [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+      Cat_{p-1} mod p       : [2, 4, 6, 10, 12, 16, 18, 22, 28, 30]
+      p-1                   : [2, 4, 6, 10, 12, 16, 18, 22, 28, 30]
+      binom(2p-1,p-1) mod p : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS D1  Cat_{p-1} = p-1 = -1 (mod p) for every odd prime p <= 31
+PASS D2  binom(2p-1,p-1) = 1 (mod p) for every odd prime p <= 31
+PASS D3  the exact identity (2p-1)Cat_{p-1} = binom(2p-1,p-1)
+        p =  3 : C_{p-1}(q)-1 mod Phi_p = q ; image in F_p = 1 ( = -2 mod 3 )
+        p =  5 : C_{p-1}(q)-1 mod Phi_p = -1 + 2*q + q^2 + q^3 ; image in F_p = 3 ( = -2 mod 5 )
+        p =  7 : C_{p-1}(q)-1 mod Phi_p = -3 + -1*q + q^2 + 3*q^3 + 4*q^4 + q^5 ; image in F_p = 5 ( = -2 mod 7 )
+PASS D4  the image of C_{p-1}(zeta_p) - 1 in Z[zeta_p]/(1-zeta_p) = F_p equals -2 != 0 for every odd prime p <= 31
+PASS D5  C_{p-1}(q) - 1 has nonzero residue mod Phi_p for all 10 odd primes p <= 31, so C_{p-1}(zeta_p) != 1 = (1/p)binom(p,1)
+
+--- E.  exhaustive sweep over the admissible pairs, n <= 29 -------
+      derived number of admissible pairs = 81   (paper: 81)
+      pairs with n = 0 : 0   (no mu >= 2 divides 1)
+PASS E1  there are exactly 81 pairs (n,mu) with mu >= 2, mu | n+1, n <= 29
+      pairs where the conjecture HOLDS : [(1, 2)]
+      number of failures = 80   (paper: 80)
+        (n,mu) = ( 2, 3) : C_n(zeta_mu) = [1 + q] ,  conjectured 1
+        (n,mu) = ( 3, 2) : C_n(zeta_mu) = [-1] ,  conjectured 3
+        (n,mu) = ( 3, 4) : C_n(zeta_mu) = [q] ,  conjectured 1
+        (n,mu) = ( 4, 5) : C_n(zeta_mu) = [2*q + q^2 + q^3] ,  conjectured 1
+        (n,mu) = ( 5, 2) : C_n(zeta_mu) = [2] ,  conjectured 10
+        (n,mu) = ( 5, 3) : C_n(zeta_mu) = [1 + 2*q] ,  conjectured 5
+PASS E2  C_n(q) - (1/mu)binom(n+1,(n+1)/mu) vanishes mod Phi_mu at exactly one pair, and that pair is (n,mu) = (1,2)
+PASS E3  the conjecture fails at the remaining 80 pairs
+      |(2m+1,2)| = 14, |(3r+2,3)| = 10, |(p-1,p)| = 9
+      pairwise intersections: A&B = [], A&C = [], B&C = [(2, 3)]
+      derived |union| = 32   (paper: 32)
+PASS E4  the three families account for exactly 32 of the 81 pairs
+PASS E5  every pair of the three families is one of the 80 failures
+PASS E6  the odd-prime congruence reaches exactly 9 pairs
+      derived non-real pairs = 66   (paper: 66)
+      real pairs = 15, all with mu = 2 : True
+PASS E7  C_n(zeta_mu) is non-real at exactly 66 of the 81 pairs, so non-reality alone disposes of 66
+PASS E8  every non-real pair is a failure (the right-hand side is rational, hence real)
+
+--- F.  the Gaussian q-Catalan number Cat~_n(q) -------------------
+      qbinom(2n,n) from the two q-Pascal recurrences agree: True
+      qbinom(4,2) = 1 + q + 2*q^2 + q^3 + q^4 ; Cat~_2(q)*[3]_q = 1 + q + 2*q^2 + q^3 + q^4
+PASS F1  Cat~_n(q)*[n+1]_q = qbinom(2n,n) with Cat~_n(q) in Z[q], for every 0 <= n <= 29, the Gaussian binomial being recomputed by the independent recurrence qbinom(m,j) = q^{m-j}qbinom(m-1,j-1) + qbinom(m-1,j)
+      Cat~_2(q) = 1 + q^2   (paper: 1 + q^2)
+      Cat~_3(q) = 1 + q^2 + q^3 + q^4 + q^6
+PASS F2  Cat~_2(q) = 1 + q^2, as printed in the paper
+      Cat~_n(-1) for odd n = 1..11 : [1, 3, 10, 35, 126, 462]
+      paper's printed values        : [1, 3, 10, 35, 126, 462]
+PASS F3  Cat~_n(-1) at odd n <= 11 takes the six values the paper prints (1, 3, 10, 35, 126, 462)
+PASS F4  Cat~_n(-1) = (1/2)binom(n+1,(n+1)/2) at every one of the 15 admissible pairs with mu = 2 and n <= 29
+      mu >= 3 pairs = 66 ; of these the Gaussian value agrees at 0
+PASS F5  Cat~_n(zeta_mu) differs from (1/mu)binom(n+1,(n+1)/mu) at all 66 admissible pairs with mu >= 3 (the universe is size-checked against the 66 of the paper's Remark, so the quantifier is not vacuous).  NOTE: the paper claims this only at (2,3); the general statement is an extension made here, so a FAIL here need not be a defect in the paper
+      Cat~_2(zeta_3) = 0 + -1*omega  = 1 + zeta_3^2 = 1/2 - sqrt(3)/2*i
+      independent route: 1 + zeta_3^2 reduces to -1*q
+PASS F6  Cat~_2(zeta_3) = 1 + zeta_3^2 = -omega, whose omega-coefficient is -1 != 0, so it is non-real and differs from the conjectured 1
+
+--- G.  brute force S_n(312), eq. (2), [FH], eq. (3) --------------
+      |S_n(312)| for n = 0..8 : [1, 1, 2, 5, 14, 42, 132, 429, 1430]
+      Cat_n       for n = 0..8 : [1, 1, 2, 5, 14, 42, 132, 429, 1430]
+PASS G1  |S_n(312)| = Cat_n for 0 <= n <= 8 (brute force over n! permutations)
+      |S_{8,k}(312)| for k = 0..8 : [1, 7, 27, 75, 165, 297, 429, 429, 0]
+PASS G2  S_{n,n}(312) is empty for 1 <= n <= 8  [DEFINITIONAL: pi_{n+1} does not exist for pi in S_n, and the buckets here are indexed by a position in 0..n-1, so this cannot fail]
+PASS G3  S_{n,0}(312),...,S_{n,n-1}(312) partition S_n(312), so eq. (2), S'_{n,n}(312) = S_n(312), holds (1 <= n <= 8)
+PASS G4  |S_{n,0}(312)| = 1, the decreasing permutation, matching the base case C_{n,0}(q) = q^binom(n,2)
+PASS G5  sum_{i=1}^{mu} inv_i(pi) = inv(pi) for every pi in S_n(312), n <= 8, mu = 2..5  [STRUCTURAL: inv_residues walks the same (a,b) loop as inv_count and credits each inversion to exactly one class, so this cannot fail; it is the paper's own one-line argument]
+PASS G6  sum_{pi in S_n(312)} q^inv(pi) = C_n(q) coefficientwise for 0 <= n <= 8 (the [FH] interpretation, verified not assumed)
+      eq. (3) tested at 36 (n,mu) combinations; mismatches: none
+      C^{(3)}_{3,3} = 1 + q  and  C_3(omega) = 1 + q
+PASS G7  C^{(mu)}_{n,n} = C_n(zeta_mu) for all 0 <= n <= 8 and mu = 2,3,4,5 (eq. (3), the bridge the paper does not prove outright).  Its substance is G6: given G5, which is structural, eq. (3) reduces to the [FH] interpretation
+
+--- H.  Wirdane's triangle recurrence, C_{n,n}(q) = C_n(q) --------
+      row 0 : ['1']
+      row 1 : ['1', '1']
+      row 2 : ['q', '1 + q', '1 + q']
+      row 3 : ['q^3', 'q + q^2 + q^3', '1 + 2*q + q^2 + q^3', '1 + 2*q + q^2 + q^3']
+      row 4 : ['q^6', 'q^3 + q^4 + q^5 + q^6', 'q + 2*q^2 + 2*q^3 + 2*q^4 + q^5 + q^6', '1 + 3*q + 3*q^2 + 3*q^3 + 2*q^4 + q^5 + q^6', '1 + 3*q + 3*q^2 + 3*q^3 + 2*q^4 + q^5 + q^6']
+PASS H1  C_{n,n}(q) = C_n(q) for 0 <= n <= 11, iterated from C_{n,0}=q^binom(n,2), C_{n,k}=C_{n,k-1}+q^{n-k-1}C_{n-1,k} (supplies [Wirdane, Prop. 2.4])
+      triangle entries compared: 45 ; mismatches: none
+PASS H2  every entry C_{n,k}(q) of the recurrence equals the enumeration sum_{pi in S'_{n,k}(312)} q^inv(pi), 0 <= k <= n <= 8
+      derived C_{3,3}(q) = 1 + 2*q + q^2 + q^3   (tabulated in [Wirdane]: 1 + 2*q + q^2 + q^3)
+PASS H3  C_{3,3}(q) = 1 + 2q + q^2 + q^3, the value tabulated in [Wirdane], from both the recurrence and the enumeration
+
+--- I.  Remark 6.7, the n=k=3 collision, mu=1, minimality ---------
+      C_{n,n}(1) for n=0..11 : [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786]
+PASS I1  C_{n,n} = C_n(1) = Cat_n on the diagonal of the classical Catalan triangle, 0 <= n <= 11
+      even n : C_n(-1) = [0, 0, 0, 0, 0, 0, 0, 0]
+               Rem 6.7 predicts [-2, 14, -132, 1430, -16796, 208012, -2674440, 35357670]
+PASS I2  [Wirdane, Rem. 6.7] fails for every even n with 2 <= n <= 30: C_n(-1) = 0 while (-1)^floor(n/2) Cat_n != 0
+PASS I3  the smallest instance is n = 2, where Rem. 6.7 predicts -Cat_2 = -2 against C_2(-1) = 0
+      C^{(2)}_{3,3} (from Def 6.2) = -1 ; C_3(-1) = -1 ; Rem 6.7 -> -5 ; Conj 6.6 -> 3
+PASS I4  at n = k = 3 the three values are -1 (true), -5 (Rem. 6.7) and 3 (Conj. 6.6), pairwise distinct
+      mu = 1 : C_n(1) vs binom(n+1,n+1) agrees at n = [0, 1], first failure at n = 2
+PASS I5  admitting mu = 1, the formula holds at n = 0,1 and already fails at n = 2
+      admissible pairs with n <= 1 : [(1, 2)]
+PASS I6  no mu >= 2 divides n+1 at n = 0; the only pair at n = 1 is (1,2), where both sides are 1; and (2,3) fails -- so n = 2 is the least n in a counterexample
+      order-three family & prime family = [(2, 3)] ; the r values that land in the prime family = [0]
+PASS I7  the prime family and the order-three family meet in exactly one pair: (n,mu) = (2,3), which is p = 3 of (p-1,p) and r = 0 of (3r+2,3), and the conjecture does fail there
+
+--- J.  the paper's CONCLUSION, end to end at the headline pair ----
+      S'_{2,2}(312) = S_2(312) = [[1, 2], [2, 1]]
+      (inv_1,inv_2,inv_3) per permutation = [(0, 0, 0), (0, 1, 0)]
+      C^{(3)}_{2,2} = 1 + q   (that is 1 + zeta_3)
+      Conjecture 6.6 predicts (1/3)binom(3,1) = 1
+      difference in Z[q]/Phi_3 = q ; nonzero: True
+      conjugate of the left side = -1*q , so it is not real: True
+PASS J1  CONCLUSION: Conjecture 6.6 of [Wirdane] is FALSE.  Its left side at (n,mu) = (2,3), computed from Definitions 6.1 and 6.2 by enumerating S'_{2,2}(312) and never from equation (1), is 1 + zeta_3; that is not real, hence cannot equal the rational (1/3)binom(3,1) = 1 the conjecture predicts
+
+--- GAPS: what passing these checks does NOT establish -----------
+  G-A. Conjecture 6.6's left-hand side is C^{(mu)}_{n,n}, not
+       C_n(zeta_mu).  The paper bridges them with its eq. (3),
+       whose last step is the [FH] interpretation cited from a
+       paywalled 1985 paper.  This program verifies that bridge
+       only for 0 <= n <= 8 with mu in {2,3,4,5} (check G7), and
+       univariately for n <= 11 (check H1 with [Wirdane, Thm 3.3]).
+       The paper's headline counterexample (n,mu) = (2,3) lies
+       INSIDE that range, so the headline result is fully certified.
+       But the 80-failure sweep and the family members with n > 11
+       or mu > 5 are certified here only as statements about
+       C_n(zeta_mu); their transfer to Conjecture 6.6 rests on a
+       citation this program cannot check.
+  G-B. The three families are INFINITE.  Only m <= 14, r <= 9 and
+       p <= 31 are tested.  The paper's own proofs of the general
+       statements -- F(z)+F(-z)=2 at order two, the G(z) identity
+       behind eq. (7), and the ideal argument mod (1-zeta_p) --
+       are NOT machine-checked; only their consequences are, and
+       only in the finite ranges above.
+  G-C. Source fidelity is a document fact.  Beyond the statement
+       -> number map printed below, the TRANSCRIPTIONS of Def 6.1,
+       Def 6.2, Rem 6.7 and of the statement of Conjecture 6.6
+       itself are unverifiable without the e-print.  One mitigation
+       is recorded: eq. (3) is insensitive to which endpoint of
+       an inversion assigns its residue class, since any assignment
+       of each inversion to exactly one class gives sum_i inv_i =
+       inv, so a slip in Def 6.1 of that kind would not affect it.
+       Exactly ONE datum in this program cross-validates the
+       transcription at all: check H3, where the C_{3,3}(q)
+       tabulated in [Wirdane] is reproduced independently, both
+       from the triangle recurrence and from the enumeration of
+       S'_{3,3}(312).  Every other quoted string -- Conj 6.6,
+       Rem 6.7, Def 6.1, Def 6.2, and the attributions of Prop 2.4
+       and Rem 6.4 -- is uncorroborated here, and the recipe below
+       is the only route to checking it.
+  G-D. Some checks assert MORE than the paper does: B1 (a table
+       fixed here, not printed by the paper), C1 and C2 (all
+       n <= 30, the paper says n = 3r+2), F4 (n <= 29, the paper
+       says n <= 11), F5 (all mu >= 3 pairs, the paper says (2,3))
+       and E7.  A FAIL in those is a defect in a target fixed here
+       or in an unproved extrapolation, not necessarily in the paper.
+  G-E. Four checks are structural and carry no evidence about the
+       paper: A2 and A3 (eq. (1) reindexed), G2 (definitional
+       emptiness), G5 (a partition of the same loop).  G7 is forced
+       by G5 together with G6.  Discount them: of the 52 checks,
+       4 are implementation checks.
+
+--- source fidelity (a document fact, NOT one of the checks) ------
+      The statement -> number map the paper relies on cannot be
+      decided by computation; a reader confirms it against
+      the numbered statements of arXiv:2605.14682v1, either by
+      reading them off the abs page / PDF at
+        https://arxiv.org/abs/2605.14682v1
+      or from the LaTeX source, whose main file name is not known
+      to this program and must be located rather than assumed:
+        curl -sL https://arxiv.org/e-print/2605.14682v1 -o w.tar.gz
+        mkdir w && tar xzf w.tar.gz -C w
+        grep -l documentclass w/*.tex        # the main file, MAIN
+        <any LaTeX engine> MAIN.tex          # then read off the
+                                             # numbering below
+        the cyclotomic Catalan conjecture            expected: Conjecture 6.6
+        the definition of inv_i                      expected: Definition 6.1
+        the definition of C_{n,k}(q_1,...,q_mu)      expected: Definition 6.2
+        C_{n,k}(q) = sum over S'_{n,k}(312) of q^inv expected: Theorem 3.3
+        the [FH] interpretation of C_n(q)            expected: Remark 3.4
+        C_{n,n}(q) = C_n(q), its proof deferred there expected: Proposition 2.4
+        specialization of all q_i to a common q      expected: Corollary 6.5
+        the mu = 2 sign rule contradicted here       expected: Remark 6.7
+
+VERDICT: ALL 52 CHECKS PASS
+=== program exited with status 0 ===

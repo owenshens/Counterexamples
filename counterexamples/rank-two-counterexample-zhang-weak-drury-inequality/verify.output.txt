@@ -1,0 +1,95 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  338e6456518e249d9a3b79c0b2c7b3342e7e9795741ab2b25b1615a6bfb829fa
+python:  Python 3.9.25
+=== program output follows ===
+== the exhibited object ==
+  V row 1: 1 1 7 7 9 5 5 7 9 5 5 0
+  V row 2: 0 -2 5 -4+3i 2-6i 8+6i -3+9i -4-3i 2+6i -3-9i 8-6i 1
+PASS V_is_2_by_12_gaussian_integer [columns=12]
+PASS V_first_and_last_columns_are_e1_e2 [col1=1,0 col12=0,1]
+PASS A_is_hermitian_order_12_over_Z[i] [order=12]
+PASS A_diagonal_strictly_positive [diag=1,5,74,74,121,125,115,74,121,115,125,1]
+  A row  1: 1 1 7 7 9 5 5 7 9 5 5 0
+  A row  2: 1 5 -3 15-6i 5+12i -11-12i 11-18i 15+6i 5-12i 11+18i -11+12i -2
+  A row  3: 7 -3 74 29+15i 73-30i 75+30i 20+45i 29-15i 73+30i 20-45i 75-30i 5
+  A row  4: 7 15+6i 29-15i 74 37+18i 21-48i 74-27i 56+24i 73-30i 20+45i -15 -4-3i
+  A row  5: 9 5-12i 73+30i 37-18i 121 25+60i -15 73-30i 49+24i 93-36i 97+36i 2+6i
+  A row  6: 5 -11+12i 75-30i 21+48i 25-60i 125 55+90i -15 97+36i -53-54i 53-96i 8-6i
+  A row  7: 5 11+18i 20-45i 74+27i -15 55-90i 115 20+45i 93-36i -47+54i -53-54i -3-9i
+  A row  8: 7 15-6i 29+15i 56-24i 73+30i -15 20-45i 74 37-18i 74+27i 21+48i -4+3i
+  A row  9: 9 5+12i 73-30i 73+30i 49-24i 97-36i 93+36i 37+18i 121 -15 25-60i 2-6i
+  A row 10: 5 11-18i 20+45i 20-45i 93+36i -53+54i -47-54i 74-27i -15 115 55+90i -3+9i
+  A row 11: 5 -11-12i 75+30i -15 97-36i 53+96i -53+54i 21-48i 25+60i 55-90i 125 8+6i
+  A row 12: 0 -2 5 -4+3i 2-6i 8+6i -3+9i -4-3i 2+6i -3-9i 8-6i 1
+PASS A_rank_is_exactly_2 [rank=2]
+PASS A_positive_semidefinite_exact_minor_certificate [min 2x2 principal minor=1 over 66 minors]
+PASS A_all_order_3_principal_minors_vanish [tested=220 of the 220 order-3 principal minors]
+== the two sides of the inequality ==
+PASS permanent_A_is_real [Im=0]
+PASS permanent_A_matches_paper_value [ryser=463995226880175960000000 paper=463995226880175960000000]
+PASS permanent_A_independent_rank_two_route_agrees [coefficient identity=463995226880175960000000]
+PASS weights_abs_a_1k_squared_match_table [compared 11 of 11 indices k=2..12; mismatches=none]
+PASS all_eleven_minor_permanents_match_table [compared 11 of 11 indices k=2..12; mismatches=none]
+PASS grouped_indices_share_minor_permanent [pairs=[(4, 8), (5, 9), (6, 11), (7, 10)] distinct values among k=2..11: 6 (expected 6 = 10 indices - 4 pairs)]
+PASS minor_permanents_reproduced_by_rank_two_identity [11 of 11 minors (k=2..12) agree by two independent routes]
+PASS Phi1_A_matches_paper_value [computed=464101796319782967000000 paper=464101796319782967000000]
+PASS inequality_is_REVERSED_Phi1_greater_than_per [Phi1-per=106569439607007000000]
+PASS gap_matches_paper_value [computed=106569439607007000000 paper=106569439607007000000]
+  NOT RE-RUN: what is refuted here is the inequality Phi_1(A) <= per(A) exactly as printed in this paper, with Phi_1 defined by the paper's own displayed formula Phi_1(A) = sum_{k=2}^n |a_{1k}|^2 per A[hat{1,k}].  The paper's ATTRIBUTION of that inequality -- that it is Zhang's Eq. (21) at p. 315, that it is the weak consequence of Eq. (20) which survived Hutchinson's disproof of the stronger conjecture, and that under Hutchinson's indexing B_{k-1,k-1} = A[hat{1,k}] -- is transcribed from the cited articles and is NOT checked here: this program has no network access and no copy of those articles, so it cannot confirm the equation numbers, the page, or the index convention.  If that identification were wrong, the arithmetic below would still hold but it would refute a differently-attributed statement.
+== the identities the proofs rest on ==
+PASS ryser_permanent_matches_the_permutation_sum [matrices compared=28 (orders 1..7, 4 each); empty permanent=1, Phi1 of the 2x2 leading block=1]
+PASS rank_two_permanent_identity_agrees_with_ryser [cases=42 of 42 (orders 1..7, 6 each) mismatches=none]
+PASS rank_one_gives_Phi1_equal_per_over_n [orders 2..7 tested=6 mismatches=none; rank-0 gaps=[0, 0, 0, 0, 0]]
+PASS order_2_gap_identity_equals_a11_a22_on_a_proving_grid [grid points=36 of 36, diagonal in (0, 1) (degree 1), off-diagonal coordinates in (0, 1, 2) (degree 2), mismatches=none]
+PASS order_3_gap_identity_of_the_corollary_on_a_proving_grid [grid points=5832 of 5832, diagonal in (0, 1) (degree 1 each), six off-diagonal coordinates in (0, 1, 2) (degree 2 each), mismatches=none]
+== the consequences ==
+PASS exhaustive_order_3_gram_family_has_no_violation [Grams tested=45760 of the 45760 3-multisets from 64 vectors, max(Phi1-per)=0]
+PASS least_order_lower_bound_matches_the_paper [established n_min >= 4, paper states 4; order-1 gaps=[0, -1, -2, -3, -4]]
+PASS least_rank_upper_bound_two_is_attained [violating matrix has rank 2]
+PASS least_order_upper_bound_matches_the_paper [violating matrix has order 12, paper states n_min <= 12]
+PASS reported_external_values_are_ordered_as_printed [cross products 30938400000 < 71992325000]
+  NOT RE-RUN: the matrix behind those two rationals is printed in a different article and is not restated in this paper, so its entries cannot be recomputed from the text verified here.
+PASS order_n_minus_1_variant_scales_differently_from_per [variant factor=16, per factor=4, variant(A)=769541911323374624400000 != Phi1(A)]
+PASS scaling_homogeneity_of_per_order_2_on_a_proving_grid [grid points=324 of 324 (4 diagonals x 9 off-diagonal tuples x 9 scalings) over a11,a22 and Re b,Im b, diagonal in (0, 1), off-diagonal coordinates in (0, 1, 2), d in (1, 2, 3); mismatches=none]
+PASS scaling_homogeneity_of_Phi1_order_2_on_a_proving_grid [grid points=324 of 324 (4 diagonals x 9 off-diagonal tuples x 9 scalings) over a11,a22 and Re b,Im b, diagonal in (0, 1), off-diagonal coordinates in (0, 1, 2), d in (1, 2, 3); mismatches=none]
+PASS scaling_homogeneity_of_per_order_3_on_a_proving_grid [grid points=157464 of 157464 (8 diagonals x 729 off-diagonal tuples x 27 scalings) over a11,a22,a33 and Re,Im of b,c,e, diagonal in (0, 1), off-diagonal coordinates in (0, 1, 2), d in (1, 2, 3); mismatches=none]
+PASS scaling_homogeneity_of_Phi1_order_3_on_a_proving_grid [grid points=157464 of 157464 (8 diagonals x 729 off-diagonal tuples x 27 scalings) over a11,a22,a33 and Re,Im of b,c,e, diagonal in (0, 1), off-diagonal coordinates in (0, 1, 2), d in (1, 2, 3); mismatches=none]
+PASS diagonal_scaling_integers_preserves_the_violation [scale factor prod d_j^2=5184, scaled gap=552455974922724288000000]
+PASS diagonal_scaling_rationals_preserves_the_violation [scale factor prod d_j^2=9/4, scaled gap=239781239115765750000]
+PASS scaling_homogeneity_order_12_coordinatewise_to_the_integers [12 coordinates, 36 scaled evaluations, fewest distinct d_j on any one coordinate=3 (>= 3 is what forces a degree-2 polynomial), mismatches=none]
+PASS scaling_homogeneity_order_12_coordinatewise_to_the_rationals [12 coordinates, 36 scaled evaluations, fewest distinct d_j on any one coordinate=3 (>= 3 is what forces a degree-2 polynomial), mismatches=none]
+  NOT RE-RUN: the twelve coordinatewise steps just printed force the homogeneity in ONE d_j at a time, with the other eleven held at the values reached so far, so they prove the identity along the two chains from d=(1,...,1) to the two target diagonals -- they do NOT prove the full twelve-variable identity at order 12, which would need a grid of 3^12 = 531441 points and is not run here.  The full identity is proved only at orders 2 and 3 above.
+PASS correlation_normalization_needs_an_irrational_scaling [diag=[1, 5, 74, 74, 121, 125, 115, 74, 121, 115, 125, 1]; a_jj not a perfect square, so d_j=a_jj^(-1/2) is irrational, at j=[2, 3, 4, 6, 7, 8, 10, 11]]
+  NOT RE-RUN: no unit-diagonal (correlation) matrix is produced here.  The normalization d_j = a_jj^(-1/2) is irrational for the diagonal just printed, so the correlation form of Corollary 4 cannot be exhibited in this program's exact rational arithmetic; it follows from the homogeneity identity over the reals, which is proved above on a full grid at orders 2 and 3 and, at order 12, only along the two rational chains just printed -- never at the irrational d of this normalization -- and so the correlation form rests on the paper's argument, not on any matrix computed here.
+PASS direct_sum_with_I_1_order_13_keeps_the_same_gap [order=13 per=463995226880175960000000 Phi1-per=106569439607007000000 rank=3 (paper's 2+m=3)]
+PASS direct_sum_with_I_2_order_14_keeps_the_same_gap [order=14 per=463995226880175960000000 Phi1-per=106569439607007000000 rank=4 (paper's 2+m=4)]
+PASS direct_sum_with_I_3_order_15_keeps_the_same_gap [order=15 per=463995226880175960000000 Phi1-per=106569439607007000000 rank=5 (paper's 2+m=5)]
+PASS direct_sum_with_I_4_order_16_keeps_the_same_gap [order=16 per=463995226880175960000000 Phi1-per=106569439607007000000 rank=6 (paper's 2+m=6)]
+  NOT RE-RUN: the abstract and Corollary 4 assert counterexamples in EVERY order N >= 12.  Only the finitely many orders 12,13,14,15,16 are recomputed here (m = 0 and m = 1,2,3,4 in C = A (+) I_m); every larger N rests on the induction in the paper, which is not machine-checked, and the paper's rank claim rank(C) = 2 + m is checked only at those same orders.  The sums formed here pad the UNNORMALIZED A, not the correlation matrix A_0 of the corollary's proof; A_0 (+) I_m equals D'(A (+) I_m)D' for the positive diagonal D' that normalizes A and fixes the identity block, so the two have the same gap sign by the homogeneity identity - which is proved above at orders 2 and 3 and coordinatewise at order 12, and is NOT re-verified at orders 13,14,15,16.
+  eps=1/1: positive definite=True, sign(Phi1-per)=-1
+  eps=1/10: positive definite=True, sign(Phi1-per)=-1
+  eps=1/100: positive definite=True, sign(Phi1-per)=-1
+  eps=1/10000: positive definite=True, sign(Phi1-per)=1
+  eps=1/1000000: positive definite=True, sign(Phi1-per)=1
+PASS positive_definite_perturbation_still_violates [eps=1/T works for 2 of the 5 T tried, T in [10000, 1000000]]
+  order 13, eps=1/10000: positive definite=True, sign(Phi1-per)=1
+  order 14, eps=1/10000: positive definite=True, sign(Phi1-per)=1
+  order 15, eps=1/10000: positive definite=True, sign(Phi1-per)=1
+  order 16, eps=1/10000: positive definite=True, sign(Phi1-per)=1
+PASS positive_definite_perturbation_of_the_direct_sum_still_violates [orders [13, 14, 15, 16] (4 of 4 paddings) at eps=1/10000, base order 12]
+== negative controls ==
+PASS control_non_psd_hermitian_matrix_is_rejected [smallest 2x2 principal minor=-445]
+PASS control_single_column_edits_change_both_sides [edited columns 3,5,7,10 (1-based); values unchanged for=none]
+PASS control_identity_matrices_satisfy_the_inequality [orders 4,8,12: (per,Phi1)=[(1, 0), (1, 0), (1, 0)]]
+PASS control_rank_three_grams_are_measured_not_assumed [order,rank,per real,per-Phi1=[(4, 3, True, 408364), (5, 3, True, 164108480), (6, 3, True, 2240018732)]]
+  the last control only records the gap sign on rank-3 samples; the inequality is not claimed to be true for them.
+== how far down the order the sweep reaches ==
+PASS sweep_evaluator_reproduces_the_paper_gap [sweep gap=106569439607007000000]
+PASS exhaustive_order_4_family_has_no_violation [multisets tested=249900 of 249900, columns in set=48 max(Phi1-per)=0]
+PASS exhaustive_order_5_family_has_no_violation [multisets tested=53130 of 53130, columns in set=21 max(Phi1-per)=0]
+PASS random_sweep_orders_4_to_11_finds_no_violation [configurations tested=7200 of 7200 (orders 4..11, 900 each) violations=[]]
+  NOT RE-RUN: no exhaustive census over all Hermitian positive semidefinite matrices of orders 4..11 exists here, so the paper's lower bound n_min >= 4 is verified only for orders 2 and 3 (by the exact identities above) and the band 4 <= n_min <= 12 is left as stated; ranks above 2 are not swept.
+PASS no_complex_minor_permanent_seen_anywhere [hermitian inputs must give real minor permanents; anomalies=0]
+VERDICT: ALL 52 CHECKS PASS
+=== program exited with status 0 ===

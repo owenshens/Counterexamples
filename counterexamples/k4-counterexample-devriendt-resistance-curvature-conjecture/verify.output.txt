@@ -1,0 +1,30 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  f2e03baaab73f6b991b6c94776462c90ad6b12b75ce12262845af76edd7637b1
+python:  Python 3.9.25
+=== program output follows ===
+Setting: K_4, edges ordered 01,02,03,12,13,23; conductances c = (3485/15876)*(1,1,2,1,4,4).
+PASS object_is_a_positively_weighted_K4 [V=4, E=6, w=(1, 1, 2, 1, 4, 4)]
+PASS weighted_laplacian_matches_paper [rows=[['4', '-1', '-1', '-2'], ['-1', '6', '-1', '-4'], ['-1', '-1', '6', '-4'], ['-2', '-4', '-4', '10']]]
+PASS pseudoinverse_satisfies_moore_penrose_identities [L*Ld*L=L, Ld*L*Ld=Ld, symmetric, Ld*1=0]
+PASS resistance_matrix_matches_paper [126*Omega=[['0', '44', '44', '35'], ['44', '0', '36', '23'], ['44', '36', '0', '23'], ['35', '23', '23', '0']]]
+PASS normalizing_scalar_matches_paper [1^T Omega(w)^-1 1 = 15876/3485, lambda = 3485/15876]
+PASS hypothesis_normalized_holds_for_exhibited_c [1^T K 1 = 1, tau(V) = 1]
+PASS relative_resistances_match_paper_and_are_scale_invariant [r = ['22/63', '22/63', '5/9', '2/7', '46/63', '46/63']]
+PASS curvature_vector_matches_paper [p = ['47/126', '20/63', '20/63', '-1/126']]
+PASS conclusion_nonnegative_curvature_is_violated [negative coordinates [3], p_3 = -1/126]
+PASS hypothesis_all_24_elementary_slacks_strictly_positive [24 inequalities, 0 nonpositive]
+PASS published_table_of_15_orbit_representatives_is_exact [15 published values reproduced]
+PASS minimum_slack_value_and_location_match_paper [min = 1123/69700 at Delta_{03}((1, 2))]
+PASS involution_1_2_is_a_symmetry_with_15_orbits [sigma fixes c, 15 orbits, representatives equal the published table]
+PASS uniform_k4_normalized_curvature_is_one_quarter [p = ['1/4', '1/4', '1/4', '1/4'], min slack = 1/18]
+PASS no_negative_curvature_on_graphs_of_order_below_four [258 weightings of K2,P3,K3 (conductances 1..6); min curvature 0 at ('P3', (1, 1))]
+PASS triangle_curvature_matches_series_parallel_closed_form [1029 (weighting, vertex) pairs agree and are positive]
+PASS tree_relative_resistances_equal_one [78 tree edges have c_uv * omega_uv = 1]
+PASS counterexample_persists_under_perturbation_by_one_sixtyfourth [729 corner perturbations, 0 failing: sup p_3 = -307/110685 (need < 0), inf min-slack = 262710172487193/16949423210240000 (need > 0)]
+PASS census_primitive_weights_to_four_respects_the_proved_direction [4031 weightings, 0 violations of p>=0 ==> submodular, 52 counterexamples]
+PASS no_counterexample_of_smaller_conductance_weight_sum [1715 primitive weightings with sum<=13; 24 counterexamples, all of sum 13]
+PASS every_member_of_the_symmetric_group_orbit_is_a_counterexample [orbit size 12, all strictly submodular with negative curvature]
+NOT RE-RUN: the cited article's own theorems are not reproved here; only the implication p>=0 ==> submodularity is spot-checked, on the 4031 primitive integer weightings of K_4 with conductances at most 4. Searches over conductances are restricted to the integer ranges named in each check, and stability is tested on a finite grid of perturbations rather than an open neighbourhood. The paper's two remarks are proved there analytically and are only spot-checked here: minimality of order four on the 258 integer weightings of K_2, P_3 and K_3 with conductances at most 6, together with 1029 triangle instances against the series-parallel closed form; and persistence under perturbation only at the 729 corners of the box w +/- 1/64, not on any open neighbourhood.
+VERDICT: ALL 21 CHECKS PASS
+=== program exited with status 0 ===

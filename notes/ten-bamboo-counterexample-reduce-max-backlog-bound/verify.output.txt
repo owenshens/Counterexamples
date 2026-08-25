@@ -1,0 +1,29 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  72a5002681ab6626a046001af94bab6fff1bd1be361efa2025d46094a98be7ad
+python:  Python 3.9.25
+=== program output follows ===
+PASS instance_well_formed [n=10, sum(w)=937, gcd=1, sum(rates)=1, min rate=19/937]
+PASS rate_classes_as_described [four singleton classes 313,261,131,118 and one class of six 19s]
+PASS certificate_cut_word_matches_greedy [144 symbols agree; first mismatch: none]
+PASS certificate_m_M_delta_columns [8/8 rows exact]
+PASS all_cuts_globally_greedy [recurrence replayed for rounds 1..144; every cut agrees with the independently rebuilt pre-cut vector and its maximum: True; smallest cross-rate gap: 1]
+PASS canonical_endpoint_states [9/9 states exact]
+PASS peak_pre_cut_height_is_1878_in_round_60 [computed peak 1878 attained in round(s) [60]]
+PASS backlog_exceeds_two [computed backlog 1878/937 = 2 + 4/937; compared with 2 in exact rationals]
+PASS round_60_cuts_the_fastest_bamboo [round 60 cuts bamboo 1 at height 1878, uniquely maximal]
+PASS decisive_comparisons_rounds_56_to_60 [5/5 comparisons exact, multipliers = rounds since last cut]
+PASS tie_rounds_are_exactly_43_44_51_52_55 [computed tie rounds [43, 44, 51, 52, 55] over rounds 1..3000]
+PASS every_tie_is_within_the_slow_equal_rate_class [all tied maximizers have rate 19/937 and equal height]
+PASS tie_independence_exhaustive [66258 exact states explored over all tie-breakings; canonical layer width max 1]
+PASS peak_1878_under_every_tie_breaking [peak 1878 over the whole tie-breaking tree, only in round(s) [60]]
+PASS canonical_trajectory_is_seven_periodic [C(H(137)) = C(H(144)), word 214321S, and C(H(t+7)) = C(H(t)) for 137 <= t <= 2993]
+PASS cycle_peak_is_1252 [computed cycle peak 1252, claimed 1252; 1252 < 1878 so no round of the cycle beats round 60]
+PASS supremum_over_long_horizon_is_1878 [over 3000 rounds the computed max is 1878 (claimed 1878); after round 60 it never exceeds 1252]
+PASS corollary_positive_rate_instances_for_n_10_to_22 [12/12: sum 1, only original bamboos cut through round 60, round-60 height 938061/468500 > 2]
+PASS corollary_growth_bound_is_strict [largest height reached by any added bamboo through round 60: 3/50; closed-form ceiling: 3/50; smallest selected original height: 312687/937000 = 313/937 (the ceiling must be the smaller of the last two)]
+PASS census_of_H_up_to_35_backlog_below_2_lowest_index_tie_breaking [23297 partitions enumerated; 23202 closed by a proven repeated state, 95 only to a 4000-round horizon; worst backlog 68/35 at w=(34, 1)]
+PASS exhibited_instance_outside_that_enumeration [integer total growth H = 937 exceeds the enumerated maximum 35, while n = 10]
+NOT RE-RUN: (a) the 2000- and 2702-bamboo instances of the earlier disproof, and their reported bounds 2.0004 and 2.076, are not reconstructed, since those rate vectors are not exhibited in the text being checked; (b) the corollary is simulated exactly for n = 10..22 only, its general growth bound t/(1000m) <= 60/1000 being verified in closed form for all m >= 1; (c) nothing about fewer than ten bamboos is claimed or tested; (d) in the census of H <= 35 the backlog is exact only for the partitions whose state recurred within the 4000-round horizon, is a horizon-limited lower bound for the remaining 95, and is computed under lowest-index tie-breaking alone -- that census only corroborates the remark about the earlier search and carries no part of the main theorem, whose tie-independence is established by exhaustive expansion above.
+VERDICT: ALL 21 CHECKS PASS
+=== program exited with status 0 ===

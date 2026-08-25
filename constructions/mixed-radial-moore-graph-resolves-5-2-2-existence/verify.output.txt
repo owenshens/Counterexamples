@@ -1,0 +1,28 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  bd4e40705697c43e0f176128e8e067805cdf64384eeea10000ce1a80613accc7
+python:  Python 3.9.25
+=== program output follows ===
+decoded certificate: 52 rows, 260 undirected endpoints, 104 arc heads
+first row v=0: U=[1, 2, 3, 4, 5] A+=[6, 7] ; last row v=51: U=[24, 28, 29, 30, 39] A+=[40, 49]
+PASS certificate_well_formed [vertex set = {0,...,51}, no repeats, all endpoints in range]
+PASS order_equals_mixed_moore_bound [|V|=52, M(5,2,2)=52]
+PASS undirected_part_symmetric [u in U(v) iff v in U(u) over all 2704 ordered pairs]
+PASS totally_5_2_regular [undirected degree 5, outdegree 2, indegree 2 at every vertex]
+PASS no_loops_digons_or_edge_arc_overlap [loops=0 digons=0 overlaps=0]
+PASS edge_and_arc_counts [130 edges, 104 arcs]
+PASS layers_from_vertex_0 [layer sizes (1, 7, 44), first layer = {1,...,7}]
+PASS second_layer_block_partition [the 7 descendant blocks are disjoint and exhaust {8,...,51}]
+PASS all_pairs_distance_distribution [d=0:52 d=1:364 d=2:1487 d=3:801, total 2704 ordered pairs]
+PASS out_eccentricities_radius_diameter_center [ecc+(0)=2, ecc+(v)=3 for v!=0, radius 2, diameter 3, center [0]]
+PASS is_RM_5_2_2 [totally (5,2)-regular, radius 2, diameter 3, order 52 = M(5,2,2)]
+PASS moore_layer_sizes_and_sigma [Moore layers (1, 7, 44) sum to 52, sigma = 95]
+PASS status_identity_s_equals_sigma_plus_q [s(v) = 95 + q(v) at all 52 vertices, q range [0,20]]
+PASS total_status_and_N1 [sum s(v) = 5741, N_1 = 801]
+PASS reachability_closure_matches_bfs [|<=1|=416 |<=2|=1903 |<=3|=2704; step-2 closure is complete only from vertex 0; mask-derived d(v,u) equals the BFS value on 2704/2704 ordered pairs (0 mismatches)]
+PASS least_moore_bound_among_open_pairs [min M(r,z,2) over open (r,z) with r,z<=39 is 52, attained only at (5, 2)]
+PASS corruptions_are_detected [original conforms (0 structural, 0 metric violations); 7/7 corruptions rejected (edge-rewire:symmetry+no_edge_arc_overlap+radius_2+center_{0}+distance_histogram+status_sum_5741+N_1_801, arc-head-moved:indegree_2+radius_2+center_{0}+distance_histogram+status_sum_5741+N_1_801, edge-arc-overlap:indegree_2+no_edge_arc_overlap+radius_2+center_{0}+distance_histogram+status_sum_5741+N_1_801, degree-bumped:undirected_degree_5+edges_130+distance_histogram+status_sum_5741+N_1_801, edge-deleted:undirected_degree_5+edges_130+distance_histogram+status_sum_5741+N_1_801, arc-heads-swapped-0-1:radius_2+center_{0}+distance_histogram+status_sum_5741+N_1_801, edges-2-swapped-01-639:radius_2+center_{0}+distance_histogram+status_sum_5741+N_1_801)]
+PASS metric_checks_can_fail [arc-heads-swapped-0-1 measures udeg 5..5, outdeg 2..2, indeg 2..2, 130 edges, 104 arcs, loops/digons/overlaps 0/0/0 [structural violations: none] yet fails radius_2,center_{0},distance_histogram,status_sum_5741,N_1_801; edges-2-swapped-01-639 measures udeg 5..5, outdeg 2..2, indeg 2..2, 130 edges, 104 arcs, loops/digons/overlaps 0/0/0 [structural violations: none] yet fails radius_2,center_{0},distance_histogram,status_sum_5741,N_1_801]
+NOT RE-RUN: that the (5,2,2) case is listed as open in the two cited tables is bibliographic and is not recomputed here; the previously settled families (z=1 any r, r=1 any z) and the six pairs (2,2),(2,3),(3,2),(3,3),(4,2),(2,4) are taken as documented input to the least-Moore-bound comparison; no exhaustive search over all mixed graphs of order 52 is attempted, and no minimality of N_1 is tested (the paper makes no such claim). The falsification self-test is seven named local corruptions, five structural and two degree-preserving; it is not an exhaustive perturbation search, so it shows each condition family CAN fail, not that no corruption whatsoever escapes. The second computation of the distances (the bitmask closures) agrees with the breadth-first matrix on every one of the 2704 ordered pairs, but it reads the SAME decoded adjacency, so it cross-checks the traversal and not the transcription: an error in decoding the paper's table would corrupt both arms identically and is caught only by the printed first and last rows and the well-formedness, degree and count checks.
+VERDICT: ALL 18 CHECKS PASS
+=== program exited with status 0 ===

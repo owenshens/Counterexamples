@@ -1,0 +1,120 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  22f074564e707cf84eeea3433d8e2568b1d7ee381eb3330f8a1ef264662ba167
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- z-visibility representation of K_{6,6} minus a perfect matching
+all arithmetic exact (int / Fraction); standard library only
+
+--- 1. the exhibited object, decoded and checked ---
+PASS object_decoded_12_rectangles [n=12]
+PASS labels_are_exactly_h0_h5_v0_v5 [labels=h0,h1,h2,h3,h4,h5,v0,v1,v2,v3,v4,v5]
+PASS labels_distinct
+PASS all_coordinates_integral_so_boundaries_lie_on_grid_lines
+PASS every_projection_has_positive_area [degenerate=none]
+PASS no_unit_cell_is_only_partially_inside_any_projection [partial=none]
+PASS heights_pairwise_distinct [n_distinct=12]
+PASS heights_are_the_consecutive_integers_0_to_11 [z=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]]
+PASS rectangles_pairwise_disjoint_in_R3 [overlapping=none]
+PASS bounding_box_is_0_10_x_0_7 [bbox=[0,10]x[0,7]]
+PASS cell_sets_agree_between_scan_and_product_formula [mismatch=none]
+PASS every_cell_set_C_R_is_nonempty [empty=none]
+INFO total cells over the 12 rectangles: 223
+INFO decoded object, in increasing z(R):
+INFO   h0 z=0  pi=[6,9]x[0,7]  |C(R)|=21
+INFO   h3 z=1  pi=[2,5]x[0,7]  |C(R)|=21
+INFO   v4 z=2  pi=[4,8]x[1,3]  |C(R)|=8
+INFO   v0 z=3  pi=[2,4]x[1,6]  |C(R)|=10
+INFO   v5 z=4  pi=[4,8]x[3,6]  |C(R)|=12
+INFO   h1 z=5  pi=[1,8]x[2,5]  |C(R)|=21
+INFO   v3 z=6  pi=[2,10]x[2,5]  |C(R)|=24
+INFO   h2 z=7  pi=[3,7]x[1,6]  |C(R)|=20
+INFO   v1 z=8  pi=[3,7]x[1,7]  |C(R)|=24
+INFO   h5 z=9  pi=[2,8]x[1,3]  |C(R)|=12
+INFO   h4 z=10 pi=[2,8]x[3,6]  |C(R)|=18
+INFO   v2 z=11 pi=[0,8]x[0,4]  |C(R)|=32
+
+--- 2. hypotheses of the statement being refuted ---
+PASS the_exhibited_labels_split_into_two_parts_of_size_6_and_6 [|H|=6 |V|=6 of 12 labels]
+PASS K_6_6_has_36_edges [|E|=36]
+PASS deleted_set_is_a_perfect_matching_of_K_6_6 [|M|=6 covers 12 vertices]
+PASS target_graph_has_30_edges [|E(G)|=30]
+PASS every_vertex_of_G_has_degree_5 [degrees=[5]]
+PASS G_is_bipartite_between_H_and_V
+PASS target_graph_from_the_objects_labels_equals_the_stated_description [|E|=30 vs 30]
+INFO the conjecture asserts NO z-visibility representation exists for this graph; a single representation refutes it
+
+--- 3. LOAD-BEARING: the visibility graph, unit-cell method ---
+PASS enumerated_pair_count_equals_binom_n_2_and_equals_66 [n=12 pairs=66 binom=66]
+PASS visibility_graph_by_unit_cell_criterion_equals_K66_minus_matching [extra=none missing=none]
+PASS recomputed_edge_count_is_30 [|E|=30]
+PASS recomputed_nonedge_count_is_36 [nonedges=36]
+PASS every_edge_of_G_has_a_nonempty_free_cell_set [empty_F=none]
+PASS every_nonedge_of_G_has_an_empty_free_cell_set [nonempty_F=none]
+INFO min |F(A,B)| over the 30 edges: 1
+PASS represented_graph_is_bipartite_between_the_two_parts [non_crossing_edges=none]
+PASS represented_graph_is_5_regular_on_all_12_vertices [degrees=[5]]
+PASS complement_of_represented_graph_inside_K_6_6_is_a_perfect_matching [|complement|=6 covers 12 vertices]
+INFO deleted matching recovered from the computed graph: h0-v0, h1-v1, h2-v2, h3-v3, h4-v4, h5-v5
+PASS represented_graph_has_30_edges_so_it_is_K66_minus_a_matching [|E|=30]
+
+--- 4. LOAD-BEARING: the visibility graph, exact geometry, independent of the paper's Lemma ---
+PASS visibility_graph_by_exact_free_area_equals_K66_minus_matching [extra=none missing=none]
+PASS unit_cell_criterion_and_exact_area_agree_on_all_66_pairs [disagree=none]
+PASS free_cell_count_equals_free_area_exactly_on_all_66_pairs [mismatch=none]
+PASS inclusion_exclusion_area_matches_coordinate_compression_on_66_pairs [mismatch=none]
+PASS visibility_graph_by_inclusion_exclusion_equals_K66_minus_matching [extra=none missing=none]
+PASS every_pair_admits_a_cylinder_of_positive_length [equal_heights=none]
+PASS explicit_radius_one_quarter_cylinder_verified_for_all_30_edges [failures=none]
+PASS all_36_nonadjacent_pairs_have_exactly_zero_free_area [positive_area=none]
+PASS paper_arithmetic_30_by_cells_plus_36_by_area_equals_binom_12_2 [30+36=66, binom(12,2)=66]
+INFO free area over the 30 edges: min=1 max=20
+
+--- 5. the paper's own finite certificate, both tables ---
+PASS witness_table_has_30_entries [entries=30 distinct=30]
+PASS witness_table_keys_are_exactly_the_edges_of_G [extra=none missing=none]
+PASS every_paper_witness_cell_lies_in_F_of_its_pair [bad=none]
+PASS every_paper_witness_cell_yields_a_valid_cylinder [bad=none]
+PASS blocker_table_has_36_entries [entries=36 distinct=36]
+PASS blocker_table_keys_are_exactly_the_nonedges_of_G [extra=none missing=none]
+PASS the_two_certificate_tables_partition_all_66_pairs [union=66 overlap=0]
+PASS every_listed_blocker_names_a_rectangle_of_the_object [unknown=none]
+PASS no_listed_blocker_is_one_of_its_own_pair [bad=none]
+PASS every_listed_blocker_lies_strictly_between_its_pair_in_z [bad=none]
+PASS listed_blockers_cover_C_A_cap_C_B_for_every_nonempty_entry [uncovered=none]
+PASS the_empty_symbol_entries_really_have_C_A_cap_C_B_empty [bad=none]
+PASS the_nonempty_entries_really_have_C_A_cap_C_B_nonempty [bad=none]
+
+--- 6. falsifiability self-tests and mutation census ---
+PASS selftest_equal_heights_break_pairwise_disjointness
+PASS selftest_deleting_a_rectangle_is_detected
+PASS selftest_moving_h0_above_the_stack_breaks_the_representation
+PASS selftest_shrinking_h0_to_x_in_7_9_breaks_the_representation
+PASS selftest_a_bogus_witness_cell_is_rejected
+PASS selftest_every_listed_blocker_is_necessary_so_the_cover_is_tight [redundant=none]
+INFO endpoint perturbation census: 96 admissible, 79 break the representation, 17 preserve it, 0 rejected as degenerate
+PASS mutation_census_endpoint_perturbations_are_discriminating [tried=96 broke=79 (a majority must break)]
+INFO height transposition census: 66 transpositions, 61 break the representation, 5 preserve it
+PASS mutation_census_height_transpositions_are_discriminating [tried=66 broke=61 (a majority must break)]
+PASS all_three_methods_agree_on_every_mutant_of_the_census [disagreements=none over 162 mutants]
+INFO perturbations that still represent G (17): h0->[5,9]x[0,7], h0->[6,10]x[0,7], h0->[6,9]x[-1,7], h0->[6,9]x[0,8], h3->[3,5]x[0,7], h3->[2,6]x[0,7], h3->[2,5]x[-1,7], h3->[2,5]x[0,8], h1->[0,8]x[2,5], v3->[2,9]x[2,5], v3->[2,11]x[2,5], v1->[3,7]x[1,8], v2->[-1,8]x[0,4], v2->[1,8]x[0,4], v2->[0,7]x[0,4], v2->[0,8]x[-1,4], v2->[0,8]x[0,5]
+
+--- 7. the weaker reading of 'joins', computed not asserted ---
+PASS weaker_reading_graph_contains_every_edge_of_G [missing=none]
+PASS weaker_reading_graph_is_STRICTLY_larger_than_G_so_the_containment_reading_is_load_bearing [|E(weak)|=34 vs |E(G)|=30 extra=h4-h5,v0-v4,v0-v5,v4-v5]
+PASS every_extra_pair_of_the_weaker_reading_carries_an_explicit_positive_radius_disk [witnessed=4 of 4 failures=none]
+PASS the_extra_pairs_all_join_two_rectangles_of_the_SAME_part [crossing=none]
+PASS the_six_deleted_matching_pairs_stay_nonvisible_under_the_weaker_reading [visible_matching_pairs=none]
+PASS selftest_lifting_h4_off_the_line_it_shares_with_h5_removes_that_extra_pair [before=visible after=not visible]
+INFO weaker-reading graph: 34 pairs visible against 30 under the containment reading; the 4 additional pair(s): h4-h5, v0-v4, v0-v5, v4-v5
+INFO cylinders realising them: h4-h5 axis=(2,3) r^2=1/4; v0-v4 axis=(4,1) r^2=1/4; v0-v5 axis=(4,3) r^2=1/4; v4-v5 axis=(9/2,3) r^2=1/16
+INFO The blocking condition is left at its most restrictive: an intermediate projection blocks as a CLOSED set, so the additional pairs above are not an artefact of relaxing 'meets'.  And weakening 'joins' only ever ADMITS cylinders, so under any reading at least as weak as the one computed here -- including one that lets the end disks meet the two rectangles without their axis touching either -- the realised graph contains the graph above and is therefore strictly larger than G as well.
+
+--- 8. scope ---
+INFO The paper's claim is a single exhibited object plus the finite 66-pair verification of it; both are reproduced here in full, with no reduction of range.
+INFO READING OF THE DEFINITION, and it is load-bearing: 'a closed vertical cylinder joins A and B' is taken, as in Bose et al., to mean that the cylinder's two end disks are CONTAINED in A and in B (D subset pi(A) and D subset pi(B)).  Both directions above use that reading: the 30 witnesses exhibit such a disk, and the 36 non-visibility proofs bound the area of the set of admissible centres.  That the weaker reading, in which the end disks need only MEET A and B, makes the twelve rectangles realise a strictly larger graph -- so that the containment reading is not a harmless normalisation but the definition being refuted -- is not merely asserted here: section 7 computes that graph, exhibits a cylinder for each additional pair, and reports the additional pairs by name.
+INFO Insensitive, by contrast, to whether 'meets another rectangle' is read as closed or as interior intersection: the witnesses keep clearance 1/4 from every intermediate projection, and a zero-area free region admits no positive-radius disk under either reading.
+INFO Not reproduced, because they are not computations: the bibliographic claim that Conjecture 6.5 of Bose et al. (1994) is the statement quoted, and the general proof of the paper's unit-cell Lemma (whose conclusion is nevertheless confirmed on this instance by the independent exact-geometry method in section 4); and, in section 7, the step from the ONE weakening of 'joins' computed there -- cylinder axis on both rectangles, end disks not contained -- to every weaker reading, which is the one-line monotonicity remark printed there and not a search over cylinders whose axis touches neither rectangle.
+
+VERDICT: ALL 66 CHECKS PASS
+=== program exited with status 0 ===

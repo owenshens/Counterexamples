@@ -1,0 +1,142 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  b8cc8534d4fb3c646e9376ecc25709a87f5efcdf5fb5eefa9e96d47078b91040
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: a third-derivative counterexample for
+chromatic polynomials -- H = Theta(8,8,9,9), k=3, x=-1/2
+python 3.9.25, exact arithmetic only
+
+=== Step 1: the exhibited object H, decoded from its graph6 string
+PASS g6_string_is_wellformed
+NOTE graph6 = _PCGGD@_??_@?@??_?I?@_????G??G??C??@???G???g??@_???????_???G???@????C????G????I????C
+NOTE order n = 32, size m = 34, degree profile (deg:count) = [(2, 30), (4, 2)]
+NOTE edge list = 0-2 0-9 0-16 0-24 1-8 1-15 1-23 1-31 2-3 3-4 4-5 5-6 6-7 7-8 9-10 10-11 11-12 12-13 13-14 14-15 16-17 17-18 18-19 19-20 20-21 21-22 22-23 24-25 25-26 26-27 27-28 28-29 29-30 30-31
+PASS g6_reencodes_to_the_same_string [_PCGGD@_??_@?@??_?I?@_????G??G??C??@???G???g??@_???????_???G???@????C????G????I????C]
+PASS g6_codec_reproduces_the_specification_example_DQc_and_all_K_n [reference edges [(0, 2), (0, 4), (1, 3), (3, 4)]]
+PASS order_is_32_as_claimed [n=32]
+PASS size_is_34 [m=34]
+PASS max_degree_is_4_as_claimed [Delta=4]
+PASS degree_profile_is_two_of_degree_4_and_thirty_of_degree_2 [[(2, 30), (4, 2)]]
+PASS H_is_connected
+
+=== Step 2: H is the generalized theta graph Theta(8,8,9,9)
+PASS H_is_recognised_as_a_generalized_theta_graph
+NOTE terminals found = (0,1); internally disjoint paths of edge-lengths (8, 8, 9, 9)
+NOTE   path 0-2-3-4-5-6-7-8-1
+NOTE   path 0-9-10-11-12-13-14-15-1
+NOTE   path 0-16-17-18-19-20-21-22-23-1
+NOTE   path 0-24-25-26-27-28-29-30-31-1
+PASS terminals_are_vertices_0_and_1_as_the_paper_states [(0,1)]
+PASS path_count_is_4 [p=4]
+PASS path_edge_lengths_are_8_8_9_9 [(8, 8, 9, 9)]
+PASS terminals_are_nonadjacent_so_all_lengths_exceed_one
+PASS order_equals_2_plus_sum_of_lengths_minus_one [2+7+7+8+8=32]
+PASS size_equals_sum_of_path_lengths [34]
+PASS explicit_bijection_onto_independently_built_Theta_8_8_9_9_is_an_isomorphism [phi=0->0,1->1,2->2,3->3,4->4,5->5,6->6,7->7,8->8,9->9,10->10,11->11,12->12,13->13,14->14,15->15,16->16,17->17,18->18,19->19,20->20,21->21,22->22,23->23,24->24,25->25,26->26,27->27,28->28,29->29,30->30,31->31]
+PASS H_is_not_bipartite_because_8+9_is_an_odd_cycle_length
+PASS H_is_noncomplete [m=34 < C(32,2)=496]
+
+=== Step 3: H is planar (Kuratowski branch count and Euler formula)
+NOTE vertices of degree>=3: 2 ; of degree>=4: 2
+PASS no_K5_subdivision_since_fewer_than_5_vertices_have_degree_at_least_4 [2 < 5]
+PASS no_K33_subdivision_since_fewer_than_6_vertices_have_degree_at_least_3 [2 < 6]
+PASS planar_edge_bound_m_le_3n_minus_6 [34 <= 90]
+NOTE explicit rotation system traced 4 faces over 68 darts
+PASS face_trace_visits_every_dart_exactly_once
+PASS rotation_system_satisfies_Euler_n_minus_m_plus_f_equals_2 [32-34+4=2]
+PASS control_K5_fails_the_branch_bound_and_Euler_equality [K5: deg>=4 count 5, Euler value -2]
+
+=== Step 4: both chromatic-polynomial engines vs literal brute force
+PASS A_s_and_D_s_match_brute_force_path_colour_counts [s=1..6, q=2..5]
+PASS numerators_of_A_s_D_s_vanish_at_q_0_so_both_lie_in_Z_q [s=1..12, q*A_s and q*D_s reconstruct the numerators]
+PASS lemma_2_product_formula_matches_brute_force_on_10_small_thetas [orders 3..6]
+PASS generic_bucket_elimination_matches_brute_force_on_small_graphs [13 graphs, all q<=n]
+
+=== Step 5: P(H,q) computed twice, independently
+NOTE P(H,q) = -2048*q^1 +29632*q^2 -228352*q^3 +1233072*q^4 -5183696*q^5 +17881808*q^6 -52140240*q^7 +130841308*q^8 -285882508*q^9 +548223208*q^10 -927919976*q^11 +1391951092*q^12 -1855960244*q^13 +2203959832*q^14 -2333605976*q^15 +2203961407*q^16 -1855967519*q^17 +1391975640*q^18 -927983760*q^19 +548354040*q^20 -286097760*q^21 +131128140*q^22 -52451256*q^23 +18156204*q^24 -5379616*q^25 +1344904*q^26 -278256*q^27 +46376*q^28 -5984*q^29 +561*q^30 -34*q^31 +1*q^32
+NOTE colouring counts P(H,q) for q=0..5: [0, 0, 0, 1908830550, 1042323840076800, 11805916207861119060]
+PASS generic_colour_count_plus_interpolation_equals_lemma_2_formula [degree 32, 33 coefficients agree]
+PASS P_H_has_degree_32_and_is_monic [deg=32 lead=1]
+PASS P_H_second_coefficient_is_minus_m [a_31=-34, m=34]
+PASS P_H_coefficients_are_integers_and_alternate_in_sign [rational interpolant has 33 coefficients, all with denominator 1]
+NOTE because the coefficients alternate and none of a_1..a_32 vanishes, (-1)^n P(H,x) = sum_i |a_i| |x|^i > 0 for every x<0, so L_H is defined on all of (-infinity,0)
+PASS minus_one_to_the_n_times_P_is_positive_at_400_negative_rationals [x = -1/8, -2/8, ..., -400/8 (400 points)]
+PASS P_H_vanishes_at_q_0_1_2_and_is_positive_at_q_3 [P(H,3)=1908830550]
+PASS chromatic_number_of_H_is_3
+PASS transfer_matrix_count_agrees_at_q_3_4_5_6
+
+=== Step 6: P^(j)(H,-1/2) for j=0,1,2,3
+NOTE P(-1/2) = 16528743341798025/4294967296
+PASS paper_value_of_P_at_minus_one_half [computed 16528743341798025/4294967296 vs paper 16528743341798025/4294967296]
+NOTE P_prime(-1/2) = -38758016767164565/536870912
+PASS paper_value_of_P_prime_at_minus_one_half [computed -38758016767164565/536870912 vs paper -38758016767164565/536870912]
+NOTE P_double_prime(-1/2) = 5549131014505347/4194304
+PASS paper_value_of_P_double_prime_at_minus_one_half [computed 5549131014505347/4194304 vs paper 5549131014505347/4194304]
+NOTE P_triple_prime(-1/2) = -1586794036505230809/67108864
+PASS paper_value_of_P_triple_prime_at_minus_one_half [computed -1586794036505230809/67108864 vs paper -1586794036505230809/67108864]
+PASS jet_arithmetic_on_the_unexpanded_product_formula_reproduces_all_four
+
+=== Step 7: L_H^(3)(-1/2) and the refutation of Conjecture 2
+PASS n_is_even_so_L_H_equals_log_P_H [(-1)^32 = 1]
+PASS minus_one_to_the_n_times_P_at_the_witness_point_is_positive [value 16528743341798025/4294967296]
+NOTE L_H^(3)(-1/2) = 5255579329573016681520193060821596608/18016243181285229121994454910138997625
+NOTE             = 0.2917133875630834 (decimal, display only)
+PASS L3_from_the_paper_identity_equals_the_paper_value [computed 5255579329573016681520193060821596608/18016243181285229121994454910138997625]
+PASS L3_from_formal_log_of_the_power_series_agrees_independently
+PASS witness_satisfies_the_hypotheses_k_at_least_2_and_x_negative [k=3, x=-1/2]
+PASS REFUTATION_L3_is_strictly_positive_contradicting_conjecture_2 [sign of L_H^(3)(-1/2) is positive; value 5255579329573016681520193060821596608/18016243181285229121994454910138997625]
+PASS L2_agrees_with_the_series_route
+PASS L2_at_the_witness_point_is_negative_so_the_failure_is_third_order [L_H''(-1/2) = -55802572864408523561071168/6872416789892908604843025]
+
+=== Step 8: the witness point lies outside the proved range
+NOTE Ning--Yang prove the inequality for x <= -3.01*Delta*k = -903/25
+NOTE PROVENANCE of that bound: the constant 3.01 is TRANSCRIBED from Ning--Yang Theorem 1.5 and is NOT recomputed here (this program cannot see that paper); Delta=4 is read off the decoded graph and k=3 is the witness order, and the comparison below is exact given the transcribed constant
+PASS witness_point_is_not_inside_the_ning_yang_proved_range [-1/2 > -903/25]
+PASS L3_of_H_is_negative_at_every_sampled_point_in_the_proved_range [sampled x in ['-903/25', '-37', '-50', '-100', '-1000']]
+NOTE on the grid x=-1/4,-2/4,...,-30 the set where L_H^(3)(x)>0 is -1/2 ... -1/2 (1 of 120 points)
+PASS the_positivity_region_is_a_nonempty_proper_subset_of_the_coarse_grid
+PASS the_witness_point_lies_in_the_computed_positivity_region
+NOTE on the grid of step 1/1000 the positivity window is [-259/500, -433/1000] (86 points), and the sign is negative on both sides
+PASS positivity_window_is_a_single_interval_bracketed_by_negative_values
+
+=== Step 9: Conjecture 3, upper inequality, and its hypotheses
+NOTE L_{K_32}^(3)(-1/2) = -106080246210729395770252480757759634590856845826987154000049215210006487842816/6303861355385615032837554368654156828684655504142757097840279579610371890625
+PASS Kn_closed_form_matches_the_polynomial_route
+PASS Kn_chromatic_polynomial_matches_falling_factorial_values
+PASS displayed_identity_minus_one_to_the_n_P_Kn_equals_prod_j_minus_x [x = -1/4, ..., -39/4]
+PASS L3_of_K32_is_negative_as_the_corollary_asserts
+PASS UPPER_INEQUALITY_OF_CONJECTURE_3_FAILS_for_H_k3_x_minus_half [L3(H)=0.2917133875630834 is not < L3(K_32)=-16.827820320017228]
+PASS upper_inequality_fails_via_the_corollarys_route_L3_H_positive_and_L3_K32_negative [L3(H)=0.2917133875630834 > 0 > L3(K_32)=-16.827820320017228]
+NOTE SCOPE of Corollary 3: the bare criterion 'L^(3)(-1/2) >= L_{K_n}^(3)(-1/2)' is ALSO met by much smaller graphs -- the least order among noncomplete generalized theta graphs is 4, attained by Theta(1, 3), Theta(2, 2) (Theta(2,2) and Theta(1,3) are both C_4). So the upper inequality of Conjecture 3 is not specific to H; what is specific to H is that its L^(3) is POSITIVE, which is what refutes Conjecture 2.
+PASS least_order_noncomplete_theta_graph_also_failing_the_upper_inequality_is_C4_of_order_4 [least order = 4]
+PASS chordality_routine_is_correct_on_C4_K4_C5_and_H [C4 no, K4 yes, C5 no, H no]
+PASS Q_is_a_spanning_subgraph_of_H_with_n_minus_1_edges [|E(Q)|=31, spans=True]
+PASS Q_is_a_tree_connected_and_acyclic
+PASS Q_is_a_proper_subgraph_of_H [31 < 34]
+PASS Q_is_chordal
+PASS P_Q_equals_q_times_q_minus_1_to_the_n_minus_1
+NOTE L_Q^(3)(-1/2) = -928/27 for the BFS spanning tree Q
+PASS lower_inequality_of_conjecture_3_still_holds_for_this_Q [-34.370370370370374 < 0.2917133875630834]
+PASS H_is_connected_noncomplete_so_conjecture_3_applies
+NOTE enumerated 2448 spanning trees of H (formula prod s_i * sum 1/s_i predicts 2448)
+PASS EVERY_spanning_tree_of_H_is_a_chordal_proper_spanning_subgraph [2448 distinct spanning trees, all chordal proper spanning subgraphs]
+
+=== Step 10: negative controls (non-vacuity of the pipeline)
+PASS control_pipeline_on_C32_reproduces_the_known_cycle_polynomial [degree 32]
+PASS control_C32_satisfies_conjecture_2_at_the_same_point_L3_negative [L3(C_32)(-1/2) = -120868677683665290067504630992754080078124099072/6362619077347963545022917781411987792194534273]
+PASS control_one_bit_mutations_of_the_graph6_string_all_change_L3 [bit 0 -> L3=-8.50498950737564; bit 100 -> L3=-3.929899817035185; bit 400 -> L3=-0.5011896757010483]
+PASS control_neighbouring_theta_graphs_give_values_other_than_the_paper_value [Theta(8,8,9,10), Theta(7,9,9,9), Theta(8,8,8,9)]
+
+=== Step 11: exhaustive census of generalized theta graphs, order <= 34
+PASS census_enumerator_is_complete_vs_brute_force_multiset_enumeration [cross-checked at order bounds 8, 12, 14]
+PASS every_enumerated_parameter_set_builds_a_graph_that_decomposes_back [100 graphs with p>=3 of order <= 10, plus cycles declined]
+NOTE census examined 87606 generalized theta graphs (all p, all path lengths, order 3..34)
+PASS in_the_census_minus_one_to_the_n_times_P_is_positive_at_minus_half_for_every_member [0 exceptions]
+PASS census_found_at_least_one_violator_of_conjecture_2 [25 violators]
+NOTE the census finds 25 graphs with L^(3)(-1/2)>0; the least order at which this happens is 32, attained exactly by Theta(7, 9, 9, 9), Theta(8, 8, 8, 10), Theta(8, 8, 9, 9)
+PASS census_least_order_with_L3_positive_at_minus_one_half_is_32 [least order with L^(3)(-1/2)>0 = 32; k=3 and x=-1/2 only]
+PASS the_paper_witness_is_one_of_the_least_order_violators_in_the_census [least-order violators: [(7, 9, 9, 9), (8, 8, 8, 10), (8, 8, 9, 9)]]
+NOTE SCOPE: the paper claims a single witness and that claim is re-derived above in full. The census in this step is an ADDITION, not a paper claim; it is exhaustive over generalized theta graphs of order <= 34 only, and for each member it evaluates the sign of L^(k)(x) at the single pair k=3, x=-1/2. NOT RE-RUN: orders above 34 (the number of parameter multisets grows like the partition function); any graph outside the generalized theta family; and any other (k,x) with k>=2, x<0 -- so a census member of order below 32 could still violate Conjecture 2 at some other (k,x) without this census seeing it, and the least-order statement above is a statement about the sign of L^(3)(-1/2), not about Conjecture 2 in full. ALSO NOT RE-RUN: the constant 3.01 of Ning--Yang Theorem 1.5 used in Step 8, which is transcribed from that paper and not recomputed.
+VERDICT: ALL 80 CHECKS PASS
+=== program exited with status 0 ===

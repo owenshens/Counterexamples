@@ -1,0 +1,259 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9630ec10fd54ae5cccbc6f39fd1ef0a4afbecffd0a4e71724b824508be60ae87
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- K = X^{6,4} = VR(Q_6;4), G = H_6 = F_2^6 : S_6
+Checking: Psi(g) = I(F_g;-1) on all conjugacy classes; sum |C| = 46080; sum |C| Psi = 138240; average 3.
+FROM THE PAPER: n=6, r=4; the group and its action; Lemma 2 (assumed, proved in the paper);
+                the recurrence (3) and the class-size formula (2); the representative recipe;
+                equation (1): 239 + 14 from GMW C.3; character averaging; and the
+                65-row Appendix A table, held ONLY as the claim under test.
+DERIVED HERE:   the 65 bipartitions, representatives, class sizes, orbits, diameters,
+                O_g, every edge of F_g, all 65 Psi values, both sums, and Psi(id).
+
+=== C1  class enumeration count =========================================
+      | p(k) for k=0..6 (derived): [1, 1, 2, 3, 5, 7, 11]
+      | sum_k p(k)*p(6-k) = 1*11 + 1*7 + 2*5 + 3*3 + 5*2 + 7*1 + 11*1 = 65
+      | generated 65 (alpha;beta) pairs, 65 distinct type strings
+      | p(k) from Euler's pentagonal recurrence (shares no code): [1, 1, 2, 3, 5, 7, 11]
+      | generated partitions checked for shape/duplication: 30 partitions, 0 violations
+PASS C1 generated bipartition count == 65 -- derived 65
+PASS C1 all 65 type strings pairwise distinct -- 65 distinct of 65
+PASS C1 every generated pair is a bipartition of 6
+PASS C1 partition generator agrees with Euler's pentagonal recurrence for p(0..6), and every generated partition is a distinct weakly-decreasing partition of its k -- generator [1, 1, 2, 3, 5, 7, 11], Euler [1, 1, 2, 3, 5, 7, 11], 0 shape violations
+
+=== C2  class sizes integral and summing to |G| =========================
+      | all 65 divisions exact: True
+      | sum of derived class sizes = 46080
+      | 2^6 * 6! = 64 * 720 = 46080
+      | largest class 3840, smallest class 1
+PASS C2 every class size is an exact positive integer
+PASS C2 sum of class sizes == 46080 -- derived 46080
+PASS C2 46080 == 2^6 * 6! (independent of the paper)
+PASS C2 derived total equals the paper's stated |G| -- derived 46080, paper 46080
+
+=== D2-D6  representatives, orbits, F_g and Psi = J(F_g) (with C3, C4, C5) 
+      | type         |C|    orbits  |Og|  drop  edges  Psi
+      | -|6          3840   6       0     6     0      1
+      | -|51         2304   8       0     8     0      1
+      | -|42         1440   8       8     0     20     1
+      | -|411        720    8       0     8     0      1
+      | -|33         640    12      0     12    0      1
+      | -|321        960    8       0     8     0      1
+      | -|3111       160    16      0     16    0      1
+      | -|222        120    16      0     16    0      1
+      | -|2211       180    16      16    0     56     17
+      | -|21111      30     16      0     16    0      1
+      | -|111111     1      32      0     32    0      1
+      | 1|5          2304   8       0     8     0      1
+      | 1|41         1440   8       8     0     16     5
+      | 1|32         960    8       8     0     16     5
+      | 1|311        480    16      0     16    0      1
+      | 1|221        360    16      16    0     56     17
+      | 1|2111       120    16      16    0     48     5
+      | 1|11111      6      32      0     32    0      1
+      | 2|4          1440   8       4     4     4      -1
+      | 2|31         960    16      8     8     12     3
+      | 2|22         360    16      16    0     48     3
+      | 2|211        360    16      8     8     16     -1
+      | 2|1111       30     32      16    16    40     3
+      | 11|4         720    8       8     0     16     5
+      | 11|31        480    16      16    0     40     5
+      | 11|22        180    16      16    0     40     5
+      | 11|211       180    16      16    0     48     5
+      | 11|1111      15     32      32    0     112    53
+      | 3|3          1280   12      10    2     25     5
+      | 3|21         960    8       8     0     14     3
+      | 3|111        160    16      8     8     16     -1
+      | 21|3         960    16      8     8     12     3
+      | 21|21        720    16      16    0     44     3
+      | 21|111       120    32      16    16    40     3
+      | 111|3        160    16      16    0     40     5
+      | 111|21       120    16      16    0     40     9
+      | 111|111      20     32      32    0     112    53
+      | 4|2          1440   16      10    6     21     3
+      | 4|11         720    20      16    4     46     3
+      | 31|2         960    8       8     0     14     3
+      | 31|11        480    16      16    0     36     3
+      | 22|2         360    16      12    4     26     1
+      | 22|11        180    32      24    8     64     9
+      | 211|2        360    16      16    0     44     3
+      | 211|11       180    32      32    0     104    7
+      | 1111|2       30     16      16    0     40     9
+      | 1111|11      15     32      32    0     96     9
+      | 5|1          2304   8       4     4     4      -1
+      | 41|1         1440   20      16    4     46     3
+      | 32|1         960    16      12    4     22     1
+      | 311|1        480    16      16    0     36     3
+      | 221|1        360    32      24    8     64     9
+      | 2111|1       120    32      32    0     104    7
+      | 11111|1      6      32      32    0     96     9
+      | 6|-          3840   14      12    2     26     3
+      | 51|-         2304   16      16    0     36     3
+      | 42|-         1440   22      20    2     50     5
+      | 411|-        720    24      24    0     60     7
+      | 33|-         640    24      24    0     72     13
+      | 321|-        960    24      24    0     58     5
+      | 3111|-       160    32      32    0     88     7
+      | 222|-        120    36      32    4     88     3
+      | 2211|-       180    40      40    0     124    29
+      | 21111|-      30     48      48    0     152    11
+      | 111111|-     1      64      64    0     224    253
+      | classes with EMPTY F_g (|O_g| = 0): 12 -- -|6 -|51 -|411 -|33 -|321 -|3111 -|222 -|21111 -|111111 1|5 1|311 1|11111
+      | their Psi values: [1]
+      | |O_g| ranges from 0 to 64 over the 65 classes
+PASS C3 representative has the claimed type -- all 65 classes
+PASS C4 orbit partition valid -- all 65 classes
+PASS C5 F_g well formed -- all 65 classes
+
+=== C6  J agrees with brute force =======================================
+      | empty graph            n=0  J=1    hand=1    subsets=1    extension=1
+      | K_1 (single vertex)    n=1  J=0    hand=0    subsets=0    extension=0
+      | K_2 (single edge)      n=2  J=-1   hand=-1   subsets=-1   extension=-1
+      | 2 isolated vertices    n=2  J=0    hand=0    subsets=0    extension=0
+      | 5 isolated vertices    n=5  J=0    hand=0    subsets=0    extension=0
+      | K_3 (triangle)         n=3  J=-2   hand=-2   subsets=-2   extension=-2
+      | P_3 (path)             n=3  J=-1   hand=-1   subsets=-1   extension=-1
+      | C_4 (4-cycle)          n=4  J=-1   hand=-1   subsets=-1   extension=-1
+      | K_{1,3} (star)         n=4  J=-1   hand=-1   subsets=-1   extension=-1
+      | K_2 + K_2 (disjoint)   n=4  J=1    hand=1    subsets=1    extension=1
+      | 40 deterministic pseudo-random graphs (n = 3..10): recurrence == subset scan == independent-set enumeration
+PASS C6 recurrence unit tests on hand-computed small graphs
+      | classes with |O_g| <= 20 re-done by independent-set enumeration: 49
+      | classes with |O_g| <= 14 re-done by full subset scan: 29
+PASS C6 brute force reproduces J on every class with |O_g| <= 20
+      | classes re-evaluated by the min-degree / no-component-split recurrence: 64 of 65 (per-class node budget 2500000)
+      | classes NOT cross-checked by the second evaluator (per-class node budget exhausted): 111111|-
+      | of the 16 classes with |O_g| > 20 (which enumerative brute force cannot reach), 15 were cross-checked by the second evaluator: 11|1111 111|111 22|11 211|11 1111|11 221|1 2111|1 11111|1 411|- 33|- 321|- 3111|- 222|- 2211|- 21111|-
+PASS C6b second exact evaluator (min-degree branch, no component multiplicativity) agrees with J on every class it reached, and reached at least the 49 classes brute force covers -- 64 of 65 classes agreed
+      | I(F;t) for 2|4          |O_g|=4   coeffs [1, 4, 2] -> I(F;-1) = -1
+      | I(F;t) for 5|1          |O_g|=4   coeffs [1, 4, 2] -> I(F;-1) = -1
+      | I(F;t) for -|42         |O_g|=8   coeffs [1, 8, 8] -> I(F;-1) = 1
+      | I(F;t) for 1|41         |O_g|=8   coeffs [1, 8, 12] -> I(F;-1) = 5
+      | I(F;t) for 1|32         |O_g|=8   coeffs [1, 8, 12] -> I(F;-1) = 5
+      | I(F;t) for 2|31         |O_g|=8   coeffs [1, 8, 16, 8, 2] -> I(F;-1) = 3
+PASS C6 independent-set polynomial's alternating sum equals Psi on every class with 1 <= |O_g| <= 12
+
+=== C7  appendix table agreement (table = claim, not input) =============
+      | witness rows parsed: 65 (duplicates: none)
+      | witness rows that are well-formed bipartitions of 6: 65 of 65
+      | types matched on both sides: 65 ; |C| agreements: 65 ; Psi agreements: 65
+PASS C7 witness table has 65 rows, no duplicates, all well formed -- rows=65 dups=[] malformed=[]
+PASS C7 no derived class missing from the table
+PASS C7 no table row without a derived class
+PASS C7 all 65 |C| values agree -- 0 mismatches
+PASS C7 all 65 Psi values agree -- 0 mismatches
+
+=== C8  the two sums ====================================================
+      | S1 = sum |C|            = 46080   (derived)
+      | S2 = sum |C| * Psi      = 138240   (derived)
+      | positive contribution 142504, negative contribution -4264, net 138240
+      | classes with Psi < 0: 2|4(-1) 2|211(-1) 3|111(-1) 5|1(-1)
+      | identity class contributes |C|*Psi = 1 * 253 = 253 of S2
+      | distinct Psi values over the 65 classes: [-1, 1, 3, 5, 7, 9, 11, 13, 17, 29, 53, 253]
+      | S2 = 3 * S1 + 0  (exact integer division, no floats)
+PASS C8 S1 == 46080 -- derived 46080
+PASS C8 S2 == 138240 -- derived 138240
+PASS C8 S2 == 3 * S1 exactly (integer decision) -- quotient 3 remainder 0
+
+=== C9  identity-class cross-check against equation (1) =================
+PASS C9 the identity class 111111|- was generated
+      | identity representative: a = 0 (bits 000000), pi = (0, 1, 2, 3, 4, 5)
+      | orbits: 64, all singletons: True
+      | |O_g| = 64 vertices, 224 edges, degree set [7]
+      | pairs {x,y} in Q_6 with d(x,y) >= 5 counted directly: 224
+PASS C9 identity F_g is the 64-vertex d>=5 graph, 7-regular -- n=64 edges=224 far=224 degs=[7]
+PASS C9 derived Psi(111111|-) == +253 (sign convention (-1)^{i+1}, so Psi(id) = -chi~(K) = +253) -- derived 253
+      | paper's equation (1), cited from GMW C.3: dim H_7 = 239, dim H_15 = 14, sum = 253
+      | chi~(K) from the derived Psi(id) (= -Psi(id)) = -253
+      | chi~(K) from equation (1) as sum_i (-1)^i dim H~_i over degrees (7, 15) = (-1)^7*239 + (-1)^15*14 = -253
+PASS C9 chi~(K) from the derived Psi equals sum_i (-1)^i dim H~_i from equation (1), and both cited degrees are odd so the signs are +1 in Psi -- derived -253, paper -253, -(239+14) = -253
+
+=== C10  the conclusion is a valid inference ============================
+      | average (1/|G|) sum_g Psi(g) = 3, decided by 138240 == 3 * 46080
+      | character averaging (P8) plus reduced homology concentrated in degrees 7 and 15 -- BOTH ODD, so (-1)^{i+1} = +1 for both -- gives
+      |     d7 + d15 = 3   where d_i = dim H_i(K;Q)^G
+      | all (d7,d15) with d7 + d15 = 3 and both >= 0: [(0, 3), (1, 2), (2, 1), (3, 0)]
+      | every split has a coordinate >= 2: True  ==>  at least one of H_7, H_15 is NOT multiplicity-free
+      | number of surviving splits = 4 > 1  ==>  WHICH degree carries the repeat is UNDETERMINED by this computation
+      | the average is odd, which is why no split can have both parts <= 1
+PASS C10 every nonnegative split of the derived average has a part >= 2, so at least one of H_7, H_15 is not multiplicity-free -- avg = 3, splits [(0, 3), (1, 2), (2, 1), (3, 0)]
+PASS C10 more than one split survives, so the degree is not determined (this program does NOT report which) -- 4 splits
+
+=== C11  minimality of the parameter point ==============================
+      | all (n,r) with n <= 8 and 4 <= r <= n-2: [(6, 4), (7, 4), (7, 5), (8, 4), (8, 5), (8, 6)]
+      | r >= 4 and r <= n-2 force n >= 6; at n = 6 the only r is 4
+PASS C11 lexicographic minimum of {(n,r) : 4 <= r <= n-2} is (6,4) and no admissible pair has n < 6 -- min (6, 4), 6 admissible pairs with n <= 8
+
+=== C12  full census of all 46080 elements of G (bridge: 65 classes -> sum over g in G) 
+      | elements enumerated: 46080 ; distinct types found by census: 65
+      | census total vs 2^6 * 6! : 46080 vs 46080
+      | types whose census count equals the equation (2) value: 65 of 65
+      | sum_{g in G} Psi(g) recomputed element-by-element from the census = 138240
+      | blocks probed with up to 3 EXTRA (non-representative) elements: 63 of 65, 189 elements re-derived from scratch
+      | blocks with no second element to probe (block size 1): -|111111 111111|-
+PASS C12 census enumerated exactly 2^6*6! = 46080 elements and every one has cycle lengths summing to 6 -- 46080 elements, 0 bad
+PASS C12 the census finds exactly 65 types, and they are the 65 generated classes -- census 65 types, derived 65 types
+PASS C12 equation (2) is correct CLASS BY CLASS, not merely in total: census count == |C| for all 65 -- 0 mismatches: 
+PASS C12 sum_{g in G} Psi(g) == 138240 computed over ELEMENTS (the Proposition as written, no class-size formula used) -- census sum 138240, 0 unmatched types
+PASS C12 Psi is constant on each type block: J(F_g) re-derived on 189 extra elements agrees with the representative -- 189 elements over 63 blocks
+
+=== cross-check: class sizes from run_C2 vs from derive_one =============
+PASS class sizes agree between the two computation sites
+
+=== bookkeeping: section return values vs the recorded check log ========
+      | AND of section return values: True ; AND of the 36 logged checks: True
+PASS bookkeeping: section return values agree with the recorded check log
+
+=== LIMITATIONS  (what this file does NOT establish) ====================
+      | 1. Lemma 2, Psi(g) = I(F_g;-1), is ASSUMED here. The paper proves it
+      |    in full (page 2, by the Hopf trace formula); this program does not
+      |    re-derive that proof. It computes only the right-hand side; it
+      |    never builds a chain complex and never computes homology.
+      | 2. The individual dimensions 239 (degree 7) and 14 (degree 15) are
+      |    NOT derived here. They are cited by the paper from GMW Appendix
+      |    C.3. C9 tests only their SUM, 239 + 14 = 253, against the derived
+      |    Psi at the identity class.
+      | 3. The claim that reduced H_i(X^{6,4};Q) VANISHES outside {7,15} is
+      |    likewise external and unverified here. The averaging step
+      |    (1/|G|) sum_g Psi(g) = d7 + d15 needs BOTH that vanishing AND the
+      |    fact that 7 and 15 are odd (so both signs are +1). A nonzero
+      |    EVEN-degree group in GMW's computation would enter with the
+      |    opposite sign and break the identification -- this file cannot
+      |    close that gap. Doing so would mean building the rational chain
+      |    complex of VR(Q_6;4) with faces up to dimension 15 on 64 vertices.
+      | 4. Reduced vs unreduced homology: the theorem is stated with
+      |    unreduced H_7, H_15 while the computation is with reduced homology.
+      |    They agree in positive degrees, and 7, 15 > 0, so the step is
+      |    sound -- but it is a step, not an identity of definitions.
+      | 5. WHICH of degree 7 or 15 carries the repeated trivial constituent
+      |    is NOT determined (C10). Only 'at least one of H_7, H_15 is not
+      |    multiplicity-free' follows from d7 + d15 = 3.
+      | 6. Convention: the action is taken as (pi x)_i = x_{pi^{-1}(i)}. The
+      |    other convention yields a conjugate of g^{-1}; orbits of g and of
+      |    g^{-1} coincide and conjugation by a coordinate permutation is a
+      |    Hamming isometry, so every quantity above is unchanged.
+      | 7. The theorem is stated over EVERY field of characteristic zero. The
+      |    base-change step -- H_i(K;k) = H_i(K;Q) tensor k, and invariants
+      |    commuting with it via the Reynolds idempotent |G|^{-1} sum_g g --
+      |    is proved as prose in the paper (proof of Theorem 1, page 4) and
+      |    is NOT modelled here. Everything this file computes is over Z and
+      |    concerns Q-coefficients only. The step is standard and correct,
+      |    but here it is assumed, not verified.
+      | 8. C6's enumerative brute force cannot reach the classes with
+      |    |O_g| > 20. Those are covered instead by C6b, a second exact
+      |    evaluator using a different branch rule and no component
+      |    multiplicativity, under a node budget; any class the budget did
+      |    not reach is named in the C6b output rather than silently passing.
+      | Note on items 1-7: equation (1) -- items 2 and 3 -- is the ONE input
+      | the paper itself declares as taken on trust, in its abstract and in
+      | Section 1. Items 1, 4 and 7 are steps the paper PROVES (Lemma 2 on
+      | page 2; both others in the proof of Theorem 1 on page 4); they are
+      | 'assumed' here only in the sense that this program does not re-verify
+      | them. This program's assumption set is therefore strictly LARGER than
+      | the paper's, and no item in this block is a gap in the paper.
+
+=== VERDICT =============================================================
+VERDICT: ALL 37 CHECKS PASS
+=== program exited with status 0 ===

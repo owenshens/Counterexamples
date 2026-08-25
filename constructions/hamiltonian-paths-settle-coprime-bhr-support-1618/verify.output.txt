@@ -1,0 +1,59 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  ce10e45eecea4b84b226105c583f7bf9623c484c9df1fce7e2f8e909702363dd
+python:  Python 3.9.25
+=== program output follows ===
+orders [47, 49, 59], support [1, 6, 18]
+search cap ladder [500, 5000, 100000] nodes per starting vertex; the last rung is the paper's own budget of 100000 unless --budget= says otherwise (--paper-protocol searches at that single budget with no cheaper rungs, which is the paper's own protocol)
+PASS census_rows_match_table [v=47:1128/990 v=49:1225/1081 v=59:1770/1596]
+PASS census_binomial_formulas [|T_v|=C(v+1,2), |T_v^+|=C(v-2,2)]
+PASS census_totals_4123_3667 [enumerated 4123 / 3667]
+PASS census_degenerate_count [456 triples have a zero exponent]
+PASS orders_satisfy_theorem_hypotheses [v=47 half=23 v=49 half=24 v=59 half=29]
+PASS hypotheses_equal_conjecture_form [checked v=3..600]
+PASS census_covers_every_asserted_case [v=47:1128 v=49:1225 v=59:1770]
+exhibited linear realization at v=59, (a,b,c)=(13,6,39):
+  0, 1, 2, 3, 4, 5, 6, 9, 12, 15, 18, 8, 11, 14, 17, 7, 10, 13, 16, 19, 22, 25, 28, 31, 21, 24, 27, 30, 20, 23, 26, 29, 32, 35, 38, 41, 51, 48, 58, 55, 45, 42, 52, 49, 46, 56, 53, 50, 47, 57, 54, 44, 34, 37, 40, 43, 33, 36, 39
+PASS exhibited_is_permutation [59 entries, sorted = 0..58]
+PASS exhibited_length_is_v [path length 59, a+b+c = 58]
+PASS exhibited_is_linear [max step 10 <= 29]
+PASS exhibited_linear_multiset [1^6 3^39 10^13]
+PASS exhibited_image_is_permutation [6x mod 59 is a bijection]
+PASS exhibited_image_realizes_target [Delta = 1^13 6^6 18^39 ; target 1^13 6^6 18^39]
+PASS exhibited_target_is_admissible [all lengths <= 29, coprime to 59, 58 edges]
+PASS reduction_table_recomputed [v=47 [(8, 1, 3), (13, 16, 1)] v=49 [(8, 1, 3), (19, 16, 1)] v=59 [(10, 1, 3), (23, 20, 1)]]
+PASS reduction_images_within_half_v [every length printed in the table lies in 1..floor(v/2)]
+PASS scaling_is_automorphism [units permute Z_v, non-units do not]
+PASS scaling_preserves_realization [checked all 58 units of Z_59]
+PASS corner_closed_forms [47:1^46 47:6^46 47:18^46 49:1^48 49:6^48 49:18^48 59:1^58 59:6^58 59:18^58]
+PASS search_agrees_with_exhaustive_enumeration [v=9 support {1,2,4}: 33 realizable, 12 not]
+PASS realizability_is_not_automatic [12 of 45 small targets have no linear realization]
+PASS search_rejects_disconnected_target [no linear realization of {7^48} at v=49]
+PASS cap_ladder_escalates_to_later_rung [v=47 (46,0,0): a rung of 1 node returns no path after 143 nodes, the next rung returns a verified one after 283, credited to s=1; default ladder [500, 5000, 100000], whose last rung is the paper's 100000 nodes per start]
+  ... 250 targets settled and verified so far
+  ... 500 targets settled and verified so far
+  ... 750 targets settled and verified so far
+  ... 1000 targets settled and verified so far
+  ... 1250 targets settled and verified so far
+  ... 1500 targets settled and verified so far
+  ... 1750 targets settled and verified so far
+  ... 2000 targets settled and verified so far
+  ... 2250 targets settled and verified so far
+  ... 2500 targets settled and verified so far
+  ... 2750 targets settled and verified so far
+  ... 3000 targets settled and verified so far
+  ... 3250 targets settled and verified so far
+  ... 3500 targets settled and verified so far
+  ... 3750 targets settled and verified so far
+  ... 4000 targets settled and verified so far
+PASS search_returns_verified_paths [4123 verified, 0 failed verification]
+PASS search_settles_every_attempted_target [4123 of 4123 attempted targets settled at up to 100000 nodes per start; none unsettled]
+PASS degenerate_support_targets_all_settled [456 of 456 zero-exponent triples settled]
+scales used by the re-run: s=1:767 s=6:3126 s=18:230
+cap rung that settled each target: <=500:4106 <=5000:17
+SPLIT NOT COMPARABLE: the paper's 3792/43/288 split by reduction is not tested by this run (the cap schedule in force here is [500, 5000, 100000], not the paper's single budget of 100000 nodes per start, and a target is credited to whichever reduction settles it first at the rung that settles it); rerun with --paper-protocol and no --stride= to compare against it
+nodes visited by the re-run: 71535404 in total over 4123 attempted target(s), most for one target 314338 at v=59 (a,b,c)=(27,16,15) (the paper reports 4.11e9 in total and 1.51e7 for its largest target, under its single budget of 100000 nodes per start rather than the cap schedule in force here)
+re-ran the search on all 4123 targets of the census, the whole of it (last rung 100000 nodes per start); the paper's own pass over the census spent 4.11e9 nodes
+NOT RE-RUN: (i) the paper's node counts (1.51e7 for the largest target, 4.11e9 in total) and its 3792/43/288 split of targets by reduction: the cap schedule in force here is [500, 5000, 100000] nodes per starting vertex, whose last rung is exactly the paper's own budget, so on each reduction this search is allotted neither more nor less than the paper allots itself, the cheaper rungs being tried first, and a target is credited to whichever reduction settles it first at the rung that settles it, so both the node counts and the split printed above are this program's and not the paper's; the SPLIT NOT COMPARABLE line above says which of those obstacles applies to this run, and running with --paper-protocol and no --stride= removes them all; (ii) the cited prior work, which covers the orders outside {47,49,59} and which is what makes these three the only open ones; (iii) the claim that (13,6,39) is one of ten triples that prior work leaves open at v=59, a fact about that reference.
+VERDICT: ALL 26 CHECKS PASS
+=== program exited with status 0 ===

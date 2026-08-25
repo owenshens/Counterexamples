@@ -1,0 +1,171 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  1c7388f2105a60160a1ddd66d7f0d81f654cf5f49c1fcab6391bc2cf1bd7e468
+python:  Python 3.9.25
+=== program output follows ===
+--- check 1: eq:MPmixed is an identity in (x, lambda, cot phi) for n=2,3,4
+    n=2: monomials in LHS=24 RHS=24, deg_x(RHS)=2 (deg_x(LHS)=2, must match), T=(1-cos2phi)(x-E1)(x-E2): yes, residual=0
+    n=3: monomials in LHS=42 RHS=42, deg_x(RHS)=3 (deg_x(LHS)=3, must match), T=(1-cos2phi)(x-E1)(x-E2): yes, residual=0
+    n=4: monomials in LHS=64 RHS=64, deg_x(RHS)=4 (deg_x(LHS)=4, must match), T=(1-cos2phi)(x-E1)(x-E2): yes, residual=0
+PASS check 1: eq:MPmixed is an identity in (x, lambda, cot phi) for n=2,3,4
+
+--- check 2: MP exterior point: (c-E1)(c-E2), T'(c), disc T, cot^2 phi_c
+          phi_c well defined: (den-num)-2(n+1) resid=0 ; (den+num)-4L resid=0 (so |arg|<1 for L>0)
+    n=2: (c-E1)(c-E2) resid=0 ; T'(c) resid=0
+          disc T = -4*L^2 + 6*L*t^2 + -6*L + 9*t^2 ; resid vs (2L+n+1)((n+1)t^2-2L) = 0
+          cot^2 phi_c = 2L/3 ; cos2phi_c resid=0
+          2sin^2phi-(1-cos2phi) resid=0 ; (5.9)->(5.10) linear term resid=0
+          phi_c well defined: (den-num)-2(n+1) resid=0 ; (den+num)-4L resid=0 (so |arg|<1 for L>0)
+    n=3: (c-E1)(c-E2) resid=0 ; T'(c) resid=0
+          disc T = -4*L^2 + 8*L*t^2 + -8*L + 16*t^2 ; resid vs (2L+n+1)((n+1)t^2-2L) = 0
+          cot^2 phi_c = 2L/4 ; cos2phi_c resid=0
+          2sin^2phi-(1-cos2phi) resid=0 ; (5.9)->(5.10) linear term resid=0
+          phi_c well defined: (den-num)-2(n+1) resid=0 ; (den+num)-4L resid=0 (so |arg|<1 for L>0)
+    n=4: (c-E1)(c-E2) resid=0 ; T'(c) resid=0
+          disc T = -4*L^2 + 10*L*t^2 + -10*L + 25*t^2 ; resid vs (2L+n+1)((n+1)t^2-2L) = 0
+          cot^2 phi_c = 2L/5 ; cos2phi_c resid=0
+          2sin^2phi-(1-cos2phi) resid=0 ; (5.9)->(5.10) linear term resid=0
+PASS check 2: MP exterior point: (c-E1)(c-E2), T'(c), disc T, cot^2 phi_c
+
+--- check 3: eq:PJmixed is an identity in (x, b) at in-range rational a, n=2..5
+    n=2 a=-9/2 (u=-3/2): deg_x(RHS)=2 (need 2), monomials LHS=7 RHS=7, residual=0
+    n=2 a=-31/5 (u=-16/5): deg_x(RHS)=2 (need 2), monomials LHS=7 RHS=7, residual=0
+    n=3 a=-31/5 (u=-11/5): deg_x(RHS)=3 (need 3), monomials LHS=10 RHS=10, residual=0
+    n=3 a=-8 (u=-4): deg_x(RHS)=3 (need 3), monomials LHS=10 RHS=10, residual=0
+    n=4 a=-13/2 (u=-3/2): deg_x(RHS)=4 (need 4), monomials LHS=14 RHS=14, residual=0
+    n=4 a=-17/2 (u=-7/2): deg_x(RHS)=4 (need 4), monomials LHS=14 RHS=14, residual=0
+    n=5 a=-15/2 (u=-3/2): deg_x(RHS)=5 (need 5), monomials LHS=18 RHS=18, residual=0
+    n=5 a=-11 (u=-5): deg_x(RHS)=5 (need 5), monomials LHS=18 RHS=18, residual=0
+PASS check 3: eq:PJmixed is an identity in (x, b) at in-range rational a, n=2..5
+
+--- check 4: eq:PJrange is exactly what eq:PJrec needs (the a=-9/2, n=3 pole)
+    alpha=-7/2, m=3: vanishing denominators ['(2m+2alpha+1)'] ; builder refused: ['m=3 (2m+2alpha+1)=0']
+    a=-9/2 in eq:PJrange for n=3? no (bound = (-14-sqrt(20))/4)
+    a=-9/2 in eq:PJrange for n=2? yes (bound = (-11-sqrt(13))/4)
+PASS check 4: eq:PJrange is exactly what eq:PJrec needs (the a=-9/2, n=3 pole)
+
+--- check 5: R(b/u), R'(b/u), disc R and the Pochhammer A, symbolic in (n,a,b)
+    R(b/u) = (2u-n)(u^2+b^2)/(u^2(2u+1))                 residual=0
+    R'(b/u) = Delta_c                                    residual=0
+    disc R = (4u^2v^2(n-2u) - b^2(n+1)D)/(u^2v^2(2u+1))  residual=0
+    eq:brange factor -2a-n-2 = n-2u                      residual=0
+    Pochhammer form of A = paper's A                     residual=0
+PASS check 5: R(b/u), R'(b/u), disc R and the Pochhammer A, symbolic in (n,a,b)
+
+--- check 6: eq:PJrange arithmetic: band nonempty, bound < -n-3/2, D(u_-)=0
+    (a) (n+3)^2 - s^2 = 4*n + 4   (must be 4n+4, positive for n>=1)
+    (b) s^2 - (n+1)^2 = 4   (must be 4, positive)
+    (c) (bound+n+1) - (n-1-s)/4 = 0 ; D(u_-) mod s^2 = 0
+    integer form: both inequalities hold on n = 0..40 with no gaps above the derived threshold (yes); derived smallest n = 0, paper claims n >= 1
+    general-n conclusion rests on the symbolic identity (n+3)^2-s^2 = 4n+4 > 0 for n >= 0, not on the finite loop
+PASS check 6: eq:PJrange arithmetic: band nonempty, bound < -n-3/2, D(u_-)=0
+
+--- check 7: eq:PJrange <=> D>0, u<-1/2, A>0, and the n=1 vacuity
+    49 (n,a) points straddling the eq:PJrange boundary on u<-1/2; eq:PJrange <=> D>0 disagreements: 0
+    35 points with u >= -1/2: eq:PJrange held on 0 of them, so the restriction discards nothing
+    MP n=1: G has 2 distinct real zeros -> 1 interior gap(s) -> 0 distinct (k,k') pairs
+    PJ n=1: G has 2 distinct real zeros -> 1 interior gap(s) -> 0 distinct (k,k') pairs
+    MP n=2: G has 2 interior gaps -> 2 distinct (k,k') pairs (nonvacuous)
+PASS check 7: eq:PJrange <=> D>0, u<-1/2, A>0, and the n=1 vacuity
+
+--- check 8: gamma_m > 0 for 1<=m<=n when alpha < -n-1/2
+    144 (n,alpha,b) grid points, of which 144 actually satisfy alpha < -n-1/2 (the others test nothing); gamma_m>0 and all three factors negative on all 144 of those
+PASS check 8: gamma_m > 0 for 1<=m<=n when alpha < -n-1/2
+
+--- check 9: Lemma 4.1: P_{n+1}(.;alpha,b) < P_n(.;alpha,b), exact zeros
+    80 (n,alpha,b) points: all zeros real and simple in the right counts, and P_{n+1} < P_n in every case
+PASS check 9: Lemma 4.1: P_{n+1}(.;alpha,b) < P_n(.;alpha,b), exact zeros
+
+--- check 10: Lemma 2.1 (exterior-point criterion) and every step of its proof
+    317 attempts, 240 instances built, 240 met Lemma 2.1's hypotheses (A>0 constant and c outside [r-,r+]); branch coverage c<r-: 114, c>r+: 126
+    sign chain verified on 240/240 ; F-zero counts (3 in rho's gap, 1 elsewhere, n+2 total, simple) verified on 240/240
+    interlacing conclusion failures: 0
+    SCOPE: Lemma 2.1 is tested on random RIGID RATIONAL instances (integer zeros for G, rational interlacing zeros for Q, c forced by the degree cancellation).  It is NOT proved here for general real data, and the actual Meixner-Pollaczek / pseudo-Jacobi instances have irrational zeros; those are covered separately, and only pointwise, by checks 11 and 12.
+PASS check 10: Lemma 2.1 (exterior-point criterion) and every step of its proof
+
+--- check 11: Theorem 3.1 end to end, exact, 72-point grid
+    72 grid points; hypothesis (E1,E2 in distinct interior gaps of G) met on 24; interlacing failures 0.  The theorem's CONCLUSION is tested on those 24 only; the other 48 exercise the mixed identity, G < Q, disc T > 0 and A > 0 but no conclusion
+    hypothesis-met points BY BRANCH: t>0 (phi in (0,phi_c)) 12, t<0 (phi in (pi-phi_c,pi)) 12 -- both must be nonzero or one of the theorem's two conclusions is never tested
+    branch test: sgn T'(c) = sgn(t) agreed with c>E_2 (t>0) resp. c<E_1 (t<0) on 24/24 hypothesis-met points
+    [JK, Thm 2.2(e)] placement DERIVED (P has 2 zeros straddling rho, 0 in sigma's gap, 1 elsewhere) on 24/24 points, 0 violations
+    SAMPLING: grid shape 72 = 3 n-values x 3 lambda-values x 4 ratios x 2 branches; n in [2, 3, 4], lambda in ['1', '3/10', '5/2'].  Theorem 3.1 is stated for EVERY n>=2 and EVERY lambda>0, so this is a sample, not a proof.
+    BOOKKEEPING: this program's own check title declares a 72-point grid; the loops enumerated 72 and recorded 0 failure(s).  This compares the program against its OWN declared shape -- the paper contains no numerical experiment, no grid and no failure count, so there is no published figure here to agree with.
+PASS check 11: Theorem 3.1 end to end, exact, 72-point grid
+
+--- check 12: Theorem 4.2 end to end, exact, 54-point grid
+    residual band untested by the fixed grid; searching the band
+      band point VERIFIED: n=3 a=-49619/10000 b=87/1000 Delta_c sign 1
+    band search examined 69 candidate points
+    54 grid points (18 of them in the residual band (-n-2, bound) where [JK, Cor 6.1] does not apply); hypothesis met on 12; failures 0.  The theorem's CONCLUSION is tested on those 12 only; the other 42 exercise eq:PJmixed, G < Q, disc R > 0, R(c) > 0 and A > 0 but no conclusion
+    RESIDUAL BAND coverage: 1 point(s) in (-n-2, bound) met the hypothesis AND had their conclusion verified, out of 18 band points on the fixed grid plus 69 examined by the band search.  This, not `band`, is what makes the claim to extend [JK, Cor 6.1] tested: `band` alone is counted before every gate.
+    hypothesis-met points BY SIGN of Delta_c: Delta_c<0 6, Delta_c>0 6 -- both must be nonzero or one of the theorem's two conclusions is never tested
+    branch test: sgn Delta_c agreed with the side of [e-,e+] that c lies on, on 12/12 hypothesis-met points
+    [JK, Thm 2.2(e)] placement DERIVED on 12/12 points, 0 violations
+    eq:brange 'only if' direction (|b| BELOW critical => disc R < 0, so eq:brange is not merely sufficient): 36 points
+    SAMPLING: grid shape 54 = 3 n-values x 3 a-offsets x 3 |b|-ratios x 2 signs; n in [2, 3, 4], a in ['-1063/250', '-1413/250', '-1851/500', '-4669/1000', '-5219/1000', '-5647/1000', '-6197/1000', '-6619/1000', '-7597/1000'].  Theorem 4.2 is stated for EVERY n>=2 and EVERY (a,b) satisfying eq:PJrange/eq:brange, so this is a sample, not a proof.
+    BOOKKEEPING: this program's own check title declares a 54-point grid; the loops enumerated 54 and recorded 0 failure(s).  This compares the program against its OWN declared shape -- the paper contains no numerical experiment, no grid and no failure count, so there is no published figure here to agree with.
+PASS check 12: Theorem 4.2 end to end, exact, 54-point grid
+
+NOTE ON NUMERICS: this program uses NO floating point.  The paper's phi is
+  eliminated in favour of t = cot phi via sin^2 phi = 1/(1+t^2),
+  cos 2phi = (t^2-1)/(t^2+1), sin 2phi = 2t/(1+t^2), which turns every
+  Meixner-Pollaczek object into a polynomial with rational coefficients;
+  phi in (0,phi_c) becomes the exact rational condition (n+1)t^2 > 2 lam
+  with t > 0, and phi in (pi-phi_c,pi) the same with t < 0 (derived in
+  check 2 from disc T).  Real zeros are isolated by Sturm sequences over
+  fractions.Fraction and compared by exact interval refinement, so every
+  inequality decided below is an exact rational inequality, and no error
+  bound is needed.  The paper itself contains no numerical experiment and
+  no computed figure, so nothing printed above is a comparison against a
+  published numeric run: every number above is computed here.
+
+GAPS NOT COVERED BY ANY CHECK ABOVE (stated so that a passing run cannot be
+read as more than it is).  Every item below is a step the paper's argument
+uses and this program does not establish in the generality the paper needs:
+ 1. eq:MPmixed is verified as an identity in (x,lambda,cot phi) only for
+    n = 2,3,4.  Theorem 3.1 is stated for every n >= 2.  The identity is
+    quoted from [JK,(5.10)]; for general n it rests on that source.
+ 2. eq:PJmixed is verified only at 8 (n,a) pairs with n <= 5 and a rational,
+    symbolically in (x,b) at each.  Theorem 4.2 is stated for every n >= 2
+    and every a satisfying eq:PJrange.  It is quoted from [JK,(6.10)].
+ 3. For Meixner-Pollaczek the paper takes G < Q from ORTHOGONALITY (DLMF
+    18.19 / 18.2(vi)).  This program re-derives G < Q only pointwise, on the
+    72-point grid, by exact root isolation.  It does not verify that
+    Meixner-Pollaczek polynomials are orthogonal, nor that the DLMF
+    recurrence coincides with eq:MPrec; eq:MPrec is taken as the definition.
+ 4. Lemma 2.1 is tested on random rigid RATIONAL instances only.  No
+    symbolic or general-real proof of the lemma is attempted, and the
+    instances are not Meixner-Pollaczek or pseudo-Jacobi data.
+ 5. The two end-to-end sweeps verify the theorems' CONCLUSIONS at finitely
+    many parameter points, and only at the SUBSET of the sampled points at
+    which the theorems' hypothesis (the two completion points in distinct
+    interior gaps of G) actually holds -- a strict minority of each grid;
+    the printed counts are the honest denominators.  The remaining sampled
+    points do exercise the mixed identity, G < Q, disc > 0 and A > 0, but
+    no conclusion.  A finite exact sample cannot establish a statement
+    quantified over an open region of (lambda,phi) or (a,b).
+ 6. Lemma 4.1's tridiagonal / principal-minor argument is not verified as an
+    argument; only its conclusion, at sampled (n,alpha,b).
+ 7. Every claim ABOUT THE SOURCE [JK] -- that its (5.7)-(5.8) are labelled
+    E_1<E_2, that its (6.8)-(6.9) reverse order on the residual band
+    (Remark 4.3), that its Lemma 5.1 / Lemma 6.1 are iff statements, that
+    its Corollary 6.1 assumes a < -n-2 -- is UNCHECKABLE here: the arXiv
+    source is not read by this program.  Only the internal consistency of
+    the reported (5.10) linear term and (6.10) Pochhammer form of A -- both
+    supplied to this program as input, neither read from the source --
+    with the paper's own -(x-c) and A is checked (checks 2(v) and 5(iv)).
+ 8. Remark 4.3's step 'Conjecture 2 is invariant under exchanging the two
+    labels, so Theorem 4.2 proves the conjecture exactly as stated' is a
+    reading of the source's statement, not a computation; nothing here
+    tests it.  The theorems as printed prove ONE disjunct, which is
+    stronger than the conjectures' disjunction, so this gap is benign.
+ 9. The MP admissible range is handled through t = cot phi.  That this
+    substitution is a bijection from phi in (0,pi) onto t in R, hence that
+    'phi in (0,phi_c)' really is 't > cot phi_c > 0' and
+    'phi in (pi-phi_c,pi)' really is 't < -cot phi_c', is a fact about cot
+    that is used and not checked (check 2(vi) does check that phi_c itself
+    is well defined and in (0,pi/2)).
+
+VERDICT: ALL 12 CHECKS PASS.
+VERDICT SCOPE: this confirms the paper's algebra symbolically (in (x,lambda,cot phi) for n=2,3,4 in the Meixner-Pollaczek case; in (n,a,b) for the pseudo-Jacobi rational-function identities; at 8 (n,a) pairs for eq:PJmixed).  It confirms both theorems' CONCLUSIONS at the 24 of 72 Meixner-Pollaczek and 12 of 54 pseudo-Jacobi exactly-computed parameter points at which each theorem's hypothesis actually holds: a conclusion can only be, and only is, tested where the hypothesis holds.  1 verified point(s) lie in the residual band (-n-2, bound) on which [JK, Cor 6.1] does not apply -- from the fixed grid, or from the supplementary band search if the fixed grid left the band untested; see check 12.  The remaining 48 and 42 sampled points do exercise the mixed identity, G < Q, disc > 0 and A > 0, but no conclusion.  It is NOT a proof of either theorem for all n and all parameters; see GAPS NOT COVERED above for the steps that remain on the paper's own authority.
+=== program exited with status 0 ===

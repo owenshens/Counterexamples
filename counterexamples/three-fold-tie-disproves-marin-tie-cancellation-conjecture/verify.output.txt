@@ -1,0 +1,451 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  ac8f7b5498e2f669953415c994a47e8aa37a8d771d5c76faff40df95ad217579
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+verify.py -- a counterexample to Conjecture 5.14 of arXiv:2608.18302v1
+beta = (12, 11, 10, 3, 2, 1, 0) at (t,r) = (3,2)
+exact integer and rational arithmetic only; no floating point
+==============================================================================
+
+--- 1. the shape ---
+    t = 3, r = 2  =>  N = t + 2r = 7   (len(beta) = 7)
+    delta            = (6, 5, 4, 3, 2, 1, 0)
+    beta             = (12, 11, 10, 3, 2, 1, 0)
+    beta - delta     = (6, 6, 6, 0, 0, 0, 0)  ->  lambda = (6, 6, 6)
+    ell(lambda) = 3, N/2 = 7/2  =>  2*ell = 6 <= 7 = N
+    max(beta) = 12
+PASS shape.N  --  derived N = 7, paper says 7
+PASS shape.delta  --  derived (6, 5, 4, 3, 2, 1, 0), paper says (6, 5, 4, 3, 2, 1, 0)
+PASS shape.beta_strict_and_zero  --  beta strictly decreasing with beta_N = 0
+PASS shape.lambda  --  derived lambda = (6, 6, 6), paper says (6, 6, 6)
+PASS shape.stable_range  --  2*ell(lambda) = 6 <= 7 = N, so Littlewood's stable formula applies
+PASS shape.outside_Marin_box  --  max(beta) = 12 > 9, the (3,2) box of Marin's Observation 5.27
+    2*rho_{B_3} read off V(0,0,0)  = (5, 3, 1)   (paper: (5, 3, 1))
+    rho_{D_2} used by the formula  = (1, 0)   (paper: (1, 0))
+PASS shape.shift_vectors  --  2*rho_{B_3} = (5, 3, 1) and rho_{D_2} = (1, 0), as the paper states
+
+--- 2. the Schur and Littlewood-Richardson engines ---
+    partitions in the 3 x 6 box: 84
+    s_g(1,1,1) == Weyl dimension        : 84 / 84
+    s_g homogeneous of degree |g|       : 84 / 84
+    s_g symmetric under S_3 on exponents: 84 / 84
+PASS engine.weyl_dimension  --  84/84 shapes
+PASS engine.homogeneous  --  84/84 shapes; this licenses the degree short circuit in lr_strip
+PASS engine.symmetric  --  84/84 shapes
+    same three facts on every shape lr_strip is actually fed
+      (<= 3 parts, |g| <= 18): 274 shapes, homogeneous 274, Weyl dim 274
+PASS engine.homogeneous_wide  --  homogeneity (which licenses the degree short circuit) and the Weyl dimension hold on all 274 shapes of degree <= 18, the full range the sweeps use
+    c^(2, 0, 0)_{(1, 0, 0),(1, 0, 0)} = 1 (strip) = 1 (tableaux), expected 1
+    c^(1, 1, 0)_{(1, 0, 0),(1, 0, 0)} = 1 (strip) = 1 (tableaux), expected 1
+    c^(3, 2, 1)_{(2, 1, 0),(2, 1, 0)} = 2 (strip) = 2 (tableaux), expected 2
+    c^(4, 2, 0)_{(2, 1, 0),(2, 1, 0)} = 1 (strip) = 1 (tableaux), expected 1
+    c^(2, 2, 2)_{(2, 1, 0),(2, 1, 0)} = 1 (strip) = 1 (tableaux), expected 1
+    c^(3, 1, 1)_{(2, 0, 0),(1, 1, 0)} = 0 (strip) = 0 (tableaux), expected 0
+    c^(4, 2, 1)_{(3, 0, 0),(2, 2, 0)} = 1 (strip) = 1 (tableaux), expected 1
+PASS engine.known_LR_values  --  7/7 textbook values reproduced by both algorithms
+PASS engine.trivial_factor  --  c^{(6,6,6)}_{gamma,(0,0,0)} = [gamma = (6,6,6)] over all 84 gamma
+
+--- 3. Littlewood-Richardson table for nu = (6,6,6) ---
+    ordered pairs examined              : 7056  (= 84^2)
+    lr_strip so far (cumulative): 507 full monomial expansions, 6640 pairs killed by degree
+    pairs with c != 0                   : 84
+    strip vs tableaux disagreements     : 0
+    duality mismatches                  : 0
+    c^nu_{gamma,Lambda} != c^nu_{Lambda,gamma} : 0
+PASS pairs.count  --  derived 7056 ordered pairs, comparison target 7056
+PASS pairs.two_algorithms_agree  --  monomial-strip and LR-tableau counts agree on 7056/7056 pairs
+PASS pairs.LR_symmetry  --  c^nu_{gamma,Lambda} = c^nu_{Lambda,gamma} on 7056/7056 pairs
+PASS pairs.rectangular_duality  --  c^{(6,6,6)}_{gamma,Lambda} = [gamma = (6-L3,6-L2,6-L1)] on 7056/7056 pairs
+PASS pairs.nonzero_count  --  exactly 84 of 7056 pairs are nonzero, one per Lambda as the duality requires
+
+--- 4. the orthogonal restriction coefficients a^B_Lambda ---
+    Lambda in the 3 x 6 box                    : 84
+    all-even Lambda in the box (enumerated)     : 20
+    same count as multisets C(4+2,3)           : 20
+    Lambda with a^B_Lambda != 0 (derived)       : 20
+    values taken there                          : [1]
+    even gamma outside the box that were tried  : 105 (nonzero: 0, strip/tableaux disagreements: 0)
+    even 4-row gamma that were tried            : 58 (nonzero: 0)
+    NOTE the 4-row gamma above are killed by lr_tableaux's containment
+         early return, i.e. by the definition of the skew shape nu/gamma, not by
+         any Littlewood-Richardson arithmetic; lr_strip cannot be used on them
+         because schur3 is a 3-variable engine.  Treat that half of aB.gamma_box_not_assumed
+         as a restatement of ell(gamma) <= ell(nu), not as independent evidence.
+    the nonzero a^B_Lambda, Lambda by Lambda:
+        (6, 6, 6) -> 1
+        (6, 6, 4) -> 1
+        (6, 6, 2) -> 1
+        (6, 6, 0) -> 1
+        (6, 4, 4) -> 1
+        (6, 4, 2) -> 1
+        (6, 4, 0) -> 1
+        (6, 2, 2) -> 1
+        (6, 2, 0) -> 1
+        (6, 0, 0) -> 1
+        (4, 4, 4) -> 1
+        (4, 4, 2) -> 1
+        (4, 4, 0) -> 1
+        (4, 2, 2) -> 1
+        (4, 2, 0) -> 1
+        (4, 0, 0) -> 1
+        (2, 2, 2) -> 1
+        (2, 2, 0) -> 1
+        (2, 0, 0) -> 1
+        (0, 0, 0) -> 1
+PASS aB.count  --  derived 20 admissible Lambda, paper says 20
+PASS aB.count_matches_multiset_formula  --  enumerated 20, multiset formula 20
+PASS aB.support_is_even_partitions  --  {Lambda : a^B != 0} equals {all parts even, Lambda <= (6,6,6)}
+PASS aB.all_ones  --  every admissible a^B_Lambda equals 1
+PASS aB.gamma_box_not_assumed  --  all 105 out-of-box (by BOTH algorithms, 0 disagreements) and 58 four-row even gamma contribute 0, so restricting gamma to the box was a theorem, not an assumption
+
+--- 5. a^B_Lambda vanishes outside the box ---
+    3-row Lambda with a part in (6, 18] and |Lambda| <= 18 : 190 tried
+    of those, also cross-checked with lr_strip (part <= 9) : 95
+    of those with a^B_Lambda != 0                          : 0
+    tableaux/strip disagreements on the overlap            : 0
+PASS aB.zero_outside_box  --  a^B_Lambda = 0 on all 190 out-of-box 3-row Lambda -- every one that exists, since |Lambda| <= 18 bounds the parts by 18
+
+--- 5b. a^B_Lambda vanishes for every Lambda with 4 or more rows ---
+    partitions with 4..18 positive parts and |Lambda| <= 18 : 1323 tried
+    of those with a^B_Lambda != 0                          : 0
+PASS aB.zero_for_more_than_3_rows  --  a^B_Lambda = 0 on all 1323 partitions with 4 or more parts and |Lambda| <= 18 -- every one that exists -- so 'Lambda has at most 3 parts' is DERIVED here for the purposes of the tie set, not imported
+
+--- 6. the orthogonal Littlewood convention ---
+    lambda = (2, 0, 0)  (Sym^2(std))
+        parts-even   support: [(0, 0, 0), (2, 0, 0)]
+        columns-even support: [(2, 0, 0)]
+        expected (orthogonal): [(0, 0, 0), (2, 0, 0)]
+    lambda = (1, 1, 0)  (Alt^2(std))
+        parts-even   support: [(1, 1, 0)]
+        columns-even support: [(0, 0, 0), (1, 1, 0)]
+        expected (orthogonal): [(1, 1, 0)]
+PASS convention.parts_even_reproduces_O3  --  parts-even gives Sym^2(std) = o_(2) + trivial and Alt^2(std) = o_(1,1)
+PASS convention.columns_even_is_wrong  --  the columns-even (symplectic) variant fails both, so the convention is not interchangeable
+
+--- 7. folded residue classes and the mod-3 argument ---
+    t = 3, m' = (t-1)/2 = 1 nonzero folded class(es)
+    folded_class(v,3) takes the values [0, 1] over v in [0,31]
+    class 1 = {v : v = +-1 mod 3}       : True
+PASS fold.single_nonzero_class  --  m' = 1, and the folded classes are [0, 1]
+PASS fold.nonzero_class_is_pm1  --  the nonzero folded class is exactly {v : v not divisible by 3}
+    2L+5 = 0 mod 3 <=> L = 2 mod 3;  2L+3 = 0 <=> L = 0;  2L+1 = 0 <=> L = 1  : True
+    even L in [0,6] with L = 2 mod 3 (forces L1) : [2]
+    even L in [0,6] with L = 0 mod 3 (forces L2) : [0, 6]
+    even L in [0,6] with L = 1 mod 3 (forces L3) : [4]
+PASS fold.congruence_equivalence  --  V_i divisible by 3 is equivalent to L_i = (2,0,1)_i mod 3
+PASS fold.congruence_impossible  --  L1 must be in [2] and L3 in [4], and no pair has L1 >= L3
+    admissible Lambda whose numerator vanishes (some n_j = 0): []
+PASS fold.no_vanishing_numerator  --  all 20 admissible Lambda have n_1 >= 1, so nu is not identically 0 for any of them
+
+--- 8. the table of V, X and T ---
+    Lambda        V              classes  n_1  S_min  X          T
+    (6, 6, 6)     (17, 15, 13)   (1, 0, 1) 2    (2,)   (17, 15)   (6, 6)
+    (6, 6, 4)     (17, 15, 9)    (1, 0, 0) 1    (0,)   (15, 9)    (5, 3)
+    (6, 6, 2)     (17, 15, 5)    (1, 0, 1) 2    (2,)   (17, 15)   (6, 6)
+    (6, 6, 0)     (17, 15, 1)    (1, 0, 1) 2    (2,)   (17, 15)   (6, 6)
+    (6, 4, 4)     (17, 11, 9)    (1, 1, 0) 2    (1,)   (17, 9)    (6, 3)
+    (6, 4, 2)     (17, 11, 5)    (1, 1, 1) 3    (2,)   (17, 11)   (6, 4)
+    (6, 4, 0)     (17, 11, 1)    (1, 1, 1) 3    (2,)   (17, 11)   (6, 4)
+    (6, 2, 2)     (17, 7, 5)     (1, 1, 1) 3    (2,)   (17, 7)    (6, 2)
+    (6, 2, 0)     (17, 7, 1)     (1, 1, 1) 3    (2,)   (17, 7)    (6, 2)
+    (6, 0, 0)     (17, 3, 1)     (1, 0, 1) 2    (2,)   (17, 3)    (6, 0)
+    (4, 4, 4)     (13, 11, 9)    (1, 1, 0) 2    (1,)   (13, 9)    (4, 3)
+    (4, 4, 2)     (13, 11, 5)    (1, 1, 1) 3    (2,)   (13, 11)   (4, 4)
+    (4, 4, 0)     (13, 11, 1)    (1, 1, 1) 3    (2,)   (13, 11)   (4, 4)
+    (4, 2, 2)     (13, 7, 5)     (1, 1, 1) 3    (2,)   (13, 7)    (4, 2)
+    (4, 2, 0)     (13, 7, 1)     (1, 1, 1) 3    (2,)   (13, 7)    (4, 2)
+    (4, 0, 0)     (13, 3, 1)     (1, 0, 1) 2    (2,)   (13, 3)    (4, 0)
+    (2, 2, 2)     (9, 7, 5)      (0, 1, 1) 2    (2,)   (9, 7)     (2, 2)
+    (2, 2, 0)     (9, 7, 1)      (0, 1, 1) 2    (2,)   (9, 7)     (2, 2)
+    (2, 0, 0)     (9, 3, 1)      (0, 0, 1) 1    (2,)   (9, 3)     (2, 0)
+    (0, 0, 0)     (5, 3, 1)      (1, 0, 1) 2    (2,)   (5, 3)     (0, 0)
+    V entries strictly decreasing everywhere      : True
+    V bounded coordinatewise by (17, 15, 13)      : True
+    X bounded coordinatewise by (17, 15)          : True
+    T with some coordinate above (6, 6)           : []
+    Lambda with T = (6, 6)                     : [(6, 6, 6), (6, 6, 2), (6, 6, 0)]
+    coordinatewise supremum of the derived T : (6, 6)  (attained: True)
+PASS fold.M_is_derived_not_assumed  --  the coordinatewise supremum of the 20 derived T is (6, 6) and it is attained, so M = (6, 6) is a derived maximum; the paper says (6, 6)
+    TAUTOLOGY WARNING: the next three checks cannot fail for any
+      weakly decreasing Lambda inside the box -- V_i - V_{i+1} = 2(L_i - L_{i+1}) + 2 >= 2,
+      and L_i <= 6 forces V_i <= (17, 15, 13) and hence X <= (17, 15).  They confirm the paper's
+      sentence 'the entries of V are strictly decreasing and bounded by (17, 15, 13)' is true,
+      but they are consequences of the enumeration, not independent evidence.
+PASS fold.V_strictly_decreasing  --  TAUTOLOGICAL given Lambda in the box; so the smallest value in a class carries the largest label, as Prop. 5.10(v) requires
+PASS fold.V_bound  --  TAUTOLOGICAL given Lambda in the box; every V(Lambda) <= (17, 15, 13) coordinatewise, which is the paper's (17,15,13)
+PASS fold.V_bound_matches_paper  --  derived bound (17, 15, 13), paper states (17, 15, 13)
+PASS fold.X_bound  --  TAUTOLOGICAL given Lambda in the box; every X(Lambda) <= (17, 15)
+PASS fold.T_le_M  --  all 20 values T(Lambda) are <= (6, 6) coordinatewise
+PASS fold.maximizer_set  --  derived maximizers [(6, 6, 6), (6, 6, 2), (6, 6, 0)], paper says ((6, 6, 6), (6, 6, 2), (6, 6, 0))
+PASS fold.maximizer_count  --  3 maximizers, and the conjecture's hypothesis needs more than 1
+PASS fold.strict_domination  --  every non-maximizing T is strictly below (6, 6) in some coordinate
+
+--- 9. the family Lambda = (6,6,k) ---
+    admissible k with (6,6,k) admissible : [0, 2, 4, 6]
+PASS toprow.k_set  --  derived k in [0, 2, 4, 6], the paper's {0,2,4,6}
+    k = 0 : V = (17, 15, 1) ; divisible by 3: [15] ; nonzero class: [17, 1] ; deleted index (2,) (value 1) ; X = (17, 15) ; T = (6, 6)
+    k = 2 : V = (17, 15, 5) ; divisible by 3: [15] ; nonzero class: [17, 5] ; deleted index (2,) (value 5) ; X = (17, 15) ; T = (6, 6)
+    k = 4 : V = (17, 15, 9) ; divisible by 3: [15, 9] ; nonzero class: [17] ; deleted index (0,) (value 17) ; X = (15, 9) ; T = (5, 3)
+    k = 6 : V = (17, 15, 13) ; divisible by 3: [15] ; nonzero class: [17, 13] ; deleted index (2,) (value 13) ; X = (17, 15) ; T = (6, 6)
+    the drop: Lambda = (6,6,4) has V = (17, 15, 9), of which [15, 9] are divisible by 3, so 17 is the only entry in the nonzero folded class and is the one deleted.
+PASS toprow.V_664  --  derived V(6,6,4) = (17, 15, 9), paper says (17, 15, 9)
+PASS toprow.deleted_entry_664  --  15 and 9 are divisible by 3, so 17 is deleted
+PASS toprow.X_664  --  derived X(6,6,4) = (15, 9), paper says (15, 9)
+PASS toprow.T_664  --  derived T(6,6,4) = (5, 3), paper says (5, 3)
+PASS toprow.only_664_drops  --  of the four (6,6,k) exactly k = 4 fails to attain (6, 6)
+PASS toprow.X_max_forces_66  --  X(Lambda) = (17, 15) forces Lambda_1 = Lambda_2 = 6: no other admissible Lambda reaches it (16 tested)
+
+--- 9b. the shift comparison behind eq. (4), with W(D_2) images ---
+    Lambda        X          supp nu indices            offsets  W(D_2) images
+    (6, 6, 6)     (17, 15)   [(17, 15), (15, 13)]       7        24
+    (6, 6, 4)     (15, 9)    [(15, 9)]                  39       148
+    (6, 6, 2)     (17, 15)   [(17, 15), (15, 5)]        7        24
+    (6, 6, 0)     (17, 15)   [(17, 15), (15, 1)]        7        24
+    (6, 4, 4)     (17, 9)    [(17, 9), (11, 9)]         19       72
+    (6, 4, 2)     (17, 11)   [(17, 11), (17, 5), (11, 5)] 15       56
+    (6, 4, 0)     (17, 11)   [(17, 11), (17, 1), (11, 1)] 15       56
+    (6, 2, 2)     (17, 7)    [(17, 7), (17, 5), (7, 5)] 23       88
+    (6, 2, 0)     (17, 7)    [(17, 7), (17, 1), (7, 1)] 23       88
+    (6, 0, 0)     (17, 3)    [(17, 3), (3, 1)]          31       120
+    (4, 4, 4)     (13, 9)    [(13, 9), (11, 9)]         11       40
+    (4, 4, 2)     (13, 11)   [(13, 11), (13, 5), (11, 5)] 7        24
+    (4, 4, 0)     (13, 11)   [(13, 11), (13, 1), (11, 1)] 7        24
+    (4, 2, 2)     (13, 7)    [(13, 7), (13, 5), (7, 5)] 15       56
+    (4, 2, 0)     (13, 7)    [(13, 7), (13, 1), (7, 1)] 15       56
+    (4, 0, 0)     (13, 3)    [(13, 3), (3, 1)]          23       88
+    (2, 2, 2)     (9, 7)     [(9, 7), (9, 5)]           7        24
+    (2, 2, 0)     (9, 7)     [(9, 7), (9, 1)]           7        24
+    (2, 0, 0)     (9, 3)     [(9, 3)]                   15       56
+    (0, 0, 0)     (5, 3)     [(5, 3), (3, 1)]           7        24
+    Offsets with p > max V - X_1 or q > max V - X_2 are not enumerated
+    and do not need to be: such an offset has a coordinate above max V,
+    that coordinate survives the coordinate permutation, and every
+    coordinate of every index of supp nu lies in [1, max V]; the two
+    sign-reversed images have negative coordinates, so they miss supp nu
+    for the same reason.  Both facts are part of the check below.
+PASS shift.X_is_the_dominant_numerator_index  --  for each of the 20 admissible Lambda, X(Lambda) is one of the alternant indices of supp nu and dominates every other one coordinatewise, strictly in at least one coordinate: Marin's Prop. 5.10(v) reproduced at t = 3 from the indexing convention, not quoted
+PASS shift.weyl_images_of_higher_indices_miss_support  --  300 offsets (p,q) >= 0 with (p,q) != (0,0), and all 1116 of their W(D_2) images, over the 20 admissible Lambda: none lands in supp nu, so no term of the Prop. 5.19(ii) sum other than the shift (1,1) contributes and no quotient index coordinatewise above X - 3*(1,1) survives -- including the reflection route the paper's proof of eq. (4) leaves implicit
+
+--- 10. the Weyl majorisation order ---
+    W(C_2)-orbit of (6, 6) : [(-6, -6), (-6, 6), (6, -6), (6, 6)]
+    corners of [-6,6]^2 : [(-6, -6), (-6, 6), (6, -6), (6, 6)]
+PASS order.orbit_is_the_corner_set  --  the orbit has 4 points and they are exactly the corners of [-6,6]^2, so its convex hull is that square
+    exact convex-combination certificates verified : 171 points, 0 failures
+    (the three functions sum(w), sum(w*p_1), sum(w*p_2) are affine in x_1 and in x_2 separately,
+     so agreeing with 1, x_1, x_2 on the 2x2 grid {+-6}^2 -- which the 169 tested points contain --
+     makes them identities, and every weight is a product of factors (1 +- x_i/6)/2 >= 0 on the
+     square; hence conv(orbit) contains ALL of [-6,6]^2, not merely the tested points.)
+PASS order.hull_contains_square  --  every tested point of [-6,6]^2 -- including the 2x2 grid that determines the bilinear weight map -- is an exact convex combination of the orbit
+    TAUTOLOGY WARNING: the next check is implied by order.orbit_is_the_corner_set
+      above -- once the orbit IS the corner set, every orbit point trivially has
+      |coordinate| = 6.  It is kept only to make the two inclusions explicit.
+PASS order.hull_inside_square  --  TAUTOLOGICAL given the orbit check; each orbit point lies in [-6,6]^2, and that square is convex, so conv(orbit) is contained in it
+    absolute-majorisation test vs the square: 361 points, 0 mismatches
+PASS order.two_hull_tests_agree  --  the majorisation test and membership in [-6,6]^2 agree on all 361 lattice points of [-9,9]^2
+    coordinates of the derived T range over [0, 6]
+PASS order.T_in_paper_range  --  every T lies in [-2,6]^2 as the paper states (derived range [0,6])
+PASS order.all_T_below_M  --  T <= (6, 6) in the majorisation order for all 20 admissible Lambda
+PASS order.M_is_strict_maximum  --  no other T has (6, 6) in conv(W(C_2) T), so (6, 6) is the unique maximum and the maximizer set is the same in both orders
+
+--- 11. the tied sum ---
+    maximizers                      : [(6, 6, 6), (6, 6, 2), (6, 6, 0)]
+    their a^B_Lambda                : [1, 1, 1]
+    c_top(Lambda) is only known to lie in {+1,-1} (Marin's Prop. 5.10(iv)), so all 8 sign patterns are enumerated:
+        c_top = (1, 1, 1)          ->  sum = +3   (odd: True, zero: False)
+        c_top = (1, 1, -1)         ->  sum = +1   (odd: True, zero: False)
+        c_top = (1, -1, 1)         ->  sum = +1   (odd: True, zero: False)
+        c_top = (1, -1, -1)        ->  sum = -1   (odd: True, zero: False)
+        c_top = (-1, 1, 1)         ->  sum = +1   (odd: True, zero: False)
+        c_top = (-1, 1, -1)        ->  sum = -1   (odd: True, zero: False)
+        c_top = (-1, -1, 1)        ->  sum = -1   (odd: True, zero: False)
+        c_top = (-1, -1, -1)       ->  sum = -3   (odd: True, zero: False)
+    sum of the a^B_Lambda           : 3  (parity 1)
+    set of attainable values of the tied sum : [-3, -1, 1, 3]
+PASS tie.hypothesis_holds  --  (6, 6) is attained by 3 > 1 constituents, so Conjecture 5.14 applies
+PASS tie.parity_odd  --  sum of the a^B_Lambda is 3, which is odd, so every value of the tied sum is odd
+PASS tie.never_zero  --  the tied sum takes only the values [-3, -1, 1, 3]; 0 is not among them, so Conjecture 5.14 is FALSE at beta = (12, 11, 10, 3, 2, 1, 0)
+
+==============================================================================
+CALIBRATION on Marin's own witness beta = (8, 7, 6, 3, 2, 1, 0)
+==============================================================================
+    beta - delta = (2, 2, 2, 0, 0, 0, 0)  ->  lambda = (2, 2, 2)
+PASS calib.lambda  --  derived lambda = (2, 2, 2), Marin's Remark 5.13 uses (2, 2, 2)
+--- 3c. Littlewood-Richardson table for nu = (2,2,2) ---
+    ordered pairs examined              : 100  (= 10^2)
+    lr_strip so far (cumulative): 739 full monomial expansions, 6724 pairs killed by degree
+    pairs with c != 0                   : 10
+    strip vs tableaux disagreements     : 0
+    duality mismatches                  : 0
+    c^nu_{gamma,Lambda} != c^nu_{Lambda,gamma} : 0
+PASS pairsc.count  --  derived 100 ordered pairs, comparison target 100
+PASS pairsc.two_algorithms_agree  --  monomial-strip and LR-tableau counts agree on 100/100 pairs
+PASS pairsc.LR_symmetry  --  c^nu_{gamma,Lambda} = c^nu_{Lambda,gamma} on 100/100 pairs
+PASS pairsc.rectangular_duality  --  c^{(2,2,2)}_{gamma,Lambda} = [gamma = (2-L3,2-L2,2-L1)] on 100/100 pairs
+PASS pairsc.nonzero_count  --  exactly 10 of 100 pairs are nonzero, one per Lambda as the duality requires
+
+--- 4c. the orthogonal restriction coefficients a^B_Lambda ---
+    Lambda in the 3 x 2 box                    : 10
+    all-even Lambda in the box (enumerated)     : 4
+    same count as multisets C(2+2,3)           : 4
+    Lambda with a^B_Lambda != 0 (derived)       : 4
+    values taken there                          : [1]
+    even gamma outside the box that were tried  : 4 (nonzero: 0, strip/tableaux disagreements: 0)
+    even 4-row gamma that were tried            : 0 (nonzero: 0)
+    NOTE the 4-row gamma above are killed by lr_tableaux's containment
+         early return, i.e. by the definition of the skew shape nu/gamma, not by
+         any Littlewood-Richardson arithmetic; lr_strip cannot be used on them
+         because schur3 is a 3-variable engine.  Treat that half of aBc.gamma_box_not_assumed
+         as a restatement of ell(gamma) <= ell(nu), not as independent evidence.
+    the nonzero a^B_Lambda, Lambda by Lambda:
+        (2, 2, 2) -> 1
+        (2, 2, 0) -> 1
+        (2, 0, 0) -> 1
+        (0, 0, 0) -> 1
+PASS aBc.count  --  derived 4 admissible Lambda, paper says 4
+PASS aBc.count_matches_multiset_formula  --  enumerated 4, multiset formula 4
+PASS aBc.support_is_even_partitions  --  {Lambda : a^B != 0} equals {all parts even, Lambda <= (2,2,2)}
+PASS aBc.all_ones  --  every admissible a^B_Lambda equals 1
+PASS aBc.gamma_box_not_assumed  --  all 4 out-of-box (by BOTH algorithms, 0 disagreements) and 0 four-row even gamma contribute 0, so restricting gamma to the box was a theorem, not an assumption
+
+--- 7c. folded residue classes and the mod-3 argument ---
+    t = 3, m' = (t-1)/2 = 1 nonzero folded class(es)
+    folded_class(v,3) takes the values [0, 1] over v in [0,15]
+    class 1 = {v : v = +-1 mod 3}       : True
+PASS foldc.single_nonzero_class  --  m' = 1, and the folded classes are [0, 1]
+PASS foldc.nonzero_class_is_pm1  --  the nonzero folded class is exactly {v : v not divisible by 3}
+    2L+5 = 0 mod 3 <=> L = 2 mod 3;  2L+3 = 0 <=> L = 0;  2L+1 = 0 <=> L = 1  : True
+    even L in [0,2] with L = 2 mod 3 (forces L1) : [2]
+    even L in [0,2] with L = 0 mod 3 (forces L2) : [0]
+    even L in [0,2] with L = 1 mod 3 (forces L3) : []
+PASS foldc.congruence_equivalence  --  V_i divisible by 3 is equivalent to L_i = (2,0,1)_i mod 3
+PASS foldc.congruence_impossible  --  L1 must be in [2] and L3 in [], and no pair has L1 >= L3
+    admissible Lambda whose numerator vanishes (some n_j = 0): []
+PASS foldc.no_vanishing_numerator  --  all 4 admissible Lambda have n_1 >= 1, so nu is not identically 0 for any of them
+
+--- 8c. the table of V, X and T ---
+    Lambda        V              classes  n_1  S_min  X          T
+    (2, 2, 2)     (9, 7, 5)      (0, 1, 1) 2    (2,)   (9, 7)     (2, 2)
+    (2, 2, 0)     (9, 7, 1)      (0, 1, 1) 2    (2,)   (9, 7)     (2, 2)
+    (2, 0, 0)     (9, 3, 1)      (0, 0, 1) 1    (2,)   (9, 3)     (2, 0)
+    (0, 0, 0)     (5, 3, 1)      (1, 0, 1) 2    (2,)   (5, 3)     (0, 0)
+    V entries strictly decreasing everywhere      : True
+    V bounded coordinatewise by (9, 7, 5)         : True
+    X bounded coordinatewise by (9, 7)            : True
+    T with some coordinate above (2, 2)           : []
+    Lambda with T = (2, 2)                     : [(2, 2, 2), (2, 2, 0)]
+    coordinatewise supremum of the derived T : (2, 2)  (attained: True)
+PASS foldc.M_is_derived_not_assumed  --  the coordinatewise supremum of the 4 derived T is (2, 2) and it is attained, so M = (2, 2) is a derived maximum; the paper says (2, 2)
+    TAUTOLOGY WARNING: the next three checks cannot fail for any
+      weakly decreasing Lambda inside the box -- V_i - V_{i+1} = 2(L_i - L_{i+1}) + 2 >= 2,
+      and L_i <= 2 forces V_i <= (9, 7, 5) and hence X <= (9, 7).  They confirm the paper's
+      sentence 'the entries of V are strictly decreasing and bounded by (9, 7, 5)' is true,
+      but they are consequences of the enumeration, not independent evidence.
+PASS foldc.V_strictly_decreasing  --  TAUTOLOGICAL given Lambda in the box; so the smallest value in a class carries the largest label, as Prop. 5.10(v) requires
+PASS foldc.V_bound  --  TAUTOLOGICAL given Lambda in the box; every V(Lambda) <= (9, 7, 5) coordinatewise
+PASS foldc.V_bound_matches_paper  --  derived bound (9, 7, 5)
+PASS foldc.X_bound  --  TAUTOLOGICAL given Lambda in the box; every X(Lambda) <= (9, 7)
+PASS foldc.T_le_M  --  all 4 values T(Lambda) are <= (2, 2) coordinatewise
+PASS foldc.maximizer_set  --  derived maximizers [(2, 2, 2), (2, 2, 0)], paper says ((2, 2, 2), (2, 2, 0))
+PASS foldc.maximizer_count  --  2 maximizers, and the conjecture's hypothesis needs more than 1
+PASS foldc.strict_domination  --  every non-maximizing T is strictly below (2, 2) in some coordinate
+
+PASS calib.two_fold_tie  --  derived tie at T = (2, 2) between [(2, 2, 2), (2, 2, 0)]; Marin's Remark 5.13 reports ((2, 2, 2), (2, 2, 0))
+PASS calib.tie_is_twofold  --  the tie here is two-fold, so the same code that finds three maximizers at beta = (12, 11, 10, 3, 2, 1, 0) reproduces Marin's two
+    attainable tied sums in the calibration : [-2, 0, 2]  (0 attainable: True)
+PASS calib.even_tie_can_cancel  --  with two terms of +-1 the tied sum CAN vanish (values [-2, 0, 2]), which is why an even tie is consistent with Conjecture 5.14 and an odd one is not
+
+WARNING: the paper->source direction was not checked.  Pass
+      --paper paper.tex  to verify that the clauses the paper puts in
+      quotation marks really occur in Marin's file.  Without it, part B only shows
+      that strings TRANSCRIBED FROM THE SOURCE occur in the source, which is nearly
+      circular.
+
+WARNING: part B (source fidelity) was not run.  It needs the single file orbit_pair_ii.tex of
+      arXiv:2608.18302v1, obtainable with
+          curl -sL https://arxiv.org/e-print/2608.18302v1 | tar xz
+      and is then enabled with  --source orbit_pair_ii.tex .  This program makes no
+      network call of its own, so the 88 checks above are the mathematics alone.
+
+==============================================================================
+GAP REGISTER -- what a green verdict above does NOT establish
+==============================================================================
+G1 IMPORTED, NOT DERIVED: c_top(Lambda) = c(Lambda,T(Lambda)) lies in
+   {+1,-1}  (Marin Prop. 5.10(iv)).  This program does not build
+   tau^B_t, the alternant expansion or the Delta_t division, so it
+   cannot confirm the membership.  MITIGATION: all 2^3 sign patterns
+   are enumerated, so the refutation is independent of WHICH signs
+   occur -- but if any c_top were 0, or +-2, the argument fails.
+G2 PARTLY IMPORTED: the rule that reads T(Lambda) off V(Lambda) (Prop.
+   5.10(v) plus the 5.19(ii) indexing).  DERIVED HERE (check 9b), once
+   supp nu is indexed as the source's proof fixes it -- V restricted to
+   the complement of a transversal, sorted decreasingly, which at t = 3
+   means deleting one entry of V from the nonzero folded class: that
+   X(Lambda) is the coordinatewise dominant index (the content of Prop.
+   5.10(v)), and that every index COORDINATEWISE above X(Lambda) -- so
+   every term of the inversion sum but the shift (1,1) -- misses supp nu
+   TOGETHER WITH ALL FOUR OF ITS W(D_2) IMAGES.  That last clause is the
+   reflection route back into the support which the paper's four-
+   sentence justification of eq. (4) leaves implicit: the summand of the
+   5.19(ii) inversion is the W(D_2)-ANTISYMMETRIC extension tilde_nu, so
+   coordinatewise domination alone would not settle it.
+   STILL IMPORTED: the 5.19(ii) inversion formula itself, the global
+   sign s_r, and that supp nu contains no index outside the deletion set
+   just described.  The only external test of the composite rule remains
+   the calibration: Marin's own Remark 5.13 reports a two-fold tie at
+   T = (2,2) for beta = (8,7,6,3,2,1,0), and the same code reproduces
+   it.  One data point.
+G3 NO LONGER IMPORTED (closed by check 5b): 'Lambda is a dominant B_3
+   weight, hence has at most 3 parts' is not needed -- every partition
+   with 4 or more parts and |Lambda| <= 18 is swept and has
+   a^B_Lambda = 0, so no such Lambda can join the tie.  What remains
+   imported is only that Lambda is a PARTITION (dominant, integral),
+   i.e. that no weight with a negative or fractional coordinate enters
+   the branching sum.
+G4 IMPORTED: Littlewood's stable orthogonal restriction formula and
+   its validity for 2*ell(lambda) <= N.  Only its parts-even vs
+   columns-even CONVENTION is discriminated here (check 6).
+G5 IMPORTED: M(beta) = max{T(Lambda) : a^B_Lambda != 0}, the maximum
+   restricted to the SUPPORT of a^B.  That restriction is load-
+   bearing, and the next check shows it:
+       Lambda = (8,8,8) is a perfectly good 3-row even partition with
+       V = (21, 19, 17), X = (21, 19), T = (8, 8), which exceeds M = (6, 6) coordinatewise.
+       It is excluded only because a^B_(8,8,8) = 0 (it is not inside
+       lambda = (6,6,6)).  So if Marin's max ran over all Lambda
+       rather than the support, M(beta) would not be (6,6).
+PASS gap.support_restriction_is_load_bearing  --  T(8,8,8) = (8, 8) exceeds M = (6, 6), and a^B_(8,8,8) = 0, so M(beta) = (6, 6) depends on the support restriction, which is imported from Marin's definition and not derivable here
+G6 NOT PERFORMED: the program makes no network call of its own; it
+   uses only the standard library, and so establishes NOTHING about which
+   versions of arXiv:2608.18302 exist, which is current, or what any
+   of them contains.  No claim about that is made here.  Hence 'v1 is
+   the version refuted' rests entirely on the file passed to --source
+   being the v1 e-print: the program checks that file's CONTENT, not
+   its provenance, and later versions may exist and may renumber or
+   restate the conjecture.  Pin the provenance yourself -- fetch the
+   version you mean, read the submission history on the abs page for
+   the list of versions, and re-run part B on the file you fetched:
+       curl -sL https://arxiv.org/e-print/2608.18302v1 | tar xz
+       python3 verify.py --source orbit_pair_ii.tex
+G7 NOT PERFORMED: part B (source fidelity) was skipped -- no
+   --source file was given, so NOTHING above ties the refuted
+   statement to Conjecture 5.14 of arXiv:2608.18302v1.
+G7b NOT PERFORMED: the paper->source direction (--paper).  The 18
+   clause strings in SOURCE_NEEDLES were transcribed FROM the
+   source, so source.quoted_clauses_present on its own only shows
+   that a transcription of the source is in the source.  Only
+   --paper turns it into a two-file identity.
+G8 TAUTOLOGIES, labelled in place, that cannot fail for any input:
+   fold.V_strictly_decreasing, fold.V_bound, fold.X_bound,
+   order.hull_inside_square, and the 4-row half of
+   aB.gamma_box_not_assumed.  They confirm true sentences of the
+   paper; they are not evidence.
+
+==============================================================================
+VERDICT: ALL 89 CHECKS PASS (INCOMPLETE -- see G6/G7 above)
+        This is conditional.  Three clauses (G1, G4, G5) are imported
+        from Marin and are NOT verified here, and a fourth (G2) only
+        in part -- see the register; the version-
+        provenance probe (G6) is not performed, part B is incomplete; and five checks are
+        tautological (G8).  Read the GAP REGISTER before quoting this.
+=== program exited with status 0 ===

@@ -1,0 +1,84 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e7141ba8053f3179c56fd7a3707f2b6e357ab5a3139691883b5cd76bc1117c81
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- A Counterexample to the Hibi-Seyed Fakhari Conjecture
+               on Join-Meet Ideals (refutes [HSF, Conjecture 2.4])
+stdlib only, exact integer / GF(2) arithmetic, python 3.9
+PASS element_count_is_12 [L = 0hat,1hat,a0,a1,a2,a3,a4,b0,b1,b2,b3,b4]
+PASS is_partial_order [12 elements, 43 relations]
+PASS cover_relations_recovered_from_order [20 covers (20 expected), input cover set reproduced: True]
+PASS each_coatom_covers_exactly_two_consecutive_atoms [b0>a0,a1; b1>a1,a2; b2>a2,a3; b3>a3,a4; b4>a0,a4]
+PASS bounded_with_unique_0hat_and_1hat [min=['0hat'] max=['1hat']]
+PASS every_pair_has_unique_join_and_meet_so_L_is_a_lattice [144/144 joins, 144/144 meets well defined, 0 defects]
+PASS five_atoms_five_coatoms [atoms=a0,a1,a2,a3,a4 coatoms=b0,b1,b2,b3,b4]
+PASS graded_pure_of_rank_3 [graded=True pure=True longest maximal chain=3, ranks a_i=[1] b_i=[2] 1hat=3]
+PASS incidence_graph_is_the_10_cycle [edges=(0,1)(0,9)(1,2)(2,3)(3,4)(4,5)(5,6)(6,7)(7,8)(8,9)]
+PASS incidence_graph_2_regular_on_10_vertices [degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+PASS graph6_string_decodes_to_the_derived_incidence_graph [graph6 IhCGGC@_G -> n=10, 10 edges, equal to derived graph: True]
+PASS atom_pairs_have_a_unique_common_coatom_iff_consecutive_else_join_1hat [all 10 atom pairs behave as claimed]
+PASS coatom_pairs_have_a_unique_common_atom_iff_consecutive_else_meet_0hat [all 10 coatom pairs behave as claimed]
+PASS incomparable_atom_coatom_pairs_meet_at_0hat_and_join_at_1hat [15 incomparable mixed pairs, 0 misbehaving]
+PASS paper_witness_a0_a2_b0_breaks_the_modular_law [a0<=b0 is True, a2^b0=0hat, a0va2=1hat, a0v(a2^b0)=a0, (a0va2)^b0=b0, differ=True]
+PASS L_is_nonmodular_exhaustive_search [40 violating triples (x<=z) out of 516; first=('a0', 'a2', 'b0')]
+PASS join_meet_ideal_has_35_nonzero_quadrics [66 unordered pairs = 35 nonzero quadrics (35 claimed) + 31 vanishing (comparable) pairs]
+NOTE the 35 generators: A0*A1-y*B0  A0*A2-y*z  A0*A3-y*z  A0*A4-y*B4  A0*B1-y*z  A0*B2-y*z  A0*B3-y*z  A1*A2-y*B1  A1*A3-y*z  A1*A4-y*z  A1*B2-y*z  A1*B3-y*z  A1*B4-y*z  A2*A3-y*B2  A2*A4-y*z  A2*B0-y*z  A2*B3-y*z  A2*B4-y*z  A3*A4-y*B3  A3*B0-y*z  A3*B1-y*z  A3*B4-y*z  A4*B0-y*z  A4*B1-y*z  A4*B2-y*z  B0*B1-z*A1  B0*B2-y*z  B0*B3-y*z  B0*B4-z*A0  B1*B2-z*A2  B1*B3-y*z  B1*B4-y*z  B2*B3-z*A3  B2*B4-y*z  B3*B4-z*A4
+PASS incomparable_pairs_are_10_atom_10_coatom_15_mixed [atom-atom=10 coatom-coatom=10 mixed=15]
+PASS ten_displayed_quadrics_AiAi1_yBi_and_BiBi1_Ai1z_are_exactly_reproduced [10 of the 10 displayed quadrics are among the derived generators: A0*A1-y*B0  A0*A4-y*B4  A1*A2-y*B1  A2*A3-y*B2  A3*A4-y*B3  B0*B1-z*A1  B0*B4-z*A0  B1*B2-z*A2  B2*B3-z*A3  B3*B4-z*A4]
+PASS remaining_25_quadrics_all_have_shape_UV_minus_yz [25 remaining quadrics (25 claimed), 25 with trailing term y*z, 25 with leading term U*V in the ten middle variables, 25 distinct leading terms]
+PASS leading_monomials_distinct_and_never_trailing [35 distinct leading monomials, 11 distinct trailing, overlap 0]
+NOTE gamma_2: E=35 edges, V=46 vertices, c=11 components, E-V+c=0, self-loops=0 (so phi_2 has no zero rows)
+PASS dim_Z_2_is_zero_so_the_35_quadrics_are_linearly_independent [E-V+c = 35-46+11 = 0, paper claims 0]
+PASS dim_Z_2_reproduced_by_GF2_elimination [rank_F2(incidence)=35, V-c=35, E-rank=0, E-V+c=0]
+PASS dim_Z_2_same_over_F3_and_over_F_2147483647 [rank mod 3 = 35, rank mod 2147483647 = 35, V-c = 35]
+PASS dim_Z_2_is_field_independent_by_rank_bounds [upper: 11 components, all column sums vanish; lower: 35x35 triangular minor, determinant +-1]
+PASS fundamental_cycle_basis_of_Z_2_is_valid_and_unitriangular [0 cycles for dim Z_2 = 0, 0 with nonzero integer boundary or coordinate vector != e_j]
+NOTE gamma_3: E=420 edges, V=312 vertices, c=41 components, E-V+c=149, self-loops=0 (so phi_3 has no zero rows)
+PASS gamma_3_E_V_c_match_the_paper_table [computed (E,V,c)=(420,312,41), paper (420,312,41)]
+PASS dim_Z_3_equals_paper_value_149 [E-V+c=149, non-tree edges=149, paper=149]
+PASS dim_Z_3_reproduced_by_GF2_elimination [rank_F2(incidence)=271, V-c=271, E-rank=149, E-V+c=149]
+PASS dim_Z_3_same_over_F3_and_over_F_2147483647 [rank mod 3 = 271, rank mod 2147483647 = 271, V-c = 271]
+PASS dim_Z_3_is_field_independent_by_rank_bounds [upper: 41 components, all column sums vanish; lower: 271x271 triangular minor, determinant +-1]
+PASS fundamental_cycle_basis_of_Z_3_is_valid_and_unitriangular [149 cycles for dim Z_3 = 149, 0 with nonzero integer boundary or coordinate vector != e_j]
+NOTE gamma_4: E=2730 edges, V=1293 vertices, c=91 components, E-V+c=1528, self-loops=0 (so phi_4 has no zero rows)
+PASS gamma_4_E_V_c_match_the_paper_table [computed (E,V,c)=(2730,1293,91), paper (2730,1293,91)]
+PASS dim_Z_4_equals_paper_value_1528 [E-V+c=1528, non-tree edges=1528, paper=1528]
+PASS dim_Z_4_reproduced_by_GF2_elimination [rank_F2(incidence)=1202, V-c=1202, E-rank=1528, E-V+c=1528]
+PASS dim_Z_4_same_over_F3_and_over_F_2147483647 [rank mod 3 = 1202, rank mod 2147483647 = 1202, V-c = 1202]
+PASS dim_Z_4_is_field_independent_by_rank_bounds [upper: 91 components, all column sums vanish; lower: 1202x1202 triangular minor, determinant +-1]
+PASS fundamental_cycle_basis_of_Z_4_is_valid_and_unitriangular [1528 cycles for dim Z_4 = 1528, 0 with nonzero integer boundary or coordinate vector != e_j]
+NOTE gamma_5: E=12740 edges, V=4276 vertices, c=161 components, E-V+c=8625, self-loops=0 (so phi_5 has no zero rows)
+PASS gamma_5_E_V_c_match_the_paper_table [computed (E,V,c)=(12740,4276,161), paper (12740,4276,161)]
+PASS dim_Z_5_equals_paper_value_8625 [E-V+c=8625, non-tree edges=8625, paper=8625]
+PASS dim_Z_5_reproduced_by_GF2_elimination [rank_F2(incidence)=4115, V-c=4115, E-rank=8625, E-V+c=8625]
+PASS dim_Z_5_same_over_F3_and_over_F_2147483647 [rank mod 3 = 4115, rank mod 2147483647 = 4115, V-c = 4115]
+PASS dim_Z_5_is_field_independent_by_rank_bounds [upper: 161 components, all column sums vanish; lower: 4115x4115 triangular minor, determinant +-1]
+PASS fundamental_cycle_basis_of_Z_5_is_valid_and_unitriangular [8625 cycles for dim Z_5 = 8625, 0 with nonzero integer boundary or coordinate vector != e_j]
+NOTE gamma_6: E=47775 edges, V=12264 vertices, c=251 components, E-V+c=35762, self-loops=0 (so phi_6 has no zero rows)
+PASS dim_Z_6_reproduced_by_GF2_elimination [rank_F2(incidence)=12013, V-c=12013, E-rank=35762, E-V+c=35762]
+PASS dim_Z_6_same_over_F3_and_over_F_2147483647 [rank mod 3 = 12013, rank mod 2147483647 = 12013, V-c = 12013]
+PASS dim_Z_6_is_field_independent_by_rank_bounds [upper: 251 components, all column sums vanish; lower: 12013x12013 triangular minor, determinant +-1]
+PASS fundamental_cycle_basis_of_Z_6_is_valid_and_unitriangular [35762 cycles for dim Z_6 = 35762, 0 with nonzero integer boundary or coordinate vector != e_j]
+PASS beta_1_3_equals_149_the_nonzero_linear_strand [dim Z_3 - rank(mu_3) = 149 - 0 = 149 (mu_3 has 0 rows since Z_2=0)]
+PASS mu_4_matrix_shape_is_1788x1528_as_stated [12 * dim Z_3 = 1788 rows, dim Z_4 = 1528 columns]
+PASS mu_4_every_row_is_a_certified_cycle_with_exact_coordinates [1788/1788 rows: cycle-space 0 bad, GF(2) rebuild 0 bad, integral rebuild 0 bad]
+PASS mu_4_rank_over_F2_is_1528 [rank_F2 = 1528 of 1528 columns (1788 of 1788 rows consumed)]
+PASS mu_4_has_full_target_rank_in_characteristic_zero [signed integer matrix has rank 1528 mod 2147483647, columns = 1528; equality forces full rank over Q and hence over every field of characteristic zero, and it also certifies full rank over F_2147483647 itself, but NOT over a general field of characteristic p>=3]
+PASS beta_1_4_is_zero_over_F2_and_in_characteristic_zero [beta_1_4 = dim Z_4 - rank(mu_4) = 1528 - 1528 = 0]
+PASS mu_5_matrix_shape_is_18336x8625_as_stated [12 * dim Z_4 = 18336 rows, dim Z_5 = 8625 columns]
+PASS mu_5_every_row_is_a_certified_cycle_with_exact_coordinates [18336/18336 rows: cycle-space 0 bad, GF(2) rebuild 0 bad, integral rebuild 0 bad]
+PASS mu_5_rank_over_F2_is_8625 [rank_F2 = 8625 of 8625 columns (18336 of 18336 rows consumed)]
+PASS mu_5_has_full_target_rank_in_characteristic_zero [signed integer matrix has rank 8625 mod 2147483647, columns = 8625; equality forces full rank over Q and hence over every field of characteristic zero, and it also certifies full rank over F_2147483647 itself, but NOT over a general field of characteristic p>=3]
+PASS beta_1_5_is_zero_over_F2_and_in_characteristic_zero [beta_1_5 = dim Z_5 - rank(mu_5) = 8625 - 8625 = 0]
+NOTE mu_6 is a 103500 x 35762 matrix over F_2 (no paper claim; extra degree)
+PASS mu_6_every_row_is_a_certified_cycle_with_exact_coordinates [103500/103500 rows: cycle-space 0 bad, GF(2) rebuild 0 bad, integral rebuild 0 bad]
+PASS mu_6_has_full_target_rank_over_F2 [rank_F2 = 35762 of 35762 columns (103500 of 103500 rows consumed)]
+PASS mu_6_has_full_target_rank_in_characteristic_zero [signed integer matrix has rank 35762 mod 2147483647, columns = 35762; equality forces full rank over Q and hence over every field of characteristic zero, and it also certifies full rank over F_2147483647 itself, but NOT over a general field of characteristic p>=3]
+PASS beta_1_6_is_zero_over_F2_and_in_characteristic_zero [beta_1_6 = dim Z_6 - rank(mu_6) = 35762 - 35762 = 0]
+PASS counterexample_stands_nonmodular_lattice_with_no_nonlinear_syzygies [12-element lattice, 40 modular-law failures, beta_1,3=149, and (beta_1,j for j=4,5,6) = (0,0,0) over F_2 and in characteristic 0]
+NOTE NOT RE-RUN: this program does NOT re-derive the paper's full claim. The published theorem asserts beta_{1,j}=0 for EVERY j>=4, and only finitely many degrees can be recomputed. beta_{1,j}=0 for j>=7 is NOT recomputed here; the paper obtains it from the cited [HSF, Lemma 2.8] regularity bound reg(I_L)=4, a literature input, and no finite computation can cover infinitely many degrees. Degrees j=4,5,6 were recomputed in full; the paper itself computes only j=4,5. Also NOT re-run: full target rank of mu_j over a general field of characteristic p>=3 -- the ranks printed above are certified over F_2, over Q and hence over every field of characteristic zero, and over F_2147483647, and over no other characteristic.
+NOTE re-run with --deep to add degree 7 (mu_7 is 429144 x 121549 over F_2; needs about 1.3 GB of RAM and a few more seconds).
+NOTE elapsed 12.3 s
+VERDICT: ALL 64 CHECKS PASS
+=== program exited with status 0 ===

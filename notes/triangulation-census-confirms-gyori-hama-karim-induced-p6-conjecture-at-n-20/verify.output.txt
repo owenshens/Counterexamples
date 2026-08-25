@@ -1,0 +1,91 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  68e116cfc183e62700f30b90a57ce1f94811ff0877c007a1616890e47375f8ed
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+T : R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?
+W : S~vMLaWbCKM?U?R?Go@a?EG?KO?KOE???
+==============================================================================
+decoded T: n=19 m=51   decoded W: n=20 m=53
+
+PASS T is well-formed graph6 (padding bits zero)
+PASS W is well-formed graph6 (padding bits zero)
+PASS T has 19 vertices, as the paper states  [n=19]
+PASS T has 51 edges, as the paper states  [m=51]
+PASS T has m = 3n-6, the edge count of a maximal planar graph (planarity itself is proved below, not inferred from this count)  [3n-6=51]
+PASS W has 20 vertices, as the paper states  [n=20]
+PASS W has 53 edges, as the paper states  [m=53]
+
+recipe graph: n=19 m=51
+PASS the recipe builds 19 vertices  [n=19]
+PASS the recipe builds 51 edges  [m=51]
+PASS decoded T is LABEL-EQUAL to the recipe graph  [symmetric difference 0]
+PASS re-encoding the recipe graph reproduces the printed string byte for byte  [R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?]
+PASS decoded T and the recipe graph share a degree fingerprint
+PASS T is 3-connected  [no cutvertex, no 2-cut]
+       T degree sequence: [3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 6, 6, 10, 10, 10, 10, 10]
+       T min degree = 3, triangles = 49, 2n-4 = 34
+
+       T has 49 triangles as subgraphs; a 19-vertex plane triangulation has 2m/3 = 34 faces
+       exhaustive search over triangle sets meeting every edge exactly twice: 1 distinct solution(s), 1 of them a sphere face set
+PASS a set of triangles of T exists with every edge of T in exactly two of them  [1 such set(s) found]
+PASS T is PLANAR: the exhibited face set is a closed surface with Euler characteristic 2, i.e. the sphere  [every edge in exactly 2 faces, every link a single cycle, n-m+f = 19-51+34 = 2]
+PASS T is a maximal planar graph: planar AND m = 3n-6  [planar=True, m=51, 3n-6=51]
+PASS the sphere embedding of T is unique, the search having run to exhaustion  [1 sphere face set(s) from an uncapped search]
+PASS T has exactly 34 faces, hence exactly 34 facial insertions  [f=34]
+PASS a, b, c_0 bound a FACE of T, so the new vertex x may legally be inserted there  [face (0, 1, 2) in the embedding: True]
+PASS W restricted to the first 19 vertices is exactly T  [symmetric difference 0]
+PASS the added vertex has exactly two neighbours  [['a', 'b']]
+PASS the added vertex is joined to a and b  [['a', 'b']]
+PASS the added vertex is NOT joined to c_0, as the paper says
+PASS a, b and c_0 are mutually adjacent in T, so abc_0 is a triangle of T
+
+PASS T is induced-P6-free  [induced P6 count = 0]
+PASS W is induced-P6-free  [induced P6 count = 0]
+PASS W is PLANAR: the sphere embedding of T with x drawn inside the face a b c_0  [f=35 (33 triangles + a b x + the quadrilateral a x b c_0), every edge in exactly 2 faces, every link a single cycle, n-m+f = 20-53+35 = 2]
+PASS W is planar, has 53 edges on 20 vertices and is induced-P6-free, so ex_P(20,P6^ind) >= 53  [n=20, m=53, induced P6 count=0, planar=True]
+PASS m(W) is one below Euler's bound 3n-6 = 54  [m(W)=53, 3n-6=54]
+PASS the conjectured value floor(50(n-2)/17)+1 at n=20 equals m(W)  [floor(50*18/17)+1 = floor(900/17)+1 = 52+1 = 53, m(W)=53]
+
+the 34 facial insertions of T (the inserted vertex is called z, index 19):
+       face a-b-c0        n=20 m=54  induced P6: c4 - c3 - c2 - c1 - c0 - z
+       face a-b-c4        n=20 m=54  induced P6: c0 - c1 - c2 - c3 - c4 - z
+       face a-c0-u0       n=20 m=54  induced P6: u2 - c3 - b - c1 - u0 - z
+       face a-c1-u0       n=20 m=54  induced P6: u1 - c2 - b - c0 - u0 - z
+       face a-c1-u1       n=20 m=54  induced P6: u0 - c0 - b - c2 - u1 - z
+       face a-c2-u1       n=20 m=54  induced P6: u2 - c3 - b - c1 - u1 - z
+       face a-c2-u2       n=20 m=54  induced P6: u0 - c0 - b - c3 - u2 - z
+       face a-c3-u2       n=20 m=54  induced P6: u0 - c0 - b - c2 - u2 - z
+       face a-c3-u3       n=20 m=54  induced P6: u0 - c0 - b - c4 - u3 - z
+       face a-c4-u3       n=20 m=54  induced P6: u0 - c0 - b - c3 - u3 - z
+       face b-c0-v0       n=20 m=54  induced P6: v2 - c3 - a - c1 - v0 - z
+       face b-c1-v0       n=20 m=54  induced P6: v1 - c2 - a - c0 - v0 - z
+       face b-c1-v1       n=20 m=54  induced P6: v0 - c0 - a - c2 - v1 - z
+       face b-c2-v1       n=20 m=54  induced P6: v2 - c3 - a - c1 - v1 - z
+       face b-c2-v2       n=20 m=54  induced P6: v0 - c0 - a - c3 - v2 - z
+       face b-c3-v2       n=20 m=54  induced P6: v0 - c0 - a - c2 - v2 - z
+       face b-c3-v3       n=20 m=54  induced P6: v0 - c0 - a - c4 - v3 - z
+       face b-c4-v3       n=20 m=54  induced P6: v0 - c0 - a - c3 - v3 - z
+       face c0-c1-v0      n=20 m=54  induced P6: w0 - u0 - a - b - v0 - z
+       face c0-c1-w0      n=20 m=54  induced P6: v0 - b - a - u0 - w0 - z
+       face c0-u0-w0      n=20 m=54  induced P6: v2 - c3 - a - c1 - w0 - z
+       face c1-c2-v1      n=20 m=54  induced P6: w0 - u0 - a - b - v1 - z
+       face c1-c2-w1      n=20 m=54  induced P6: v0 - b - a - u1 - w1 - z
+       face c1-u0-w0      n=20 m=54  induced P6: v1 - c2 - a - c0 - w0 - z
+       face c1-u1-w1      n=20 m=54  induced P6: v0 - c0 - a - c2 - w1 - z
+       face c2-c3-v2      n=20 m=54  induced P6: w0 - u0 - a - b - v2 - z
+       face c2-c3-w2      n=20 m=54  induced P6: v0 - b - a - u2 - w2 - z
+       face c2-u1-w1      n=20 m=54  induced P6: v2 - c3 - a - c1 - w1 - z
+       face c2-u2-w2      n=20 m=54  induced P6: v0 - c0 - a - c3 - w2 - z
+       face c3-c4-v3      n=20 m=54  induced P6: w0 - u0 - a - b - v3 - z
+       face c3-c4-w3      n=20 m=54  induced P6: v0 - b - a - u3 - w3 - z
+       face c3-u2-w2      n=20 m=54  induced P6: v0 - c0 - a - c2 - w2 - z
+       face c3-u3-w3      n=20 m=54  induced P6: v0 - c0 - a - c4 - w3 - z
+       face c4-u3-w3      n=20 m=54  induced P6: v0 - c0 - a - c3 - w3 - z
+PASS each of the 34 facial insertions of T contains an induced P6  [34 of 34 insertions contain one]
+PASS each printed witness re-verifies as an induced P6 (five path edges, no chord)  [34 of 34 re-verified]
+
+VERDICT: ALL 32 CHECKS PASS
+NOT RE-RUN: the plantri census behind the UPPER bound -- no plantri run was made here, none of the 78,435,562 minimum-degree-four isomorphism classes over 6 <= n <= 20 was generated or tested, neither published count 11,284,042 nor 64,719,885 was reproduced, and the recursion giving (|L_n|)_{n=4..20}, in particular L_19 = {T} and L_20 = empty, was not re-run; the 34 facial insertions of T ARE checked above, but they close the degree-three branch of the upper bound only given L_19 = {T}, which is not verified here.
+=== program exited with status 0 ===

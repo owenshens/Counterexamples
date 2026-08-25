@@ -1,0 +1,355 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Length-14 Negative Answer to Alderson's q=4 Optimality Question}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\PG}{\mathrm{PG}}
+\newcommand{\wt}{\operatorname{wt}}
+
+\title[A length-14 negative answer]
+{A Length-14 Negative Answer to Alderson's
+$q=4$ Optimality Question}
+\date{}
+
+\subjclass[2020]{94B05, 51E20}
+\keywords{additive code, code extension, maximal code, partial spread,
+Baer subgeometry}
+
+\begin{document}
+
+\begin{abstract}
+Alderson constructed an extendable, additively maximal additive
+$(112,2,104)_{16/4}$-code and asked whether length $112$ is optimal for
+$q=4$. A classical spread of
+$\PG(3,4)\setminus\PG(3,2)$ yields a faithful additive MDS
+$(14,2,13)_{16/4}$-code that is extendable as a $16$-ary code but admits no
+$\F_4$-additive extension. Hence the answer is negative and the minimum
+length in the $q=4$ clause of Alderson's Problem~9.2 is at most $14$.
+Problem~9.2 itself notes that any sub-multiset of its $112$ external lines
+whose maximal-fold points still meet every line yields a shorter example;
+that condition governs additive maximality alone, and what is supplied here
+is a sub-multiset for which extendability, the other requirement, also
+holds. We do not determine the global minimum.
+\end{abstract}
+
+\maketitle
+
+\section{Result}
+
+Alderson's Theorem~6.6 gives, for $t=2$, an extendable, additively maximal
+additive $(112,2,104)_{16/4}$-code, whose $112$ coordinates are indexed by
+the lines of $\Pi=\PG(3,4)$ external to a scattered $\F_2$-linear set.
+Problem~9.2 of \cite{Alderson} then reads, in full:
+\begin{quote}
+Extend Theorem~6.6 to non-square, non-prime $q$. Further, determine the
+minimum length of an extendable, additively maximal additive
+$(n,2,d)_{q^2/q}$-code for square $q$: is $n=112$ optimal for $q=4$? (Any
+sub-multiset of the external lines whose set of maximal-fold points still
+meets every line of $\Pi$ yields a shorter example.)
+\end{quote}
+Theorem~\ref{thm:main} below answers the final clause negatively, at length
+$14$; the first clause and the minimum for general square $q$ are untouched.
+Remark~\ref{rem:relation} records what the closing parenthetical already
+supplies and what it does not.
+
+The geometric input is classical: van Dam \cite{vanDam} classified the
+spreads of $\PG(3,4)\setminus\PG(3,2)$ into three orbits under the
+collineation group $\mathrm{P\Gamma L}(4,4)$, and Mellinger \cite{Mellinger}
+later obtained the corresponding three mixed partitions consisting of one Baer
+subgeometry and fourteen lines.
+
+\begin{theorem}\label{thm:main}
+There exists a faithful additive MDS $(14,2,13)_{16/4}$-code $C$ that is
+extendable as a $16$-ary code but is additively maximal. Its Hamming weight
+enumerator is
+\[
+  W_C(z)=1+210z^{13}+45z^{14}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\F_2\subset\F_4\subset\F_{16}$, choose
+$\omega\in\F_4$ with $\omega^2+\omega+1=0$, put $E=\F_4^4$, and let
+$U=\F_2^4\le E$. In $\Pi=\PG(E)=\PG(3,4)$, define the standard Baer
+subgeometry
+\[
+  B=\{\langle u\rangle_{\F_4}:0\ne u\in U\}\cong\PG(3,2).
+\]
+Thus $|B|=15$. The $\F_4$-line through two distinct points of $B$ meets
+$B$ in the three points of the corresponding $\F_2$-subline. In
+particular, $B$ contains no $\F_4$-line.
+
+We first give an explicit representative of the classical complement
+spreads classified in \cite{vanDam,Mellinger}. Let
+\[
+ T=\begin{pmatrix}
+     0&0&1&0\\
+     1&0&1&0\\
+     0&1&0&0\\
+     0&0&0&1
+   \end{pmatrix}\in\mathrm{GL}(4,2)\le\mathrm{GL}(4,4).
+\]
+The upper-left block has minimal polynomial $X^3+X+1$, so $T$ has order
+$7$. Put
+\[
+\begin{aligned}
+ u&=(1,0,0,\omega)^{\mathsf T},
+ &v&=(0,1,\omega^2,0)^{\mathsf T},
+ &L&=\langle u,v\rangle_{\F_4},\\
+ u'&=(1,0,0,\omega^2)^{\mathsf T},
+ &v'&=(0,1,\omega,0)^{\mathsf T},
+ &L'&=\langle u',v'\rangle_{\F_4}.
+\end{aligned}
+\]
+The five points of $\PG(L)$ are represented by
+$u,v,u+v,u+\omega v,u+\omega^2v$. These representatives are normalized
+at their first nonzero coordinate, and each has a coordinate outside
+$\F_2$; hence none lies in $B$. The same holds for $\PG(L')$, its
+Frobenius conjugate. Since $T$ has entries in $\F_2$, every line
+$\PG(T^jL)$ and $\PG(T^jL')$ is disjoint from $B$.
+
+For vectors $x_1,\ldots,x_4$, write
+$\det[x_1,x_2,x_3,x_4]$ for the determinant of the matrix with those
+columns. A direct calculation gives
+\begin{align*}
+ \bigl(\det[u,v,T^ku,T^kv]\bigr)_{k=1}^{6}
+   &=(\omega,1,\omega^2,\omega^2,1,\omega),\\
+ \bigl(\det[u',v',T^ku',T^kv']\bigr)_{k=1}^{6}
+   &=(\omega^2,1,\omega,\omega,1,\omega^2),\\
+ \bigl(\det[u,v,T^ku',T^kv']\bigr)_{k=0}^{6}
+   &=(1,\omega,\omega,\omega^2,\omega,\omega^2,\omega^2).
+\end{align*}
+All entries are nonzero. Since intersections depend only on relative
+powers of $T$, these three calculations show that the fourteen lines
+\[
+  \ell_{j+1}=\PG(T^jL),\qquad
+  \ell_{j+8}=\PG(T^jL')\qquad(0\le j\le6)
+\]
+are pairwise disjoint. They contain $14\cdot5=70=85-15$ points, all
+outside $B$, and therefore
+\begin{equation}\label{eq:partition}
+  \Pi=B\mathbin{\dot\cup}\ell_1\mathbin{\dot\cup}\cdots
+       \mathbin{\dot\cup}\ell_{14}.
+\end{equation}
+
+Write $\ell_i=\PG(V_i)$, where $V_i\le E$ has $\F_4$-dimension $2$.
+Identifying $\F_{16}$ with a two-dimensional $\F_4$-space, choose an
+$\F_4$-linear epimorphism
+\[
+  \rho_i:E\longrightarrow\F_{16},
+  \qquad \ker\rho_i=V_i,
+\]
+and define
+\[
+  c(a)=\bigl(\rho_1(a),\ldots,\rho_{14}(a)\bigr),
+  \qquad C=\{c(a):a\in E\}.
+\]
+Since the lines are disjoint,
+\[
+  \ker c=\bigcap_{i=1}^{14}V_i
+  \subseteq V_1\cap V_2=\{0\}.
+\]
+Hence $c$ is injective and $|C|=4^4=16^2$. Each coordinate map is
+surjective, so $C$ is faithful.
+
+For $a\ne0$, the zero coordinates of $c(a)$ are exactly the indices $i$
+for which $\langle a\rangle_{\F_4}\in\ell_i$. By
+\eqref{eq:partition}, $c(a)$ has weight $14$ when
+$\langle a\rangle_{\F_4}\in B$ and weight $13$ otherwise. Since
+$|\Pi|=85$, there are $3|B|=45$ nonzero words of weight $14$ and
+$3(85-15)=210$ of weight $13$. This proves the stated weight enumerator
+and minimum distance. Since $13=14-2+1$, the code is MDS.
+
+Viewed over $\F_2$, both $E/U$ and $\F_{16}$ have dimension $4$. Choose
+an $\F_2$-linear isomorphism $\tau:E/U\to\F_{16}$ and set, following the
+coset argument in the proof of \cite[Theorem~6.6]{Alderson},
+\[
+  C^+=\{\bigl(c(a),\tau(a+U)\bigr):a\in E\}
+  \subseteq\F_{16}^{15}.
+\]
+For distinct $a,b\in E$, put $x=a-b$. If $x\in U$, then the new symbols
+agree and $\langle x\rangle_{\F_4}\in B$, so
+$d_H(c(a),c(b))=14$. If $x\notin U$, then the new symbols differ and
+$d_H(c(a),c(b))\ge13$. Thus $d(C^+)=14$, with equality in the first
+case, and puncturing the last coordinate gives $C$. Hence $C$ is
+extendable; in fact, this extension is $\F_2$-linear, the subfield
+phenomenon of \cite[Remark~6.7]{Alderson}. So $C$, regarded not as an
+$\F_4$-linear but as an $\F_2$-linear subspace of $\F_{16}^{14}$ --- that is,
+as an additive $(14,2,13)_{16/2}$-code in the general
+$(n,k,d)_{q^m/q}$ notation of \cite{Alderson}, taken there with $q=2$ and
+$m=4$, so that the $\F_2$-dimension is $km=8$, as it is here since
+$|C|=2^8$ --- does admit an additive extension: the additive
+maximality proved next is relative to the declared field of linearity
+$\F_4$.
+
+Suppose that $C$ admitted an $\F_4$-additive extension
+$\widetilde C\le\F_{16}^{15}$ of minimum distance $14$. Puncturing the
+new coordinate is an $\F_4$-linear bijection $\widetilde C\to C$.
+Therefore, for some $\F_4$-linear map $\rho:E\to\F_{16}$,
+\[
+  \widetilde C=\{\bigl(c(a),\rho(a)\bigr):a\in E\}.
+\]
+If $\langle a\rangle_{\F_4}\notin B$, then $\wt(c(a))=13$, so
+$\rho(a)\ne0$. Consequently every nonzero vector in $\ker\rho$ has
+projective direction in $B$. But $\dim_{\F_4}\F_{16}=2$, and hence
+\[
+  \dim_{\F_4}\ker\rho\ge 4-2=2.
+\]
+The projectivization of a two-dimensional $\F_4$-subspace of
+$\ker\rho$ is an $\F_4$-line contained in $B$, a contradiction. Thus
+$C$ has no $\F_4$-additive extension.
+\end{proof}
+
+\begin{corollary}
+The minimum length asked for in the $q=4$ clause of Alderson's
+Problem~9.2 is at most $14$. In particular, $112$ is not optimal.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} has exactly the required extension and additive
+maximality properties.
+\end{proof}
+
+\begin{remark}\label{rem:relation}
+Problem~9.2 already states that any sub-multiset of the $112$ external
+lines whose set of maximal-fold points still meets every line of $\Pi$
+yields a shorter example, and the code of Theorem~\ref{thm:main} is such a
+sub-multiset: each of $\ell_1,\ldots,\ell_{14}$ is taken once, so by
+\eqref{eq:partition} the maximal fold is $1$ and the maximal-fold set is
+$\Pi\setminus B$, which meets every line of $\Pi$ because $B$ contains no
+$\F_4$-line. For $t=2$ Alderson's scattered $\F_2$-linear set is the
+projectivization of $\{(x,y,x^2,y^2):x,y\in\F_4\}$, an $\F_2$-subspace of
+$E$ whose $\F_2$-basis is also an $\F_4$-basis of $E$, hence the image of $U=\F_2^4$
+under an element of $\mathrm{GL}(4,4)$; it is therefore a Baer subgeometry
+$\PG(3,2)$ of $\Pi$ (cf.\ \cite[Lemma~6.4]{Alderson}), projectively
+equivalent to the set $B$ above. The lines of $\Pi$ external to a Baer
+subgeometry number exactly
+$112$: of the $357$ lines of $\Pi$, $112$ miss $B$, $210$ meet it in one
+point and $35$ in three. That count is Alderson's $n_2=112$, so
+$\ell_1,\ldots,\ell_{14}$ are fourteen of his own $112$ external lines, each
+taken once; the maximal-fold set $\Pi\setminus B$ is his; and $C^+$ is his
+coset construction.
+
+What that parenthetical supplies is one of the two requirements. Its
+condition, that the maximal-fold points meet every line of $\Pi$, is the
+criterion for additive maximality of \cite[Corollary~3.6]{Alderson}, in which
+the flats to be met are the $(km-m-1)$-flats of $\Pi$ and hence, for
+$k=m=2$, its lines; it is silent on extendability, which Problem~9.2 also
+demands, so a sub-multiset meeting the condition need not answer the problem. The content of
+Theorem~\ref{thm:main} is accordingly the choice of sub-multiset: a
+line--Baer partition of $\Pi$ makes the fourteen chosen lines pairwise
+disjoint, so the code is MDS, and leaves the uncovered points equal to the
+Baer subgeometry $B$, and it is that hole set which makes the $16$ cosets of
+$U$ available as the fibres of a $16$-ary extension of minimum distance
+$14$.
+\end{remark}
+
+\begin{remark}
+The corollary answers only the final yes-or-no clause of Alderson's
+Problem~9.2, refuting the optimality of $112$ for $q=4$. It does not
+determine the global minimum or address the nonsquare, nonprime case, and no
+lower bound is proved here. The spread in \eqref{eq:partition} is classical;
+the contribution is its coding-theoretic consequence in Alderson's extension
+framework. In the projective-systems dictionary used in \cite{Alderson}, a
+faithful additive MDS $(n,2,n-1)_{q^2/q}$-code is a partial spread of $n$
+lines of $\PG(3,q)$, and additive maximality corresponds, by
+\cite[Corollary~3.6]{Alderson} again, to that partial spread being maximal; the object here is thus a
+maximal partial spread of $\PG(3,4)$ of size $14$ whose holes form a Baer
+subgeometry. Additive MDS codes over $\F_{16}$ that are $\F_4$-linear are
+studied in \cite{BGL}, where the longest ones are classified; additive
+extendability in the sense of \cite{Alderson} is not considered there.
+\end{remark}
+
+\section*{Exact verification}
+
+Everything needed to redo the computation is printed above: the relation
+$\omega^2+\omega+1=0$, the matrix $T$, the vectors $u,v,u',v'$, and the
+partition \eqref{eq:partition}. From these one forms the fourteen lines
+$\ell_{j+1}=\PG(T^jL)$ and $\ell_{j+8}=\PG(T^jL')$, checks the nineteen
+determinants displayed in the proof, tests all $91$ pairs of lines for
+disjointness, builds $c$, $C$ and $C^+$ as in the proof, recovers
+$W_C(z)=1+210z^{13}+45z^{14}$ and the minimum distances $d(C)=13$ and
+$d(C^+)=14$, and finally runs over the $\F_4$-linear maps
+$\rho:E\to\F_{16}$ to confirm that none of them extends $C$ to minimum
+distance $14$. A referee can therefore reproduce every number printed here
+from this paper alone.
+
+The exhibited object and every count printed above were recomputed on that
+basis independently, on a separate machine, by a program written from the
+definitions of this note; all $71$ of its checks agree with the paper. The
+enumerations are exhaustive rather than sampled: all $85$ points and all
+$357$ lines of $\Pi$, all $91$ pairs of the fourteen lines, all $256$ words of $C$ and of $C^+$ with all $32{,}640$
+unordered pairs for each minimum distance, all $357$ two-dimensional
+$\F_4$-subspaces of $E$, and, in the maximality step, all $4^8=65{,}536$
+$\F_4$-linear maps $E\to\F_{16}$, the completeness of that last list being
+itself checked. The run repeats the construction for other choices of
+$\rho_1,\ldots,\rho_{14}$ and of $\tau$, reports failures on seven
+deliberately corrupted variants of the object, and passes a positive control
+in which the hole set does contain a line: replacing $\ell_1,\ldots,\ell_{14}$
+by fourteen of the seventeen lines of a spread of $\PG(3,4)$ leaves as holes
+the three remaining, pairwise disjoint lines, and the same exhaustive search
+then accepts exactly $3\,|\mathrm{GL}(2,4)|=540$ of the $65{,}536$ maps
+$\rho$, namely, for each hole line $\PG(V)$, the $180$ maps with kernel $V$.
+So the negative answer for the Baer hole set is not an artifact of the
+search. The program and its transcript accompany this note; nothing above
+depends on them, since every quantity quoted is either
+printed here or recomputable from the data just listed.
+
+What the re-run does not do. It does not re-derive anything from
+\cite{Alderson}: Theorem~6.6, the length $112$, and the definitions of
+extendable and of additively maximal are taken from that paper; and the
+identification in Remark~\ref{rem:relation} of Alderson's scattered
+$\F_2$-linear set with a Baer subgeometry projectively equivalent to $B$ is
+argued there rather than checked by the program, which counts the $112$ lines
+external to $B$ itself. It does not
+verify the classifications of \cite{vanDam,Mellinger}, for which the
+explicit spread above is a self-contained substitute. And faithfulness is
+tested only in the sense used here, that every coordinate projection is onto
+$\F_{16}$. No search for a lower bound or for the global minimum was
+attempted. The re-run and this paper agree; that is agreement, not a proof.
+
+\begin{thebibliography}{9}
+
+\bibitem{Alderson}
+T.~L. Alderson,
+\emph{On the maximality of additive codes},
+arXiv:2607.22297v1 (2026),
+\href{https://arxiv.org/abs/2607.22297}{arXiv:2607.22297}.
+
+\bibitem{BGL}
+S.~Ball, G.~Gamboa, M.~Lavrauw,
+\emph{On additive MDS codes over small fields},
+arXiv:2012.06183 (2020),
+\href{https://arxiv.org/abs/2012.06183}{arXiv:2012.06183}.
+
+\bibitem{vanDam}
+E.~R. van Dam,
+\emph{Classification of spreads of
+$\PG(3,4)\setminus\PG(3,2)$},
+Des. Codes Cryptogr. \textbf{3} (1993), no.~3, 193--198,
+\href{https://doi.org/10.1007/BF01388480}
+{doi:10.1007/BF01388480}.
+
+\bibitem{Mellinger}
+K.~E. Mellinger,
+\emph{A note on line--Baer subspace partitions of $\PG(3,4)$},
+J. Geom. \textbf{72} (2001), no.~1--2, 128--131,
+\href{https://doi.org/10.1007/s00022-001-8574-0}
+{doi:10.1007/s00022-001-8574-0}.
+
+\end{thebibliography}
+
+\end{document}

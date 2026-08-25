@@ -1,0 +1,39 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5fc1042f36e2e49f542a864e2244bdbd2c50714f998b316479189061b42daf25
+python:  Python 3.9.25
+=== program output follows ===
+sieve limit 800000, pi = 63951, R_j computed for j <= 21317 (R_21317 = 550937)
+exhibited object: 10 pairs (m,9) with m in [22, 23, 24, 25, 26, 32, 33, 36, 37, 38]
+decoded rows: R_198=3167 rho=448 vs 22*rho(9)=440; R_207=3319 rho=467 vs 23*rho(9)=460; R_216=3467 rho=486 vs 24*rho(9)=480; R_225=3607 rho=504 vs 25*rho(9)=500; R_234=3761 rho=523 vs 26*rho(9)=520; R_288=4789 rho=644 vs 32*rho(9)=640; R_297=4967 rho=664 vs 33*rho(9)=660; R_324=5477 rho=723 vs 36*rho(9)=720; R_333=5651 rho=743 vs 37*rho(9)=740; R_342=5807 rho=762 vs 38*rho(9)=760
+PASS sieve_reproduces_known_pi_values [pi(10^5)=9592, 5 anchors]
+PASS paper_sieve_bound_B_equals_p_15672 [p_15672=172069, pi(172069)=15672]
+PASS ramanujan_primes_match_known_initial_segment [R_1..R_10=[2, 11, 17, 29, 41, 47, 59, 67, 71, 97]]
+PASS every_computed_R_j_is_prime_and_strictly_increasing [j<=21317, R_21317=550937]
+PASS computed_R_j_below_p_3j_as_the_cited_bound_requires [21317 values of j, tightest at j=5]
+PASS exhibited_exception_set_is_well_formed [|E|=10, E=[22, 23, 24, 25, 26, 32, 33, 36, 37, 38], n=9]
+PASS R_9_and_rho_9_recomputed_from_the_sieve [R_9=71, rho(9)=20]
+PASS every_table_entry_reproduced_by_independent_computation [10 rows; first R_198=3167 rho=448, last R_342=5807 rho=762]
+PASS all_pairs_satisfy_every_hypothesis_of_the_clause [m in [22,38] all >= 20; n = 9 >= 2]
+PASS conclusion_rho_mn_le_m_rho_n_fails_at_every_exhibited_pair [rho(9m) - m*rho(9) = [8, 7, 6, 4, 3, 4, 4, 3, 3, 2] (all > 0)]
+PASS computed_excesses_agree_with_the_stated_excess_column [min excess 2 at m=38]
+PASS prior_pair_is_an_exception_and_nine_further_exceptions_exist [verified exceptions 10, additional to (38,9): 9; the literature's uniqueness assertion is an unverified input, not a check]
+PASS cardinality_of_the_finite_region_F_is_21803 [enumerated 21803, closed form 21803, max n 261]
+PASS exhaustive_search_of_F_finds_exactly_the_claimed_exceptions [21803 pairs tested, 10 exceptions, all at n=9]
+PASS no_further_exception_with_mn_up_to_the_full_sieve_range [118849 pairs tested, mn <= 21317 (F needs only mn < 5225), 10 exceptions]
+PASS exact_minimum_of_rho_n_over_2n_minus_one_is_101_over_1244 [min = 101/1244 at n = 1244, 1 minimiser(s)]
+PASS R_1244_and_rho_1244_recomputed [R_1244=24169, rho(1244)=2690]
+PASS gamma_at_5225_is_below_the_stated_bound_and_below_101_over_1244 [gamma(5225) in [0.078699,0.078699] < 0.079 < 101/1244]
+PASS logarithm_facts_backing_the_stated_gamma_chain_hold [log 5225 > 8.56, loglog 5225 > 2.14, log 2 < 0.694, chain = 0.07887067904295986]
+PASS gamma_below_101_over_1244_for_every_x_at_least_5225_by_envelope [envelope sup over all x >= 5225 is [0.078699,0.078699] < 101/1244 (monotone reduction, not sampling); strict decrease corroborated at 25 grid points 5225..1470706753313177600, gamma there [0.078699,0.078699]..[0.015829,0.015829]]
+PASS decisive_inequality_2mn_times_1_plus_gamma_stays_under_m_rho_n [rho(n) > 2n(1+0.07869868163517568) for all 1243 values of n; the constant is the envelope sup of gamma on x >= 5225, so this covers every mn >= 5225]
+PASS quoted_enclosures_of_t0_log2_and_log_t0_are_correct [t0 in [7.126891,7.126891], c in [0.693147,0.693147], log t0 in [1.963875,1.963875]]
+PASS Q_Q_prime_at_t0_and_Q_double_prime_on_all_t_ge_t0_meet_the_bounds [Q=[2.174614,2.174614]>2.15, Q'=[7.371934,7.371934]>7.36, Q''(t0)=[2.491574,2.491574]>2.46, and inf over t>=t0 of Q'' is >= [2.462593,2.462593] > 2.46]
+PASS Q_is_positive_and_increasing_across_the_tail_grid [10 points t0..69, Q from [2.174614,2.174614] to [12543.361392,12543.361392]]
+PASS q_is_positive_at_the_tail_threshold_1245 [q(1245) in [0.006007,0.006007]]
+PASS H_negative_and_u1_u2_decreasing_on_all_of_t_ge_t0 [H=[-6.454620,-6.454620] < -6.44, H' numerator [-5.799336,-5.799336] < 0 and non-increasing in t, Phi(t0)=[5.400824,5.400824] > a so u1 decreases]
+PASS tail_lower_bound_for_W_exceeds_1_09_with_dropped_terms_positive [W > [1.093684,1.093684], u1=[0.757809,0.757809], u2=[0.135118,0.135118]]
+PASS least_valid_threshold_N_min_is_10_on_E_and_2_off_E [m from 20 to 10658, each n <= 21317/m; 1918 values of m reach past n=10; 0 disagreements]
+NOT RE-RUN HERE: (i) pairs with mn > 21317 are not tested one by one; that range is covered by the two analytic ingredients above, whose quoted numerical inequalities are verified but whose reduction to W_m(n) and whose estimate rho(k) < 2k(1+gamma(k)) for k >= 5225 are quoted from the cited literature and are not reproved here; nor are the closed forms of Q', Q'', H, u_1', u_2' or the identity Q(t) = t^3 q(e^t), which this program evaluates in certified rational interval arithmetic but does not re-derive. (ii) Three bounds the argument needs on unbounded ranges -- Q'' > 2.46 for t >= t_0, gamma(x) < 101/1244 for x >= 5225, and the decrease of u_1 and u_2 for t >= t_0 -- are established here for those full ranges, by monotone-envelope reductions to finitely many rational inequalities that are all checked; the grids that remain (gamma's strict decrease at 25 geometric points up to about 1.4e18, Q's increase at 10 points) corroborate only and carry no load. (iii) Nothing here verifies the paper's attribution that the pair (38,9) was asserted in the earlier literature to be the unique exception: that (38,9) is an exception and that nine further pairs are exceptions is verified by exact integer arithmetic, but the content of the cited claim is an input taken from the paper and is not checkable from the files shipped here.
+VERDICT: ALL 28 CHECKS PASS
+=== program exited with status 0 ===

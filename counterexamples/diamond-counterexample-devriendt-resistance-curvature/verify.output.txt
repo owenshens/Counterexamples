@@ -1,0 +1,45 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  39067b5ccbe0c28cddb1c2e5871826b2c61773a83aa995d56dab1dcba354875c
+python:  Python 3.9.25
+=== program output follows ===
+object: diamond K_4 - e on {0,1,2,3}, nonedge (0, 1)
+edge order [(0, 2), (0, 3), (1, 2), (1, 3), (2, 3)], conductances c = (109/300)*(1,2,1,2,2)
+PASS graph_is_diamond_K4_minus_e [n=4 m=5 degrees=[2, 2, 3, 3] nonedge=(0, 1) connected=True]
+PASS weighting_positive_and_0_1_symmetric [c=109/300*['1', '2', '1', '2', '2'] swap-invariant=True]
+PASS laplacian_matches_paper [L = (109/300)*integer matrix, rows sum 0]
+PASS resistance_matrix_matches_paper [109*Omega = paper integer matrix]
+PASS resistance_matrix_is_a_metric [zero diagonal, positive off-diagonal, triangle inequality on 64 triples]
+PASS resistance_matrix_via_kirchhoff_cofactors [spanning-tree weight 1295029/900000 equals every first cofactor, and w_uv = det(L minus u,v)/det(L minus u)]
+PASS weighting_is_normalized [1^T K 1 = 1 (hypothesis of 7.6)]
+PASS K1_matches_paper_vector [K1 = (2/5, 2/5, 7/30, -1/30)]
+PASS edge_inclusion_probabilities_match_paper [(c_e w_e) = (7/15, 11/15, 7/15, 11/15, 3/5)]
+PASS edge_probabilities_sum_to_n_minus_1 [sum = 3 = n-1, each strictly in (0,1)]
+PASS edge_probabilities_from_spanning_tree_enumeration [8 spanning trees enumerated; weighted inclusion probabilities equal (c_e w_e), confirming the interpretation used for minimality]
+PASS resistance_matrix_via_spanning_forest_ratios [10 two-component spanning forests over tree weight 1295029/900000 reproduce all 6 entries of Omega including the nonedge, omega_01 = 200/109]
+PASS curvature_matches_paper_vector [p = (2/5, 2/5, 7/30, -1/30)]
+PASS curvature_equals_K1_independent_route [definition p_v = 1 - (1/2) sum c_e w_e agrees with Omega^{-1} 1]
+PASS capacity_defined_on_all_16_subsets [every Omega[U] with |U|>=2 invertible and 1^T Omega[U]^-1 1 nonzero]
+PASS capacity_on_pairs_matches_closed_form [tau_{u,v} = 1/2 + w_uv/4 for all 6 pairs, independent of the 2x2 inversion routine]
+PASS capacity_monotone_and_tau_V_equals_one [monotone on the subset lattice; tau_V = 1, which equals 1 exactly when the weighting is normalized]
+PASS capacity_invariant_under_0_1_swap [justifies deriving rows 12,13 from rows 02,03]
+PASS elementary_slack_census_is_24 [C(4,2) pairs * 2^2 subsets = 24 slacks enumerated]
+PASS gamma_values_are_integers [3924 = 36*109 clears every denominator]
+PASS gamma_table_matches_paper [16 tabulated values reproduced]
+PASS automorphism_derived_rows_agree [rows 12,13 equal rows 02,03 under 0<->1; table covers all 24 slacks]
+PASS HYPOTHESIS_capacity_submodular_elementary [all 24 elementary slacks >= 0, min = 0]
+PASS HYPOTHESIS_capacity_submodular_all_pairs [256 ordered subset pairs, min slack = 0]
+PASS nonedge_slack_vanishes_for_structural_reasons [the one vanishing slack is Delta_01(V-{0,1}); it is still 0 at three unrelated weightings of the same graph, so the zero comes from the nonedge, not from c]
+PASS submodularity_margin_strictly_positive [min over the 23 slacks that are not identically zero is 13/3924, i.e. Gamma = 13 attained at Delta_23({0,1}); submodularity is therefore strict wherever it can be]
+PASS CONCLUSION_VIOLATED_curvature_negative [min_v p_v = -1/30 at vertex [3]; conjecture demands p >= 0]
+PASS negative_coordinate_equals_minus_1_over_30 [p_3 = -1/30]
+PASS scale_109_over_300_is_the_normalizer [1^T K 1 = 300/109 for c=(1,2,1,2,2), so the normalizing factor is 109/300]
+PASS curvature_invariant_under_rescaling [p unchanged by the common factor, as the paper asserts]
+PASS unit_conductance_curvature_matches_paper [p = (3/8, 3/8, 1/8, 1/8) >= 0, so the diamond is resistance positive and 7.7 is untouched]
+PASS rescaled_unit_weighting_normalized_and_nonnegative [factor 17/32 gives 1^T K 1 = 1 with the same nonnegative p]
+PASS small_graph_census_no_negative_curvature [399 weightings over K2,P3,K3; min coordinate = 0 (minima {'K2': '1/2', 'P3': '0', 'K3': '1/11'})]
+PASS tree_curvature_vectors_are_weight_independent [K2 gives (1/2,1/2) and P3 gives (1/2,0,1/2) at every grid weighting]
+PASS K3_curvature_is_half_the_opposite_edge_probability [p_v = c_e w_e / 2 > 0 for the edge e opposite v, at every weighting]
+NOT RE-RUN: the vertex-minimality Proposition quantifies over ALL positive conductances on the order-<=3 graphs, a continuum. The graph enumeration here is exhaustive (K2, P3, K3 are the only connected simple graphs on 2 or 3 vertices) but the conductances are a finite exact rational grid, so this census CORROBORATES the Proposition and does not establish it; the two structural identities checked above, which hold at every grid point, are checked here rather than proved. The paper does not rest on this census: its proof of the Proposition is a complete argument (c_e omega_e is the spanning-tree inclusion probability of e, so it is 1 on a bridge and less than 1 on a nonbridge; K2 and P3 are trees; every vertex of K3 meets two nonbridges), and the grid is corroboration of that argument, not a substitute for it. Also not re-run: that the definitions of normalization, resistance capacity and resistance curvature used here, and the numbering of the statement refuted and of the companion statement left standing, agree with the cited source; those are transcribed. And a caveat on the count: 8 of the 35 checks are SOLVER SELF-TESTS rather than tests of the paper -- resistance_matrix_is_a_metric, resistance_matrix_via_kirchhoff_cofactors, resistance_matrix_via_spanning_forest_ratios, edge_probabilities_sum_to_n_minus_1, edge_probabilities_from_spanning_tree_enumeration, capacity_defined_on_all_16_subsets, capacity_on_pairs_matches_closed_form, elementary_slack_census_is_24 -- each asserting a theorem true of every positively weighted connected graph, or comparing two internal recomputations, or counting something fixed by n=4. They would catch a corrupted solver but cannot fail however the exhibited object is perturbed, so the refutation is carried by the remaining 27 checks. Everything else in the paper is reproduced exactly, in exact rational arithmetic.
+VERDICT: ALL 35 CHECKS PASS
+=== program exited with status 0 ===

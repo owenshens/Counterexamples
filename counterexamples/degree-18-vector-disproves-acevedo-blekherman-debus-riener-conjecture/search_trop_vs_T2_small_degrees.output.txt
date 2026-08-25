@@ -1,0 +1,98 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  35de846bffbcbf410e88a8f15e241d987f09f95f0238fccd68ec96cabf343b3b
+python:  Python 3.9.25
+=== program output follows ===
+#### CONTROLS
+[CTRL-1 published total order on partitions of 5]
+   (1, 1, 1, 1, 1) succ (2, 1, 1, 1) : True
+   (2, 1, 1, 1) succ (3, 1, 1) : True
+   (3, 1, 1) succ (2, 2, 1) : True
+   (2, 2, 1) succ (4, 1) : True
+   (4, 1) succ (3, 2) : True
+   (3, 2) succ (5,) : True
+   total order on Lambda_5 : True  (paper: yes)
+   Lambda_6 incomparable pairs : 1  (paper: not a total order for d>=6)
+   e.g. [((5, 1), (2, 2, 2)), ((2, 2, 2), (5, 1))]
+   CTRL-1 PASS
+   L_1 member in cone(A): y(1,1) >= y(2)                             True
+   CTRL-2 d=2 (|A|=1, singleton-type1=False): PASS (cones equal)
+   L_2 member in cone(A): y(1,1,1)+y(3) >= 2y(2,1)                   True
+   L_2 member in cone(A): y(2,1) >= y(3)                             True
+   CTRL-2 d=3 (|A|=3, singleton-type1=False): PASS (cones equal)
+   L_3 member in cone(A): y(1^4)+y(2,2) >= 2y(2,1,1)                 True
+   L_3 member in cone(A): y(2,1,1)+y(4) >= 2y(3,1)                   True
+   L_3 member in cone(A): y(3,1) >= y(2,2)                           True
+   L_3 member in cone(A): y(2,2) >= y(4)                             True
+   CTRL-2 d=4 (|A|=8, singleton-type1=False): PASS (cones equal)
+   L_4 member in cone(A): y(3,1,1) >= y(2,2,1)                       True
+   L_4 member in cone(A): y(4,1) >= y(3,2)                           True
+   L_4 member in cone(A): y(3,2) >= y(5)                             True
+   L_4 member in cone(A): y(3,1,1)+y(5) >= 2y(4,1)                   True
+   L_4 member in cone(A): y(2,2,1)+y(5) >= 2y(3,2)                   True
+   L_4 member in cone(A): y(2,2,1) >= y(4,1)                         True
+   L_4 member in cone(A): y(2,1,1,1)+y(3,2) >= 2y(2,2,1)             True
+   L_4 member in cone(A): y(2,1,1,1)+y(4,1) >= 2y(3,1,1)             True
+   L_4 member in cone(A): y(1^5)+y(2,2,1) >= 2y(2,1,1,1)             True
+   CTRL-2 d=5 (|A|=16, singleton-type1=False): PASS (cones equal)
+   CTRL-3a reversed-order inequality refused with verified witness: True
+   CTRL-3b published trop(BP_10^*) extra facet y(1^5)+y(3,2)+y(4,1) >= 3y(3,1,1) refused: True; witness verified: True, value -1/2
+      witness y = {(5,): Fraction(-1, 1), (4, 1): Fraction(0, 1), (3, 2): Fraction(-1, 1), (3, 1, 1): Fraction(1, 1), (2, 2, 1): Fraction(1, 2), (2, 1, 1, 1): Fraction(2, 1), (1, 1, 1, 1, 1): Fraction(7, 2)}
+   CTRL-4 d=3 PROVED inclusion T^(2) subset trop  (|A|=3,|B|=8): PASS
+   CTRL-4 d=4 PROVED inclusion T^(2) subset trop  (|A|=8,|B|=38): PASS
+   CTRL-4 d=5 PROVED inclusion T^(2) subset trop  (|A|=16,|B|=100): PASS
+   CTRL-4 d=6 PROVED inclusion T^(2) subset trop  (|A|=36,|B|=376): PASS
+#### SUMMARY OF CONTROLS chain=True publishedfacets=True forcedpos=True provedincl=True
+#### NEGATIVE CONTROLS: published equality at d=3,4,5 must give ZERO violations
+=== DECIDE d=3 : |coords|=3  |A(trop gens)|=3  |B(T2 gens)|=8  singleton-type1=False
+    T^(2) generators tested: 8 / 8  (EXHAUSTION = 8/8 = 1)
+    NOT implied by trop's generators: 0
+=== DECIDE d=4 : |coords|=5  |A(trop gens)|=8  |B(T2 gens)|=38  singleton-type1=False
+    T^(2) generators tested: 38 / 38  (EXHAUSTION = 38/38 = 1)
+    NOT implied by trop's generators: 0
+=== DECIDE d=5 : |coords|=7  |A(trop gens)|=16  |B(T2 gens)|=100  singleton-type1=False
+    T^(2) generators tested: 100 / 100  (EXHAUSTION = 100/100 = 1)
+    NOT implied by trop's generators: 0
+#### DEGREE d=6, THE SMALLEST CASE THE SOURCE PAPER DOES NOT SETTLE
+=== DECIDE d=6 : |coords|=11  |A(trop gens)|=36  |B(T2 gens)|=376  singleton-type1=False
+    T^(2) generators tested: 376 / 376  (EXHAUSTION = 376/376 = 1)
+    NOT implied by trop's generators: 0
+#### trop(BSigma_12^*) GENERATOR LIST (halved coords, partitions of 6)
+    type2 block(0, 0) (a=(),la=(6,))x(a=(),la=(4, 2)) : y(3, 3) + y(2, 2, 1, 1) >= 2y(3, 2, 1)
+    type2 block(0, 0) (a=(),la=(6,))x(a=(),la=(2, 2, 2)) : y(3, 3) + y(1, 1, 1, 1, 1, 1) >= 2y(3, 1, 1, 1)
+    type2 block(0, 0) (a=(),la=(4, 2))x(a=(),la=(2, 2, 2)) : y(2, 2, 1, 1) + y(1, 1, 1, 1, 1, 1) >= 2y(2, 1, 1, 1, 1)
+    type2 block(0, 1) (a=(2,),la=(4,))x(a=(2,),la=(2, 2)) : y(2, 2, 2) + y(2, 1, 1, 1, 1) >= 2y(2, 2, 1, 1)
+    type2 block(0, 1) (a=(2,),la=(4,))x(a=(4,),la=(2,)) : y(2, 2, 2) + y(4, 1, 1) >= 2y(3, 2, 1)
+    type2 block(0, 1) (a=(2,),la=(4,))x(a=(6,),la=()) : y(2, 2, 2) + y(6,) >= 2y(4, 2)
+    type2 block(0, 1) (a=(2,),la=(2, 2))x(a=(4,),la=(2,)) : y(2, 1, 1, 1, 1) + y(4, 1, 1) >= 2y(3, 1, 1, 1)
+    type2 block(0, 1) (a=(2,),la=(2, 2))x(a=(6,),la=()) : y(2, 1, 1, 1, 1) + y(6,) >= 2y(4, 1, 1)
+    type2 block(0, 1) (a=(4,),la=(2,))x(a=(6,),la=()) : y(4, 1, 1) + y(6,) >= 2y(5, 1)
+    type1 block(0, 2) a=(2, 2) la=(2,) : y(2, 2, 1, 1) >= y(4, 1, 1)
+    type1 block(0, 2) a=(2, 4) la=() : y(4, 2) >= y(6,)
+    type2 block(0, 2) (a=(2, 2),la=(2,))x(a=(2, 4),la=()) : y(2, 2, 1, 1) + y(4, 2) >= 2y(3, 2, 1)
+    type2 block(0, 2) (a=(2, 4),la=())x(a=(4, 2),la=()) : y(4, 2) + y(4, 2) >= 2y(3, 3)
+    type1 block(0, 3) a=(2, 2, 2) la=() : y(2, 2, 2) >= y(4, 2)
+    type1 block(2, 0) a=(1, 1) la=(2, 2) : y(1, 1, 1, 1, 1, 1) >= y(2, 1, 1, 1, 1)
+    type1 block(2, 0) a=(1, 3) la=(2,) : y(3, 1, 1, 1) >= y(4, 1, 1)
+    type1 block(2, 0) a=(1, 5) la=() : y(5, 1) >= y(6,)
+    type1 block(2, 0) a=(3, 3) la=() : y(3, 3) >= y(6,)
+    type2 block(2, 0) (a=(1, 1),la=(4,))x(a=(1, 3),la=(2,)) : y(2, 2, 1, 1) + y(3, 1, 1, 1) >= 2y(2, 2, 1, 1)
+    type2 block(2, 0) (a=(1, 1),la=(4,))x(a=(1, 5),la=()) : y(2, 2, 1, 1) + y(5, 1) >= 2y(3, 2, 1)
+    type2 block(2, 0) (a=(1, 1),la=(4,))x(a=(3, 3),la=()) : y(2, 2, 1, 1) + y(3, 3) >= 2y(2, 2, 2)
+    type2 block(2, 0) (a=(1, 1),la=(2, 2))x(a=(1, 3),la=(2,)) : y(1, 1, 1, 1, 1, 1) + y(3, 1, 1, 1) >= 2y(2, 1, 1, 1, 1)
+    type2 block(2, 0) (a=(1, 1),la=(2, 2))x(a=(1, 5),la=()) : y(1, 1, 1, 1, 1, 1) + y(5, 1) >= 2y(3, 1, 1, 1)
+    type2 block(2, 0) (a=(1, 1),la=(2, 2))x(a=(3, 3),la=()) : y(1, 1, 1, 1, 1, 1) + y(3, 3) >= 2y(2, 2, 1, 1)
+    type2 block(2, 0) (a=(1, 3),la=(2,))x(a=(1, 5),la=()) : y(3, 1, 1, 1) + y(5, 1) >= 2y(4, 1, 1)
+    type2 block(2, 0) (a=(1, 3),la=(2,))x(a=(3, 1),la=(2,)) : y(3, 1, 1, 1) + y(3, 1, 1, 1) >= 2y(2, 2, 1, 1)
+    type2 block(2, 0) (a=(1, 3),la=(2,))x(a=(3, 3),la=()) : y(3, 1, 1, 1) + y(3, 3) >= 2y(3, 2, 1)
+    type2 block(2, 0) (a=(1, 3),la=(2,))x(a=(5, 1),la=()) : y(3, 1, 1, 1) + y(5, 1) >= 2y(3, 2, 1)
+    type2 block(2, 0) (a=(1, 5),la=())x(a=(3, 3),la=()) : y(5, 1) + y(3, 3) >= 2y(4, 2)
+    type2 block(2, 0) (a=(1, 5),la=())x(a=(5, 1),la=()) : y(5, 1) + y(5, 1) >= 2y(3, 3)
+    type1 block(2, 1) a=(1, 1, 2) la=(2,) : y(2, 1, 1, 1, 1) >= y(3, 1, 1, 1)
+    type1 block(2, 1) a=(1, 1, 4) la=() : y(4, 1, 1) >= y(5, 1)
+    type1 block(2, 1) a=(1, 3, 2) la=() : y(3, 2, 1) >= y(5, 1)
+    type2 block(2, 1) (a=(1, 1, 2),la=(2,))x(a=(1, 3, 2),la=()) : y(2, 1, 1, 1, 1) + y(3, 2, 1) >= 2y(2, 2, 1, 1)
+    type2 block(2, 1) (a=(1, 1, 4),la=())x(a=(1, 3, 2),la=()) : y(4, 1, 1) + y(3, 2, 1) >= 2y(3, 2, 1)
+    type2 block(2, 1) (a=(1, 3, 2),la=())x(a=(3, 1, 2),la=()) : y(3, 2, 1) + y(3, 2, 1) >= 2y(2, 2, 2)
+=== END OF RUN
+=== program exited with status 0 ===

@@ -1,0 +1,41 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  6e7c509e04cf62217c1ccc54357f33509a79598d8a38a7c4ec9f1d93ea62f382
+python:  Python 3.9.25
+=== program output follows ===
+PASS source-complements-have-four-edges [4 graphs, 4 distinct edges each]
+PASS source-complement-bipartition-sizes [[('C_4', (2, 2)), ('P_4+K_2', (3, 3)), ('P_5^(2,3)', (2, 3)), ('P_5^(3,2)', (3, 2))]]
+PASS source-complement-degree-sequences [max degree 2 throughout]
+PASS source-complement-component-counts [three connected, one with two components]
+PASS target-complement-shape [K_{1,2}+K_{2,1}+K_2: 5 edges on (4,4) vertices, degrees (2,1,1,1) both sides, 3 parts]
+PASS source-complements-are-the-named-graphs [each literal edge list is side-preserving isomorphic to the graph its name denotes, rebuilt from paths / complete bipartite pieces]
+PASS target-complement-is-the-named-graph [the literal edge list is side-preserving isomorphic to K_{1,2} + K_{2,1} + K_2 rebuilt from its name]
+PASS family-arithmetic [k in [5, 7, 9, 11, 13, 15, 17, 19, 21]: sides (k+1,k-1) and (k,k); |E(Z)| = 4 and 5]
+PASS first-member-is-n-20 [k = 5 gives n = k^2-5 = 20 and d = n-k = 15]
+PASS first-member-graded-pieces-nonzero [n=20, m=6: dim R_14 = 3505055729175 (6 blocks), dim R_15 = 452572985865 (5 blocks), dim R_16 = 11216721516 (4 blocks)]
+PASS block-count-cap-is-respected [4 blocks of size <= 4 and 3 of size <= 6 cannot cover 20 elements; 4 blocks of size <= 5 gives 488864376, matching 20!/(5!^4 4!)]
+PASS partition-counter-reproduces-bell-numbers [counts [1, 1, 2, 5, 15, 52, 203, 877] agree with direct enumeration of set partitions]
+PASS grid-sign-identity [28804 (subgraph, automorphism) pairs on grids up to 4x3, 0 violations; the cell-action law also holds on 32142 (sigma,pi) probes at the real grids 6x4, 5x5, 8x6, 7x7, 14x12, 13x13, 62x60, 61x61 (2 of the 8 swept over all of S_r x S_c, the rest over a generating set), 0 violations]
+PASS source-multiplicity-k5-is-4 [n=20, |P|=6, |Q|=4: census gives 4 contributing orbits]
+PASS source-orbits-are-the-exhibited-graphs [census classes coincide with C_4, P_5^(3,2), P_5^(2,3), P_4+K_2]
+PASS source-multiplicity-is-4-for-larger-k [k = 7, 9, 11, 13 all give 4]
+PASS target-multiplicity-k5-is-1 [n=20, |P|=|Q|=5: census gives 1 contributing orbit(s)]
+PASS target-orbit-is-the-exhibited-graph [the single class is K_{1,2}+K_{2,1}+K_2]
+PASS target-multiplicity-is-0-for-k-at-least-7 [k = 7, 9, 11, 13 all give 0]
+PASS multiplicities-constant-on-claimed-m-range [every m from 6 to 20 gives source 4, target 1]
+PASS sign-multiplicity-strictly-drops [k=5: 4 > 1; k=7: 4 > 0; k=9: 4 > 0; k=11: 4 > 0; k=13: 4 > 0]
+PASS m-hypothesis-is-used [at m = k = 5 the source multiplicity is 0, so the hypothesis m >= k+1 is not vacuous]
+PASS source-nonzero-so-degree-is-interior [both neighbouring graded pieces are nonzero]
+PASS lemma-holds-for-the-sign-condition-alone [the sign condition by itself isolates 4 source and 1 target class(es); admissibility removes nothing here]
+PASS core-class-enumeration-is-complete [e=4: 16 classes from a K_{4,4} orbit sweep, 16 from the (r0,c0) sweep; e=5: 34 classes from a K_{5,5} orbit sweep, 34 from the (r0,c0) sweep]
+PASS source-multiplicity-four-for-every-odd-k-to-61 [sign condition picks the same 4 classes in all 64 even ambient grids up to 18x18 (so the answer cannot depend on k), and the full census gives 4 for every odd k from 5 to 61]
+PASS target-multiplicity-zero-for-every-odd-k-at-least-7 [all 34 five-edge classes use at most 5 left vertices (and every 5-subset of K_{6,6} uses at most 5 per side, so the bound is a fact about five-edge graphs, not an artefact of the enumerator), so every odd k >= 7 leaves >= 2 isolated left vertices against an odd c = k; 0 of 34 classes survive at k = 7,9,...,61]
+PASS multiplicities-independent-of-m-over-wide-k [k=5: source [4], target [1] over m in [6,20]; k=7: source [4], target [0] over m in [8,44]; k=9: source [4], target [0] over m in [10,76]; k=11: source [4], target [0] over m in [12,116]; k=13: source [4], target [0] over m in [14,164]]
+PASS named-small-instances-agree [n=6,m=6,(a,b)=(3,3): 3; n=7,m=7,(a,b)=(4,3): 4; n=8,m=8,(a,b)=(4,5): 5; n=6,m=6,(a,b)=(4,2): 0; n=7,m=3,(a,b)=(4,3): 3; n=8,m=8,(a,b)=(5,5): 0]
+PASS small-instances-are-informative [at least two of the named instances have nonzero sign multiplicity]
+PASS orbit-census-matches-character-theory [138 instances with 4<=n<=8 agree (45 of them with nonzero multiplicity)]
+PASS check-inventory-complete [31 of the expected 31 checks ran before this one]
+NOTE not re-run here: the isomorphism R(Pi_{n,m})_d = C[X_{n,m,d}] (Zhu, Prop. 3.29) is taken as given, so the orbit-harmonics quotient is never built; the multiplicities at n=20 and beyond come from the complement census, which is cross-validated against brute-force character theory only for 4 <= n <= 8.  The dependence on k is settled for all odd k (source: the surviving 4-edge classes are the same in every even ambient grid; target k >= 7: every 5-edge core uses at most 5 vertices per side, so the isolated-vertex veto always fires), with censuses run explicitly up to k = 61.
+NOTE scope: this program does not re-derive the paper's full claim.  What it re-proves by exhaustion is Lemma 3 of the paper (the four-edge / five-edge classification) together with the sign multiplicities and the family arithmetic that follow from it; the paper has four further load-bearing steps this program does not verify on its own terms.  (a) Lemma 2, the orbit criterion via Frobenius reciprocity, is assumed by the census rather than proved.  (b) So is the vanishing of NON-TRANSVERSE orbits (a block pair with |B and C| >= 2 admits an odd transposition in the stabiliser): the census enumerates transverse pairs only.  Steps (a) and (b) are the exact content of the census-vs-character-theory agreement, since direct_sign_mult counts every orbit straight from the definition -- so they are corroborated, but only for 4 <= n <= 8, not at n = 20.  (c) The closing inference -- complex S_n-representations are semisimple, so an injection would force source multiplicities to be dominated by target ones -- is pure representation theory and is not checked numerically; the checks establish only the strict drop 4 > 1 and 4 > 0.  (d) Over the m-range k+1 <= m <= n, every m is swept for k = 5,...,13, but for k up to 61 only m = k+1 is run; that is the binding case because the admissibility cap 'every degree of G is at most m' is monotone in m, so larger m can only admit more.  No claim is made for even k or for k = 3, neither of which the paper asserts.
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

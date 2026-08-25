@@ -1,0 +1,54 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  46726f496ca934a99f6cb11f89eb3a4688de40b171ef3528dc975f865d774b88
+python:  Python 3.9.25
+=== program output follows ===
+PASS kite_H_n_is_connected_unicyclic_kite [n=4..26; H_5 edges [(0, 1), (0, 2), (1, 2), (2, 3), (3, 4)]]
+PASS distance_laplacian_construction_identities [n=4..14: symmetry, 1 in kernel, trace=2W, quadratic form]
+PASS distance_laplacian_is_psd_with_simple_kernel [n=4..40: n eigenvalues in [0,2W], exactly n-1 positive, 0 simple]
+      D^L(H_5) recomputed from BFS distances:
+          7  -1  -1  -2  -3
+         -1   7  -1  -2  -3
+         -1  -1   5  -1  -2
+         -2  -2  -1   6  -1
+         -3  -3  -2  -1   9
+PASS H5_distance_laplacian_matches_displayed_matrix [W(H_5)=17, tau=[7, 7, 5, 6, 9]]
+PASS H5_characteristic_polynomial_matches_paper_factorisation [computed [1, -34, 423, -2290, 4560, 0] vs factored [1, -34, 423, -2290, 4560, 0]]
+PASS H5_spectrum_is_10pm_sqrt5_8_6_0 [0,6,8 are exact roots; 10+-sqrt5 root of x^2-20x+95 in Z[sqrt5]; #eigs above (0,6,7,8,12,13) = [4, 3, 3, 1, 1, 0]]
+PASS H5_violates_the_bound_at_r_equals_3 [U_3 = 2W - lambda_4 - lambda_5 = 28 > 27 = W + C(5,3); excess 1; independent bracket sum lower bound 234881023/8388608]
+      n=5: Delta_{n-2} in (1.0, 1.0000000596046448], paper's bound (3n-14)/2 = 1/2
+      n=6: Delta_{n-2} in (2.2611486315727234, 2.261148691177368], paper's bound (3n-14)/2 = 2
+      n=7: Delta_{n-2} in (4.0, 4.000000059604645], paper's bound (3n-14)/2 = 7/2
+      n=8: Delta_{n-2} in (6.249678194522858, 6.249678254127502], paper's bound (3n-14)/2 = 5
+      n=39: Delta_{n-2} in (324.0, 324.00000005960464], paper's bound (3n-14)/2 = 103/2
+      n=40: Delta_{n-2} in (342.24998742341995, 342.2499874830246], paper's bound (3n-14)/2 = 53
+PASS kite_family_violates_at_r_equals_n_minus_2 [n=5..40 all violate; every computed excess >= (3n-14)/2]
+PASS wiener_index_formula_for_kite_and_path [n=4..60: W(H_n)=C(n+1,3)-(n-2), W(P_n)=C(n+1,3)]
+PASS transmissions_of_v3_and_v4_match_closed_forms [n=5..60: tau(v3)=(n^2-5n+10)/2, tau(v4)=(n^2-7n+22)/2]
+PASS rayleigh_quotient_at_e3_minus_e4_equals_paper_value [n=5..40: x perp 1, x^T D^L x / x^T x = (n^2-6n+18)/2 >= lambda_{n-1}]
+PASS selected_transmission_sums_match_closed_forms [m=2..20: path sum (20m^3-2m)/3, kite sum (20m^3-17m+12)/3, difference 5m-4]
+      m=4 (n=12): paper's lower bound 12, computed excess > 44.49201554059982
+      m=5 (n=15): paper's lower bound 42, computed excess > 93.48745453357697
+      m=6 (n=18): paper's lower bound 93, computed excess > 167.73277366161346
+      m=11 (n=33): paper's lower bound 838, computed excess > 1092.7029559016228
+      m=12 (n=36): paper's lower bound 1120, computed excess > 1423.4455056786537
+PASS cubic_violation_at_r_equals_2m_for_n_equals_3m [m=4..12: selected-sum excess equals (5m^3-12m^2-17m+12)/6 exactly and the computed U_{2m} excess is at least that]
+PASS cubic_asymptotic_constant_is_5_over_162 [m=4..40: |lower bound - 5n^3/162| <= n^2/2, and the excess never exceeds trace = 2W]
+PASS p_of_m_recurrence_and_positivity_from_m_equals_4 [p(4)=72, p(m+1)-p(m)=3(m+1)(5m-8) for m<=400, p>0 exactly from m=4 (p(3)=-12, p(2)=-30)]
+PASS closing_algebra_holds_as_polynomial_identities [all three identities hold at n,m = 2..60, i.e. at more points than their degree, hence identically]
+PASS path_family_also_violates_at_r_equals_n_minus_2 [n=4..40: computed excess >= (3n-10)/2 > 0; e.g. n=4 excess > 1.2360679507255554]
+PASS path_selected_sum_exceeds_bound_exactly_from_m_equals_3 [m=3..40: excess = (5m^3-12m^2-5m)/6 > 0, and m=2 fails; the true U_{2m}(P_{3m}) exceeds the bound for m=3..6]
+PASS spectra_of_C3_C4_H4_and_their_compliance [C_3 spectrum [3, 3, 0]; C_4 spectrum [6, 6, 4, 0]; H_4 spectrum [7, 5, 4, 0]; none violates for any 2<=r<=n]
+PASS prior_star_counterexamples_reproduce [K_{1,3}: U_2 = 14 > 13 = W + C(4,3), violating r = [2]; K_{1,4}: U_3 = 27 > 26 = W + C(5,3), violating r = [3]]
+PASS minimum_order_of_a_unicyclic_counterexample_is_five [order 3: 1 unicyclic iso classes, 0 violating; order 4: 2 unicyclic iso classes, 0 violating; order 5: 5 unicyclic iso classes, 3 violating; order 6: 13 unicyclic iso classes, 9 violating; H_5 is among the order-5 violators, at r=3]
+      diameter-two violating classes found: 2
+      violators of diameter >= 3 found: 25 classes, orders [4, 5, 6]
+PASS diameter_two_violators_are_exactly_the_two_stars [141 spectral classes of connected graphs of order 3..6 searched, 0 undecided; diameter-two violators = K_{1,3} at r=2 and K_{1,4} at r=3]
+CONTEXT: this program corroborates the paper's deflationary Remark 2 as well as its Theorem 1.  Checks path_family_also_violates_at_r_equals_n_minus_2 and path_selected_sum_exceeds_bound_exactly_from_m_equals_3 confirm that the path P_n already violates the bound for every n >= 4 and that P_{3m} alone already exceeds it by Theta(n^3); and the exhaustive census found 25 violating spectral classes of diameter >= 3 (keyed by characteristic polynomial and diameter) on orders [4, 5, 6], i.e. on at most 6 vertices.  So, as Remark 2 itself states, the unicyclic restriction -- not infinitude and not the cubic order of the excess -- is what separates Theorem 1 from the unrestricted statement.
+NOT RE-RUN: the theorem is an infinite family; the spectral verification above covers H_n for n = 5..40 and the cubic index r = 2m for m = 4..12 only.
+NOT RE-RUN: the remark's path statements are checked on finite ranges too: the excess of P_n at r = n-2 spectrally for n = 4..40, the selected-sum excess of P_{3m} in closed form for m = 2..40, and the true U_{2m}(P_{3m}) against the bound only for m = 3..6.
+NOT RE-RUN: the inequality under attack is transcribed from its published source and is never collated with it, because this program has no network access; every check tests U_r(G) <= W(G) + C(r+2,3) for 2 <= r <= n exactly as the paper quotes it, so a hypothesis dropped in transcription would not be detected here.  The only offline corroboration is the check diameter_two_violators_are_exactly_the_two_stars, which reproduces for this same inequality the diameter-two classification quoted from earlier work.
+NOT RE-RUN: the closing algebra is verified as a polynomial identity (hence for all n and m), but the two variational principles used by the proof, Rayleigh-Ritz and Ky Fan, are classical inputs and are exercised numerically, not proved here.
+NOT RE-RUN: the exhaustive census covers connected graphs of order at most 6; the diameter-two classification quoted from earlier work is confirmed only within that range.
+VERDICT: ALL 22 CHECKS PASS
+=== program exited with status 0 ===

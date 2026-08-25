@@ -1,0 +1,40 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  b98fb7cc508e4e44fa40f66e6d043343b8c58b1a42130ae7d88459688ef577fc
+python:  Python 3.9.25
+=== program output follows ===
+CONJECTURE ACTED ON (Conjecture 4 of Dawkins et al., arXiv:2403.01037v1 (hand transcription)): for graphs G1, G2 and vertices i in V(G1), j in V(G2): if p_i(G1) <= 0 and p_j(G2) <= 0, then p_(i,j)(G1 box G2) < 0
+G1: V = {0..4}, E = [(0, 1), (0, 2), (1, 3), (3, 4)]
+G2: V = {0..7}, E = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 5), (5, 6), (5, 7)]
+marked vertices: i = 1 in G1, j = 1 in G2
+PASS factor_G1_is_a_tree [n=5, m=4, edges=[(0, 1), (0, 2), (1, 3), (3, 4)], degrees=[2, 2, 1, 2, 1]]
+PASS factor_G1_marked_vertex_degree_2 [deg(1) = 2, neighbours [0, 3]]
+PASS factor_G1_root_curvature_is_zero [resistances ['1', '1'], p_1 = 0 (pseudoinverse) = 0 (matrix-tree)]
+PASS factor_G1_spanning_tree_count_is_one [tau = 1]
+PASS factor_G2_is_a_tree [n=8, m=7, edges=[(0, 1), (0, 2), (0, 3), (0, 4), (1, 5), (5, 6), (5, 7)], degrees=[4, 2, 1, 1, 1, 3, 1, 1]]
+PASS factor_G2_marked_vertex_degree_2 [deg(1) = 2, neighbours [0, 5]]
+PASS factor_G2_root_curvature_is_zero [resistances ['1', '1'], p_1 = 0 (pseudoinverse) = 0 (matrix-tree)]
+PASS factor_G2_spanning_tree_count_is_one [tau = 1]
+PASS product_is_a_connected_simple_graph_on_40_vertices [|V| = 40 (expected 40 = 5*8), |E| = 67 (expected 67 = 4*8 + 5*7)]
+PASS product_neighbourhood_of_marked_vertex [x = (1,1); neighbours [(0, 1), (1, 0), (1, 5), (3, 1)]]
+PASS product_spanning_tree_count_matrix_tree [tau(H) = 723963572556125, paper 723963572556125]
+PASS product_spanning_tree_count_spectral_route [n1*n2*tau(H) from the factor characteristic polynomials gives tau(H) = 723963572556125]
+PASS product_contracted_spanning_tree_counts [tau(H/e) for e = {x,v}: (0,1):359244778688125, (1,0):354728028191625, (1,5):363877814994375, (3,1):359244778688125]
+PASS product_curvature_three_routes_agree [all-minors 32552200/4351396379, contraction ratios 32552200/4351396379, rational pseudoinverse 32552200/4351396379]
+PASS product_curvature_equals_paper_value [p_x(H) = 32552200/4351396379, paper 32552200/4351396379]
+PASS paper_intermediate_arithmetic [2*tau = 1447927145112250, 2*tau - sum tau(H/e) = 10831744550000, reduced 32552200/4351396379]
+PASS transcribed_conjecture_predicates_are_the_printed_inequalities [hypothesis(p_i,p_j) -> (0,0):True, (-1/7,0):True, (0,-1/7):True, (-1/7,-1/7):True, (1/7,0):False, (0,1/7):False, (1/7,1/7):False (non-strict: admits 0, rejects any positive); conclusion(p_x) -> -1/7:True, 0:False, 1/7:False (strict: rejects 0)]
+PASS conjecture_hypotheses_are_satisfied [p_i(G1) = 0 <= 0 and p_j(G2) = 0 <= 0]
+PASS conjecture_conclusion_fails_at_the_marked_vertex [conclusion demands p_x(H) < 0; computed p_x(H) = 32552200/4351396379 > 0, so the statement is refuted]
+PASS rooted_tree_enumeration_counts [rooted trees on 1..8 vertices, up to isomorphism: [1, 1, 2, 4, 9, 20, 48, 115]]
+PASS exhibited_factors_appear_in_enumeration [G1 rooted at 1 = (((),), ((),)), G2 rooted at 1 = (((), ()), ((), (), ()))]
+PASS root_curvature_law_on_all_rooted_trees_upto_8 [p_root = 1 - deg(root)/2 verified on all 200 rooted trees with at most 8 vertices (expected 200 trees); 0 exceptions, so p_root = 0 exactly for root degree 2]
+PASS census_two_routes_agree_on_every_pair [427 pairs searched (all factors <= 8 vertices, total <= 13); all-minors and contraction routes disagree on 0]
+PASS census_every_pair_satisfies_the_hypothesis [root curvature recomputed as 0 for both factors of all 427 pairs; 0 failures]
+PASS census_exhibited_pair_is_a_violator [6 violating pairs in range; the exhibited pair occurs with p_x = 32552200/4351396379]
+PASS census_no_violator_of_smaller_total_order [every violator found has 13 vertices in total, as does the exhibited pair (5 + 8); factor orders [(5, 8), (6, 7)]; violators of smaller total order: []]
+NOT RE-RUN: pairs of rooted trees with more than 13 vertices in total, or with a factor on more than 8 vertices, were not enumerated; nor were factors that are not trees; nor factors of root curvature strictly negative (root degree at least 3), which also satisfy the hypothesis, so the census above is a statement about curvature-zero pairs only; the paper makes no minimality claim.
+NOT RE-RUN: the conjecture refuted above is TRANSCRIBED BY HAND from the source it is attributed to (Conjecture 4 of Dawkins et al., arXiv:2403.01037v1 (hand transcription)), namely "for graphs G1, G2 and vertices i in V(G1), j in V(G2): if p_i(G1) <= 0 and p_j(G2) <= 0, then p_(i,j)(G1 box G2) < 0". This program never reads that preprint, so none of the following is machine-checked here: that the statement is numbered 4; that it appears in version v1; that its authors are the ones cited; and, above all, that its logical form is the one encoded above -- a NON-STRICT inequality in each hypothesis (so that the exhibited p_i = p_j = 0 qualifies) and a STRICT inequality in the conclusion (so that p_x = 0 would already refute it). The check transcribed_conjecture_predicates_are_the_printed_inequalities pins those two inequalities in the CODE to the two inequalities in the TEXT printed at the head, and nothing more: text to source is unchecked. Every check above would still pass if that transcription were wrong, and the paper's arithmetic would still be right while its attribution was not; a referee must compare the statement printed at the head of this transcript against the source by eye. Everything else established above is derived from the two edge lists alone.
+NOT RE-RUN: the curvature p_v itself is likewise a transcribed definition, p_v(G) = 1 - (1/2) sum_{u ~ v} omega_G(u,v) with unit conductances and omega the effective resistance; it is computed here by three independent routes, but that it is the quantity the conjecture speaks of is not checked against the source either.
+VERDICT: ALL 26 CHECKS PASS
+=== program exited with status 0 ===

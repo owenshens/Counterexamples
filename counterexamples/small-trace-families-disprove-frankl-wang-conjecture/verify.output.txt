@@ -1,0 +1,64 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  332a38f5e2cf986cfbebbec1d479d36bbc40731662020daf69e4b3afae4ae2b3
+python:  Python 3.9.25
+=== program output follows ===
+PASS f6_members_are_subsets_of_[6]
+PASS f6_cardinality_39 [|F6|=39]
+PASS f6_level_profile_1_6_15_14_3_0_0 [by size: 1,6,15,14,3,0,0]
+PASS f6_is_a_down_set
+PASS D_is_six_triples_3_regular [degrees [3, 3, 3, 3, 3, 3]]
+PASS A_is_three_4_sets_2_regular [degrees [2, 2, 2, 2, 2, 2]]
+PASS no_member_of_D_lies_in_a_member_of_A
+PASS f6_decodes_back_to_missing_triples_D_and_top_layer_A [omitted triples 234,145,245,136,236,156 ; 4-sets 1235,1246,3456]
+PASS down_set_trace_identity_for_F6
+PASS f6_every_5_trace_has_size_24 [trace sizes [24]]
+PASS f6_trace_decomposition_16_7_1 [[(1, 5, 10, 7, 1)]]
+PASS m_6_5_25_lower_bound_is_40 [max 5-trace 24 < 25 on 39 sets]
+PASS census_at_39_recovers_the_exhibited_family [60 extremal down-sets of size 39, all re-validated]
+PASS exhaustive_census_no_40_member_down_set_has_all_5_traces_le_24 [0 survivors]
+PASS positive_control_the_same_search_at_size_40_is_not_vacuous [1210 down-sets of size 40 with all 5-traces <= 25, all re-validated]
+PASS m_6_5_25_equals_40 [max admissible down-set size 39, so m=40 (squashing lemma quoted)]
+PASS kk_cascade_identities_8_and_10
+PASS upper_4_shadow_of_any_8_triples_of_[6]_is_at_least_10 [minimum 10 over all 125970 eight-element families]
+PASS complementation_matches_upper_and_lower_shadows [0 discrepancies]
+PASS upper_cone_of_a_point_exceeds_|G|_and_a_pair_leaves_exactly_8 [cone sizes by base size [[64], [32], [16], [8]], |G|=24]
+PASS counting_forces_t_ge_8_and_q_le_9 [violations []]
+PASS double_counting_identity_sum_x_|G_cap_2^Yx|_eq_3t+2q+6 [0 failures over 400 random up-sets]
+PASS L_is_seven_triples_of_[7]
+PASS every_pair_of_points_lies_on_exactly_one_line [counts [1]]
+PASS two_distinct_lines_meet_in_exactly_one_point [intersection sizes [1]]
+PASS each_pair_meets_5_lines_leaving_2_lines_inside_its_complement [meeting [5], inside [2]]
+PASS f4_cardinality_57 [|F4|=57]
+PASS f4_level_profile_1_7_21_28 [by size: 1,7,21,28,0,0,0,0]
+PASS f4_is_a_down_set
+PASS f4_omits_exactly_the_seven_Fano_lines [omitted triples 123,145,246,356,347,257,167]
+PASS f4_every_one_of_21_5_traces_has_size_24 [trace sizes [24]]
+PASS m_7_5_25_lower_bound_is_58 [max 5-trace 24 < 25 on 57 sets]
+PASS four_sets_meeting_C_number_30 [30 of 35]
+PASS each_member_of_M_has_4_four_set_supersets_all_meeting_C [cone sizes [4, 4, 4]]
+PASS the_three_cones_are_pairwise_disjoint_since_unions_are_big
+PASS q_cardinality_18 [|Q|=18]
+PASS f5_cardinality_79 [|F5|=79]
+PASS f5_level_profile_1_7_21_32_18 [by size: 1,7,21,32,18,0,0,0]
+PASS f5_is_a_down_set
+PASS f5_decodes_back_to_missing_triples_M_and_top_layer_Q [omitted triples 123,456,147 ; Q = 1245,1345,2345,1246,1346,2346,1256,1356,2347,1257,1357,2457,3457,1267,1367,2467,3467,1567]
+PASS per_point_counts_of_M_and_Q_inside_Y_x [x=1:(1,7) x=2:(2,8) x=3:(2,8) x=4:(1,7) x=5:(2,8) x=6:(2,8) x=7:(2,8)]
+PASS counts_of_four_sets_in_Y_x_meeting_C_and_over_each_M [observed [(15, 10, (3,), 0), (15, 14, (3, 3), 0), (15, 14, (3, 3), 0), (15, 10, (3,), 0), (15, 14, (3, 3), 0), (15, 14, (3, 3), 0), (15, 14, (3, 3), 0)]]
+PASS f5_every_one_of_7_6_traces_has_size_48 [trace sizes [48]]
+PASS m_7_6_49_lower_bound_is_80 [max 6-trace 48 < 49 on 79 sets]
+PASS conjecture_instances_have_a_and_b_equal_to_5_25__5_25__6_49 [[(5, 25), (5, 25), (6, 49)]]
+PASS formula_values_are_37_55_73 [[37, 55, 73]]
+PASS computed_bounds_exceed_the_formula_so_it_is_false [m(6,5,25)>=40 vs formula 37; m(7,5,25)>=58 vs formula 55; m(7,6,49)>=80 vs formula 73]
+PASS failure_reaches_n_eq_l_plus_2_for_l_eq_4_and_5 [refuted instances (n,l) [(6, 4), (7, 4), (7, 5)]; smallest n-l attained 2]
+PASS formula_is_tautological_at_n_eq_l_plus_1 [checked l=1..14: rhs equals the target trace size]
+PASS down_set_counts_of_2^[4]_and_2^[5]_are_168_and_7581 [168 and 7581]
+PASS squashing_reduction_is_exact_at_n_eq_4 [unrestricted max 9, down-set max 9]
+PASS formula_holds_for_(n,l)_eq_(4,2)_(5,2)_(5,3)_n_eq_5_over_down_sets_only [computed [10, 13, 19] vs formula [10, 13, 19]; m(4,3,7) unrestricted over all 65536 families of 2^[4], m(5,3,7) and m(5,4,13) maxima over the 7581 down-sets of 2^[5] so equality there is contingent on the quoted squashing lemma]
+PASS tautological_case_m_3_3_7_equals_7 [m(3,3,7)=7]
+PASS compression_keeps_size_reaches_a_down_set_and_never_grows_a_trace [size 0, non-down-set 0, trace increases 0]
+PASS compressed_40_member_down_sets_agree_with_the_census [smallest maximal 5-trace after compression: 26]
+PASS random_40_member_families_always_have_a_5_trace_of_at_least_25 [smallest maximal 5-trace seen over 20000 random families: 27]
+NOTE not re-run: the squashing lemma (down-set reduction) is quoted from the cited literature, not proved; it is exercised on 300 random 40-member families at n=6 and confirmed exhaustively at n=4. Two results above rest on it. First, the upper bound m(6,5,25)<=40, which uses that one quoted lemma plus the exhaustive down-set census run above. Second, the auxiliary equalities m(5,3,7)=13 and m(5,4,13)=19, whose searches range over the 7581 down-sets of 2^[5] only, so without the lemma they are only the lower bounds m(5,3,7)>=13 and m(5,4,13)>=19; of the auxiliary values, just m(3,3,7)=7 and m(4,3,7)=10 come from unrestricted brute force over every family. The three lower bounds 40, 58, 80, which are what refute the formula, use no external input. No census is attempted at n=7.
+VERDICT: ALL 56 CHECKS PASS
+=== program exited with status 0 ===

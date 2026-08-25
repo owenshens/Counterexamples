@@ -1,0 +1,45 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  2c6ec98080d7fdb5f0a449ba09974bd4079a533ddaaf4dec25359fe4dc3bbd85
+python:  Python 3.9.25
+=== program output follows ===
+INFO grid graph on [3]^3: 27 vertices, 54 edges, degrees [3, 4, 5, 6]
+PASS grid_graph_on_[3]^3_has_the_right_degrees_and_54_edges [degree histogram [(3, 8), (4, 12), (5, 6), (6, 1)], 54 edges]
+PASS addition_rule_is_EXACTLY_three_not_at_least_three [cube minus centre (6 nbrs) reachable? False; minus corner (3 nbrs)? True; minus edge midpoint (4 nbrs)? False; minus centre under the relaxed >=3 rule? True]
+PASS B_decodes_to_distinct_points_of_[3]^3 [B = 111, 113, 122, 131, 223, 311, 322, 331, 333]
+PASS B_has_size_n^2_=_9 [|B| = 9, n^2 = 9]
+PASS B_is_an_independent_set [0 of 36 pairs tested are adjacent]
+PASS projections_recomputed_equal_printed_display [pi_1=[(1, 1), (1, 3), (2, 2), (2, 3), (3, 1), (3, 3)] (display lists 6 entries); pi_2=[(1, 1), (1, 2), (1, 3), (2, 3), (3, 1), (3, 2), (3, 3)] (display lists 7 entries); pi_3=[(1, 1), (1, 2), (1, 3), (2, 2), (3, 1), (3, 2), (3, 3)] (display lists 7 entries)]
+PASS projection_sizes_are_(6,7,7) [computed (6, 7, 7), paper (6, 7, 7)]
+PASS total_projection_area_A(B)_=_20 [computed A(B) = 20, paper 20]
+PASS conjectured_bound_n^2+6n-4_at_n=3_is_23 [n^2+6n-4 = 23, paper 23]
+PASS REFUTATION_A(B)_<_n^2+6n-4 [20 < 23 is True; criterion rejects area 25 and area 23 as required: True]
+PASS table_has_18_rows_with_distinct_vertices_of_[3]^3 [18 rows, 18 distinct v_k]
+PASS table_vertices_are_exactly_[3]^3_minus_B [|{v_k}| = 18, |[3]^3 \ B| = 18, symmetric difference 0]
+PASS table_neighbourhoods_recomputed_and_all_of_size_exactly_3 [18 rows replayed, 0 disagree]
+PASS table_terminates_with_S_18_=_[3]^3 [|S_18| = 27 of 27]
+PASS independent_search_certifies_B_is_a_solution [own order: 112 121 123 222 321 221 211 212 213 231 312 323 313 332 232 132 233 133]
+PASS search_order_replays_legally_to_the_full_cube [18 additions, |S| = 27]
+PASS upper_bound_s_3(3)_<=_20 [B is a solution: True, and A(B) = 20 <= 20 (paper's s_3(3)): True]
+INFO census n=3 (full order-three census): 4224 independent 9-subsets, 116 solutions, min A = 20, bound n^2+6n-4 = 23
+PASS census_counts_4224_independent_9_subsets_of_[3]^3 [enumerated 4224, paper 4224]
+PASS census_counts_116_order_three_solutions [found 116, paper 116]
+PASS B_is_one_of_the_enumerated_solutions [B IS in the 116 solutions found by the independent enumeration]
+PASS cube_isometry_group_built_has_order_48_and_is_a_group [|G| = 48, closed under composition and inverses: True]
+PASS isometry_group_permutes_the_solution_set [7 of 7 orbits stay inside the solution set]
+PASS total_projection_area_is_isometry_invariant [0 of 7 orbits carry more than one value of A]
+PASS census_gives_7_isometry_classes [computed 7 classes (orbit sizes [4, 8, 8, 24, 24, 24, 24] summing to 116), paper 7]
+PASS class_area_multiset_matches_the_paper's_seven_totals [computed [20, 21, 21, 23, 25, 27, 27], paper (sorted) [20, 21, 21, 23, 25, 27, 27]]
+PASS s_3(3)_=_min_A_over_all_solutions_=_20 [exhaustive minimum 20, paper 20]
+PASS B_lies_in_the_unique_class_attaining_the_minimum [1 class(es) attain A = 20]
+PASS census_is_the_same_under_the_relaxed_>=3_reading [116 relaxed solutions vs 116 exact, min A = 20]
+INFO 56 of the 116 order-three solutions have A < 23; the smallest A over ALL 4224 independent 9-subsets (solution or not) is 15
+INFO census n=1 (control): 1 independent 1-subsets, 1 solutions, min A = 3, bound n^2+6n-4 = 3
+PASS control_n=1_conjecture_holds_with_equality_s_3(1)_=_3 [1 solutions, min A = 3, bound 3]
+INFO census n=2 (control): 2 independent 4-subsets, 2 solutions, min A = 12, bound n^2+6n-4 = 12
+PASS control_n=2_conjecture_holds_with_equality_s_3(2)_=_12 [2 solutions, min A = 12, bound 12]
+PASS independent_9_subset_count_confirmed_by_a_second_algorithm [transfer-matrix DP 4224, backtracking enumeration 4224, paper 4224]
+INFO SCOPE: the order-three census above is COMPLETE -- all 4224 independent 9-subsets of [3]^3 were enumerated and each tested for solution-hood, so the theorem s_3(3) = 20 < 23 is fully re-derived here, independently of the Barat-Wanless catalogue. NOT RE-RUN: n >= 4. The conjecture is stated for all n and the paper claims nothing beyond n = 3; a census at n = 4 would have to test 15183071352 independent 16-subsets of [4]^3 (counted here by the transfer-matrix DP), about 3594477 times the order-three workload, which is many orders of magnitude past a 25-minute budget. ALSO NOT RE-RUN: the mutation suite described in this program's header. Those 31 corruptions were run while the program was being written, by editing copies of it; no mutation harness, list or log ships with it and nothing above re-executes them, so the note's mutation claim is NOT evidenced by this transcript. ALSO NOT REPRODUCED: the note's attribution claims, which are about the literature and not about mathematics -- that the inequality transcribed here is the one posed by Barat-Korondi-Varga (the note quotes it at second hand, as the formulation printed as Conjecture 1 of Barat-Wanless, and states that it cannot confirm what number it carries in the original; this program asserts no number for it), that the seven totals appear in Figure 6 of Barat-Wanless in the printed left-to-right order (only their MULTISET is checked above, which is all the theorem needs), and that B is isometric to the representative there of total projection area 20. Those require reading the cited papers.
+PASS check_names_are_distinct_and_every_section_ran_once [31 checks ran, 31 expected, 31 distinct names]
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

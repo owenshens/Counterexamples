@@ -1,0 +1,51 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  f7f9867eb7576863ceea2ab5675437b91a65d8b764785f5ac180fef395bf35ce
+python:  Python 3.9.25
+=== program output follows ===
+Subtraction Nim with a one-time pass: verification of the
+counterexamples to the three subparts of the conjecture.
+
+PASS engine_matches_independent_win_loss_recursion [4356 position-layers, 0 mismatches]
+  exhibited table, subtraction set {1,4,5}:
+    x         0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+    G(x,0)    0  1  0  1  2  3  2  3  0  1  0  1  2  3  2  3  0  1  0  1  2  3  2  3
+    G(x,1)    0  2  1  0  1  4  0  2  3  0  1  3  0  1  3  0  1  2  4  2  3  0  1  0
+PASS printed_table_wellformed_24_columns_two_rows [rows=2 entries=24+24]
+PASS printed_table_reproduced_by_recursion [48 entries, 0 discrepancies]
+PASS scaling_lemma_holds_on_multiples_of_a [11712 comparisons, 0 failures]
+PASS odd_set_lemma_closed_form_correct [45 odd sets, 18090 comparisons, 0 failures]
+PASS hypotheses_satisfied_subpart_a [a=1..20; at a=1: S={1,4,5} n=2 threshold=17 witness x=18; 0 failures]
+PASS hypotheses_satisfied_subpart_b [a=1..20; at a=1: S={1,3,5} n=1 threshold=6 witness x=6; 0 failures]
+PASS hypotheses_satisfied_subpart_iii [a=1..20; at a=1: S={1,5,9} n=2 threshold=10 witness x=10; 0 failures]
+PASS equation36_fails_at_witness_subpart_a [a=1..20 x2 conventions; at a=1: mex{G(x-s,1)}=0 vs G(x,1)=4 at x=18; 0 parameters where (36) did NOT fail]
+PASS equation36_fails_at_witness_subpart_b [a=1..20 x2 conventions; at a=1: mex{G(x-s,1)}=0 vs G(x,1)=1 at x=6; 0 parameters where (36) did NOT fail]
+PASS equation36_fails_at_witness_subpart_iii [a=1..20 x2 conventions; at a=1: mex{G(x-s,1)}=0 vs G(x,1)=1 at x=10; 0 parameters where (36) did NOT fail]
+PASS equation37_fails_at_witness_subpart_a [a=1..20 x2 conventions; at a=1: mex{G(x+s,1)}=3 vs G(x,1)=4 (paper claims failure); 0 deviations]
+PASS equation37_still_holds_at_witness_subpart_b [a=1..20 x2 conventions; at a=1: mex{G(x+s,1)}=1 vs G(x,1)=1 (paper claims no failure); 0 deviations]
+PASS equation37_still_holds_at_witness_subpart_iii [a=1..20 x2 conventions; at a=1: mex{G(x+s,1)}=1 vs G(x,1)=1 (paper claims no failure); 0 deviations]
+PASS printed_mex_evaluations_recomputed [a:mex(2, 3, 1)=0 vs 4; b:mex(2, 2, 2)=0 vs 1; iii:mex(2, 2, 2)=0 vs 1; forward a:mex(2, 1, 0)=3; 0 mismatches]
+PASS equation35_conjunct_holds_at_witnesses_and_on_range [witnesses a=1..20 x2 conventions: 0 failures; a=1 and x<=300: 0 failures]
+PASS bound_conjunct_G_lt_4_holds_for_odd_witness_sets [a=1, x<=400, sets {1,3,5} and {1,5,9}: max G(x,1)=2, 0 violations]
+PASS mixed_reading_of_equation37_also_fails [x=18: mex{G(x+s,1)}=3, G(x,0)=0]
+PASS witness_values_independent_of_pass_convention [3 subparts x a=1..20: 0 disagreements]
+PASS threshold_specializations_and_margins [a=1..20: 6an+(4a+1)|n=2 = 16a+1, a(2n+3)+1|n=1 = 5a+1, a(2n+5)+1|n=2 = 9a+1; margins 2a-1, a-1, a-1; 0 failures]
+PASS census_of_exceptional_n_matches_paper [a=1, n=1..12, x in [threshold,400]: exceptional n = a:[2] b:[1] iii:[2]; the paper's census is unbounded in x, so for the other n this certifies (36) and (37) only up to x=400]
+PASS scope_overlap_with_proved_family [a=1..60,n=1..60: part (a) meets the shape only at a in [2] (a=2,n=2 gives {2,8,10}, i.e. m=2, below the m>=3 range proved); parts (b),(iii) shape matches: 0,0; witnesses inside the m>=3 range: 0]
+PASS control_identities_hold_at_non_exceptional_parameters [4616 identity evaluations at 6 control parameters, 0 failures]
+PASS harness_registered_every_declared_check [17 stages declaring 23 checks, plus this reconciliation = 24 expected; 24 registered; 0 stage(s) aborted or miscounted; 3 subpart keys cover every transcribed subpart]
+
+NOT RE-RUN HERE: the conjecture quantifies over all a and n and all x above the threshold.
+  Refutation is computed exactly for a = 1..20 (both pass conventions); the reduction
+  to a = 1 for all larger a rests on the scaling lemma, which is verified numerically
+  for a <= 8 and k <= 60 but not proved here.  The census over n is finite (n <= 12) and
+  is also bounded in x, where the paper's census sentence is not: that sentence says that
+  for every other n the two identities hold above the stated threshold, i.e. at every
+  x >= threshold, whereas each non-exceptional n is certified here only for threshold <= x
+  <= 400, so a break at larger x would not be seen.  The three exceptional n the theorem
+  exhibits are settled outright at their witnesses and do not rest on the census.  The
+  eventual-periodicity conjuncts are not tested, and the paper asserts nothing about them.
+  No external catalogue or table is read.
+
+VERDICT: ALL 24 CHECKS PASS
+=== program exited with status 0 ===

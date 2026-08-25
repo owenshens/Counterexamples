@@ -1,0 +1,144 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  92dd1d7d020846def40b960073da818f3d03a7915139e69a998bb47a7c6cbbfb
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+independent check of the two graph6 strings
+==============================================================================
+--- graph6 STRICT decode of T: 'R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?'  (len=30)
+  [OK  ] T: no >>graph6<< header present (none expected)
+  [OK  ] T: no whitespace / newline characters
+  [OK  ] T: every byte in legal range [63,126]   min=63 max=126
+      order field: single byte 'R' -> n = 82 - 63 = 19
+  [OK  ] T: single-byte order field requires n<=62
+  [OK  ] T: data byte count   n=19 -> 171 bits -> ceil/6 = 29 data bytes; string has 29
+  [OK  ] T: 3 trailing padding bit(s) all zero   pad=[0, 0, 0]
+      decoded: n=19  m=51
+
+--- graph6 STRICT decode of W: 'S~vMLaWbCKM?U?R?Go@a?EG?KO?KOE???'  (len=33)
+  [OK  ] W: no >>graph6<< header present (none expected)
+  [OK  ] W: no whitespace / newline characters
+  [OK  ] W: every byte in legal range [63,126]   min=63 max=126
+      order field: single byte 'S' -> n = 83 - 63 = 20
+  [OK  ] W: single-byte order field requires n<=62
+  [OK  ] W: data byte count   n=20 -> 190 bits -> ceil/6 = 32 data bytes; string has 32
+  [OK  ] W: 2 trailing padding bit(s) all zero   pad=[0, 0]
+      decoded: n=20  m=53
+
+DECODED T: n=19  m=51
+  degrees: a=10, b=10, c0=6, c1=10, c2=10, c3=10, c4=6, u0=4, u1=4, u2=4, u3=4, v0=3, v1=3, v2=3, v3=3, w0=3, w1=3, w2=3, w3=3
+  degree sequence sorted: [3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 6, 6, 10, 10, 10, 10, 10]  sum=102
+  adjacency (names):
+    a   -> b c0 c1 c2 c3 c4 u0 u1 u2 u3
+    b   -> a c0 c1 c2 c3 c4 v0 v1 v2 v3
+    c0  -> a b c1 u0 v0 w0
+    c1  -> a b c0 c2 u0 u1 v0 v1 w0 w1
+    c2  -> a b c1 c3 u1 u2 v1 v2 w1 w2
+    c3  -> a b c2 c4 u2 u3 v2 v3 w2 w3
+    c4  -> a b c3 u3 v3 w3
+    u0  -> a c0 c1 w0
+    u1  -> a c1 c2 w1
+    u2  -> a c2 c3 w2
+    u3  -> a c3 c4 w3
+    v0  -> b c0 c1
+    v1  -> b c1 c2
+    v2  -> b c2 c3
+    v3  -> b c3 c4
+    w0  -> c0 c1 u0
+    w1  -> c1 c2 u1
+    w2  -> c2 c3 u2
+    w3  -> c3 c4 u3
+
+DECODED W: n=20  m=53
+  degrees: a=11, b=11, c0=6, c1=10, c2=10, c3=10, c4=6, u0=4, u1=4, u2=4, u3=4, v0=3, v1=3, v2=3, v3=3, w0=3, w1=3, w2=3, w3=3, x=2
+  adjacency of x (index 19): a b
+
+--- (b) claim-by-claim tests
+order of T: T has 19 vertices
+  [OK  ] decoded T has n = 19   n=19
+size of T: T has 51 edges
+  [OK  ] decoded T has m = 51   m=51
+  [OK  ] 51 == 3n-6 for n=19   3*19-6 = 51
+order and size of W: W has 20 vertices and 53 edges
+  [OK  ] decoded W has n = 20   n=20
+  [OK  ] decoded W has m = 53   m=53
+how W is obtained from T: W = T + x with edges xa, xb only
+  [OK  ] W restricted to vertices 0..18 equals T exactly (labelled)
+  [OK  ] x (index 19) has degree exactly 2   deg=2
+  [OK  ] x is adjacent to a and b, and NOT to c0   N(x) = ['a', 'b']
+the target value: Euler bound at n=20, and the conjectured value
+  [OK  ] 3n-6 at n=20 equals 54   3*20-6 = 54
+  [OK  ] floor(50/17*(20-2))+1 == 53   floor(900/17)+1 = 52+1 = 53
+  [OK  ] m(W) equals the conjectured 53
+
+--- (c) building T INDEPENDENTLY from the construction described in the paper
+      base graph a,b,c0..c4 : n=7 m=15 f=10  chi=2
+      PROSE T: n=19  m=51  faces=34  chi=2
+  [OK  ] prose T has 51 edges   m=51
+  [OK  ] prose T plane embedding has 34 triangular faces   f=34
+  [OK  ] prose T is a SPHERE triangulation (chi=2)
+      degrees of prose T: a=10, b=10, c0=6, c1=10, c2=10, c3=10, c4=6, u0=4, u1=4, u2=4, u3=4, v0=3, v1=3, v2=3, v3=3, w0=3, w1=3, w2=3, w3=3
+  >>> the decisive comparison
+  [OK  ] prose T equals decoded T as LABELLED graphs (edge sets identical)
+  >>> byte-for-byte re-encode of the prose graph
+      paper T : R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?
+      mine  T : R~vMLaWbCKM?U?R?Go@a?EG?KO?KO?
+  [OK  ] re-encoding prose T reproduces the paper T string exactly
+      paper W : S~vMLaWbCKM?U?R?Go@a?EG?KO?KOE???
+      mine  W : S~vMLaWbCKM?U?R?Go@a?EG?KO?KOE???
+  [OK  ] re-encoding prose W (= prose T + x~a,b) reproduces the paper W string exactly
+      round-trip of decoded strings: T True   W True
+
+--- (d) induced P6 (INDUCED, not merely a subgraph)
+  T: 6-subset scan over C(19,6)=27132 subsets -> 0 induced P6
+  T: independent path-extension scan -> 0 directed = 0 undirected
+  [OK  ] T: the two implementations agree
+  [OK  ] T is induced-P6-FREE   count=0
+  W: 6-subset scan over C(20,6)=38760 subsets -> 0 induced P6
+  W: independent path-extension scan -> 0 directed = 0 undirected
+  [OK  ] W: the two implementations agree
+  [OK  ] W is induced-P6-FREE   count=0
+
+--- (e) is T a maximal planar graph (a triangulation)?
+  [OK  ] m = 3n-6   m=51, 3n-6=51
+  [OK  ] minimum degree >= 3 (every simple triangulation has this)   delta=3
+      min degree = 3, max degree = 10
+  [OK  ] T is 3-CONNECTED (exhaustive 1-cut and 2-cut search)   no 1-cut and no 2-cut exists (all 19 vertices and 171 pairs tested)
+      triangle (3-clique) count of T = 49 ; a plane triangulation on 19 vertices has 2m/3 = 34 faces
+  [OK  ] triangle count >= number of faces (34)   triangles=49, faces would be 34
+      separating/non-facial triangles = 15
+  >>> PLANARITY: searched from scratch for a sphere face set of the DECODED graph
+      exhaustive search over triangle sets with every edge in exactly 2: 1 DISTINCT solution(s) found (search ran to exhaustion)
+      candidate face set: 34 faces
+  [OK  ] every edge lies in exactly two faces
+  [OK  ] every vertex link is a SINGLE cycle (=> closed surface)
+  [OK  ] Euler characteristic n-m+f = 2 (=> sphere, not a torus)   n-m+f = 19-51+34 = 2
+  [OK  ] DECODED T is a genuine plane (sphere) triangulation -- planarity PROVED, not inferred
+      of those, 1 is/are genuine SPHERE face sets (links single cycles, chi=2)
+  [OK  ] the sphere face set is unique (Whitney: 3-connected planar has a unique embedding)   1 sphere face set(s) from a search that ran to exhaustion
+  [OK  ] the face set my prose embedding produced is among the solutions found   sym-diff vs sol[0] = 0
+  [OK  ] T has exactly 34 faces => exactly 34 facial insertions   f=34
+  [OK  ] a-b-c0 IS a face of T, so x can legally be inserted there
+
+--- (f) W and the headline lower bound ex_P(20, P6^ind) >= 53
+      W: n = 20, m = 53
+      W 3-connected? False (2-cut {0,1})  [not required; x has degree 2 so 2-connected at best]
+  [OK  ] W is PLANAR: T sphere embedding with x drawn inside face a-b-c0; chi = n-m+f = 2   20 - 53 + 35 = 2
+  [OK  ] W is induced-P6-free   count=0
+  [OK  ] W therefore certifies ex_P(20,P6^ind) >= 53
+      Euler bound 3n-6 at n=20 = 54, so W is exactly ONE edge below it.
+
+--- further remark in the paper: repeatedly deleting a degree-3 vertex from T reaches every smaller n
+      orders reachable by successive degree-3 deletions: [19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4]
+  [OK  ] every order 4..19 reachable   missing []
+      (induced-P6-freeness is hereditary, so freeness of the smaller triangulations is automatic once T is free -- the only content is that a degree-3 vertex always remains.)
+
+==============================================================================
+VERDICT: ALL CHECKS PASSED
+==============================================================================
+summary numbers:
+  T: n=19 m=51  induced-P6 count=0
+  W: n=20 m=53  induced-P6 count=0
+  well-formed: T=True  W=True
+=== program exited with status 0 ===

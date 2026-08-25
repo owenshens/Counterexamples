@@ -1,0 +1,400 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Two Residual Cases of Simmons's Polygonal Bigraph Conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\Z}{\mathbb Z}
+
+\title[Two residual polygonal bigraphs]
+{Two Residual Cases of Simmons's Polygonal Bigraph Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C45}
+\keywords{
+Hamilton cycle,
+2-edge-Hamiltonian graph,
+cubic bipartite graph,
+polygonal bigraph
+}
+
+\begin{document}
+
+\begin{abstract}
+Simmons conjectured that every polygonal bigraph $P_{m,k}$ is
+2-edge-Hamiltonian. His addendum left the isomorphic pair
+$P_{34,9}$ and $P_{34,14}$ unresolved, while asserting the conjecture for
+all polygonal bigraphs on at most $66$ vertices. Its residual table also
+omitted $P_{32,14}$, the only omitted entry not removed by the stated
+isomorphism reductions; as $P_{32,14}$ has $64$ vertices, the $66$-vertex
+assertion was not in fact established. We give five Hamilton cycles for
+each of $P_{34,9}$ and $P_{32,14}$ whose edge-pair coverage proves that
+both graphs are 2-edge-Hamiltonian. An explicit isomorphism settles
+$P_{34,14}$. Consequently the conjecture holds for every polygonal
+bigraph on at most $68$ vertices, which both repairs the $66$-vertex
+claim and extends it. For $P_{32,14}$ the conclusion is not new: it is
+the case $s=4$ of the family $P_{8s,4s-2}$, treated in a companion note
+in this collection, and the certificate given here is an independent one.
+What is new is the class $P_{34,9}\cong P_{34,14}$ together with the
+finite audit. This is a finite verification, not a proof for arbitrary $m$.
+\end{abstract}
+
+\maketitle
+
+\section{Statement}
+
+A graph is \emph{2-edge-Hamiltonian} if every two distinct edges lie on a
+common Hamilton cycle. For $m\ge 3$ and
+$1\le k\le \lfloor(m-1)/2\rfloor$, let $P_{m,k}$ have bipartition
+\[
+ X=\{x_i:i\in\Z_m\},
+ \qquad
+ Y=\{y_i:i\in\Z_m\},
+\]
+and edges, with subscripts modulo $m$,
+\[
+ a_i=x_i y_i,
+ \qquad
+ b_i=x_i y_{i-1},
+ \qquad
+ c_i=x_i y_{i+k}.
+\]
+Thus $P_{m,k}$ is the usual $2m$-cycle together with the chords of offset
+$2k+1$.
+
+Simmons conjectured that every $P_{m,k}$ is 2-edge-Hamiltonian
+\cite{Simmons2020}. His addendum identified
+$P_{34,9}\cong P_{34,14}$ as an unresolved isomorphism class
+\cite{SimmonsAddendum}; the isomorphism reductions used there originate in
+\cite{Simmons2016}. The same addendum asserted the result through
+$66$ vertices. Its displayed residual table, however, omitted the entries
+$P_{31,11}$, $P_{32,8}$, and $P_{32,14}$. The first two reduce to settled
+parameters, but $P_{32,14}$ does not, so the assertion for $66$ vertices
+was not in fact established: $P_{32,14}$ has $64$ vertices.
+Theorem~\ref{thm:main} therefore both repairs the $66$-vertex claim and
+extends it to $68$.
+
+For $P_{32,14}$ the conclusion of Theorem~\ref{thm:main} is not new. That
+graph is the case $s=4$ of the family $P_{8s,4s-2}$, every member of which
+is proved 2-edge-Hamiltonian in the companion note \cite{Companion} in
+this collection; the certificate we give below is an independent one, and
+we include it so that the $66$-vertex range is repaired within the present
+note. What is new here is the isomorphism class
+$P_{34,9}\cong P_{34,14}$, which lies in no family treated in
+\cite{Companion}, together with the finite audit of the residual
+parameters with $m\le34$.
+
+\begin{theorem}\label{thm:main}
+The polygonal bigraphs
+\[
+ P_{32,14},
+ \qquad
+ P_{34,9},
+ \qquad
+ P_{34,14}
+\]
+are 2-edge-Hamiltonian.
+\end{theorem}
+
+\begin{corollary}\label{cor:68}
+Every polygonal bigraph on at most $68$ vertices is 2-edge-Hamiltonian.
+\end{corollary}
+
+\section{A covering certificate}
+
+For $S\subseteq\Z_m$ and $t\in\Z_m$, write
+\[
+ S+t=\{s+t:s\in S\}.
+\]
+If
+\[
+ \Z_m=A\mathbin{\dot\cup}B\mathbin{\dot\cup}C,
+\]
+define
+\[
+ M(A,B,C)
+ =
+ \{a_i:i\in A\}
+ \cup
+ \{b_i:i\in B\}
+ \cup
+ \{c_i:i\in C\}.
+\]
+This set meets every vertex of $X$ once. Its $Y$-endpoints are indexed by
+$A$, $B-1$, and $C+k$; hence it is a perfect matching precisely when those
+three sets partition $\Z_m$.
+
+\begin{lemma}\label{lem:cover}
+Let $M_0,\dots,M_4$ be perfect matchings of a cubic graph $G$. Suppose each
+\[
+ H_r=G-M_r
+\]
+is a Hamilton cycle and, for every two distinct edges $e,f$, some $M_r$
+contains neither $e$ nor $f$. Then $G$ is 2-edge-Hamiltonian.
+\end{lemma}
+
+\begin{proof}
+For that index $r$, both edges belong to the Hamilton cycle $H_r$.
+\end{proof}
+
+\section{The two certificates}
+
+\subsection{The graph \texorpdfstring{$P_{34,9}$}{P34,9}}
+
+For $r=0,\dots,4$, take the following subsets of $\Z_{34}$ and set
+\[
+ A_r=\Z_{34}\setminus(B_r\cup C_r):
+\]
+\[
+\begin{array}{c|c|c}
+ r & B_r & C_r \\
+\hline
+ 0 & \varnothing & \Z_{34} \\
+ 1 & \Z_{34} & \varnothing \\
+ 2 & \{25,26\} & \{8,17,24,33\} \\
+ 3 & \{16,24\} & \{7,15,23,32\} \\
+ 4 & \{15,23\} & \{6,14,22,31\}
+\end{array}
+\tag{3.1}\label{tab:349}
+\]
+Put
+\[
+ M_r=M(A_r,B_r,C_r),
+ \qquad
+ H_r=P_{34,9}-M_r.
+\]
+Directly from \eqref{tab:349}, the sets $A_r$, $B_r-1$, and $C_r+9$
+partition $\Z_{34}$, so every $M_r$ is a perfect matching.
+
+The cycle $H_0$ is the outer $68$-cycle. The cycle $H_1$ consists of all
+$a$- and $c$-edges; its successive $X$-indices differ by $-9$, and
+\[
+ \gcd(34,9)=1.
+\]
+Thus $H_0$ and $H_1$ are Hamilton cycles. The three traces in
+Appendix~\ref{app:traces} show that $H_2,H_3,H_4$ are also Hamilton
+cycles.
+
+Now $H_0$ contains every $a$- and $b$-edge, while $H_1$ contains every
+$a$- and $c$-edge. Only pairs $\{b_i,c_j\}$ remain. The sets
+$B_2,B_3,B_4$ are pairwise disjoint, as are $C_2,C_3,C_4$. Hence a fixed
+$b_i$ is absent from at most one of $H_2,H_3,H_4$, and the same holds for
+a fixed $c_j$. At least one of these three cycles therefore contains both
+edges. Lemma~\ref{lem:cover} proves that $P_{34,9}$ is
+2-edge-Hamiltonian.
+
+\subsection{The graph \texorpdfstring{$P_{32,14}$}{P32,14}}
+
+For $r=0,\dots,4$, take the following subsets of $\Z_{32}$ and set
+\[
+ B_r=\Z_{32}\setminus(A_r\cup C_r):
+\]
+\[
+\begin{array}{c|c|c}
+ r & A_r & C_r \\
+\hline
+ 0 & \varnothing & \Z_{32} \\
+ 1 & \Z_{32} & \varnothing \\
+ 2 & \{0,16\} & \{1,17\} \\
+ 3 & \{15,31\} & \{0,16\} \\
+ 4 & \{14,30\} & \{15,31\}
+\end{array}
+\tag{3.2}\label{tab:3214}
+\]
+Put
+\[
+ M_r=M(A_r,B_r,C_r),
+ \qquad
+ H_r=P_{32,14}-M_r.
+\]
+For every row, $A_r$, $B_r-1$, and $C_r+14$ partition $\Z_{32}$, so every
+$M_r$ is a perfect matching.
+
+The cycle $H_0$ is the outer $64$-cycle. The cycle $H_1$ consists of all
+$b$- and $c$-edges; up to orientation, its successive $X$-indices differ
+by $15$, and
+\[
+ \gcd(32,15)=1.
+\]
+The remaining traces in Appendix~\ref{app:traces} show that
+$H_2,H_3,H_4$ are Hamilton cycles.
+
+Here $H_0$ contains every $a$- and $b$-edge, while $H_1$ contains every
+$b$- and $c$-edge. Only pairs $\{a_i,c_j\}$ remain. The sets
+$A_2,A_3,A_4$ are pairwise disjoint, as are $C_2,C_3,C_4$. The same
+three-cycle argument proves that every such pair lies on a Hamilton cycle.
+Thus $P_{32,14}$ is 2-edge-Hamiltonian.
+
+\section{Isomorphism and the finite range}
+
+Let primed symbols denote $P_{34,14}$. Define
+\[
+ \phi(x_i)=x'_{19i},
+ \qquad
+ \phi(y_i)=y'_{19i-1}.
+\]
+Since $19$ is a unit modulo $34$, this is a bijection, and
+\[
+ \phi(a_i)=b'_{19i},
+ \qquad
+ \phi(b_i)=c'_{19i},
+ \qquad
+ \phi(c_i)=a'_{19i}.
+\]
+Indeed,
+\[
+ 19(i-1)-1\equiv19i+14,
+ \qquad
+ 19(i+9)-1\equiv19i
+ \pmod{34}.
+\]
+Thus
+\[
+ P_{34,9}\cong P_{34,14},
+\]
+completing the proof of Theorem~\ref{thm:main}.
+
+For completeness, we record the finite audit needed for
+Corollary~\ref{cor:68}. Put
+\[
+ S_k=\{0,-1,k\}\subseteq\Z_m.
+\]
+If $u\in\Z_m^\times$ and $d\in\Z_m$ satisfy
+\[
+ uS_k+d=S_\ell,
+\]
+then
+\[
+ x_i\longmapsto x'_{ui},
+ \qquad
+ y_j\longmapsto y'_{uj+d}
+\]
+is an isomorphism
+\[
+ P_{m,k}\cong P_{m,\ell}.
+\]
+
+After Simmons's general results, the residual arithmetic condition is
+\[
+ 2<\gcd(m+1,k+1)<k+1.
+\]
+This reduction is recorded in \cite{Simmons2020,SimmonsAddendum}.
+For $m\le34$, its solutions and their
+reductions are exactly the following. An arrow
+\[
+ k\to\ell\;(u,d)
+\]
+records $uS_k+d=S_\ell$.
+
+\begin{center}
+\small
+\begin{tabular}{c|l}
+$m$ & residual parameters and reductions \\
+\hline
+14 & $5\to3\;(11,0)$ \\
+19 & $7$ (settled in \cite{Simmons2020}) \\
+20 & $5,8$ (settled in \cite{Simmons2020}) \\
+23 & $8\to3\;(20,0)$ \\
+24 & $9$ (settled in \cite{Simmons2020}) \\
+26 & $5\to4\;(21,-1)$, $11\to6\;(19,-1)$ \\
+27 & $7\to4\;(23,0)$, $11\to5\;(22,0)$ \\
+29 & $8\to12\;(13,12)$, $11\to12\;(12,12)$ \\
+31 & $11\to12\;(13,12)$ \\
+32 & $5\to13\;(19,0)$, $8\to7\;(7,7)$,
+     $11\to3\;(29,0)$, $14$ \\
+34 & $13\to12\;(21,-1)$, $9\to14\;(19,-1)$
+\end{tabular}
+\end{center}
+
+Every arrow except $9\to14$ lands in a parameter covered by the results of
+\cite{Simmons2020}. The unreduced entry $P_{32,14}$ and the class
+\[
+ P_{34,9}\cong P_{34,14}
+\]
+are precisely those proved in Theorem~\ref{thm:main}. Hence every
+$P_{m,k}$ with $m\le34$ is 2-edge-Hamiltonian. Since $P_{m,k}$ has $2m$
+vertices, Corollary~\ref{cor:68} follows.
+
+\appendix
+
+\section{Hamilton traces}\label{app:traces}
+
+Each row below is a cyclic list of successive $X$-indices in the indicated
+spanning $2$-factor. Consecutive entries, including the last and first,
+have a common $Y$-neighbor through two retained edges. Since each row
+contains every $X$-index exactly once, it certifies a Hamilton cycle.
+
+\subsection*{\texorpdfstring{$P_{34,9}$}{P34,9}}
+
+{\scriptsize
+\begin{align*}
+T_{34,2}={}&
+(0,10,20,30,6,16,25,1,11,21,31,7,17,18,28,4,14,\\
+&24,15,5,29,19,9,8,32,22,12,2,26,27,3,13,23,33),
+\\[2pt]
+T_{34,3}={}&
+(0,10,20,30,6,15,5,29,19,9,33,32,22,12,2,26,16,\\
+&17,27,3,13,23,14,4,28,18,8,7,31,21,11,1,25,24),
+\\[2pt]
+T_{34,4}={}&
+(0,10,20,30,6,7,17,27,3,13,22,12,2,26,16,15,25,\\
+&1,11,21,31,32,8,18,28,4,14,5,29,19,9,33,23,24).
+\end{align*}
+}
+
+\subsection*{\texorpdfstring{$P_{32,14}$}{P32,14}}
+
+{\scriptsize
+\begin{align*}
+T_{32,2}={}&
+(0,14,28,10,24,6,20,2,17,3,21,7,25,11,29,15,\\
+&16,30,12,26,8,22,4,18,1,19,5,23,9,27,13,31),
+\\[2pt]
+T_{32,3}={}&
+(0,18,4,22,8,26,12,30,31,13,27,9,23,5,19,1,\\
+&16,2,20,6,24,10,28,14,15,29,11,25,7,21,3,17),
+\\[2pt]
+T_{32,4}={}&
+(0,18,4,22,8,26,12,30,29,11,25,7,21,3,17,31,\\
+&16,2,20,6,24,10,28,14,13,27,9,23,5,19,1,15).
+\end{align*}
+}
+
+\begin{thebibliography}{9}
+
+\bibitem{Simmons2016}
+G.~J. Simmons,
+\emph{Hamilton-laceable properties of polygonal bigraphs},
+Congr. Numer. \textbf{226} (2016), 121--138.
+
+\bibitem{Simmons2020}
+G.~J. Simmons,
+\emph{Two related (?) 2-edge-Hamiltonian bigraph conjectures},
+Bull. Inst. Combin. Appl. \textbf{88} (2020), 98--117.
+\url{https://bica.the-ica.org/Volumes/88/Reprints/BICA2019-31-Reprint.pdf}
+
+\bibitem{SimmonsAddendum}
+G.~J. Simmons,
+\emph{Two related (?) 2-edge-Hamiltonian bigraph conjectures addendum},
+Bull. Inst. Combin. Appl. \textbf{89} (2020), 102--103.
+\url{https://bica.the-ica.org/Volumes/89/Reprints/Gus-Reprint.pdf}
+
+\bibitem{Companion}
+\emph{The polygonal bigraphs $P_{8s,4s-2}$ are 2-edge-Hamiltonian},
+companion note in this collection, file
+\texttt{p8s-4sminus2-\allowbreak confirms-simmons-hamiltonian-conjecture}.
+
+\end{thebibliography}
+
+\end{document}

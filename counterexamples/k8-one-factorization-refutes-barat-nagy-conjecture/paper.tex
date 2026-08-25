@@ -1,0 +1,187 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\F}{\mathbb{F}}
+
+\title[A $K_8$ counterexample]
+      {A $K_8$ counterexample to Conjecture~3.9 of Bar\'at and Nagy}
+\date{}
+
+\subjclass[2020]{05C15, 05C70}
+\keywords{rainbow subgraph, proper edge-coloring, 2-factor,
+one-factorization}
+
+\begin{document}
+
+\begin{abstract}
+Bar\'at and Nagy conjectured that every proper edge-coloring of $K_{2n}$
+by at least $2n-1$ colors contains a rainbow $2$-regular subgraph on
+$2n-1$ or $2n$ vertices.  We show that the conjecture fails for $n=4$.  The
+coloring is the one-factorization represented by matrix $B$ in work of
+Akbari, Etesami, Mahini, and Mahmoody, who reported that it has no
+rainbow $7$-cycle.  We identify this earlier coloring as a counterexample
+and give a self-contained algebraic proof that it has no rainbow
+$2$-regular subgraph on seven vertices.
+\end{abstract}
+
+\maketitle
+
+A subgraph is \emph{rainbow} if its edges have pairwise distinct colors.
+We use ``$2$-factor on $m$ vertices'' for a $2$-regular subgraph with
+$m$ vertices, as in \cite{BN}.  Conjecture~3.9 of Bar\'at and Nagy states
+that every proper edge-coloring of $K_{2n}$ by at least $2n-1$ colors
+contains a rainbow $2$-factor on $2n-1$ or $2n$ vertices.\footnote{The
+statement is Conjecture~3.9 of the published version \cite{BN}; it appears
+as Conjecture~3.8 of the preprint \cite{BNpre}.}  Since
+$\chi'(K_{2n})=2n-1$, a proper $(2n-1)$-edge-coloring is a
+one-factorization, so a one-factorization counterexample refutes the
+``at least'' form as well.  We disprove the conjecture at $n=4$.
+
+\begin{theorem}\label{thm:main}
+There is a proper $7$-edge-coloring of $K_8$ with no rainbow $2$-regular
+subgraph on seven or eight vertices.  Consequently, Conjecture~3.9 of
+Bar\'at and Nagy is false.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+  \Gamma=\F_2^2=\{0,a,b,a+b\},
+\]
+and let $\rho\colon\Gamma\to\Gamma$ be the linear automorphism defined by
+\[
+  \rho(a)=a+b,
+  \qquad
+  \rho(b)=a.
+\]
+Then $\rho(a+b)=b$, so $\rho$ cyclically permutes the three nonzero
+elements of $\Gamma$ and has no nonzero fixed point.
+
+Take $V(K_8)=\Gamma\times\{0,1\}$.  For $d\in\Gamma\setminus\{0\}$ assign
+the internal edge $\{(x,i),(x+d,i)\}$ the color $I_d$, and assign the
+cross edge $\{(x,0),(y,1)\}$ the color
+\[
+  C_{\rho(x)+y}.
+\]
+Each $I_d$ is a perfect matching.  Each $C_s$ is a perfect matching
+because $x\mapsto s+\rho(x)$ is a bijection of $\Gamma$.  Thus the three
+internal colors and four cross colors form a one-factorization of $K_8$.
+
+Suppose that $F$ is a rainbow $2$-regular subgraph on seven vertices.
+It has seven edges and hence uses every color exactly once.  In
+particular, it has four cross edges and three internal edges.  Put
+\[
+  r_i=\lvert V(F)\cap(\Gamma\times\{i\})\rvert,
+  \qquad
+  m_i=\lvert E(F[\Gamma\times\{i\}])\rvert.
+\]
+Degree sums in the two parts give
+\[
+  2r_i=2m_i+4.
+\]
+Since $r_0+r_1=7$, one part contains three vertices and one internal edge,
+while the other contains four vertices and two internal edges.  Let
+$I_d$ be the color of the single internal edge and $I_e,I_f$ the colors
+of the other two.  The three internal colors are all used, so
+\[
+  e+f=d.
+\]
+
+Write the cross edges, with incidence labels repeated when necessary, as
+\[
+  \{(x_j,0),(y_j,1)\},
+  \qquad 1\le j\le4.
+\]
+In each part, the sum of the labels over all edge incidences is zero,
+since every vertex of $F$ has degree two and $\Gamma$ has characteristic
+two.  An internal edge of color $I_t$ has endpoint sum $t$.  The
+internal-edge sum is therefore $d$ in both parts: it is $d$ on one side
+and $e+f=d$ on the other.  Hence
+\[
+  \sum_{j=1}^4x_j=d,
+  \qquad
+  \sum_{j=1}^4y_j=d.
+\]
+All four cross colors occur once, and the sum of the elements of
+$\Gamma$ is zero.  Therefore
+\[
+  0
+  =\sum_{s\in\Gamma}s
+  =\sum_{j=1}^4\bigl(\rho(x_j)+y_j\bigr)
+  =\rho(d)+d,
+\]
+contradicting the absence of a nonzero fixed point of $\rho$.  Thus no
+rainbow $2$-regular subgraph on seven vertices exists.
+
+A $2$-regular subgraph on all eight vertices has eight edges and cannot
+be rainbow in a coloring with only seven colors.
+\end{proof}
+
+\paragraph{Prior art and scope.}
+Under the vertex order
+\[
+ (0,0),(a,0),(b,0),(a+b,0),(0,1),(a,1),(b,1),(a+b,1)
+\]
+and the color order
+\[
+ I_a,I_b,I_{a+b},C_0,C_a,C_b,C_{a+b},
+\]
+the coloring above is the symmetric array
+\[
+  \begin{array}{c|cccccccc}
+      & 1      & 2      & 3      & 4      & 5      & 6      & 7      & 8      \\
+    \hline
+    1 & \cdot  & 1      & 2      & 3      & 4      & 5      & 6      & 7      \\
+    2 & 1      & \cdot  & 3      & 2      & 7      & 6      & 5      & 4      \\
+    3 & 2      & 3      & \cdot  & 1      & 5      & 4      & 7      & 6      \\
+    4 & 3      & 2      & 1      & \cdot  & 6      & 7      & 4      & 5      \\
+    5 & 4      & 7      & 5      & 6      & \cdot  & 1      & 2      & 3      \\
+    6 & 5      & 6      & 4      & 7      & 1      & \cdot  & 3      & 2      \\
+    7 & 6      & 5      & 7      & 4      & 2      & 3      & \cdot  & 1      \\
+    8 & 7      & 4      & 6      & 5      & 3      & 2      & 1      & \cdot
+  \end{array}
+\]
+in which the entry in row $u$ and column $v$, for $u\ne v$, is the index of
+the color of the edge $uv$.  Every row is a permutation of $1,\dots,7$, so
+the array is a one-factorization, and each entry is obtained from the
+construction above by substitution.  This array is exactly matrix $B$ in
+\cite{AEMM}.  Akbari, Etesami, Mahini, and
+Mahmoody reported, based on a computer search, that the coloring has no
+rainbow $7$-cycle.  The one-factorization and that property are prior.
+Theorem~\ref{thm:main} does not rest on this identification: its proof uses
+only the construction given above.  What the identification supplies is the
+attribution of the one-factorization, and of the absence of a rainbow
+$7$-cycle in it, to \cite{AEMM}.
+The proof above excludes both possible $2$-regular graphs on seven
+vertices, $C_7$ and $C_3\cup C_4$, and records the resulting
+counterexample to Conjecture~3.9.  The analogous statement restricted to
+$n\ge5$ is not addressed here.
+
+\begin{thebibliography}{9}
+
+\bibitem{AEMM}
+S.~Akbari, O.~Etesami, H.~Mahini, and M.~Mahmoody,
+\emph{On rainbow cycles in edge colored complete graphs},
+Australas. J. Combin. \textbf{37} (2007), 33--42.
+
+\bibitem{BN}
+J.~Bar\'at and Z.~L.~Nagy,
+\emph{Transversals in generalized Latin squares},
+Ars Math. Contemp. \textbf{16} (2019), no.~1, 39--47,
+\url{https://doi.org/10.26493/1855-3974.1316.2d2}.
+
+\bibitem{BNpre}
+J.~Bar\'at and Z.~L.~Nagy,
+\emph{Transversals in generalized Latin squares},
+preprint, arXiv:1701.08220v1 (2017),
+\url{https://arxiv.org/abs/1701.08220v1}.
+
+\end{thebibliography}
+
+\end{document}

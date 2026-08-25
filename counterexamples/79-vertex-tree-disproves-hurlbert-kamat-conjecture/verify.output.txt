@@ -1,0 +1,35 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d9c430af1f862dfbea910f5a55844b98888529ee1af28b18e3ee48e12cfe608c
+python:  Python 3.9.25
+=== program output follows ===
+object: two-level tree, branch sizes (9, 8, 8), 79 vertices, 78 edges
+PASS object_is_a_tree_on_79_vertices [order=79 size=78 connected=True centers=1 hubs=3 supports=25 leaves=50]
+PASS hypothesis_no_vertex_of_degree_two [degree spectrum [(1, 50), (3, 26), (9, 2), (10, 1)], hub degrees [9, 9, 10]]
+PASS hypothesis_witness_has_degree_three [deg(c)=3]
+PASS hypothesis_rank_18_is_admissible [alpha(T)=53, r=18 admissible (1<=r<=alpha)]
+PASS hubs_and_leaves_form_an_independent_set [independent set of size 53 (3 hubs + 50 leaves), edges inside: 0]
+PASS all_hypotheses_of_the_conjecture [tree=True, no_degree_2=True, r_admissible=True, witness_deg3=True, witness_not_leaf=True]
+PASS dp_agrees_with_exhaustive_enumeration [n=19 member agrees, total independent sets 18254]
+PASS star_identity_agrees_with_enumeration [361 (vertex, rank) pairs agree with enumeration]
+PASS path3_independence_polynomial [P_{P_3}(z) coefficients [1, 3, 1]]
+PASS branch_polynomial_H_t [t=0..10 agree; H_9 has 20 coefficients]
+PASS coefficient_formula_for_S_powers [728 coefficients of S^q, q<=25, match]
+PASS coefficient_formula_for_H_t [143 coefficients match]
+PASS center_deletion_identity [75 vertices, 25 components of size {3}, P == S^25: True]
+PASS leaf8_deletion_identity [graph on 77 vertices; identity holds: True]
+PASS leaf9_deletion_identity [graph on 77 vertices; identity holds: True]
+PASS center_18_star_count [|I_c^18(T)| computed 1526033336050350]
+PASS leaf_18_star_counts_both_orbits [leaf orbits: [(1521164183552880, 18), (1524522945307798, 32)]]
+PASS second_route_center_18_by_formula_only [[z^17]S^25 by binomial formula = 1526033336050350; rooted DP from the edge list = 1526033336050350; paper = 1526033336050350]
+PASS second_route_leaf8_18_by_formula_only [[z^17](1+z)(zS^24+H_9H_8H_7) by formula and convolution = 1524522945307798; rooted DP = 1524522945307798; paper = 1524522945307798]
+PASS second_route_leaf9_18_by_formula_only [[z^17](1+z)(zS^24+H_8^3) by formula and convolution = 1521164183552880; rooted DP = 1521164183552880; paper = 1521164183552880]
+PASS second_route_gap_by_formula_only [gap by the algebraic route alone = 1526033336050350 - 1524522945307798 = 1510390742552 (paper 1510390742552)]
+PASS refutation_center_beats_every_leaf [c=1526033336050350  max leaf=1524522945307798  gap=1510390742552 over 50 leaves]
+PASS no_leaf_is_a_maximum_18_center [max_v |I_v^18| = 1526033336050350 attained at [('c', 1)], degrees [3]]
+PASS minimum_maximal_independent_set_of_T [DP validated against enumeration on 3 small members; mu(T)=26 = |{c}| + #supports, mu(T)/2=13, r=18, so r > mu(T)/2: True]
+PASS family_census_two_level_trees [220 members with t_i in {0,3..11} searched, 29 not HK; smallest order 79 at t=(9, 8, 8) ranks [18, 19, 20, 21, 22, 23]; paper's member found with failing ranks [18, 19, 20, 21, 22, 23]]
+scope: the exhibited tree, all its hypotheses, all four asserted counts and all three polynomial identities are recomputed from the edge list alone by rooted dynamic programming; each of the four asserted counts is then recomputed a second time by the paper's algebraic route -- formula (5) for [z^m]S^q, the closed form for [z^m]H_t, and coefficient convolution, binomial arithmetic only, touching neither the graph nor the polynomial primitives the DP uses -- and the two routes agree digit for digit.
+NOT RE-RUN: the statement being refuted. This program reads no literature, so it cannot confirm that the conjecture quoted in the paper -- every tree with no vertex of degree two is r-HK for every r with 1 <= r <= alpha -- is the source statement, and in particular it cannot rule out a restriction on r in the source. That gap is load-bearing here: mu(T)=26, so the exhibited failure rank r=18 exceeds mu(T)/2=13, and the ranks at which T fails to be r-HK are exactly [18, 19, 20, 21, 22, 23]. Under any reading that admits only r <= mu(T)/2, the threshold recurring in the Holroyd-Talbot literature, every count above remains correct and none of them contradicts the conjecture. Also not tested: minimality of the order 79 over all trees, which the paper does not claim, and the census sweep, which covers only branch sizes in {0,3,...,11}.
+VERDICT: ALL 25 CHECKS PASS
+=== program exited with status 0 ===

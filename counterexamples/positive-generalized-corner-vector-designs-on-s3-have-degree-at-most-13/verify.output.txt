@@ -1,0 +1,61 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5e1de55cadafb6d86c4ea4d3a1230c92392a107ff9e42d4b7d880d1e1e450758
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- Positive Generalized Corner-Vector Designs on S^3
+     input from the paper: the 11-term coefficient tuple of eq. (2)
+PASS object_tuple_wellformed [11 distinct exponent triples, all coefficients nonzero]
+PASS object_matches_printed_eq2 [11 terms of eq. (2) reproduced from the coefficient tuple]
+     p = 2 + 240e_2 + 1345e_3 + 227924e_4 - 3518e_2^2 - 448e_2e_3 + 283604e_3^2 - 1529173e_2e_4 + 12886e_2^3 + 4855151e_3e_4 - 132972e_2^2e_3
+     expanded: 130 monomials in y_1..y_4
+PASS degree_in_x_is_14 [max y-degree 7 -> x-degree 14 (paper: 14); 40 top monomials, e.g. y^(0, 1, 3, 3) with coefficient -132972; no y_i occurs above power 3]
+PASS y_expansion_symmetric_hence_B4_invariant [invariant under all 24 permutations of y = (x_1^2,...,x_4^2)]
+PASS p_at_corner_s0_equals_2 [p(v_{a,0}) = p(1,0,0,0) = 2 (paper: 2)]
+PASS moment_normalization_and_e1_powers_are_one [<(y_1+...+y_4)^n> = 1 for n = 0..7 (e_1 = 1 on S^3); the n = 7 case sums 120 monomial moments with multinomial weights; got ['1']]
+PASS odd_moments_vanish_by_computed_sign_symmetrization [the sign-subgroup symmetrization of all 2160 monomials of odd degree <= 15 is computed to be 0, hence <x^a> = 0, and mom_x agrees on every one; control: the same summation returns 16 (not 0) on the 4 even monomials [(14, 0, 0, 0), (2, 4, 4, 4), (0, 0, 0, 2), (0, 0, 0, 0)], so the gate is not vacuous]
+PASS cell24_is_on_the_sphere [24 distinct unit vectors (the 24-cell)]
+PASS moment_agrees_with_24cell_5design [all 126 monomials of x-degree <= 5 integrate identically over the 24-cell and under the moment functional]
+PASS cell24_control_fails_at_degree_6 [20 degree-6 monomials disagree (e.g. (0, 0, 0, 6): 24-cell 3/32 vs sphere 5/64) -- the previous check is not vacuous]
+PASS two_closed_forms_for_the_moment_agree [Pochhammer and double-factorial forms agree on all 330 exponent vectors with |a| <= 7.  HONEST LABEL: these two forms are algebraically the SAME formula rewritten -- (1/2)_a = (2a-1)!!/2^a and (2)_m = (m+1)! turn one into the other -- so this is a transcription check, not an independent derivation.  Genuine independence is supplied by the next check and by the Laplacian route to <p>]
+PASS moment_matches_laplacian_route_through_degree_14 [Dirichlet/Pochhammer moment equals Delta^m x^a / (2^m m! 4*6*...*(2m+2)) on all 330 even monomials of x-degree <= 14 -- the whole range used by p, by an algorithmically unrelated route]
+PASS mean_of_p_recomputed_matches_paper [<p> = -60763/143360 ; paper Lemma 3: -60763/143360]
+PASS mean_of_p_second_route_laplacian_agrees [harmonic/Laplacian route gives -60763/143360]
+PASS mean_of_p_is_strictly_negative [-60763/143360 < 0 (numerator -60763)]
+PASS profile_squared_coordinates_sum_to_one [u + s*(1-u)/s = 1 for s = 1,2,3, so each profile lies on S^3.  SCOPE: this is a self-test of profile_polys, not a test of the paper -- it cannot fail for any object, only for a corrupted profile.  That the profile really is the squared-coordinate vector of v_{a,s} is tested separately, by agreeing with the independently built squared_coords() at 609 rational a^2]
+PASS reduction_s1_matches_paper_H1 [least integer scaling 1 (paper 1), deg 6, coeffs match]
+PASS reduction_s2_matches_paper_H2 [least integer scaling 32 (paper 32), deg 7, coeffs match]
+PASS reduction_s3_matches_paper_H3 [least integer scaling 729 (paper 729), deg 7, coeffs match]
+PASS subdivisions_are_partitions_of_unit_interval [0 = r_0 < r_1 < r_2 < r_3 = 1 for s = 1,2,3: ['0', '1/6', '5/6', '1']; ['0', '1/12', '3/4', '1']; ['0', '1/20', '3/5', '1']]
+PASS bernstein_implementation_selftest [endpoint coefficients reproduce H(r), H(q) on all 9 intervals; control: min beta of u-1/2 on [0,1] is -1/2 < 0]
+PASS bernstein_coefficients_verified_as_exact_identity [for all 9 intervals, sum_k beta_k C(d,k) z^k (1-z)^{d-k} equals H(r+(q-r)z) coefficient by coefficient, and the affine shift agrees with H at 9 points (> deg H), so eq. (3) is verified rather than assumed; control: perturbing one beta_k by 1 breaks the identity (True).  BASIS, for d in [6, 7]: every basis element used by the reconstruction is identified coefficient by coefficient with comb(d,k) z^k (1-z)^{d-k} and every comb(d,k) >= 1, so each is >= 0 on [0,1]; and sum_k comb(d,k) z^k (1-z)^{d-k} is the constant polynomial 1 exactly -- nonnegativity and partition of unity are computed here, not asserted; control: changing one weight from 1 to 2 destroys the partition of unity (True).  RESIDUAL, for all 9 intervals: H(r+(q-r)z) - min_k beta_k equals sum_k (beta_k - min beta) comb(d,k) z^k (1-z)^{d-k} coefficient by coefficient, and all 9 residual coefficient vectors are >= 0 (smallest entry 0), so with the basis facts above the step min_k beta_k -> lower bound on H is a computation, not an assertion; control: perturbing one residual coefficient by 1 breaks the identity on every interval (True).  The only step of the bound left outside the exact arithmetic is then the sign fact z >= 0, 1-z >= 0 for z in [0,1], which is the definition of the interval]
+PASS bernstein_minima_s1_match_table [computed ['14287/7776', '46531/23328', '14287/7776'] ; paper ['14287/7776', '46531/23328', '14287/7776']]
+PASS bernstein_minima_s2_match_table [computed ['137627845/2985984', '414113333/5971968', '219941/5376'] ; paper ['137627845/2985984', '414113333/5971968', '219941/5376']]
+PASS bernstein_minima_s3_match_table [computed ['542097724127/448000000', '17317137/15625', '4479262/3125'] ; paper ['542097724127/448000000', '17317137/15625', '4479262/3125']]
+PASS all_nine_bernstein_minima_are_positive [smallest of the nine is 14287/7776 > 0]
+PASS table_entries_really_are_lower_bounds_for_H [min_k beta_{I,k} <= H_s(t) at 189 sample points spread over the nine intervals; smallest slack 0 >= 0 (the relation is <=, not <: equality occurs at an interval endpoint where beta_0 = H(r) is the minimum).  This is a spot-check of a bound established exactly, and for every u, by bernstein_coefficients_verified_as_exact_identity above: the eq. (3) identity, the computed nonnegativity and partition of unity of the basis, and the exact nonnegative representation of H(r+(q-r)z) - min_k beta_k]
+PASS sturm_H1_has_no_root_in_unit_interval [squarefree=True, roots in (0,1] = 0, H_1(0) = 2, H_1(1) = 2]
+PASS sturm_H2_has_no_root_in_unit_interval [squarefree=True, roots in (0,1] = 0, H_2(0) = 1391, H_2(1) = 64]
+PASS sturm_H3_has_no_root_in_unit_interval [squarefree=True, roots in (0,1] = 0, H_3(0) = 39713, H_3(1) = 1458]
+PASS sturm_implementation_control [root counts in (0,1]: (u-1/4)(u-1/2) -> 2, u^2+1 -> 0, 2u-1 -> 1; H_1 has 2 real roots in (-10,10] so the no-root verdict above is not vacuous]
+PASS p_positive_on_203_true_orbit_points_s1 [min over 203 rational a^2 in [2^-24, 2^24] is 46531/23328 > 0; matches H_1(u)/1 at every point: True; certified lower bound 14287/7776]
+PASS p_positive_on_203_true_orbit_points_s2 [min over 203 rational a^2 in [2^-24, 2^24] is 1988758586964614/1002544368429379 > 0; matches H_2(u)/32 at every point: True; certified lower bound 219941/172032]
+PASS p_positive_on_203_true_orbit_points_s3 [min over 203 rational a^2 in [2^-24, 2^24] is 206544964675482/107213535210701 > 0; matches H_3(u)/729 at every point: True; certified lower bound 5772379/3796875]
+PASS p_positive_on_orbit_s0 [p(v_{a,0}) = p(1,0,0,0) = 2 > 0 for every a > 0 (paper: 2)]
+PASS H1_symmetric_under_u_to_1_minus_u [H_1(u) = H_1(1-u), as forced by symmetry of p and the 2-point profile (u,1-u,0,0); this is why the outer two table entries coincide]
+PASS b4_has_384_elements [4! * 2^4 signed permutations of R^4]
+PASS orbit_sizes_enumerated [a=1,s=0:8; a=3,s=0:8; a=3,s=1:48; a=1,s=1:24; a=1/2,s=1:48; a=3,s=2:96; a=1,s=2:32; a=3,s=3:64; a=1,s=3:16; a=1/2,s=3:64]
+PASS p_is_constant_on_every_orbit [one value of p per orbit over all 10 representatives, so sum_{x in orbit} p(x) = |orbit| p(v)]
+PASS orbit_sum_equals_size_times_reduced_polynomial [sum_{x in orbit} p(x) = |orbit| * H_s(u)/(1, 32, 729), computed by explicit summation over the group orbit on one side and by the reduced univariate polynomial on the other]
+PASS orbits_are_antipodal [-v lies in the B_4 orbit of v for all 10 representatives (since -I in B_4).  SCOPE: a self-test of the group construction -- -I is in B_4 for every v, so this cannot fail for any object, only for a corrupted b4_elements()]
+PASS degree15_orbit_sums_vanish [all 816 monomials of degree 15 have zero sum over every corner-vector orbit]
+PASS degree15_spherical_means_vanish [the sign-subgroup symmetrization of all 816 degree-15 monomials is computed to be 0, so each has zero spherical mean (mom_x agrees), hence exactness through degree 14 is equivalent to exactness through degree 15 (Remark 5); control: 120 of the 680 degree-14 monomials have NONZERO symmetrization, so the gate is not vacuous]
+PASS degree14_orbit_sums_control [120 of 680 degree-14 monomials have NONZERO orbit sum (e.g. (0, 0, 0, 14) -> 76527552), so the vanishing above is a property of odd degree, not of the summation]
+PASS certified_positive_lower_bound_for_p_on_all_orbits [p(v_{a,s}) >= 219941/172032 > 0 for every a > 0 and every s in {0,1,2,3}.  u-RANGE: u = a^2/(a^2+s) is strictly increasing in a^2 across 203 sampled a^2 in [2^-24, 2^24] and lies strictly inside (0,1) and inside one of the paper's three subintervals at every one of them; and it is onto, so nothing is missed and nothing beyond [0,1] is needed: for each of 65 rational targets u in (0,1) (down to 1/1000 and up to 999/1000) the preimage a^2 = s u/(1-u) reproduces u exactly, and p at that genuine orbit point equals H_s(u)/scale_s and is at least that subinterval's Bernstein minimum -- 195 further exact evaluations of p]
+PASS certified_bound_is_below_every_evaluated_value [L = 219941/172032 does not exceed the smallest p value actually observed for any s (206544964675482/107213535210701)]
+PASS refutation_lower_bound_exceeds_the_spherical_mean [any positive normalized formula returns >= 219941/172032 for p, while int p dsigma = -60763/143360 < 0 : Theorem 1 holds, Problem 6.1 has a negative answer]
+PASS 200_random_positive_normalized_formulas_all_disagree [every sampled sum_i W_i |orbit_i| p(v_i) with W_i > 0 and sum_i W_i |orbit_i| = 1 lies above 219941/172032; smallest seen 2, versus the true value -60763/143360]
+NOTE: the paper contains no exhaustive census.  Its universal quantifier (all a > 0, all s in {0,1,2,3}) is a continuum and is discharged exactly here by the Bernstein certificate over a partition of [0,1], independently re-certified by Sturm root counting; every computational assertion of the refutation itself (eq. (2), Lemma 3, Lemma 4 with its table, Remark 5 and Theorem 1) is recomputed above from the eleven coefficients of eq. (2) alone.
+NOT RE-RUN: (i) the SHARPNESS half of the corollary -- the two positive-weight 13-designs of this type reported in the cited paper, whose nodes and weights are given there numerically to six significant figures -- is not verified here, as the paper itself states; (ii) claims about the cited literature (its definition of a weighted design, and its record that signed 15-designs exist on S^3) are read, not computed; (iii) two elementary sign facts are used as definitions rather than computed: z >= 0 and 1-z >= 0 for z in [0,1], which is what the Bernstein interval means, and a^2 > 0 implies 0 < a^2/(a^2+s) < 1; (iv) this folder ships no mutation log, no corrupted-run transcript and no second implementation -- the falsifiability evidence here is the controls printed beside the checks, which are re-run on every invocation.
+VERDICT: ALL 48 CHECKS PASS
+=== program exited with status 0 ===

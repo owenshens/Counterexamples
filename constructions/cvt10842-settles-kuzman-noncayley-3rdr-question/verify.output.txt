@@ -1,0 +1,34 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  986e591a9bd5909fbbce2731fc0abed2848218c9e43dbfec99f6c8392079e805
+python:  Python 3.9.25
+=== program output follows ===
+PASS witness_decodes_to_cubic_graph_of_order_108 [n=108 edges=162 degrees from 3 to 3]
+PASS witness_is_connected [component covers 108 of 108 vertices]
+PASS witness_is_simple_and_has_one_common_finite_eccentricity [raw records 162 all distinct and loop-free: True; all distances finite: True; eccentricities occurring: [9]]
+PASS automorphism_census_is_a_group_of_order_216 [|Aut(X)|=216, every member adjacency preserving: True, closed under product and inverse: True]
+PASS X_is_vertex_transitive [orbit sizes [108]]
+PASS vertex_stabiliser_has_order_2 [|Aut(X)|/|V|=2, computed stabiliser order 2]
+PASS colour_classes_are_disjoint_18_sets_of_valid_labels [sizes [18, 18, 18], union 54, labels in [1,107]]
+PASS every_uncoloured_vertex_has_one_neighbour_in_each_class [54 vertices have f(v) empty, 0 of them fail the one-per-class count]
+PASS f_is_a_3_rainbow_dominating_function_of_weight_54 [definition satisfied everywhere: True, w(f)=54]
+PASS coloured_set_and_its_complement_are_the_two_bipartition_classes [bipartite: True with parts (54, 54); coloured vertices confined to one side: True]
+PASS product_with_K3_is_5_regular_on_324_vertices [|V|=324, every closed neighbourhood has 6 vertices]
+PASS image_of_f_is_a_perfect_dominating_set_of_the_product [|D|=54, every one of 324 vertices dominated exactly 1 time(s)]
+PASS degree_bound_forces_gamma_r3_at_least_54 [ceil(324/6)=54; the step 'a 3RDF of weight w yields a dominating set of size w in the product' is a cited lemma, not proved here, and its conclusion holds for 486 of 486 test functions (every automorphic image and every one-colour extension of f)]
+PASS gamma_r3_equals_54_and_X_is_3_RDR [bounds meet: 54 <= gamma_r3 <= 54, and |V(X)|/2 = 54]
+PASS independent_search_attains_54_and_never_less [kick descent from random starts, ignorant of the paper's function, reaches weight 54]
+PASS f_is_minimal_no_single_colour_can_be_dropped [f is a 3RDF: True; all 54 colours are essential; removable ones: 0]
+PASS lemma_n_le_2w_survives_exhaustive_small_cubic_search [no 3RDF of weight |V|/2-1 on K4, K33, prism, Q3, Petersen; exhaustive lightest weights [3, 3, 4, 6, 6] against the |V|/2 thresholds [2, 3, 3, 4, 5]]
+PASS reduction_behind_the_lower_bound_holds_exactly_on_small_graphs [gamma_r3(G) vs gamma(G box K3): K4 3/3, K33 3/3, prism 4/4, Q3 6/6, Petersen 6/6]
+PASS derived_subgroup_has_order_54 [54 distinct commutators generate a closed set of size 54, index 4]
+PASS quotient_by_derived_subgroup_is_C2_x_C2 [cosets: 4, sizes [54], every square inside the derived subgroup: True]
+PASS exactly_three_subgroups_of_index_2 [coset census over A/<squares, commutators> finds 3 subgroups of order 108; that quotient has order 4; 13 conjugacy classes and every census subgroup is a union of them: True]
+PASS each_index_2_subgroup_has_two_orbits_of_size_54 [orbit size lists [[54, 54], [54, 54], [54, 54]]]
+PASS no_regular_subgroup_so_X_is_not_a_Cayley_graph [subgroups of order 108 (=|V|): 3, transitive among them: 0]
+PASS census_does_detect_regular_subgroups_on_a_known_Cayley_graph [circulant on 12 vertices with connection set {+-1, 6}: |Aut|=24, regular subgroups found: 2]
+PASS X_answers_the_question_non_Cayley_vertex_transitive_3_RDR [vertex-transitive: True, regular subgroups: 0]
+PASS verification_ran_to_completion_on_the_stated_witness
+NOT RE-RUN: (i) the identification of X with the entry CVT[108,42] of the cubic vertex-transitive census -- asserted in the paper's abstract and in the first sentence of its proof -- and any minimality over that census, both of which would need the external census catalogue; (ii) the general lemma that a 3-rainbow dominating function of weight w yields a dominating set of size w in G box K_3, equivalently gamma_r3(G) = gamma(G box K_3), which is cited rather than machine-proved: its conclusion is checked above on every automorphic image and every one-colour extension of the exhibited function, and the equality is checked exhaustively on 5 small cubic graphs, but it is not proved for all cubic graphs.  This program verifies the exhibited graph itself.
+VERDICT: ALL 26 CHECKS PASS
+=== program exited with status 0 ===

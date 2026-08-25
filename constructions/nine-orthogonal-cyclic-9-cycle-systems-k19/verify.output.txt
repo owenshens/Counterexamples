@@ -1,0 +1,61 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d209d90fff30183e1f30e18a08614ae40131cfcbb1e3aa1ff87c2bd9cd6a687b
+python:  Python 3.9.25
+=== program output follows ===
+Nine mutually orthogonal cyclic 9-cycle systems of K_19: verification
+n = 19, cycle length = 9, multiplier = 4
+  base cycle C = (0,1,3,18,5,13,4,9,12)
+  edges of C   = 0-1 1-3 3-18 5-18 5-13 4-13 4-9 9-12 0-12
+PASS base_cycle_is_a_9_cycle_on_Z19 [9 distinct vertices, 9 edges, all degrees 2]
+PASS signed_differences_match_and_hit_every_class [computed (1, 2, -4, 6, 8, -9, 5, 3, 7); |d| multiset (1, 2, 3, 4, 5, 6, 7, 8, 9)]
+PASS tail_vector_a0_matches_paper [computed (0, 1, 9, 18, 4, 18, 12, 5, 4)]
+PASS multiplier_4_has_order_9_mod_19 [order=9, 4^3=7, powers=(4, 16, 7, 9, 17, 11, 6, 5, 1)]
+  the nine base cycles 4^r C, r = 0..8:
+    r=0: (0,1,3,18,5,13,4,9,12)
+    r=1: (0,4,12,15,1,14,16,17,10)
+    r=2: (0,16,10,3,4,18,7,11,2)
+    r=3: (0,7,2,12,16,15,9,6,8)
+    r=4: (0,9,8,10,7,3,17,5,13)
+    r=5: (0,17,13,2,9,12,11,1,14)
+    r=6: (0,11,14,8,17,10,6,4,18)
+    r=7: (0,6,18,13,11,2,5,16,15)
+    r=8: (0,5,15,14,6,8,1,7,3)
+PASS each_of_9_families_partitions_E_K19 [19 cycles of length 9 covering all 171 edges, per system; cycle counts (19, 19, 19, 19, 19, 19, 19, 19, 19)]
+PASS every_system_is_cyclic_under_translation [all 9 systems: (19, 19, 19, 19, 19, 19, 19, 19, 19) distinct connected 9-cycles each, fixed by x->x+1]
+PASS nine_systems_pairwise_distinct [9 distinct among 9]
+PASS all_36_pairs_orthogonal_by_bruteforce [36 pairs tested over 361 cycle-pairs each; max shared edges = 1]
+PASS orthogonality_test_rejects_a_system_against_itself [max shared edges with itself = 9 (expected 9)]
+PASS computed_family_size_certifies_mu_ge_9 [certified mutually orthogonal cyclic 9-cycle systems: 9, so mu'(9,19) >= 9]
+PASS printed_table_rows_reproduce_and_are_distinct [rows r=1,2,3,4 reproduced -- 4 of the 4 printed rows -- each with 9 distinct residues]
+PASS multiplication_by_4_inverse_i_shifts_the_index [all 81 = 9x9 (i,j) images land on F_{(j-i) mod 9}]
+  STRUCTURAL LEMMA, the statement that makes the census below
+  exhaustive (verified here, not assumed).  For an odd prime p and
+  cycle length l = (p-1)/2 -- so (p,l) = (19,9) -- every cyclic
+  l-cycle system of K_p is the translation orbit O(C) of a single base
+  cycle C carrying exactly one edge of each difference class 1..l, and
+  conversely the orbit of any such C is a cyclic l-cycle system.
+    (L1) |E(K_p)| = l*p, so an l-cycle system has exactly p cycles and
+         Z_p permutes them.
+    (L2) p prime, so a nonzero translation generates Z_p; every edge
+         orbit has size p (the l difference classes), hence a nonempty
+         invariant edge set has >= p > l edges and no l-cycle is fixed
+         by a nonzero translation.
+    (L3) so every orbit of cycles has size p (it divides the prime p
+         and is not 1), and a system of exactly p cycles is one orbit.
+    (L4) O(C) covers class d exactly p*m_d times with m_d the number of
+         difference-d edges of C, and class d holds p edges; an exact
+         partition forces m_d = 1 for all d, and conversely.
+  (L1),(L2),(L4) are verified exhaustively on Z_19 by the next two
+  checks; (L3) is the group step they feed; the whole conclusion is
+  then cross-checked against brute force at (p,l) = (7,3).
+PASS edge_orbits_are_the_nine_difference_classes_of_size_19 [19 prime (divisors (1, 19)); 171 = 9*19 edges, so a 9-cycle system has exactly 19 cycles; all 3078 = 171x18 nonzero-translation stabiliser tests trivial; 9 edge orbits of sizes (19,), equal to the difference classes -- so an invariant edge set has >= 19 edges and no 9-cycle is translation-fixed]
+PASS one_edge_per_difference_class_forced_and_sufficient [24310 multiplicity vectors of 9 edges over 9 classes (= C(17,8) = 24310); exactly 1 meets every class and it is the all-ones vector (1); and the 19 translates of every edge exhaust its class once each = True]
+PASS structural_lemma_matches_bruteforce_in_the_K7_analogue [brute force over all 35 3-cycles of K_7 finds 30 partitions of E(K_7) into 3-cycles, 2 of them invariant under x->x+1; the lemma-based enumerator used at n=19 returns 2 base cycles (anchor d=3) and 2 (anchor d=1); developments equal the brute-force cyclic systems = True]
+PASS exhaustive_census_agrees_and_contains_the_nine [anchor d=9 gives 128304 systems, anchor d=1 gives 128304, sets equal=True, nine exhibited systems present=True]
+PASS lemma_criterion_matches_raw_definition_on_sample [66/66 sample pairs agree (9 orthogonal, 57 not)]
+PASS no_tenth_cyclic_system_extends_the_family [scanned all 128304 cyclic 9-cycle systems: 0 extend the family; every rejection carries a 2-shared-edge witness (0 without); each family member is orthogonal to 8 of the other 8; the best any system outside the family achieves is 5 of 9]
+PASS numeric_claims_recomputed [8/8 facts hold]
+NOT RE-RUN HERE: (i) the report of eight mutually orthogonal cyclic 9-cycle systems attributed to earlier work, which lives in an external table; (ii) the upper bound mu'(l,n) <= n-3, quoted from the literature -- only its evaluation 19-3 = 16 is checked; (iii) whether some entirely different family of ten mutually orthogonal cyclic 9-cycle systems of K_19 exists -- that is a maximum-clique question on the 128304-vertex orthogonality graph and is out of budget; what is settled here is that THIS family of nine admits no tenth member; (iv) the census is exhaustive only modulo the structural lemma printed above: its arithmetic steps are verified exhaustively on Z_19 and its conclusion is confirmed against brute force only in the small analogue (p,l) = (7,3). No assumption-free enumeration of all 9-cycle systems of K_19 is attempted, and none of (i)-(iv) touches Theorem 1: the family of nine and its 36 orthogonal pairs are established directly from the definition, with no lemma and no census.
+VERDICT: ALL 19 CHECKS PASS
+=== program exited with status 0 ===

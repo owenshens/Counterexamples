@@ -1,0 +1,80 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  2f2f768706b0fa9530522f1bd9707110ff1d15009f118d5c0ba9a50dd9bc0593
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- The Gaetz-Gao Closure Conjecture for Finite Coxeter Systems
+NOTE input from the paper: H_4 Coxeter matrix m_12=5, m_23=m_34=3, m_ij=2 otherwise
+NOTE exact arithmetic in Z[phi], phi^2 = phi+1; no floating point
+PASS H4.gens_are_involutions
+PASS H4.braid_orders_exact
+PASS H4.sparse_products_match_dense [57600 sampled elements, 0 mismatches]
+PASS H4.generators_act_as_involutions [0 violations]
+PASS H4.cayley_graph_graded_and_descents_nonempty [0 edges not changing length by 1; 1 elements with empty D_R, 1 with empty D_L (only the identity is allowed)]
+PASS H4.left_and_right_actions_commute [0 violations]
+PASS H4.unique_longest_element_has_all_descents [l=60 count 1, |D_R|=n count 1, |D_L|=n count 1]
+PASS H4.length_distribution_equals_Poincare_polynomial [derived degree 60 vs 60, first mismatch none]
+PASS H4.order_equals_product_of_degrees [derived 14400 vs 14400]
+PASS H4.max_length_equals_number_of_reflections [derived 60 vs 60]
+PASS H4.parabolic_order_two_routes_agree [0 of 16 subsets disagree]
+PASS H4.parabolic_subgroups_closed [0 violations]
+PASS H4.minimal_coset_reps_times_parabolic_equals_order [0 of 16 subsets fail]
+PASS H4.support_two_routes_agree [0 of 14400 elements disagree]
+PASS H4.length_additivity [0 violations]
+PASS H4.parabolic_factor_length_equals_steps [0 violations]
+PASS H4.wJ_is_minimal_coset_rep_and_bijective [0 violations]
+PASS H4.w_J_lies_in_W_J [0 violations]
+PASS H4.exact_product_wJ_times_w_J_equals_w [0 violations]
+PASS H4.stripping_independent_of_descent_choice [0 violations over 2 alternative rules]
+PASS H4.empty_set_and_support_always_in_BP [0 elements lack the empty set, 0 lack Supp(w)]
+PASS H4.full_set_always_in_BP [0 elements lack S]
+PASS H4.BP_closed_under_union [201991 pairs tested]
+PASS H4.BP_closed_under_intersection [201991 pairs tested]
+OBJECT elements=14400 max_length=60 tests=230400 positives=78498 pairs=201991 failures=0
+OBJECT profile 3:2492 4:62 5:8872 6:150 7:65 8:24 9:2627 10:68 12:24 16:16
+PASS census.elements_enumerated_is_14400 [derived 14400, paper 14400]
+PASS census.maximum_coxeter_length_is_60 [derived 60, paper 60]
+PASS census.bp_membership_tests_is_230400 [derived 230400 = 14400 x 16, paper 230400]
+PASS census.positive_bp_memberships_is_78498 [derived 78498, paper 78498]
+PASS census.unordered_distinct_bp_pairs_is_201991 [derived 201991, paper 201991]
+PASS census.union_intersection_failures_is_zero [derived 0, paper 0]
+PASS census.bp_size_profile_matches_paper [derived 3:2492 4:62 5:8872 6:150 7:65 8:24 9:2627 10:68 12:24 16:16]
+PASS census.paper_profile_sums_to_group_order [paper table sums to 14400, derived |W| = 14400]
+PASS census.paper_profile_weighted_by_size_gives_positives [paper 78498 vs derived 78498]
+PASS census.paper_profile_weighted_by_binomial_gives_pair_count [paper 201991 vs derived 201991]
+PASS census.independent_accumulators_agree [forward-coset route: 78498 positives, 201991 pairs, 0 families differ, 0 (w,J) unreached; stripping route: 78498 positives, 201991 pairs]
+PASS product.order_factorises [|W|=60 |W1|=10 |W2|=6]
+PASS product.parabolic_embeddings_well_defined
+PASS product.lemma_4_holds_in_all_three_groups [0 violations]
+PASS product.BP_factorises_componentwise [0 of 960 (w,J) disagree]
+PASS other_types.orders_match_classification [14 types]
+PASS other_types.lemma_4_holds [0 violations over 12564 (w,J) pairs]
+PASS other_types.BP_closed_under_union_and_intersection [0 failures over 33788 unordered pairs]
+PASS crossmodel.I2_5_two_independent_models_agree [keys ok=True, 0 elements disagree]
+PASS I2m.groups_have_order_2m_and_diameter_m [0 of 199 values of m fail]
+PASS I2m.multiplication_tables_consistent [0 violations]
+PASS I2m.lemma_4_holds [0 violations]
+PASS I2m.BP_closed_for_all_m_up_to_200 [0 closure failures over 122982 pairs]
+PASS selftest.order_depends_on_the_input_diagram [m_12=3 gives |W|=120 (A_4), m_12=5 gives 14400]
+PASS selftest.BP_predicate_nonconstant_and_left_right_sensitive [78498 positives of 230400 tests; D_L -> D_R gives 78498 positives and a different profile]
+PASS selftest.closure_detector_fires_on_damaged_family [victim=0]
+OBJECT type=A5 |W|=720 tests=23040 pairs=73729 failures=0
+OBJECT type=D5 |W|=1920 tests=61440 pairs=120416 failures=0
+OBJECT type=I2(5)xH3 |W|=1200 tests=38400 pairs=152310 failures=0
+OBJECT type=A6 |W|=5040 tests=322560 pairs=1078883 failures=0
+OBJECT type=H3xH3 |W|=14400 tests=921600 pairs=3602550 failures=0
+OBJECT type=D6 |W|=23040 tests=1474560 pairs=2552203 failures=0
+OBJECT type=E6 |W|=51840 tests=3317760 pairs=4580374 failures=0
+OBJECT type=A7 |W|=40320 tests=5160960 pairs=16910554 failures=0
+OBJECT type=A1xH4 |W|=28800 tests=921600 pairs=1772924 failures=0
+OBJECT type=A2xH4 |W|=86400 tests=5529600 pairs=18918202 failures=0
+OBJECT type=I2(5)xH4 |W|=144000 tests=9216000 pairs=27131854 failures=0
+PASS large_types.orders_match_classification [11 types]
+PASS large_types.lemma_4_holds [0 violations over 26987520 (w,J) pairs]
+PASS large_types.BP_closed_under_union_and_intersection [0 failures over 76893999 unordered pairs]
+NOTE SCOPE: the paper's H_4 census (Proposition 5) is re-derived in full (14400 elements, 230400 BP tests, 201991 pairs, 0 failures).
+NOTE Theorem 1 is additionally verified outright for 25 further finite Coxeter systems, among them I_2(5)xH_4 (144000 elements) and A_2xH_4 (86400), plus I_2(m) for every m <= 200 (which includes G_2 = I_2(6)).
+NOTE NOT re-derived here: Theorem 1 as a whole.  Its general type-A/D/E cases and its components B_n, F_4, E_7, E_8 rest on the Gaetz-Gao theorem for finite Weyl groups, which the paper cites and this program does not reprove; only A_1..A_7, D_4..D_6, E_6 and products of these are re-verified.
+NOTE NOT re-derived here: I_2(m) for m > 200, the types B/F needing 2cos(pi/4) (outside Z[phi]), E_7 and E_8.
+VERDICT: ALL 53 CHECKS PASS
+=== program exited with status 0 ===

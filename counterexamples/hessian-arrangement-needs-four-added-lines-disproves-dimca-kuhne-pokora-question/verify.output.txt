@@ -1,0 +1,151 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  6bc3d6d6b28bab1f01a12438f7ccdfbd266d9ee7626e57cdc16e280ac44e9c4f
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- extSS(Hessian) = 4, exact arithmetic in Q(w), w^2 = -1-w
+no floating point is used; every comparison below is exact
+
+-- Step 1: the object (identity pinning H to Dimca, Example 6.5(i)) ------
+    normalisation is the identity on all twelve printed forms: True (DECORATION: every printed form already has leading coefficient 1, so no input can make this false; it documents that the product below is taken over exactly the twelve lines used for the incidences)
+    expanded product of the 12 forms: 10 monomials, total degree 12
+    product   = (1)xyz^10 + (3)xy^4z^7 + (3)xy^7z^4 + (1)xy^10z + (3)x^4yz^7 + (-21)x^4y^4z^4 + ... (10 terms in all)
+    target    = (1)xyz^10 + (3)xy^4z^7 + (3)xy^7z^4 + (1)xy^10z + (3)x^4yz^7 + (-21)x^4y^4z^4 + ... (10 terms in all)
+    every coefficient of the expanded product lies in Z (w-part 0): True
+    product - target has 0 nonzero monomials
+PASS [01] IDENTITY: prod of 12 forms == xyz((x^3+y^3+z^3)^3-27x^3y^3z^3)  --  degree 12, 10 monomials, difference empty: True, unscaled: True
+PASS [02] H has exactly 12 distinct lines and the form has degree 12  --  |H| = 12 (paper: 12), deg = 12
+
+-- Step 2: incidences of H ---------------------------------------------
+    pairs of lines intersected: 66
+    distinct intersection points: 21
+    multiplicity multiset: {2: 12, 4: 9}
+    largest multiplicity 4 (that is P); other multiplicities present: [2]
+    sum over points of C(mult,2) = 66 ; C(12,2) = 66
+PASS [03] |Sing(H)| derived from the 66 pairwise meets  --  derived 21, paper 21
+PASS [04] multiplicity profile: 9 points of multiplicity 4, 12 of multiplicity 2  --  derived |P| = 9 at multiplicity 4, |V| = 12 at multiplicity [2]
+PASS [05] completeness: sum C(m,2) = C(12,2), so there are no further singular points  --  66 == 66
+PASS [06] derived quadruple points == the set P printed in the paper  --  9 derived, 9 printed, symmetric difference 0
+PASS [07] derived double points == the set V printed in the paper  --  12 derived, 12 printed, symmetric difference 0
+    per-line P-counts (distinct values over the 12 lines): [3]
+    per-line V-counts (distinct values over the 12 lines): [2]
+PASS [08] every line of H carries exactly 3 points of P and 2 points of V  --  P-counts [3], V-counts [2]
+
+-- Step 3: Lemma 2(1) ---------------------------------------------------
+    pairs of P-points: 36 = C(9,2); joined by a line of H: 36
+PASS [09] Lemma 2(1): all 36 pairs of P-points lie on a line of H  --  36 of 36 pairs joined
+    derived P-points per line: [3] ; 12*C(3,2) = 36 and C(9,2) = 36
+PASS [10] counting identity 12*C(3,2) = C(9,2) = 36 (no P-pair counted twice)  --  36 == 36 == 36
+    distinct spans of P-pairs: 12, of which outside H: 0
+PASS [11] every span of two P-points is a line of H (so a non-H line has <=1 P-point)  --  12 spans, 0 outside H
+
+-- Step 4: Lemma 2(2) (all nine points of P) ----------------------------
+    unjoined-V counts over the nine p in P: [4, 4, 4, 4, 4, 4, 4, 4, 4]
+PASS [12] Lemma 2(2), part (a): for each of the 9 p in P exactly 4 points of V are unjoined by H  --  counts [4] (paper: 4 each)
+PASS [13] Lemma 2(2), part (b): those 4 points are collinear and span a unique line  --  collinear for 9/9 p, unique span for 9/9
+PASS [14] Lemma 2(2), part (c): p does not lie on the line spanned by its 4 exceptional points  --  p off the line for 9/9 p
+    for p = (1:-1:0) the derived exceptional points are (0:0:1), (1:1:-1-w), (1:1:w), (1:1:1)
+    their derived span is the line (1:-1:0) (coefficients), i.e. (-1)y + (1)x
+PASS [15] for p=(1:-1:0) the 4 exceptional points are (0:0:1),(1:1:1),(1:1:w),(1:1:w^2)  --  derived set equals printed set: True
+PASS [16] for p=(1:-1:0) the line supplied by Dimca Thm 1.12(2) is x - y = 0  --  derived (-1)y + (1)x
+
+-- Step 5: Lemma 2(3) (all twelve points of V) --------------------------
+    lines of H through each v in V: [2]
+    P-points covered by the two old lines through v (distinct values): [6]
+PASS [17] Lemma 2(3), part (a): the two lines of H through each v in V cover exactly 6 points of P  --  6 covered for 12/12 v in V
+PASS [18] Lemma 2(3), part (b): exactly 3 points of P remain uncovered for each v in V  --  3 remaining for 12/12 v
+PASS [19] Lemma 2(3), part (c): the 3 joins v-b_i are distinct, outside H, and meet V only in v  --  clean for 12/12 v
+
+-- Step 6: upper bound, extSS(H) <= 4 -----------------------------------
+    derived joins from p=(1:-1:0) to its 4 exceptional points:
+        (1:1:0)   i.e.   (1)y + (1)x = 0
+        (1:1:-2*w)   i.e.   (-2*w)z + (1)y + (1)x = 0
+        (1:1:2+2*w)   i.e.   (2+2*w)z + (1)y + (1)x = 0
+        (1:1:-2)   i.e.   (-2)z + (1)y + (1)x = 0
+    printed added lines of the paper: (1)y + (1)x = 0, (-2)z + (1)y + (1)x = 0, (-2*w)z + (1)y + (1)x = 0, (2+2*w)z + (1)y + (1)x = 0
+PASS [20] the paper's 4 added lines are exactly the joins p-v_i (derived, then compared)  --  derived set == printed set: True
+PASS [21] the 4 added lines are distinct and none belongs to H  --  4 distinct, 0 of them in H
+    |B| = |H| + |added| = 12 + 4 = 16
+PASS [22] |B| = 16  --  derived 16, paper 16
+    |Sing(B)| = 45 ; |Sing(H)| = 21 ; new singular points = 24
+    multiplicity of p in B = 8 = 4 old lines + 4 added lines
+PASS [23] |Sing(B)| = 45  --  derived 45, comparison target 45 -- T4': the paper never prints |Sing(B)|, so the right-hand side here is a target fixed in this program and not a value quoted from the paper
+PASS [24] p has multiplicity 8 in B (all 4 added lines pass through p)  --  mult_B(p) = 8 = 4 + 4
+PASS [25] p is modular in B: every other singular point of B is joined to p by a line of B  --  0 of 44 singular points fail
+PASS [26] hence B is supersolvable and extSS(H) <= |B \ H| = 4  --  H is contained in B and |B \ H| = 4
+PASS [27] Sing(H) is contained in Sing(B) (used by the lower bound)  --  21 of 21 old singular points survive in B
+
+-- Step 7: lower bound, extSS(H) >= 4 -----------------------------------
+    forced non-H lines through X: distinct values over the 9 points of P: [4]
+    forced non-H lines through X: distinct values over the 12 points of V: [6]
+PASS [28] every X in P forces exactly 4 added lines, so k >= 4 in that case  --  derived [4], paper 4
+PASS [29] every X in V forces exactly 6 added lines, so k >= 6 in that case  --  derived [6], comparison target 6 -- T4': the paper argues only k >= 4 in this case (it says explicitly that the individual counts are not claimed to be sharp), so 6 is a target fixed in this program, not the paper's
+    max P-points on a line of H = 3 ; max P-points on a line not in H = 1
+    X outside Sing(H): at most 1 line of H through X, so k >= 9 - 3 = 6
+PASS [30] X outside Sing(H) forces k >= 6 (one old line covers <=3 of P, each added <=1)  --  9 - 3 = 6, comparison target 6 -- T4': the paper argues only k >= 4 in this case, so 6 is a target fixed in this program, not the paper's
+    minimum over all three cases: k >= 4
+PASS [31] lower bound over every possible modular point: extSS(H) >= 4  --  min(P:4, V:6, off:6) = 4
+
+-- Step 8: the theorem and its consequence ------------------------------
+    lower bound derived in step 7: extSS(H) >= 4
+    upper bound derived in step 6: extSS(H) <= 4 (a supersolvable extension of that size was exhibited: True)
+PASS [32] Theorem: extSS(H) = 4 (the lower bound meets the exhibited extension)  --  derived 4 <= extSS(H) <= 4
+PASS [33] consequence: no extension of H by ONE line is supersolvable (negative answer to DKP Remark 2.3)  --  extSS(H) = 4 > 1
+
+-- Step 8b: the first exponent d_1 = mdr(f), derived ---------------------
+    f = the degree-12 product; partial derivatives have 10, 10, 10 monomials
+    degree 0: 3 unknowns, 30 equations, dim AR(f)_0 = 0
+    degree 1: 9 unknowns, 70 equations, dim AR(f)_1 = 0
+    degree 2: 18 unknowns, 102 equations, dim AR(f)_2 = 0
+    degree 3: 30 unknowns, 117 equations, dim AR(f)_3 = 0
+    degree 4: 45 unknowns, 133 equations, dim AR(f)_4 = 1
+    degree 5: 63 unknowns, 150 equations, dim AR(f)_5 = 3
+    hence mdr(f) = 4: dim AR(f)_r = 0 for every smaller r, so no Jacobian syzygy of lower degree exists
+PASS [34] d_1 = mdr(f) = 4 = m(H), DERIVED (not quoted from Dimca Example 6.5(i))  --  mdr(f) = 4, m(H) = 4, profile [0, 0, 0, 0, 1, 3]
+PASS [35] d_1 <= (d-1)/2, the range where tau = (d-1)^2-d_1 d_2 characterises freeness  --  2*4 <= 11
+PASS [36] dim AR(f)_{d_1+1} = 3 = dim S_1, as a free AR(f) with exponents (4,7) forces (no second generator in degree 5)  --  dim AR(f)_5 = 3
+
+-- Step 9: scope of the question, freeness ------------------------------
+    d = 12 ; m(H) = max multiplicity = 4 ; tau(H) = sum (m_q-1)^2 = 93
+PASS [37] d = 12 and the maximal multiplicity m(H) = 4, both derived from Sing(H)  --  derived d=12, m=4
+    Q = the 4 multiple points unjoined to p; d - 2m_p = 4 and sum_{q in Q}(m_q-1) = 4
+    equality in d-2m_p <= sum(m_q-1) holds: True ; the equality clause of Dimca Thm 1.12(2) then makes H free with exponents (4,7)
+PASS [38] equality case of Dimca Thm 1.12(2) gives exponents (4,7), as the paper states  --  hypotheses m_p = d_1 (4 = 4) and m_p = m(H) (4 = 4) hold; 4 == 4, exponents (4,7)
+    free-arrangement identity: (d-1)^2 - d_1 d_2 = 121 - 28 = 93, and tau(H) = 93
+PASS [39] freeness with exponents (4,7) via du Plessis-Wall: tau = (d-1)^2 - d_1 d_2 for the DERIVED d_1 = mdr(f)  --  93 == 93 and 4+7 = 11
+    NOTE: given the multiplicity profile already verified in step 2, both sides of this identity are forced arithmetically, so its content is entirely in the derived d_1 = mdr(f) = 4 of step 8b; it is a criterion applied, not an independent recomputation
+    hypothesis of Dimca Thm 1.12(2): m_p <= d_1+1 < d-m_p+1 reads 4 <= 5 < 9
+PASS [40] H is in the scope of the DKP question: d_1 = m(H) = 4 and 4 <= 5 < 9  --  4 <= 5 < 9, d_1 = m(H) = 4
+
+-- Step 10: source fidelity (bibliographic) ----------------------------
+    input of this step: the embedded transcription T7, CORROBORATED token for token against the paper source supplied
+    expected \cite[Theorem~1.12(2)]{Dimca}          and version 2503.01624v7
+    expected \cite[Example~6.5(i)]{Dimca}           and version 2503.01624v7
+    expected \cite[Remark~2.3]{DKP}                 and version 2505.01733v4
+    expected \cite[Definition~1.3]{Kabat}           and version 2201.04856v1
+    derived resolution: Dimca[Theorem~1.12(2)] -> 2503.01624v7, Dimca[Example~6.5(i)] -> 2503.01624v7, DKP[Remark~2.3] -> 2505.01733v4, Kabat[Definition~1.3] -> 2201.04856v1
+    labelled citations present: DKP[Remark~2.3], Dimca[Example~6.5(i)], Dimca[Theorem~1.12(2)], Kabat[Definition~1.1], Kabat[Definition~1.3]
+    labelled citations OUTSIDE the four checked here (not verified by this program, and not a failure): Kabat[Definition~1.1]
+PASS [41] the four labels checked here are cited and resolve, through the paper's own bibliography, to exactly the four arXiv versions, one entry each (the label-to-number resolution inside those preprints was done by hand, see header)  --  problems: none
+
+-- Falsification probes: mutate one input, re-evaluate the SAME predicate --
+    P1  added lines: replace x+y-2w^2z by x+y+2z -> derived joins == printed set: False ; p still modular in the mutated B: False (1 of 46 singular points unjoined) -> checks 20 and 25 flip: True
+    P2  printed P: drop one of the nine points, insert (1:1:2) -> derived P == printed P: False (symmetric difference 2) -> check 06 flips: True
+    P3  printed exceptional points: drop (0:0:1) -> derived set == printed set: False (4 derived against 3 printed) -> check 15 flips: True
+    P4  the -27 of eq. (1): use -26 -> product == target: False (difference has 1 nonzero monomial(s)) -> check 01 flips: True
+    P5  the extSS citation: ask for Kabat[Definition~1.4] and version 2201.04856v2 instead -> label cited: False (the real label is cited: True) ; entries printing that version: none (the real version: Kabat) -> check 41 flips: True
+    P6  truncate B: keep only 3 of the 4 added lines -> |B| = 15 (target 16), |Sing(B)| = 39 (target 45), p modular: False (1 singular points unjoined) -> checks 22 and 25 flip: True
+    probes that flip the check they target: 6 of 6  (a probe is not a check: the check total is the same with and without this section)
+
+-- Residual gaps: steps NOT decided by any check above ------------------
+    G1  'at most one line of H passes through a point not in Sing(H)' is definitional (two lines of H through a point would put it in Sing(H)) and is not computed; the off-Sing(H) bound k >= 9-3 = 6 rests on it.
+    G2  'an arrangement with a modular point is supersolvable' -- for rank three this is the Orlik-Terao equivalence with lattice supersolvability, quoted by the paper (Section 1); not reproved here.  What is computed is modularity.
+    G3  Kabat Definition 1.3 defines extSS by supersolvable resolutions (chains adding one line at a time).  The program bounds min |B \ H| over supersolvable B; the two agree because any B containing H can be filtered one line at a time, which is an argument, not a computation.
+    G4  freeness of H is obtained by applying the du Plessis-Wall criterion (tau = (d-1)^2 - d_1 d_2 iff free, for d_1 = mdr(f) <= (d-1)/2) to the derived mdr(f) and tau; the criterion itself is an external theorem.
+    G5  the statement of Dimca Thm 1.12(2) is an external input (verified by hand against arXiv:2503.01624v7); only its arithmetic is re-derived here.
+    G6  resolving the labels Theorem 1.12(2), Example 6.5(i), Remark 2.3 and Definition 1.3 to the numbered items they name would require the three arXiv sources themselves, and those sources are not shipped beside the paper, so step 10 instead derives the resolution citation -> bibliography key -> arXiv version from the paper's own bibliographic data (embedded as literal input T7, and corroborated against the paper source whenever one is available); the label-to-number resolution INSIDE those three preprints was done by hand.
+
+VERDICT: ALL 41 CHECKS PASS
+
+NOT RE-RUN: this program re-derives every number it prints from the twelve printed linear forms, the four printed added lines and the point (1:-1:0), but it does NOT reprove the external inputs it applies -- the rank-three equivalence between having a modular point and lattice supersolvability (G2), the agreement of Kabat's resolution definition of extSS with min |B \ H| (G3), the du Plessis-Wall freeness criterion (G4), the statement of Dimca Theorem 1.12(2) (G5), and the definitional fact that at most one line of H passes through a point off Sing(H), on which the off-Sing(H) bound rests (G1); the resolution of the labels Theorem 1.12(2), Example 6.5(i), Remark 2.3 and Definition 1.3 to numbered items INSIDE arXiv:2503.01624v7, arXiv:2505.01733v4 and arXiv:2201.04856v1 was done by hand against those preprints, since they are not shipped here, and step 10 verifies only that the paper cites those four labels and that its own bibliography sends each to the arXiv version used here (G6); the three figures |Sing(B)| = 45 and the forced-added-line counts 6 for a modular point in V and 6 for one off Sing(H) are derived here and are NOT printed by the paper, whose lower-bound argument claims only k >= 4 in each case; the six falsification probes above are computed in this run, but no separate mutation transcript accompanies the paper; and any transcript shipped beside the paper that reports 40 checks, or a step 10 gap reading 'no paper .tex was found', was produced by an earlier build of this file and is NOT a run of this one -- this version embeds its bibliographic input and therefore records step 10 in every run, whether or not a paper source sits beside it, for 41 checks in total.
+=== program exited with status 0 ===

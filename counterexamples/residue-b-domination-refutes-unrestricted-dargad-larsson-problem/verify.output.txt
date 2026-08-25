@@ -1,0 +1,158 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  fbcb362333b58849ca0ece0c80d459da6f39acbec5f0caa0904c0765af8fc6b1
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- verifier for 'A Counterexample to the Unrestricted Dargad--Larsson Domination Problem'
+game: G_n = TS_{b-a}(n;a,b), S_L={1..a}, S_R={q..b}, q=b-a+1, p=b+1; every comparison is computed from the recursion and the
+short-game criterion X<=Y iff (no X^L with Y<=X^L) and (no Y^R with Y^R<=X).  Integer arithmetic only; no floating point,
+so no check is numeric or tolerance-based.
+
+[CHECK 1] the witness (a,b) = (3,5)
+    derived q = b-a+1 = 3 ; kappa = b-a = 2 ; claimed period p = b+1 = 6
+    derived S_L = [1, 2, 3] ; S_R = [3, 4, 5]
+    heap 0: Left -> []   Right -> []
+    heap 1: Left -> [0]   Right -> []
+    heap 2: Left -> [1, 0]   Right -> []
+    heap 3: Left -> [2, 1, 0]   Right -> [0]
+    heap 4: Left -> [3, 2, 1]   Right -> [1, 0]
+    heap 5: Left -> [4, 3, 2]   Right -> [2, 1, 0]
+    heap 6: Left -> [5, 4, 3]   Right -> [3, 2, 1]
+    order row r=0 vs s=0..5 : =<<|||
+    order row r=1 vs s=0..5 : >=<|||
+    order row r=2 vs s=0..5 : >>=|||
+    order row r=3 vs s=0..5 : |||=<<
+    order row r=4 vs s=0..5 : |||>=<
+    order row r=5 vs s=0..5 : |||>>=
+PASS witness chain G_3 < G_4 < G_5 for (a,b)=(3,5)  |  G_3<G_4=True, G_4<G_5=True
+PASS heap 6 has Left options exactly to heaps 5,4,3  |  derived Left targets of heap 6 = [5, 4, 3]
+PASS Left option to heap 4 is strictly dominated by the option to heap 5  |  both are Left options of heap 6: True ; G_4<=G_5=True ; G_5<=G_4=False
+    derived Prop 7.2 printed index range {q,...,b-2} = [3] ; Q cap [0,5] = [5] ; supplied indices = [3]
+    the comparison the counterexample needs is G_4 <= G_5, index b-1 = 4
+PASS needed index b-1=4 lies outside Prop 7.2's range, which is exactly {3}  |  printed=[3] supplied=[3] needed=4
+
+[CHECK 2a] Theorem 1's closed form on [0,b]^2 for all 0 < a < b <= 20
+    (a,b) pairs tested = 190 ; (r,s) comparisons decided = 46740 ; of these G_r<=G_s held 12556 times
+PASS G_r <= G_s  <=>  floor(r/q)=floor(s/q) and r<=s, for all (r,s) in [0,b]^2, all 0<a<b<=20  |  46740/46740 comparisons agree
+PASS G_0,...,G_b are pairwise distinct for all 0<a<b<=20  |  190 parameter pairs, no two of the b+1 values equal
+
+[CHECK 2b] periodicity to n = 4(b+1) and least period, 0 < a < b <= 10
+    a=1 b=2 p=b+1=3 : smaller candidate periods refuted by witnesses (d, n with G_n != G_{n+d}) = [(1, 0), (2, 0)]
+    a=1 b=3 p=b+1=4 : smaller candidate periods refuted by witnesses (d, n with G_n != G_{n+d}) = [(1, 0), (2, 0), (3, 0)]
+    a=2 b=3 p=b+1=4 : smaller candidate periods refuted by witnesses (d, n with G_n != G_{n+d}) = [(1, 0), (2, 0), (3, 0)]
+    heap sizes n checked against their residue: 1545
+PASS G_n = G_{n mod (b+1)} for all n <= 4(b+1), all 0<a<b<=10  |  1545/1545 heap sizes agree with their residue
+PASS no 0 < d < b+1 is a period, so b+1 is the least positive period, all 0<a<b<=10  |  every smaller candidate period has an explicit refuting heap size
+
+[CHECK 3a] boundary pair (b-1, b) for all 0 < a < b < 20
+    a=1 b=2 q=2 : q|(a-1)=True -> derived incomparable=True, G_{b-1}<G_b=False, block of b = [2]
+    a=1 b=3 q=3 : q|(a-1)=True -> derived incomparable=True, G_{b-1}<G_b=False, block of b = [3]
+    a=2 b=3 q=2 : q|(a-1)=False -> derived incomparable=False, G_{b-1}<G_b=True, block of b = [2, 3]
+    a=1 b=4 q=4 : q|(a-1)=True -> derived incomparable=True, G_{b-1}<G_b=False, block of b = [4]
+    a=2 b=4 q=3 : q|(a-1)=False -> derived incomparable=False, G_{b-1}<G_b=True, block of b = [3, 4]
+    a=3 b=4 q=2 : q|(a-1)=True -> derived incomparable=True, G_{b-1}<G_b=False, block of b = [4]
+    parameter pairs with q|(a-1): 41 ; with q not dividing a-1: 130
+PASS G_{b-1} and G_b are incomparable exactly when q | (a-1), all 0<a<b<20  |  171 parameter pairs
+PASS G_{b-1} < G_b exactly when q does not divide a-1, all 0<a<b<20  |  171 parameter pairs
+PASS the block of b is the singleton {b} exactly when q | (a-1)  |  171 parameter pairs
+PASS when q does not divide a-1: a>=2 and heaps b-1,b are both Left options of heap b+1, so G_{b-1} is a dominated option at index b-1  |  130 such parameter pairs, all exhibiting the residue-b domination
+
+[CHECK 3b] a = 1 : single option per player, no domination anywhere
+    a=1 b=2 : q=2, S_L=[1], S_R=[2], max |Left opts|=1, max |Right opts|=1 over n<=9
+    a=1 b=3 : q=3, S_L=[1], S_R=[3], max |Left opts|=1, max |Right opts|=1 over n<=12
+    a=1 b=4 : q=4, S_L=[1], S_R=[4], max |Left opts|=1, max |Right opts|=1 over n<=15
+    heap sizes examined for a=1: 639 (b = 2..19)
+PASS a=1: |S_L|=|S_R|=1, every heap has at most one option per player, and no option is dominated at any heap size <= 3(b+1)  |  639 heap sizes, 18 values of b, zero dominated options
+PASS a=1: q=b divides a-1=0, so the boundary dichotomy also calls the unrestricted statement true here  |  checked for b = 2..19
+
+[CHECK 3c] a = 2 : empty Prop 7.2 range, B_0 = {0,...,b-2}, residue-b witness present
+    a=2 b=3 : q=2, tau=1, Prop 7.2 range [], B_0=[0, 1], q|(a-1)=False, G_2<G_3=True, dominated Left residues at heap 4 = [2]
+    a=2 b=4 : q=3, tau=2, Prop 7.2 range [], B_0=[0, 1, 2], q|(a-1)=False, G_3<G_4=True, dominated Left residues at heap 5 = [3]
+    a=2 b=5 : q=4, tau=3, Prop 7.2 range [], B_0=[0, 1, 2, 3], q|(a-1)=False, G_4<G_5=True, dominated Left residues at heap 6 = [4]
+    a=2 b=6 : q=5, tau=4, Prop 7.2 range [], B_0=[0, 1, 2, 3, 4], q|(a-1)=False, G_5<G_6=True, dominated Left residues at heap 7 = [5]
+PASS a=2: Proposition 7.2's range {q,...,b-2} is empty for every b, so it supplies no comparison  |  17 values of b (3..19)
+PASS a=2: B_0 = {0,...,b-2}, Right has no move there, and G_n equals the integer game n on B_0 (Observation 5.2)  |  17 values of b, all of B_0 certified as an integer game
+PASS a=2: q=b-1 never divides a-1=1, G_{b-1}<G_b, and heap b+1 has heap b-1 as a dominated Left option -- the residue-b witness survives  |  17 values of b (3..19)
+
+[CHECK 4] Corollary 2's domination rule and residue distinctness, 0 < a < b <= 12, n <= 3(b+1)
+    positions examined = 1980 ; dominated options found = 8400
+PASS distinct options of one player always have distinct residues mod b+1 (spreads read back off the move generator; note 'spread = a-1' is definitional, the content is the absence of residue collisions)  |  1980 positions, no residue collision
+PASS every option target reduced mod b+1 in this check was independently shown equal to its residue (the reduction's premise, re-derived here because CHECK 2b only reaches b <= 10)  |  1980 positions
+PASS the dominated options at every heap size are exactly those Corollary 2 names (blockwise non-maximal for Left, non-minimal for Right)  |  1980 positions, 8400 dominated options, all accounted for
+PASS anti-vacuity: the domination sweep was non-empty and did find dominated options (so the agreement above is not agreement over an empty set)  |  positions=1980 dominated options found=8400
+
+[CHECK 5] the Q-dichotomy on consecutive pairs and coverage of G_0..G_{b-1}, 0 < a < b <= 20
+    a=3 b=4 q=2 : Q cap [0,b] = [3] ; consecutive comparisons holding on n in [0,b-2] = [0, 2] ; Obs 5.2 gives [0], Prop 7.2 gives [2]
+    a=3 b=5 q=3 : Q cap [0,b] = [5] ; consecutive comparisons holding on n in [0,b-2] = [0, 1, 3] ; Obs 5.2 gives [0, 1], Prop 7.2 gives [3]
+    a=4 b=5 q=2 : Q cap [0,b] = [3, 5] ; consecutive comparisons holding on n in [0,b-2] = [0, 2] ; Obs 5.2 gives [0], Prop 7.2 gives [2]
+    a=3 b=6 q=4 : Q cap [0,b] = [] ; consecutive comparisons holding on n in [0,b-2] = [0, 1, 2, 4] ; Obs 5.2 gives [0, 1, 2], Prop 7.2 gives [4]
+    a=4 b=6 q=3 : Q cap [0,b] = [5] ; consecutive comparisons holding on n in [0,b-2] = [0, 1, 3, 4] ; Obs 5.2 gives [0, 1], Prop 7.2 gives [3, 4]
+    consecutive pairs (n, n+1) with q <= n <= b-1 tested: 1140
+PASS for q <= n <= b-1: G_n < G_{n+1} iff n not in Q, incomparable iff n in Q, all 0<a<b<=20  |  1140 consecutive pairs
+PASS Observation 5.2 (first block) plus Proposition 7.2 (range minus Q) supply exactly the consecutive comparisons that hold among G_0..G_{b-1}  |  checked for every 0<a<b<=20
+
+[CHECK 5c] the paper's two printed descriptions of Q agree
+    (a,b,m) triples tested = 5700
+PASS Q's two printed forms {(m+1)(b-a)+m} and {(m+1)q-1} coincide term by term (a transcription cross-check: it fails only if the paper's two descriptions disagree), and in_Q accepts exactly the generated set, rejecting q-1  |  5700 triples
+
+[CHECK 6] Observation 5.2: G_n = n for 1 <= n <= tau = b-a, and B_0 = {0,...,tau}, 0 < a < b <= 14
+    a=1 b=2 : tau=1, B_0=[0, 1], heaps 1..tau certified equal to the integer games 1..1
+    a=1 b=3 : tau=2, B_0=[0, 1, 2], heaps 1..tau certified equal to the integer games 1..2
+    a=2 b=3 : tau=1, B_0=[0, 1], heaps 1..tau certified equal to the integer games 1..1
+    a=1 b=4 : tau=3, B_0=[0, 1, 2, 3], heaps 1..tau certified equal to the integer games 1..3
+    heap sizes n with 1 <= n <= tau certified as integers: 455
+PASS for 1 <= n <= tau Right has no move and G_n equals the integer game n, all 0<a<b<=14  |  455 heap sizes certified
+PASS the first block B_0 is exactly {0,...,tau}, so Observation 5.2 covers it entirely  |  all 0<a<b<=14
+
+[CHECK 7a] the counterexample under the paper's stated convention: G_{b-1} <= G_b is NOT derivable from Obs 5.2 + Prop 7.2 by transitivity and periodicity, 0 < a < b <= 16
+    a=2 b=3 q=2 : derived G_2<G_3=True ; both are Left options of heap 4: True ; supplied closure contains G_2<=G_3: False ; supplied pairs touching residue b other than (b,b): []
+    a=2 b=4 q=3 : derived G_3<G_4=True ; both are Left options of heap 5: True ; supplied closure contains G_3<=G_4: False ; supplied pairs touching residue b other than (b,b): []
+    a=2 b=5 q=4 : derived G_4<G_5=True ; both are Left options of heap 6: True ; supplied closure contains G_4<=G_5: False ; supplied pairs touching residue b other than (b,b): []
+    a=3 b=5 q=3 : derived G_4<G_5=True ; both are Left options of heap 6: True ; supplied closure contains G_4<=G_5: False ; supplied pairs touching residue b other than (b,b): []
+    a=4 b=5 q=2 : derived G_4<G_5=True ; both are Left options of heap 6: True ; supplied closure contains G_4<=G_5: False ; supplied pairs touching residue b other than (b,b): []
+    parameter pairs in the q-does-not-divide-(a-1) regime: 86
+PASS whenever q does not divide a-1 the domination at heap b+1 is real (G_{b-1}<G_b, both Left options) and the comparison it needs is NOT in the transitive closure of Obs 5.2 + Prop 7.2 -- the refutation survives the paper's own transitivity-and-periodicity latitude  |  86 parameter pairs, closure computed on {0..b} for each
+
+[CHECK 7b] when q | (a-1): every dominated option at every heap n <= 3(b+1) is derivable from Obs 5.2 + Prop 7.2 by transitivity and periodicity, 0 < a < b <= 16
+    a=1 b=2 q=2 : q|(a-1)=True, final block = [2], dominated options found over n<=9 = 0, all derivable so far: True
+    a=1 b=3 q=3 : q|(a-1)=True, final block = [3], dominated options found over n<=12 = 0, all derivable so far: True
+    a=1 b=4 q=4 : q|(a-1)=True, final block = [4], dominated options found over n<=15 = 0, all derivable so far: True
+    a=3 b=4 q=2 : q|(a-1)=True, final block = [4], dominated options found over n<=15 = 23, all derivable so far: True
+    a=1 b=5 q=5 : q|(a-1)=True, final block = [5], dominated options found over n<=18 = 0, all derivable so far: True
+    parameter pairs with q|(a-1): 34 (of which a>=2: 19) ; dominated options encountered: 6448 ; derivable from the source: 6448
+PASS CHECK 7b's mod-(b+1) reductions all verified against the engine  |  34 parameter pairs
+PASS positive half of the iff: when q | (a-1) every dominated option at every heap size is accounted for by Obs 5.2 + Prop 7.2 under transitivity and periodicity  |  34 parameter pairs (19 with a>=2), 6448/6448 dominations derivable
+
+[CHECK 7c] representative positions 0 <= n <= b: every dominated option is derivable from Obs 5.2 + Prop 7.2, 0 < a < b <= 16
+    a=1 b=2 q=2 : Prop 7.2 supplies pairs [] ; representative heaps 0..2 examined ; some domination needs Obs 5.2 rather than Prop 7.2: False
+    a=1 b=3 q=3 : Prop 7.2 supplies pairs [] ; representative heaps 0..3 examined ; some domination needs Obs 5.2 rather than Prop 7.2: False
+    a=2 b=3 q=2 : Prop 7.2 supplies pairs [] ; representative heaps 0..3 examined ; some domination needs Obs 5.2 rather than Prop 7.2: True
+    a=1 b=4 q=4 : Prop 7.2 supplies pairs [] ; representative heaps 0..4 examined ; some domination needs Obs 5.2 rather than Prop 7.2: False
+    parameter pairs = 120 ; dominations at representative heaps = 5716
+PASS contextual reading of Problem 7.1 is affirmative: every dominated option of every representative position 0..b is derivable from Obs 5.2 + Prop 7.2 by transitivity and periodicity  |  120 parameter pairs, 5716 dominations, all derivable
+PASS for every a >= 2 some domination is witnessed only by a comparison Prop 7.2 does not supply (it lies in the first block, i.e. comes from Obs 5.2), so without the transitivity latitude the answer is negative -- the paper's remark at the head of section 3  |  105 parameter pairs with a>=2
+
+scope note: the sweeps above are exhaustive over the stated finite ranges of (a,b) (b <= 20 for the order,
+b <= 10 for periodicity and least period, b < 20 for the boundary dichotomy, b <= 16 for the derivability closure of CHECK 7).
+The paper's claim for all 0<a<b rests on its Theorem 1 hand proof; this program certifies the computational
+content, not the induction beyond those ranges.
+
+gaps this program does NOT close, stated rather than hidden:
+  (1) QUOTATION FIDELITY.  That Problem 7.1, Proposition 7.2 and Observation 5.2 are numbered and worded in
+      arXiv:2607.27989v1 as the paper quotes them -- in particular that Prop 7.2's printed comparison range
+      really ends at b-2, that Q really is {(m+1)q-1 : m>=1}, and that Problem 7.1 as printed carries no
+      restriction on the heap size n -- is input data here, not a verified fact; the identifier itself is not
+      resolved by this program either.  Every verdict of CHECK 1d, CHECK 5b and CHECK 7 is conditional on
+      those three transcriptions being right; a single typo in any of them would invert the negative verdict.
+  (2) UNRESTRICTED (a,b).  Nothing above is an induction; the finite sweeps cannot certify all 0<a<b.
+  (3) DECORATION, declared.  These checks state true but definitional facts and could not fail for any input:
+      CHECK 3a-iii (q|b <=> q|(a-1) is forced by b=q+a-1); CHECK 3a-iv (implied by CHECK 3a-ii on the same
+      parameters); CHECK 3b-i's empty dominated sets (a=1 gives at most one option per player, so emptiness is
+      structural); CHECK 3b-ii (q divides 0 always); CHECK 6b (B_0 ends at q-1 and tau=q-1 by definition);
+      the 'spread = a-1' clause of CHECK 4a.  They are kept for the record, but the load-bearing checks are
+      1a-1c, 2a, 2b, 3a-i/ii, 3c-ii/iii, 4a's residue-collision clause, 4b, 5a, 5b, 6a and 7a-7c.
+  (4) CHECK 4b is a consequence of CHECK 2a, not independent evidence: once the derived order is known to be
+      'same block and r<=s', the blockwise-extremum domination rule follows algebraically.
+
+VERDICT: ALL 31 CHECKS PASS
+=== program exited with status 0 ===

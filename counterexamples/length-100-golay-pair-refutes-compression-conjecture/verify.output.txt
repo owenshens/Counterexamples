@@ -1,0 +1,59 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  aa1c7cd572b6f4a7dc4dfcc6e98f9e2e187385181332414fffc34fca6b1dfbd1
+python:  Python 3.9.25
+=== program output follows ===
+PASS seed_sequences_well_formed [U=+--++++++- V=+--+-+---+ C=-++-+-+++- D=-++++++--+ (length 10, entries +-1)]
+PASS seed_autocorrelations_equal_paper_vector [N_U=(3, 0, 1, 0, -1, -2, 1, 2, -1) N_D=(3, 0, 1, 0, -1, -2, 1, 2, -1) N_V=(-3, 0, -1, 0, 1, 2, -1, -2, 1) N_C=(-3, 0, -1, 0, 1, 2, -1, -2, 1)]
+PASS seed_pairs_are_golay [N_U+N_V=0 and N_C+N_D=0 for s=1..9]
+PASS pq_from_seeds_match_paper [p=(1, -1, -1, 1, 0, 1, 0, 0, 0, 0) q=(0, 0, 0, 0, 1, 0, 1, 1, 1, -1)]
+PASS pq_disjoint_support_unit_norm [p_j q_j = 0 and p_j^2 + q_j^2 = 1 for all j]
+PASS pq_row_sums [sum p = 1, sum q = 3]
+PASS pq_turyn_factor_is_ten [P(z)P(1/z)+Q(z)Q(1/z) = 10 identically; energy=10, off-shifts=[0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS exhibited_pair_is_binary_length_100 [|A|=100 |B|=100, entries +-1, +1 count A=57 B=49]
+  A = -++-+-+++-+--+-+---++--+-+---+-++-+-+++-+--++++++--++-+-+++-+--++++++-+--++++++-+--++++++--++------+
+  B = -++++++--++------++-+------++--++++++--++---+-+--+-++++++--++---+-+--++---+-+--++---+-+--+-+++-+-++-
+PASS exhibited_pair_decodes_reversibly [printed +/- strings re-decode to the same sequences]
+PASS exhibited_pair_is_a_golay_pair [N_A(s)+N_B(s)=0 for all 99 shifts; max |value| = 0]
+PASS exhibited_pair_is_a_periodic_golay_pair [P_A(s)+P_B(s)=0 for all 99 nonzero shifts, computed from the periodic definition; max |value| = 0]
+PASS negated_partner_is_still_a_periodic_golay_pair [(A, -B) also satisfies both Golay conditions at all 99 nonzero shifts]
+PASS compression_of_exhibited_pair_matches_paper [H_2 = ([12, 2],[4, -6]), after negating the partner ([12, 2],[-4, 6])]
+PASS row_sums_of_compression [a = 14, b = 2]
+PASS compression_is_a_length_two_periodic_golay_pair [P(1) sum = 0, energy = 200 = 2v with v = 100]
+PASS conjectured_forms_instantiated [([0,a],[0,b]) = ([0, 14],[0, 2]) and the second form = ([8, 6],[8, -6])]
+PASS conjectured_forms_are_admissible_candidates [both forms have row sums (14,2), vanishing shift-1 sum and the same energy 200 as the exhibited compression, so the refutation is not an arithmetic mismatch]
+PASS z_and_w_of_compression [for H_2: z = (14, -2), w = (10, 10); for the negated partner z = (14, 2), w = (10, -10)]
+PASS both_conjectured_forms_satisfy_the_obstruction [w = -z for form 1 and w = i conj(z) for form 2, so any pair equivalent to a form must satisfy the unit condition]
+PASS compression_violates_the_obstruction [w(H) is in neither U z(H) nor U conj(z(H)): w = (10, -10), U z = [(14, 2), (-14, -2), (-2, 14), (2, -14)], U conj z = [(14, -2), (-14, 2), (2, 14), (-2, -14)]]
+PASS equivalence_class_closed_and_negation_generated [class size 64 under the five stated operations, and the same set under the larger system that also negates one sequence outright]
+PASS compression_is_equivalent_to_neither_conjectured_form [([0,14],[0,2]) and ([8, 6],[8, -6]) are both absent from the 64-element equivalence class of ([12, 2],[-4, 6])]
+PASS unnegated_compression_also_refutes_the_conjecture [for H_2 the row sums are (14,-2), forms ([0, 14],[0, -2]) and ([6, 8],[6, -8]), class size 64, neither form present]
+PASS obstruction_is_an_equivalence_invariant [the unit condition is constant on each class: false throughout the class of the exhibited pair, true throughout both form classes]
+PASS maximum_absolute_entry_separates_the_three_pairs [invariant on the class of the exhibited pair (value [12]); the three maxima are (12, 14, 8), so no two of the pairs can be equivalent]
+PASS induced_action_on_the_compression_is_derived_not_assumed [for the swap, a cyclic shift and a reversal of the first sequence, simultaneous alternating negation and all 40 admissible decimations (every d with gcd(d,100)=1, each of them odd), the 50-compression of the transformed length-100 pair equals the transcribed operation applied to the compression; 0 mismatches []]
+PASS every_generated_compression_lands_in_the_enumerated_class [244 images of the length-100 pair (all 100 cyclic shifts of the first sequence, its reversal composed with every shift, all 40 admissible decimations, the swap and alternating negation) recompress into the 64-element class, realising 4 distinct compressions so the generators do move it; 0 outside []]
+PASS the_generators_preserve_the_periodic_golay_property [every one of the 244 images is binary of length 100 with P_A(s)+P_B(s)=0 at all 99 nonzero shifts, recomputed from the periodic definition, so these are equivalence operations on the objects of the conjecture; failures: []]
+  tower level n=1: recomputing all 18 aperiodic and periodic autocorrelations ...
+  tower level n=1: length 10 built and compressed to ([3, -1],[1, 3]); autocorrelations recomputed in full [0.0 s]
+  tower level n=2: recomputing all 198 aperiodic and periodic autocorrelations ...
+  tower level n=2: length 100 built and compressed to ([12, 2],[4, -6]); autocorrelations recomputed in full [0.0 s]
+  tower level n=3: recomputing all 1998 aperiodic and periodic autocorrelations ...
+  tower level n=3: length 1000 built and compressed to ([-6, 14],[-2, -42]); autocorrelations recomputed in full [0.1 s]
+  tower level n=4: recomputing all 19998 aperiodic and periodic autocorrelations ...
+  tower level n=4: length 10000 built and compressed to ([-132, 8],[-44, -24]); autocorrelations recomputed in full [7.7 s]
+  tower level n=5: length 100000 built and compressed to ([-204, -124],[-68, 372]); autocorrelations not recomputed at this length [0.0 s]
+  tower level n=6: length 1000000 built and compressed to ([912, -328],[304, 984]); autocorrelations not recomputed at this length [0.3 s]
+PASS tower_is_binary_and_golay_where_recomputed [lengths 10^1..10^6 are binary of the right length; Golay and periodic Golay conditions recomputed in full up to length 10^4]
+PASS compression_matches_row_and_alternating_sums [z_n = r(A_n)+i r(B_n) and w_n = e(A_n)+i e(B_n) reproduce z(H_n), w(H_n); z_1 = (2, 4), w_1 = (4, -2), z_2 = (14, -2), w_2 = (10, 10)]
+PASS recurrences_and_closed_forms_hold [z_{n+1} = (1-3i)z_n, w_{n+1} = (1+3i)w_n, z_n = conj(t)^{n-1} z_1, w_n = -i t^{n-1} z_1, and w_1 = -i z_1, for n up to 6]
+PASS energy_and_shift_sum_of_every_compression [each compression is a length-two periodic Golay pair of energy 2v]
+PASS refutation_holds_at_every_length_recomputed [for n = 2..6 the compression violates the unit condition and its equivalence class contains neither conjectured form]
+PASS unit_group_of_the_gaussian_integers [U = ((1, 0), (-1, 0), (0, 1), (0, -1)) is exactly the set of Gaussian integers of norm 1, and is closed under multiplication, inversion and conjugation]
+PASS factorisation_of_t [t/(1+i) = (2, 1) is a Gaussian integer of norm 5; conj(t) = (1-i) times its conjugate]
+PASS odd_prime_factor_and_its_conjugate_are_nonassociate [no unit u satisfies u conj(g) = g for g = (2, 1), and norm 5 is prime so g is a Gaussian prime]
+PASS t_and_its_conjugate_have_nonassociate_powers [t^k is not a unit multiple of conj(t)^k for k = 1..40, so the case w_n = u z_n is impossible in those lengths]
+PASS ratio_minus_i_z1_over_conj_z1 [(-i z_1)/conj(z_1) = 4/5 + 3/5 i, exact rationals, not a unit, so the case w_n = u conj(z_n) is impossible for every n]
+NOT RE-RUN: the claim that the conjecture holds for every length v < 100, which is what makes length 100 least possible, is a published exhaustive classification and is not recomputed here; inside the tower, Golay and periodic-Golay autocorrelations are recomputed in full only up to length 10^4 (the refuting length 100 = 10^2 is itself verified in full above, while lengths 10^5 to 10^6 are built, compressed and refuted but their autocorrelations are not recomputed -- the per-level progress lines above report how many autocorrelations each level recomputed and how long it took); the Gaussian-associate step is tested for exponents up to 40 rather than all n; and the action of the five equivalence generators on a length-two compression, although derived here rather than assumed, is derived only for the exhibited length-100 pair (each generator applied once, plus every cyclic shift, every shift-then-reversal and every admissible decimation) -- the paper's general statement of that action at arbitrary even length, and its cited claim that negation of one sequence is generated by the five operations, are not proved here, though the latter is confirmed as a set identity on the class of the exhibited compression.
+PASS program_ran_to_completion [no unhandled exception]
+VERDICT: ALL 39 CHECKS PASS
+=== program exited with status 0 ===

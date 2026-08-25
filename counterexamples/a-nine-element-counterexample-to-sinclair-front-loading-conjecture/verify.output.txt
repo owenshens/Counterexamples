@@ -1,0 +1,197 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  25a9c62def7860a0b6eb0ad8bef5fa12bbbd9317b90f342749f5fe331524e34e
+python:  Python 3.9.25
+=== program output follows ===
+# verifier for: A Nine-Element Counterexample to Sinclair's
+#               Front-Loading Conjecture (Theorem 1, Remark 2)
+# exact arithmetic only; python 3.9.25
+# --- the exhibited object, decoded and printed back ---
+# A row 1:  1  0  0  0  0  1  0  0  0
+# A row 2:  0  1  0  0  0  0  1  1  0
+# A row 3:  0  0  1  0  0  1  1  2  0
+# A row 4:  0  0  0  1  0  0  0  0  1
+# A row 5:  0  0  0  0  1  0  1  3  1
+# column 1 = (1, 0, 0, 0, 0)
+# column 2 = (0, 1, 0, 0, 0)
+# column 3 = (0, 0, 1, 0, 0)
+# column 4 = (0, 0, 0, 1, 0)
+# column 5 = (0, 0, 0, 0, 1)
+# column 6 = (1, 0, 1, 0, 0)
+# column 7 = (0, 1, 1, 0, 1)
+# column 8 = (0, 1, 2, 0, 3)
+# column 9 = (0, 0, 0, 1, 1)
+PASS matrix_shape_5x9 [5x9]
+PASS matrix_entries_are_integers
+PASS first_five_columns_are_identity
+PASS last_four_columns_match_paper [[(1, 0, 1, 0, 0), (0, 1, 1, 0, 1), (0, 1, 2, 0, 3), (0, 0, 0, 1, 1)]]
+PASS ground_set_has_9_elements [n=9]
+PASS rank_is_5 [rk(A)=5]
+PASS rank_agrees_over_GF(2^31-1)
+PASS no_loops [zero columns: []]
+PASS no_parallel_pairs [parallel: []]
+PASS M_is_simple_rank_5_on_9_elements
+PASS every_singleton_is_a_rank_1_flat [W_1=9]
+PASS M_is_connected_not_a_direct_sum [no 1-separation]
+PASS subset_ranks_agree_two_implementations [512 subsets, 0 disagreements]
+PASS rank_unit_increase_and_bounded [0 violations]
+PASS rank_submodular_on_all_subset_pairs [0 ordered-pair violations among 2^9 x 2^9]
+PASS closure_is_idempotent
+PASS closure_contains_and_preserves_rank
+PASS flats_closed_under_intersection
+PASS ground_set_is_the_unique_top_flat
+PASS bottom_flat_is_empty
+# --- flat lattice ---
+# W = [1, 9, 32, 49, 27, 1]  total flats = 119
+#   rank 0 flats: {}
+#   rank 1 flats: {1} {2} {3} {4} {5} {6} {7} {8} {9}
+#   rank 5 flats: {1,2,3,4,5,6,7,8,9}
+PASS whitney_numbers_second_kind [[1, 9, 32, 49, 27, 1]]
+PASS total_number_of_flats_is_119 [119]
+# chi_M(t) = +1 t^5 -9 t^4 +34 t^3 -66 t^2 +64 t^1 -24 t^0
+PASS characteristic_polynomial_two_routes_agree [Whitney rank formula [-24, 64, -66, 34, -9, 1] vs Moebius [-24, 64, -66, 34, -9, 1]]
+PASS moebius_lattice_recursion_matches_subset_formula [119 flats, mu from cl() on 2^9 subsets vs mu from the lattice]
+PASS cover_set_equals_the_closures_cl(X_union_a) [0 of 119 flats with a mismatched cover set]
+# covering pairs in the lattice: 416
+PASS cover_join_lemma_X_join_a_equals_Y_iff_a_in_Y_minus_X [416 covers x 9 atoms, 0 mismatches]
+PASS flat_lattice_is_graded
+PASS number_of_bases_is_67 [67]
+PASS number_of_bases_confirmed_by_exact_determinants [67 of 126 5-subsets nonsingular on rows [1, 2, 3, 4, 5]]
+PASS beta_X_positive_and_reconfirmed_for_every_flat [min beta_X = 1 over 119 flats, 0 mismatches []]
+PASS beta_E_equals_bases_times_r_factorial [beta_E=8040 = 67*120]
+# --- Sinclair's chains on the graded Moebius algebra ---
+# h^0    = [1, 9, 27, 27, 9, 1]
+# h^beta = [1, 9, 31, 32, 9, 1]
+PASS apolar_hilbert_function_h0 [[1, 9, 27, 27, 9, 1]]
+PASS beta_hilbert_function [[1, 9, 31, 32, 9, 1]]
+PASS h0_polynomial_string_matches_abstract [1+9q+27q^2+27q^3+9q^4+q^5]
+PASS hbeta_polynomial_string_matches_abstract [1+9q+31q^2+32q^3+9q^4+q^5]
+PASS h0_is_palindromic [[1, 9, 27, 27, 9, 1]]
+PASS both_chains_reach_degree_0_of_the_Moebius_algebra [h_r^0=1, h_r^beta=1]
+PASS every_h_k_at_most_dim_H_(r-k) [W_{r-k} = [1, 27, 49, 32, 9, 1]]
+PASS C_k^0_is_a_subspace_of_C_k^beta
+# h^beta recomputed with the rk(Y) factor dropped from D_beta: [1, 9, 31, 32, 9, 1] -- unchanged
+# --- dimension certificates ---
+# CERTIFICATE SCOPE: the load-bearing dimensions 31 (k=2) and 32 (k=3)
+# CERTIFICATE SCOPE: do not rely on the ITERATIVE chain -- their
+# CERTIFICATE SCOPE: generators are all words of length k applied to
+# CERTIFICATE SCOPE: g_E -- but they DO use the same elimination as
+# CERTIFICATE SCOPE: span_basis to SEARCH for their witnesses:
+# CERTIFICATE SCOPE: independent_indices selects the rows of the minor,
+# CERTIFICATE SCOPE: rref selects its columns, kernel_basis proposes
+# CERTIFICATE SCOPE: the annihilators.  Only the WITNESSES are verified
+# CERTIFICATE SCOPE: independently: a nonzero Bareiss determinant for
+# CERTIFICATE SCOPE: the lower bound, and every annihilator dotted
+# CERTIFICATE SCOPE: against every generator plus a Bareiss minor for
+# CERTIFICATE SCOPE: their independence for the upper bound.  A bug in
+# CERTIFICATE SCOPE: the elimination can lose a witness, not invent one.
+PASS word_generators_and_iterative_chain_agree [k <= 3, 729/1000 words]
+PASS certificate_h0_k1_equals_9 [9 <= dim <= 9, minor det=-12, 18 annihilators, ambient 27]
+PASS certificate_h0_k2_equals_27 [27 <= dim <= 27, minor det=995328, 22 annihilators, ambient 49]
+PASS certificate_h0_k3_equals_27 [27 <= dim <= 27, minor det=-995328, 5 annihilators, ambient 32]
+PASS certificate_h0_k4_equals_9 [9 <= dim <= 9, minor det=1, 0 annihilators, ambient 9]
+PASS certificate_h0_k5_equals_1 [1 <= dim <= 1, minor det=1, 0 annihilators, ambient 1]
+PASS certificate_hbeta_k1_equals_9 [9 <= dim <= 9, minor det=-12, 18 annihilators, ambient 27]
+PASS certificate_hbeta_k2_equals_31 [31 <= dim <= 31, minor det=262144/625, 18 annihilators, ambient 49]
+PASS certificate_hbeta_k3_equals_32 [32 <= dim <= 32, minor det=-1048576/253125, 0 annihilators, ambient 32]
+PASS certificate_hbeta_k4_equals_9 [9 <= dim <= 9, minor det=-1, 0 annihilators, ambient 9]
+PASS certificate_hbeta_k5_equals_1 [1 <= dim <= 1, minor det=1, 0 annihilators, ambient 1]
+# --- the differential defect and Conjecture C ---
+# k        :   0   1   2   3   4   5
+# W_(r-k)  :   1  27  49  32   9   1
+# h_k^0    :   1   9  27  27   9   1
+# h_k^beta :   1   9  31  32   9   1
+# delta_k  :   0   0   4   5   0   0
+PASS differential_defect_delta [[0, 0, 4, 5, 0, 0]]
+PASS delta_is_nonnegative
+PASS conjecture_C_index_k2_is_in_range_k_le_r_over_2 [2*k=4 <= r=5]
+# Conjecture C at k=0: delta_0=0 vs delta_5=0 -> holds
+# Conjecture C at k=1: delta_1=0 vs delta_4=0 -> holds
+# Conjecture C at k=2: delta_2=4 vs delta_3=5 -> VIOLATED
+PASS conjecture_C_holds_at_k0
+PASS conjecture_C_holds_at_k1
+PASS CONJECTURE_C_VIOLATED_AT_k2 [delta_2=4 < delta_3=5]
+PASS equivalent_form_h2beta_less_than_h3beta [h_2^beta=31 < h_3^beta=32]
+PASS CONJECTURE_C_IS_REFUTED_BY_M [violating indices k <= r/2: [2]]
+# ORIENTATION (input I5): h_k = dim C_k is the paper's indexing;
+# ORIENTATION: under the reversed (degree) indexing delta would read [0, 0, 5, 4, 0, 0] with violating indices [] -- i.e. the verdict is orientation-dependent and the orientation is
+# ORIENTATION: taken from the paper, not derived (see control 2).
+PASS the_two_forms_of_conjecture_C_agree_at_every_k
+# --- Remark 2 ---
+PASS hbeta_has_no_internal_zeros [[1, 9, 31, 32, 9, 1]]
+# log-concavity at k=1: 9^2 = 81 > 31
+# log-concavity at k=2: 31^2 = 961 > 288
+# log-concavity at k=3: 32^2 = 1024 > 279
+# log-concavity at k=4: 9^2 = 81 > 32
+PASS hbeta_is_strictly_log_concave
+# --- controls: the same predicate applied to other matroids ---
+# control 1 = U(5,9) Vandermonde: W = [1, 9, 36, 84, 126, 1]  h^0 = [1, 9, 36, 36, 9, 1]  h^beta = [1, 9, 36, 36, 9, 1]  delta = [0, 0, 0, 0, 0, 0]
+PASS control1_is_simple_rank5_on_9_elements
+PASS control1_is_the_uniform_matroid_U_5_9 [[1, 9, 36, 84, 126, 1]]
+PASS control1_conjecture_C_holds [delta = [0, 0, 0, 0, 0, 0]]
+# control 2: W = [1, 9, 32, 46, 16, 1]  h^0 = [1, 9, 25, 25, 9, 1]  h^beta = [1, 10, 28, 26, 9, 1]  delta = [0, 1, 3, 1, 0, 0]
+PASS control2_is_simple_rank5_on_9_elements
+PASS control2_has_a_nonzero_differential_defect [delta = [0, 1, 3, 1, 0, 0]]
+PASS control2_defect_is_strictly_front_loaded_at_k2 [delta_2=3 > delta_3=1]
+PASS control2_conjecture_C_holds [delta = [0, 1, 3, 1, 0, 0]]
+# control 2 under the REVERSED index orientation: delta = [0, 0, 1, 3, 1, 0] violating indices [1, 2]
+PASS reversed_index_orientation_is_excluded_by_control2 [reversed delta = [0, 0, 1, 3, 1, 0] violates at [1, 2], so the reversed reading is not the conjecture's]
+# orientation scan seed        : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[1][8]=2   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[1][8]=4   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[3][8]=2   : delta = [0, 1, 4, 2, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[3][8]=4   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[5][6]=2   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[5][6]=4   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[5][9]=2   : delta = [0, 1, 4, 2, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan A[5][9]=4   : delta = [0, 1, 3, 1, 0, 0]  strictly front-loaded at [1, 2]
+# orientation scan: 9 matrices scanned, 9 simple rank-5 members on 9 elements, 0 skipped, 9 members strictly front-loaded
+PASS orientation_scan_reproduces_control2_delta [seed member delta = [0, 1, 3, 1, 0, 0] vs control 2 delta = [0, 1, 3, 1, 0, 0]]
+PASS reversed_index_orientation_excluded_by_a_regenerable_scan [9 of 9 scanned members are strictly front-loaded; the reversed reading asserts that none is, so it is not the reading in which Conjecture C was posed]
+PASS declared_non_evidence_check_names_all_ran [15 names declared non-evidence, 0 of them never ran []]
+# ACCOUNTING: the total below counts EVERY printed PASS, so it is not
+# ACCOUNTING: a count of evidence about M.  Of 72 checks: 47 are
+# ACCOUNTING: evidence about M itself; 10 are about the two control
+# ACCOUNTING: matroids and the orientation scan, which bear on input I5
+# ACCOUNTING: and on the two-sidedness of the predicate, not on M; 10
+# ACCOUNTING: are implementation self-tests, i.e. theorems true of any
+# ACCOUNTING: matrix, retained because each fails under an injected bug
+# ACCOUNTING: in the routine it exercises; and 5 only restate the
+# ACCOUNTING: input matrix -- its shape, its integrality, the identity
+# ACCOUNTING: block, n=9, and last_four_columns_match_paper, a
+# ACCOUNTING: double-entry guard comparing one transcription against
+# ACCOUNTING: another.  All four numbers are counted from the names
+# ACCOUNTING: that ran.  The classification is conservative: a referee
+# ACCOUNTING: may judge further lines (bottom_flat_is_empty,
+# ACCOUNTING: ground_set_is_the_unique_top_flat) to be theorems about
+# ACCOUNTING: any matroid as well.
+# SCOPE: the paper's full claim is re-derived from the matrix A alone.
+# SCOPE: the paper makes no minimality or census claim (Remark 2),
+# SCOPE: so there is no exhaustive search to reproduce; the two
+# SCOPE: control matroids are extra, not part of the paper's claim.
+# SCOPE: two values are TAKEN ON TRUST, both flagged above: the
+# SCOPE: transcription of Sinclair's operator formula eq. (2) (I2),
+# SCOPE: and the index orientation h_k = dim C_k (I5).  The verdict
+# SCOPE: below is conditional on both; the orientation reverses delta
+# SCOPE: and hence the verdict, and what argues for the paper's reading
+# SCOPE: is control 2 together with the deterministic orientation scan.
+# NOT RE-RUN: the transcription of Sinclair's operator formula eq. (2)
+# NOT RE-RUN: (input I2).  It is a reading of the source rather than a
+# NOT RE-RUN: computation, and nothing in this program can check it.
+# NOT RE-RUN: the index orientation h_k = dim C_k (input I5).  The
+# NOT RE-RUN: verdict is orientation-dependent: under the reversed
+# NOT RE-RUN: (degree) reading, delta for M is the reverse of the
+# NOT RE-RUN: sequence printed above and Conjecture C HOLDS for M --
+# NOT RE-RUN: both values are printed on the ORIENTATION lines.  What
+# NOT RE-RUN: is computed here is EVIDENCE against that reading (it
+# NOT RE-RUN: would already be false for control 2 and for every
+# NOT RE-RUN: strictly front-loaded member of the orientation scan),
+# NOT RE-RUN: not a derivation of the orientation, which must still be
+# NOT RE-RUN: confirmed against Sinclair's preprint.
+# NOT RE-RUN: nothing else.  The paper makes no census and no
+# NOT RE-RUN: minimality claim (Remark 2), so no exhaustive search has
+# NOT RE-RUN: to be reproduced, and every number of Theorem 1 and
+# NOT RE-RUN: Remark 2 is re-derived above from the matrix A alone.
+# elapsed 5.9 s
+VERDICT: ALL 72 CHECKS PASS
+=== program exited with status 0 ===

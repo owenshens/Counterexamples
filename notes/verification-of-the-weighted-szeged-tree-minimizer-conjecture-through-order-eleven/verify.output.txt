@@ -1,0 +1,137 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  18081259928ccf0846b5efe12127d098e7897b3c17d754324487acc728120567
+python:  Python 3.9.25
+=== program output follows ===
+-- verification program for the weighted Szeged tree-minimizer census
+-- python 3.9.25
+PASS witness_wellformed_n10_tree [order=10 edges=9 re-encode=I?AA@_gw?]
+PASS witness_class_n10_tree [connected=True edges=9 n-1=9 tree=True]
+PASS witness_wsz_n10_tree [bfs=578 floyd=578 split=578 paper=578]
+PASS witness_structure_n10_tree [every edge splits V into n_u+n_v=n (tree property)]
+-- witness n10_tree I?AA@_gw? decodes to n=10, m=9, edges 0-5,1-6,2-7,3-7,2-8,4-8,0-9,1-9,2-9, wSz=578
+PASS witness_wellformed_n10_nontree [order=10 edges=10 re-encode=I?AA@_gwO]
+PASS witness_class_n10_nontree [connected=True edges=10 n-1=9 tree=False]
+PASS witness_wsz_n10_nontree [bfs=600 floyd=600 split=None paper=600]
+PASS witness_structure_n10_nontree [max equidistant on an edge = 5 > 0]
+-- witness n10_nontree I?AA@_gwO decodes to n=10, m=10, edges 0-5,1-6,2-7,3-7,2-8,4-8,0-9,1-9,2-9,7-9, wSz=600
+PASS witness_wellformed_n11_tree [order=11 edges=10 re-encode=J?AA@AOEB_?]
+PASS witness_class_n11_tree [connected=True edges=10 n-1=10 tree=True]
+PASS witness_wsz_n11_tree [bfs=762 floyd=762 split=762 paper=762]
+PASS witness_structure_n11_tree [every edge splits V into n_u+n_v=n (tree property)]
+-- witness n11_tree J?AA@AOEB_? decodes to n=11, m=10, edges 0-5,1-6,2-7,0-8,3-8,3-9,4-9,1-10,2-10,3-10, wSz=762
+PASS witness_wellformed_n11_nontree [order=11 edges=11 re-encode=J?AACGoIF??]
+PASS witness_class_n11_nontree [connected=True edges=11 n-1=10 tree=False]
+PASS witness_wsz_n11_nontree [bfs=778 floyd=778 split=None paper=778]
+PASS witness_structure_n11_nontree [max equidistant on an edge = 9 > 0]
+-- witness n11_nontree J?AACGoIF?? decodes to n=11, m=11, edges 0-5,1-6,0-7,5-7,2-8,3-8,2-9,4-9,0-10,1-10,2-10, wSz=778
+PASS P3_K3_both_equal_12 [wSz(P3)=12 wSz(K3)=12 (floyd 12, 12) paper=12]
+PASS P3_is_tree_K3_is_not [P3 has 2 edges, K3 has 3]
+PASS free_tree_counts_match_otter_formula [generated [1, 2, 3, 6, 11, 23, 47, 106, 235] == Otter [1, 2, 3, 6, 11, 23, 47, 106, 235]]
+PASS tree_kernels_agree_on_every_tree [434 trees, distance kernel == edge-split kernel on all]
+PASS tree_minima_column_n3_to_n11 [computed [12, 34, 72, 130, 204, 306, 432, 578, 762] vs paper [12, 34, 72, 130, 204, 306, 432, 578, 762]]
+-- free trees per order n=3..11: [1, 2, 3, 6, 11, 23, 47, 106, 235] (0.1s)
+PASS small_witness_n3_wellformed_tree [order=3 edges=2 n-1=2 tree=True re-encode=Bo]
+PASS small_witness_n3_wsz [bfs=12 floyd=12 split=12 paper=12]
+PASS small_witness_n3_attains_tree_minimum [witness wSz=12 vs exhaustive tree minimum 12 (equal: True); the class occurs in the generated set of 1 trees: True]
+-- witness n3_tree Bo decodes to n=3, m=2, edges 0-1,0-2, wSz=12
+PASS small_witness_n4_wellformed_tree [order=4 edges=3 n-1=3 tree=True re-encode=Cq]
+PASS small_witness_n4_wsz [bfs=34 floyd=34 split=34 paper=34]
+PASS small_witness_n4_attains_tree_minimum [witness wSz=34 vs exhaustive tree minimum 34 (equal: True); the class occurs in the generated set of 2 trees: True]
+-- witness n4_tree Cq decodes to n=4, m=3, edges 0-1,0-2,1-3, wSz=34
+PASS small_witness_n5_wellformed_tree [order=5 edges=4 n-1=4 tree=True re-encode=DkG]
+PASS small_witness_n5_wsz [bfs=72 floyd=72 split=72 paper=72]
+PASS small_witness_n5_attains_tree_minimum [witness wSz=72 vs exhaustive tree minimum 72 (equal: True); the class occurs in the generated set of 3 trees: True]
+-- witness n5_tree DkG decodes to n=5, m=4, edges 0-1,1-2,0-3,2-4, wSz=72
+PASS small_witness_n6_wellformed_tree [order=6 edges=5 n-1=5 tree=True re-encode=Eh_O]
+PASS small_witness_n6_wsz [bfs=130 floyd=130 split=130 paper=130]
+PASS small_witness_n6_attains_tree_minimum [witness wSz=130 vs exhaustive tree minimum 130 (equal: True); the class occurs in the generated set of 6 trees: True]
+-- witness n6_tree Eh_O decodes to n=6, m=5, edges 0-1,1-2,2-3,0-4,3-5, wSz=130
+PASS small_witness_n7_wellformed_tree [order=7 edges=6 n-1=6 tree=True re-encode=FCOf?]
+PASS small_witness_n7_wsz [bfs=204 floyd=204 split=204 paper=204]
+PASS small_witness_n7_attains_tree_minimum [witness wSz=204 vs exhaustive tree minimum 204 (equal: True); the class occurs in the generated set of 11 trees: True]
+-- witness n7_tree FCOf? decodes to n=7, m=6, edges 0-3,1-4,2-5,0-6,1-6,2-6, wSz=204
+PASS small_witness_n8_wellformed_tree [order=8 edges=7 n-1=7 tree=True re-encode=GiE@?O]
+PASS small_witness_n8_wsz [bfs=306 floyd=306 split=306 paper=306]
+PASS small_witness_n8_attains_tree_minimum [witness wSz=306 vs exhaustive tree minimum 306 (equal: True); the class occurs in the generated set of 23 trees: True]
+-- witness n8_tree GiE@?O decodes to n=8, m=7, edges 0-1,1-2,1-3,3-4,0-5,2-6,4-7, wSz=306
+PASS small_witness_n9_wellformed_tree [order=9 edges=8 n-1=8 tree=True re-encode=HiQ@?_G]
+PASS small_witness_n9_wsz [bfs=432 floyd=432 split=432 paper=432]
+PASS small_witness_n9_attains_tree_minimum [witness wSz=432 vs exhaustive tree minimum 432 (equal: True); the class occurs in the generated set of 47 trees: True]
+-- witness n9_tree HiQ@?_G decodes to n=9, m=8, edges 0-1,1-2,1-3,1-4,0-5,2-6,3-7,4-8, wSz=432
+PASS witness_is_the_structure_the_paper_names_n7 [FCOf? (order 7) is isomorphic to the spider S(2,2,2) built from the paper's description (order 7): True]
+PASS witness_is_the_structure_the_paper_names_n8 [GiE@?O (order 8) is isomorphic to the spider S(2,2,3) built from the paper's description (order 8): True]
+PASS witness_is_the_structure_the_paper_names_n9 [HiQ@?_G (order 9) is isomorphic to the spider S(2,2,2,2) built from the paper's description (order 9): True]
+PASS witness_is_the_structure_the_paper_names_n10 [I?AA@_gw? (order 10) is isomorphic to the two adjacent degree-3 centres with legs [2, 2] and [2, 2] built from the paper's description (order 10): True]
+PASS witness_is_the_structure_the_paper_names_n11 [J?AA@AOEB_? (order 11) is isomorphic to the two adjacent degree-3 centres with legs [2, 2] and [2, 3] built from the paper's description (order 11): True]
+PASS connected_class_counts_by_generation_n3_to_n8 [generated [2, 6, 21, 112, 853, 11117] vs paper [2, 6, 21, 112, 853, 11117]]
+PASS every_minimizer_is_a_tree_n4 [global min 34, 1 minimizer(s), edge counts [3], n-1=3]
+PASS every_minimizer_is_a_tree_n5 [global min 72, 1 minimizer(s), edge counts [4], n-1=4]
+PASS every_minimizer_is_a_tree_n6 [global min 130, 2 minimizer(s), edge counts [5], n-1=5]
+PASS every_minimizer_is_a_tree_n7 [global min 204, 1 minimizer(s), edge counts [6], n-1=6]
+PASS every_minimizer_is_a_tree_n8 [global min 306, 1 minimizer(s), edge counts [7], n-1=7]
+PASS census_and_tree_enumerator_agree_n3_to_n8 [graph census [12, 34, 72, 130, 204, 306] vs independent tree enumerator [12, 34, 72, 130, 204, 306]]
+PASS kernels_agree_on_all_connected_classes_n3_to_n8 [12111 classes evaluated by both kernels, 0 disagreements]
+PASS n3_minimum_attained_by_exactly_P3_and_K3 [minimizing classes at n=3 have edge counts [2, 3] (a tree and K_3)]
+PASS first_order_with_a_connected_non_tree_is_3 [n=1,2 connected graphs are all trees; n=3 contains K_3]
+PASS full_census_minima_n3_to_n8 [tree [12, 34, 72, 130, 204, 306] / non-tree [12, 36, 76, 132, 212, 316]]
+PASS per_edge_count_minima_not_monotone_in_m_n7_and_n8 [strict descents of min wSz as m grows: n=7: m 11->12 min 262->244, m 14->15 min 320->306, m 15->16 min 306->252, m 19->20 min 378->340, m 20->21 min 340->252; n=8: m 12->13 min 368->362, m 15->16 min 402->392, m 16->17 min 392->382, m 20->21 min 518->480, m 21->22 min 480->392, m 25->26 min 608->592, m 26->27 min 592->522, m 27->28 min 522->392]
+-- full census n<=8 done in 10.4s
+PASS cycle_index_matches_brute_force_orbit_count_n1_to_n6 [brute force [1, 2, 4, 11, 34, 156] == Burnside [1, 2, 4, 11, 34, 156]]
+PASS connected_class_counts_n3_to_n11 [computed [2, 6, 21, 112, 853, 11117, 261080, 11716571, 1006700565] vs paper [2, 6, 21, 112, 853, 11117, 261080, 11716571, 1006700565]]
+PASS counting_chain_agrees_with_direct_generation_n3_to_n8 [generated [2, 6, 21, 112, 853, 11117] == counted [2, 6, 21, 112, 853, 11117]]
+PASS total_census_size [sum of the column = 1018690327, paper says 1018690327]
+-- class counts (1.4s): [2, 6, 21, 112, 853, 11117, 261080, 11716571, 1006700565]
+PASS order10_has_exactly_37_edge_count_shards [edge counts 9..45 are all realizable, 37 values, paper says 37; the same rule reproduces the exhaustive edge-count sets of the n=3..8 census ([2, 4, 7, 11, 16, 22] values)]
+PASS connected_edge_count_bounds_n3_to_n8 [every connected class has n-1 <= m <= C(n,2); per-order slack (min m -(n-1), max m -C(n,2)) for n=3..8 = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]]
+PASS covering_census_n9_minima [2834835 graphs covering all 261080 classes: tree min 432 (paper 432), non-tree min 444 (paper 444)]
+PASS every_minimizer_is_a_tree_n9 [non-tree min 444 > tree min 432]
+PASS covering_census_n9_size_is_right [2834835 = 11117 classes x 255 non-empty neighbourhoods; the input classes are connected 8-vertex graphs, pairwise non-isomorphic (11117 distinct canonical forms) and complete (11117 expected); the augmentation reached all 47 nine-vertex tree classes (independent enumerator: 47)]
+-- order 9 covering census done in 140.9s
+PASS sparse_census_n10_tree_min [min over all 106 spanning trees = 578 (paper 578)]
+PASS sparse_census_n10_nontree_min_over_m_le_13 [min over every connected graph with 10..13 edges = 600 (paper 600)]
+PASS minimizers_are_trees_n10_within_searched_range [non-tree min 600 > tree min 578]
+PASS sparse_census_n10_enumeration_complete [7071472 graphs evaluated, expected 7071472; seed tree list: 106 entries, 106 distinct isomorphism classes, Otter count 106; edge counts reached [9, 10, 11, 12, 13] (want [9, 10, 11, 12, 13]); Floyd-Warshall confirms every per-edge-count minimum: True]
+-- order 10, m -> min wSz over ALL connected graphs with m edges: [(9, 578), (10, 600), (11, 614), (12, 630), (13, 646)]
+-- order 10 sparse census: 7071472 graphs (with repeats), 365.7s
+PASS sparse_census_n11_tree_min [min over all 235 spanning trees = 762 (paper 762)]
+PASS sparse_census_n11_nontree_min_over_m_le_13 [min over every connected graph with 11..13 edges = 778 (paper 778)]
+PASS minimizers_are_trees_n11_within_searched_range [non-tree min 778 > tree min 762]
+PASS sparse_census_n11_enumeration_complete [3578110 graphs evaluated, expected 3578110; seed tree list: 235 entries, 235 distinct isomorphism classes, Otter count 235; edge counts reached [10, 11, 12, 13] (want [10, 11, 12, 13]); Floyd-Warshall confirms every per-edge-count minimum: True]
+-- order 11, m -> min wSz over ALL connected graphs with m edges: [(10, 762), (11, 778), (12, 796), (13, 812)]
+-- order 11 sparse census: 3578110 graphs (with repeats), 214.7s
+PASS witness_optimal_n10_tree [witness wSz=578 vs exhaustive tree minimum 578 (equal: True); the witness class occurs in the generated set of 106 trees: True]
+PASS witness_optimal_n10_nontree [witness wSz=600 vs searched non-tree minimum 600 (equal: True); m=10, non-tree: True, inside the searched range m <= 13: True]
+PASS witness_optimal_n11_tree [witness wSz=762 vs exhaustive tree minimum 762 (equal: True); the witness class occurs in the generated set of 235 trees: True]
+PASS witness_optimal_n11_nontree [witness wSz=778 vs searched non-tree minimum 778 (equal: True); m=11, non-tree: True, inside the searched range m <= 13: True]
+PASS gap_column_n3_to_n11 [computed non-tree minus tree = [0, 2, 4, 2, 8, 10, 12, 22, 16], paper = [0, 2, 4, 2, 8, 10, 12, 22, 16]]
+PASS conjecture_2_conclusion_min_over_G_equals_min_over_T [for every n in 3..11 the global minimum over the verified range equals the tree minimum]
+PASS strict_gap_for_n4_to_n11 [orders with a strictly larger non-tree minimum: [4, 5, 6, 7, 8, 9, 10, 11]; n=3 ties at 12]
+-- recomputed Table 1
+--   n          classes       tree   non-tree   gap
+--   3                2         12         12     0
+--   4                6         34         36     2
+--   5               21         72         76     4
+--   6              112        130        132     2
+--   7              853        204        212     8
+--   8            11117        306        316    10
+--   9           261080        432        444    12
+--  10         11716571        578        600    22
+--  11       1006700565        762        778    16
+
+SCOPE: what this program re-ran and what it did not.
+SCOPE: exhaustive over EVERY isomorphism class of connected graph for n = 3,4,5,6,7,8 (generated here) and n = 9 (covering enumeration); both minima are therefore exact for n <= 9.
+SCOPE: exhaustive over EVERY free tree for n = 3..11, so the whole tree-minimum column of Table 1 is exact.
+SCOPE: for n = 10 the non-tree search was exhaustive only over connected graphs with at most 13 of the 45 possible edges (spanning tree plus k <= 4 extra edges).
+SCOPE: for n = 11 the non-tree search was exhaustive only over connected graphs with at most 13 of the 55 possible edges (spanning tree plus k <= 3 extra edges).
+SCOPE: NOT re-run: the part of the census with at least 14 edges at n = 10 and at least 14 edges at n = 11, which is the bulk of the 1018690327 classes and needs nauty geng; the class counts themselves are instead re-derived exactly by cycle index plus inverse Euler transform.
+SCOPE: the dense tail is partly closed by proof rather than by search.  Since n_u >= 1 and n_v >= 1 on every edge, wSz(G) >= sum_v deg(v)^2, which over degree sequences of sum 2m is minimised by the balanced sequence:
+SCOPE:   n = 10: every connected graph with m >= 39 edges has wSz >= 610 > 600, so the only edge counts neither searched nor bounded are 14 <= m <= 38 (of the full range 9..45).
+SCOPE:   n = 11: every connected graph with m >= 47 edges has wSz >= 806 > 778, so the only edge counts neither searched nor bounded are 14 <= m <= 46 (of the full range 10..55).
+SCOPE: the per-edge-count minima of the full n = 7 and n = 8 census are NOT monotone in m -- measured in this run, the strict descents are n=7: m 11->12 min 262->244, m 14->15 min 320->306, m 15->16 min 306->252, m 19->20 min 378->340, m 20->21 min 340->252; n=8: m 12->13 min 368->362, m 15->16 min 402->392, m 16->17 min 392->382, m 20->21 min 518->480, m 21->22 min 480->392, m 25->26 min 608->592, m 26->27 min 592->522, m 27->28 min 522->392 -- so the truncation above is a scope limit, not a proof; the residual windows just named are the exact gap between this program and the paper's claim.
+SCOPE: all eleven rows of the paper's witness table are re-decoded, re-encoded byte for byte and re-evaluated here, and the structural descriptions of the tree witnesses at n = 7..11 (spiders, and two adjacent degree-3 centres with legs) are checked by isomorphism.
+SCOPE: the paper's shard replications (mod 64, 256, 240, 512) are not reproduced; two distance kernels and, for trees, a third edge-split kernel are.  The per-edge-count shard SIZES at n = 10 (the OEIS A054924 comparison) are not recomputed: only the total class count and the set of realizable edge counts are.
+
+-- elapsed 733.0 s
+VERDICT: ALL 83 CHECKS PASS
+=== program exited with status 0 ===

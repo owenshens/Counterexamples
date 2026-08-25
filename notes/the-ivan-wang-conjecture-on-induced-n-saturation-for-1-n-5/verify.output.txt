@@ -1,0 +1,151 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  728948996e3eacbcb3b9bf2886c2ad393fda62be91d55bb17d93eadf389f62a7
+python:  Python 3.9.25
+=== program output follows ===
+# verify.py -- sat*(n,N) = 2n for 1 <= n <= 5 (Ivan-Wang Conj. 16)
+# stdlib only, exact integer arithmetic, no randomness
+# 
+# --- the poset N ---
+PASS N_is_a_strict_poset
+PASS N_pair_partition_complete [pairs=6]
+PASS N_comparability_graph_is_P4 [deg=[1, 1, 2, 2] edges=3]
+PASS N_every_element_has_an_incomparable_partner [violators=[]]
+PASS N_is_self_dual
+# --- the coordinate-pattern mechanism of Lemma 4 ---
+PASS lemma4_eight_patterns_are_exactly_the_compatible_ones [computed=8 listed=8]
+PASS lemma4_induced_iff_the_three_patterns_occur_n1 [quadruples=8 mismatches=0]
+PASS lemma4_induced_iff_the_three_patterns_occur_n2 [quadruples=64 mismatches=0]
+PASS lemma4_induced_iff_the_three_patterns_occur_n3 [quadruples=512 mismatches=0]
+PASS lemma4_induced_iff_the_three_patterns_occur_n4 [quadruples=4096 mismatches=0]
+PASS lemma4_induced_iff_the_three_patterns_occur_n5 [quadruples=32768 mismatches=0]
+# --- induced copies of N in B_n, generated from the definition ---
+PASS lemma4_edge_count_closed_form_n1 [counted=0 formula=0]
+#   n=1: 0 induced copies of N among the 0 4-subsets of B_n
+PASS lemma2_induced_N_iff_comparability_P4_n2 [byN=0 byP4=0 symdiff=0]
+PASS lemma4_edge_count_closed_form_n2 [counted=0 formula=0]
+#   n=2: 0 induced copies of N among the 1 4-subsets of B_n
+PASS lemma2_induced_N_iff_comparability_P4_n3 [byN=6 byP4=6 symdiff=0]
+PASS each_copy_has_a_unique_role_assignment_n3 [copies with a role count != 1: 0 of 6]
+PASS lemma2_no_copy_contains_empty_or_full_n3 [violators=0 of 6 copies]
+PASS lemma4_edge_count_closed_form_n3 [counted=6 formula=6]
+#   n=3: 6 induced copies of N among the 70 4-subsets of B_n
+PASS lemma2_induced_N_iff_comparability_P4_n4 [byN=156 byP4=156 symdiff=0]
+PASS each_copy_has_a_unique_role_assignment_n4 [copies with a role count != 1: 0 of 156]
+PASS lemma2_no_copy_contains_empty_or_full_n4 [violators=0 of 156 copies]
+PASS lemma4_edge_count_closed_form_n4 [counted=156 formula=156]
+#   n=4: 156 induced copies of N among the 1820 4-subsets of B_n
+PASS lemma2_induced_N_iff_comparability_P4_n5 [byN=2550 byP4=2550 symdiff=0]
+PASS each_copy_has_a_unique_role_assignment_n5 [copies with a role count != 1: 0 of 2550]
+PASS lemma2_no_copy_contains_empty_or_full_n5 [violators=0 of 2550 copies]
+PASS lemma4_edge_count_closed_form_n5 [counted=2550 formula=2550]
+#   n=5: 2550 induced copies of N among the 35960 4-subsets of B_n
+PASS lemma2_induced_N_iff_comparability_P4_n6 [byN=33540 byP4=33540 symdiff=0]
+PASS each_copy_has_a_unique_role_assignment_n6 [copies with a role count != 1: 0 of 33540]
+PASS lemma2_no_copy_contains_empty_or_full_n6 [violators=0 of 33540 copies]
+PASS lemma4_edge_count_closed_form_n6 [counted=33540 formula=33540]
+#   n=6: 33540 induced copies of N among the 635376 4-subsets of B_n
+# --- sat*(n,N) by brute force over ALL 2^(2^n) subfamilies of B_n, from the definition alone ---
+#   n=1: 1 saturated families in all, minimum size 2, 1 of minimum size
+PASS bruteforce_satstar_equals_2n_n1 [computed=2 paper=2]
+PASS bruteforce_only_saturated_family_is_B_n_n1 [families=1]
+#   n=2: 1 saturated families in all, minimum size 4, 1 of minimum size
+PASS bruteforce_satstar_equals_2n_n2 [computed=4 paper=4]
+PASS bruteforce_only_saturated_family_is_B_n_n2 [families=1]
+#   n=3: 9 saturated families in all, minimum size 6, 9 of minimum size
+PASS bruteforce_satstar_equals_2n_n3 [computed=6 paper=6]
+PASS bruteforce_labeled_minimum_count_n3 [computed=9 paper=9]
+#   n=4: 118 saturated families in all, minimum size 8, 60 of minimum size
+PASS bruteforce_satstar_equals_2n_n4 [computed=8 paper=8]
+PASS bruteforce_labeled_minimum_count_n4 [computed=60 paper=60]
+# --- the census of Table 1, computed twice, independently ---
+#   n=3: tested 57, independent 51, maximal 9
+PASS table1_V_size_n3 [computed=6 paper=6]
+PASS table1_edge_count_n3 [computed=6 paper=6]
+PASS table1_tested_candidates_n3 [enumerated=57 binomial_sum=57 paper=57]
+PASS table1_independent_count_n3 [computed=51 paper=51 by_size=[1, 6, 15, 20, 9]]
+PASS table1_maximal_count_n3 [computed=9 paper=9]
+PASS all_maximal_have_size_exactly_2n_minus_2_n3 [by_size=[0, 0, 0, 0, 9]]
+PASS two_independent_census_algorithms_agree_n3 [scan_ind=51 dfs_ind=51 scan_max=9 dfs_max=9]
+PASS satstar_equals_2n_from_census_n3 [derived=6 paper=6]
+PASS reduction_lemma3_set_equality_n3 [bruteforce=9 from_hypergraph=9 symdiff=0]
+PASS minimum_families_saturated_by_definition_n3 [families=9 expected=9 failures=0]
+PASS minimum_family_size_is_2n_n3 [wrong size=0 of 9]
+PASS group_order_is_2_times_n_factorial_n3 [elements=12 distinct=12 expected=12]
+PASS census_closed_under_Gamma_n3 [families=9 with an image outside the census=0]
+PASS gamma_is_a_permutation_group_n3 [elements=12 non_bijections=0 identity=True closed=True inverses=True]
+PASS canonical_classes_are_the_true_Gamma_orbits_n3 [closure_orbits=2 sizes=[3, 6] canonical_classes=2 sizes=[3, 6]]
+#   Table 2 row n=3 size=6   X = {1,2,12,3}  mu = [1, 2, 3, 4]
+#   Table 2 row n=3 size=3   X = {1,2,13,23}  mu = [1, 2, 5, 6]
+PASS table2_representatives_wellformed_n3 [2 rows]
+PASS table2_representatives_are_maximal_independent_n3 [2 rows, not in census: []]
+PASS table2_representatives_are_canonical_n3 [2 rows, non-canonical: []]
+PASS table2_orbit_rows_match_computed_orbits_n3 [computed=[(3, '1,2,13,23'), (6, '1,2,12,3')]]
+PASS orbit_count_n3 [computed=2 paper=2]
+PASS orbits_partition_the_labeled_census_n3 [sum_of_orbit_sizes=9 distinct=9 census=9 listed=9 paper=9]
+PASS orbit_stabilizer_identity_n3 [2 orbits, violations=[]]
+PASS all_saturated_families_closed_under_Gamma_n3 [saturated_families=9 group_order=12 with an image outside=0]
+#   n=4: tested 6476, independent 3110, maximal 60
+PASS table1_V_size_n4 [computed=14 paper=14]
+PASS table1_edge_count_n4 [computed=156 paper=156]
+PASS table1_tested_candidates_n4 [enumerated=6476 binomial_sum=6476 paper=6476]
+PASS table1_independent_count_n4 [computed=3110 paper=3110 by_size=[1, 14, 91, 364, 845, 1078, 717]]
+PASS table1_maximal_count_n4 [computed=60 paper=60]
+PASS all_maximal_have_size_exactly_2n_minus_2_n4 [by_size=[0, 0, 0, 0, 0, 0, 60]]
+PASS two_independent_census_algorithms_agree_n4 [scan_ind=3110 dfs_ind=3110 scan_max=60 dfs_max=60]
+PASS satstar_equals_2n_from_census_n4 [derived=8 paper=8]
+PASS reduction_lemma3_set_equality_n4 [bruteforce=118 from_hypergraph=118 symdiff=0]
+PASS minimum_families_saturated_by_definition_n4 [families=60 expected=60 failures=0]
+PASS minimum_family_size_is_2n_n4 [wrong size=0 of 60]
+PASS group_order_is_2_times_n_factorial_n4 [elements=48 distinct=48 expected=48]
+PASS census_closed_under_Gamma_n4 [families=60 with an image outside the census=0]
+PASS gamma_is_a_permutation_group_n4 [elements=48 non_bijections=0 identity=True closed=True inverses=True]
+PASS canonical_classes_are_the_true_Gamma_orbits_n4 [closure_orbits=4 sizes=[6, 6, 24, 24] canonical_classes=4 sizes=[6, 6, 24, 24]]
+#   Table 2 row n=4 size=24  X = {1,2,12,3,123,4}  mu = [1, 2, 3, 4, 7, 8]
+#   Table 2 row n=4 size=6   X = {1,2,12,3,4,34}  mu = [1, 2, 3, 4, 8, 12]
+#   Table 2 row n=4 size=24  X = {1,2,12,3,124,34}  mu = [1, 2, 3, 4, 11, 12]
+#   Table 2 row n=4 size=6   X = {1,2,12,123,124,34}  mu = [1, 2, 3, 7, 11, 12]
+PASS table2_representatives_wellformed_n4 [4 rows]
+PASS table2_representatives_are_maximal_independent_n4 [4 rows, not in census: []]
+PASS table2_representatives_are_canonical_n4 [4 rows, non-canonical: []]
+PASS table2_orbit_rows_match_computed_orbits_n4 [computed=[(6, '1,2,12,3,4,34'), (6, '1,2,12,123,124,34'), (24, '1,2,12,3,123,4'), (24, '1,2,12,3,124,34')]]
+PASS orbit_count_n4 [computed=4 paper=4]
+PASS orbits_partition_the_labeled_census_n4 [sum_of_orbit_sizes=60 distinct=60 census=60 listed=60 paper=60]
+PASS orbit_stabilizer_identity_n4 [4 orbits, violations=[]]
+PASS all_saturated_families_closed_under_Gamma_n4 [saturated_families=118 group_order=48 with an image outside=0]
+#   n=5: tested 8656937, independent 1690127, maximal 450
+PASS table1_V_size_n5 [computed=30 paper=30]
+PASS table1_edge_count_n5 [computed=2550 paper=2550]
+PASS table1_tested_candidates_n5 [enumerated=8656937 binomial_sum=8656937 paper=8656937]
+PASS table1_independent_count_n5 [computed=1690127 paper=1690127 by_size=[1, 30, 435, 4060, 24855, 101076, 280070, 541360, 738240]]
+PASS table1_maximal_count_n5 [computed=450 paper=450]
+PASS all_maximal_have_size_exactly_2n_minus_2_n5 [by_size=[0, 0, 0, 0, 0, 0, 0, 0, 450]]
+PASS two_independent_census_algorithms_agree_n5 [scan_ind=1690127 dfs_ind=1690127 scan_max=450 dfs_max=450]
+PASS satstar_equals_2n_from_census_n5 [derived=10 paper=10]
+PASS minimum_families_saturated_by_definition_n5 [families=450 expected=450 failures=0]
+PASS minimum_family_size_is_2n_n5 [wrong size=0 of 450]
+PASS group_order_is_2_times_n_factorial_n5 [elements=240 distinct=240 expected=240]
+PASS census_closed_under_Gamma_n5 [families=450 with an image outside the census=0]
+PASS gamma_is_a_permutation_group_n5 [elements=240 non_bijections=0 identity=True closed=True inverses=True]
+PASS canonical_classes_are_the_true_Gamma_orbits_n5 [closure_orbits=7 sizes=[30, 30, 30, 60, 60, 120, 120] canonical_classes=7 sizes=[30, 30, 30, 60, 60, 120, 120]]
+#   Table 2 row n=5 size=120 X = {1,2,12,3,123,4,1234,5}  mu = [1, 2, 3, 4, 7, 8, 15, 16]
+#   Table 2 row n=5 size=60  X = {1,2,12,3,123,4,5,45}  mu = [1, 2, 3, 4, 7, 8, 16, 24]
+#   Table 2 row n=5 size=120 X = {1,2,12,3,123,4,1235,45}  mu = [1, 2, 3, 4, 7, 8, 23, 24]
+#   Table 2 row n=5 size=60  X = {1,2,12,3,123,1234,1235,45}  mu = [1, 2, 3, 4, 7, 15, 23, 24]
+#   Table 2 row n=5 size=30  X = {1,2,12,3,4,34,1234,5}  mu = [1, 2, 3, 4, 8, 12, 15, 16]
+#   Table 2 row n=5 size=30  X = {1,2,12,3,4,34,125,345}  mu = [1, 2, 3, 4, 8, 12, 19, 28]
+#   Table 2 row n=5 size=30  X = {1,2,12,123,1234,1235,45,345}  mu = [1, 2, 3, 7, 15, 23, 24, 28]
+PASS table2_representatives_wellformed_n5 [7 rows]
+PASS table2_representatives_are_maximal_independent_n5 [7 rows, not in census: []]
+PASS table2_representatives_are_canonical_n5 [7 rows, non-canonical: []]
+PASS table2_orbit_rows_match_computed_orbits_n5 [computed=[(30, '1,2,12,3,4,34,1234,5'), (30, '1,2,12,3,4,34,125,345'), (30, '1,2,12,123,1234,1235,45,345'), (60, '1,2,12,3,123,4,5,45'), (60, '1,2,12,3,123,1234,1235,45'), (120, '1,2,12,3,123,4,1234,5'), (120, '1,2,12,3,123,4,1235,45')]]
+PASS orbit_count_n5 [computed=7 paper=7]
+PASS orbits_partition_the_labeled_census_n5 [sum_of_orbit_sizes=450 distinct=450 census=450 listed=450 paper=450]
+PASS orbit_stabilizer_identity_n5 [7 orbits, violations=[]]
+# 
+# SCOPE: the census of Table 1 is reproduced in full for n=3,4,5 -- every one of the 57 / 6,476 / 8,656,937 candidates was tested, nothing was sampled or truncated.
+# SCOPE: for n=1,2,3,4 sat*(n,N) is also obtained with no lemma at all, by scanning every subfamily of B_n. For n=5 that scan (2^32 subfamilies) is out of reach, so the n=5 minimum rests on the reduction of Lemma 3, whose computational content (no copy of N meets {} or [n]) is checked at n=5 and whose full set equality is checked at n=3,4.
+# SCOPE: at n=6 only the 4-subset facts are checked -- the Lemma 4 edge count, the Lemma 2 P4 criterion, role uniqueness and the no-extremes fact. No census, no minimality and no orbit claim is verified at n=6, and nothing whatever for n >= 7. The paper claims nothing for n >= 6 either.
+# NOT RE-RUN: the paper's own first implementation, which this bundle does not ship; this file is an independent reimplementation written from the paper's specification alone. Also not re-run: the n=5 brute-force scan of all 2^32 subfamilies of B_5, so sat*(5,N) here rests on the reduction of Lemma 3 as set out in the SCOPE line above; and no census, minimality or orbit computation at n >= 6.
+VERDICT: ALL 105 CHECKS PASS
+=== program exited with status 0 ===

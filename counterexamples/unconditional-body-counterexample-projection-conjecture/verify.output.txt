@@ -1,0 +1,62 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  884fe18b77cf755c673b600ff41d90fbeeb367b63357671e3aa70ae3d11c80da
+python:  Python 3.9.25
+=== program output follows ===
+PASS K0_rows_are_exactly_the_two_sign_orbits_of_the_paper_forms [12 rows, 12 orbit rows, symmetric difference 0]
+PASS paper_form_coefficients_are_nonnegative_so_orbit_max_is_the_abs_form [forms [((4, 0, 3, 3), 1), ((0, 3, 4, 0), 1)]]
+PASS K0_rows_agree_with_the_literal_paper_formula_on_a_grid [28561 grid points, 0 mismatches]
+PASS K0_origin_strictly_interior [min slack 1]
+PASS K0_axis_rays_blocked_necessary_condition_only [8/8 blocked]
+PASS K0_bounded_recession_cone_is_trivial [complete extreme-ray enumeration over 12 normals]
+PASS Kplus_bounded_recession_cone_is_trivial [complete extreme-ray enumeration over 6 normals]
+PASS K0_invariant_under_all_16_sign_changes [12 distinct facets]
+PASS K0_not_invariant_under_any_nonidentity_coordinate_permutation [1 of 24 permutations fix the facet set]
+PASS orthant_reduction_exact_row_set_closed_under_signs_and_abs [closure True, abs-row True over 12 rows]
+PASS orthant_reduction_x_in_K0_iff_abs_x_in_Kplus_grid_cross_check [28561 grid points, 0 mismatches]
+PASS Kplus_rows_are_K0_rows_or_orthant_rows [6 rows, 4 of them orthant]
+PASS K0_rows_dominated_on_the_orthant_by_a_Kplus_row [0 of 12 K0 rows undominated]
+PASS Kplus_active_set_census_9_feasible_4_singular_2_infeasible [feasible active sets 9 giving 9 distinct vertices, singular 4, infeasible 2, total 15 of 15]
+PASS Kplus_infeasible_points_match_paper [2 distinct]
+PASS Kplus_vertex_set_equals_V_plus [computed 9, paper 9]
+PASS K0_vertices_are_a_subset_of_the_sign_orbit_of_V_plus [16 vertices, orbit size 25]
+PASS sign_orbit_of_V_plus_lies_inside_K0 [orbit 25 points, all feasible]
+PASS all_16_K0_vertices_carry_a_strict_supporting_functional [16 of 16]
+PASS gram_matrix_B_transpose_B [G = [[15,-8],[-8,14]]]
+PASS det_gram_146_so_dim_E0_is_2 [det G = 146]
+PASS chart_area_factor_sqrt_146_on_4_triangles [4 triangles, 0 mismatches]
+PASS phi_vanishes_on_a_rank_2_orthogonal_complement [2 vectors, orthogonal to b1,b2: True, rank 2]
+PASS Qplus_halfspace_certificate_is_bounded [5 half-spaces, recession cone trivial]
+PASS Qplus_projected_generators_satisfy_halfspaces [9 generators]
+PASS Qplus_halfspace_vertices_equal_paper_vertex_list [computed 5, paper 5]
+PASS Qplus_every_halfspace_vertex_is_a_projected_generator [5 vertices]
+PASS Qplus_has_at_least_three_vertices_so_the_area_is_defined [5 vertices]
+PASS Qplus_paper_vertex_order_is_counterclockwise [2*area = 7/6]
+PASS Qplus_shoelace_area [area = 7/12]
+PASS Q_halfspace_certificate_is_bounded [8 half-spaces, recession cone trivial]
+PASS Q_projected_generators_satisfy_halfspaces [25 generators]
+PASS Q_halfspace_vertices_equal_paper_vertex_list [computed 8, paper 8]
+PASS Q_every_halfspace_vertex_is_a_projected_generator [8 vertices]
+PASS Q_has_at_least_three_vertices_so_the_area_is_defined [8 vertices]
+PASS Q_paper_vertex_order_is_counterclockwise [2*area = 1399/288]
+PASS Q_shoelace_area [area = 1399/576]
+PASS Qplus_contained_in_Q [5 derived vertices of Q_+ inside Q]
+PASS Q_strictly_larger_than_Qplus [7 of 8 derived vertices of Q outside Q_+]
+PASS Qplus_area_is_strictly_positive [area(Q_+) = 7/12]
+PASS ratio_equals_1399_over_336 [ratio = 1399/336]
+PASS ratio_decomposition_4_plus_55_over_336 [55/336]
+PASS conjecture_fails_for_m4_n2 [1399/336 > 4, excess 55/336]
+PASS product_extension_beats_2_to_the_n_for_all_pairs [153 pairs (m<=20), 0 failures]
+PASS product_extension_margins_are_positive_and_grow [smallest excess 55/336 at n=2, strictly increasing over n=2..18: True]
+PASS product_body_m5_is_unconditional [16807 grid points x 32 sign patterns, 0 mismatches]
+PASS product_body_m5_positive_part_is_Kplus_times_unit_interval [16807 grid points, 0 mismatches]
+PASS product_body_m5_chart_image_is_Q_times_interval [grid images inside Q x [-1,1]: True (the exact inclusion is the earlier generator check plus linearity); 16 of 16 product vertices attained exactly]
+PASS product_body_m5_ratio_exceeds_2_cubed [ratio = 1399/168 > 8]
+NOT RE-RUN HERE (1): the positive cases n = 1 and n = m-1 of the classification are quoted from the cited work and are not recomputed.
+NOT RE-RUN HERE (2): the case n = m is supported only through the orthant reduction above, not by a 4-dimensional volume computation.
+NOT RE-RUN HERE (3): the product identities P_E K = P_{E_0}K_0 x [-1,1]^{n-2} and P_E(K cap R_+^m) = P_{E_0}K_+ x [0,1]^{n-2} are verified as sets only for the single pair (m,n) = (5,3), and there only on a rational grid; the all-(m,n) statement above is the arithmetic consequence 2^{n-2}*(1399/336) > 2^n, enumerated for m <= 20 only.
+NOT RE-RUN HERE (4): checks whose detail line says 'grid' are finite samples, not proofs over R^m; the load-bearing orthant reduction and the K_0 encoding also have exact, sample-free counterparts above.
+NOT RE-RUN HERE (5): the hypothesis class is taken from the paper. Proved above: K_0 is invariant under all 16 coordinate sign changes (hence unconditional) and under no nonidentity coordinate permutation, so it satisfies the sign-invariance hypothesis and not the stronger permutation-invariant one. That sign invariance is the whole hypothesis of the conjecture being refuted is transcribed from the cited work, which is not part of this material and is not read by this program.
+NOT RE-RUN HERE (6): no computation here touches bibliographic data -- the preprint identifier and version, the author names, and the pinpoint citations to the two propositions that supply the positive cases n = 1 and n = m-1. The negative half of the if-and-only-if classification (every m >= 4, 2 <= n <= m-2) is recomputed above; the positive half rests on those citations together with the elementary case n = m.
+VERDICT: ALL 49 CHECKS PASS
+=== program exited with status 0 ===

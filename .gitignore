@@ -1,0 +1,19 @@
+# LaTeX build products
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# byproducts of checking this material, which have been committed by accident before:
+# pdftotext dumps from identity scans, and bytecode from compile checks
+pdf.txt
+*.pyc
+__pycache__/
+
+# macOS
+.DS_Store

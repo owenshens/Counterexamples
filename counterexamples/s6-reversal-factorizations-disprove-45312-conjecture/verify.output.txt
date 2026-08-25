@@ -1,0 +1,47 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  09cb79d93fa2900c3dd28c08a4bac83d40eb2c10149812e1e0f955a8a3b633f0
+python:  Python 3.9.25
+=== program output follows ===
+PASS hecke_quadratic_and_braid_relations [T_s^2 = q T_e + (q-1) T_s: True; braid: True; far generators commute: True]
+PASS hecke_length_additivity_and_unit [T_x T_y = T_{xy} on 31711 length-additive pairs; T_e is a two-sided unit]
+PASS hecke_associativity_and_left_right_paths_agree [associative on 8000 triples; hmul(T_s,.) == left_mult_s on all 720 T_x]
+PASS kl_generators_and_longest_element [Ctilde_s = T_s + T_e for 5 generators; Ctilde_w0 = sum of all 720 T_v]
+PASS kl_degree_bound_positivity_and_constant_term [P_{w,w}=1, P_{v,w}(0)=1, coefficients >= 0 (all three derived); deg P_{v,w} <= (l(w)-l(v)-1)/2 holds by construction, since that bound is what build_kl_basis strips by, so only the first three can fail here]
+PASS kl_mu_corrections_are_positive_monomials [560 corrections, each mu*q^((l(w')-l(z)+1)/2) with mu>0 and s z < z]
+PASS kl_known_polynomials_3412_and_4231 [P_{123456,341256}=(1, 1), P_{123456,423156}=(1, 1) (both 1+q)]
+PASS kl_trivial_iff_3412_4231_avoiding [|{w : all P_{v,w}=1}| = 366 = |{w avoiding 3412 and 4231}| = 366]
+PASS transcribed_words_are_permutations_of_1_to_6 [55 transcribed one-line words, all in S_6]
+PASS census_45312_containing_in_S6_is_26 [26 permutations of S_6 contain 45312]
+PASS exclusion_sets_partition_the_census [sizes (7, 13, 6), pairwise disjoint=True, union equals census=True]
+PASS stated_positions_are_45312_occurrences [all 7 position tuples realise 45312]
+PASS kl_support_is_the_bruhat_interval [support(Ctilde_w) = {v : v <= w} for 27 elements]
+PASS f_A_equals_one_plus_q_squared_in_every_row [f_A(q) = (1+q)^2 for all 7 interval sequences]
+PASS qbrack_factorials_are_correct [[0]_q!=[1]_q!=1, [2]_q!=1+q, [3]_q!=1+2q+2q^2+q^3]
+PASS row_one_large_intersections_are_exactly_I12_and_I24 [|I_{i,j}| > 1 exactly for (i,j) = (1,2) and (2,4), both equal to {2,3}]
+PASS seven_reversal_factorizations_hold_exactly [(1+q)^2 Ctilde_w = product of C_{ab} for all 7 w, in the T-basis]
+PASS three_intermediate_identities [C24 C13=(1+q)Ct_431256: True; .C46=Ct_431652: True; .C24=(1+q)Ct_463152: True]
+PASS two_chain_identities [Ct_463152 C45 = Ct_463512: True; C45 Ct_463512 = Ct_563412: True]
+PASS symmetry_orbits_of_the_factorable_set [F closed under w->w^{-1} and w->w0 w w0; orbit sizes [1, 2, 4]]
+PASS diagram_automorphism_maps_intervals_correctly [w0 s[a,b] w0 = s[7-b,7-a] for all 15 intervals]
+PASS kl_basis_is_stable_under_inverse_and_w0_conjugation [P_{v,w} = P_{v^-1,w^-1} = P_{w0 v w0, w0 w w0} for all 720 w in S_6]
+PASS iota_reverses_products_and_fixes_every_C_ab [s[a,b]^-1 = s[a,b] for all 15 intervals; iota(XY) = iota(Y) iota(X) on all 225 pairs of C_{ab}]
+PASS symmetry_transports_each_row_to_a_valid_row_of_the_table [all 14 iota/omega images of the 7 rows are reversal factorizations of the image permutation with f_A=(1+q)^2; 10 of the 14 reproduce the exhibited sequence verbatim, the rest are alternative sequences for a self-image row]
+PASS N1_avoids_4231_and_contains_3412 [all 13 elements of N1 avoid 4231 and contain 3412]
+PASS N2_kazhdan_lusztig_polynomials_have_an_internal_zero [v < w and P_{v,w} = 1 + q^2 (coefficient of q^1 is zero) in all 6 pairs]
+PASS prior_work_interval_sequence_is_the_split_of_larsons_parabolics [connected components of I_0,I_1,I_2 = [(2, 4), (5, 6), (1, 3), (4, 6), (2, 4), (5, 6)] = the displayed sequence; J_k = I_{k-1} cap I_k]
+PASS prior_work_split_identity_for_463152 [f_A=(1+q)^4: True; (1+q)^4 Ctilde_463152 = C24 C56 C13 C46 C24 C56: True]
+PASS contraction_relations_used_in_the_reduction [C56 C46 = C46 C56 = (1+q) C46: True; C56 commutes with C13 and C24: True]
+PASS identity_test_is_sensitive_to_perturbation [5 mutated interval sequences, 3 wrong prefactors and 6 wrong targets all rejected]
+PASS no_single_edit_of_any_exhibited_interval_sequence_survives [510 single edits across the 7 rows, none reproduces (1+q)^2 Ctilde_w]
+PASS each_row_product_matches_no_other_element_of_S6 [for each of the 7 rows, (1+q)^2 Ctilde_v = product for exactly one of the 720 elements v of S_6]
+PASS corollary_embedding_still_contains_45312 [463152 7...n contains 45312 for n=7,8,9 and row 1 uses only s_1..s_5]
+PASS bruhat_intervals_below_the_embedded_elements_stay_in_the_parabolic [{v in S_7 : v <= w7} = image of {v in S_6 : v <= w} for the 5 relevant w, and l is unchanged by the embedding]
+PASS row_one_factorization_holds_verbatim_in_H_7 [(1+q)^2 Ctilde_4631527 = C24 C13 C46 C24 computed in H_7, with no term outside the parabolic]
+NOT RE-RUN (each item below is asserted by the paper and is NOT covered by any check above):
+  1. The 3412-gap values quoted for N1 (2 for twelve elements, 3 for 564312) are not recomputed: the gap statistic is defined in the cited reference and not in this paper. The gap>1 hypothesis of the cited Theorem 5.2 is therefore NOT verified here; only 4231-avoidance and 3412-containment are.
+  2. The 'only if' half of the classification -- that the nineteen remaining elements have NO reversal factorization -- is not re-derived by an exhaustive search over all interval sequences. This program verifies only the hypotheses on which the two cited obstruction theorems act, and neither obstruction theorem itself is reproved here.
+  3. The corollary is stated for every n >= 6, but only n = 7 is computed (pattern containment is checked for n = 7, 8, 9). The step from n = 7 to general n rests on the cited parabolic compatibility of the Kazhdan-Lusztig basis, not on an induction carried out here.
+  4. The degree bound deg P_{v,w} <= (l(w)-l(v)-1)/2 is enforced by the construction of the basis rather than tested against it; the independent evidence that the computed basis is the right one is positivity, P(0)=1, the two known values, the smooth count, the Bruhat supports, and the inverse/w0 symmetries.
+VERDICT: ALL 35 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,81 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  101f80647e43bad25182fab24646cf35de9d2ca2e45fc189f903135af4215cf3
+python:  Python 3.9.25
+=== program output follows ===
+INFO verifying: The Saturation Number of K_3 u 2K_2 (Problem 3)
+INFO F = K_3 u 2K_2; census range: order <= 13, edges <= 14
+PASS F_definition_7_vertices_5_edges [n=7 e=5 degrees=[2, 2, 2, 1, 1, 1, 1] components=[3, 2, 2] triangles=1]
+PASS F_contains_itself
+PASS F_minus_any_edge_is_F_free [5 deletions, 0 of them still contain F]
+PASS K3_plus_P3_is_F_free [P_3 has no 2-matching]
+PASS canon_invariant_under_relabelling [3 graphs x 25 permutations]
+PASS canon_class_counts_match_polya [order 6, e=0..15: [1, 1, 2, 5, 9, 15, 21, 24, 24, 21, 15, 9, 5, 2, 1, 1]]
+PASS canon_total_classes_order6 [156 isomorphism classes on 6 vertices]
+PASS B13_graph6_roundtrip [L~`@?a?_C?O?_?]
+PASS B13_order_and_size [n=13 e=15]
+PASS B13_degree_sequence [computed [9, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+PASS B13_matches_paper_construction [decoded certificate (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 514, 1540, 4088) == built-from-prose certificate (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 514, 1540, 4088)]
+PASS B13_is_F_free [7-subset exhaustive search: no K_3 u 2K_2 found]
+PASS B13_every_nonedge_creates_F [63 nonedges, 0 failures]
+PASS B13_is_F_saturated
+PASS K6I7_graph6_roundtrip [L~~w??????????]
+PASS K6I7_order_and_size [n=13 e=15]
+PASS K6I7_degree_sequence [computed [5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0]]
+PASS K6I7_matches_paper_construction [decoded certificate (0, 0, 0, 0, 0, 0, 0, 0, 128, 384, 896, 1920, 3968) == built-from-prose certificate (0, 0, 0, 0, 0, 0, 0, 0, 128, 384, 896, 1920, 3968)]
+PASS K6I7_is_F_free [7-subset exhaustive search: no K_3 u 2K_2 found]
+PASS K6I7_every_nonedge_creates_F [63 nonedges, 0 failures]
+PASS K6I7_is_F_saturated
+PASS G7_graph6_roundtrip [FkOow]
+PASS G7_order_and_size [n=7 e=9]
+PASS G7_degree_sequence [computed [3, 3, 3, 3, 2, 2, 2]]
+PASS G7_matches_paper_construction [decoded certificate (0, 0, 0, 7, 1, 18, 52) == built-from-prose certificate (0, 0, 0, 7, 1, 18, 52)]
+PASS G7_is_F_free [7-subset exhaustive search: no K_3 u 2K_2 found]
+PASS G7_every_nonedge_creates_F [12 nonedges, 0 failures]
+PASS G7_is_F_saturated
+PASS n13_two_witnesses_same_size [computed sizes 15 and 15, paper claims 15 for both]
+PASS n13_witnesses_nonisomorphic [distinct canonical forms; degree sequences [9, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1] vs [5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0]]
+PASS n13_witnesses_isolated_vertex_counts_differ [isolated vertices: B_13 has 0 (paper: 0), K_6 u I_7 has 7 (paper: 7)]
+PASS B13_minus_any_edge_not_saturated [negative control over all 15 single-edge deletions: 0 still F-saturated]
+PASS K6I7_minus_any_edge_not_saturated [negative control over all 15 single-edge deletions: 0 still F-saturated]
+PASS G7_construction_saturated_9_edges [e(G_7)=9, F-saturated=True, so sat(7) <= 9]
+PASS B_n_saturated_with_n_plus_2_edges [n = 8..20: 13/13 have e(B_n)=n+2, 13/13 are F-saturated]
+PASS K6_plus_isolates_saturated_15_edges [n = 7..20: 14/14 have 15 edges, 14/14 are F-saturated]
+PASS constructed_upper_bound_equals_min_n_plus_2_and_15 [n=7..20: 7:9,8:10,9:11,10:12,11:13,12:14,13:15,14:15,15:15,16:15,17:15,18:15,19:15,20:15]
+PASS corpus_is_nonvacuous [23289 graphs, 14801 contain F, 31 are F-saturated]
+PASS contains_F_agrees_with_brute_force [0 disagreements over 23289 graphs]
+PASS paper_saturation_criterion_agrees_with_definition [0 disagreements over 23289 graphs]
+PASS small_orders_only_K_n_is_saturated [isomorphism classes of F-saturated graphs found, n=1..6: 1:1,2:1,3:1,4:1,5:1,6:1 (each must be exactly 1, namely K_n)]
+PASS small_orders_min_edges_match_paper [computed 1:0,2:1,3:3,4:6,5:10,6:15 vs paper 1:0,2:1,3:3,4:6,5:10,6:15]
+INFO census: 150468 isolate-free F-free representatives of order <= 13 with at most 14 edges; 289362 padded graphs examined
+INFO census levels by edge count: [1, 2, 5, 11, 25, 63, 147, 358, 872, 2167, 5512, 14273, 36526, 90506]
+PASS generator_matches_polya_counts [order <= 13, e=1..10: [1, 2, 5, 11, 26, 68, 176, 492, 1446, 4435]]
+PASS F_free_pruning_is_exact [unpruned - F-containing vs pruned, e=1..10: [(1, 1), (2, 2), (5, 5), (11, 11), (25, 25), (63, 63), (147, 147), (358, 358), (872, 872), (2167, 2167)]]
+PASS canon_certificate_pins_the_isomorphism_class [150468 census representatives; 0 whose decoded certificate is not the graph itself relabelled]
+PASS lemma_dichotomy_hypotheses_are_satisfiable [28 of the 150468 census representatives and 4706 of the 33867 labelled graphs of order <= 6 satisfy both hypotheses]
+PASS lemma_dichotomy_conclusion_holds_wherever_hypotheses_hold [4734 instances tested, 0 satisfying both hypotheses but not the conclusion]
+PASS lemma_isolate_none_saturated_below_15_edges [138894 graphs with at least one isolated vertex and at most 14 edges tested, 0 F-saturated (must be 0 since K_6 u I_m needs 15 edges)]
+PASS catalogue_total_1_008_629 [computed 1008629 isolate-free classes with 1..14 edges, paper says 1008629]
+PASS catalogue_14_edge_reps_740_226 [computed 740226, paper says 740226]
+PASS polya_counter_confirmed_by_explicit_generation [e=1..7 generated [1, 2, 5, 11, 26, 68, 177], Polya [1, 2, 5, 11, 26, 68, 177]]
+INFO Polya counts of isolate-free classes, e=1..14: [1, 2, 5, 11, 26, 68, 177, 497, 1476, 4613, 15216, 52944, 193367, 740226]
+INFO isolate-free 14-edge classes by order: [(6, 1), (7, 64), (8, 1581), (9, 13969), (10, 55703), (11, 121470), (12, 166519), (13, 157814), (14, 111514), (15, 62366), (16, 29297), (17, 12174), (18, 4776), (19, 1822), (20, 705), (21, 270), (22, 109), (23, 42), (24, 18), (25, 7), (26, 3), (27, 1), (28, 1)]
+PASS extension_candidates_25_937_431 [computed 25937431 one-edge / one-leaf / one-K_2 extensions of the 740226 fourteen-edge classes with resulting order >= 14, paper says 25937431]
+PASS census_table_orders_7_to_12 [computed [(7, 9), (8, 10), (9, 11), (10, 12), (11, 13), (12, 14)], paper [(7, 9), (8, 10), (9, 11), (10, 12), (11, 13), (12, 14)]]
+PASS census_covers_every_order_up_to_13 [edge counts generated: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] (expected 1..14); graphs tested per order: 2:1,3:3,4:10,5:33,6:154,7:414,8:1161,9:3381,10:11452,11:36189,12:86096,13:150468]
+PASS census_agrees_with_exhaustive_search_on_small_orders [census 2:1,3:3,4:6,5:10 vs exhaustive 2:1,3:3,4:6,5:10; order 6 absent from census (K_6 has 15 > 14 edges): True]
+PASS census_no_saturated_graph_of_order_13_with_at_most_14_edges [150468 isolate-free F-free representatives of order <= 13 with <= 14 edges; 150468 of them pad to order 13; F-saturated among those: none]
+PASS census_witnesses_reverified_by_definition [26 extremal representatives re-tested with the definitional test]
+PASS G7_is_the_unique_extremal_graph_of_order_7 [1 extremal graph(s) of order 7 with 9 edges]
+PASS B_n_is_extremal_for_orders_8_to_12 [counts of extremal graphs: 7:1,8:2,9:2,10:4,11:5,12:8]
+PASS theorem_values_sat_n_for_1_to_13 [computed 1:0,2:1,3:3,4:6,5:10,6:15,7:9,8:10,9:11,10:12,11:13,12:14,13:15]
+INFO all 1 extremal graphs of order 7 (9 edges), in this program's own labelling: F{O_w
+INFO all 2 extremal graphs of order 8 (10 edges), in this program's own labelling: G~`@?_ G}`@?c
+INFO all 2 extremal graphs of order 9 (11 edges), in this program's own labelling: H~aA@?O H}aA@?P
+INFO all 4 extremal graphs of order 10 (12 edges), in this program's own labelling: I~aCA?_C? I~aAA?_C? I}aCA?_CG I}aAA?_CG
+INFO all 5 extremal graphs of order 11 (13 edges), in this program's own labelling: J~aCC@?G?_? J~aCA@?G?_? J~aAA?_G?_? J}aCC@?G?__ J}aCA@?G?__
+INFO all 8 extremal graphs of order 12 (14 edges), in this program's own labelling: K~aCCA?O@?A? K~aCC@?O@?A? K~aCA@?O@?A? K~aCA@?G@?A? K~aAA?_G?_A? K}aCCA?O@?A@ K}aCC@?O@?A@ K}aCA@?O@?A@
+INFO computed sat(n,F) for n=1..13: [0, 1, 3, 6, 10, 15, 9, 10, 11, 12, 13, 14, 15]
+NOT RE-RUN: this program is not the program that produced the paper's census; it is an independent and deliberately narrower re-verification written from the paper's text, and it reads no catalogue file.  The paper's census is exhaustive over McKay's catalogues of all 1,008,629 isolate-free graphs with 1..14 edges (orders up to 28) and over the 25,937,431 one-edge / one-leaf / one-K_2 extensions of the 740,226 fourteen-edge representatives.  This program re-runs that census only for orders <= 13 and <= 14 edges (self-generated), which suffices for sat(n) with n <= 13; it does NOT re-run orders 14..28 of the 14-edge layer nor any part of the 15-edge layer, so the values sat(n)=15 for n >= 14 and the uniqueness of K_6 u I_{n-6} for n >= 14 are NOT reverified here.  All three enumeration figures (1,008,629, 740,226 and 25,937,431) ARE recomputed here by Polya counting, but that fixes only the SIZE of those layers, not the F-saturation test over them.  Finally, the independent Polya cross-check of this program's own unpruned generator covers e=1..10 of the 14 levels; levels 11..14, including the top level of 90506 representatives on which the bound sat(13) > 14 rests, are supported by the generator's extension argument together with the certificate-pinning and small-order cross-validation checks, not by a second independent count.
+VERDICT: ALL 60 CHECKS PASS
+=== program exited with status 0 ===

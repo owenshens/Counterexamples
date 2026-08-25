@@ -1,0 +1,46 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  4ddc78b506b394dd3b2457b306a8add002c13d4e9baa44f5c45b5036e22c9a0c
+python:  Python 3.9.25
+=== program output follows ===
+order-six counterexample to the Brualdi-Liu even-permanent conjecture: verification
+conjecture under test: per^ev(X) >= n!/(2 n^n) for all X in the convex hull of the even permutation matrices, n >= 3
+exhibited matrix A (M = A/10):
+    3  2  5  0  0  0
+    0  3  2  3  0  2
+    0  0  3  4  3  0
+    2  3  0  3  2  0
+    5  0  0  0  0  5
+    0  2  0  0  5  3
+PASS shape_integral_nonnegative [6x6, min entry 0]
+PASS M_doubly_stochastic [row sums [10, 10, 10, 10, 10, 10], col sums [10, 10, 10, 10, 10, 10], all == 10]
+PASS M_rational_row_col_sums_one [support 19 of 36 entries, 17 zeros]
+PASS four_permutations_valid [images (1-based): (1, 4, 3, 2, 6, 5); (2, 3, 4, 1, 6, 5); (3, 2, 5, 4, 1, 6); (3, 6, 4, 5, 1, 2)]
+PASS four_permutations_even [cycle parities [0, 0, 0, 0], inversion parities [0, 0, 0, 0], inv = [4, 4, 6, 10]]
+PASS decomposition_reproduces_A [3P1+2P2+3P3+2P4 equals A]
+PASS convex_weights [weights 3/10, 1/5, 3/10, 1/5; sum = 1]
+PASS M_in_even_hull [convex combination of the 4 even permutation matrices equals M: True]
+PASS even_permutation_count [|A_6| = 360 (paper uses 360)]
+PASS sum_of_even_permutation_matrices_is_flat [sum over A_6 of P_sigma = 60 * J_6, so J_6/6 = (1/360) sum P_sigma]
+PASS bound_constant_5_over_648 [6! = 720, 6^6 = 46656, 6!/(2*6^6) = 5/648]
+PASS even_permanent_bruteforce [sum over A_6 = 6610, per^ev(M) = 6610/1000000 = 661/100000 (paper says 661/100000)]
+PASS even_permanent_via_per_plus_det [per(A) = 26020, det(A) = -12800, (per+det)/2 = 6610, odd part = 19410]
+PASS expansion_table_exact [6 nonzero even terms; table reproduced]
+PASS expansion_table_sums [computed terms sum to 6610 over 10^6 (the paper's six rows sum to 6610)]
+PASS support_pattern [17 zero entries; 20 permutations lie in the support, 6 even and 14 odd; the other 354 even permutations meet a zero entry]
+PASS VIOLATES_conjectured_bound [per^ev(M) = 661/100000 = 0.00661000  <  5/648 = 0.00771605]
+PASS violation_cross_multiplication [cross-multiplying gives 428328 < 500000 (the paper's 661*648 = 428328 against 5*100000); deficit = 8959/8100000, ratio to the bound = 53541/62500]
+PASS bound_is_value_at_flat_matrix [n=3: 1/9; n=4: 3/64; n=5: 12/625; n=6: 5/648 (n=6 equals 5/648)]
+PASS M_is_a_boundary_point [17 zero entries, e.g. positions [(1, 4), (1, 5), (1, 6), (2, 1)] -> M lies on a facet]
+PASS interior_point_positive_coefficients [t = 1/100: 360 vertex coefficients, min 1/36000, sum 1, rebuild M_t: True, all entries of M_t positive: True]
+PASS interior_points_also_violate [t=1/32: per^ev=0.007277123; t=1/100: per^ev=0.006836914; t=1/1000: per^ev=0.006633280; t=1/10000: per^ev=0.006612334; all exactly below 5/648 = 0.007716049]
+PASS interior_violation_needs_small_t [per^ev along the segment is not monotone: dyadic t obeying the bound ['1/2', '1/4', '1/8', '1/16'], violating it ['1/32', '1/64', '1/128'] -- so 'sufficiently small t' is essential]
+PASS interior_family_endpoints [t=0 gives per^ev = 661/100000 (should be the exhibited M's value 661/100000), t=1 gives 5/648 (the flat matrix, should be the bound 5/648)]
+PASS even_permanent_invariance [per^ev(P_rho A) = 6610 for all 360 even rho; = 19410 (the odd permanent) for 60 odd rho tested]
+PASS paper_point_minimises_its_simplex [D=10: 84 points, min 661/100000 at (3, 2, 3, 2), 1 below the bound; D=20: 969 points, min 661/100000 at (6, 4, 6, 4), 13 below the bound; D=30: 3654 points, min 661/100000 at (9, 6, 9, 6), 39 below the bound]
+PASS order_three_grid_minimum_is_the_bound [grid minimum 1/9 attained at weights (10, 10, 10) (the flat matrix); bound is 1/9]
+PASS order_four_search_refutes [min per^ev over C(11,3)*84 combinations = 83/2000 < 3/64 = 4!/(2*4^4); weights (3, 1, 3, 3) on [(1, 2, 3, 4), (1, 3, 4, 2), (2, 1, 4, 3), (3, 4, 1, 2)]]
+PASS order_five_search_refutes [min per^ev over the 969 weightings of denominator 20 on 4 even vertices = 2981/160000 < 12/625 = 5!/(2*5^5); weights (4, 5, 5, 6)]
+NOT RE-RUN: no exhaustive census over all 4-element subsets of the 360 even permutation matrices of order 6 (nor of the 60 of order 5) was attempted; the order-6 sweep is over the weights on the four exhibited vertices only, and the order-5 refutation sweeps the weights on one exhibited 4-vertex set. The order-4 refutation is exhaustive over 4-vertex sets at denominator 10.
+VERDICT: ALL 29 CHECKS PASS
+=== program exited with status 0 ===

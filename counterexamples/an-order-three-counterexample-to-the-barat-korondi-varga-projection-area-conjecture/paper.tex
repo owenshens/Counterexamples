@@ -1,0 +1,229 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Order-Three Counterexample to the Barat--Korondi--Varga Projection-Area Conjecture},
+  pdfkeywords={cube dismantling, bootstrap percolation, orthogonal projection
+area, independent set, grid graph, exhaustive enumeration}
+}
+
+\newtheorem{theorem}{Theorem}
+
+\title[An order-three projection-area counterexample]
+{An Order-Three Counterexample to the
+Bar\'at--Korondi--Varga Projection-Area Conjecture}
+\date{}
+
+\subjclass[2020]{Primary 05C35; Secondary 05C69, 82B43}
+\keywords{Cube dismantling, bootstrap percolation, orthogonal projection
+area, independent set, grid graph, exhaustive enumeration}
+
+\begin{document}
+
+\begin{abstract}
+Bar\'at, Korondi, and Varga conjectured that every solution to the
+three-dimensional cube-dismantling problem has total orthogonal projection
+area at least $n^2+6n-4$. We point out that the exhaustive order-three
+catalogue of Bar\'at and Wanless already contains a counterexample. In
+coordinates, one such solution has projection sizes $6,7,7$, and hence total
+projection area $20<23$. We give a legal build-up certificate, and the same
+catalogue yields the exact value $s_3(3)=20$. The configuration itself is not
+new; the contribution is the resulting correction to the stated conjecture.
+\end{abstract}
+
+\maketitle
+
+Write $[n]=\{1,\ldots,n\}$ and give $[n]^3$ its grid adjacency: two
+vertices are adjacent if they differ by $1$ in exactly one coordinate. A
+\emph{base position} is an independent set $B\subseteq[n]^3$ of size $n^2$.
+It is a \emph{solution} if $[n]^3$ can be built from $B$ by adding the
+vertices of $[n]^3\setminus B$ one at a time, each added vertex having
+exactly three neighbours already present. This is the reverse of a legal
+cube dismantling.
+
+For $i\in\{1,2,3\}$, let $\pi_i$ delete the $i$th coordinate and set
+\[
+ A(B)=\sum_{i=1}^3 |\pi_i(B)|,
+ \qquad
+ s_3(n)=\min\{A(B):B\text{ is a solution in }[n]^3\}.
+\]
+In the notation above, a conjecture of Bar\'at, Korondi, and Varga
+\cite{BKV}, stated as Conjecture~1 of Bar\'at and Wanless
+\cite{BW},\footnote{The Bar\'at--Korondi--Varga formulation is quoted here at
+second hand. Their extended abstract appeared in a symposium proceedings
+volume that is not publicly available: no copy is indexed by arXiv, zbMATH,
+Crossref, OpenAlex or Semantic Scholar, and the symposium's own abstract
+repository is restricted to participants. We have therefore not seen their
+statement, and in particular cannot confirm what number it carries there;
+\cite{BW} attribute it to \cite{BKV} without one. The inequality displayed
+here, including the quantifier range ``for all $n$'', is verbatim the
+formulation printed as Conjecture~1 of \cite{BW}, and that formulation is
+what the theorem below refutes.} asserts
+\[
+ s_3(n)\ge n^2+6n-4 \qquad\text{for all }n.
+\]
+
+\begin{theorem}
+One has
+\[
+ s_3(3)=20<23=3^2+6\cdot3-4.
+\]
+Consequently, the Bar\'at--Korondi--Varga projection-area conjecture is
+false as stated.
+\end{theorem}
+
+\begin{proof}
+For compactness, write $ijk$ for $(i,j,k)$. Consider
+\[
+ B=\{111,113,122,131,223,311,322,331,333\}.
+\]
+No two vertices in $B$ are adjacent, so $B$ is a base position. Its
+projections are
+\begin{align*}
+ \pi_1(B)&=\{(1,1),(1,3),(2,2),(2,3),(3,1),(3,3)\},\\
+ \pi_2(B)&=\{(1,1),(1,2),(1,3),(2,3),(3,1),(3,2),(3,3)\},\\
+ \pi_3(B)&=\{(1,1),(1,2),(1,3),(2,2),(3,1),(3,2),(3,3)\}.
+\end{align*}
+Thus $A(B)=6+7+7=20$.
+
+It remains to certify that $B$ is a solution. Put $S_0=B$, and for a set
+$S$ let $N_S(v)$ be the set of neighbours of $v$ in $S$. In the following
+table, set $S_k=S_{k-1}\cup\{v_k\}$. Each displayed set is the full current
+neighbourhood of the added vertex.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.06}
+\begin{tabular}{c@{\;}c@{\;}l@{\qquad}c@{\;}c@{\;}l}
+$k$ & $v_k$ & $N_{S_{k-1}}(v_k)$
+& $k$ & $v_k$ & $N_{S_{k-1}}(v_k)$\\
+\hline
+ 1 & 112 & $\{111,113,122\}$
+& 10 & 232 & $\{222,231,332\}$\\
+ 2 & 121 & $\{111,122,131\}$
+& 11 & 233 & $\{223,232,333\}$\\
+ 3 & 123 & $\{113,122,223\}$
+& 12 & 132 & $\{122,131,232\}$\\
+ 4 & 222 & $\{122,223,322\}$
+& 13 & 133 & $\{123,132,233\}$\\
+ 5 & 321 & $\{311,322,331\}$
+& 14 & 211 & $\{111,221,311\}$\\
+ 6 & 323 & $\{223,322,333\}$
+& 15 & 212 & $\{112,211,222\}$\\
+ 7 & 332 & $\{322,331,333\}$
+& 16 & 213 & $\{113,212,223\}$\\
+ 8 & 221 & $\{121,222,321\}$
+& 17 & 312 & $\{212,311,322\}$\\
+ 9 & 231 & $\{131,221,331\}$
+& 18 & 313 & $\{213,312,323\}$
+\end{tabular}
+\end{center}
+
+Every current neighbourhood has cardinality three, and
+$\{v_1,\ldots,v_{18}\}=[3]^3\setminus B$. Hence the table is a legal
+build-up from $B$ to $[3]^3$, proving $s_3(3)\le20$.
+
+For the reverse inequality, Bar\'at and Wanless exhaustively enumerated all
+order-three solutions and found seven isometry classes, one representative of
+each being drawn in their Figure~6 \cite[Section~4, Table~1 and
+Figure~6]{BW}. Computing the projection totals of those seven representatives
+gives
+\[
+ 27,\ 27,\ 25,\ 23,\ 21,\ 20,\ 21,
+\]
+of which only the multiset is used here. A cube isometry preserves total
+projection area, so these are the totals of the seven classes. Their
+classification therefore implies $s_3(3)\ge20$, and hence $s_3(3)=20$. The
+same conclusion is reached without the figure, by the exhaustive enumeration
+recorded at the end of this note: of the $4224$ independent $9$-subsets of
+$[3]^3$, exactly $116$ are solutions, they fall into seven isometry classes
+carrying the same seven totals, and the least of those totals is $20$.
+\end{proof}
+
+\paragraph{Prior work.}
+The set $B$ is isometric to one of the seven representatives in Figure~6 of
+\cite{BW}, necessarily the one of total projection area $20$, since exactly
+one of the seven classes attains that value. Thus the configuration, its
+validity as a solution, and the classification that pins $s_3(3)$ were all
+already contained in the published order-three catalogue; the observation
+recorded here is that the resulting value contradicts the conjectured bound.
+
+\paragraph{Status and scope.}
+What is refuted is the formulation displayed above, namely the one printed as
+Conjecture~1 of \cite{BW}; on the sourcing of that wording, and on what can
+and cannot be checked about the numbering it carries in \cite{BKV}, see the
+footnote there. The failure is not confined to the minimiser: three of the
+seven order-three isometry classes have total projection area below $23$,
+namely $20$, $21$ and $21$. Nor is the bound false at every order. It holds
+with equality at the two smaller ones, $s_3(1)=3$ and $s_3(2)=12$, so $n=3$
+is the first order at which it fails. No claim is made about $s_3(n)$ for
+$n\ge4$.
+
+\paragraph{Exact verification.}
+The computation reported above was re-run independently, on a separate
+machine, by a standalone program that takes the data printed here as input
+and recomputes everything else from the definitions in exact integer
+arithmetic. All $32$ of its checks agree with what is stated here. It
+rebuilds the grid graph on $[3]^3$ and the addition rule, and separates the
+rule ``exactly three neighbours already present'' from ``at least three'' by
+exhibiting configurations on which the two readings differ; it re-derives
+the independence of $B$, the three projection sets elementwise, and
+$A(B)=6+7+7=20$; it replays all eighteen rows of the table, requiring each
+recomputed neighbourhood to equal the printed one and to have exactly three
+elements, and it finds a legal addition order of its own without consulting
+the table; and it carries out the order-three census afresh, enumerating all
+$4224$ independent $9$-subsets of $[3]^3$, testing each for solution-hood,
+building and verifying the $48$-element cube isometry group, checking that
+$A$ is constant on isometry classes, and obtaining $116$ solutions in seven
+classes with least total $20$. The count $4224$ is confirmed by a second,
+unrelated algorithm, a layer transfer-matrix dynamic program; the same
+census at $n=1$ and $n=2$ returns equality in the conjectured bound, a
+control against systematic undershoot; and a mutation test, carried out
+separately while the program was being written and not part of the transcript
+it produces, reported failure under each of a suite of deliberate corruptions
+of the printed data and of the program's own geometry, with one exception that
+is provably immaterial on this input, namely interchanging the first two rows
+of the table, whose printed neighbourhoods both lie inside $B$. The program
+and its transcript accompany this note; every quantity above is in any case
+recomputable from the data printed here together with the definitions of the
+first two paragraphs.
+
+Two things the re-run did not reproduce. First, nothing beyond $n=3$: a
+census at $n=4$ would have to test $15{,}183{,}071{,}352$ independent
+$16$-subsets of $[4]^3$, about $3.6$ million times the order-three workload,
+and it was not attempted---nor is anything beyond $n=3$ claimed here.
+Second, the attributions, which are assertions about the literature rather
+than about mathematics: that the inequality transcribed above is the one
+posed in \cite{BKV}, and that the seven representatives drawn in Figure~6 of
+\cite{BW} are those of the seven isometry classes whose totals are computed
+above---only the multiset of those totals is used, which is all the theorem
+needs. Those are readings of the cited papers, and in the case of \cite{BKV}
+of a source we were unable to consult at all. The re-run agrees with every
+number printed here; agreement is evidence that the computation is right,
+not a proof of it.
+
+\begin{thebibliography}{9}
+
+\bibitem{BKV}
+J.~Bar\'at, M.~Korondi, and V.~Varga,
+\emph{How to dismantle an atomic cube in zero gravity},
+in \emph{Proceedings of the 7th Hungarian--Japanese Symposium on Discrete
+Mathematics and Its Applications}, Kyoto, Japan, 2011; extended abstract, not
+publicly available. The details of this entry are those printed in the
+reference list of \cite{BW}; we have not seen the volume.
+
+\bibitem{BW}
+J.~Bar\'at and I.~M.~Wanless,
+\emph{A cube dismantling problem related to bootstrap percolation},
+J. Stat. Phys. \textbf{149} (2012), 754--770,
+\href{https://doi.org/10.1007/s10955-012-0622-7}
+{doi:10.1007/s10955-012-0622-7}.
+
+\end{thebibliography}
+
+\end{document}

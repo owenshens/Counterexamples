@@ -1,0 +1,349 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A z-Visibility Representation of K6,6 Minus a Perfect Matching},
+  pdfsubject={Three-dimensional visibility representations of graphs},
+  pdfkeywords={z-visibility representation, visibility graph,
+    complete bipartite graph, perfect matching, counterexample}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title[A $z$-visibility representation of $K_{6,6}-M$]
+{A \texorpdfstring{$z$}{z}-Visibility Representation of
+\texorpdfstring{$K_{6,6}$}{K6,6} Minus a Perfect Matching}
+\date{}
+\subjclass[2020]{05C62, 68U05}
+\keywords{$z$-visibility representation, visibility graph, complete bipartite
+graph, perfect matching, counterexample, three-dimensional visibility}
+
+\begin{document}
+
+\begin{abstract}
+We exhibit an integral-coordinate $z$-visibility representation of
+$K_{6,6}$ minus a perfect matching.  This directly refutes
+Conjecture~6.5 of Bose et al. (1994), restated in the 1998 journal
+version of that report.  A complete finite certificate is included.
+\end{abstract}
+
+\maketitle
+
+\section{Counterexample}
+
+Bose et al.~\cite[Sec.~1.2]{BoseEtAl1998} represent vertices by pairwise
+disjoint closed axis-parallel rectangles in horizontal planes.  Two rectangles
+$A$ and $B$ are $z$-visible if there is a closed vertical cylinder of positive
+length and positive radius whose two end disks are contained in $A$ and in $B$
+and whose intersection with every other rectangle of the arrangement is empty;
+the 1994 report words this as ``a closed cylinder $C$ of non-zero length and
+radius such that the ends of $C$ are contained in $R_i$ and $R_j$, the axis of
+$C$ is parallel to the $z$ axis, and the intersection of $C$ with any other
+rectangle in the arrangement is empty'' \cite[Sec.~1]{BoseEtAl1994}.
+Adjacency is required to hold if and only if the corresponding rectangles are
+$z$-visible, and a graph admitting such a representation is called
+\emph{VRR-representable} there.  Writing $K_{j,j}-M$ for $K_{j,j}$ minus a
+perfect matching, the report proves that $K_{5,5}-M$ is VRR-representable
+\cite[Theorem~6.3]{BoseEtAl1994} and then conjectures, in the same section,
+that
+\begin{quote}
+``$K_{6,6}-M$ is not VRR-representable''
+\end{quote}
+\cite[Conjecture~6.5]{BoseEtAl1994}; the conjecture was restated in
+\cite[Sec.~5]{BoseEtAl1998}.  It carries no further qualifier there, in
+particular not the ``directed version of'' qualifier of the adjacent
+\cite[Theorem~6.4]{BoseEtAl1994}.
+
+Let
+\[
+  H=\{h_0,\ldots,h_5\},\qquad V=\{v_0,\ldots,v_5\},
+\]
+and let $G$ have edge set
+\[
+  E(G)=\{h_iv_j:0\le i,j\le5,\ i\ne j\}.
+\]
+Thus $G$ is $K_{6,6}$ minus the perfect matching
+$\{h_iv_i:0\le i\le5\}$.
+
+\begin{theorem}\label{thm:main}
+The graph $G$ has a $z$-visibility representation.  Hence
+Conjecture~6.5 of Bose et al.~
+\cite[Conjecture~6.5]{BoseEtAl1994} is false.
+\end{theorem}
+
+For each rectangle $R$, the table gives its height $z(R)$ and its projection
+$\pi(R)$ to the $xy$-plane; the rectangle itself is
+$\pi(R)\times\{z(R)\}$.  The distinct heights make the rectangles pairwise
+disjoint.
+
+\begin{center}
+\small
+\begin{tabular}{@{}c r c@{}}
+\toprule
+$R$ & $z(R)$ & $\pi(R)$ \\
+\midrule
+$h_0$ & 0  & $[6,9]\times[0,7]$ \\
+$h_3$ & 1  & $[2,5]\times[0,7]$ \\
+$v_4$ & 2  & $[4,8]\times[1,3]$ \\
+$v_0$ & 3  & $[2,4]\times[1,6]$ \\
+$v_5$ & 4  & $[4,8]\times[3,6]$ \\
+$h_1$ & 5  & $[1,8]\times[2,5]$ \\
+$v_3$ & 6  & $[2,10]\times[2,5]$ \\
+$h_2$ & 7  & $[3,7]\times[1,6]$ \\
+$v_1$ & 8  & $[3,7]\times[1,7]$ \\
+$h_5$ & 9  & $[2,8]\times[1,3]$ \\
+$h_4$ & 10 & $[2,8]\times[3,6]$ \\
+$v_2$ & 11 & $[0,8]\times[0,4]$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Verification}
+
+For integers $a,b$, set
+\[
+  Q_{a,b}=(a,a+1)\times(b,b+1),
+  \qquad
+  \mathcal C(R)=
+  \{(a,b)\in\mathbb Z^2:Q_{a,b}\subseteq\pi(R)\}.
+\]
+For distinct rectangles $A,B$, let
+\[
+  \mathcal I(A,B)=
+  \{R:\min\{z(A),z(B)\}<z(R)<\max\{z(A),z(B)\}\}
+\]
+and
+\[
+  \mathcal F(A,B)=
+  \bigl(\mathcal C(A)\cap\mathcal C(B)\bigr)
+  \setminus
+  \bigcup_{R\in\mathcal I(A,B)}\mathcal C(R).
+\]
+
+\begin{lemma}[Unit-cell criterion]\label{lem:cells}
+Let the rectangles of the arrangement lie at pairwise distinct heights, so that
+they are pairwise disjoint, and let every projection boundary lie on an integer
+grid line.  Then two of them, $A$ and $B$, are $z$-visible if and only if
+$\mathcal F(A,B)\ne\varnothing$.
+\end{lemma}
+
+\begin{proof}
+Let $D$ be the horizontal base disk of a witnessing cylinder.  Choose
+$p\in\operatorname{int}D$ on no integer grid line, and let $Q_{a,b}$ be the
+open unit cell containing $p$.  Every projection boundary lies on an integer
+grid line, so for every rectangle $R$, either
+$Q_{a,b}\subseteq\pi(R)$ or
+$Q_{a,b}\cap\pi(R)=\varnothing$.  Since $D$ lies in both endpoint projections
+and avoids every intermediate projection,
+$(a,b)\in\mathcal F(A,B)$.
+
+Conversely, if $(a,b)\in\mathcal F(A,B)$, the closed disk of radius $1/4$
+centered at $(a+1/2,b+1/2)$ lies in $Q_{a,b}$.  Its vertical extrusion from
+$A$ to $B$ is a witnessing cylinder.
+\end{proof}
+
+For each $i\ne j$, the following entry is an element of
+$\mathcal F(h_i,v_j)$; a dash marks the deleted matching edge.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}c|cccccc@{}}
+ & $v_0$ & $v_1$ & $v_2$ & $v_3$ & $v_4$ & $v_5$ \\
+\hline
+$h_0$ & --      & $(6,6)$ & $(6,0)$ & $(8,2)$ & $(6,1)$ & $(6,3)$ \\
+$h_1$ & $(2,2)$ & --      & $(1,2)$ & $(2,2)$ & $(4,2)$ & $(4,3)$ \\
+$h_2$ & $(3,1)$ & $(3,1)$ & --      & $(3,2)$ & $(4,1)$ & $(4,5)$ \\
+$h_3$ & $(2,1)$ & $(3,6)$ & $(2,0)$ & --      & $(4,1)$ & $(4,3)$ \\
+$h_4$ & $(2,5)$ & $(3,3)$ & $(2,3)$ & $(2,3)$ & --      & $(7,5)$ \\
+$h_5$ & $(2,1)$ & $(3,1)$ & $(2,1)$ & $(2,2)$ & $(7,1)$ & --      \\
+\end{tabular}
+\end{center}
+
+For every remaining pair $A,B$, the next table lists rectangles in
+$\mathcal I(A,B)$ whose cell sets collectively cover
+$\mathcal C(A)\cap\mathcal C(B)$.  The symbol $\varnothing$ means that this
+intersection of cell sets is empty.  Thus $\mathcal F(A,B)=\varnothing$ in
+every listed case.
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}c l@{\qquad}c l@{\qquad}c l@{}}
+\toprule
+pair & blockers & pair & blockers & pair & blockers \\
+\midrule
+\multicolumn{6}{c}{Pairs within $H$} \\
+$h_0,h_1$ & $v_4,v_5$
+  & $h_0,h_2$ & $v_4,v_5$
+  & $h_0,h_3$ & $\varnothing$ \\
+$h_0,h_4$ & $v_5$
+  & $h_0,h_5$ & $v_4$
+  & $h_1,h_2$ & $v_3$ \\
+$h_1,h_3$ & $v_0,v_4,v_5$
+  & $h_1,h_4$ & $v_3$
+  & $h_1,h_5$ & $v_3$ \\
+$h_2,h_3$ & $v_0,v_4,v_5$
+  & $h_2,h_4$ & $v_1$
+  & $h_2,h_5$ & $v_1$ \\
+$h_3,h_4$ & $h_2,v_0$
+  & $h_3,h_5$ & $h_2,v_0$
+  & $h_4,h_5$ & $\varnothing$ \\
+\addlinespace
+\multicolumn{6}{c}{Pairs within $V$} \\
+$v_0,v_1$ & $h_2$
+  & $v_0,v_2$ & $h_1,h_5$
+  & $v_0,v_3$ & $h_1$ \\
+$v_0,v_4$ & $\varnothing$
+  & $v_0,v_5$ & $\varnothing$
+  & $v_1,v_2$ & $h_4,h_5$ \\
+$v_1,v_3$ & $h_2$
+  & $v_1,v_4$ & $h_2$
+  & $v_1,v_5$ & $h_2$ \\
+$v_2,v_3$ & $h_4,h_5$
+  & $v_2,v_4$ & $h_5$
+  & $v_2,v_5$ & $h_1$ \\
+$v_3,v_4$ & $h_1$
+  & $v_3,v_5$ & $h_1$
+  & $v_4,v_5$ & $\varnothing$ \\
+\addlinespace
+\multicolumn{6}{c}{Deleted matching pairs} \\
+$h_0,v_0$ & $\varnothing$
+  & $h_1,v_1$ & $h_2$
+  & $h_2,v_2$ & $v_1$ \\
+$h_3,v_3$ & $h_1$
+  & $h_4,v_4$ & $\varnothing$
+  & $h_5,v_5$ & $\varnothing$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every entry of the two tables is verified by comparing integer coordinates.
+For the first table: the listed cell lies in $\mathcal C(h_i)$ and in
+$\mathcal C(v_j)$, and in $\mathcal C(R)$ for no $R\in\mathcal I(h_i,v_j)$.
+For the second: each listed blocker has height strictly between the two heights
+of its pair, and the listed blockers' cell sets together cover
+$\mathcal C(A)\cap\mathcal C(B)$, a cover that needs more than one blocker in
+nine of the rows; in the eight rows marked $\varnothing$ the set
+$\mathcal C(A)\cap\mathcal C(B)$ is itself empty, so no blocker is needed.
+By Lemma~\ref{lem:cells},
+the first table certifies all $30$ edges of $G$, while the second excludes
+the other $36$ pairs.  Since
+\[
+  30+36=\binom{12}{2},
+\]
+the visibility graph of the twelve rectangles is exactly $G$.  This proves
+Theorem~\ref{thm:main}.
+
+\medskip
+\noindent
+\textbf{Scope.}
+What is settled is exactly \cite[Conjecture~6.5]{BoseEtAl1994}: it asserts that
+no representation of $K_{6,6}-M$ exists, and one representation refutes it.
+Nothing else is claimed.  We prove nothing about $K_{j,j}-M$ for $j\ge7$, and we
+make no minimality claim: neither that twelve rectangles with these coordinate
+ranges are in any sense smallest, nor that the certificate above is the
+shortest possible.
+
+The reading of the definition is load-bearing, and it is the source's own: the
+end disks of the cylinder are \emph{contained} in the two rectangles.  Under
+the weaker reading in which those disks need only meet the two rectangles,
+these twelve rectangles realise a strictly larger graph and would not represent
+$G$; so the containment reading is not a normalisation of convenience but the
+definition being refuted.  The verification is, by contrast, insensitive to
+whether ``meets another rectangle'' is read as closed or as interior
+intersection, since each exhibited witness keeps clearance $1/4$ from every
+intermediate projection and an empty $\mathcal F(A,B)$ admits no cylinder of
+positive radius under either reading.
+
+The heights above interleave the two sides, in the order
+$h_0$, $h_3$, $v_4$, $v_0$, $v_5$, $h_1$, $v_3$, $h_2$, $v_1$, $h_5$, $h_4$,
+$v_2$.  The representation is
+therefore not a \emph{directed} one in the sense of
+\cite[Sec.~6]{BoseEtAl1994}, where representing a directed graph additionally
+requires the rectangle of each edge's source to lie below the rectangle of its
+target, and nothing here bears on \cite[Theorem~6.4]{BoseEtAl1994}, that the
+directed version of $K_{5,5}-M$ is not VRR-representable.
+
+We have found no resolution of Conjecture~6.5 in the literature; it is restated
+as an open problem in \cite[Sec.~5]{BoseEtAl1998}, the journal version of the
+report, published four years later.  That is the outcome of a search, not a
+proof of priority.  The 1994 report has no DOI and we found no library route to
+it; the copy read for this note, and the source of the wording quoted in
+Section~1, is the one at the address printed in \cite{BoseEtAl1994}.  A
+neighbouring model in the same literature, box visibility, where the channel
+may run in any of the three axis directions, is treated in the companion note
+\cite{CompanionCubes}, which exhibits nine unit cubes whose box-visibility
+graph is $K_9$ and so refutes Conjecture~26 of \cite{FeketeMeijer1999}.
+Different source, different statement, different model: neither result bears on
+the other.
+
+\medskip
+\noindent
+\textbf{Reproducibility.}
+The inputs are exactly the data printed above: the twelve rectangles, the two
+certificate tables, the definitions of Section~2, and the combinatorial
+description of $G$.  The counts $30$, $36$ and $66=\binom{12}{2}$, the
+partition of the $66$ pairs between the two tables, every cell set, and the
+visibility graph itself are recomputed rather than read off, and that the
+result is $K_{6,6}$ minus a perfect matching is confirmed without the
+labelling, from bipartiteness, $5$-regularity, and complementarity in
+$K_{6,6}$ to a perfect matching.  The visibility graph is built three
+ways---by the unit-cell criterion of Lemma~\ref{lem:cells}, by the exact area
+of the free region over the arrangement of the printed coordinates, and by
+inclusion--exclusion over $\mathcal I(A,B)$---and all three agree on the $66$
+pairs; for each of the $30$ edges the closed disk of radius $1/4$ is checked in
+exact rational arithmetic to lie in both endpoint projections and to miss every
+intermediate one.  The check discriminates: over the full census of all $96$
+admissible unit perturbations of a single projection edge and all $66$
+transpositions of the height order, $79$ and $61$ respectively destroy the
+representation, and the
+three methods agree on all $162$ mutants.  All arithmetic is exact and nothing
+was sampled or reduced in range.  The computation was re-run independently on a
+separate machine, where all of its checks agreed; the program and its
+transcript accompany this note.  Such
+agreement is evidence about the computation, not a second proof of
+Lemma~\ref{lem:cells}, whose conclusion it confirms on this instance by the two
+methods that never use it.
+
+\begin{thebibliography}{99}
+
+\bibitem{BoseEtAl1994}
+P.~Bose, H.~Everett, S.~P.~Fekete, A.~Lubiw, H.~Meijer, K.~Romanik,
+T.~Shermer, and S.~Whitesides,
+\emph{On a visibility representation for graphs in three dimensions},
+in D.~Avis and P.~Bose (eds.),
+\emph{Snapshots of Computational and Discrete Geometry}, vol.~3,
+McGill University School of Computer Science Technical Report SOCS-94.50,
+July 1994, pp.~2--25.  The report has no DOI; a copy is available at
+\url{https://www.ibr.cs.tu-bs.de/users/fekete/hp/publications/PDF/1994-On_Visibility_Representation_for_Graphs_in_Three_Dimensions.pdf}.
+
+\bibitem{BoseEtAl1998}
+P.~Bose, H.~Everett, S.~P.~Fekete, M.~E.~Houle, A.~Lubiw, H.~Meijer,
+K.~Romanik, G.~Rote, T.~C.~Shermer, S.~Whitesides, and C.~Zelle,
+\emph{A visibility representation for graphs in three dimensions},
+J. Graph Algorithms Appl. \textbf{2} (1998), no.~3, 1--16,
+\href{https://doi.org/10.7155/jgaa.00006}{doi:10.7155/jgaa.00006}.
+
+\bibitem{FeketeMeijer1999}
+S.~P.~Fekete and H.~Meijer,
+\emph{Rectangle and box visibility graphs in 3D},
+Internat. J. Comput. Geom. Appl. \textbf{9} (1999), no.~1, 1--27,
+\href{https://doi.org/10.1142/S0218195999000029}
+{doi:10.1142/S0218195999000029}.
+
+\bibitem{CompanionCubes}
+\emph{A unit-cube box-visibility representation of $K_9$},
+companion note in this collection, file
+\texttt{nine-unit-cubes-\allowbreak disprove-fekete-meijer-conjecture}.
+
+\end{thebibliography}
+
+\end{document}

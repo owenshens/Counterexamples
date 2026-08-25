@@ -1,0 +1,227 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8fdea5ac3d5738e32c3aa356bdb7c5b972c545bf567d1f1c62278a4cd671d5fb
+python:  Python 3.9.25
+=== program output follows ===
+======================================================================================
+verify.py -- low(6) = 7 for the 6x6 completely positive cone
+n = 6, Lemma 3 bound n+1 = 7, exact arithmetic only (int / Fraction)
+======================================================================================
+
+--- 1. the paper's Table 1: parse, reconstruct J_alpha, derive p ---
+  derived per-row data (p = |{I_alpha}|, J_alpha = I_alpha u (J_alpha \ I_alpha)):
+    1     p(derived)=6 p(printed)=6  J = 12345,12346,1234,1256,1356,456
+    2     p(derived)=6 p(printed)=6  J = 12345,12346,1234,1256,356,456
+    3     p(derived)=6 p(printed)=6  J = 12345,1234,12346,256,356,456
+    4     p(derived)=6 p(printed)=6  J = 12346,1236,1245,345,156,456
+    5     p(derived)=6 p(printed)=6  J = 1235,12356,145,246,346,456
+    6     p(derived)=6 p(printed)=6  J = 1234,12356,245,345,246,1356
+    7     p(derived)=6 p(printed)=6  J = 1245,1236,1236,234,345,456
+    8     p(derived)=6 p(printed)=6  J = 1236,1345,1345,246,346,256
+    9.1   p(derived)=6 p(printed)=6  J = 1236,134,135,2456,346,2456
+    9.2   p(derived)=6 p(printed)=6  J = 12356,134,1235,246,346,456
+    10    p(derived)=6 p(printed)=6  J = 1236,134,135,2456,356,2456
+    11    p(derived)=6 p(printed)=6  J = 1235,1245,12345,136,246,3456
+    12    p(derived)=6 p(printed)=6  J = 123,1245,1245,136,246,3456
+    13.1  p(derived)=6 p(printed)=6  J = 1234,12345,23456,3456,156,126
+    13.2  p(derived)=6 p(printed)=6  J = 1234,1234,3456,3456,1256,1256
+    14    p(derived)=7 p(printed)=7  J = 12345,12346,12345,12456,12456,1356,23456
+    15    p(derived)=7 p(printed)=7  J = 1234,1234,135,146,256,356,456
+    16    p(derived)=7 p(printed)=7  J = 123,124,125,136,246,3456,3456
+    17    p(derived)=7 p(printed)=7  J = 123,124,125,136,246,3456,3456
+    18    p(derived)=8 p(printed)=8  J = 123,234,3456,1456,1256,3456,1456,1256
+    19    p(derived)=6 p(printed)=6  J = 345,1456,125,123,1456,2346
+PASS paper Table 1: 21 rows transcribed  [rows = 21]
+PASS paper Table 1: every element of every I_alpha, J_alpha lies in {1,...,6}  [violations = 0]
+PASS paper Table 1: printed (J_alpha \ I_alpha) is disjoint from I_alpha (consistent with I_alpha subset J_alpha)  [violations = none]
+PASS paper Table 1: minimal-zero supports within a row are pairwise distinct  [violations = none]
+PASS paper Table 1: derived p = |{I_alpha}| equals the printed p in every row  [mismatches = none]
+PASS STRUCTURAL (holds by construction of J = I u (J\I), cannot fail): I_alpha subset J_alpha in all 21 rows / 132 zeros; the falsifiable content is |J_alpha| = |I_alpha| + |J_alpha \ I_alpha|, also checked here  [cardinality identity holds = True]
+
+--- 2. the paper's Table 1 against Table 1 of Hildebrand-Afonin ---
+PASS HA Table 1: 22 main components transcribed  [rows = 22]
+PASS the one HA component the paper does not read off its table is exactly O5  [HA \ paper = ['O5'] ; paper \ HA = []]
+PASS 22 HA components = 21 rows of the paper's table + O5  [22 = 21 + 1]
+PASS all 21 shared rows agree, entry for entry, with the second hand transcription of HA Table 1 (I_alpha, J_alpha \ I_alpha and hence J_alpha) -- both tables were typed from the same print, so this catches divergent typing and parsing slips, not a misreading common to both  [mismatches = none]
+PASS the paper's 21 rows come from Cases 1--19 with exactly 9 and 13 split in two  [distinct cases = 19, split labels = ['13', '9']]
+
+--- 3. equation (2): the support criterion for u_beta^T A u_alpha = 0 ---
+PASS IDENTITY (cannot fail; illustrates eq. (2) rather than testing the paper): on nonnegative stand-ins with supports I_alpha and zero sets J_alpha, u_beta^T A u_alpha = 0 <=> I_beta subset J_alpha on all 2508 ordered pairs (weightings ['all ones', 'k', '1/k'], 21 rows)  [violations = 0]
+
+--- 4. the 21 rows: certificates and the routing to Lemma 3(1)/3(2) ---
+  per-row decision (Lemma 3(1) needs p >= n+1 = 7; Lemma 3(2) needs p = n = 6 and one off-diagonal vanishing pair):
+    1     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,4,5} -> True
+    2     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,4,5} -> True
+    3     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,4,5} -> True
+    4     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,4,6} -> True
+    5     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,5} -> True
+    6     p=6  certificate I_2 subset J_1 : I_2={1,3}  J_1={1,2,3,4} -> True
+    7     p=6  certificate I_3 subset J_2 : I_3={1,2,3}  J_2={1,2,3,6} -> True
+    8     p=6  certificate I_3 subset J_2 : I_3={1,3,5}  J_2={1,3,4,5} -> True
+    9.1   p=6  certificate I_6 subset J_4 : I_6={4,5,6}  J_4={2,4,5,6} -> True
+    9.2   p=6  certificate I_3 subset J_1 : I_3={1,3,5}  J_1={1,2,3,5,6} -> True
+    10    p=6  certificate I_6 subset J_4 : I_6={4,5,6}  J_4={2,4,5,6} -> True
+    11    p=6  certificate I_3 subset J_2 : I_3={1,2,5}  J_2={1,2,4,5} -> True
+    12    p=6  certificate I_3 subset J_2 : I_3={1,2,5}  J_2={1,2,4,5} -> True
+    13.1  p=6  certificate I_2 subset J_1 : I_2={2,3,4}  J_1={1,2,3,4} -> True
+    13.2  p=6  certificate I_2 subset J_1 : I_2={2,3,4}  J_1={1,2,3,4} -> True
+    14    p=7  no certificate printed -> Lemma 3(1), p >= 7 : True
+    15    p=7  no certificate printed -> Lemma 3(1), p >= 7 : True
+    16    p=7  no certificate printed -> Lemma 3(1), p >= 7 : True
+    17    p=7  no certificate printed -> Lemma 3(1), p >= 7 : True
+    18    p=8  no certificate printed -> Lemma 3(1), p >= 7 : True
+    19    p=6  certificate I_5 subset J_2 : I_5={1,5,6}  J_2={1,4,5,6} -> True
+PASS every one of the 21 rows of the paper's Table 1 is decided (certificate verified, or p >= 7)  [undecided rows = none]
+PASS rows routed to Lemma 3(1) are exactly the 5 rows 14,15,16,17,18  [5 rows: ['14', '15', '16', '17', '18']]
+PASS a certificate is printed for a row iff that row has p = 6 = n (16 rows), and omitted iff p >= 7 (5 rows)  [p=6 rows with a certificate = 16, p>=7 rows without = 5]
+PASS the derived multiset of p values over the table is {6:16, 7:4, 8:1}  [counts = [(6, 16), (7, 4), (8, 1)]]
+
+--- 5. sanity gate: A = A^T forces the relation to be symmetric ---
+  relation matrices R[b][a] = [I_b subset J_a], rows b = 1..p:
+    1     R = 111100 111010 111000 100100 010010 000001   asymmetric pairs: 0
+    2     R = 111100 111000 111000 100100 000010 000001   asymmetric pairs: 0
+    3     R = 111000 111000 111000 000100 000010 000001   asymmetric pairs: 0
+    4     R = 111000 110000 101000 000100 000010 000001   asymmetric pairs: 0
+    5     R = 110000 110000 001000 000100 000010 000001   asymmetric pairs: 0
+    6     R = 110000 110001 001000 000100 000010 010001   asymmetric pairs: 0
+    7     R = 100000 011000 011000 000100 000010 000001   asymmetric pairs: 0
+    8     R = 100000 011000 011000 000100 000010 000001   asymmetric pairs: 0
+    9.1   R = 100000 010000 001000 000101 000010 000101   asymmetric pairs: 0
+    9.2   R = 101000 010000 101000 000100 000010 000001   asymmetric pairs: 0
+    10    R = 100000 010000 001000 000101 000010 000101   asymmetric pairs: 0
+    11    R = 101000 011000 111000 000100 000010 000001   asymmetric pairs: 0
+    12    R = 100000 011000 011000 000100 000010 000001   asymmetric pairs: 0
+    13.1  R = 110000 111000 011100 001100 000010 000001   asymmetric pairs: 0
+    13.2  R = 110000 110000 001100 001100 000011 000011   asymmetric pairs: 0
+    14    R = 1111100 1110010 1111100 1011101 1011101 0100011 0001111   asymmetric pairs: 0
+    15    R = 1100000 1100000 0010000 0001000 0000100 0000010 0000001   asymmetric pairs: 0
+    16    R = 1000000 0100000 0010000 0001000 0000100 0000011 0000011   asymmetric pairs: 0
+    17    R = 1000000 0100000 0010000 0001000 0000100 0000011 0000011   asymmetric pairs: 0
+    18    R = 10000000 01000000 00100100 00010010 00001001 00100100 00010010 00001001   asymmetric pairs: 0
+    19    R = 100000 010010 001000 000100 010010 000001   asymmetric pairs: 0
+PASS symmetry gate: on all 21 rows of the paper's table the relation I_beta subset J_alpha is symmetric, as A = A^T demands  [offending rows = none]
+PASS STRUCTURAL (cannot fail, J was built as I u (J\I)): the diagonal of every R is all ones, i.e. I_alpha subset J_alpha, so u_alpha is a zero in every row
+
+--- 6. the O5 row of the source table (the paper argues this branch directly) ---
+  O5 as transcribed in DATA 2: I = {1,2,3}, {2,3,4}, {3,4,5}, {1,4,5}, {1,2,5}, {6}
+  O5 as transcribed in DATA 2: J = {1,2,3}, {2,3,4}, {3,4,5}, {1,4,5}, {1,2,5}, {1,2,3,4,5,6}
+    R = 100001 010001 001001 000101 000011 000001   asymmetric pairs = [(1, 6), (2, 6), (3, 6), (4, 6), (5, 6)]
+PASS the O5 row as transcribed here FAILS the A = A^T symmetry gate, exactly as the paper's footnote predicts for a row that understates J_alpha (no claim of an error in the published source is made: this transcription is not collated with the print, and the paper does not use the row)  [asymmetric pairs = [(1, 6), (2, 6), (3, 6), (4, 6), (5, 6)]]
+PASS and the reason is visible: 6 is absent from J_alpha for the alpha where the row records J_alpha \ I_alpha = {} (so the row understates J_alpha)  [alphas whose transcribed J_alpha omits 6: [1, 2, 3, 4, 5]]
+    after A e_6 = 0 forces 6 in every J_alpha:
+    J = {1,2,3,6}, {2,3,4,6}, {3,4,5,6}, {1,4,5,6}, {1,2,5,6}, {1,2,3,4,5,6}
+    R = 100001 010001 001001 000101 000011 111111   asymmetric pairs = []
+PASS O5 repaired by 6 in every J_alpha (justified by A e_6 = 0) satisfies the symmetry gate  [asymmetric pairs = 0]
+PASS the repaired O5 row has p = 6 = n and an off-diagonal vanishing pair, so Lemma 3(2) gives dim F_A >= 7 -- the paper's direct O5 argument  [p = 6, certificate pairs = 10, e.g. [(6, 1), (6, 2), (6, 3), (6, 4)]]
+PASS in particular the pair the paper names -- e_6 (support {6}, index 6) against another minimal zero -- is among them  [pairs involving index 6: [(6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (1, 6)]]
+
+--- 7. robustness over all 22 components of the source table ---
+    O5    p=6  ordered pairs = 5   unordered = 5   -> 5 unordered certificate pair(s) (Lemma 3(2))
+    1     p=6  ordered pairs = 10  unordered = 5   -> 5 unordered certificate pair(s) (Lemma 3(2))
+    2     p=6  ordered pairs = 8   unordered = 4   -> 4 unordered certificate pair(s) (Lemma 3(2))
+    3     p=6  ordered pairs = 6   unordered = 3   -> 3 unordered certificate pair(s) (Lemma 3(2))
+    4     p=6  ordered pairs = 4   unordered = 2   -> 2 unordered certificate pair(s) (Lemma 3(2))
+    5     p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    6     p=6  ordered pairs = 4   unordered = 2   -> 2 unordered certificate pair(s) (Lemma 3(2))
+    7     p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    8     p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    9.1   p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    9.2   p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    10    p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    11    p=6  ordered pairs = 4   unordered = 2   -> 2 unordered certificate pair(s) (Lemma 3(2))
+    12    p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+    13.1  p=6  ordered pairs = 6   unordered = 3   -> 3 unordered certificate pair(s) (Lemma 3(2))
+    13.2  p=6  ordered pairs = 6   unordered = 3   -> 3 unordered certificate pair(s) (Lemma 3(2))
+    14    p=7  ordered pairs = 24  unordered = 12  -> p >= 7 (Lemma 3(1))
+    15    p=7  ordered pairs = 2   unordered = 1   -> p >= 7 (Lemma 3(1))
+    16    p=7  ordered pairs = 2   unordered = 1   -> p >= 7 (Lemma 3(1))
+    17    p=7  ordered pairs = 2   unordered = 1   -> p >= 7 (Lemma 3(1))
+    18    p=8  ordered pairs = 6   unordered = 3   -> p >= 7 (Lemma 3(1))
+    19    p=6  ordered pairs = 2   unordered = 1   -> 1 unordered certificate pair(s) (Lemma 3(2))
+PASS robustness: each of HA's 22 main components has p >= 7, or at least one unordered off-diagonal pair certifying Lemma 3(2)  [components with none = none ; smallest unordered margin over the 17 components with p = 6 is 1, attained at ['5', '7', '8', '9.1', '9.2', '10', '12', '19']]
+PASS all 22 main components of the source table (O5 included, using its row as transcribed, unrepaired) are decided by Lemma 3  [decided = 22 of 22]
+
+--- 7b. necessary condition for Lemma 3's spanning hypothesis (matchings) ---
+    1     max matching = 6  SDR: u_3->1,u_1->2,u_2->3,u_6->4,u_4->5,u_5->6
+    2     max matching = 6  SDR: u_3->1,u_1->2,u_2->3,u_6->4,u_4->5,u_5->6
+    3     max matching = 6  SDR: u_3->1,u_1->2,u_2->3,u_6->4,u_5->5,u_4->6
+    4     max matching = 6  SDR: u_1->1,u_3->2,u_2->3,u_6->4,u_4->5,u_5->6
+    5     max matching = 6  SDR: u_1->1,u_4->2,u_2->3,u_6->4,u_3->5,u_5->6
+    6     max matching = 6  SDR: u_2->1,u_1->2,u_6->3,u_4->4,u_3->5,u_5->6
+    7     max matching = 6  SDR: u_3->1,u_4->2,u_5->3,u_6->4,u_1->5,u_2->6
+    8     max matching = 6  SDR: u_1->1,u_6->2,u_5->3,u_2->4,u_3->5,u_4->6
+    9.1   max matching = 6  SDR: u_2->1,u_1->2,u_5->3,u_6->4,u_3->5,u_4->6
+    9.2   max matching = 6  SDR: u_2->1,u_1->2,u_5->3,u_6->4,u_3->5,u_4->6
+    10    max matching = 6  SDR: u_2->1,u_1->2,u_3->3,u_6->4,u_5->5,u_4->6
+    11    max matching = 6  SDR: u_1->1,u_5->2,u_6->3,u_2->4,u_3->5,u_4->6
+    12    max matching = 6  SDR: u_1->1,u_5->2,u_6->3,u_2->4,u_3->5,u_4->6
+    13.1  max matching = 6  SDR: u_6->1,u_1->2,u_2->3,u_3->4,u_5->5,u_4->6
+    13.2  max matching = 6  SDR: u_6->1,u_1->2,u_2->3,u_3->4,u_5->5,u_4->6
+    14    max matching = 6  SDR: u_3->1,u_1->2,u_2->3,u_5->4,u_4->5,u_6->6
+    15    max matching = 6  SDR: u_2->1,u_1->2,u_6->3,u_4->4,u_3->5,u_5->6
+    16    max matching = 6  SDR: u_1->1,u_5->2,u_6->3,u_2->4,u_3->5,u_4->6
+    17    max matching = 6  SDR: u_1->1,u_5->2,u_6->3,u_2->4,u_3->5,u_4->6
+    18    max matching = 6  SDR: u_5->1,u_1->2,u_2->3,u_4->4,u_3->5,u_6->6
+    19    max matching = 6  SDR: u_4->1,u_6->2,u_1->3,u_2->4,u_3->5,u_5->6
+PASS necessary condition for Lemma 3's spanning hypothesis: the supports of every row (all 21 paper rows and all 22 HA rows) admit a system of distinct representatives, so rank 6 is attainable -- max matching = 6 in every row  [rows with a smaller matching = none]
+
+--- 8. Lemma 3: exact linear independence of the rank-one directions ---
+PASS Lemma 3: the n = 6 matrices e_i e_i^T are linearly independent (rank 6)  [rank = 6]
+PASS Lemma 3(2): for each of the 15 pairs i<j, (e_i+e_j)(e_i+e_j)^T is independent of the diagonal family, giving rank n+1 = 7  [pairs failing = none]
+PASS and the hypothesis is necessary: for c supported on one coordinate, c c^T is diagonal and the rank stays at 6  [unexpected ranks = none]
+PASS Lemma 3(1): every normalized c over {-1,0,1,2}^6 with at least two nonzero entries, plus 8 rational/large-entry cases (458 vectors in all), yields rank n+1 = 7  [tested = 458, failures = none]
+PASS and the excluded case is exactly c = e_k (normalization forces the single nonzero entry to be 1, i.e. u_{n+1} = u_k, contradicting distinctness)  [single-support normalized c found = 6, expected 6]
+PASS explicit basis: all 6 columns are nonnegative and normalized (1^T u = 1)  [column sums = ['1', '1', '1', '1', '1', '1']]
+PASS explicit basis: the 6 rank-one matrices u_i u_i^T are independent (rank 6)  [rank = 6]
+PASS Lemma 3(2) on the explicit basis: every u_i + u_j supplies the (n+1)-st independent direction (15 pairs)  [failures = none]
+PASS Lemma 3(1) on the explicit basis: (u_i+u_j)/2 is a further normalized zero, distinct from all u_k, and supplies it too (15 pairs)  [failures = none, normalization slips = none]
+PASS normalization identity 1^T U = 1^T: w = Uc has 1^T w = 1^T c, so every normalized zero has coordinates summing to 1  [counterexamples = none]
+
+--- 9. the three nonexceptional face dimensions (15, 20, 15) ---
+    zeros of E_ii are {x : x_i = 0}; derived spans have dimensions [15, 15, 15, 15, 15, 15]
+    every generator lies in {M : M row and column i vanish}, of dimension [15, 15, 15, 15, 15, 15]
+PASS nonexceptional ray E_ii: dim F = 15 for all 6 choices of i (lower bound = exact rank, upper bound = containing subspace)  [ranks = [15, 15, 15, 15, 15, 15], upper bounds = [15, 15, 15, 15, 15, 15], containment = True]
+    zeros of E_ij are {x_i = 0} u {x_j = 0}; over the 15 pairs the derived
+    dimensions are: each hyperplane span [15], their intersection [10], the sum [20]
+PASS nonexceptional ray E_ij: dim F = 15 + 15 - 10 = 20 for all 15 pairs (rank of the union, matched by the upper bound {M : M_ij = 0})  [spans [15], intersections [10], totals [20], containment True]
+    a = [1, 1, 1, 1, 1, -5] : 15 zero generators, all nonnegative = True, all in a^perp = True
+      derived rank of span{xx^T} = 15 ; dim{M in S^6 : M a = 0} = 21 - 6 = 15 ; generators inside it = True
+PASS nonexceptional ray a a^T with a = [1, 1, 1, 1, 1, -5] (both signs present): dim F = 15  [rank = 15, upper bound = 15]
+    a = [2, -1, 3, -4, 1, -1] : 45 zero generators, all nonnegative = True, all in a^perp = True
+      derived rank of span{xx^T} = 15 ; dim{M in S^6 : M a = 0} = 21 - 6 = 15 ; generators inside it = True
+PASS nonexceptional ray a a^T with a = [2, -1, 3, -4, 1, -1] (both signs present): dim F = 15  [rank = 15, upper bound = 15]
+PASS nonexceptional ray a a^T: dim F = 15 for all 62 mixed-sign patterns in {-1,1}^6 (exact rank of the zero family, matched by 21 - rank(M -> Ma))  [patterns tested = 62, failures = none]
+
+--- 10. bookkeeping of the two bounds ---
+PASS the closed form (n^2 - 5n + 8)/2 attributed to [HZ, Thm 4.9] (the paper prints only the integer bound, not this formula) evaluates at n = 6 to the face dimension 7 the paper cites from HZ  [(36 - 30 + 8)/2 = 7]
+PASS BOOKKEEPING (constants; cannot fail): Kostyukova-Tchemisova's n <= low(n) <= n+3 reads 6 <= low(6) <= 9 at n = 6 and so does not improve on 6 <= low(6) <= 7  [KT interval = [6, 9], HZ interval = [6, 7]]
+PASS BOOKKEEPING (constants; cannot fail): the interval the theorem has to close is {6, 7}  [candidates before the new lower bound = [6, 7]]
+PASS BOOKKEEPING (constants; cannot fail): the lower bound dim F >= n+1 = 7 removes 6 from that interval and leaves low(6) = 7  [survivors = [7]]
+
+--- 11. assembly of the case analysis ---
+    branch E_ii                                     dim F_A >= 15
+    branch E_ij                                     dim F_A >= 20
+    branch a a^T                                    dim F_A >= 15
+    branch O5 = B (+) 0, via Lemma 3(2)             dim F_A >= 7
+    branch Cases 1--19 (21 rows), via Lemma 3       dim F_A >= 7
+PASS every branch of the case analysis yields dim F_A >= 7, and the minimum over the branches is exactly 7  [branch minimum = 7]
+PASS therefore low(6) >= 7; with the 7-dimensional maximal face of Holmgren-Zhang this gives low(6) = 7, the paper's Theorem 1  [lower bound 7, upper bound 7]
+
+--------------------------------------------------------------------------------------
+GAP LEDGER -- premises used by the paper that this program does NOT verify
+--------------------------------------------------------------------------------------
+ 1. Lemma 2, the extreme exposer (every maximal proper face of a proper cone K is K cap y^perp for some y generating an extreme ray of K^*): hand proof, no finite computation.
+ 2. AHD's classification of the extreme rays of COP^6 into nonexceptional / zero-padded exceptional of order 5 / Cases 1-19 [AHD, Thm 5.1]: cited, not reproved here (38 published pages of case analysis).  If a further class existed, every check above would still pass.
+ 3. Hildebrand's criterion that the minimal zeros of an exceptional extreme matrix span R^6 [Hildebrand, Thm 4.5]: cited.  It is the SPANNING hypothesis of Lemma 3; only its necessary consequence (a system of distinct representatives for the supports) is checked above.
+ 4. The analytic step that the tabulated component of each piece is the generic one, that {I_alpha} and p are constant on a piece, and that J_alpha can only GROW off the generic locus (HA Sec. 2 / AHD Sec. 5).  This is what extends one tabulated certificate to every matrix of the piece; it is not checkable from support data.
+ 5. Equation (2) itself: that Au >= 0 for a zero u of a copositive A, hence no cancellation in u_beta^T A u_alpha.  Two lines by hand; the check above is an identity on stand-ins and no matrix A is ever constructed.
+ 6. The O5 branch as the paper argues it (from A e_6 = 0 alone, using no table row). The O5 checks above instead test the tabulated O5 row and its repair, which is a consistency check on different data, neither necessary nor sufficient for that paragraph.  That row is a single hand transcription which has not been collated with the published print, so its failure of the symmetry gate is a fact about the transcription and is NOT offered as an erratum in [HA].
+ 7. The ENTIRE upper bound low(6) <= 7: the integer 7 is taken from Holmgren-Zhang and no 7-dimensional maximal face is constructed here (the paper exhibits none either).  If HZ were wrong, the checks above would still pass and only the lower bound low(6) >= 7 would survive.
+ 8. Universality of the two finite sweeps: Lemma 3(1) is checked on c over {-1,0,1,2}^6 plus 8 rationals, and dim F_{aa^T} = 15 on all 62 sign patterns of {-1,1}^6 plus 2 further a's -- samples of infinite families, not proofs of them.
+ 9. Fidelity of the two tables to the printed source.  PAPER_TABLE and HA_TABLE were both entered BY HAND from the same print of [HA, Table 1] (which the paper's Table 1 reproduces), in different encodings and read by different parsers.  Their agreement, checked above, excludes divergent typing and parser-specific slips; it does NOT exclude a misreading common to both, and no automated extraction from the published table was performed.
+
+======================================================================================
+6 of the 47 checks are labelled STRUCTURAL / IDENTITY / BOOKKEEPING: they hold for any input
+and carry no falsification power; the remaining 41 are the tests of the paper.
+VERDICT: ALL 47 CHECKS PASS
+=== program exited with status 0 ===

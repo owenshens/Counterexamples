@@ -1,0 +1,93 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  115bf26af674b922c35f128783603804025a3b45b11120ac93ed33cc4d14f5dc
+python:  Python 3.9.25
+=== program output follows ===
+NOTE verify.py -- Etzion-Vardy-Yaakobi Conjecture 5 at p = 29
+NOTE exact integer and F_29 arithmetic only; census depth 5
+PASS display_decodes_over_alphabet_0_plus_minus [30 rows]
+PASS display_is_square_with_rows_of_equal_length [rows=30, row lengths=[30]]
+PASS order_of_the_matrix_is_30 [order 30, paper 30]
+NOTE decoded matrix, re-encoded (compare with the paper's display):
+NOTE   W[ 1] 0+++++++++++++++++++++++++++++
+NOTE   W[ 2] +0--------------++++++++++++++
+NOTE   W[ 3] +-0------+++++++-------+++++++
+NOTE   W[ 4] +--0----+-++++++-++++++------+
+NOTE   W[ 5] +---0+++----+++++---+++---+++-
+NOTE   W[ 6] +---+0++-+-+--++--++-+++++----
+NOTE   W[ 7] +---++0++-++-+--+-++-----+-+++
+NOTE   W[ 8] +---+++0++--++---+-++--++-+--+
+NOTE   W[ 9] +--+--++0+++---++++-+---+-+-+-
+NOTE   W[10] +-+--+-++0+-+-+-+++---++-++---
+NOTE   W[11] +-++--+-++0--++-+--+++-+-+--+-
+NOTE   W[12] +-++-++-+--0+--++-+--+-++--+-+
+NOTE   W[13] +-+++--+-+-+0-+-++-+-+----++-+
+NOTE   W[14] +-+++-++--+--0-+-+--+-++-+-+-+
+NOTE   W[15] +-++++---++-+-0---+++-+-+--++-
+NOTE   W[16] +-++++--+--+-+-0-+---++-+++-+-
+NOTE   W[17] ++--+-+-+++++---0+---+++---++-
+NOTE   W[18] ++-+---+++--++-++0-+--+-++-+--
+NOTE   W[19] ++-+-++-++-+--+---0-+-+--+++-+
+NOTE   W[20] ++-+-+++--+-+-+--+-0-+--++--++
+NOTE   W[21] ++-++--++-+--++---+-0+-++-++--
+NOTE   W[22] ++-+++----+++--++--++0-+-++---
+NOTE   W[23] ++-+++---+---++++++---0+----++
+NOTE   W[24] +++--+-+-+++-+--+---+++0+----+
+NOTE   W[25] +++--+-++--+--++-+-++--+0--++-
+NOTE   W[26] +++--++--++--+-+-+++-+---0++--
+NOTE   W[27] +++-+--+++--+--+--+-++---+0-++
+NOTE   W[28] +++-+-+----++++-+++-+---++-0--
+NOTE   W[29] +++-+-+-+-+---+++--+--+-+-+-0+
+NOTE   W[30] ++++--++---+++----++--++--+-+0
+NOTE entry census: 464(+1) 406(-1) 30(0), total 900
+PASS zero_diagonal [30 diagonal entries]
+PASS off_diagonal_entries_all_plus_or_minus_one [464(+1) 406(-1) 30(0)]
+PASS matrix_is_symmetric [435 unordered pairs]
+PASS p_is_prime_and_order_equals_p_plus_1 [p=29, order=30]
+PASS gram_diagonal_all_equal_n_minus_1 [30 rows tested, target 29, offenders []]
+PASS gram_off_diagonal_all_zero [435 unordered pairs tested, offenders []]
+PASS number_of_off_diagonal_pairs_is_435 [435]
+PASS conference_constant_n_minus_1_equals_p [n-1=29, p=29]
+PASS W_is_a_conference_matrix_of_order_30 [W W^T = 29 I_30, det W = -8629188747598184440949, |det W| = 29^15 = 8629188747598184440949 ? True]
+PASS gram_matrix_vanishes_mod_p_so_C_is_self_orthogonal [900 ordered pairs tested, offenders []]
+PASS leading_15x15_minor_equals_minus_8584878_bareiss [computed -8584878, paper -8584878]
+PASS leading_15x15_minor_equals_minus_8584878_rational [computed -8584878, paper -8584878]
+PASS minor_residue_mod_p_equals_21 [-8584878 mod 29 = 21, paper 21]
+PASS minor_is_nonzero_mod_p_so_rank_at_least_15 [residue 21]
+PASS rank_over_F_29_equals_15 [computed rank 15, paper 15]
+PASS pivot_columns_are_the_first_15 [pivots [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS dimension_is_half_the_length [2*15 vs n=30]
+PASS C_perp_has_dimension_15_and_annihilates_W [dim C-perp = 15, paper n-k = 15, basis rank 15, W y = 0 for all basis y: True]
+PASS every_C_perp_basis_vector_lies_in_C [15 basis vectors (dim C = 15 must match, else containment is not equality) reduced against the row space]
+PASS C_perp_basis_solves_over_the_raw_rows_of_W [15 systems y = z W solved exactly over F_29 (dim C = 15 required)]
+PASS code_is_euclidean_self_dual [dim C = dim C-perp = 15 and C-perp is contained in C]
+PASS systematic_generator_gram_vanishes_mod_p [225 ordered pairs, offenders []]
+PASS x_is_a_well_formed_nonzero_vector_of_F_29_30 [len=30, entries in [0,29), 15 trailing zeros]
+PASS xW_recomputed_matches_the_printed_product [computed [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 6, 0, 8, 27, 0, 18, 14, 0, 15, 4, 11, 20, 17, 19], mismatches []]
+PASS xW_has_hamming_weight_13 [computed weight 13, paper 13]
+PASS xW_support_matches_the_printed_support [computed [1, 16, 17, 19, 20, 22, 23, 25, 26, 27, 28, 29, 30]]
+PASS xW_is_a_nonzero_codeword [weight 13]
+PASS codeword_re_derived_from_rref_without_using_x [rref row 1 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 6, 0, 8, 27, 0, 18, 14, 0, 15, 4, 11, 20, 17, 19]]
+PASS xW_information_part_is_the_first_unit_vector [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS singleton_bound_for_derived_n_and_k_is_16 [n-k+1 = 30-15+1 = 16, paper 16]
+PASS conjectured_parameters_p1_p1half_p3half_are_30_15_16 [conjecture predicts (30, 15, 16), derived (n,k,MDS d) = (30, 15, 16)]
+PASS derived_dimension_agrees_with_the_conjecture [k=15]
+PASS minimum_distance_upper_bound_beats_the_conjectured_distance [d(C) <= 13 < 16]
+PASS code_is_not_MDS [d(C) <= 13, MDS would need 16]
+PASS census_prerequisite_generator_is_systematic [pivots [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS census_enumeration_is_complete_for_its_range [1876136123 scalar classes examined, 1876136123 expected]
+PASS census_witness_weight_equals_the_census_minimum [witness weight 12, census min 12]
+PASS census_witness_lies_in_the_F_29_row_span_of_W [witness support [1, 2, 5, 8, 19, 21, 22, 23, 26, 27, 28, 29]; raw solve True, nonzero True, orthogonal to all 15 C-perp basis vectors True]
+PASS census_minimum_is_at_most_the_papers_bound_13 [census min 12, paper's claimed bound 13]
+PASS census_minimum_equals_12_derived_here [census min 12, value derived by this program 12]
+NOTE census depth 5: min weight 12, 1876136123 scalar classes (= 52531811444 codewords), 338.0 s
+NOTE census witness: information support [(1, 1), (2, 1), (5, 21), (8, 8)], codeword [1, 1, 0, 0, 21, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9, 17, 8, 0, 0, 9, 9, 17, 8, 0]
+NOTE NOT RE-RUN: the exact minimum distance of C. The paper claims only d(C) <= 13 and that claim is fully verified above. The census settles the minimum weight over 52531811444 of the 8629188747598184440948 nonzero codewords (information weight <= 5); codewords of information weight >= 6 are NOT enumerated, because depth 6 costs about 46 times depth 5.
+NOTE no exhaustive census over conference matrices of order 30 is attempted: the paper exhibits one matrix and claims nothing about the others.
+NOTE NOT VERIFIED: the provenance sentence (representative 3 of Spence's order-30 conference two-graph file). This program is standard library only and fetches nothing; the paper states that the provenance is not used in the proof, and the checks above are self-contained.
+NOTE MACHINERY SELF-TESTS (4 of the 43 checks; they test this program, not the paper, and cannot fail for a well-formed input): number_of_off_diagonal_pairs_is_435; census_enumeration_is_complete_for_its_range; census_witness_weight_equals_the_census_minimum; census_witness_lies_in_the_F_29_row_span_of_W. Each is a count checked against a closed form, or a second route that must agree with a first. A loop-bound or elimination error here reports FAIL, but a wrong matrix is caught by the Gram, minor, rank and codeword checks, not by these.
+NOTE DEPENDENT RESTATEMENTS (9 of the 43 checks): each of the following is a logical consequence of an earlier PASS line, so, given that line, it cannot fail on its own -- conference_constant_n_minus_1_equals_p (follows from p_is_prime_and_order_equals_p_plus_1, which already forces n = p+1); minor_is_nonzero_mod_p_so_rank_at_least_15 (follows from minor_residue_mod_p_equals_21, and 21 is not 0); dimension_is_half_the_length (follows from rank_over_F_29_equals_15 with order_of_the_matrix_is_30); code_is_euclidean_self_dual (follows from every_C_perp_basis_vector_lies_in_C, whose condition it repeats); xW_is_a_nonzero_codeword (follows from xW_has_hamming_weight_13); xW_information_part_is_the_first_unit_vector (follows from codeword_re_derived_from_rref_without_using_x with pivot_columns_are_the_first_15); derived_dimension_agrees_with_the_conjecture (follows from conjectured_parameters_p1_p1half_p3half_are_30_15_16); code_is_not_MDS (follows from minimum_distance_upper_bound_beats_the_conjectured_distance, the Singleton value having been checked equal to the conjectured distance); census_minimum_is_at_most_the_papers_bound_13 (follows from census_minimum_equals_12_derived_here, and 12 <= 13). They are printed because each names the step of the argument it licenses, but the number of lines carrying force independent of every other line is 30, not 43: a referee should read the VERDICT count below as 30 independent checks.
+NOTE KNOWN INSENSITIVITY: the checks are invariant under the switchings D W D, D = diag(+-1), whose -1 entries are confined to the coordinates where x and xW both vanish -- computed from the two vectors printed above, those are the 5 coordinates 5, 9, 18, 21 and 24, an orbit of 2^5 = 32 displays. Each orbit member is itself a conference matrix whose F_29 row span is a self-dual [30,15] code containing the same weight-13 word, so the theorem holds verbatim for every one of them; only the provenance sentence, which the paper excludes from the proof, distinguishes them. The decoded matrix is printed back above so the display itself can be compared character by character.
+NOTE elapsed 338.0 s
+VERDICT: ALL 43 CHECKS PASS
+=== program exited with status 0 ===

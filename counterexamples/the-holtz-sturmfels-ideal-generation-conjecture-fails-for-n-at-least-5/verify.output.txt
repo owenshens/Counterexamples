@@ -1,0 +1,101 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  cebc860b3d14a2dbdba62a944bb217871f880f63945ae21163a02e9119c207ec
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- The Holtz-Sturmfels ideal-generation conjecture fails for n >= 5
+exact integer arithmetic, standard library only, no external data
+
+--- THE EXHIBITED OBJECT, PRINTED BACK ---
+n = 5;  ring C[A_I : I subset of [5]] has 32 coordinates.
+epsilon: eps_01 = 1, eps_10 = -1, eps_00 = 0, eps_11 = 0.
+Q_1 entries (as quadratic forms in A), monomial counts: q00=8 q01=16 q10=16 q11=8
+B_i = det Q_i: [192, 192, 192, 192, 192] monomials for i = 1..5; coefficients seen: [-4, -2, -1, 2, 4]
+pentad Pi: 12 terms, one per Hamiltonian cycle of K_5; for example
+    +1 * x_12 x_13 x_24 x_35 x_45
+    -1 * x_12 x_13 x_25 x_34 x_45
+F_i = B_1 - B_i, i = 2,3,4,5.
+
+--- GROUP 1: the exhibited object, decoded and printed back ---
+PASS eps_is_SL2_invariant_alternating_form [g^T eps g = (det g) eps on 200 integer g; failures=0]
+PASS coordinate_set_is_32_subsets_of_[5] [|{0,1}^5|=32, |2^[5]|=32, bijection=True]
+PASS Q_i_is_symmetric_for_all_i [q01 == q10 for i=1..5: True; q01 has 16 monomials]
+PASS B_i_are_distinct_nonzero_quartics [monomial counts [192, 192, 192, 192, 192], all of degree 4: True, pairwise distinct: True]
+PASS subset_weight_grading_q=4+a+b_and_B=10 [q weights match 4+a+b: True; B weights = [10]]
+PASS pentad_transcription_12_squarefree_quintics [terms=12 squarefree=True degree5=True offdiagonal=True (+1)x6 (-1)x6]
+PASS pentad_equals_signed_hamiltonian_cycle_sum_of_K5 [12 Ham cycles of K_5 = 12, sign well defined on all 10 words each: True, derived pentad == printed pentad: True]
+PASS pentad_is_alternating_and_pentad_squared_is_symmetric [Pi(sigma X) = sgn(sigma) Pi(X) for all 120 permutations (failures=0); Pi^2 invariant under all of them: True]
+
+--- GROUP 2: hypotheses of Holtz-Sturmfels Conjecture 14 and of Oeding ---
+PASS phi5_coordinates_are_the_32_principal_minors [A_empty -> t^5: True; bidegree (|I|, 5-|I|) on every coordinate: True; 32 distinct: True; monomials of det X_[1..r] = [1, 1, 2, 5, 17, 73]]
+PASS B_i_is_SL2^5_invariant_covariance_law [Q_i(gA) = (prod_{j!=i} det g_j) g_i Q_i g_i^T and B_i(gA) = (prod det g_j)^2 B_i(A) on 20 SL_2 and 20 general GL_2 tuples (x5 values of i): Q failures=0, B failures=0; 100 trials had (prod det)^2 != 1 with B_i(gA) != B_i(A), so the test discriminates]
+PASS schur_dims_of_C2_by_counting_SSYT [dim S_(2,2) C^2 = 1, dim S_(4) C^2 = 5]
+PASS schur_restricts_to_SL2_as_Sym^(lam1-lam2) [char S_(2,2) = (z1 z2)^2 * char Sym^0: True; char S_(4) = char Sym^4: True]
+PASS Sym^m(C2)^SL2_is_zero_for_m>0 [dim Sym^m(C^2)^{SL_2} for m=0..6 = [1, 0, 0, 0, 0, 0, 0] (joint kernel of the two unipotent generators, exact rational rank)]
+PASS dim_HD5_equals_250_from_Oeding_decomposition [sum over the 10 summands = 250; binom(5,3)*5^2 = 250; paper says 250]
+PASS HD5_has_no_nonzero_G5_invariant [invariant dimension of each of the 10 summands = [0], total = 0]
+PASS cayley_hyperdet_vanishes_on_phi5_and_its_GL2^5_twists [240 (3-subset, complement-pattern) slices: nonvanishing on phi_5 = 0, on GL_2^5-twisted phi_5 = 0; EXACT symbolic pullback of all 40 slices (480 A-monomials) along phi_5: 0 nonzero residuals; control: Cayley nonzero on 50/50 generic arrays]
+PASS paper_construction_at_n=3_is_minus_cayley_hyperdet [det Q_i == -Det_{2x2x2} coefficientwise for i=1,2,3: [True, True, True] (Cayley has 12 monomials)]
+
+--- GROUP 3: the load-bearing identity and the refutation ---
+PASS pullback_B_i_equals_12_t^10_pentad^2_for_all_i [coefficientwise in Z[x_11..x_55, t] (16 variables): matches for i=1..5: True; |B_i o phi_5| = [73, 73, 73, 73, 73] monomials, |12 t^10 Pi^2| = 73; nonzero residual monomials [0, 0, 0, 0, 0]]
+PASS pullback_identity_on_the_affine_chart_t=1 [B_i((det X_I)_I) == 12 Pi(X)^2 coefficientwise for i=1..5: True (73 monomials)]
+PASS pullback_identity_at_exact_integer_points [150 exact evaluations (30 integer (X,t), 5 values of i) via formula (1) directly: mismatches=0; 27/30 points had 12 t^10 Pi^2 != 0]
+PASS F_i_pull_back_to_zero_hence_F_i_in_P5_degree4 [F_i o phi_5 == 0 in Z[x,t] for i=2,3,4,5: True; and on the chart t=1: True]
+PASS F_i_are_nonzero_homogeneous_quartics [monomial counts [144, 144, 144, 144], degrees [4], subset weights [10]]
+    recomputed Lemma 3 matrix (rows m_1..m_4, cols F_2..F_5):
+      A_134 A_234 A_15 A_25  [0, 4, 4, 4]
+      A_124 A_234 A_15 A_35  [4, 0, 4, 4]
+      A_124 A_134 A_25 A_35  [-4, -4, 0, 0]
+      A_123 A_234 A_15 A_45  [4, 4, 0, 4]
+PASS lemma3_coefficient_matrix_and_determinant_recomputed [matrix equals the one printed in Lemma 3: True; recomputed det = -512, paper says -512]
+PASS F_2..F_5_span_a_4_dimensional_space [exact rank over Q of the 4 x 280 integer coefficient matrix = 4]
+PASS W_is_G5_trivial_and_W_cap_HD5_is_zero [every element of W = span(F_2..F_5) is SL_2^5-invariant (24 random elements x random SL_2(Z) tuples, failures=0); dim W = 4; HD(5)^{G_5} = 0, so W cap HD(5) = 0]
+PASS dim_P5_4_at_least_254_strictly_exceeds_dim_HD5_so_J5_neq_P5 [F_i in (P_5)_4 (computed, check 19): True; dim(P_5)_4 >= dim HD(5) + dim W = 250 + 4 = 254 > 250 = dim HD(5) = dim (J_5)_4  ==>  J_5 is strictly contained in P_5]
+
+--- GROUP 3b: HD(5) constructed in weight zero, and W tested against it ---
+PASS F_i_annihilated_by_sl2^5_and_of_torus_weight_zero [all monomials of F_2..F_5 have torus weight (0,0,0,0,0): True; lie_lo_j F = lie_hi_j F = 0 for j=1..5: True; control: the (not invariant) hyperdeterminant slices have nonzero image in 80 of 400 (slice, j, op) cases, and every one of the 10 operators lie_lo_j/lie_hi_j is nonzero on at least one slice (10/10), so no operator is silently the zero map]
+PASS predicted_dim_of_weight_zero_part_of_HD5_is_10 [zero-weight multiplicity: S_(2,2) -> 1, S_(4) -> 1; so dim HD(5)^{torus} = binom(5,3) * 1^3 * 1^2 = 10]
+PASS computed_weight_zero_part_of_HD5_has_rank_10 [130 explicit elements of HD(5) (the 40 hyperdeterminant slices pushed to weight zero, plus 90 transvection-word elements), all of weight zero: True; exact rank over Q on 336 monomials = 10, and the dimension predicted from Oeding's decomposition is 10]
+PASS HD5_weight_zero_span_is_saturated_by_the_GL2^5_orbit [for each of the 10 3-subsets T the weight-zero projection of the sampled GL_2^5-orbit of the four slices D_{T,fix} has rank 1 (sample sizes [16, 15, 16, 15, 15, 14, 16, 16, 16, 14]), so dim HD(5)^{wt 0} <= 10; the 153 samples together have rank 10 and adjoining them to the 130 constructed generators leaves the rank at 10 -- the constructed space is not a proper subspace of the sampled orbit's weight-zero part]
+PASS W_meets_the_computed_HD5_weight_zero_space_in_zero [rank(HD(5)^{weight 0} generators together with the 153 sampled orbit elements) = 10, rank(same together with F_2..F_5) = 14 = 10 + 4 on 336 monomials, and that space is saturated under the sampled orbit (check 27b), so span(F_2..F_5) cap HD(5) = 0]
+PASS computed_HD5_weight_zero_space_has_no_G5_invariant [on the 10-dimensional computed space, the ten operators lie_lo_j, lie_hi_j have joint rank 10, so the invariant subspace has dimension 0]
+PASS J5_neq_P5_from_computed_facts_only_no_dimension_cited [W <= (P_5)_4: True; dim W = 4; W cap HD(5) = 0 by direct computation in weight zero (saturated: True)  ==>  (J_5)_4 = HD(5) is strictly contained in HD(5) + W <= (P_5)_4, hence J_5 != P_5 -- with no appeal to the value 250 or to the printed bound 254]
+
+--- GROUP 4: census over n (the paper claims every n >= 5) ---
+PASS extension_to_n_6..12_every_5subset_every_i [(n, #5-subsets, #(S,point) pairs) = [(6, 6, 18), (7, 21, 63), (8, 56, 168), (9, 126, 378), (10, 252, 756), (11, 462, 1386), (12, 792, 2376)]; 25725 exact evaluations: F_i^S(phi_n) != 0 in 0 cases, B_i^S(phi_n) != 12 t^{4(n-5)+10} Pi(X_S)^2 in 0 cases; 4899 evaluations had nonzero target]
+PASS HDn_dimension_and_H_S_invariants_census_n=3..14 [dim HD(n) == binom(n,3) 5^{n-3} for all n in 3..14 (mismatches=0); over 1392105 (3-subset T, 5-subset S) pairs the H_S-invariant dimension of the summand was nonzero 0 times; min |S \ T| = 2; dims [(3, 1), (4, 20), (5, 250), '...', (14, 17773437500)]]
+    NOT RE-RUN: the paper asserts J_n != P_n for EVERY n >= 5, an infinite family.
+    Re-run here: n = 5 in full, exactly and symbolically (the exhibited object);
+    the relations F_i^S for n = 6..12, over every one of the 1715 5-subsets S and
+    every i, at exact integer points; and the HD(n) module facts (dimension and
+    vanishing of H_S-invariants) for n = 3..14 over every (3-subset, 5-subset) pair.
+    NOT re-run: every n > 14, and the relations for n = 13..14. Those rest on the
+    paper's uniform argument (restriction of phi_n to a 5-subset), not on computation.
+    NOT re-run: the descent of the Status paragraph to the REAL form of Conjecture 14
+    (ring R[A_.], group SL_2(R)^n).  Supplied here: every coefficient of the pentad, the
+    B_i, the F_i and the 283 constructed and sampled generators of HD(5)^{weight 0} is an
+    integer (96648 coefficients scanned, 0 non-integral), and every rank and kernel above is
+    computed over Q by exact elimination, so it is the rank of the same integer matrix
+    over R.  NOT supplied: that HD(n) itself has a basis of quartics with integer
+    coefficients.  That is taken from the paper (orbit span of an integral quartic under
+    a group defined over Q) and not re-derived, so the real form is not re-verified here.
+
+--- GROUP 5: negative controls (each corruption must be detected) ---
+    control pentad_term_sign_flipped               detected=True
+    control pentad_term_deleted                    detected=True
+    control pullback_constant_12_to_13             detected=True
+    control pullback_t_exponent_10_to_9            detected=True
+    control epsilon_made_symmetric                 detected=True
+    control one_B_2_coefficient_perturbed          detected=True
+    control lemma3_matrix_entry_perturbed          detected=True
+    control Sym4_invariant_dim_forced_to_1         detected=True
+    control hamiltonian_cycle_signs_dropped        detected=True
+    control one_pentad_variable_substituted        detected=True
+    control rank_test_admits_HD5_elements_and_rejects_F_2 detected=True
+    control saturation_rank1_test_rejects_a_non_member detected=True
+    control perturbed_cayley_slice_no_longer_pulls_back_to_zero detected=True
+PASS negative_controls_all_detected [13 of 13 deliberate corruptions of the exhibited object made a load-bearing check fail]
+
+VERDICT: ALL 36 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,246 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  222c9e5d5688dcd31da1a91f2dbe096070c27ee758c93e92a533b0fb3442e6a9
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+verify.py -- Verner RK(8-6:5)a embedded formula vs He-Huang
+                 Conjecture 2.1 (arXiv:2605.16995v3)
+All arithmetic is exact (int / fractions.Fraction); no floating point,
+hence no numeric tolerance and no error bound is needed.
+==============================================================================
+
+-- 1. structure of the transcribed tableau -----------------------
+PASS every transcribed array has exactly 8 entries (zip cannot truncate)  [shapes = [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]]
+PASS A is strictly lower triangular (method is explicit)  [all 36 on/above-diagonal entries vanish]
+PASS row 1 of A vanishes, so (A*1)_1 = 0 and c_1 = 0  [A[1,:] = (0, 0, 0, 0, 0, 0, 0, 0)]
+
+-- 2. internal consistency c = A*1 and sum(b_hat) = 1 ------------
+      c = A*1 derived from A : (0, 1/5, 1/4, 4/7, 7/9, 1/5, 1, 4/7)
+      c as printed in tableau: (0, 1/5, 1/4, 4/7, 7/9, 1/5, 1, 4/7)
+PASS internal consistency c = A*1 holds on all 8 rows  [8/8 rows agree]
+      sum(b_hat) derived = 1
+PASS sum(b_hat) = 1 (quadrature/order-one condition B(1))  [derived 1, expected 1]
+
+-- 3. q_0, and why the obstruction needs m >= 2 ------------------
+      q_0 = A c^{o0} - c^{o1}/1 = A*1 - c(printed) = (0, 0, 0, 0, 0, 0, 0, 0)
+PASS q_0 = 0 against the PRINTED c, hence Q_1 = span{q_0} = {0}  [0^0 = 1 convention; not load-bearing, since min admissible m = 2]
+
+-- 4. Ac and q_1 = Ac - c^{o2}/2 ---------------------------------
+      Ac derived                : (0, 0, 1/32, 8/49, 49/162, 0, 1/2, 8/49)
+      Ac as printed in the paper: (0, 0, 1/32, 8/49, 49/162, 0, 1/2, 8/49)
+PASS derived Ac equals the vector printed in the paper  [derived (0, 0, 1/32, 8/49, 49/162, 0, 1/2, 8/49)]
+      c^{o2} derived             : (0, 1/25, 1/16, 16/49, 49/81, 1/25, 1, 16/49)
+      q_1 = Ac - c^{o2}/2 derived: (0, -1/50, 0, 0, 0, -1/50, 0, 0)
+      q_1 as printed in the paper: (0, -1/50, 0, 0, 0, -1/50, 0, 0)
+PASS derived q_1 equals the printed (0,-1/50,0,0,0,-1/50,0,0)  [derived (0, -1/50, 0, 0, 0, -1/50, 0, 0)]
+      stages with (Ac)_i = c_i^2/2 : (1, 3, 4, 5, 7, 8)   (remaining: (2, 6))
+PASS the stage set where (Ac)_i = c_i^2/2 is exactly {1,3,4,5,7,8}  [derived (1, 3, 4, 5, 7, 8), paper says (1, 3, 4, 5, 7, 8)]
+PASS the two remaining stages both have c_i = 1/5 and (Ac)_i = 0  [stage 2: c=1/5, (Ac)=0; stage 6: c=1/5, (Ac)=0]
+
+-- 5. the violation b_hat o q_1 != 0 -----------------------------
+      b_hat o q_1 derived                : (0, 1/250, 0, 0, 0, -1/250, 0, 0)
+      b_hat o q_1 as printed in the paper: (0, 1/250, 0, 0, 0, -1/250, 0, 0)
+PASS derived b_hat o q_1 equals the printed (0,1/250,0,0,0,-1/250,0,0)  [derived (0, 1/250, 0, 0, 0, -1/250, 0, 0)]
+PASS b_hat o q_1 != 0, so q_1 witnesses the failure of QO(m)  [nonzero components: (b o q_1)_2 = 1/250, (b o q_1)_6 = -1/250]
+
+-- 6. QO(2) over the printed generators of Q_2 -------------------
+      generator q_1      = (0, -1/50, 0, 0, 0, -1/50, 0, 0)
+         b_hat o q_1      = (0, 1/250, 0, 0, 0, -1/250, 0, 0)   <-- NONZERO
+      generator A q_0    = (0, 0, 0, 0, 0, 0, 0, 0)
+         b_hat o A q_0    = (0, 0, 0, 0, 0, 0, 0, 0)
+      generator q_0 o c  = (0, 0, 0, 0, 0, 0, 0, 0)
+         b_hat o q_0 o c  = (0, 0, 0, 0, 0, 0, 0, 0)
+      generator q_0      = (0, 0, 0, 0, 0, 0, 0, 0)
+         b_hat o q_0      = (0, 0, 0, 0, 0, 0, 0, 0)
+PASS QO(2) fails, and q_1 is the only printed Q_2 generator that breaks it  [generators with b_hat o g != 0: ['q_1']]
+PASS QO(2) is decided FALSE by arithmetic; the extension to every m >= 2 rests on the quoted chain Q_2 <= Q_m (see gap G2)  [witness q_1 in Q_2 with b_hat o q_1 != 0]
+
+-- 7. the Proposition's forced quantity b_2 c_2^2 ----------------
+      b_hat_2 derived from the printed weight vector = -1/5
+      c_2 derived from A*1                           = 1/5
+PASS abstract's values b_hat_2 = -1/5 and c_2 = 1/5 are the tableau's  [derived b_hat_2 = -1/5, c_2 = 1/5]
+      b_hat_2 * c_2^2 = -1/125
+PASS b_2 c_2^2 != 0, contradicting the Proposition's conclusion under QO(m)  [derived b_hat_2 c_2^2 = -1/125]
+PASS the Proposition's step (q_1)_2 = -c_2^2/2 holds on this tableau  [(q_1)_2 = -1/50 and -c_2^2/2 = -1/50]
+
+-- 8. chain conditions b_hat^T A^k c -----------------------------
+      A^1 c = (0, 0, 1/32, 8/49, 49/162, 0, 1/2, 8/49)
+         b_hat^T A^1 c = 1/6   (order-3 chain, target 1/gamma = 1/6)
+      A^2 c = (0, 0, 0, 18/343, 133/2187, 0, 15/79, 18/343)
+         b_hat^T A^2 c = 1/24   (order-4 chain, target 1/gamma = 1/24)
+      A^3 c = (0, 0, 0, 0, 247/8748, 5/2016, 6/553, -5/1008)
+         b_hat^T A^3 c = 1/120   (order-5 chain, target 1/gamma = 1/120)
+      A^4 c = (0, 0, 0, 0, 0, -5/4032, 69/4424, 1/336)
+         b_hat^T A^4 c = 1/672   (order-6 chain, target 1/gamma = 1/720)
+PASS order-3 chain condition b_hat^T A^1 c = 1/6 holds  [derived 1/6]
+PASS order-4 chain condition b_hat^T A^2 c = 1/24 holds  [derived 1/24]
+PASS order-5 chain condition b_hat^T A^3 c = 1/120 holds  [derived 1/120]
+PASS derived b_hat^T A^4 c = 1/672, the paper's printed value  [derived 1/672]
+PASS order-six chain condition FAILS: b_hat^T A^4 c != 1/720  [residual = 1/672 - 1/720 = 1/10080]
+
+-- 9. rooted trees to order six, generated from scratch ----------
+      rooted-tree census derived: order 1: 1, order 2: 1, order 3: 2, order 4: 4, order 5: 9, order 6: 20
+      paper's census            : order 1: 1, order 2: 1, order 3: 2, order 4: 4, order 5: 9, order 6: 20
+PASS derived rooted-tree counts are 1,1,2,4,9,20 at orders 1..6  [derived [1, 1, 2, 4, 9, 20]]
+PASS the orders 1..5 carry exactly 17 order conditions  [derived 17 = 1+1+2+4+9]
+
+-- 10. every order condition through order six -------------------
+      --- order conditions, one line per rooted tree ---
+      order 1  t = .              gamma = 1    b^T Phi = 1              1/gamma = 1          OK
+      order 2  t = [.]            gamma = 2    b^T Phi = 1/2            1/gamma = 1/2        OK
+      order 3  t = [..]           gamma = 3    b^T Phi = 1/3            1/gamma = 1/3        OK
+      order 3  t = [[.]]          gamma = 6    b^T Phi = 1/6            1/gamma = 1/6        OK
+      order 4  t = [...]          gamma = 4    b^T Phi = 1/4            1/gamma = 1/4        OK
+      order 4  t = [.[.]]         gamma = 8    b^T Phi = 1/8            1/gamma = 1/8        OK
+      order 4  t = [[..]]         gamma = 12   b^T Phi = 1/12           1/gamma = 1/12       OK
+      order 4  t = [[[.]]]        gamma = 24   b^T Phi = 1/24           1/gamma = 1/24       OK
+      order 5  t = [....]         gamma = 5    b^T Phi = 1/5            1/gamma = 1/5        OK
+      order 5  t = [..[.]]        gamma = 10   b^T Phi = 1/10           1/gamma = 1/10       OK
+      order 5  t = [.[..]]        gamma = 15   b^T Phi = 1/15           1/gamma = 1/15       OK
+      order 5  t = [.[[.]]]       gamma = 30   b^T Phi = 1/30           1/gamma = 1/30       OK
+      order 5  t = [[.][.]]       gamma = 20   b^T Phi = 1/20           1/gamma = 1/20       OK
+      order 5  t = [[...]]        gamma = 20   b^T Phi = 1/20           1/gamma = 1/20       OK
+      order 5  t = [[.[.]]]       gamma = 40   b^T Phi = 1/40           1/gamma = 1/40       OK
+      order 5  t = [[[..]]]       gamma = 60   b^T Phi = 1/60           1/gamma = 1/60       OK
+      order 5  t = [[[[.]]]]      gamma = 120  b^T Phi = 1/120          1/gamma = 1/120      OK
+      order 6  t = [.....]        gamma = 6    b^T Phi = 1/6            1/gamma = 1/6        OK
+      order 6  t = [...[.]]       gamma = 12   b^T Phi = 1/12           1/gamma = 1/12       OK
+      order 6  t = [..[..]]       gamma = 18   b^T Phi = 1/18           1/gamma = 1/18       OK
+      order 6  t = [..[[.]]]      gamma = 36   b^T Phi = 1/36           1/gamma = 1/36       OK
+      order 6  t = [.[.][.]]      gamma = 24   b^T Phi = 1/24           1/gamma = 1/24       OK
+      order 6  t = [.[...]]       gamma = 24   b^T Phi = 331/7840       1/gamma = 1/24       VIOLATED by 13/23520
+      order 6  t = [.[.[.]]]      gamma = 48   b^T Phi = 331/15680      1/gamma = 1/48       VIOLATED by 13/47040
+      order 6  t = [.[[..]]]      gamma = 72   b^T Phi = 503/35280      1/gamma = 1/72       VIOLATED by 13/35280
+      order 6  t = [.[[[.]]]]     gamma = 144  b^T Phi = 29/4410        1/gamma = 1/144      VIOLATED by -13/35280
+      order 6  t = [[.][..]]      gamma = 36   b^T Phi = 1/36           1/gamma = 1/36       OK
+      order 6  t = [[.][[.]]]     gamma = 72   b^T Phi = 1/72           1/gamma = 1/72       OK
+      order 6  t = [[....]]       gamma = 30   b^T Phi = 1/30           1/gamma = 1/30       OK
+      order 6  t = [[..[.]]]      gamma = 60   b^T Phi = 1/60           1/gamma = 1/60       OK
+      order 6  t = [[.[..]]]      gamma = 90   b^T Phi = 1/90           1/gamma = 1/90       OK
+      order 6  t = [[.[[.]]]]     gamma = 180  b^T Phi = 1/180          1/gamma = 1/180      OK
+      order 6  t = [[[.][.]]]     gamma = 120  b^T Phi = 1/120          1/gamma = 1/120      OK
+      order 6  t = [[[...]]]      gamma = 120  b^T Phi = 11/1344        1/gamma = 1/120      VIOLATED by -1/6720
+      order 6  t = [[[.[.]]]]     gamma = 240  b^T Phi = 11/2688        1/gamma = 1/240      VIOLATED by -1/13440
+      order 6  t = [[[[..]]]]     gamma = 360  b^T Phi = 3/1120         1/gamma = 1/360      VIOLATED by -1/10080
+      order 6  t = [[[[[.]]]]]    gamma = 720  b^T Phi = 1/672          1/gamma = 1/720      VIOLATED by 1/10080
+      --- end of order conditions ---
+      order 1: 1 trees, 0 violations
+      order 2: 1 trees, 0 violations
+      order 3: 2 trees, 0 violations
+      order 4: 4 trees, 0 violations
+      order 5: 9 trees, 0 violations
+      order 6: 20 trees, 8 violations
+PASS all 17 order conditions of orders 1..5 hold exactly (0 violations)  [violations found at orders 1..5: 0]
+PASS exactly 8 of the 20 order-six conditions fail  [derived 8 violations out of 20 trees]
+PASS the embedded formula has order exactly 5  [orders 1..5 all satisfied, order 6 not satisfied]
+PASS the order-six chain [[[[[.]]]]] is among the failures, with the residual already derived from b_hat^T A^4 c  [tree residual 1/10080 vs chain residual 1/10080]
+      exact order DERIVED from the sweep (not read from a constant): p = 5
+
+-- 10b. the quadrature conditions B(k) at the DERIVED p ----------
+      b_hat^T c^{o0} = 1        (B(1) component, target 1/1 = 1)
+PASS B(1) component b_hat^T c^{o0} = 1/1 holds  [derived 1, target 1]
+      b_hat^T c^{o1} = 1/2      (B(2) component, target 1/2 = 1/2)
+PASS B(2) component b_hat^T c^{o1} = 1/2 holds  [derived 1/2, target 1/2]
+      b_hat^T c^{o2} = 1/3      (B(3) component, target 1/3 = 1/3)
+PASS B(3) component b_hat^T c^{o2} = 1/3 holds  [derived 1/3, target 1/3]
+      b_hat^T c^{o3} = 1/4      (B(4) component, target 1/4 = 1/4)
+PASS B(4) component b_hat^T c^{o3} = 1/4 holds  [derived 1/4, target 1/4]
+      b_hat^T c^{o4} = 1/5      (B(5) component, target 1/5 = 1/5)
+PASS B(5) component b_hat^T c^{o4} = 1/5 holds  [derived 1/5, target 1/5]
+
+-- 11. Scope: scalar orthogonality is not violated ---------------
+      b_hat^T q_1 derived = 0
+PASS b_hat^T q_1 = 0: scalar orthogonality is NOT violated (Scope)  [derived 0, so the refutation is specific to the Hadamard reading]
+      b_hat^T Ac = 1/6   b_hat^T c^{o2} = 1/3
+PASS the two third-order conditions give b^T Ac = 1/6 and b^T c^{o2} = 1/3  [derived 1/6 and 1/3]
+PASS the Scope identity b^T q_1 = b^T Ac - (1/2) b^T c^{o2} = 1/6 - 1/6 = 0 (the second conjunct is bilinearity, not a test)  [derived 0, matching b_hat^T q_1 = 0]
+
+-- 12. admissible (m,n) at the DERIVED order p -------------------
+PASS the order used in the integer argument is the DERIVED order, p = 5  [derived p = 5, paper's p = 5]
+PASS the admissible set for p = 5 is nonempty  [893 pairs (m,n) found with 0 <= m,n <= 40]
+      smallest admissible m derived = 2, attained at n in [2, 3]
+PASS min m over admissible (m,n) at p = 5 is 2  [derived min m = 2 (paper says 2)]
+      closed form: m admissible <=> 2m+2 >= 5 <=> m >= ceil((p-2)/2) = 2
+PASS the closed form 2m+2 >= p reproduces the enumeration exactly, so no m outside the box can be admissible and min m = 2 is unconditional  [enumeration and closed form agree on 39 values of m; ceil = 2]
+      min m over the HALF-INTEGER grid = 3/2 (real optimum (p-2)/2 = 3/2)
+PASS integrality is LOAD-BEARING: dropping it lowers min m to 3/2 < 2, at which Q_m is not even defined  [half-integer min m = 3/2 < 2]
+
+-- 13. the Proposition's lemma on independent tableaux -----------
+      independent tableaux tested (sizes 3,4,5): 74799
+      HONESTY NOTE: this family is generated strictly lower triangular with
+        c := A*1, so the three checks below hold IDENTICALLY on it -- they
+        confirm the Proposition's algebra but have no discriminating power
+        by themselves.  The discriminating power is supplied by the
+        falsification arm in the next block, which shows the same three
+        statements FAIL as soon as the hypothesis is dropped.
+PASS c_1 = 0 on every internally consistent explicit tableau tested  [0/74799 failures]
+PASS (q_1)_2 = -c_2^2/2 on every such tableau (the Proposition's step)  [0/74799 failures]
+PASS (b o q_1)_2 = -b_2 c_2^2/2, so QO(m>=2) forces b_2 c_2^2 = 0  [0/74799 failures]
+
+-- 14. falsification arm: is that lemma sweep discriminating? ----
+      generator produced 19683 matrices: 27 strictly lower triangular, 19656 not
+      outside the hypothesis: c_1 != 0 on 16767, (q_1)_2 != -c_2^2/2 on 17617, (b o q_1)_2 mismatched on 17617
+      witness A = [(0, 0, 0); (0, 0, 1); (0, 0, 1)]
+         -> c = (0, 1, 1), (q_1)_2 = 1/2 but -c_2^2/2 = -1/2
+PASS the falsification generator populates BOTH classes (no empty universe)  [27 in-hypothesis, 19656 out-of-hypothesis]
+PASS inside the hypothesis the lemma never fails, on the same generator  [0/27 failures]
+PASS DROPPING strict lower triangularity breaks all three lemma statements, so the positive sweep is discriminating and not a tautology  [counterexample counts c_1: 16767, (q_1)_2: 17617, (b o q_1)_2: 17617]
+
+==============================================================================
+SUMMARY OF THE REFUTATION (all quantities above were derived here)
+  the method is internally consistent and explicit;
+  it satisfies all 17 order conditions of orders 1..5 and fails 8 of
+  the 20 at order 6, so its order is exactly 5 >= 5;
+  q_1 in Q_2 <= Q_m has b_hat o q_1 != 0, so QO(m) fails, and every
+  admissible (m,n) at p = 5 has m >= 2, so QO(m) fails for all of them;
+  a method of order 5 therefore violates a member of the Theorem 1.2
+  package, refuting the necessity asserted by Conjecture 2.1
+  -- CONDITIONAL on the seven items in the GAPS block below, which
+  are quoted from the paper and are not decided by any check here.
+==============================================================================
+
+==============================================================================
+GAPS -- steps NOT decided by this program (read before trusting it)
+==============================================================================
+  G1 SOURCE FIDELITY.  q_r = A c^{or} - c^{o(r+1)}/(r+1), the generator list
+     Q_2 = span{q_1, A q_0, q_0 o c, q_0}, the chain Q_1 <= Q_2 <= ..., the reading
+     of QO(m) as the Hadamard b o Q_m = {0}, and the admissibility constraints
+     m >= n-1, m+n+1 >= p are all TRANSCRIBED from the paper's quotation of
+     He-Huang.  No line of this program can detect a misquotation.  If any of
+     them is misquoted, every check above still passes and the paper is wrong.
+  G2 Q_2 <= Q_m FOR m >= 2.  The witness q_1 is shown to lie in the printed
+     spanning set of Q_2 and to satisfy b o q_1 != 0.  That it also lies in
+     Q_m for every m >= 2 is taken from the quoted chain; this program never
+     constructs Q_m for m >= 3, so non-monotonicity of the He-Huang spaces
+     would defeat the 'for every admissible (m,n)' step while leaving the
+     QO(2) computation intact.
+  G3 INTEGRALITY OF (m,n).  min m = 2 needs m to be an integer; section 12
+     shows the half-integer relaxation gives 3/2.  The paper attributes
+     'nonnegative integers m,n' to Theorem 1.2, while the source is reported
+     to write only 'for some m, n'.  This program verifies the claim UNDER the
+     paper's stated hypothesis; it cannot verify the hypothesis.
+  G4 HADAMARD VERSUS SCALAR.  The refutation is specific to the componentwise
+     reading.  Section 11 shows b_hat^T q_1 = 0 EXACTLY, so under a scalar
+     reading of QO(m) nothing here refutes anything.  The paper says so; a
+     reader who thinks He-Huang meant the scalar product should reject the
+     paper, not this program.
+  G5 ATTRIBUTION TO VERNER.  That this tableau is Table 4 of Verner (2014),
+     RK(8-6:5)a, is NOT checked and cannot be checked here.  It is also not
+     needed: the order-five property is derived from the tableau itself, so a
+     misattribution would be a citation defect, not a mathematical one.
+  G6 THE OTHER FOUR CONDITIONS.  DO(n), QD_weak(m,n), PR(n) and QR(m)
+     are never evaluated.  This is sound -- refuting one member of a
+     conjunction refutes the conjunction -- but it means the program says
+     nothing about whether those four members of the Theorem 1.2 package
+     hold.
+     B(p) is NOT among them: it IS evaluated, at the derived p = 5, both
+     directly (b_hat^T c^{o(k-1)} = 1/k for k = 1..5, all 5 components
+     verified above) and again by the bush trees of the order-1..5 sweep,
+     and it HOLDS on this tableau.  A method may of course satisfy B(p)
+     and still fail QO(m), which is exactly what happens here.
+  G7 NO PRIOR-ART CHECK.  Novelty of the counterexample is a literature
+     question and is outside the scope of any arithmetic.
+==============================================================================
+VERDICT: ALL 47 CHECKS PASS
+=== program exited with status 0 ===

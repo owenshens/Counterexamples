@@ -1,0 +1,58 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8827318baeb3c4eb0e072fc227810d49cd1d6c1efcf0d205467b96b98df20021
+python:  Python 3.9.25
+=== program output follows ===
+-- the three graphs, decoded from the definition
+PASS wellformed_P34_9 [|V|=68 |E|=102 cubic=True bipartite=True connected=True 1<=k<=16]
+PASS cycle_plus_offset_chords_P34_9 [2m-cycle from a,b edges; 34 chords of offset 19]
+PASS wellformed_P32_14 [|V|=64 |E|=96 cubic=True bipartite=True connected=True 1<=k<=15]
+PASS cycle_plus_offset_chords_P32_14 [2m-cycle from a,b edges; 32 chords of offset 29]
+PASS wellformed_P34_14 [|V|=68 |E|=102 cubic=True bipartite=True connected=True 1<=k<=16]
+PASS cycle_plus_offset_chords_P34_14 [2m-cycle from a,b edges; 34 chords of offset 29]
+PASS rotation_is_an_automorphism [x_i->x_{i+1}, y_i->y_{i+1} sends a_i,b_i,c_i to a_{i+1},b_{i+1},c_{i+1} in all 272 graphs P_m,k with m<=34]
+PASS pair_orbits_are_complete [in all 272 graphs, every unordered pair of distinct edges is the rotation by p of a representative {(s,0),(t,d)}; this is the hypothesis the census below uses to skip covered orbits]
+-- certificate for P_34,9 (table 3.1 and its traces)
+PASS row_sets_partition_P34_9 [A_r,B_r,C_r and A_r,B_r-1,C_r+9 each partition Z_34 for r=0..4]
+PASS perfect_matchings_P34_9 [each M_r has 34 edges and covers every vertex once]
+PASS hamilton_cycles_P34_9 [H_0..H_4 are single cycles on all 68 vertices]
+PASS appendix_traces_P34_9 [traces for r=[2, 3, 4] are permutations of Z_34 and match the walked X-index sequences up to rotation/reflection]
+PASS H0_is_outer_cycle_P34_9 [H_0 = all a/b-edges, a single 68-cycle]
+PASS H1_fixed_step_P34_9 [H_1 = all a/c-edges, X-step 25 (reverse orientation 9; paper: -9 = 25 mod 34), gcd(34,9)=1]
+PASS disjoint_columns_P34_9 [B_2,B_3,B_4 disjoint=True; C_2,C_3,C_4 disjoint=True]
+PASS two_edge_hamiltonian_P34_9 [5151/5151 edge pairs lie on one of 5 verified Hamilton cycles]
+PASS residual_pairs_are_bc_P34_9 [pairs missed by H_0 and H_1 have types ['bc']]
+-- certificate for P_32,14 (table 3.2 and its traces)
+PASS row_sets_partition_P32_14 [A_r,B_r,C_r and A_r,B_r-1,C_r+14 each partition Z_32 for r=0..4]
+PASS perfect_matchings_P32_14 [each M_r has 32 edges and covers every vertex once]
+PASS hamilton_cycles_P32_14 [H_0..H_4 are single cycles on all 64 vertices]
+PASS appendix_traces_P32_14 [traces for r=[2, 3, 4] are permutations of Z_32 and match the walked X-index sequences up to rotation/reflection]
+PASS H0_is_outer_cycle_P32_14 [H_0 = all a/b-edges, a single 64-cycle]
+PASS H1_fixed_step_P32_14 [H_1 = all b/c-edges, X-step 17 (reverse orientation 15; paper: +15 = 15 mod 32), gcd(32,15)=1]
+PASS disjoint_columns_P32_14 [A_2,A_3,A_4 disjoint=True; C_2,C_3,C_4 disjoint=True]
+PASS two_edge_hamiltonian_P32_14 [4560/4560 edge pairs lie on one of 5 verified Hamilton cycles]
+PASS residual_pairs_are_ac_P32_14 [pairs missed by H_0 and H_1 have types ['ac']]
+-- the isomorphism P_34,9 = P_34,14 and the transported cycles
+PASS 19_is_a_unit_mod_34 [19 * 9 = 1 mod 34]
+PASS phi_is_isomorphism_P34_9_to_P34_14 [x_i -> x'_{19i}, y_i -> y'_{19i-1} carries E(P_34,9) onto E(P_34,14)]
+PASS phi_edge_class_images [phi(a_i)=b'_{19i}, phi(b_i)=c'_{19i}, phi(c_i)=a'_{19i} for all i]
+PASS phi_congruences [19(i-1)-1 = 19i+14 and 19(i+9)-1 = 19i mod 34 for all i]
+PASS S_k_shift_identity_9_to_14 [19*S_9 - 1 = S_14 in Z_34]
+PASS two_edge_hamiltonian_P34_14 [5151/5151 edge pairs lie on one of 5 verified Hamilton cycles]
+PASS residual_pairs_are_ac_P34_14 [pairs missed by H_0 and H_1 have types ['ac']]
+-- the residual table and its reductions, for m <= 34
+PASS residual_census_matches_table [20 residual parameters with m<=34; every table entry is residual; the only residual parameter absent from the table's left column is P_34,14, the target of the arrow 9->14]
+PASS reduction_arrows_are_isomorphisms [each arrow k->l (u,d) satisfies u*S_k+d=S_l and x_i->x'_{ui}, y_j->y'_{uj+d} maps E(P_m,k) onto E(P_m,l); all 14 arrows of the table verified]
+PASS arrow_targets_leave_the_residual_set [every arrow target is non-residual except 9->14, whose target P_34,14 is residual and is settled by the theorem; all 14 arrow targets classified]
+PASS irreducible_residual_parameters [exhaustive search over all units u and shifts d: the residual parameters with m<=34 that reduce to no non-residual parameter are exactly [(19, 7), (20, 5), (20, 8), (24, 9), (32, 14), (34, 9), (34, 14)]]
+PASS P32_14_admits_no_reduction [P_32,14 reduces only to itself, while P_31,11 -> P_31,12 and P_32,8 -> P_32,7 land outside the residual set]
+PASS P34_9_class_is_exactly_9_and_14 [the isomorphism class of P_34,9 inside the m=34 parameters is {9,14}, and both members are residual]
+PASS vertex_counts [P_32,14 has 64 vertices (inside the asserted 66-vertex range, so the omission is a genuine gap); P_34,9 and P_34,14 have 68 > 66]
+PASS range_m_le_34_is_68_vertices [2m <= 68 iff 3 <= m <= 34, giving 272 parameter pairs (m,k)]
+PASS family_8s_4s_minus_2_at_s_4 [P_8s,4s-2 equals P_32,14 exactly at s=4, and no s gives m=34, so the class P_34,9 = P_34,14 is not a member of that family]
+-- independent census (this re-proves the corollary from scratch)
+PASS census_all_polygonal_bigraphs_m_le_34 [272/272 graphs verified 2-edge-Hamiltonian from scratch (810 Hamilton cycles found and independently re-verified)]
+NOT RE-RUN: what the originally printed residual table did or did not display cannot be re-derived from arithmetic; the checks above establish which parameters are residual and which of them reduce, not which lines a printed table contained.
+NOT RE-RUN: no claim is made or tested here for m > 34; the statement verified is the finite one.
+VERDICT: ALL 43 CHECKS PASS
+=== program exited with status 0 ===

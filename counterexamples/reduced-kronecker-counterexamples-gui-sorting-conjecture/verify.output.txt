@@ -1,0 +1,32 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  02d5d37e5cfd5c8442af0c4f09868e0fa33e5ad3cdd534a765a8f63dca2faa9a
+python:  Python 3.9.25
+=== program output follows ===
+Counterexamples to a sorting conjecture for reduced Kronecker coefficients: verification
+All coefficients are computed from symmetric-group characters with exact integer/rational arithmetic.
+PASS character_machinery_self_test [sum of squared dimensions = n! for n=1..8 (1:ok,2:ok,3:ok,4:ok,5:ok,6:ok,7:ok,8:ok); trivial and sign characters reproduced for n=1..7]
+PASS stable_padding_definition [193 instances; e.g. (2,1)[7]=(4, 2, 1) and (2,1)[4] inadmissible]
+PASS branching_identity_eq_branching [917 ordered pairs sigma,rho with |sigma|=2..8]
+  exhibited: k=2 lambda=(2,) mu=(1, 1) sort1=(2, 1) sort2=(1,) | k=3 lambda=(3,) mu=(2, 1) sort1=(3, 1) sort2=(2,) | k=4 lambda=(4,) mu=(3, 1) sort1=(4, 1) sort2=(3,) | k=5 lambda=(5,) mu=(4, 1) sort1=(5, 1) sort2=(4,) | k=6 lambda=(6,) mu=(5, 1) sort1=(6, 1) sort2=(5,) | k=7 lambda=(7,) mu=(6, 1) sort1=(7, 1) sort2=(6,)
+PASS exhibited_object_wellformed [399 members k=2..400; each of lambda,mu,sort1,sort2 a nonempty partition, |lambda|=|mu|=k, |sort1|+|sort2|=2k]
+PASS sorting_maps_recomputed [delta=(k,k-1,1), sort1=(k,1), sort2=(k-1) for k=2..400]
+PASS hypotheses_of_the_conjecture_hold [part multiset preserved and {sort1,sort2} != {lambda,mu} for all 399 members (no trivial fixed point)]
+  gbar(sort1,sort2;nu)/gbar(lambda,mu;nu): k=2:0/1 k=3:0/1 k=4:0/1 k=5:0/1 k=6:0/1 k=7:0/1 k=8:0/1 k=9:0/1 k=10:0/1 k=11:0/1 k=12:0/1
+PASS reduced_coefficients_from_characters [gbar(sort1,sort2;(1))=0 and gbar(lambda,mu;(1))=1 for k=2..12, each accepted only after 3 consecutive admissible N agree]
+  stability windows (12, k=2..7): k=2 N=5..9; k=2 N=4..8; k=3 N=7..11; k=3 N=6..10; k=4 N=9..13; k=4 N=8..12; k=5 N=11..15; k=5 N=10..14; k=6 N=13..17; k=6 N=12..16; k=7 N=15..19; k=7 N=14..18
+PASS murnaghan_stability_observed [constant over 5 consecutive N in each of 12 windows, k=2..7 only; k=8..12 rests on the 3-term window instead]
+PASS conjectured_inequality_violated [computed (gbar_sorted, gbar_unsorted) in {(0,1)} at nu=(1,); strict violation on 11 of 11 members k=2..12]
+PASS lemma_closed_formula_matches_characters [361 ordered pairs with |alpha|,|beta| <= 5]
+PASS lemma_proof_steps_recomputed [unique common corner (k-1) on the right, empty on the left, for k=2..400]
+PASS infinite_family_via_validated_lemma [399 values of k in [2,400] all give 0 < 1]
+PASS nu_range_truncation_is_safe [2554 coefficients with |nu| in [total+1,total+2] all vanish; |nu| > total+2 not probed]
+PASS uniqueness_census_total_at_most_4 [9 unordered pairs searched, 1 failing: ((1, 1), (2,)) at nu=(1,) (0<1)]
+PASS minimality_proof_steps_recomputed [size<=3 pairs all fixed by sorting; moved pairs at size 4 = [((1,), (1, 1, 1)), ((1, 1), (2,))]]
+PASS columns_pair_satisfies_inequality [pair (1,)/(1, 1, 1) sorts to (1, 1)/(1, 1); 12 values of nu with |nu|<=4 checked: ():1>=0 (1,):1>=0 (2,):2>=0 (1, 1):1>=1 (3,):1>=0 (2, 1):2>=1 ...]
+PASS minimal_pair_is_the_k_equals_2_member [census pair ((1, 1), (2,)) equals {lambda,mu} at k=2 = ((1, 1), (2,)), and both orderings fail]
+  failing pairs up to total 6: [((1, 1), (2,)), ((1, 1), (3,)), ((1, 1), (4,)), ((2, 1), (3,)), ((1, 1, 1), (3,)), ((1, 1, 1), (2, 1))]
+PASS extended_census_total_at_most_6 [43 unordered pairs searched, 6 failing, none of total size <= 3, k=3 member ((2, 1), (3,)) present]
+NOT RE-RUN HERE: (i) the reduced Kronecker coefficients are limits, and stability is OBSERVED over finitely many N rather than proved -- the two load-bearing values are accepted for k=2..12 once 3 consecutive admissible N agree, and the longer 5-term constant window is exhibited only for k=2..7, so no window longer than 3 terms is shown for k=8..12; (ii) the character-based confirmation of the family covers k=2..12, and k=13..400 rests on the closed formula for nu=(1), which is itself validated against characters on all pairs of partitions of size <= 5; (iii) the exhaustive census over pairs runs to total size 6, beyond the total size 4 needed for the minimality claim, but its nu range is TRUNCATED at |nu| <= |lambda|+|mu|: that truncation is supported only by the evidence that every coefficient with |nu| in [total+1,total+2] vanishes, and |nu| > total+2 is untested; (iv) no external catalogue or table of Kronecker coefficients is consulted; (v) the multipartition corollary is NOT verified here beyond its two-factor content: it rests on identifying the two partitions written (lambda cup mu)^[1,2] and (lambda cup mu)^[2,2] in the cited multipartition conjecture with (sort1,sort2), which is a reading of an external paper's notation and is TAKEN ON TRUST -- no check above tests it, because coding the r-block index-residue split and comparing its r=2 output with sort1,sort2 would only compare one transcription of a single definition with another and could not fail; (vi) nothing here consults the cited paper itself (no network access and no external file is read), so the numbering and wording of the external statements quoted as Conjecture 5.5, Theorem 5.6 and Conjecture 5.7 of its published version are TAKEN ON TRUST, as is the attribution of the pair (1,)/(1, 1, 1) to that Theorem 5.6 -- the inequality for that pair is nevertheless computed here, only its attribution is not.
+VERDICT: ALL 18 CHECKS PASS
+=== program exited with status 0 ===

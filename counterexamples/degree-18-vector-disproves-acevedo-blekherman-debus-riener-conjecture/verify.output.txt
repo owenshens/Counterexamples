@@ -1,0 +1,246 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  0542cd17ce2613ee2971068ab588b1f00c362506a488a3314c800cd2806645ff
+python:  Python 3.9.25
+=== program output follows ===
+====================================================================================
+verify.py -- degree-18 counterexample to ABDR Conjecture 5.23
+2d = 18, d = 9.  Exact integer arithmetic only.
+FROM THE PAPER: the 30 witness values, the candidate violating triple,
+  the degree, the definitions, the 5 target counts, the 3 target slacks,
+  the 2 printed prefix-sum vectors, and the unproved membership Lemma.
+DERIVED HERE: all partitions, blocks, terms, index maps, inequality
+  lists, counts and slacks -- plus the full T^(2) system (7025 with
+  exactly one violated inequality, which the paper's 'Exact verification'
+  paragraph also asserts) and the embedding T^(2) subset T^(1), which is
+  the only part of C13 that is beyond the paper.
+COUNTED TWICE BY UNRELATED METHODS: 30, 15, 131, 119, 937 are produced
+  both by enumeration and by an independent integer DP, then compared.
+ALSO DERIVED HERE (the paper's two further computational facts, i.e. the
+  RELATIONS and not merely the slacks): A_u succeq B_u on all 119 diagonal
+  terms [C16] and A_u A_v succeq C_{u,v}^{o2} on all 937 off-diagonal
+  pairs [C17], each with its 'therefore' half checked against an
+  independently generated inequality set.
+NOT VERIFIED HERE: (i) the membership Lemma (see the TRUST BOUNDARY at
+  C12) -- no Python program can check that reduction; (ii) the witness
+  table, the degree and the definitions, which are transcribed INPUTS
+  (P1-P4) -- a transcription error is invisible to this program; (iii)
+  the ordered-alpha reading of note N1, which was CHOSEN because it
+  reproduces the paper's 131, so the counts cannot discriminate against
+  a paper that read alpha the same way.  Every other computational
+  assertion of the paper's 'Exact verification' paragraph -- the five
+  counts, the 417 first-order and 1056 partial-symmetry slacks, the
+  second-order violation, the 7025-inequality T^(2) system with exactly
+  one violated inequality, and the two further facts above -- IS derived
+  and compared here.
+====================================================================================
+--- C0: coordinate set Lambda^{ev}_18 ---
+       derived |EvenPartitions(18)| = 30
+       derived |EvenPartitions(0)| = 1  ->  ()
+       derived |EvenPartitions(2)| = 1  ->  (2)
+       derived |EvenPartitions(4)| = 2  ->  (4) (2,2)
+       derived |EvenPartitions(6)| = 3  ->  (6) (4,2) (2,2,2)
+       derived |EvenPartitions(8)| = 5  ->  (8) (6,2) (4,4) (4,2,2) (2,2,2,2)
+       INDEPENDENT DP: #even partitions of 18 = p(9) = 30
+PASS C0 coordinate set is complete and well formed  [|EvenPartitions(18)|=30 (independently derived p(9)=30), witness keys=30, set-equal=True]
+--- C1/C2: blocks V_{r,s}(9) and their terms ---
+       derived nonempty blocks = 15
+       V_{1,0}(9):  12 terms   (r odd: True, r+2s=1 <= 9: True)
+       V_{1,1}(9):  14 terms   (r odd: True, r+2s=3 <= 9: True)
+       V_{1,2}(9):  11 terms   (r odd: True, r+2s=5 <= 9: True)
+       V_{1,3}(9):   5 terms   (r odd: True, r+2s=7 <= 9: True)
+       V_{1,4}(9):   1 terms   (r odd: True, r+2s=9 <= 9: True)
+       V_{3,0}(9):  25 terms   (r odd: True, r+2s=3 <= 9: True)
+       V_{3,1}(9):  16 terms   (r odd: True, r+2s=5 <= 9: True)
+       V_{3,2}(9):   6 terms   (r odd: True, r+2s=7 <= 9: True)
+       V_{3,3}(9):   1 terms   (r odd: True, r+2s=9 <= 9: True)
+       V_{5,0}(9):  22 terms   (r odd: True, r+2s=5 <= 9: True)
+       V_{5,1}(9):   7 terms   (r odd: True, r+2s=7 <= 9: True)
+       V_{5,2}(9):   1 terms   (r odd: True, r+2s=9 <= 9: True)
+       V_{7,0}(9):   8 terms   (r odd: True, r+2s=7 <= 9: True)
+       V_{7,1}(9):   1 terms   (r odd: True, r+2s=9 <= 9: True)
+       V_{9,0}(9):   1 terms   (r odd: True, r+2s=9 <= 9: True)
+       derived total terms = 131
+       . derived block set matches {r odd, 0<=s<=(9-r)/2}: True
+       INDEPENDENT DP: nonempty blocks = 15, total terms = 131
+       INDEPENDENT DP agrees with the enumeration block-for-block: True
+PASS C1 block count == 15  [derived 15, independent DP 15, target 15]
+       . per-block sizes match the sizes RECORDED from a previous run (a regression pin -- the paper prints no per-block table): True
+PASS C2 total term count == 131  [enumerated 131, independent DP 131, target 131]
+--- C3/C4/C5: partial-symmetry inequality counts (WITH multiplicity) ---
+       derived diagonal count (multiplicity) = 119
+       INDEPENDENT DP cross-check: 131 - (DP terms in blocks with r+s<2 = 12) = 119
+       . distinct diagonal inequalities = 35 (paper counts terms, not distinct; a set-based implementation reports this instead)
+PASS C3 diagonal inequality count == 119  [enumerated 119, independent DP 119, target 119]
+       derived off-diagonal count (unordered pairs) = 937
+       INDEPENDENT DP cross-check sum C(n_block,2) = 66+91+55+10+0+300+120+15+0+231+21+0+28+0+0 = 937
+       . ordered in-block pairs would be 1874; distinct off-diagonal inequalities = 250
+PASS C4 off-diagonal inequality count == 937  [enumerated 937, independent DP 937, target 937]
+       derived total partial-symmetry inequalities = 119 + 937 = 1056
+PASS C5 total generated == 1056  [derived 1056, target 1056]
+--- C6/C7: first-order system T_18^(1) ---
+       derived |FO| (ordered distinct pairs, lambda succeq mu) = 417
+PASS C6 first-order inequality count == 417  [derived 417, target 417]
+       derived first-order slack minimum = 0, maximum = 100
+       derived negative first-order slacks = 0
+       derived tight (slack 0) first-order pairs = 8
+           TIGHT  (10,8) succeq (18)   y=0 , y=0
+           TIGHT  (10,6,2) succeq (10,4,4)   y=12 , y=12
+           TIGHT  (10,6,2) succeq (8,8,2)   y=12 , y=12
+           TIGHT  (10,4,2,2) succeq (8,6,2,2)   y=24 , y=24
+           TIGHT  (8,6,4) succeq (6,6,6)   y=10 , y=10
+           TIGHT  (8,4,2,2,2) succeq (6,6,2,2,2)   y=36 , y=36
+           TIGHT  (6,6,4,2) succeq (6,4,4,4)   y=20 , y=20
+           TIGHT  (6,4,4,2,2) succeq (4,4,4,4,2)   y=30 , y=30
+PASS C7 y in T_18^(1) with minimum slack exactly 0  [min slack 0 (target 0), all-int=True]
+--- C8: diagonal slacks y[A_u] - y[B_u] ---
+       derived diagonal slacks: 119 values, min = 0, max = 20
+       derived tight diagonal inequalities = 1
+           TIGHT V_{1,1} alpha=(5,4) lam=() : A=(10,8) B=(18) (both y=0)
+PASS C8 diagonal minimum slack exactly 0  [min slack 0 over 119 (target 0), all-int=True]
+--- C9: off-diagonal slacks y[A_u] + y[A_v] - 2*y[C_{u,v}] ---
+       derived off-diagonal slacks: 937 values, min = 0, max = 30
+       derived tight off-diagonal inequalities = 123
+           TIGHT V_{1,0} : A_u=(8,8,2)(12) A_v=(6,6,2,2,2)(36) C=(8,6,2,2)(24)
+           TIGHT V_{1,0} : A_u=(8,8,2)(12) A_v=(4,4,4,4,2)(30) C=(8,4,4,2)(21)
+           TIGHT V_{1,0} : A_u=(8,8,2)(12) A_v=(4,4,2,2,2,2,2)(60) C=(8,4,2,2,2)(36)
+           TIGHT V_{1,0} : A_u=(8,8,2)(12) A_v=(2,2,2,2,2,2,2,2,2)(100) C=(8,2,2,2,2,2)(56)
+           TIGHT V_{1,0} : A_u=(8,8,2)(12) A_v=(6,4,4,2,2)(30) C=(8,4,4,2)(21)
+           TIGHT V_{1,0} : A_u=(6,6,2,2,2)(36) A_v=(4,4,2,2,2,2,2)(60) C=(6,4,2,2,2,2)(48)
+           ... 117 further tight off-diagonal pairs
+PASS C9 off-diagonal minimum slack exactly 0  [min slack 0 over 937 (target 0), all-int=True]
+--- C9b: every A_u, B_u, C_{u,v} is a valid coordinate ---
+       derived indices inspected = 3049, invalid = 0
+PASS C9b index maps land in the coordinate set  [3049 indices checked, 0 invalid]
+--- C10: the paper's triple generates a required T^(2) inequality ---
+       lambda^1 = (10,8) , lambda^2 = (4,4,4,2,2,2) , mu = (8,4,4,2)
+       all three even partitions of 18 and coordinates of y: True
+       derived lambda^1 * lambda^2 = (10,8,4,4,4,2,2,2)   (|.| = 36, 8 parts)
+       derived mu^{o2}            = (8,8,4,4,4,4,2,2)   (|.| = 36, 8 parts)
+       derived pref(lambda^1*lambda^2) = (2, 4, 6, 10, 14, 18, 26, 36)
+       paper   pref(lambda^1*lambda^2) = (2, 4, 6, 10, 14, 18, 26, 36)
+       derived pref(mu^{o2})           = (2, 4, 8, 12, 16, 20, 28, 36)
+       paper   pref(mu^{o2})           = (2, 4, 8, 12, 16, 20, 28, 36)
+       derived (lambda^1*lambda^2) succeq (mu^{o2}) = True (componentwise <= on the first 8 prefix sums)
+PASS C10 the violating triple really is a T^(2) generator  [pref match=True/True, succeq=True]
+--- C11: the second-order slack ---
+       y[(10,8)] = 0 , y[(4,4,4,2,2,2)] = 40 , y[(8,4,4,2)] = 21
+       derived slack = 0 + 40 - 2*21 = -2
+PASS C11 second-order slack == -2, so y is outside T_18^(2)  [derived -2, target -2, all-int=True]
+--- C12: the paper's conclusion ---
+       hypotheses of the Lemma: y in T^(1) [C7]=True ; 119 diagonal [C8]=True ;
+                                937 off-diagonal [C9]=True
+       generator condition [C10]=True ; violation [C11]=True
+       *** TRUST BOUNDARY: the step 'y in T^(1) AND the 1056 partial-symmetry
+       *** inequalities  =>  y in trop(BSigma_18^*)'  is the CITED LEMMA
+       *** (ABDR Sec 5.3 / App A, Lemma 5.14, Lemma 5.17, Cor 5.18,
+       *** Prop 5.19).  IT IS NOT MACHINE-VERIFIED by this program.  This
+       *** program verifies only the finite inequality system and the counts.
+       *** If that Lemma is false or misapplied, EVERY check here still
+       *** passes and the paper is still wrong.  C12 below is therefore a
+       *** CONDITIONAL conclusion, and it is a conjunction of C7-C11: it
+       *** carries no evidence of its own.
+PASS C12 the paper's conclusion, CONDITIONAL ON the cited membership Lemma (NOT machine-verified): given that Lemma, y in trop(BSigma_18^*) \ T_18^(2), hence ABDR Conjecture 5.23 is false and the containment trop(BSigma_18^*) >= T_18^(2) is strict  [conjunction of the reported results of C7,C8,C9,C10,C11; the finite system is verified, the reduction is assumed]
+--- C13: the FULL second-order system on Lambda^{ev}_18 (DERIVED here; its size, min slack and single violation are ALSO the paper's claims) ---
+       derived |T^(2) system| = 7025  (unordered {lambda1,lambda2} with repetition, all mu)
+       derived minimum slack over the full system = -2
+       derived number of violated inequalities = 1
+           VIOLATED  lambda^1=(10,8) lambda^2=(4,4,4,2,2,2) mu=(8,4,4,2)  slack -2
+       derived: the unique violated inequality is the paper's triple: True
+       T^(2) subset T^(1) embedding: 417 of 417 first-order pairs (lam,mu) appear as (lam,lam,mu) in the T^(2) system; missing = 0
+       . size 7025 is a REGRESSION PIN recorded from a previous run of this code, and it is ALSO the paper's stated number: the 'Exact verification' paragraph asserts 7025 inequalities with exactly one violated.  Only the T^(2) subset T^(1) embedding below is beyond the paper.  Neither the pin nor the paper makes this an independent derivation -- full_second_order_list() does
+PASS C13 global consistency of the violation, and T^(2) subset T^(1) (derived here; the size 7025, the minimum slack and the 'exactly one violated' are ALSO the paper's stated claims, so agreement is an independent confirmation; only the embedding is beyond the paper)  [size 7025 (regression pin 7025), min -2, violated 1, unique-is-paper True, T2-in-T1 embedding True]
+--- C14: exact arithmetic hygiene ---
+       witness values all int: True ; witness keys all int: True
+       all 417 + 119 + 937 + 1 slacks are int: True
+       source scan (no float literal, no '/', no math import): True
+PASS C14 exact arithmetic hygiene  [values=True keys=True slacks=True source=True]
+--- C15: convention probes (see docstring: (a) is a theorem, not a robustness margin) ---
+       (a) padded convention: |FO| = 417 (truncated gave 417), min slack = 0
+       (a) every truncated-convention pair has ell(lambda) >= ell(mu): True
+       (b) merge-last-two convention: 119 diagonal inequalities (primary gave 119), min slack = 0
+       . (a) padded == truncated is a THEOREM here, so (a) cannot fail; the only informative content of this check is (b)'s min slack, which shows the merge-two-largest / merge-last-two ambiguity does not change the published minimum on this witness: (a)=True (b)=True
+PASS C15 convention probes ((a) confirms a theorem; (b) min slack is the one informative half)  [padded FO=417 min=0 ; merge-last-two diag=119 min=0]
+--- C16: A_u succeq B_u on every diagonal inequality (paper's first further computational fact) ---
+       derived diagonal inequalities inspected      = 119
+       derived with A_u succeq B_u                   = 119  (paper says all 119)
+       derived (A_u,B_u) found in the 417 first-order pairs = 119
+       derived degenerate cases A_u == B_u          = 0  (must be 0: merging two parts shortens 2alpha by one, so the multisets differ)
+       derived DISTINCT (A_u,B_u) inequalities      = 35  (multiplicity 119, note N2)
+       CONSEQUENCE: with this fact, C8's minimum slack 0 is implied by C7 (y in T^(1));
+       C8 is therefore not independent evidence.  This is the paper's own reasoning,
+       now machine-checked instead of quoted.
+PASS C16 every diagonal inequality has A_u succeq B_u, hence is already a first-order inequality (paper's further fact, DERIVED here)  [119 of 119 satisfy the relation (paper 119), 119 of 119 found in the first-order pair set, 0 degenerate]
+--- C17: A_u A_v succeq C_{u,v}^{o2} on every off-diagonal inequality (paper's second further computational fact) ---
+       derived off-diagonal inequalities inspected  = 937
+       derived with A_u A_v succeq C_{u,v}^{o2}      = 937  (paper says all 937)
+       derived triples present in the derived T^(2) system = 937 of 937
+       derived DISTINCT off-diagonal triples        = 250  (multiplicity 937, note N2)
+       derived occurrences of the UNIQUE VIOLATED T^(2) triple among them = 0
+       CONSEQUENCE: the 937 are a SUBSET of the 7025 T^(2) inequalities scored in C13,
+       so C9's minimum slack 0 follows from C13 plus the 0 occurrences above; C9 is
+       not independent evidence either.  Again this is the paper's own reasoning, checked.
+PASS C17 every off-diagonal inequality has A_u A_v succeq C_{u,v}^{o2}, hence is itself an instance of (1) (paper's further fact, DERIVED here)  [937 of 937 satisfy the relation (paper 937), 937 of 937 are members of the derived 7025-inequality T^(2) system, 0 coincide with the violated triple]
+
+--- derived summary ---
+       |EvenPartitions(18)|              = 30   (paper target 30)
+       nonempty blocks V_{r,s}(9)        = 15   (paper target 15)
+       total terms u = (alpha,lambda)    = 131  (paper target 131)
+       diagonal inequalities             = 119  (paper target 119)
+       off-diagonal inequalities         = 937  (paper target 937)
+       total partial-symmetry            = 1056 (paper target 1056)
+       first-order inequalities          = 417  (paper target 417)
+       min first-order slack             = 0   (paper target 0)
+       min diagonal slack                = 0   (paper target 0)
+       min off-diagonal slack            = 0   (paper target 0)
+       exhibited second-order slack      = -2  (paper target -2)
+       A_u succeq B_u on all 119 diagonal   = True   (paper's further fact [C16])
+       A_uA_v succeq C^{o2} on all 937 off  = True   (paper's further fact [C17])
+
+VERDICT: ALL 19 CHECKS PASS
+VERDICT IS CONDITIONAL: what is machine-verified is the finite
+  inequality system (417 first-order + 1056 partial-symmetry
+  inequalities, the five counts, the second-order violation, the
+  7025-inequality T^(2) system with exactly one violated
+  inequality, and the paper's two further superdominance facts:
+  A_u succeq B_u on all 119 diagonal terms [C16] and
+  A_u A_v succeq C_{u,v}^{o2} on all 937 off-diagonal pairs [C17].
+NOT VERIFIED HERE: the step 'y in T^(1) AND those 1056 inequalities
+  => y in trop(BSigma_18^*)' is Lemma 1 of the paper, proved
+  by citation into ABDR and NOT verified here; the witness table and
+  the definitions are transcribed INPUTS (P1-P4), not checked against
+  the source; and the ordered-alpha reading (note N1) is a CHOSEN
+  convention fitted to the paper's 131, so the counts cannot
+  discriminate against a paper that read alpha the same way.
+  A green run does not establish the paper's theorem on its own.
+
+NOT RE-RUN: (a) the membership Lemma of the paper and the transcribed
+  inputs P1-P4, exactly as the NOT VERIFIED HERE lines above state, and
+  the ordered-alpha reading of note N1, which was fitted to the paper's
+  131.  (b) The separate SMALL-DEGREE DECISION PROGRAM shipped alongside
+  this note.  It is an independent search, not a part of this
+  verification: it works in halved coordinates on partitions of d, runs
+  controls at d = 2,...,5 against the source paper's published facet
+  lists (plus one inclusion control at d = 6), and then takes ONE
+  decision, at d = 6, i.e. 2d = 12 -- the smallest degree the source
+  paper does not settle.  There it finds 0 of the 376 second-order
+  generators unimplied by the generators of the tropical side, so at
+  2d = 12 there is NO counterexample and, given the presentation of the
+  tropical side that it takes from the cited results, the ABDR equality
+  HOLDS at d = 6.  That is a companion result about a DIFFERENT degree:
+  it never touches 2d = 18, it shares no code with this program, it is
+  cited nowhere in the paper, its output carries no check count and no
+  verdict of its own, and none of it is counted in the verdict above.
+  It is therefore neither evidence for nor evidence against the
+  2d = 18 counterexample; a referee should read it as a separate
+  negative finding at the first degree ABDR left open.  (c) That
+  generator-and-Farkas decision route is NOT run at d = 9 by either
+  program, and no search over Lambda^{ev}_18 is attempted: at 2d = 18
+  the refutation rests on the paper's explicit witness, which needs
+  only the finite systems scored above.  (d) The constants 7025 and the
+  15 per-block sizes in this file are values RECORDED from an earlier
+  run of this same code; 7025 is also the paper's stated number, and
+  the derivations that make either of them evidence are
+  full_second_order_list() and independent_block_sizes(), not the
+  constants.
+=== program exited with status 0 ===

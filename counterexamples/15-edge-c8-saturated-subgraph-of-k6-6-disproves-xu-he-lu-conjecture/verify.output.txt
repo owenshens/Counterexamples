@@ -1,0 +1,306 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  bbafe01c2d7ff733c105dc5bb26667e9996e15cb0ba5d3efe95b52cd1e7b914f
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- Counterexamples to the Xu-He-Lu Conjecture on
+                 Partite Cycle Saturation
+
+Testing the paper's H_l for l = 4, 5, 6, 7.  Every quantity below is computed
+from the construction; the paper's stated values are used only as
+comparison targets.  All arithmetic is exact integer arithmetic; no
+floating point and no tolerance is used anywhere in this program.
+PASS [config] L_VALUES = [4, 5, 6, 7] contains every l whose calibration targets are configured ([4, 5]) and nothing below l = 4, so no guarded calibration check can be silently skipped
+
+=== paper's H_4  (r = l-1 = 3) ===
+  A = a0, a1, a2, x1, x2, x3
+  B = b0, b1, b2, y1, y2, y3
+  Q : a0 - y1 - x1 - y2 - x2 - y3 - x3 - b0
+  derived |A| = 6, |B| = 6, e(H_4) = 15  (edges: a0-b1, a0-b2, a0-y1, a1-b0, a1-b1, a1-b2, a2-b0, a2-b1, a2-b2, b0-x3, x1-y1, x1-y2, x2-y2, x2-y3, x3-y3)
+PASS [l=4] both parts of H_l have size 2l-2 = 6 (derived 6, 6)
+PASS [l=4] A = A_0 u X and B = B_0 u Y partition V(H_l) and every edge crosses them, so H_l is a spanning subgraph of K_{6,6}
+PASS [l=4] the built graph is exactly R = K_{r,r} - a_0b_0 (r^2-1 = 8 edges, a_0b_0 absent) disjointly united with the 7-edge path Q [R=True Q=True partition=True]
+PASS [l=4] e(H_l) counted = 15 equals the paper's l^2-1 = 15
+PASS [l=4] eq. (4) split verified summand-by-summand on the derived edge list: 8 edges inside A_0uB_0 (= r^2-1 = 8) plus 7 edges meeting XuY (= 2r+1 = 7), total 15
+PASS [l=4] [arithmetic identity, cannot fail: it audits the paper's algebra, not the construction] Xu-He-Lu formula n1+n2+l^2-3l+1 at the derived n1=6, n2=6 evaluates to 17 = the paper's l^2+l-3 = 17
+PASS [l=4] deficit conjectured-minus-constructed = 17 - 15 = 2 equals l-2 = 2 and is positive
+PASS [l=4] [equivalent to l>=4, so it cannot fail for any l this program runs; recorded because the refutation is void outside the hypothesis] derived host K_{6,6} satisfies n_i >= l+2 = 6
+PASS [l=4] sigma (a_k<->b_k, x_i<->y_{r-i+1}) is an involutive automorphism of H_l and reverses Q  [bijection=True involution=True edge-preserving=True reverses-Q=True]
+PASS [l=4] Lemma 2 decided in R for all 12 (kind, endpoints, length) instances -- odd a_0-b_0 lengths 2s+1 and even a-a_0 lengths 2s for 1<=s<=r-1=2, in A_0 and in B_0; unrealised: 0 []
+    Lemma 2(1) sample: a0-b0 of length 3 : a0-b1-a1-b0
+PASS [l=4] Lemma 2's index ranges are tight: R has NO a_0-b_0 path of length 2r+1 = 7 and NO a_1-a_0 path of length 2r = 6 (only 2r vertices exist).  This is the only test of find_path_exact in its refuting direction.
+PASS [l=4] the proof's four non-edge cases exhaust the derived host non-edges, with the sizes the structure forces: A0-B0:1, A0-Y:8, X-B0:8, X-Y:4 vs expected A0-B0:1, A0-Y:8, X-B0:8, X-Y:4 (unclassified 0, total 21 = 3r^2-2r = 21)
+  derived cycle-length spectrum of H_4 : [4, 6, 10, 12]
+  cycle counts by length : C_4:5, C_6:2, C_10:4, C_12:4
+    example C_4  : a0-b1-a1-b2
+    example C_6  : a0-b1-a1-b0-a2-b2
+    example C_10 : a0-b1-a1-b0-x3-y3-x2-y2-x1-y1
+    example C_12 : a0-b1-a1-b2-a2-b0-x3-y3-x2-y2-x1-y1
+PASS [l=4] all 4 exhibited example cycles (one per realised length) pass independent validation; bad: []
+PASS [l=4] H_l is C_{2l}-free: length 8 absent from the derived spectrum [4, 6, 10, 12]
+PASS [l=4] independent depth-bounded search finds no C_8 in H_l
+PASS [l=4] calibration (a): the cycle finder does find cycles -- 15 cycles in 4 distinct lengths, longest 12 = 4r
+PASS [l=4] spectrum equals the proof's prediction: R-cycles [4, 6] (cap 2r=6) union Q-cycles [10, 12] (start 2r+4=10)
+PASS [l=4] the only even length in [4,4r]=[4,12] absent from H_l is 2l = 8 (derived missing set [8])
+PASS [l=4] derived spectrum [4, 6, 10, 12] equals the comparison target [4, 6, 10, 12] fixed in advance here (the paper does not print it)
+  host K_{6,6} has 36 edges; H_l has 15; derived non-edges: 21
+PASS [l=4] non-edge count 21 equals |E(host)| - e(H_l) = 36 - 15
+PASS [l=4] derived non-edge count 21 equals the comparison target 21 fixed in advance here
+PASS [l=4] route 1 (path lemma): all 21 non-edges are joined in H_l by a validated simple path of length 2l-1 = 7; unwitnessed: 0 []
+    e.g. non-edge a0-b0 witnessed by a0-y1-x1-y2-x2-y3-x3-b0
+PASS [l=4] route 2 (control (c), direct cycle search): H_l + e contains a validated C_8 through e for all 21 non-edges e; failures: 0 []
+    e.g. adding a0-b0 creates the C_8 a0-y1-x1-y2-x2-y3-x3-b0
+PASS [l=4] routes 1 and 2 agree non-edge by non-edge: identical failure sets (sizes 0 and 0)
+    full witness list for l=4 (non-edge : validated closing C_8, each certified to traverse the added edge):
+      a0-b0    : a0-y1-x1-y2-x2-y3-x3-b0
+      a0-y2    : a0-b1-a1-b0-x3-y3-x2-y2
+      a0-y3    : a0-b1-a1-b2-a2-b0-x3-y3
+      a1-y1    : a1-b0-x3-y3-x2-y2-x1-y1
+      a1-y2    : a1-b0-a2-b1-a0-y1-x1-y2
+      a1-y3    : a1-b1-a0-y1-x1-y2-x2-y3
+      a2-y1    : a2-b0-x3-y3-x2-y2-x1-y1
+      a2-y2    : a2-b0-a1-b1-a0-y1-x1-y2
+      a2-y3    : a2-b1-a0-y1-x1-y2-x2-y3
+      x1-b0    : x1-y1-a0-b1-a1-b2-a2-b0
+      x1-b1    : x1-y1-a0-b2-a1-b0-a2-b1
+      x1-b2    : x1-y1-a0-b1-a1-b0-a2-b2
+      x1-y3    : x1-y1-a0-b1-a1-b0-x3-y3
+      x2-b0    : x2-y2-x1-y1-a0-b1-a1-b0
+      x2-b1    : x2-y2-x1-y1-a0-b2-a1-b1
+      x2-b2    : x2-y2-x1-y1-a0-b1-a1-b2
+      x2-y1    : x2-y3-x3-b0-a1-b1-a0-y1
+      x3-b1    : x3-y3-x2-y2-x1-y1-a0-b1
+      x3-b2    : x3-y3-x2-y2-x1-y1-a0-b2
+      x3-y1    : x3-b0-a1-b1-a2-b2-a0-y1
+      x3-y2    : x3-b0-a1-b1-a0-y1-x1-y2
+PASS [l=4] every one of the 21 printed l=4 witness lines is a validated C_8 through the added edge (21 of 21)
+
+=== paper's H_5  (r = l-1 = 4) ===
+  A = a0, a1, a2, a3, x1, x2, x3, x4
+  B = b0, b1, b2, b3, y1, y2, y3, y4
+  Q : a0 - y1 - x1 - y2 - x2 - y3 - x3 - y4 - x4 - b0
+  derived |A| = 8, |B| = 8, e(H_5) = 24  (edges: a0-b1, a0-b2, a0-b3, a0-y1, a1-b0, a1-b1, a1-b2, a1-b3, a2-b0, a2-b1, a2-b2, a2-b3, a3-b0, a3-b1, a3-b2, a3-b3, b0-x4, x1-y1, x1-y2, x2-y2, x2-y3, x3-y3, x3-y4, x4-y4)
+PASS [l=5] both parts of H_l have size 2l-2 = 8 (derived 8, 8)
+PASS [l=5] A = A_0 u X and B = B_0 u Y partition V(H_l) and every edge crosses them, so H_l is a spanning subgraph of K_{8,8}
+PASS [l=5] the built graph is exactly R = K_{r,r} - a_0b_0 (r^2-1 = 15 edges, a_0b_0 absent) disjointly united with the 9-edge path Q [R=True Q=True partition=True]
+PASS [l=5] e(H_l) counted = 24 equals the paper's l^2-1 = 24
+PASS [l=5] eq. (4) split verified summand-by-summand on the derived edge list: 15 edges inside A_0uB_0 (= r^2-1 = 15) plus 9 edges meeting XuY (= 2r+1 = 9), total 24
+PASS [l=5] [arithmetic identity, cannot fail: it audits the paper's algebra, not the construction] Xu-He-Lu formula n1+n2+l^2-3l+1 at the derived n1=8, n2=8 evaluates to 27 = the paper's l^2+l-3 = 27
+PASS [l=5] deficit conjectured-minus-constructed = 27 - 24 = 3 equals l-2 = 3 and is positive
+PASS [l=5] [equivalent to l>=4, so it cannot fail for any l this program runs; recorded because the refutation is void outside the hypothesis] derived host K_{8,8} satisfies n_i >= l+2 = 7
+PASS [l=5] sigma (a_k<->b_k, x_i<->y_{r-i+1}) is an involutive automorphism of H_l and reverses Q  [bijection=True involution=True edge-preserving=True reverses-Q=True]
+PASS [l=5] Lemma 2 decided in R for all 24 (kind, endpoints, length) instances -- odd a_0-b_0 lengths 2s+1 and even a-a_0 lengths 2s for 1<=s<=r-1=3, in A_0 and in B_0; unrealised: 0 []
+    Lemma 2(1) sample: a0-b0 of length 3 : a0-b1-a1-b0
+PASS [l=5] Lemma 2's index ranges are tight: R has NO a_0-b_0 path of length 2r+1 = 9 and NO a_1-a_0 path of length 2r = 8 (only 2r vertices exist).  This is the only test of find_path_exact in its refuting direction.
+PASS [l=5] the proof's four non-edge cases exhaust the derived host non-edges, with the sizes the structure forces: A0-B0:1, A0-Y:15, X-B0:15, X-Y:9 vs expected A0-B0:1, A0-Y:15, X-B0:15, X-Y:9 (unclassified 0, total 40 = 3r^2-2r = 40)
+  derived cycle-length spectrum of H_5 : [4, 6, 8, 12, 14, 16]
+  cycle counts by length : C_4:27, C_6:60, C_8:36, C_12:9, C_14:36, C_16:36
+    example C_4  : a0-b1-a1-b2
+    example C_6  : a0-b1-a1-b0-a2-b2
+    example C_8  : a0-b1-a1-b0-a2-b2-a3-b3
+    example C_12 : a0-b1-a1-b0-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_14 : a0-b1-a1-b2-a2-b0-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_16 : a0-b1-a1-b2-a2-b3-a3-b0-x4-y4-x3-y3-x2-y2-x1-y1
+PASS [l=5] all 6 exhibited example cycles (one per realised length) pass independent validation; bad: []
+PASS [l=5] H_l is C_{2l}-free: length 10 absent from the derived spectrum [4, 6, 8, 12, 14, 16]
+PASS [l=5] independent depth-bounded search finds no C_10 in H_l
+PASS [l=5] calibration (a): the cycle finder does find cycles -- 204 cycles in 6 distinct lengths, longest 16 = 4r
+PASS [l=5] spectrum equals the proof's prediction: R-cycles [4, 6, 8] (cap 2r=8) union Q-cycles [12, 14, 16] (start 2r+4=12)
+PASS [l=5] the only even length in [4,4r]=[4,16] absent from H_l is 2l = 10 (derived missing set [10])
+PASS [l=5] derived spectrum [4, 6, 8, 12, 14, 16] equals the comparison target [4, 6, 8, 12, 14, 16] fixed in advance here (the paper does not print it)
+  host K_{8,8} has 64 edges; H_l has 24; derived non-edges: 40
+PASS [l=5] non-edge count 40 equals |E(host)| - e(H_l) = 64 - 24
+PASS [l=5] route 1 (path lemma): all 40 non-edges are joined in H_l by a validated simple path of length 2l-1 = 9; unwitnessed: 0 []
+    e.g. non-edge a0-b0 witnessed by a0-y1-x1-y2-x2-y3-x3-y4-x4-b0
+PASS [l=5] route 2 (control (c), direct cycle search): H_l + e contains a validated C_10 through e for all 40 non-edges e; failures: 0 []
+    e.g. adding a0-b0 creates the C_10 a0-y1-x1-y2-x2-y3-x3-y4-x4-b0
+PASS [l=5] routes 1 and 2 agree non-edge by non-edge: identical failure sets (sizes 0 and 0)
+
+=== paper's H_6  (r = l-1 = 5) ===
+  A = a0, a1, a2, a3, a4, x1, x2, x3, x4, x5
+  B = b0, b1, b2, b3, b4, y1, y2, y3, y4, y5
+  Q : a0 - y1 - x1 - y2 - x2 - y3 - x3 - y4 - x4 - y5 - x5 - b0
+  derived |A| = 10, |B| = 10, e(H_6) = 35  (edges: a0-b1, a0-b2, a0-b3, a0-b4, a0-y1, a1-b0, a1-b1, a1-b2, a1-b3, a1-b4, a2-b0, a2-b1, a2-b2, a2-b3, a2-b4, a3-b0, a3-b1, a3-b2, a3-b3, a3-b4, a4-b0, a4-b1, a4-b2, a4-b3, a4-b4, b0-x5, x1-y1, x1-y2, x2-y2, x2-y3, x3-y3, x3-y4, x4-y4, x4-y5, x5-y5)
+PASS [l=6] both parts of H_l have size 2l-2 = 10 (derived 10, 10)
+PASS [l=6] A = A_0 u X and B = B_0 u Y partition V(H_l) and every edge crosses them, so H_l is a spanning subgraph of K_{10,10}
+PASS [l=6] the built graph is exactly R = K_{r,r} - a_0b_0 (r^2-1 = 24 edges, a_0b_0 absent) disjointly united with the 11-edge path Q [R=True Q=True partition=True]
+PASS [l=6] e(H_l) counted = 35 equals the paper's l^2-1 = 35
+PASS [l=6] eq. (4) split verified summand-by-summand on the derived edge list: 24 edges inside A_0uB_0 (= r^2-1 = 24) plus 11 edges meeting XuY (= 2r+1 = 11), total 35
+PASS [l=6] [arithmetic identity, cannot fail: it audits the paper's algebra, not the construction] Xu-He-Lu formula n1+n2+l^2-3l+1 at the derived n1=10, n2=10 evaluates to 39 = the paper's l^2+l-3 = 39
+PASS [l=6] deficit conjectured-minus-constructed = 39 - 35 = 4 equals l-2 = 4 and is positive
+PASS [l=6] [equivalent to l>=4, so it cannot fail for any l this program runs; recorded because the refutation is void outside the hypothesis] derived host K_{10,10} satisfies n_i >= l+2 = 8
+PASS [l=6] sigma (a_k<->b_k, x_i<->y_{r-i+1}) is an involutive automorphism of H_l and reverses Q  [bijection=True involution=True edge-preserving=True reverses-Q=True]
+PASS [l=6] Lemma 2 decided in R for all 40 (kind, endpoints, length) instances -- odd a_0-b_0 lengths 2s+1 and even a-a_0 lengths 2s for 1<=s<=r-1=4, in A_0 and in B_0; unrealised: 0 []
+    Lemma 2(1) sample: a0-b0 of length 3 : a0-b1-a1-b0
+PASS [l=6] Lemma 2's index ranges are tight: R has NO a_0-b_0 path of length 2r+1 = 11 and NO a_1-a_0 path of length 2r = 10 (only 2r vertices exist).  This is the only test of find_path_exact in its refuting direction.
+PASS [l=6] the proof's four non-edge cases exhaust the derived host non-edges, with the sizes the structure forces: A0-B0:1, A0-Y:24, X-B0:24, X-Y:16 vs expected A0-B0:1, A0-Y:24, X-B0:24, X-Y:16 (unclassified 0, total 65 = 3r^2-2r = 65)
+  derived cycle-length spectrum of H_6 : [4, 6, 8, 10, 14, 16, 18, 20]
+  cycle counts by length : C_4:84, C_6:456, C_8:1224, C_10:864, C_14:16, C_16:144, C_18:576, C_20:576
+    example C_4  : a0-b1-a1-b2
+    example C_6  : a0-b1-a1-b0-a2-b2
+    example C_8  : a0-b1-a1-b0-a2-b2-a3-b3
+    example C_10 : a0-b1-a1-b0-a2-b2-a3-b3-a4-b4
+    example C_14 : a0-b1-a1-b0-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_16 : a0-b1-a1-b2-a2-b0-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_18 : a0-b1-a1-b2-a2-b3-a3-b0-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_20 : a0-b1-a1-b2-a2-b3-a3-b4-a4-b0-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+PASS [l=6] all 8 exhibited example cycles (one per realised length) pass independent validation; bad: []
+PASS [l=6] H_l is C_{2l}-free: length 12 absent from the derived spectrum [4, 6, 8, 10, 14, 16, 18, 20]
+PASS [l=6] independent depth-bounded search finds no C_12 in H_l
+PASS [l=6] calibration (a): the cycle finder does find cycles -- 3940 cycles in 8 distinct lengths, longest 20 = 4r
+PASS [l=6] spectrum equals the proof's prediction: R-cycles [4, 6, 8, 10] (cap 2r=10) union Q-cycles [14, 16, 18, 20] (start 2r+4=14)
+PASS [l=6] the only even length in [4,4r]=[4,20] absent from H_l is 2l = 12 (derived missing set [12])
+  host K_{10,10} has 100 edges; H_l has 35; derived non-edges: 65
+PASS [l=6] non-edge count 65 equals |E(host)| - e(H_l) = 100 - 35
+PASS [l=6] route 1 (path lemma): all 65 non-edges are joined in H_l by a validated simple path of length 2l-1 = 11; unwitnessed: 0 []
+    e.g. non-edge a0-b0 witnessed by a0-y1-x1-y2-x2-y3-x3-y4-x4-y5-x5-b0
+PASS [l=6] route 2 (control (c), direct cycle search): H_l + e contains a validated C_12 through e for all 65 non-edges e; failures: 0 []
+    e.g. adding a0-b0 creates the C_12 a0-y1-x1-y2-x2-y3-x3-y4-x4-y5-x5-b0
+PASS [l=6] routes 1 and 2 agree non-edge by non-edge: identical failure sets (sizes 0 and 0)
+
+=== paper's H_7  (r = l-1 = 6) ===
+  A = a0, a1, a2, a3, a4, a5, x1, x2, x3, x4, x5, x6
+  B = b0, b1, b2, b3, b4, b5, y1, y2, y3, y4, y5, y6
+  Q : a0 - y1 - x1 - y2 - x2 - y3 - x3 - y4 - x4 - y5 - x5 - y6 - x6 - b0
+  derived |A| = 12, |B| = 12, e(H_7) = 48  (edges: a0-b1, a0-b2, a0-b3, a0-b4, a0-b5, a0-y1, a1-b0, a1-b1, a1-b2, a1-b3, a1-b4, a1-b5, a2-b0, a2-b1, a2-b2, a2-b3, a2-b4, a2-b5, a3-b0, a3-b1, a3-b2, a3-b3, a3-b4, a3-b5, a4-b0, a4-b1, a4-b2, a4-b3, a4-b4, a4-b5, a5-b0, a5-b1, a5-b2, a5-b3, a5-b4, a5-b5, b0-x6, x1-y1, x1-y2, x2-y2, x2-y3, x3-y3, x3-y4, x4-y4, x4-y5, x5-y5, x5-y6, x6-y6)
+PASS [l=7] both parts of H_l have size 2l-2 = 12 (derived 12, 12)
+PASS [l=7] A = A_0 u X and B = B_0 u Y partition V(H_l) and every edge crosses them, so H_l is a spanning subgraph of K_{12,12}
+PASS [l=7] the built graph is exactly R = K_{r,r} - a_0b_0 (r^2-1 = 35 edges, a_0b_0 absent) disjointly united with the 13-edge path Q [R=True Q=True partition=True]
+PASS [l=7] e(H_l) counted = 48 equals the paper's l^2-1 = 48
+PASS [l=7] eq. (4) split verified summand-by-summand on the derived edge list: 35 edges inside A_0uB_0 (= r^2-1 = 35) plus 13 edges meeting XuY (= 2r+1 = 13), total 48
+PASS [l=7] [arithmetic identity, cannot fail: it audits the paper's algebra, not the construction] Xu-He-Lu formula n1+n2+l^2-3l+1 at the derived n1=12, n2=12 evaluates to 53 = the paper's l^2+l-3 = 53
+PASS [l=7] deficit conjectured-minus-constructed = 53 - 48 = 5 equals l-2 = 5 and is positive
+PASS [l=7] [equivalent to l>=4, so it cannot fail for any l this program runs; recorded because the refutation is void outside the hypothesis] derived host K_{12,12} satisfies n_i >= l+2 = 9
+PASS [l=7] sigma (a_k<->b_k, x_i<->y_{r-i+1}) is an involutive automorphism of H_l and reverses Q  [bijection=True involution=True edge-preserving=True reverses-Q=True]
+PASS [l=7] Lemma 2 decided in R for all 60 (kind, endpoints, length) instances -- odd a_0-b_0 lengths 2s+1 and even a-a_0 lengths 2s for 1<=s<=r-1=5, in A_0 and in B_0; unrealised: 0 []
+    Lemma 2(1) sample: a0-b0 of length 3 : a0-b1-a1-b0
+PASS [l=7] Lemma 2's index ranges are tight: R has NO a_0-b_0 path of length 2r+1 = 13 and NO a_1-a_0 path of length 2r = 12 (only 2r vertices exist).  This is the only test of find_path_exact in its refuting direction.
+PASS [l=7] the proof's four non-edge cases exhaust the derived host non-edges, with the sizes the structure forces: A0-B0:1, A0-Y:35, X-B0:35, X-Y:25 vs expected A0-B0:1, A0-Y:35, X-B0:35, X-Y:25 (unclassified 0, total 96 = 3r^2-2r = 96)
+  derived cycle-length spectrum of H_7 : [4, 6, 8, 10, 12, 16, 18, 20, 22, 24]
+  cycle counts by length : C_4:200, C_6:2000, C_8:12600, C_10:37440, C_12:28800, C_16:25, C_18:400, C_20:3600, C_22:14400, C_24:14400
+    example C_4  : a0-b1-a1-b2
+    example C_6  : a0-b1-a1-b0-a2-b2
+    example C_8  : a0-b1-a1-b0-a2-b2-a3-b3
+    example C_10 : a0-b1-a1-b0-a2-b2-a3-b3-a4-b4
+    example C_12 : a0-b1-a1-b0-a2-b2-a3-b3-a4-b4-a5-b5
+    example C_16 : a0-b1-a1-b0-x6-y6-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_18 : a0-b1-a1-b2-a2-b0-x6-y6-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_20 : a0-b1-a1-b2-a2-b3-a3-b0-x6-y6-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_22 : a0-b1-a1-b2-a2-b3-a3-b4-a4-b0-x6-y6-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+    example C_24 : a0-b1-a1-b2-a2-b3-a3-b4-a4-b5-a5-b0-x6-y6-x5-y5-x4-y4-x3-y3-x2-y2-x1-y1
+PASS [l=7] all 10 exhibited example cycles (one per realised length) pass independent validation; bad: []
+PASS [l=7] H_l is C_{2l}-free: length 14 absent from the derived spectrum [4, 6, 8, 10, 12, 16, 18, 20, 22, 24]
+PASS [l=7] independent depth-bounded search finds no C_14 in H_l
+PASS [l=7] calibration (a): the cycle finder does find cycles -- 113865 cycles in 10 distinct lengths, longest 24 = 4r
+PASS [l=7] spectrum equals the proof's prediction: R-cycles [4, 6, 8, 10, 12] (cap 2r=12) union Q-cycles [16, 18, 20, 22, 24] (start 2r+4=16)
+PASS [l=7] the only even length in [4,4r]=[4,24] absent from H_l is 2l = 14 (derived missing set [14])
+  host K_{12,12} has 144 edges; H_l has 48; derived non-edges: 96
+PASS [l=7] non-edge count 96 equals |E(host)| - e(H_l) = 144 - 48
+PASS [l=7] route 1 (path lemma): all 96 non-edges are joined in H_l by a validated simple path of length 2l-1 = 13; unwitnessed: 0 []
+    e.g. non-edge a0-b0 witnessed by a0-y1-x1-y2-x2-y3-x3-y4-x4-y5-x5-y6-x6-b0
+PASS [l=7] route 2 (control (c), direct cycle search): H_l + e contains a validated C_14 through e for all 96 non-edges e; failures: 0 []
+    e.g. adding a0-b0 creates the C_14 a0-y1-x1-y2-x2-y3-x3-y4-x4-y5-x5-y6-x6-b0
+PASS [l=7] routes 1 and 2 agree non-edge by non-edge: identical failure sets (sizes 0 and 0)
+
+=== calibration (b): positive control on K_{4,4} ===
+  derived e(K_{4,4}) = 16, spectrum [4, 6, 8], counts C_4:36, C_6:96, C_8:72
+PASS [control b] e(K_{4,4}) derived = 16 = 16
+PASS [control b] K_{4,4} HAS a C_8, exhibited and validated: u1-w1-u2-w2-u3-w3-u4-w4
+PASS [control b] K_{4,4} has NO C_10 (both routines agree)
+PASS [control b] full K_{4,4} spectrum derived as [4, 6, 8] = {4,6,8}
+PASS [control b] cycle counts in K_{4,4} derived as C_4:36 C_6:96 C_8:72, matching C(4,k)^2 k!(k-1)!/2 = 36, 96, 72
+
+=== calibration (e): NEGATIVE control -- H_4 minus the Q edge x3-b0 ===
+  derived e = 14 (was 15), spectrum [4, 6]
+PASS [control e] exactly one edge was removed (15 -> 14) and the mutilated graph is still C_8-free (spectrum [4, 6]), so a failure below cannot be blamed on a stray C_8
+  non-edges 22 ; route-1 witnessed 12, unwitnessed 10 ; route-2 witnessed 12, unwitnessed 10
+  unwitnessed non-edges: a0-b0, a0-y2, a0-y3, a1-y1, a2-y1, x1-y3, x2-y1, x3-b0, x3-y1, x3-y2
+PASS [control e] the saturation test CAN fail: route 1 reports 10 of 22 non-edges unwitnessed on a deliberately non-saturated graph, so 'zero unwitnessed' elsewhere is a falsifiable outcome
+PASS [control e] the specific hand-checked non-edge a_0b_0 is among them (no a_0-b_0 path of length 7 survives: R's longest is 5)
+PASS [control e] routes 1 and 2 agree non-edge by non-edge on a NON-empty failure set (10 = 10), so their agreement above is not the trivial 0 = 0
+PASS [control e] witnessed + unwitnessed = 22 non-edges on both routes (no non-edge is silently dropped by either loop)
+
+=== calibration (d): Xu-He-Lu Definition 2.2, l=4, n=(6,6) ===
+  A1=['p00', 'p01'] B1=['p02', 'p03', 'p04', 'p05'] (x1=p02 x2=p03)
+  A2=['q00', 'q01'] B2=['q02', 'q03', 'q04', 'q05'] (y1=q02, B2'=['q03', 'q04', 'q05'])
+  derived e = 17 ; edges: p00-q02, p01-q02, p02-q00, p02-q01, p02-q03, p02-q04, p02-q05, p03-q02, p03-q03, p03-q04, p03-q05, p04-q03, p04-q04, p04-q05, p05-q03, p05-q04, p05-q05
+PASS [control d, l=4, K_{6,6}] counted e = 17 equals their formula n1+n2+l^2-3l+1 = 17
+PASS [control d, l=4, K_{6,6}] counted e = 17 equals the comparison target 17 fixed in advance here
+PASS [control d, l=4, K_{6,6}] (V1,V2) partitions their vertex set and every edge crosses it, so it is a spanning subgraph of K_{6,6}
+PASS [control d, l=4, K_{6,6}] block sizes as in their Definition 2.2: |A1|=2=n1-l, |B1|=4=l, |A2|=2=n2-l, |B2|=4=l, |B2'|=3=l-1
+  derived spectrum [4, 6]
+PASS [control d, l=4, K_{6,6}] their graph is C_8-free (derived spectrum [4, 6])
+PASS [control d, l=4, K_{6,6}] the finder still sees cycles here (spectrum non-empty: [4, 6])
+PASS [control d, l=4, K_{6,6}] non-edge count 19 = n1*n2 - e = 36 - 17
+PASS [control d, l=4, K_{6,6}] every one of the 19 non-edges is joined by a validated simple path of length 2l-1 = 7; unwitnessed: 0 []
+PASS [control d, l=4, K_{6,6}] direct cycle search: their graph + e has a validated C_8 for all 19 non-edges; failures: 0 []
+PASS [control d, l=4, K_{6,6}] routes 1 and 2 agree non-edge by non-edge on their graph too (failure sets of sizes 0 and 0)
+    e.g. adding p00-q00 creates the C_8 p00-q00-p02-q03-p04-q04-p03-q02
+
+=== calibration (d): Xu-He-Lu Definition 2.2, l=4, n=(7,6) ===
+  A1=['p00', 'p01', 'p02'] B1=['p03', 'p04', 'p05', 'p06'] (x1=p03 x2=p04)
+  A2=['q00', 'q01'] B2=['q02', 'q03', 'q04', 'q05'] (y1=q02, B2'=['q03', 'q04', 'q05'])
+  derived e = 18 ; edges: p00-q02, p01-q02, p02-q02, p03-q00, p03-q01, p03-q03, p03-q04, p03-q05, p04-q02, p04-q03, p04-q04, p04-q05, p05-q03, p05-q04, p05-q05, p06-q03, p06-q04, p06-q05
+PASS [control d, l=4, K_{7,6}] counted e = 18 equals their formula n1+n2+l^2-3l+1 = 18
+PASS [control d, l=4, K_{7,6}] counted e = 18 equals the comparison target 18 fixed in advance here
+PASS [control d, l=4, K_{7,6}] (V1,V2) partitions their vertex set and every edge crosses it, so it is a spanning subgraph of K_{7,6}
+PASS [control d, l=4, K_{7,6}] block sizes as in their Definition 2.2: |A1|=3=n1-l, |B1|=4=l, |A2|=2=n2-l, |B2|=4=l, |B2'|=3=l-1
+  derived spectrum [4, 6]
+PASS [control d, l=4, K_{7,6}] their graph is C_8-free (derived spectrum [4, 6])
+PASS [control d, l=4, K_{7,6}] the finder still sees cycles here (spectrum non-empty: [4, 6])
+PASS [control d, l=4, K_{7,6}] non-edge count 24 = n1*n2 - e = 42 - 18
+PASS [control d, l=4, K_{7,6}] every one of the 24 non-edges is joined by a validated simple path of length 2l-1 = 7; unwitnessed: 0 []
+PASS [control d, l=4, K_{7,6}] direct cycle search: their graph + e has a validated C_8 for all 24 non-edges; failures: 0 []
+PASS [control d, l=4, K_{7,6}] routes 1 and 2 agree non-edge by non-edge on their graph too (failure sets of sizes 0 and 0)
+    e.g. adding p00-q00 creates the C_8 p00-q00-p03-q03-p05-q04-p04-q02
+
+=== calibration (d): Xu-He-Lu Definition 2.2, l=5, n=(7,7) ===
+  A1=['p00', 'p01'] B1=['p02', 'p03', 'p04', 'p05', 'p06'] (x1=p02 x2=p03)
+  A2=['q00', 'q01'] B2=['q02', 'q03', 'q04', 'q05', 'q06'] (y1=q02, B2'=['q03', 'q04', 'q05', 'q06'])
+  derived e = 25 ; edges: p00-q02, p01-q02, p02-q00, p02-q01, p02-q03, p02-q04, p02-q05, p02-q06, p03-q02, p03-q03, p03-q04, p03-q05, p03-q06, p04-q03, p04-q04, p04-q05, p04-q06, p05-q03, p05-q04, p05-q05, p05-q06, p06-q03, p06-q04, p06-q05, p06-q06
+PASS [control d, l=5, K_{7,7}] counted e = 25 equals their formula n1+n2+l^2-3l+1 = 25
+PASS [control d, l=5, K_{7,7}] counted e = 25 equals the comparison target 25 fixed in advance here
+PASS [control d, l=5, K_{7,7}] (V1,V2) partitions their vertex set and every edge crosses it, so it is a spanning subgraph of K_{7,7}
+PASS [control d, l=5, K_{7,7}] block sizes as in their Definition 2.2: |A1|=2=n1-l, |B1|=5=l, |A2|=2=n2-l, |B2|=5=l, |B2'|=4=l-1
+  derived spectrum [4, 6, 8]
+PASS [control d, l=5, K_{7,7}] their graph is C_10-free (derived spectrum [4, 6, 8])
+PASS [control d, l=5, K_{7,7}] the finder still sees cycles here (spectrum non-empty: [4, 6, 8])
+PASS [control d, l=5, K_{7,7}] non-edge count 24 = n1*n2 - e = 49 - 25
+PASS [control d, l=5, K_{7,7}] every one of the 24 non-edges is joined by a validated simple path of length 2l-1 = 9; unwitnessed: 0 []
+PASS [control d, l=5, K_{7,7}] direct cycle search: their graph + e has a validated C_10 for all 24 non-edges; failures: 0 []
+PASS [control d, l=5, K_{7,7}] routes 1 and 2 agree non-edge by non-edge on their graph too (failure sets of sizes 0 and 0)
+    e.g. adding p00-q00 creates the C_10 p00-q00-p02-q03-p04-q04-p05-q05-p03-q02
+
+=== summary ===
+   l   e(H_l)   conjectured l^2+l-3   deficit   host non-edges
+   4       15                    17         2               21
+   5       24                    27         3               40
+   6       35                    39         4               65
+   7       48                    53         5               96
+PASS [refutation] for every l tested, the constructed C_{2l}-saturated spanning subgraph of K_{2l-2,2l-2} has fewer edges than Xu-He-Lu Conjecture 6.2 asserts: l=4: 15<17, l=5: 24<27, l=6: 35<39, l=7: 48<53
+PASS [head-to-head] at the single instance K_{6,6}/C_8 this program certifies BOTH graphs as C_8-saturated: Xu-He-Lu's own with 17 edges and the paper's with 15, so sat(K_{6,6},C_8) <= 15 < 17
+
+SCOPE NOTE -- exactly what is and is not machine-decided here.
+  ESTABLISHED IN FULL: Conjecture 6.2 asserts an EQUALITY, so a single
+  saturated subgraph with fewer edges refutes it.  The l = 4 instance
+  alone does that, and it is decided here exhaustively: 15 < 17 with
+  C_8-freeness and all 21 non-edges witnessed twice over.  l = 5,6,7
+  are three further independent refutations, not supporting evidence.
+  NOT DECIDED HERE (1): the 'for every l >= 4' half of Theorem 1, i.e.
+  the cases l >= 8.  What is checked at each tested l is every general
+  ingredient of the proof separately -- Lemma 2 and the tightness of
+  its two index ranges, the sigma symmetry, the exhaustiveness of the
+  four-case partition of the non-edges, the summand-by-summand edge
+  count, and the structural cycle prediction (R-cycles cap at 2r,
+  Q-cycles start at 2r+4) -- so the general argument is corroborated
+  at each instance, but induction on l is not a computation.
+  NOT DECIDED HERE (2), and not computable: whether the printed
+  Discrete Math. 349 (2026) 114802 text agrees with arXiv:2410.11194v2
+  in the quoted wording and in the labels 'Theorem 1.1'/'Conjecture
+  6.2'.  Control (d) transcribes Definition 2.2 from the v2 source, so
+  it inherits the same v2 scope the paper itself discloses.  What (d)
+  DOES corroborate is that the formula n1+n2+l^2-3l+1 attributed to
+  them is the edge count of their own construction, at three instances.
+
+VERDICT: ALL 135 CHECKS PASS
+=== program exited with status 0 ===

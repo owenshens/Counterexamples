@@ -1,0 +1,40 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  59734838646641e7b7742407ec4d3c78eb242281460d243add3ed8517801b936
+python:  Python 3.9.25
+=== program output follows ===
+PASS mult_order_of_10_is_3 [10^1=10 10^2=26 10^3=1 mod 37]
+PASS group_has_111_distinct_permutations [|G|=111 distinct=111 all_bijections=True]
+PASS group_closed_and_fixes_infinity [closed=True fixes_oo=True]
+PASS 27_representatives_are_4_subsets_of_X [|A|=6 |S|=6 |L|=15 total=27 well_formed=True]
+PASS representative_families_have_stated_shape [A_all_contain_oo=True S_and_L_finite=True all_contain_0=True]
+PASS both_printed_tables_hold_triples_of_X_in_rows_of_10_and_12 [2 tables x 7 rows = 164 triples checked]
+PASS A_and_S_stabilisers_have_order_3_with_stated_generator [12 representatives checked]
+PASS L_stabilisers_are_trivial [15 representatives checked]
+PASS orbit_lengths_are_37_twelve_times_and_111_fifteen_times [lengths=[37, 111]]
+PASS 27_orbits_are_pairwise_disjoint [sum_of_orbit_sizes=2109 distinct_blocks=2109]
+PASS block_count_is_2109 [|B|=2109 and 12*37+15*111=2109]
+PASS every_triple_of_X_covered_exactly_once [triples_seen=8436 C(38,3)=8436 triples_with_multiplicity!=1=0]
+PASS all_blocks_are_quadruples_inside_X [block sizes present=[4]]
+PASS block_set_invariant_under_all_111_group_elements [group elements not preserving B: 0 of 111]
+PASS system_is_rotational_37_cycle_fixing_infinity [cycle length on finite points=37, oo fixed=True]
+PASS mu_is_a_nontrivial_multiplier_of_order_3 [order of mu=3, fixes oo and 0=True]
+PASS all_38_derived_designs_are_STS_37_with_222_blocks [38 derived designs, 222 blocks and 666 pairs each]
+PASS colouring_at_infinity_is_a_19_class_partition_into_parallel_classes [19 classes covering all 222 blocks, no repeats]
+PASS colouring_at_infinity_has_profile_12pow14_11pow4_10 [profile=[12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 10] total=222]
+PASS colouring_at_zero_is_a_19_class_partition_into_parallel_classes [19 classes covering all 222 blocks, no repeats]
+PASS colouring_at_zero_has_profile_12pow14_11pow4_10 [profile=[12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 10] total=222]
+PASS point_and_pair_replication_numbers_are_222_and_18 [point degrees=[222] pair degrees=[18] pairs=703]
+PASS translations_carry_D_0_to_every_finite_derived_design [37 translations checked]
+PASS every_one_of_the_38_derived_designs_has_a_verified_19_colouring [38 designs, 19 classes each, 722 classes verified disjoint]
+PASS lower_bound_19_holds_for_all_38_derived_designs [per-design pigeonhole bounds=[19]]
+PASS largest_partial_parallel_class_has_exactly_12_blocks [points=37 so at most 12 disjoint triples; largest exhibited class=12]
+PASS pigeonhole_forces_at_least_19_classes [ceil(222/12)=19 and 18*12=216 < 222]
+PASS chromatic_index_of_every_derived_design_equals_19 [upper=lower=19 on 38 of 38 points]
+PASS chi_prime_37_equals_19_and_matches_the_v_plus_1_over_2_value [constructed upper bound 19, pigeonhole lower bound 19, (v+1)/2=19]
+PASS system_is_an_mcDSQS_38 [all 38 derived STS(37) attain the minimum chi'(37)=19]
+PASS q0_prime_3_4_38_equals_20 [1 + max_x chi'(D_x) = 1 + 19 = 20]
+PASS printed_numbers_recomputed_from_the_object [10 printed quantities reproduced]
+NOTE: the search that found this system and these two colourings is not re-run; the exhibited object and both colourings are verified exactly, and the lower bound 19 is an exact pigeonhole valid for every STS(37), so the theorem is fully established. The identity q'_0(3,4,38) = 1 + max_x chi'(D_x) is quoted from the cited literature and is applied, not proved, here.
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

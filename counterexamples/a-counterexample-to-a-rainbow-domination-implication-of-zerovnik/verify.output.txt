@@ -1,0 +1,42 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  2b3eba795fa097dcf60590d3ae4a39fd9bf80eac840a64b27efa38f7cd625219
+python:  Python 3.9.25
+=== program output follows ===
+[PASS] model: 15 duads and 15 synthemes, each syntheme a partition of Omega  --  |D|=15 |S|=15
+[PASS] model: every duad lies in exactly three synthemes  --  multiset of duad-degrees = {3}
+[PASS] graph: order 30, size 45, 3-regular  --  n=30 m=45 degrees={3}
+[PASS] graph: connected and bipartite, and the unique bipartition is {duads, synthemes}  --  connected=True proper2colouring=True classes=D/S:True
+[PASS] graph: girth is 8 (the Tutte 8-cage)  --  girth=8
+[PASS] f_5 parses: 30 labels, every duad nonempty, every syntheme empty  --  labels=30 distinct duad labels=15
+[PASS] f_5 (d -> d cap [5]) really is a 5-rainbow dominating function: every empty vertex sees all 5 colours  --  violations=0
+[PASS] w(f_5) = 25 as claimed (derived by summing the label sizes)  --  derived weight=25
+[PASS] f_4 parses: 30 labels, every duad nonempty, every syntheme empty  --  labels=30 distinct duad labels=10
+[PASS] f_4 (d -> d cap [4], with one exceptional duad) really is a 4-rainbow dominating function: every empty vertex sees all 4 colours  --  violations=0
+[PASS] w(f_4) = 21 as claimed (derived by summing the label sizes)  --  derived weight=21
+[PASS] f_3 parses: 30 labels, every duad nonempty, every syntheme empty  --  labels=30 distinct duad labels=4
+[PASS] f_3 (the four-case labelling) really is a 3-rainbow dominating function: every empty vertex sees all 3 colours  --  violations=0
+[PASS] w(f_3) = 16 as claimed (derived by summing the label sizes)  --  derived weight=16
+[PASS] f_3 colour supports have sizes 5, 5, 6 (the paper's 5, 5, C(4,2))  --  derived sizes=[5, 5, 6], sum=16
+[PASS] f_5 colour supports all have size 5 (each colour on five duads)  --  derived sizes=[5, 5, 5, 5, 5]
+[PASS] the exceptional value of f_4 is necessary: {5,6} is the only duad disjoint from [4], and d -> d cap [4] is NOT a 4-RDF  --  duads disjoint from [4]=[[5, 6]] ; violations of the naive map=1
+[PASS] perfect classes on the duad side: exactly the six stars D_i, each of size 5 (exhaustive over all 2^15 subsets)  --  found 6 perfect classes, sizes [5, 5, 5, 5, 5, 5]
+[PASS] perfect classes on the syntheme side: exactly six, each of size 5 (verified directly, so the paper's self-duality is not needed here)  --  found 6 perfect classes, sizes [5, 5, 5, 5, 5, 5]
+[PASS] a subset of one class dominating the other has size >= 5, and every such subset of size 5 is a perfect class  --  min dominating sizes = 5 (duads) and 5 (synthemes); minimal families of sizes 6 and 6
+[PASS] cover lemma: no four or fewer perfect classes cover a bipartition class, while some five do (both sides, exhaustive)  --  counterexamples to the lemma: none
+[PASS] counting bound for k=3: among all integer (w,c,e) with w <= 15 the inequality system admits only (w,c,e)=(15,15,0); hence gamma_r3 >= 15 and any function of weight 15 has C independent of size 15  --  feasible triples=[(15, 15, 0)]
+[PASS] counting bound for k=4: among all integer (w,c,e) with w <= 20 the inequality system admits only (w,c,e)=(20,15,0); hence gamma_r4 >= 20 and any function of weight 20 has C independent of size 15  --  feasible triples=[(20, 15, 0)]
+[PASS] counting bound for k=5: among all integer (w,c,e) with w <= 25 the inequality system admits only (w,c,e)=(25,15,0); hence gamma_r5 >= 25 and any function of weight 25 has C independent of size 15  --  feasible triples=[(25, 15, 0)]
+[PASS] independence: the graph has no independent set of 16 vertices, and its independent 15-sets are exactly the duad class and the syntheme class (exhaustive branch-and-bound over all 30 vertices)  --  max independent size=15, number of independent 15-sets=2
+[PASS] weights 15 and 20 are impossible: no multiset of 3 (resp. 4) perfect classes has union a whole bipartition class, on either side  --  coverings found: none
+[PASS] for k=5 the extremal configuration exists and f_5 realises it: its five supports are five distinct perfect classes covering the duads  --  distinct supports=5, all perfect=True
+[PASS] the 0/1 program quoted in the paper has exactly the k-RDFs as its feasible points (exhaustive over every closed-neighbourhood label tuple, k=3,4,5, degree 3)  --  label tuples scanned=1118208, disagreeing with the rainbow condition=0
+[PASS] each exhibited labelling gives a feasible 0/1 point whose objective equals its weight (objectives 16, 21, 25 for k=3,4,5)  --  (k, feasible, objective) = [(3, True, 16), (4, True, 21), (5, True, 25)]
+[PASS] the paper's 93 elementary conditions (45 syntheme unions, 45 nonemptiness conditions, 3 weight sums) all hold  --  conditions=93 (45/45/3), failing=0
+[PASS] lower and upper bounds meet, giving (gamma_r3, gamma_r4, gamma_r5) = (16, 21, 25) as the paper claims  --  derived lower={3: 16, 4: 21, 5: 25} upper={3: 16, 4: 21, 5: 25}
+[PASS] the derived weight floor 5k agrees with the cited cubic bound ceil(kN/6) for N=30, k=3,4,5  --  ceil(kN/6) = {3: 15, 4: 20, 5: 25}
+[PASS] the first implication of the question fails: the hypothesis gamma_r5 = 5N/6 holds while gamma_r4 = 2N/3 fails, strictly above  --  N=30, 5N/6=25, gamma_r5=25 ; 2N/3=20, gamma_r4=21
+[PASS] the second implication is untouched by this graph: its hypothesis gamma_r4 = 2N/3 fails here, and gamma_r3 = 16 differs from N/2 = 15  --  gamma_r4=21 vs 2N/3=20 ; gamma_r3=16 vs N/2=15
+VERDICT: ALL 34 CHECKS PASS
+NOT RE-RUN HERE: (1) the three double-counting premises behind the lower bounds -- tau >= k(30-c) at the empty vertices, tau <= 3w-2e, and the cut bound 3c-2e <= 3(30-c) -- are transcribed from the paper as premises, and only their integer consequences are scanned exhaustively; they are not re-derived symbolically here. (2) No solver and no exhaustive search over all labellings was run, so the paper's report that its 0/1 program was computed to optimality with optima 16, 21 and 25 is not reproduced by an independent optimisation: the upper bounds here come from the three exhibited labellings and the lower bounds from those transcribed premises plus finite enumeration. (3) The cited cubic bound gamma_rk(G) >= ceil(k|V(G)|/6) for all cubic G and all k <= 6, and the cited equality lemma in its published generality, are not verified beyond the order-30, k=3,4,5 instances used here. (4) Of the identification as the Tutte 8-cage, only girth 8 is verified; the quoted uniqueness of the cubic graph of girth 8 on 30 vertices is not. (5) The self-duality of the duad-syntheme configuration is not verified; its only use, the perfect-class statement on the syntheme side, is verified directly instead. (6) No bibliographic or attribution claim is checked: the wording of the question being refuted and the |V|=2n reading of it, the cited remark that this graph is not 3-rainbow domination regular, the claim that no earlier work determines gamma_r4 of this graph, and the paper's own acknowledgement that its literature search was not exhaustive. (7) The paper's account of its own process is not checked: that the 93 elementary conditions were done by hand and independently re-done, and that the machine cross-checks the paper reports were carried out there as described. This program is an independent re-derivation of those cross-checks, not a transcript of the paper's own run, and no such transcript accompanies it. (8) Nothing is checked about graphs other than this one, including the second implication of the question for other cubic graphs and any characterisation of the cubic graphs attaining the bound.
+=== program exited with status 0 ===

@@ -1,0 +1,57 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  863ff75154ee185efab0e86db0e961778c69c049bcc684f7ff508836135153c9
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- 'The Maximum Binary Case of Ribot's Zariski-Closedness Conjecture'
+exact arithmetic only (Fraction / int); standard library only
+--- A. the exhibited object ---
+    E_0 (d=3)  = [(0, 0, 0), (0, 1, 1), (1, 0, 1), (1, 1, 0)]
+    +1 shifted = [(1, 1, 1), (1, 2, 2), (2, 1, 2), (2, 2, 1)]
+    Ribot L_2  = [(1, 1, 1), (1, 2, 2), (2, 1, 2), (2, 2, 1)]
+PASS A1_cardinality_2^(d-1) [d=2..12, both parities]
+PASS A2_E0_E1_partition_cube [d=2..12]
+PASS A3_parity_class_is_partial_latin [min Hamming distance over d=2..10 = 2 (need >= 2)]
+PASS A4_E0_equals_Ribot_L2 [set equality under x_k = i_k - 1]
+PASS A5_L2_is_partial_latin [pairwise Hamming distances = [2, 2, 2, 2, 2, 2]]
+PASS A6_swap_e0_e1_maps_E0_onto_E1 [one-factor swap is a bijection E_0 -> E_1, d=2..12]
+--- B. maximality and the census ---
+PASS B1_alpha_Qd_exhaustive [alpha(Q_2)=2, alpha(Q_3)=4, alpha(Q_4)=8 (all subsets)]
+PASS B2_perfect_matching_gives_alpha [d=2..10; d=2:nu=2,alpha=2, d=3:nu=4,alpha=4, d=4:nu=8,alpha=8, d=5:nu=16,alpha=16, d=10:nu=512,alpha=512]
+PASS B3_census_only_E0_E1 [d=2:2 sets/15 nodes; d=3:2 sets/65 nodes; d=4:2 sets/631 nodes; d=5:2 sets/37472 nodes; d=6:2 sets/88685750 nodes  (exhaustive for d<=6)]
+    NOT RE-RUN: the independent-set census for d >= 7 (search tree grows ~10^3 per dimension; d=6 already costs ~9*10^7 nodes).  Every other check below runs for the full stated range.
+PASS B4_no_independent_set_of_size_2^(d-1)+1 [exhaustive, d=2..5]
+--- C. Lemma 5 (Fourier) ---
+PASS C1_p_minus_eps_is_conjugate [symbolic identity over all eps, d=2..5]
+PASS C2_SO2d_equivariance [240 exact Gaussian-rational identities, rational rotations, d=2..5]
+PASS C3_real_p_eps_cuts_out_V_E0 [Im p_eps involves only odd-weight coordinates and the 2^(d-1) forms are independent, d=2..8; d=2:rank=2, d=3:rank=4, d=4:rank=8]
+PASS C4_forward_direction_and_control [tensors in V_E0 give real p_eps; 24 generic tensors do not]
+--- D. the relation lattice ---
+PASS D1_rank_Lambda_is_2^(d-1)_minus_d [d=2:|Omega|=2,rk A=2,rk Lambda=0; d=3:|Omega|=4,rk A=3,rk Lambda=1; d=4:|Omega|=8,rk A=4,rk Lambda=4; d=5:|Omega|=16,rk A=5,rk Lambda=11; d=6:|Omega|=32,rk A=6,rk Lambda=26 (d=2..12, kernel basis verified in ker A)]
+PASS D2_rank_d_for_every_admissible_Omega [65812 sign choices, d=2..5 exhaustive]
+PASS D3_Lambda3_is_Z_times_1m1m1m1 [computed kernel basis [[-1, 1, 1, 1]], A(g)=(0, 0, 0), gcd=1]
+PASS D4_control_nonrelations_have_A_nonzero [A(1, 1, -1, -1) = (2, 2, -2)]
+PASS D5_span_argument_e_j_equals_half_v_minus_vj [v and every v_j are antipodal representatives of the chosen Omega, (v-v_j)/2 = e_j, and rank{v,v_1..v_d} = rank A = d (computed), d=2..12]
+PASS D6_Z_basis_of_Lambda_and_character_duality [the rref kernel basis is integral with an identity minor, equals the basis E1/E4 evaluate, and has rank 2^(d-1)-d; Lemma 6 holds on mu_N for N=5,7,11 (dim im = dim ann = d) for d=2..8, and both sides are enumerated exhaustively for d=3,N=7: |im|=|ann|=343; d=4,N=5: |im|=|ann|=625]
+--- E. Phi_m vanishes on the orbit ---
+PASS E1_Phi_m_zero_on_rotated_V_E0 [48 exact evaluations, d=2..5, rational rotations, every sample with all p_eps(T) != 0 so no evaluation is vacuous]
+PASS E2_control_m_not_in_Lambda_does_not_vanish [12 nonzero values of Phi_m on the orbit for m with A(m) != 0]
+PASS E3_control_non_parity_support_breaks_it [12/12 rotated tensors on the support {000,011,101,111} have Phi_m != 0 (all 12 entries drawn nonzero, so every trial is a real test)]
+PASS E4_Phi_zero_for_random_lattice_elements [12 nonzero random Z-combinations of the Lambda basis, d=3,4,5, all samples with p_eps(T) != 0]
+--- F. the 2x2x2 quartic: H = 4F ---
+PASS F1_PQRS_match_paper_display [derived from p_eps: P=+t111-t122-t212-t221+t112+t121+t211-t222(i); Q=+t111+t122+t212-t221-t112+t121+t211+t222(i); R=+t111+t122-t212+t221+t112-t121+t211+t222(i); S=+t111-t122+t212+t221+t112+t121-t211+t222(i)]
+PASS F2_H_homogeneous_quartic_40_monomials [degrees [4], 40 nonzero monomials]
+PASS F3_F_homogeneous_quartic_40_monomials [degrees [4], 40 nonzero monomials]
+PASS F4_H_equals_4F [scalar read off the expansions: H = 4 * F, and H - 4F has 0 terms]
+PASS F5_coefficients_are_integers [H and F both live in Z[t_ijk]; |coeffs of H| in [4, 8]]
+PASS F6_hypersurface_is_proper [witness T=['-1/3', '7', '5/2', '-4', '-2', '3', '3/5', '-6/5'] has H(T)=-270419/90, F(T)=-270419/360]
+PASS F7_H_is_8^4_times_Phi_generator [20 random rational tensors, exact; ties Prop. 7 to Theorem 1]
+PASS F8_F_vanishes_on_the_orbit [40 exact evaluations at SO(2)^3-rotated tensors supported on L_2]
+--- G. dimension and the local converse ---
+PASS G1_dim_X_E0_is_2^(d-1)_plus_d [exact tangent rank at generic points equals 2^(d-1)+d for d=2..8 (d=2:4, d=3:7, d=4:12, d=5:21, d=8:136)]
+PASS G2_gradient_of_H_nonzero_on_the_orbit [15 orbit points, all with grad H != 0, so {H=0} is smooth of dimension 7 there]
+PASS G3_orbit_tangent_space_lies_in_ker_dH [at each of 15 orbit points the 7-dimensional tangent space of X_{L_2} is annihilated by dH; with G2 this forces the two 7-dimensional tangent spaces to coincide]
+    NOT RE-RUN: Remark 3's identification of X_{E_0} as the unique top-dimensional component of Ribot's bato variety quotes Ribot's Lemma 4.5 and Theorem 1.7 and is not re-derived here; only dim X_{E_0} = 2^(d-1)+d is (check G1).
+    NOT RE-RUN: the reverse inclusion {Phi_m=0} subset X_{E_0} is NOT verified globally -- deciding orbit membership of a given rational tensor requires the rotation angles, which are irrational, so no exact test exists in this arithmetic.  What is verified is its algebraic engine Lemma 6, exactly and for the paper's own A (check D6), and the first-order statement along the orbit (G2-G3). The forward inclusion X_{E_0} subset {Phi_m=0} IS verified globally and exactly (E1-E4, F8).
+VERDICT: ALL 35 CHECKS PASS
+=== program exited with status 0 ===

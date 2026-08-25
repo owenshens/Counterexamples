@@ -1,0 +1,64 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  3721bb78c1301ac5cb966b4d2852cb131081386c085db95c85f798c07d0d110a
+python:  Python 3.9.25
+=== program output follows ===
+decoded graph: order 14, size 21
+  a1  : b1 b2 b3
+  a2  : b1 b2 b3
+  a3  : b2 b3 x
+  b1  : a1 a2 x
+  b2  : a1 a2 a3
+  b3  : a1 a2 a3
+  c1  : d1 d2 d3
+  c2  : d1 d2 d3
+  c3  : d2 d3 y
+  d1  : c1 c2 y
+  d2  : c1 c2 c3
+  d3  : c1 c2 c3
+  x   : a3 b1 y
+  y   : c3 d1 x
+PASS g14_decodes_to_14_vertices_21_simple_edges [order=14 size=21 loops=0]
+PASS g14_is_cubic [degree multiset [3]]
+PASS g14_is_connected
+PASS g14_is_triangle_free [triangles=0]
+PASS g14_is_diamond_free_subgraph_and_induced [max edges on a 4-set = 4, a diamond needs 5]
+PASS g14_paper_dominating_witness_dominates [|D|=4]
+PASS g14_gamma_by_exhaustive_search_is_4 [gamma=4 witness ['a3', 'b1', 'c3', 'd1']]
+PASS g14_counting_lower_bound_ceil_n_over_4_is_4 [max closed neighbourhood 4, ceil(14/4)=4]
+PASS g14_paper_forcing_set_S0_forces_all_of_G [|S0|=7, closure size 14]
+PASS g14_paper_forcing_sequence_is_step_by_step_valid [7 forces, all 14 vertices blue]
+PASS g14_no_six_vertex_set_is_zero_forcing [forcing 6-sets found: 0 of 3003]
+PASS g14_Z_by_exhaustive_search_is_7 [Z=7 witness ['a1', 'a2', 'b1', 'b2', 'c1', 'c2', 'd2']]
+PASS refutes_conjecture_9_Z_exceeds_gamma_plus_2 [Z=7, gamma+2=6, violation by 1]
+PASS g14_the_six_forts_inside_A_union_B_are_forts [6 sets tested against the definition]
+PASS g14_the_sixteen_forts_xy_union_p_union_q_are_forts [16 sets tested]
+PASS g14_no_two_vertices_meet_all_six_A_B_forts [2-sets meeting all six: 0; exact minimum cover of the six: 3]
+PASS g14_minimal_fort_census_is_exactly_the_paper_family [forts 2592, minimal forts 28, predicted 28, sizes [2, 4, 6]]
+PASS g14_minimum_fort_cover_equals_Z [minimum cover 7, Z 7, cover ['a1', 'a2', 'b1', 'b2', 'c1', 'c2', 'd2']]
+PASS g14_every_minimum_forcing_set_meets_every_fort_and_each_half_thrice [504 forcing 7-sets, each against 28 minimal forts; min |S n (A u B)| = 3, min |S n (C u D)| = 3]
+PASS g14_edge_xy_is_a_bridge
+PASS g14_x_and_y_are_centres_of_induced_claws [N(x)=['a3', 'b1', 'y'] N(y)=['c3', 'd1', 'x'], both independent]
+PASS g14_computed_values_match_the_paper_gamma_4_and_Z_7 [computed gamma=4 Z=7, paper gamma=4 Z=7]
+PASS chain_family_has_order_8k_minus_2_for_k_2_to_8 [k=2:n=14 k=3:n=22 k=4:n=30 k=5:n=38 k=6:n=46 k=7:n=54 k=8:n=62]
+PASS chain_family_is_cubic_connected_triangle_free_for_k_2_to_8 [k=2:m=21 k=3:m=33 k=4:m=45 k=5:m=57 k=6:m=69 k=7:m=81 k=8:m=93]
+PASS chain_member_k2_is_isomorphic_to_the_exhibited_graph [both cubic on 14 vertices]
+PASS chain_domination_numbers_computed_with_verified_witnesses_k_2_to_8 [k=2:gamma=4 k=3:gamma=7 k=4:gamma=9 k=5:gamma=11 k=6:gamma=14 k=7:gamma=16 k=8:gamma=18]
+PASS chain_gamma_lower_bounds_cross_checked_by_exhaustive_search [no 6-set dominates at n=22 and no 3-set at n=14]
+  chain k=2 n=14: gamma=4  Z in [7,7]  forts=28 leaves=0
+  chain k=3 n=22: gamma=7  Z in [10,10]  forts=143 leaves=0
+  chain k=4 n=30: gamma=9  Z in [13,13]  forts=210 leaves=14688
+  chain k=5 n=38: gamma=11  Z in [16,16]  forts=281 leaves=1080648
+PASS chain_enumerated_sets_are_genuine_forts_and_census_not_truncated [families of sizes [28, 143, 210, 281]; at n=14 the size <= 10 enumeration equals the exhaustive minimal-fort census over all 2^14 subsets]
+PASS chain_exhibited_dominating_and_forcing_witnesses_are_valid [k=2:|D|=4,|S|=7 k=3:|D|=7,|S|=10 k=4:|D|=9,|S|=13 k=5:|D|=11,|S|=16 ; two independent propagators agree and the k=2..8 domination table is the same graph family as the one used for the excesses]
+PASS chain_Z_determined_exactly_for_k_2_to_5 [k=2:Z=7 k=3:Z=10 k=4:Z=13 k=5:Z=16]
+PASS chain_k2_member_reproduces_gamma_4_Z_7
+PASS chain_excess_Z_minus_gamma_at_n_30_is_4 [n=30 gamma=9 Z=13 excess=4, paper says 4]
+PASS chain_excess_Z_minus_gamma_at_n_38_is_5 [n=38 gamma=11 Z=16 excess=5, paper says 5]
+PASS no_bound_Z_le_gamma_plus_c_with_c_at_most_4_holds_in_the_class [c=0..4 each refuted inside the family; largest excess 5]
+PASS middle_block_reading_matters_sharing_pair_gives_excess_at_most_3 [sharing reading at n=30: gamma=10, Z<=13, excess<=3 (independent reading is the one that gives 4)]
+SCOPE DISCLOSURE: the chain family as described in the paper is under-determined.  "two edges of each middle block" does not say WHICH two, and up to Aut(K_{3,3}) there are two readings: an independent pair and a pair sharing an endpoint.  Both give connected cubic triangle-free graphs on 8k-2 vertices, and the two readings agree at k=2, which has no middle block, so the 14-vertex graph and its gamma=4, Z=7 are unaffected.  They can differ once a middle block exists (k >= 3), and at k=4 they do: the excesses 4 at n=30 and 5 at n=38 checked above hold for the independent-pair reading, while the sharing-pair reading gives gamma=10 and Z<=13 at n=30, i.e. excess at most 3.  A reader who reconstructs the family the other way will not reproduce the paper's 4 at n=30.
+NOT RE-RUN: (i) none of the attributions the paper's framing rests on can be checked by an offline program, and none of them is checked here -- that the bound Z <= gamma + 2 for connected cubic diamond-free graphs is Conjecture 9, under that number, of arXiv:2406.19231v2; that Zenodo DOI 10.5281/zenodo.21269439 resolves at version 3 of July 8, 2026; and that the sub-path cited in the bibliography exists inside that record: a reader must check all three at the sources, and this program's PASS lines say nothing about them; (ii) the two independent implementations, the mutation tests and the independent re-verification reported in the cited artifact are not re-executed -- every value above is instead recomputed here from the edge rule; (iii) the chain family is described in the paper only up to an ambiguity: it does not say which two edges of a middle block are subdivided, so the excesses 4 at n=30 and 5 at n=38 are verified here for the independent-pair reading alone, and under the other reading (a pair sharing an endpoint) this program computes gamma=10 and Z<=13 at n=30, an excess of at most 3, so the paper's reported 4 at n=30 holds under one of the two readings and fails under the other; (iv) Z is determined here for 2 <= k <= 5 of the chain family and only gamma for 6 <= k <= 8, which is the range the paper itself reports.
+elapsed 117.3 s
+VERDICT: ALL 35 CHECKS PASS
+=== program exited with status 0 ===

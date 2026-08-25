@@ -1,0 +1,346 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  82674291f6c25f8cdbcdc21b52a4b7b82e00973c120337819d546f78c7936060
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- counterexamples to Dargad-Larsson Conjecture 7.1
+Exact integer / game-tree arithmetic only; no floating point.
+
+--- Engine self-test ---
+      ok   0 < up
+      ok   down < 0
+      ok   * is confused with 0
+      ok   up + down = 0
+      ok   -{0|*} equals {*|0}, i.e. -up = down
+      ok   * + * = 0
+      ok   up + * is confused with 0
+      ok   * is confused with up
+      ok   down is confused with *
+      ok   up + up > up
+      ok   up + up > *
+      ok   1 > up  (integer dominates the infinitesimal)
+      ok   1 + (-1) = 0
+      ok   -(up+up+*) = down+down+*
+      ok   outcome classes: 0 is P, * is N, up is L, down is R
+      ok   both engines agree that up + down = 0
+      ok   both engines agree that up + * is NOT 0
+PASS engine self-test: 17/17 textbook relations hold   [no floating point used]
+
+--- Sensitivity of the atomic-weight refutation probe ---
+      aw(down) = 0           : this weight is FALSE, so the probe must refute it ; probe says True  ; j swept [1]  [H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True]
+      aw(down+down+*) = -1   : this weight is FALSE, so the probe must refute it ; probe says True  ; j swept [1, 2]  [H := G - (-1)*up = down+* ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down True]
+      aw(*) = 0              : this weight is TRUE, so the probe must NOT refute it ; probe says False ; j swept [1, 2]  [H := G - (0)*up = * ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+      aw(down) = -1          : this weight is TRUE, so the probe must NOT refute it ; probe says False ; j swept [1, 2]  [H := G - (-1)*up = 0 ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+PASS sensitivity of the refutation probe: it refutes the two FALSE assertions aw(down)=0 and aw(down+down+*)=-1 (the second only at j=2, so the sweep over j is load-bearing) and does NOT refute the two TRUE ones aw(*)=0 and aw(down)=-1, so a 'not refuted' line elsewhere in this transcript is the verdict of a probe that can actually fire   [4/4 cases as expected]
+
+--- Rule anchors: the built trees against the paper's own prose ---
+      t=1 : heaps 0..1 have no Right option and equal the integer: True ; R-options of heap 4 are exactly heaps 1..2: True ; Right can empty a heap of 3: True
+      t=2 : heaps 0..2 have no Right option and equal the integer: True ; R-options of heap 6 are exactly heaps 1..3: True ; Right can empty a heap of 5: True
+      t=3 : heaps 0..3 have no Right option and equal the integer: True ; R-options of heap 8 are exactly heaps 1..4: True ; Right can empty a heap of 7: True
+      t=4 : heaps 0..4 have no Right option and equal the integer: True ; R-options of heap 10 are exactly heaps 1..5: True ; Right can empty a heap of 9: True
+      t=5 : heaps 0..5 have no Right option and equal the integer: True ; R-options of heap 12 are exactly heaps 1..6: True ; Right can empty a heap of 11: True
+      t=6 : heaps 0..6 have no Right option and equal the integer: True ; R-options of heap 14 are exactly heaps 1..7: True ; Right can empty a heap of 13: True
+      t=7 : heaps 0..7 have no Right option and equal the integer: True ; R-options of heap 16 are exactly heaps 1..8: True ; Right can empty a heap of 15: True
+PASS rule anchor: Right has no move from a heap of size <= tau and the value there is the integer n, as the paper's proof asserts (pins Right's lower endpoint tau+1)
+PASS rule anchor: Right's options from heap 2t+2 are exactly heaps 1..t+1 and Right can empty a heap of 2t+1 (pins both endpoints of {tau+1,...,b}; the heaps 0..tau+2 are pairwise structurally distinct, so the set comparison is not an interning artefact)
+PASS rule anchor: Left's only option from heap m >= 1 is heap m-1, i.e. a = 1 (pins Left's subtraction set)
+
+--- Theorem 1: TS_t(n;1,2t+1) for n = 2t+2, 2t+3, 2t+4 ---
+      t=1 : a=1, b=2t+1=3, tau=t=1
+        TS_1(4;1,3): L-options -> heaps [3] ; R-options -> heaps [2, 1]
+          tree nodes reachable: 5 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_1(5;1,3): L-options -> heaps [4] ; R-options -> heaps [3, 2]
+          tree nodes reachable: 6 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_1(6;1,3): L-options -> heaps [5] ; R-options -> heaps [4, 3]
+          tree nodes reachable: 7 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=2 : a=1, b=2t+1=5, tau=t=2
+        TS_2(6;1,5): L-options -> heaps [5] ; R-options -> heaps [3, 2, 1]
+          tree nodes reachable: 7 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_2(7;1,5): L-options -> heaps [6] ; R-options -> heaps [4, 3, 2]
+          tree nodes reachable: 8 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_2(8;1,5): L-options -> heaps [7] ; R-options -> heaps [5, 4, 3]
+          tree nodes reachable: 9 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=3 : a=1, b=2t+1=7, tau=t=3
+        TS_3(8;1,7): L-options -> heaps [7] ; R-options -> heaps [4, 3, 2, 1]
+          tree nodes reachable: 9 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_3(9;1,7): L-options -> heaps [8] ; R-options -> heaps [5, 4, 3, 2]
+          tree nodes reachable: 10 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_3(10;1,7): L-options -> heaps [9] ; R-options -> heaps [6, 5, 4, 3]
+          tree nodes reachable: 11 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=4 : a=1, b=2t+1=9, tau=t=4
+        TS_4(10;1,9): L-options -> heaps [9] ; R-options -> heaps [5, 4, 3, 2, 1]
+          tree nodes reachable: 11 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_4(11;1,9): L-options -> heaps [10] ; R-options -> heaps [6, 5, 4, 3, 2]
+          tree nodes reachable: 12 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_4(12;1,9): L-options -> heaps [11] ; R-options -> heaps [7, 6, 5, 4, 3]
+          tree nodes reachable: 13 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=5 : a=1, b=2t+1=11, tau=t=5
+        TS_5(12;1,11): L-options -> heaps [11] ; R-options -> heaps [6, 5, 4, 3, 2, 1]
+          tree nodes reachable: 13 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_5(13;1,11): L-options -> heaps [12] ; R-options -> heaps [7, 6, 5, 4, 3, 2]
+          tree nodes reachable: 14 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_5(14;1,11): L-options -> heaps [13] ; R-options -> heaps [8, 7, 6, 5, 4, 3]
+          tree nodes reachable: 15 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=6 : a=1, b=2t+1=13, tau=t=6
+        TS_6(14;1,13): L-options -> heaps [13] ; R-options -> heaps [7, 6, 5, 4, 3, 2, 1]
+          tree nodes reachable: 15 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_6(15;1,13): L-options -> heaps [14] ; R-options -> heaps [8, 7, 6, 5, 4, 3, 2]
+          tree nodes reachable: 16 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_6(16;1,13): L-options -> heaps [15] ; R-options -> heaps [9, 8, 7, 6, 5, 4, 3]
+          tree nodes reachable: 17 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+      t=7 : a=1, b=2t+1=15, tau=t=7
+        TS_7(16;1,15): L-options -> heaps [15] ; R-options -> heaps [8, 7, 6, 5, 4, 3, 2, 1]
+          tree nodes reachable: 17 ; outcome class: P ; derived value: 0
+          = 0 ? order test: True ; independent outcome test on TS-(0): True
+        TS_7(17;1,15): L-options -> heaps [16] ; R-options -> heaps [9, 8, 7, 6, 5, 4, 3, 2]
+          tree nodes reachable: 18 ; outcome class: N ; derived value: *
+          = * ? order test: True ; independent outcome test on TS-(*): True
+        TS_7(18;1,15): L-options -> heaps [17] ; R-options -> heaps [10, 9, 8, 7, 6, 5, 4, 3]
+          tree nodes reachable: 19 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+PASS Theorem 1: TS_t(2t+2;1,2t+1) = 0 for all t in 1..7   [7/7 instances agree]
+PASS Theorem 1: TS_t(2t+3;1,2t+1) = * for all t in 1..7   [7/7 instances agree]
+PASS Theorem 1: TS_t(2t+4;1,2t+1) = down for all t in 1..7   [7/7 instances agree]
+PASS the two independent engines (order test, outcome test) agree on all 21 Theorem 1 value decisions   [21/21 agree]
+
+--- betahat, R_betahat and the predicted atomic weight ---
+      t=1 : a=1 b=3 tau=1 n=6 -> betahat=floor(2/1)=2, R_betahat=2*(1+1+1)=6, predicted aw=0
+          paper says betahat=2, R_betahat=6, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=2, b-a=2) ; tau = (b-a)/2 : True
+      t=2 : a=1 b=5 tau=2 n=8 -> betahat=floor(4/2)=2, R_betahat=2*(1+2+1)=8, predicted aw=0
+          paper says betahat=2, R_betahat=8, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=4, b-a=4) ; tau = (b-a)/2 : True
+      t=3 : a=1 b=7 tau=3 n=10 -> betahat=floor(6/3)=2, R_betahat=2*(1+3+1)=10, predicted aw=0
+          paper says betahat=2, R_betahat=10, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=6, b-a=6) ; tau = (b-a)/2 : True
+      t=4 : a=1 b=9 tau=4 n=12 -> betahat=floor(8/4)=2, R_betahat=2*(1+4+1)=12, predicted aw=0
+          paper says betahat=2, R_betahat=12, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=8, b-a=8) ; tau = (b-a)/2 : True
+      t=5 : a=1 b=11 tau=5 n=14 -> betahat=floor(10/5)=2, R_betahat=2*(1+5+1)=14, predicted aw=0
+          paper says betahat=2, R_betahat=14, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=10, b-a=10) ; tau = (b-a)/2 : True
+      t=6 : a=1 b=13 tau=6 n=16 -> betahat=floor(12/6)=2, R_betahat=2*(1+6+1)=16, predicted aw=0
+          paper says betahat=2, R_betahat=16, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=12, b-a=12) ; tau = (b-a)/2 : True
+      t=7 : a=1 b=15 tau=7 n=18 -> betahat=floor(14/7)=2, R_betahat=2*(1+7+1)=18, predicted aw=0
+          paper says betahat=2, R_betahat=18, prediction=0
+          in scope: 0<a<=b True, a<b True, tau<b-a True, n>=R True ; n == R_betahat: True
+          DL Thm 1.5 hypothesis 2*tau < b-a : False (2*tau=14, b-a=14) ; tau = (b-a)/2 : True
+PASS derived betahat = floor((b-a)/(b-a-tau)) equals the paper's 2 for t=1..7
+PASS derived R_betahat = betahat*(a+tau+1) equals the paper's 2t+4, and equals n, for t=1..7
+PASS derived prediction -floor((n-R_betahat)/a) equals the paper's 0 for t=1..7
+PASS every instance satisfies the conjecture's standing hypotheses (0<a<=b, a<b, tau<b-a, n>=R_betahat)
+PASS no instance satisfies DL Theorem 1.5's hypothesis tau < (b-a)/2, so that theorem is untouched
+PASS every instance sits exactly at tau = (b-a)/2, as the paper's Remark states
+
+--- The refutation at n = R_betahat ---
+      t=1 : TS_1(6;1,3) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=2 : TS_2(8;1,5) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=3 : TS_3(10;1,7) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=4 : TS_4(12;1,9) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=5 : TS_5(14;1,11) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=6 : TS_6(16;1,13) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      t=7 : TS_7(18;1,15) derived value down ; conjecture predicts aw = 0
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      aw derivation: engine decides  down = -up  : True   =>  aw(down) = -aw(up) = -1
+      aw derivation: engine decides  up + down = 0 : True   =>  aw(0) = aw(up) + aw(down) = 0
+      aw of the derived value, by additivity on the cited primitives: aw(down)=-1 = -1
+PASS the game at n = R_betahat is down (both engines, t=1..7)
+PASS aw(TS_t(R_betahat;1,2t+1)) != 0 by the order test alone (no atomic weight computed), refuting Conjecture 7.1
+PASS the identities licensing aw(down) = -aw(up) are decided by the order engine, not assumed (down = -up and up + down = 0)
+PASS aw(down), DERIVED as -aw(up) from the engine-verified identity down = -up, equals the paper's -1   [derived -1, paper -1]
+PASS CONTRADICTION (the Corollary): for every t the derived value is down with derived aw = -1, while the prediction derived from -floor((n-R_betahat)/a) is [0]   [7/7 instances contradict the formula]
+
+--- Further values of t: Theorem 1 for t = 8..12 ---
+      t= 8 : H_18 = 0, H_19 = *, H_20 = down, both engines : True
+      t= 9 : H_20 = 0, H_21 = *, H_22 = down, both engines : True
+      t=10 : H_22 = 0, H_23 = *, H_24 = down, both engines : True
+      t=11 : H_24 = 0, H_25 = *, H_26 = down, both engines : True
+      t=12 : H_26 = 0, H_27 = *, H_28 = down, both engines : True
+PASS Theorem 1 also holds for t = 8..12 (the window is still FINITE: no induction on t is verified anywhere in this program)   [5/5 instances agree]
+
+--- One heap past R_betahat, n = 2t+5 ---
+      reference target built from P2: down+down+* = 2*down+* (nodes 9)
+      t=1 : a=1 b=3 tau=1 n=7 -> betahat=floor(2/1)=2, R_betahat=2*(1+1+1)=6, predicted aw=-1 (n = R_betahat + 1)
+        TS_1(7;1,3): L-options -> heaps [6] ; R-options -> heaps [5, 4]
+          tree nodes reachable: 8 ; outcome class: R ; derived value: 2*down+*
+          = down+down+* ? order test: True ; independent outcome test on TS-(down+down+*): True
+          H := G - (-1)*up = down+* ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down True  -> aw != -1 : True
+      t=2 : a=1 b=5 tau=2 n=9 -> betahat=floor(4/2)=2, R_betahat=2*(1+2+1)=8, predicted aw=-1 (n = R_betahat + 1)
+        TS_2(9;1,5): L-options -> heaps [8] ; R-options -> heaps [6, 5, 4]
+          tree nodes reachable: 10 ; outcome class: R ; derived value: 2*down+*
+          = down+down+* ? order test: True ; independent outcome test on TS-(down+down+*): True
+          H := G - (-1)*up = down+* ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down True  -> aw != -1 : True
+      t=3 : a=1 b=7 tau=3 n=11 -> betahat=floor(6/3)=2, R_betahat=2*(1+3+1)=10, predicted aw=-1 (n = R_betahat + 1)
+        TS_3(11;1,7): L-options -> heaps [10] ; R-options -> heaps [7, 6, 5, 4]
+          tree nodes reachable: 12 ; outcome class: R ; derived value: 2*down+*
+          = down+down+* ? order test: True ; independent outcome test on TS-(down+down+*): True
+          H := G - (-1)*up = down+* ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down True  -> aw != -1 : True
+      t=4 : a=1 b=9 tau=4 n=13 -> betahat=floor(8/4)=2, R_betahat=2*(1+4+1)=12, predicted aw=-1 (n = R_betahat + 1)
+        TS_4(13;1,9): L-options -> heaps [12] ; R-options -> heaps [8, 7, 6, 5, 4]
+          tree nodes reachable: 14 ; outcome class: R ; derived value: 2*down+*
+          = down+down+* ? order test: True ; independent outcome test on TS-(down+down+*): True
+          H := G - (-1)*up = down+* ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down True  -> aw != -1 : True
+      aw(down+down+*) by additivity: aw(down)=-1 + aw(down)=-1 + aw(*)=0 = -2
+      engine decides  (down+down+*) + up + up = *  : True   =>  aw(down+down+*) = aw(*) - 2*aw(up) = -2
+PASS strengthening (beyond the paper's claim): TS_t(2t+5;1,2t+1) = down+down+* for t=1..4   [4/4 instances agree]
+PASS both engines agree on all 4 strengthening decisions
+PASS derived prediction at n = R_betahat+1 is -1 for t=1..4
+PASS strengthening (beyond the paper's claim): aw(TS_t(2t+5;1,2t+1)) != -1 by the order test alone, so the failure persists one heap past R_betahat
+PASS aw(down+down+*) = -2 by TWO routes that agree: additivity on the derived atoms, and the engine-decided identity (down+down+*) + 2*up = *   [additivity -2, engine route -2, reference -2]
+
+--- a=1, (b,tau) strictly inside (b-a)/2 < tau < b-a ---
+      (b,tau)=(4,2) : a=1 b=4 tau=2 n=12 -> betahat=floor(3/1)=3, R_betahat=3*(1+2+1)=12, predicted aw=0
+          strictly inside: b-a=3 < 2*tau=4 < 2(b-a)=6 : True
+        TS_2(12;1,4): L-options -> heaps [11] ; R-options -> heaps [9, 8]
+          tree nodes reachable: 13 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      (b,tau)=(5,3) : a=1 b=5 tau=3 n=20 -> betahat=floor(4/1)=4, R_betahat=4*(1+3+1)=20, predicted aw=0
+          strictly inside: b-a=4 < 2*tau=6 < 2(b-a)=8 : True
+        TS_3(20;1,5): L-options -> heaps [19] ; R-options -> heaps [16, 15]
+          tree nodes reachable: 21 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      (b,tau)=(7,4) : a=1 b=7 tau=4 n=18 -> betahat=floor(6/2)=3, R_betahat=3*(1+4+1)=18, predicted aw=0
+          strictly inside: b-a=6 < 2*tau=8 < 2(b-a)=12 : True
+        TS_4(18;1,7): L-options -> heaps [17] ; R-options -> heaps [13, 12, 11]
+          tree nodes reachable: 19 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+      (b,tau)=(9,6) : a=1 b=9 tau=6 n=32 -> betahat=floor(8/2)=4, R_betahat=4*(1+6+1)=32, predicted aw=0
+          strictly inside: b-a=8 < 2*tau=12 < 2(b-a)=16 : True
+        TS_6(32;1,9): L-options -> heaps [31] ; R-options -> heaps [25, 24, 23]
+          tree nodes reachable: 33 ; outcome class: R ; derived value: down
+          = down ? order test: True ; independent outcome test on TS-(down): True
+          H := G - (0)*up = down ; j=1: up<=jH False, jH<=down True  -> aw != 0 : True
+PASS all 4 instances satisfy (b-a)/2 < tau < b-a strictly
+PASS strengthening (beyond the paper's claim): TS_tau(R_betahat;1,b) = down for all 4 instances   [4/4 agree]
+PASS both engines agree on all 4 strictly-inside decisions
+PASS derived prediction at n = R_betahat is 0 for all 4
+PASS strengthening (beyond the paper's claim): aw != 0 by the order test alone for all 4 instances, so the failure is not confined to tau = (b-a)/2
+
+--- The paper's Remark: boundary instance (a,b,tau) = (3,7,2) ---
+      derived: a=3 b=7 tau=2 n=12 -> betahat=floor(4/2)=2, R_betahat=2*(3+2+1)=12, predicted aw=0
+      paper's Remark asserts betahat=2 and R_betahat=12 ; 2*tau == b-a (the boundary): True
+        n=12  value <not in reference table> predicted aw=0  refuted: False  [H := G - (0)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=13  value <not in reference table> predicted aw=0  refuted: False  [H := G - (0)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=14  value <not in reference table> predicted aw=0  refuted: False  [H := G - (0)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=15  value <not in reference table> predicted aw=-1  refuted: False  [H := G - (-1)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=16  value <not in reference table> predicted aw=-1  refuted: False  [H := G - (-1)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=17  value <not in reference table> predicted aw=-1  refuted: False  [H := G - (-1)*up = <not in reference table> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=18  value <not in reference table> predicted aw=-2  refuted: False  [H := G - (-2)*up = <114 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=19  value <not in reference table> predicted aw=-2  refuted: False  [H := G - (-2)*up = <120 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=20  value <not in reference table> predicted aw=-2  refuted: False  [H := G - (-2)*up = <126 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=21  value <not in reference table> predicted aw=-3  refuted: False  [H := G - (-3)*up = <220 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=22  value <not in reference table> predicted aw=-3  refuted: False  [H := G - (-3)*up = <230 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=23  value <not in reference table> predicted aw=-3  refuted: False  [H := G - (-3)*up = <240 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=24  value <not in reference table> predicted aw=-4  refuted: False  [H := G - (-4)*up = <375 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=25  value <not in reference table> predicted aw=-4  refuted: False  [H := G - (-4)*up = <390 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=26  value <not in reference table> predicted aw=-4  refuted: False  [H := G - (-4)*up = <405 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2: up<=jH False, jH<=down False]
+        n=27  value <not in reference table> predicted aw=-5  refuted: False  [H := G - (-5)*up = <588 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=28  value <not in reference table> predicted aw=-5  refuted: False  [H := G - (-5)*up = <609 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=29  value <not in reference table> predicted aw=-5  refuted: False  [H := G - (-5)*up = <630 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=30  value <not in reference table> predicted aw=-6  refuted: False  [H := G - (-6)*up = <868 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=31  value <not in reference table> predicted aw=-6  refuted: False  [H := G - (-6)*up = <896 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=32  value <not in reference table> predicted aw=-6  refuted: False  [H := G - (-6)*up = <924 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=33  value <not in reference table> predicted aw=-7  refuted: False  [H := G - (-7)*up = <1224 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+        n=34  value <not in reference table> predicted aw=-7  refuted: False  [H := G - (-7)*up = <1260 positions, not named> ; j=1: up<=jH False, jH<=down False ; j=2 skipped (too large)]
+      probe coverage here: 15 of 23 heap sizes were swept over the whole range j = 1..2 ; 8 were swept at j = 1 only, the larger j being cut by the 20000-node cap (n = [27, 28, 29, 30, 31, 32, 33, 34])
+      what this does NOT establish: DL Table 4 is never read by this program, and the order test can only ever REFUTE an atomic weight, so the absence of a refutation is consistent both with the tabulated weights agreeing with the formula and with their disagreeing in a way this probe cannot see.  The probe's ability to fire at all is what the sensitivity self-test above establishes.
+PASS the Remark's boundary instance: derived betahat=2 and R_betahat=12 equal the paper's 2 and 12, and tau = (b-a)/2 exactly
+PASS the Remark's boundary instance is examined by computation instead of by reading DL Table 4: at (3,7,2) the order test refutes the conjecture's prediction at NO n in 12..34, which is consistent with the Remark that tau = (b-a)/2 is not by itself the obstruction.  This is NOT a confirmation of the Remark: the order test can refute but never confirm an atomic weight, 8 of the 23 heap sizes were swept at j = 1 only, and DL Table 4's tabulated values are never read here -- a refutation, however, WOULD have contradicted the paper   [23 heap sizes examined, 0 refuted, 8 swept at j=1 only]
+
+--- Survey (no checks): derived values of TS_t(n;1,2t+1) ---
+      t=1 (a=1, b=3, tau=1, R_betahat=6):
+        n= 0  value 0                      outcome P
+        n= 1  value 1                      outcome L
+        n= 2  value <not in reference table> outcome N
+        n= 3  value <not in reference table> outcome R
+        n= 4  value 0                      outcome P
+        n= 5  value *                      outcome N
+        n= 6  value down                   outcome R   prediction aw=0 : REFUTED
+        n= 7  value 2*down+*               outcome R   prediction aw=-1 : REFUTED
+        n= 8  value 3*down                 outcome R   prediction aw=-2 : REFUTED
+        n= 9  value 4*down+*               outcome R   prediction aw=-3 : REFUTED
+        n=10  value <not in reference table> outcome R   prediction aw=-4 : REFUTED
+      t=2 (a=1, b=5, tau=2, R_betahat=8):
+        n= 0  value 0                      outcome P
+        n= 1  value 1                      outcome L
+        n= 2  value 2                      outcome L
+        n= 3  value <not in reference table> outcome N
+        n= 4  value <not in reference table> outcome R
+        n= 5  value <not in reference table> outcome R
+        n= 6  value 0                      outcome P
+        n= 7  value *                      outcome N
+        n= 8  value down                   outcome R   prediction aw=0 : REFUTED
+        n= 9  value 2*down+*               outcome R   prediction aw=-1 : REFUTED
+        n=10  value 3*down                 outcome R   prediction aw=-2 : REFUTED
+        n=11  value 4*down+*               outcome R   prediction aw=-3 : REFUTED
+        n=12  value <not in reference table> outcome R   prediction aw=-4 : REFUTED
+      t=3 (a=1, b=7, tau=3, R_betahat=10):
+        n= 0  value 0                      outcome P
+        n= 1  value 1                      outcome L
+        n= 2  value 2                      outcome L
+        n= 3  value <not in reference table> outcome L
+        n= 4  value <not in reference table> outcome N
+        n= 5  value <not in reference table> outcome R
+        n= 6  value <not in reference table> outcome R
+        n= 7  value <not in reference table> outcome R
+        n= 8  value 0                      outcome P
+        n= 9  value *                      outcome N
+        n=10  value down                   outcome R   prediction aw=0 : REFUTED
+        n=11  value 2*down+*               outcome R   prediction aw=-1 : REFUTED
+        n=12  value 3*down                 outcome R   prediction aw=-2 : REFUTED
+        n=13  value 4*down+*               outcome R   prediction aw=-3 : REFUTED
+        n=14  value <not in reference table> outcome R   prediction aw=-4 : REFUTED
+      surveyed heaps with n >= R_betahat: 15 refuted, 0 inconclusive (the order test can refute but never confirm an atomic weight)
+
+--- GAPS between the checks above and the paper's claims ---
+      G1  SCOPE, and the one that matters most.  Every check is conditioned on P3, this program's transcription of Conjecture 7.1 and of its standing hypotheses -- above all that a = 1 is admissible.  Dargad-Larsson's preprint also carries a '3 <= a < b' hypothesis elsewhere, in an unrelated section on domination.  If the conjecture's real scope excludes a = 1, or if its hypotheses are not 0<a<=b, a<b, tau<b-a, n>=R_betahat, then EVERY CHECK HERE STILL PASSES and the paper is nevertheless wrong.  No offline computation can close this; it needs a fidelity audit against the preprint itself, which this program does not attempt because it would need a network fetch of a third-party document.
+      G1a Two concrete ways G1 could bite, both invisible to every check here: (i) if DL's equations (5)/(13) give an R_betahat larger than 2t+4, then n = 2t+4 is below the smallest governed heap and the instances are out of scope; (ii) if DL's Definition 5.1 gives Right the subtraction set {tau,...,b} or {tau+1,...,b-1} rather than {tau+1,...,b}, the games computed here are the wrong games.  The rule anchors below test the built trees against the prose of THIS paper's own proof, which establishes internal consistency, not fidelity to Dargad-Larsson's Definition 5.1.
+      G2  FINITE vs UNIVERSAL.  Theorem 1 is stated for every integer t >= 1.  It is verified here for t = 1..12 only, by direct computation; no induction on t is verified.  What IS fully settled is the Corollary, because falsifying a conjecture needs only ONE instance: any single t above suffices, so the refutation of Conjecture 7.1 does not depend on the universal quantifier.
+      G3  ATOMIC WEIGHT IS NEVER COMPUTED.  This program implements the order relation, not the atomic-weight calculus, so it can REFUTE a predicted atomic weight but can never independently CONFIRM one.  The imported facts are aw(up)=1, aw(*)=0, additivity, and the characterisation P6(C): for an all-small G, aw(G)=0 exactly when G is infinitesimal with respect to up, i.e. when for EVERY integer j >= 1 the game j*G is less than or confused with up and greater than or confused with down.  The refutation used here is the contrapositive: if some j >= 1 gives up <= j*(G - P*up) or j*(G - P*up) <= down, then aw(G) != P.  Note that the STRICT form 'aw(G)=0 => down < G < up' is NOT the criterion and is false -- aw(*)=0 while * is confused with up and with down, as the engine self-test above records -- so it is not used or relied on anywhere in this program.  aw(down) = -1 and aw(down+down+*) = -2 are then derived, each from an identity the order engine decides here.
+      G4  BOTH ENGINES SHARE ts().  The order test and the outcome induction are independent decision procedures, but they read the same game trees, so their agreement cannot detect a mis-transcribed subtraction set.  The rule-anchor checks above address that separately, by testing the built trees against move-by-move facts the paper's own proof states in prose.
+      G5  THE REMARK IS THE WEAKEST CHECK HERE.  The Remark's appeal to DL Table 4 is answered by a direct computation of TS_2(n;3,7) for 12 <= n <= 34, but that computation can only fail to refute: it does not read Table 4, it does not confirm the tabulated weights, and at the largest heap sizes the j-sweep was cut to j = 1 by the node cap (the check's own detail line prints how many).  A refutation there would have contradicted the paper's Remark and its abstract, so the check is not empty -- but its PASS establishes consistency with the Remark, not the Remark.  The abstract's clause that tau = (b-a)/2 is not itself the obstruction therefore still rests on Dargad-Larsson's Table 4, which nothing in this program has read.
+
+--- NOT COVERED (declared, not checked) ---
+      Fidelity to arXiv:2607.27989v1 itself -- that Conjecture 7.1, its standing hypotheses, Definition 5.1 and Table 4 are as transcribed in P1/P3 above -- is NOT checked: it would need a network fetch of a third-party preprint, and this program is offline and stdlib-only.  It is NOT counted as a check.
+      The two atomic-weight facts P6(A)/(B) and the characterisation P6(C) are imported from the cited literature, not proved here; every check that uses them says so on its own line.
+      The values of DL Table 4 are never read.  The paper's Remark, and with it the abstract's clause that tau = (b-a)/2 is not itself the obstruction, is therefore only tested to the extent that the order test found no refutation at the boundary instance (3,7,2) for 12 <= n <= 34 -- and at the largest of those heap sizes the sweep was cut to j = 1 by the node cap, as the check's detail line records.
+      Theorem 1 is verified for t = 1..12 only, by direct computation over finite game trees; no induction on t is verified anywhere, and no second implementation of these values is shipped alongside this one.
+      Total distinct game positions constructed: 83029 ; order-test memo entries: 66245
+      Checks whose label says "strengthening (beyond the paper's claim)" test additional instances, not statements of the paper; the paper's own claims are the Theorem 1 and refutation checks.
+
+VERDICT: ALL 33 CHECKS PASS
+=== program exited with status 0 ===

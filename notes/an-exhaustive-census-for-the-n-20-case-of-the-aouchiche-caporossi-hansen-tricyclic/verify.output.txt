@@ -1,0 +1,113 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5ac349bdfcbbb536f0088e0b6d2b691a2116a4aae1bf54539397311a685a905b
+python:  Python 3.9.25
+=== program output follows ===
+verify.py: verification of the n=20 tricyclic-energy census
+python 3.9.25 | exact integer/rational arithmetic only
+--- A. the exhibited graphs ---
+PASS A1.g6_P_wellformed_20_vertices_22_edges [n=20 m=22]
+PASS A2.g6_P_reencodes_to_its_own_string_and_encoding_is_injective [no 1-character variant of the string decodes to the same graph]
+PASS A3.g6_P_is_the_paper_explicit_model [3 six-cycles + [(0, 18), (6, 18), (18, 19), (12, 19)]]
+PASS A4.P_connected
+PASS A5.P_tricyclic_m_eq_n_plus_2_cycle_rank_3 [spanning-forest rank=3 components=1]
+PASS A6.P_degree_sequence_16x2_4x3 [min=2 max=3]
+PASS A7.P_bipartite
+PASS A8.P_is_the_ACH_family_member_three_C6_plus_path_P2 [path=[18, 19] attachments=[[0, 6], [12]] to distinct cycles [[0, 1], [2]]]
+PASS A9.P_articulation_vertices_eq_5 [cut vertices [0, 6, 12, 18, 19]]
+--- B. the runner-up Q and the isomorphism claims ---
+PASS B1.g6_Q_wellformed_20_vertices_22_edges [n=20 m=22]
+PASS B2.g6_Q_equals_P_minus_(6, 18)_plus_(5, 10)
+PASS B3.Q_connected_and_tricyclic
+PASS B4.Q_degree_sequence_16x2_4x3
+PASS B5.Q_articulation_vertices_eq_6 [cut vertices [0, 5, 10, 12, 18, 19]]
+PASS B6.P_and_Q_lie_in_the_class_T20_deg_2_or_3
+PASS B7.Q_is_not_isomorphic_to_P [distinct invariants AND exhaustive backtracking search found no isomorphism]
+PASS B8.alt_labelling_g6_wellformed_connected_20_vertices_22_edges
+PASS B9.alt_labelling_g6_is_isomorphic_to_P [same signature AND explicit verified permutation; distinct labelling: True]
+PASS B10.alt_labelling_g6_reencodes_to_its_own_string_and_encoding_is_injective [canonicity NOT asserted: no nauty here]
+--- C. characteristic polynomials and rigorous energies ---
+PASS C1.charpoly_P_from_matrix_equals_paper_eq1 [deg=20]
+PASS C1b.charpoly_P_confirmed_by_independent_determinant_engine [det(tI-A) by Bareiss at t=-1..19 agrees at all 21 points]
+PASS C2.charpoly_Q_from_matrix_equals_paper_eq2
+PASS C2b.charpoly_Q_confirmed_by_independent_determinant_engine
+PASS C3.charpoly_P_consistent_with_enumerated_subgraph_counts [triangles=0 4-cycles=0]
+PASS C4.charpoly_Q_consistent_with_enumerated_subgraph_counts [triangles=0 4-cycles=0]
+PASS C5.charpolys_of_P_and_Q_differ [so P and Q are not cospectral]
+PASS C6.energy_of_P_enclosed_rigorously [[27.2903786151832973536286, 27.2903786151832973536286]]
+PASS C7.energy_of_Q_enclosed_rigorously [[27.2773174852287231601240, 27.2773174852287231601240]]
+PASS C8.energy_of_P_equals_paper_digits_27.2903786151832973536 [27.2903786151832973536286608]
+PASS C9.energy_of_Q_equals_paper_digits_27.2773174852287231601 [27.2773174852287231601240363]
+PASS C10.energy_of_P_rounds_to_result1_value_27.2903786151833
+PASS C11.energy_of_Q_rounds_to_result1_value_27.2773174852287
+PASS C12.energy_of_P_strictly_exceeds_energy_of_Q [gap >= 0.0130611299545741935046]
+PASS C13.gap_equals_paper_digits_0.0130611299545741935 [0.0130611299545741935046245]
+PASS C14.gap_matches_abstract_1.3061e-2
+PASS C15.gap_matches_status_section_1.31e-2
+PASS C16.gap_dwarfs_the_reported_solver_discrepancy_5.15e-13 [gap > 1e6 x 5.15e-13]
+--- D. the census total, re-derived without geng ---
+PASS D1.number_of_connected_20_vertex_22_edge_classes_eq_3288208176 [Burnside+multiset-log gives 3288208176 in 0.7 s]
+PASS D2.tricyclic_class_counts_anchored_at_n456_and_increasing [brute force n=4,5,6 gives [1, 4, 22]; n=4..20: [1, 4, 22, 107, 486, 2075, '...', 3288208176]]
+PASS D3.all_graph_totals_match_A000088_for_n_le_7 [sums [1, 2, 4, 11, 34, 156, 1044]]
+PASS D4.connected_totals_match_A001349_for_n_le_7 [sums [1, 1, 2, 6, 21, 112, 853]]
+PASS D5.brute_force_reproduces_all_graph_counts_at_n5 [g(5,.)=[1, 1, 2, 4, 6, 6, 6, 4, 2, 1, 1]]
+PASS D6.brute_force_reproduces_connected_counts_at_n5 [c(5,.)=[0, 0, 0, 0, 3, 5, 5, 4, 2, 1, 1]]
+PASS D7.brute_force_reproduces_connected_count_at_n6_m8 [brute=22 table=22]
+--- E. the subclass enumerator, validated at n=10 ---
+PASS E1.base_multigraph_family_reproduced_by_an_independent_enumeration [35 labelled from each of the two enumerations, 5 isomorphism classes]
+PASS E2.base_representatives_are_pairwise_non_isomorphic [no relabelling of the 4 branch vertices carries one onto another]
+PASS E3.all_compositions_of_16_into_6_parts_are_tried [20349 = C(21,5)]
+PASS E4.subdivided_graphs_at_n10_all_lie_in_T10 [109 isomorphism classes]
+PASS E5.every_T10_graph_suppresses_into_the_base_family [888292 labelled graphs, 866520 connected, 0 not accounted for]
+PASS E6.T10_enumerator_is_complete_and_sound [109 classes both ways, 67.3 s]
+PASS E7.signature_is_a_complete_isomorphism_invariant_on_T10 [109 classes: 0 same-signature pairs non-isomorphic, 0 distinct-signature pairs isomorphic, 5886 pairs tested, 0.5 s]
+--- F. exhaustive energy scan over T(20) ---
+PASS F1.every_enumerated_graph_is_connected_20_22_with_deg_2_or_3 [58461 subdivision configurations + 43284 non-simple = 101745 = 5 bases x C(21,5); 0 rejected]
+PASS F2.suppression_inverts_subdivision_on_every_configuration [8157 isomorphism classes in T(20)]
+PASS F2b.no_two_non_isomorphic_T20_configurations_share_a_signature [50304 of the 58461 configurations collided with a stored representative; every collision verified isomorphic by explicit permutation]
+PASS F3.P_and_Q_are_both_found_by_the_T20_enumeration
+    scanning 8157 classes (21.1 s so far) ...
+PASS F4.energy_enclosed_rigorously_for_every_class_of_T20 [8157 classes, 325.9 s]
+PASS F4b.sampled_T20_charpolys_confirmed_by_the_determinant_engine [23 of 8157 classes re-derived as det(tI-A), including P and Q]
+PASS F5.unique_maximizer_of_energy_over_T20_is_P [1 of 8157 classes reach E(P); strict runner-up margin]
+PASS F6.runner_up_over_T20_is_Q [next distinct energy <= 27.270325395]
+PASS F7.T20_scan_encloses_the_paper_top_two_values [scan (1e-6 precision) top two: 27.290378526, 27.277317279]
+    T(20) covers 8157 of 3288208176 census classes (2.48e-06 of the census);
+    completeness of this slice rests on the degree-2 suppression argument, which section E validates exhaustively at n=10.
+--- G. exhaustive one-edge-swap neighbourhood of P ---
+PASS G1.swap_neighbourhood_enumerated [3696 distinct one-swap graphs (= 22 x 168), each with 22 edges and symmetric difference 2 from P; 3363 connected, 333 disconnected, 3122 outside T(20), 523 spectra]
+PASS G2.energy_enclosed_rigorously_for_every_neighbour [523 distinct spectra, 16.0 s]
+PASS G3.no_swap_neighbour_beats_P_except_copies_of_P [27 of 3363 neighbours are isomorphic to P, none exceeds E(P)]
+PASS G4.best_swap_neighbour_not_isomorphic_to_P_is_Q [max non-P energy 27.277317569]
+
+NOT REPRODUCED (stated explicitly):
+  * The paper's energy scan over all 3288208176 isomorphism classes is NOT re-run here.
+    Regenerating those classes and computing about 3.3e9 twenty-by-twenty
+    symmetric eigensolves is thousands of CPU-hours; this program instead
+    (i) re-derives the census TOTAL 3288208176 exactly, by Burnside/Polya counting
+    plus the multiset logarithm, with no use of geng, and (ii) re-runs the
+    energy maximisation exhaustively over two slices that do fit the budget:
+    the class T(20) of connected 20-vertex 22-edge graphs with all degrees in
+    {2,3} (8157 isomorphism classes, containing both P and Q), and the complete
+    one-edge-swap neighbourhood of P (3363 connected graphs, most of them outside
+    T(20)).  Classes of the census outside those two slices are not rescanned.
+  * The paper's shard bookkeeping (997 geng shards, and the confirmation run
+    with 512 shards) is not reproducible from a single-process stdlib program,
+    and no per-shard record counts are published to compare against.
+  * The paper's binary64 figures - the counts 0 and 1 of records within 1e-7 of
+    the maximum, and the 5.15e-13 agreement between two eigensolvers on 20000
+    sampled graphs - concern that floating-point pipeline itself; this program
+    replaces floating point by exact rational enclosures for the graphs it does
+    examine, so those two numbers are corroborated in spirit, not re-measured.
+  * The paper prints no graph6 string, so none of the three graph6 strings used
+    here is a quotation from it.  P's and Q's are pinned to the paper's own
+    words by checks A3 and B2 respectively; the third is an alternative
+    labelling of P whose claimed nauty/labelg canonicity is NOT verified (nauty
+    is not used), so checks B8, B9 and B10 exercise this program's graph6 and
+    isomorphism code on a relabelled copy of P and corroborate nothing printed
+    in the paper.
+  * The conjecture for n >= 22 is outside the paper's scope and is not tested.
+
+elapsed: 424.8 s
+VERDICT: ALL 64 CHECKS PASS
+=== program exited with status 0 ===

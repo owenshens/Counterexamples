@@ -1,0 +1,42 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  19638bfb24ded3d13d48a20d53a3ebe22446d1b55764e1fb5bd18eb0c34271cc
+python:  Python 3.9.25
+=== program output follows ===
+Verifying the counterexample family K_{2t,2t} at n = 4t, k = 3t,
+for t = 2, 3, 4, 5, plus the five named eight-vertex graphs and an
+isomorph-free census for 2 <= n <= 6.
+
+[PASS] complement of K_{2t,2t} is the disjoint union of two copies of K_{2t}  --  checked as labelled edge sets for t = 2, 3, 4, 5
+[PASS] Spec_L(K_{2t,2t}) = {4t, (2t)^(4t-2), 0} by exact nullity of L - lambda I  --  n = 8, 12, 16, 20 all confirmed
+[PASS] Spec_L(2K_{2t}) = {(2t)^(4t-2), 0^2} by exact nullity of L - lambda I  --  n = 8, 12, 16, 20 all confirmed
+[PASS] mu_{3t}(G) = mu_{3t}(complement G) = 2t (index 3t lies in the block of multiplicity 4t-2)  --  verified for t = 2, 3, 4, 5
+[PASS] mu_k(G) mu_k(complement G) = 4t^2 = n(n-k) exactly at n = 4t, k = 3t  --  products t=2: 16, t=3: 36, t=4: 64, t=5: 100
+[PASS] k = 3t satisfies 1 <= k <= 3n/4 (the endpoint k = 3n/4) and n/2 <= k, so it lies in the range where the inequality is already proved  --  (n,k) = (8,6), (12,9), (16,12), (20,15)
+[PASS] the conjectured equality family is empty at (n,k) = (4t,3t): H would need 3t+1 components on t vertices  --  n-k = t vertices vs k+1 = 3t+1 required components, t = 2, 3, 4, 5
+[PASS] neither K_{2t,2t} nor its complement is a join K_j v H for ANY j >= 1, since neither has a vertex of degree n-1, so the refutation survives any weaker component requirement (>= 2 instead of >= k+1)  --  max degrees 2t and 2t-1, both < n-1 = 4t-1, for t = 2, 3, 4, 5
+[PASS] root multiplicities of the integer characteristic polynomial independently reproduce the two spectra and give mu_{3t} = 2t  --  exact Taylor shift + Descartes' rule (exact for real-rooted polynomials), t = 2, 3
+[PASS] mu_6(K_{4,4}) mu_6(2K_4) = 4 * 4 = 16 = 8(8-6), the displayed t = 2 instance  --  mu_6 = 4 and 4
+[PASS] the three graph6 codes quoted in the closing paragraph decode to eight-vertex graphs and re-encode to the same strings  --  G?zvf_: 15 edges, GQhTUg: 13 edges, GCXnf_: 14 edges
+[PASS] each of the five graphs named for n = 8, k = 6 satisfies mu_6(G) mu_6(complement G) = 16 = n(n-k) exactly  --  verified for K_{4,4}, 2K_4, G?zvf_, GQhTUg, GCXnf_
+[PASS] for each of those five graphs neither G nor complement G is K_6 v H with H having at least k+1 = 7 components on n-k = 2 vertices, so the 'only if' direction of Conjecture 20 fails  --  characterisation fails for all five
+[PASS] the closing paragraph's structural claims about the three codes hold: GCXnf_ is self-complementary and the other two form a complementary pair  --  orders 8, 8, 8 and edge counts 15, 13, 14
+[PASS] weakest reading at n = 8, k = 6: H on 2 vertices with at least 2 components forces H = 2K_1, so the only candidate is K_6 v 2K_1 = K_8 minus an edge, and its product is 0, not 16  --  K_8 - e has 27 edges, mu_6(complement) = 0, comparison lt
+[PASS] positive control: the family predicate accepts K_2 v 3K_1 at k = 2 (and that graph does attain equality, mu_2 = 5 and 3, product 15 = 5(5-2)), while rejecting cases whose component count is too small  --  the predicate and the equality test are not vacuously false
+
+census: 2:2, 3:4, 4:11, 5:34, 6:156 isomorphism classes for n = 2..6, 769 (graph, k) pairs evaluated,
+        48 equality cases found, 0 of them outside the conjectured family.
+
+[PASS] isomorph-free generation reproduces the known numbers of graphs up to isomorphism for n = 2..6 (2, 4, 11, 34, 156)  --  counts 2:2, 3:4, 4:11, 5:34, 6:156
+[PASS] no graph with 2 <= n <= 6 violates the product inequality mu_k(G) mu_k(complement G) <= n(n-k) for 1 <= k <= floor(3n/4)  --  769 pairs evaluated, 48 equality cases, no violation
+[PASS] every equality case with 2 <= n <= 6 does satisfy the conjectured characterisation, so there is no counterexample of order at most 6 and none of the five n = 8 graphs is beaten by a smaller one in this range  --  48 equality cases, all explained by the K_k v H description
+[PASS] the census actually evaluated a non-trivial number of (graph, k) pairs and every one of them was decided exactly  --  769 pairs, 0 undecided
+
+COVERAGE OF THE PUBLISHED RANGE 2 <= n <= 9: covered exhaustively here for n = 2, 3, 4, 5, 6 only.
+NOT COVERED HERE: the orders n = 7, n = 8 and n = 9 were NOT enumerated (nauty was unavailable and pure-Python isomorph-free
+generation was kept to n <= 6); the five named eight-vertex graphs were each checked individually, but their EXHAUSTIVENESS
+('exactly five cases') and the minimality of K_{4,4} were not.
+
+VERDICT: ALL 20 CHECKS PASS
+NOT RE-RUN HERE: the exhaustive census over n = 7, 8, 9 (no isomorph-free generation was performed above n = 6 and nauty/geng was not used), hence the published tally 'exactly five cases, all at n = 8, k = 6' is NOT confirmed as exhaustive, and the five named graphs are not checked to be pairwise non-isomorphic either (only that GCXnf_ is self-complementary, that G?zvf_ and GQhTUg are complementary, and that G?zvf_ and GCXnf_ differ), so the count five is not confirmed from below here either; the minimality claim that K_{4,4} has smallest order among counterexamples is confirmed only against orders n <= 6; the product inequality mu_k(G) mu_k(complement G) <= n(n-k) itself is nowhere proved here, only evaluated on the graphs enumerated or named above (and for 1 <= k < n/2 it is untouched by the family, which lives at k = 3n/4); the family K_{2t,2t} is verified for t = 2..5 only, the general t being closed-form; the transcription of Conjecture 20, of Theorem 18 and of Remark 1 from the published article was not checked against the published text (no external source was consulted, so the equality clause is taken exactly as quoted in the note -- the refutation is however also checked to survive the weakest reading, at least 2 components instead of at least k+1); and the remark that Chen, Guo, Li and Wang had verified the conjecture for all graphs on at most nine vertices is reported, not examined, here.
+=== program exited with status 0 ===

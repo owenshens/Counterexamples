@@ -1,0 +1,13 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  24fbb096bb7b4f6ac849f3561fe8c9c0b9e4d64afb3ad25c4b6d11f442afcb9a
+python:  Python 3.9.25
+=== program output follows ===
+417 0
+15 131
+119 937 1056
+0 0
+True True
+7025 [((10, 8), (4, 4, 4, 2, 2, 2), (8, 4, 4, 2))]
+-2
+=== program exited with status 0 ===

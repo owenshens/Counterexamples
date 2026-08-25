@@ -1,0 +1,60 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a950df1bbd027c8746abdf9aaabcf0c3414199a838c3410e2fc374858a984278
+python:  Python 3.9.25
+=== program output follows ===
+exhibited object:
+  R = Q[x,y,z,t] localized at (x,y,z,t),  dim R = 4
+  I = (x^2, y^2, z^2)
+  J = (x^2 + x*y, x*z + z^2, y^2 + y*z, t)
+PASS object_wellformed [n=4, k=3, |gens J|=4]
+PASS hypothesis_k_le_n_minus_1 [k=3, n=4, k<=n-1 is True]
+PASS gb_elements_lie_in_ideal [5 claimed basis elements tested]
+  grevlex leading terms: x^2, x*z, y^2, y*z^2, z^4
+PASS gb_certified_by_initial_ideal [8 standard monomials through degree 6]
+  monomial basis of A: 1; x, y, z; x*y, y*z, z^2; z^3
+PASS A_hilbert_and_monomial_basis [H = [1, 3, 3, 1], length 8]
+PASS regular_sequences_by_finite_colength [(x,y,z)^4 in J_0: True; colength J_0 = 8 = 2*2*2; colength I = 8]
+PASS q_normal_forms_span_A2 [x^2 = -xy, y^2 = -yz, z^2 = z^2 in A; rank 3]
+  A_2 (x) A_1 -> A_3 matrix rows: ['1', '-1', '1']; ['1', '1', '-1']; ['-1', '1', '1']
+PASS multiplication_pairing_matrix [det T = 4 (nonzero)]
+PASS koszul_chain_dimensions [dims [8, 24, 24, 8]]
+PASS koszul_differentials_compose_to_zero [d_i d_(i+1) = 0 for i = 1,2 (an identity for any commuting operators); multiplication matrices agree with normal forms on all 8 basis elements]
+PASS koszul_differential_ranks [rank d_1,d_2,d_3 = 4,6,4]
+PASS koszul_graded_ranks [d_1: [3, 1, 0, 0]; d_2: [3, 3, 0, 0]; d_3: [1, 3, 0, 0]]
+PASS tor_length_vector_computed [(l(Tor_i))_{i=0..3} = [4, 14, 14, 4]]
+PASS colength_R_over_I_plus_J [l(R/(I+J)) = 4, basis 1,x,y,z (ideal = (xy,yz,z^2,z^3))]
+PASS conjectured_vector_from_identity [binom(3,i)*4 = [4, 12, 12, 4]]
+PASS identity_fails_refutation [computed [4, 14, 14, 4] vs conjectured [4, 12, 12, 4]; fails at i in [1, 2]]
+PASS question_5_1_inequality_holds [[4, 14, 14, 4] >= [4, 12, 12, 4] componentwise and not equal]
+  n = 4, J = (x^2 + x*y, x*z + z^2, y^2 + y*z, t)
+PASS stabilization_gap_1_tor_vector [n=4, k=3, n-k=1: Tor lengths [4, 14, 14, 4], colength 4, conjectured [4, 12, 12, 4]]
+  n = 5, J = (x^2 + x*y, x*z + z^2, y^2 + y*z, t1, t2)
+PASS stabilization_gap_2_tor_vector [n=5, k=3, n-k=2: Tor lengths [4, 14, 14, 4], colength 4, conjectured [4, 12, 12, 4]]
+PASS R_mod_I_is_nonreduced [nonzero nilpotents in R/I: x, y, z]
+PASS census_finite_colength_screen [4 of 5 ideals certified zero dimensional; (xy,yz,zx) rejected; ambient dimension of every census instance is n = 3]
+PASS census_identity_holds_for_k_le_2 [20 instances with k=1 and 20 with k=2, no failure; n = 3 throughout, so these are k <= n-1 and inside Conjecture 4.2's range; the k=1 half is rank-nullity and cannot fail, so only the k=2 half is evidence]
+PASS census_finds_k_3_failures [5 of 20 k=3 instances fail; [4, 14, 14, 4] among them; NOT counterexamples to Conjecture 4.2: k = n = 3 here, i.e. the already-refuted unrestricted case (BLP Section 3), outside the range k <= n-1; these enter Conjecture 4.2's range only via stabilization, as stabilization_gap_1 and stabilization_gap_2 do for the paper's instance]
+PASS census_failures_respect_inequality [every failing instance has Tor lengths >= binom(k,i)*colength (all failing instances are the k = n = 3 ones described above)]
+PASS k2_criterion_needs_complete_intersection [off hypothesis: [1, 3, 2] vs [1, 2, 1] (fails); on hypothesis: [1, 2, 1] vs [1, 2, 1] (holds); k=1 holds even off hypothesis]
+PASS minimality_of_the_pair_n_k [k<=2 evidence stands: True; over k<=n-1 with k>=3 min (n,k) = (4,3), exhibited (4,3)]
+NOT RE-RUN: the two cited results that force k >= 3 (the k = 1 and
+k = 2 cases of the identity) are literature statements; they are
+supported here on a finite census, not proved.  The stabilization
+statement is a homological argument valid for every gap; it is
+instantiated here only at gaps 1 and 2 for this example, and no
+exhaustive census over complete intersections was attempted.
+NOT RE-RUN, SCOPE OF THE CENSUS: the census runs in three
+variables, so every instance has n = 3.  Its k = 3 instances have
+k = n, which is the unrestricted assertion already disproved in
+the literature, NOT the k <= n-1 range of the conjecture under
+test; the k = 3 failures counted above are therefore not that many
+independent counterexamples to that conjecture, and they
+enter its range only through the stabilization proposition, which
+is applied here only to the paper's own instance (gaps 1 and 2).
+The in-range refutation rests on identity_fails_refutation with
+stabilization_gap_1 and stabilization_gap_2 alone.  Only the k = 1
+and k = 2 halves of the census are in range, and they are
+confirmations of the cited results, not tests of the conjecture.
+VERDICT: ALL 26 CHECKS PASS
+=== program exited with status 0 ===

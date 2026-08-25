@@ -1,0 +1,51 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e4a97b2c6fb66a395fe1fa30826a69346922bdbf89a2ce21906210fbe481d5ac
+python:  Python 3.9.25
+=== program output follows ===
+PASS sweep_predicate_fires_on_the_nine_vertex_counterexample [violates(G2)=(True, dmg=2)]
+PASS engine_gives_zero_damage_on_complete_graphs_K2_to_K5 [pursuer captures before any damage]
+PASS order_G2_is_9 [|V|=9]
+PASS graph6_G2_decodes_to_construction [HhEM?C@ -> n=9, 10 edges, well_formed=True]
+PASS G2_connected
+PASS G2_claw_free [no induced K_1,3]
+PASS G2_degree3_vertices_are_v0_v1_x_with_edge_in_neighborhood [deg-3 set=['v0', 'v1', 'x']]
+PASS G2_ecc_x_is_3_and_radius_3 [ecc(x)=3 rad=3]
+PASS G2_diameter_is_t_plus_3 [diam=5 d(u2,v3)=5]
+PASS G2_four_off_cycle_triples_are_unique_geodesics [all 4 verified]
+PASS G2_survivor_walks_are_traceable_and_cover_all_vertices [5 walks]
+PASS G2_stated_map_is_an_involutive_automorphism_fixing_x_and_the_u_j [auto=True involution=True fixes_tail=True]
+PASS G2_walk_starts_and_their_images_cover_every_zombie_start [labels_match=True starts=['u1', 'v0', 'v2', 'v3', 'x'] uncovered=[]]
+PASS dmg_G2_equals_2 [dmg=2]
+PASS zdmg_G2_equals_9_every_vertex_damaged [zdmg>=9 and zdmg<=|V|=9]
+PASS dmg_G2_meets_radius_minus_one_lower_bound_with_equality [rad=3 dmg=2]
+PASS G2_refutes_zdmg_le_4dmg [zdmg=9 > 4*dmg=8]
+PASS order_G3_is_10 [|V|=10]
+PASS graph6_G3_decodes_to_construction [IhEM?C@?G -> n=10, 11 edges, well_formed=True]
+PASS G3_connected
+PASS G3_claw_free [no induced K_1,3]
+PASS G3_degree3_vertices_are_v0_v1_x_with_edge_in_neighborhood [deg-3 set=['v0', 'v1', 'x']]
+PASS G3_ecc_x_is_3_and_radius_3 [ecc(x)=3 rad=3]
+PASS G3_diameter_is_t_plus_3 [diam=6 d(u3,v3)=6]
+PASS G3_four_off_cycle_triples_are_unique_geodesics [all 4 verified]
+PASS G3_survivor_walks_are_traceable_and_cover_all_vertices [5 walks]
+PASS G3_stated_map_is_an_involutive_automorphism_fixing_x_and_the_u_j [auto=True involution=True fixes_tail=True]
+PASS G3_walk_starts_and_their_images_cover_every_zombie_start [labels_match=True starts=['u1', 'v0', 'v2', 'v3', 'x'] uncovered=[]]
+PASS dmg_G3_equals_2 [dmg=2]
+PASS zdmg_G3_equals_10_every_vertex_damaged [zdmg>=10 and zdmg<=|V|=10]
+PASS dmg_G3_meets_radius_minus_one_lower_bound_with_equality [rad=3 dmg=2]
+PASS G3_ratio_is_exactly_5_so_c3_at_least_5 [zdmg/dmg = 5]
+PASS isomorphism_class_counts_orders_1_to_7_match_table [[(1, (1, 1)), (2, (1, 1)), (3, (2, 2)), (4, (6, 5)), (5, (21, 14)), (6, (112, 50)), (7, (853, 191))]]
+PASS no_claw_free_violation_at_orders_1_to_7 [violations=[]]
+PASS engine_monotonicity_zdmg_ge_dmg_on_all_classes_to_order_7 [198 of 264 claw-free connected classes have dmg >= 1 and so make the inequality non-vacuous]
+PASS dmg_zero_iff_universal_vertex_and_then_zdmg_zero_orders_1_to_7 [66 classes with dmg=0 (each has a universal vertex and zdmg=0) and 198 with dmg>=1 (none has a universal vertex)]
+PASS vertex_extension_reaches_every_class_at_order_7 [reached 191/191 order-7 claw-free classes from 50 order-6 classes]
+PASS order_8_claw_free_class_count_matches_table [881 isomorphism classes among 7989 swept labeled graphs (table says 881)]
+PASS no_claw_free_violation_at_order_8 [swept 7989 connected claw-free graphs of order 8 in 881 classes, violations=0]
+PASS order_8_sweep_examined_the_counterexample_minus_a_vertex [G2-u2 connected claw-free and present in sweep=True]
+PASS same_pipeline_reports_violations_one_order_higher [11 violating order-9 extensions of G2-u2, dmg values=[2]]
+PASS order_nine_violator_values_forced_to_2_and_9_when_dmg_at_least_2 [order=9, feasible (dmg,zdmg) with dmg>=2: [(2, 9)]; unswept residual band is dmg in [0, 1] with zdmg >= 4*dmg+1]
+NOT RE-RUN: the order-nine census itself -- the 261080 connected and 4494 claw-free class counts at order nine, the count of exactly 151 isomorphism classes of minimum-order counterexamples, and the paper's statement that all 151 of them have (dmg,zdmg)=(2,9) -- is beyond a pure-Python budget, and the order-nine enumeration the paper credits to an external generator is not reproduced here. Established above instead: no connected claw-free graph of order at most eight violates the conjecture, G_2 (order nine) does violate it, and any order-nine violator with dmg >= 2 has values exactly (2,9). The order-nine violators with dmg <= 1, if any exist, are not swept here.
+NOT RE-RUN: the paper's 11117 connected classes at order eight. The order-eight sweep above enumerates only the claw-free connected graphs, so it checks the 881 of the claw-free column but not that entry; no claim verified here depends on it.
+VERDICT: ALL 42 CHECKS PASS
+=== program exited with status 0 ===
