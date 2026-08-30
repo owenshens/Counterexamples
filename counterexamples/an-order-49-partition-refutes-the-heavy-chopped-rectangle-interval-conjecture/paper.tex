@@ -1,0 +1,305 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An order-49 partition refutes the heavy-chopped-rectangle interval
+            conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\br}[1]{[#1]}
+\newcommand{\sgv}{\operatorname{sg}}
+\newcommand{\mex}{\operatorname{mex}}
+\newcommand{\str}{\mathrm{st}}
+
+\title[An order-49 counterexample to a heavy-interval conjecture]
+{An Order-49 Partition Refutes the Heavy-Chopped-Rectangle
+ Interval Conjecture of Gottlieb, Krnc and Mur\v{s}i\v{c}}
+
+\date{}
+
+\subjclass[2020]{91A46, 05A17, 05E10}
+\keywords{combinatorial game, Sprague--Grundy value, integer partition,
+Young's lattice, heavy position, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+In $1$-PNim a move deletes a positive number of rows, or a positive number of
+columns, from the Young diagram of a single partition; a position is
+\emph{heavy} when its Sprague--Grundy value equals the length of the longest
+play from it. Gottlieb, Krnc and Mur\v{s}i\v{c} conjectured that whenever the
+rectangle $\br{(a+1)^{b+1}}$ is heavy, every $\lambda$ with
+$\br{a+1,a,\dots,a-b+1}\le\lambda\le\br{(a+1)^{b+1}}$ in Young's lattice is
+heavy. We refute this. For $(a,b)=(10,4)$ the rectangle $\br{11^5}$ is heavy,
+yet $\lambda=\br{11,11,11,8,8}$, which lies strictly between the two
+endpoints, has $\sgv(\lambda)=10$ where the conjecture demands
+$a+b+1=15$. The certificate is a mex table over the $45$ options of $\lambda$,
+printed here in full. No counterexample has order less than $49$, and exactly
+one other has order $49$.
+\end{abstract}
+
+\maketitle
+
+\section{The game and the conjecture}
+
+Let $\lambda=\br{\lambda_1,\dots,\lambda_r}$ be a partition, written as a
+weakly decreasing tuple of positive parts, and let
+$\lambda'=\br{\lambda'_1,\dots,\lambda'_{\lambda_1}}$ be its conjugate. In the
+game $1$-PNim of Gottlieb, Krnc and Mur\v{s}i\v{c}~\cite{GKM}, the moves from
+$\lambda$ are
+\begin{enumerate}
+\item[(1)] $\lambda\to\br{\lambda_{i_1},\dots,\lambda_{i_\ell}}$ for a proper
+  subsequence $i_1,\dots,i_\ell$ of $1,\dots,r$; and
+\item[(2)] $\lambda\to\br{\lambda'_{i_1},\dots,\lambda'_{i_\ell}}'$ for a
+  proper subsequence $i_1,\dots,i_\ell$ of $1,\dots,\lambda_1$,
+\end{enumerate}
+that is, a move deletes a positive number of rows, or a positive number of
+columns, and the surviving rows (columns) merge. The empty partition is the
+unique terminal position. We write $\sgv$ for the Sprague--Grundy value under
+normal play, so that $\sgv(\lambda)=\mex\{\sgv(\mu):\lambda\to\mu\}$ and
+$\sgv(\br{\,})=0$.
+
+The longest play from a nonempty $\lambda$ has length
+$L(\lambda):=\lambda_1+r-1$, whence $\sgv(\lambda)\le L(\lambda)$
+\cite[Prop.~2.6]{GKM}; the position $\lambda$ is called \emph{heavy} when
+equality holds. Two families of heavy positions are relevant here. First,
+\begin{equation}\label{eq:rect}
+  \sgv\bigl(\br{c^{\,r}}\bigr)=\bigl((r-1)\oplus(c-1)\bigr)+1
+\end{equation}
+for all positive $r,c$ \cite[Thm.~1.1]{GKM}, where $\oplus$ is the Nim-sum, so
+$\br{c^{\,r}}$ is heavy exactly when $(r-1)\oplus(c-1)=(r-1)+(c-1)$, i.e.\
+when $\binom{c+r-2}{r-1}$ is odd. Second, the staircase
+$\str_{c,r}:=\br{c,c-1,\dots,c-r+1}$ is heavy for all $c\ge r\ge1$
+\cite[Prop.~4.4]{GKM}. Young's lattice is the order in which
+$\br{\lambda_1,\dots,\lambda_\ell}\le\br{\mu_1,\dots,\mu_m}$ means
+$\ell\le m$ and $\lambda_j\le\mu_j$ for $j=1,\dots,\ell$.
+
+The conjecture we refute observes that the two endpoints of a certain interval
+of Young's lattice are heavy for the two reasons just quoted, and asks whether
+everything between them is heavy as well. It carries no printed number: it
+appears in the open-problems section of~\cite{GKM} under the source's own
+label \texttt{conj:heavychoppedrect}, which is the only stable handle the
+source provides, and we therefore quote it verbatim from the source file of the
+e-print of \texttt{2506.04991v1}:
+
+\begin{quote}\ttfamily\small
+\begin{tabbing}
+\verb|\begin{conj}\label{conj:heavychoppedrect}|\\
+\verb|    Let $a,b\in\ZZ$ be such that $\br{(a+1)^{b+1}}$ is heavy.|\\
+\verb|      %a\ge b$ and $a\oplus b=a+b$. |\\
+\verb|    Then any $\lambda$ satisfying|\\
+\verb|    $\br{a+1,a,\dots, a-b+1}\le\lambda\le \br{(a+1)^{b+1}}$ is heavy.|\\
+\verb|    %that is, $\sgpnim(\lambda)=a+b+1$.|\\
+\verb|\end{conj}|
+\end{tabbing}
+\end{quote}
+
+\noindent In display, therefore:
+
+\begin{conjecture}[Gottlieb--Krnc--Mur\v{s}i\v{c}]\label{conj:target}
+Let $a,b\in\mathbb Z$ be such that $\br{(a+1)^{b+1}}$ is heavy. Then any
+$\lambda$ satisfying
+$\br{a+1,a,\dots,a-b+1}\le\lambda\le\br{(a+1)^{b+1}}$ is heavy.
+\end{conjecture}
+
+Three remarks fix the reading, and none of them creates an escape.
+\emph{First}, two clauses of the hypothesis are commented out in the source and
+so do not appear in the compiled paper: $a\ge b$ and $a\oplus b=a+b$. The
+second is not a restriction at all: by~\eqref{eq:rect} the printed hypothesis
+``$\br{(a+1)^{b+1}}$ is heavy'' says $\binom{a+b}{b}$ is odd, which by the
+parity criterion for binomial coefficients \cite{Fine} is exactly
+$a\wedge b=0$, i.e.\ $a\oplus b=a+b$. The first is a real restriction, and it
+is needed for the lower endpoint to be a partition at all: if $b>a$ then
+$\br{a+1,a,\dots,a-b+1}$ has nonpositive entries. The counterexample below has
+$a=10\ge4=b$, so it refutes Conjecture~\ref{conj:target} under either reading.
+\emph{Second}, both endpoints have first part $a+1$ and exactly $b+1$ rows, so
+by Young's lattice every $\lambda$ in the interval has $\lambda_1=a+1$ and
+$r=b+1$ as well; hence $L(\lambda)=a+b+1$ for every member, and ``$\lambda$ is
+not heavy'' and ``$\sgv(\lambda)<a+b+1$'' are the same statement, which is what
+the third commented line records.
+\emph{Third}, the two endpoints really are heavy under the hypothesis: the
+upper one by assumption, the lower one because it is $\str_{a+1,b+1}$.
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+Let $(a,b)=(10,4)$ and $\lambda=\br{11,11,11,8,8}$, a partition of $49$. Then
+\begin{enumerate}
+\item $\br{11^5}$ is heavy, so the hypothesis of
+  Conjecture~\ref{conj:target} holds at $(a,b)=(10,4)$;
+\item $\br{11,10,9,8,7}\le\lambda\le\br{11^5}$ in Young's lattice, and
+  $\lambda$ is neither endpoint; and
+\item $\sgv(\lambda)=10$, whereas $L(\lambda)=a+b+1=15$.
+\end{enumerate}
+Consequently $\lambda$ is not heavy and Conjecture~\ref{conj:target} is false.
+\end{theorem}
+
+\begin{proof}
+(1) $\binom{a+b}{b}=\binom{14}{4}=1001$ is odd, equivalently
+$10\wedge4=0$; and~\eqref{eq:rect} gives
+$\sgv(\br{11^5})=\bigl((5-1)\oplus(11-1)\bigr)+1=(4\oplus10)+1=14+1=15
+=11+5-1=L(\br{11^5})$.
+
+(2) The lower endpoint is $\str_{11,5}=\br{11,10,9,8,7}$, and
+$11\le11$, $10\le11$, $9\le11$, $8\le8$, $7\le8$ on five rows; the upper
+endpoint dominates $\lambda$ because every part of $\lambda$ is at most $11$
+and both have five rows. Neither endpoint equals $\lambda$.
+
+(3) We first list the options. The rows of $\lambda$ are $11,11,11,8,8$, so a
+move of type~(1) keeps $i$ of the three $11$s and $j$ of the two $8$s with
+$0\le i\le3$, $0\le j\le2$ and $(i,j)\ne(3,2)$: that is $12-1=11$ options
+$\br{11^i,8^j}$. The conjugate is $\lambda'=\br{5^8,3^3}$, so a move of
+type~(2) keeps $p$ of the eight $5$s and $q$ of the three $3$s with
+$0\le p\le8$, $0\le q\le3$ and $(p,q)\ne(8,3)$, giving
+$\br{5^p,3^q}'=\br{(p+q)^3,p^2}$ after deleting zero parts: that is
+$36-1=35$ options, pairwise distinct because $(p,q)$ is recovered from
+$(p+q,p)$. A partition occurring in both lists with a positive part would need
+either five parts in the pattern $3+2$, which among the row options forces the
+excluded $(i,j)=(3,2)$, or three equal parts $\br{q^3}$ with $q\le3$ matching
+$\br{11^3}$ or $\br{8^3}$, which is impossible. So the two lists meet only in
+$\br{\,}$ and
+\[
+  \#\{\mu:\lambda\to\mu\}=11+35-1=45 .
+\]
+
+Next, no option can carry the value $15$. Every option loses at least one row
+or at least one column and gains neither, so $\mu_1+\ell(\mu)\le
+\lambda_1+r-1=15$ for every option $\mu$, i.e.\ $L(\mu)\le14$; by
+$\sgv\le L$ this gives $\sgv(\mu)\le14$. (This step is the source's own, inside
+the proof of \cite[Prop.~2.6]{GKM}.) Hence
+\begin{align*}
+  \lambda\ \text{is heavy}
+  &\iff \sgv(\lambda)=15\\
+  &\iff \text{the options of }\lambda\text{ realise every value }0,1,\dots,14,
+\end{align*}
+and exhibiting one value in $\{0,\dots,14\}$ realised by no option suffices.
+Table~\ref{tab:mex} lists all $45$ options with their Sprague--Grundy values.
+The value set is
+\[
+  \{0,1,2,3,4,5,6,7,8,9\}\cup\{11,12,13,14\},
+\]
+so $10$ is realised by no option while $0,\dots,9$ all are, and
+$\sgv(\lambda)=\mex=10$. Since $10<15$, $\lambda$ is not heavy.
+\end{proof}
+
+\begin{table}[htb]
+\small
+\begin{tabular}{llr@{\qquad}llr@{\qquad}llr}
+$\mu$ & & $\sgv$ & $\mu$ & & $\sgv$ & $\mu$ & & $\sgv$\\
+\hline
+$\br{10,10,10,8,8}$ &        & $14$ & $\br{7,7,7,5,5}$ &        & $11$ & $\br{4,4,4,3,3}$ &        & $8$\\
+$\br{10,10,10,7,7}$ &        & $14$ & $\br{6,6,6,6,6}$ & $\ast$ & $2$  & $\br{4,4,4,2,2}$ &        & $8$\\
+$\br{9,9,9,8,8}$    &        & $13$ & $\br{11,11,8}$   &        & $13$ & $\br{8,8}$       & $\ast$ & $7$\\
+$\br{9,9,9,7,7}$    &        & $13$ & $\br{7,7,7,4,4}$ &        & $11$ & $\br{3,3,3,3,3}$ & $\ast$ & $7$\\
+$\br{11,11,11,8}$   &        & $14$ & $\br{6,6,6,5,5}$ &        & $2$  & $\br{4,4,4,1,1}$ &        & $8$\\
+$\br{8,8,8,8,8}$    & $\ast$ & $4$  & $\br{11,8,8}$    &        & $13$ & $\br{3,3,3,2,2}$ &        & $7$\\
+$\br{9,9,9,6,6}$    &        & $13$ & $\br{6,6,6,4,4}$ &        & $2$  & $\br{3,3,3,1,1}$ &        & $7$\\
+$\br{8,8,8,7,7}$    &        & $12$ & $\br{5,5,5,5,5}$ & $\ast$ & $1$  & $\br{11}$        & $\ast$ & $11$\\
+$\br{11,11,8,8}$    &        & $14$ & $\br{6,6,6,3,3}$ &        & $2$  & $\br{2,2,2,2,2}$ & $\ast$ & $6$\\
+$\br{8,8,8,6,6}$    &        & $12$ & $\br{5,5,5,4,4}$ &        & $1$  & $\br{3,3,3}$     & $\ast$ & $1$\\
+$\br{7,7,7,7,7}$    & $\ast$ & $3$  & $\br{11,11}$     & $\ast$ & $12$ & $\br{2,2,2,1,1}$ &        & $6$\\
+$\br{8,8,8,5,5}$    &        & $12$ & $\br{5,5,5,3,3}$ &        & $1$  & $\br{8}$         & $\ast$ & $8$\\
+$\br{7,7,7,6,6}$    &        & $4$  & $\br{4,4,4,4,4}$ & $\ast$ & $8$  & $\br{2,2,2}$     & $\ast$ & $4$\\
+$\br{11,11,11}$     & $\ast$ & $9$  & $\br{5,5,5,2,2}$ &        & $9$  & $\br{1,1,1,1,1}$ & $\ast$ & $5$\\
+$\br{11,8}$         & $\dag$ & $12$ & $\br{1,1,1}$     & $\ast$ & $3$  & $\br{\,}$        & $\ast$ & $0$\\
+\end{tabular}
+\medskip
+\caption{All $45$ options of $\lambda=\br{11,11,11,8,8}$, listed in the order
+of decreasing size within each column. The value $10$ does not occur, and
+$0,\dots,9$ all do, so $\sgv(\lambda)=10$. A star marks the $17$ entries whose
+value is forced without computation --- the $16$ rectangles, by~\eqref{eq:rect},
+together with $\br{\,}$; a dagger marks the one further entry forced by the
+two-row formula of \cite[Prop.~4.9]{GKM}. The $17$ starred values already
+comprise $\{0,\dots,9,11,12\}$, so $\sgv(\lambda)\ge10$ needs nothing beyond a
+Nim-sum; the decisive half --- that no option carries $10$ --- rests on the
+remaining $27$ values.}
+\label{tab:mex}
+\end{table}
+
+\section{Least order}
+
+Call a pair $(a,b)$ with $a\ge b\ge0$ and $a\wedge b=0$ \emph{admissible}, so
+that Conjecture~\ref{conj:target} applies to it.
+
+\begin{proposition}\label{prop:least}
+No member of the interval of an admissible cell of order less than $49$ fails
+to be heavy, and exactly two of order $49$ do: $\br{11,11,11,8,8}$ in the cell
+$(10,4)$, with $\sgv=10$ against a required $15$, and
+$\br{9,9,7,7,6,5,4,2}$ in the cell $(8,7)$, with $\sgv=3$ against a required
+$16$.
+\end{proposition}
+
+The search range is finite for the following reason. The least-order member of
+the cell $(a,b)$ is its lower endpoint $\str_{a+1,b+1}$, of order
+$(b+1)(2a+2-b)/2$, so a cell can hold a member of order at most $49$ only if
+that quantity is at most $49$; this leaves exactly $78$ admissible cells,
+namely all $49$ with $b=0$, then $b=1$ with $a$ even and $a\le24$, $b=2$ with
+$a\in\{4,5,8,9,12,13,16\}$, $b=3$ with $a\in\{4,8,12\}$, $b=4$ with
+$a\in\{8,9,10\}$, $b=5$ with $a=8$, $b=6$ with $a\in\{8,9\}$, and $b=7$ with
+$a=8$ --- every admissible cell with $b\ge8$ has least order at least $117$.
+The $49$ cells with $b=0$ need no work, their interval being the single point
+$\br{a+1}$, heavy by hypothesis. Proposition~\ref{prop:least} is then the
+result of enumerating, in each of the remaining $29$ cells, every member of
+order at most $49$ and evaluating $\sgv$; unlike Theorem~\ref{thm:main} it
+rests on that computation and not on a hand-checkable certificate.
+
+Nothing here refutes any of the heaviness results proved in \cite{GKM}, and no
+cell is claimed free of counterexamples above order $49$.
+
+\section{Reproduction}
+
+Everything in Theorem~\ref{thm:main} except the $27$ unstarred entries of
+Table~\ref{tab:mex} can be checked with a pen: $\binom{14}{4}=1001$, the
+Nim-sum $4\oplus10=14$, five comparisons of parts for the membership, the
+combinatorial count $11+35-1=45$, and the closed form~\eqref{eq:rect} on the
+$16$ rectangular options. Those checks alone give $\sgv(\lambda)\ge10$, since
+the starred values already realise $0,\dots,9$. To close the argument by hand
+one must additionally confirm that none of the $27$ remaining options has value
+$10$; each of those is a mex over its own option set, and the whole recursion
+below $\lambda$ visits $194$ distinct partitions.
+
+The program \texttt{verify.py} accompanying this note re-derives every
+computational claim above from the move rule alone, in exact integer
+arithmetic, reading the objects as printed here; run it as
+\texttt{python3 verify.py} with Python 3.9 or later and the standard library
+only. It prints the full $45$-row table of Table~\ref{tab:mex}, the sweep
+behind Proposition~\ref{prop:least}, and one line per check, and exits nonzero
+unless every check passes. The recorded run \texttt{verify.output.txt} reports
+$87$ passing checks and closes with a statement of what it does not cover, in
+particular that the closed forms quoted above and the source's two appendix
+tables are transcribed from the e-print rather than checked against it. Neither
+file is needed in order to redo the calculation of Theorem~\ref{thm:main},
+since every object it consumes is printed above.
+
+\begin{thebibliography}{9}
+
+\bibitem{GKM}
+E.~Gottlieb, M.~Krnc, and P.~Mur\v{s}i\v{c},
+\emph{Nim on integer partitions and hyperrectangles},
+preprint, 5 June 2025.
+\href{https://arxiv.org/abs/2506.04991v1}{arXiv:2506.04991v1}.
+Numbered statements are cited as they appear in the compiled \texttt{v1}
+preprint; each is also stated in full above.
+
+\bibitem{Fine}
+N.~J. Fine,
+\emph{Binomial coefficients modulo a prime},
+Amer. Math. Monthly \textbf{54} (1947), no.~10, 589--592.
+\href{http://www.jstor.org/stable/2304500}{jstor:2304500}.
+
+\end{thebibliography}
+
+\end{document}

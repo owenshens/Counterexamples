@@ -1,0 +1,305 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Seven Row-Column Factorial Designs of Strength Two at m=6 Listed as
+            Unknown by Rahim and Cavenagh}
+}
+
+\newtheorem{theorem}{Theorem}
+
+\emergencystretch=2em
+
+\newcommand{\Idesign}{\mathrm{I}}
+\newcommand{\OA}{\mathrm{OA}}
+\newcommand{\FF}{\mathbb{F}_2}
+
+\title[Seven row-column factorial designs of strength two]
+{Seven Row-Column Factorial Designs of Strength Two at $m=6$ Listed as Unknown
+by Rahim and Cavenagh}
+
+\date{}
+
+\subjclass[2020]{05B15, 62K15, 05B20}
+\keywords{row-column factorial design, orthogonal array, strength two, Hadamard matrix,
+Paley construction, linear code}
+
+\begin{document}
+
+\begin{abstract}
+Rahim and Cavenagh conjectured that a Hadamard matrix of order $4m$ forces the existence of an
+$\Idesign_k(4m,4n,2,2)$ whenever $n\ge m$, $2^k\mid 16mn$ and $k\le 4m-1$, with the single
+exception $m=1$ and $n$ odd. They verified the conjecture for $m\le5$ and recorded that at $m=6$
+the unknown cases with minimal parameters are exactly
+$\Idesign_{k+3}(24,2^k,2,2)$ for $5\le k\le 11$. We exhibit one witness that settles all seven:
+a $24\times 23$ orthogonal array $M$ of strength $2$ from the Paley Hadamard matrix of order $24$,
+and a fixed $3$-dimensional binary code $D$ of minimum weight $3$, such that
+$A[i][j]=g_i+v_j$ is an $\Idesign_{k+3}(24,2^k,2,2)$, where the $g_i$ are the rows of the first
+$k+3$ columns of $M$ and the $v_j$ run over $D^{\perp}$. Both objects are printed in full. The
+reading of the source's definition under which these are the objects listed as unknown is the one
+fixed by the source's own necessary conditions and by the examples it prints. The same
+witness reproduces the authors' already published range $12\le k\le 20$; nothing here settles the
+case $m=6$ of the conjecture in full.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Fix integers $q,t\ge2$ and $k\ge t$. An $\OA(N,k,q,t)$ is an $N\times k$ array over $[q]$ in which
+every $N\times t$ subarray contains each of the $q^t$ words of $[q]^t$ exactly $N/q^t$ times.
+Following Rahim and Cavenagh
+\cite[Section~1]{RC2023}, an $\Idesign_k(m,n,q,t)$ is an $m\times n$ array whose $mn$ cells are
+filled with the $\lambda$-fold repetition of every word of $[q]^k$, where $\lambda=mn/q^k$, in such
+a way that, on fixing any $t$ of the $k$ coordinates, each of the $q^t$ patterns occurs exactly
+$n/q^t$ times in every row and exactly $m/q^t$ times in every column. Equivalently, every row is an
+$\OA(n,k,q,t)$ and every column is an $\OA(m,k,q,t)$. We only need $q=t=2$, where the condition on a
+pair of coordinates $\{a,b\}$ is that each of $00,01,10,11$ occurs $n/4$ times in every row and
+$m/4$ times in every column.
+
+The sentence that introduces this definition, in the version of \cite{RC2023} we read and
+identically in \cite[p.~79]{Rahim2023thesis}, calls the array formed by a row (column) an orthogonal array ``of
+size $k$, degree $n$ (respectively, $m$)'', which interchanges the two slots of the source's own
+$\OA(N,k,q,t)$ notation: a row of an $m\times n$ array of words of length $k$ holds $n$ such words,
+so as an array it is $n\times k$. Three statements of the source fix the reading, and all three
+agree with the definition just given. First, the sentence immediately following it says that fixing
+$t$ coordinates inside one row (column) leaves a full factorial design with replication $n/q^t$
+(respectively $m/q^t$). Second, the source's own necessary conditions read: if an array of type
+$\Idesign_k(m,n,q,t)$ exists then $q^k\mid mn$ and there exist an $\OA(m,k,q,t)$ and an
+$\OA(n,k,q,t)$ \cite[p.~81]{Rahim2023thesis}, with $k$ in the degree slot of both. Third, the one
+printed example whose shape can settle the orientation is printed with $m$ rows: its
+$\Idesign_5(12,8,2,2)$ appears as $12$ rows of $8$ words, the twelve rows marked by the twelve
+superscripts $A,\dots,L$ \cite[Table~5.3]{Rahim2023thesis}. The dimensions of the printed
+$\Idesign_4(9,9,3,2)$, $\Idesign_4(12,12,2,2)$ and $\Idesign_6(12,16,2,2)$ agree with their labels
+as well, though the first two are square and the third is set sideways, so none of them
+distinguishes the orientation \cite[Tables~5.1,~5.5,~5.6]{Rahim2023thesis}. Section~3 says which of
+this is machine checked.
+
+The statement we settle cases of is Conjecture~5.48 of the first author's thesis
+\cite[p.~114]{Rahim2023thesis}, which appears also as a displayed conjecture in \cite{RC2023}. We
+quote it from the thesis together with the paragraph that follows it there, which is what makes the
+present note finite.
+
+\begin{quote}
+\textbf{Conjecture 5.48.} If there exists a Hadamard matrix of order $4m$, then there exists an
+$\Idesign_k(4m,4n,2,2)$ for any $n\ge m$, $2^k\mid 16mn$ and $k\le 4m-1$, with the exception $m=1$
+and $n$ is odd.
+
+From Theorem~5.39, the above conjecture is true for $m\le5$. For $m=6$, the
+unknown cases with minimal parameters are: $\Idesign_{k+3}(24,2^k,2,2)$; $5\le k\le11$. From
+Theorem~5.36 and the existence of a Hadamard matrix of order $12$,
+$\Idesign_{k+3}(24,2^k,2,2)$ exists for $12\le k\le20$.
+\end{quote}
+
+\noindent
+Theorems 5.39 and 5.36 are earlier results of the same chapter; the numbering in the published
+version of \cite{RC2023} differs.
+
+So the source's list of what is unknown at $m=6$ with minimal parameters has exactly seven
+members, and Theorem~\ref{thm:main} below produces all seven at once. Each is an instance of the
+conjecture: with $4m=24$ and $4n=2^k$ one has $m=6$, $n=2^{k-2}\ge 8>6$ for $k\ge5$,
+$2^{k+3}\mid 16mn=3\cdot 2^{k+3}$, and $k+3\le 14\le 4m-1=23$, while $m=6\ne1$; and a Hadamard
+matrix of order $24$ exists, one being written down in Section~\ref{sec:witness}.
+
+\section{The witness}\label{sec:witness}
+
+Let $q=23$ and let $\chi$ be the quadratic-residue character modulo $23$, so $\chi(0)=0$ and
+$\chi(a)=\pm1$ according as $a\ne0$ is or is not a square. Index rows and columns of a
+$24\times24$ matrix by $0,1,\dots,23$ and set $C_{0,0}=0$, $C_{0,j}=1$ and $C_{i,0}=-1$ for
+$i,j\ge1$, and $C_{i,j}=\chi(j-i)$ for $i,j\ge1$. Then $H=C+I$ is a Hadamard matrix of order $24$
+\cite{Paley1933}. Negate those rows of $H$ whose entry in column $0$ is $-1$, delete column $0$,
+and replace $-1$ by $0$. The result is the $24\times23$ binary array
+\begin{center}
+\small
+\begin{tabular}{r@{\quad}l@{\qquad}r@{\quad}l}
+$g_{0}$&\texttt{11111111111111111111111}&$g_{12}$&\texttt{00110101111000001010011}\\
+$g_{1}$&\texttt{00000101001100110101111}&$g_{13}$&\texttt{10011010111100000101001}\\
+$g_{2}$&\texttt{10000010100110011010111}&$g_{14}$&\texttt{11001101011110000010100}\\
+$g_{3}$&\texttt{11000001010011001101011}&$g_{15}$&\texttt{01100110101111000001010}\\
+$g_{4}$&\texttt{11100000101001100110101}&$g_{16}$&\texttt{00110011010111100000101}\\
+$g_{5}$&\texttt{11110000010100110011010}&$g_{17}$&\texttt{10011001101011110000010}\\
+$g_{6}$&\texttt{01111000001010011001101}&$g_{18}$&\texttt{01001100110101111000001}\\
+$g_{7}$&\texttt{10111100000101001100110}&$g_{19}$&\texttt{10100110011010111100000}\\
+$g_{8}$&\texttt{01011110000010100110011}&$g_{20}$&\texttt{01010011001101011110000}\\
+$g_{9}$&\texttt{10101111000001010011001}&$g_{21}$&\texttt{00101001100110101111000}\\
+$g_{10}$&\texttt{11010111100000101001100}&$g_{22}$&\texttt{00010100110011010111100}\\
+$g_{11}$&\texttt{01101011110000010100110}&$g_{23}$&\texttt{00001010011001101011110}\\
+\end{tabular}
+\end{center}
+which we call $M$. Throughout, a word of $\FF^K$ is a string of $K$ binary digits whose
+position $t$, counted from the left starting at $0$, is coordinate $t$; addition is coordinatewise
+modulo $2$; and $\langle x,y\rangle$ is the modulo-$2$ inner product. It is a standard consequence
+of $HH^{\mathsf T}=24I$ that $M$ is an $\OA(24,23,2,2)$ \cite[p.~148]{HSS1999}: every one of the
+$\binom{23}{2}=253$ coordinate pairs sees each of $00,01,10,11$ in exactly $6$ of the $24$ rows.
+For $8\le K\le23$ write $G^{(K)}$ for the $24\times K$ array of the first $K$ columns of $M$, whose
+rows we call $g^{(K)}_0,\dots,g^{(K)}_{23}$; deleting coordinates preserves strength $2$, so each
+$G^{(K)}$ is an $\OA(24,K,2,2)$.
+
+The second ingredient is fixed once and for all. Let
+\[
+ h_1=\texttt{11100000},\qquad
+ h_2=\texttt{01011000},\qquad
+ h_3=\texttt{10010100},
+\]
+regarded inside $\FF^K$ by padding with zeros, and let $D=\langle h_1,h_2,h_3\rangle$. The three are
+independent, so $\lvert D\rvert=8$, and the seven nonzero words of $D$ have weights
+$3,3,3,3,4,4,4$; in particular
+\begin{equation}\label{eq:minwt}
+ \text{every nonzero word of } D \text{ has weight at least } 3 .
+\end{equation}
+Let $V^{(K)}=D^{\perp}\le\FF^K$, a subspace of dimension $K-3$ and hence of size $2^{K-3}$. For
+$K=8$ its $32$ words are
+\begin{center}
+\small
+\begin{tabular}{l@{\quad}l@{\quad}l@{\quad}l}
+\texttt{00000000}&\texttt{11010000}&\texttt{01101000}&\texttt{10111000}\\
+\texttt{10100100}&\texttt{01110100}&\texttt{11001100}&\texttt{00011100}\\
+\texttt{00000010}&\texttt{11010010}&\texttt{01101010}&\texttt{10111010}\\
+\texttt{10100110}&\texttt{01110110}&\texttt{11001110}&\texttt{00011110}\\
+\texttt{00000001}&\texttt{11010001}&\texttt{01101001}&\texttt{10111001}\\
+\texttt{10100101}&\texttt{01110101}&\texttt{11001101}&\texttt{00011101}\\
+\texttt{00000011}&\texttt{11010011}&\texttt{01101011}&\texttt{10111011}\\
+\texttt{10100111}&\texttt{01110111}&\texttt{11001111}&\texttt{00011111}\\
+\end{tabular}
+\end{center}
+(read left to right, top to bottom; the order is immaterial in
+Theorem~\ref{thm:main}).
+Finally, let $\sigma\colon\FF^K\to\FF^3$ be the syndrome map
+$\sigma(x)=(\langle h_1,x\rangle,\langle h_2,x\rangle,\langle h_3,x\rangle)$. Its fibres are the
+eight cosets of $V^{(K)}$, and since $h_1,h_2,h_3$ are supported on the first eight coordinates,
+$\sigma$ does not depend on $K$. On the $24$ rows of $M$ it takes each of the eight values of
+$\FF^3$ exactly three times:
+\begin{equation}\label{eq:syn}
+ \bigl\lvert\{\,i : \sigma(g_i)=s\,\}\bigr\rvert=3\qquad\text{for every }s\in\FF^3 ,
+\end{equation}
+equivalently, each of the seven nonzero $h\in D$ satisfies $\langle h,g_i\rangle=1$ for exactly
+$12$ of the $24$ rows. Both \eqref{eq:minwt} and \eqref{eq:syn} are finite statements about the
+digits printed above.
+
+\begin{theorem}\label{thm:main}
+Let $8\le K\le23$, let $g^{(K)}_0,\dots,g^{(K)}_{23}$ be the rows of $G^{(K)}$, let
+$v_0,\dots,v_{2^{K-3}-1}$ be the words of $V^{(K)}=D^{\perp}$ in any order, and put
+\[
+ A[i][j]=g^{(K)}_i+v_j\qquad (0\le i\le23,\ 0\le j\le 2^{K-3}-1).
+\]
+Then $A$ is an $\Idesign_K\bigl(24,2^{K-3},2,2\bigr)$ of index $3$. Consequently
+$\Idesign_{k+3}(24,2^k,2,2)$ exists for every $k$ with $5\le k\le20$; in particular for the seven
+values $5\le k\le11$ listed as unknown in the conjecture quoted above.
+\end{theorem}
+
+\begin{proof}
+Write $n=2^{K-3}$ and $V=V^{(K)}$, $g_i=g^{(K)}_i$, so that $A$ is $24\times n$ and
+$24n=3\cdot2^{K}$.
+
+\emph{Multiplicity.} Row $i$ of $A$ lists the coset $g_i+V$, each of its $n$ elements once. For
+$x\in\FF^{K}$ we have $x\in g_i+V$ if and only if $\sigma(x)=\sigma(g_i)$, because the fibres of
+$\sigma$ are the cosets of $V=\ker\sigma$. Hence $x$ occurs in exactly as many rows as there are
+$i$ with $\sigma(g_i)=\sigma(x)$, which is $3$ by \eqref{eq:syn}. So every word of $\FF^K$ occurs
+exactly $\lambda=3=24n/2^{K}$ times in $A$.
+
+\emph{Rows.} Fix $i$ and a pair of coordinates $a\ne b$. As $v$ runs over $V$, the entry
+$g_i+v$ has $(a,b)$-pattern $\bigl((g_i)_a,(g_i)_b\bigr)+(v_a,v_b)$, so the four pattern counts of
+row $i$ are those of the linear map $\pi\colon V\to\FF^2$, $\pi(v)=(v_a,v_b)$, permuted by a
+translation of $\FF^2$. Now $\pi$ is surjective unless some nonzero
+$\alpha e_a+\beta e_b$ ($\alpha,\beta\in\FF$) annihilates $V$, that is, lies in
+$V^{\perp}=D$; and every such word has weight $1$ or $2$, which \eqref{eq:minwt} forbids. So $\pi$
+is onto, its fibres are cosets of $\ker\pi$ and each has $\lvert V\rvert/4=n/4$ elements. Every
+pattern therefore occurs $n/4$ times in row $i$.
+
+\emph{Columns.} Fix $j$. Column $j$ of $A$ is $\{g_i+v_j : 0\le i\le 23\}$, that is $G^{(K)}$ with
+the single constant vector $v_j$ added to every row. Adding a constant permutes the four patterns of
+any coordinate pair among themselves, so the pattern counts of column $j$ equal those of
+$G^{(K)}$, namely $6=24/4$ each, because $G^{(K)}$ is an $\OA(24,K,2,2)$.
+
+Thus $A$ is an $\Idesign_K(24,n,2,2)$ with $n=2^{K-3}$ and $\lambda=3$. Writing $K=k+3$ turns this
+into $\Idesign_{k+3}(24,2^{k},2,2)$, and $8\le K\le23$ is $5\le k\le20$.
+\end{proof}
+
+The proof is the specialisation to $\dim D=3$ of a mechanism of \cite{RC2023}, reproduced here so
+that the note is self-contained; no originality is claimed for it, nor for the range
+$12\le k\le20$, which the quoted passage itself records as following from a published theorem of
+\cite{RC2023} together with a Hadamard matrix of order $12$. What was missing was a pair $(M,D)$
+satisfying \eqref{eq:minwt} and \eqref{eq:syn} at $4m=24$. The seven cases $5\le k\le11$ are
+those the quoted passage lists as unknown, and we claim nothing beyond that listing. Nothing above
+proves the case $m=6$ of the conjecture, which asserts an $\Idesign_k(24,4n,2,2)$ for every
+admissible pair $(k,n)$ with $n\ge6$; the remaining parameters, in particular
+$4n\in\{4b,8b,16b\}$ with $b$ odd, are untouched here, no case $m\ge7$ is settled, and no
+nonexistence is proved. We make no claim that the witness above is unique, canonical, or least in
+any sense.
+
+On the literature: a search of the arXiv listings for row-column factorial designs and of the
+authors' own arXiv postings, made in August 2026, found nothing later than \cite{RC2023} bearing on
+these seven cases, and the thesis passage quoted above still states them as unknown. We make no
+stronger claim about the literature than that.
+
+\section{What was checked}
+
+Every input of Theorem~\ref{thm:main} is printed in Section~\ref{sec:witness}, so a reader can redo
+the argument without a computer. The accompanying program \texttt{verify.py} uses the Python
+standard library only and works in exact integer arithmetic. It rebuilds $H$ from $q=23$, checks
+all $576$ inner products of its rows and confirms that normalising and reducing $H$ gives the
+$24\times23$ array printed above digit for digit; checks that $M$ is an $\OA(24,23,2,2)$; checks
+\eqref{eq:minwt} and \eqref{eq:syn}, and that the $32$ printed words of $V^{(8)}$ are exactly
+$D^{\perp}$; checks the hypotheses of Theorem~\ref{thm:main} for all sixteen column counts
+$8\le K\le23$; and verifies each of the seven designs $5\le k\le11$ cell by cell against the
+definition of Section~1, $1\,363\,104$ multiplicity and pattern counts in all. The recorded run
+\texttt{verify.output.txt} reports \texttt{VERDICT: ALL 32 CHECKS PASS} and exit status $0$; the
+checks it reports beyond those just listed concern statements this note does not make.
+
+Three of the checks concern the reading of the definition. The label and the printed dimensions of
+each of the four designs the source exhibits are transcribed into the program, and it checks that
+the dimensions match the label, with the rows of the one non-square example the source marks as
+rows being the $m$ of that label. It then checks that the reading of Section~1 makes the
+replication numbers $n/q^t$, $m/q^t$ and the index $mn/q^k$ positive integers for all four of those
+labels and for the seven labels at issue here, while the reading that takes the interchanged slots
+literally --- so that the array formed by a row would have $k$ rows and $n$ columns rather than $n$
+rows and $k$ columns --- would require $n=k$, which fails for all eleven. Finally it exhibits, for
+each of the seven, the two orthogonal arrays that the source's own necessary conditions demand: the
+first $K$ columns of $M$ as an $\OA(24,K,2,2)$ and $V^{(K)}$ as an $\OA(2^{K-3},K,2,2)$.
+
+Three limits are worth stating. The cells $12\le k\le20$ are not checked against the definition,
+since their arrays have up to $2^{20}$ columns; for those only the hypotheses of
+Theorem~\ref{thm:main} are checked, which is what the theorem consumes. The digits of the source's
+own printed examples are not transcribed and no run of them is replayed here; only their dimensions
+and their parameter arithmetic enter the checks described above. And the passages of the source
+quoted or paraphrased in Section~1 were read by us and are not machine checkable at all.
+
+\begin{thebibliography}{9}
+
+\bibitem{HSS1999}
+A.~S. Hedayat, N.~J.~A. Sloane, and J.~Stufken,
+\emph{Orthogonal Arrays: Theory and Applications},
+Springer Series in Statistics, Springer, New York, 1999.
+
+\bibitem{Paley1933}
+R.~E.~A.~C. Paley,
+\emph{On orthogonal matrices},
+J. Math. Phys. \textbf{12} (1933), 311--320.
+\href{https://doi.org/10.1002/sapm193312311}{doi:10.1002/sapm193312311}.
+
+\bibitem{Rahim2023thesis}
+F.~Rahim,
+\emph{Row-column factorial designs and mutually orthogonal frequency rectangles},
+Ph.D. thesis, University of Waikato, 2023.
+\href{https://hdl.handle.net/10289/15893}{hdl:10289/15893}.
+The conjecture quoted in Section~1 is Conjecture~5.48, on p.~114. The definition is on p.~79, the
+necessary conditions on p.~81, and the four printed examples in Tables 5.1, 5.3, 5.5 and 5.6, on
+pp.~80, 104, 106 and 115.
+
+\bibitem{RC2023}
+F.~Rahim and N.~J. Cavenagh,
+\emph{Row-column factorial designs with strength at least $2$},
+Linear Algebra Appl. (2023),
+\href{https://doi.org/10.1016/j.laa.2023.02.018}{doi:10.1016/j.laa.2023.02.018}.
+A version of this paper is Chapter~5 of the thesis above. The version of it we read is
+\href{https://arxiv.org/abs/2207.02397v3}{arXiv:2207.02397v3}; we quote from the thesis, and the
+printed journal wording and numbering may differ from both.
+
+\end{thebibliography}
+
+\end{document}

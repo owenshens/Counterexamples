@@ -1,0 +1,265 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Klein bottle sets of doubling 3|S|-3 refute a torsion-free
+            small-doubling conjecture of Mohan and Neetu as stated}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{conjectureA}{Conjecture 6.3 (Mohan and Neetu)}
+
+\title[Klein bottle sets of doubling $3|S|-3$]
+{Klein Bottle Sets of Doubling $3|S|-3$ Refute a Torsion-Free
+ Small-Doubling Conjecture of Mohan and Neetu as Stated}
+
+\date{}
+
+\subjclass[2020]{11P70, 20F60, 20F65, 11B13}
+\keywords{small doubling, product set, torsion-free group, Klein bottle group,
+Baumslag--Solitar group, right-ordered group, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $S$ be a finite subset of a group $G$ and $S^{2}=\{s_{1}s_{2}:s_{1},s_{2}\in S\}$.
+Conjecture~6.3 of Mohan and Neetu (arXiv:2607.11194v1) asserts that if $G$ is
+torsion-free, $|S|\ge3$, $e\in S$ and $|S^{2}|\le3|S|-3$, then $\langle S\rangle$
+is abelian. We exhibit counterexamples, at every admissible cardinality, inside
+the Klein bottle group
+$K=\mathbb{Z}\rtimes_{-1}\mathbb{Z}=\langle a,t\mid tat^{-1}=a^{-1}\rangle$:
+writing $a^{m}t^{n}=(m,n)$ and
+\[
+  S_{k}=\{(0,0)\}\cup\{(i,1):1\le i\le k-1\}\qquad(k\ge3),
+\]
+one has $|S_{k}|=k$, $e\in S_{k}$, $|S_{k}^{2}|=3k-3=3|S_{k}|-3$ and
+$\langle S_{k}\rangle=K$, which is nonabelian. Moreover $K$ carries a
+right-invariant total order under which $e=\min S_{k}$. Freiman's torsion-free
+conjecture at $|S^{2}|\le3|S|-4$ is not contradicted; the family sits one unit
+above it.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Throughout, $G$ is a group with identity $e$, $S\subseteq G$ is finite, and
+\[
+  S^{2}=\{s_{1}s_{2}:s_{1},s_{2}\in S\}
+\]
+is the product set over \emph{ordered} pairs, so that $s^{2}\in S^{2}$ for every
+$s\in S$ and $S\subseteq S^{2}$ as soon as $e\in S$. A set $S$ is called
+\emph{abelian} when $\langle S\rangle$ is an abelian subgroup of $G$. In these
+conventions, which are those of \cite{MN}, Freiman, Herzog, Longobardi and Maj
+proved \cite[Theorem~1.3]{FHLM} that if $G$ is \emph{orderable}, $|S|\ge3$ and
+$|S^{2}|\le3|S|-3$, then $S$ is abelian --- with no hypothesis $e\in S$. Mohan and
+Neetu ask whether the hypothesis ``orderable'' can be weakened to
+``torsion-free'' at the cost of adding $e\in S$. Verbatim
+\cite[Conjecture~6.3]{MN}, quoted from the e-print arXiv:2607.11194v1 of 13 July
+2026, its only version, where the statement stands in Section~6:
+
+\begin{conjectureA}
+Let $S$ be a nonempty finite subset of a torsion-free group $G$ with
+$\left|S\right| \geq 3$ and $e\in S$. If $\left|S^{2}\right| \leq 3|S|-3$, then
+$\langle S\rangle$ is an abelian subgroup of $G$.
+\end{conjectureA}
+
+\section{The counterexample}
+
+Let $K$ be the Klein bottle group,
+\[
+  K=\mathbb{Z}\rtimes_{-1}\mathbb{Z}
+   =\langle a,t\mid tat^{-1}=a^{-1}\rangle
+   =\mathrm{BS}(1,-1),
+\]
+in the coordinates $a^{m}t^{n}\leftrightarrow(m,n)$, $m,n\in\mathbb{Z}$. The
+multiplication and the inverse are
+\begin{equation}\label{eq:law}
+  (m,n)(p,q)=\bigl(m+(-1)^{n}p,\;n+q\bigr),
+  \qquad
+  (m,n)^{-1}=\bigl(-(-1)^{n}m,\,-n\bigr),
+\end{equation}
+with identity $e=(0,0)$.
+
+\begin{lemma}\label{lem:tf}
+$K$ is torsion-free, and it is not abelian.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:law} the second coordinate is additive, so $(m,n)^{r}$ has second
+coordinate $rn$; if $n\ne0$ and $r\ne0$ this is nonzero and $(m,n)^{r}\ne e$. If
+$n=0$ then $(m,0)^{r}=(rm,0)$, which is $\ne e$ when $m\ne0$ and $r\ne0$. Hence no
+element other than $e$ has finite order. Finally $(1,0)(0,1)=(1,1)$ while
+$(0,1)(1,0)=(-1,1)$, so $K$ is nonabelian.
+\end{proof}
+
+For an integer $k\ge3$ put $I=\{1,2,\dots,k-1\}$ and
+\begin{equation}\label{eq:S}
+  S_{k}=\{(0,0)\}\cup\{(i,1):i\in I\}
+  =\{e,\;at,\;a^{2}t,\;\dots,\;a^{k-1}t\}.
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+For every integer $k\ge3$ the set $S_{k}\subseteq K$ of \eqref{eq:S} satisfies
+\[
+  |S_{k}|=k,\qquad e\in S_{k},\qquad
+  S_{k}^{2}=S_{k}\cup\{(d,2):|d|\le k-2\},
+\]
+\[
+  |S_{k}^{2}|=3k-3=3|S_{k}|-3,
+\]
+while $\langle S_{k}\rangle=K$ is nonabelian. Since $K$ is torsion-free by
+Lemma~\ref{lem:tf}, Conjecture~6.3 of \cite{MN} is false as stated --- and false
+for every admissible cardinality $|S|=k\ge3$, not at a single value.
+\end{theorem}
+
+\begin{proof}
+The $k$ listed elements of \eqref{eq:S} are pairwise distinct because their
+coordinates are, and $e=(0,0)\in S_{k}$.
+
+Split $S_{k}^{2}$ by the second coordinate, which by \eqref{eq:law} adds and
+therefore separates the three blocks below.
+\begin{itemize}
+\item Second coordinate $0$: the only product of two elements of $S_{k}$ with
+      second coordinate $0$ is $e\cdot e=e$. One element.
+\item Second coordinate $1$: the products are $e\cdot(i,1)=(i,1)=(i,1)\cdot e$ for
+      $i\in I$. Exactly the $k-1$ elements $\{(i,1):i\in I\}$, and nothing new.
+\item Second coordinate $2$: for $i,j\in I$,
+      $(i,1)(j,1)=(i+(-1)^{1}j,2)=(i-j,2)$, so this block is
+      $\{(d,2):d\in I-I\}$. As $I=\{1,\dots,k-1\}$ is an interval of integers,
+      $I-I=\{-(k-2),\dots,k-2\}$ and $|I-I|=2k-3$ \emph{exactly}.
+\end{itemize}
+Hence $S_{k}^{2}=S_{k}\cup\{(d,2):|d|\le k-2\}$ and
+\[
+  |S_{k}^{2}|=1+(k-1)+(2k-3)=3k-3=3|S_{k}|-3,
+\]
+so the antecedent of Conjecture~6.3 holds, with equality.
+
+For the consequent, $(1,1)(2,1)=(-1,2)$ and $(2,1)(1,1)=(1,2)$, so $S_{k}$ is not
+even commuting elementwise. Moreover $\langle S_{k}\rangle=K$: by \eqref{eq:law}
+$(1,1)^{-1}=(1,-1)$, and
+\[
+  (1,-1)(2,1)=(1-2,0)=(-1,0)=a^{-1},
+  \quad
+  (-1,0)(1,1)=(0,1)=t,
+\]
+so $\langle S_{k}\rangle$ contains $a$ and $t$, hence equals $K$, which is
+nonabelian by Lemma~\ref{lem:tf}.
+\end{proof}
+
+\noindent
+\textbf{The case $k=3$.} Here
+$S_{3}=\{e,at,a^{2}t\}=\{(0,0),(1,1),(2,1)\}$, and the nine ordered products are
+\[
+\begin{array}{@{}l@{\quad}l@{\quad}l@{}}
+ e\cdot e=(0,0), & e\cdot(1,1)=(1,1), & e\cdot(2,1)=(2,1),\\
+ (1,1)\cdot e=(1,1), & (2,1)\cdot e=(2,1), & (1,1)(1,1)=(0,2),\\
+ (2,1)(2,1)=(0,2), & (1,1)(2,1)=(-1,2), & (2,1)(1,1)=(1,2),
+\end{array}
+\]
+with a single collision, $(at)^{2}=(a^{2}t)^{2}=t^{2}$. Thus
+\[
+  S_{3}^{2}=\{(0,0),(1,1),(2,1),(-1,2),(0,2),(1,2)\},
+  \qquad
+  |S_{3}^{2}|=6\le3\cdot3-3=6.
+\]
+
+\begin{corollary}\label{cor:ro}
+Order $K$ by
+\[
+  (m,n)<(m',n')
+  \quad\Longleftrightarrow\quad
+  n<n',\ \text{or}\ n=n'\ \text{and}\ m<m'.
+\]
+This is a right-invariant total order on $K$, and $\min S_{k}=e$ for every $k\ge3$.
+\end{corollary}
+
+\begin{proof}
+Right multiplication by $(p,q)$ sends $(m,n)$ to $(m+(-1)^{n}p,\,n+q)$. If $n<n'$
+then $n+q<n'+q$. If $n=n'$ then both first coordinates are shifted by the same
+integer $(-1)^{n}p$, so their order is preserved. Totality and transitivity are
+those of the lexicographic order on $\mathbb{Z}^{2}$. Every element of
+$S_{k}\setminus\{e\}$ has second coordinate $1>0$, so $e=\min S_{k}$.
+\end{proof}
+
+\begin{remark}[scope]
+No minimality is claimed: nothing above asserts that $3|S|-3$ is the least
+doubling attainable by an identity-containing finite set with nonabelian span in a
+torsion-free group, nor that $k=3$ is the least cardinality in any other host
+group. Freiman's torsion-free conjecture concerns $|S^{2}|\le3|S|-4$
+\cite[\S1]{BPS}, and our family has $|S_{k}^{2}|=3k-3>3k-4$, one unit above that
+threshold, so it is consistent with that conjecture. The host group is
+$\mathrm{BS}(1,-1)$, which is the case excluded in \cite[Theorem~2.11]{MN}; what
+is refuted is Conjecture~6.3 as printed, and nothing here bears on a version of it
+in which that exclusion is in force. No priority or novelty is claimed for the
+object: $K$ together with a three-element identity-containing set of nonabelian
+span occurs in \cite[\S1]{BPS} and in \cite{AJ}, and the companion paper
+\cite{MNS} is closed access and was not available to us.
+\end{remark}
+
+\section{Verification}
+
+Every object the note claims is printed above: the group law \eqref{eq:law}, the
+family \eqref{eq:S}, the nine products of the $k=3$ cell, the closed form for
+$S_{k}^{2}$, the generating words for $a^{-1}$ and $t$, and the order of
+Corollary~\ref{cor:ro}. A reader therefore needs no code. A short program
+(\texttt{verify.py}, with its recorded output in \texttt{verify.output.txt})
+accompanies the note anyway: it re-implements \eqref{eq:law} in exact integer
+arithmetic, recomputes $S_{k}^{2}$ product by product for $3\le k\le30$ and
+compares it with the closed form as a set of coordinate pairs rather than by
+cardinality, re-derives the nine displayed products, and verifies
+right-invariance of the order together with $\min S_{k}=e$; it also runs controls
+of both polarities, so that neither of the two detectors it uses can be a
+constant. All $304$ of its checks pass. It states in its own output what it does
+not cover: torsion-freeness is confirmed structurally and over a bounded box only,
+the general statement being Lemma~\ref{lem:tf}; no search for a smaller
+counterexample is performed; and no bibliographic claim is checked.
+
+\begin{thebibliography}{9}
+
+\bibitem{AJ}
+A.~Abdollahi and F.~Jafari,
+\emph{Cardinality of product sets in torsion-free groups and applications in
+group algebras},
+J. Algebra Appl. \textbf{19} (2020), no.~5, 2050079;
+\href{https://arxiv.org/abs/1808.08708}{arXiv:1808.08708}.
+
+\bibitem{BPS}
+K.~J. B\"or\"oczky, P.~P. P\'alfy, and O.~Serra,
+\emph{On the cardinality of sumsets in torsion-free groups},
+Bull. London Math. Soc. \textbf{44} (2012), no.~5, 1034--1041.
+\href{https://doi.org/10.1112/blms/bds032}{doi:10.1112/blms/bds032};
+\href{https://arxiv.org/abs/1009.6140}{arXiv:1009.6140}.
+
+\bibitem{FHLM}
+G.~A. Freiman, M.~Herzog, P.~Longobardi, and M.~Maj,
+\emph{Small doubling in ordered groups},
+J. Aust. Math. Soc. \textbf{96} (2014), no.~3, 316--325.
+Theorem~1.3 is quoted as it is restated in \cite[Theorem~2.3]{MN}.
+
+\bibitem{MN}
+Mohan and Neetu,
+\emph{On small doubling in right-ordered groups and Baumslag--Solitar groups~--~II},
+arXiv:2607.11194v1, 2026.
+\href{https://arxiv.org/abs/2607.11194}{arXiv:2607.11194}.
+Statement numbers are quoted from this e-print.
+
+\bibitem{MNS}
+Mohan, Neetu, and Shankar,
+\emph{On small doubling in right-ordered groups and Baumslag--Solitar groups},
+Results Math. \textbf{81} (2026), no.~1, art.~12.
+\href{https://doi.org/10.1007/s00025-025-02576-2}{doi:10.1007/s00025-025-02576-2}.
+Closed access, no e-print.
+
+\end{thebibliography}
+
+\end{document}

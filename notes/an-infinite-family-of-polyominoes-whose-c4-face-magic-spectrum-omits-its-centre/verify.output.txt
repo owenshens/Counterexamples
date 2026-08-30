@@ -1,0 +1,156 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  11012681b63de78e60d4b901fabcde4a724dfa71488b114a92cd3ae83b2f1395
+python:  Python 3.9.6
+=== program output follows ===
+==========================================================================
+verify.py -- An Infinite Family of Polyominoes Whose C_4-Face-Magic
+             Spectrum Omits Its Centre
+target: Question 2, Section 5 of arXiv:2608.08914v1
+        (source file C4FaceMagic_arXiv_v1.0.tex, bytes 32456-32531)
+all objects below are literals transcribed from the paper's own tables
+==========================================================================
+
+--- L2: cells [[0, 0], [0, 1], [1, 0]] ---
+PASS L2-vertex-order the printed vertex order lists V(P) exactly once each
+PASS L2-order-n n = |V(P)| = 8
+PASS L2-divisibility 4 | n  (n = 8, so n/4 = 2)
+PASS L2-centre centre 2(n+1) = 18
+PASS L2-cover-size |S| = 2 = n/4 for S = [[0, 1], [1, 0]]
+PASS L2-cover-uncovered exactly one uncovered vertex, p = [0, 0]
+PASS L2-cover-doubled exactly one doubled vertex, v = [1, 1]
+PASS L2-cover-no-triple no vertex is covered three or more times
+PASS L2-cover-distinct-pv p != v, so lambda(p) = lambda(v) is impossible for a bijection
+PASS L2-cover-total multiplicities sum to 4|S| = 8 = n
+PASS L2-collision-identity (n/4)*2(n+1) = 36 = n(n+1)/2, so N - lambda(p) + lambda(v) = (n/4)s forces lambda(p) = lambda(v) at s = 18
+PASS L2-window-shape the admissible window is [15, 16, 17, 19, 20, 21] (centre 18 excluded)
+PASS L2-bijection-s15 the s=15 labeling is a bijection V(P) -> {1..8}
+PASS L2-bijection-s16 the s=16 labeling is a bijection V(P) -> {1..8}
+PASS L2-bijection-s17 the s=17 labeling is a bijection V(P) -> {1..8}
+PASS L2-bijection-s19 the s=19 labeling is a bijection V(P) -> {1..8}
+PASS L2-bijection-s20 the s=20 labeling is a bijection V(P) -> {1..8}
+PASS L2-bijection-s21 the s=21 labeling is a bijection V(P) -> {1..8}
+PASS L2-magic-s15 all 3 cells of the s=15 labeling sum to 15 (distinct sums seen: [15])
+PASS L2-magic-s16 all 3 cells of the s=16 labeling sum to 16 (distinct sums seen: [16])
+PASS L2-magic-s17 all 3 cells of the s=17 labeling sum to 17 (distinct sums seen: [17])
+PASS L2-magic-s19 all 3 cells of the s=19 labeling sum to 19 (distinct sums seen: [19])
+PASS L2-magic-s20 all 3 cells of the s=20 labeling sum to 20 (distinct sums seen: [20])
+PASS L2-magic-s21 all 3 cells of the s=21 labeling sum to 21 (distinct sums seen: [21])
+PASS L2-delta-s15 s=15 = 2(n+1) + delta/t with delta = -6, t = 2, 1 <= |delta| <= 7
+PASS L2-delta-s16 s=16 = 2(n+1) + delta/t with delta = -4, t = 2, 1 <= |delta| <= 7
+PASS L2-delta-s17 s=17 = 2(n+1) + delta/t with delta = -2, t = 2, 1 <= |delta| <= 7
+PASS L2-delta-s19 s=19 = 2(n+1) + delta/t with delta = 2, t = 2, 1 <= |delta| <= 7
+PASS L2-delta-s20 s=20 = 2(n+1) + delta/t with delta = 4, t = 2, 1 <= |delta| <= 7
+PASS L2-delta-s21 s=21 = 2(n+1) + delta/t with delta = 6, t = 2, 1 <= |delta| <= 7
+PASS L2-spectrum-exact Spec = [15, 16, 17, 19, 20, 21] exactly: the printed labelings give every window value, and Lemmas 3 and 4 forbid everything else
+PASS L2-centre-absent the centre 18 is absent, so Spec is not an interval (15 < 18 < 21)
+PASS L2-gap-is-exactly-centre the only gap inside [min Spec, max Spec] is {18}
+PASS L2-symmetry Spec is closed under s -> 4(n+1)-s, as the source paper's own remark requires
+PASS L2-source-containment Spec is inside the source paper's own bound {10,...,4n-6} = {10,...,26}
+
+--- L6: cells [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 0]] ---
+PASS L6-vertex-order the printed vertex order lists V(P) exactly once each
+PASS L6-order-n n = |V(P)| = 16
+PASS L6-divisibility 4 | n  (n = 16, so n/4 = 4)
+PASS L6-centre centre 2(n+1) = 34
+PASS L6-cover-size |S| = 4 = n/4 for S = [[0, 1], [0, 3], [0, 5], [1, 0]]
+PASS L6-cover-uncovered exactly one uncovered vertex, p = [0, 0]
+PASS L6-cover-doubled exactly one doubled vertex, v = [1, 1]
+PASS L6-cover-no-triple no vertex is covered three or more times
+PASS L6-cover-distinct-pv p != v, so lambda(p) = lambda(v) is impossible for a bijection
+PASS L6-cover-total multiplicities sum to 4|S| = 16 = n
+PASS L6-collision-identity (n/4)*2(n+1) = 136 = n(n+1)/2, so N - lambda(p) + lambda(v) = (n/4)s forces lambda(p) = lambda(v) at s = 34
+PASS L6-window-shape the admissible window is [31, 32, 33, 35, 36, 37] (centre 34 excluded)
+PASS L6-bijection-s31 the s=31 labeling is a bijection V(P) -> {1..16}
+PASS L6-bijection-s32 the s=32 labeling is a bijection V(P) -> {1..16}
+PASS L6-bijection-s33 the s=33 labeling is a bijection V(P) -> {1..16}
+PASS L6-bijection-s35 the s=35 labeling is a bijection V(P) -> {1..16}
+PASS L6-bijection-s36 the s=36 labeling is a bijection V(P) -> {1..16}
+PASS L6-bijection-s37 the s=37 labeling is a bijection V(P) -> {1..16}
+PASS L6-magic-s31 all 7 cells of the s=31 labeling sum to 31 (distinct sums seen: [31])
+PASS L6-magic-s32 all 7 cells of the s=32 labeling sum to 32 (distinct sums seen: [32])
+PASS L6-magic-s33 all 7 cells of the s=33 labeling sum to 33 (distinct sums seen: [33])
+PASS L6-magic-s35 all 7 cells of the s=35 labeling sum to 35 (distinct sums seen: [35])
+PASS L6-magic-s36 all 7 cells of the s=36 labeling sum to 36 (distinct sums seen: [36])
+PASS L6-magic-s37 all 7 cells of the s=37 labeling sum to 37 (distinct sums seen: [37])
+PASS L6-delta-s31 s=31 = 2(n+1) + delta/t with delta = -12, t = 4, 1 <= |delta| <= 15
+PASS L6-delta-s32 s=32 = 2(n+1) + delta/t with delta = -8, t = 4, 1 <= |delta| <= 15
+PASS L6-delta-s33 s=33 = 2(n+1) + delta/t with delta = -4, t = 4, 1 <= |delta| <= 15
+PASS L6-delta-s35 s=35 = 2(n+1) + delta/t with delta = 4, t = 4, 1 <= |delta| <= 15
+PASS L6-delta-s36 s=36 = 2(n+1) + delta/t with delta = 8, t = 4, 1 <= |delta| <= 15
+PASS L6-delta-s37 s=37 = 2(n+1) + delta/t with delta = 12, t = 4, 1 <= |delta| <= 15
+PASS L6-spectrum-exact Spec = [31, 32, 33, 35, 36, 37] exactly: the printed labelings give every window value, and Lemmas 3 and 4 forbid everything else
+PASS L6-centre-absent the centre 34 is absent, so Spec is not an interval (31 < 34 < 37)
+PASS L6-gap-is-exactly-centre the only gap inside [min Spec, max Spec] is {34}
+PASS L6-symmetry Spec is closed under s -> 4(n+1)-s, as the source paper's own remark requires
+PASS L6-source-containment Spec is inside the source paper's own bound {10,...,4n-6} = {10,...,58}
+
+--- Section 4: the family L_m, every even m in 2..200 ---
+PASS family-order n = 2m+4 and 4 | n for all 100 even m in 2..200 (failures: none)
+PASS family-cover-size |S| = m/2+1 = n/4 for all 100 even m in 2..200 (failures: none)
+PASS family-single-defect S is a single-defect cover with p = (0,0), v = (1,1) for all 100 even m in 2..200 (failures: none)
+PASS family-centre-absent hence 2(n+1) = 4m+10 is absent from Spec(L_m) for every even m tested, by Lemma 3 alone and with no search
+
+--- Section 5, Remark 7: the 1x3 strip ---
+PASS strip-order the 1x3 strip has n = 8, the same order as the L-tromino
+PASS strip-bijection the printed labeling is a bijection V -> {1..8}
+PASS strip-magic-18 all 3 cells sum to 18 = 2(n+1), so 18 IS in Spec(1x3 strip) (distinct sums seen: [18])
+PASS strip-no-single-defect-cover none of the 6 multisets of n/4 = 2 cells of the strip is a single-defect cover, so Lemma 3 says nothing about the strip -- the hypothesis is sufficient, not necessary, and 18 is attainable at n = 8
+
+--- Section 5, Remark 8: the V-pentomino plus(0,2,2,0) at n = 12 ---
+PASS vpent-order the V-pentomino has n = 12, the same order as L_4, so the same centre 2(n+1) = 26
+PASS vpent-distinct-from-L4 the V-pentomino and L_4 = [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0]] are DIFFERENT free pentominoes, so the published value 26 for the former says nothing about the latter
+PASS vpent-bijection the printed labeling is a bijection V -> {1..12}
+PASS vpent-magic-26 all 5 cells sum to 26 = 2(n+1), so the centre IS in Spec(V-pentomino) -- reproduced here, independently of Shiu-Low-Liu 2024 (distinct sums seen: [26])
+PASS vpent-no-single-defect-cover none of the 35 multisets of n/4 = 3 cells of the V-pentomino is a single-defect cover, so Lemma 3 does not apply to it and must not -- exactly as for the strip of Remark 7
+
+--- Section 5, Remark 9: the holed shape ---
+PASS holed-order the holed shape has n = 15
+PASS holed-hole-empty the cell [1, 1] is NOT a cell of P
+PASS holed-hole-bounded all four corners of [1, 1] lie in V(P), so it is a bounded face isomorphic to C_4 -- a face under the Section 1 reading, not a cell
+PASS holed-hole-cycle and all four SIDES of [1, 1] are edges of P, so its boundary really is a 4-cycle of P and the open square really is a face (corners alone would not suffice)
+PASS holed-noncell-faces-unique [1, 1] is the ONLY empty unit square of this shape that is a bounded C_4 face
+PASS holed-other-empty-unbounded the other empty cell [2, 2] has a corner (3,3) outside V(P), so it is part of the unbounded face
+PASS holed-odd-order 4 does not divide n = 15, so this shape has no single-defect cover and Lemma 3 does not apply to it
+PASS holed-bijection the printed labeling is a bijection V -> {1..15}
+PASS holed-magic-29-all-faces all 8 bounded C_4 faces -- the 7 cells AND the hole -- sum to 29, so both readings are simultaneously satisfiable here (distinct sums seen: [29])
+
+--- Section 6: the 163 free polyominoes with 2..7 cells ---
+PASS census-shape-counts free polyominoes with k = 1..7 cells: [1, 1, 2, 5, 12, 35, 108], the known sequence
+PASS census-shape-total exactly 163 free polyominoes have 2..7 cells, the population the paper's census covers
+PASS census-one-holed-shape exactly 1 of the 163 shapes has a bounded C_4 face that is NOT a cell, so the two readings of Remark 9 can differ on that shape alone
+PASS census-holed-shape-is-remark9 and that shape is the one printed in Remark 9, up to the 8 lattice symmetries: 7 cells, n = 15, exactly one extra bounded C_4 face
+PASS census-holed-shape-outside-lemma3 its order 15 is not divisible by 4, so it has no single-defect cover and is not one of the shapes Lemma 3 speaks about
+
+--- the refutation, restated from the checks above ---
+PASS refutation-L2 Spec_{C_4}(L-tromino) = {15,16,17,19,20,21} is NOT an interval: the answer to Question 2 is NO
+PASS refutation-L6 Spec_{C_4}(L_6) = {31,32,33,35,36,37} is NOT an interval either, at a second order n = 16
+
+NOT RE-RUN: this program checks the paper's claims and nothing else.
+NOT RE-RUN: the SPECTRA of the census of Section 6 -- which found 37
+  non-interval spectra among the 163 shapes, every gap exactly at the
+  centre -- are CORROBORATION and are not recomputed here. Only the
+  SHAPE population of that census is re-derived above (163 shapes, and
+  exactly one of them with a bounded C_4 face that is not a cell). The
+  census's k = 7 stratum rests on a single implementation that was never
+  independently re-exhausted, and its 37 is the count under the CELL
+  reading. No claim of the paper's theorems depends on any of it.
+NOT RE-RUN: attainment for L_m with m >= 8 is NOT verified. Lemma 3
+  excludes the centre for EVERY even m and Lemma 4 confines Spec(L_m) to
+  six values, both with no search; that Spec(L_m) equals all six values
+  is established here only for m = 2 and m = 6, by exhibited labelings.
+NOT RE-RUN: minimality. Nothing here asserts that L_2 is the smallest
+  polyomino with a non-interval spectrum, nor that the L_m are the only
+  such shapes.
+NOT RE-RUN: for the holed shape of Remark 9 this program checks only
+  that the hole is a bounded C_4 face and that one labeling is magic
+  over cells AND over the hole. Whether the two readings have DIFFERENT
+  attainable sets on that shape was decided by the single unreplicated
+  census above and is deliberately not claimed by the paper.
+NOT RE-RUN: the odd-m half of the parity dichotomy is not touched. It
+  would need Shiu-Low-Liu 2024, Theorem 2.3, whose 2025 corrigendum we
+  could not obtain; the paper therefore states the family only for m
+  even, which is forced by 4 | n and not chosen.
+
+VERDICT: ALL 99 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,272 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5c362f18ac6ac3fc6e63f119d5c9e01108def048c2ba7f1e9e223f333ad860e1
+python:  Python 3.9.25
+=== program output follows ===
+
+=== 1. THE GROUP LAW, equation (1), and Lemma 1 ===
+PASS identity (0,0) is a two-sided identity on the 81-element box r,n in [-4,4]
+PASS associativity over all 15625 ordered triples from the 25-element box
+PASS inverse-formula (r,n)^-1 = (-(-1)^n r, -n) is two-sided on the 81-element box
+PASS parity-not-power (-1)^n is a parity lookup, so negative n cannot produce a float
+PASS lemma1-nonabelian (-1,1)(1,1) = (-2,2) != (2,2) = (1,1)(-1,1), as Lemma 1 prints
+PASS lemma1-torsion-box no non-identity element of the 81-element box has order <= 200 (BOUNDED; the unbounded statement is the hand proof of Lemma 1)
+PASS ex62-square-identity (i,1)^2 = (0,2) for i in [-6,6], the identity Example 6.2 of [MN] prints
+PASS ex62-product-identity (i,1)(j,1) = (i-j,2) for i,j in [-6,6]; this forces q = -1
+
+=== 2. THEOREM 3 -- the authors' Example 6.1 with its third part deleted ===
+PASS thm3-structure-m01 |S_m| = 2, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m01 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=1} AS A SET (3 elements), not merely in cardinality
+PASS thm3-count-m01 |S_m^2| = 3 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m01 decider says YES: |S| = 2, |S^2| = 3 <= 3|S|-3 = 3, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m02 |S_m| = 4, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m02 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=3} AS A SET (9 elements), not merely in cardinality
+PASS thm3-count-m02 |S_m^2| = 9 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m02 decider says YES: |S| = 4, |S^2| = 9 <= 3|S|-3 = 9, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m03 |S_m| = 6, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m03 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=5} AS A SET (15 elements), not merely in cardinality
+PASS thm3-count-m03 |S_m^2| = 15 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m03 decider says YES: |S| = 6, |S^2| = 15 <= 3|S|-3 = 15, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m04 |S_m| = 8, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m04 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=7} AS A SET (21 elements), not merely in cardinality
+PASS thm3-count-m04 |S_m^2| = 21 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m04 decider says YES: |S| = 8, |S^2| = 21 <= 3|S|-3 = 21, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m05 |S_m| = 10, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m05 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=9} AS A SET (27 elements), not merely in cardinality
+PASS thm3-count-m05 |S_m^2| = 27 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m05 decider says YES: |S| = 10, |S^2| = 27 <= 3|S|-3 = 27, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m06 |S_m| = 12, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m06 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=11} AS A SET (33 elements), not merely in cardinality
+PASS thm3-count-m06 |S_m^2| = 33 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m06 decider says YES: |S| = 12, |S^2| = 33 <= 3|S|-3 = 33, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m07 |S_m| = 14, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m07 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=13} AS A SET (39 elements), not merely in cardinality
+PASS thm3-count-m07 |S_m^2| = 39 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m07 decider says YES: |S| = 14, |S^2| = 39 <= 3|S|-3 = 39, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m08 |S_m| = 16, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m08 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=15} AS A SET (45 elements), not merely in cardinality
+PASS thm3-count-m08 |S_m^2| = 45 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m08 decider says YES: |S| = 16, |S^2| = 45 <= 3|S|-3 = 45, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m09 |S_m| = 18, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m09 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=17} AS A SET (51 elements), not merely in cardinality
+PASS thm3-count-m09 |S_m^2| = 51 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m09 decider says YES: |S| = 18, |S^2| = 51 <= 3|S|-3 = 51, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m10 |S_m| = 20, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m10 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=19} AS A SET (57 elements), not merely in cardinality
+PASS thm3-count-m10 |S_m^2| = 57 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m10 decider says YES: |S| = 20, |S^2| = 57 <= 3|S|-3 = 57, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m11 |S_m| = 22, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m11 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=21} AS A SET (63 elements), not merely in cardinality
+PASS thm3-count-m11 |S_m^2| = 63 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m11 decider says YES: |S| = 22, |S^2| = 63 <= 3|S|-3 = 63, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m12 |S_m| = 24, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m12 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=23} AS A SET (69 elements), not merely in cardinality
+PASS thm3-count-m12 |S_m^2| = 69 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m12 decider says YES: |S| = 24, |S^2| = 69 <= 3|S|-3 = 69, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m13 |S_m| = 26, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m13 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=25} AS A SET (75 elements), not merely in cardinality
+PASS thm3-count-m13 |S_m^2| = 75 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m13 decider says YES: |S| = 26, |S^2| = 75 <= 3|S|-3 = 75, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m14 |S_m| = 28, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m14 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=27} AS A SET (81 elements), not merely in cardinality
+PASS thm3-count-m14 |S_m^2| = 81 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m14 decider says YES: |S| = 28, |S^2| = 81 <= 3|S|-3 = 81, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m15 |S_m| = 30, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m15 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=29} AS A SET (87 elements), not merely in cardinality
+PASS thm3-count-m15 |S_m^2| = 87 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m15 decider says YES: |S| = 30, |S^2| = 87 <= 3|S|-3 = 87, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m16 |S_m| = 32, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m16 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=31} AS A SET (93 elements), not merely in cardinality
+PASS thm3-count-m16 |S_m^2| = 93 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m16 decider says YES: |S| = 32, |S^2| = 93 <= 3|S|-3 = 93, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m17 |S_m| = 34, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m17 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=33} AS A SET (99 elements), not merely in cardinality
+PASS thm3-count-m17 |S_m^2| = 99 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m17 decider says YES: |S| = 34, |S^2| = 99 <= 3|S|-3 = 99, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m18 |S_m| = 36, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m18 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=35} AS A SET (105 elements), not merely in cardinality
+PASS thm3-count-m18 |S_m^2| = 105 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m18 decider says YES: |S| = 36, |S^2| = 105 <= 3|S|-3 = 105, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m19 |S_m| = 38, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m19 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=37} AS A SET (111 elements), not merely in cardinality
+PASS thm3-count-m19 |S_m^2| = 111 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m19 decider says YES: |S| = 38, |S^2| = 111 <= 3|S|-3 = 111, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m20 |S_m| = 40, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m20 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=39} AS A SET (117 elements), not merely in cardinality
+PASS thm3-count-m20 |S_m^2| = 117 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m20 decider says YES: |S| = 40, |S^2| = 117 <= 3|S|-3 = 117, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m21 |S_m| = 42, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m21 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=41} AS A SET (123 elements), not merely in cardinality
+PASS thm3-count-m21 |S_m^2| = 123 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m21 decider says YES: |S| = 42, |S^2| = 123 <= 3|S|-3 = 123, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m22 |S_m| = 44, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m22 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=43} AS A SET (129 elements), not merely in cardinality
+PASS thm3-count-m22 |S_m^2| = 129 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m22 decider says YES: |S| = 44, |S^2| = 129 <= 3|S|-3 = 129, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m23 |S_m| = 46, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m23 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=45} AS A SET (135 elements), not merely in cardinality
+PASS thm3-count-m23 |S_m^2| = 135 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m23 decider says YES: |S| = 46, |S^2| = 135 <= 3|S|-3 = 135, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m24 |S_m| = 48, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m24 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=47} AS A SET (141 elements), not merely in cardinality
+PASS thm3-count-m24 |S_m^2| = 141 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m24 decider says YES: |S| = 48, |S^2| = 141 <= 3|S|-3 = 141, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m25 |S_m| = 50, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m25 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=49} AS A SET (147 elements), not merely in cardinality
+PASS thm3-count-m25 |S_m^2| = 147 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m25 decider says YES: |S| = 50, |S^2| = 147 <= 3|S|-3 = 147, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m26 |S_m| = 52, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m26 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=51} AS A SET (153 elements), not merely in cardinality
+PASS thm3-count-m26 |S_m^2| = 153 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m26 decider says YES: |S| = 52, |S^2| = 153 <= 3|S|-3 = 153, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m27 |S_m| = 54, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m27 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=53} AS A SET (159 elements), not merely in cardinality
+PASS thm3-count-m27 |S_m^2| = 159 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m27 decider says YES: |S| = 54, |S^2| = 159 <= 3|S|-3 = 159, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m28 |S_m| = 56, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m28 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=55} AS A SET (165 elements), not merely in cardinality
+PASS thm3-count-m28 |S_m^2| = 165 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m28 decider says YES: |S| = 56, |S^2| = 165 <= 3|S|-3 = 165, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m29 |S_m| = 58, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m29 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=57} AS A SET (171 elements), not merely in cardinality
+PASS thm3-count-m29 |S_m^2| = 171 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m29 decider says YES: |S| = 58, |S^2| = 171 <= 3|S|-3 = 171, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m30 |S_m| = 60, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m30 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=59} AS A SET (177 elements), not merely in cardinality
+PASS thm3-count-m30 |S_m^2| = 177 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m30 decider says YES: |S| = 60, |S^2| = 177 <= 3|S|-3 = 177, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m31 |S_m| = 62, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m31 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=61} AS A SET (183 elements), not merely in cardinality
+PASS thm3-count-m31 |S_m^2| = 183 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m31 decider says YES: |S| = 62, |S^2| = 183 <= 3|S|-3 = 183, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m32 |S_m| = 64, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m32 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=63} AS A SET (189 elements), not merely in cardinality
+PASS thm3-count-m32 |S_m^2| = 189 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m32 decider says YES: |S| = 64, |S^2| = 189 <= 3|S|-3 = 189, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m33 |S_m| = 66, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m33 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=65} AS A SET (195 elements), not merely in cardinality
+PASS thm3-count-m33 |S_m^2| = 195 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m33 decider says YES: |S| = 66, |S^2| = 195 <= 3|S|-3 = 195, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m34 |S_m| = 68, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m34 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=67} AS A SET (201 elements), not merely in cardinality
+PASS thm3-count-m34 |S_m^2| = 201 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m34 decider says YES: |S| = 68, |S^2| = 201 <= 3|S|-3 = 201, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m35 |S_m| = 70, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m35 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=69} AS A SET (207 elements), not merely in cardinality
+PASS thm3-count-m35 |S_m^2| = 207 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m35 decider says YES: |S| = 70, |S^2| = 207 <= 3|S|-3 = 207, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m36 |S_m| = 72, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m36 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=71} AS A SET (213 elements), not merely in cardinality
+PASS thm3-count-m36 |S_m^2| = 213 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m36 decider says YES: |S| = 72, |S^2| = 213 <= 3|S|-3 = 213, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m37 |S_m| = 74, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m37 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=73} AS A SET (219 elements), not merely in cardinality
+PASS thm3-count-m37 |S_m^2| = 219 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m37 decider says YES: |S| = 74, |S^2| = 219 <= 3|S|-3 = 219, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m38 |S_m| = 76, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m38 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=75} AS A SET (225 elements), not merely in cardinality
+PASS thm3-count-m38 |S_m^2| = 225 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m38 decider says YES: |S| = 76, |S^2| = 225 <= 3|S|-3 = 225, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m39 |S_m| = 78, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m39 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=77} AS A SET (231 elements), not merely in cardinality
+PASS thm3-count-m39 |S_m^2| = 231 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m39 decider says YES: |S| = 78, |S^2| = 231 <= 3|S|-3 = 231, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-structure-m40 |S_m| = 80, A_m and B_m disjoint, both pairwise commuting (abelian sets by Lemma 2)
+PASS thm3-productset-m40 S_m^2 equals the closed form {(d,2j): d in {-2,0,2}, 1<=j<=79} AS A SET (237 elements), not merely in cardinality
+PASS thm3-count-m40 |S_m^2| = 237 = 6m-3 = 3|S_m|-3, with EQUALITY, so |S_m^2| <= 3|S_m|-3
+PASS thm3-refutes-m40 decider says YES: |S| = 80, |S^2| = 237 <= 3|S|-3 = 237, <S> nonabelian; non-commuting pair ((-1, 1), (1, 1))
+PASS thm3-m2-table all 16 ordered products of S_2 agree with the table printed in the paper
+PASS thm3-m2-productset S_2^2 is the nine elements printed, and 9 = 3*4-3 = 3|S_2|-3
+
+=== 3. THEOREM 4 -- the %-commented example at source line 724 ===
+PASS thm4-size |S| = 4 for S = {(0,2),(0,3),(1,3),(0,4)}
+PASS thm4-partition A = {(0,2),(0,3)} and B = {(1,3),(0,4)} are disjoint with union S
+PASS thm4-A-abelian A is pairwise commuting, hence an abelian set by Lemma 2
+PASS thm4-B-abelian B is pairwise commuting: (1,3)(0,4) = (1, 7) = (0,4)(1,3)
+PASS thm4-table all 16 ordered products of S agree with the table printed in the paper
+PASS thm4-productset S^2 is exactly the nine elements printed in Theorem 4
+PASS thm4-count |S^2| = 9 = 3|S|-3 with EQUALITY -- the authors' own printed integer 9
+PASS thm4-nonabelian (0,3)(1,3) = (-1,6) != (1,6) = (1,3)(0,3), so <S> is nonabelian
+PASS thm4-refutes decider says YES: |S| = 4, |S^2| = 9 <= 3|S|-3 = 9, <S> nonabelian
+
+=== 4. POSITIVE CONTROLS -- the authors' own published integers must reproduce ===
+PASS ex61-threeset-m1 |S| = 4 and |S^2| = 9 = 3|S|-3, all three parts abelian, <S> nonabelian -- THEIR integers, not ours
+PASS ex61-threeset-m2 |S| = 8 and |S^2| = 21 = 3|S|-3, all three parts abelian, <S> nonabelian -- THEIR integers, not ours
+PASS ex61-threeset-m3 |S| = 12 and |S^2| = 33 = 3|S|-3, all three parts abelian, <S> nonabelian -- THEIR integers, not ours
+PASS ex61-threeset-m4 |S| = 16 and |S^2| = 45 = 3|S|-3, all three parts abelian, <S> nonabelian -- THEIR integers, not ours
+PASS ex61-threeset-m5 |S| = 20 and |S^2| = 57 = 3|S|-3, all three parts abelian, <S> nonabelian -- THEIR integers, not ours
+PASS ex62-doubling-k2 |S^2| = 3 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k3 |S^2| = 5 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k4 |S^2| = 7 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k5 |S^2| = 9 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k6 |S^2| = 11 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k7 |S^2| = 13 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+PASS ex62-doubling-k8 |S^2| = 15 = 2k-1 and S^2 = {(1-k,2),...,(k-1,2)}, both as Example 6.2 prints them
+
+=== 5. NEGATIVE CONTROLS -- the decider must be able to say NO ===
+PASS control-abelian-inside-antecedent S = {(0,0),(0,1),(0,2),(0,3)} has |S^2| = 7 <= 9 = 3|S|-3 AND abelian span, so the decider correctly returns NO (<S> is abelian, so the conclusion holds)
+PASS control-antecedent-at-the-bound and the decider is not constant-NO on small sets: {(0,1),(1,1)} split into singletons does refute (|S| = 2, |S^2| = 3 <= 3|S|-3 = 3, <S> nonabelian)
+PASS anticontrol-not-a-commuting-pair {(0,1),(1,1)} is NOT a commuting pair -- (0,1)(1,1) = (-1, 2), (1,1)(0,1) = (1, 2) -- so it may not serve as an abelian PART; a checker that swallowed it would be broken
+PASS control-outside-antecedent the Boroczky-Palfy-Serra set {e,(0,1),(1,0)} has |A^2| = 7 = 3|A|-2, one ABOVE the bound, so it lies outside the antecedent and the decider returns NO (|S^2| = 7 exceeds 3|S|-3 = 6)
+PASS control-nonabelian-part-rejected a candidate whose first part is the non-commuting {(0,1),(1,1)} is rejected, even though its span is nonabelian
+
+=== 6. THE SHARPNESS REMARK -- A_m^2 = B_m^2, so one hypothesis of Theorem 2.10 fails ===
+PASS sharp-squares-m01 A_m^2 = B_m^2 = {(0,2),...,(0,2)} with |A_m^2| = 1
+PASS sharp-squares-m02 A_m^2 = B_m^2 = {(0,2),...,(0,6)} with |A_m^2| = 3
+PASS sharp-squares-m03 A_m^2 = B_m^2 = {(0,2),...,(0,10)} with |A_m^2| = 5
+PASS sharp-squares-m04 A_m^2 = B_m^2 = {(0,2),...,(0,14)} with |A_m^2| = 7
+PASS sharp-squares-m05 A_m^2 = B_m^2 = {(0,2),...,(0,18)} with |A_m^2| = 9
+PASS sharp-squares-m06 A_m^2 = B_m^2 = {(0,2),...,(0,22)} with |A_m^2| = 11
+PASS sharp-squares-m07 A_m^2 = B_m^2 = {(0,2),...,(0,26)} with |A_m^2| = 13
+PASS sharp-squares-m08 A_m^2 = B_m^2 = {(0,2),...,(0,30)} with |A_m^2| = 15
+PASS sharp-squares-m09 A_m^2 = B_m^2 = {(0,2),...,(0,34)} with |A_m^2| = 17
+PASS sharp-squares-m10 A_m^2 = B_m^2 = {(0,2),...,(0,38)} with |A_m^2| = 19
+PASS sharp-squares-m11 A_m^2 = B_m^2 = {(0,2),...,(0,42)} with |A_m^2| = 21
+PASS sharp-squares-m12 A_m^2 = B_m^2 = {(0,2),...,(0,46)} with |A_m^2| = 23
+PASS sharp-squares-m13 A_m^2 = B_m^2 = {(0,2),...,(0,50)} with |A_m^2| = 25
+PASS sharp-squares-m14 A_m^2 = B_m^2 = {(0,2),...,(0,54)} with |A_m^2| = 27
+PASS sharp-squares-m15 A_m^2 = B_m^2 = {(0,2),...,(0,58)} with |A_m^2| = 29
+PASS sharp-squares-m16 A_m^2 = B_m^2 = {(0,2),...,(0,62)} with |A_m^2| = 31
+PASS sharp-squares-m17 A_m^2 = B_m^2 = {(0,2),...,(0,66)} with |A_m^2| = 33
+PASS sharp-squares-m18 A_m^2 = B_m^2 = {(0,2),...,(0,70)} with |A_m^2| = 35
+PASS sharp-squares-m19 A_m^2 = B_m^2 = {(0,2),...,(0,74)} with |A_m^2| = 37
+PASS sharp-squares-m20 A_m^2 = B_m^2 = {(0,2),...,(0,78)} with |A_m^2| = 39
+PASS sharp-squares-m21 A_m^2 = B_m^2 = {(0,2),...,(0,82)} with |A_m^2| = 41
+PASS sharp-squares-m22 A_m^2 = B_m^2 = {(0,2),...,(0,86)} with |A_m^2| = 43
+PASS sharp-squares-m23 A_m^2 = B_m^2 = {(0,2),...,(0,90)} with |A_m^2| = 45
+PASS sharp-squares-m24 A_m^2 = B_m^2 = {(0,2),...,(0,94)} with |A_m^2| = 47
+PASS sharp-squares-m25 A_m^2 = B_m^2 = {(0,2),...,(0,98)} with |A_m^2| = 49
+PASS sharp-squares-m26 A_m^2 = B_m^2 = {(0,2),...,(0,102)} with |A_m^2| = 51
+PASS sharp-squares-m27 A_m^2 = B_m^2 = {(0,2),...,(0,106)} with |A_m^2| = 53
+PASS sharp-squares-m28 A_m^2 = B_m^2 = {(0,2),...,(0,110)} with |A_m^2| = 55
+PASS sharp-squares-m29 A_m^2 = B_m^2 = {(0,2),...,(0,114)} with |A_m^2| = 57
+PASS sharp-squares-m30 A_m^2 = B_m^2 = {(0,2),...,(0,118)} with |A_m^2| = 59
+PASS sharp-squares-m31 A_m^2 = B_m^2 = {(0,2),...,(0,122)} with |A_m^2| = 61
+PASS sharp-squares-m32 A_m^2 = B_m^2 = {(0,2),...,(0,126)} with |A_m^2| = 63
+PASS sharp-squares-m33 A_m^2 = B_m^2 = {(0,2),...,(0,130)} with |A_m^2| = 65
+PASS sharp-squares-m34 A_m^2 = B_m^2 = {(0,2),...,(0,134)} with |A_m^2| = 67
+PASS sharp-squares-m35 A_m^2 = B_m^2 = {(0,2),...,(0,138)} with |A_m^2| = 69
+PASS sharp-squares-m36 A_m^2 = B_m^2 = {(0,2),...,(0,142)} with |A_m^2| = 71
+PASS sharp-squares-m37 A_m^2 = B_m^2 = {(0,2),...,(0,146)} with |A_m^2| = 73
+PASS sharp-squares-m38 A_m^2 = B_m^2 = {(0,2),...,(0,150)} with |A_m^2| = 75
+PASS sharp-squares-m39 A_m^2 = B_m^2 = {(0,2),...,(0,154)} with |A_m^2| = 77
+PASS sharp-squares-m40 A_m^2 = B_m^2 = {(0,2),...,(0,158)} with |A_m^2| = 79
+PASS sharp-thm210-m04 |A| = 4 >= 4 and |B| = 4 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 7 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m05 |A| = 5 >= 4 and |B| = 5 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 9 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m06 |A| = 6 >= 4 and |B| = 6 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 11 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m07 |A| = 7 >= 4 and |B| = 7 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 13 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m08 |A| = 8 >= 4 and |B| = 8 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 15 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m09 |A| = 9 >= 4 and |B| = 9 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 17 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm210-m10 |A| = 10 >= 4 and |B| = 10 >= 3 hold, while max(A^2) <= min(B^2) cannot, since A^2 = B^2 has 19 > 1 elements -- so it fails for EVERY right-order
+PASS sharp-thm27-untouched for every m <= 40, |S_m^2| = 3|S_m|-3 > 3|S_m|-4, so Theorem 2.7 of [MN] is not contradicted -- the family misses its hypothesis by exactly one
+
+=== 7. WHAT THIS PROGRAM DOES NOT COVER ===
+NOT RE-RUN: torsion-freeness of K is confirmed only on the 81-element coordinate box r,n in [-4,4] and only for exponents 1..200; the unbounded statement is the hand proof of Lemma 1.
+NOT RE-RUN: the family of equation (2) is machine-checked for 1 <= m <= 40 only; the statement for all m is Theorem 3, proved by hand.
+NOT RE-RUN: no search for a witness of smaller cardinality (in particular nothing is decided about |S| = 3), for a smaller doubling, or in any host group other than K = BS(1,-1).
+NOT RE-RUN: this program does not fetch the e-print, so the byte locator, the line numbers and the SHA-256 of section 1 of the paper are NOT re-checked here; they were read off the source file directly.
+NOT RE-RUN: nothing here bears on Conjecture 6.2 or Conjecture 6.3 of [MN], nor on whether any repaired form of Conjecture 6.1 is true.
+NOT RE-RUN: the provenance question of whether the line-724 object is inherited from the closed-access companion paper is not a computation and is not addressed.
+
+VERDICT: ALL 244 CHECKS PASS
+=== program exited with status 0 ===

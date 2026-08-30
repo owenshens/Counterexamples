@@ -1,0 +1,109 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9943242ec03abba0658c109c30dd72b185c3ee70eb6e3f42660e6b3f167d9c05
+python:  Python 3.9.6
+=== program output follows ===
+verification of the note: a proof of the Grinberg-Lafreniere lower bound
+for the random-to-below shuffle -- S(n) >= n log n + n log log n + 0.0034553 n, n >= 2
+python 3.9.6 ; exact Fraction interval arithmetic, no float decision
+
+=== Step 1: the interval logarithm, before it is used to decide anything
+PASS interval_log_brackets_log_2_to_22_places [width 2.900e-31]
+PASS interval_log_brackets_log_10_to_22_places
+PASS interval_log_brackets_log_36_to_22_places
+PASS interval_log_of_one_is_exactly_zero
+PASS interval_log_is_additive_on_2_times_3_equals_6
+PASS interval_log_of_a_reciprocal_is_the_negation
+PASS interval_log_is_strictly_increasing_on_199_consecutive_rationals
+PASS every_interval_log_width_is_below_1e_minus_25 [max width 2.421e-30]
+PASS control_the_log_2_enclosure_excludes_both_neighbouring_7_place_values
+PASS control_the_log_36_enclosure_excludes_nearby_wrong_values
+
+=== Step 2: S(n) recomputed from the definition
+PASS the_notes_seven_exact_rationals_S_2_to_S_8_are_reproduced [mismatches []]
+PASS the_digit_counts_of_S_35_are_the_printed_353_and_351 [got (353, 351)]
+PASS the_recurrence_a_i_minus_a_i_plus_1_equals_1_over_i_holds_exactly [n = 3..59, every i]
+PASS a_2_equals_H_n_minus_1_and_a_n_equals_1_over_n_exactly [n = 2..59]
+PASS the_a_i_are_positive_and_strictly_decreasing [n = 3..59]
+
+=== Step 3: identity (I)  S(n)/n = 1 + log n + log(H_n - 1) - D_n
+PASS sum_of_x_i_minus_1_equals_1_minus_S_over_n_exactly [n = 2..80, exact Fractions, deviations []]
+PASS product_of_the_x_i_equals_1_over_n_times_H_n_minus_1_exactly [n = 3..80, exact Fractions, deviations []]
+NOTE the two lines above are (I): sum(x_i - 1) = -(S(n)/n - 1) and -sum log x_i = log n + log(H_n - 1), so D_n = 1 - S(n)/n + log n + log(H_n - 1).
+PASS the_defining_sum_for_D_n_agrees_with_identity_I_on_n_up_to_40 [max |difference| <= 8.920e-30]
+PASS M_of_n_equals_1_minus_D_n_minus_L_n_on_the_whole_cell [deviations []]
+
+=== Step 4: Table 1, the finite range 2 <= n <= 35
+PASS the_printed_table_is_exactly_the_34_integers_2_to_35_with_no_gap_or_repeat [34 rows]
+PASS every_printed_margin_agrees_with_the_recomputed_value [max deviation 4.942e-13, printed to 12 places]
+PASS every_printed_M_value_agrees_with_the_recomputed_value [max deviation 4.929e-11, printed to 10 places]
+PASS every_printed_D_value_agrees_with_the_recomputed_value [max deviation 4.919e-10, printed to 9 places]
+PASS the_conjecture_itself_holds_at_every_n_in_the_cell [exhaustion 34/34, counterexamples 0, violating n = []]
+PASS the_strengthened_bound_with_slack_0_0034553_holds_at_every_n_in_the_cell [violating n = []]
+PASS the_notes_cell_minimum_claim_M_of_n_exceeds_0_2674107868 [violating n = [] ; the bound is 3.3e-12 below M(7)]
+PASS the_least_margin_in_the_cell_is_at_n_equals_3_and_is_the_printed_value [margin 1.222019651146]
+PASS the_least_M_in_the_cell_is_at_n_equals_7_and_is_the_printed_value [M(7) = 0.2674107869]
+PASS the_greatest_D_in_the_cell_is_at_n_equals_11_and_is_the_printed_value [D_11 = 0.548438078]
+PASS D_2_is_zero_because_its_defining_sum_is_empty
+PASS control_must_stay_silent_the_authors_published_upper_bound_M_le_log2_plus_1_over_n [violations 0 over the cell]
+PASS control_forced_positive_the_false_claim_M_ge_log_2_is_flagged_at_every_n [flagged 34 of 34, unflagged n = []]
+PASS control_graded_at_threshold_0_4_the_unflagged_set_is_the_predicted_2_and_3 [measured [2, 3], predicted [2, 3]]
+PASS control_structural_each_summand_1_over_i_a_i_is_at_least_1_over_n [failures 0 over n = 2..59]
+
+=== Step 5: the lemmas behind the upper bound (III) and (IV) on D_n
+PASS f_is_positive_and_below_1_minus_x_squared_over_2x_on_199_rationals [x = 1/200 .. 199/200, failures []]
+PASS x_i_lies_strictly_between_0_and_1_for_2_le_i_le_n_minus_1 [n = 3..59]
+PASS one_minus_x_i_equals_1_over_i_a_i_exactly [n = 3..59]
+PASS the_telescoping_step_1_minus_x_squared_over_2x_equals_half_i_times_b_gap [n = 3..59, exact Fractions]
+PASS the_summation_by_parts_identity_of_step_2c_is_exact [n = 3..80, deviations []]
+PASS the_telescoping_tail_sum_over_j_ge_m_of_1_over_j_j_minus_1_is_1_over_m_minus_1 [m = 2..299, exact Fractions, deviations []]
+PASS a_j_strictly_exceeds_log_of_n_plus_1_over_j_by_integral_comparison [n in 36,100,300,1000 and every j, failures []]
+PASS H_n_is_strictly_below_1_plus_log_n [n = 2..499, failures []]
+PASS floor_sqrt_37_is_6
+PASS one_over_floor_sqrt_37_strictly_exceeds_one_over_sqrt_37 [1/6 = 0.1666667 > 0.1643990 -- the unfloored form is NOT an upper bound]
+PASS one_over_floor_sqrt_N_is_non_increasing_in_N [N = 4..4999]
+PASS the_printed_1_4426951_is_an_upper_bound_for_1_over_log_2 [1/log 2 <= 1.4426950408]
+PASS log_of_N_over_2_exceeds_1_minus_2_over_N_for_N_from_8_to_3999 [failures []]
+PASS the_three_blocks_of_step_2d_cover_j_from_3_to_n_minus_1 [n = 9..2999, needs sqrt(N) <= N/2 <= N-2 = n-1, failures []]
+
+=== Step 6: the two upper bounds on D_n, tested against D_n itself
+PASS bound_III_strictly_dominates_D_n [n = 3..300, failures []]
+PASS bound_IV_strictly_dominates_bound_III [n = 36..300, failures []]
+PASS bound_IV_strictly_dominates_D_n [n = 36..300, failures []]
+PASS each_of_the_four_terms_of_IV_is_non_increasing_in_n [n = 36..1999, failures []]
+NOTE so evaluating (IV) at n0 bounds D_n for every n >= n0 -- this is what makes the tail a two-line computation.
+
+=== Step 7: Euler gamma from below, and the bound (V) on L_n
+PASS the_trapezoid_inequality_log_1_plus_x_lt_x_2_plus_x_over_2_1_plus_x [x = 1/300 .. 3, failures []]
+NOTE that inequality is exactly the statement that g_n = H_n - log n - 1/(2n) increases.
+PASS g_n_is_strictly_increasing_as_the_trapezoid_inequality_predicts [n = 1..1499, failures []]
+PASS gamma_is_at_least_the_printed_0_57721566 [g(10000) = 0.577215664068 > 0.577215660000]
+PASS hence_1_minus_gamma_is_at_most_the_printed_0_42278434 [0.42278434 + 0.57721566 >= 1]
+PASS H_n_minus_1_exceeds_log_n_minus_0_42278434_directly_for_n_up_to_1999 [failures []]
+PASS bound_V_strictly_dominates_L_n [n = 36..400, failures []]
+PASS bound_V_is_strictly_decreasing_in_n [n = 36..1999, failures []]
+
+=== Step 8: the tail theorem, n >= 36
+PASS each_of_the_four_printed_term_bounds_at_n0_36_dominates_its_exact_term [exact terms 1.028571428, 0.139527656, 0.240449183, 0.333459512]
+PASS the_printed_0_871003892_dominates_IV_at_n0_36 [(IV)(36) <= 0.871003890390, printed half bracket 0.871003892]
+PASS the_printed_0_125540793_dominates_V_at_n0_36 [(V)(36) <= 0.125540792894]
+PASS the_printed_total_0_996544685_dominates_the_sum_and_is_below_1 [0.996544685 < 1]
+PASS the_theorems_slack_0_0034553_is_at_most_1_minus_that_total [1 - 0.996544685 = 0.003455315 >= 0.003455300]
+PASS recomputed_without_the_printed_roundings_the_tail_still_gives_M_gt_0_0034553 [1 - (IV) - (V) >= 0.003455316715]
+PASS independently_M_of_n_exceeds_0_0034553_for_every_n_from_36_to_400 [computed from the definition of S(n), failures []]
+PASS the_printed_0_875268945_is_a_lower_bound_for_IV_at_n_equals_35 [(IV)(35) >= 0.875268945646]
+PASS the_printed_0_126601216_is_a_lower_bound_for_V_at_n_equals_35 [(V)(35) >= 0.126601216417]
+PASS the_same_two_lines_exceed_1_at_n0_35_so_the_threshold_36_is_sharp_for_this_family [1.001870161 > 1]
+PASS n0_34_is_worse_still [(IV)+(V) at 34 >= 1.031493639]
+PASS the_cell_2_to_35_and_the_tail_n_ge_36_partition_every_integer_n_ge_2
+PASS the_lemmas_give_M_gt_0_2692847_from_n_200_and_not_from_n_199 [1-(IV)-(V) at 200 >= 0.269284722, at 199 <= 0.268961604]
+
+=== Step 9: what this program does NOT cover
+NOT RE-RUN: the exact rational S(n) is formed for n <= 80 only; for 81 <= n <= 400 the quantities S(n)/n, D_n, L_n and M(n) are computed by the outward-rounded interval arithmetic of Step 1 rather than as exact Fractions (the enclosures are rigorous, so no inequality above is weakened, but the huge-numerator exact form is not built).
+NOT RE-RUN: no statement about n > 400 is verified NUMERICALLY here. The tail for n >= 36 is settled by the monotonicity of (IV) and (V), which Steps 6 and 7 verify only on n = 36..1999; beyond that the note relies on the term-by-term monotonicity proofs of Sections 3 and 4, which this program does not symbolically differentiate.
+NOT RE-RUN: inf_{n>=2} M(n) is NOT determined. M(7) = 0.2674107869 is the minimum over the cell 2..35 only; Step 8 verifies M(n) > 0.0034553 on 36..400 but no exhaustive minimisation is performed there, so the note does not claim -- and this program does not check -- that 0.2674107869 is the optimal constant.
+NOT RE-RUN: D_n -> 1 - gamma is NOT verified. Step 5 bounds D_n only from ABOVE, so the corollary that the authors published upper bound is asymptotically sharp to within (log 2 - gamma) n is outside this program.
+NOT RE-RUN: the probabilistic content. That S(n) IS the expected value of the authors strong stationary time is their Theorem, quoted in Section 1 and not reproved here; this program verifies the inequality about the sum.
+
+VERDICT: ALL 72 CHECKS PASS
+=== program exited with status 0 ===

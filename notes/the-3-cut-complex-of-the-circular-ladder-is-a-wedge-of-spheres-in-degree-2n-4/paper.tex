@@ -1,0 +1,438 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The 3-cut complex of the circular ladder is a wedge of spheres in degree 2n-4, for n at least 5}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\CL}{\mathrm{CL}}
+\newcommand{\bx}{\mathbin{\square}}
+\newcommand{\Dl}{\Delta}
+\newcommand{\Zm}{\mathbb{Z}}
+
+\title[The 3-cut complex of the circular ladder]
+{The 3-cut complex of the circular ladder is a wedge of spheres
+in degree $2n-4$, for $n\ge5$}
+
+\date{}
+
+\subjclass[2020]{05E45, 55U10, 05C76}
+\keywords{cut complex, circular ladder, prism graph, Alexander duality, simplicial homology,
+wedge of spheres}
+
+\begin{document}
+
+\begin{abstract}
+Let $\Dl_k(G)$ be the $k$-cut complex of a graph $G$: the simplicial complex on $V(G)$ whose facets
+are the sets $\sigma$ with $|\sigma|=|V(G)|-k$ for which $G[V(G)\setminus\sigma]$ is disconnected.
+Chauhan, Shukla and Vinayak conjectured that for $m=2$ and $n\ge 5$ the reduced integral homology of
+$\Dl_3(K_m\bx C_n)$ is $\Zm^{2n^2-8n+1}$ in degree $mn-4$ and zero elsewhere. We prove this, and
+add that for every $n\ge5$ the complex $\Dl_3(C_n\bx K_2)$ is homotopy equivalent to a wedge of
+$2n^2-8n+1$ copies of $S^{2n-4}$. The proof is an integer linear algebra computation on the
+Alexander dual, which a parity argument confines to dimension~$3$ for every~$n$, together with three
+explicit unimodular minors. The integer $2n^2-8n+1$ and the vanishing of $\widetilde H_i$ for
+$i\le 2n-7$ are already in print for this exact graph, as a reduced Euler characteristic and a
+codimension-$2$ skeleton, in work of Bayer, Denker, Jeli\'c Milutinovi\'c, Rowlands, Sundaram and
+Xue. What we do not find in the literature cited here is the vanishing of the two groups those
+results leave free, the absence of torsion, and the homotopy type.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}\label{sec:conj}
+
+For a graph $G$ on the vertex set $V$ with $|V|=N$ and an integer $k\ge1$, the \emph{$k$-cut complex}
+$\Dl_k(G)$ is the simplicial complex on $V$ whose facets are exactly the sets $\sigma\subseteq V$ with
+$|\sigma|=N-k$ such that the induced subgraph $G[V\setminus\sigma]$ is \emph{disconnected}
+\cite{BayerI}. Equivalently,
+\begin{equation}\label{eq:facechar}
+ \sigma\in\Dl_k(G)
+ \iff
+ \text{$V\setminus\sigma$ contains a $k$-set $T$ with $G[T]$ disconnected.}
+\end{equation}
+This is the non-total complex; the \emph{total} $k$-cut complex, which demands that
+$G[V\setminus\sigma]$ have no edge at all, is a different object and is not considered here.
+
+Chauhan, Shukla and Vinayak \cite{CSV} state the following as the last numbered conjecture of their
+paper. The e-print carries no printed statement numbers, so we quote the statement in full rather
+than by number.
+
+\begin{conjecture}[Chauhan--Shukla--Vinayak]\label{conj:csv}
+\begin{enumerate}
+\item[(i)] For $m\ge2$ and $n=4$,
+ $\ \widetilde H_i\bigl(\Dl_3(K_m\bx C_n)\bigr)=
+   \begin{cases}
+    \Zm^{2m^2-5m+3} & \text{if } i=mn-5,\\
+    \Zm^{2m(m-1)} & \text{if } i=mn-4,\\
+    0 & \text{otherwise.}
+   \end{cases}$
+\item[(ii)] For $m=2$ and $n\ge5$,
+ $\ \widetilde H_i\bigl(\Dl_3(K_m\bx C_n)\bigr)=
+   \begin{cases}
+    \Zm^{2n^2-8n+1} & \text{if } i=mn-4,\\
+    0 & \text{otherwise.}
+   \end{cases}$
+\end{enumerate}
+\end{conjecture}
+
+Part~(ii) is the statement settled here. With $m=2$ it reads: for every $n\ge5$,
+\begin{equation}\label{eq:target}
+ \widetilde H_{2n-4}\bigl(\Dl_3(C_n\bx K_2);\Zm\bigr)\cong\Zm^{2n^2-8n+1},
+ \qquad
+ \widetilde H_i\bigl(\Dl_3(C_n\bx K_2);\Zm\bigr)=0\ \ (i\ne 2n-4).
+\end{equation}
+Homology is reduced and integral throughout, as in the source: $\Dl_3$ is connected, so unreduced
+$H_0\ne0$ would contradict the clause ``$0$ otherwise''.
+
+\section{The result}\label{sec:result}
+
+The Cartesian product is commutative up to isomorphism, so $K_2\bx C_n\cong C_n\bx K_2$ and
+part~(ii) of Conjecture~\ref{conj:csv} is a statement about the latter.
+Write $\CL_n:=C_n\bx K_2$, the \emph{circular ladder} or $n$-gonal prism: the vertex set is
+$V=\{(r,j): r\in\{0,1\},\ j\in\Zm_n\}$, with edges the \emph{rails} $\{(r,j),(r,j+1)\}$ and the
+\emph{rungs} $\{(0,j),(1,j)\}$. So $|V|=2n$, $|E|=3n$, and $\CL_n$ is $3$-regular and triangle-free
+of girth~$4$. Write $Q_j:=\{(0,j),(0,j{+}1),(1,j),(1,j{+}1)\}$ for the \emph{rung square} at
+column~$j$.
+
+\begin{theorem}\label{thm:main}
+Let $n\ge5$. Then
+\[
+ \widetilde H_i\bigl(\Dl_3(\CL_n);\Zm\bigr)\cong
+ \begin{cases}
+  \Zm^{2n^2-8n+1} & i=2n-4,\\
+  0 & \text{otherwise,}
+ \end{cases}
+\]
+so Conjecture~\ref{conj:csv}(ii) holds. Moreover $\Dl_3(\CL_n)$ is homotopy equivalent to a wedge of
+$2n^2-8n+1$ copies of $S^{2n-4}$.
+\end{theorem}
+
+Part of the content of Theorem~\ref{thm:main} is published, and is due to Bayer, Denker, Jeli\'c
+Milutinovi\'c, Rowlands, Sundaram and Xue. They prove \cite{BayerII} that if $G$ has $N$ vertices,
+$k\ge3$, $G$ has no cycle of length $\le k$ and $G$ has a cycle of length $k+1$, then $\Dl_k(G)$
+contains a complete codimension-$2$ skeleton and
+\begin{equation}\label{eq:euler}
+ \widetilde\chi\bigl(\Dl_k(G)\bigr)
+ =(-1)^{N-k-1}\Bigl(\tbinom{N-1}{k-1}+|Y_{k+1}(G)|-|Z_k(G)|\Bigr),
+\end{equation}
+where $Y_{k+1}(G)$ is the set of complements of $(k+1)$-cycles and $Z_k(G)$ the set of complements of
+connected $k$-sets. The hypotheses hold verbatim for $G=\CL_n$ and $k=3$: girth $4>3$, and $\CL_n$
+has $4$-cycles. Substituting $N=2n$, $|Y_4|=n$ and $|Z_3|=6n$ (Lemma~\ref{lem:fvec}) into
+\eqref{eq:euler} gives $\widetilde\chi=\binom{2n-1}{2}+n-6n=2n^2-8n+1$. So the integer
+$2n^2-8n+1$ is not new, and neither is the vanishing $\widetilde H_i(\Dl_3(\CL_n))=0$ for
+$i\le2n-7$, which is immediate from the complete codimension-$2$ skeleton.
+
+Since $\Dl_3(\CL_n)$ is pure of dimension $2n-4$, those two published facts leave three groups
+possibly nonzero --- degrees $2n-6$, $2n-5$, $2n-4$ --- constrained by one linear relation. What
+Theorem~\ref{thm:main} adds is therefore the vanishing of $\widetilde H_{2n-5}$ and
+$\widetilde H_{2n-6}$, torsion-freeness, which \eqref{eq:euler} cannot see, and the homotopy type.
+We have not found those three statements in the literature cited here, and we make no priority
+claim: no comprehensive literature search was carried out.
+
+\section{The proof}\label{sec:proof}
+
+\subsection{The Alexander dual is three-dimensional, for every \texorpdfstring{$n$}{n}}
+
+For a simplicial complex $K$ on $V$, $|V|=N$, the Alexander dual is
+$K^{*}=\{\sigma\subseteq V: V\setminus\sigma\notin K\}$, and combinatorial Alexander duality
+\cite{BjornerTancer} gives
+\begin{equation}\label{eq:AD}
+ \widetilde H_i(K^{*};\Zm)\cong\widetilde H^{\,N-i-3}(K;\Zm)\qquad(i\in\Zm).
+\end{equation}
+By \eqref{eq:facechar}, $V\setminus\sigma\notin\Dl_3(G)$ if and only if every $3$-subset of $\sigma$
+induces a connected subgraph. Hence
+\begin{equation}\label{eq:D}
+ D:=\Dl_3(G)^{*}
+ =\bigl\{S\subseteq V:\ \text{every $3$-subset of $S$ induces a connected subgraph}\bigr\},
+\end{equation}
+which is manifestly a simplicial complex: a $3$-subset of a subset of $S$ is a $3$-subset of $S$.
+
+\begin{lemma}\label{lem:fvec}
+Let $G$ be a cubic triangle-free graph on $N=2n$ vertices with exactly $q$ induced $4$-cycles. Then
+$D$ has $f$-vector
+\[
+ (f_{-1},f_0,f_1,f_2,f_3,f_4,\dots)=\bigl(1,\ 2n,\ \tbinom{2n}{2},\ 6n,\ q,\ 0,\ 0,\dots\bigr),
+\]
+so $\dim D=3$ whenever $q>0$. Moreover $q=n$ for $G=\CL_n$ with $n\ge5$, while $q=n+2=6$ for
+$G=\CL_4$.
+\end{lemma}
+
+\begin{proof}
+Since $G$ is triangle-free, a $3$-set induces a connected subgraph precisely when it spans exactly
+two edges, that is, when it is an induced path $P_3$: zero or one edge leaves an isolated vertex, and
+three edges would be a triangle.
+
+A $2$-set has no $3$-subset, so $f_1=\binom{2n}{2}$. A $3$-set lies in $D$ iff it is an induced
+$P_3$, and the number of those is $\sum_{v}\binom{\deg v}{2}=2n\binom32=6n$, with no triangle
+correction.
+
+Let $|S|=s\ge4$ with $S\in D$ and put $e=|E(G[S])|$. Each of the $\binom s3$ triples of $S$ spans
+exactly $2$ edges, and each edge of $G[S]$ lies in exactly $\binom{s-2}{1}=s-2$ of those triples.
+Counting edge-triple incidences twice,
+\begin{equation}\label{eq:parity}
+ (s-2)\,e=2\binom s3 .
+\end{equation}
+For $s=5$, \eqref{eq:parity} reads $3e=20$, which has no integer solution: $f_4=0$, and hence
+$f_j=0$ for all $j\ge4$ because $D$ is a complex. For $s=4$, \eqref{eq:parity} gives $e=4$; a
+triangle-free graph on four vertices with four edges is $C_4$, and $G[S]$ is an induced subgraph, so
+$S$ spans an induced $4$-cycle. Conversely every triple of an induced $4$-cycle is an induced $P_3$.
+So $f_3=q$.
+
+Finally, the $4$-cycles of $\CL_n$. A cycle of $\CL_n$ uses an even number of rungs. With no rung it
+lies in one rail, i.e.\ in a copy of $C_n$, which has a $4$-cycle only if $n=4$; the two rails are
+then induced $4$-cycles, and this is the source of the two extra squares at $n=4$. With two rungs, at
+columns $j$ and $j'$, the cycle traverses a path of length $a\ge1$ in one rail and a path of length
+$b\ge1$ in the other, and $2+a+b=4$ forces $a=b=1$, so $j'=j\pm1$ and the cycle is a rung square
+$Q_j$; all $n$ of these are induced. With four or more rungs the cycle has at least eight vertices.
+Hence $q=n$ for $n\ge5$ and $q=n+2$ for $n=4$.
+\end{proof}
+
+So for every $n\ge5$ the simplicial chain complex of $D$ is
+\begin{equation}\label{eq:chain}
+ 0\longrightarrow \Zm^{n}\xrightarrow{\ \partial_3\ }\Zm^{6n}
+ \xrightarrow{\ \partial_2\ }\Zm^{n(2n-1)}\xrightarrow{\ \partial_1\ }\Zm^{2n}
+ \xrightarrow{\ \partial_0\ }\Zm\longrightarrow 0,
+\end{equation}
+a complex of \emph{fixed length}, whose entries are the only thing that grows with $n$; this is why a
+statement about all $n$ is here a finite piece of linear algebra rather than an induction.
+
+\subsection{Three unimodular minors}
+
+We use the following standard fact: if an integer matrix $M$ has rank $r$ and some $r\times r$ minor
+of $M$ equals $\pm1$, then every invariant factor of $M$ equals $1$, because $d_1d_2\cdots d_r$ is
+the gcd of the $r\times r$ minors and $d_1\mid d_2\mid\cdots$. We exhibit such a minor for each of
+$\partial_1,\partial_2,\partial_3$.
+
+Fix $n\ge5$. Name the $6n$ triples of $D$ by their centre: for $v=(r,j)$ put
+\[
+ T_1(v)=\{(r,j{-}1),v,(r,j{+}1)\},\qquad
+ T_2(v)=\{(r,j{-}1),v,(1{-}r,j)\},
+\]
+\[
+ T_3(v)=\{(r,j{+}1),v,(1{-}r,j)\}.
+\]
+Since $G$ is triangle-free, the centre of an induced $P_3$ is determined by its vertex set, so these
+$3\cdot 2n=6n$ triples are distinct and exhaust $f_2$.
+
+\begin{lemma}\label{lem:d3}
+$\rank\partial_3=n$ and every invariant factor of $\partial_3$ is $1$.
+\end{lemma}
+
+\begin{proof}
+The $n$ generators of $C_3(D)$ are the squares $Q_j$. For $n\ge5$ any two distinct squares meet in at
+most two vertices ($Q_j\cap Q_{j+1}$ is a rung, and $Q_j\cap Q_{j'}=\emptyset$ otherwise), so no
+triple lies in two squares and the $n$ columns of $\partial_3$ have pairwise disjoint supports with
+entries $\pm1$. Choosing one triple from each square gives an $n\times n$ minor equal to $\pm1$;
+the rank is therefore $n$.
+\end{proof}
+
+\begin{lemma}\label{lem:d1}
+$\rank\partial_1=2n-1$ and every invariant factor of $\partial_1$ is $1$.
+\end{lemma}
+
+\begin{proof}
+$C_1(D)$ has all $\binom{2n}{2}$ pairs as generators, so $\partial_1$ is the incidence matrix of the
+complete graph $K_{2n}$. Its image lies in the sum-zero sublattice of $\Zm^{2n}$, so
+$\rank\partial_1\le 2n-1$; the $2n-1$ columns indexed by a spanning star give a $(2n-1)\times(2n-1)$
+minor $\pm1$ after deleting the row of the star's centre.
+\end{proof}
+
+\begin{lemma}\label{lem:d2}
+$\rank\partial_2=5n$ and every invariant factor of $\partial_2$ is $1$.
+\end{lemma}
+
+\begin{proof}
+\emph{Upper bound.} $\operatorname{im}\partial_3\subseteq\ker\partial_2$ and
+$\rank\partial_3=n$ by Lemma~\ref{lem:d3}, so $\dim\ker\partial_2\ge n$ and
+$\rank\partial_2\le 6n-n=5n$.
+
+\emph{A $5n\times5n$ minor equal to $\pm1$.} Select the $5n$ columns
+\[
+ \mathcal C=\{T_1(v):v\in V\}\cup\{T_3(v):v\in V\}\cup\{T_2((1,j)):j\in\Zm_n\},
+ \quad |\mathcal C|=5n,
+\]
+and the $5n$ rows
+\[
+ p_A(r,j)=\{(r,j{-}1),(r,j{+}1)\},\qquad
+ p_B(r,j)=\{(r,j{+}1),(1{-}r,j)\},
+\]
+\[
+ p_C(j)=\{(1,j{-}1),(1,j)\},
+\]
+for $r\in\{0,1\}$, $j\in\Zm_n$: respectively $2n$ same-rail pairs at distance $2$, $2n$ diagonal
+pairs, and the $n$ rail edges of row~$1$. For $n\ge5$ these $5n$ pairs are distinct and of three
+distinct types, so they are $5n$ distinct rows.
+
+We repeatedly use one observation. If two vertices of a triple $T\in D$ are non-adjacent then, $T$
+being an induced $P_3$, they are its two endpoints and its third vertex is a common neighbour of them.
+So a non-adjacent pair $p$ lies in exactly as many triples of $D$ as the two vertices of $p$ have
+common neighbours. For $n\ge5$: the pair $p_A(r,j)$ has the single common neighbour $(r,j)$, so it
+lies only in $T_1((r,j))$; the pair $p_B(r,j)$ has the two common neighbours $(r,j)$ and $(1-r,j+1)$,
+so it lies only in $T_3((r,j))$ and $T_2((1{-}r,j{+}1))$. (At $n=4$ the first statement fails, since
+$(r,j-1)$ and $(r,j+1)$ then have two common neighbours; this is the second place the argument uses
+$n\ge5$.) For the adjacent pair $p_C(j)$, the triples of $D$ containing it are those obtained by
+adjoining a neighbour of one endpoint that is not adjacent to the other, namely
+$T_1((1,j{-}1))$, $T_1((1,j))$, $T_3((1,j{-}1))$ and $T_2((1,j))$.
+
+Now delete rows and columns from the $5n\times5n$ submatrix in four stages, at each stage using a row
+whose only surviving nonzero entry is $\pm1$, so that the determinant is unchanged up to sign:
+\begin{enumerate}
+\item the $2n$ rows $p_A(r,j)$: each meets $\mathcal C$ only in $T_1((r,j))$. Delete them with the
+ $2n$ columns $T_1(v)$.
+\item the $n$ rows $p_B(1,j)$: each lies in exactly two triples of $D$, namely $T_3((1,j))$ and
+ $T_2((0,j{+}1))$, and the latter is not in $\mathcal C$. Delete them with the $n$ columns
+ $T_3((1,j))$.
+\item the $n$ rows $p_C(j)$: of the four triples containing $p_C(j)$, three were deleted in stages 1
+ and 2, leaving $T_2((1,j))$. Delete them with the $n$ columns $T_2((1,j))$.
+\item the $n$ rows $p_B(0,j)$: each meets $\mathcal C$ in $T_3((0,j))$ and $T_2((1,j{+}1))$, and
+ the latter was deleted in stage~3. Delete them with the $n$ columns $T_3((0,j))$.
+\end{enumerate}
+Nothing is left, so the minor is $\pm1$ and $\rank\partial_2\ge5n$.
+\end{proof}
+
+\subsection{The homology of \texorpdfstring{$D$}{D}, and of \texorpdfstring{$\Dl_3$}{Delta 3}}
+
+\begin{proposition}\label{prop:dualhom}
+For $n\ge5$, $\widetilde H_i(D;\Zm)=0$ for $i\ne1$, and $\widetilde H_1(D;\Zm)\cong\Zm^{2n^2-8n+1}$.
+\end{proposition}
+
+\begin{proof}
+By Lemmas \ref{lem:d3}--\ref{lem:d2} every invariant factor of $\partial_1$, $\partial_2$ and
+$\partial_3$ equals~$1$, and $\partial_0$ is the augmentation, which is surjective with its single
+invariant factor~$1$. Since $\operatorname{im}\partial_{i+1}\subseteq\ker\partial_i$ and
+$\ker\partial_i$ is free, the torsion subgroup of $\widetilde H_i(D;\Zm)$ is the direct sum of the
+$\Zm/d_j$ over the invariant factors $d_j$ of $\partial_{i+1}$, hence trivial. So every
+$\widetilde H_i(D;\Zm)$ is free and it suffices to compute ranks:
+\[
+\begin{aligned}
+ \widetilde H_0&: && (2n-1)-\rank\partial_1 &&= (2n-1)-(2n-1)=0,\\
+ \widetilde H_1&: && \tbinom{2n}{2}-\rank\partial_1-\rank\partial_2
+   &&= n(2n-1)-(2n-1)-5n=2n^2-8n+1,\\
+ \widetilde H_2&: && 6n-\rank\partial_2-\rank\partial_3 &&= 6n-5n-n=0,\\
+ \widetilde H_3&: && n-\rank\partial_3 &&= n-n=0 .
+\end{aligned}
+\]
+(For $\widetilde H_0$ note $\ker\partial_0$ has rank $2n-1$.) All other $\widetilde H_i$ vanish
+because $\dim D=3$.
+\end{proof}
+
+\begin{proof}[Proof of the homology statement of Theorem~\ref{thm:main}]
+By \eqref{eq:AD} with $N=2n$ and $K=\Dl_3(\CL_n)$, $K^{*}=D$, Proposition~\ref{prop:dualhom} gives
+$\widetilde H^{\,2n-i-3}(\Dl_3;\Zm)\cong\widetilde H_i(D;\Zm)$, so
+$\widetilde H^{\,j}(\Dl_3;\Zm)=0$ for every $j\ne2n-4$ and
+$\widetilde H^{\,2n-4}(\Dl_3;\Zm)\cong\Zm^{2n^2-8n+1}$.
+
+Now transport to homology. $\Dl_3$ is a finite complex, so all $\widetilde H_i$ are finitely
+generated, and the universal coefficient theorem gives
+$\widetilde H^{\,j}\cong\operatorname{Hom}(\widetilde H_j,\Zm)\oplus\operatorname{Ext}(\widetilde
+H_{j-1},\Zm)$, that is, the free part of $\widetilde H_j$ direct sum the torsion of
+$\widetilde H_{j-1}$. From $\widetilde H^{\,j}=0$ for $j\ne2n-4$ we get: the free part of
+$\widetilde H_j$ is $0$ for every $j\ne2n-4$, and the torsion of $\widetilde H_{j-1}$ is $0$ for
+every $j\ne2n-4$, i.e.\ $\widetilde H_i$ is torsion-free for every $i\ne2n-5$. At $j=2n-4$ the group
+$\widetilde H^{\,2n-4}\cong\Zm^{2n^2-8n+1}$ is free, and it contains the torsion of
+$\widetilde H_{2n-5}$ as a direct summand, so that torsion is trivial too. Combining, every
+$\widetilde H_i$ with $i\ne2n-4$ is torsion-free with zero free part, hence zero, and
+$\widetilde H_{2n-4}\cong\Zm^{2n^2-8n+1}$.
+\end{proof}
+
+\subsection{The homotopy type}
+
+\begin{lemma}\label{lem:skel}
+For $n\ge5$ every subset of $V$ of size at most $3$ is a face of $\Dl_3(\CL_n)$; that is,
+$\Dl_3(\CL_n)$ contains the full $2$-skeleton of the simplex on $V$.
+\end{lemma}
+
+\begin{proof}
+Let $|\sigma|\le3$, so $|V\setminus\sigma|\ge2n-3\ge7$. Pick $u\in V\setminus\sigma$. Among the
+$\ge2n-4\ge6$ other vertices of $V\setminus\sigma$, at most $3$ are neighbours of $u$, so at least
+$2n-7\ge3$ are not. Take two of them, $w_1,w_2$: the triple $\{u,w_1,w_2\}$ spans at most one edge
+and so induces a disconnected subgraph. By \eqref{eq:facechar}, $\sigma\in\Dl_3(\CL_n)$.
+\end{proof}
+
+\begin{proof}[Proof of the homotopy statement of Theorem~\ref{thm:main}]
+Let $X=\Dl_3(\CL_n)$ with $n\ge5$, let $d=2n-4\ge6$ and $r=2n^2-8n+1$. By Lemma~\ref{lem:skel} the
+$2$-skeleton of $X$ is the $2$-skeleton of a simplex, which is simply connected; since $\pi_1$
+depends only on the $2$-skeleton, $X$ is simply connected. By the homology statement
+$\widetilde H_*(X;\Zm)$ is free and concentrated in the single degree $d$.
+
+We first record that $X$ is $(d-1)$-connected, which is what the Hurewicz theorem needs. Suppose
+$X$ is $(j-1)$-connected for some $j$ with $2\le j\le d-1$; since $j\ge2$, Hurewicz gives
+$\pi_j(X)\cong\widetilde H_j(X;\Zm)=0$, and hence $X$ is $j$-connected. As $X$ is simply connected,
+that is, $1$-connected, induction from $j=2$ gives $(d-1)$-connectedness. Hurewicz applied once more,
+now in degree $d$, makes $\pi_d(X)\to H_d(X)\cong\Zm^{r}$ an isomorphism. Choose maps $S^{d}\to X$
+representing a basis and let $f:\bigvee_{i=1}^{r}S^{d}\to X$ be the resulting map. Then $f$ induces an
+isomorphism on integral homology in every degree, and both spaces are simply connected CW complexes,
+so $f$ is a homotopy equivalence by the homology form of Whitehead's theorem \cite{Hatcher}. Note
+$r=2n^2-8n+1\ge11>0$ for $n\ge5$, so the wedge is non-empty.
+\end{proof}
+
+\section{Scope, and verification}\label{sec:verify}
+
+Part~(i) of Conjecture~\ref{conj:csv}, which concerns $n=4$ and $m\ge2$, remains open; nothing here
+bears on $m\ge3$. The hypothesis $n\ge5$ is used twice, in Lemma~\ref{lem:fvec} and in
+Lemma~\ref{lem:d2}, and part~(ii) is false at $n=4$: an exact integral computation gives
+$\widetilde H_3(\Dl_3(\CL_4);\Zm)\cong\Zm$ and $\widetilde H_4(\Dl_3(\CL_4);\Zm)\cong\Zm^{4}$, and
+zero elsewhere.
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library only, exact integer
+arithmetic, no randomness) re-derives from the definitions: the graph invariants of $\CL_n$ and the
+$f$-vector of $D$ for $n=4,\dots,40$, including the absence of a $5$-set and the value $f_3=6$ at
+$n=4$ (Lemma~\ref{lem:fvec}); the exact integral homology of $\Dl_3(\CL_n)$ for $n=5,\dots,24$,
+together with the boundary ranks $n$, $5n$, $2n-1$ of Lemmas \ref{lem:d3}--\ref{lem:d2} and the
+vanishing of all invariant factors above $1$; the four-stage deletion of Lemma~\ref{lem:d2},
+executed as a stripping certificate on the $5n\times5n$ submatrix itself for $n=5,\dots,24$; and the
+same homology computed \emph{directly} from the full complex $\Dl_3$, with no duality and no relative
+complex, at $n=4,5,6,7$. Its recorded output is \texttt{verify.output.txt} ($45$ checks, all
+passing). Among the things the program states it does not cover are $n\ge25$, any $m\ge3$, the
+homotopy-theoretic step, and any literature search; for those, and for all $n\ge5$, the paper rests
+on the proof above.
+
+\begin{thebibliography}{9}
+
+\bibitem{BayerI}
+M.~Bayer, M.~Denker, M.~Jeli\'c Milutinovi\'c, R.~Rowlands, S.~Sundaram, and L.~Xue,
+\emph{Topology of cut complexes of graphs},
+SIAM J. Discrete Math. \textbf{38} (2024), no.~2, 1630--1675;
+\href{https://arxiv.org/abs/2304.13675}{arXiv:2304.13675}.
+
+\bibitem{BayerII}
+M.~Bayer, M.~Denker, M.~Jeli\'c Milutinovi\'c, R.~Rowlands, S.~Sundaram, and L.~Xue,
+\emph{Topology of cut complexes II},
+SIAM J. Discrete Math. \textbf{39} (2025), no.~2, 1123--1157.
+\href{https://doi.org/10.1137/24M1676077}{doi:10.1137/24M1676077};
+\href{https://arxiv.org/abs/2407.08158}{arXiv:2407.08158}.
+The result used here is the one on graphs with no cycle of length $\le k$ and at least one cycle of
+length $k+1$; it is stated in full in Section~\ref{sec:result} above.
+
+\bibitem{BjornerTancer}
+A.~Bj\"orner and M.~Tancer,
+\emph{Combinatorial Alexander duality---a short and elementary proof},
+Discrete Comput. Geom. \textbf{42} (2009), no.~4, 586--593.
+\href{https://doi.org/10.1007/s00454-008-9102-x}{doi:10.1007/s00454-008-9102-x}.
+
+\bibitem{CSV}
+P.~Chauhan, S.~Shukla, and K.~Vinayak,
+\emph{Total 2-cut complexes of powers of cycle graphs and Cartesian products of certain graphs},
+\href{https://arxiv.org/abs/2512.04486}{arXiv:2512.04486v1}, 2025.
+The conjecture settled here is the last numbered conjecture of that paper.
+
+\bibitem{Hatcher}
+A.~Hatcher,
+\emph{Algebraic Topology},
+Cambridge University Press, 2002.
+
+\end{thebibliography}
+
+\end{document}

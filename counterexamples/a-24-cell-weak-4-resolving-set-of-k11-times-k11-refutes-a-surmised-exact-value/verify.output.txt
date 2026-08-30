@@ -1,0 +1,143 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  c3f438ddeb1a37bb559cafd3a9ab36c1533e68cf77f5adf176ac2f8b4c018bfd
+python:  Python 3.9.6
+=== program output follows ===
+=== A: the distance rule of Section 1 is the true distance function ===
+PASS dist-rule-vs-bfs-n3 [81 ordered pairs, connected, diameter 2]
+PASS dist-rule-vs-bfs-n4 [256 ordered pairs, connected, diameter 2]
+PASS dist-rule-vs-bfs-n5 [625 ordered pairs, connected, diameter 2]
+PASS dist-rule-vs-bfs-n6 [1296 ordered pairs, connected, diameter 2]
+PASS dist-rule-vs-bfs-n7 [2401 ordered pairs, connected, diameter 2]
+
+=== B: Lemma 2.1 (the closed form for Delta_S) against raw sums ===
+PASS delta-formula-S11 [n=11 |S|=24, 7260 pairs, 0 mismatches]
+PASS delta-formula-S12 [n=12 |S|=27, 10296 pairs, 0 mismatches]
+PASS delta-formula-S13 [n=13 |S|=29, 14196 pairs, 0 mismatches]
+PASS delta-formula-k3basis-n5 [n=5 |S|=10, 300 pairs, 0 mismatches]
+PASS delta-formula-full-n6 [n=6 |S|=36, 630 pairs, 0 mismatches]
+
+=== C: the printed sets are weak 4-resolving and beat the surmise ===
+PASS cells-distinct-S11 [24 cells]
+PASS cells-in-range-S11 [n=11]
+PASS min-degree-S11 [row degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3], column degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3]]
+PASS mindelta-raw-S11 [min Delta_S = 4 over all 7260 pairs, 618 tight, argmin ((1, 1), (2, 10))]
+PASS criterion-agrees-S11 [Lemma 2.2 verdict = raw verdict]
+PASS beats-surmise-S11 [|S| = 24 = 2n+floor(n/4), surmised 25, short by 1]
+PASS cells-distinct-S12 [27 cells]
+PASS cells-in-range-S12 [n=12]
+PASS min-degree-S12 [row degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3], column degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4]]
+PASS mindelta-raw-S12 [min Delta_S = 4 over all 10296 pairs, 755 tight, argmin ((1, 1), (1, 3))]
+PASS criterion-agrees-S12 [Lemma 2.2 verdict = raw verdict]
+PASS beats-surmise-S12 [|S| = 27 = 2n+floor(n/4), surmised 28, short by 1]
+PASS cells-distinct-S13 [29 cells]
+PASS cells-in-range-S13 [n=13]
+PASS min-degree-S13 [row degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3], column degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]]
+PASS mindelta-raw-S13 [min Delta_S = 4 over all 14196 pairs, 924 tight, argmin ((1, 1), (1, 2))]
+PASS criterion-agrees-S13 [Lemma 2.2 verdict = raw verdict]
+PASS beats-surmise-S13 [|S| = 29 = 2n+floor(n/4), surmised 30, short by 1]
+PASS cells-distinct-S14 [31 cells]
+PASS cells-in-range-S14 [n=14]
+PASS min-degree-S14 [row degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3], column degrees [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]]
+PASS mindelta-raw-S14 [min Delta_S = 4 over all 19110 pairs, 1240 tight, argmin ((1, 1), (1, 2))]
+PASS criterion-agrees-S14 [Lemma 2.2 verdict = raw verdict]
+PASS beats-surmise-S14 [|S| = 31 = 2n+floor(n/4), surmised 32, short by 1]
+
+=== D: the structure Section 3 argues from, recounted ===
+PASS degseq-rows-S11 [as printed in Section 3]
+PASS degseq-cols-S11 [as printed in Section 3]
+PASS degsum-S11 [9*2 + 2*3 = 24 both ways]
+PASS no-4-cycle-S11 [no two rows share two columns, so condition (C) is vacuous]
+PASS light-edge-count-S11 [cells in a light row and a light column]
+PASS light-components-S11 [six two-edge paths, so no three-edge path is all-light]
+PASS heavy-vertices-S11 [r10 r11 c10 c11]
+
+=== E: the tight pairs quoted in the Remark of Section 3 ===
+PASS tight-pair-count-S11 [618 of 7260 pairs attain Delta_S = 4, none below]
+PASS tight-pair-1-1-vs-2-10 [alpha=1, beta=2, T=9, Delta=4]
+PASS tight-pair-invariants-1-1-2-10 [the (alpha,beta,T) = (1,2,9) case of Lemma 2.2]
+PASS same-column-pair-7-4-vs-8-4 [a_7 + a_8 + alpha = 2 + 2 + 1]
+
+=== F: Theorem 1.2, the lower bound: its arithmetic ===
+PASS lower-bound-n9 [2n + ceil(2n/11) = 20, surmised 21]
+PASS lower-bound-n10 [2n + ceil(2n/11) = 22, surmised 23]
+PASS lower-bound-n11 [2n + ceil(2n/11) = 24, surmised 25]
+PASS lower-bound-n12 [2n + ceil(2n/11) = 27, surmised 28]
+PASS lower-bound-n13 [2n + ceil(2n/11) = 29, surmised 30]
+PASS lower-bound-n14 [2n + ceil(2n/11) = 31, surmised 32]
+PASS step2-case-dominates-bound [a degree <= 1 forces |S| >= 3n-2 >= 2n+ceil(2n/11), n = 4..300]
+PASS step6-excludes-every-smaller-excess [for n = 4..300 and every E < ceil(2n/11): max(4h+3E : h <= 2E) = 11E < 2n]
+PASS hypothesis-n-at-least-4-is-needed [at n=3 the bound would read 7 > 6 = wdim_4(K_3 x K_3) as reported by the source, and Step 1 there yields only min(n,4) = 3, not 4]
+
+=== G: Theorem 1.3, the exact values ===
+PASS exact-value-n11 [lower bound = |S| = 24 = 2n+floor(n/4); surmised 25]
+PASS exact-value-n12 [lower bound = |S| = 27 = 2n+floor(n/4); surmised 28]
+PASS exact-value-n13 [lower bound = |S| = 29 = 2n+floor(n/4); surmised 30]
+PASS exact-value-n14 [lower bound = |S| = 31 = 2n+floor(n/4); surmised 32]
+PASS exact-values-vs-surmised [each surmised value is too large by exactly 1]
+
+=== H: the block-diagonal family S(m) ===
+PASS bd-size-m1 [n=11, |S(m)| = 24m = 24 distinct cells]
+PASS bd-criterion-m1 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m1 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m1 [surmised 25, true 24, gap 1]
+PASS bd-size-m2 [n=22, |S(m)| = 24m = 48 distinct cells]
+PASS bd-criterion-m2 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m2 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m2 [surmised 50, true 48, gap 2]
+PASS bd-size-m3 [n=33, |S(m)| = 24m = 72 distinct cells]
+PASS bd-criterion-m3 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m3 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m3 [surmised 75, true 72, gap 3]
+PASS bd-size-m4 [n=44, |S(m)| = 24m = 96 distinct cells]
+PASS bd-criterion-m4 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m4 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m4 [surmised 100, true 96, gap 4]
+PASS bd-size-m5 [n=55, |S(m)| = 24m = 120 distinct cells]
+PASS bd-criterion-m5 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m5 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m5 [surmised 124, true 120, gap 4]
+PASS bd-size-m6 [n=66, |S(m)| = 24m = 144 distinct cells]
+PASS bd-criterion-m6 [Lemma 2.2 holds: no 4-cycle, every three-edge path meets a degree-3 vertex]
+PASS bd-meets-lower-bound-m6 [2(11m) + ceil(22m/11) = 24m, so the construction is optimal]
+PASS bd-beats-surmise-m6 [surmised 149, true 144, gap 5]
+PASS bd-mindelta-raw-m1 [n=11 |S|=24: min Delta = 4 over all 7260 pairs, 618 tight]
+PASS bd-mindelta-raw-m2 [n=22 |S|=48: min Delta = 4 over all 116886 pairs, 5880 tight]
+PASS bd-mindelta-raw-m3 [n=33 |S|=72: min Delta = 4 over all 592416 pairs, 21132 tight]
+PASS bd-m1-is-S11 [S(1) is literally the set of Theorem 1.1]
+PASS bd-m2-is-S11-plus-shift [S(2) = S union (S shifted by (+11,+11)), 48 cells, no cross-block cell]
+PASS bd-no-cross-block-cell-m3 [every cell of S(3) lies in a diagonal 11x11 block]
+
+=== I: the published upper bound of arXiv:2605.22307v1 is TRUE ===
+PASS thm33-size-n9 [the paper's own set has 2n+1+floor(n/4) = 21 cells]
+PASS thm33-size-n10 [the paper's own set has 2n+1+floor(n/4) = 23 cells]
+PASS thm33-size-n11 [the paper's own set has 2n+1+floor(n/4) = 25 cells]
+PASS thm33-size-n12 [the paper's own set has 2n+1+floor(n/4) = 28 cells]
+PASS thm33-size-n13 [the paper's own set has 2n+1+floor(n/4) = 30 cells]
+PASS thm33-size-n14 [the paper's own set has 2n+1+floor(n/4) = 32 cells]
+PASS thm33-resolving-n9 [min Delta = 4, so wdim_4 <= 21 holds as published]
+PASS thm33-resolving-n10 [min Delta = 4, so wdim_4 <= 23 holds as published]
+PASS thm33-resolving-n11 [min Delta = 4, so wdim_4 <= 25 holds as published]
+PASS thm33-resolving-n12 [min Delta = 4, so wdim_4 <= 28 holds as published]
+PASS thm33-resolving-n13 [min Delta = 4, so wdim_4 <= 30 holds as published]
+PASS thm33-resolving-n14 [min Delta = 4, so wdim_4 <= 32 holds as published]
+
+=== J: controls -- the same code must accept a proved positive and reject a proved negative ===
+PASS control-full-set-n4 [S = V gives min Delta = 10 = kappa(K_n x K_n) = min(2n+2, 4n-6)]
+PASS control-full-set-n5 [S = V gives min Delta = 12 = kappa(K_n x K_n) = min(2n+2, 4n-6)]
+PASS control-full-set-n6 [S = V gives min Delta = 14 = kappa(K_n x K_n) = min(2n+2, 4n-6)]
+PASS control-full-set-n8 [S = V gives min Delta = 18 = kappa(K_n x K_n) = min(2n+2, 4n-6)]
+PASS control-k3-basis-n5 [the source's proved weak 3-basis: |S| = 2n, min Delta = 3 exactly, so it PASSES k=3 and FAILS k=4]
+PASS control-k3-basis-n7 [the source's proved weak 3-basis: |S| = 2n, min Delta = 3 exactly, so it PASSES k=3 and FAILS k=4]
+PASS control-k3-basis-n9 [the source's proved weak 3-basis: |S| = 2n, min Delta = 3 exactly, so it PASSES k=3 and FAILS k=4]
+PASS control-k3-basis-n11 [the source's proved weak 3-basis: |S| = 2n, min Delta = 3 exactly, so it PASSES k=3 and FAILS k=4]
+
+NOT RE-RUN: n = 9 and n = 10 are NOT decided here.  This program computes the lower bounds 20 and 22 and confirms the published upper bounds 21 and 23, and performs no search in between; the surmised equality may well be correct at those two values of n.
+NOT RE-RUN: no exhaustive or solver search over candidate sets is performed at any n.  Minimality comes only from Theorem 1.2, whose combinatorial steps are hand proofs; this program checks that theorem's ARITHMETIC (the chain 2n <= 4h+3E <= 11E for n = 4..300) and not its Steps 1, 4 and 5.
+NOT RE-RUN: the block-diagonal family is verified against the raw distance rule only at m = 1, 2, 3, and against the Lemma 2.2 criterion at m = 1..6.  The statement for all m >= 1 is the hand proof of Section 5.
+NOT RE-RUN: no text of arXiv:2605.22307v1 is fetched or hashed here, so the quotations, line and byte locators, statement numbers and file digests of Section 1 are NOT machine-checked by this program.  The one numerical value taken from that source on trust is wdim_4(K_3 x K_3) = 6.
+NOT RE-RUN: the constraint-programming runs that originally found S_12, S_13, S_14 and a second 24-cell set at n = 11 are not repeated; they are needed only as a source of upper-bound witnesses, and the witnesses shipped are re-verified above from scratch.  No solver is imported.
+NOT RE-RUN: exact values for n outside {11, 12, 13, 14} and outside the multiples of 11 are neither computed nor bounded better than by 2n+ceil(2n/11) <= wdim_4 <= 2n+1+floor(n/4).
+
+VERDICT: ALL 109 CHECKS PASS
+=== program exited with status 0 ===

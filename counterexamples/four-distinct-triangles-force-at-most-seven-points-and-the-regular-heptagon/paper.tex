@@ -1,0 +1,553 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counting collinear triples, four distinct triangles force at most
+seven points, and the regular heptagon}
+}
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem*{convention}{Convention}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\Tcount}{T}
+\newcommand{\Zs}{\mathbb Z}
+
+\title[Four distinct triangles, collinear triples counted]
+{Counting Collinear Triples, Four Distinct Triangles Force at Most Seven
+Points, and the Regular Heptagon}
+
+\date{}
+
+\subjclass[2020]{52C10, 51M04, 52C35}
+\keywords{distinct triangles, few-distance sets, regular heptagon,
+Cayley--Menger determinant, exhaustive census, Schoenberg's criterion}
+
+\begin{document}
+
+\begin{abstract}
+Count a triangle as a triple of distinct points of the plane up to rigid motion,
+collinear triples included, as Palsson and Yu do. With triangles counted that
+way, and not under the rival convention noted below, we prove their
+Conjecture~4.1: a planar set spanning at most four distinct triangles has at
+most seven points, and a seven-point set spanning four distinct triangles is
+similar to the vertex set of a regular heptagon. The proof
+is a complete census of the $161\,351$ edge-colourings of $K_7$ that use at
+least three distance values and span at most four triangles, an elimination of
+all but one $S_7$-orbit of them by exact polynomial certificates in integer and
+rational arithmetic, a Fourier computation identifying the surviving circulant
+as the regular heptagon, and a short hand argument for eight points and more.
+Under the rival convention that counts only non-collinear triples neither half
+of the conjecture is decided here, and the uniqueness half is false: the regular
+hexagon with its centre is a seven-point counterexample.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For a finite set $S\subset\mathbb R^2$ let $\Tcount(S)$ be the number of
+equivalence classes of $3$-element subsets of $S$ under rigid motions of the
+plane. Palsson and Yu \cite{PY} fix this counting convention explicitly; we
+quote it verbatim:
+
+\begin{convention}
+``To avoid ambiguity regarding degenerate triangles, we can formalize this as
+counting the number of triples of distinct points in a point set, up to the
+equivalence relation defined by rigid plane isometries (hence, the three
+vertices of the triangle are allowed to be collinear, but must be distinct).''
+\end{convention}
+
+\noindent
+So collinear triples are counted, and by side--side--side a class is exactly a
+multiset of three pairwise distances. Their Theorem~1.1 states that a planar set
+spanning at most three distinct triangles has at most six points, uniquely the
+regular hexagon, and their Section~4 then reads, verbatim:
+
+\begin{quote}
+``Firstly, observing that the regular heptagon has $4$ distinct triangles, we
+conjecture that this is optimal:''\\[2pt]
+\textbf{Conjecture 4.1.} ``The maximum number of points in the plane spanning
+four distinct triangles is $7$, achieved only by the regular heptagon.''
+\end{quote}
+
+\begin{theorem}\label{thm:main}
+Count triangles as in the Convention. Then
+\begin{enumerate}
+\item[(a)] every set of seven points in the plane spans at least four distinct
+  triangles;
+\item[(b)] a set of seven points in the plane spanning at most four distinct
+  triangles is similar to the vertex set of a regular heptagon;
+\item[(c)] no set of eight or more points in the plane spans at most four
+  distinct triangles.
+\end{enumerate}
+In particular $\max\{|S| : \Tcount(S)=4\}=7$, attained only by the regular
+heptagon: Conjecture~4.1 of \cite{PY} holds with triangles counted as in the
+Convention. It is not decided here under the rival convention described in the
+Scope paragraph below.
+\end{theorem}
+
+Part~(a) reproves the seven-point case of \cite[Theorem~1.1]{PY} and is used in
+the proof of~(c). Parts~(a) and~(b) are Proposition~\ref{prop:seven} below;
+part~(c) is Proposition~\ref{prop:eight}.
+
+\medskip
+\noindent\textbf{Scope.}
+Theorem~\ref{thm:main} is proved under the Convention, the count \cite{PY}
+states. Under the rival convention that counts only non-collinear triples --- used by
+\cite[Definitions 3.2--3.3]{ELMP} and by \cite{BDPS} --- this paper decides
+\emph{neither} half of Conjecture~4.1, and the uniqueness half is then
+\emph{false}: the regular hexagon together with its centre is a seven-point set
+with exactly four non-collinear classes which is not similar to a regular
+heptagon (Remark~\ref{rem:hexcentre}). Our census enumerates the cell ``at most
+four classes \emph{with} collinear triples counted'', and that configuration has
+five classes in our count, so it was never in the cell; for the same reason
+nothing here bears on the maximality half under the rival convention, which we
+leave open, nor on \cite[Conjecture~2.1]{ELMP} (``any set of seven points in the
+plane determines at least four distinct triangles''), which is stated under the
+non-collinear count.
+
+Lemmas \ref{lem:census}--\ref{lem:small} are finite computations, carried out in
+exact integer and rational arithmetic by the program accompanying this note;
+Sections \ref{sec:objects}, \ref{sec:certs} and~\ref{sec:eight} are by hand, and
+Section~\ref{sec:verify} says what the program covers. The census splits by the
+number $D$ of distinct distances, and $156\,710$ of its $161\,351$ leaves have
+$D=3$; that lane is covered by Shinohara's classification of planar
+three-distance sets \cite{Shinohara}, which is not used here. Enumerate
+colourings, then eliminate by realizability, is the method of Sz\H{o}ll\H{o}si
+and \"Osterg\aa rd \cite{SO}.
+
+\section{The two configurations}\label{sec:objects}
+
+Let $\zeta=e^{2\pi i/7}$ and let $H=\{\zeta^0,\dots,\zeta^6\}$ be the regular
+heptagon. For $g\in\{1,2,3\}$ put
+\[
+  s_g \;=\; |1-\zeta^g|^2 \;=\; 2-2\cos(2\pi g/7),
+\]
+so $s_1,s_2,s_3$ are the three squared chord lengths. With $c=2\cos(2\pi/7)$,
+which satisfies $c^3+c^2-2c-1=0$, one has $s_1=2-c$, $s_2=4-c^2$ and
+$s_3=1+c+c^2$, and
+\begin{equation}\label{eq:chords}
+  s_1,s_2,s_3 \text{ are the three roots of } x^3-7x^2+14x-7 .
+\end{equation}
+All three are positive, because for $x\le 0$ every term of $x^3-7x^2+14x-7$ is
+$\le 0$ and its constant term is $-7<0$; and they are distinct, that cubic being
+irreducible over $\mathbb Q$. Numerically
+$s_1=0.75302\ldots$, $s_2=2.44504\ldots$, $s_3=3.80193\ldots$.
+
+\begin{lemma}\label{lem:heptagon}
+$\Tcount(H)=4$ and $H$ realises exactly three distinct distances. No triple of
+vertices of $H$ is collinear, so $\Tcount(H)=4$ under either convention.
+\end{lemma}
+
+\begin{proof}
+The chord $\zeta^i\zeta^j$ has squared length $s_g$ with
+$g=\min(|i-j|,7-|i-j|)$, and $g\mapsto s_g$ is injective by \eqref{eq:chords},
+so a triple's class is the multiset of the three cyclic gaps it cuts out. Those
+gaps are a partition of $7$ into three positive parts read modulo the folding
+$g\mapsto\min(g,7-g)$, and the four partitions $5{+}1{+}1$, $4{+}2{+}1$,
+$3{+}3{+}1$, $3{+}2{+}2$ give the four multisets
+\[
+  \{s_1,s_1,s_2\},\quad \{s_1,s_2,s_3\},\quad \{s_1,s_3,s_3\},\quad
+  \{s_2,s_2,s_3\},
+\]
+and no others; all $\binom73=35$ triples are accounted for. A triple with
+squared side lengths $a,b,c$ is collinear exactly when
+$2(ab+bc+ca)-(a^2+b^2+c^2)=0$, that expression being sixteen times the squared
+area; it is a nonzero element of $\mathbb Q(c)$ for each of the four multisets
+above.
+\end{proof}
+
+\begin{remark}\label{rem:hexcentre}
+Let $X$ consist of the six vertices of a unit regular hexagon together with its
+centre, say
+\[
+  (\pm 1,0),\ \left(\pm\tfrac12,\pm\tfrac{\sqrt3}2\right),\ (0,0).
+\]
+Its $21$ squared distances take the three integer values $1,3,4$, and its $35$
+triples fall into the five classes
+$\{1,1,1\}$, $\{1,1,3\}$, $\{1,1,4\}$, $\{1,3,4\}$, $\{3,3,3\}$. Exactly one of
+them, $\{1,1,4\}$, is collinear --- a vertex, the centre and the opposite vertex
+--- and it occurs for three triples, whereas $H$ has none. So $\Tcount(X)=5$
+under the Convention, while $X$ spans only four \emph{non-collinear} classes on
+seven points and is not similar to $H$.
+\end{remark}
+
+\section{Colourings, realizability, and two certificates}\label{sec:certs}
+
+Let $S=\{p_0,\dots,p_{n-1}\}\subset\mathbb R^2$ consist of $n$ distinct points
+and let $d_{ij}=|p_i-p_j|^2$. Colour the edge $\{i,j\}$ of $K_n$ by the
+\emph{value} $d_{ij}$; write $D$ for the number of colours. By
+side--side--side, two triples are congruent if and only if their multisets of
+edge colours agree, so
+\begin{equation}\label{eq:Tequals}
+  \Tcount(S) \;=\; \#\{\text{distinct multisets of edge colours of the
+  $\binom n3$ triangles of } K_n\}.
+\end{equation}
+Number the edges $(0,1),(0,2),(1,2),(0,3),\dots,(n-2,n-1)$ and number the
+colours $1,2,\dots$ in order of first appearance; this puts the colouring in a
+unique \emph{restricted-growth word} $w(S)\in\{1,\dots,D\}^{\binom n2}$, and it
+quotients the relabelling of colours exactly. Scaling $S$ scales all $d_{ij}$
+together, so we may and do normalise the squared distance of colour~$1$ to $1$
+and write $y_2,\dots,y_D>0$ for the others; these are pairwise distinct and
+distinct from $1$, since distinct colours are distinct distance values.
+
+We use one classical criterion and two elementary consequences of it.
+
+\begin{lemma}[Schoenberg \cite{Schoenberg}]\label{lem:schoenberg}
+Let $M=(m_{ij})$ be a real symmetric $n\times n$ matrix with zero diagonal and
+fix $b$. There are points $p_0,\dots,p_{n-1}\in\mathbb R^k$ with
+$|p_i-p_j|^2=m_{ij}$ for all $i,j$ if and only if the $(n-1)\times(n-1)$ matrix
+\[
+  G^{(b)} = \left(\tfrac12\left(m_{bi}+m_{bj}-m_{ij}\right)\right)_{i,j\ne b}
+\]
+is positive semidefinite of rank at most $k$. \textup{(}$G^{(b)}$ is the Gram
+matrix of the vectors $p_i-p_b$.\textup{)}
+\end{lemma}
+
+We shall use the criterion in the following equivalent form. Let
+$H_0=\{x\in\mathbb R^n:\sum_ix_i=0\}$. If $m_{ij}=|p_i-p_j|^2$ and
+$\sum_ix_i=0$ then
+\[
+  x^\top Mx=\sum_{i,j}x_ix_j\bigl(|p_i|^2-2\langle p_i,p_j\rangle+|p_j|^2\bigr)
+  =-2\Bigl|\sum_i x_ip_i\Bigr|^2 ,
+\]
+and $\sum_ix_ip_i=\sum_{i\ne b}x_i(p_i-p_b)$, so under
+$x\mapsto(x_i)_{i\ne b}$ the form $-M$ restricted to $H_0$ is twice the
+quadratic form of $G^{(b)}$. In particular $-M|_{H_0}$ is positive semidefinite
+of rank exactly $\rank G^{(b)}$, so realizability in $\mathbb R^k$ says: $-M$ is
+positive semidefinite on $H_0$ with at most $k$ nonzero eigenvalues there.
+
+\begin{corollary}\label{cor:minors}
+If $S\subset\mathbb R^2$ then, for every $b$, every $3\times3$ minor of
+$G^{(b)}$ vanishes; equivalently, every $4$-point Cayley--Menger determinant
+\[
+  \mathrm{CM}(i,j,k,l)=
+  \det\begin{pmatrix}
+    0&1&1&1&1\\ 1&0&d_{ij}&d_{ik}&d_{il}\\
+    1&d_{ij}&0&d_{jk}&d_{jl}\\ 1&d_{ik}&d_{jk}&0&d_{kl}\\
+    1&d_{il}&d_{jl}&d_{kl}&0
+  \end{pmatrix}
+\]
+vanishes.
+\end{corollary}
+
+Fix a restricted-growth word $w$ on $K_n$. Each $\mathrm{CM}(i,j,k,l)$ and each
+$3\times3$ minor of each $G^{(b)}$ is then a polynomial with integer
+coefficients in $y_2,\dots,y_D$, computable from $w$ alone; call these the
+\emph{test polynomials} of $w$. By Corollary~\ref{cor:minors} all of them
+vanish at any planar realization of $w$, whose coordinates $y$ lie in the open
+positive orthant. Hence:
+
+\begin{lemma}[one-signed certificate]\label{lem:onesigned}
+If some test polynomial of $w$ is nonzero and all of its coefficients have the
+same sign, then $w$ has no planar realization.
+\end{lemma}
+
+\begin{proof}
+All exponents are non-negative, so such a polynomial is strictly positive, or
+strictly negative, at every point of the positive orthant, and in particular
+does not vanish there.
+\end{proof}
+
+\begin{lemma}[univariate gcd certificate]\label{lem:gcd}
+Let $U$ be the set of test polynomials of $w$ that involve the single variable
+$y_i$, and let $g=\gcd U\in\mathbb Q[y_i]$, taken monic. Then $g(y_i)=0$ at any
+planar realization. Consequently, writing $g=y_i^{\,k}h$ with $h(0)\ne0$:
+\begin{enumerate}
+\item[(i)] if $h$ is constant and $k=0$, then $w$ has no planar realization;
+\item[(ii)] if $h$ is constant and $k\ge1$, then $y_i=0$, which is impossible
+  for distinct points, so $w$ has no planar realization;
+\item[(iii)] if $\deg h=1$ and its unique root $r$ is positive, then $y_i=r$,
+  and substituting $y_i=r$ into every test polynomial of $w$ leaves a system in
+  the remaining variables to which (i)--(iii) may be applied again.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Every element of $U$ vanishes at a realization, hence so does any polynomial
+combination of them, hence so does $g$. In~(iii), $y_i>0$ forces $y_i=r$ since
+$r$ is the only root of $h$ and $y_i^k\ne0$.
+\end{proof}
+
+\section{Seven points}\label{sec:seven}
+
+Throughout this section $n=7$, so $K_7$ has $21$ edges and
+$\binom73=35$ triples, and the \emph{cell} is the set of restricted-growth words
+on $K_7$ with at most four distinct triple colour-multisets: by
+\eqref{eq:Tequals} the word of any seven-point set with $\Tcount(S)\le4$ lies in
+the cell.
+
+\begin{lemma}\label{lem:census}
+Exactly $161\,351$ words of the cell use $D\ge3$ colours. Every one of them has
+$D\le4$; $156\,710$ have $D=3$ and $4\,641$ have $D=4$. Split further by the
+number of triple multisets realised, the counts are $3\,948$ with $(D,\Tcount)=(3,3)$,
+$152\,762$ with $(3,4)$ and $4\,641$ with $(4,4)$.
+\end{lemma}
+
+\begin{proof}
+A depth-first traversal that assigns colours to the $21$ edges in order,
+maintaining the set of triple multisets already completed and pruning as soon as
+a fifth one appears. The traversal is complete and uncapped: it explores
+$2\,915\,582$ nodes and terminates. That $3\,948+152\,762+4\,641=161\,351$ is
+the arithmetic of the exhaustion.
+\end{proof}
+
+\begin{lemma}\label{lem:filter}
+Of those $161\,351$ words, $81\,306$ have a $4$-subset whose Cayley--Menger
+determinant is a nonzero constant, and $70\,286$ further ones have a $4$-subset
+whose Cayley--Menger determinant is non-constant with all coefficients of one
+sign. By Lemma~\ref{lem:onesigned} none of these $151\,592$ words is
+realizable. The remaining $9\,759$ words form exactly $30$ orbits under the
+action of $S_7$ on the vertices.
+\end{lemma}
+
+\begin{proof}
+A finite computation, $35$ determinants per word; $81\,306+70\,286+9\,759=161\,351$.
+The test depends on the word only through its $4$-subsets, so the surviving set
+is $S_7$-stable, and the orbit count is a union--find over two generators of
+$S_7$. The orbit sizes, in the notation
+$\text{size}^{\,\text{multiplicity}}$, are
+$70$, $105^{\,5}$, $120$, $140$, $210^{\,5}$, $252^{\,2}$, $315^{\,8}$,
+$420$, $630^{\,5}$, $1260$, and they sum to $9\,759$.
+\end{proof}
+
+\begin{lemma}\label{lem:elim}
+Of those $30$ orbits, $27$ carry a $3\times3$ Gram minor that is nonzero with
+all coefficients of one sign, and two more are killed by
+Lemma~\ref{lem:gcd}. Exactly one orbit remains, the orbit of size $120$ of the
+word
+\begin{equation}\label{eq:W}
+  W=1\,1\,2\,2\,1\,3\,2\,3\,1\,3\,3\,2\,3\,1\,2\,3\,3\,2\,2\,1\,1 ,
+\end{equation}
+listed against the edge order
+\begin{gather*}
+  01,\;02,\;12,\;03,\;13,\;23,\;04,\;14,\;24,\;34,\;05,\\
+  15,\;25,\;35,\;45,\;06,\;16,\;26,\;36,\;46,\;56 .
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+For $27$ orbits, Lemma~\ref{lem:onesigned}. The two others have $D=4$, and for
+each of them we record the monic gcd's of Lemma~\ref{lem:gcd} in the order the
+substitutions are made. For
+$1\,1\,2\,1\,3\,4\,1\,4\,3\,2\,2\,1\,1\,1\,1\,3\,1\,1\,1\,1\,4$
+(orbit size $210$): the $8$ test polynomials in $y_2$ alone have gcd
+$y_2^3-2y_2^2$, so $y_2=2$; then the $32$ in $y_3$ alone have gcd
+$y_3^2-2y_3$, so $y_3=2$; then the $2\,192$ in $y_4$ alone have gcd $y_4$,
+forcing $y_4=0$, which case~(ii) of Lemma~\ref{lem:gcd} excludes. For
+$1\,1\,2\,2\,1\,1\,3\,4\,4\,3\,3\,4\,4\,3\,2\,4\,3\,3\,4\,1\,1$
+(orbit size $105$): gcd $y_2^3-2y_2^2$ gives $y_2=2$; gcd $y_3-1$ gives
+$y_3=1$; and then the $2\,288$ test polynomials in $y_4$ alone have gcd $1$, so
+by case~(i) they have no common root at all. (The value $y_3=1$ already
+contradicts $y_3\ne1$, so that orbit dies twice over.) Finally $27+2+1=30$.
+\end{proof}
+
+\begin{lemma}\label{lem:heptagononly}
+A seven-point planar set whose word is $W$ is similar to $H$.
+\end{lemma}
+
+\begin{proof}
+Relabelling the vertices by $\sigma=(0,1,6,2,5,3,4)$, meaning $0\mapsto0$,
+$1\mapsto1$, $2\mapsto6$, $3\mapsto2$, $4\mapsto5$, $5\mapsto3$,
+$6\mapsto4$, carries $W$ to the \emph{gap colouring} of $\Zs_7$, in which the
+colour of $\{i,j\}$ is $\min(|i-j|,7-|i-j|)$; there are $42=|\mathrm{AGL}(1,7)|$
+such relabellings, consistent with the orbit size $5040/42=120$. Each colour
+class of $W$ is a single $7$-cycle; colour~1, for instance, is
+$0\,1\,3\,5\,6\,4\,2$.
+
+So the squared-distance matrix is the circulant $M$ on $\Zs_7$ with
+$M_{ij}=y_{g}$, $g=\min(|i-j|,7-|i-j|)$, for positive $y_1,y_2,y_3$. Its
+eigenvectors are the Fourier modes $v_m=(\omega^{jm})_j$, $\omega=e^{2\pi i/7}$,
+with
+\[
+  \mu_m \;=\; \sum_{g=1}^{3} y_g\,c_{gm},
+  \qquad c_k := 2\cos(2\pi k/7)=c_{7-k},
+\]
+so that $v_0=(1,\dots,1)$ has eigenvalue $\mu_0=2(y_1+y_2+y_3)>0$. The modes
+$v_1,\dots,v_6$ span $H_0$, and $\mu_m=\mu_{7-m}$, so
+Lemma~\ref{lem:schoenberg}, in the equivalent form derived just after it, says
+that realizability in $\mathbb R^2$ amounts to $\mu_m\le0$
+for $m=1,\dots,6$ with at most two of them nonzero. Nonzero eigenvalues come
+in equal pairs, so their number is even, hence $0$ or $2$; it is not $0$, since
+$M\ne0$. Therefore exactly one of $\mu_1,\mu_2,\mu_3$ is negative and the other
+two vanish.
+
+Say $\mu_2=\mu_3=0$. These are two linear equations in $(y_1,y_2,y_3)$ over
+$\mathbb Q(c)$, and the $2\times2$ minor $c_2c_1-c_3c_3$ of their coefficient
+matrix is a nonzero element of that field, so their solution space is a single
+line. The vector $(s_1,s_2,s_3)$ lies on it and gives $\mu_1=-7$, both by direct
+computation in $\mathbb Q(c)$; hence it \emph{spans} it, and
+$(y_1,y_2,y_3)=\lambda(s_1,s_2,s_3)$ with $\lambda>0$. By
+Lemma~\ref{lem:schoenberg} the point set is then determined up to isometry, and
+it is $\sqrt\lambda\,H$.
+
+The two remaining cases are the same set relabelled. The multiplier
+$j\mapsto2j$ of $\Zs_7$ sends gap $g$ to gap $2g$, hence permutes $(1,2,3)$ as
+$(2,3,1)$, and $j\mapsto3j$ as $(3,1,2)$; correspondingly
+$(y_1,y_2,y_3)\propto(s_2,s_3,s_1)$ gives $(\mu_1,\mu_2,\mu_3)=(0,-7,0)$ and
+$(s_3,s_1,s_2)$ gives $(0,0,-7)$, again by computation in $\mathbb Q(c)$. Both
+are the regular heptagon with its three distance classes renamed.
+\end{proof}
+
+\begin{lemma}\label{lem:small}
+No seven-point planar set has $D\le2$.
+\end{lemma}
+
+\begin{proof}
+$D=1$ is impossible already for four points: the Cayley--Menger determinant of a
+monochromatic $4$-subset is a nonzero constant. For $D=2$ it suffices, by
+heredity, to rule out six points. There are $2^{14}-1=16\,383$
+restricted-growth words on the $15$ edges of $K_6$ using exactly two colours,
+and all of them lie in the cell, two colours yielding at most four triple
+multisets automatically. The Cayley--Menger test of Lemma~\ref{lem:onesigned}
+leaves $11\,242$ of them, forming $42$ orbits under $S_6$; of these, $33$ carry
+a one-signed $3\times3$ Gram minor and the remaining $9$ are killed by
+Lemma~\ref{lem:gcd}. So no planar six-point two-distance set exists, which is
+the upper half of Erd\H{o}s and Fishburn's $g(2)=5$ \cite{EF}.
+\end{proof}
+
+\begin{proposition}\label{prop:seven}
+Every seven-point planar set spans at least four distinct triangles, and one
+spanning at most four is similar to $H$.
+\end{proposition}
+
+\begin{proof}
+Let $|S|=7$ with $\Tcount(S)\le4$. By Lemma~\ref{lem:small}, $S$ has $D\ge3$
+distinct distances, so by \eqref{eq:Tequals} its word is one of the $161\,351$
+words of Lemma~\ref{lem:census}; by Lemmas \ref{lem:filter} and~\ref{lem:elim}
+that word lies in the orbit of $W$; by Lemma~\ref{lem:heptagononly} $S$ is
+similar to $H$. That gives~(b), and $\Tcount(H)=4$ by
+Lemma~\ref{lem:heptagon} gives~(a): a seven-point set with
+$\Tcount(S)\le3$ would be similar to $H$ and so have $\Tcount(S)=4$, a
+contradiction.
+\end{proof}
+
+\section{Eight points and more}\label{sec:eight}
+
+\begin{proposition}\label{prop:eight}
+No planar set of eight or more points spans at most four distinct triangles.
+\end{proposition}
+
+\begin{proof}
+Suppose $|S|=8$ and $\Tcount(S)\le4$. For $p\in S$ the classes of $S\setminus\{p\}$
+are among those of $S$, so $\Tcount(S\setminus\{p\})\le4$; and
+$\Tcount(S\setminus\{p\})\ge4$ by Proposition~\ref{prop:seven}(a). Hence
+$\Tcount(S\setminus\{p\})=4$ and, by Proposition~\ref{prop:seven}(b),
+$S\setminus\{p\}$ is the vertex set of a regular heptagon, for every
+$p\in S$.
+
+Pick $p\ne q$ in $S$ and put $R=S\setminus\{p,q\}$, so $|R|=6$ and
+$R\cup\{q\}$, $R\cup\{p\}$ are both regular heptagons. Six vertices of a
+regular heptagon determine the seventh. Indeed they are concyclic and no three
+are collinear, so the circle through any three of them is the circumcircle and
+is determined by $R$; the six points cut that circle into six arcs, of which
+exactly one has length $2\cdot(2\pi/7)$ and the others $2\pi/7$; and the
+missing vertex is the midpoint of the long arc. Applying this to $R$ inside
+$R\cup\{p\}$ and inside $R\cup\{q\}$ gives $p=q$, a contradiction.
+
+If $|S|\ge9$ and $\Tcount(S)\le4$, any eight-point subset $S'$ has
+$\Tcount(S')\le4$ by the same heredity, contradicting the previous paragraph.
+\end{proof}
+
+Theorem~\ref{thm:main} follows: (a) and (b) are Proposition~\ref{prop:seven},
+(c) is Proposition~\ref{prop:eight}, and $\Tcount(H)=4$ with $|H|=7$ shows the
+maximum is attained.
+
+\section{Verification}\label{sec:verify}
+
+The objects the hand arguments use are printed above: the heptagon and its four
+classes in Lemma~\ref{lem:heptagon}, the hexagon-plus-centre in
+Remark~\ref{rem:hexcentre}, the surviving word $W$ in \eqref{eq:W} with its edge
+order and the relabelling $\sigma$ that turns it into the gap colouring of
+$\Zs_7$, the two eliminated $D=4$ words with their gcd chains in
+Lemma~\ref{lem:elim}, and the squared chords in \eqref{eq:chords}. The census
+itself, the $161\,351$ words and the Cayley--Menger counts of
+Lemma~\ref{lem:filter}, the $27$ one-signed Gram minors of
+Lemma~\ref{lem:elim} and both lanes of Lemma~\ref{lem:small} are not printed
+here; they are supplied through the program accompanying this note.
+
+That program recomputes, in exact integer and \texttt{Fraction} arithmetic and
+using the Python standard library only, every numerical claim above: the squared
+chords and their minimal polynomial and the four heptagon classes with their
+non-degeneracy, over $\mathbb Q[c]/(c^3+c^2-2c-1)$; the five classes and one
+collinear class of the hexagon-plus-centre, over $\mathbb Q$; the census of
+Lemma~\ref{lem:census} including its node count and its cross-tabulation; the
+three counts, the $30$ orbits and their size profile in
+Lemma~\ref{lem:filter}; the $27+2+1$ split of Lemma~\ref{lem:elim} with the gcd
+chains printed; the relabelling $\sigma$, the eigenvalue vectors $(-7,0,0)$,
+$(0,-7,0)$, $(0,0,-7)$ and the rank-two minor of
+Lemma~\ref{lem:heptagononly}; and both lanes of Lemma~\ref{lem:small}. It prints
+one line per check and exits $0$ only if all of them pass; all $48$ passed.
+
+Nothing else is machine-checked. Schoenberg's criterion (Lemma~\ref{lem:schoenberg}) is
+quoted, not proved; Proposition~\ref{prop:eight} contains no computation; and
+beyond the single configuration of Remark~\ref{rem:hexcentre} nothing about the
+non-collinear convention is checked. The two certificates are sufficient
+conditions for non-realizability, and no claim is made that the $30$ orbits
+could not be eliminated another way.
+
+\begin{thebibliography}{9}
+
+\bibitem{BDPS}
+H.~N. Brenner, J.~S. Depret-Guillaume, E.~A. Palsson, and S.~Senger,
+\emph{Uniqueness of optimal point sets determining two distinct triangles},
+Integers \textbf{21} (2021), Paper No.~A43;
+\href{https://arxiv.org/abs/1910.00629}{arXiv:1910.00629}.
+Its triangle count is the non-collinear one.
+
+\bibitem{ELMP}
+A.~Epstein, A.~Lott, S.~J. Miller, and E.~A. Palsson,
+\emph{Optimal point sets determining few distinct triangles},
+Integers \textbf{18} (2018), Paper No.~A16.
+Definitions 3.2--3.3 use the non-collinear count; Conjecture~2.1 is stated
+there.
+
+\bibitem{EF}
+P.~Erd\H{o}s and P.~Fishburn,
+\emph{Maximum planar sets that determine $k$ distances},
+Discrete Math. \textbf{160} (1996), 115--125.
+
+\bibitem{PY}
+E.~A. Palsson and E.~Yu,
+\emph{On optimal point sets determining distinct triangles},
+Electron. J. Combin. \textbf{31} (2024), no.~2, Paper No.~P2.24.
+\href{https://doi.org/10.37236/12360}{doi:10.37236/12360};
+\href{https://arxiv.org/abs/2308.13107}{arXiv:2308.13107}.
+Quotations above are verbatim from the source of arXiv:2308.13107v2.
+
+\bibitem{Schoenberg}
+I.~J. Schoenberg,
+\emph{Remarks to Maurice Fr\'echet's article ``Sur la d\'efinition axiomatique
+d'une classe d'espaces distanci\'es vectoriellement applicable sur l'espace de
+Hilbert''},
+Ann. of Math. (2) \textbf{36} (1935), 724--732.
+
+\bibitem{Shinohara}
+M.~Shinohara,
+\emph{Classification of three-distance sets in two dimensional Euclidean
+space},
+European J. Combin. \textbf{25} (2004), 1039--1058.
+\href{https://doi.org/10.1016/j.ejc.2003.12.009}{doi:10.1016/j.ejc.2003.12.009}.
+
+\bibitem{SO}
+F.~Sz\H{o}ll\H{o}si and P.~R.~J. \"Osterg\aa rd,
+\emph{Constructions of maximum few-distance sets in Euclidean spaces},
+Electron. J. Combin. \textbf{27} (2020), no.~1, Paper No.~P1.23.
+\href{https://doi.org/10.37236/8565}{doi:10.37236/8565}.
+
+\end{thebibliography}
+
+\end{document}

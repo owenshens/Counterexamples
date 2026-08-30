@@ -1,0 +1,355 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\emergencystretch=1.5em
+
+\hypersetup{
+  pdftitle={The Clow-Zaguia cop bound is tight at independence number four: f(4)=3}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem*{problemCZ}{Problem 5.2 (Clow and Zaguia)}
+
+\DeclareMathOperator{\cop}{c}
+\newcommand{\al}{\alpha}
+\newcommand{\theonum}{\theta}
+\newcommand{\Gwit}{G}
+
+\title[The cop bound is tight at $\al=4$]
+{The Clow--Zaguia Cop Bound is Tight at Independence Number Four: $f(4)=3$}
+
+\date{}
+
+\subjclass[2020]{05C57, 05C17, 05C69, 91A43}
+\keywords{cops and robbers, cop number, perfect graph, independence number,
+clique cover, rook's graph, tensor product, Latin square graph}
+
+\begin{document}
+
+\begin{abstract}
+Clow and Zaguia proved that every connected perfect graph $G$ with
+$\al(G)\ge 4$ satisfies $\cop(G)<\al(G)$, and asked for the least function
+$f$ with $\cop(G)\le f(\al(G))$ on connected perfect graphs. We settle the
+value $f(4)=3$. The witness is the complement of the $4\times4$ rook's graph,
+equivalently the complement of $L(K_{4,4})$, equivalently the tensor product
+$K_4\times K_4$: a $9$-regular graph on $16$ vertices that is perfect with
+$\al=\theonum=4$ and cop number exactly $3$. Both bounds are proved by hand on
+the printed object; the lower bound $\cop\ge3$ is an explicit robber strategy
+against two cops, given as a six-case invariant. The graph and its cop number
+are already in print, in work of Ahirwar, Bonato, Gittins, Huang, Marbach and
+Zaidman on Latin square graphs; perfection together with $\al=4$ identifies it
+as a witness for $f(4)$.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+We use the game of Cops and Robbers in the convention of Clow and
+Zaguia~\cite{CZ}: the cops occupy vertices first, the robber then chooses a
+vertex, and thereafter the two sides move alternately with the cops moving
+first, each token either staying where it is or moving to an adjacent vertex.
+The cops win if some cop ever occupies the robber's vertex. The cop number
+$\cop(G)$ is the least number of cops with a winning strategy. As
+usual $\al(G)$ is the independence number and $\theonum(G)$ the clique cover
+number. \emph{Perfect} is used in the form Clow and Zaguia state
+\cite[\S1]{CZ}, which by the Strong Perfect Graph Theorem of Chudnovsky,
+Robertson, Seymour and Thomas~\cite{SPGT} is equivalent to the usual one: $G$
+contains no induced odd hole $C_{2k+1}$ and no induced odd antihole,
+$k\ge2$.
+
+The following is Problem 5.2 of~\cite{CZ}, quoted from the arXiv version of
+that paper.
+
+\begin{problemCZ}
+Given an integer $k$, what is the least integer $f(k)$ such that every
+connected perfect graph $G$ with $\al(G)=k$, has $\cop(G)\le f(k)$?
+\end{problemCZ}
+
+A witness must satisfy all three clauses, and all three are checked below: $G$
+connected, $G$ perfect, and $\al(G)$ equal to $k$ \emph{exactly}, not merely at
+least $k$.
+
+The upper half of the case $k=4$ is a corollary of the same paper, which
+proves:
+
+\begin{quote}
+If $G$ is a connected perfect graph with $\al(G)\ge4$, then
+$\cop(G)<\al(G)$.
+\end{quote}
+
+Hence $f(k)\le k-1$ for every $k\ge4$, and in particular $f(4)\le3$. What the
+$k=4$ instance of Problem 5.2 therefore needs is a single connected perfect
+graph with $\al=4$ and cop number $3$. We exhibit one, so the bound of
+\cite{CZ} is tight at $k=4$, and $f(4)=3$.
+
+\section{The witness}\label{sec:witness}
+
+Let $\Gwit$ be the graph whose vertices are the $16$ cells $(i,j)$ of a
+$4\times4$ grid, $i,j\in\{1,2,3,4\}$, with
+\begin{equation}\label{eq:rule}
+  (i,j)\sim(k,l)
+  \quad\Longleftrightarrow\quad
+  i\neq k \ \text{ and }\ j\neq l .
+\end{equation}
+Say two distinct cells \emph{share a line} if they agree in their first or in
+their second coordinate. Then \eqref{eq:rule} says exactly that two distinct
+cells are non-adjacent if and only if they share a line, which is the only
+fact about $\Gwit$ used below. Equivalently $\Gwit$ is the complement of the
+$4\times4$ rook's graph $K_4\mathbin{\square}K_4=L(K_{4,4})$, and also the
+tensor (categorical) product $K_4\times K_4$.
+
+The non-neighbours of $(i,j)$ are the other three cells of row $i$ and the
+other three cells of column $j$, so $\Gwit$ is $9$-regular with
+$|E(\Gwit)|=\tfrac{16\cdot9}{2}=72=\binom{16}{2}-48$, the $48$ non-edges being
+the $4$ rows and $4$ columns at $\binom42=6$ pairs each. Indexing the cell
+$(i,j)$ as vertex $4(i-1)+(j-1)$ and listing cells in lexicographic order
+$11,12,13,14,21,\dots,44$, the \texttt{graph6} string of $\Gwit$ is
+\begin{center}
+\texttt{O?]uf@vmuy\textbackslash o\textbackslash vmzZmf\textbackslash o}
+\end{center}
+The proofs below check two further objects, printed here.
+\begin{itemize}
+\item The four \emph{broken diagonals}
+  $Q_t=\{(i,\,1+((i-1+t)\bmod 4)):1\le i\le4\}$ for $t=0,1,2,3$, that is
+  \[
+    \begin{array}{l}
+      Q_0=\{(1,1),(2,2),(3,3),(4,4)\},\quad
+      Q_1=\{(1,2),(2,3),(3,4),(4,1)\},\\[2pt]
+      Q_2=\{(1,3),(2,4),(3,1),(4,2)\},\quad
+      Q_3=\{(1,4),(2,1),(3,2),(4,3)\}.
+    \end{array}
+  \]
+\item The three-cell set $D=\{(1,1),(2,2),(3,3)\}$.
+\end{itemize}
+
+\begin{lemma}\label{lem:basic}
+$\Gwit$ is connected, perfect, and $\al(\Gwit)=\theonum(\Gwit)=4$.
+\end{lemma}
+
+\begin{proof}
+\emph{Connected.} Two cells sharing a line have a common
+neighbour, namely any cell off both of their rows and both of their columns;
+two cells occupy at most $2$ rows and at most $2$ columns, so at least
+$4-2=2$ rows and at least $2$ columns remain and such a cell exists.
+
+\emph{Perfect.} The rook's graph $K_4\mathbin{\square}K_4$ is the line graph
+$L(K_{4,4})$ of a bipartite graph --- the cell $(i,j)$ corresponds to the edge
+of $K_{4,4}$ joining the $i$th vertex of one side to the $j$th vertex of the
+other, and two cells share a line precisely when the two edges share an
+endpoint. Line graphs of bipartite graphs are perfect, by K\"onig's edge
+colouring theorem; and the complement of a perfect graph is perfect, by the
+Perfect Graph Theorem of Lov\'asz~\cite{Lovasz72}, which \cite[\S1]{CZ} also
+quotes. Hence $\Gwit=\overline{L(K_{4,4})}$ is perfect.
+
+\emph{$\al=4$.} An independent set $S$ of $\Gwit$ is a set of cells that
+pairwise share a line. Suppose $a,b\in S$ lie in the same row $i$ with
+distinct columns $j_1\neq j_2$. Any $c\in S$ off row $i$ must share a line
+with both, hence must lie in column $j_1$ and in column $j_2$, which is
+impossible. So $S$ lies inside a single row; symmetrically, if two elements of
+$S$ share a column then $S$ lies inside a single column. Either way
+$|S|\le4$. A full row is independent, so $\al(\Gwit)=4$.
+
+\emph{$\theonum=4$.} Each $Q_t$ has all four rows distinct and all four
+columns distinct, so by \eqref{eq:rule} it is a clique, indeed a $K_4$; and
+$Q_0,Q_1,Q_2,Q_3$ partition the $16$ cells. Hence $\theonum\le4$. Also
+$\theonum\ge\al=4$, so $\theonum=4$.
+\end{proof}
+
+\begin{lemma}\label{lem:upper}
+$\cop(\Gwit)\le3$.
+\end{lemma}
+
+\begin{proof}
+$D=\{(1,1),(2,2),(3,3)\}$ is a dominating set: a cell $(i,j)$ undominated by
+$D$ would have to satisfy $i=1$ or $j=1$, and $i=2$ or $j=2$, and $i=3$ or
+$j=3$; since $i$ equals at most one of $1,2,3$, the value $j$ would have to
+equal two distinct elements of $\{1,2,3\}$. Three cops placed on a dominating
+set capture on their first move, so $\cop(\Gwit)\le\gamma(\Gwit)\le3$.
+\end{proof}
+
+The lower bound is the substance. It is a strategy for the robber against two
+cops, kept honest by a single invariant.
+
+\begin{lemma}\label{lem:lower}
+Let $m\ge4$ and let $\Gwit_m=K_m\times K_m$, that is, the graph on the $m^2$
+cells of an $m\times m$ grid with the adjacency rule \eqref{eq:rule}. Then two
+cops do not suffice to catch the robber on $\Gwit_m$; hence
+$\cop(\Gwit_m)\ge3$. In particular $\cop(\Gwit)\ge3$.
+\end{lemma}
+
+\begin{proof}
+Call a cell $r$ \emph{safe} for a pair of cop positions $(u_1,u_2)$ if $r$
+shares a line with $u_1$ and with $u_2$. By \eqref{eq:rule} this says exactly
+that $r\notin\{u_1,u_2\}$ and $r$ is adjacent to neither cop. We prove three
+statements; together they say that the robber can occupy a safe cell after
+every one of his moves, and therefore is never caught.
+
+\smallskip
+\noindent\emph{(C) Opening.} For every pair $(u_1,u_2)=((a,b),(c,d))$ of cop
+starting cells, equal cells allowed, a safe cell exists, and the following rule
+names one. If $a=c$, take $r=(a,e)$ with $e\notin\{b,d\}$, which exists since
+$m\ge3>|\{b,d\}|$; then $r$ lies in row $a$ with both cops and equals neither.
+Otherwise, if $b=d$, take $r=(e,b)$ with $e\notin\{a,c\}$, symmetrically.
+Otherwise $a\neq c$ and $b\neq d$; take $r=(a,d)$, which shares row $a$ with
+$u_1$ and column $d$ with $u_2$, and differs from $u_1$ in the second
+coordinate and from $u_2$ in the first.
+
+\smallskip
+\noindent\emph{(A) A cop move out of a safe position cannot capture.} Let $r$
+be safe for $(u_1,u_2)$ and let the cops move to $(u_1',u_2')$ with
+$u_i'\in N[u_i]$. If $u_i'=r$ then either $u_i'=u_i=r$, contradicting
+$r\notin\{u_1,u_2\}$, or $u_i\sim u_i'=r$, contradicting that $r$ is
+non-adjacent to $u_i$.
+
+\smallskip
+\noindent\emph{(B) Safety can be restored.} Let $r=(x,y)$ be safe for the cop
+positions before their move, and let the cops now stand at $u_1'=(p,q)$ and
+$u_2'=(s,t)$; by (A), $r\notin\{u_1',u_2'\}$. We exhibit
+$r'\in N[r]$ safe for $(u_1',u_2')$; note that $N[r]$ consists of $r$ together
+with all cells $(u,v)$ with $u\neq x$ and $v\neq y$. Say a cop
+\emph{threatens} $r$ if it is adjacent to $r$, i.e.\ $u_1'$ threatens $r$
+exactly when $p\neq x$ and $q\neq y$.
+\begin{description}
+\item[Case 0, neither cop threatens $r$.] Then $r$ itself is safe for the new
+  positions; the robber passes, $r'=r$.
+\item[Case 1a, both threaten and $p=s$.] Take $r'=(p,v)$ with
+  $v\notin\{y,q,t\}$, possible since $m\ge4>|\{y,q,t\}|$. Then $r'$ is in row
+  $p$, so it shares a line with both cops; $p\neq x$ and $v\neq y$, so
+  $r'\in N[r]$; and $r'$ is neither $(p,q)$ nor $(s,t)=(p,t)$.
+\item[Case 1b, both threaten, $p\neq s$ and $q\neq t$.] Take $r'=(p,t)$: it
+  shares row $p$ with $u_1'$ and column $t$ with $u_2'$; $p\neq x$ and
+  $t\neq y$; and $r'\neq(p,q)$ as $t\neq q$, $r'\neq(s,t)$ as $p\neq s$.
+\item[Case 1c, both threaten, $p\neq s$ and $q=t$.] Take $r'=(u,q)$ with
+  $u\notin\{x,p,s\}$, possible since $m\ge4>|\{x,p,s\}|$. Then $r'$ is in
+  column $q=t$, so it shares a line with both cops; $u\neq x$ and $q\neq y$;
+  and $r'$ is neither $(p,q)$ nor $(s,q)$.
+\item[Cases 2a and 2b, exactly one cop threatens $r$.] Relabel so that
+  $u_1'=(p,q)$ threatens $r$ and $u_2'=(s,t)$ does not, so $s=x$ or $t=y$; not
+  both, since $(s,t)=(x,y)=r$ is excluded by (A).
+  \begin{description}
+  \item[Case 2a, $s=x$ and $t\neq y$.] Any $r'=(u,v)\in N[r]\setminus\{r\}$
+    has $u\neq x=s$, so sharing a line with $u_2'$ forces $v=t$; and $t\neq y$
+    is given. If $t\neq q$ take $r'=(p,t)$, which shares row $p$ with $u_1'$
+    and column $t$ with $u_2'$, and differs from $(p,q)$ and from $(x,t)$. If
+    $t=q$ take $r'=(u,t)$ with $u\notin\{x,p\}$, possible since $m\ge3$; then
+    $r'$ shares column $t=q$ with $u_1'$ and column $t$ with $u_2'$, and
+    equals neither.
+  \item[Case 2b, $t=y$ and $s\neq x$.] Symmetrically any
+    $r'=(u,v)\in N[r]\setminus\{r\}$ has $v\neq y=t$, so $u=s$. If $s\neq p$
+    take $r'=(s,q)$: it shares column $q$ with $u_1'$ and row $s$ with
+    $u_2'$, and equals neither. If $s=p$ take $r'=(s,v)$ with
+    $v\notin\{y,q\}$, possible since $m\ge3$; then $r'$ is in row $s=p$ with
+    both cops and equals neither.
+  \end{description}
+\end{description}
+No case imposes any condition on \emph{which} move the cops made, so the
+argument covers every cop strategy. By (C) the robber can start safe; by (A)
+no cop move ever captures him; by (B) he restores safety after each cop move.
+Hence he survives forever and $\cop(\Gwit_m)\ge3$. Case 0 uses the robber's
+option to pass, which is part of the convention of~\cite{CZ}.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+$\Gwit$ is a connected perfect graph with $\al(\Gwit)=4$ and
+$\cop(\Gwit)=3$. Consequently $f(4)=3$: the bound $\cop(G)<\al(G)$ of
+\cite{CZ} for connected perfect graphs with $\al\ge4$ is tight at $\al=4$.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:basic} gives connectivity, perfection and $\al=4$;
+Lemmas~\ref{lem:upper} and~\ref{lem:lower} give $3\le\cop(\Gwit)\le3$. So
+$f(4)\ge3$. The corollary of \cite{CZ} quoted in \S1 gives $f(4)\le3$.
+\end{proof}
+
+Only the instance $k=4$ of Problem 5.2 is settled here; no value $f(k)$ with
+$k\neq4$ is determined.
+
+\section{Attribution}\label{sec:prior}
+
+The graph $\Gwit$ and the value $\cop(\Gwit)=3$ are already in print. Ahirwar,
+Bonato, Gittins, Huang, Marbach and Zaidman~\cite{Latin} study Cops and
+Robbers on \emph{Latin square graphs}: for an $m\times m$ Latin square $L$,
+the graph $G(L)$ has the $m^2$ cells as vertices, two distinct cells being
+adjacent when they share a row, share a column, or carry the same symbol.
+They record that ``by directly checking, the cop number of a latin square of
+order 1 or 2 is 1, order 3 is 2, and order 4 is 3''.
+
+Our $\Gwit$ is such a graph. Let $L$ be the Cayley table of the Klein
+four-group, $L(i,j)=i\oplus j$ on $\{0,1,2,3\}$ with $\oplus$ bitwise
+exclusive or, and index the cells of $G(L)$ as $4i+j$, $0\le i,j\le3$. Then
+the permutation
+\[
+  \varphi=(0,\,5,\,10,\,15,\,11,\,14,\,1,\,4,\,13,\,8,\,7,\,2,\,6,\,3,\,12,\,9),
+\]
+read as $\varphi(k)$ for $k=0,\dots,15$ with vertex $k$ of $\Gwit$ being the
+cell $(1+\lfloor k/4\rfloor,\,1+(k\bmod4))$, is an isomorphism
+$G(L)\to\Gwit$; a reader can check the $\binom{16}{2}=120$ pairs directly. So
+the object of Theorem~\ref{thm:main} is the order-$4$ Latin square graph of
+\cite{Latin}, and the integer $3$ is theirs. What perfection and
+$\al(\Gwit)=4$ add is that this graph is a witness for $f(4)$.
+
+\section{Verification}
+
+Every claim above is checkable by hand on the objects printed in
+\S\ref{sec:witness} and \S\ref{sec:prior}. A program accompanies the note,
+\texttt{verify.py}, with its recorded output in \texttt{verify.output.txt}; it
+uses exact integer and bitmask arithmetic and no third-party package. It reads
+the \texttt{graph6} string, the adjacency rule, the broken diagonals, the
+dominating set, the six-case strategy and the permutation $\varphi$ as printed
+here; it recomputes $\al$, $\theonum$ and the domination number by exact
+search; it certifies perfection twice, once by enumerating all $32{,}192$ odd
+vertex subsets of size at least $5$ for an induced odd hole or antihole and
+once by checking that the complement is $L(K_{4,4})$; it replays
+Lemma~\ref{lem:lower} over all $576$ safe states and all $57{,}600$ cop moves
+out of them, in the case-by-case form printed above, and independently decides
+the two-cop game by backward induction over all $16^3\cdot2$ states; and it
+verifies $\varphi$. Its recorded run reports
+\begin{center}
+\texttt{VERDICT: ALL 37 CHECKS PASS}
+\end{center}
+No three-cop solver was run: $\cop(\Gwit)\le3$ rests on the printed dominating
+set, and independently on the corollary of \cite{CZ} quoted in \S1.
+
+\begin{thebibliography}{9}
+
+\bibitem{Latin}
+S.~Ahirwar, A.~Bonato, L.~Gittins, A.~Huang, T.~G. Marbach, and T.~Zaidman,
+\emph{Pursuit-evasion games on latin square graphs},
+J. Comb. \textbf{14} (2023), no.~4, 461--483.
+\href{https://doi.org/10.4310/JOC.2023.v14.n4.a4}{doi:10.4310/JOC.2023.v14.n4.a4};
+\href{https://arxiv.org/abs/2109.14669}{arXiv:2109.14669}.
+The sentence quoted in \S\ref{sec:prior} is from the arXiv e-print.
+
+\bibitem{SPGT}
+M.~Chudnovsky, N.~Robertson, P.~Seymour, and R.~Thomas,
+\emph{The strong perfect graph theorem},
+Ann. of Math. (2) \textbf{164} (2006), no.~1, 51--229.
+\href{https://doi.org/10.4007/annals.2006.164.51}{doi:10.4007/annals.2006.164.51}.
+
+\bibitem{CZ}
+A.~Clow and I.~Zaguia,
+\emph{Cops and Robbers, clique covers, and induced cycles},
+Discrete Math. \textbf{349} (2026), 115252.
+\href{https://doi.org/10.1016/j.disc.2026.115252}{doi:10.1016/j.disc.2026.115252};
+\href{https://arxiv.org/abs/2507.14321}{arXiv:2507.14321v1}.
+Problem 5.2 and the corollary quoted in \S1 are reproduced in full above from
+the arXiv source, version v1, which is the text we read; the numbering of the
+journal text may differ.
+
+\bibitem{Lovasz72}
+L.~Lov\'asz,
+\emph{Normal hypergraphs and the perfect graph conjecture},
+Discrete Math. \textbf{2} (1972), no.~3, 253--267.
+\href{https://doi.org/10.1016/0012-365X(72)90006-4}{doi:10.1016/0012-365X(72)90006-4}.
+
+\end{thebibliography}
+
+\end{document}

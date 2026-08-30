@@ -1,0 +1,379 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Lin's hot-cold maximum-determinant correspondence at order ten}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Fk}{\mathcal F_k}
+\newcommand{\Gk}{\mathcal G_k}
+
+\title[Lin's correspondence at order ten]
+{Lin's Hot--Cold Maximum-Determinant Correspondence at Order Ten}
+
+\date{}
+
+\subjclass[2020]{05B20, 15A15, 05C20}
+\keywords{maximal determinant, skew-symmetric sign matrix, hot matrix, cold matrix,
+Seidel tournament matrix, exhaustive census}
+
+\begin{document}
+
+\begin{abstract}
+A \emph{cold} matrix is a skew-symmetric matrix with zero diagonal and off-diagonal
+entries $\pm1$; the \emph{hot} matrix attached to it is $H=C+I$. Writing $f_k(n)$ and
+$g_k(n)$ for the largest determinants attained in the two families of order~$n$, Lin
+asked, for $n\equiv2\pmod4$, whether $\det H=g_k(n)$ holds precisely when
+$\det(H-I)=f_k(n)$. We settle the cell $n=10$ by exhaustion. Bordering reduces the
+$2^{45}$ labelled order-$10$ cold matrices to the $191{,}536$ isomorphism classes of
+$9$-vertex tournaments, and a census of a covering by $6880\cdot2^{8}=1{,}761{,}280$
+bordered matrices gives $f_k(10)=33489=183^2$ and $g_k(10)=64000=125\cdot2^{9}$, with
+\emph{exactly one} switching-and-permutation class attaining either value. That the
+$6880$-tournament list carrying the covering is complete and has no repeated class is not
+imported: it is certified inside the verification by an exact orbit count against the
+$2^{28}$ labelled $8$-vertex tournaments. Lin's
+equivalence therefore holds at $n=10$ in both directions, quantified over all
+maximisers. The maximiser is exhibited, and its two determinants are read off one
+characteristic polynomial by hand. Both values are already reported in the literature,
+and $f_k(10)$ is proved there.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:q}
+
+The source is a post on Peter Cameron's blog \cite{Cameron2011}, catalogued as Cameron's
+Problem~104. The definitions are Cameron's:
+
+\begin{quote}
+``We define a hot matrix to be a square matrix with entries $\pm1$, with $+1$ on the
+diagonal and off-diagonal entries skew-symmetic''\ (sic) ``; a cold matrix is a
+skew-symmetric matrix with $0$ on the diagonal and all off-diagonal elements $\pm1$.
+There is an obvious bijection between cold and hot matrices, given by $H = C+I$.''
+\end{quote}
+
+\noindent and so is the question:
+
+\begin{quote}
+``Dennis Lin asked whether it is true that, for $n$ congruent to $2 \pmod 4$, if $H$ is a
+hot matrix with maximum determinant, then $H-I$ is a cold matrix with maximum
+determinant. Perhaps it goes the other way as well.''
+\end{quote}
+
+Write $\Fk(n)$ for the cold matrices of order~$n$ and $\Gk(n)=\{C+I: C\in\Fk(n)\}$ for the
+hot ones, and put
+\[
+  f_k(n)=\max_{C\in\Fk(n)}\det C,
+  \qquad
+  g_k(n)=\max_{H\in\Gk(n)}\det H .
+\]
+Odd orders are excluded because a skew-symmetric matrix of odd order is singular, and
+orders divisible by~$4$ are settled by Hadamard's bound whenever a skew-Hadamard matrix
+exists; ``What happens if $n$ is not a multiple of $4$? This was Lin's question''
+\cite{Cameron2011}. The same post records the evidence available for the first such
+order, and warns that the bijection $C\mapsto C+I$ ``does not induce a monotone map on
+their determinants'':
+
+\begin{quote}
+``There are too many matrices for $n = 10$ for an exhaustive search; and in lieu of doing
+anything clever, I simply looked at a few million random matrices \ldots\ (The best I
+found were 64000 for hot and 33489 for cold.)''
+\end{quote}
+
+Armario and Frau restate the question as an explicit equivalence in a refereed journal
+\cite[\S1]{ArmarioFrau2016}: ``it asks to decide whether or not the following equivalence
+holds: $M$ has maximum determinant among the matrices in $F_k(n)$ if and only if $M + I$
+has maximum determinant among the matrices in $G_k(n)$''. That is the statement we prove
+at $n=10$. Their Theorem~2.6 proves the equivalence when
+$f_k(n)=(2n-3)(n-3)^{(n-2)/2}$, which by their Proposition~2.4 requires $2n-3$ to be a
+perfect square, so at $n=10$, where $2n-3=17$, it does not apply.
+
+\section{The result}\label{sec:res}
+
+\begin{theorem}\label{thm:main}
+$f_k(10)=33489=183^2$ and $g_k(10)=64000=125\cdot2^{9}$. Moreover exactly one
+switching-and-permutation class of order-$10$ cold matrices attains $f_k(10)$, exactly one
+attains $g_k(10)$, and the two classes are the same one, namely that of $C=H-I$ for the
+matrix $H$ displayed in \eqref{eq:H} below. Consequently, for $n=10$, a hot matrix has
+maximum determinant if and only if the cold matrix $H-I$ has maximum determinant.
+\end{theorem}
+
+The witness, given as the hot matrix $H=C+I$: rows run top to bottom, \texttt{+} is $+1$
+and \texttt{-} is $-1$; $H$ is hot, i.e.\ its diagonal is $+1$ and $h_{ij}=-h_{ji}$ off
+the diagonal, and $C=H-I$ is cold.
+\begin{equation}\label{eq:H}
+\begin{array}{l}
+\texttt{++++++++++}\\
+\texttt{-+++++--+-}\\
+\texttt{--+++++--+}\\
+\texttt{---++-++--}\\
+\texttt{----++-+++}\\
+\texttt{---+-++-+-}\\
+\texttt{-+--+-+-++}\\
+\texttt{-++--+++--}\\
+\texttt{--++---+++}\\
+\texttt{-+-+-+-+-+}
+\end{array}
+\end{equation}
+
+That this matrix attains both values is a hand computation. The characteristic polynomial
+of $C$ is
+\begin{equation}\label{eq:cp}
+  \det(xI-C)=x^{10}+45x^{8}+770x^{6}+6210x^{4}+23485x^{2}+33489 .
+\end{equation}
+Its constant term is $\det C=33489=183^2$, and since the degree is even,
+$\det H=\det(I+C)$ is the value of \eqref{eq:cp} at $x=-1$, that is
+\[
+  1+45+770+6210+23485+33489=64000=125\cdot2^{9}.
+\]
+The coefficient $45$ is forced and needs no computation: $\operatorname{tr}(C^{\mathsf T}C)=90$
+because all $90$ off-diagonal entries have modulus~$1$, and that trace is twice the
+$x^{8}$~coefficient. The sorted out-degree sequence of the tournament $\{i\to j:
+h_{ij}=+1\}$ is $3,3,4,4,4,4,4,5,5,9$; as an undirected graph on $\{0,\dots,9\}$ with an
+edge $\{i,j\}$, $i<j$, exactly when $h_{ij}=+1$, the same object is the $31$-edge graph
+with \texttt{graph6} string \verb|I~~lkrMig|.
+
+\section{The proof}\label{sec:proof}
+
+Only the maximality and the uniqueness remain, and they come from four lemmas and a
+finite census.
+
+\begin{lemma}[invariance]\label{lem:inv}
+Let $C$ be cold of order~$n$, let $D$ be diagonal with entries $\pm1$ and let $P$ be a
+permutation matrix. Then $DCD$ and $PCP^{\mathsf T}$ are cold, and all three of
+$\det C$, $\det(I+C)$ and the polynomial $\det(xI-C)$ are unchanged.
+\end{lemma}
+
+\begin{proof}
+Both maps preserve the zero diagonal and the moduli of the entries, and skewness is
+preserved because $D$ and $P$ are real. Since $D=D^{-1}$ and $P^{\mathsf T}=P^{-1}$, both
+maps are similarities, so they fix the characteristic polynomial; and
+$I+DCD=D(I+C)D$, $I+PCP^{\mathsf T}=P(I+C)P^{\mathsf T}$, so they fix $\det(I+C)$ as well.
+\end{proof}
+
+Call $C,C'$ \emph{equivalent} when $C'=PDCDP^{\mathsf T}$ for some such $D,P$; by
+Lemma~\ref{lem:inv} both determinants are invariants of the equivalence class. For a
+tournament $T$ on $k$ vertices let $A(T)$ be its Seidel matrix, $a_{ij}=+1$ if $i\to j$
+and $-1$ if $j\to i$, and put
+\[
+  \operatorname{bd}(T)=
+  \begin{pmatrix} 0 & \mathbf 1^{\mathsf T}\\ -\mathbf 1 & A(T)\end{pmatrix},
+\]
+a cold matrix of order $k+1$.
+
+\begin{lemma}[bordering]\label{lem:border}
+Every cold matrix of order $n$ is equivalent to $\operatorname{bd}(T)$ for some tournament
+$T$ on $n-1$ vertices. If $T\cong T'$ then $\operatorname{bd}(T)$ and
+$\operatorname{bd}(T')$ are equivalent.
+\end{lemma}
+
+\begin{proof}
+Index rows by $0,1,\dots,n-1$ and switch by $D=\operatorname{diag}(d_0,\dots,d_{n-1})$ with
+$d_0=+1$ and $d_j=c_{0j}$ for $j\ge1$. The $(0,j)$ entry of $DCD$ is
+$d_0c_{0j}d_j=c_{0j}^2=+1$, so row~$0$ of $DCD$ is $(0,+1,\dots,+1)$ and column~$0$ is its
+negative; the remaining block is the Seidel matrix of a tournament on $n-1$ vertices. The
+second assertion is the case of Lemma~\ref{lem:inv} in which $P$ fixes index~$0$: those
+$P$ act on the lower block as the full symmetric group on $n-1$ letters.
+\end{proof}
+
+This is the standard bordering of Reid and Brown, used in the same form by Klanderman,
+Montee, Piotrowski, Rice and Shader \cite{Klanderman2025}.
+
+\begin{lemma}[covering]\label{lem:cover}
+Let $\mathcal S$ be a set of tournaments on $n-1$ vertices meeting every isomorphism
+class. Then $\{\operatorname{bd}(T):T\in\mathcal S\}$ meets every equivalence class of cold
+matrices of order~$n$. In particular $\max_{T\in\mathcal S}\det\operatorname{bd}(T)=f_k(n)$
+and $\max_{T\in\mathcal S}\det(I+\operatorname{bd}(T))=g_k(n)$, and if all the maximisers in
+$\mathcal S$ are isomorphic tournaments then exactly one equivalence class of cold
+matrices attains the corresponding maximum.
+\end{lemma}
+
+\begin{proof}
+Immediate from Lemma~\ref{lem:border}, since each class contains some
+$\operatorname{bd}(T)$ and $\mathcal S$ contains a tournament isomorphic to that~$T$. For
+the last clause: every class attaining the maximum contains some $\operatorname{bd}(T)$
+with $T\in\mathcal S$ maximal, and isomorphic $T$ give equivalent matrices by
+Lemma~\ref{lem:border}, so all such classes coincide.
+\end{proof}
+
+This is what makes Cameron's ``too many matrices'' finite. At $n=10$ there are
+$2^{45}=35{,}184{,}372{,}088{,}832$ labelled cold matrices, but at most
+$A000568(9)=191{,}536$ equivalence classes.
+
+The covering used below is built from a list of $8$-vertex tournaments, so Lemma~\ref{lem:cover}
+is only as good as the guarantee that the list meets every isomorphism class. That guarantee is
+not taken from the literature: it is certified by the program, and the certificate is the
+following one.
+
+\begin{lemma}[the class list]\label{lem:classlist}
+For $k\le 8$ let $R_k$ be the list obtained from $R_1=\{K_1\}$ by forming all $2^{k-1}$
+one-vertex extensions of every member of $R_{k-1}$ and keeping one tournament per value of the
+canonical code
+\[
+  \operatorname{cd}(T)=\max_{\sigma}\,\bigl(\text{upper-triangle code of }\sigma T\bigr),
+\]
+where $\sigma$ runs over the relabellings that order the out-degrees of $T$
+non-decreasingly. Then $|R_8|=6880$, the members of $R_8$ are
+pairwise non-isomorphic, and every $8$-vertex tournament is isomorphic to exactly one of them.
+\end{lemma}
+
+\begin{proof}
+Two facts, each verified computationally as stated.
+
+\emph{(i) Nothing is lost.} $\operatorname{cd}(T)$ is by construction the upper-triangle code of
+an \emph{explicit} relabelling of $T$, so two tournaments with equal code are both isomorphic to
+the tournament decoded from that code, hence to each other; the program checks for each of the
+$6880$ members that the maximising relabelling reproduces the code and that decoding it returns
+that relabelling. Therefore the deduplication discards a tournament only in favour of an
+isomorphic one. Since deleting a vertex from a $k$-vertex tournament leaves a $(k-1)$-vertex one,
+and an isomorphism of the smaller tournaments extends to the larger, every class at level $k$
+occurs among the one-vertex extensions of $R_{k-1}$; by induction $R_8$ meets every class.
+
+\emph{(ii) Nothing is repeated.} A relabelling permutes out-degrees, so every automorphism fixes
+each vertex's out-degree and $|\!\operatorname{Aut}(T)|$ may be counted over the out-degree-preserving
+permutations alone; the program checks that this count agrees with the count over all $k!$
+relabellings for all $532$ members of $R_1,\dots,R_7$. With $|\!\operatorname{Aut}|$ in hand,
+\[
+  \sum_{T\in R_k}\frac{k!}{|\!\operatorname{Aut}(T)|}=2^{k(k-1)/2}
+  \qquad (2\le k\le 8),
+\]
+verified level by level, the right-hand side being the number of \emph{all} labelled $k$-vertex
+tournaments, $268{,}435{,}456$ at $k=8$. By (i) the orbits of the members of $R_k$ already cover
+those $2^{k(k-1)/2}$ tournaments, so a repeated class would make the left-hand side exceed the
+right; equality forces the members to be pairwise non-isomorphic. In particular
+$|R_8|=6880=A000568(8)$ is the number of classes, not merely an upper bound for it.
+\end{proof}
+
+\noindent Independently, the canonical code is verified to be a complete isomorphism invariant
+by exhaustion at two orders: over all $1024$ labelled $5$-vertex tournaments each code class is
+checked to be exactly one full $120$-relabelling orbit, and over all $32{,}768$ labelled
+$6$-vertex tournaments the codes are checked to take exactly $56=A000568(6)$ values with each
+class of size $720/|\!\operatorname{Aut}|$.
+
+\begin{proposition}[the census]\label{prop:census}
+Take $\mathcal S$ to consist of the $2^{8}=256$ one-vertex extensions of each of the
+$6880$ members of the list $R_8$ of Lemma~\ref{lem:classlist}, so
+$|\mathcal S|=1{,}761{,}280$; deleting a vertex from a $9$-vertex tournament leaves an
+$8$-vertex one, which by Lemma~\ref{lem:classlist} is isomorphic to a member of $R_8$, and
+that isomorphism extends, so $\mathcal S$ meets every isomorphism class of $9$-vertex
+tournaments.
+Over $\mathcal S$,
+\[
+  \max_T\det\operatorname{bd}(T)=33489,
+  \qquad
+  \max_T\det\bigl(I+\operatorname{bd}(T)\bigr)=64000,
+\]
+the two maxima are attained by the same nine members of $\mathcal S$, and those nine are
+pairwise isomorphic tournaments, forming the single class of \eqref{eq:H}.
+\end{proposition}
+
+Theorem~\ref{thm:main} follows from Proposition~\ref{prop:census} by
+Lemma~\ref{lem:cover}, the last clause of that lemma giving both the uniqueness and the
+coincidence of the two argmax sets, and hence Lin's equivalence at $n=10$ in both
+directions. The census is $1{,}761{,}280$ pairs of exact integer $10\times10$
+determinants, computed in exact integer arithmetic; it is carried out by \texttt{verify.py}
+in the accompanying material, and \texttt{verify.output.txt} is a recorded run of that
+program.
+
+\medskip
+\noindent\textbf{What else was checked.} The same program reproduces the published cells
+$(f_k,g_k)=(9,16)$, $(81,160)$ and $(2401,4096)$ at $n=4,6,8$, the first two also by brute
+force over all $2^{6}$ and all $2^{15}$ labelled cold matrices; the isomorphism-class
+counts $1,1,2,4,12,56,456,6880$ on $1$ to $8$ vertices against $A000568$ \cite{OEIS568};
+the set of order-$10$ Seidel tournament determinants published in \cite{Klanderman2025};
+and the two order-reversing order-$10$ pairs recorded by Orrick \cite{OrrickComment},
+$(\det H,\det C)=(45056,21609)$ and $(46080,20449)$, which occur among the leaves.
+
+\section{Relation to the literature, and scope}\label{sec:status}
+
+Both records are already in print. Alvarez, Armario, Frau and Gudiel write, in the first
+section of \cite{Alvarez2015}: ``For $n\leq30$, orders $18$, $22$, $30$ are unresolved.
+The case $n=10$ was solved by Cameron, $g_k(10)=64000$ and $f_k(10)=33489$, using a random
+search and again Lin's correspondence was confirmed.'' Moreover $f_k(10)=33489$ is
+\emph{proved} in print: the complete set of determinants of order-$10$ Seidel tournament
+matrices is computed in \cite{Klanderman2025}, and $33489$ is its largest element. The
+census above establishes both values, the equivalence in both directions, and the
+uniqueness of the maximising class, independently and by exhaustion; it establishes
+nothing about priority, and we claim none. Of the two further items bearing on a possible
+earlier tabulation, the first has now been read and does not overlap: Zeng and You
+\cite{ZengYou2026} study, for odd $k$, the hereditary class $\mathcal D_k$ of tournaments
+all of whose subtournaments have determinant at most $k^2$, characterising $\mathcal D_5$
+and constructing, for each odd $k$, a tournament of determinant $k^2$ in
+$\mathcal D_k\setminus\mathcal D_{k-2}$; no order is singled out, no maximum over an order
+is computed, and the hot matrix $C+I$ does not occur there. The second, Seberry and
+Yamada, \emph{Hadamard Matrices} (Wiley, 2020), ch.~12, \emph{More on Maximal Determinant
+Matrices}, pp.~245--269, we were unable to consult. It is a survey chapter on maximal
+determinants, so it may well record $f_k(10)$ or $g_k(10)$; as those two constants are in
+any case credited above to \cite{Alvarez2015} and \cite{Klanderman2025}, the content
+claimed here is the exhaustive proof of Lin's equivalence at $n=10$ quantified over all
+maximisers, together with the uniqueness of the maximising class, and not either constant.
+
+The scope is the cell $n=10$ only, against a question quantified over all
+$n\equiv2\pmod4$. Orders $18$, $22$ and $30$ are unresolved before and after this note,
+exactly as \cite{Alvarez2015} records, and the method here does not reach $n=18$: it would
+require the isomorphism classes of $17$-vertex tournaments. Nothing here bears on the
+unrestricted maximal-determinant problem.
+
+\begin{thebibliography}{9}
+
+\bibitem{Alvarez2015}
+V.~Alvarez, J.~A. Armario, M.~D. Frau, and F.~Gudiel,
+\emph{Determinants of $(-1,1)$-matrices of the skew-symmetric type: a cocyclic approach},
+Open Math. \textbf{13} (2015), no.~1, 16--25.
+\href{https://doi.org/10.1515/math-2015-0003}{doi:10.1515/math-2015-0003};
+\href{https://arxiv.org/abs/1311.7250}{arXiv:1311.7250}.
+
+\bibitem{ArmarioFrau2016}
+J.~A. Armario and M.~D. Frau,
+\emph{On skew E-W matrices},
+J. Combin. Des. \textbf{24} (2016), no.~5, 461--472.
+\href{https://doi.org/10.1002/jcd.21519}{doi:10.1002/jcd.21519}.
+
+\bibitem{Cameron2011}
+P.~J. Cameron,
+\emph{A matrix problem},
+Peter Cameron's Blog, 19 August 2011.
+\href{https://cameroncounts.wordpress.com/2011/08/19/a-matrix-problem/}%
+{cameroncounts.wordpress.com/2011/08/19/a-matrix-problem/};
+catalogued as Cameron's Problem~104.
+
+\bibitem{Klanderman2025}
+J.~Klanderman, M.~Montee, A.~Piotrowski, A.~Rice, and B.~Shader,
+\emph{Determinants of Seidel tournament matrices},
+Linear Algebra Appl. \textbf{707} (2025), 126--151.
+\href{https://doi.org/10.1016/j.laa.2024.11.011}{doi:10.1016/j.laa.2024.11.011};
+\href{https://arxiv.org/abs/2406.09697}{arXiv:2406.09697}.
+
+\bibitem{OrrickComment}
+W.~Orrick,
+comment of 25 August 2011 on \cite{Cameron2011},
+recording two order-reversing order-$10$ pairs, and both records with ``appears to be''.
+
+\bibitem{ZengYou2026}
+J.~Zeng and L.~You,
+\emph{On determinants of tournaments and the characterization of $\mathcal D_5$},
+Discrete Math. \textbf{349} (2026), no.~2, 114766;
+\href{https://arxiv.org/abs/2408.06992}{arXiv:2408.06992} (\emph{On determinants of
+tournaments and $\mathcal D_k$}).
+
+\bibitem{OEIS568}
+The OEIS Foundation,
+\emph{Sequence A000568: number of tournaments on $n$ nodes},
+The On-Line Encyclopedia of Integer Sequences.
+\href{https://oeis.org/A000568}{oeis.org/A000568}.
+
+\end{thebibliography}
+
+\end{document}

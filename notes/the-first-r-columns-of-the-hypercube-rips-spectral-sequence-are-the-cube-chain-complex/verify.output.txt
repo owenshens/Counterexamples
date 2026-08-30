@@ -1,0 +1,178 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  41c0edbec3e7ab512c4b31a0b23bf22f5f3dbb322b1eeb0ac60c504efaaf64ec
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- the first r+1 columns of the cubic-dimension spectral sequence
+exact integer arithmetic only; ranks over GF(46337) and GF(1000003)
+
+-- G1  Lemma 3.1, the collapse:  C^{p,r}_{p+.,p} = C_{p+.}(Delta, U)
+PASS collapse-rips-vacuous-p1 [diam Q_1 = 1 <= r = 1, so every non-empty subset is a face]
+PASS collapse-cdim-is-full-support-p1 [|Delta|=3 |U|=2 |Delta\U|=1]
+PASS collapse-U-is-union-of-2p-halfcubes-p1 [2p = 2 half-cube simplices, |U| = 2 faces]
+PASS collapse-differential-p1 [every codim-1 face of a full-support face is full-support or in U]
+PASS collapse-rips-vacuous-p2 [diam Q_2 = 2 <= r = 2, so every non-empty subset is a face]
+PASS collapse-cdim-is-full-support-p2 [|Delta|=15 |U|=8 |Delta\U|=7]
+PASS collapse-U-is-union-of-2p-halfcubes-p2 [2p = 4 half-cube simplices, |U| = 8 faces]
+PASS collapse-differential-p2 [every codim-1 face of a full-support face is full-support or in U]
+PASS collapse-rips-vacuous-p3 [diam Q_3 = 3 <= r = 3, so every non-empty subset is a face]
+PASS collapse-cdim-is-full-support-p3 [|Delta|=255 |U|=62 |Delta\U|=193]
+PASS collapse-U-is-union-of-2p-halfcubes-p3 [2p = 6 half-cube simplices, |U| = 62 faces]
+PASS collapse-differential-p3 [every codim-1 face of a full-support face is full-support or in U]
+PASS collapse-rips-vacuous-p4 [diam Q_4 = 4 <= r = 4, so every non-empty subset is a face]
+PASS collapse-cdim-is-full-support-p4 [|Delta|=65535 |U|=1760 |Delta\U|=63775]
+PASS collapse-U-is-union-of-2p-halfcubes-p4 [2p = 8 half-cube simplices, |U| = 1760 faces]
+PASS collapse-differential-p4 [every codim-1 face of a full-support face is full-support or in U]
+-- G2  Remark 3.2, the counts at p = 4 and the dimension vector (3.2)
+PASS count-complement-p1 [|U| = 2, |full support| = 1, 2^(2^1) - 1 = 3]
+PASS count-complement-p2 [|U| = 8, |full support| = 7, 2^(2^2) - 1 = 15]
+PASS count-complement-p3 [|U| = 62, |full support| = 193, 2^(2^3) - 1 = 255]
+PASS count-complement-p4 [|U| = 1760, |full support| = 63775, 2^(2^4) - 1 = 65535]
+PASS count-ie-partials [8*255, 24*15, 32*3, 16*1 as printed]
+PASS count-ie-alternating [2040 - 360 + 96 - 16 = 1760]
+PASS count-U4-faces [1760]
+PASS count-ie-cover-structure [k-fold non-empty intersections of the 8 half-cubes, and 2^|.|-1]
+PASS dims-3.2 [degrees 1..15 of C^{4,4}_{4+.,4}]
+PASS dims-3.2-total [63775]
+PASS dims-3.2-complement [65535 - 1760]
+PASS dims-3.2-euler [sum_k (-1)^k dim = +1]
+-- G3  Section 3, Diamond_p = (S^0)^{*p}, the cycle z, and its character
+PASS nerve-fvector-p1 [faces of dimension 0..0 of Diamond_1]
+PASS char0-pin-nerve-p1 [nonzero_mod_P=[0] euler=1 (-1)^0=1 => betti_Q = 1 in degree 0 only]
+PASS nerve-is-sphere-p1 [reduced homology of Diamond_1 = that of S^0]
+PASS nerve-fvector-p2 [faces of dimension 0..1 of Diamond_2]
+PASS char0-pin-nerve-p2 [nonzero_mod_P=[1] euler=-1 (-1)^1=-1 => betti_Q = 1 in degree 1 only]
+PASS nerve-is-sphere-p2 [reduced homology of Diamond_2 = that of S^1]
+PASS nerve-fvector-p3 [faces of dimension 0..2 of Diamond_3]
+PASS char0-pin-nerve-p3 [nonzero_mod_P=[2] euler=1 (-1)^2=1 => betti_Q = 1 in degree 2 only]
+PASS nerve-is-sphere-p3 [reduced homology of Diamond_3 = that of S^2]
+PASS nerve-fvector-p4 [faces of dimension 0..3 of Diamond_4]
+PASS char0-pin-nerve-p4 [nonzero_mod_P=[3] euler=-1 (-1)^3=-1 => betti_Q = 1 in degree 3 only]
+PASS nerve-is-sphere-p4 [reduced homology of Diamond_4 = that of S^3]
+PASS nerve-fvector-p5 [faces of dimension 0..4 of Diamond_5]
+PASS char0-pin-nerve-p5 [nonzero_mod_P=[4] euler=1 (-1)^4=1 => betti_Q = 1 in degree 4 only]
+PASS nerve-is-sphere-p5 [reduced homology of Diamond_5 = that of S^4]
+PASS nerve-fvector-p6 [faces of dimension 0..5 of Diamond_6]
+PASS char0-pin-nerve-p6 [nonzero_mod_P=[5] euler=-1 (-1)^5=-1 => betti_Q = 1 in degree 5 only]
+PASS nerve-is-sphere-p6 [reduced homology of Diamond_6 = that of S^5]
+PASS nerve-fvector-p7 [faces of dimension 0..6 of Diamond_7]
+PASS char0-pin-nerve-p7 [nonzero_mod_P=[6] euler=1 (-1)^6=1 => betti_Q = 1 in degree 6 only]
+PASS nerve-is-sphere-p7 [reduced homology of Diamond_7 = that of S^6]
+PASS nerve-is-the-cover-nerve-p2 [8 non-empty intersection patterns]
+PASS nerve-intersections-are-simplices-p2 [each non-empty intersection is a full simplex on 2^(p-|I|) vertices, so the nerve theorem applies]
+PASS nerve-is-the-cover-nerve-p3 [26 non-empty intersection patterns]
+PASS nerve-intersections-are-simplices-p3 [each non-empty intersection is a full simplex on 2^(p-|I|) vertices, so the nerve theorem applies]
+PASS nerve-is-the-cover-nerve-p4 [80 non-empty intersection patterns]
+PASS nerve-intersections-are-simplices-p4 [each non-empty intersection is a full simplex on 2^(p-|I|) vertices, so the nerve theorem applies]
+PASS z-table-matches-formula-3.3 [the 16 printed terms are exactly (-1)^{eps_1+...+eps_4}]
+PASS z-is-a-cycle-p1 [dz = 0 in C_{0}(Diamond_1), 2 terms]
+PASS z-spans-top-homology-p1 [dim ker d_0 = 2 - 1 = 1, and z is a non-zero element of it]
+PASS z-is-a-cycle-p2 [dz = 0 in C_{1}(Diamond_2), 4 terms]
+PASS z-spans-top-homology-p2 [dim ker d_1 = 4 - 3 = 1, and z is a non-zero element of it]
+PASS z-is-a-cycle-p3 [dz = 0 in C_{2}(Diamond_3), 8 terms]
+PASS z-spans-top-homology-p3 [dim ker d_2 = 8 - 7 = 1, and z is a non-zero element of it]
+PASS z-is-a-cycle-p4 [dz = 0 in C_{3}(Diamond_4), 16 terms]
+PASS z-spans-top-homology-p4 [dim ker d_3 = 16 - 15 = 1, and z is a non-zero element of it]
+PASS z-is-a-cycle-p5 [dz = 0 in C_{4}(Diamond_5), 32 terms]
+PASS z-spans-top-homology-p5 [dim ker d_4 = 32 - 31 = 1, and z is a non-zero element of it]
+PASS z-is-a-cycle-p6 [dz = 0 in C_{5}(Diamond_6), 64 terms]
+PASS z-spans-top-homology-p6 [dim ker d_5 = 64 - 63 = 1, and z is a non-zero element of it]
+PASS z-character-is-det-p1 [g.z = det(g) z on all 2 elements of H_1]
+PASS z-character-is-det-p2 [g.z = det(g) z on all 8 elements of H_2]
+PASS z-character-is-det-p3 [g.z = det(g) z on all 48 elements of H_3]
+PASS z-character-is-det-p4 [g.z = det(g) z on all 384 elements of H_4]
+PASS z-character-is-det-p5 [g.z = det(g) z on all 3840 elements of H_5]
+-- G4  Lemma 4.1 and Remark 4.2(a): H_k(Delta,U) = k in degree p only
+PASS char0-pin-U-p1 [nonzero_mod_P=[0] euler=1 (-1)^0=1 => betti_Q = 1 in degree 0 only]
+PASS U-is-a-sphere-p1 [reduced homology of U_1 concentrated in degree 0 (U_1 has 2 faces)]
+PASS char0-pin-local-p1 [nonzero_mod_P=[1] euler=-1 (-1)^1=-1 => betti_Q = 1 in degree 1 only]
+PASS local-homology-p1 [H_k(C^{1,1}_{1+.,1}) = k for k = 1 only, 1 generators]
+PASS two-routes-agree-p1 [H_k(Delta,U) = reduced H_{k-1}(U) for every k]
+PASS local-second-prime-p1 [GF(1000003) agrees with GF(46337)]
+PASS char0-pin-U-p2 [nonzero_mod_P=[1] euler=-1 (-1)^1=-1 => betti_Q = 1 in degree 1 only]
+PASS U-is-a-sphere-p2 [reduced homology of U_2 concentrated in degree 1 (U_2 has 8 faces)]
+PASS char0-pin-local-p2 [nonzero_mod_P=[2] euler=1 (-1)^2=1 => betti_Q = 1 in degree 2 only]
+PASS local-homology-p2 [H_k(C^{2,2}_{2+.,2}) = k for k = 2 only, 7 generators]
+PASS two-routes-agree-p2 [H_k(Delta,U) = reduced H_{k-1}(U) for every k]
+PASS local-second-prime-p2 [GF(1000003) agrees with GF(46337)]
+PASS char0-pin-U-p3 [nonzero_mod_P=[2] euler=1 (-1)^2=1 => betti_Q = 1 in degree 2 only]
+PASS U-is-a-sphere-p3 [reduced homology of U_3 concentrated in degree 2 (U_3 has 62 faces)]
+PASS char0-pin-local-p3 [nonzero_mod_P=[3] euler=-1 (-1)^3=-1 => betti_Q = 1 in degree 3 only]
+PASS local-homology-p3 [H_k(C^{3,3}_{3+.,3}) = k for k = 3 only, 193 generators]
+PASS two-routes-agree-p3 [H_k(Delta,U) = reduced H_{k-1}(U) for every k]
+PASS local-second-prime-p3 [GF(1000003) agrees with GF(46337)]
+PASS char0-pin-U-p4 [nonzero_mod_P=[3] euler=-1 (-1)^3=-1 => betti_Q = 1 in degree 3 only]
+PASS U-is-a-sphere-p4 [reduced homology of U_4 concentrated in degree 3 (U_4 has 1760 faces)]
+PASS char0-pin-local-p4 [nonzero_mod_P=[4] euler=1 (-1)^4=1 => betti_Q = 1 in degree 4 only]
+PASS local-homology-p4 [H_k(C^{4,4}_{4+.,4}) = k for k = 4 only, 63775 generators]
+PASS two-routes-agree-p4 [H_k(Delta,U) = reduced H_{k-1}(U) for every k]
+PASS lefschetz-character-target-4-4 [sum_k (-1)^k tr(g|C_k) = (-1)^4*det on all 384 elements of H_4]
+-- G5  Proposition 2.3 and step D4: the cube's chain complex at n = 6
+PASS cube-dim-F0 [C(6,0) 2^6 = 64 p-cells of Q_6]
+PASS cube-dim-F1 [C(6,1) 2^5 = 192 p-cells of Q_6]
+PASS cube-dim-F2 [C(6,2) 2^4 = 240 p-cells of Q_6]
+PASS cube-dim-F3 [C(6,3) 2^3 = 160 p-cells of Q_6]
+PASS cube-dim-F4 [C(6,4) 2^2 = 60 p-cells of Q_6]
+PASS cube-index-F0 [[H_6 : S_6 x H_0] = 46080 / 720]
+PASS cube-index-F1 [[H_6 : S_5 x H_1] = 46080 / 240]
+PASS cube-index-F2 [[H_6 : S_4 x H_2] = 46080 / 192]
+PASS cube-index-F3 [[H_6 : S_3 x H_3] = 46080 / 288]
+PASS cube-index-F4 [[H_6 : S_2 x H_4] = 46080 / 768]
+PASS cube-dim-F4-is-60 [dim E^1_{4,0}(X^{6,4}) = dim F_4 = 60]
+PASS cube-boundary-units-p1 [each of the 192 1-cells has 2 facets, coefficients +-1]
+PASS cube-boundary-squares-to-zero-p1 [d_0 d_1 = 0]
+PASS cube-boundary-units-p2 [each of the 240 2-cells has 4 facets, coefficients +-1]
+PASS cube-boundary-squares-to-zero-p2 [d_1 d_2 = 0]
+PASS cube-boundary-units-p3 [each of the 160 3-cells has 6 facets, coefficients +-1]
+PASS cube-boundary-squares-to-zero-p3 [d_2 d_3 = 0]
+PASS cube-boundary-units-p4 [each of the 60 4-cells has 8 facets, coefficients +-1]
+PASS cube-boundary-squares-to-zero-p4 [d_3 d_4 = 0]
+PASS cube-flag-transitive-p1 [H_6 is transitive on the 384 flags (K' facet of K)]
+PASS cube-flag-transitive-p2 [H_6 is transitive on the 960 flags (K' facet of K)]
+PASS cube-flag-transitive-p3 [H_6 is transitive on the 960 flags (K' facet of K)]
+PASS cube-flag-transitive-p4 [H_6 is transitive on the 480 flags (K' facet of K)]
+-- G6  controls on the published integers of Galetto-Montano-Wellner
+PASS published-dims-p2-r2 [degrees 1..3 of C^{2,2}_{.,2}]
+PASS published-dims-p2-r2-exhaustive [no degree outside the published range is occupied]
+PASS published-two-primes-p2-r2 [GF(1000003) agrees with GF(46337)]
+PASS char0-pin-control-p2-r2 [nonzero_mod_P=[2] euler=1 (-1)^2=1 => betti_Q = 1 in degree 2 only]
+PASS control-in-range-silent-p2-r2 [in range p <= r: homology in degree 2 only, as published]
+PASS lefschetz-character-control-p2-r2 [sum_k (-1)^k tr(g|C_k) = (-1)^2*det on all 8 elements of H_2]
+PASS published-dims-p3-r3 [degrees 1..7 of C^{3,3}_{.,3}]
+PASS published-dims-p3-r3-exhaustive [no degree outside the published range is occupied]
+PASS published-two-primes-p3-r3 [GF(1000003) agrees with GF(46337)]
+PASS char0-pin-control-p3-r3 [nonzero_mod_P=[3] euler=-1 (-1)^3=-1 => betti_Q = 1 in degree 3 only]
+PASS control-in-range-silent-p3-r3 [in range p <= r: homology in degree 3 only, as published]
+PASS lefschetz-character-control-p3-r3 [sum_k (-1)^k tr(g|C_k) = (-1)^3*det on all 48 elements of H_3]
+PASS published-dims-p4-r3 [degrees 2..7 of C^{4,3}_{.,4}]
+PASS published-dims-p4-r3-exhaustive [no degree outside the published range is occupied]
+PASS published-two-primes-p4-r3 [GF(1000003) agrees with GF(46337)]
+PASS control-off-range-FIRES-p4-r3 [p = 4 > r = 3: the mod-P Betti vector is non-zero in TWO degrees, reproducing the anomaly published at source line 2309 -- the negative control fires. NB a mod-P Betti number only BOUNDS the characteristic-zero one from above, so this reproduces the published answer, it does not derive it]
+PASS control-off-range-euler-p4-r3 [and the alternating sum is 0, consistent with one class in degree 4 and one in degree 7]
+PASS lefschetz-character-control-p4-r3 [sum_k (-1)^k tr(g|C_k) = (-1)^4*det + (-1)^7*triv on all 384 elements of H_4]
+PASS offrange-3-2-two-primes [GF(1000003) agrees with GF(46337)]
+PASS offrange-3-2-bullet-i-FAILS [dim_GF(P) H_3(C^{3,2}_{.,3}) = 2 > 1, over both primes: bullet (i) fails off range while bullet (ii) survives. The characteristic-zero value 2 and the splitting {1^3;0}+{0;1^3} are published at source lines 1760-1780 and are reproduced, not derived, here]
+PASS offrange-3-2-bullet-ii-survives [the vanishing for q != 0 still holds at (p,r) = (3,2)]
+PASS truncation-boundary-r2 [at p = r+1 = 3 the 4 antipodal pairs are the minimal full-support subsets and sit at distance 3 > r = 2]
+PASS truncation-boundary-r3 [at p = r+1 = 4 the 8 antipodal pairs are the minimal full-support subsets and sit at distance 4 > r = 3]
+PASS truncation-boundary-r4 [at p = r+1 = 5 the 16 antipodal pairs are the minimal full-support subsets and sit at distance 5 > r = 4]
+
+NOT RE-RUN: the two results quoted from Galetto-Montano-Wellner and not reproved in the paper -- the n-freeness of the p-th column (source lines 930-939, label pro:1) and the induced description of F_i with its determinant character (lines 1029-1047, lem:1). Every check above is therefore made at n = p, which is exactly the case those results reduce to; nothing here verifies the reduction itself.
+
+NOT RE-RUN: the standard topology the proof cites -- the long exact sequence of a pair, the nerve theorem, the Mayer-Vietoris spectral sequence of a cover, and the Kunneth formula for a join. What is checked is that their CONCLUSIONS agree with direct computation at p <= 4 (check two-routes-agree-p*), not the theorems.
+
+NOT RE-RUN: Lemma 4.1 itself. The marginal map argument is a homotopy of topological pairs and is not modelled here; what is checked is its numerical consequence, degree by degree, at p <= 4, plus the H_p-character of the answer.
+
+NOT RE-RUN: any cell with p = r >= 5. That would need 2^32 subsets of V(Q_5). The proof of the paper is uniform in n, r and p; the machine evidence here stops at p = 4, and the equivariant character check stops at p = 5 (nerve) and p = 4 (chain level).
+
+NOT RE-RUN: the flag-transitivity and unit-coefficient steps of D4 at general n. They are checked only at n = 6 and p <= 4.
+
+NOT RE-RUN: the characteristic-zero labelling {lambda;mu} of H_m-irreducibles. This program computes characters as integer class functions and compares them with det and with the trivial character; it does not decompose any representation into the source's labelled irreducibles.
+
+NOT RE-RUN: the two off-range facts of Section 6(3) as statements about H_m-isomorphism TYPES. Their dimensions and Lefschetz characters are reproduced; the identifications {1^3;0}+{0;1^3} at (3,2) and {4;0} at (4,3) are quoted from the source.
+
+NOT RE-RUN: the literature. This program performs no search, fetches nothing, and checks no citation.
+
+[24.3s] 144 checks ran, 0 failed
+VERDICT: ALL 144 CHECKS PASS
+=== program exited with status 0 ===

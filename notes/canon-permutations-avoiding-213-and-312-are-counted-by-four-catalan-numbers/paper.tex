@@ -1,0 +1,323 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Canon permutations avoiding 213 and 312 are counted by four Catalan numbers}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{conjecture*}{Conjecture (Laudone)}
+
+\newcommand{\Cat}{C}
+\newcommand{\wrd}[1]{\texttt{#1}}
+
+\title[Canon permutations avoiding $213$ and $312$]
+{Canon permutations avoiding $213$ and $312$ are counted by four Catalan
+numbers}
+\date{}
+
+\subjclass[2020]{Primary 05A05; Secondary 05A15, 05A19, 05E10}
+\keywords{canon permutation, pattern avoidance, Catalan number, ballot
+sequence, standard Young tableau, multiset permutation}
+
+\begin{document}
+
+\begin{abstract}
+Let $C_3^k$ be the set of canon permutations of the multiset
+$\{1^k,2^k,3^k\}$, and let $c_3^k(\Lambda)$ count those avoiding every
+pattern in $\Lambda$. Laudone conjectured that
+$c_3^k(213,312)=4\Cat_k$ for all $k\ge 1$, where $\Cat_k$ is the $k$-th
+Catalan number. We prove it, in the refined form
+$c_3^{k,\sigma}(213,312)=\Cat_k$ for each of the four canon
+witnesses $123$, $132$, $231$, $321$, and $0$ for the other two, by
+exhibiting the surviving permutations explicitly: each is a solid block
+$1^k$ at one end of the word and a ballot word on the letters $2$ and $3$ at
+the other; the two choices of end and the two choices of which of $2,3$
+dominates the ballot condition are what make four families of $\Cat_k$
+words and not two. The proof is a six-case analysis of the canon witness and uses
+the hypothesis $n=3$ in exactly one place, namely that over a three-letter
+alphabet an occurrence of a three-letter pattern is a literal subsequence.
+The same observation shows that relabelling the alphabet is a bijection of
+$C_3^k$ transporting avoidance, whence $c_3^k(123,321)$ and
+$c_3^k(132,231)$ equal $4\Cat_k$ as well, for every $k$; and that
+$c_3^k(\{\sigma\})$ does not depend on which $\sigma\in S_3$ is forbidden.
+The cells $k=1$ and $k=2$ of the conjecture are already in print.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+For $n,k\ge1$ let $S_n^k$ be the set of permutations of the multiset
+$\{1^k,2^k,\dots,n^k\}$: the words of length $nk$ that contain each letter
+of $[n]$ exactly $k$ times. For a letter $a$ and $j\in[k]$ write
+$\mathrm{pos}_a(j)$ for the position of the $j$-th occurrence of $a$. A word
+$\pi\in S_n^k$ is \emph{canon} if there is a permutation $\sigma\in S_n$
+such that, for every $j\in[k]$, the subsequence of $j$-th copies of the
+letters read left to right spells $\sigma$; equivalently
+\begin{equation}\label{eq:canon}
+\mathrm{pos}_{\sigma_1}(j)<\mathrm{pos}_{\sigma_2}(j)<\cdots
+<\mathrm{pos}_{\sigma_n}(j)
+\quad\text{for all }j\in[k].
+\end{equation}
+Reading \eqref{eq:canon} at $j=1$ shows that $\sigma$ is the order in which the
+letters first occur, so $\sigma$ is determined by $\pi$; we call it the
+\emph{witness} of $\pi$ and write $C_n^k$ for the set of canon permutations and
+$C_n^{k,\sigma}$ for those with witness $\sigma$. As usual $\pi$
+\emph{contains} the pattern $p\in S_m$ if some length-$m$ subsequence of $\pi$
+has the same relative order as $p$, and \emph{avoids} $p$ otherwise; for a set
+$\Lambda\subseteq S_m$ we put
+\begin{align*}
+c_n^k(\Lambda)&=\#\{\pi\in C_n^k:\pi\text{ avoids every }p\in\Lambda\},\\
+c_n^{k,\sigma}(\Lambda)&=\#\{\pi\in C_n^{k,\sigma}:
+   \pi\text{ avoids every }p\in\Lambda\}.
+\end{align*}
+We write $\Cat_k=\frac{1}{k+1}\binom{2k}{k}$, so
+$\Cat_1,\Cat_2,\Cat_3,\dots=1,2,5,14,42,132,\dots$; this is the indexing the
+source itself uses.
+
+Laudone \cite{Laudone} asks (his Question~6.5) for $c_3^k(\Lambda)$ as
+$\Lambda$ ranges over subsets of $S_3$, with $n=3$ fixed and $k$ varying, and
+offers one instance as an example; it is the last mathematical statement of
+that paper, and we quote it verbatim. It appears in the final section, and is
+numbered Conjecture~6.6 in the compiled source.
+
+\begin{conjecture*}
+For $k\ge1$, $c_3^k(213,312)=4C_k$ where $C_k$ is the $k$-th Catalan number.
+\end{conjecture*}
+
+Our results are the following. Theorem~\ref{thm:main} proves the conjecture
+and refines it by the witness; Theorem~\ref{thm:orbit} shows that the same
+argument settles two further pattern pairs, and Corollary~\ref{cor:single} one
+further family.
+
+\begin{theorem}\label{thm:main}
+For every $k\ge1$,
+\[
+c_3^{k,\sigma}(213,312)=
+\begin{cases}
+\Cat_k,&\sigma\in\{123,132,231,321\},\\
+0,&\sigma\in\{213,312\},
+\end{cases}
+\]
+and consequently $c_3^k(213,312)=4\Cat_k$.
+Moreover the survivors are exactly the following four families of words, where
+$u$ always denotes a word on $k$ letters $2$ and $k$ letters $3$:
+\begin{enumerate}
+\item[\rm(i)] $1^k u$ with the $j$-th $2$ of $u$ before its $j$-th $3$ for all
+      $j$ \quad (these have witness $123$);
+\item[\rm(ii)] $1^k u$ with the $j$-th $3$ before the $j$-th $2$ \quad
+      (witness $132$);
+\item[\rm(iii)] $u\,1^k$ with the $j$-th $2$ before the $j$-th $3$ \quad
+      (witness $231$);
+\item[\rm(iv)] $u\,1^k$ with the $j$-th $3$ before the $j$-th $2$ \quad
+      (witness $321$).
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{thm:orbit}
+For every $\tau\in S_3$ and every $\Lambda\subseteq S_3$ we have
+$c_3^k(\Lambda)=c_3^k(\tau\Lambda)$, where
+$\tau\Lambda=\{\tau\circ p:p\in\Lambda\}$. The orbit of $\{213,312\}$ under
+this action is
+\[
+\bigl\{\ \{213,312\},\ \{123,321\},\ \{132,231\}\ \bigr\},
+\]
+so for every $k\ge1$
+\[
+c_3^k(213,312)=c_3^k(123,321)=c_3^k(132,231)=4\Cat_k .
+\]
+\end{theorem}
+
+\begin{corollary}\label{cor:single}
+$c_3^k(\{\sigma\})$ is the same for all six $\sigma\in S_3$.
+\end{corollary}
+
+The cells $k=1$ and $k=2$ of the conjecture are already in print. At $k=1$ it
+says that four of the six permutations of $S_3$ avoid $213$ and $312$. At
+$k=2$ the canon permutations are precisely the nonnesting permutations of
+Elizalde and Luo \cite{EL}, as \cite{Laudone} itself remarks, and their theorem
+$c_n^2(132,231)=2^n$ gives $c_3^2(132,231)=8$; the complementation
+$x\mapsto4-x$ is the relabelling $\tau=321$ of Theorem~\ref{thm:orbit}, which
+carries $\{213,312\}$ to $\{132,231\}$, so $c_3^2(213,312)=8=4\Cat_2$ follows
+from \cite{EL}. The argument below is elementary and short; we make no claim of
+difficulty.
+
+\section{Containment over three letters is literal}
+
+Everything below rests on one observation, and it is the only place where the
+hypothesis $n=3$ enters.
+
+\begin{lemma}\label{lem:literal}
+Let $w$ be a word over the alphabet $\{1,2,3\}$ and let $p\in S_3$. Then $w$
+contains $p$ if and only if $p_1p_2p_3$ occurs in $w$ as a literal subsequence,
+that is, if and only if there are positions $i<j<l$ with $w_i=p_1$, $w_j=p_2$,
+$w_l=p_3$.
+\end{lemma}
+
+\begin{proof}
+An occurrence of $p$ is a triple of positions $i<j<l$ whose values
+$(a,b,c)=(w_i,w_j,w_l)$ have the same relative order as $p$. Since $p$ has
+three distinct entries, $a,b,c$ are pairwise distinct; being three distinct
+elements of $\{1,2,3\}$ they are $1,2,3$ in some order, and having the same
+relative order as $p$ then forces $(a,b,c)=(p_1,p_2,p_3)$. The converse is
+immediate.
+\end{proof}
+
+In particular, over $\{1,2,3\}$: $w$ contains $213$ iff some $2$ precedes some
+$1$ which precedes some $3$, and $w$ contains $312$ iff some $3$ precedes some
+$1$ which precedes some $2$. We use these two sentences without further
+comment.
+
+\begin{remark}\label{rem:n4}
+Lemma~\ref{lem:literal} is false for larger alphabets, and $\wrd{314}$ is a
+witness: it contains $213$ (the values $3,1,4$ have the relative order of
+$2,1,3$) but has no literal $2,1,3$. This is exactly why nothing in this note
+says anything about $c_n^k(213,312)$ for $n\ge4$.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Fix $k\ge1$ and write $\Lambda=\{213,312\}$. Since the witness is determined by
+the word, the six sets $C_3^{k,\sigma}$ partition $C_3^k$, and it suffices to
+treat each witness.
+
+\smallskip\noindent
+\textbf{(a) $\sigma=213$ and $\sigma=312$ are empty.}
+If $\sigma=213$ then \eqref{eq:canon} at $j=1$ gives
+$\mathrm{pos}_2(1)<\mathrm{pos}_1(1)<\mathrm{pos}_3(1)$, so the letters
+$2,1,3$ occur in that order and $\pi$ contains $213$ by
+Lemma~\ref{lem:literal}. If $\sigma=312$ then
+$\mathrm{pos}_3(1)<\mathrm{pos}_1(1)<\mathrm{pos}_2(1)$ and $\pi$ contains
+$312$. Hence $c_3^{k,213}(\Lambda)=c_3^{k,312}(\Lambda)=0$.
+
+\smallskip\noindent
+\textbf{(b) $\sigma=123$.}
+Let $\pi\in C_3^{k,123}$ avoid $\Lambda$. We claim all $k$ letters $1$ come
+first. If not, some letter of $\{2,3\}$ precedes some $1$; let $q$ be the
+leftmost position of a $1$ having a non-$1$ to its left, say
+$q=\mathrm{pos}_1(j)$.
+\begin{itemize}
+\item If a $2$ occurs before $q$: by \eqref{eq:canon},
+      $\mathrm{pos}_3(j)>\mathrm{pos}_2(j)>\mathrm{pos}_1(j)=q$, so some $3$
+      occurs after $q$; that $2$, the $1$ at $q$ and that $3$ give an
+      occurrence of $213$, a contradiction.
+\item If no $2$ but some $3$ occurs before $q$: then
+      $\mathrm{pos}_3(1)<q<\mathrm{pos}_2(1)$, contradicting
+      $\mathrm{pos}_2(1)<\mathrm{pos}_3(1)$, which is \eqref{eq:canon} for
+      $\sigma=123$.
+\end{itemize}
+So $\pi=1^ku$ with $u$ a word on $k$ letters $2$ and $k$ letters $3$. For such
+a word $\mathrm{pos}_1(j)=j$ is smaller than every position of $u$, so
+\eqref{eq:canon} reduces to $\mathrm{pos}_2(j)<\mathrm{pos}_3(j)$, i.e.\ the
+$j$-th $2$ of $u$ precedes its $j$-th $3$, for every $j$. Conversely every such
+word avoids $\Lambda$: an occurrence of $213$ or of $312$ needs a $1$ strictly
+to the right of a $2$ or of a $3$, and there is none. Reading $2$ as an up-step
+and $3$ as a down-step identifies these $u$ with the Dyck paths of semilength
+$k$, since ``the $j$-th $2$ precedes the $j$-th $3$ for all $j$'' says exactly
+that every prefix of $u$ has at least as many $2$'s as $3$'s; the Catalan count
+of those paths is standard, see \cite{Stanley}. Hence
+$c_3^{k,123}(\Lambda)=\Cat_k$, realised by family~(i).
+
+\smallskip\noindent
+\textbf{(c) $\sigma=231$.}
+Let $\pi\in C_3^{k,231}$ avoid $\Lambda$ and let $q=\mathrm{pos}_1(1)$. By
+\eqref{eq:canon}, $\mathrm{pos}_2(1)<\mathrm{pos}_3(1)<q$, so both a $2$ and a
+$3$ occur before $q$. If some $3$ occurred after $q$ we would have
+$2\cdots1\cdots3$ and hence the pattern $213$; if some $2$ occurred after $q$
+we would have $3\cdots1\cdots2$ and hence $312$. So every position after $q$
+carries a $1$, i.e.\ $\pi=u\,1^k$ with $u$ a word on $k$ letters $2$ and $k$
+letters $3$. Now $\mathrm{pos}_1(j)=2k+j$ exceeds every position of $u$, so
+\eqref{eq:canon} again reduces to ``the $j$-th $2$ of $u$ precedes its $j$-th
+$3$ for every $j$'', and conversely each such word avoids $\Lambda$ because no
+$2$ or $3$ follows a $1$. Hence $c_3^{k,231}(\Lambda)=\Cat_k$, realised by
+family~(iii).
+
+\smallskip\noindent
+\textbf{(d) $\sigma=132$ and $\sigma=321$.}
+Let $t$ be the relabelling that exchanges the letters $2$ and $3$ and fixes
+$1$. Applying $t$ letterwise is an involution of $S_3^k$; by \eqref{eq:canon}
+it carries $C_3^{k,\sigma}$ onto $C_3^{k,t\circ\sigma}$, and by
+Lemma~\ref{lem:literal} it carries occurrences of $213$ to occurrences of $312$
+and back. Since $t$ therefore permutes $\Lambda$, it restricts to a bijection
+between the $\Lambda$-avoiders with witness $\sigma$ and those with witness
+$t\circ\sigma$. As $t\circ 123=132$ and $t\circ 231=321$, cases (b) and (c)
+give $c_3^{k,132}(\Lambda)=c_3^{k,321}(\Lambda)=\Cat_k$, and applying $t$ to
+families (i) and (iii) yields (ii) and (iv).
+
+\smallskip\noindent
+Summing, $c_3^k(\Lambda)=0+0+4\Cat_k=4\Cat_k$. \qed
+
+\section{Proof of Theorem~\ref{thm:orbit} and Corollary~\ref{cor:single}}
+
+Let $\tau\in S_3$ act on a word letterwise. This is a bijection of $S_3^k$; by
+\eqref{eq:canon} a canon word with witness $\sigma$ is sent to a canon word
+with witness $\tau\circ\sigma$, so $\tau$ is a bijection of $C_3^k$. By
+Lemma~\ref{lem:literal}, containment of $p\in S_3$ is containment of the
+literal word $p_1p_2p_3$, and $\tau$ carries a literal occurrence of
+$p_1p_2p_3$ to a literal occurrence of $\tau(p_1)\tau(p_2)\tau(p_3)$ and back.
+Hence $\pi$ avoids $\Lambda$ if and only if $\tau(\pi)$ avoids $\tau\Lambda$,
+and $c_3^k(\Lambda)=c_3^k(\tau\Lambda)$.
+
+Writing $\tau$ as the word $\tau(1)\tau(2)\tau(3)$, one computes
+$\tau\{213,312\}$ for the six $\tau$ and finds $\{213,312\}$ for
+$\tau\in\{123,132\}$, $\{123,321\}$ for $\tau\in\{213,231\}$ and
+$\{132,231\}$ for $\tau\in\{312,321\}$. So the stabiliser is the order-two
+group generated by the transposition of $2$ and $3$ and the orbit has size
+three, as stated; Theorem~\ref{thm:main} then gives the common value $4\Cat_k$.
+
+For Corollary~\ref{cor:single}, $S_3$ acts simply transitively on the
+singletons $\{\sigma\}$, since $\tau\circ p=p'$ has the unique solution
+$\tau=p'p^{-1}$. Hence all six values $c_3^k(\{\sigma\})$ coincide. \qed
+
+\section{Verification}
+
+A companion program \texttt{verify.py} (Python~3.9+, standard library only,
+exact integer arithmetic) re-derives the quantities asserted here. It builds
+$C_3^k$ twice --- once from definition~\eqref{eq:canon} over all of $S_3^k$ and
+once from standard Young tableaux --- decides containment twice, once by
+relative order and once literally, and confirms the refinement of
+Theorem~\ref{thm:main} and the four families by exhaustive enumeration for
+$k\le6$; a transfer-matrix recursion that uses only the prefix form of
+\eqref{eq:canon} and a greedy pattern matcher, and knows nothing of
+Theorem~\ref{thm:main}, reproduces the refinement and the value $4\Cat_k$ for
+all $k\le24$ and, for the witness $123$ alone, for all $k\le40$. It also
+verifies Lemma~\ref{lem:literal} exhaustively over the alphabet, exhibits its
+failure at $n=4$, and checks Theorem~\ref{thm:orbit} object by object for
+$k\le3$. No $k$ beyond those ranges, no statement about $n\ge4$ and no
+bibliographic assertion is machine-checked; the proof above is what carries the
+general case.
+
+\begin{thebibliography}{9}
+
+\bibitem{EL}
+S.~Elizalde and A.~Luo,
+\emph{Pattern avoidance in nonnesting permutations},
+Discrete Math. Theor. Comput. Sci. \textbf{27} (2025), no.~1
+(Permutation Patterns 2024 special issue), published 17 October 2025;
+\href{https://doi.org/10.46298/dmtcs.14885}{doi:10.46298/dmtcs.14885};
+\href{https://arxiv.org/abs/2412.00336}{arXiv:2412.00336}.
+
+\bibitem{Laudone}
+R.~Laudone,
+\emph{Pattern avoidance in canon permutations},
+preprint, 21 August 2026;
+\href{https://arxiv.org/abs/2608.21351}{arXiv:2608.21351}.
+
+\bibitem{Stanley}
+R.~P. Stanley,
+\emph{Catalan Numbers},
+Cambridge University Press, Cambridge, 2015.
+
+\end{thebibliography}
+
+\end{document}

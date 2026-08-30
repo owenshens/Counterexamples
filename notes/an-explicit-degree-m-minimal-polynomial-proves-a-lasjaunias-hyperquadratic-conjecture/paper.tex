@@ -1,0 +1,515 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Explicit Degree-m Minimal Polynomial: the Factorisation Half of Conjecture 11 of Lasjaunias}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\lc}{lc}
+\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\Kc}[2]{K_{#1,#2}}
+\newcommand{\HV}{H(V)}
+
+\title[A degree-$m$ minimal polynomial]
+{An Explicit Degree-$m$ Minimal Polynomial:\\ the Factorisation Half of
+Conjecture 11 of Lasjaunias}
+
+\date{}
+
+\subjclass[2020]{11J70, 11T55, 12E05}
+\keywords{hyperquadratic continued fraction, power series field, odd characteristic,
+minimal polynomial, continuant, irreducibility}
+
+\begin{document}
+
+\begin{abstract}
+Let $p$ be an odd prime, $k\ge1$ and $m\ge2$ integers with $p=km+1$, and let
+$V=[p,k,k,\varepsilon_A]$ and $\HV\in\Fp[T][X]$ be as in Lasjaunias, \emph{J. Integer
+Seq.}~\textbf{21} (2018), Article~18.8.3. Conjecture~11 of that paper asserts that $\HV$ has an
+irreducible factor $P$ of degree $m$ in $X$, vanishing at the hyperquadratic root $\alpha$ of its
+Proposition~9, with irrationality measure $\nu(\alpha)=m$, and given by the explicit binomial
+$P(X)=\sum_{0\le i\le m}(-1)^{ki}\binom{m}{i}T^{(1-(-1)^i)/2}X^{m-i}$. We prove, for every
+admissible triple $(p,k,m)$, that this $P$ is irreducible of degree $m$ over $\Fp(T)$, that it is
+the minimal polynomial of $\alpha$, and that it divides $\HV$ in $\Fp[T][X]$; along the way,
+$\varepsilon_A=(-1)^k$. The layer $m=2$ is the last clause of that paper's Proposition~9 and the
+case $k=1$ is its printed example at $p=3$. The remaining clause $\nu(\alpha)=m$ of the conjecture
+is the source's own Corollary~5 and is not our result. Of Proposition~9, which we do not reprove, the
+proof uses only that some irrational $\alpha\in\Fp((1/T))$ with a pole at $T=\infty$ satisfies
+$\HV(\alpha)=0$; the accompanying program constructs such an $\alpha$ outright, with initial partial
+quotient $w_{k+1}T$, for every admissible triple with $p\le60$.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}\label{sec:conj}
+
+Throughout, $p$ is an odd prime, $\Fp$ the field with $p$ elements, and $T$ an indeterminate. We
+work in $\Fp(T)$ and in its completion $\Fp((1/T))$ at the place $T=\infty$.
+
+Lasjaunias \cite{L} attaches to a quadruple $V=[p,k,j,\varepsilon]$ with
+$1\le k<p/2$, $1\le j\le 2k-1$ and $\varepsilon\in\Fp^*$ a polynomial $\HV$ of degree $p+1$ in $X$,
+and studies its factorisation. The following is Conjecture~11 of \cite{L}, quoted verbatim from the
+e-print \cite{Lep}, where it is numbered Conjecture~5.3.
+
+\begin{quote}
+Let $k\ge1$ and $m\ge2$ be integers. Let $p$ be a prime number such that $p=km+1$. Let
+$V=[p,k,k,\varepsilon_A]$ and $H(V)$ be defined as above. Then the polynomial $H(V)$ has a factor
+$P$ in $\Fp[T][X]$ such that $P(\alpha)=0$, $\deg_X(P)=m$ and $\nu(\alpha)=m$. More precisely, we
+have
+\begin{equation}\label{eq:P}
+ P(X)=\sum_{0\le i\le m}(-1)^{ki}\binom{m}{i}T^{(1-(-1)^i)/2}X^{m-i}.
+\end{equation}
+\end{quote}
+
+\noindent
+The journal wording is strictly stronger --- \emph{an irreducible factor} $P$ --- with the closed
+form \eqref{eq:P} character-for-character identical. Theorem~\ref{thm:main} below covers that
+stronger form.
+
+\begin{theorem}\label{thm:main}
+Let $k\ge1$ and $m\ge2$ be integers with $p=km+1$ prime, let $V=[p,k,k,\varepsilon_A]$, and let
+$\alpha\in\Fp((1/T))$ be \emph{any} element irrational over $\Fp(T)$ with $\HV(\alpha)=0$ and with a
+pole at $T=\infty$; Proposition~9 of \textup{\cite{L}} supplies one, whose initial partial quotient
+is $w_{k+1}T$, and for $p\le60$ \texttt{verify.py} constructs such an $\alpha$ --- one with that same
+initial partial quotient --- outright. Put
+$c=(-1)^kT$. Then
+\begin{enumerate}
+\item[\textup{(i)}] $\varepsilon_A=(-1)^k$;
+\item[\textup{(ii)}] the polynomial $P$ of \eqref{eq:P} satisfies
+      $2P(X)=(1+c)(X+1)^m+(1-c)(X-1)^m$, is monic of degree $m$ in $X$, and is irreducible over
+      $\Fp(T)$;
+\item[\textup{(iii)}] $P(\alpha)=0$; consequently $\alpha$ has degree exactly $m$ over $\Fp(T)$,
+      and $P$ is its minimal polynomial;
+\item[\textup{(iv)}] $P$ divides $\HV$ in $\Fp[T][X]$.
+\end{enumerate}
+\end{theorem}
+
+Parts (ii)--(iv) are the factorisation half of Conjecture~11, in the stronger journal form. The
+third clause $\nu(\alpha)=m$ of the conjecture, where $\nu$ is the irrationality \emph{measure} and
+not the degree, is \emph{not} proved here and is not ours: it is Corollary~5 of \cite{L}, which
+gives $\nu(\alpha)=2+(p-2k-1)/\ell$ with $\ell=2k-j$, and at $j=k$, $p=km+1$ this is $2+m-2=m$
+identically. Combining Theorem~\ref{thm:main} with that corollary closes Conjecture~11 as printed.
+
+Two cases of the factorisation half were already in print. The layer $m=2$, i.e.\ $k=(p-1)/2$, is
+the last clause of Proposition~9 of \cite{L}, and the case $k=1$ is the printed example at $p=3$.
+
+\begin{remark}
+Clause (iii) is about a root $\alpha$ of $\HV$ in $\Fp((1/T))$ with a pole at $T=\infty$, and that
+pole is exactly what selects $\zeta=1$ in its proof. Only the \emph{existence} of such an $\alpha$
+is quoted, from Proposition~9 of \cite{L} as paraphrased in (F4) of Section~\ref{sec:notation}; no
+other property of it is used, so the reading of (F4) cannot influence what is proved. The pole is
+not a further reading either: the first partial quotient of $\alpha$ is by definition its polynomial
+part $\lfloor\alpha\rfloor$, and $\lfloor\alpha\rfloor=w_{k+1}T$ with $w_{k+1}\ne0$ says exactly
+that $v(\alpha)=-1<0$. For every admissible triple with $p\le60$ the program of
+Section~\ref{sec:verify} supplies the existence itself rather than quoting it: it constructs
+$\alpha$ as a Laurent series, with $\lfloor\alpha\rfloor=w_{k+1}T$, certifies $\HV(\alpha)=0$
+to order $T^{-20}$, and exhibits the one consequence of irrationality the proof uses, namely the
+relation $\alpha^p=(A\alpha+B)/(B\alpha+A)$ obtained by solving $\HV(\alpha)=0$. It also certifies
+the Hensel inequality $v(\HV(\alpha))>2v(\HV'(\alpha))$, which upgrades the truncated identity to an
+exact root of $\HV$ in the complete field $\Fp((1/T))$.
+\end{remark}
+
+\section{Notation}\label{sec:notation}
+
+We transcribe the definitions of \cite{L}. Set
+\[
+ \omega_k=(-1)^{k-1}\prod_{1\le i\le k}\Bigl(1-\frac1{2i}\Bigr)\in\Fp^*,
+ \qquad
+ w_1=(2k-1)(2k\,\omega_k)^{-1},
+\]
+and define $w_2,\dots,w_{2k}\in\Fp^*$ by $w_{i+1}w_i=(2k-2i-1)(2k-2i+1)\bigl(i(2k-i)\bigr)^{-1}$
+for $1\le i\le 2k-1$. For $1\le n\le r\le 2k$ let $\Kc nr=\langle w_nT,\dots,w_rT\rangle\in\Fp[T]$
+be the continuant of the displayed word, with the conventions $\Kc n{n-1}=1$ and $\Kc n{n-2}=0$;
+thus $\Kc nr=w_rT\,\Kc n{r-1}+\Kc n{r-2}$, $\deg\Kc nr=r-n+1$ and
+$\lc\Kc nr=\prod_{n\le i\le r}w_i$. We write $\langle w_n,\dots,w_r\rangle=\Kc nr(1)$ for the
+continuant of the bare word, and $[a_1,\dots,a_n]=a_1+1/(a_2+1/(\cdots))$ for a continued-fraction
+value in $\Fp$. Finally
+\[
+ H([p,k,j,\varepsilon])=\Kc{j+2}{2k}X^{p+1}-\Kc{j+1}{2k}X^{p}
+   +\varepsilon\bigl(\Kc1jX+\Kc1{j-1}\bigr),
+\]
+\[
+ \varepsilon_A=(-1)^{k+j+1}[w_{j+1},\dots,w_{2k},\omega_k],
+ \qquad
+ \varepsilon_B=(-1)^{k+j+1}[w_{j+1},\dots,w_{2k}].
+\]
+The bracket in $\varepsilon_A$ is a continued-fraction \emph{value}, not a continuant.
+
+The proof in Section~\ref{sec:proof} uses the following four facts from \cite{L}, as paraphrased
+here, and nothing else from it.
+\begin{itemize}
+\item[(F1)] (eq.~(2)) \ $w_{2k+1-i}=-w_i$ for $1\le i\le 2k$.
+\item[(F2)] (eq.~(4)) \ $\Kc1{2k}=(-1)^k(T^2-1)^k$ and $\Kc2{2k}=(-1)^kR_k$, where $R_k$ is the
+      remainder of $T^p$ on division by $(T^2-1)^k$.
+\item[(F3)] (eq.~(5)) \ $\Kc nr\Kc t{r-1}-\Kc n{r-1}\Kc tr=(-1)^{r-t}\Kc n{t-2}$ for $t\le r$.
+\item[(F4)] (Proposition~9) \ For $V=[p,k,j,\varepsilon_A]$ there is $\alpha\in\Fp((1/T))$ with
+      $\HV(\alpha)=0$, irrational over $\Fp(T)$, whose continued-fraction expansion in
+      $\Fp((1/T))$ begins with the partial quotient $w_{j+1}T$; in particular $\alpha$ has a pole
+      at $T=\infty$. This is our wording, not the source's sentence; the proof below invokes it only
+      for the two properties just displayed, namely $\HV(\alpha)=0$ and $v(\alpha)<0$, and
+      \texttt{verify.py} exhibits an $\alpha$ with both (and with
+      $\lfloor\alpha\rfloor=w_{j+1}T$, $j=k$) for every admissible triple with $p\le60$.
+\end{itemize}
+Equation~(6) of \cite{L}, $\Kc{k+1}{2k}=(-1)^k\Kc1k$ and $\Kc{k+2}{2k}=(-1)^{k-1}\Kc1{k-1}$, is the
+special case of Lemma~\ref{lem:rev} below that we use most, and we reprove it there rather than
+quote it.
+
+For the rest of the paper we fix $k\ge1$, $m\ge2$ with $p=km+1$ prime, and take $j=k$; this is
+admissible because $k=(p-1)/m\le(p-1)/2<p/2$. We abbreviate
+\[
+ c=(-1)^kT,\quad a=\frac{c-1}{c+1}\in\Fp(T),\quad P_k=(T^2-1)^k,
+\]
+\[
+ g_r=\Kc1r(1),\qquad h_r=\Kc2r(1)\qquad(r\ge0).
+\]
+
+\section{Proof}\label{sec:proof}
+
+\begin{lemma}[reversal]\label{lem:rev}
+For $1\le n\le r+1\le 2k+1$ we have
+$\Kc nr=(-1)^{r-n+1}\Kc{2k+1-r}{2k+1-n}$, and the same identity holds for the bare continuants
+$\langle w_n,\dots,w_r\rangle$.
+\end{lemma}
+
+\begin{proof}
+A continuant is unchanged by reversing its word. Reversing $(w_nT,\dots,w_rT)$ gives
+$(w_rT,\dots,w_nT)$, which by (F1) equals $(-w_{2k+1-r}T,\dots,-w_{2k+1-n}T)$. Negating all $s$
+entries of a word multiplies its continuant by $(-1)^{s}$: if $L_i=(-1)^iK_i$ then
+$L_i=(-a_i)L_{i-1}+L_{i-2}$ with $L_{-1}=0$, $L_0=1$. Here $s=r-n+1$. Nothing in the argument uses
+the factor $T$, so it applies verbatim to the bare word.
+\end{proof}
+
+The four instances we use are
+\begin{equation}\label{eq:rev4}
+\begin{aligned}
+ \Kc{k+1}{2k}&=(-1)^k\Kc1k, &\qquad \Kc{k+2}{2k}&=(-1)^{k-1}\Kc1{k-1},\\
+ \Kc{k+1}{2k-1}&=(-1)^{k-1}\Kc2k, &\qquad \Kc{k+2}{2k-1}&=(-1)^{k-2}\Kc2{k-1};
+\end{aligned}
+\end{equation}
+the first two are eq.~(6) of \cite{L}. We also use the concatenation rule
+$\Kc nr=\Kc ni\Kc{i+1}r+\Kc n{i-1}\Kc{i+2}r$ for $n\le i\le r$, which is the associativity of the
+product of the matrices $\begin{pmatrix}w_iT&1\\1&0\end{pmatrix}$.
+
+\begin{lemma}\label{lem:three}
+$(a)$ $\Kc1k^2-\Kc1{k-1}^2=P_k$. \quad
+$(b)$ $\Kc1k\Kc2k-\Kc1{k-1}\Kc2{k-1}=R_k$. \quad
+$(c)$ $P_k\bigl(\Kc2k^2-\Kc2{k-1}^2\bigr)=R_k^2-1$.
+\end{lemma}
+
+\begin{proof}
+Concatenate at $i=k$ and substitute \eqref{eq:rev4}. With $(n,r)=(1,2k)$,
+$\Kc1{2k}=\Kc1k\Kc{k+1}{2k}+\Kc1{k-1}\Kc{k+2}{2k}=(-1)^k(\Kc1k^2-\Kc1{k-1}^2)$, and (F2) gives
+$(a)$. With $(n,r)=(2,2k)$, $\Kc2{2k}=(-1)^k(\Kc2k\Kc1k-\Kc2{k-1}\Kc1{k-1})$, and (F2) gives $(b)$.
+With $(n,r)=(2,2k-1)$, $\Kc2{2k-1}=(-1)^{k-1}(\Kc2k^2-\Kc2{k-1}^2)$. On the other hand
+Lemma~\ref{lem:rev} at $(n,r)=(1,2k-1)$ gives $\Kc1{2k-1}=-\Kc2{2k}$, and (F3) at
+$(n,t,r)=(1,2,2k)$ gives $\Kc1{2k}\Kc2{2k-1}-\Kc1{2k-1}\Kc2{2k}=(-1)^{2k-2}\Kc1{0}=1$; hence
+$(-1)^kP_k\Kc2{2k-1}+R_k^2=1$, i.e.\ $\Kc2{2k-1}=(-1)^k(1-R_k^2)/P_k$. Comparing the two
+expressions for $\Kc2{2k-1}$ gives $(c)$.
+\end{proof}
+
+\begin{lemma}\label{lem:T1}
+$g_k^2=g_{k-1}^2$, \quad $g_kh_k-g_{k-1}h_{k-1}=1$, \quad and
+$h_k^2-h_{k-1}^2=-2\binom{(p-1)/2}{k}=2\omega_k$ in $\Fp$.
+\end{lemma}
+
+\begin{proof}
+Put $T=1$ in Lemma~\ref{lem:three}$(a)$: $P_k(1)=0$. Since $T^p-R_k$ is divisible by $P_k$ and
+$P_k(1)=0$, we get $R_k(1)=1$; putting $T=1$ in Lemma~\ref{lem:three}$(b)$ gives the second
+relation.
+
+For the third, write $z=T^2-1$ and $u=T-1$, and let $Q_k=(T^p-R_k)/P_k\in\Fp[T]$. Since $p$ is odd,
+\[
+ T^p=T(T^2)^{(p-1)/2}=T(1+z)^{(p-1)/2}=T\sum_{0\le i\le(p-1)/2}\binom{(p-1)/2}{i}z^i,
+\]
+and as $\deg z^i=2i$ the polynomial part after division by $z^k$ is
+$Q_k=T\sum_{i\ge k}\binom{(p-1)/2}{i}z^{i-k}$, so
+\begin{equation}\label{eq:Q1}
+ Q_k(1)=\binom{(p-1)/2}{k}.
+\end{equation}
+Next, $T^p=(1+u)^p=1+u^p$ in characteristic $p$, so
+$1-R_k=1-T^p+P_kQ_k=-u^p+u^k(T+1)^kQ_k=u^k\bigl[(T+1)^kQ_k-u^{p-k}\bigr]$, and $p-k=k(m-1)\ge1$;
+hence $(1-R_k)/u^k$ takes the value $2^kQ_k(1)$ at $T=1$. Since $(1+R_k)(1)=2$ and
+$(T+1)^k\big|_{T=1}=2^k$,
+\[
+ \frac{1-R_k^2}{P_k}\bigg|_{T=1}
+ =\frac{1-R_k}{(T-1)^k}\cdot\frac{1+R_k}{(T+1)^k}\bigg|_{T=1}
+ =2^kQ_k(1)\cdot\frac{2}{2^k}=2Q_k(1).
+\]
+By Lemma~\ref{lem:three}$(c)$, $h_k^2-h_{k-1}^2=(R_k^2-1)/P_k\big|_{T=1}=-2Q_k(1)$, which with
+\eqref{eq:Q1} is the first stated value. Finally, since $k<p$ the factorial $k!$ is invertible in
+$\Fp$ and $\binom{x}{k}$ is a polynomial in $x$ over $\Fp$; at $x=(p-1)/2=-1/2$,
+\[
+ \binom{-1/2}{k}=\frac{1}{k!}\prod_{0\le i\le k-1}\Bigl(-\tfrac12-i\Bigr)
+ =\frac{(-1)^k}{k!}\prod_{0\le i\le k-1}\frac{2i+1}{2}
+ =(-1)^k\frac{(2k)!}{4^k(k!)^2},
+\]
+i.e.\ $\binom{-1/2}{k}=(-1)^k\binom{2k}{k}4^{-k}$, while
+$\omega_k=(-1)^{k-1}\prod_{1\le i\le k}\frac{2i-1}{2i}=(-1)^{k-1}\binom{2k}{k}4^{-k}$.
+Therefore $-2\binom{(p-1)/2}{k}=2(-1)^{k-1}\binom{2k}{k}4^{-k}=2\omega_k$.
+\end{proof}
+
+\begin{lemma}\label{lem:eps}
+$g_{k-1}\ne0$, \quad $g_k=(-1)^{k+1}g_{k-1}$, \quad and $\varepsilon_A=(-1)^k$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:T1} there is $s\in\{1,-1\}$ with $g_k=sg_{k-1}$; substituting into
+$g_kh_k-g_{k-1}h_{k-1}=1$ gives
+\begin{equation}\label{eq:one}
+ g_{k-1}\,(sh_k-h_{k-1})=1,
+\end{equation}
+so $g_{k-1}\ne0$ and $sh_k\ne h_{k-1}$.
+
+Suppose $k\ge2$. Then (F3) at $(n,t,r)=(1,2,k)$ reads
+$\Kc1k\Kc2{k-1}-\Kc1{k-1}\Kc2k=(-1)^{k-2}\Kc1{0}=(-1)^k$, so at $T=1$,
+$g_{k-1}(sh_{k-1}-h_k)=(-1)^k$. Dividing by \eqref{eq:one},
+$(sh_{k-1}-h_k)=(-1)^k(sh_k-h_{k-1})$. For $s=1$ the left side is the negative of the right factor,
+forcing $(-1)^k=-1$; for $s=-1$ it equals it, forcing $(-1)^k=1$. Hence $s=(-1)^{k+1}$. For $k=1$
+one has $\omega_1=1/2$, $w_1=1$, so $g_1=w_1=1=g_0$ and again $s=1=(-1)^{k+1}$.
+
+Now $\varepsilon_A=(-1)^{2k+1}[w_{k+1},\dots,w_{2k},\omega_k]=-[w_{k+1},\dots,w_{2k},\omega_k]$.
+Expressing the continued-fraction value as a ratio of bare continuants,
+$[a_1,\dots,a_n]=\langle a_1,\dots,a_n\rangle/\langle a_2,\dots,a_n\rangle$, and applying
+Lemma~\ref{lem:rev} to the four bare continuants involved,
+\[
+ \langle w_{k+1},\dots,w_{2k},\omega_k\rangle
+ =\omega_k(-1)^kg_k+(-1)^{k-1}h_k=(-1)^k(\omega_kg_k-h_k),
+\]
+\[
+ \langle w_{k+2},\dots,w_{2k},\omega_k\rangle
+ =\omega_k(-1)^{k-1}g_{k-1}+(-1)^{k-2}h_{k-1}=(-1)^{k-1}(\omega_kg_{k-1}-h_{k-1}),
+\]
+whence
+\begin{equation}\label{eq:E}
+ \varepsilon_A=\frac{\omega_kg_k-h_k}{\omega_kg_{k-1}-h_{k-1}}.
+\end{equation}
+Suppose first that $k$ is even, so $s=-1$ and \eqref{eq:one} reads $g_{k-1}(h_k+h_{k-1})=-1$; in
+particular $h_k+h_{k-1}\ne0$. Then, using Lemma~\ref{lem:T1},
+\[
+ 2\omega_kg_{k-1}=(h_k^2-h_{k-1}^2)g_{k-1}=(h_k-h_{k-1})\cdot g_{k-1}(h_k+h_{k-1})=h_{k-1}-h_k,
+\]
+so the numerator of \eqref{eq:E} is
+$-\omega_kg_{k-1}-h_k=\bigl(\omega_kg_{k-1}-h_{k-1}\bigr)-\bigl(2\omega_kg_{k-1}+h_k-h_{k-1}\bigr)
+=\omega_kg_{k-1}-h_{k-1}$, i.e.\ numerator and denominator agree. They are nonzero: if both
+vanished then $-\omega_kg_{k-1}=h_k$ and $\omega_kg_{k-1}=h_{k-1}$, so $h_k+h_{k-1}=0$, excluded.
+Hence $\varepsilon_A=1=(-1)^k$. If instead $k$ is odd then $s=1$, \eqref{eq:one} reads
+$g_{k-1}(h_k-h_{k-1})=1$, so $h_k\ne h_{k-1}$ and
+$2\omega_kg_{k-1}=(h_k+h_{k-1})g_{k-1}(h_k-h_{k-1})=h_k+h_{k-1}$; the numerator of \eqref{eq:E} is
+then $\omega_kg_{k-1}-h_k=-\bigl(\omega_kg_{k-1}-h_{k-1}\bigr)+
+\bigl(2\omega_kg_{k-1}-h_k-h_{k-1}\bigr)=-\bigl(\omega_kg_{k-1}-h_{k-1}\bigr)$, and again the
+denominator is nonzero, since otherwise $h_k=h_{k-1}$. Hence $\varepsilon_A=-1=(-1)^k$.
+\end{proof}
+
+\begin{lemma}\label{lem:lambda}
+Set $U=\Kc1k+\Kc1{k-1}$ and $W=\Kc1k-\Kc1{k-1}$, and let $L=\prod_{1\le i\le k}w_i$. Then $L^2=1$,
+and $\{U,W\}=\{L(T-1)^k,\ L(T+1)^k\}$ with $U=L(T-1)^k$ for $k$ even and $W=L(T-1)^k$ for $k$ odd.
+In either case
+\[
+ \lambda:=\frac{\Kc1k+\Kc1{k-1}}{\Kc1k-\Kc1{k-1}}=a^k,
+ \qquad a=\frac{c-1}{c+1},\ c=(-1)^kT.
+\]
+\end{lemma}
+
+\begin{proof}
+$\deg\Kc1k=k$ and $\deg\Kc1{k-1}=k-1$, so $U$ and $W$ both have degree $k$ and leading coefficient
+$L$. By Lemma~\ref{lem:three}$(a)$, $UW=(T-1)^k(T+1)^k$; comparing leading coefficients, $L^2=1$.
+For $k\ge2$, (F3) at $(n,t,r)=(1,2,k)$ exhibits $(-1)^k$ as an $\Fp[T]$-combination of $\Kc1k$ and
+$\Kc1{k-1}$, so these are coprime, hence $\gcd(U,W)$ divides $\gcd(2\Kc1k,2\Kc1{k-1})=2$, a unit;
+for $k=1$ we have $U=T+1$ and $W=T-1$ outright. So $U$ and $W$ are coprime with product
+$(T-1)^k(T+1)^k$, and each is $L$ times one of the two prime powers.
+
+Which is which is decided at $T=1$: by Lemma~\ref{lem:eps},
+$U(1)=\bigl((-1)^{k+1}+1\bigr)g_{k-1}$ and $W(1)=\bigl((-1)^{k+1}-1\bigr)g_{k-1}$ with
+$g_{k-1}\ne0$, so for $k$ even $U(1)=0\ne W(1)$ and for $k$ odd $W(1)=0\ne U(1)$. If $k$ is even
+then $c=T$, $U=L(T-1)^k$, $W=L(T+1)^k$ and $\lambda=\bigl((T-1)/(T+1)\bigr)^k=a^k$. If $k$ is odd
+then $c=-T$, so $a=(-T-1)/(-T+1)=(T+1)/(T-1)$, while $U=L(T+1)^k$ and $W=L(T-1)^k$; again
+$\lambda=\bigl((T+1)/(T-1)\bigr)^k=a^k$.
+\end{proof}
+
+\begin{lemma}\label{lem:split}
+$2P(X)=(1+c)(X+1)^m+(1-c)(X-1)^m$, with $P$ as in \eqref{eq:P} and $c=(-1)^kT$. In particular $P$
+is monic of degree $m$ in $X$.
+\end{lemma}
+
+\begin{proof}
+$(1+c)(X+1)^m+(1-c)(X-1)^m
+=\sum_i\binom mi X^{m-i}\bigl[(1+c)+(1-c)(-1)^i\bigr]$, and the bracket is $2$ for $i$ even and
+$2c$ for $i$ odd, i.e.\ $2c^{(1-(-1)^i)/2}$ in both cases. Since $c^{(1-(-1)^i)/2}
+=(-1)^{ki}T^{(1-(-1)^i)/2}$ --- both sides being $1$ for $i$ even and $(-1)^kT$ for $i$ odd --- the
+sum equals $2P(X)$. The coefficient of $X^m$ is $\binom m0=1$.
+\end{proof}
+
+\begin{lemma}\label{lem:capelli}
+Let $F$ be a field carrying a discrete valuation $v\colon F^*\twoheadrightarrow\mathbb Z$, let
+$b\in F^*$ and $m\ge1$ with $\gcd(v(b),m)=1$. Then $Y^m-b$ is irreducible over $F$.
+\end{lemma}
+
+\begin{proof}
+Let $\beta_0$ be a root in an algebraic closure, $E=F(\beta_0)$ and $d=[E:F]\le m$. Extend $v$ to a
+valuation $\widetilde v$ of $E$; its value group is $\frac1e\mathbb Z$ where $e\le d$ is the
+ramification index. From $m\widetilde v(\beta_0)=v(b)$ we get $\widetilde v(\beta_0)=v(b)/m$, so
+$e\,v(b)/m\in\mathbb Z$; as $\gcd(v(b),m)=1$ this forces $m\mid e$. Then $m\le e\le d\le m$, so
+$d=m$ and $Y^m-b$, being of degree $m$ with a root of degree $m$, is irreducible.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+(i) is Lemma~\ref{lem:eps}.
+
+\emph{The relation, diagonalised.} Write $\varepsilon=\varepsilon_A=(-1)^k$. By (F4),
+$\HV(\alpha)=0$, i.e.\ $\Kc{k+2}{2k}\alpha^{p+1}-\Kc{k+1}{2k}\alpha^p
++\varepsilon(\Kc1k\alpha+\Kc1{k-1})=0$. Since $\alpha$ is irrational and $\Kc1k\ne0$, we may solve:
+\[
+ \alpha^p=\frac{A\alpha+B}{C\alpha+D},\qquad
+ A=-\varepsilon\Kc1k,\ B=-\varepsilon\Kc1{k-1},\ C=\Kc{k+2}{2k},\ D=-\Kc{k+1}{2k}.
+\]
+By the reversal instances \eqref{eq:rev4} and $\varepsilon=(-1)^k$ we get
+$C=(-1)^{k-1}\Kc1{k-1}=-\varepsilon\Kc1{k-1}=B$
+and $D=-(-1)^k\Kc1k=-\varepsilon\Kc1k=A$. This is the point of the choice $j=k$: at that index the
+antisymmetry (F1) makes the M\"obius matrix symmetric under
+$\bigl(\begin{smallmatrix}A&B\\C&D\end{smallmatrix}\bigr)\mapsto
+\bigl(\begin{smallmatrix}D&C\\B&A\end{smallmatrix}\bigr)$.
+
+Put $\beta=(\alpha+1)/(\alpha-1)$, legitimate and nonzero because $\alpha\notin\Fp(T)$. Raising to
+the $p$-th power is additive, so $\beta^p=(\alpha^p+1)/(\alpha^p-1)$, and substituting
+$\alpha^p=(A\alpha+B)/(B\alpha+A)$,
+\[
+ \alpha^p+1=\frac{(A+B)(\alpha+1)}{B\alpha+A},\qquad
+ \alpha^p-1=\frac{(A-B)(\alpha-1)}{B\alpha+A},
+\]
+so
+\[
+ \beta^p=\lambda\beta,\qquad \lambda=\frac{A+B}{A-B},
+\]
+where $A-B=-\varepsilon(\Kc1k-\Kc1{k-1})\ne0$ by Lemma~\ref{lem:lambda}. Cancelling
+$\varepsilon$, $\lambda=(\Kc1k+\Kc1{k-1})/(\Kc1k-\Kc1{k-1})=a^k$ by Lemma~\ref{lem:lambda}.
+
+\emph{From $\beta^{p-1}=a^k$ to $\beta^m=a$.} Since $\beta\ne0$ we may divide:
+$\beta^{p-1}=a^k$, and $p-1=km$, so $(\beta^m)^k=a^k$, i.e.\ $(\beta^m/a)^k=1$. As $k\mid p-1$, the
+polynomial $Y^k-1$ splits in $\Fp$, so $\beta^m=\zeta a$ for some $\zeta\in\Fp^*$ with
+$\zeta^k=1$.
+
+To identify $\zeta$, work in $\Fp((1/T))$, whose valuation ring is $\Fp[[1/T]]$ with maximal ideal
+$\mathfrak m=(1/T)$. By (F4), $\alpha$ has a pole at $T=\infty$, hence $2/(\alpha-1)\in\mathfrak m$
+and $\beta=1+2/(\alpha-1)\equiv1\pmod{\mathfrak m}$; likewise $a=1-2/(c+1)\equiv1$. Reducing
+$\beta^m=\zeta a$ modulo $\mathfrak m$ gives $1=\zeta$. Therefore
+\begin{equation}\label{eq:betam}
+ \beta^m=a,\qquad\text{i.e.}\qquad (c+1)(\alpha+1)^m=(c-1)(\alpha-1)^m,
+\end{equation}
+that is, $(1+c)(\alpha+1)^m+(1-c)(\alpha-1)^m=0$, which by Lemma~\ref{lem:split} is $2P(\alpha)=0$.
+As $p$ is odd, $P(\alpha)=0$: clause (iii) up to the degree statement.
+
+\emph{Irreducibility.} Let $v=v_{T-1}$ be the valuation of $\Fp(T)$ at $T=1$, normalised onto
+$\mathbb Z$. Then $v(c-1)$ and $v(c+1)$ are $1$ and $0$ for $k$ even and $0$ and $1$ for $k$ odd,
+so $v(a)=\pm1$, coprime to $m$. By Lemma~\ref{lem:capelli}, $Y^m-a$ is irreducible over $\Fp(T)$,
+so each of its roots $\beta_0$ satisfies $[\Fp(T)(\beta_0):\Fp(T)]=m$. Now $a\ne1$, so
+$\beta_0\ne1$, and $\alpha_0:=(\beta_0+1)/(\beta_0-1)$ is defined and satisfies
+$\Fp(T)(\alpha_0)=\Fp(T)(\beta_0)$, because $X\mapsto(X+1)/(X-1)$ is an involution of
+$\mathbb P^1$ over $\Fp(T)$ and $\beta_0=(\alpha_0+1)/(\alpha_0-1)$. Reversing the computation
+\eqref{eq:betam}, $\beta_0^m=a$ is equivalent to $P(\alpha_0)=0$, and this correspondence is a
+bijection between the roots of $Y^m-a$ and those of $P$; it is defined in both directions because
+$a\ne1$, so $\beta_0\ne1$, and $2P(1)=(1+c)2^m\ne0$ by Lemma~\ref{lem:split}, so no root of $P$
+equals $1$. Hence every root of $P$ has degree $m$
+over $\Fp(T)$; since $\deg_XP=m$ by Lemma~\ref{lem:split}, $P$ is irreducible. This is (ii).
+
+\emph{Conclusion.} $P$ is monic, irreducible of degree $m$, and $P(\alpha)=0$, so $P$ is the
+minimal polynomial of $\alpha$ and $\deg\alpha=m$; this completes (iii). Finally $P\mid\HV$ in
+$\Fp(T)[X]$, and since $P$ is monic in $X$ the Euclidean division of $\HV\in\Fp[T][X]$ by $P$ takes
+place in $\Fp[T][X]$ and has the same quotient, so $P\mid\HV$ in $\Fp[T][X]$: this is (iv).
+\end{proof}
+
+\section{Verification}\label{sec:verify}
+
+No step of Theorem~\ref{thm:main} rests on a machine computation. The program \texttt{verify.py},
+whose recorded run is \texttt{verify.output.txt}, re-derives the objects displayed below from the
+definitions of Section~\ref{sec:notation} and re-runs the identities of
+Lemmas~\ref{lem:rev}--\ref{lem:split}, together with the divisibility $P\mid\HV$, on all $453$
+admissible triples $(p,(p-1)/m,m)$ with $p$ an odd prime at most $300$; it reports all $81$ of its
+checks passing.
+
+On the $71$ of those triples with $p\le60$ it also \emph{reconstructs} $\alpha$. Newton's iteration
+for $\HV$ in $\Fp((1/T))$, started at $\alpha_0=w_{k+1}T$, converges because
+$\HV(x)=e\,\HV'(\alpha)+e^p(\Kc{k+2}{2k}\alpha-\Kc{k+1}{2k})+\Kc{k+2}{2k}e^{p+1}$ identically for
+$e=x-\alpha$, where $\HV'=\partial_X\HV=\Kc{k+2}{2k}X^p+\varepsilon\Kc1k$, so that $v$ of the error
+is multiplied by $p$ and shifted by
+$p+k-1-v(\Kc{k+2}{2k}\alpha-\Kc{k+1}{2k})>0$ at each step; every coefficient is exact in $\Fp$ and
+each series carries the exponent below which it is known, so no identity is asserted beyond the
+precision that was actually computed. The program then certifies, to order $T^{-20}$:
+$\HV(\alpha)=0$, with the Hensel inequality $v(\HV(\alpha))>2v(\HV'(\alpha))$ that makes the
+constructed series an exact root; $\lfloor\alpha\rfloor=w_{k+1}T$, hence the pole at $T=\infty$;
+the diagonalised relation $\alpha^p=(A\alpha+B)/(B\alpha+A)$; $\beta\equiv a\equiv1\pmod{1/T}$ and
+$\beta^p=a^k\beta$; the selection $\beta^m=a$, i.e.\ $\zeta=1$; $P(\alpha)=0$, both for the
+recomputed $P$ and for the $P$ printed below; and that \emph{none} of the $k-1$ sibling solutions
+$\beta^m=\zeta a$, $\zeta^k=1$, $\zeta\ne1$, vanishes at $\alpha$ --- which is what exact division
+alone cannot see. Three controls fail as they must: $\alpha$ moved by $T^{-3}$, a wrong initial
+partial quotient, and the $\varepsilon_B$ form of $H$ at $\alpha$.
+
+One consequence of the proof is worth recording, because it pins the initial partial quotient of
+$\alpha$ to the data of the conjecture: $\beta=1+2/(\alpha-1)=1+2/(w_{k+1}T)+O(T^{-2})$ while
+$a=1-2(-1)^k/T+O(T^{-2})$, so $\beta^m=a$ forces $2m/w_{k+1}=-2(-1)^k$, that is
+\[
+ w_{k+1}=(-1)^{k+1}m\quad\text{in }\Fp,
+\]
+and the expansion of $\alpha$ begins with the partial quotient $(-1)^{k+1}mT$. The word recurrence of
+Section~\ref{sec:notation} reproduces this on all $453$ triples of the census.
+
+What remains cited rather than recomputed: Capelli's criterion (only its hypothesis
+$v_{T-1}(a)=\pm1$ is re-derived), Hensel's lemma, the continued-fraction construction of
+Proposition~9 itself, the clause $\nu(\alpha)=m$, and every $p$ beyond the census.
+
+At the cell $(p,k,m)=(17,4,4)$ all objects are over $\Fp=\mathbb F_{17}$, with representatives in
+$\{0,\dots,16\}$, and
+\[
+ \omega_4=15,\qquad (w_1,\dots,w_8)=(7,8,6,4,13,11,9,10),\qquad
+ \varepsilon_A=1,\qquad \varepsilon_B=16,
+\]
+\[
+ \Kc13=13T^3+13T,\quad \Kc14=T^4+6T^2+1,\quad
+ \Kc58=T^4+6T^2+1,\quad \Kc68=4T^3+4T.
+\]
+The two polynomials below are printed in a plain normal form; whitespace and line breaks are not
+significant.
+
+\begin{verbatim}
+H = (4T^3+4T)X^18 + (16T^4+11T^2+16)X^17
+  + (T^4+6T^2+1)X + (13T^3+13T)
+
+P = X^4 + 4TX^3 + 6X^2 + 4TX + 1
+\end{verbatim}
+
+\noindent
+Here $H=H([17,4,4,1])$ and $P$ is \eqref{eq:P} at $(k,m)=(4,4)$. The quotient $H/P$ has degree
+$14=p+1-m$ in $X$; it is recorded in \texttt{verify.py}, which multiplies it by $P$ to recover $H$.
+
+\begin{thebibliography}{9}
+
+\bibitem{L}
+A.~Lasjaunias,
+\emph{On particular families of hyperquadratic continued fractions in power series fields of odd
+characteristic},
+J. Integer Seq. \textbf{21} (2018), Article 18.8.3.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL21/Lasjaunias/lasj5.html}%
+{cs.uwaterloo.ca/journals/JIS/VOL21/Lasjaunias/lasj5.html}.
+Statement labels of the form ``Conjecture 11'', ``Proposition 9'', ``Corollary 5'' are those of
+this version of record.
+
+\bibitem{Lep}
+A.~Lasjaunias, same title, e-print,
+\href{https://arxiv.org/abs/1803.01739}{arXiv:1803.01739}.
+The e-print renumbers the statements, so ``Conjecture 5.3'', ``Proposition 5.1'' and
+``Corollary 4.2'' are its labels for Conjecture 11, Proposition 9 and Corollary 5 of \cite{L}, and
+the equation numbers (2), (4), (5), (6) quoted above are its numbers.
+
+\end{thebibliography}
+
+\end{document}

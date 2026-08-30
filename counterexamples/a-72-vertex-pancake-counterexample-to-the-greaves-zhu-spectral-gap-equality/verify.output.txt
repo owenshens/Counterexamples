@@ -1,0 +1,152 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  eb7512e187240f9652d5e34524311b2891815f75ce79bbd8cb9704f59ca050f9
+python:  Python 3.9.6
+=== program output follows ===
+========================================================================================
+A  THE CELL (m,n) = (6,2):  P_6(2) ON 72 VERTICES
+========================================================================================
+PASS  (6,2) |V| = m^n n! = 72  built 72 vertices
+PASS  (6,2) simple and 4-regular  every vertex has 4 distinct neighbours, no loop
+PASS  (6,2) adjacency is symmetric  R_m is closed under inverses
+PASS  (6,2) connected  so lambda_1 = 4 with multiplicity one
+PASS  (6,2) partition has mn = 12 cells of size 6  6 * 12 = 72
+PASS  (6,2) partition is equitable  neighbour-count vector constant on each cell, tested at every one of 72 vertices
+PASS  (6,2) quotient = circ(2 D_2, E_2, O, O, O, E_2)  reproduces Greaves-Zhu lem:circ from the raw graph
+PASS  (6,2) quotient = I_6 (x) 2 D_2 + C_6 (x) E_2  the identity the Fourier block-diagonalisation uses
+PASS  (6,2) Q has constant row sum 4  so lambda_1(Q) = 4
+PASS  (6,2) charpoly(Q) = x (x-4) (x^2-8) (x^2-3x+1)^2 (x^2-x-3)^2  degree 12, computed exactly over Z
+PASS  (6,2) each of the 6 classes d = 0..5 holds 12 vertices  so v is orthogonal to the all-ones vector
+PASS  (6,2) sum of v over V(P_6(2)) is 0  v = (2,1,-1,-2,-1,1) on d = 0..5
+PASS  (6,2) v is not the zero vector  v(0) = 2
+PASS  (6,2) A v = 3 v at every one of the 72 vertices  exact integer arithmetic, 0 violations
+PASS  (6,2) the paper's hand row at w = 12, c = (0,0)  neighbour values 1+1+2+2 sum to 6 = 3 * 2
+PASS  (6,2) exactly one eigenvalue of Q exceeds 3, none equals 3  inertia of 3I - Q; hence lambda_2(Q) < 3 strictly
+PASS  (6,2) 2 sqrt 2 = 2.828427124746190 to 15 decimals  exact rational squaring brackets sqrt 8
+PASS  (6,2) lambda_2(Q) lies in (2.828427124746189, 2.828427124746191]  so lambda_2(Q) = 2 sqrt 2 and beta_{6,2} = 4 - 2 sqrt 2 = 1.171572875253810
+PASS  (6,2) x^2 - 8 at x = 3 equals 1 > 0  the whole refutation is the integer inequality 9 > 8
+PASS  (6,2) DECISION psi_{6,2} <= 1 < 4 - 2 sqrt 2 = beta_{6,2}  strict deficit at least 3 - 2 sqrt 2 > 0.17157287525380
+
+========================================================================================
+B  THE CELL (m,n) = (6,3):  P_6(3) ON 1296 VERTICES
+========================================================================================
+PASS  (6,3) |V| = m^n n! = 1296  built 1296 vertices
+PASS  (6,3) simple and 6-regular  every vertex has 6 distinct neighbours, no loop
+PASS  (6,3) adjacency is symmetric  R_m is closed under inverses
+PASS  (6,3) connected  so lambda_1 = 6 with multiplicity one
+PASS  (6,3) partition has mn = 18 cells of size 72  18 * 72 = 1296
+PASS  (6,3) partition is equitable  neighbour-count vector constant on each cell, tested at every one of 1296 vertices
+PASS  (6,3) quotient = circ(2 D_3, E_3, O, O, O, E_3)  lem:circ again
+PASS  (6,3) quotient = I_6 (x) 2 D_3 + C_6 (x) E_3
+PASS  (6,3) Q has constant row sum 6  so lambda_1(Q) = 6
+PASS  (6,3) charpoly(Q) = x(x-4)(x-6) (x^3-8x^2+17x-5)^2 (x^3-4x^2-3x+9)^2 (x^3-2x^2-16x+16)  degree 18, computed exactly over Z
+PASS  (6,3) every f_{p,q} is orthogonal to the all-ones vector  sums to 0 in Z[omega], omega^2 = omega - 1
+PASS  (6,3) span{f_{p,q}} is A-invariant, verified at all 1296 vertices  A f_{p,q} = sum_h T[h][(p,q)] f_h, exactly in Z[omega]; the step the review left asserted
+PASS  (6,3) the matrix of A on that subspace is the T printed in the paper  derived from the 1296-vertex graph, not transcribed
+PASS  (6,3) T is symmetric  so its eigenvalues are real
+PASS  (6,3) T has row sums (5,4,5,5,4,5), NOT the degree 6  T is NOT an equitable-partition quotient; it bounds lambda_2, not lambda_1
+PASS  (6,3) T commutes with the letter-swap involution (1 3)(2 5)(4 6)
+PASS  (6,3) symmetric block S = [[3,0,2],[0,3,1],[2,1,2]]  restriction of T to the +1 eigenspace of the involution
+PASS  (6,3) antisymmetric block S' = [[-1,0,-2],[0,-1,1],[-2,1,2]]
+PASS  (6,3) charpoly(S) = x^3 - 8x^2 + 16x - 3 = (x-3)(x^2-5x+1)
+PASS  (6,3) charpoly(S') = x^3 - 8x - 7 = (x+1)(x^2-x-7)
+PASS  (6,3) charpoly(T) = charpoly(S) * charpoly(S')  the involution splits T with no remainder
+PASS  (6,3) T has an eigenvalue above 47/10  so lambda_2(A(P_6(3))) >= lambda_max(T) > 47/10
+PASS  (6,3) x^2 - 5x + 1 at 47/10 is -41/100 < 0  so (5 + sqrt 21)/2 > 47/10, i.e. 25 * 21 = 525 > 484 = 22^2
+PASS  (6,3) sqrt 21 = 4.582575694955840 to 15 decimals  so lambda_max(T) = (5 + sqrt 21)/2 = 4.791287847477920
+PASS  (6,3) lambda_max(T) lies in ((5+4.582575694955840)/2, (5+4.582575694955841)/2]  so psi_{6,3} <= 6 - lambda_max(T) = (7 - sqrt 21)/2 = 1.208712152522080
+PASS  (6,3) exactly one eigenvalue of Q exceeds 47/10, none equals it  inertia of (47/10) I - Q; hence lambda_2(Q) < 47/10
+PASS  (6,3) x^3 - 2x^2 - 16x + 16 changes sign in (4.685846165554339, 4.685846165554341)
+PASS  (6,3) lambda_2(Q) = 4.685846165554340 to 15 decimals  beta_{6,3} = 6 - lambda_2(Q) = 1.314153834445660
+PASS  (6,3) DECISION psi_{6,3} <= 1.20871215252208 < 13/10 <= beta_{6,3} = 1.31415383444566  the rational 47/10 separates the two spectra
+
+========================================================================================
+C  THE FAMILY (m,2), m >= 6:  THE ALGEBRAIC IDENTITIES OF THE PROOF
+========================================================================================
+PASS  family charpoly(2 D_2 + 2c E_2) = x^2 - (2c+2) x + (4c - 4c^2)  trace and determinant of [[2c, 2c], [2c, 2]] taken symbolically over Z[c]
+PASS  family (c+1) + sqrt(5c^2-2c+1) is a root of that polynomial  s-free and s-linear parts both vanish identically in Z[c] after s^2 -> 5c^2-2c+1
+PASS  family (5c-1)^2 - (5c^2-2c+1) = 20c^2 - 8c  c = 0 is the only critical point of F; F increases on [-1,0], decreases on [0,1]
+PASS  family at c = 1 - eps the radicand is 4 - 8 eps + 5 eps^2  not 4 - 6 eps + 5 eps^2, which is the slip an earlier draft made
+PASS  family (2-eps)^2 - (4 - 8 eps + 5 eps^2) = 4 eps - 4 eps^2  branch (i): F(cos 2pi/m) > 2 eps  <=>  4 eps > 4 eps^2  <=>  eps < 1
+PASS  family radicand at c = -1 is 8, so F(-1) = 4 - 2 sqrt 2  branch (ii): F is increasing on [-1,0], so F(c) >= 4 - 2 sqrt 2 for c <= 0
+PASS  family 1/2 > sqrt 2 - 1, because (3/2)^2 = 9/4 > 2  cos(2pi/6) = 1/2, so branch (ii) first holds at m = 6: 9 > 8 again
+PASS  family 2/m < 1/2 for every m in 5..199  so 2pi/m < pi/2 and eps = 1 - cos(2pi/m) < 1: branch (i) holds from m = 5
+PASS  family 2/m <= 1/3 for every m in 6..199  so cos(2pi/m) >= cos(pi/3) = 1/2 > sqrt 2 - 1: branch (ii) holds from m = 6
+
+========================================================================================
+D  THE FAMILY (m,2):  AN INDEPENDENT EXACT CERTIFICATE AT EACH m = 6..20
+========================================================================================
+PASS  family m =  6 neighbour law {d+1, d-1, d, d} at all 72 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m =  6 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 6
+PASS  family m =  6 REFUTED by the separator t = 29/10  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m =  7 neighbour law {d+1, d-1, d, d} at all 98 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m =  7 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 7
+PASS  family m =  7 REFUTED by the separator t = 3  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m =  8 neighbour law {d+1, d-1, d, d} at all 128 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m =  8 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 8
+PASS  family m =  8 REFUTED by the separator t = 16/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m =  9 neighbour law {d+1, d-1, d, d} at all 162 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m =  9 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 9
+PASS  family m =  9 REFUTED by the separator t = 7/2  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 10 neighbour law {d+1, d-1, d, d} at all 200 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 10 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 10
+PASS  family m = 10 REFUTED by the separator t = 7/2  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 11 neighbour law {d+1, d-1, d, d} at all 242 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 11 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 11
+PASS  family m = 11 REFUTED by the separator t = 18/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 12 neighbour law {d+1, d-1, d, d} at all 288 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 12 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 12
+PASS  family m = 12 REFUTED by the separator t = 37/10  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 13 neighbour law {d+1, d-1, d, d} at all 338 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 13 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 13
+PASS  family m = 13 REFUTED by the separator t = 37/10  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 14 neighbour law {d+1, d-1, d, d} at all 392 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 14 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 14
+PASS  family m = 14 REFUTED by the separator t = 19/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 15 neighbour law {d+1, d-1, d, d} at all 450 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 15 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 15
+PASS  family m = 15 REFUTED by the separator t = 19/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 16 neighbour law {d+1, d-1, d, d} at all 512 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 16 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 16
+PASS  family m = 16 REFUTED by the separator t = 19/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 17 neighbour law {d+1, d-1, d, d} at all 578 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 17 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 17
+PASS  family m = 17 REFUTED by the separator t = 19/5  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 18 neighbour law {d+1, d-1, d, d} at all 648 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 18 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 18
+PASS  family m = 18 REFUTED by the separator t = 387/100  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 19 neighbour law {d+1, d-1, d, d} at all 722 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 19 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 19
+PASS  family m = 19 REFUTED by the separator t = 387/100  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+PASS  family m = 20 neighbour law {d+1, d-1, d, d} at all 800 vertices  so psi_{m,2} <= 2 - 2 cos(2pi/m)
+PASS  family m = 20 partition equitable and quotient = circ(2 D_2, E_2, O.., E_2)  cells of size 20
+PASS  family m = 20 REFUTED by the separator t = 39/10  eigenvalues of Q above t: 1 (=1), of C_m above t-2: 3 (>=2)
+
+========================================================================================
+E  NEGATIVE CONTROLS:  THE CELLS WHERE THIS TEST DOES NOT FIRE
+========================================================================================
+PASS  control charpoly(C_5) = (x-2)(x^2+x-1)^2  so 2 cos(2pi/5) = (sqrt 5 - 1)/2 and 2 eps = 2 - 2cos(2pi/5) = (5 - sqrt 5)/2
+PASS  control m = 5: lambda_2(Q_5) lies in (2.618033, 2.618035)
+PASS  control m = 5: 2 + 2cos(2pi/5) lies in (2.618033, 2.618035) TOO  an exact tie at (3 + sqrt 5)/2, so no separator exists at m = 5 and this test decides the cell in neither direction
+PASS  control m = 3: lambda_2(Q_3) > 2 > 1 = 2 + 2cos(2pi/3)  beta_{3,2} = (7 - sqrt 13)/2; the eigenvector gives no refutation here
+PASS  control m = 4: lambda_2(Q_4) > 5/2 > 2 = 2 + 2cos(2pi/4)  no refutation at m = 4 either
+PASS  control the same test applied at m = 6 does fire  so the m = 3,4,5 negatives are not an artefact of the test
+
+NOT RE-RUN: the exact value psi_{6,2} = 1.  This program proves only psi_{6,2} <= 1,
+NOT RE-RUN:   which is all the refutation needs; the matching lower bound is Blanco's
+NOT RE-RUN:   published theorem (arXiv:2608.15398v1) and is quoted, not verified here.
+NOT RE-RUN: lambda_2(A(P_6(2))) and lambda_2(A(P_6(3))) are never computed -- only
+NOT RE-RUN:   bounded below, by the exhibited eigenvector and by lambda_max(T).
+NOT RE-RUN: the cells m = 3, 4, 5 at n = 2.  Section E shows only that the separator
+NOT RE-RUN:   test does not fire there.  The test bounds psi_{m,2} above and beta_{m,2}
+NOT RE-RUN:   below, so a negative is NOT evidence that psi_{m,2} = beta_{m,2}; those
+NOT RE-RUN:   cells are left undecided in both directions.
+NOT RE-RUN: MINIMALITY.  Nothing here shows (6,2) is the smallest counterexample. The
+NOT RE-RUN:   cell (2,3), on 48 vertices, is not decided by this program at all, and
+NOT RE-RUN:   m = 2 uses a different connection set (q_2 = 1) that is not built here.
+NOT RE-RUN: cells with n >= 4, and m > 20 at n = 2, are not examined; the family claim
+NOT RE-RUN:   for all m >= 6 rests on section C's identities, not on section D's table.
+NOT RE-RUN: the asymptotic expansion beta_{m,2} = 3 eps - eps^2/4 + O(eps^3).
+
+VERDICT: ALL 109 CHECKS PASS
+=== program exited with status 0 ===

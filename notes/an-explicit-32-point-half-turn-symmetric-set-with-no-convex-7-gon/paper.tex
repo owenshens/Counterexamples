@@ -1,0 +1,272 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An explicit 32-point set with a free half-turn and no convex 7-gon}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[A 32-point set with a free half-turn and no convex 7-gon]
+{An explicit 32-point set with a free half-turn and no convex 7-gon}
+
+\date{}
+
+\subjclass[2020]{52C10, 52A10, 05D10}
+\keywords{Erd\H{o}s--Szekeres problem, convex position, point configuration,
+rotational symmetry, explicit construction}
+
+\begin{document}
+
+\begin{abstract}
+Subercaseaux, Mackey, Qian and Heule closed the $4$-fold symmetric case of the
+$32$-point Erd\H{o}s--Szekeres problem negatively and listed, as a further
+problem in their conclusions, the realization of a \emph{$2$-fold} symmetric
+$32$-point set with no convex $7$-gon. We exhibit one. The set
+$W^{*}=P\cup(-P)$, where $P$ is an explicit list of sixteen integer points of
+absolute value at most $31$, lies in general position, is carried to itself by
+the half-turn $h(z)=-z$, which acts on it freely with sixteen orbits of size
+two, and contains no seven points in convex position; its largest subsets in
+convex position have size $6$, and there are $56261$ of them. Realizability is
+immediate because the points are integers. Combined with the negative $4$-fold
+result and an orbit argument, this determines which rotational orders can act on
+a $7$-gon-free set of $32$ points: only $s\in\{1,2,4\}$ are possible, $s=1$ and
+$s=2$ occur, and $s=4$ does not. Nothing here bounds $g(7)$.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}\label{sec:problem}
+
+Write $g(k)$ for the least $n$ such that every set of $n$ points in general
+position in the plane (no three collinear) contains $k$ points in convex
+position. Erd\H{o}s and Szekeres proved $g(k)\ge 2^{k-2}+1$ and conjectured
+equality \cite{ES35,ES61}; the only known values are $g(4)=5$, $g(5)=9$ and
+$g(6)=17$ \cite{SzekeresPeters}, so $g(7)$ is open and $32=2^{7-2}$ is the
+conjectured extremal size, not a proved one.
+
+Subercaseaux, Mackey, Qian and Heule \cite{SMQH} settle the case $n=32$, $k=7$
+under a $4$-fold rotational symmetry assumption negatively, and their
+Conclusions name what is left. Quoted from the e-print:
+
+\begin{quote}
+Further problems in this line of work include finding a realization of a
+\verb|$2$|-fold symmetric construction of \verb|$32$| points without a convex
+\verb|$7$|-gon, and designing an efficient solver that can handle collinearity
+constraints for the realizability problem.
+\end{quote}
+
+\noindent
+The sentence carries no number: it is the further-problems sentence of a
+Conclusions section, and it is reproduced verbatim so that what is answered
+below does not depend on a label. The ambient definitions are those of the
+source. General position is no three points collinear; a set $S$ in general
+position is in convex position if and only if every $4$-point subset of $S$ is,
+equivalently if and only if no point of $S$ lies in the convex hull of three
+others, a consequence of Carath\'eodory's theorem. Here the exhibited object is
+a list of integers, so realizability needs no appeal to the existential theory
+of the reals.
+
+Constructions of $2^{k-2}$-point $k$-gon-free sets, generalizing the previously
+known families, are given by Baek and Balko \cite{BaekBalko}; symmetry is not
+considered there. No priority or novelty is claimed for the set below.
+
+\section{The construction}\label{sec:result}
+
+Let $P$ be the sixteen integer points
+\[
+\begin{array}{cccc}
+ (18,-4) & (6,-18) & (-17,4) & (-3,-18)\\
+ (-5,20) & (12,21) & (15,23) & (-13,5)\\
+ (20,-25) & (-22,2) & (23,27) & (-22,-26)\\
+ (23,-2) & (-30,-31) & (27,-1) & (4,19)
+\end{array}
+\]
+and put $W^{*}=P\cup(-P)$, that is, the thirty-two points
+\[
+\begin{array}{cccc}
+ (18,-4) & (-18,4) & (6,-18) & (-6,18)\\
+ (-17,4) & (17,-4) & (-3,-18) & (3,18)\\
+ (-5,20) & (5,-20) & (12,21) & (-12,-21)\\
+ (15,23) & (-15,-23) & (-13,5) & (13,-5)\\
+ (20,-25) & (-20,25) & (-22,2) & (22,-2)\\
+ (23,27) & (-23,-27) & (-22,-26) & (22,26)\\
+ (23,-2) & (-23,2) & (-30,-31) & (30,31)\\
+ (27,-1) & (-27,1) & (4,19) & (-4,-19)
+\end{array}
+\]
+Every coordinate is an integer of absolute value at most $31$, the bound being
+attained at $(-30,-31)$. That bound is not claimed to be minimal.
+
+\begin{theorem}\label{thm:main}
+$W^{*}$ is a set of $32$ points in general position in the plane; the half-turn
+$h(z)=-z$ satisfies $h(W^{*})=W^{*}$, has order $2$, and acts on $W^{*}$
+freely, with exactly $16$ orbits of size $2$; and $W^{*}$ contains no $7$
+points in convex position. Its largest subsets in convex position have size
+exactly $6$, and there are $56261$ of them.
+\end{theorem}
+
+Thus a realization of the object named in the sentence quoted above exists.
+
+\begin{proof}
+The list has $32$ entries and they are pairwise distinct, so $|W^{*}|=32$; the
+origin does not occur in the list. The map $h$ is linear, hence an affine
+bijection of the plane, so it preserves collinearity, convex hulls and convex
+position; $h(W^{*})=W^{*}$ holds entry by entry by construction of $W^{*}$ as
+$P\cup(-P)$; $h\circ h=\mathrm{id}$ and $h\neq\mathrm{id}$, so $h$ has order
+exactly $2$. The unique fixed point of $h$ in the plane is the origin, which is
+not in $W^{*}$; therefore no point of $W^{*}$ is fixed, every orbit has size
+$2$, and there are $32/2=16$ of them.
+
+General position and the absence of seven points in convex position are finite
+decisions, and no short argument for them is claimed; they were computed as
+described in \S\ref{sec:verify}. All $\binom{32}{3}=4960$ orientation
+determinants $\det\bigl(b-a,\;c-a\bigr)$ are nonzero, their absolute values
+ranging from $1$ to $2892$. For the second part, the subsets of $W^{*}$ in
+convex position, counted by size, are
+\[
+\begin{array}{r|ccccc}
+ \text{size} & 3 & 4 & 5 & 6 & \ge 7\\\hline
+ \text{number in convex position} & 4960 & 24322 & 59002 & 56261 & 0\\
+ \binom{32}{\text{size}} & 4960 & 35960 & 201376 & 906192 &
+\end{array}
+\]
+so the maximum size of a subset in convex position is $6$ and the number of
+those is $56261$. Convex position is inherited by subsets, so ``no $7$ in
+convex position'' already gives ``no $m$ in convex position'' for every
+$m\ge 7$.
+\end{proof}
+
+\begin{remark}
+Two entries of the table are forced: every triple of a set in general position
+is in convex position, which fixes the size-$3$ column, and $W^{*}$ must
+contain a convex hexagon since $g(6)=17\le 32$. What is not forced is the $0$
+in the final column, that is, that the maximum is \emph{exactly} $6$. An
+explicit hexagon, for a reader who wants one to hand, is
+\[
+ (18,-4)\quad(-18,4)\quad(6,-18)\quad(-6,18)\quad(-3,-18)\quad(3,18).
+\]
+\end{remark}
+
+\section{Rotation orders at $n=32$}\label{sec:complete}
+
+\begin{proposition}\label{prop:orders}
+Let $W$ be a set of $32$ points in general position with no $7$ points in
+convex position, and let $\rho$ be a rotation of the plane of order $s$ with
+$\rho(W)=W$. Then $s\in\{1,2,4\}$.
+\end{proposition}
+
+\begin{proof}
+The cyclic group $\langle\rho\rangle$ has order $s$ and acts on $W$; the only
+point of the plane with nontrivial stabiliser is the centre of $\rho$, so every
+orbit has size $s$ except for at most one orbit of size $1$. Hence
+$32\equiv 0$ or $1 \pmod s$, i.e.\ $s$ divides $32$ or $s$ divides $31$, which
+leaves $s\in\{1,2,4,8,16,31,32\}$. In particular $s\in\{3,5,6\}$ is impossible,
+since $32\equiv 2$ modulo each of $3$, $5$ and $6$. Finally, if $s\ge 7$ then
+$W$ contains an orbit of size $s$, which is the vertex set of a regular
+$s$-gon; any $7$ of its vertices are in convex position, a contradiction. This
+deletes $8,16,31,32$ and leaves $\{1,2,4\}$.
+\end{proof}
+
+\begin{corollary}\label{cor:complete}
+For $n=32$ and $k=7$: a set with $s=1$ exists (Erd\H{o}s--Szekeres
+\cite{ES61}); a set with $s=2$ exists (Theorem~\ref{thm:main}); no set with
+$s=4$ exists (\cite{SMQH}, established there by an exhaustive computation we do
+not reproduce); and no other rotational order is possible
+(Proposition~\ref{prop:orders}).
+\end{corollary}
+
+\noindent
+Of the four lines, only the $s=2$ line is new here; the $s=4$ line is the
+theorem of \cite{SMQH} and the $s=1$ line is classical. The corollary concerns
+rotations only: the mirror-symmetric case at $n=32$ is untouched. Nor does
+anything above bound $g(7)$, which is unknown; the inequality $g(7)\ge 33$ is
+classical, from the asymmetric $2^{k-2}$ construction of \cite{ES61} (see also
+\cite[Thm.~2.6]{MorrisSoltan}), and $W^{*}$ does not improve it.
+
+\section{Verification}\label{sec:verify}
+
+The finite parts of Theorem~\ref{thm:main} were recomputed by two structurally
+different exhaustive procedures, in exact integer arithmetic with no
+floating-point decision anywhere. The first applies the Carath\'eodory
+criterion of \S\ref{sec:problem} to each of the $\binom{32}{7}=3{,}365{,}856$
+seven-subsets, with no pruning, and finds $0$ in convex position. The second
+never mentions the number $7$: it enumerates every subset in convex position
+\emph{at every size at once}, by growing angularly ordered left-turning chains
+from each vertex in turn with the closing turn checked explicitly, and so
+returns the maximum directly; because that enumeration is untruncated, its
+answer $6$ settles all sizes above $6$ simultaneously. The two agree on the
+size-$4$ column, where both are cheap: $24322$ of $\binom{32}{4}=35960$. The
+criterion was pinned in both polarities before use, so that neither answer is
+vacuous.
+
+A program that carries out all of this on the integers printed in
+\S\ref{sec:result}, together with a recorded run of it, accompanies this note;
+it is not needed in order to redo the work, since every input it consumes is
+printed above. It does \emph{not} re-run the search that produced $W^{*}$,
+which is why $W^{*}$ is pinned as a printed list of integers, and it does
+\emph{not} recompute the $4$-fold negative result quoted in
+Corollary~\ref{cor:complete}, which is taken from \cite{SMQH}.
+
+\begin{thebibliography}{10}
+
+\bibitem{ES35}
+P.~Erd\H{o}s and G.~Szekeres,
+\emph{A combinatorial problem in geometry},
+Compositio Math. \textbf{2} (1935), 463--470.
+
+\bibitem{ES61}
+P.~Erd\H{o}s and G.~Szekeres,
+\emph{On some extremum problems in elementary geometry},
+Ann. Univ. Sci. Budapest. E\"otv\"os Sect. Math. \textbf{3--4} (1960/61),
+53--62.
+
+\bibitem{MorrisSoltan}
+W.~Morris and V.~Soltan,
+\emph{The Erd\H{o}s--Szekeres problem on points in convex position ---
+a survey},
+Bull. Amer. Math. Soc. \textbf{37} (2000), no.~4, 437--458.
+\href{https://doi.org/10.1090/S0273-0979-00-00877-6}%
+{doi:10.1090/S0273-0979-00-00877-6}.
+
+\bibitem{SzekeresPeters}
+G.~Szekeres and L.~Peters,
+\emph{Computer solution to the 17-point Erd\H{o}s--Szekeres problem},
+ANZIAM J. \textbf{48} (2006), no.~2, 151--164.
+\href{https://doi.org/10.1017/S144618110000300X}%
+{doi:10.1017/S144618110000300X}.
+
+\bibitem{SMQH}
+B.~Subercaseaux, E.~Mackey, L.~Qian, and M.~J.~H. Heule,
+\emph{Automated symmetric constructions in discrete geometry},
+in: Intelligent Computer Mathematics (CICM 2025), Lecture Notes in Computer
+Science \textbf{16136}, Springer, Cham, 2026, pp.~29--47.
+\href{https://doi.org/10.1007/978-3-032-07021-0_3}%
+{doi:10.1007/978-3-032-07021-0\_3};
+\href{https://arxiv.org/abs/2506.00224}{arXiv:2506.00224}.
+The sentence quoted in \S\ref{sec:problem} is from the e-print of v1
+(30 May 2025).
+
+\bibitem{BaekBalko}
+J.~Baek and M.~Balko,
+\emph{The Erd\H{o}s--Szekeres conjecture revisited},
+in: 41st International Symposium on Computational Geometry (SoCG 2025),
+LIPIcs \textbf{332}, 13:1--13:15.
+\href{https://doi.org/10.4230/LIPIcs.SoCG.2025.13}%
+{doi:10.4230/LIPIcs.SoCG.2025.13};
+full version \href{https://doi.org/10.1016/j.jcta.2026.106195}%
+{doi:10.1016/j.jcta.2026.106195}.
+
+\end{thebibliography}
+
+\end{document}

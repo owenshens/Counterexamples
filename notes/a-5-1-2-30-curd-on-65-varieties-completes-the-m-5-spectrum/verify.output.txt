@@ -1,0 +1,103 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  58aa5e7e893828542d79e0002c4bf6a628592a5293979f9217c1c4a661dc5986
+python:  Python 3.9.25
+=== program output follows ===
+=== the cell: the source's own necessary conditions at n = 65, m = 5 ===
+PASS n-m-and-the-pair-count n = 65 varieties, m = 5, C(n,2) = 2080 pairs to cover exactly once
+PASS w-from-the-first-necessary-condition w = n(n-1)/(m^2-2m+n) = 4160/80 = 52 parallel classes, an exact division
+PASS t-from-the-second-necessary-condition t = (n-w-1)/(m-2) = 12/3 = 4 five-blocks through each variety, an exact division
+PASS third-necessary-condition-mw-equals-tn mw = 260 and tn = 260
+PASS theorem-2-5-bounds-at-t-4 n = 65 <= t^4-t^3+t^2-t+1 = 205 and m = 5 <= t(t^2-2t+2) = 40
+PASS block-and-pair-census-closes-exactly each class covers 40 pairs (10 inside the five-block, 30 pairs); 52 x 40 = 2080 = C(65,2); 52 five-blocks + 1560 2-blocks = 1612 blocks
+PASS partition-exponent-is-30 the partition 5^1 2^((n-5)/2) reads 5^1 2^30 at n = 65
+PASS n-65-is-one-of-the-three-admissible-orders the source's Theorem 2.9 admits only n = 5, 25, 65; this is the third
+PASS arithmetic-of-the-source-s-n-5-cell n = 5: w = 1, t = 1, and 1 x 10 = 10 = C(5,2) -- the source supplies the object, not us
+PASS arithmetic-of-the-source-s-n-25-cell n = 25: w = 15, t = 3, and 15 x 20 = 300 = C(25,2) -- the source supplies the object, not us
+
+=== the four base parallel classes, read from the block printed in Section 2 ===
+PASS four-base-classes-parsed 4 base classes, each one five-block of size 5 and 30 pairs
+PASS P1-is-a-partition-of-type-5-1-2-30 the 5 + 60 varieties listed are 0..64 each exactly once, block sizes 5, 2^30
+PASS P2-is-a-partition-of-type-5-1-2-30 the 5 + 60 varieties listed are 0..64 each exactly once, block sizes 5, 2^30
+PASS P3-is-a-partition-of-type-5-1-2-30 the 5 + 60 varieties listed are 0..64 each exactly once, block sizes 5, 2^30
+PASS P4-is-a-partition-of-type-5-1-2-30 the 5 + 60 varieties listed are 0..64 each exactly once, block sizes 5, 2^30
+PASS P1-five-block-is-the-predicted-transversal {13c + (0)c mod 13 : c = 0..4} = {0_0,1_0,2_0,3_0,4_0}, one variety per column
+PASS P2-five-block-is-the-predicted-transversal {13c + (1)c mod 13 : c = 0..4} = {0_0,1_1,2_2,3_3,4_4}, one variety per column
+PASS P3-five-block-is-the-predicted-transversal {13c + (2)c mod 13 : c = 0..4} = {0_0,1_2,2_4,3_6,4_8}, one variety per column
+PASS P4-five-block-is-the-predicted-transversal {13c + (3)c mod 13 : c = 0..4} = {0_0,1_3,2_6,3_9,4_12}, one variety per column
+
+=== sigma, the pair orbits, and the distinctness that certifies lambda = 1 ===
+PASS sigma-is-a-permutation-of-order-13 sigma: c_x -> c_(x+1 mod 13) permutes the 65 varieties and has order exactly 13
+PASS every-pair-orbit-has-size-exactly-13 all 160 orbits have size 13; no pair is fixed by any nontrivial power of sigma
+PASS there-are-160-orbits-30-same-column-and-130-cross-column 5 columns x 6 distances = 30 same-column labels; C(5,2) x 13 = 130 cross-column labels
+PASS 160-orbits-times-13-is-the-whole-pair-set 160 x 13 = 2080 = C(65,2) = 2080
+PASS the-base-classes-supply-exactly-160-pairs 4 classes x 40 pairs = 160 pairs, exactly one per orbit if and only if the labels are distinct
+PASS the-160-orbit-labels-are-pairwise-distinct 160 distinct labels among 160 supplied
+PASS same-column-labels-30-of-30 every one of the 30 same-column orbits is used exactly once
+PASS cross-column-labels-130-of-130 every one of the 130 cross-column orbits is used exactly once
+PASS lambda-1-certified-by-distinctness the 160 supplied labels are exactly the 160 orbits, so developing by sigma covers each of the 2080 pairs exactly once
+PASS five-blocks-use-four-distinct-cross-labels-on-every-column-pair on columns (c,c') they use 0, delta, 2delta, 3delta with delta = c'-c != 0 mod 13, distinct because 13 is prime -- (0,1):0123 (0,2):0246 (0,3):0369 (0,4):04812 (1,2):0123 (1,3):0246 (1,4):0369 (2,3):0123 (2,4):0246 (3,4):0123
+PASS the-2-blocks-must-cover-120-leave-orbits 160 - 40 = 120 orbits remain after the five-blocks (all 30 same-column plus 10 x 9 = 90 cross-column), and 120 x 13 = 1560 = 52 x 30 two-blocks
+
+=== the 52 developed parallel classes, checked directly and not via the orbit argument ===
+PASS development-gives-52-parallel-classes 4 base classes x 13 powers of sigma = 52 classes
+PASS development-gives-1612-blocks 52 x 31 = 1612 blocks: 52 of size 5 and 1560 of size 2
+PASS every-developed-class-is-a-partition-of-type-5-1-2-30 all 52 classes are resolutions of the 65 varieties with the same block-size multiset
+PASS all-2080-pairs-are-covered 2080 of 2080 distinct pairs appear in some block
+PASS the-multiplicity-multiset-is-exactly-one-for-every-pair pair-multiplicity multiset = {1: 2080}, so the design is pairwise balanced with lambda = 1
+PASS t-equals-4-at-every-variety every one of the 65 varieties lies in exactly 4 of the 52 five-blocks
+PASS the-52-five-blocks-are-distinct 52 distinct five-blocks, one per parallel class
+PASS five-blocks-pairwise-meet-in-at-most-one-variety no two of the 52 five-blocks share two varieties, as lambda = 1 requires
+PASS family-1-of-thirteen-five-blocks-is-itself-a-parallel-class variety 13c+x lies in sigma^s(P_1) iff s = x - 0 c mod 13, one solution in Z_13, so the 13 five-blocks partition the 65 varieties
+PASS family-2-of-thirteen-five-blocks-is-itself-a-parallel-class variety 13c+x lies in sigma^s(P_2) iff s = x - 1 c mod 13, one solution in Z_13, so the 13 five-blocks partition the 65 varieties
+PASS family-3-of-thirteen-five-blocks-is-itself-a-parallel-class variety 13c+x lies in sigma^s(P_3) iff s = x - 2 c mod 13, one solution in Z_13, so the 13 five-blocks partition the 65 varieties
+PASS family-4-of-thirteen-five-blocks-is-itself-a-parallel-class variety 13c+x lies in sigma^s(P_4) iff s = x - 3 c mod 13, one solution in Z_13, so the 13 five-blocks partition the 65 varieties
+
+=== anti-controls, so that the PASSes above are not vacuous ===
+PASS anti-control-a-swap-of-two-varieties-is-rejected exchanging 0_8 with 0_12 in P1 gives multiplicity multiset {0: 13, 1: 2054, 2: 13} -- the test says INVALID
+PASS anti-control-a-repeated-base-class-is-rejected setting P2 := P1 gives multiplicity multiset {0: 520, 1: 1040, 2: 520}: only 120 of the 160 orbits are supplied, so 520 pairs are doubled and 520 are missed
+
+=== the near miss: Danziger-Stevens, EJC 11 (2004) #R23, Theorem 3.5 at (q,k,m) = (13,5,3) ===
+PASS r23-theorem-3-5-is-legal-at-13-5-3 2 <= k = 5 <= q = 13 and 0 <= m = 3 <= q/(k-1) = 13/4, so the theorem applies
+PASS r23-lands-on-our-exact-order-and-partition type q^k = 13^5 is 65 points with partition 2^30 5^1 -- our order and our partition
+PASS r23-object-is-group-divisible-so-390-pairs-are-covered-zero-times 390 within-group pairs are covered 0 times and only 1690 of the 2080 pairs are covered at all; a CURD must cover all 2080
+PASS r23-index-is-4-not-1 lambda = q - m(k-2) = 4, giving 169 resolution classes, not lambda = 1 with 52
+PASS r23-cannot-be-specialised-to-lambda-1-with-one-k-block-per-class lambda = 1 needs q-m(k-2) = 1 while one k-block per class needs q-m(k-1) = 1; subtracting gives m = 0 hence q = 1, and an exhaustive sweep of 1 <= q <= 200, 0 <= m <= 200, 2 <= k <= q finds no other solution
+PASS 65-is-not-a-projective-plane-order-so-corollary-3-8-misses-it R23's only lambda = 1 CURD family lands on q^2+q+1 points; 7^2+7+1 = 57 and 8^2+8+1 = 73 straddle 65, so 65 is not of that form for any integer q
+PASS the-published-two-block-size-bound-does-not-exclude-65 the reviewed exclusion bounds are p_2 > 1 => v <= p_2^2 and p_3 > 0 => v <= (3p_3)^2; here p_2 = 30 and p_3 = 0, so the only applicable one reads v <= 900 and 65 <= 900
+
+=== the bookkeeping of the claim ===
+PASS the-source-s-other-open-cell-has-different-parameters the 4^1 2^12 cell at n = 28 has m = 4, w = 21, t = 3 against our m = 5, w = 52, t = 4; this paper settles the n = 65 cell alone
+PASS the-parameters-read-off-the-object-are-the-claimed-ones measured from the developed blocks rather than from any formula: (n, m, w, t, lambda) = (65, 5, 52, 4, 1), which is the cell the paper claims and no other
+
+object sha256 (of the OBJECT string in this file, for comparison with the printed page): 4e9fcc7fbee93eb7c78444fcc34547704c3fd0cb369a0bc806442f96acd34399
+
+NOT RE-RUN: the SEARCH. The object above was found by Algorithm X on a 360-element exact cover
+  (240 (class, variety) elements plus 120 leave orbits, 5,280 candidate rows), at seed 1 in 130
+  nodes. This program does not repeat that search and could not reproduce its choices; nothing here
+  depends on it, because a positive certificate of this kind is self-checking.
+NOT RE-VERIFIED: the 'only if' half of the source's Theorem 2.9, that a 5^1 2^((n-5)/2)-CURD forces
+  n in {5, 25, 65}. It is quoted, not re-proved. What is re-derived here is only its arithmetic at
+  n = 65 and the two bounds of the source's Theorem 2.5 at t = 4.
+NOT REPRODUCED: the source's own objects at n = 5 (its Example 1.2) and n = 25 (its Theorem 4.7 /
+  Corollary 4.11 at q = 5). Only their parameter arithmetic is re-derived below; no object at either
+  order is built, parsed or checked here, so the completed spectrum {5, 25, 65} rests on the source
+  for two of its three members.
+NOT COVERED: uniqueness, enumeration, or the number of solutions at n = 65. This is a construction,
+  not a classification; the exhausted fraction of the unrestricted space is 0, and no non-existence
+  claim is made or checked anywhere in this file.
+NOT COVERED: the source's OTHER open cell, a 4^1 2^12-CURD on n = 28 (its line 361). This program
+  re-derives only that its parameters differ from ours (m = 4, w = 21, t = 3) and asserts nothing
+  about its existence in either direction.
+NOT TRANSCRIBED: Inequality (6) of Danziger-Stevens (2004), their general two-block-size extremal
+  bound. Its text extraction is layout-mangled -- the fraction bar and the scope of the leading
+  lambda are unrecoverable -- so it was not transcribed with certainty and is not evaluated here.
+  Only the published bound p_2 > 1 => v <= p_2^2 is checked.
+NOT SEARCHED: prior art beyond the channels listed in the 'Bibliographic channels were incomplete'
+  paragraph of the accompanying note 
+  which full texts were unreachable. OpenAlex returned HTTP 429, MathSciNet and two Wiley full texts
+  were inaccessible, and the Handbook CURD section is print only. Nothing in this program bears on
+  those gaps.
+
+VERDICT: ALL 53 CHECKS PASS
+=== program exited with status 0 ===

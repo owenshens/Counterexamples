@@ -1,0 +1,353 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Infinite Family of Polyominoes Whose C4-Face-Magic Spectrum Omits Its Centre}
+}
+
+\emergencystretch=2em
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\DeclareMathOperator{\Spec}{Spec}
+\newcommand{\cells}{\mathcal C}
+
+\title[A non-interval $C_4$-face-magic spectrum]
+{An Infinite Family of Polyominoes Whose\\ $C_4$-Face-Magic Spectrum Omits Its Centre}
+
+\date{}
+
+\subjclass[2020]{05C78, 05B50, 05C10}
+\keywords{$C_4$-face-magic labeling, polyomino, magic spectrum, face-magic
+graph, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For a polyomino $P$ with $n=|V(P)|$, Chalise, Low and
+Eisenkolb-Vaithyanathan define the $C_4$-face-magic spectrum
+$\Spec_{C_4}(P)$ to be the set of magic constants of $C_4$-face-magic
+labelings of $P$, and ask (Question~2 of their Section~5) whether
+$\Spec_{C_4}(P)$ is always an interval of integers. It is not. For the
+L-tromino $L_2$ we determine the spectrum exactly,
+\[
+  \Spec_{C_4}(L_2)=\{15,16,17,19,20,21\},
+\]
+so the centre $2(n+1)=18$ is missing. The mechanism is a double count: if
+some multiset of cells covers $V(P)$ with multiplicity one except for a
+single uncovered vertex and a single doubled vertex, then $4\mid n$, the
+value $2(n+1)$ is excluded, and $\Spec_{C_4}(P)$ is confined to the six
+values $2(n+1)+j$ with $1\le|j|\le3$. An explicit L-shaped family $L_m$,
+$m$ even, satisfies the hypothesis for every $m$, so the centre is omitted
+at every order $n=2m+4$ with $m$ even. Both the exclusion and the six-value
+window are proved without any search.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A \emph{polyomino} $P$ is a finite edge-connected union of unit squares in the
+square lattice $\mathbb Z^2$, identified with its associated plane graph, whose
+vertices are the lattice vertices of the cells and whose edges are the lattice
+edges \cite[Section~1]{CLE}. We write $\cells(P)$ for the set of cells,
+$V(P)$ for the vertex set, $n=|V(P)|$ and $[n]=\{1,\ldots,n\}$. Throughout,
+the cell $[x,y]$ is the closed unit square with lower-left lattice point
+$(x,y)$, so
+\[
+  V\bigl([x,y]\bigr)=\bigl\{(x,y),\,(x+1,y),\,(x,y+1),\,(x+1,y+1)\bigr\}.
+\]
+
+Chalise, Low and Eisenkolb-Vaithyanathan \cite{CLE} prove the Shiu--Low--Liu
+conjecture \cite{SLL} that every polyomino is $C_4$-face-magic, and in their
+Section~5 they introduce the \emph{$C_4$-face-magic spectrum}
+\begin{equation}\label{eq:spec}
+\begin{gathered}
+  \Spec_{C_4}(P)
+  =\Bigl\{
+     s\in\mathbb N:\ \exists\ \text{a bijection }\lambda:V(P)\to[n]\\
+     \text{such that }\textstyle\sum_{v\in V(C)}\lambda(v)=s
+     \text{ for every }C\in\cells(P)
+   \Bigr\}.
+\end{gathered}
+\end{equation}
+They observe that $\Spec_{C_4}(P)$ is nonempty for every polyomino, that the
+complementary labeling $\overline\lambda=n+1-\lambda$ gives the symmetry
+\begin{equation}\label{eq:sym}
+  s\in\Spec_{C_4}(P)
+  \iff
+  4(n+1)-s\in\Spec_{C_4}(P),
+\end{equation}
+and that $\Spec_{C_4}(P)\subseteq\{10,11,\ldots,4n-6\}$. Because of
+\eqref{eq:sym} the point $2(n+1)$ is the \emph{centre} of the spectrum. They
+then pose five questions, the second of which reads, verbatim,
+\begin{quote}
+  ``Is $\Spec_{C_4}(P)$ always an interval of integers?''
+\end{quote}
+\cite[Section~5, Question~2]{CLE}. We answer it negatively; a witness has
+three cells, and the obstruction is a counting identity that needs no
+computer.
+
+\begin{theorem}\label{thm:tromino}
+Let $L_2$ be the L-tromino, the polyomino with cells $[0,0]$, $[0,1]$,
+$[1,0]$. Then $n=|V(L_2)|=8$, the centre is $2(n+1)=18$, and
+\[
+  \Spec_{C_4}(L_2)=\{15,16,17,19,20,21\}.
+\]
+In particular $18\notin\Spec_{C_4}(L_2)$ while $15$ and $21$ do lie in it, so
+$\Spec_{C_4}(L_2)$ is not an interval of integers and Question~2 of
+\cite{CLE} is false.
+\end{theorem}
+
+\begin{theorem}\label{thm:family}
+For even $m\ge2$ let $L_m$ be the polyomino with cells
+$[0,0],[0,1],\ldots,[0,m-1]$ together with $[1,0]$, so that $L_2$ is the
+L-tromino and $L_4$ the L-pentomino. Then $n=|V(L_m)|=2m+4$,
+\[
+\begin{gathered}
+  2(n+1)=4m+10\notin\Spec_{C_4}(L_m),\\
+  \Spec_{C_4}(L_m)\subseteq\bigl\{\,2(n+1)+j:\ 1\le|j|\le3\,\bigr\}.
+\end{gathered}
+\]
+Since $\Spec_{C_4}(L_m)$ is nonempty and symmetric about $2(n+1)$, it
+contains values on both sides of the missing centre, so it is not an interval.
+Question~2 of \cite{CLE} therefore fails for infinitely many polyominoes, at
+infinitely many orders.
+\end{theorem}
+
+Both mechanisms used below are in print and are references of \cite{CLE}:
+Curran \cite[p.~362]{Curran} confines the $C_4$-face-magic value of an
+odd-order projective grid graph $P_{m,n}$ to $\{2mn+1,2mn+2,2mn+3\}$ by the
+same kind of double count, and the label-collision device is Lemma~2.1 of
+Shiu--Low--Liu \cite{SLL}.
+
+\section{Two lemmas}\label{sec:lemmas}
+
+\begin{lemma}\label{lem:cover}
+Let $P$ be a polyomino with $n=|V(P)|$, and suppose there is a finite multiset
+$S$ of cells of $P$ and two distinct vertices $p,v\in V(P)$ such that, writing
+$w(u)$ for the number of members of $S$ whose vertex set contains $u$,
+\[
+  w(p)=0,\qquad w(v)=2,\qquad w(u)=1\ \text{ for all }u\in V(P)\setminus\{p,v\}.
+\]
+Call such an $S$ a \emph{single-defect cover} of $P$. Then
+\begin{enumerate}
+\item[(i)] $4\mid n$ and $|S|=n/4$;
+\item[(ii)] every $s\in\Spec_{C_4}(P)$ satisfies
+  $\;s=2(n+1)+\dfrac{4\delta}{n}\;$ for some integer $\delta$ with
+  $1\le|\delta|\le n-1$;
+\item[(iii)] $2(n+1)\notin\Spec_{C_4}(P)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Each cell has exactly four vertices, so
+$\sum_{u\in V(P)}w(u)=4|S|$. On the other hand the hypothesis gives
+$\sum_{u}w(u)=0+2+(n-2)=n$. Hence $4|S|=n$, which is (i).
+
+Let $\lambda$ be a $C_4$-face-magic labeling of $P$ with magic constant $s$,
+and put $N=\sum_{i=1}^{n}i=n(n+1)/2$. Summing the magic condition over the
+members of $S$ and exchanging the order of summation,
+\[
+  |S|\,s
+  =\sum_{C\in S}\ \sum_{u\in V(C)}\lambda(u)
+  =\sum_{u\in V(P)}w(u)\,\lambda(u)
+  =N-\lambda(p)+\lambda(v).
+\]
+Writing $\delta=\lambda(v)-\lambda(p)$ and $|S|=n/4$ this is
+$(n/4)s=N+\delta$, i.e.
+\begin{equation}\label{eq:key}
+  s=\frac{4(N+\delta)}{n}=2(n+1)+\frac{4\delta}{n}.
+\end{equation}
+Since $\lambda$ is a bijection onto $[n]$ and $p\ne v$, we have
+$\lambda(p)\ne\lambda(v)$, so $\delta\ne0$, and both labels lie in $[n]$, so
+$|\delta|\le n-1$. That is (ii).
+
+For (iii), take $s=2(n+1)$ in \eqref{eq:key}: it forces $\delta=0$, i.e.
+$\lambda(p)=\lambda(v)$ with $p\ne v$, contradicting injectivity. Equivalently
+and with no algebra: $(n/4)\cdot2(n+1)=n(n+1)/2=N$, so the identity reads
+$N=N-\lambda(p)+\lambda(v)$.
+\end{proof}
+
+\begin{lemma}\label{lem:window}
+Under the hypothesis of Lemma~\ref{lem:cover}, write $n=4t$. Then
+\[
+  \Spec_{C_4}(P)\subseteq\bigl\{\,2(n+1)+j:\ j\in\{-3,-2,-1,1,2,3\}\,\bigr\},
+\]
+so $|\Spec_{C_4}(P)|\le6$, however large $P$ is.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:key}, $s-2(n+1)=4\delta/n=\delta/t$. As $s$ is an integer,
+$t\mid\delta$, say $\delta=jt$ with $j\in\mathbb Z$. By
+Lemma~\ref{lem:cover}(ii), $\delta\ne0$ and $|\delta|\le n-1=4t-1$, so
+$0<|j|\le4-1/t<4$ and hence $j\in\{\pm1,\pm2,\pm3\}$. Finally
+$s=2(n+1)+j$.
+\end{proof}
+
+So a polyomino with a single-defect cover has a spectrum contained in the six
+integers within distance $3$ of its centre, and missing the centre itself.
+Nothing but a covering count has been used; in particular no labeling has been
+searched for.
+
+\section{The L-tromino}\label{sec:tromino}
+
+\begin{proof}[Proof of Theorem~\ref{thm:tromino}]
+The cells of $L_2$ are $[0,0],[0,1],[1,0]$, so
+\[
+  V(L_2)=\{(0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1)\},
+\]
+$n=8$, $t=n/4=2$ and the centre is $2(n+1)=18$.
+
+\emph{Upper bound.} Take $S=\{[0,1],\,[1,0]\}$. Its two cells have vertex sets
+$\{(0,1),(1,1),(0,2),(1,2)\}$ and $\{(1,0),(2,0),(1,1),(2,1)\}$, so $(1,1)$ is
+covered twice, $(0,0)$ is covered not at all, and each of the remaining five
+vertices exactly once. Thus $S$ is a single-defect cover with $p=(0,0)$,
+$v=(1,1)$ and $|S|=2=n/4$. By Lemmas~\ref{lem:cover} and \ref{lem:window},
+\[
+  \Spec_{C_4}(L_2)\subseteq\{15,16,17,19,20,21\}.
+\]
+
+\emph{Lower bound.} Each of the six columns of Table~\ref{tab:L2} is a
+bijection $V(L_2)\to[8]$ under which all three cells of $L_2$ sum to the
+value heading the column. Hence each of the six values lies in
+$\Spec_{C_4}(L_2)$, and the two bounds meet.
+
+Since $15,21\in\Spec_{C_4}(L_2)$ and $18\notin\Spec_{C_4}(L_2)$, the set is
+not an interval.
+\end{proof}
+
+\begin{table}[ht]
+\[
+\begin{array}{c|cccccc}
+ u & \lambda_{15}(u) & \lambda_{16}(u) & \lambda_{17}(u)
+   & \lambda_{19}(u) & \lambda_{20}(u) & \lambda_{21}(u)\\
+\hline
+(0,0) & 7 & 5 & 3 & 1 & 1 & 1\\
+(0,1) & 5 & 8 & 8 & 8 & 8 & 8\\
+(0,2) & 3 & 3 & 2 & 2 & 3 & 2\\
+(1,0) & 2 & 2 & 5 & 7 & 6 & 5\\
+(1,1) & 1 & 1 & 1 & 3 & 5 & 7\\
+(1,2) & 6 & 4 & 6 & 6 & 4 & 4\\
+(2,0) & 4 & 6 & 4 & 4 & 2 & 3\\
+(2,1) & 8 & 7 & 7 & 5 & 7 & 6
+\end{array}
+\]
+\caption{Six $C_4$-face-magic labelings of the L-tromino $L_2$, one for each
+value of $\Spec_{C_4}(L_2)=\{15,16,17,19,20,21\}$; $\lambda_s$ has magic
+constant $s$. For example $\lambda_{17}$ gives cell $[0,0]$ the sum
+$3+5+8+1=17$, cell $[0,1]$ the sum $8+1+2+6=17$ and cell $[1,0]$ the sum
+$5+4+1+7=17$.}
+\label{tab:L2}
+\end{table}
+
+\section{The infinite family}\label{sec:family}
+
+\begin{proof}[Proof of Theorem~\ref{thm:family}]
+Fix an even $m\ge2$. The $m$ column cells $[0,j]$, $0\le j\le m-1$, together
+contribute the $2(m+1)$ vertices $\{0,1\}\times\{0,\ldots,m\}$, and the cell
+$[1,0]$ contributes in addition the two vertices $(2,0)$ and $(2,1)$. Hence
+\[
+\begin{gathered}
+  V(L_m)=\bigl(\{0,1\}\times\{0,\ldots,m\}\bigr)\cup\bigl\{(2,0),(2,1)\bigr\},\\
+  n=2m+4 .
+\end{gathered}
+\]
+As $m$ is even, $4\mid n$.
+
+Take
+\[
+  S=\bigl\{[0,1],[0,3],\ldots,[0,m-1]\bigr\}\cup\bigl\{[1,0]\bigr\},
+  \qquad |S|=\frac m2+1=\frac n4 .
+\]
+The cell $[0,2i-1]$ has vertex set $\{0,1\}\times\{2i-1,2i\}$, and as $i$ runs
+over $1,\ldots,m/2$ these sets partition $\{0,1\}\times\{1,\ldots,m\}$; so
+every vertex of the column except $(0,0)$ and $(1,0)$ is covered exactly once.
+The cell $[1,0]$ covers $(1,0),(2,0),(1,1),(2,1)$. Of these, $(2,0)$ and
+$(2,1)$ were uncovered and become covered once, $(1,0)$ was uncovered and
+becomes covered once, and $(1,1)$ was already covered once and becomes covered
+twice. The vertex $(0,0)$ is covered by no member of $S$. Thus $S$ is a
+single-defect cover with $p=(0,0)$ and $v=(1,1)$, and
+Lemmas~\ref{lem:cover} and \ref{lem:window} give both displayed assertions of
+the theorem.
+
+That $\Spec_{C_4}(L_m)$ is nonempty is the main theorem of \cite{CLE}, and
+\eqref{eq:sym} makes it symmetric about $2(n+1)$; so if $s_0$ is any element
+then so is $4(n+1)-s_0$, and the two lie strictly on opposite sides of the
+centre, which is absent. Hence $\min<2(n+1)<\max$ with the centre missing, and
+the set is not an interval.
+\end{proof}
+
+Parity is forced rather than chosen: $|S|=n/4$ must be an integer, and
+$n=2m+4$ is divisible by $4$ exactly when $m$ is even. For odd $m$ the
+argument above says nothing whatever, and we make no claim there.
+
+\medskip
+\noindent\textbf{Not claimed.}
+That all six window values are actually attained is proved here only for
+$L_2$, by the labelings of Table~\ref{tab:L2}; for larger even $m$ we assert
+only nonemptiness, which is \cite{CLE}, together with the six-value window.
+Nothing here shows that $L_2$ is a polyomino of least order with a
+non-interval spectrum, nor that non-interval spectra arise only from
+single-defect covers, nor that the gap must always be a single value at the
+centre. Question~3 of \cite[Section~5]{CLE}, which asks for a
+characterisation of the polyominoes $P$ with $2(n+1)\in\Spec_{C_4}(P)$,
+remains open: Lemma~\ref{lem:cover}(iii) gives a sufficient condition for
+failure, not a necessary one.
+
+\section{Verification}\label{sec:verify}
+
+Everything above can be checked by hand: one adds four numbers per cell in
+Table~\ref{tab:L2} and checks the covering multiplicities of
+$\{[0,1],[1,0]\}$ and of the family cover against the vertex lists.
+
+A program \texttt{verify.py} accompanies this paper, together with a recorded
+run \texttt{verify.output.txt}. It is Python~3.9+, standard library only, with
+no external data file: the cell lists, covering sets and labelings are
+literals in the source, transcribed from the paper. It re-derives $V(P)$ and
+$n$ from the cell lists, verifies that each printed labeling is a bijection
+onto $[n]$ and that every cell sums to the declared constant, recomputes the
+covering multiplicities and the resulting values of $\delta$, checks the
+arithmetic identity $(n/4)\cdot2(n+1)=n(n+1)/2$ that forces the collision at
+the centre, confirms that the realised spectrum coincides with the six-value
+window of Lemma~\ref{lem:window} and is symmetric under \eqref{eq:sym}, and
+re-checks the covering rule of Theorem~\ref{thm:family} for all one hundred
+even $m$ with $2\le m\le200$. Its recorded run also checks labelings and
+covering profiles of further shapes that this note does not discuss. All
+arithmetic is exact integer arithmetic; there is no search for labelings
+anywhere, no floating point and no randomness, and the run takes well under a
+second. It reports $99$ checks, all passing, and prints its own list of what
+it does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{CLE}
+P.~Chalise, R.~M. Low, and A.~Eisenkolb-Vaithyanathan,
+\emph{All polyominoes are $C_4$-face-magic},
+preprint, submitted 9 August 2026.
+\href{https://arxiv.org/abs/2608.08914v1}{arXiv:2608.08914v1}.
+Section, definition and question numbers are quoted from v1 of that e-print,
+the only version available to us; Question~2 is reproduced verbatim in
+Section~1 above, so nothing here depends on the numbering.
+
+\bibitem{Curran}
+M.~J. Curran,
+\emph{$C_4$-face-magic labelings on odd order projective grid graphs},
+Australas. J. Combin. \textbf{83} (2022), no.~3, 361--396.
+
+\bibitem{SLL}
+W.~C. Shiu, R.~M. Low, and A.~K. Liu,
+\emph{Face-magic labelings of polygonal graphs},
+Theory Appl. Graphs \textbf{11} (2024), no.~1, Art.~7.
+\href{https://doi.org/10.20429/tag.2024.110107}{doi:10.20429/tag.2024.110107}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,111 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  289a9b2f3da65350b94ccf993d60a9b0d55d9a10953702fc159d936c78cfc338
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- a 32-digit prime x with x^2+x+1 square-full;
+Question sqfull of Ochem and Zelinsky (arXiv:2607.19746) has the answer YES.
+exact integer arithmetic only, standard library only, no randomness
+
+=== Step 1: the object read from the paper
+NOTE x = 47116128896261596331524418282573
+NOTE n = x^2+x+1 = 2219929602169136991765718912586970986546248112210754339293782903
+PASS x_has_32_decimal_digits [32 digits]
+PASS n_equals_the_decimal_string_printed_in_the_paper
+PASS n_has_64_decimal_digits [64 digits]
+PASS A_equals_the_product_of_the_four_factors_printed_for_it [A = 2544031832644333879196802002161]
+PASS n_equals_seven_cubed_times_A_squared
+PASS n_equals_7^3_43^2_3416683^2_12353161^2_1401752363863729^2
+PASS seven_does_not_divide_A_so_v7_of_n_is_exactly_three [A mod 7 = 3]
+
+=== Step 2: n is square-full, by the source's own definition (rad n)^2 | n
+PASS every_prime_dividing_n_other_than_7_divides_A [so v_p(n) = 2 v_p(A) >= 2 for p != 7, and v_7(n) = 3]
+PASS listed_factor_7_is_prime_with_exponent_3_at_least_2
+PASS listed_factor_43_is_prime_with_exponent_2_at_least_2
+PASS listed_factor_3416683_is_prime_with_exponent_2_at_least_2
+PASS listed_factor_12353161_is_prime_with_exponent_2_at_least_2
+PASS listed_factor_1401752363863729_is_prime_with_exponent_2_at_least_2
+PASS rad_n_squared_divides_n [rad n = 17808222828510337154377614015127]
+PASS n_is_square_full
+PASS omega_of_n_is_5
+PASS n_is_odd_and_3_does_not_divide_n
+PASS every_prime_factor_of_n_is_1_mod_3 [residues 1,1,1,1,1]
+PASS n_is_NOT_a_perfect_power [so the witness is not excluded by the source's Lemma rtt (Bennett-Levin), which closes the case x^2+x+1 = r^t with r prime]
+
+=== Step 3: x is prime -- Lucas (n-1) certificate, base 2, no probable-prime step
+PASS x_minus_1_equals_2^2_6299_9701563_192750846182877882539 [x-1 = 47116128896261596331524418282572]
+PASS two_to_the_x_minus_1_is_1_mod_x
+PASS two_to_the_x_minus_1_over_2_is_not_1_mod_x [= 47116128896261596331524418282572]
+PASS that_residue_equals_the_one_printed_in_the_paper_for_q_2
+PASS two_to_the_x_minus_1_over_6299_is_not_1_mod_x [= 42436530233755792060895430447505]
+PASS that_residue_equals_the_one_printed_in_the_paper_for_q_6299
+PASS two_to_the_x_minus_1_over_9701563_is_not_1_mod_x [= 21277589209484664623743014586336]
+PASS that_residue_equals_the_one_printed_in_the_paper_for_q_9701563
+PASS two_to_the_x_minus_1_over_192750846182877882539_is_not_1_mod_x [= 19695209395513058587964373225481]
+PASS that_residue_equals_the_one_printed_in_the_paper_for_q_192750846182877882539
+PASS certificate_prime_6299_is_prime_by_exhaustive_trial_division [sqrt = 79]
+PASS certificate_prime_9701563_is_prime_by_exhaustive_trial_division [sqrt = 3114]
+PASS 192750846182877882539_minus_1_equals_2_17^2_27779_12004714807399
+PASS base_2_certifies_192750846182877882539
+PASS subsidiary_prime_17_is_prime_by_exhaustive_trial_division [sqrt = 4]
+PASS subsidiary_prime_27779_is_prime_by_exhaustive_trial_division [sqrt = 166]
+PASS subsidiary_prime_12004714807399_is_prime_by_exhaustive_trial_division [sqrt = 3464782]
+PASS prove_prime_returns_TRUE_for_x_with_a_fully_grounded_certificate [9 certificate steps, every leaf trial-divided]
+PASS no_prime_below_10^6_divides_x_independent_sanity_check
+NOTE x IS PRIME unconditionally: x-1 is completely factored into proven primes and base 2 has full order modulo x.
+
+=== Step 4: the auxiliary full factorisation of n (not load-bearing)
+PASS 1401752363863729_minus_1_equals_2^4_3_37_107_7376401679
+PASS base_7_certifies_1401752363863729_base_2_does_NOT [base 2 is a quadratic residue there, which is why the paper prints base 7]
+PASS 7376401679_is_prime_by_exhaustive_trial_division [sqrt = 85885]
+PASS all_four_factors_of_A_are_prime
+NOTE the square-fullness argument in Step 2 needs NONE of Step 4: it uses only n = 7^3 A^2 and 7 not dividing A.
+
+=== Step 5: the norm-form family the witness comes from
+PASS u_equals_2x_plus_1_as_printed [u = 94232257792523192663048836565147]
+PASS four_n_minus_3_equals_u_squared
+PASS u_squared_minus_1372_A_squared_equals_minus_3
+PASS u_squared_minus_7_times_14A_squared_equals_minus_3 [the same equation over Z[sqrt 7]]
+PASS T_squared_minus_1372_S_squared_equals_1
+PASS T_S_is_the_FUNDAMENTAL_solution_of_t^2_minus_1372_s^2_equals_1 [computed independently by the continued-fraction expansion of sqrt(1372)]
+PASS the_automorph_is_the_14th_power_of_the_unit_8_plus_3_sqrt_7 [(8+3sqrt7)^14 = 34100354867927167 + 12888722657083728 sqrt7]
+PASS 14_is_the_LEAST_power_of_that_unit_with_norm_1_and_14_dividing_w [least k = 14 = lcm(2,7)]
+PASS 1372_is_1_mod_3_and_T_is_1_mod_3_and_S_is_0_mod_3 [so (u,a) -> (uT+1372aS, uS+aT) is the identity map mod 3]
+PASS the_seed_37_1_has_norm_minus_3
+PASS from_the_seed_37_1_every_u_is_positive_and_1_mod_3_and_3_divides_x [20 iterates, 0 exceptions; x=18 is the k=0 member, so that branch of the family contains no prime at all]
+PASS from_the_conjugate_seed_37_minus_1_u_is_negative_from_the_second_term_on [signs of u: 1,-1,-1,-1]
+PASS there_x_equals_abs_u_minus_1_over_2_has_2_15_32_49_digits [digit counts 2,15,32,49]
+PASS the_second_iterate_from_37_minus_1_IS_the_witness
+PASS every_term_after_the_seed_there_has_x_equal_2_mod_3 [x mod 3 = 2,2,2]
+NOTE so the first member of that branch not automatically divisible by 3 has 15 digits (690845140450082), which is why a search over x <= 10^9 could not find one.
+
+=== Step 6: controls on the decider, both polarities
+PASS control_positive_343_is_square_full [343 = 7^3, the least square-full value of x^2+x+1, at the composite x=18 = a(2) of OEIS A296376; NOT an example recorded in the source paper]
+PASS control_positive_7906143973_is_square_full [= 1897^2 * 13^3, the composite near-miss at x=88916; cube part b=13, so the b=7 Pell branch is not the whole family]
+PASS control_positive_72_and_4_and_8_and_9_and_1_are_square_full
+PASS control_negative_7_3_21_57_12_31_are_not_square_full
+PASS anti_control_the_perfect_power_misreading_is_refuted_by_7906143973 [square-full but not a perfect power, so "square-full" is NOT "perfect power"]
+PASS anti_control_x_18_is_square_full_but_18_is_NOT_prime
+PASS anti_control_x_88916_is_square_full_but_88916_is_NOT_prime
+PASS published_sequence_A118896_reproduced_for_k_1_to_8 [4,14,54,185,619,2027,6553,21044]
+PASS the_a_squared_b_cubed_enumeration_reproduces_every_square_full_number_to_10^5 [619 numbers, both ways]
+PASS b_equals_1_contributes_no_census_hit_since_n_is_never_a_perfect_square [n - x^2 = x+1 > 0 and (x+1)^2 - n = x > 0 identically, so x^2 < n < (x+1)^2]
+
+=== Step 7: the census -- no prime witness with x <= 10^8
+PASS brute_force_factorisation_up_to_x_3000_finds_exactly_x_18 [hits [18]]
+PASS the_pruned_census_agrees_with_brute_force_up_to_x_3000 [hits [18]]
+PASS anti_prune_control_pruned_and_unpruned_censuses_agree_up_to_x_10^6 [pruned 13447 pairs vs unpruned 1158391 pairs, identical hit set [18, 88916]]
+NOTE census to x <= 100000000: 411144 admissible a, 17605 admissible squarefree b, 1081979 (a,b) pairs examined
+NOTE   x = 18  n = 343 = 1^2 * 7^3
+NOTE   x = 88916  n = 7906143973 = 1897^2 * 13^3
+PASS census_to_10^8_finds_exactly_the_two_composite_near_misses_18_and_88916 [hits [18, 88916]]
+PASS neither_of_them_is_prime_so_no_prime_witness_has_x_at_most_10^8
+PASS the_witness_is_larger_than_the_census_bound [x has 32 digits; the census decides only the first 8]
+
+=== Step 8: the answer
+PASS x_is_prime_AND_x^2+x+1_is_square_full_so_Question_sqfull_answers_YES
+
+NOTE SCOPE -- what this program does NOT cover. (i) Nothing bibliographic is re-derived: the locator of the question (restrained.tex line 852 of the arXiv:2607.19746v1 e-print), the provenance of the witness integer as a(27) of OEIS A296376 and line 27 of its b-file b296376.txt, and the 1902 Majol reference are transcribed from those sources and are not fetched or checked here, and neither is the (negative) fact that x=18 is NOT an example recorded in that e-print.  (ii) NOT RE-RUN: any x > 10^8. The census in Step 7 decides every x with 1 <= x <= 10^8 and finds no prime witness there, so no claim of minimality is made or supported for the exhibited 32-digit x; a smaller prime witness with 9 to 31 digits is not excluded by anything here.  (iii) NOT RE-RUN: whether infinitely many primes x have x^2+x+1 square-full, and whether the two branches exhibited in Step 5 exhaust the solutions of u^2 - 1372 a^2 = -3 -- Step 5 checks 20 members of one branch and 4 of the other, which supports the remark about why the object is hard to find and proves no structure theorem.  (iv) The Lucas certificates prove primality of x and of the factors of n; they say nothing about whether the factorisation of n printed in the paper is the only one, beyond the re-multiplication check in Step 1.
+
+VERDICT: ALL 74 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,134 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8b9574f9f180cfebe774455c313be8ddcd880119bbd9934864ef1f4b526e1332
+python:  Python 3.9.25
+=== program output follows ===
+=== re-verification of "A Tight Pair with Both Factors of Nonzero Twin-Width for the
+    Pettersson-Sylvester Tensor-Product Bound"  --  exact integer/set arithmetic ===
+
+-- STEP 0: the two factors, as printed
+PASS G = C_8(1,2) is 4-regular on 8 vertices with 16 edges   [N(0) = [1, 2, 6, 7]]
+PASS H = C_5 is 2-regular on 5 vertices with 5 edges
+PASS C_8(1,2) is the SQUARE of the 8-cycle (u ~ v iff dist_{C_8}(u,v) <= 2)
+PASS complement of C_8(1,2) is C_8(3,4), which is the Wagner graph C_8(1,4) via x -> 3x on Z_8
+
+-- STEP 1: tww(C_5) = 2 and tww(C_8(1,2)) = 2, both NON-ZERO
+   Ahn-Hendrey-Kim-Oum Lemma 3.1 bounds tww below by the MINIMUM of b over ALL pairs,
+   so the FULL profile is computed; one exhibited small pair would prove nothing.
+   C_5      b by difference d: {1: 2, 2: 2}      s by difference d: {1: 4, 2: 2}   (d=1 adjacent, d=2 not)
+PASS b_min(C_5) = 2 over all 10 pairs   [argmin (0, 1)]
+   C_8(1,2) b by difference d: {1: 2, 2: 4, 3: 4, 4: 4}   s by difference d: {1: 4, 2: 6, 3: 4, 4: 4}
+PASS the b-profile of C_8(1,2) is {1:2, 2:4, 3:4, 4:4}, as printed in the paper
+PASS the s-profile of C_8(1,2) is {1:4, 2:6, 3:4, 4:4}, as printed in the paper
+PASS b_min(C_8(1,2)) = 2 over all 28 pairs, attained at the ADJACENT pair (0,1)   [argmin (0, 1)]
+PASS s_min(C_8(1,2)) = 4 = tww(G) + 2, the structural condition the argument uses
+PASS the paper's C_5 sequence (0,2)(3,4)({0,2},1)(rest) has width 2, so tww(C_5) <= 2   [width 2]
+PASS the paper's C_8(1,2) sequence (01)(23)(45)(67)(A,C)(B,D)(rest) has width 2, so tww <= 2   [width 2]
+PASS therefore tww(C_5) = 2 EXACTLY (2 <= tww <= 2); no exhaustive search is load-bearing
+PASS therefore tww(C_8(1,2)) = 2 EXACTLY (2 <= tww <= 2); no exhaustive search is load-bearing
+PASS both factors have NON-ZERO twin-width, which is exactly what the open question demands
+
+-- STEP 2: the value of the bound at the ORDERED pair (G,H)
+   T(G,H) = max{2*2 + 2, 2} + 2 = 8       T(H,G) = max{2*4 + 4, 2} + 4 = 16
+PASS the bound at (G,H) = (C_8(1,2), C_5) is 8
+PASS the ACTIVE branch of the max is tww(G)*Delta(H)+Delta(H) = 6 > tww(H) = 2, so the term attained carries tww(G) != 0
+PASS the SWAPPED order gives 16, and the bound is therefore ASYMMETRIC
+
+-- STEP 3: the lower bound tww(G x H) >= 8, over ALL C(40,2) = 780 pairs
+PASS G x H has 40 vertices, 160 edges and is 8-regular
+PASS the neighbourhood identity N_P((u,i)) = N_G(u) x N_H(i) holds at every vertex
+   pairs:  A (u=v) 80   B (i=j) 140   C (both differ) 560   total 780
+   per-case minima:  A = 8 at ((0, 0), (0, 2))   B = 8 at ((0, 0), (1, 0))   C = 12 at ((0, 0), (1, 2))
+PASS all 780 pairs enumerated, and the three cases partition them
+PASS case (A) u = v: minimum is 8, attained at a distance-2 pair of C_5
+PASS case (B) i = j: minimum is 8, attained at an adjacent pair of C_8(1,2)
+PASS case (C) both differ: minimum is 12, so case (C) is never the minimum
+PASS every case-(C) pair with uv in E(G) and ij in E(H) has b >= 14, as the proof claims
+PASS b_min(G x H) = 8, so tww(G x H) >= 8 by Ahn et al. Lemma 3.1   [argmin ((0, 0), (0, 2))]
+PASS *** CLOSURE: tww(C_8(1,2) x C_5) = 8 = the bound, both factors of twin-width 2 ***
+
+-- STEP 3b: the UPPER bound tww(G x H) <= 8 WITHOUT the theorem under test
+   thm:tensor already gives <= 8, but a tightness claim whose upper bound is the very
+   theorem being certified is worth making independent of it.  A width-8 contraction
+   sequence of the product, re-certified from the original adjacency, does that.
+PASS a contraction sequence of the 40-vertex product is built here and re-certified at width 8, so tww(G x H) <= 8 with NO appeal to thm:tensor   [width 8, 39 merges]
+PASS *** tww(C_8(1,2) x C_5) = 8 EXACTLY and NON-CIRCULARLY: 8 <= tww by Ahn et al. Lemma 3.1, tww <= 8 by the sequence just verified
+PASS thm:tensor evaluated at (G,H) AGREES with that independent value, so the theorem is a consistency check here and not an input
+   the sequence, as (part containing a, part containing b) merges in order:
+      (0, 0)+(0, 2)  (0, 3)+(1, 3)  (0, 4)+(1, 4)  (2, 0)+(2, 2)  (3, 3)+(6, 3)
+      (3, 4)+(6, 4)  (4, 0)+(4, 2)  (0, 1)+(5, 1)  (1, 1)+(2, 1)  (3, 0)+(6, 0)
+      (3, 2)+(6, 2)  (2, 3)+(7, 3)  (4, 1)+(4, 3)  (1, 2)+(5, 2)  (2, 4)+(7, 4)
+      (4, 4)+(5, 4)  (7, 0)+(7, 2)  (0, 1)+(1, 1)  (3, 1)+(6, 1)  (1, 0)+(5, 0)
+      (0, 1)+(3, 1)  (1, 0)+(3, 0)  (0, 1)+(7, 1)  (1, 2)+(3, 2)  (1, 0)+(4, 1)
+      (1, 0)+(2, 0)  (0, 0)+(0, 4)  (0, 1)+(0, 3)  (1, 2)+(2, 4)  (2, 3)+(5, 3)
+      (0, 1)+(3, 4)  (0, 0)+(0, 1)  (0, 0)+(1, 2)  (1, 0)+(3, 3)  (0, 0)+(1, 0)
+      (0, 0)+(2, 3)  (0, 0)+(4, 0)  (0, 0)+(4, 4)  (0, 0)+(7, 0)
+
+-- STEP 4: the witness, and label-for-label agreement with the paper
+   graph6 string: 131 characters, n = 40, 160 edges
+PASS the paper's graph6 string has 131 characters (44 + 44 + 43) and decodes to 40 vertices
+PASS the decoded graph is G x H LABEL-FOR-LABEL under k = 5u + i (not merely isomorphic)   [160 edges both ways]
+PASS every decoded edge {5u+i, 5v+j} has u-v = +-1,+-2 mod 8 and i-j = +-1 mod 5
+   common neighbours in P: non-adjacent pairs [0, 1, 2, 4], adjacent pairs [0]
+PASS P is NOT strongly regular -- non-adjacent pairs have 0, 1, 2 or 4 common neighbours, so mu is not constant (this is what separates P from the strongly regular families of the nearest prior work)
+
+-- STEP 5: the infinite family H = C_n for every n >= 5
+   n=4   b_min(C_n)=0  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=0   verified UB=None   bound=8   EXCLUDED (C_4 is a cograph, tww 0)
+PASS n=4: C_4 is a cograph with b_min = 0, so it is correctly EXCLUDED from the family
+   n=5   b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=5: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=6   b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=6: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=7   b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=7: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=8   b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=8: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=9   b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=9: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=10  b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=10: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=11  b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=11: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+   n=12  b_min(C_n)=2  round-the-cycle width=2   b_min(C_8(1,2) x C_n)=8   verified UB=8   bound=8   TIGHT
+PASS n=12: tww(C_n) = 2 (b_min = 2 and a width-2 sequence) and tww(C_8(1,2) x C_n) = 8 = the bound, the upper half again by a sequence verified here rather than by thm:tensor
+PASS the family is confirmed by machine for all 8 values n = 5..12, both bounds independently
+
+-- STEP 6: the ONE completeness statement made anywhere here -- the 121 ordered
+           pairs of non-cographs on at most 5 vertices, every one NOT tight
+   This bears on NOTHING in the closure above: the witness G = C_8(1,2) lives on 8
+   vertices, outside the band. It is here only so that the paper's "what is not
+   settled" list can point at a checked fact instead of at an assertion. A pair is
+   decided NOT TIGHT by one of two SOUND routes and by nothing else:
+     (i)  T(H,G) < T(G,H): then tww(G x H) = tww(H x G) <= T(H,G) < T(G,H) by thm:tensor;
+     (ii) a contraction sequence of G x H re-certified here at width < T(G,H).
+   Neither route can call a tight pair non-tight. A pair the two routes miss is
+   reported as a SURVIVOR, not as non-tight.
+   graphs up to isomorphism / cographs / non-cographs: {4: (11, 10, 1), 5: (34, 24, 10)}
+PASS the enumeration reproduces OEIS A000088 (graphs on n unlabelled nodes) at n = 4, 5: 11 and 34
+PASS and the published cograph counts 10 and 24, leaving 1 and 10 non-cographs, so the pool is 11 graphs and the census is 11 x 11 = 121 ORDERED pairs
+   exact twin-width of the 11 pool graphs (exhaustive over all sequences): [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]
+PASS every pool graph has twin-width 1 or 2, and the unique 4-vertex one is P_4 with tww 1
+   census tally: [('NOT_TIGHT', 84), ('NOT_TIGHT_SWAP', 37)]   (products of order up to 5*5 = 25)
+PASS all 121 ordered pairs are enumerated and the tally adds up
+PASS 37 pairs fall to route (i), the asymmetry of the bound
+PASS the other 84 fall to route (ii), a sequence verified here below the bound
+PASS *** 121 of 121 NOT TIGHT, zero survivors: no ordered pair of non-cographs on at most 5 vertices attains the bound ***
+PASS CONTROL ON THE DECIDER: run on the paper's own pair it does NOT say NOT_TIGHT -- T(H,G) = 16 > 8 blocks route (i) and the verified width is 8, not below 8, so route (ii) is blocked too
+   so the 121 NOT_TIGHT verdicts are not the output of a decider that refuses everything: the same decider, on the same code path, declines to refuse the tight pair.
+
+-- CONTROLS, BOTH POLARITIES, EACH AGAINST AN INDEPENDENTLY KNOWN VALUE
+PASS FORCED POSITIVE (K_3, K_3): the clique corollary gives tww = 2(3-1) = 4, the bound gives 4, b_min measures 4 -- all three agree
+PASS FORCED POSITIVE (K_4, K_4): the clique corollary gives tww = 2(4-1) = 6, the bound gives 6, b_min measures 6 -- all three agree
+PASS FORCED SILENT (K_2, K_2): the bound gives 2 but b_min = 0 and the product is a cograph (tww 0), so no tightness may be inferred
+PASS anti-control on the smallest non-cograph: b_min(P_4) = 1 and the sequence (0,2)(1,3)(rest) has width 1, so tww(P_4) = 1
+PASS FORCED SILENT (P_4, P_4): the bound gives 6 but b_min(P_4 x P_4) = 1 < 6, so Lemma 3.1 CANNOT certify tightness there
+PASS the published equivalence "tww = 0 iff cograph" spot-checked: C_4 and K_5 are cographs, P_4 and C_5 are not
+PASS sanity on the trigraph simulator: it REFUSES a sequence that does not reduce to a single part
+
+NOT RE-RUN: no EXHAUSTIVE search for a contraction sequence of the 40-vertex product. STEP 3b builds one greedily and certifies it at width 8, which proves tww <= 8; it does not prove that no width-7 sequence exists. That direction is not needed and is not claimed here -- it is Ahn et al. Lemma 3.1, via b_min = 8, that rules width 7 out.
+NOT RE-RUN: no MINIMALITY. Nothing here bears on whether 40 is the least order of a tight product, nor on whether a tight pair with non-regular H exists. The only completeness statement made anywhere is STEP 6, the 121 ordered pairs of non-cographs on at most 5 vertices; the witness lives on 8 vertices, outside that band. Two larger censuses (all ordered pairs of non-cographs on at most 6 vertices, and a minimal-tight-pair sweep) were dispatched in the discovery run and never delivered; those channels are UNREAD, not negative, and nothing above leans on them.
+NOT RE-RUN: the family claim for general n > 12 is the hand argument printed in the paper. Machine coverage here is n = 5..12 only, for both bounds.
+NOT RE-RUN: no prior-art search. OpenAlex citation listing, Semantic Scholar keyword search and MathSciNet were all UNREAD in the accompanying prior-art pass; see the paper's bibliography for what was read.
+
+VERDICT: ALL 58 CHECKS PASS
+=== program exited with status 0 ===

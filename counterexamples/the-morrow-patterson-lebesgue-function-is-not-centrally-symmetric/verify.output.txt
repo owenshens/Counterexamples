@@ -1,0 +1,56 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a5aec2e60725a47e1f7174e35c87fb9c59ea45429cb5d00a6d2ef80702bacbba
+python:  Python 3.9.6
+=== program output follows ===
+re-derivation of "The Morrow-Patterson Lebesgue Function Is Not Centrally Symmetric"
+exact arithmetic in Q(sqrt2,sqrt5); integer arithmetic for the parity mechanism
+python 3.9, standard library only
+
+PASS cos-1pi-over-5-satisfies-T5-eq--1 [T_5(1/4 + 1/4*sqrt(5)) = -1]
+PASS cos-2pi-over-5-satisfies-T5-eq-1 [T_5(-1/4 + 1/4*sqrt(5)) = 1]
+PASS cos-3pi-over-5-satisfies-T5-eq--1 [T_5(1/4 - 1/4*sqrt(5)) = -1]
+PASS cos-4pi-over-5-satisfies-T5-eq-1 [T_5(-1/4 - 1/4*sqrt(5)) = 1]
+PASS fifth-cosines-strictly-decreasing-and-interior [0.809016994375 > 0.309016994375 > 0 > -0.309016994375 > -0.809016994375, all in (-1,1)]
+PASS cos-pi-over-4-satisfies-T2-eq-0-and-is-positive [2*(1/2*sqrt(2))^2 - 1 = 0, value 0.707106781187]
+PASS cardinality-of-MP2-is-6-equals-dim-P2-squared [|MP_2| = 6 = (n+1)(n+2)/2 = dim P_2^2, all six distinct]
+PASS MP2-derived-from-the-definition-equals-the-set-printed-in-the-paper [node 1 = (1/2*sqrt(2), -1/4 + 1/4*sqrt(5)), node 4 = (0, 1/4 - 1/4*sqrt(5))]
+PASS witness-Q0-is-not-a-node-of-MP2 [Q0 = (0, -1/4 + 1/4*sqrt(5)) = (0, 0.309016994375); the m=2 column carries y in {1/4 + 1/4*sqrt(5), 1/4 - 1/4*sqrt(5)} only]
+PASS antipode-of-Q0-is-the-node-with-index-m2-k2 [-Q0 = (0, 1/4 - 1/4*sqrt(5)) is node (m,k) = (2, 2)]
+PASS weights-defining-sum-and-the-papers-cubature-closed-form-agree-at-all-six-nodes [0.1809017, 0.0690983, 0.1381966, 0.3618034, 0.1809017, 0.0690983]
+PASS weights-match-the-table-printed-in-the-paper [omega_2 = 1/8 - 1/40*sqrt(5) = 0.069098300563]
+PASS the-reciprocal-forms-printed-in-the-papers-remark-are-the-same-four-numbers [1/(4(3-phi)), (5-sqrt5)/40, 1/(2(2+phi)), 1/(2(3-phi))]
+PASS weights-sum-to-one-exactly [sum omega_P = 1]
+PASS lagrange-delta-property-omega_i-K(P_i,P_j)-eq-delta_ij-on-all-36-pairs [36 exact equalities; MP_2 is unisolvent for P_2^2]
+PASS lambda2-equals-1-exactly-at-all-six-nodes-of-MP2 [max deviation exactly 0]
+PASS kernel-column-at-Q0-matches-the-six-values-printed-in-the-paper [3 - 1*sqrt(5), -2, 2, 2, 3 - 1*sqrt(5), -2]
+PASS kernel-collapse-identity-at-Q0-U1(0)=0-U2(0)=-1 [K(P,Q0) = 1 + (phi-1)[U_1(y_P) - U_2(y_P)] - U_2(x_P) at all six P]
+PASS reproducing-identity-sum-omega_P-K(P,Q0)-eq-1 [sum = 1]
+PASS exactly-two-of-the-six-kernel-entries-at-Q0-are-negative [negative at P_2 = (sqrt(2)/2, -cos(pi/5)) and P_6 = (-sqrt(2)/2, -cos(pi/5)), K = -2 each]
+PASS lambda2-at-Q0-equals-2-minus-sqrt5-over-5 [lambda_2(0, cos(2pi/5)) = 2 - 1/5*sqrt(5) = 1.552786404500042061]
+PASS the-three-printed-forms-of-that-value-are-the-same-field-element [2 - sqrt(5)/5 = 2 - 1/sqrt(5) = (10-sqrt(5))/5]
+PASS lambda2-at-the-antipode-equals-1-exactly [-Q0 is an interpolation node, so lambda_2(-Q0) = 1 with no arithmetic]
+PASS central-symmetry-FAILS-the-difference-is-1-minus-sqrt5-over-5-and-is-nonzero [lambda_2(Q0) - lambda_2(-Q0) = 1 - 1/5*sqrt(5) = 0.552786404500042061 > 0]
+PASS the-hand-argument-1-plus-8-omega_2-gives-the-same-value [1 + 2*(negative mass) = 1 + 8*omega_2 = 2 - 1/5*sqrt(5)]
+PASS minus-MP2-values-match-the-six-printed-in-the-paper [5/2 - 3/10*sqrt(5), 2 + 3/5*sqrt(5), 2 + 1/5*sqrt(5), 2 - 1/5*sqrt(5), 5/2 - 3/10*sqrt(5), 2 + 3/5*sqrt(5)]
+PASS none-of-the-six-values-on-minus-MP2-equals-1 [all six exceed 1, so symmetry fails at all 6 of the 6 antipodal node pairs]
+PASS Q0-carries-the-smallest-of-the-six-violations [min over -MP_2 is 1.552786404500 at Q0, the most conservative witness]
+PASS the-6x6-kernel-matrix-MP2-by-minus-MP2-is-not-entrywise-nonnegative [14 of its 36 entries are negative; one negative entry already kills the criterion]
+PASS the-papers-y-parametrisation-equals-the-parity-rule-jj-even-iff-m-odd [even n = 2..40]
+PASS cardinality-of-MP_n-is-(n+1)(n+2)/2-eq-dim-P_n_squared [even n = 2..40]
+PASS sigma_x-(m,jj)->(n+2-m,jj)-preserves-MP_n-because-p=n+2-is-even [this is the paper-proved reflection lemma, even n = 2..40]
+PASS sigma_y-(m,jj)->(n+3-jj,)-flips-the-jj-parity-because-q=n+3-is-odd [even n = 2..40]
+PASS minus-MP_n-is-DISJOINT-from-MP_n [even n = 2..40; so every point of -MP_n is a non-node]
+PASS MP_n-together-with-minus-MP_n-PARTITION-the-full-tensor-grid [even n = 2..40]
+PASS corner-value-lambda2(1,1)-equals-sqrt10-plus-6sqrt5-over-5 [6/5*sqrt(5) + 1*sqrt(10) = 5.845559233168126968]
+PASS that-corner-value-squared-equals-12sqrt2-plus-86-over-5 [86/5 + 12*sqrt(2)]
+PASS corner-value-lambda2(-1,-1)-equals-3-exactly [3]
+PASS the-two-corner-values-differ-so-the-corner-pair-is-a-second-witness [difference 2.845559233168, i.e. 12sqrt2 + 41/5 > 0 after squaring]
+
+NOT RE-RUN: (1) the FAILURE of central symmetry at n >= 4. Only the integer parity mechanism of section 5.8 is re-derived for even n up to 40; the numerical minima of lambda_n over -MP_n reported for n = 4..30 need multiprecision transcendental arithmetic and are outside the standard library, so they are NOT recomputed here.
+NOT RE-RUN: (2) the uniform candidate family and the negativity of its one alternating sum, which the paper states is unproved and only computed; nothing here bears on it.
+NOT RE-RUN: (3) the 101x101 grid census at n = 30 and the diagnosis of the authors' plotting script; both are corroboration reported elsewhere and neither is a claim of this paper.
+NOT RE-RUN: (4) the corner values of section 5.9 are checked but are NOT claimed as a result of this paper -- they belong to the separate corner-attainment question and are carried only as an independent second witness to the asymmetry.
+
+VERDICT: ALL 39 CHECKS PASS
+=== program exited with status 0 ===

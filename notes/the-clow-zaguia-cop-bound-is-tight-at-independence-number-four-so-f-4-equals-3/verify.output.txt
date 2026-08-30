@@ -1,0 +1,52 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  6291dc37a520a7075e9e7d37a1a33504e305b0d14fa241e957f0829bb9440758
+python:  Python 3.9.6
+=== program output follows ===
+PASS graph6-encode the rule-generated graph encodes to the printed string O?]uf@vmuy\o\vmzZmf\o
+PASS graph6-decode the printed string decodes to the same 72 labelled edges (both directions checked)
+PASS order-size-regular n=16, m=72, 9-regular
+PASS nonedges-are-exactly-the-lines 48 = 8 lines x C(4,2) non-edges, every one of them a same-row or same-column pair
+PASS connected-diameter-2 diameter = 2, so G is connected
+PASS alpha-equals-4 exact maximum independent set size = 4
+PASS maximum-independent-sets-are-the-8-lines all 8 independent 4-sets are exactly the 4 rows and 4 columns
+PASS omega-equals-4 exact maximum clique size = 4
+PASS clique-cover-parts-are-cliques each of the 4 printed broken diagonals induces a K_4
+PASS clique-cover-is-a-partition the 4 parts partition all 16 cells, so theta <= 4
+PASS theta-equals-4 exact chi(complement of G) = 4 = theta(G), and theta >= alpha forces equality
+PASS alpha-equals-theta alpha = theta = 4, the identity the weak perfect graph theorem forces on a perfect graph
+PASS perfect-strong-pgt-scan no induced odd hole and no induced odd antihole among all 32192 odd vertex subsets of size >= 5 (all 2^16 subsets enumerated)
+PASS rook-is-the-line-graph-of-K44 cell (i,j) <-> the edge of K_{4,4} joining row-vertex i to column-vertex j; sharing a line <-> sharing an endpoint, so complement(G) = L(K_{4,4}) and G is perfect by Koenig plus the weak PGT
+PASS printed-dominating-set-dominates {(1,1),(2,2),(3,3)} leaves 0 cells undominated, so c(G) <= gamma(G) <= 3
+PASS gamma-equals-3 no 1-cell or 2-cell dominating set exists (all 136 subsets checked), so gamma = 3 exactly
+PASS opening-safe-cell-exists-for-every-cop-pair the printed opening rule returns a safe cell for all 256 ordered cop pairs, equal pairs included
+PASS capture-impossible-from-a-safe-cell over all 576 safe states and all 57600 cop moves out of them, no cop move ever lands on the robber
+PASS named-case-restores-the-invariant for every safe state and every cop move the case the paper names returns a legal robber move to a cell that is safe again; case counts {'0': 9216, '1a': 6912, '1b': 9216, '1c': 4608, '2a': 13824, '2b': 13824}
+PASS robber-strategy-survives-forever initialisation + invariance + no-capture, so two cops never catch the robber: c(G) >= 3
+PASS two-cops-lose-exact-solver independent exact backward induction over all 16^3 x 2 states returns twoCopsWin = 0
+PASS cop-number-equals-3 3 <= c(G) <= 3, so c(G) = 3 = alpha(G) - 1
+PASS f4-lower-bound-3 G is connected, perfect, alpha(G) = 4 and c(G) = 3, so any valid f(4) is >= 3
+PASS f4-equals-3 with the target paper's own theorem (connected perfect, alpha >= 4 => c < alpha) giving f(4) <= 3, the witness forces f(4) = 3
+PASS control-petersen-forced-positive Petersen (n=10): alpha=4, gamma=3, twoCopsWin=0 -- so the solver CAN return 'two cops lose' -- and perfection is correctly refused on an induced C_5
+PASS control-heawood-forced-positive Heawood (n=14): bipartite hence perfect, alpha=7, girth 6, 3-regular, gamma=4, twoCopsWin=0 so c >= 3 (the published value is c = 3). This is the q=2 case of the projective-plane family in the paper's scope section, and it checks that family's two Aigner-Fromme hypotheses (girth >= 5, min degree q+1) on a concrete member
+PASS control-complement-of-shrikhande-published-triple complement of Shrikhande (n=16): alpha=3, theta=4, gamma=3, twoCopsWin=0 (so c=3) and NOT perfect -- exactly the triple Char, Maniya and Pradhan publish, reproduced here
+PASS anticontrol-C4 C_4 is perfect with alpha=2 and two cops win, i.e. c = alpha, NOT alpha-1; labelled an ANTI-control so it is never used as the forced positive for the c = alpha-1 shape
+PASS silence-control-K3xK3 K_3 x K_3 (n=9): two cops WIN, and the same six-case strategy FAILS there -- cases 1a and 1c need a fourth row and column. It must fail, because m_3 = 10 means no 9-vertex graph has cop number 3
+PASS silence-control-12-vertex-family-member the complement of L(K_{4,3}) (n=12, m=36) is perfect with alpha=4 but is 2-cop-win, so it does NOT lower the order 16 and the minimum order stays bracketed 10 <= min <= 16
+PASS identity-guard-cospectral-parameters G and the complement of Shrikhande are BOTH srg(16,9,4,6), hence cospectral, yet alpha is 4 and 3 respectively, so they are not isomorphic and confusing them would invalidate everything
+PASS identity-guard-local-graphs both srg(16,6,2,2); the local graph of complement(G) = rook(4,4) is 2K_3 (2-regular on 6, DISCONNECTED) at every vertex while Shrikhande's is C_6 (2-regular on 6, CONNECTED) -- the invariant that tells the twins apart
+PASS latin-square-graph-order-4-degrees both order-4 Latin square graphs are 9-regular on 16 vertices with 72 edges, as srg(16,9,4,6) requires
+PASS witness-is-a-latin-square-graph-of-order-4 the permutation phi printed in the paper is an isomorphism from the Latin square graph of the Klein-group table L(i,j) = i XOR j onto G, so the object and its cop number 3 belong to Ahirwar, Bonato, Gittins, Huang, Marbach and Zaidman and must be cited
+PASS the-other-order-4-latin-square-is-the-twin the Z_4 table instead gives the complement of Shrikhande (local graph C_6, connected) with alpha = 3, so it is NOT our witness -- the polarity control on the identification
+PASS family-K5xK5-has-cop-number-3 n=25: connected, alpha = theta = 5 (broken-diagonal cover verified), the SAME 3-cell dominating set works, and the SAME six-case strategy closes, so c = 3 -- which gives 3 <= f(5) <= 4, a LOWER bound only, never f(5) = 3
+PASS family-K6xK6-has-cop-number-3 n=36: connected, alpha = theta = 6 (broken-diagonal cover verified), the SAME 3-cell dominating set works, and the SAME six-case strategy closes, so c = 3 -- which gives 3 <= f(6) <= 5, a LOWER bound only, never f(6) = 3
+
+NOT RE-RUN: no 3-cop solver was run. c(G) <= 3 is established from the printed dominating set (c <= gamma) and, independently, from the target paper's own theorem; the exact solver above decides only the 2-cop game.
+NOT RE-RUN: perfection of K_m x K_m for m >= 5 was NOT brute-forced -- the strong-PGT scan is exponential in the order, so only the 9-, 12- and 16-vertex graphs were scanned. For m >= 5 perfection is by theorem (line graph of a bipartite graph, plus the weak PGT), not by test.
+NOT RE-RUN: no census of connected perfect graphs was performed, so the MINIMUM ORDER of a connected perfect graph with alpha = 4 and cop number 3 is not determined here; it is only bracketed 10 <= min <= 16, the lower bound being a published value and the upper bound this witness.
+NOT RE-RUN: nothing here computes f(k) for any k >= 5. The family gives 3 <= f(k) <= k-1 for k >= 4 and this program checks only the lower half at k = 5 and k = 6. Problem 5.2 itself is NOT solved.
+NOT RE-RUN: the family check above stops at m = 6; m = 7 and beyond rest on the case analysis in the paper, which uses only m >= 4, and were not replayed.
+NOT RE-RUN: no literature was fetched. Whether the value c(K_n x K_n) = 3 is already proved in print -- in particular in Neufeld and Nowakowski, Discrete Math. 186 (1998) 253-268, which we could not read -- is a bibliographic question no program can settle.
+
+VERDICT: ALL 37 CHECKS PASS
+=== program exited with status 0 ===

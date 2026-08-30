@@ -1,0 +1,81 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8235ca9efc5ae55e3f028461e873eeedb9e3188573cfc5fa60084b2ffa431e92
+python:  Python 3.9.25
+=== program output follows ===
+--- A.  the regular heptagon (paper, Section 2) ---
+PASS heptagon-minpoly-irreducible       c^3+c^2-2c-1 has no rational root (candidates +-1), hence is irreducible over Q and Q[c]/(c^3+c^2-2c-1) is a field
+PASS heptagon-cos-recurrence            c_g := 2cos(2*pi*g/7) by c_{g+1}=c*c_g-c_{g-1}: c_7=c_0=2 and c_g=c_{7-g} for g=1,2,3
+PASS heptagon-chord-minpoly             s_g = |1-zeta^g|^2 = 2-2cos(2*pi*g/7) satisfies x^3-7x^2+14x-7 = 0 for g = 1,2,3
+PASS heptagon-chords-symmetric          e_1 = 7, e_2 = 14, e_3 = 7, so {s_1,s_2,s_3} is exactly the root set of that cubic
+PASS heptagon-chords-distinct           s_1 = 2-c, s_2 = 4-c^2, s_3 = 1+c+c^2 are three distinct elements of the field, so gap g |-> s_g is injective and a triangle class is a multiset of gaps
+PASS heptagon-chords-positive           x^3-7x^2+14x-7 has coefficient signs (-,+,-,+) from the constant up, so every term is <= 0 for x <= 0 and the constant is -7 < 0: no root is <= 0, hence s_1, s_2, s_3 > 0
+PASS heptagon-four-classes              35 triples, 4 congruence classes: 112 123 133 223
+PASS heptagon-classes-are-partitions    the four classes are the arc-gap partitions 5+1+1, 4+2+1, 3+3+1, 3+2+2 of 7, carrying {s1,s1,s2}, {s1,s2,s3}, {s1,s3,s3}, {s2,s2,s3}
+PASS heptagon-three-distances           the heptagon realises exactly three distinct distances, so D = 3
+PASS heptagon-no-degenerate-class       16*area^2 = 2(ab+bc+ca)-(a^2+b^2+c^2) is a nonzero field element for all four classes, so no triple of heptagon vertices is collinear
+PASS heptagon-count-convention-free     hence the heptagon spans 4 classes whether or not collinear triples are counted
+--- B.  the hexagon plus its centre (paper, Remark 2.2) ---
+PASS hexcentre-squared-distances        the 21 squared distances take exactly the three integer values 1 3 4
+PASS hexcentre-five-classes             counting collinear triples, as the target paper does: 5 classes, {1,1,1} {1,1,3} {1,1,4} {1,3,4} {3,3,3}
+PASS hexcentre-one-degenerate           exactly one class is collinear, {1,1,4} = {1,1,2} in distances (a vertex, the centre, the opposite vertex)
+PASS hexcentre-four-noncollinear        so under the noncollinear convention it spans 4 classes on 7 points: the rival reading of the conjecture is FALSE, which is what the Scope paragraph records
+PASS hexcentre-not-a-heptagon           it contains 3 collinear triples (the three diameters) while the regular heptagon contains 0, so the two configurations are not similar
+--- C.  the census of K_7 colourings in the cell (paper, Lemma 4.1) ---
+PASS census-dfs-nodes                   the search tree has 2915582 nodes; the census is complete and uncapped (no node budget, no time limit)
+PASS census-leaves                      161351 restricted-growth colourings with D >= 3 colours and at most 4 triple colour-multisets
+PASS census-max-distances               D <= 4 everywhere in the cell: D=3 in 156710 leaves, D=4 in 4641
+PASS census-cross-tabulation            (D, #classes): (3,3) 3948, (3,4) 152762, (4,4) 4641; and 3948+152762+4641 = 161351
+PASS census-contains-heptagon           the heptagon's own gap colouring 121321332123321123321 is one of the leaves
+--- D.  the Cayley-Menger filter and the S_7 orbit count (paper, Lemma 4.2) ---
+PASS census-quad-count                  C(7,4) = 35 four-point subsets per colouring
+PASS cm-kill-nonzero-constant           81306 colourings carry a 4-subset whose Cayley-Menger determinant is a nonzero CONSTANT, so it cannot vanish for any squared distances
+PASS cm-kill-one-signed                 70286 more carry one whose determinant is nonconstant with all coefficients of one sign, so it cannot vanish at any POSITIVE squared distances
+PASS cm-survivors                       9759 colourings survive
+PASS cm-exhaustion-arithmetic           81306 + 70286 + 9759 = 161351, the whole census accounted for
+PASS cm-survivors-S7-closed             the survivor set is closed under the S_7 action, as it must be: the filter reads the colouring only through its 4-subsets
+PASS cm-orbit-count                     the 9759 survivors form 30 orbits under S_7
+PASS cm-orbit-size-profile              orbit sizes with multiplicities: 70^1 105^5 120^1 140^1 210^5 252^2 315^8 420^1 630^5 1260^1
+PASS cm-orbit-sizes-sum                 the orbit sizes sum to 9759
+--- E.  exact elimination of 29 of the 30 orbits (paper, Lemma 4.3) ---
+     orbit 112134143221111311114 (size 210), D = 4:
+        gcd of the 8 minors in y_2 alone = y_2^3 - 2y_2^2
+        gcd of the 32 minors in y_3 alone = y_3^2 - 2y_3
+        gcd of the 2192 minors in y_4 alone = y_4
+        => forced y_2 = 2, y_3 = 2; that gcd is a nonzero multiple of y_4^1, forcing y_4 = 0, which no two distinct points admit
+     orbit 112211344334432433411 (size 105), D = 4:
+        gcd of the 4 minors in y_2 alone = y_2^3 - 2y_2^2
+        gcd of the 100 minors in y_3 alone = y_3 - 1
+        gcd of the 2288 minors in y_4 alone = 1
+        => forced y_2 = 2, y_3 = 1; that gcd is a nonzero CONSTANT, so those minors have no common root at all
+PASS elim-one-signed-gram-minor         27 of the 30 orbits carry a 3x3 Gram minor that is a nonzero one-signed polynomial, hence cannot vanish at positive squared distances
+PASS elim-univariate-gcd                2 further orbits die on the univariate gcd of their Gram minors, as traced above
+PASS elim-single-survivor               1 orbit survives both exact tests: 112213231332312332211 of size 120
+PASS elim-accounting                    27 + 2 + 1 = 30
+--- F.  the survivor is the gap colouring, and it is the heptagon (paper, Lemma 4.4) ---
+PASS survivor-is-gap-colouring          a vertex relabelling carries the surviving word 112213231332312332211 to the gap colouring 121321332123321123321; there are 42 such relabellings, so its stabiliser has order 42 = |AGL(1,7)|
+PASS survivor-orbit-size                consistent with the orbit size 120 found in D: 5040/42 = 120
+PASS gap-colouring-explicit             colour g is exactly cyclic gap g on all 21 edges, and each of the three colour classes is a single 7-cycle (sizes [7, 7, 7])
+PASS fourier-heptagon-spectrum          for y = (s_1,s_2,s_3): (mu_1, mu_2, mu_3) = (-7, 0, 0) are the eigenvalues of M on the sum-zero hyperplane, the value -7 with multiplicity 2, so M is negative semidefinite there of rank exactly 2 and equivalently -M is positive semidefinite of rank exactly 2, which is what Schoenberg requires for R^2
+PASS fourier-rank-two                   the 2x3 coefficient matrix of (mu_2, mu_3) has the nonzero 2x2 minor c_2*c_1 - c_3*c_3, hence rank 2 over the field, hence a 1-dimensional kernel
+PASS fourier-kernel-is-the-heptagon     (s_1,s_2,s_3) lies in that 1-dimensional kernel, so it SPANS it: the only circulant solution with mu_1 < 0 is the regular heptagon up to scale
+PASS fourier-case-mu2-negative          y = (s_2,s_3,s_1) gives (0,-7,0): this is the heptagon with its distance classes relabelled by the multiplier g -> 2g on Z_7
+PASS fourier-case-mu3-negative          y = (s_3,s_1,s_2) gives (0,0,-7): the multiplier g -> 3g.  All three sign choices therefore give the SAME point set
+PASS fourier-multiplier-orbit           g -> 2g permutes the gaps (1,2,3) cyclically as (2,3,1) and g -> 3g as (3,1,2), which is exactly the permutation of the rays above
+--- G.  no 7-point planar set spans at most three classes (paper, Lemma 4.5) ---
+PASS survivor-has-four-classes          the unique surviving colouring realises 4 distinct triple multisets, not 3, so no 7-point planar set with at least 3 distances spans at most 3 classes
+--- G2.  the lanes D = 1 and D = 2 (paper, Lemma 4.5) ---
+PASS one-distance-lane-empty            the Cayley-Menger determinant of a monochromatic 4-subset is a nonzero constant, so no 4 points in the plane are equidistant and D = 1 is impossible for n >= 4
+--- G2.  the two-distance lane at n = 6 (paper, Lemma 4.5, second half) ---
+PASS n6-two-colour-word-count           K_6 has 15 edges, so there are 2^14 - 1 = 16383 restricted-growth colourings using exactly two colours, and all of them lie in the cell
+PASS n6-orbit-count                     11242 survive the Cayley-Menger filter and form 42 orbits under S_6
+PASS n6-two-distance-lane-empty         33 orbits die on a one-signed Gram minor and 9 are forced to a vanishing distance: NO 6-point planar two-distance set exists (Erdos-Fishburn g(2) = 5), so at n = 7 the lane D <= 2 is empty by heredity
+
+NOT RE-RUN: Schoenberg's criterion itself (a point set with squared-distance matrix M embeds in R^d iff -M is positive semidefinite of rank <= d on the sum-zero hyperplane) is quoted from the literature, not proved here.
+NOT RE-RUN: part (c) of Theorem 1.1, the step from seven points to eight.  It is a hand argument, Proposition 5.1 of the paper, and contains no computation.
+NOT RE-RUN: any claim about the NONCOLLINEAR convention beyond the single hexagon-plus-centre configuration checked in B.  In particular this program does NOT decide the maximality half under that convention, and the paper does not claim it.
+NOT RE-RUN: minimality or uniqueness of the certificates used above.  The one-signed test and the forced-zero test are SUFFICIENT conditions for non-realizability; nothing here claims they are the shortest such certificates, or that the 30 orbits could not be eliminated by a different route.
+NOT RE-RUN: the published classifications this result is adjacent to (Shinohara 2004 on planar three-distance sets, Erdos-Fishburn 1996 on g(k)).  The two-distance lane is re-derived above; the three-distance classification is NOT used anywhere in this proof and is NOT re-derived.
+
+VERDICT: ALL 48 CHECKS PASS
+=== program exited with status 0 ===

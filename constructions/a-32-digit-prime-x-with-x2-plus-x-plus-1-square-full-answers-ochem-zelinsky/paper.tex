@@ -1,0 +1,227 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 32-digit prime x with x^2+x+1 square-full: a question of Ochem and Zelinsky answered in the affirmative}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{question}{Question}
+
+\DeclareMathOperator{\rad}{rad}
+\newcommand{\vp}{v}
+
+\title[A 32-digit prime with $x^2+x+1$ square-full]
+{A 32-Digit Prime $x$ with $x^2+x+1$ Square-Full:
+ A Question of Ochem and Zelinsky Answered in the Affirmative}
+
+\date{}
+
+\subjclass[2020]{11A41, 11A51, 11Y11}
+\keywords{square-full number, powerful number, odd perfect number,
+primality certificate}
+
+\begin{document}
+
+\begin{abstract}
+In the concluding remarks of their paper on odd perfect numbers with exactly one
+even exponent greater than $2$, Ochem and Zelinsky ask whether there exists a
+prime $x$ such that $x^2+x+1$ is square-full. The answer is yes:
+\[
+ x=47116128896261596331524418282573
+\]
+is a prime of $32$ digits with $x^2+x+1=7^3A^2$, where
+\[
+ A=2544031832644333879196802002161,
+\]
+and $7\nmid A$, so every prime dividing $x^2+x+1$ divides it at least twice.
+The primality of $x$ is certified, not merely tested: $x-1$ is completely
+factored, as $2^2\cdot 6299\cdot 9701563\cdot q$ with
+$q=192750846182877882539$ prime, and the base $2$ has full order modulo $x$.
+The witness is not ours: it is $a(27)$ of the OEIS entry A296376, whose
+underlying family that entry traces to a note of Majol from 1902.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+An integer $n\ge 1$ is \emph{square-full} (equivalently \emph{powerful}) if
+$(\rad n)^2\mid n$, that is, if every prime dividing $n$ divides it at least
+twice; this is the definition used in \cite{OZ}. In the concluding remarks of
+\cite{OZ}, Ochem and Zelinsky pose:
+
+\begin{question}[\cite{OZ}, Question~9]
+Does there exist a prime $x$ such that $x^2+x+1$ is square-full?
+\end{question}
+
+\noindent
+They pose it because a negative answer would reduce the exponent pairs $(a,b)$
+admissible in their analysis; the affirmative answer below rules out obtaining
+that reduction from this question. Note that ``square-full'' is neither
+``squarefree'' nor ``a perfect power''.
+
+\section{The answer}
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+ x=47116128896261596331524418282573 .
+\]
+Then $x$ is prime and $x^2+x+1$ is square-full. Consequently the question above
+has the answer \emph{yes}.
+\end{theorem}
+
+Everything a reader needs is the integer $x$ above together with the following
+three decimal strings. Write $n=x^2+x+1$ and
+{\small
+\begin{equation}\label{eq:n}
+ n=2219929602169136991765718912586970986546248112210754339293782903,
+\end{equation}}
+\begin{align}
+ A&=2544031832644333879196802002161, \label{eq:A}\\
+ x-1&=2^2\cdot 6299\cdot 9701563\cdot 192750846182877882539. \label{eq:xm1}
+\end{align}
+
+\begin{proof}[Proof that $n$ is square-full]
+Two multiplications suffice. First,
+\begin{equation}\label{eq:key}
+ n=7^3A^2,
+\end{equation}
+which is \eqref{eq:n} against \eqref{eq:A}; and second $A\equiv 3\pmod 7$, so
+$7\nmid A$. Now let $p$ be any prime dividing $n$. If $p=7$ then
+$\vp_7(n)=3+2\vp_7(A)=3\ge2$. If $p\neq7$ then $p\mid A^2$ by \eqref{eq:key},
+hence $p\mid A$ and $\vp_p(n)=2\vp_p(A)\ge2$. Every exponent in $n$ is therefore
+at least $2$, i.e.\ $(\rad n)^2\mid n$.
+\end{proof}
+
+No factorisation of $A$ is needed for that argument, which is why it is
+checkable by hand. The complete factorisation, which the argument does not use,
+is
+\begin{equation}\label{eq:full}
+\begin{aligned}
+ n&=7^3\cdot 43^2\cdot 3416683^2\cdot 12353161^2\cdot 1401752363863729^2,\\
+ A&=43\cdot 3416683\cdot 12353161\cdot 1401752363863729 ,
+\end{aligned}
+\end{equation}
+each listed factor being prime: $43$, $3416683$ and $12353161$ by trial
+division, and $1401752363863729$ by the certificate of the next proof applied
+with base $7$ to
+\[
+ 1401752363863729-1=2^4\cdot3\cdot37\cdot107\cdot7376401679
+\]
+($7376401679$ prime by trial division; base $2$ fails there, being a quadratic
+residue modulo $1401752363863729$).
+
+\begin{proof}[Proof that $x$ is prime]
+This is the converse of Fermat's theorem in the form of Lucas, as in
+\cite[Theorem~1]{BLS}: if $a^{x-1}\equiv1\pmod x$ and
+$a^{(x-1)/q}\not\equiv1\pmod x$ for every prime $q\mid x-1$, then $x$ is prime.
+Take $a=2$. The factorisation \eqref{eq:xm1} of $x-1$ is complete, and
+$2^{x-1}\equiv1\pmod x$, while the four quotient powers are
+{\small
+\begin{align*}
+ 2^{(x-1)/2}          &\equiv 47116128896261596331524418282572 \pmod x,\\
+ 2^{(x-1)/6299}       &\equiv 42436530233755792060895430447505 \pmod x,\\
+ 2^{(x-1)/9701563}    &\equiv 21277589209484664623743014586336 \pmod x,\\
+ 2^{(x-1)/192750846182877882539}
+                      &\equiv 19695209395513058587964373225481 \pmod x,
+\end{align*}}
+none of them $1$. It remains to know that the four factors in \eqref{eq:xm1} are
+prime. For $2$, $6299$ and $9701563$ this is trial division. For the largest
+factor $m$ we give the same certificate one level down: with
+\[
+ m=192750846182877882539,\qquad m-1=2\cdot 17^2\cdot 27779\cdot 12004714807399,
+\]
+again completely factored, the base $2$ satisfies $2^{m-1}\equiv1\pmod m$ and
+$2^{(m-1)/q}\not\equiv1\pmod m$ for each of the four primes
+$q\mid m-1$; and $17$, $27779$ and $12004714807399$ are
+prime by trial division, the largest of them needing divisors only up to
+$3464782$. The certificate is therefore grounded in exhaustive trial division at
+every leaf, and no probable-prime test enters.
+\end{proof}
+
+Theorem~\ref{thm:main} follows.
+
+\section{Provenance of the witness}
+
+The integer is not new. It is $a(27)$ of OEIS A296376, ``Natural numbers $x$
+such that $7y^2=x^2+x+1$ has a solution in natural numbers'' \cite{A296376},
+contributed by Jeffrey Shallit in December 2017, and it occurs as line~27 of the
+published $b$-file \texttt{b296376.txt} of that entry, computed by Colin Barker;
+the entry traces the family to a note of Majol from 1902 \cite{Majol}. Which
+members of the family are square-full is immediate from the defining property
+rather than new: if $x=a(k)$ then $x^2+x+1=7y^2$, and such a value is
+square-full precisely when $7\mid y$, since $\vp_7(x^2+x+1)=1+2\vp_7(y)$ while
+every other exponent of $7y^2$ is even. No priority is claimed for the
+observation that this particular member is prime; our literature search was not
+exhaustive.
+
+\section{Verification}
+
+The file \texttt{verify.py} accompanying this note, with its recorded run in
+\texttt{verify.output.txt}, takes the decimal strings
+\eqref{eq:n}--\eqref{eq:xm1} and re-derives the mathematical assertions of
+Section~2: the identity $n=7^3A^2$ with $7\nmid A$; the factorisation
+\eqref{eq:full}, with each listed prime proved prime, each exponent checked to
+be at least $2$, and $(\rad n)^2\mid n$ verified directly; and the Lucas
+certificate for $x$ together with its subsidiary certificates, every leaf
+grounded in exhaustive trial division. It also runs controls in both directions
+on its square-full decider and a census deciding every $x$ with $1\le x\le10^8$,
+where the only values with $x^2+x+1$ square-full are the composite $x=18$ and
+$x=88916$. No minimality is claimed for the witness: nothing here excludes a
+prime witness with between $9$ and $31$ digits. Nothing bibliographic is
+re-derived --- the statements of Section~3 are transcribed, as the program's
+closing scope note, reproduced in the accompanying \texttt{REVIEW\_NOTE.md},
+records. The program uses exact integer arithmetic throughout, no floating-point
+comparison, no randomness, and the Python standard library only, and reports
+\begin{center}
+\texttt{VERDICT: ALL 74 CHECKS PASS}
+\end{center}
+Every input it consumes is printed above. The decisive steps are elementary
+without being a single line of arithmetic: \eqref{eq:key} is one multiplication
+and the certificate for $x$ is five modular exponentiations, to which grounding
+that certificate adds the subsidiary certificate for $192750846182877882539$
+and the trial divisions at its leaves.
+
+\begin{thebibliography}{9}
+
+\bibitem{BLS}
+J.~Brillhart, D.~H. Lehmer, and J.~L. Selfridge,
+\emph{New primality criteria and factorizations of $2^m\pm1$},
+Math. Comp. \textbf{29} (1975), 620--647.
+\href{https://doi.org/10.1090/S0025-5718-1975-0384673-1}%
+{doi:10.1090/S0025-5718-1975-0384673-1}.
+
+\bibitem{Majol}
+E.-A. Majol,
+Note \#2228,
+\emph{L'Interm\'ediaire des Math\'ematiciens} \textbf{9} (1902), 183--185.
+Cited as the reference of \cite{A296376}.
+
+\bibitem{OZ}
+P.~Ochem and J.~Zelinsky,
+\emph{On odd perfect numbers with exactly one even exponent greater than $2$},
+arXiv:2607.19746v1 [math.GM], 22 July 2026.
+\href{https://arxiv.org/abs/2607.19746}{arXiv:2607.19746}.
+The question reproduced above is Question~9, in the concluding remarks of that
+e-print; the numbering of a printed version, if any, may differ, which is why
+the question is quoted in full.
+
+\bibitem{A296376}
+OEIS Foundation Inc., sequence A296376,
+\emph{Natural numbers $x$ such that $7y^2=x^2+x+1$ has a solution in natural
+numbers}, contributed by J.~Shallit, 11 December 2017; $b$-file
+\texttt{b296376.txt} ($800$ terms) by C.~Barker.
+\href{https://oeis.org/A296376}{oeis.org/A296376}.
+
+\end{thebibliography}
+
+\end{document}

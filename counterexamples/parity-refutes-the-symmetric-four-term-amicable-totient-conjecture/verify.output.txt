@@ -1,0 +1,99 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  aa92eeb641d80ec17404736f38f6bc784cbeea44991f4d82e10c3ac51566c89d
+python:  Python 3.9.25
+=== program output follows ===
+
+=== A. THE WITNESS OBJECT AS PRINTED IN THEOREM 3 ===
+PASS A1-factorisation-of-A [2^2 * 11*13*149*383 = 32642324, paper prints 32642324]
+PASS A2-factorisation-of-B [2^2 * 17*47*79*139 = 35095276, paper prints 35095276]
+PASS A3-hand-multiplication-chain-for-A [paper: 143 -> 57067 -> 8160581 -> 32642324]
+PASS A4-hand-multiplication-chain-for-B [paper: 799 -> 10981 -> 8773819 -> 35095276]
+PASS A5-all-eight-odd-parts-are-prime [trial division to the square root, largest 383]
+PASS A6-eight-primes-distinct-so-type-is-(4,4) [both odd parts squarefree with exactly four prime factors]
+PASS A7-gcd-is-exactly-2^n [gcd(A,B) = 4 = 2^2, paper prints 4]
+PASS A8-sigma(A)-equals-the-printed-product [7*12*14*150*384 = 67737600]
+PASS A9-sigma(B)-equals-the-printed-product [7*18*48*80*140 = 67737600]
+PASS A10-the-pair-is-amicable [sigma(A) = sigma(B) = A+B = 67737600]
+PASS A11-phi(A)-equals-the-printed-product [2*10*12*148*382 = 13568640]
+PASS A12-phi(B)-equals-the-printed-product [2*16*46*78*138 = 15844608]
+PASS A13-S-and-the-two-deficits [S = 29413248, A-S = 3229076 = 4*807269, B-S = 5682028 = 4*1420507]
+PASS A14-x-and-y-match-the-paper-and-are-odd [x = 807269 (odd), y = 1420507 (odd)]
+PASS A15-the-two-subtracted-sums-are-even [Sigma_A = 556, Sigma_B = 282]
+
+=== B. THE SIX ACHIEVABLE VALUES OF EACH BRACKET ===
+PASS B1-bracket-over-A-takes-exactly-6-values-each-4-times [C(4,2) = 6 values, 4 of the 24 orderings each]
+PASS B2-bracket-over-B-takes-exactly-6-values-each-4-times
+PASS B3-the-six-values-over-A-match-the-paper [[133143, 654023, 684443, 767391, 798279, 1369751]]
+PASS B4-the-six-values-over-B-match-the-paper [[185163, 256331, 301451, 581591, 628511, 703583]]
+PASS B5-all-twelve-achievable-bracket-values-are-odd [each is a sum of three products of odd primes]
+PASS B6-the-two-spot-computations-over-A [143*532+57067 = 133143 (min) and 57067*24+143 = 1369751 (max)]
+PASS B7-the-spot-computation-for-the-maximum-over-B [10981*64+799 = 703583 = max over B]
+
+=== C. THE SIXTEEN ADMISSIBLE EQUATIONS ON THE WITNESS ===
+PASS C1-there-are-sixteen-admissible-equations-and-both-printed-ones-are-among-them [4 left-hand sides x 2 brackets x 2 subtracted sums]
+PASS C2-printed-x-equation-fails-on-all-576-labellings [x-1 = [ab(c+d)+cd] - (e+f+g+h): 0 of 576]
+PASS C3-printed-y-equation-fails-on-all-576-labellings [y-1 = [ef(g+h)+gh] - (a+b+c+d): 0 of 576]
+PASS C4-the-two-printed-equations-fail-simultaneously [0 of 576]
+PASS C5-the-bracket-exchanged-variant-also-fails [x-1 = B_B - Sigma_B and y-1 = B_A - Sigma_A: 0 of 576]
+PASS C6-the-eight-offset-carrying-equations-die-by-parity [each demands an EVEN bracket value while all twelve achievable values are odd]
+PASS C7-the-eight-offset-free-equations-demand-unachievable-values [required [807551, 807825, 1420789, 1421063], all ODD hence parity-admissible, none achievable]
+PASS C8-the-gap-at-the-closest-near-miss [807551 - 798279 = 9272]
+PASS C9-the-smallest-overshoot-of-the-maximum-over-B [807551 - 703583 = 103968; all four required values exceed max over B]
+PASS C10-brute-force-all-sixteen-equations-x-all-576-labellings [9216 integer comparisons, 0 satisfied]
+
+=== D. PROPOSITION 4, THE CORRECTED IDENTITY ===
+PASS D1-elementary-symmetric-functions-of-A-primes-match-the-paper [E1 = 556, E2 = 69978, E3 = 1445684, E4 = 8160581]
+PASS D2-elementary-symmetric-functions-of-B-primes-match-the-paper [F1 = 282, F2 = 25732, F3 = 876966, F4 = 8773819]
+PASS D3-x-equals-F3+F1-E2-1 [876966 + 282 - 69978 - 1 = 807269 = x]
+PASS D4-y-equals-E3+E1-F2-1 [1445684 + 556 - 25732 - 1 = 1420507 = y]
+PASS D5-FORCED-POSITIVE-the-corrected-identity-holds-on-all-576-labellings [the same evaluator that returns 0 for the printed equations returns 576/576 here]
+PASS D6-the-sigma-forced-relation-prod(p+1)=prod(q+1) [both equal 9676800; this is the only non-arithmetic input to Prop. 4]
+PASS D7-phi(M)=T-2(E3+E1)-and-phi(N)=T-2(F3+F1) [the expansion step of the proof of Prop. 4]
+PASS D8-E4-T-equals-minus(E3+E2+E1+1) [the last step of the proof of Prop. 4]
+
+=== E. LEMMA 1 RE-TESTED AS AN OUTPUT, ON A FAMILY WITH NO AMICABLE PAIR ===
+PASS E1-16-divides-phi(M)-for-every-squarefree-M-with-four-odd-prime-factors [C(20,4) = 4845 subsets of {3,...,73}, no amicability used]
+PASS E2-phi(M)=E4-E3+E2-E1+1-for-every-such-M [the expansion used in Lemma 1 and Prop. 4, on 4845 subsets]
+PASS E3-x-and-y-are-integers-and-both-odd-across-the-whole-family [2000 coprime prime-set pairs x n = 1..8 = 16000 instances, 0 non-integral, 0 even; not one is an amicable pair]
+PASS E4-the-printed-bracket-is-always-odd-and-the-subtracted-sum-always-even [400 subsets x 24 orderings = 9600 instances; so B - Sigma is ODD and forces x EVEN]
+PASS E5-two-distinct-odd-prime-factors-already-suffice-for-the-lemma [C(20,2) = 190 subsets: 4 | phi(M), and x odd on 50 sample pairs at n = 1]
+PASS E6-the-hypothesis-is-not-vacuous [with ONE odd prime factor each (M=3, N=5) the same formula gives x = 0, EVEN]
+
+=== F. CONSISTENCY WITH THE THREE IDENTITIES THE TARGET PAPER PROVES ===
+PASS F1-the-target-papers-own-(2,2)-example-reproduces-its-Theorem-2.1 [A = 2620, B = 2924: x = 59 = c+d-1, y = 135 = a+b-1, both odd]
+PASS F2-Theorem-2.1-shape-c+d-1-is-always-odd [odd + odd - 1 on all 190 two-subsets]
+PASS F3-Theorem-2.3-shape-(d+e)-(a+b+c)-is-always-odd [even - odd on 4000 instances]
+PASS F4-Theorem-2.5-shape-x-1=e2(d,e,f)-(a+b+c)-is-always-even [odd - odd on 4000 instances, so x is ODD there too]
+PASS F5-the-monomial-counts-that-locate-the-error [e2 of 3 letters: 3 monomials (ODD); e3 of 4: 4 (EVEN); e2 of 4: 6. [ab(c+d)+cd] has 3 monomials, so it carries the 3-letter parity to 4 letters]
+PASS F6-the-corrected-form-restores-the-parity [x-1 = F3+F1-E2-2 is EVEN on 500 instances, as Lemma 1 demands]
+
+=== G. THE EIGHT TABULATED MEMBERS OF THE CELL, RE-DERIVED FROM SCRATCH ===
+PASS G1-cell-member-n=2-A=32642324 [amicable, gcd = 2^2 exactly, type (4,4), x = 807269 and y = 1420507 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G2-cell-member-n=3-A=526552472 [amicable, gcd = 2^3 exactly, type (4,4), x = 3419059 and y = 5139341 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G3-cell-member-n=4-A=6104216464 [amicable, gcd = 2^4 exactly, type (4,4), x = 11105569 and y = 13029551 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G4-cell-member-n=5-A=291493436768 [amicable, gcd = 2^5 exactly, type (4,4), x = 130740179 and y = 155829501 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G5-cell-member-n=6-A=10453833569728 [amicable, gcd = 2^6 exactly, type (4,4), x = 1110175111 and y = 1451606057 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G6-cell-member-n=7-A=273080651722624 [amicable, gcd = 2^7 exactly, type (4,4), x = 8286809855 and y = 8403028339 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G7-cell-member-n=8-A=6116740737238784 [amicable, gcd = 2^8 exactly, type (4,4), x = 46471031343 and y = 46916379665 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G8-cell-member-n=5-A=99946542990038176 [amicable, gcd = 2^5 exactly, type (4,4), x = 32791723291925 and y = 66842337050059 both odd, 0 of 576 labellings satisfy any of the 16 equations, corrected identity 576/576]
+PASS G9-every-tabulated-A-equals-2^n-times-its-prime-list [8 of 8 rows transcribe consistently]
+PASS G10-the-first-tabulated-row-is-the-witness-of-Theorem-3
+PASS G11-the-table-spans-every-n-that-occurs-in-the-census [n = 2,...,8, matching the census distribution]
+
+=== H. THE CENSUS FIGURES QUOTED IN SECTION 5 (INTERNAL ARITHMETIC ONLY) ===
+PASS H1-the-n-distribution-sums-to-the-cell-size [111 + 1368 + 4085 + 4413 + 3077 + 1276 + 154 = 14484]
+PASS H2-labellings-per-pair-times-cell-size [4! x 4! = 576, and 576 * 14484 = 8342784]
+PASS H3-the-witness-is-the-smallest-A-among-the-tabulated-members [consistent with the census claim that it is the least member of the cell; the census itself is NOT re-run here]
+
+=== SCOPE ===
+NOT RE-RUN: the 415,523-term census of OEIS A002025. It needs the b-file, which is an external data file this program is forbidden to read, so the figures 14,484 cell members, 8,342,784 labellings, the n-distribution and the 1,073 type-(4,2) members are checked here only for internal arithmetic consistency (section H). No statement of the paper rests on them: Theorem 2 is a parity argument and Theorem 3 is one explicit pair.
+NOT RE-RUN: the two minimality claims that do rest on the census -- that A = 32642324 is the SMALLEST type-(4,4) amicable pair with gcd a power of two, and that no member of the cell has n = 1 or n > 8 below 10^17. Section H checks only that the witness is smallest among the eight pairs printed in the paper.
+NOT RE-RUN: the provenance of the target. The wording of the conjecture, the line numbers 576-582, 565, 222-230, 567-573, 585, 21, 33, the file size 25,122 B and the 664 lines of Amicable27122025.tex were established by fetching and reading the arXiv:2512.22319v1 e-print source; nothing here re-fetches it. This program checks mathematics, not bibliography.
+NOT RE-RUN: the three theorems of the target paper are checked here only for PARITY SHAPE and on the one (2,2) example the paper prints (section F). Their proofs are not reproduced, and the paper's (3,3) example is not recomputed.
+NOT RE-RUN: the offset-free equations for type-(4,4) pairs OTHER than the eight tabulated here. Parity does not reach them and no general argument is offered; they are open, as the paper says in its Status list.
+NOT RE-RUN: the prior-art question. Whether Proposition 4 is already in print was not settled -- the full texts of Borho-Hoffmann, Costello and Garcia-Pedersen-te Riele were not obtained, and MathSciNet was never consulted.
+NOT COVERED: the assertion at line 585 of the target, that x is in general a function of the (k-1)-th and (k-2)-th elementary symmetric polynomials of its OWN prime factors. Nothing here refutes it.
+
+VERDICT: ALL 66 CHECKS PASS
+=== program exited with status 0 ===

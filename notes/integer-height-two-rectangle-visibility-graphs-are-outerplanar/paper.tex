@@ -1,0 +1,343 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Integer height-two rectangle visibility graphs are outerplanar}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Bs}{B^{*}}
+\newcommand{\Ts}{T^{*}}
+\newcommand{\height}{\operatorname{height}}
+
+\title[Integer height-two RVGs are outerplanar]
+{Integer Height-Two Rectangle Visibility Graphs are Outerplanar}
+
+\date{}
+
+\subjclass[2020]{05C62, 05C10, 05C75}
+\keywords{rectangle visibility graph, outerplanar graph, bounding box height,
+structure theorem, star}
+
+\begin{document}
+
+\begin{abstract}
+Caughman, Dunn, Laison, Neudauer and Starr conjectured that a graph of rectangle
+visibility height~$2$ is outerplanar. We prove it in their model, in which every
+rectangle has integer corners. The proof runs through a structure theorem: in any
+layout of integer rectangles inside a box of height~$2$, the visibility graph is
+exactly the union of two paths --- one along the rectangles meeting the lower unit
+row, in $x$-order, one along those meeting the upper unit row --- together with the
+pairs (bottom rectangle, top rectangle) whose open $x$-intervals overlap. Splitting
+each full-height rectangle into halves exhibits the graph as a contraction of a
+two-layer non-crossing drawing, whence outerplanarity. Integrality cannot be dropped:
+we exhibit a $K_4$ layout whose $y$-rescaling has bounding-box height exactly~$2$ with
+the same visibility graph.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture and the result}
+
+A \emph{rectangle visibility representation} (RV-representation) of a graph $G$ is a
+family $\{R_v\}_{v\in V(G)}$ of closed axis-parallel rectangles
+$R_v=[x_1^v,x_2^v]\times[y_1^v,y_2^v]$ with pairwise disjoint interiors --- shared edges
+are allowed --- such that $uv\in E(G)$ if and only if $R_u$ and $R_v$ are
+\emph{visible}, meaning that, after possibly exchanging $u$ and $v$, either
+\begin{itemize}
+\item[(h)] $x_2^u\le x_1^v$, and some interval $J$ of positive length lies in
+ $(y_1^u,y_2^u)\cap(y_1^v,y_2^v)$ such that for every $y\in J$ the open segment
+ $(x_2^u,x_1^v)\times\{y\}$ meets no rectangle of the family; or
+\item[(v)] the same with the two axes exchanged.
+\end{itemize}
+This is the ``axis-parallel band of positive width meeting no other closed rectangle''
+of \cite{CDLNS23}, written out. Two rectangles sharing part of an edge
+are visible along it, the open segment then being empty. A graph with such a
+representation is a \emph{rectangle visibility graph} (RVG); for the origins of the
+class see \cite{HSV}. Following
+Caughman, Dunn, Laison, Neudauer and Starr \cite[\S2]{CDLNS23} we consider only
+\emph{integer} rectangles, all of whose corners are lattice points; $\height(G)$ is the
+least height of the bounding box of an integer RV-representation of $G$, and
+$F_{h,w}$ is the set of graphs realisable inside an $h\times w$ box.
+
+Item~6 of the ``Directions for Further Research'' of \cite{CDLNS23} reads, verbatim,
+\begin{equation}\label{eq:conj}
+ \textit{We conjecture that if } \height(G)=2 \textit{ then } G \textit{ is
+ outerplanar. Is this true?}
+\end{equation}
+We answer \eqref{eq:conj} affirmatively.
+
+\begin{theorem}\label{thm:main}
+If a graph $G$ has an integer RV-representation whose bounding box has height~$2$,
+then $G$ is outerplanar. Equivalently, in the model of \cite{CDLNS23},
+$\height(G)=2$ implies that $G$ is outerplanar.
+\end{theorem}
+
+The proof rests on a structure theorem. Fix a layout $S$ of integer rectangles with
+bounding box $[0,w]\times[0,2]$. Every $R\in S$ has integer $0\le y_1<y_2\le2$, so its
+$y$-interval is one of exactly three:
+\[
+ \textsc{bottom}=[x_1,x_2]\times[0,1],\quad
+ \textsc{top}=[x_1,x_2]\times[1,2],\quad
+ \textsc{full}=[x_1,x_2]\times[0,2].
+\]
+Put $\Bs=\textsc{bottom}\cup\textsc{full}$ (the rectangles meeting the open strip
+$0<y<1$) and $\Ts=\textsc{top}\cup\textsc{full}$.
+
+\begin{theorem}[Structure]\label{thm:A}
+Members of $\Bs$ have pairwise disjoint open $x$-intervals, hence are linearly ordered
+by $x$; likewise $\Ts$. With those orders, the visibility graph of $S$ is exactly
+\begin{align*}
+ E \;=\;& \operatorname{path}(\Bs\text{ in }x\text{-order})
+ \;\cup\; \operatorname{path}(\Ts\text{ in }x\text{-order})\\
+ &\;\cup\; \bigl\{\,bt \;:\; b\in\textsc{bottom},\ t\in\textsc{top},\
+ \mathring{I}_b\cap \mathring{I}_t\neq\emptyset \,\bigr\},
+\end{align*}
+where $\mathring{I}_R=(x_1,x_2)$ is the open $x$-interval of $R$. In particular a
+\textsc{full} rectangle has no vertical visibility edge at all.
+\end{theorem}
+
+The two-row observation behind Theorem~\ref{thm:A} appears in the source, which uses it
+in its own case analysis, and in tree-restricted form as Lemma~1 of the authors'
+earlier abstract \cite{CDLNS14}; we use it with the contraction argument of \S3.
+
+\begin{remark}[integrality]\label{rem:integral}
+Theorem~\ref{thm:main} is false in the real-coordinate model. The four rectangles
+\[
+ [0,2]\times[0,1],\quad [0,2]\times[2,3],\quad [1,2]\times[1,2],\quad [2,3]\times[0,3]
+\]
+have pairwise disjoint interiors inside a $3\times3$ box and their visibility graph is
+$K_4$ (all six pairs are visible; the reader may check the six bands directly). Apply
+$y\mapsto \tfrac23 y$:
+\[
+ [0,2]\times[0,\tfrac23],\quad [0,2]\times[\tfrac43,2],\quad
+ [1,2]\times[\tfrac23,\tfrac43],\quad [2,3]\times[0,2].
+\]
+An axis-parallel scaling is a homeomorphism preserving interiors, axis-parallel bands
+and positive width, so the visibility graph is still $K_4$ --- and the bounding box now
+has height exactly~$2$. The integer model is the source's own, so the hypothesis costs
+nothing against the question as asked, but it must be stated.
+\end{remark}
+
+\section{Proof of the structure theorem}
+
+\begin{lemma}[half-integer sight lines suffice]\label{lem:half}
+Let $A,B$ be members of a layout of integer rectangles. The set of abscissae at which a
+vertical segment joining the interiors of $A$ and $B$ meets no other rectangle of the
+layout is
+\[
+ U \;=\; \mathring{I}_A\cap \mathring{I}_B \;\setminus\; \bigcup_C [x_1^C,x_2^C],
+\]
+the union running over the rectangles $C$ whose $y$-interval meets the open interval
+strictly between $A$ and $B$. Every endpoint occurring in $U$ is an integer, so each
+connected component of $U$ is an open interval with integer endpoints. Hence $U\neq
+\emptyset$ if and only if $U\supseteq(c,c+1)$ for some integer $c$, if and only if
+$c+\tfrac12\in U$ for some integer $c$. The same holds with the two axes exchanged.
+For a layout with arbitrary real coordinates the same argument gives the endpoints of
+each component of $U$ among the finitely many $x$-coordinates of the layout, so
+$U\ne\emptyset$ if and only if $U$ contains the midpoint of two consecutive distinct
+such coordinates.
+\end{lemma}
+
+\begin{proof}
+$U$ is an open set obtained from an open interval with integer endpoints by deleting
+finitely many closed intervals with integer endpoints, so its components are open
+intervals with integer endpoints; a nonempty such component contains a unit interval
+$(c,c+1)$ and therefore its midpoint. For the general statement, replace ``integer'' by
+``a coordinate of the layout'' throughout: the deleted intervals and the ambient interval
+still have all their endpoints in that finite set, so each component of $U$ does too, and
+a nonempty component therefore contains two consecutive distinct coordinates' midpoint.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
+Two members of $\Bs$ both contain the whole strip $\{0<y<1\}$ over their $x$-range, so if
+their open $x$-intervals met, their interiors would meet. Hence $\Bs$ is linearly
+ordered by $x$, and likewise $\Ts$.
+
+\emph{Horizontal edges.} By Lemma~\ref{lem:half} (axes exchanged) a horizontal band of
+positive width may be taken at $y=\tfrac12$ or $y=\tfrac32$. The rectangles meeting
+$y=\tfrac12$ are exactly those of $\Bs$, and each of them meets that line in its whole
+$x$-interval; so along that line they are linearly ordered and $A$ sees $B$ if and only
+if they are consecutive. That is the path along $\Bs$ in $x$-order. The line
+$y=\tfrac32$ gives the path along $\Ts$ symmetrically.
+
+\emph{Vertical edges.} By Lemma~\ref{lem:half} a vertical band may be taken at
+$x=c+\tfrac12$ for an integer $c$. The rectangles meeting that line have pairwise
+disjoint $y$-interiors inside $[0,2]$, and each is \textsc{bottom}, \textsc{top} or
+\textsc{full}; so there are exactly three exhaustive cases: a \textsc{full} rectangle
+meets the line, in which case it is the only rectangle meeting it and no edge arises
+(whence a \textsc{full} rectangle has no vertical edge); or no \textsc{full} does and
+both a \textsc{bottom} $b$ and a \textsc{top} $t$ meet it, in which case they are the
+only two, are consecutive, and $bt$ is an edge; or at most one rectangle meets the line
+and no edge arises. Finally, ``some integer $c$ has $[c,c+1]\subseteq I_b\cap I_t$'' is
+precisely $\min(x_2^b,x_2^t)>\max(x_1^b,x_1^t)$, i.e.\ $\mathring I_b\cap\mathring
+I_t\neq\emptyset$.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Recall that a graph is outerplanar if and only if its vertices admit a cyclic order in
+which the edges, drawn as chords of a circle, pairwise do not cross; and that
+outerplanarity is minor-closed.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $S$ realise $G$ inside $[0,w]\times[0,2]$.
+
+\emph{Step 1: split the \textsc{full} rectangles.} Replace each
+$F=[x_1,x_2]\times[0,2]$ in $S$ by the two halves $F_b=[x_1,x_2]\times[0,1]$ and
+$F_t=[x_1,x_2]\times[1,2]$. Interiors remain pairwise disjoint, so the result $S'$ is a
+legal \textsc{full}-free layout in the same box; call its visibility graph $G'$. By
+Theorem~\ref{thm:A}, $\Bs(S')=\textsc{bottom}\cup\{F_b:F\in\textsc{full}\}$ carries the
+same bottom path as before, $\Ts(S')=\textsc{top}\cup\{F_t:F\in\textsc{full}\}$ the same
+top path, and the only new
+overlap edges are the pairs $F_bF_t$: a pair $(b,F_t)$ with $b\in\textsc{bottom}$ is
+excluded because $b$ and $F$ both lay in $\Bs(S)$ and so have disjoint open
+$x$-intervals, a pair $(F_b,t)$ symmetrically, and a pair $(F_b,F'_t)$ because $F$ and
+$F'$ both lay in $\Bs(S)$. Each $F_bF_t$ is an edge of $G'$, since $F_b$ and $F_t$ have
+equal, hence overlapping, open $x$-intervals. Contracting all of them merges each pair
+$\{F_b,F_t\}$ back into $F$, leaves every other vertex alone, and returns exactly $G$.
+So $G$ is a contraction, hence a minor, of $G'$.
+
+\emph{Step 2: $G'$ is outerplanar.} Let $b_1<\dots<b_p$ be the bottom rectangles of
+$S'$ in $x$-order and $t_1<\dots<t_q$ the top ones, and take the cyclic order
+\[
+ b_1,\;b_2,\;\dots,\;b_p,\;t_q,\;t_{q-1},\;\dots,\;t_1 .
+\]
+Every vertex of $G'$ occurs exactly once, since $S'$ is \textsc{full}-free. The two
+paths of Theorem~\ref{thm:A} run along consecutive positions of this cyclic order, so
+they cross nothing. Suppose two overlap edges crossed: $b_it_j$ and $b_{i'}t_{j'}$ with
+$i<i'$ and $j'<j$. Then
+\[
+\begin{gathered}
+ x_2(b_i)>x_1(t_j),\qquad x_2(t_{j'})>x_1(b_{i'}),\\
+ x_2(b_i)\le x_1(b_{i'}),\qquad x_2(t_{j'})\le x_1(t_j),
+\end{gathered}
+\]
+the last two because bottoms, respectively tops, have disjoint open $x$-intervals in
+$x$-order. Chaining gives $x_1(b_{i'})<x_2(t_{j'})\le x_1(t_j)<x_2(b_i)\le x_1(b_{i'})$,
+a contradiction. So no two chords cross and $G'$ is outerplanar.
+
+\emph{Step 3: conclude.} $G$ is a minor of $G'$ by Step~1, $G'$ is outerplanar by
+Step~2, and outerplanarity is minor-closed. Hence $G$ is outerplanar.
+\end{proof}
+
+\section{Stars, and the failure of the converse}
+
+\begin{lemma}\label{lem:star}
+Let $S$ be a layout of integer rectangles in a box of height~$2$, $G$ its visibility
+graph, and $v$ a vertex whose neighbourhood is independent. Then $\deg v\le4$; and if
+$R_v$ is not \textsc{full} then $\deg v\le3$.
+\end{lemma}
+
+\begin{proof}
+If $R_v$ is \textsc{full} it lies on both paths of Theorem~\ref{thm:A} and has no
+vertical edge, so $\deg v\le 2+2=4$ with no hypothesis at all. Let $R_v$ be
+\textsc{bottom} (the \textsc{top} case is symmetric); it has at most two neighbours on
+the bottom path, so it suffices to show that at most one \textsc{top} rectangle overlaps
+it. Suppose $t<t'$ in $\Ts$-order both have $\mathring I_t\cap\mathring
+I_v\neq\emptyset\neq\mathring I_{t'}\cap\mathring I_v$, and choose them consecutive
+among the members of $\Ts$ overlapping $\mathring I_v$. Since $\mathring I_v$ is an
+interval containing a point below $x_2(t)$ and a point above $x_1(t')$, it contains
+$[x_2(t),x_1(t')]$, hence the open $x$-interval of every member of $\Ts$ lying between
+$t$ and $t'$. Such a member cannot be \textsc{full}, since a \textsc{full} rectangle
+lies in $\Bs$ together with $R_v$ and so has open $x$-interval disjoint from $\mathring
+I_v$; so it is a \textsc{top} overlapping $\mathring I_v$, contradicting the choice of
+$t,t'$ as consecutive among those. Therefore $t$ and $t'$ are consecutive in $\Ts$ and
+$tt'$ is an edge of the top path --- but $t,t'\in N(v)$, contradicting independence.
+\end{proof}
+
+\begin{corollary}\label{cor:conv}
+If $K_{1,m}\in F_{2,w}$ for some $w$ then $m\le4$, and if $m=4$ the centre is realised
+by a \textsc{full} rectangle. In particular $K_{1,5}$ is outerplanar and has no integer
+RV-representation of bounding-box height~$2$: the converse of
+Theorem~\ref{thm:main} fails.
+\end{corollary}
+
+That the converse fails is not new: $K_{1,5}$ has six vertices, so it is one of the
+$112$ rows of the authors' published census \cite{WebList} of connected six-vertex
+graphs, where its entry reads $\height(K_{1,5})=3$. What Lemma~\ref{lem:star} adds is a
+reason valid for every $m$ and every width at once, together with the
+\textsc{full}-centre clause at $m=4$.
+
+The bound is attained, by the source's own published layout of $K_{1,4}$
+\cite{CDLNS23}:
+\begin{equation}\label{eq:k14}
+\begin{aligned}
+ a&=[1,2]\times[1,2], & b&=[3,4]\times[1,2], & c&=[2,3]\times[0,2],\\
+ d&=[0,1]\times[0,1], & e&=[4,5]\times[0,1].
+\end{aligned}
+\end{equation}
+Here $\Bs=\{d,c,e\}$ and $\Ts=\{a,c,b\}$ in $x$-order, and no \textsc{bottom} overlaps a
+\textsc{top}, so Theorem~\ref{thm:A} returns $E=\{ac,bc,cd,ce\}$: the star centred at
+the \textsc{full} rectangle $c$, inside the box $[0,5]\times[0,2]$.
+
+\section{The accompanying program}
+
+Every object above is printed in full, so nothing in \S\S1--4 requires a program. One
+accompanies this note nonetheless: \texttt{verify.py}, with a recorded run in
+\texttt{verify.output.txt}. It uses the Python standard library only and exact integer
+and \texttt{Fraction} arithmetic, with no floating-point decision anywhere.
+
+It implements the definition of visibility twice --- once specialised to integer
+coordinates by testing unit columns and unit rows, once for arbitrary rational
+coordinates by testing the midpoint of every pair of consecutive distinct coordinates,
+which Lemma~\ref{lem:half} shows to be exact --- and checks that the two agree. It
+re-derives from the definition the visibility graphs of \eqref{eq:k14} and of the two
+layouts of Remark~\ref{rem:integral}. It then enumerates every layout of integer
+rectangles whose bounding box is exactly $[0,w]\times[0,2]$ for $w\le7$ ---
+$711{,}202$ layouts --- and on each one verifies Theorem~\ref{thm:A} edge-for-edge and
+re-runs Steps 1--3 of \S3: the split layout's own definition-derived graph, the
+non-crossing property of the two-layer cyclic order, and that contracting the split
+pairs returns the original graph. Over those layouts the realised star sizes are
+$m\in\{1,2,3,4\}$, the $m=4$ centre is always \textsc{full}, and the bound of
+Lemma~\ref{lem:star} is attained but never exceeded.
+
+The program reports \texttt{VERDICT: ALL 45 CHECKS PASS}. What it does not do is stated
+in its own output: the enumeration stops at $w=7$, and it is the proof of \S\S2--3, not
+the enumeration, that covers all $w$ and all $n$; nothing there verifies
+$\height(K_{1,5})=3$, only that no height-$2$ layout in its range realises $K_{1,5}$;
+and no
+attribution in this note is machine-checked.
+
+\begin{thebibliography}{9}
+
+\bibitem{CDLNS23}
+J.~Caughman, C.~Dunn, J.~Laison, N.~Neudauer, and C.~Starr,
+\emph{Area, perimeter, height, and width of rectangle visibility graphs},
+J. Combin. Optim. \textbf{46} (2023), no.~3, Article number~18.
+\href{https://doi.org/10.1007/s10878-023-01084-9}{doi:10.1007/s10878-023-01084-9};
+\href{https://arxiv.org/abs/2208.09961}{arXiv:2208.09961}.
+
+\bibitem{CDLNS14}
+J.~Caughman, C.~Dunn, J.~Laison, N.~Neudauer, and C.~Starr,
+\emph{Minimum representations of rectangle visibility graphs},
+in: Graph Drawing (GD 2014), Lecture Notes in Computer Science \textbf{8871},
+Springer, pp.~527--528 (two-page poster abstract).
+
+\bibitem{WebList}
+J.~Caughman, C.~Dunn, J.~Laison, N.~Neudauer, and C.~Starr,
+\emph{Rectangle visibility representations of connected 6-vertex graphs},
+chart of $112$ rows, 15 pp., dated 24 August 2022,
+\url{https://web.pdx.edu/~caughman/6-Vertex-Chart.pdf};
+this is the reference [WebList] of \cite{CDLNS23}.
+
+\bibitem{HSV}
+J.~P. Hutchinson, T.~Shermer, and A.~Vince,
+\emph{On representations of some thickness-two graphs},
+in: Graph Drawing (GD 1995), Lecture Notes in Computer Science \textbf{1027},
+Springer, 1996, pp.~324--332.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,323 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The filtered integral span at weights 18 and 20: B(18)=13, B(20)=14, and a suggested closed form}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Mm}{\mathcal M}
+\newcommand{\MZ}{\mathcal M_{\mathbb Z}}
+\newcommand{\Rg}{\mathcal R_g}
+\newcommand{\Lam}{\Lambda}
+\DeclareMathOperator{\Span}{span}
+
+\title[$B(18)=13$ and $B(20)=14$ for the filtered integral span]
+{The Filtered Integral Span at Weights $18$ and $20$:\\$B(18)=13$, $B(20)=14$, and a Suggested Closed Form}
+
+\date{}
+
+\subjclass[2020]{11F11, 05E05, 11P84}
+\keywords{quasimodular forms, integral Fourier coefficients, MacMahon series,
+Schur function, weight filtration, lattice index}
+
+\begin{document}
+
+\begin{abstract}
+Let $\Mm$ be the algebra of quasimodular forms for $\mathrm{SL}_2(\mathbb Z)$ with rational
+Fourier coefficients, $\MZ=\Mm\cap\mathbb Z[[q]]$, and let $g(\lambda)$ be the Schur MacMahon
+series. Bachmann and Yu study
+$B(k)=\min\{n:F_{\le k}\MZ\subseteq\sum_{|\lambda|\le n}\mathbb Z\,g(\lambda)\}$,
+compute $B(k)$ for $k\le16$, and write that these computations suggest the explicit choice
+$B(k)=\lfloor k/2\rfloor+\lfloor k/6\rfloor$.
+We compute the next two even weights exactly: $B(18)=13$ and $B(20)=14$, where that formula
+gives $12$ and $13$.
+The witnesses are two finite chains of lattice indices, each closed by an \emph{attained} index
+$1$; the attained $1$ is what makes the two values exact rather than lower bounds. Along the way
+$[F_{\le20}\MZ:F_{\le20}\MZ\cap\Lam_{10}]=5811307335=3^{19}\cdot5$ and the corresponding index at
+$n=11$ is $32805=3^{8}\cdot5$, while every index we computed at even weights $k\le18$ is a power of
+$3$: the $3$-primary pattern recorded for $k\le16$ does not persist at $k=20$.
+The conjecture of Bachmann and Yu that some explicit finite $B(k)$ exists is not at issue; that
+statement, and the weight-$18$ and weight-$20$ instances of their main conjecture $\Rg=\MZ$, are
+confirmed here.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+Let $\Mm$ denote the algebra of quasimodular forms for $\mathrm{SL}_2(\mathbb Z)$ with rational
+Fourier coefficients, $F_{\le k}\Mm$ its weight-filtration piece, and
+\[
+ \MZ:=\Mm\cap\mathbb Z[[q]],\qquad F_{\le k}\MZ:=F_{\le k}\Mm\cap\mathbb Z[[q]].
+\]
+With
+\[
+ x_m:=\frac{q^m}{(1-q^m)^2}=\sum_{j\ge1}j\,q^{mj},
+\]
+the \emph{Schur MacMahon series} is $g(\lambda):=s_\lambda(x_1,x_2,\dots)$ for a partition
+$\lambda$; in particular $A_r:=g\bigl((1^r)\bigr)=e_r(x_1,x_2,\dots)$, and
+$\Rg:=\sum_\lambda\mathbb Z\,g(\lambda)=\mathbb Z[A_1,A_2,\dots]$ satisfies
+$\mathbb Z[E_2,E_4,E_6]\subset\Rg\subset\MZ$ \cite{BY}. Write
+\[
+ \Lam_n:=\sum_{|\lambda|\le n}\mathbb Z\,g(\lambda),
+ \qquad
+ B(k):=\min\bigl\{n:F_{\le k}\MZ\subseteq\Lam_n\bigr\}.
+\]
+
+Bachmann and Yu \cite{BY} conjecture that there is an explicit function $B(k)$ with
+$F_{\le k}\MZ\subseteq\Lam_{B(k)}$ for every $k\ge0$. They then determine the minimal $B(k)$ for
+$k\le16$ and write that these computations ``suggest the explicit choice''
+\begin{equation}\label{eq:guess}
+ B(k)=\Bigl\lfloor\frac k2\Bigr\rfloor+\Bigl\lfloor\frac k6\Bigr\rfloor .
+\end{equation}
+The formula is presented with that hedge, as a suggestion drawn from the data, and not as a
+conjecture in its own right. Their evidence is
+\[
+\begin{array}{c|ccccccc}
+ k & 4 & 6 & 8 & 10 & 12 & 14 & 16\\\hline
+ \bigl[F_{\le k}\MZ:F_{\le k}\MZ\cap\Lam_{k/2}\bigr] & 1 & 3 & 3 & 9 & 81 & 729 & 6561\\
+ B(k) & 2 & 4 & 5 & 6 & 8 & 9 & 10
+\end{array}
+\]
+all seven values of $B(k)$ agreeing with \eqref{eq:guess}; the accompanying text records that
+``the obstruction to the naive bound $B(k)=k/2$ is $3$-primary in every computed case'' and that
+the computation ``used $72$ coefficients'', which ``determine the $67$-dimensional space
+$F_{\le20}\Mm$''. Weights $18$ and $20$ are the next two even weights beyond that computed range.
+
+Our result is that $B(18)$ and $B(20)$ are exactly determined and exceed \eqref{eq:guess} by
+$1$ each.
+
+\begin{theorem}\label{thm:main}
+$B(18)=13$ and $B(20)=14$, whereas
+$\lfloor18/2\rfloor+\lfloor18/6\rfloor=12$ and $\lfloor20/2\rfloor+\lfloor20/6\rfloor=13$.
+Hence \eqref{eq:guess} fails at $k=18$ and at $k=20$.
+\end{theorem}
+
+\medskip
+\noindent\textbf{Status.}
+What fails is \eqref{eq:guess}, a displayed formula that \cite{BY} introduce with the words
+``suggest the explicit choice'' in a paragraph that fences its own evidence at weight $16$. It is a
+hedged suggestion rather than a numbered conjecture, and we do not present it as more than that. The
+authors' conjecture that \emph{some} explicit finite $B(k)$ exists is not refuted: Theorem
+\ref{thm:main} confirms it at $k=18$ and $k=20$ with the explicit values $13$ and $14$, and
+Corollary~\ref{cor:confirm} below confirms the weight-$18$ and weight-$20$ instances of their main
+conjecture $\Rg=\MZ$ as well. Nothing here proposes a replacement for \eqref{eq:guess}.
+
+\section{The lattices, and why two integers decide the values}
+
+Everything is a lattice computation in a finite-dimensional space, and it is convenient to change
+basis first.
+
+\begin{lemma}\label{lem:basis}
+For every $n\ge0$, the lattice $\Lam_n$ is the $\mathbb Z$-span of the
+\emph{A-monomials} $A_{\mu_1}A_{\mu_2}\cdots A_{\mu_s}$, taken over all
+partitions $\mu$ with $|\mu|\le n$.
+\end{lemma}
+
+\begin{proof}
+Let $\Lam_{\mathbb Z}=\bigoplus_d\Lam^d_{\mathbb Z}$ be the ring of symmetric functions over
+$\mathbb Z$. Fix $d$. The Schur functions $s_\lambda$ with $|\lambda|=d$ and the
+elementary monomials $e_{\mu_1}e_{\mu_2}\cdots$ with $|\mu|=d$ are both
+$\mathbb Z$-bases of $\Lam^d_{\mathbb Z}$ \cite{Mac}, so the transition matrix
+between them lies in $\mathrm{GL}(\mathbb Z)$ and the
+two families have the same $\mathbb Z$-span in each degree, hence the same $\mathbb Z$-span over all
+degrees $d\le n$. Applying the ring homomorphism $x_i\mapsto x_i(q)$ carries $s_\lambda$ to
+$g(\lambda)$ and $e_{\mu_1}e_{\mu_2}\cdots$ to $A_{\mu_1}A_{\mu_2}\cdots$, and carries a
+$\mathbb Z$-span onto a $\mathbb Z$-span.
+\end{proof}
+
+This is what makes the computation feasible: the $\mathbb Z$-span of Lemma~\ref{lem:basis} needs
+only $A_1,\dots,A_{14}$ and a list of $373$ monomials at $n=13$ ($508$ at $n=14$). We also use,
+from \cite{BY}, that $\{g(\lambda):\lambda_1\le3,\ |\lambda|\le n\}$ is a $\mathbb Q$-basis of
+$F_{\le2n}\Mm$; combined with Lemma~\ref{lem:basis} over $\mathbb Q$ and with
+$A_r\in F_{\le2r}\Mm$ this gives
+\begin{equation}\label{eq:dim}
+\begin{gathered}
+ F_{\le2n}\Mm=\mathbb Q\text{-}\Span\{\text{A-monomials of degree}\le n\},\\
+ \dim_{\mathbb Q}F_{\le2n}\Mm=\#\{(a,b,c)\in\mathbb Z_{\ge0}^3:a+2b+3c\le n\},
+\end{gathered}
+\end{equation}
+so $\dim F_{\le18}\Mm=53$ and $\dim F_{\le20}\Mm=67$ --- the second being the authors' own $67$.
+
+For $N\ge0$ put
+\[
+\begin{gathered}
+ L_N(k):=\bigl\{f\in F_{\le k}\Mm:\ [q^i]f\in\mathbb Z\ \text{for}\ 0\le i\le N\bigr\},\\
+ i(k,n,N):=\bigl[L_N(k):L_N(k)\cap\Lam_n\bigr].
+\end{gathered}
+\]
+$L_N(k)$ is a lattice of full rank in $F_{\le k}\Mm$ containing $F_{\le k}\MZ$ --- it is the
+\emph{dual} lattice of the lattice spanned by the coefficient columns $q^0,\dots,q^N$ of any
+$\mathbb Q$-basis --- and, for $n\ge k/2$, $\Lam_{k/2}\subseteq L_N(k)\cap\Lam_n$, so the index is a
+finite positive integer. For $n<k/2$ the intersection has smaller rank and the index is infinite;
+correspondingly $B(k)\ge k/2$ always, since $F_{\le k}\MZ$ spans $F_{\le k}\Mm$ over $\mathbb Q$
+while $\Lam_n\otimes\mathbb Q=F_{\le2n}\Mm$.
+
+\begin{proposition}[the squeeze]\label{prop:squeeze}
+Let $k=2m$ and $N\ge0$. For every $n\ge m$,
+\[
+ \Lam_n\cap F_{\le k}\Mm\ \subseteq\ F_{\le k}\MZ\ \subseteq\ L_N(k).
+\]
+If $i(k,n_0,N)=1$ for some $n_0$, then
+\[
+ F_{\le k}\MZ=L_N(k)=\Lam_{n_0}\cap F_{\le k}\Mm,
+\]
+and consequently $i(k,n,N)=[F_{\le k}\MZ:F_{\le k}\MZ\cap\Lam_n]$ for \emph{every} $n\ge m$ and
+\[
+ B(k)=\min\{n\ge m:\ i(k,n,N)=1\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Each $A_r$ lies in $\MZ$ and $\MZ$ is a ring, so by Lemma~\ref{lem:basis}
+$\Lam_n\subseteq\MZ$; intersecting with $F_{\le k}\Mm$ gives the first inclusion, and the second is
+the definition of $L_N(k)$. Now suppose $i(k,n_0,N)=1$, i.e.\ $L_N(k)\subseteq\Lam_{n_0}$. Since
+$L_N(k)\subseteq F_{\le k}\Mm$ we get $L_N(k)\subseteq\Lam_{n_0}\cap F_{\le k}\Mm$, which closes the
+displayed chain into a triple equality. Then for any $n$,
+$L_N(k)\cap\Lam_n=F_{\le k}\MZ\cap\Lam_n$, so $i(k,n,N)$ is the true index
+$[F_{\le k}\MZ:F_{\le k}\MZ\cap\Lam_n]$; and that index is $1$ if and only if
+$F_{\le k}\MZ\subseteq\Lam_n$, which is the definition of $B(k)$ as a minimum.
+\end{proof}
+
+The object exhibited by this note is the pair of chains
+\begin{equation}\label{eq:chains}
+\begin{array}{c|cccccc}
+ n & 9 & 10 & 11 & 12 & 13 & 14\\\hline
+ i(18,n,300) & 4782969 & 243 & 9 & 3 & \mathbf 1 & \text{---}\\
+ i(20,n,360) & \text{---} & 5811307335 & 32805 & 27 & 3 & \mathbf 1
+\end{array}
+\end{equation}
+with $4782969=3^{14}$, $243=3^5$, $5811307335=3^{19}\cdot5$, $32805=3^{8}\cdot5$ and $27=3^3$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Only two entries per weight are needed. Take $k=18$, $N=300$. Since $i(18,13,300)=1$,
+Proposition~\ref{prop:squeeze} applies with $n_0=13$: every entry of the first row of
+\eqref{eq:chains} is a true index of $F_{\le18}\MZ$, and $B(18)$ is the least $n$ at which the row
+equals $1$. That is $n=13$, because $i(18,12,300)=3>1$. Hence $B(18)=13$, while
+$\lfloor18/2\rfloor+\lfloor18/6\rfloor=9+3=12$.
+
+Take $k=20$, $N=360$. Since $i(20,14,360)=1$, Proposition~\ref{prop:squeeze} applies with
+$n_0=14$, and $B(20)$ is the least $n$ at which the second row equals $1$. That is $n=14$, because
+$i(20,13,360)=3>1$. Hence $B(20)=14$, while $\lfloor20/2\rfloor+\lfloor20/6\rfloor=10+3=13$.
+\end{proof}
+
+Note where the force of the argument lies. An index $>1$ at $n=12$ on its own would only say
+$L_N(18)\not\subseteq\Lam_{12}$, which is weaker than
+$F_{\le18}\MZ\not\subseteq\Lam_{12}$ because $L_N(18)$ is a superlattice. It is the
+\emph{attained} $1$ at $n=13$ that collapses the superlattice onto $F_{\le18}\MZ$ and makes the
+neighbouring entry an exact index. Correspondingly there is no stabilisation-in-$N$ hypothesis
+anywhere: $N$ is a computational parameter, not an assumption.
+
+\begin{corollary}\label{cor:five}
+$[F_{\le20}\MZ:F_{\le20}\MZ\cap\Lam_{10}]=5811307335=3^{19}\cdot5$ and
+$[F_{\le20}\MZ:F_{\le20}\MZ\cap\Lam_{11}]=32805=3^{8}\cdot5$. Among the indices computed at even
+weights $k\le20$ --- those of \cite{BY} for $k\le16$ and both rows of \eqref{eq:chains} --- these
+two are the only ones that are not powers of $3$; in particular every entry of the $k=18$ row is a
+power of $3$. So the sentence of \cite{BY} that the obstruction is ``$3$-primary in every computed
+case'' is correct as scoped to $k\le16$, and the pattern does not persist at $k=20$. Odd weights
+are not computed here.
+\end{corollary}
+
+\begin{corollary}\label{cor:confirm}
+$F_{\le18}\MZ=\Lam_{13}\cap F_{\le18}\Mm$ and $F_{\le20}\MZ=\Lam_{14}\cap F_{\le20}\Mm$. Both
+right-hand sides lie in $\Rg$, so the weight-$18$ and weight-$20$ instances of the Bachmann--Yu
+main conjecture $\Rg=\MZ$ hold, and their conjecture that an explicit finite $B(k)$ exists holds at
+$k=18$ and $k=20$ with the explicit values $13$ and $14$.
+\end{corollary}
+
+\begin{proof}
+Immediate from the triple equality of Proposition~\ref{prop:squeeze} at $n_0=13$ and $n_0=14$,
+together with $\Lam_n\subseteq\Rg$.
+\end{proof}
+
+\begin{remark}[the computed excess]
+Write $e(n):=B(2n)-n$. The seven published values give
+$e=0,1,1,1,2,2,2$ for $n=2,\dots,8$, i.e.\ $e(n)=\lfloor n/3\rfloor$, which is
+\eqref{eq:guess}. Theorem~\ref{thm:main} gives $e(9)=e(10)=4$, so the value $3$ is absent from
+these nine computed values of $e$, and the step from $B(16)=10$ to $B(18)=13$ is $+3$ where
+\eqref{eq:guess} predicts $+2$. Any replacement guess must fit the nine data points
+$B(k)=2,4,5,6,8,9,10,13,14$ for $k=4,6,\dots,20$, and the obstruction at $k=20$ is not $3$-primary
+(Corollary~\ref{cor:five}).
+\end{remark}
+
+\begin{remark}[truncation dependence at $k=20$]
+At $k=20$ the index $i(20,10,N)$ computed from the authors' own $72$ coefficients is
+$87169610025=3^{20}\cdot5^{2}$, a proper multiple of the value $3^{19}\cdot5$ obtained at every
+one of $N=80$, $100$, $120$, $150$, $200$, $250$, $300$; at $k=18$ the corresponding index is
+$3^{14}$ at all eight of
+those truncations including $N=72$. So $72$ coefficients do pin the $67$-dimensional \emph{space}
+$F_{\le20}\Mm$, as \cite{BY} say, and do \emph{not} pin its integral \emph{lattice}. This is why
+the argument above is arranged around an attained index rather than around a stable truncation.
+\end{remark}
+
+\section{Reproduction and verification}
+
+A referee needs nothing but the definitions above. Fix $k=2m$ and $N$. Build
+$A_r=e_r(x_1,x_2,\dots)$ as integer $q$-series to order $N$ from
+$x_m=\sum_{j\ge1}jq^{mj}$ by the elementary-symmetric recursion; list the A-monomials of degree
+$\le n$ (Lemma~\ref{lem:basis}); pick $d_m=\dim F_{\le k}\Mm$ of the degree-$\le m$ monomials that
+are linearly independent, which by \eqref{eq:dim} is a rank check, and use them as a
+$\mathbb Q$-basis $F_1,\dots,F_{d_m}$ of $F_{\le k}\Mm$. For $c\in\mathbb Q^{d_m}$ the $q^i$
+coefficient of $\sum_tc_tF_t$ is $\langle c,u_i\rangle$ with $u_i=(F_t[i])_t\in\mathbb Z^{d_m}$, so
+$L_N(k)$ is precisely the dual lattice of $U=\sum_i\mathbb Z u_i$: compute a Hermite normal form
+$H$ of $U$ and read a $\mathbb Z$-basis of $L_N(k)$ off the columns of $H^{-1}$ (each such basis
+vector must expand to an integral $q$-series, which is a check). Finally, projecting onto any
+$\dim F_{\le2n}\Mm$ coefficient positions on which $\Lam_n$ injects,
+\[
+ i(k,n,N)=\frac{\det\Lam_n}{\det(\Lam_n+L_N(k))},
+\]
+a ratio of integer lattice determinants. Every division is exact and no floating-point number
+occurs anywhere.
+
+\medskip
+\noindent\textbf{What was checked.}
+The program \texttt{verify.py} accompanying this note carries out that recipe from scratch in
+exact integer and rational arithmetic, standard library only, and rechecks every number printed
+above; its $90$ checks all pass. It reproduces the fourteen published integers of \cite{BY} for
+$k\le16$, rebuilds $A_1,\dots,A_{14}$ a second time by Newton's identities from the power sums of
+the $x_m$, recomputes the four decisive indices in a second, rotated coordinate projection, and
+runs the eight-truncation sweep quoted in the preceding remark. It covers nothing beyond the claims
+above: not $k\ge22$, not odd $k$, not any replacement closed form, not $\Rg=\MZ$ outside weights
+$18$ and $20$, and not the literature. No explicit element of $F_{\le18}\MZ\setminus\Lam_{12}$ is
+exhibited: such an element is determined only modulo $\Lam_{12}$, and the deciding object is the
+pair of chains \eqref{eq:chains}. The nearest prior work known to us is Craig \cite{Craig}, whose
+integral generating sets lie in larger algebras of $q$-multiple zeta values and give no bound on
+$B(k)$.
+
+\begin{thebibliography}{9}
+
+\bibitem{BY}
+H.~Bachmann and J.~Yu,
+\emph{Schur Eisenstein series and Schur MacMahon series},
+preprint, 30 July 2026. \href{https://arxiv.org/abs/2607.27702}{arXiv:2607.27702v1}.
+
+\bibitem{Craig}
+W.~Craig,
+\emph{Higher level $q$-multiple zeta values with applications to quasimodular forms and
+partitions},
+Math. Ann., to appear.
+\href{https://doi.org/10.1007/s00208-026-03519-0}{doi:10.1007/s00208-026-03519-0};
+\href{https://arxiv.org/abs/2409.13874}{arXiv:2409.13874}.
+
+\bibitem{Mac}
+I.~G. Macdonald,
+\emph{Symmetric Functions and Hall Polynomials},
+2nd ed., Oxford Univ. Press, 1995. (Chapter~I: the $e_\lambda$ and the $s_\lambda$ are both
+$\mathbb Z$-bases of the symmetric functions.)
+
+\end{thebibliography}
+
+\end{document}

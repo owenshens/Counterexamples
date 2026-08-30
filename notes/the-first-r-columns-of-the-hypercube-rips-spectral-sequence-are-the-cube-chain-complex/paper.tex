@@ -1,0 +1,349 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The first r+1 columns of the cubic-dimension spectral sequence of a
+            hypercube Vietoris-Rips complex}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\cdim}{cdim}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\kk}{\Bbbk}
+\newcommand{\Hy}{\mathcal H}
+\newcommand{\Fc}{\mathcal F}
+\newcommand{\bl}{\bullet}
+\numberwithin{equation}{section}
+
+\title[The first $r+1$ columns of a hypercube Rips spectral sequence]
+{The First $r+1$ Columns of the Cubic-Dimension Spectral Sequence
+ of a Hypercube Vietoris--Rips Complex}
+
+\date{}
+
+\subjclass[2020]{55N31, 05E18, 55T05, 05C10}
+\keywords{Vietoris--Rips complex, hypercube graph, cubic dimension,
+spectral sequence, hyperoctahedral group}
+
+\begin{document}
+
+\begin{abstract}
+Let $X^{n,r}$ be the Vietoris--Rips complex of the hypercube graph $Q_n$ at
+scale $r$, filtered by cubic dimension, and let $E^\bl_{\bl,\bl}$ be the
+resulting spectral sequence over a field of characteristic zero, all as in
+Galetto, Monta\~no and Wellner (arXiv:2606.20784). Problem~8.2 of that paper
+asks for a proof that $E^1_{p,0}\cong\Fc_p$, the $p$-th term of the cellular
+chain complex of the $n$-cube, and that $E^1_{p,q}=0$ for $q\neq0$, for all
+$0\le p\le r$. We prove both, for every $n>r\ge0$. Because $p\le r$ the Rips
+condition is vacuous on the vertex set of a $p$-cell, so the $p$-th column is,
+exactly and not merely up to homotopy, the relative chain complex of a simplex
+modulo the union of its $2p$ half-cube faces; an affine marginal map identifies
+that pair $\Hy_p$-equivariantly with $(I^p,\partial I^p)$. For $r\le3$ both
+assertions are already proved in the source paper.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}\label{sec:problem}
+
+Let $Q_n$ be the hypercube graph: vertex set $V(Q_n)=\{0,1\}^n$, with the
+Hamming distance $d$. For an integer $r\ge0$ the \emph{Vietoris--Rips complex}
+$X^{n,r}$ is the simplicial complex whose faces are the non-empty subsets
+$S\subseteq V(Q_n)$ with $\diam(S)\le r$. The \emph{cubic dimension} of such an
+$S$ is
+\[
+  \cdim(S)=\#\{\,i\in[n] : \text{$x_i\neq y_i$ for some $x,y\in S$}\,\},
+\]
+the number of coordinates in which $S$ is not constant, and $X^{n,r}_p$ denotes
+the subcomplex of faces with $\cdim\le p$. This is an increasing filtration of
+$X^{n,r}$ by subcomplexes. Writing $C^{n,r}_{d,p}$ for the span, over a fixed
+field $\kk$, of the faces of dimension $d$ and cubic dimension \emph{exactly}
+$p$, the associated homology spectral sequence has
+\[
+  E^0_{p,q}=C^{n,r}_{p+q,\,p},
+  \qquad
+  E^1_{p,q}=H_{p+q}\bigl(C^{n,r}_{p+\bl,\,p}\bigr).
+\]
+The hyperoctahedral group $\Hy_n=(\mathbb Z/2)^n\rtimes S_n$ acts on $Q_n$ by
+isometries, hence on everything above; all isomorphisms below are isomorphisms
+of $\Hy_n$-representations. Finally $\Fc_\bl$ is the cellular chain complex of
+the $n$-cube $[0,1]^n$, so that $\Fc_p$ has as basis the $p$-cells of the cube
+and $\dim\Fc_p=\binom{n}{p}2^{n-p}$.
+
+All of the above is the setting of Galetto, Monta\~no and Wellner \cite{GMW};
+for other homological invariants of $X^{n,r}$ see \cite{BEG}. Section~8 of
+\cite{GMW}, ``Open problems'', poses the following.
+
+\begin{problem}[\cite{GMW}, Problem 8.2]\label{prob:82}
+Let $n>r\ge0$. Show that for all integers $p$ with $0\le p\le r$ we have
+\begin{enumerate}
+\item[(i)] $E^1_{p,0}\cong\Fc_p$, where $\Fc_\bl$ is the cellular chain complex
+  of the $n$-cube; and
+\item[(ii)] $E^1_{p,q}=0$ for all $q\neq0$.
+\end{enumerate}
+\end{problem}
+
+The statement as posed quantifies explicitly only over $p$; the ambient
+quantifiers above are the ones we read off \cite{GMW}, whose main theorem is
+stated for $n>r$ and which fixes $\kk$ to be of characteristic zero. The labels
+$\{\lambda;\mu\}$ for irreducible $\Hy_m$-representations are those of
+\cite{GMW}; $\{0;1^m\}$ is the determinant character of $\Hy_m$, i.e.\ the sign
+of the underlying permutation times the product of the signs.
+
+\section{The result}\label{sec:result}
+
+\begin{theorem}\label{thm:main}
+Let $n>r\ge0$ and let $\kk$ be a field of characteristic zero, as in
+\cite{GMW}. Then for every $p$ with $0\le p\le r$:
+\begin{enumerate}
+\item[(i)] $E^1_{p,0}\cong\Fc_p$ as $\Hy_n$-representations; and
+\item[(ii)] $E^1_{p,q}=0$ for all $q\neq0$.
+\end{enumerate}
+\end{theorem}
+
+The characteristic hypothesis is inherited from the two results quoted from
+\cite{GMW} in Propositions~\ref{prop:free} and~\ref{prop:F}, and from the
+labelling $\{0;1^p\}$; the local input we supply, Lemma~\ref{lem:pair}, is
+characteristic-free, so over an arbitrary field the same argument still gives
+$E^1_{p,q}=0$ for $q\neq0$ and $\dim E^1_{p,0}=\dim\Fc_p$, with $\Hy_p$ acting
+by the determinant on each local summand.
+
+For $r\le3$ both assertions of Problem~\ref{prob:82} are already proved in
+\cite{GMW} itself. We make no claim of priority beyond that, and none about
+literature we have not read. The proof below needs no computer;
+Section~\ref{sec:scope} describes the program that accompanies this note.
+
+\subsection*{Two results quoted from \cite{GMW}, not reproved here}
+
+\begin{proposition}[\cite{GMW}]\label{prop:free}
+For all $p$ and $q$,
+\[
+  E^1_{p,q}\;\cong\;
+  \Ind_{S_{n-p}\times\Hy_p}^{\Hy_n}
+  \bigl(\,\{n-p\}\otimes H_{p+q}(C^{p,r}_{p+\bl,\,p})\,\bigr),
+\]
+where $\{n-p\}$ is the trivial representation of $S_{n-p}$.
+\end{proposition}
+
+\begin{proposition}[\cite{GMW}]\label{prop:F}
+For all $i$,
+$\Fc_i\cong\Ind_{S_{n-i}\times\Hy_i}^{\Hy_n}(\{n-i\}\otimes\{0;1^i\})$, and
+$\{0;1^i\}$ is one-dimensional. In particular
+$\dim\Fc_i=\binom{n}{i}2^{n-i}$.
+\end{proposition}
+
+These two are exactly the reduction we import. Induction is exact, so
+Proposition~\ref{prop:free} says that the $p$-th column is determined by the
+case $n=p$ alone. Combining the two propositions:
+
+\begin{corollary}\label{cor:reduce}
+Fix $r\ge0$ and $0\le p\le r$. If
+\[
+  H_{k}\bigl(C^{p,r}_{p+\bl,\,p}\bigr)=
+  \begin{cases}
+    \{0;1^p\} & k=p,\\
+    0 & k\neq p
+  \end{cases}
+  \qquad\text{as $\Hy_p$-representations,}
+\]
+then assertions \emph{(i)} and \emph{(ii)} of Problem~\ref{prob:82} hold for
+that $p$ and \emph{every} $n>r$.
+\end{corollary}
+
+Only this implication is used below. It is a \emph{reduction}, not a proof: it
+converts Problem~\ref{prob:82} into a statement about one local complex, and it
+supplies neither that complex's homology nor its character. Those are
+Sections~\ref{sec:object} and~\ref{sec:termwise}.
+
+\section{The collapse}\label{sec:object}
+
+Fix $p$ with $0\le p\le r$ and put $n=p$; write $V=V(Q_p)=\{0,1\}^p$, so
+$|V|=2^p$.
+
+\begin{lemma}\label{lem:collapse}
+Since $\diam(Q_p)=p\le r$, the Rips condition is vacuous on $V$: every
+non-empty subset of $V$ is a face of $X^{p,r}$. Hence
+\[
+  \Delta:=X^{p,r}=\text{the full simplex on the $2^p$ vertices $V$},
+\]
+and a face $S\subseteq V$ has $\cdim(S)=p$ if and only if $S$ is
+\emph{full-support}, i.e.\ $S$ is non-constant in every coordinate. Therefore
+\[
+  U:=X^{p,r}_{p-1}
+   =\bigcup_{i\in[p]}\;\bigcup_{\varepsilon\in\{0,1\}}\Delta(F_{i,\varepsilon}),
+  \qquad F_{i,\varepsilon}:=\{x\in V: x_i=\varepsilon\},
+\]
+the union of the $2p$ \emph{half-cube simplices} $\Delta(F_{i,\varepsilon})$
+\textup{(}each a full simplex on $2^{p-1}$ vertices\textup{)}, and there is an
+equality of chain complexes of $\Hy_p$-representations
+\begin{equation}\label{eq:collapse}
+  C^{p,r}_{p+\bl,\,p}\;=\;C_{p+\bl}(\Delta,U).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Any two vertices of $Q_p$ are at Hamming distance $\le p\le r$, so every
+non-empty $S\subseteq V$ satisfies $\diam(S)\le r$: this is the whole of the
+first assertion, and it is where the hypothesis $p\le r$ is used. Next,
+$\cdim(S)<p$ means exactly that $S$ is constant in some coordinate $i$, i.e.\
+$S\subseteq F_{i,\varepsilon}$ for some $\varepsilon$, which is the stated
+description of $U$; and $\cdim(S)=p$ means $S$ is full-support. So the faces of
+$\Delta$ of cubic dimension exactly $p$ are precisely the faces of $\Delta$ not
+in $U$, and $C^{p,r}_{d,p}=C_d(\Delta)/C_d(U)=C_d(\Delta,U)$ with the
+simplicial differential on both sides. Every step is $\Hy_p$-equivariant
+because $\Hy_p$ preserves the Hamming distance and hence cubic dimension.
+\end{proof}
+
+Equation \eqref{eq:collapse} is an \emph{equality}, not a homotopy
+equivalence, and it is the whole idea: the hypothesis $p\le r$ deletes all
+metric content, leaving an object with $2p$ pieces. At $p=4$, for instance,
+$\Delta$ has $2^{16}-1=65535$ faces and $U$ has $1760$, so
+$C^{4,4}_{4+\bl,4}$ has $63775$ generators; the next section obtains its
+homology from $U$, with no rank computation.
+
+\section{The local pair}\label{sec:termwise}
+
+\begin{lemma}[the marginal map]\label{lem:pair}
+There is an $\Hy_p$-equivariant homotopy equivalence of pairs
+\[
+  \bigl(|\Delta|,|U|\bigr)\;\simeq\;\bigl(I^p,\partial I^p\bigr),
+  \qquad I=[0,1],
+\]
+where $\Hy_p$ acts on $I^p$ as the affine symmetry group of the cube. Hence for
+all $k$
+\[
+  H_k(\Delta,U)\cong H_k(I^p,\partial I^p)=
+  \begin{cases}\kk & k=p,\\ 0 & k\neq p,\end{cases}
+\]
+and $\Hy_p$ acts on $H_p(\Delta,U)\cong\kk$ by the determinant of the linear
+part, i.e.\ by the character $\{0;1^p\}$.
+\end{lemma}
+
+\begin{proof}
+Realise $|\Delta|$ as the set of probability measures $\mu$ on $V=\{0,1\}^p$,
+the face of $|\Delta|$ containing $\mu$ in its interior being
+$\operatorname{supp}\mu$. Let
+\[
+  f:|\Delta|\longrightarrow I^p,\qquad
+  f(\mu)=\bigl(\mathbb E_\mu x_1,\dots,\mathbb E_\mu x_p\bigr),
+\]
+an affine map, and let $s:I^p\to|\Delta|$ be the Bernoulli section
+$s(t)=\bigotimes_{i=1}^p\mathrm{Bern}(t_i)$, so that $f\circ s=\mathrm{id}$.
+
+First, $f^{-1}(\partial I^p)=|U|$ \emph{exactly}: $f(\mu)_i=\mu(\{x_i=1\})$
+lies in $\{0,1\}$ if and only if $\operatorname{supp}\mu\subseteq F_{i,0}$ or
+$\operatorname{supp}\mu\subseteq F_{i,1}$, i.e.\ if and only if
+$\operatorname{supp}\mu$ fails to be full-support in coordinate $i$; and by
+Lemma~\ref{lem:collapse} that is exactly membership of $U$.
+
+Second, the straight-line homotopy
+$H(\mu,u)=(1-u)\mu+u\,s(f(\mu))$ takes values in $|\Delta|$ (a convex
+combination of probability measures) and satisfies, because $f$ is affine and
+$f\circ s=\mathrm{id}$,
+\[
+  f\bigl(H(\mu,u)\bigr)=(1-u)f(\mu)+u\,f(\mu)=f(\mu)
+  \qquad\text{for all }u .
+\]
+So $f$ is constant along $H$; in particular $H$ preserves
+$f^{-1}(\partial I^p)=|U|$ at every time. Thus $H$ is a deformation retraction
+of the pair $(|\Delta|,|U|)$ onto $(s(I^p),s(\partial I^p))$, and $s$ is a
+homeomorphism onto its image with inverse $f$.
+
+Third, equivariance. For $g=(s,\sigma)\in\Hy_p$ acting on $V$ by
+$(gx)_{\sigma(i)}=x_i+s_{\sigma(i)}$, one has
+$\mathbb E_{g\mu}x_{\sigma(i)}=\mathbb E_\mu x_i$ if $s_{\sigma(i)}=0$ and
+$=1-\mathbb E_\mu x_i$ if $s_{\sigma(i)}=1$. Hence $f$ intertwines the
+$\Hy_p$-action on $|\Delta|$ with the affine action
+$t\mapsto\bigl(t_{\sigma^{-1}(i)}\ \text{or}\ 1-t_{\sigma^{-1}(i)}\bigr)$ of
+$\Hy_p$ on $I^p$, which is the full affine symmetry group of the cube; $s$ is
+equivariant for the same two actions, and $H$ is then equivariant as well.
+
+Finally $H_k(I^p,\partial I^p)=\widetilde H_{k-1}(S^{p-1})$ is $\kk$ for $k=p$
+and $0$ otherwise (for $p=0$ read $\partial I^0=\emptyset$ and
+$H_0(\mathrm{pt},\emptyset)=\kk$), and an affine symmetry $g$ of $I^p$ acts on
+the fundamental class $[I^p,\partial I^p]$ by $\det$ of its linear part, which
+for $g=(s,\sigma)$ is $\sgn(\sigma)(-1)^{s_1+\dots+s_p}$. That is the
+determinant character of $\Hy_p$, i.e.\ $\{0;1^p\}$ in the labelling of
+\cite{GMW}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By \eqref{eq:collapse} and Lemma~\ref{lem:pair},
+\[
+  H_k\bigl(C^{p,r}_{p+\bl,\,p}\bigr)=H_k(\Delta,U)=
+  \begin{cases}\{0;1^p\}&k=p,\\ 0&k\neq p,\end{cases}
+\]
+for every $0\le p\le r$. Corollary~\ref{cor:reduce} converts this into (i)
+and (ii) for every $n>r$.
+\end{proof}
+
+\section{Scope, and the accompanying program}\label{sec:scope}
+
+Three limits. First, the labelling $\{\lambda;\mu\}$ of $\Hy_m$-irreducibles is
+used as in \cite{GMW}, over a field of characteristic zero;
+Lemma~\ref{lem:pair} itself, and hence Theorem~\ref{thm:main} read as
+``$\dim$, and the determinant character'', is characteristic-free. Second, the
+truncation $p\le r$ is essential to the argument: at $p=r+1$ the minimal
+full-support subsets of $V(Q_p)$ are the antipodal pairs, at distance $p>r$, so
+the Rips condition is no longer vacuous and Lemma~\ref{lem:collapse} does not
+apply. Third, Theorem~\ref{thm:main} is a statement about the terms
+$E^1_{p,q}$; we prove nothing here about the differential $d^1$, nor about the
+later pages.
+
+Theorem~\ref{thm:main} is proved above without a computer. A program
+\texttt{verify.py}, with its recorded output \texttt{verify.output.txt},
+accompanies this note; the recorded run reports $144$ checks, all passing. It
+rebuilds the local complexes $C^{p,r}_{p+\bl,\,p}$ from the definitions of
+Section~\ref{sec:problem}, checks \eqref{eq:collapse} as an identity of basis
+sets for $p\le4$, and confirms the conclusion of Lemma~\ref{lem:pair} --- one
+class, in degree $p$, on which $\Hy_p$ acts by the determinant --- for $p\le4$,
+computing the homology of the $63775$-generator complex $C^{4,4}_{4+\bl,4}$
+both through $U$ and directly by exact elimination on its fifteen boundary
+matrices. It also reproduces the dimensions \cite{GMW} publishes for its own
+scale-$2$ and scale-$3$ computations. It is Python~3.9+, standard library only;
+all arithmetic is exact integer arithmetic, and ranks are taken modulo a prime,
+which bounds the characteristic-zero Betti numbers from above, the
+field-independent alternating sum then pinning them.
+
+The program reproves neither Proposition~\ref{prop:free} nor
+Proposition~\ref{prop:F}, does not model the homotopy of Lemma~\ref{lem:pair},
+and enumerates no cell with $p=r\ge5$, which would require $2^{32}$ subsets;
+its output lists each check it runs and each thing it does not cover, and some
+of those checks concern objects the argument above does not use. The proof in
+Sections~\ref{sec:object} and~\ref{sec:termwise} is uniform in $n$, $r$ and $p$
+and does not depend on any computation.
+
+\begin{thebibliography}{9}
+
+\bibitem{GMW}
+F.~Galetto, J.~Monta\~no, and Z.~Wellner,
+\emph{Homology of Vietoris--Rips complexes of hypercube graphs via group
+actions},
+arXiv:2606.20784v1, 2026.
+\href{https://arxiv.org/abs/2606.20784}{arXiv:2606.20784}.
+
+\bibitem{BEG}
+M.~Bendersky, N.~Elia, and J.~Grbi\'c,
+\emph{Cohomological properties of the Vietoris--Rips complex of a hypercube
+graph},
+arXiv:2605.00705v2, 2026.
+\href{https://arxiv.org/abs/2605.00705}{arXiv:2605.00705}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,83 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8ac467d190f63b4b4bea549567f6a24c14c9659e96e011b2988e0bae3dfa8ca3
+python:  Python 3.9.6
+=== program output follows ===
+--- the exact Z[zeta_6] layer ---
+PASS zeta6-multiplication-table  z^i z^j = z^(i+j mod 6) for all 36 pairs
+PASS zeta6-unit-modulus  z^i conj(z^i) = 1 for i = 0..5
+PASS zeta6-minimal-polynomial  z^2 = z - 1 and |1+z|^2 = 3
+PASS reduce-counts-agrees-with-zeta-powers  equation (red) on the six unit vectors
+PASS loeschian-criterion-vs-brute-force  agree on every n in 0..199
+--- W1_BH46_split_3_43: BH(46,6), p = 23, k = 11 ---
+PASS shape/W1_BH46_split_3_43  both vectors have length 23, first entry 0, entries in Z_6
+PASS entries-in-Omega6/W1_BH46_split_3_43  all 2116 entries of H are sixth roots of unity
+PASS block-form-matches-exponent-matrix/W1_BH46_split_3_43  equation (expmat) reproduces [[X,Y],[Y*,-X*]] entrywise
+PASS autocorrelation/W1_BH46_split_3_43  gamma_s(x) + gamma_s(y) = 0 for all s = 1..22, 0 violations
+PASS gram/W1_BH46_split_3_43  H H* = 46 I_46 exactly: 1081 inner products with i <= j, 0 violations
+PASS row-sum-split/W1_BH46_split_3_43  |sum x|^2 = 3, |sum y|^2 = 43, sum = 46 = 2p, both Loeschian
+PASS simple-of-index-k/W1_BH46_split_3_43  both first rows are constant on the cosets of G_0 = [1, 22], so simple of index 11
+PASS subgroup-rederived/W1_BH46_split_3_43  G_0 = {h^11 mod 23} = [1, 22], as printed
+PASS cosets-partition/W1_BH46_split_3_43  11 cosets of G_0 partition Z_23^*
+PASS coset-code-expands/W1_BH46_split_3_43  a and b expand over the cosets of G_0 to exactly the printed e_x, e_y
+PASS gamma-constant-on-cosets/W1_BH46_split_3_43  gamma_s(x) takes one value on each of the 11 cosets (Lemma coset)
+--- W2_BH46_split_9_37: BH(46,6), p = 23, k = 11 ---
+PASS shape/W2_BH46_split_9_37  both vectors have length 23, first entry 0, entries in Z_6
+PASS entries-in-Omega6/W2_BH46_split_9_37  all 2116 entries of H are sixth roots of unity
+PASS block-form-matches-exponent-matrix/W2_BH46_split_9_37  equation (expmat) reproduces [[X,Y],[Y*,-X*]] entrywise
+PASS autocorrelation/W2_BH46_split_9_37  gamma_s(x) + gamma_s(y) = 0 for all s = 1..22, 0 violations
+PASS gram/W2_BH46_split_9_37  H H* = 46 I_46 exactly: 1081 inner products with i <= j, 0 violations
+PASS row-sum-split/W2_BH46_split_9_37  |sum x|^2 = 9, |sum y|^2 = 37, sum = 46 = 2p, both Loeschian
+PASS simple-of-index-k/W2_BH46_split_9_37  both first rows are constant on the cosets of G_0 = [1, 22], so simple of index 11
+--- W3_BH74: BH(74,6), p = 37, k = 12 ---
+PASS shape/W3_BH74  both vectors have length 37, first entry 0, entries in Z_6
+PASS entries-in-Omega6/W3_BH74  all 5476 entries of H are sixth roots of unity
+PASS block-form-matches-exponent-matrix/W3_BH74  equation (expmat) reproduces [[X,Y],[Y*,-X*]] entrywise
+PASS autocorrelation/W3_BH74  gamma_s(x) + gamma_s(y) = 0 for all s = 1..36, 0 violations
+PASS gram/W3_BH74  H H* = 74 I_74 exactly: 2775 inner products with i <= j, 0 violations
+PASS row-sum-split/W3_BH74  |sum x|^2 = 31, |sum y|^2 = 43, sum = 74 = 2p, both Loeschian
+PASS simple-of-index-k/W3_BH74  both first rows are constant on the cosets of G_0 = [1, 10, 26], so simple of index 12
+PASS subgroup-rederived/W3_BH74  G_0 = {h^12 mod 37} = [1, 10, 26], as printed
+PASS cosets-partition/W3_BH74  12 cosets of G_0 partition Z_37^*
+PASS coset-code-expands/W3_BH74  a and b expand over the cosets of G_0 to exactly the printed e_x, e_y
+PASS gamma-constant-on-cosets/W3_BH74  gamma_s(x) takes one value on each of the 12 cosets (Lemma coset)
+--- the gamma values printed in Section 3 ---
+PASS gamma-real-at-k11  every gamma_s is a rational integer at p = 23, k = 11 (-1 in G_0, Lemma coset)
+PASS gamma-palindromic-at-k11  gamma_s = gamma_{-s} for all s = 1..22
+PASS W2-gamma-vector  (2 gamma_s(x))_{s=1..11} = [-4, 2, -4, 6, -8, -2, 0, -16, 2, 6, 4], as printed
+PASS W2-gamma-vector-negated  (2 gamma_s(y))_{s=1..11} is its negative
+PASS W2-lemma-sum-identity  2 sum_{s=1..11} gamma_s(x) = -14 = |sum x|^2 - p = 9 - 23
+PASS W3-gamma-values  gamma_1(x) = -4 + z and gamma_14(x) = 6 - 7z, as printed
+PASS W3-gamma-genuinely-non-real  -1 = 36 is not in G_0 = [1, 10, 26] at p = 37, and some gamma_s(x) has nonzero z-part
+--- the Loeschian branch enumeration ---
+PASS no-circulant-BH-23-6  23 is prime and 2 mod 3, hence not Loeschian, so |sum x|^2 = 23 is impossible
+PASS 37-is-Loeschian  37 = 3^2 + 3*4 + 4^2, so the same argument does NOT apply at p = 37
+PASS odd-Loeschian-below-46  exactly [1, 3, 7, 9, 13, 19, 21, 25, 27, 31, 37, 39, 43]
+PASS admissible-splits-of-46  exactly the five branches [(3, 43), (7, 39), (9, 37), (19, 27), (21, 25)]
+PASS W1-and-W2-on-distinct-branches  {3,43} and {9,37} are two different members of the five
+PASS W1-and-W2-differ  the two first rows already differ at coordinate 2 (5 vs 2)
+PASS admissible-indices-p23  k | 22 gives k in {1, 2, 11, 22}
+PASS admissible-indices-p37-p47  k = 12 divides 36; at p = 47, k | 46 gives {1, 2, 23, 46}
+--- the exhaustive index-<=2 sweeps (Proposition) ---
+PASS index1-norms-p23  |1 + 22 z^a|^2 = [529, 507, 463, 441, 463, 507], all > 46
+PASS index1-norms-p47  |1 + 46 z^a|^2 = [2209, 2163, 2071, 2025, 2071, 2163], all > 94
+PASS two-sixth-roots-moduli  |z^a + z^b|^2 in {0, 1, 3, 4}, so the sum is 0 or has modulus at least 1
+PASS index2-sweep-p23  no two-circulant BH(46,6) with both first rows simple of index <= 2: 0 hits over 1296 ordered (666 unordered) pairs
+PASS index2-norm-gap-p23  every index-<=2 row-sum norm is 1 or at least 100; observed set [1, 100, 111, 133, 144, 331, 364, 397, 441, 463, 507, 529]
+PASS index2-sweep-p47  no two-circulant BH(94,6) with both first rows simple of index <= 2: 0 hits over 1296 ordered (666 unordered) pairs
+PASS index2-norm-gap-p47  every index-<=2 row-sum norm is 1 or at least 484; observed set [1, 484, 507, 553, 576, 1519, 1588, 1657, 2025, 2071, 2163, 2209]
+PASS 45-not-Loeschian  so the split {1, 45} of 46 is impossible for any first rows at all
+PASS 93-Loeschian-but-unreachable  93 = 4^2 + 4*7 + 7^2 IS Loeschian, so the split {1, 93} of 94 is not excluded by the Loeschian test; it is excluded because no index-<=2 row attains 93
+--- controls ---
+PASS control-positive-DFT6  the published BH(6,6) H[r][c] = z^{rc} passes the same Gram checker: 21 inner products, 0 violations
+PASS control-negative-DFT6-corrupted  corrupting H[0][0] to z breaks it: 5 violations, including the (0,1) inner product, which by hand is z - 1 != 0
+PASS control-negative-value-is-z-minus-1  and that inner product equals exactly z - 1 = (-1, 1)
+PASS control-negative-perturbed-witness  moving one exponent of W1 by +1 produces 16 autocorrelation violations and 368 Gram violations, so neither detector is vacuous
+PASS lemma-reduce-consistency  the autocorrelation test and the full Gram test agree on the perturbed vector, as Lemma reduce requires
+
+NOT RE-RUN: the two lane censuses. This program does NOT re-derive the search programs' complete-count claims -- 10,120 ordered / 5,060 unordered complementary pairs over all 6^11 = 362,797,056 first rows per side at (p,k) = (23,11), and 5,904 ordered / 2,952 unordered over 6^12 = 2,176,782,336 at (37,12) -- nor the shard-cover accounting of the 128-thread p = 37 run, nor the searchers' own forced-positive controls at p = 3,5,7,11,13,17 and p = 31 (k=6), nor the checksum of the C engine. Those rest on the search programs' counters; their standard output was not preserved, and reproducing them needs 456 s single-threaded at p = 23 and 903 s on 128 threads at p = 37. Nothing above depends on them: existence needs one object, and the objects are the printed exponent vectors.
+NOT RE-RUN: minimality, or any classification of BH(46,6)/BH(74,6). Nothing here says these are the smallest or the only such matrices. The only separation established between W1 and W2 is that they sit on different Loeschian branches, so no symmetry of the two-circulant ansatz carries one to the other; whether H(W1) and H(W2) are inequivalent as Butson Hadamard matrices, under the far larger group of row/column permutations and sixth-root scalings, is NOT tested. The k = 22 lane at p = 23 (6^22 vectors) and the k = 23, 46 lanes at p = 47 were not searched, and BH(86,6) at p = 43 was not searched at all.
+NOT RE-RUN: the literature search. This program checks mathematics, not novelty; the unread bibliographic channels are named in the paper.
+
+VERDICT: ALL 63 CHECKS PASS
+=== program exited with status 0 ===

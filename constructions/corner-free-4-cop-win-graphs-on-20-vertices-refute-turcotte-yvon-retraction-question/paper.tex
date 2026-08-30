@@ -1,0 +1,280 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{textcomp}
+\usepackage{upquote}   % so the backticks in the graph6 strings below are ASCII 0x60,
+                       % and survive a copy-paste out of the PDF
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Corner-free 4-cop-win graphs on 20 vertices, and a retraction question
+            of Turcotte and Yvon}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\cn}{c}
+
+\title[Corner-free 4-cop-win graphs on 20 vertices]
+{Corner-free 4-cop-win graphs on 20 vertices,\\ and a retraction question of Turcotte and Yvon}
+
+\date{}
+
+\subjclass[2020]{05C57, 05C69, 05C75}
+\keywords{cops and robbers, cop number, retract, corner, girth, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $M_k$ be the least order of a connected graph with cop number exactly $k$. Turcotte and
+Yvon, who proved $M_4=19$, ask in the discussion of their paper whether the $k$-cop-win graphs
+on $M_k+1$ vertices always retract onto $k$-cop-win graphs on $M_k$ vertices, and single out
+the case $k=4$. We answer that case negatively: two connected $4$-regular graphs of girth~$5$
+on $20=M_4+1$ vertices have cop number exactly $4$ and have \emph{no corner}, hence no retract
+of order $19$ whatsoever. They are exhibited below by their graph6 strings and their adjacency
+lists, and the certificate is short enough to check by hand: girth at least $5$ with $\delta=4$
+gives $\cn\ge4$ by a theorem of Aigner and Fromme, an explicit three-element set whose
+complement induces a forest gives $\cn\le4$, and girth at least $5$ with $\delta\ge2$ forbids
+corners. Only $k=4$ is settled here: $k=2$ is already false in the source, $k=3$ is true there
+by its own classification, and $k\ge5$ is untouched because $M_5$ is unknown.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:question}
+
+We use the conventions of Turcotte and Yvon \cite{TY}. In the game of Cops and Robbers on a
+finite connected simple graph $G$, the cops first choose their vertices, then the robber
+chooses his; thereafter the cops move, then the robber, alternately, and on his turn a player
+may stay put or move to an adjacent vertex. The cops win if a cop ever occupies the robber's
+vertex, and $\cn(G)$ is the least number of cops with a winning strategy. Following
+\cite{TY}, $G$ is \emph{$k$-cop-win} if $\cn(G)=k$ \emph{exactly}, and
+\[
+  M_k=\min\{|V(G)| : G \text{ connected and } \cn(G)=k\}.
+\]
+Thus $M_2=4$ (attained by $C_4$), $M_3=10$ (attained by the Petersen graph), and the main
+theorem of \cite{TY} is $M_4=19$, attained by the Robertson graph \cite{Robertson}. A graph $H$
+is a \emph{retract} of $G$ if $H$ is an \emph{induced} subgraph of $G$ and there is a map
+$f\colon V(G)\to V(H)$ with $f|_{V(H)}=\mathrm{id}$ such that $xy\in E(G)$ implies
+$f(x)f(y)\in E(H)$ or $f(x)=f(y)$.
+
+In the discussion following their classification of the $3$-cop-win graphs on $11$ vertices,
+the authors ask the following. We quote it in full, from the arXiv e-print
+\texttt{2006.02998v2} of \cite{TY}.
+
+\begin{quote}
+``This is an interesting phenomenon: the unique $3$-cop-win graph on $10$ vertices is a
+retract of all the $3$-cop-win graphs on $11$ vertices. This behaviour does not occur for the
+$2$-cop-win graphs: the minimum $2$-cop-win graph is the $4$-cycle, on which the $5$-cycle
+does not retract. Although we will not have any answer for this question in this article, it
+would be interesting to know whether in general (even for $4$-cop-win graphs only), the
+$k$-cop-win graphs on $M_k+1$ vertices can be retracted on $k$-cop-win graph(s) on $M_k$
+vertices.''
+\end{quote}
+
+This is an unnumbered question in running prose, and not the numbered Conjecture of \cite{TY},
+which is a different statement -- that no connected graph of order $19$ with maximum degree $5$
+or $6$ has cop number $4$ -- and is not addressed here; in particular we do not claim, and
+\cite{TY} does not prove, that the Robertson graph is the only $4$-cop-win graph on $19$
+vertices. The authors state that $k=2$ already fails, their witness being $C_5$, which does not
+retract onto $C_4$; and $k=3$ is true, since the classification just cited shows that all six
+$3$-cop-win graphs on $11$ vertices retract onto the Petersen graph. We settle the case the
+authors name, $k=4$, in the negative. Since $M_4=19$, the relevant order is $M_4+1=20$.
+
+\section{The two graphs}\label{sec:graphs}
+
+Let $W_1$ and $W_2$ be the graphs on the vertex set $\{0,1,\dots,19\}$ given by the following
+graph6 strings, one $33$-byte line each, $33=1+\lceil\binom{20}{2}/6\rceil=1+32$:
+
+\begin{verbatim}
+W1 = S????B?K?W?WIg`cIP?j?QSA`GCoGBGG?
+W2 = S??CA?_c?o@_Q_iOAcU@OK`@cO?MO?Bg?
+\end{verbatim}
+
+\noindent
+Equivalently, by their adjacency lists (the label $v$ followed by the four neighbours of $v$):
+
+{\footnotesize
+\begin{verbatim}
+W1                                          W2
+ 0:8,13,17,18   1:8,14,16,19                 0:6,9,13,15    1:7,12,15,17
+ 2:9,12,17,19   3:9,14,15,18                 2:8,13,16,17   3:9,10,14,16
+ 4:10,12,16,18  5:10,13,15,19                4:10,11,12,13  5:11,14,17,18
+ 6:11,12,13,14  7:11,15,16,17                6:0,12,16,18   7:1,13,18,19
+ 8:0,1,12,15    9:2,3,13,16                  8:2,14,15,19   9:0,3,17,19
+10:4,5,14,17   11:6,7,18,19                 10:3,4,15,18   11:4,5,16,19
+12:2,4,6,8     13:0,5,6,9                   12:1,4,6,14    13:0,2,4,7
+14:1,3,6,10    15:3,5,7,8                   14:3,5,8,12    15:0,1,8,10
+16:1,4,7,9     17:0,2,7,10                  16:2,3,6,11    17:1,2,5,9
+18:0,3,4,11    19:1,2,5,11                  18:5,6,7,10    19:7,8,9,11
+\end{verbatim}
+}
+
+Each is connected, $4$-regular on $20$ vertices with $40$ edges, and of girth $5$; the
+$5$-cycles $0\,8\,15\,3\,18\,0$ in $W_1$ and $0\,6\,12\,1\,15\,0$ in $W_2$ show the girth is
+not more than $5$, and the absence of triangles together with
+$\max_{a\ne b}|N(a)\cap N(b)|=1$ shows it is not less.
+
+Neither graph is new here: they are members of Meringer's census \cite{Meringer} of connected
+$4$-regular graphs of girth at least $5$, being Graph~2 and Graph~1 of the file
+\texttt{20\_4\_5.asc}, and their automorphism groups have orders $96$ and $20$ respectively,
+which is how the identification is checked here.
+
+\section{The certificate}\label{sec:cert}
+
+Write $N[S]=S\cup\bigcup_{v\in S}N(v)$. A vertex $x$ is a \emph{corner} (or is
+\emph{dominated}) if there is $u\ne x$ with $N(x)\subseteq N[u]$.
+
+\begin{theorem}[Aigner and Fromme \cite{AF}]\label{thm:af}
+If $G$ has girth at least $5$, then $\cn(G)\ge\delta(G)$.
+\end{theorem}
+
+\begin{lemma}\label{lem:forest}
+Let $G$ be connected and suppose some $S\subseteq V(G)$ with $|S|=3$ has
+$G[V(G)\setminus N[S]]$ a forest. Then $\cn(G)\le4$.
+\end{lemma}
+
+\begin{proof}
+Place three cops on $S$ and let them never move. The robber cannot choose a vertex of $N[S]$,
+since a cop would step onto him at once, and for the same reason he can never enter $N[S]$
+later; so he is confined for the whole game to $R=V(G)\setminus N[S]$, and in fact to the
+component $T$ of $G[R]$ containing his initial vertex. As $G[R]$ is a forest, $T$ is a tree.
+A fourth cop walks to $T$ -- possible since $G$ is connected -- and then plays the one-cop
+winning strategy on the tree $T$, in which the robber's legal moves are exactly the edges of
+$T$. Hence four cops suffice.
+\end{proof}
+
+This argument is not ours: it is the one \cite{TY} applies to the Robertson graph, and is
+attributed there to earlier work of Beveridge et al.
+
+\begin{lemma}\label{lem:cornerfree}
+If $G$ has girth at least $5$ and $\delta(G)\ge2$, then $G$ has no corner.
+\end{lemma}
+
+\begin{proof}
+Suppose $N(x)\subseteq N[u]$ with $u\ne x$. Since $\deg x\ge2$ we may pick distinct
+$a,b\in N(x)$. If $u\notin\{a,b\}$ then $a,b\in N(u)$ and $x\,a\,u\,b\,x$ is a $4$-cycle. If
+$u=a$ then $b\in N(x)\cap N[a]$ and $b\ne a$, so $ab\in E(G)$ and $x\,a\,b\,x$ is a triangle.
+Either way the girth is at most $4$.
+\end{proof}
+
+\begin{lemma}\label{lem:retract}
+If $H$ is a retract of $G$ with $|V(H)|=|V(G)|-1$, then the vertex of
+$V(G)\setminus V(H)$ is a corner of $G$. Consequently a corner-free graph has no retract of
+order $|V(G)|-1$, and, since retractions compose, none is reached by a chain of retractions
+either.
+\end{lemma}
+
+\begin{proof}
+Let $V(G)\setminus V(H)=\{v\}$ and let $f$ witness the retraction. For $y\in N(v)$ we have
+$y\in V(H)$, so $f(y)=y$, and $vy\in E(G)$ forces $f(v)y\in E(H)$ or $f(v)=y$; either way
+$y\in N[f(v)]$. Hence $N(v)\subseteq N[f(v)]$ with $f(v)\ne v$, so $v$ is a corner. For the
+last statement, a chain of retractions from order $|V(G)|$ to order $|V(G)|-1$ contains a step
+that removes exactly one vertex, and a composite of retractions is a retraction.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+$\cn(W_1)=\cn(W_2)=4$, and neither $W_1$ nor $W_2$ has any retract of order $19$. Since
+$M_4=19$ and $|V(W_i)|=20=M_4+1$, the case $k=4$ of the question quoted in
+Section~\ref{sec:question} is false.
+\end{theorem}
+
+\begin{proof}
+Both graphs have girth $5$ and are $4$-regular, so $\cn(W_i)\ge\delta(W_i)=4$ by
+Theorem~\ref{thm:af}. For the upper bound apply Lemma~\ref{lem:forest} with
+\[
+  S=\{0,14,16\}\ \text{in } W_1,
+  \qquad
+  S=\{0,2,5\}\ \text{in } W_2 .
+\]
+In $W_1$, $|N[S]|=14$ and $R=\{2,5,11,12,15,19\}$ induces exactly the five edges
+$2\text{-}12$, $2\text{-}19$, $5\text{-}15$, $5\text{-}19$, $11\text{-}19$: a tree on six
+vertices. In $W_2$, $|N[S]|=13$ and $R=\{1,3,4,7,10,12,19\}$ induces exactly the six edges
+$1\text{-}7$, $1\text{-}12$, $3\text{-}10$, $4\text{-}10$, $4\text{-}12$, $7\text{-}19$,
+which form the path $3\,10\,4\,12\,1\,7\,19$. Both remainders are forests, so
+$\cn(W_i)\le4$ and therefore $\cn(W_i)=4$; that is, each $W_i$ is $4$-cop-win in the sense of
+\cite{TY}. By Lemma~\ref{lem:cornerfree} neither graph has a corner, so by
+Lemma~\ref{lem:retract} neither has a retract of order $19$ -- a fortiori none that is
+$4$-cop-win. Since $M_4+1=20=|V(W_i)|$, the assertion of the question fails at $k=4$.
+\end{proof}
+
+\section{Scope}\label{sec:scope}
+
+We do not classify the $4$-cop-win graphs on $20$ vertices: others may exist, of any girth,
+and no minimality or uniqueness is claimed. $M_4=19$ is used, not verified; it is the corollary
+of \cite{TY} that makes $20$ the relevant order. Only $k=4$ of the question is settled: $k=2$
+is refuted in \cite{TY} itself, in the very paragraph quoted, by $C_5$ and $C_4$; $k=3$ is true
+there by the classification immediately preceding that paragraph; and $k\ge5$ is untouched,
+since $M_5$ is unknown and nothing here bounds it beyond the $M_5\ge20$ already implied by
+$M_4=19$.
+
+\section{Verification}\label{sec:verif}
+
+The numerical claims above were re-derived by an accompanying program, \texttt{verify.py},
+which uses the Python standard library only, in exact integer arithmetic and with no
+randomness; a transcript of its run is in \texttt{verify.output.txt}, and it reports $51$
+checks, all passing. From the graph6 strings and the adjacency tables of
+Section~\ref{sec:graphs}, transcribed into it as literals, it decodes each string with its own
+bit-unpacker, re-encodes it, and checks the decoded graph against the adjacency table printed
+beside it, so the two encodings are cross-checked against each other; it recomputes the order,
+the size, the degrees, connectivity, the triangle count, $\max_{a\ne b}|N(a)\cap N(b)|$ and the
+girth; it finds $0$ corners over all $20\cdot19=380$ ordered pairs of each graph; it re-checks
+the two forest certificates, and all $\binom{20}{3}=1140$ three-element sets; it computes
+$|\mathrm{Aut}(W_1)|=96$ and $|\mathrm{Aut}(W_2)|=20$, the check on the identification with
+Meringer's census entries; and it decides $\cn(W_1)=\cn(W_2)=4$ outright with a bitmask
+least-fixed-point solver for the $k$-cop game, so that the value does not rest on
+Theorem~\ref{thm:af} or Lemma~\ref{lem:forest}.
+
+That solver is controlled on published cop numbers not our own: it returns $1$ on $P_5$, $2$ on
+$C_4$, $2$ on $C_5$, $3$ on the Petersen graph and $4$ on the Robertson graph \cite{Robertson},
+the last two read from the graph6 strings
+
+\begin{verbatim}
+Petersen  = IheA@GUAo
+Robertson = R???C@_E?KI_I`bGCi?f?ocAoGAQO?
+\end{verbatim}
+
+\noindent
+which the program also confirms to be cubic of order $10$ and girth $5$, and $4$-regular of
+order $19$ and girth $5$, respectively. The program generates no graphs, so it does not
+re-derive the census of \cite{Meringer}, and it does not verify $M_4=19$.
+
+\begin{thebibliography}{9}
+
+\bibitem{AF}
+M.~Aigner and M.~Fromme,
+\emph{A game of cops and robbers},
+Discrete Appl. Math. \textbf{8} (1984), no.~1, 1--12.
+\href{https://doi.org/10.1016/0166-218X(84)90073-8}{doi:10.1016/0166-218X(84)90073-8}.
+
+\bibitem{Meringer}
+M.~Meringer,
+\emph{Fast generation of regular graphs and construction of cages},
+J. Graph Theory \textbf{30} (1999), no.~2, 137--146.
+The graphs $W_1$ and $W_2$ are Graph~2 and Graph~1 of the census file
+\texttt{20\_4\_5.asc} distributed with that work.
+
+\bibitem{Robertson}
+N.~Robertson,
+\emph{The smallest graph of girth $5$ and valency $4$},
+Bull. Amer. Math. Soc. \textbf{70} (1964), 824--825.
+
+\bibitem{TY}
+J.~Turcotte and S.~Yvon,
+\emph{$4$-cop-win graphs have at least $19$ vertices},
+Discrete Appl. Math. \textbf{301} (2021), 74--98.
+\href{https://doi.org/10.1016/j.dam.2021.05.012}{doi:10.1016/j.dam.2021.05.012};
+\href{https://arxiv.org/abs/2006.02998v2}{arXiv:2006.02998v2}. The question refuted here is
+quoted verbatim in Section~\ref{sec:question} from the e-print; it is an unnumbered question in
+the discussion, distinct from the numbered Conjecture of that paper.
+
+\end{thebibliography}
+
+\end{document}

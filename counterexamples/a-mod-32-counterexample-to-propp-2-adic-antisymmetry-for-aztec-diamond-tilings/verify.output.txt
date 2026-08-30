@@ -1,0 +1,90 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  3434223c3f9a6a04aef3fe9aeedcfd2cf0129532d07d5de40a43039b3f26de5c
+python:  Python 3.9.25
+=== program output follows ===
+    interpreter: Python 3.9.25 on linux
+=== A. the printed object ===
+PASS A1-region-cell-count-2n(n+1)  eq. (cells) verified for n = 0..15
+PASS A2-published-table-13-terms-all-odd  13 terms, every one odd (Propp: M(n) is always odd)
+PASS A3-M13-exact-reduces-to-printed-residues  M(13) = 31 mod 256 and 31 mod 32; the exact term of eq. (M13) has 36 decimal digits
+PASS A4-mod32-row-matches-the-printed-data  eq. (mod32) is exactly eq. (table) + eq. (M13) + eq. (M1415) mod 32
+PASS A5-propp-mod16-row-matches-published-terms  his row 1,3,3,5,5,7,7,9,9,11,11,13,13 reproduced from eq. (table)
+PASS A6-L-two-spellings-agree  n+1+(n mod 2) == n+1+(1+(-1)^(n+1))/2 for n = 0..63, exact rationals
+PASS A7-M-congruent-L-mod-16-up-to-n-15  the mod-16 closed form survives at n = 13, 14, 15 too
+PASS A8-propp-mod32-obstruction-at-n-2  M(2) = 19 != 3 mod 32: Propp's own reason the closed form dies mod 32
+PASS A9-e-bit-row-matches-the-printed-row  e(n) = (M(n) - L(n))/16 mod 2, n = 0..15
+=== B. the instance (n, n', k) = (14, 15, 5) ===
+PASS B1-hypothesis-holds  14+15 = 29, 29+3 = 32 = 2^5, (-3-14) mod 32 = 15, k = 5 >= 1
+PASS B2-sum-mod-256-is-48-and-v2-is-4  79+225 = 304 = 256+48; 48 = 2^4*3; v_2 = 4 < 8 so mod 256 settles it
+PASS B3-conclusion-fails-mod-32  15 + 1 = 16 != 0 mod 32: Conjecture 2 is false as printed
+PASS B4-refutation-stable-under-the-unknown-high-bits  every lift of the two residues mod 256 gives the same failure, so the exact values of M(14), M(15) are not needed
+PASS B5-cell-is-the-parity-of-e(14)+e(15)  L(14)+L(15) = 32 = 0 mod 32, so the cell is 16*(e(14)+e(15)) mod 32; e(14)+e(15) = 1 is odd
+PASS B6-flipping-either-e-bit-restores-the-cell  e(14)=1 or e(15)=0 would give 0 mod 32: the failure is exactly one bit
+=== C. the cell (0, 13) at k = 4 ===
+PASS C1-cell-0-13-exact-division  1 + M(13) = 2^5 * 15467834931666535499156474030954241, quotient odd
+PASS C2-cell-0-13-holds-with-one-power-to-spare  v_2 = 5 against the 4 required by 0+13 = 13 = -3 mod 16
+=== D. the mod-2^128 corroboration of M(14) ===
+PASS D1-int128-wrap-reduces-to-79-mod-256  a value known mod 2^128 is exact mod 2^8; 71743567 mod 256 = 79
+PASS D2-last-eight-decimal-digits-determine-mod-256  256 divides 10^8, so 71743567 = 280248*256 + 79 binds the two engines
+=== E. the census over n, n' <= 15 ===
+PASS E1-census-slice-n-at-most-12  published data only: 91 pairs = 49 vacuous + 42 obligated, 42 hold, 0 fail
+PASS E2-census-slice-n-at-most-13  adds the exact M(13): 105 = 56 + 49, 49 hold, 0 fail
+PASS E3-census-slice-n-at-most-15  adds M(14), M(15) mod 256: 136 = 72 + 64, 63 hold, 1 fail
+PASS E4-vacuity-is-exactly-even-sum  n + n' even fails the k = 1 hypothesis and hence every k, so such a pair verifies nothing and is not counted as verified
+PASS E5-121-triples-120-hold-1-fails  triples (n, n', k), 0 <= n <= n' <= 15, 1 <= k <= v_2(n+n'+3)
+PASS E6-triple-decomposition-by-largest-exponent  32*1 + 16*2 + 8*3 + 7*4 + 1*5 = 121
+PASS E7-the-unique-failing-triple-is-14-15-5  exhaustive over the box n, n' <= 15: exactly one failure, [(14, 15, 5)]
+PASS E8-every-k-at-most-4-cell-is-forced-by-the-mod-16-law  M = L mod 16 and L(n)+L(n') = n+n'+3, so all 120 cells with k <= 4 follow from published information; only the k = 5 cell is new
+PASS E9-all-k-1-cells-hold-consistent-with-oddness  the decider is silent on all 32 pairs with largest exponent 1, as Propp's oddness theorem requires: a proved-silent control
+=== F. the ceiling ===
+PASS F1-k-at-least-6-needs-an-index-at-least-31  n + n' = -3 mod 64 forces n + n' >= 61, hence max(n, n') >= 31; the least witness pair is (30, 31)
+PASS F2-the-other-k-5-cells-are-not-decided-here  every other pair on the diagonal n + n' = 29 has an index >= 16, where M is unknown to us; those cells are settled in neither direction
+=== G. independent recomputation (third engine, pure Python) ===
+PASS G1-region-from-the-inequality-matches-the-row-widths  cells of |x|+|y| <= n+1 give row widths 2*min(r+1, 2n-r) and total 2n(n+1), n = 0..15 -- the region is not taken on trust
+PASS G2-backtracking-reproduces-M(0..4)  no transfer computation at all: [1, 3, 19, 293, 10917]
+PASS G3-transfer-agrees-with-backtracking-on-n-0-to-4  two structurally different methods, same five integers
+PASS G4-transfer-exact-vs-A356512-n=00  M(0) = 1  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=01  M(1) = 3  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=02  M(2) = 19  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=03  M(3) = 293  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=04  M(4) = 10917  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=05  M(5) = 996599  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=06  M(6) = 222222039  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=07  M(7) = 121552500713  (0.0s)
+PASS G4-transfer-exact-vs-A356512-n=08  M(8) = 162860556763865  (0.1s)
+PASS G4-transfer-exact-vs-A356512-n=09  M(9) = 535527565429290907  (0.5s)
+PASS G4-transfer-exact-vs-A356512-n=10  M(10) = 4318205059450240425083  (2.5s)
+PASS G4-transfer-exact-vs-A356512-n=11  M(11) = 85475498697714319842817853  (12.9s)
+PASS G4-transfer-exact-vs-A356512-n=12  M(12) = 4151186175463797888945512144221  (55.2s)
+PASS G5-dominoes-only-vs-A006125-n=00  2x2 disabled: 1 = 2^0  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=01  2x2 disabled: 2 = 2^1  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=02  2x2 disabled: 8 = 2^3  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=03  2x2 disabled: 64 = 2^6  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=04  2x2 disabled: 1024 = 2^10  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=05  2x2 disabled: 32768 = 2^15  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=06  2x2 disabled: 2097152 = 2^21  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=07  2x2 disabled: 268435456 = 2^28  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=08  2x2 disabled: 68719476736 = 2^36  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=09  2x2 disabled: 35184372088832 = 2^45  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=10  2x2 disabled: 36028797018963968 = 2^55  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=11  2x2 disabled: 73786976294838206464 = 2^66  [Elkies-Kuperberg-Larsen-Propp]
+PASS G5-dominoes-only-vs-A006125-n=12  2x2 disabled: 302231454903657293676544 = 2^78  [Elkies-Kuperberg-Larsen-Propp]
+    the three deep residues now follow; 2^27, 2^29 and 2^31 states.
+    n=13 done in 210.3s, peak RSS 0.69 GB
+PASS G6-transfer-mod-256-reproduces-M(13)  independent pure-Python value 31, paper prints 31
+    n=14 done in 777.1s, peak RSS 2.58 GB
+PASS G7-transfer-mod-256-reproduces-M(14)  independent pure-Python value 79, paper prints 79
+    n=15 done in 1834.9s, peak RSS 9.81 GB
+PASS G8-transfer-mod-256-reproduces-M(15)  independent pure-Python value 225, paper prints 225
+PASS G9-refutation-re-derived-from-this-program-own-residues  from residues this program computed itself: M(14)+M(15) = 48 mod 256, v_2 = 4 < 5 => Conjecture 2 fails at (14, 15, 5)
+=== scope ===
+NOT RE-RUN: M(14) and M(15) EXACTLY. Both engines and this program carry them modulo 2^8 only; the exact integers are near 10^41 and 10^47 and are not computed anywhere here. Proposition 2 needs only v_2 < 8, so the residues settle the refutation.
+NOT RE-RUN: M(n) for any n >= 16. Nothing beyond index 15 is computed, so every instance of Conjecture 2 with an index >= 16 -- including the two remaining k = 5 cells (13, 16) and (12, 17) -- is left open in both directions, and (14, 15, 5) is shown least only within the box n, n' <= 15.
+NOT RE-RUN: k >= 6. Any such test needs max(n, n') >= 31 (check F1), a 2^63-state computation, and none was attempted.
+NOT RE-RUN: Propp's Conjecture 1, the 2-adic continuity of M. It is neither used nor tested here, and the antisymmetry restatement Mhat(-3-n) = -Mhat(n) falls only conditionally on it.
+NOT RE-RUN: Propp's theorem that M(n) is odd. Check E9 verifies that the 16 residues in hand are odd and that every k = 1 cell holds, which is a control on the data, not a proof of the theorem.
+NOT RE-RUN: the two C engines that produced the paper's data. This program is a third, independent implementation; it agrees with them at n = 13, 14, 15 mod 256, but it does not inspect or execute them.
+
+VERDICT: ALL 63 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,118 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  bc2b807c53a2e058ff9df68ba50e69b66b0b747e400629df1ab04a6096fe0eca
+python:  Python 3.9.25
+=== program output follows ===
+=== PART A -- the witness cell (p,k,m) = (17,4,4), objects READ FROM THE PAPER ===
+PASS A01-omega-from-definition omega_4 = 15; paper prints 15
+PASS A02-word-from-recurrence w_1..w_8 = [7, 8, 6, 4, 13, 11, 9, 10]; paper prints [7, 8, 6, 4, 13, 11, 9, 10]
+PASS A03-antisymmetry-eq2 w_{9-i} = -w_i for i = 1..8
+PASS A04-K13 K_{1,3} = 13T^3+13T
+PASS A05-K14 K_{1,4} = T^4+6T^2+1
+PASS A06-K58 K_{5,8} = T^4+6T^2+1 = (-1)^4 K_{1,4}
+PASS A07-K68 K_{6,8} = 4T^3+4T = (-1)^3 K_{1,3}
+PASS A08-epsA-from-cf-definition eps_A = 1, eps_B = 16; paper prints 1 and 16
+PASS A09-epsA-equals-minus-one-to-k (-1)^4 = 1
+PASS A10-H-from-definition deg_X H = 18 = p+1
+PASS A11-P-from-closed-form P = (1)X^4 + (4T)X^3 + (6)X^2 + (4T)X^1 + (1)
+PASS A12-degP-equals-m deg_X P = 4
+PASS A13-parity-split-identity 2P = (1+T)(X+1)^4 + (1-T)(X-1)^4
+PASS A14-printed-quotient-multiplies-out P*Q = H exactly, deg_X Q = 14
+PASS A15-division-remainder-zero remainder 0 and quotient = printed Q
+PASS A16-U-is-T-minus-1-to-k K_{1,4}+K_{1,3} = (T-1)^4
+PASS A17-V-is-T-plus-1-to-k K_{1,4}-K_{1,3} = (T+1)^4
+PASS A18-difference-of-squares K_{1,4}^2 - K_{1,3}^2 = (T^2-1)^4
+PASS A19-multiplier-is-a-to-the-k (K_{1,4}+K_{1,3})(T+1)^4 = (K_{1,4}-K_{1,3})(T-1)^4, i.e. lambda = a^4
+PASS A20-valuation-of-a-at-T-1 v_{T-1}(T-1) = 1 and v_{T-1}(T+1) = 0, so v_{T-1}(a) = 1, coprime to m = 4
+PASS A21-H-at-T-0 H|_{T=0} = -(X^17 - X)
+PASS A22-P-at-T-0-splits P|_{T=0} = (X-3)(X+3)(X-6)(X+6) over F_17
+PASS A23-H-at-T-1 H|_{T=1} = 8 (X-1)(X+1)^17 over F_17
+PASS A24-P-at-T-1 P|_{T=1} = (X+1)^4
+
+=== PART B -- the same derivations on every admissible triple with p <= 300 ===
+PASS B00-census-region 453 admissible triples (p,(p-1)/m,m), p odd prime <= 300
+PASS B01-admissible-1-le-k-lt-p-over-2 453/453 cells
+PASS B02-eq2-antisymmetry 453/453 cells
+PASS B03-reversal-lemma 453/453 cells
+PASS B04-eq6-K-k+1-2k 453/453 cells
+PASS B05-eq6-K-k+2-2k 453/453 cells
+PASS B06-eq4a-K-1-2k 453/453 cells
+PASS B07-eq4b-K-2-2k 453/453 cells
+PASS B08-lemma-a-K1k-squares 453/453 cells
+PASS B09-lemma-b-mixed 453/453 cells
+PASS B10-lemma-c-exact-division 453/453 cells
+PASS B11-lemma-c-K2k-squares 453/453 cells
+PASS B12-at-T-1-g-squares-agree 453/453 cells
+PASS B13-at-T-1-mixed-is-one 453/453 cells
+PASS B14-at-T-1-h-squares-give-2omega 453/453 cells
+PASS B15-h-squares-give-minus-2-binom-hockey-stick 453/453 cells
+PASS B16-omega-closed-form-central-binomial 453/453 cells
+PASS B17-Q-at-1-is-binom 453/453 cells
+PASS B18-eq5-determinant-at-T-1 392/392 cells (k >= 2 only: eq. (5) at (n,t,r) = (1,2,k) needs t <= r; the 61 cells with k = 1 have K_{1,0} = 1 and are covered by B19)
+PASS B19-sign-g-k-is-minus-one-to-k+1-times-g-k-1 453/453 cells
+PASS B20-g-k-1-nonzero 453/453 cells
+PASS B21-epsA-equals-minus-one-to-k 453/453 cells
+PASS B22-degrees-of-U-and-V 453/453 cells
+PASS B23-lead-squared-is-one 453/453 cells
+PASS B24-U-V-are-unit-times-T-minus-plus-1-to-k 453/453 cells
+PASS B25-multiplier-is-a-to-the-k 453/453 cells
+PASS B26-valuation-of-a-at-T-1-is-plus-minus-one 453/453 cells
+PASS B27-degP-equals-m 453/453 cells
+PASS B28-parity-split-identity 453/453 cells
+PASS B29-P-divides-H 453/453 cells
+PASS B30-quotient-degree-is-p+1-minus-m 453/453 cells
+PASS B31-w-k+1-is-minus-one-to-k+1-times-m 453/453 cells
+
+=== PART C -- negative controls: these must NOT divide ===
+PASS C01-perturbed-constant-term-fails X^4+4TX^3+6X^2+4TX+2 leaves remainder (T^14+14T^12+7T^10+10T^6+3T^4+2T^2+14)X^3 + (14T^13+12T^11+14T^9+15T^7+T^5+3T)X^2 + (T^14+11T^12+9T^10+6T^8+16T^6+5T^4+3T^2)X^1 + (9T^13+13T^11+9T^9+9T^5+12T^3+8T)
+PASS C02-T-less-Prop-5-1-poly-fails over F_3 the T-less X^2+X+1 leaves remainder (2T+1)X^1 + (T+2)
+PASS C03-epsB-instead-of-epsA-fails H([17,4,4,eps_B]) leaves remainder (15T^4+5T^2+15)X^1 + (8T^3+8T)
+
+=== PART D -- published pins: the source author's own printed numbers ===
+PASS D01-omega-1-and-word-at-p-3 omega_1 = 1/2 = 2 and W = T, -T over F_3
+PASS D02-printed-H1 H([3,1,1,+1]) = X^4+TX^3+TX+1
+PASS D03-printed-H2 H([3,1,1,-1]) = X^4+TX^3-TX-1
+PASS D04-printed-eps-at-p-3 eps_A = -1, eps_B = +1 at (3,1,1)
+PASS D05-printed-factorisation-at-p-3 H([3,1,1,-1]) = (X^2+TX+1)(X^2-1)
+PASS D06-Conj-5-4-epsA eps_A(13,4,2) = -1
+PASS D07-Conj-5-4-printed-quartic-divides X^4+6TX^3+2X^2+4 divides H([13,4,2,-1]) with remainder 0
+PASS D08-extremal-case-k-equals-p-minus-1-over-2 omega_k = -1, W = -2T,2T,...,2T and eps_A = (-1)^k for every j, at p = 7..43
+
+=== PART E -- the Proposition 9 root alpha, RECONSTRUCTED in F_p((1/T)) on the 71 admissible triples with p <= 60 ===
+    (Newton in u = 1/T from alpha_0 = w_{k+1}T; every identity below is certified to order u^20, and every series knows the exponent below which it is exact)
+PASS E01-alpha-is-a-root-of-H 71/71 cells
+PASS E02-hensel-criterion-gives-an-exact-root 71/71 cells
+PASS E03-first-partial-quotient-is-w-k+1-T 71/71 cells
+PASS E04-frobenius-relation-is-diagonal 71/71 cells
+PASS E05-beta-and-a-are-1-mod-1-over-T 71/71 cells
+PASS E06-beta-to-the-m-equals-a-so-zeta-is-1 71/71 cells
+PASS E07-beta-to-the-p-equals-a-to-the-k-beta 71/71 cells
+PASS E08-P-vanishes-at-alpha 71/71 cells
+PASS E09-k-th-roots-of-unity-split-in-F-p 71/71 cells
+PASS E10-sibling-factors-do-not-vanish-at-alpha 55/55 cells (k >= 2 only: at k = 1 there is no sibling factor)
+PASS E11-paper-printed-P-vanishes-at-witness-alpha P as printed in the paper kills the reconstructed alpha = 13T + 14/T + 16/T^3 + O(1/T^4) at (17,4,4)
+PASS E12-control-perturbed-alpha-is-not-a-root alpha + 1/T^3 gives H(V) of valuation -17, not = 0 mod u^20
+PASS E13-control-wrong-first-partial-quotient-fails Newton from (w_{k+1}+1)T does not deliver a root of H(V) with that polynomial part
+PASS E14-control-alpha-is-not-a-root-of-the-epsB-form H([17,4,4,eps_B])(alpha) has valuation -5, not = 0 mod u^20
+
+NOT RE-RUN: the continued-fraction CONSTRUCTION of alpha in Proposition 5.1 of the source.
+NOT RE-RUN:   PART E does not follow that construction; it solves H(V)(alpha) = 0 in F_p((1/T))
+NOT RE-RUN:   by Newton from alpha_0 = w_{k+1}T and then verifies the two properties the paper
+NOT RE-RUN:   actually uses -- H(V)(alpha) = 0 and first partial quotient w_{k+1}T, hence a pole
+NOT RE-RUN:   at T = infinity.  Uniqueness of the root with that polynomial part is not proved.
+NOT RE-RUN: exactness of alpha. PART E certifies its identities to order u^20 only; the step
+NOT RE-RUN:   from that to an exact root is Hensel's lemma in the complete field F_p((1/T)),
+NOT RE-RUN:   whose hypothesis v(H) > 2 v(H') is re-derived (E02) and whose conclusion is cited.
+NOT RE-RUN: PART E for p > 60: the alpha census stops there, PARTS A-D run to p <= 300.
+NOT RE-RUN: irreducibility of P over F_p(T). Only the hypothesis of Capelli's criterion is
+NOT RE-RUN:   re-derived here (A20, B26: v_{T-1}(a) = +-1, coprime to m); the criterion is cited.
+NOT RE-RUN: nu(alpha) = m, the third clause of the conjecture. That is Corollary 4.2 of the
+NOT RE-RUN:   source (published Corollary 5, from Ayadi-Lasjaunias 2016) and is not our result.
+NOT RE-RUN: the full factorisation multisets of H(V) over F_p(T) -- no factorisation algorithm
+NOT RE-RUN:   is implemented; only exact division by a given monic P.
+NOT RE-RUN: primes p > 300. The theorem is proved for the whole infinite family; the census
+NOT RE-RUN:   above exhausts 0% of it and is corroboration, not evidence for the theorem.
+
+elapsed 18.2 s
+VERDICT: ALL 81 CHECKS PASS
+=== program exited with status 0 ===

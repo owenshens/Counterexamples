@@ -1,0 +1,343 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Double-Suspension Counterexample to the Composition Converse for Strong CW-Regular Subdivisions}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{question}{Question 8.6 of \cite{Stapledon}}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\face}{\operatorname{face}}
+\newcommand{\lk}{\operatorname{lk}}
+\newcommand{\Ohat}{\widehat{0}}
+\newcommand{\bd}{\partial}
+\newcommand{\join}{*}
+
+\title[A double-suspension counterexample]
+{A Double-Suspension Counterexample to the Composition Converse for Strong CW-Regular Subdivisions}
+
+\date{}
+
+\subjclass[2020]{06A07, 57Q05, 05E45, 52B22}
+\keywords{lower Eulerian poset, strong formal subdivision, CW-regular subdivision,
+CW-poset, Poincar\'e homology sphere, double suspension, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Question~8.6 of Stapledon's \emph{Subdivisions of lower Eulerian posets}
+(arXiv:2511.16608v1) asks whether the converse of his Lemma 7.15 survives the removal of
+the hypothesis $\rank(\sigma)=0$: if $\sigma\colon X\to Y$ and $\tau\colon Y\to Z$ are
+strong formal subdivisions of lower Eulerian posets and both $\sigma$ and $\tau\circ\sigma$
+are strong CW-regular subdivisions, must $\tau$ be one? We answer \textbf{no} with one
+finite triple, of ranks $\rank(\sigma)=2$ and $\rank(\tau)=4$. Let $P$ be the $16$-vertex
+triangulation of the Poincar\'e homology $3$-sphere of Bj\"orner and Lutz, $Y=\face(P)$
+with the natural rank shifted by $2$, $Z=B_0$ with $\rho_Z(\Ohat_Z)=6$,
+$X=\face\bigl(P\join\bd\Delta^2\bigr)$ with its natural rank, $\sigma$ the join projection
+and $\tau$ the unique map. Then $|K_X|$ is the double suspension of $|P|$, homeomorphic to
+$S^5$ by Cannon's theorem, so $\tau\circ\sigma$ is strong CW-regular; $\sigma$ is strong
+CW-regular by the join-of-balls example of the same paper; and $\tau$ is not, because $|P|$
+is not a sphere. Nothing beyond this single triple is claimed.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:question}
+
+The last of the five questions of Section~8 of Stapledon \cite{Stapledon},
+\emph{Generalizations and further questions}, reads as follows.
+
+\begin{question}
+Does the converse statement in Lemma 7.15 hold without the assumption that $\sigma$ has
+rank $0$ (c.f.\ Lemma 3.14)? That is, let $\sigma\colon X\to Y$ and $\tau\colon Y\to Z$ be
+strong formal subdivisions between lower Eulerian posets $X,Y,Z$ with rank functions
+$\rho_X,\rho_Y,\rho_Z$ respectively. Assume that $\sigma$ and $\tau\circ\sigma$ are strong
+CW-regular subdivisions. Is $\tau$ necessarily a strong CW-regular subdivision?
+\end{question}
+
+The question is universally quantified over triples, so a single triple decides it. Four
+conventions of \cite{Stapledon} are load-bearing.
+
+\begin{enumerate}
+\item[(D1)] Definition 7.2: ``We say that $K$ is a regular CW-sphere or regular CW-ball if
+  $|K|$ is \emph{homeomorphic} to $S^{\dim K}$ or $D^{\dim K}$ respectively.''
+  Homeomorphism only --- not piecewise linear, not shellable.
+\item[(D2)] Definition 7.11: an order-preserving, rank-increasing, strongly surjective
+  $\sigma\colon X\to Y$ of CW-posets is a \emph{strong CW-regular subdivision} if for every
+  $y\in Y$,
+  \[
+    \dim K_{X,\le y}=\rho_Y(y)-\rho_X(\Ohat_X)-1,
+  \]
+  and $K_{X,\le y}$ is a regular CW-sphere when $y=\Ohat_Y$, and a regular CW-ball with
+  boundary $K_{X,<y}$ otherwise; here $X_{\le y}=\sigma^{-1}\bigl([\Ohat_Y,y]\bigr)$.
+\item[(D3)] With the conventions of \cite[\S7.1]{Stapledon}, $B_0$ is a CW-poset, equal to
+  the face poset of the empty complex, and $\face(K)$ carries the natural rank
+  $\rho(e)=\dim e+1$; the rank of a strong CW-regular subdivision is
+  $\rank(\sigma)=\rho_Y(\Ohat_Y)-\rho_X(\Ohat_X)$ (\cite[\S7.2]{Stapledon}).
+\item[(D4)] In Lemma 7.15 the forward implication holds unconditionally, and the converse
+  is proved \emph{only} under the extra hypothesis $\rank(\sigma)=0$. It is stated for
+  CW-posets, which is stronger than the ``lower Eulerian'' of Question~8.6, so a CW-poset
+  witness refutes both readings.
+\end{enumerate}
+
+\section{The witness}\label{sec:witness}
+
+Let $P$ be the $16$-vertex triangulation of the Poincar\'e homology $3$-sphere
+$\Sigma(2,3,5)$ of Bj\"orner and Lutz \cite{BL}, listed by its $90$ tetrahedra in
+Table~\ref{tab:P}. It has $f(P)=(16,106,180,90)$ and $\dim P=3$.
+
+\begin{table}[htbp]
+\small
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{lllll}
+\hline
+1 2 4 9 & 1 2 4 15 & 1 2 6 14 & 1 2 6 15 & 1 2 9 14 \\
+1 3 4 12 & 1 3 4 15 & 1 3 7 10 & 1 3 7 12 & 1 3 10 15 \\
+1 4 9 12 & 1 5 6 13 & 1 5 6 14 & 1 5 8 11 & 1 5 8 13 \\
+1 5 11 14 & 1 6 13 15 & 1 7 8 10 & 1 7 8 11 & 1 7 11 12 \\
+1 8 10 13 & 1 9 11 12 & 1 9 11 14 & 1 10 13 15 & 2 3 5 10 \\
+2 3 5 11 & 2 3 7 10 & 2 3 7 13 & 2 3 11 13 & 2 4 9 13 \\
+2 4 11 13 & 2 4 11 15 & 2 5 8 11 & 2 5 8 12 & 2 5 10 12 \\
+2 6 10 12 & 2 6 10 14 & 2 6 12 15 & 2 7 9 13 & 2 7 9 14 \\
+2 7 10 14 & 2 8 11 15 & 2 8 12 15 & 3 4 5 14 & 3 4 5 15 \\
+3 4 12 14 & 3 5 10 15 & 3 5 11 14 & 3 7 12 13 & 3 11 13 14 \\
+3 12 13 14 & 4 5 6 7 & 4 5 6 14 & 4 5 7 15 & 4 6 7 11 \\
+4 6 10 11 & 4 6 10 14 & 4 7 11 15 & 4 8 9 12 & 4 8 9 13 \\
+4 8 10 13 & 4 8 10 14 & 4 8 12 14 & 4 10 11 13 & 5 6 7 13 \\
+5 7 9 13 & 5 7 9 15 & 5 8 9 12 & 5 8 9 13 & 5 9 10 12 \\
+5 9 10 15 & 6 7 11 12 & 6 7 12 13 & 6 10 11 12 & 6 12 13 15 \\
+7 8 10 14 & 7 8 11 15 & 7 8 14 15 & 7 9 14 15 & 8 12 14 15 \\
+9 10 11 12 & 9 10 11 16 & 9 10 15 16 & 9 11 14 16 & 9 14 15 16 \\
+10 11 13 16 & 10 13 15 16 & 11 13 14 16 & 12 13 14 15 & 13 14 15 16 \\
+\hline
+\end{tabular}
+\medskip
+\caption{The $90$ tetrahedra of $P$, the $16$-vertex triangulation of the Poincar\'e
+homology $3$-sphere \cite{BL}. The properties of $P$ that the proof below consumes ---
+its $f$-vector, that it is a pure closed $3$-manifold, that $H_*(P)\cong H_*(S^3)$ over
+$\mathbb Z$, and that $|P|$ is not simply connected --- are checked as described in
+\S\ref{sec:verify}.}
+\label{tab:P}
+\end{table}
+
+Put
+\begin{align*}
+ Y&=\face(P), & \rho_Y&=(\dim{}+1)+2,\ \text{ so }\ \rho_Y(\Ohat_Y)=2,\\
+ Z&=B_0=\face(\emptyset), & \rho_Z(\Ohat_Z)&=6,\\
+ K_X&=P\join\bd\Delta^2, & \dim K_X&=3+1+1=5,\\
+ X&=\face(K_X)=Y\times\bd B_3, & \rho_X&=\dim{}+1,\ \text{ so }\ \rho_X(\Ohat_X)=0,
+\end{align*}
+with cardinalities $|Y|=393$, $|Z|=1$ and $|X|=7\cdot393=2751$, with
+$\sigma\colon X\to Y$ the join projection $(F,G)\mapsto F$ and $\tau\colon Y\to Z$
+the unique map. The shift of $\rho_Y$ by $+2$ is licensed by
+\cite[Example 3.4]{Stapledon}. Then
+\[
+ \rank(\sigma)=2-0=2,\quad \rank(\tau)=6-2=4,\quad \rank(\tau\circ\sigma)=6-0=6=2+4 ,
+\]
+and the two routes to $\rho_Z(\Ohat_Z)$ agree: $0+6=6$ and $2+4=6$. Since
+$\rank(\sigma)=2>0$ the triple lies outside the half of Lemma 7.15 that is proved, so it
+answers Question~8.6 and contradicts nothing published.
+
+\begin{theorem}\label{thm:main}
+For the triple above, $\sigma$ and $\tau$ are strong formal subdivisions, $\sigma$ and
+$\tau\circ\sigma$ are strong CW-regular subdivisions, and $\tau$ is not. Hence the
+answer to Question~8.6 is \textbf{no}.
+\end{theorem}
+
+\begin{proof}
+\emph{$\sigma$ is order-preserving, rank-increasing and strongly surjective.} It is a
+projection of a product order, hence order-preserving; $\rho_X\bigl((y,z)\bigr)
+=(\dim e_y+1)+(\dim e_z+1)\le\rho_Y^{\mathrm{nat}}(y)+2=\rho_Y(\sigma(y,z))$ because
+$\rho_{\bd B_3}(z)\in\{0,1,2\}$; and given $(F,G)$ and $y\ge F$ one takes $(y,G')$ with
+$G'$ an edge of $\bd\Delta^2$ containing $G$, whose rank is $|y|+2=\rho_Y(y)$, which is
+strong surjectivity (\cite[Definition 3.1]{Stapledon}). For
+$\tau$, strong surjectivity says every face of $P$ lies in a tetrahedron, and $P$ is
+pure, being a triangulated closed $3$-manifold.
+
+\emph{(i) Both maps are strong formal subdivisions,} verified directly from
+\cite[Definition 3.5]{Stapledon} rather than deduced from CW-regularity, which would be
+circular because (D2) presupposes it. For $\sigma$, the summand
+$(-1)^{\rho_Y(y)-\rho_X(x')}$ over $x'=(y,G')\ge(F,G)$ with $\sigma(x')=y$ reduces to
+$(-1)^{|G'|}$, and the sum over $G'\supseteq G$ inside $\face(\bd\Delta^2)$ is
+$1-3+3=1$ for $G=\emptyset$, $-1+2=1$ for $G$ a vertex and $+1=1$ for $G$ an edge. For
+$\tau$ the summand reduces to $(-1)^{|F'|}$, giving $1-16+106-180+90=1$ for
+$F=\emptyset$ and, for $|F|=k\ge1$ with $\lk(F)\cong S^{3-k}$,
+$(-1)^k(-1)^{4-k}=+1$. All five sums equal $1$. The $\tau$ half is exactly
+\cite[Example 7.17]{Stapledon} at $r=4$ with $K=P$.
+
+\emph{(ii) $\sigma$ is a strong CW-regular subdivision,} the only input being the ball
+structure of \cite[Example 7.10]{Stapledon}, which we quote. Since
+$X_{\le y}=[\Ohat_Y,y]\times\bd B_3$, we have
+$K_{X,\le y}=\overline{e_y}\join\bd\Delta^2$, of dimension $\dim e_y+2$, and the
+requirement of (D2) is $\rho_Y(y)-\rho_X(\Ohat_X)-1=(\dim e_y+3)-0-1=\dim e_y+2$: equal
+for every $y$, including $y=\Ohat_Y$, where $-1+2=1=\dim\bd\Delta^2$. At $y=\Ohat_Y$ one
+has $K_{X,\le\Ohat_Y}=\bd\Delta^2$, a triangle boundary, whose space is $S^1$: a regular
+CW-sphere. For $y\ne\Ohat_Y$, $\overline{e_y}$ is a simplex $\Delta^d$ and
+\cite[Example 7.10]{Stapledon} makes
+$\Delta^d\join\bd\Delta^2$ a ball of dimension $d+2$ whose boundary is
+$\bd\Delta^d\join\bd\Delta^2$, which is precisely $K_{X,<y}$ because
+$X_{<y}=[\Ohat_Y,y)\times\bd B_3$.
+
+\emph{(iii) $\tau\circ\sigma$ is a strong CW-regular subdivision, of rank $6$.} The only
+element of $Z$ is $\Ohat_Z$, so $K_{X,\le\Ohat_Z}=K_X$, and the dimension requirement is
+$6-0-1=5=\dim K_X$. For the sphere clause, the join of the underlying spaces gives
+\[
+ |K_X|=|P|\join\bigl|\bd\Delta^2\bigr|\cong|P|\join S^1\cong|P|\join S^0\join S^0
+ \cong\Sigma^2|P| ,
+\]
+using the standard identifications $|\bd\Delta^2|\cong S^1\cong S^0\join S^0$, the
+associativity of the join of compact spaces, and $\Sigma W\cong S^0\join W$; so $|K_X|$
+is the double suspension of $|P|$. Now $P$ is a closed $3$-manifold with
+$H_*(P)\cong H_*(S^3)$ over $\mathbb Z$ --- both checked as described in
+\S\ref{sec:verify} --- which is the homology-$3$-sphere hypothesis under which we invoke
+Cannon's double suspension theorem \cite{Cannon} (see also \cite{Edwards}); it gives
+$\Sigma^2|P|\cong S^5$. By (D1) only a homeomorphism is asked for, so $K_X$ is a regular
+CW-sphere.
+
+\emph{(iv) $\tau$ is not a strong CW-regular subdivision.} Again the only element of $Z$
+is $\Ohat_Z$ and $K_{Y,\le\Ohat_Z}=P$. The dimension clause \emph{passes}:
+$\rho_Z(\Ohat_Z)-\rho_Y(\Ohat_Y)-1=6-2-1=3=\dim P$, so the failure is not a bookkeeping
+artefact. The sphere clause fails, because $\pi_1(|P|)\ne1$ by
+Proposition~\ref{prop:pi1} below and a space homeomorphic to $S^3$ is simply connected.
+Equivalently, by \cite[Example 7.16]{Stapledon} a strong CW-regular subdivision onto
+$B_0$ forces $K_Y$ to be a regular CW-sphere.
+
+All hypotheses of Question~8.6 hold and its conclusion fails.
+\end{proof}
+
+\section{That $|P|$ is not a sphere, exhibited}\label{sec:pi1}
+
+Clause (iv) is the only place where the failure lives, and it rests on a single negative
+fact about $P$, which is exhibitable on the page.
+
+Let $A_5$ be the alternating group on $\{1,\dots,5\}$, written multiplicatively with
+left-to-right composition, so that $(gh)(i)=h(g(i))$ and the product of the labels along
+an edge path is read left to right. Table~\ref{tab:labels} assigns to each ordered edge
+$uv$ of $P$ with $u<v$ an element $g_{uv}\in A_5$, written as the one-line word
+$g(1)g(2)g(3)g(4)g(5)$; every edge of $P$ absent from the table carries the identity, and
+$g_{vu}:=g_{uv}^{-1}$.
+
+\begin{table}[htbp]
+\small
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{llll}
+\hline
+2\,3: 24153 & 2\,5: 35214 & 2\,7: 24153 & 2\,8: 35214 \\
+2\,10: 24153 & 2\,11: 35214 & 2\,12: 43521 & 2\,13: 41532 \\
+3\,5: 23451 & 3\,11: 23451 & 3\,13: 54213 & 3\,14: 23451 \\
+4\,5: 23451 & 4\,6: 23451 & 4\,7: 35214 & 4\,8: 41532 \\
+4\,10: 41532 & 4\,11: 35214 & 4\,13: 41532 & 4\,14: 23451 \\
+5\,7: 43521 & 5\,9: 25413 & 5\,10: 51234 & 5\,12: 25413 \\
+5\,15: 51234 & 6\,7: 43521 & 6\,10: 24153 & 6\,11: 43521 \\
+6\,12: 43521 & 7\,9: 31524 & 7\,13: 54213 & 7\,14: 31524 \\
+7\,15: 43152 & 8\,9: 25413 & 8\,12: 25413 & 8\,14: 31524 \\
+8\,15: 43152 & 9\,10: 35421 & 9\,13: 41532 & 9\,15: 35421 \\
+10\,11: 54132 & 10\,12: 54132 & 10\,14: 31524 & 10\,16: 54132 \\
+11\,13: 35421 & 11\,15: 43152 & 12\,13: 54213 & 12\,14: 23451 \\
+12\,15: 54213 & 13\,14: 54132 & 13\,16: 54132 & 14\,15: 35421 \\
+15\,16: 54132 & & & \\
+\hline
+\end{tabular}
+\medskip
+\caption{An $A_5$-valued flat connection on the $2$-skeleton of $P$: the $53$ edges of
+$P$ whose label is not the identity, each label a $5$-cycle written as a one-line word.
+The remaining $53$ edges carry the identity, and they contain a spanning tree of the
+$1$-skeleton: for instance the $14$ edges of the star of the vertex~$1$ together with
+$14\,16$, which is why the image of the holonomy homomorphism is generated by the labels
+themselves.}
+\label{tab:labels}
+\end{table}
+
+\begin{proposition}\label{prop:pi1}
+The labelling of Table~\ref{tab:labels} satisfies
+$g_{uv}\,g_{vw}=g_{uw}$ at every one of the $180$ triangles $\{u<v<w\}$ of $P$. Hence
+holonomy is a well-defined homomorphism $h\colon\pi_1(|P|)\to A_5$; its image is all of
+$A_5$, and the closed edge path $1\to2\to3\to1$ has holonomy
+$g_{12}\,g_{23}\,g_{13}^{-1}=(1\,2\,4\,5\,3)\ne1$. In particular $\pi_1(|P|)\ne1$ and
+$|P|$ is not homeomorphic to $S^3$, even though $H_*(P)\cong H_*(S^3)$ with no torsion.
+\end{proposition}
+
+\begin{proof}
+$\pi_1$ of a simplicial complex is the edge-path group of its $2$-skeleton, generated by
+the edges outside a spanning tree and presented by one relation
+$g_{uv}g_{vw}=g_{uw}$ per triangle. A labelling satisfying every triangle relation is
+therefore exactly a homomorphism to $A_5$ once the tree labels are the identity, which
+they are; the holonomy of the loop obtained by closing an edge $uv$ through the tree is
+$g_{uv}$, so the image of $h$ is the subgroup generated by the labels. The three edges
+$12,23,13$ all lie in $P$ while $\{1,2,3\}$ is \emph{not} a face of $P$ --- which is why
+its holonomy is not forced to be trivial --- and $g_{12}=g_{13}=1$ while
+$g_{23}=(1\,2\,4\,5\,3)$. The $180$ relations, the generated image and the homology of
+$P$ are checked as described in \S\ref{sec:verify}; every one of them is a finite
+computation in exact arithmetic on Table~\ref{tab:P} and Table~\ref{tab:labels}.
+\end{proof}
+
+\section{Verification}\label{sec:verify}
+
+The two objects the argument consumes are printed above in full: the $90$ tetrahedra of
+Table~\ref{tab:P} and the $53$ labels of Table~\ref{tab:labels}. The accompanying program
+\texttt{verify.py} (Python 3.9+, standard library only, exact integer arithmetic, no
+external data) transcribes exactly those two tables and re-derives the finite quantities
+claimed here: $f(P)=(16,106,180,90)$; that every triangle of $P$ lies in exactly two
+tetrahedra, every vertex link is a combinatorial $2$-sphere and every edge link a single
+cycle, so $P$ is a closed $3$-manifold; that $H_*(P)=(\mathbb Z,0,0,\mathbb Z)$ with no
+torsion, by Smith normal form over $\mathbb Z$; the $180$ triangle relations of
+Proposition~\ref{prop:pi1}, that the labels generate a group of order $60$, and the
+nontrivial holonomy of $1\to2\to3\to1$; $f(K_X)=(19,157,546,948,810,270)$ and
+$|X|=2751=393\cdot7$; the rank arithmetic $2+4=6$ from both sides; that $\sigma$ is
+order-preserving, rank-increasing and strongly surjective; all $23{,}359$ alternating sums
+of \cite[Definition 3.5]{Stapledon} for $\sigma$ and all $393$ for $\tau$, each equal to
+$1$; and the dimension clause of (D2) at every one of the $393$ elements of $Y$ together
+with the boundary bookkeeping at the $392$ elements $y\ne\Ohat_Y$. The program reports
+\texttt{VERDICT: ALL 52 CHECKS PASS}.
+
+Three inputs to the proof are quoted rather than reproved, and the program does not touch
+them: Cannon's theorem, and with it every homeomorphism type, none of which is computed
+anywhere; the ball structure of \cite[Example 7.10]{Stapledon}, of which only the
+combinatorial consequences are checked; and the classical identification of $\pi_1(|P|)$,
+of which only the surjection onto $A_5$ is proved and only that is needed. This paper does
+not address the case $\rank(\sigma)=1$ of Question~8.6; it claims no minimality, and it
+makes no claim about other complexes in place of $P$, about other ranks, or about the
+literature, which the program does not search.
+
+\begin{thebibliography}{9}
+
+\bibitem{BL}
+A.~Bj\"orner and F.~H. Lutz,
+\emph{Simplicial manifolds, bistellar flips and a $16$-vertex triangulation of the
+Poincar\'e homology $3$-sphere},
+Experiment. Math. \textbf{9} (2000), no.~2, 275--289.
+\href{https://doi.org/10.1080/10586458.2000.10504652}{doi:10.1080/10586458.2000.10504652};
+MR1780212; Zbl 1101.57306.
+
+\bibitem{Cannon}
+J.~W. Cannon,
+\emph{Shrinking cell-like decompositions of manifolds. Codimension three},
+Ann. of Math. (2) \textbf{110} (1979), no.~1, 83--112.
+\href{https://doi.org/10.2307/1971245}{doi:10.2307/1971245}; Zbl 0424.57007.
+
+\bibitem{Edwards}
+R.~D. Edwards,
+\emph{Suspensions of homology spheres},
+\href{https://arxiv.org/abs/math/0610573}{arXiv:math/0610573}, 2006 (circulated 1975).
+
+\bibitem{Stapledon}
+A.~Stapledon,
+\emph{Subdivisions of lower Eulerian posets},
+\href{https://arxiv.org/abs/2511.16608v1}{arXiv:2511.16608v1}, 20 November 2025.
+
+\end{thebibliography}
+
+\end{document}

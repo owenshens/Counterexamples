@@ -1,0 +1,88 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  119369d3571511ce67a47773edcfc2ff3f2d9656087d8bf55fb0478c71a99e16
+python:  Python 3.9.6
+=== program output follows ===
+=== A. predicate self-tests (a too-permissive predicate would fake minimality) ===
+PASS pred-uc-2K2-is-not-one-cluster is_uc(2K2,1) = (False, 2 components)
+PASS pred-uc-K4-is-one-clique is_uc(K4,1) = (True, 1)
+PASS pred-uc-P3-is-no-union-of-cliques is_uc(P3,3) = False even with k=3
+PASS pred-uc-2K2-is-two-cliques is_uc(2K2,2) = (True, 2)
+PASS pred-cm-2K2-is-not-complete-multipartite is_cm(2K2,2) = False
+PASS pred-cm-C4-is-K22 is_cm(C4,2) = (True, 2)
+PASS pred-cm-K3-needs-three-parts is_cm(K3,2) = (False, 3 parts)
+PASS pred-cm-K3-is-three-parts is_cm(K3,3) = (True, 3)
+PASS pred-cm-empty-graph-is-one-part is_cm(3K1,1) = (True, 1)
+PASS pred-cm-empty-set-is-zero-parts is_cm(emptyset,1) = (True, 0)
+PASS pred-p4-count-on-P4 P_4 induces exactly 1 P_4
+PASS pred-p4-count-on-C4 C_4 is P_4-free
+PASS pred-p4-count-on-C5 C_5 induces 5 P_4s (one per deleted vertex)
+PASS pred-p4-sparse-rejects-C5 C_5 is not P_4-sparse: its one 5-set carries 5 > 1 induced P_4s
+PASS pred-p4-sparse-accepts-P4 P_4 itself is P_4-sparse
+=== B. the witness, decoded from the strings printed in the paper ===
+PASS g6-order graph6 'HRKx`co' decodes to n = 9
+PASS g6-label-equality-with-printed-edge-list the 15 edges decoded from graph6 are EXACTLY the 15 labelled edges printed in Theorem 1 (edge-set equality, not a count)
+PASS g6-round-trip re-encoding the decoded graph reproduces 'HRKx`co'
+PASS edge-count m = 15
+PASS non-edge-count 21 of the C(9,2) = 36 pairs are non-edges
+PASS degrees degree sequence matches the paper: {'s1': 1, 's2': 1, 'k1': 7, 'k2': 7, 'a1': 3, 'a2': 3, 'b1': 3, 'b2': 3, 'x': 2}
+PASS degree-sum sum of degrees = 30 = 2*15
+PASS spider-partition-covers-V S, K, R partition the 9 vertices
+PASS spider-S-independent S = {s1,s2} is independent
+PASS spider-K-clique K = {k1,k2} is a clique
+PASS spider-legs-are-a-matching each s_i has exactly one neighbour in K and they differ: a thin spider (|K| = 2, so the paper's thin d(s)=1 and thick d(s)=|K|-1 coincide)
+PASS spider-K-complete-to-head K is complete to the head R
+PASS spider-S-anticomplete-to-head S is anticomplete to the head R
+PASS head-is-2K2-plus-K1 the head R is a disjoint union of cliques of sizes [1, 2, 2], i.e. 2K_2 + K_1
+PASS chordal no induced cycle on 4..9 vertices (all 2^9 vertex subsets examined)
+PASS is-2K2-split V splits as the clique K = {k1,k2}, the independent set {s1,s2,x} and {a1,a2,b1,b2} inducing 2K_2: the shape of a 2K_2-split graph
+=== C. the theorem's five clauses ===
+PASS p4-count-is-one exactly 1 induced P_4 among all C(9,4) = 126 four-subsets
+PASS p4-is-the-printed-one the unique induced P_4 is s1-k1-k2-s2, as printed
+PASS p4-sparse no one of the C(9,5) = 126 five-subsets induces two P_4s
+PASS not-a-cograph H* has an induced P_4, so it is not a cograph
+PASS head-not-split the head 2K_2 + K_1 is not split, i.e. not (1,1)-polar (all 2^5 = 32 bipartitions tried)
+PASS not-2-3-polar H* is not (2,3)-polar: all 2^9 = 512 bipartitions of V exhausted, none has G[A] complete multipartite with <= 2 parts and G[B] a union of <= 3 cliques
+PASS not-1-1-polar H* is not split
+PASS certificate-del-s1 A = {k1,k2,s2} complete multipartite, 2 part(s) <= 2 | B = {a1,a2,b1,b2,x} a 3-cluster <= 3 | A and B partition V - s1
+PASS certificate-del-s2 A = {k1,k2,s1} complete multipartite, 2 part(s) <= 2 | B = {a1,a2,b1,b2,x} a 3-cluster <= 3 | A and B partition V - s2
+PASS certificate-del-k1 A = {k2,s2,x} complete multipartite, 2 part(s) <= 2 | B = {s1,a1,a2,b1,b2} a 3-cluster <= 3 | A and B partition V - k1
+PASS certificate-del-k2 A = {k1,s1,x} complete multipartite, 2 part(s) <= 2 | B = {s2,a1,a2,b1,b2} a 3-cluster <= 3 | A and B partition V - k2
+PASS certificate-del-a1 A = {s1,s2,a2,x} complete multipartite, 1 part(s) <= 2 | B = {k1,k2,b1,b2} a 1-cluster <= 3 | A and B partition V - a1
+PASS certificate-del-a2 A = {s1,s2,a1,x} complete multipartite, 1 part(s) <= 2 | B = {k1,k2,b1,b2} a 1-cluster <= 3 | A and B partition V - a2
+PASS certificate-del-b1 A = {s1,s2,b2,x} complete multipartite, 1 part(s) <= 2 | B = {k1,k2,a1,a2} a 1-cluster <= 3 | A and B partition V - b1
+PASS certificate-del-b2 A = {s1,s2,b1,x} complete multipartite, 1 part(s) <= 2 | B = {k1,k2,a1,a2} a 1-cluster <= 3 | A and B partition V - b2
+PASS certificate-del-x A = {k1,k2,s1} complete multipartite, 2 part(s) <= 2 | B = {s2,a1,a2,b1,b2} a 3-cluster <= 3 | A and B partition V - x
+PASS all-nine-deletions-polar-by-exhaustion an independent exhaustive search finds a (2,3)-polar partition of each of the nine one-vertex deletions, without reading the printed certificates
+PASS minimal-2-3-polar-obstruction H* is a MINIMAL (2,3)-polar obstruction
+PASS problem-1-answered-NO P_4-sparse + not a cograph + minimal (2,3)-polar obstruction: the answer to Problem 1 is NO
+PASS not-2-2-polar H* is not (2,2)-polar either
+PASS not-a-minimal-2-2-obstruction H* - x is not (2,2)-polar, so H* is NOT a minimal (2,2)-polar obstruction and therefore not one of the 50 published P_4-sparse minimal 2-polar obstructions
+PASS complement-p4-sparse the complement of H* is P_4-sparse
+PASS complement-not-a-cograph the complement of H* is not a cograph
+PASS complement-minimal-3-2-obstruction the complement is a minimal (3,2)-polar obstruction, so Problem 1 fails at (3,2) too
+PASS order-under-hannebauer-cap |V(H*)| = 9 <= (s+1)(k+1) = 12, the bound quoted as Theorem 57 of the target
+PASS order-under-2K2-split-bound |V(H*)| = 9 <= s + 2k + 2 = 10, the bound of the authors' 2K_2-split paper
+=== D. controls ===
+PASS ctrl-forced-positive-H-minus-x FORCED POSITIVE at the very cell under test: H* - x IS (2,3)-polar, certificate A = {s2,k1,k2} (2 parts), B = {s1,a1,a2,b1,b2} (3 cliques)
+PASS ctrl-4K2-polar 4K_2 is (2,3)-polar (must be True)
+PASS ctrl-5K2-not-polar 5K_2 is not (2,3)-polar (must be False)
+PASS ctrl-detector-can-say-YES 4K_2 + K_1 is a minimal (2,3)-polar obstruction AND a cograph, so a conjecture-CONFIRMING object and a refuting one are distinguishable by this program
+PASS ctrl-P4-plus-2K2-polar P_4 + 2K_2 (8 vertices) is (2,3)-polar (a reproduced dead end)
+PASS ctrl-P4-plus-3K2-not-polar-not-minimal P_4 + 3K_2 (10 vertices) is neither (2,3)-polar nor minimal (a reproduced dead end)
+PASS published-integer-foldes-hammer-1977 over all 1099 labelled graphs on n <= 5 the minimal (1,1)-polar (= split) obstructions are exactly 2K_2, C_4, C_5, reproducing Foldes-Hammer
+PASS anti-control-only-C5-separates ANTI-CONTROL: 2K_2 and C_4 are P_4-free, so they cannot separate a P_4-sparse test from a P_4-free one; C_5 is the only separator among the three split obstructions and it is correctly rejected as not P_4-sparse
+=== E. the sub-family exhaustion that located H* (Section 3) ===
+PASS sixteen-head-shapes the partitions of 3..8 into exactly three positive parts number 1+1+2+3+4+5 = 16: [(1, 1, 1), (2, 1, 1), (2, 2, 1), (2, 2, 2), (3, 1, 1), (3, 2, 1), (3, 2, 2), (3, 3, 1), (3, 3, 2), (4, 1, 1), (4, 2, 1), (4, 2, 2), (4, 3, 1), (5, 1, 1), (5, 2, 1), (6, 1, 1)]
+PASS sixteen-shapes-obey-the-cap every shape has 4 + a+b+c <= 12 = (s+1)(k+1), so the family is the whole search space allowed by the cap for |S| = |K| = 2 and a head of exactly three cliques
+PASS nonpolar-shapes-are-exactly-those-with-two-big-cliques the spider is NOT (2,3)-polar for exactly the 10 shapes with at least two head cliques of size >= 2, and IS (2,3)-polar for the 6 shapes with b = c = 1 (whose head K_a + 2K_1 is split): [(2, 2, 1), (2, 2, 2), (3, 2, 1), (3, 2, 2), (3, 3, 1), (3, 3, 2), (4, 2, 1), (4, 2, 2), (4, 3, 1), (5, 2, 1)]
+PASS every-other-nonpolar-shape-has-a-nonpolar-deletion each of the other 9 non-polar shapes loses one head vertex (from the largest clique when c = 1, from the smallest otherwise) to a shape that again has two cliques of size >= 2 and is again not (2,3)-polar, so it is not minimal
+PASS exactly-one-winning-shape of the 16 shapes exactly one yields a minimal (2,3)-polar obstruction, namely the head 2K_2 + K_1: [(2, 2, 1)]
+PASS winning-shape-is-the-witness the surviving shape's graph is edge-set identical to the H* printed in the paper under the labelling s1,s2,k1,k2,a1,a2,b1,b2,x
+=== SCOPE ===
+NOT RE-RUN: the census of ALL P_4-sparse graphs on at most 12 vertices at the cell (2,3). Group E exhausts ONLY the thin spiders with |S| = |K| = 2 whose head is a disjoint union of exactly three cliques (16 shapes). Nothing here shows that 9 is the LEAST order of a P_4-sparse non-cograph minimal (2,3)-polar obstruction, and the paper claims no such thing.
+NOT RE-RUN: any cell other than (2,3) and its complement-dual (3,2). No claim is made or checked for general s, k, for k >= 4, for thick spiders with |K| >= 3, or for the finiteness or classification of the family of such obstructions.
+NOT RE-RUN: the list of the 50 published P_4-sparse minimal 2-polar obstructions is not reproduced here; what is checked is the weaker, self-contained fact that H* is not a minimal (2,2)-polar obstruction at all, which suffices to place it outside that list.
+NOT RE-RUN: nothing in this program is evidence about the literature. Priority, and in particular whether any earlier source exhibits this graph, is not a computation.
+VERDICT: ALL 71 CHECKS PASS
+=== program exited with status 0 ===

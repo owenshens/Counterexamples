@@ -1,0 +1,178 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Endpoint Reveal Refutes the Exact Two-Liminal Burning Formula for Paths}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\CL}{\operatorname{CL}}
+
+\title[An endpoint reveal refutes an exact liminal burning formula]
+{An Endpoint Reveal Refutes the Exact Two-Liminal Burning Formula for Paths}
+
+\date{}
+
+\subjclass[2020]{05C57, 91A43, 05C38}
+\keywords{liminal burning number, graph burning, cooling number, path,
+combinatorial game, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+The $k$-liminal burning number $b_k(G)$ of Bonato, Marbach, Marcoux and Mishura
+interpolates between the cooling number $\CL(G)=b_1(G)$ and the burning number
+$b(G)=b_{|V(G)|}(G)$: each round a saboteur reveals $k$ vertices and an
+arsonist burns one revealed vertex, and the saboteur maximises the number of
+rounds. A recent preprint asserts the exact formula
+$b_2(P_n)=\lceil (n+2)/3\rceil$ for every $n\ge1$. We refute it. The witness is
+a single two-element set: if the saboteur reveals the two \emph{endpoints} of
+$P_4$ in the first round, then three rounds are needed, so $b_2(P_4)=3>2$. The
+argument is four lines and needs no computation, and the lower bound
+$b_2(P_4)\ge3$, which is all the refutation uses, is insensitive to the two
+clauses of the definition that the sources leave ambiguous and to whether the
+saboteur must reveal exactly $k$ vertices in later rounds.
+\end{abstract}
+
+\maketitle
+
+\section{The parameter and the claim}
+
+Let $G$ be a finite simple graph and let $k\ge1$. In the \emph{$k$-liminal
+burning game} of Bonato, Marbach, Marcoux and Mishura \cite{BMMM}, two players
+alternate on $G$. In round~$1$ the saboteur reveals a set of $k$ vertices and
+the arsonist burns one revealed vertex, the \emph{source}. In each round
+$i\ge2$, first every unburned vertex with a burned neighbour burns
+(\emph{propagation}), then the saboteur reveals $k$ further vertices, then the
+arsonist burns one revealed unburned vertex if one exists. Revelations are
+permanent. The game ends in the round in which the last vertex burns; the
+saboteur maximises the number of rounds and the arsonist minimises it, and
+$b_k(G)$ is the value under optimal play. Thus $b_1(G)=\CL(G)$, the cooling
+number, and $b_{|V(G)|}(G)=b(G)$, the burning number. A round in which the last
+vertex burns by propagation alone is counted; this is forced by the value
+$b_2(P_2)=2$ implied by the formula below.
+
+Two clauses of the definition are read differently by the two sources.
+
+\begin{enumerate}
+\item[(A)] \emph{What may the arsonist burn from round~$2$ on?} Either any
+revealed unburned vertex, or only a vertex revealed in the current round.
+\item[(S)] \emph{What may the saboteur reveal?} ``$k$ additional vertices''
+\cite{Target} permits re-revealing a vertex that has since burned; \cite{BMMM}
+does not.
+\end{enumerate}
+
+\noindent
+We fix the convention used below: from round~$2$ on the arsonist may burn any
+revealed unburned vertex, and the saboteur reveals vertices that are neither
+revealed nor burned. Only the upper bound in Theorem~\ref{thm:main} uses either
+clause, and it uses only the first alternative in (A); the refutation itself
+does not, as the theorem records.
+
+Ambrose, Angelone, Chen, Ma, Ortiz San Miguel, Watanabe, Whitcomb and Wu
+\cite{Target} state the following.
+
+\begin{quote}
+\textbf{Theorem 3.1} (\cite{Target}). For every $n\ge1$,
+$b_2(P_n)=\left\lceil \dfrac{n+2}{3}\right\rceil$.
+\end{quote}
+
+\section{The counterexample}
+
+Write $V(P_4)=\{v_1,v_2,v_3,v_4\}$ with edges $v_1v_2$, $v_2v_3$, $v_3v_4$.
+
+\begin{theorem}\label{thm:main}
+$b_2(P_4)=3$ under the convention fixed in Section~1. The lower bound
+$b_2(P_4)\ge3$ holds under either alternative in (A) and in (S), and whether or
+not the saboteur is required to reveal exactly two vertices in later rounds.
+Since $\lceil(4+2)/3\rceil=2$, Theorem~3.1 of \cite{Target} is false.
+\end{theorem}
+
+\medskip
+\noindent\textbf{The object.} The witness is the first-round reveal
+\[
+  S=\{v_1,v_4\},
+\]
+the two endpoints. Nothing else is needed; in particular no computation is
+needed.
+
+\begin{proof}
+\emph{Lower bound.} Let the saboteur reveal $S=\{v_1,v_4\}$ in round~$1$. The
+source must be revealed, hence $v_1$ or $v_4$; the map $v_i\mapsto v_{5-i}$ is
+an automorphism of $P_4$ fixing $S$, so we may take the source to be $v_1$.
+Suppose the game ended in round~$2$. At the start of round~$2$ propagation
+burns exactly $v_2$, so the burned set is $N[v_1]=\{v_1,v_2\}$; the arsonist
+then burns at most one further vertex. Hence at most
+$|N[v_1]|+1=3$ of the four vertices are burned at the end of round~$2$, a
+contradiction. Therefore $b_2(P_4)\ge3$.
+
+This step bounds the burned set by a cardinality and never asks \emph{which}
+vertex the arsonist chose, so it is valid under either alternative in (A) and in
+(S) --- including the loosest, in which the arsonist may burn any unburned
+vertex at all. It uses only the round-$1$ reveal, so it is also valid if the
+saboteur is permitted to reveal fewer than $k$ vertices in later rounds.
+
+\emph{Upper bound.} Let the saboteur reveal any $2$-set $S'$ in round~$1$.
+If $S'$ meets $\{v_2,v_3\}$, the arsonist takes such a vertex as source; since
+$N[v_2]=\{v_1,v_2,v_3\}$ and $N[v_3]=\{v_2,v_3,v_4\}$, propagation alone burns
+everything by the end of round~$3$. Otherwise $S'=\{v_1,v_4\}$; the arsonist
+burns $v_1$, and because revelations are permanent, $v_4$ is still revealed and
+unburned in round~$2$, so the arsonist burns $v_4$ there. The burned set is
+then $\{v_1,v_2,v_4\}$ and round-$3$ propagation burns $v_3$. In both cases the
+game ends by round~$3$, so $b_2(P_4)\le3$. This argument uses the first
+alternative in (A) and is unaffected by whether the round-$2$ reveal must have
+exactly two elements or may have fewer.
+\end{proof}
+
+\begin{remark}
+The claimed value $2$ requires a source $v$ with $|N[v]|+1\ge4$, i.e.\
+$|N[v]|\ge3$, i.e.\ $v\in\{v_2,v_3\}$ --- precisely the two vertices the
+endpoint reveal denies. Correspondingly the proof of Theorem~3.1 in
+\cite{Target} has the saboteur reveal $\{v_1,v_2\}$ on turn~$1$, which hands
+the arsonist the source $v_2$, and writes that it ``propose[s] a saboteur
+strategy for $k=2$ on $P_n$, and claim[s] that it is optimal'' without proving
+the optimality. Because the saboteur is the \emph{maximiser}, exhibiting one
+saboteur strategy establishes only a lower bound on $b_2(P_n)$.
+\end{remark}
+
+\section{Scope and what was checked}
+
+The accompanying program \verb|verify.py| mechanises the argument above on the
+parsed graph: that the printed reveal is the endpoint set, that the source must
+then be an endpoint, the round-$2$ cardinality bound for each possible
+round-$2$ burn, and the upper bound over all six $2$-subsets of $V(P_4)$. It
+also computes $b_2(P_4)=3$ by exact backward induction on the extensive-form
+game under each of the four combinations of the alternatives in (A) and (S),
+the saboteur there revealing exactly two vertices whenever two remain
+available.
+
+No closed form for $b_2(P_n)$ is offered, and nothing is claimed for $n\ge5$.
+
+\begin{thebibliography}{9}
+
+\bibitem{Target}
+Ambrose, Angelone, Chen, Ma, Ortiz San Miguel, Watanabe, Whitcomb, and Wu,
+\emph{Burning games on strong path products},
+\href{https://arxiv.org/abs/2509.20572v2}{arXiv:2509.20572v2}, 2025.
+
+\bibitem{BMMM}
+Bonato, Marbach, Marcoux, and Mishura,
+\emph{Between burning and cooling: liminal burning on graphs},
+Discrete Math. \textbf{349} (2026), 115198.
+\href{https://doi.org/10.1016/j.disc.2026.115198}{doi:10.1016/j.disc.2026.115198};
+\href{https://arxiv.org/abs/2505.10727}{arXiv:2505.10727}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,250 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\emergencystretch=3em
+
+\hypersetup{
+  pdftitle={A 72-Vertex Counterexample to a Spectral-Gap Conjecture of Greaves and Zhu}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\PP}{\mathcal P}
+\newcommand{\Zm}{\mathbb Z_m}
+\newcommand{\lam}{\lambda}
+
+\title[A 72-vertex pancake counterexample]
+{A 72-Vertex Counterexample to a Spectral-Gap Conjecture of Greaves and Zhu}
+
+\date{}
+
+\subjclass[2020]{05C50, 05C25, 15A18}
+\keywords{generalised pancake graph, spectral gap, equitable partition, quotient matrix,
+colored permutation group, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $P_m(n)$ be the generalised pancake graph on the colored permutation group
+$\Zm\wr S_n$ and let $\PP_{m,n}$ be its colour--position equitable partition, with
+quotient matrix $Q(\PP_{m,n})$. Conjecture~2 of Greaves and Zhu asserts that the two
+spectral gaps agree,
+$\lam_1(P_m(n))-\lam_2(P_m(n))=\lam_1(Q(\PP_{m,n}))-\lam_2(Q(\PP_{m,n}))$,
+for all $m\ge1$ and $n\ge2$. It is false at $(m,n)=(6,2)$. On $P_6(2)$, a $4$-regular graph
+on $72$ vertices, the integer vector taking the values $2,1,-1,-2,-1,1$ on the six classes of
+the colour difference sums to zero and satisfies $Av=3v$, so the graph's gap is at most $1$,
+whereas $Q(\PP_{6,2})$ has second eigenvalue $2\sqrt2$ and gap $4-2\sqrt2>1$. We claim no
+counterexample of least order.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Fix integers $m\ge1$ and $n\ge2$. A vertex of the \emph{generalised pancake graph}
+$P_m(n)=\mathrm{Cay}(\Zm\wr S_n,R_m)$ is a pair $(w,c)$ in which $w=w_1\cdots w_n$ is a
+permutation word of $[n]$ --- position $j$ carries the letter $w_j$ --- and
+$c=(c_1,\dots,c_n)\in\Zm^n$ is a colour vector, position $j$ carrying the colour $c_j$. For
+$k\in[n]$ and $\varepsilon\in\{+1,-1\}$ the generator $r_k^{\varepsilon}$ reverses the prefix
+of length $k$ and adds $\varepsilon$ to the colour of every entry that sat in positions
+$1,\dots,k$:
+\begin{equation}\label{eq:gen}
+ r_k^{\varepsilon}(w,c)=(w',c'),\qquad
+ \begin{cases}
+  w'_j=w_{k+1-j},\ c'_j=c_{k+1-j}+\varepsilon,&j\le k,\\
+  w'_j=w_j,\ c'_j=c_j,&j>k.
+ \end{cases}
+\end{equation}
+For $m\ge3$ one takes $R_m=\{r_k^{+},r_k^{-}:k\in[n]\}$, so that $P_m(n)$ has $m^nn!$
+vertices and is $2n$-regular. Only the cell $m=6$ is used below, so the separate convention at
+$m\le2$ --- a smaller connection set --- is never invoked, and nothing here applies to
+$m\le2$. Write $A$ for the adjacency matrix and $\lam_1\ge\lam_2\ge\cdots$ for its
+eigenvalues.
+
+The \emph{colour--position partition} $\PP_{m,n}$ has the $mn$ cells
+\begin{equation}\label{eq:cells}
+ V_{i,j}=\bigl\{(w,c):\text{the letter }1\text{ sits at position }j
+ \text{ with colour }i\bigr\},
+\end{equation}
+one cell for each $i\in\Zm$ and $j\in[n]$.
+It is equitable, and with the cells ordered lexicographically by $(i,j)$ its quotient matrix
+is the block circulant
+\begin{equation}\label{eq:circ}
+ Q(\PP_{m,n})=\mathrm{circ}(2D_n,E_n,O,\dots,O,E_n),
+\end{equation}
+where $D_n=\mathrm{diag}(0,1,\dots,n-1)$ and $(E_n)_{ij}=[\,i+j\le n+1\,]$. Set
+\[
+ \psi_{m,n}=\lam_1(A)-\lam_2(A),
+ \qquad
+ \beta_{m,n}=\lam_1\bigl(Q(\PP_{m,n})\bigr)-\lam_2\bigl(Q(\PP_{m,n})\bigr).
+\]
+
+The generator rule \eqref{eq:gen}, the partition \eqref{eq:cells} and the ordering of its
+cells are those of \cite{GZ}: the connection set is their $R_m$ for $m\ge3$, the cells are
+indexed by the colour and the position of the letter $1$, and \eqref{eq:circ} is the
+block-circulant quotient that \cite{GZ} print for that partition. As a check on this
+agreement, the accompanying program builds $P_6(2)$ from \eqref{eq:gen} alone, forms the
+partition \eqref{eq:cells}, and recovers \eqref{eq:circ} from the resulting graph rather than
+transcribing it.
+
+The statement we refute is \cite[Conjecture~2]{GZ}, quoted here verbatim from the source of
+arXiv:2509.09425v2:
+
+\begin{quote}
+Let $m\ge1$ and $n\ge2$ be integers. Then
+$\lam_1(P_m(n))-\lam_2(P_m(n))=\lam_1(Q(\mathfrak P_{m,n}))-\lam_2(Q(\mathfrak P_{m,n}))$.
+\end{quote}
+
+\noindent
+That is, $\psi_{m,n}=\beta_{m,n}$ for all $m\ge1$, $n\ge2$. The same source records that for
+$m\ge2$ the conjecture is open (the case $m=1$ is a known theorem on initial-reversal Cayley
+graphs; see \cite{GZ,Bl}); it restates a conjecture of Blanco and Buehrle \cite{BB}, and
+Blanco \cite{Bl} proves the inequality $\psi_{m,n}\le\beta_{m,n}$ while calling the equality
+open. Since the conjecture is universally quantified, one cell decides it. The label
+``Conjecture~2'' is that of arXiv:2509.09425v2; the printed journal version may number it
+differently, but the statement is reproduced above, so what is refuted does not depend on the
+label.
+
+\section{The colour difference}
+
+\begin{lemma}\label{lem:law}
+Let $m\ge3$ and $n=2$. For a vertex $\sigma$ of $P_m(2)$ let $d(\sigma)\in\Zm$ be the colour
+of the letter $1$ minus the colour of the letter $2$. Then the four neighbours of $\sigma$
+carry colour differences $d+1$, $d-1$, $d$, $d$.
+\end{lemma}
+
+\begin{proof}
+The letters $1$ and $2$ occupy positions $1$ and $2$ in one order or the other. By
+\eqref{eq:gen}, $r_1^{\varepsilon}$ adds $\varepsilon$ to the colour in position $1$ and
+leaves position $2$ untouched, so it changes $d$ by $+\varepsilon$ if the letter $1$ is in
+position~$1$ and by $-\varepsilon$ if the letter $2$ is; either way the unordered pair
+$\{r_1^{+}\sigma,r_1^{-}\sigma\}$ realises the differences $d+1$ and $d-1$. And
+$r_2^{\varepsilon}$ reverses both positions and adds $\varepsilon$ to both colours, so both
+letters' colours move by $\varepsilon$ and $d$ is unchanged.
+\end{proof}
+
+\section{The cell $(6,2)$: $72$ vertices}
+
+\begin{theorem}\label{thm:62}
+Let $H=P_6(2)$, a connected simple $4$-regular graph on $72$ vertices. Then
+\[
+ \psi_{6,2}\ \le\ 1\ <\ 4-2\sqrt2\ =\ \beta_{6,2}\ =\ 1.1715728752538099\ldots,
+\]
+a strict deficit of at least $3-2\sqrt2=0.1715728752538099\ldots$. In particular
+\cite[Conjecture~2]{GZ} is false.
+\end{theorem}
+
+\begin{proof}
+\emph{The graph's side.} Let $v$ be the integer vector depending only on the colour
+difference $d\in\mathbb Z_6$ through the table
+\begin{equation}\label{eq:vec}
+ \begin{array}{c|cccccc}
+  d&0&1&2&3&4&5\\\hline
+  v&2&1&-1&-2&-1&1
+ \end{array}
+\end{equation}
+that is, $v=2\cos(\pi d/3)$. Each of the six classes holds $12$ of the $72$ vertices, so
+$\sum v=12(2+1-1-2-1+1)=0$ and $v\perp\mathbf 1$; and $v\ne0$. By Lemma~\ref{lem:law} the
+four neighbours of a vertex with difference $d$ have differences $d+1,d-1,d,d$, so
+\[
+ (Av)(\sigma)=v(d+1)+v(d-1)+2v(d)=1\cdot v(d)+2v(d)=3v(d),
+\]
+using $v(d+1)+v(d-1)=2\cos(\pi/3)\,v(d)=v(d)$. Thus $Av=3v$ exactly over $\mathbb Z$. One row
+in full: at $w=12$, $c=(0,0)$ we have $d=0$ and $v=2$, the four neighbours are
+$r_1^{+}=(12,(1,0))$, $r_1^{-}=(12,(5,0))$, $r_2^{+}=(21,(1,1))$, $r_2^{-}=(21,(5,5))$ with
+differences $1,5,0,0$ and values $1,1,2,2$, and $1+1+2+2=6=3\cdot2$. Since $H$ is connected
+and $4$-regular, $\lam_1=4$ is simple, so $\lam_2\ge3$ and $\psi_{6,2}\le1$.
+
+\emph{The quotient's side.} By \eqref{eq:circ},
+$Q(\PP_{6,2})=\mathrm{circ}(2D_2,E_2,O,O,O,E_2)$ with $2D_2=\mathrm{diag}(0,2)$ and
+$E_2=\begin{psmallmatrix}1&1\\1&0\end{psmallmatrix}$. This $12\times12$ matrix is
+$I_6\otimes2D_2+C_6\otimes E_2$ with $C_6$ the adjacency matrix of the $6$-cycle;
+diagonalising $C_6$ makes it orthogonally similar to $\bigoplus_{r=0}^{5}M_r$ with
+$M_r=2D_2+2\cos(2\pi r/6)E_2$, and the four distinct blocks are integral:
+\[
+ \begin{gathered}
+ M_0=\begin{pmatrix}2&2\\2&2\end{pmatrix},\qquad
+ M_{1},M_5=\begin{pmatrix}1&1\\1&2\end{pmatrix},\\[4pt]
+ M_{2},M_4=\begin{pmatrix}-1&-1\\-1&2\end{pmatrix},\qquad
+ M_3=\begin{pmatrix}-2&-2\\-2&2\end{pmatrix},
+ \end{gathered}
+\]
+so that
+\[
+ \det\bigl(xI-Q(\PP_{6,2})\bigr)
+ =x(x-4)\,(x^2-8)\,(x^2-3x+1)^2\,(x^2-x-3)^2 .
+\]
+Hence $\lam_1(Q)=4$, and $\lam_2(Q)=2\sqrt2$: it is a root of $x^2-8$, and each other block
+polynomial $g$ satisfies $g(2\sqrt2)>0$ with $g'(2\sqrt2)>0$, namely
+$9-6\sqrt2>0$ (as $81>72$) and $5-2\sqrt2>0$, so neither has a root at or above
+$2\sqrt2$; and the remaining root of $M_0$ is $0<2\sqrt2$. Therefore $\beta_{6,2}=4-2\sqrt2$.
+
+\emph{The comparison.} $4-2\sqrt2>1$ is $3>2\sqrt2$, i.e.\ $9>8$; equivalently $x^2-8$ takes
+the value $1>0$ at $x=3$. So $\psi_{6,2}\le1<\beta_{6,2}$.
+\end{proof}
+
+\section{Scope}
+
+\noindent\textbf{What is refuted.} \cite[Conjecture~2]{GZ} as a universally quantified
+statement over all $m\ge1$ and all $n\ge2$. One cell settles that, and the cell exhibited is
+$(6,2)$ on $72$ vertices.
+
+\medskip
+\noindent\textbf{What is not settled.} No other cell. The argument above bounds $\psi_{6,2}$
+above and $\beta_{6,2}$ below at $m=6$, $n=2$ only; nothing here bears on any $m\ne6$ at
+$n=2$, on the cells $m\le2$ --- which use a connection set other than the $R_m$ of
+Section~1, nowhere built or analysed here --- or on any cell with $n\ge3$. In particular we do
+\emph{not} claim that $(6,2)$ is a counterexample of least order. The inequality
+$\psi_{m,n}\le\beta_{m,n}$ of \cite{Bl} is a theorem and is untouched; so is the $m=1$ case.
+
+\section{Verification}
+
+The accompanying program \texttt{verify.py} builds $P_6(2)$ vertex by vertex from
+\eqref{eq:gen} and checks that it is simple, $4$-regular, connected and has $72$ vertices; it
+rebuilds the partition \eqref{eq:cells} and verifies that it is equitable by comparing the
+neighbour-count vector of \emph{every} vertex of a cell, then checks that its quotient is the
+block circulant \eqref{eq:circ}; it verifies $Av=3v$ at all $72$ vertices in exact integer
+arithmetic; it recomputes $\det(xI-Q(\PP_{6,2}))$ by Faddeev--LeVerrier over $\mathbb Q$; and
+it pins $\lam_2(Q)=2\sqrt2$ by exact eigenvalue \emph{counts} --- Sylvester's law of inertia
+applied to $tI-Q$ for rational $t$ --- rather than by a numerical eigensolver. No
+floating-point number takes part in any decision, and no third-party package is used. Its
+recorded run is \texttt{verify.output.txt}; that run also covers cells and identities beyond
+the one used here, which this note does not rely on.
+
+Two limits of the program are worth stating. It never computes $\lam_2(A(P_6(2)))$, only
+bounds it below by the eigenvector \eqref{eq:vec}, which is all that $\psi_{6,2}\le1$ needs;
+and it decides nothing about minimality.
+
+\begin{thebibliography}{9}
+
+\bibitem{Bl}
+S.~A. Blanco,
+\emph{On the Laplacian spectral gap of generalized pancake graphs},
+arXiv:2608.15398v1, 2026.
+\href{https://arxiv.org/abs/2608.15398}{arXiv:2608.15398}.
+
+\bibitem{BB}
+S.~A. Blanco and C.~Buehrle,
+\emph{On the spectra of prefix-reversal graphs},
+arXiv:2506.08345, 2025.
+\href{https://arxiv.org/abs/2506.08345}{arXiv:2506.08345}.
+
+\bibitem{GZ}
+G.~Greaves and H.~Zhu,
+\emph{A note on some spectral properties of generalised pancake graphs},
+Discrete Math. \textbf{349} (2026), no.~9, 115102.
+\href{https://doi.org/10.1016/j.disc.2026.115102}{doi:10.1016/j.disc.2026.115102};
+\href{https://arxiv.org/abs/2509.09425}{arXiv:2509.09425v2}.
+
+\end{thebibliography}
+
+\end{document}

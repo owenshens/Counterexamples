@@ -1,0 +1,329 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{upquote}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An ordered pair of graphs of nonzero twin-width attaining the
+            Pettersson-Sylvester tensor-product bound}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{question}{Question}
+
+\DeclareMathOperator{\tww}{tww}
+\newcommand{\sd}{\mathbin{\triangle}}
+
+\title[An ordered pair attaining the tensor-product bound]
+{An Ordered Pair of Graphs of Nonzero Twin-Width Attaining
+ the Pettersson--Sylvester Tensor-Product Bound}
+
+\date{}
+
+\subjclass[2020]{05C76, 05C75, 68R10}
+\keywords{twin-width, tensor product, direct product, circulant graph,
+contraction sequence, tightness}
+
+\begin{document}
+
+\begin{abstract}
+Pettersson and Sylvester proved that
+\[
+ \tww(G\times H)\ \le\
+ \max\bigl\{\tww(G)\Delta(H)+\Delta(H),\ \tww(H)\bigr\}+\Delta(H)
+\]
+for the tensor (direct) product of any two graphs, and wrote in their
+Conclusion that it would be nice to find two graphs of \emph{nonzero}
+twin-width for which this bound is tight. We exhibit such a pair. Let
+$G=C_8(1,2)$ be the square of the $8$-cycle and let $H=C_5$; both have
+twin-width $2$. Then
+\[
+ \tww(C_8(1,2)\times C_5)=8=\max\{2\cdot2+2,\ 2\}+2 ,
+\]
+and more generally $\tww(C_8(1,2)\times C_n)=8$ for every $n\ge5$. The bound is
+not symmetric in $(G,H)$, and the claim is for this ordering only. The lower
+bound is a three-case count over the $\binom{40}{2}=780$ vertex pairs of the
+$40$-vertex product, which is printed here as a graph6 string.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+All graphs are finite, simple and undirected. We use the contraction-sequence
+definition of twin-width of Bonnet, Kim, Thomass\'e and Watrigant
+\cite{TwinwidthI}: a \emph{contraction sequence} of an $n$-vertex graph $X$ is
+a sequence of partitions of $V(X)$ starting at the partition into singletons
+and ending at the one-part partition, each obtained from the previous one by
+merging two parts. A pair of distinct parts $P,Q$ is \emph{black} if every
+$p\in P$, $q\in Q$ is an edge, \emph{red} if some such pair is an edge and some
+is not, and absent if none is. The \emph{width} of the sequence is the maximum,
+over all partitions occurring in it (the initial one included), of the maximum
+red degree of a part; $\tww(X)$ is the least width of a contraction sequence of
+$X$. Thus $\tww(X)=0$ if and only if $X$ is a cograph.
+
+The \emph{tensor product} (also direct, Kronecker, weak or conjunctive product)
+$G\times H$ has vertex set $V(G)\times V(H)$, with $(u,i)(v,j)$ an edge if and
+only if $uv\in E(G)$ \emph{and} $ij\in E(H)$. Consequently
+\begin{equation}\label{eq:nbhd}
+ N_{G\times H}\bigl((u,i)\bigr)=N_G(u)\times N_H(i),
+\end{equation}
+so $G\times H$ is $\Delta(G)\Delta(H)$-regular whenever $G$ and $H$ are regular.
+
+Pettersson and Sylvester \cite{PS} proved, for arbitrary graphs $G$ and $H$ and
+with no hypothesis beyond simplicity,
+\begin{equation}\label{eq:PS}
+ \tww(G\times H)\ \le\ \max\bigl\{\tww(G)\Delta(H)+\Delta(H),\ \tww(H)\bigr\}
+ +\Delta(H).
+\end{equation}
+The first of the two questions in the unnumbered Conclusion of \cite{PS} reads,
+verbatim:
+\begin{question}
+It would be nice to find an example of two graphs $G,H$ with non-zero
+twin-width for which Theorem $[\,$the bound \eqref{eq:PS} above$\,]$ is tight.
+\end{question}
+\noindent
+The bracketed text replaces a cross-reference left unresolved in the source;
+nothing else in the sentence is altered. We read ``tight'' as equality in
+\eqref{eq:PS} at one ordered instantiation, which is what is exhibited below; a
+reading that demands more --- equality for both orderings of the pair, say ---
+is not met here. The tight families for \eqref{eq:PS} given in \cite{PS} ---
+products with a complete graph, and Hamming graphs --- each have a factor of
+twin-width $0$.
+
+\section{The result}
+
+Let $G=C_8(1,2)$ be the circulant graph on $\mathbb Z_8$ in which $u\sim v$
+if and only if $u-v\equiv\pm1$ or $\pm2\pmod 8$; equivalently $G$ is the square
+of the $8$-cycle. It is $4$-regular with $16$ edges. Let $H=C_5$.
+
+\begin{theorem}\label{thm:main}
+$\tww(C_8(1,2))=\tww(C_5)=2$, and
+\begin{align*}
+ \tww\bigl(C_8(1,2)\times C_5\bigr)
+ &=8
+ =\max\bigl\{\tww(G)\Delta(H)+\Delta(H),\ \tww(H)\bigr\}+\Delta(H)\\
+ &=\max\{2\cdot2+2,\ 2\}+2 .
+\end{align*}
+\end{theorem}
+
+\begin{corollary}\label{cor:family}
+$\tww\bigl(C_8(1,2)\times C_n\bigr)=8=\max\{2\cdot2+2,\ 2\}+2$ for every
+$n\ge5$.
+\end{corollary}
+
+The active branch of the maximum is $\tww(G)\Delta(H)+\Delta(H)=6>\tww(H)=2$,
+so the term attained is the one that carries $\tww(G)\ne0$.
+
+The only tool needed for the lower bounds is \cite[Lemma~3.1]{AHKO}, which is
+quoted in \cite{PS} as well.
+
+\begin{lemma}[Ahn, Hendrey, Kim, Oum \cite{AHKO}]\label{lem:lb}
+For every graph $X$ with at least two vertices,
+\[
+ \tww(X)\ \ge\ b_{\min}(X)
+ :=\min_{u\ne v}\bigl|\,\bigl(N(u)\sd N(v)\bigr)\setminus\{u,v\}\,\bigr| .
+\]
+\end{lemma}
+
+We write $b(u,v)=|(N(u)\sd N(v))\setminus\{u,v\}|$ and
+$s(u,v)=|N(u)\sd N(v)|$, and $b_{\min}$, $s_{\min}$ for their minima over
+unordered pairs of distinct vertices. Lemma~\ref{lem:lb} bounds $\tww$ below by
+the \emph{minimum}, so exhibiting one pair with a small $b$ proves nothing: the
+whole profile must be computed.
+
+\subsection*{The two factors}
+
+In $C_5$ we have $b(u,v)=2$ for every one of the $10$ pairs (adjacent pairs
+have disjoint neighbourhoods, so $s=4$ and two of the four elements are $u,v$
+themselves; pairs at distance $2$ have $s=2$ and neither $u$ nor $v$ lies in
+the symmetric difference). Hence $b_{\min}(C_5)=2$ and $\tww(C_5)\ge2$. For the
+matching upper bound, contract $0$ with $2$, then $3$ with $4$, then the part
+$\{0,2\}$ with $1$, then the two remaining parts: the maximum red degree never
+exceeds $2$. So $\tww(C_5)=2$.
+
+In $G=C_8(1,2)$, with $N(u)=\{u\pm1,u\pm2\}$, the quantities $s$ and $b$ depend
+only on the difference $d=v-u\in\{1,2,3,4\}$:
+\[
+\begin{array}{c|cccc}
+ d & 1 & 2 & 3 & 4\\\hline
+ s(u,u+d) & 4 & 6 & 4 & 4\\
+ b(u,u+d) & 2 & 4 & 4 & 4
+\end{array}
+\]
+(For $d=1$: $N(0)=\{1,2,6,7\}$ and $N(1)=\{0,2,3,7\}$ have symmetric
+difference $\{0,1,3,6\}$, from which $0$ and $1$ are deleted.) Hence
+$s_{\min}(G)=4$ and $b_{\min}(G)=2$, so $\tww(G)\ge2$; and the contraction
+sequence merging $0$ with $1$, $2$ with $3$, $4$ with $5$, $6$ with $7$, then
+$\{0,1\}$ with $\{4,5\}$, then $\{2,3\}$ with $\{6,7\}$, then the two remaining
+parts, has width $2$. So $\tww(G)=2$. Both factors have nonzero twin-width, as
+the question demands.
+
+\subsection*{The product}
+
+Put $P=G\times H$. By \eqref{eq:nbhd} it has $40$ vertices, is $8$-regular, and
+so has $160$ edges. The upper bound $\tww(P)\le8$ is \eqref{eq:PS} itself, so
+all the content is in the lower bound, which we now prove by
+Lemma~\ref{lem:lb}.
+
+\begin{proof}[Proof that $\tww(P)\ge8$]
+Let $(u,i)\ne(v,j)$ and put $m=|N_G(u)\cap N_G(v)|$ and
+$m'=|N_H(i)\cap N_H(j)|$. From the profile above, $m\le2$ (indeed
+$m=(8-s(u,v))/2$), and in $C_5$ we have $m'=0$ for adjacent $i,j$ and $m'=1$
+for $i,j$ at distance $2$. By \eqref{eq:nbhd},
+$|N_P((u,i))|=|N_P((v,j))|=8$. Three cases.
+
+\emph{(A) $u=v$, $i\ne j$.} Here
+$N_P((u,i))\sd N_P((u,j))=N_G(u)\times(N_H(i)\sd N_H(j))$, and neither $(u,i)$
+nor $(u,j)$ lies in this set, since $u\notin N_G(u)$; so nothing is deleted and
+$b=4\,|N_H(i)\sd N_H(j)|\ge4\cdot2=8$, with equality exactly when $i,j$ are at
+distance $2$ in $C_5$.
+
+\emph{(B) $i=j$, $u\ne v$.} Symmetrically
+$b=2\,|N_G(u)\sd N_G(v)|=2\,s(u,v)\ge2\cdot4=8$, with equality exactly when
+$uv\in E(G)$.
+
+\emph{(C) $u\ne v$ and $i\ne j$.} Then
+$|N_P((u,i))\sd N_P((v,j))|=8+8-2\,|N_G(u)\cap N_G(v)|\cdot|N_H(i)\cap N_H(j)|
+=16-2mm'$. Moreover $(u,i)$ lies in the symmetric difference if and only if
+$uv\in E(G)$ and $ij\in E(H)$, and likewise for $(v,j)$; so at most $2$ is
+deleted, and only when $uv\in E(G)$ and $ij\in E(H)$. If $ij\in E(H)=E(C_5)$
+then $m'=0$ because $C_5$ is triangle-free, and $b\ge16-0-2=14$. Otherwise
+nothing is deleted and $b=16-2mm'\ge16-2\cdot2\cdot1=12$.
+
+So $b_{\min}(P)=8$. It is attained in case (A), for instance at the pair
+$\{(0,0),(0,2)\}$, and in case (B), for instance at $\{(0,0),(1,0)\}$; and
+Lemma~\ref{lem:lb} then gives $\tww(P)\ge8$.
+\end{proof}
+
+\begin{remark}[the upper bound without \eqref{eq:PS}]\label{rem:noncirc}
+Taking $\tww(P)\le8$ from \eqref{eq:PS} is legitimate --- tightness of a bound
+\emph{is} the assertion that the bound is attained --- but it leaves the
+equality resting on the statement being tested. It need not. The accompanying
+program builds an explicit contraction sequence of the $40$-vertex product,
+$39$ merges long, and re-certifies its width as $8$ from the original
+adjacency; that sequence is printed in the recorded run. So $\tww(P)\le8$ holds
+independently of \eqref{eq:PS}, and with $b_{\min}(P)=8$ it brackets
+$\tww(P)=8$ without \eqref{eq:PS} entering the argument. The same holds for
+each $C_n$, $n=5,\dots,12$.
+\end{remark}
+
+This proves Theorem~\ref{thm:main}. For Corollary~\ref{cor:family}, replace
+$C_5$ by $C_n$ with $n\ge5$. Then $\Delta(C_n)=2$ and $\tww(C_n)=2$: the lower
+bound is $b_{\min}(C_n)=2$ exactly as for $C_5$ (adjacent pairs give
+$s=4$ and $b=2$; pairs at distance $2$ give $s=b=2$; pairs at distance $\ge3$
+give $s=b=4$), and the upper bound is the round-the-cycle sequence, which merges
+$0$ with $1$ and then absorbs $2,3,\dots,n-1$ one at a time and has width $2$.
+So the right-hand side of \eqref{eq:PS} is again
+$\max\{2\cdot2+2,2\}+2=8$. In the three-case count, (A) gives
+$4\,|N_{C_n}(i)\sd N_{C_n}(j)|\ge8$, with equality at distance-$2$ pairs;
+(B) gives $2\,s(u,v)\ge8$ unchanged; and in (C) still $m\le2$, while
+$m'\le1$ with $m'=0$ whenever $ij\in E(C_n)$ (true for $n\ge5$, as $C_n$ is
+then triangle-free), so $b\ge12$. Hence $b_{\min}(C_8(1,2)\times C_n)=8$ and
+$\tww(C_8(1,2)\times C_n)=8$. The value $n=4$ is excluded because $C_4$ is a
+cograph, so $\tww(C_4)=0$ and $C_4$ is not an admissible factor here.
+
+\medskip
+\noindent\textbf{Scope.}
+Neither half of the certificate is new: the upper half is \eqref{eq:PS}, which
+is the theorem of \cite{PS}, the lower half is \cite[Lemma~3.1]{AHKO}, and the
+value $\tww(C_n)=2$ used for the family is also in \cite{AHKO}. We prove no new
+lemma; the content here is the pair together with the three-case count. Nothing
+beyond equality in \eqref{eq:PS} at the ordered pairs $(C_8(1,2),C_5)$ and
+$(C_8(1,2),C_n)$, $n\ge5$, is claimed: with the roles exchanged the bound reads
+$\max\{2\cdot4+4,2\}+4=16$ and is not attained by the same product; no
+minimality is asserted, neither of the order $40$ nor in any other sense; and we
+do not claim that no better general bound of the same shape exists. We looked
+for an earlier example of this kind in the nine works recorded as citing
+\cite{PS} by OpenAlex and by Semantic Scholar as of 29 August 2026, in the DBLP
+title index for twin-width, and in arXiv abstract searches pairing twin-width
+with the tensor, direct and Kronecker products, and found none; the nearest
+work found was \cite{HIRV}, on graphs whose twin-width equals the bound of
+Lemma~\ref{lem:lb}, which does not treat products. That search covered titles,
+abstracts and citation records rather than full texts, so we make no priority
+claim.
+
+\section{The witness, and reproduction}
+
+Theorem~\ref{thm:main} and Corollary~\ref{cor:family} need no computer: the
+product is determined by the two parameters, and the lower bound is the
+three-case count above, whose inputs are the two four-entry tables of $s$ and
+$b$. For machine reading we also record $P=C_8(1,2)\times C_5$ explicitly.
+Label the vertex $(u,i)$ by $k=5u+i$, so that $u=\lfloor k/5\rfloor$ and
+$i=k\bmod5$ for $k=0,\dots,39$. Then $P$ has the graph6 string obtained by
+concatenating the three lines
+\begin{verbatim}
+g?@LA_gcASsgSgISQc?Ch@Q_Ad?Ad?HQ??Ch?Ad??IS?
+?Sg?AS_??AS_?Ad???Sg??@Q_??QcAO??dL??@Q`O??S
+gI??AdC_?@IOHQ??ChhO??SgSg??ISDI??AdCh??AS_
+\end{verbatim}
+\noindent
+(one line of $131$ characters in total, of lengths $44$, $44$ and $43$), whose
+$160$ edges are exactly the pairs
+$\{5u+i,\,5v+j\}$ with $u-v\equiv\pm1,\pm2\pmod 8$ and $i-j\equiv\pm1\pmod5$.
+The only character in the string that is easy to mistranscribe is the single
+grave accent (ASCII \texttt{0x60}) on the second line; every other character is
+a letter, a digit, \texttt{?}, \texttt{@} or \texttt{\_}.
+
+\medskip
+\noindent\textbf{Verification.}
+The file \texttt{verify.py} re-derives the computational claims above in exact
+integer and set arithmetic using only the Python standard library, and
+\texttt{verify.output.txt} records a run of it. It decodes the graph6 string
+printed here and checks label-for-label that it is the tensor product built from
+the two parameters; recomputes the full $s$- and $b$-profiles of $C_8(1,2)$ and
+of $C_5$; re-verifies the two printed contraction sequences at width $2$ in a
+from-scratch trigraph simulator, so that $\tww(C_8(1,2))=\tww(C_5)=2$ exactly
+with no exhaustive search in the load-bearing path; enumerates all
+$\binom{40}{2}=780$ vertex pairs of the product, splits them into the three
+cases and reports the per-case minima $8$, $8$, $12$; evaluates both orderings
+of \eqref{eq:PS}, obtaining $8$ and $16$; builds and re-certifies the width-$8$
+sequence of Remark~\ref{rem:noncirc}; and repeats both bounds for $C_n$,
+$n=5,\dots,12$. Its search for a contraction sequence of the $40$-vertex
+product is a heuristic, so it proves $\tww(P)\le8$ --- the width of what it
+returns is re-certified from the adjacency, which is what makes that sound ---
+and it does \emph{not} exclude a width-$7$ sequence; only Lemma~\ref{lem:lb}
+does that. Nothing in the proof above needs the program: every input it consumes
+is printed here.
+
+\begin{thebibliography}{9}
+
+\bibitem{AHKO}
+J.~Ahn, K.~Hendrey, D.~Kim, and S.~Oum,
+\emph{Bounds for the twin-width of graphs},
+SIAM J. Discrete Math. \textbf{36} (2022), no.~3, 2352--2366.
+\href{https://doi.org/10.1137/21M1452834}{doi:10.1137/21M1452834};
+\href{https://arxiv.org/abs/2110.03957}{arXiv:2110.03957}.
+
+\bibitem{TwinwidthI}
+\'E.~Bonnet, E.~J. Kim, S.~Thomass\'e, and R.~Watrigant,
+\emph{Twin-width I: tractable FO model checking},
+J. ACM \textbf{69} (2022), no.~1, Art.~3, 46 pp.
+\href{https://doi.org/10.1145/3486655}{doi:10.1145/3486655};
+\href{https://arxiv.org/abs/2004.14789}{arXiv:2004.14789}.
+
+\bibitem{HIRV}
+F.~Heinrich, F.~Ihringer, M.~Rassmann, and T.~Volk,
+\emph{On the twin-width of near-regular graphs},
+Discrete Appl. Math. \textbf{379} (2026), 177--193.
+\href{https://doi.org/10.1016/j.dam.2025.07.044}{doi:10.1016/j.dam.2025.07.044};
+\href{https://arxiv.org/abs/2504.02342}{arXiv:2504.02342}.
+
+\bibitem{PS}
+W.~Pettersson and J.~Sylvester,
+\emph{Bounds on the twin-width of product graphs},
+Discrete Math. Theor. Comput. Sci. \textbf{25} (2023), no.~1, Paper No.~18.
+\href{https://doi.org/10.46298/dmtcs.10091}{doi:10.46298/dmtcs.10091};
+\href{https://arxiv.org/abs/2202.11556}{arXiv:2202.11556v4}.
+
+\end{thebibliography}
+
+\end{document}

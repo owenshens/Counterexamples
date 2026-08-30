@@ -1,0 +1,85 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  ce68b660416ca793f0b3119daf6077a3ae54157d7f8b4c26a168aa94b8aa28ce
+python:  Python 3.9.6
+=== program output follows ===
+verification of the note: an explicit 32-point set with a free half-turn
+and no convex 7-gon -- W* = P u (-P), n = 32, k = 7, s = 2
+python 3.9.6, exact integer arithmetic only
+
+=== Step 1: the object, as printed in the paper
+PASS reps_are_16_integer_points [16 orbit representatives, all coordinates Python ints]
+PASS expansion_of_the_16_reps_reproduces_the_printed_32_points [p -> (p, -p) over the first display equals the second display, element by element]
+PASS the_printed_points_are_32_and_pairwise_distinct [len(list) = 32, len(set) = 32, claimed 32]
+PASS the_origin_is_not_a_point_of_the_set [required for the half-turn to act freely]
+PASS max_absolute_coordinate_is_31 [max |coordinate| = 31, claimed 31 (attained by (-30,-31))]
+PASS the_hexagon_exhibited_in_section_2_is_a_subset_of_the_set [all 6 printed hexagon vertices occur among the 32]
+
+=== Step 2: the half-turn h(z) = -z acts freely, with 16 orbits of size 2
+PASS h_maps_the_set_onto_itself [h(W*) = W* as sets]
+PASS h_has_order_exactly_two [h o h = id on W*, and h is not the identity on W*]
+PASS h_has_no_fixed_point_in_the_set [the unique fixed point of h in the plane is the origin, which is absent]
+PASS the_action_has_16_free_orbits_of_size_two [16 orbits, every one of size 2, 16 * 2 = 32]
+PASS the_orbit_representatives_printed_are_a_transversal [the 16 printed representatives meet each orbit exactly once]
+PASS h_preserves_every_orientation_determinant [all C(32,3) = 4960 determinants are unchanged by h, so h preserves collinearity and convex position]
+
+=== Step 3: general position -- all C(32,3) orientation determinants
+PASS all_C_32_3_triples_were_examined [triples examined = 4960 = C(32,3) = 4960]
+PASS no_three_points_are_collinear [collinear triples = 0, claimed 0]
+PASS smallest_absolute_determinant_is_1 [min |det| = 1, claimed 1]
+PASS largest_absolute_determinant_is_2892 [max |det| = 2892, claimed 2892]
+PASS every_determinant_fits_in_12_unsigned_bits [max |det| = 2892 < 4096; 13 signed bits suffice]
+
+=== Step 4: convex position -- exhaustive chain enumeration over ALL sizes at once
+NOTE chains visited = 145073
+NOTE subsets in convex position of size 3 = 4960
+NOTE subsets in convex position of size 4 = 24322
+NOTE subsets in convex position of size 5 = 59002
+NOTE subsets in convex position of size 6 = 56261
+PASS convex_position_subsets_of_size_3_number_4960 [got 4960, claimed 4960, out of C(32,3) = 4960]
+PASS convex_position_subsets_of_size_4_number_24322 [got 24322, claimed 24322, out of C(32,4) = 35960]
+PASS convex_position_subsets_of_size_5_number_59002 [got 59002, claimed 59002, out of C(32,5) = 201376]
+PASS convex_position_subsets_of_size_6_number_56261 [got 56261, claimed 56261, out of C(32,6) = 906192]
+PASS the_triangle_count_equals_C_32_3_as_general_position_forces [every triple of a set in general position is in convex position: 4960 = 4960]
+PASS no_subset_of_size_7_is_in_convex_position [the enumeration reports 0 subsets of size 7 in convex position]
+PASS the_maximum_size_of_a_subset_in_convex_position_is_exactly_6 [max = 6, claimed 6; witness [(-30, -31), (-23, -27), (-22, -26), (-22, 2), (-23, 2), (-27, 1)]]
+PASS the_enumeration_is_untruncated_so_no_size_above_6_occurs [sizes present: [3, 4, 5, 6]; sizes 7..32 all absent, so no convex m-gon exists for any m >= 7]
+PASS the_max_size_witness_is_in_convex_position_by_the_caratheodory_test [the chain enumeration and the Caratheodory test agree on the extremal witness]
+PASS the_hexagon_printed_in_section_2_is_in_convex_position [the printed hexagon [(18, -4), (-18, 4), (6, -18), (-6, 18), (-3, -18), (3, 18)] passes the Caratheodory test]
+
+=== Step 5: independent cross-check -- Caratheodory over every 4- and 7-subset
+PASS caratheodory_and_chain_enumeration_agree_on_all_C_32_4_subsets [Caratheodory over all C(32,4) = 35960 subsets gives 24322; the chain enumeration gives 24322]
+PASS every_one_of_the_C_32_7_seven_subsets_was_examined [7-subsets examined = 3365856 = C(32,7) = 3365856, no pruning]
+PASS brute_force_finds_zero_seven_subsets_in_convex_position [independent Caratheodory path over all 3365856 subsets: 0 in convex position, claimed 0]
+PASS convex_position_is_inherited_by_subsets_on_the_exhibited_hexagon [all C(6,5) = 6 five-subsets of the printed hexagon are in convex position; heredity is why "no 7 in convex position" already implies "no m in convex position" for every m > 7]
+
+=== Step 6: controls, both polarities, on the criterion and on the enumeration
+PASS positive_control_parabola_enumeration_returns_the_full_binomial_profile [12 points on y = x^2: sizes 3..12 counted [220, 495, 792, 924, 792, 495, 220, 66, 12, 1], expected [220, 495, 792, 924, 792, 495, 220, 66, 12, 1]]
+PASS positive_control_parabola_caratheodory_accepts_all_C_12_7_seven_subsets [all C(12,7) = 792 seven-subsets of the parabola read "in convex position"]
+PASS positive_control_regular_heptagon_is_in_general_position [all C(7,3) = 35 determinants of the rounded regular heptagon are nonzero]
+PASS positive_control_regular_heptagon_reads_in_convex_position [the criterion CAN return True on 7 points, so a False on W* is not vacuous]
+PASS negative_control_hexagon_plus_interior_point_is_in_general_position [all C(7,3) = 35 determinants nonzero, so the control is a legal input]
+PASS negative_control_hexagon_plus_interior_point_reads_not_in_convex_position [the criterion CAN return False on 7 points]
+PASS negative_control_chain_enumeration_caps_the_hexagon_plus_point_at_6 [the SECOND code path also reports max = 6 and 0 subsets of size 7]
+
+=== Step 7: the onion decomposition and the lemma it satisfies
+NOTE convex layer sizes = [6, 6, 6, 6, 6, 2]
+PASS the_convex_layer_signature_is_6_6_6_6_6_2 [got [6, 6, 6, 6, 6, 2], claimed [6, 6, 6, 6, 6, 2]]
+PASS the_layer_sizes_sum_to_32 [sum([6, 6, 6, 6, 6, 2]) = 32]
+PASS every_convex_layer_is_carried_to_itself_by_h [negation is an affine bijection, so it permutes the onion layers; here it fixes each]
+PASS every_convex_layer_has_even_size [each layer is h-invariant and the origin is absent, so h acts freely on it: sizes [6, 6, 6, 6, 6, 2]]
+PASS every_convex_layer_has_size_at_most_6 [a layer is in convex position, so its size is at most k - 1 = 6; max = 6]
+PASS the_number_of_layers_is_at_least_ceil_32_over_6 [6 layers, and the lemma forces at least ceil(32/6) = 6]
+PASS every_layer_is_in_convex_position_by_the_caratheodory_test [all 6 layers pass the independent test]
+
+=== Step 8: which rotation orders can act at all on 32 points without a 7-gon
+PASS the_congruence_32_mod_s_in_0_1_admits_exactly_1_2_4_8_16_31_32 [orders passing 32 = 0 or 1 (mod s): [1, 2, 4, 8, 16, 31, 32]]
+PASS orders_3_5_and_6_are_excluded_by_the_congruence_alone [32 mod 3 = 2, 32 mod 5 = 2, 32 mod 6 = 2, and none is 0 or 1]
+PASS the_admissible_rotation_orders_are_exactly_1_2_and_4 [after deleting every s >= 7 (an orbit of size s >= 7 is a regular s-gon and so contains 7 points in convex position): [1, 2, 4]]
+PASS a_regular_8_gon_orbit_does_contain_7_points_in_convex_position [the s >= 7 exclusion is exhibited, not merely asserted: a rounded regular octagon has a 7-subset in convex position]
+
+=== Scope
+NOT RE-RUN: (1) the SEARCH that produced W* is not re-run here and is not reproducible from a seed -- each restart of the original grid descent was cut by a 90-second wall-clock budget, so W* is pinned as the integer list printed in the paper and not as a random seed; nothing above depends on how it was found. (2) The claim that 31 is MINIMAL for the largest absolute coordinate of such a set is NOT made and NOT tested: 31 is where a descending ladder of grid bounds stopped on budget, and no exhaustive search of any smaller grid was performed. (3) NO statement about g(7) is re-derived, because none is made: g(7) is unknown, g(7) >= 33 is classical and independent of this object, and the 4-fold negative result at n = 32 is quoted from the source paper and NOT recomputed here. (4) The source paper's own published 16-point 4-fold configuration is NOT re-counted here (its coordinates are not reproduced in this note); the calibration of the convex-position criterion against that published object was done elsewhere, and the criterion is instead pinned here by the four controls of Step 6. (5) The nine further 32-point witnesses at larger coordinate bounds mentioned in the note are NOT verified here; only W* is. (6) The REFLECTION (mirror) symmetry of order 2 at n = 32 is untouched: this program says nothing about it. (7) In Step 8 the exclusion of every rotation order s >= 7 is checked on one concrete rounded regular octagon, not on all such s; the general argument (an orbit of size s is a regular s-gon, and any 7 of its vertices are in convex position) is a hand proof and is given in the note.
+
+VERDICT: ALL 49 CHECKS PASS
+=== program exited with status 0 ===

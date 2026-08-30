@@ -1,0 +1,345 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Parity Refutes the Printed Four-Term Amicable-Totient Equations}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\sig}{\sigma}
+
+\title[Parity refutes the printed four-term equations]
+{Parity Refutes the Printed Four-Term Amicable-Totient Equations}
+
+\date{}
+
+\subjclass[2020]{11A25, 11B75, 11Y70}
+\keywords{amicable numbers, Euler totient function, elementary symmetric
+polynomials, parity obstruction, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For an amicable pair $(A,B)$ with $A=2^n\!\prod_i p_i$ and $B=2^n\!\prod_j q_j$,
+Mavaddat and Alikhani put $S=\varphi(A)+\varphi(B)$, $A-S=2^nx$, $B-S=2^ny$, and
+conjecture for $k=m=4$, $A=2^nabcd$, $B=2^nefgh$, that
+$x-1=[ab(c+d)+cd]-(e+f+g+h)$ and $y-1=[ef(g+h)+gh]-(a+b+c+d)$.
+We show that these two equations, as printed, fail for every amicable pair of
+type $(4,4)$ with $\gcd(A,B)=2^n$ exactly, and for every labelling of the eight
+primes: $x$ and $y$ are odd, while each printed right-hand side is odd, so each
+equation demands that $x$ or $y$ be even. Neither right-hand side is a symmetric
+function of its letters, and we do not attempt to settle whatever symmetric
+statement may have been intended. On the amicable pair $A=32642324$,
+$B=35095276$ we also exclude the sixteen typo-charitable variants of the printed
+equations obtained by exchanging their brackets, their subtracted sums or their
+two sides, or by deleting the offsets $-1$ --- parity alone does not reach the
+offset-free readings. We record the four-term identity
+$x=e_3(q)+e_1(q)-e_2(p)-1$, an elementary consequence of
+$\prod_i(p_i+1)=\prod_j(q_j+1)$ and not a new theorem.
+\end{abstract}
+
+\maketitle
+
+\section{The printed equations}
+
+Let $(A,B)$ be an amicable pair, so $\sig(A)=\sig(B)=A+B$ with $A\neq B$. In
+\cite{MA}, A.~R.~Mavaddat and S.~Alikhani study such pairs through the Euler
+totient. Writing
+\begin{equation}\label{eq:xy}
+ S=\varphi(A)+\varphi(B),
+ \qquad
+ A-S=2^nx,
+ \qquad
+ B-S=2^ny,
+\end{equation}
+they prove identities for $x$ and $y$ in the cases $A=2^nab$, $B=2^ncd$
+(their Theorem~2.1), $A=2^nabc$, $B=2^nde$ (Theorem~2.3), and $A=2^nabc$,
+$B=2^ndef$ (Theorem~2.5). The quantities $x$ and $y$ are theirs; nothing outside
+\cite{MA} defines them. In the concluding section they propose ``the following
+general rules for an amicable pair $(A,B)$ where $A=2^n\prod_{i=1}^{k}p_i$ and
+$B=2^n\prod_{j=1}^{m}q_j$ as a conjecture''. The second of the two conjecture
+environments there is the case $k=m=4$:
+
+\medskip
+\noindent\textbf{Conjecture} (\cite{MA}, Sec.~3; \emph{Case: Symmetric 4-term,
+$A=2^nabcd$, $B=2^nefgh$}).
+\emph{For symmetric higher-order pairs, the relationship shifts to a comparison
+of their symmetric polynomials:}
+\begin{align}
+ y-1&=[ef(g+h)+gh]-(a+b+c+d), \label{eq:Cy}\\
+ x-1&=[ab(c+d)+cd]-(e+f+g+h). \label{eq:Cx}
+\end{align}
+
+\medskip
+We read $a,\dots,h$ as odd primes, with $abcd$ and $efgh$ the odd parts of $A$
+and $B$, each a product of four distinct odd primes, and $n\ge1$. In the
+classification of Costello \cite{Costello} and Garcia, Pedersen and te~Riele
+\cite{GPtR}, both cited in \cite{MA}, such a pair has type $(4,4)$.
+
+Despite the heading word \emph{Symmetric}, neither right-hand side is a
+symmetric function of its letters: $ab(c+d)+cd=abc+abd+cd$ mixes two of the four
+monomials of $e_3$ with one of the six of $e_2$. What follows concerns
+\eqref{eq:Cy}--\eqref{eq:Cx} exactly as printed. We neither reconstruct nor
+settle any symmetric statement that may have been intended, and a reader who
+takes the display for a misprint should take this note as settling the printed
+formulas only. No order on the primes is imposed anywhere in \cite{MA}, so the
+display admits a strict reading (\emph{every} labelling of the eight primes) and
+a charitable one (\emph{some} labelling, $4!\times4!=576$ per pair). Everything
+below refutes the charitable reading, hence both.
+
+\section{The parity of $x$ and $y$}
+
+\begin{lemma}\label{lem:parity}
+Let $n\ge1$ and let $A=2^nM$, $B=2^nN$ with $M,N$ odd, each of $M$ and $N$
+having at least two distinct prime factors. Define $S$, $x$, $y$ by
+\eqref{eq:xy}. Then $2^n\mid A-S$ and $2^n\mid B-S$, and both $x$ and $y$ are
+odd. Neither amicability nor $\gcd(A,B)=2^n$ is assumed.
+\end{lemma}
+
+\begin{proof}
+Since $\gcd(2^n,M)=1$ and $\varphi(2^n)=2^{n-1}$, we have
+$\varphi(A)=2^{n-1}\varphi(M)$ and $\varphi(B)=2^{n-1}\varphi(N)$, so
+$S=2^{n-1}\bigl(\varphi(M)+\varphi(N)\bigr)$ and
+\begin{equation}\label{eq:xred}
+ A-S=2^n\Bigl(M-\tfrac{\varphi(M)+\varphi(N)}{2}\Bigr),
+ \qquad
+ x=M-\frac{\varphi(M)+\varphi(N)}{2},
+\end{equation}
+and symmetrically $y=N-\bigl(\varphi(M)+\varphi(N)\bigr)/2$. If $M$ has $r\ge2$
+distinct odd prime factors then $2^r\mid\varphi(M)$, since $\varphi$ is
+multiplicative and $p-1$ is even for each odd prime $p$; so $4\mid\varphi(M)$
+and $4\mid\varphi(N)$, the quotient $\bigl(\varphi(M)+\varphi(N)\bigr)/2$ is an
+even integer, and $x\equiv M\equiv1\pmod2$. The same computation gives $y$ odd.
+\end{proof}
+
+All the proof uses is $n\ge1$ together with $4\mid\varphi(M)$ and
+$4\mid\varphi(N)$. The hypothesis on the number of prime factors cannot be
+dropped: $M=3$, $N=5$ give $\bigl(\varphi(M)+\varphi(N)\bigr)/2=3$ and hence
+$x=0$, even.
+
+\begin{theorem}\label{thm:main}
+Let $(A,B)$ be any amicable pair of type $(4,4)$ with $\gcd(A,B)=2^n$ exactly,
+$n\ge1$; that is, $A=2^nabcd$ and $B=2^nefgh$ with $a,\dots,h$ odd primes,
+$\{a,b,c,d\}$ and $\{e,f,g,h\}$ each of size four. Then neither \eqref{eq:Cy}
+nor \eqref{eq:Cx} holds, for any labelling of the eight primes. The same is
+true after transposing $x$ and $y$. In particular the two printed equations fail
+for every such pair, for every $n\ge1$, with no bound on $A$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:parity}, $x$ and $y$ are odd, so $x-1$ and $y-1$ are even. On
+the right of \eqref{eq:Cx}, $ab(c+d)+cd=abc+abd+cd$ is a sum of three products
+of odd numbers, hence odd, while $e+f+g+h$ is a sum of four odd numbers, hence
+even; so the right-hand side is $\mathrm{odd}-\mathrm{even}=\mathrm{odd}\neq
+x-1$. The right-hand side of \eqref{eq:Cy} has the same shape,
+$ef(g+h)+gh=efg+efh+gh$ odd and $a+b+c+d$ even, so it too is odd and cannot
+equal $y-1$. Both brackets are odd and both subtracted sums are even, so all
+four ways of pairing $x-1$ or $y-1$ against either right-hand side fail
+identically; in particular transposing $x$ and $y$ changes nothing. No step
+refers to the labelling, so all $576$ labellings fail at once.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:main} contradicts nothing proved in \cite{MA}. Its
+Theorem~2.1 gives $x=c+d-1$, odd; its Theorem~2.3 gives $x=(d+e)-(a+b+c)$,
+$\mathrm{even}-\mathrm{odd}$, odd; its Theorem~2.5 gives
+$x-1=[de+df+ef]-(a+b+c)$, $\mathrm{odd}-\mathrm{odd}$, even, so again $x$ is
+odd. All three are consistent with Lemma~\ref{lem:parity}.
+\end{remark}
+
+\section{A witness for the offset-free readings}
+
+The offsets $-1$ in \eqref{eq:Cy}--\eqref{eq:Cx} are not used consistently in
+\cite{MA}: the paper's first conjecture environment, the type-$(4,2)$ case, and
+its Theorem~2.3 carry no offset, while Theorem~2.5 and the display above do. A
+reader may therefore take the display without the offsets, and parity does not
+reach that reading: dropping the $-1$ makes the required bracket value odd,
+which is admissible. Rather than guess which typo was made, we settle every
+variant of the printed equations at once. Put
+\begin{align*}
+ \mathcal B_A&=ab(c+d)+cd, & \mathcal B_B&=ef(g+h)+gh,\\
+ \Sigma_A&=a+b+c+d, & \Sigma_B&=e+f+g+h,
+\end{align*}
+and call an equation \emph{admissible} if it has the form
+\begin{equation}\label{eq:sixteen}
+ L=\mathcal B-\Sigma,
+ \qquad
+ L\in\{x-1,\;y-1,\;x,\;y\},\quad
+ \mathcal B\in\{\mathcal B_A,\mathcal B_B\},\quad
+ \Sigma\in\{\Sigma_A,\Sigma_B\}.
+\end{equation}
+There are sixteen admissible equations. The two printed ones \eqref{eq:Cy} and
+\eqref{eq:Cx} are among them; so is each variant obtained by transposing $x$ and
+$y$, by swapping the two brackets, by swapping the two subtracted sums, by
+deleting the offsets, or by any combination.
+
+\begin{theorem}\label{thm:witness}
+Let
+\[
+ A=2^2\cdot11\cdot13\cdot149\cdot383=32642324,
+ \qquad
+ B=2^2\cdot17\cdot47\cdot79\cdot139=35095276.
+\]
+Then $(A,B)$ is an amicable pair of type $(4,4)$ with $\gcd(A,B)=4$ exactly,
+$x=807269$ and $y=1420507$, and \emph{no} one of the sixteen admissible
+equations \eqref{eq:sixteen} holds for \emph{any} labelling with
+$\{a,b,c,d\}=\{11,13,149,383\}$ and $\{e,f,g,h\}=\{17,47,79,139\}$.
+\end{theorem}
+
+\begin{proof}
+The factorisations are checked by multiplication: $11\cdot13=143$,
+$149\cdot383=57067$, $143\cdot57067=8160581$, $4\cdot8160581=32642324$; and
+$17\cdot47=799$, $79\cdot139=10981$, $799\cdot10981=8773819$,
+$4\cdot8773819=35095276$. All eight odd primes are distinct, so both odd parts
+are squarefree with four prime factors and $\gcd(A,B)=2^2$ exactly. Amicability:
+\begin{align*}
+ \sig(A)&=7\cdot12\cdot14\cdot150\cdot384=67737600,\\
+ \sig(B)&=7\cdot18\cdot48\cdot80\cdot140=67737600,\\
+ A+B&=32642324+35095276=67737600 .
+\end{align*}
+Next $\varphi(A)=2\cdot10\cdot12\cdot148\cdot382=13568640$ and
+$\varphi(B)=2\cdot16\cdot46\cdot78\cdot138=15844608$, so $S=29413248$,
+$A-S=3229076=4\cdot807269$ and $B-S=5682028=4\cdot1420507$, giving
+$x=807269$ and $y=1420507$; both are odd, as Lemma~\ref{lem:parity} requires.
+
+The bracket $[pq(r+s)+rs]$ is unchanged by swapping $p\leftrightarrow q$ or
+$r\leftrightarrow s$, so over a four-element set it takes at most
+$\binom{4}{2}=6$ values, each realised by exactly $4$ of the $24$ orderings.
+Over $\{11,13,149,383\}$ the six values are
+\[
+ 133143,\quad 654023,\quad 684443,\quad 767391,\quad 798279,\quad 1369751,
+\]
+computed for instance as $143\cdot532+57067=133143$ and
+$57067\cdot24+143=1369751$; over $\{17,47,79,139\}$ they are
+\[
+ 185163,\quad 256331,\quad 301451,\quad 581591,\quad 628511,\quad 703583,
+\]
+the largest being $10981\cdot64+799=703583$. All twelve values are odd. Finally
+$\Sigma_A=556$ and $\Sigma_B=282$, both even.
+
+An admissible equation $L=\mathcal B-\Sigma$ asserts $\mathcal B=L+\Sigma$, so it
+is enough to compare the eight numbers $L+\Sigma$ with the two six-element sets
+above. For $L\in\{x-1,y-1\}=\{807268,1420506\}$ the value $L+\Sigma$ is even,
+while every achievable $\mathcal B$ is odd: this disposes of eight equations at
+once, in agreement with Theorem~\ref{thm:main}. For $L\in\{x,y\}$ the value
+$L+\Sigma$ is odd, so parity is silent and we compare values:
+\begin{align*}
+ x+\Sigma_B&=807551, & x+\Sigma_A&=807825,\\
+ y+\Sigma_B&=1420789, & y+\Sigma_A&=1421063 .
+\end{align*}
+None of the four is one of the six values over $\{11,13,149,383\}$, and all four
+exceed $703583$, the largest value over $\{17,47,79,139\}$. That is the
+remaining eight equations.
+\end{proof}
+
+\section{The corrected identity}
+
+\begin{proposition}\label{prop:true}
+Let $(A,B)$ be an amicable pair with $A=2^nM$, $B=2^nN$, $n\ge1$,
+$M=p_1p_2p_3p_4$ and $N=q_1q_2q_3q_4$ squarefree and odd. Write $E_k=e_k(p)$
+and $F_k=e_k(q)$ for the elementary symmetric functions. Then
+\begin{equation}\label{eq:true}
+ x=F_3+F_1-E_2-1,
+ \qquad
+ y=E_3+E_1-F_2-1 .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From $\sig(A)=\sig(B)$ and $\sig(2^n)=2^{n+1}-1$ we get
+$\prod_i(p_i+1)=\prod_j(q_j+1)$; call this common value $T$, so
+\[
+ T=E_4+E_3+E_2+E_1+1=F_4+F_3+F_2+F_1+1 .
+\]
+Expanding $\varphi(M)=\prod_i(p_i-1)$ gives
+$\varphi(M)=E_4-E_3+E_2-E_1+1=T-2(E_3+E_1)$, and likewise
+$\varphi(N)=T-2(F_3+F_1)$. Substituting into \eqref{eq:xred},
+\[
+ x=M-\frac{\varphi(M)+\varphi(N)}{2}
+  =E_4-T+(E_3+E_1)+(F_3+F_1)
+  =F_3+F_1-E_2-1 ,
+\]
+the last step by $E_4-T=-(E_3+E_2+E_1+1)$. The formula for $y$ is symmetric.
+\end{proof}
+
+On the witness, $E_1=556$, $E_2=69978$, $E_3=1445684$, $F_1=282$, $F_2=25732$,
+$F_3=876966$, and \eqref{eq:true} reads $876966+282-69978-1=807269=x$ and
+$1445684+556-25732-1=1420507=y$.
+
+The only non-arithmetic input to Proposition~\ref{prop:true} is
+$\prod_i(p_i+1)=\prod_j(q_j+1)$, which \cite{MA} itself derives twice and which
+is standard breeder machinery in the sense of Borho and Hoffmann \cite{BH}. We
+record \eqref{eq:true} because it locates the error, not because it is
+difficult, and we claim it as a correction and not as a result: we did not
+obtain the full texts of \cite{BH}, \cite{Costello} or \cite{GPtR}, and whether
+\eqref{eq:true} is already in print we leave open. The bracket $[ab(c+d)+cd]$ is
+a factored writing of $e_2$ for \emph{three} letters --- three monomials, hence
+odd --- carried typographically to \emph{four} letters, where by \eqref{eq:true}
+the coefficient is $e_3$ with four monomials, hence even; in the corrected form
+$x-1=F_3+F_1-E_2-2$ is even, as Lemma~\ref{lem:parity} demands.
+
+\section{Scope and verification}
+
+Theorem~\ref{thm:main} settles the two printed equations, in both the strict and
+the charitable reading of the labelling, for every amicable pair of type $(4,4)$
+with $\gcd(A,B)=2^n$ exactly; Theorem~\ref{thm:witness} settles all sixteen
+admissible variants \eqref{eq:sixteen}, including the offset-free ones, on one
+explicit pair. The offset-free variants in general are left open: parity does not
+apply to them and no general argument is offered here. The other conjecture
+environment of \cite{MA}, the type-$(4,2)$ case, which carries no offsets, is
+not treated here, and no statement of \cite{MA} other than
+\eqref{eq:Cy}--\eqref{eq:Cx} is refuted here.
+
+The program accompanying this note reads the witness exactly as printed above,
+in integer arithmetic only, and re-derives every number in
+Theorems~\ref{thm:main}--\ref{thm:witness} and Proposition~\ref{prop:true},
+including all $576$ labellings against all sixteen admissible equations
+\eqref{eq:sixteen}, the parity lemma over an independent family of $4845$
+squarefree odd $M$ that involves no amicable pair at all, seven further amicable
+pairs of type $(4,4)$ from their prime factors alone, and the three identities
+\cite{MA} proves. The program
+restates its own limits in a scope block; in particular it checks mathematics
+and not bibliography, so the wording quoted in Section~1 and the description of
+\cite{MA} are not re-verified there.
+
+\begin{thebibliography}{9}
+
+\bibitem{BH}
+W.~Borho and H.~Hoffmann,
+\emph{Breeding amicable numbers in abundance},
+Math. Comp. \textbf{46} (1986), no.~173, 281--293.
+\href{https://doi.org/10.1090/S0025-5718-1986-0815849-1}
+{doi:10.1090/S0025-5718-1986-0815849-1}.
+
+\bibitem{Costello}
+P.~Costello,
+\emph{Amicable pairs of the form $(i,1)$},
+Math. Comp. \textbf{72} (2003), no.~241, 489--497.
+\href{https://doi.org/10.1090/S0025-5718-02-01414-8}
+{doi:10.1090/S0025-5718-02-01414-8}.
+
+\bibitem{GPtR}
+M.~Garcia, J.~M. Pedersen, and H.~J.~J. te~Riele,
+\emph{Amicable pairs, a survey},
+in: High Primes and Misdemeanours, Fields Inst. Commun. \textbf{41},
+Amer. Math. Soc., 2004, pp.~179--196.
+
+\bibitem{MA}
+A.~R. Mavaddat and S.~Alikhani,
+\emph{Amicable numbers and their connection to the Euler totient function},
+arXiv:2512.22319v1, 2025.
+\href{https://arxiv.org/abs/2512.22319v1}{arXiv:2512.22319v1}.
+
+\end{thebibliography}
+
+\end{document}

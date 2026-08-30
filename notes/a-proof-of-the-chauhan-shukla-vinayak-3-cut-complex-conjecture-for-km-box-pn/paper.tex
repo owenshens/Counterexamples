@@ -1,0 +1,378 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A proof of the Chauhan-Shukla-Vinayak conjecture on the 3-cut complex of K_m box P_n}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{conjecture*}{Conjecture 4.4 of Chauhan, Shukla and Vinayak}
+
+\DeclareMathOperator{\Cut}{\Delta}
+\newcommand{\Dual}[1]{#1^{\vee}}
+\newcommand{\Hred}{\widetilde H}
+\newcommand{\bbox}{\mathbin{\square}}
+
+\title[The 3-cut complex of a clique times a path]
+{A Proof of the Chauhan--Shukla--Vinayak Conjecture on the 3-Cut Complex of $K_m \bbox P_n$}
+
+\date{}
+
+\subjclass[2020]{05E45, 55U10, 05C76}
+\keywords{cut complex, Alexander dual, simplicial homology, Cartesian product of graphs,
+Betti number, nerve lemma}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ and $k \ge 1$, the $k$-cut complex $\Cut_k(G)$ is the simplicial complex whose
+facets are the sets $\sigma \subseteq V(G)$ with $|\sigma| = |V(G)| - k$ for which
+$G[V(G) \setminus \sigma]$ is disconnected. Chauhan, Shukla and Vinayak conjectured a closed form
+for $\Hred_*(\Cut_3(K_m \bbox P_n))$ for all $m, n \ge 3$. We prove it. The combinatorial
+Alexander dual of $\Cut_3(K_m \bbox P_n)$ is the complex whose \emph{maximal} faces of dimension
+at least two are exactly $n$ column simplices, $(n-1)\binom{m}{2}$ squares and $m(n-2)$ row
+triangles, sitting over the complete $1$-skeleton, and that complex has the homotopy type of a
+wedge of $(n-1)\binom{m-1}{2}$ two-spheres and $\frac{m}{2}(mn-m-2)(n-2)$ circles. All groups are
+free; there is no torsion in any degree.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Let $G$ be a graph on $N$ vertices and let $1 \le k \le N$. Following Bayer, Denker,
+Jeli\'c Milutinovi\'c, Rowlands, Sundaram and Xue \cite{BayerI}, the \emph{$k$-cut complex}
+$\Cut_k(G)$ is the simplicial complex on $V(G)$ whose facets are the sets
+$\sigma \subseteq V(G)$ with $|\sigma| = N-k$ such that the induced subgraph
+$G[V(G)\setminus\sigma]$ is disconnected. Equivalently, the facets are the complements of the
+$k$-subsets that induce a disconnected subgraph, so $\Cut_k(G)$ is pure of dimension $N-k-1$
+whenever it is non-empty.
+
+Write $K_m \bbox P_n$ for the Cartesian product of the complete graph $K_m$ with the path on $n$
+vertices: the vertex set is
+\begin{equation}\label{eq:host}
+  V = \{0,\dots,m-1\}\times\{0,\dots,n-1\},
+\end{equation}
+and, for distinct vertices,
+\begin{equation}\label{eq:adj}
+  (i,j) \sim (i',j')
+  \iff
+  \text{either } j = j' \text{ and } i \ne i',
+  \text{ or } i = i' \text{ and } |j-j'| = 1.
+\end{equation}
+So $K_m \bbox P_n$ is $n$ disjoint copies of $K_m$, which we call \emph{columns}, joined by
+perfect matchings between consecutive columns. Throughout, $N = mn$, $G = K_m \bbox P_n$ and
+$\Cut_3 = \Cut_3(G)$, which is pure of dimension $mn-4$.
+
+Chauhan, Shukla and Vinayak \cite[Conjecture~4.4]{CSV} state the following, on the basis of
+SageMath computations of $\Hred_*(\Cut_3(K_m\bbox P_n))$ for small $m$ and $n$.
+
+\begin{conjecture*}
+For $m, n \ge 3$,
+\[
+  \Hred_i\bigl(\Cut_3(K_m \bbox P_n)\bigr)
+  =
+  \begin{cases}
+    \mathbb Z^{\frac12(m^2-3m+2)(n-1)} & \text{if } i = mn-5,\\
+    \mathbb Z^{\frac{m}{2}(mn-m-2)(n-2)} & \text{if } i = mn-4,\\
+    0 & \text{otherwise.}
+  \end{cases}
+\]
+\end{conjecture*}
+
+Put
+\begin{equation}\label{eq:AB}
+\begin{aligned}
+  A(m,n) &= \tfrac12(m^2-3m+2)(n-1) = (n-1)\binom{m-1}{2},\\
+  B(m,n) &= \tfrac{m}{2}(mn-m-2)(n-2).
+\end{aligned}
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+For all $m,n \ge 3$ and with integer coefficients,
+\[
+  \Hred_i(\Cut_3(K_m \bbox P_n))
+  =
+  \begin{cases}
+    \mathbb Z^{A(m,n)} & i = mn-5,\\
+    \mathbb Z^{B(m,n)} & i = mn-4,\\
+    0 & \text{otherwise,}
+  \end{cases}
+\]
+and both groups are free: there is no torsion in any degree. In particular Conjecture~4.4 of
+\cite{CSV} holds.
+\end{theorem}
+
+\section{The Alexander dual}
+
+For a complex $\Delta$ on a vertex set $V$ with $|V| = N$, the \emph{combinatorial Alexander dual}
+is $\Dual{\Delta} = \{S \subseteq V : V\setminus S \notin \Delta\}$, and Alexander duality
+\cite[Theorem~5.6]{MillerSturmfels} gives, for every $i$,
+\begin{equation}\label{eq:AD}
+  \Hred_i(\Delta;\mathbb Z) \cong \Hred^{\,N-i-3}(\Dual{\Delta};\mathbb Z).
+\end{equation}
+Write $\Dual{\Cut_3}$ for the dual of $\Cut_3(G)$ on $V$.
+
+\begin{lemma}\label{lem:matching}
+$S \in \Dual{\Cut_3}$ if and only if every $3$-subset of $S$ induces a connected subgraph of $G$,
+equivalently if and only if the non-edges of $G[S]$ form a matching.
+\end{lemma}
+
+\begin{proof}
+$V \setminus S \in \Cut_3$ means that $V\setminus S$ lies in some facet $V\setminus T$ with
+$|T|=3$ and $G[T]$ disconnected, which happens if and only if $T \subseteq S$ for some such $T$.
+Hence $S \in \Dual{\Cut_3}$ if and only if no $3$-subset of $S$ induces a disconnected subgraph. A
+graph on three vertices is connected exactly when it has at least two edges, i.e.\ at most one
+non-edge; so the condition says that no two non-edges of $G[S]$ lie inside a common triple, i.e.\
+that no two non-edges of $G[S]$ share a vertex.
+\end{proof}
+
+Equivalently: \emph{every vertex of $S$ has at most one non-neighbour in $S$.} We use that form.
+Write $\Sigma_j = \{0,\dots,m-1\}\times\{j\}$ for the $j$-th column.
+
+\begin{lemma}\label{lem:T0}
+Let $m,n\ge3$. Then $\Dual{\Cut_3}$ contains all $\binom{mn}{2}$ pairs of vertices, and its
+maximal faces of dimension at least $2$ are exactly the following three families:
+\begin{itemize}
+  \item the $n$ \emph{column simplices} $\Sigma_j$, of dimension $m-1$ \quad ($G[\Sigma_j]=K_m$,
+        no non-edge);
+  \item the $(n-1)\binom{m}{2}$ \emph{squares} $Q_{j,\{a,b\}} = \{a,b\}\times\{j,j+1\}$, of
+        dimension $3$, for $0 \le j \le n-2$ and $a<b$ \quad (two disjoint non-edges,
+        $(a,j)(b,j{+}1)$ and $(b,j)(a,j{+}1)$);
+  \item the $m(n-2)$ \emph{row triangles} $T_{i,j} = \{(i,j),(i,j{+}1),(i,j{+}2)\}$, of
+        dimension $2$, for $0\le j \le n-3$ \quad (one non-edge, $(i,j)(i,j{+}2)$).
+\end{itemize}
+Every other maximal face of $\Dual{\Cut_3}$ is an edge.
+\end{lemma}
+
+\begin{proof}
+Each pair of vertices spans at most one non-edge, so all pairs are faces by
+Lemma~\ref{lem:matching}, and each of the three listed sets is a face by the parenthetical
+computation beside it. Conversely let $S \in \Dual{\Cut_3}$ with $|S| \ge 3$ and let
+$J = \{j : S \cap \Sigma_j \ne \emptyset\}$. Note from \eqref{eq:adj} that for $j<j'$ the
+vertices $(i,j)$ and $(i',j')$ are adjacent if and only if $i=i'$ and $j'=j+1$.
+
+If $|J|=1$ then $S \subseteq \Sigma_j$.
+
+Let $|J| = 2$, say $J=\{j,j'\}$ with $j<j'$, and put $p = |S\cap\Sigma_j|$,
+$q=|S\cap\Sigma_{j'}|$. If $j' \ge j+2$ then every one of the $pq$ cross pairs is a non-edge, so
+each of the $p+q \ge 3$ vertices has $\ge \min(p,q) \ge 1$ non-neighbours and some vertex has
+$\ge2$; impossible. So $j'=j+1$. A vertex $(i,j)\in S$ is non-adjacent to every $(i',j+1)\in S$
+with $i'\ne i$, hence has at least $q-1$ non-neighbours, so $q \le 2$; symmetrically $p\le2$. If
+$p=q=2$, with rows $\{a,b\}$ in column $j$ and $\{c,d\}$ in column $j+1$, then $a \in \{c,d\}$
+and $b\in\{c,d\}$ (else $(a,j)$ or $(b,j)$ has two non-neighbours), so $\{c,d\}=\{a,b\}$ and
+$S = Q_{j,\{a,b\}}$. If $p=2$, $q=1$, with rows $\{a,b\}$ and $\{c\}$, then $c \in \{a,b\}$ and
+$S \subseteq Q_{j,\{a,b\}}$; the case $p=1$, $q=2$ is symmetric.
+
+Let $|J|\ge3$ and let $j_1<j_2<j_3$ be the three smallest elements of $J$. Fix
+$u \in S\cap\Sigma_{j_1}$. Every vertex of $S \cap \Sigma_{j_3}$ is a non-neighbour of $u$, since
+$j_3 \ge j_1+2$; and every vertex of $S\cap\Sigma_{j_2}$ is a non-neighbour of $u$ except, when
+$j_2 = j_1+1$, the one in $u$'s own row. As $u$ has at most one non-neighbour and both
+$S\cap\Sigma_{j_2}$ and $S\cap\Sigma_{j_3}$ are non-empty, this forces $j_2 = j_1+1$,
+$|S\cap\Sigma_{j_2}|=1$ with that vertex in $u$'s row, $|S\cap\Sigma_{j_3}|=1$, and $|J|=3$
+(a fourth column $j_4 \ge j_1+3$ would give $u$ a second non-neighbour). Running the same argument
+downwards from $w \in S \cap \Sigma_{j_3}$ gives $j_2 = j_3-1$, $|S\cap\Sigma_{j_1}|=1$ and the
+$\Sigma_{j_2}$ vertex in $w$'s row. Hence $j_3=j_1+2$ and $S$ is one vertex in each of three
+consecutive columns, all in one row: $S = T_{i,j_1}$.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Fix $m,n\ge3$ and let $Y \subseteq \Dual{\Cut_3}$ be the subcomplex generated by the faces of
+dimension at least $2$, that is, by the three families of Lemma~\ref{lem:T0}. We use twice the
+following standard fact: if a simplicial complex is $X = X_1 \cup X_2$ with $X_1 \cap X_2$ a
+non-empty contractible subcomplex, then $X \simeq X_1 \vee X_2$; in particular if $X_2$ is
+contractible then $X \simeq X_1$. (Collapsing the contractible subcomplex $X_1 \cap X_2$ is a
+homotopy equivalence, and the quotient is the wedge.)
+
+\medskip
+\noindent\textbf{Step 1: the edges, and $\Dual{\Cut_3} \simeq Y \vee \bigvee_E S^1$.}
+An edge of $Y$ lies in one of the three generating families, and conversely, so the edges of $Y$
+are exactly
+\begin{equation}\label{eq:Yedges}
+  \underbrace{n\binom{m}{2}}_{\text{inside a column}}
+  \;+\;
+  \underbrace{m^2(n-1)}_{\text{between consecutive columns}}
+  \;+\;
+  \underbrace{m(n-2)}_{\text{skip edges }(i,j)(i,j+2)}.
+\end{equation}
+Indeed $\Sigma_j$ contributes precisely the column pairs; $Q_{j,\{a,b\}}$ contributes column pairs
+together with the four cross pairs $\{a,b\}\times\{j\} \to \{a,b\}\times\{j+1\}$, and as
+$\{a,b\}$ runs over all pairs these give every one of the $m^2$ pairs between columns $j$ and
+$j+1$ (for $a=b$ use any $Q_{j,\{a,c\}}$, $c \ne a$, which needs $m \ge 2$); and $T_{i,j}$
+contributes two consecutive-column pairs and the skip pair $(i,j)(i,j+2)$. No generator contains a
+pair of vertices in columns at distance $\ge 3$, or at distance $2$ in different rows. The three
+classes in \eqref{eq:Yedges} are disjoint, so
+\begin{equation}\label{eq:E}
+  E := \binom{mn}{2} - n\binom{m}{2} - m^2(n-1) - m(n-2)
+\end{equation}
+pairs of vertices are edges of $\Dual{\Cut_3}$ but not of $Y$. Now $Y$ contains every vertex and
+is connected (each column is a simplex and consecutive columns are joined), and by
+Lemma~\ref{lem:T0} $\Dual{\Cut_3}$ is $Y$ with those $E$ further $1$-cells attached. Attaching a
+$1$-cell to a connected complex along two of its vertices is, up to homotopy, wedging on a circle;
+hence
+\[
+  \Dual{\Cut_3} \;\simeq\; Y \vee \textstyle\bigvee_{E} S^1 .
+\]
+
+\medskip
+\noindent\textbf{Step 2: $E = B(m,n)$, identically.}
+Both sides of \eqref{eq:E} and \eqref{eq:AB} are polynomials in $m$ and $n$, and both expand to
+\[
+  \tfrac12\bigl(m^2n^2 - 3m^2n + 2m^2 - 2mn + 4m\bigr),
+\]
+so $E = B(m,n)$ for all $m,n$; this is an identity of coefficients, not a check at sample values.
+
+\medskip
+\noindent\textbf{Step 3: the two-column block $\mathcal B_k \simeq \bigvee_{\binom{m-1}{2}} S^2$.}
+For $0 \le k \le n-2$ let $\mathcal B_k \subseteq Y$ be the subcomplex generated by $\Sigma_k$,
+$\Sigma_{k+1}$ and the $\binom{m}{2}$ squares $Q_{k,\{a,b\}}$.
+
+Cover $\mathcal B_k$ by those $\binom m2 + 2$ simplices. Every non-empty intersection of a
+subfamily is again a simplex, hence contractible: the intersection of simplices is the simplex on
+the intersection of their vertex sets, and here
+$\Sigma_k \cap \Sigma_{k+1} = \emptyset$,
+$\Sigma_k \cap Q_{k,\{a,b\}}$ is the edge $\{a,b\}\times\{k\}$,
+$Q_{k,\{a,b\}} \cap Q_{k,\{c,d\}}$ is the simplex on $(\{a,b\}\cap\{c,d\})\times\{k,k+1\}$, and
+adjoining $\Sigma_k$ or $\Sigma_{k+1}$ to a subfamily of squares with common row set
+$R = \bigcap\{a_t,b_t\}$ gives $R\times\{k\}$ or $R\times\{k+1\}$. By the nerve lemma
+\cite[Theorem~10.6]{Bjorner}, $\mathcal B_k$ is homotopy equivalent to the nerve $\mathcal N$ of
+this cover.
+
+Let $\mathcal K$ be the simplicial complex whose vertices are the $\binom m2$ pairs
+$\{a,b\}\subseteq[m]$ and whose faces are the families of pairs having a common element. Reading
+off the previous paragraph: a family of squares is a face of $\mathcal N$ if and only if its row
+sets have a common element, i.e.\ $\mathcal K$ is the induced subcomplex of $\mathcal N$ on the
+square-vertices; each such face may be enlarged by $\Sigma_k$ or by $\Sigma_{k+1}$ but not by
+both, and $\{\Sigma_k,\Sigma_{k+1}\}$ alone is not a face. Hence $\mathcal N$ is the union of two
+cones over $\mathcal K$ glued along $\mathcal K$, i.e.\ $\mathcal N = \operatorname{Susp}(\mathcal K)$.
+
+Finally, apply the nerve lemma a second time, to $\mathcal K$. For $a \in [m]$ let $\Lambda_a$ be
+the full simplex spanned by the $m-1$ pairs containing $a$. Each face of $\mathcal K$ has a common
+element $a$ and so is a face of $\Lambda_a$; hence the $\Lambda_a$ cover $\mathcal K$. Again the
+intersection of full simplices is the simplex on the intersection of their vertex sets, so for
+distinct $a,b,c$ we get $\Lambda_a \cap \Lambda_b = \{\{a,b\}\}$, a single vertex, and
+$\Lambda_a \cap \Lambda_b \cap \Lambda_c = \emptyset$. Every non-empty intersection of a subfamily
+is therefore a simplex, and the nerve of this cover has one vertex for each $a \in [m]$, one edge
+for each pair $\{a,b\}$ and no face of dimension $\ge 2$: it is the graph $K_m$. So
+$\mathcal K \simeq K_m$, a connected graph with $m$ vertices and $\binom m2$ edges, whence
+$\mathcal K \simeq \bigvee_{\binom m2 - m + 1} S^1 = \bigvee_{\binom{m-1}{2}} S^1$ and
+\begin{equation}\label{eq:block}
+  \mathcal B_k \;\simeq\; \operatorname{Susp}\Bigl(\textstyle\bigvee_{\binom{m-1}2}S^1\Bigr)
+  \;\simeq\; \textstyle\bigvee_{\binom{m-1}{2}} S^2 .
+\end{equation}
+In particular $\Hred_1(\mathcal B_k) = 0$, $\Hred_2(\mathcal B_k) = \mathbb Z^{\binom{m-1}2}$ and
+$\Hred_j(\mathcal B_k)=0$ otherwise, all free.
+
+\medskip
+\noindent\textbf{Step 4: $Y \simeq \bigvee_{A} S^2$.}
+Let $Y_0 = \mathcal B_0 \cup \dots \cup \mathcal B_{n-2}$, which is the subcomplex of $Y$
+generated by the columns and the squares. Set $X_0 = \mathcal B_0$ and
+$X_{t+1} = X_t \cup \mathcal B_{t+1}$. The vertices of $X_t$ lie in columns $0,\dots,t+1$ and
+those of $\mathcal B_{t+1}$ in columns $t+1,t+2$, so $X_t \cap \mathcal B_{t+1}$ is a subcomplex of
+the simplex $\Sigma_{t+1}$, and it equals $\Sigma_{t+1}$ because $\Sigma_{t+1}$ lies in both.
+That is non-empty and contractible, so $X_{t+1} \simeq X_t \vee \mathcal B_{t+1}$ and, by
+\eqref{eq:block} and induction,
+\[
+  Y_0 \;\simeq\; \bigvee_{k=0}^{n-2}\mathcal B_k
+  \;\simeq\; \textstyle\bigvee_{(n-1)\binom{m-1}{2}} S^2
+  \;=\; \textstyle\bigvee_{A(m,n)} S^2 .
+\]
+Now adjoin the $m(n-2)$ row triangles one at a time, in any order. When $T_{i,j}$ is adjoined, its
+edges $(i,j)(i,j{+}1)$ and $(i,j{+}1)(i,j{+}2)$ are already present --- they are
+consecutive-column edges, from $\mathcal B_j$ and $\mathcal B_{j+1}$ --- while its third edge
+$(i,j)(i,j{+}2)$ is not, by \eqref{eq:Yedges} and because distinct row triangles have distinct
+skip edges. So the intersection of the (contractible) $2$-simplex $T_{i,j}$ with the complex built
+so far is the path $(i,j)-(i,j{+}1)-(i,j{+}2)$, which is contractible, and the homotopy type is
+unchanged. Hence
+\[
+  Y \;\simeq\; Y_0 \;\simeq\; \textstyle\bigvee_{A(m,n)} S^2 .
+\]
+
+\medskip
+\noindent\textbf{Step 5: Alexander duality.}
+Combining Steps 1, 2 and 4,
+\[
+  \Dual{\Cut_3} \;\simeq\;
+  \Bigl(\textstyle\bigvee_{A(m,n)}S^2\Bigr) \vee \Bigl(\textstyle\bigvee_{B(m,n)}S^1\Bigr),
+\]
+so $\Hred_1(\Dual{\Cut_3}) = \mathbb Z^{B}$, $\Hred_2(\Dual{\Cut_3}) = \mathbb Z^{A}$ and all
+other reduced homology vanishes; every group is free, so by the universal coefficient theorem the
+reduced cohomology is $\Hred^{1} = \mathbb Z^{B}$, $\Hred^{2} = \mathbb Z^{A}$ and $0$ elsewhere,
+with no $\operatorname{Ext}$ contribution. Feeding this into \eqref{eq:AD} with $N = mn$: the
+degree $j=1$ gives $i = mn-4$ and the group $\mathbb Z^{B(m,n)}$, the degree $j=2$ gives
+$i = mn-5$ and the group $\mathbb Z^{A(m,n)}$, and every other degree gives $0$. This is exactly
+the statement of Theorem~\ref{thm:main}. \qed
+
+\section{Scope}
+
+Theorem~\ref{thm:main} settles Conjecture~4.4 of \cite{CSV} as stated, for every $m,n\ge3$, with
+integer coefficients and with both groups free. Three limits should be stated.
+
+\begin{itemize}
+  \item The boundary lines $n=2$ and $m=2$ lie outside $m,n\ge3$ and are separately in print
+        \cite{BayerI, BayerII}; the closed form \eqref{eq:AB} agrees with them, and we claim no
+        priority for those two lines.
+  \item Only the \emph{ordinary} $3$-cut complex is treated. The total $k$-cut complex is a
+        different object, and the sibling Conjectures 4.3, 4.5 and 4.6 of \cite{CSV} are untouched
+        here.
+  \item Nothing here says $K_m \bbox P_n$ is the largest family to which the argument applies. The
+        proof uses only Lemma~\ref{lem:T0}, so it will transfer to any graph whose $3$-cut dual
+        decomposes into finitely many shapes; we have not looked for the general statement.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Artifact.}
+The proof above is by hand and needs no computation. Accompanying this note are \texttt{verify.py}
+(Python 3.9+, standard library only, no external data file, exact integer arithmetic, homology by
+an integer Smith normal form so that torsion is detected rather than assumed away) and the
+transcript \texttt{verify.output.txt} of a recorded run of it. The program checks ingredients of
+the proof at finitely many pairs $(m,n)$: the identification of $\Dual{\Cut_3}$ in
+Lemma~\ref{lem:T0}, the polynomial identities of \eqref{eq:AB} and \eqref{eq:E} and the duality
+degree shift, and the reduced homology of $\mathcal B_k$, of $Y$ and of $\Dual{\Cut_3}$, together
+with $\Cut_3$ itself computed directly at the three smallest cells. No finite computation can
+verify a statement about an infinite family; the theorem is settled by the proof above, and the
+accompanying \texttt{REVIEW\_NOTE.md} records what the program does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{BayerI}
+M.~Bayer, M.~Denker, M.~Jeli\'c Milutinovi\'c, R.~Rowlands, S.~Sundaram, and L.~Xue,
+\emph{Topology of cut complexes of graphs},
+SIAM J. Discrete Math. \textbf{38} (2024), no.~2, 1630--1675.
+\href{https://doi.org/10.1137/23M1569034}{doi:10.1137/23M1569034};
+\href{https://arxiv.org/abs/2304.13675}{arXiv:2304.13675}.
+
+\bibitem{BayerII}
+M.~Bayer, M.~Denker, M.~Jeli\'c Milutinovi\'c, S.~Sundaram, and L.~Xue,
+\emph{Topology of cut complexes II},
+SIAM J. Discrete Math. \textbf{39} (2025), no.~2, 1123--1157.
+\href{https://arxiv.org/abs/2407.08158}{arXiv:2407.08158}.
+
+\bibitem{Bjorner}
+A.~Bj\"orner,
+\emph{Topological methods},
+in: Handbook of Combinatorics, Vol.~2 (R.~L. Graham, M.~Gr\"otschel, L.~Lov\'asz, eds.),
+Elsevier, Amsterdam, 1995, pp.~1819--1872. (Nerve lemma: Theorem~10.6.)
+
+\bibitem{CSV}
+P.~Chauhan, S.~Shukla, and K.~Vinayak,
+\emph{Total $2$-cut complexes of powers of cycle graphs and Cartesian products of certain graphs},
+preprint, \href{https://arxiv.org/abs/2512.04486v1}{arXiv:2512.04486v1}.
+Statement numbers are quoted from that version.
+
+\bibitem{MillerSturmfels}
+E.~Miller and B.~Sturmfels,
+\emph{Combinatorial Commutative Algebra},
+Graduate Texts in Mathematics \textbf{227}, Springer, New York, 2005.
+(Combinatorial Alexander duality: Theorem~5.6.)
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,61 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  92a2e214a19ae8a9424e337e08c5266b98b2427f40b992c51cdf2e92883aeb2a
+python:  Python 3.9.25
+=== program output follows ===
+--- 1. the object, read from the sign matrix printed in the paper ---
+PASS paper-matrix-parsed [10 rows x 10 columns of +/- read from paper.tex]
+PASS hot-matrix [H[i][i]=+1, H[i][j]=-H[j][i], all 100 entries in {+1,-1}]
+PASS cold-matrix [C = H - I has zero diagonal, is skew and has 90 entries +/-1]
+PASS det-cold [det C = 33489 = 183^2, exact Bareiss]
+PASS det-hot [det H = 64000 = 125*2^9, exact Bareiss]
+PASS charpoly [det(xI-C) = 1 x^10 + 45 x^8 + 770 x^6 + 6210 x^4 + 23485 x^2 + 33489 x^0]
+PASS charpoly-even [every odd-degree coefficient vanishes, as it must for skew C]
+PASS charpoly-endpoints [p(0) = 33489 = det C and p(-1) = 1+45+770+6210+23485+33489 = 64000 = det H]
+PASS pfaffian [Pf(C) = -183, Pf(C)^2 = 33489 = det C]
+PASS trace-forces-45 [tr(C^T C) = 90 over 90 off-diagonal entries of modulus 1, so the x^8 coefficient is 45]
+PASS outdegrees [sorted out-degrees [3, 3, 4, 4, 4, 4, 4, 5, 5, 9]]
+PASS graph6 [graph6 I~~lkrMig over 31 edges {i<j : H[i][j]=+1}]
+--- 2. the invariance lemmas, and the bordering normal form ---
+PASS switching-invariance [all 2^9 = 512 diagonal switchings D (d_0 = +1 without loss): DCD stays cold and both determinants are unchanged]
+PASS permutation-invariance [55 permutations (identity, all 45 transpositions, all 9 rotations): det C, det H and the whole characteristic polynomial are unchanged]
+PASS bordering-normal-form [on 2000 pseudo-random order-10 cold matrices (seed 20260829) the explicit switching d_j = c_{0j} makes row 0 all +1 and changes neither determinant]
+PASS paper-object-is-bordered [the paper matrix is already in bordered form; its 9-vertex tournament has scores [3, 3, 4, 4, 4, 4, 4, 5, 5]]
+--- 3. the covering ---
+PASS tournament-class-counts [isomorphism classes on 1..8 vertices: [1, 1, 2, 4, 12, 56, 456, 6880], the published A000568]
+PASS canonical-form-complete [the 456 seven-vertex codes are pairwise distinct and each is fixed by 10 pseudo-random relabellings -- 4560 relabellings in all]
+PASS canon-classes-are-orbits-n5-exhaustive [all 1024 labelled 5-vertex tournaments: the canonical code takes exactly 12 = A000568(5) values, and each code class is precisely one full 120-relabelling orbit, of size 120/|Aut|]
+PASS canon-classes-are-orbits-n6-exhaustive [all 32768 labelled 6-vertex tournaments: exactly 56 = A000568(6) canonical codes, each code class of size 720/|Aut| computed over all 720 relabellings, sizes summing to 32768]
+PASS aut-cell-equals-aut-full [for all 532 representatives on 1..7 vertices, counting automorphisms over the score-preserving permutations agrees with counting over all k! relabellings (456 * 5040 at k = 7 alone)]
+PASS canon-code-realized-k8 [each of the 6880 order-8 codes is the exact upper-triangle code of an explicit relabelling of its representative, and the 6880 codes are pairwise distinct; hence equal codes force an isomorphism and the dedup inside class_reps can merge no two distinct classes]
+PASS class-set-complete-and-irredundant [for every k = 2..8 the orbit sizes k!/|Aut| of the representatives sum to exactly 2^(k(k-1)/2) labelled tournaments: [2, 8, 64, 1024, 32768, 2097152, 268435456]; at k = 8 that is 6880 classes summing to 268435456, so the list is complete AND has no repeated class]
+PASS covering-property [3000 pseudo-random 9-vertex tournaments: deleting vertex 8 always leaves an 8-vertex tournament isomorphic to one of the 6880 representatives]
+PASS covering-size [6880 * 2^8 = 1761280 leaves cover every switching-and-permutation class of order-10 cold matrices]
+--- 4. the published small cells ---
+PASS brute-force-n4 [all 64 labelled cold matrices: f_k(4) = 9, g_k(4) = 16, violA = 0, violB = 0]
+PASS brute-force-n6 [all 32768 labelled cold matrices: f_k(6) = 81, g_k(6) = 160, violA = 0, violB = 0]
+PASS brute-force-n6-argmax-count [exactly 1280 of the 32768 labelled matrices attain f_k(6), the same 1280 attain g_k(6)]
+PASS covering-n4 [2 classes of 3-vertex tournaments: f_k(4) = 9, g_k(4) = 16, violA = violB = 0]
+PASS covering-n6 [12 classes of 5-vertex tournaments: f_k(6) = 81, g_k(6) = 160, violA = violB = 0]
+PASS covering-n8 [456 classes of 7-vertex tournaments: f_k(8) = 2401, g_k(8) = 4096, violA = violB = 0]
+PASS pfaffian-spectrum-n8 [the 18 achieved order-8 cold Pfaffians are [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 31, 33, 35, 49] -- 29 is absent]
+--- 5. the n = 10 census ---
+PASS census-leaves [1761280 leaves enumerated, expected 6880 * 256 = 1761280]
+PASS census-max-cold [f_k(10) = max det C over every order-10 cold matrix = 33489 = 183^2]
+PASS census-max-hot [g_k(10) = max det H over every order-10 hot matrix = 64000 = 125*2^9]
+PASS census-side-constraints [on all 1761280 leaves: det C is an odd perfect square, det H > 0 and 2^9 divides det H]
+PASS census-lin-both-directions [violA (det C = f_k but det H < g_k) = 0, violB (det H = g_k but det C < f_k) = 0, and the two argmax sets are the same 9 leaves]
+PASS census-pfaffian-spectrum-n10 [the 77 achieved order-10 cold Pfaffians are exactly the published set; the 15 odd values 131,145,149,151,155,157,159,163,167,169,171,173,177,179,181 do not occur]
+PASS census-orrick-forced-positive [both order-reversing pairs (det H, det C) = (45056, 21609) and (46080, 20449) occur as leaves, so the census can exhibit the shape of a counterexample]
+PASS census-uniqueness [9 winning leaves collapse to exactly 1 isomorphism class of 9-vertex tournaments, the same class for both maxima; hence exactly one switching-and-permutation class of order-10 cold matrices attains either maximum]
+PASS census-winner-is-the-paper-object [the unique maximising class is the one exhibited in the paper (canonical code 60315875101)]
+PASS census-two-engines-agree [860 leaves recomputed by the division-checked determinant routine, 0 disagreements]
+PASS bareiss-divisions-exact [0 inexact divisions over every call to the division-checked routine in this run]
+
+NOT RE-RUN: only the cell n = 10 is decided here. Orders 18, 22 and 30 -- the remaining cases of Lin's question below 30 -- are not touched, and the bordering-plus-covering method does not reach them: n = 18 would need the isomorphism classes of 17-vertex tournaments.
+NOT RE-RUN: the four censuses reported in our own working notes (two C programs, one numpy batch pass, one min-code canonical form) are not re-executed; this program is a fourth, independently written, pure-Python census, and it agrees with them.
+NOT RE-RUN: nothing here checks a bibliographic claim. That f_k(10) = 33489 was already proved by Klanderman, Montee, Piotrowski, Rice and Shader, and that both values were already reported by Alvarez, Armario, Frau and Gudiel, are statements about the literature; the only literature datum this program touches is the published order-10 Pfaffian spectrum, which it reproduces.
+NOT RE-RUN: the identification of this witness with the order-10 cocyclic matrix of Alvarez et al. is deduced from uniqueness, not computed -- that paper prints no order-10 matrix to compare against.
+
+VERDICT: ALL 43 CHECKS PASS
+=== program exited with status 0 ===

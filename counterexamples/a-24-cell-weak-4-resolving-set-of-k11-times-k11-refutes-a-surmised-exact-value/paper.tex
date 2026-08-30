@@ -1,0 +1,501 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 24-cell weak 4-resolving set of K11 x K11 refutes a surmised exact value}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\wdim}{wdim}
+
+\title[A 24-cell weak 4-resolving set of $K_{11}\times K_{11}$]
+{A 24-cell weak 4-resolving set of $K_{11}\times K_{11}$
+ refutes a surmised exact value}
+
+\date{}
+
+\subjclass[2020]{05C12, 05C76, 05C35}
+\keywords{weak $k$-metric dimension, weak $k$-resolving set, direct product,
+tensor product, complete graph, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For a connected graph $G$ and an integer $k\ge1$, a set $S\subseteq V(G)$ is
+\emph{weak $k$-resolving} if
+$\Delta_S(x,y):=\sum_{z\in S}\lvert d(x,z)-d(y,z)\rvert\ge k$ for every pair of
+distinct vertices $x,y$, and $\wdim_k(G)$ is the least size of such a set.
+Farhan, Kuziak and Yero prove that
+$\wdim_4(K_n\times K_n)\le 2n+1+\lfloor n/4\rfloor$ for every $n\ge9$ and
+wonder, in the first item of their concluding remarks, whether this upper bound
+is the exact value. It is not. We exhibit a $24$-cell weak $4$-resolving set of
+$K_{11}\times K_{11}$, prove the matching lower bound
+$\wdim_4(K_n\times K_n)\ge 2n+\lceil 2n/11\rceil$ for every $n\ge4$, and
+conclude
+\[
+  \wdim_4(K_n\times K_n)=2n+\lfloor n/4\rfloor=24,\,27,\,29,\,31
+  \quad\text{for } n=11,12,13,14,
+\]
+one less than the surmised $25,28,30,32$ in each case, together with the
+infinite family $\wdim_4(K_{11m}\times K_{11m})=24m$ for every $m\ge1$. The
+upper bound of the source is true and is not contradicted.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+All graphs are finite, simple and connected. For vertices $x,y$ of $G$ and
+$S\subseteq V(G)$ put
+\[
+  \Delta_S(x,y)=\sum_{z\in S}\bigl\lvert d(x,z)-d(y,z)\bigr\rvert .
+\]
+Following Peterin, Sedlar, \v{S}krekovski and Yero \cite{PSSY}, $S$ is a
+\emph{weak $k$-resolving set} of $G$ if $\Delta_S(x,y)\ge k$ for every pair of
+distinct $x,y\in V(G)$, and the \emph{weak $k$-metric dimension} $\wdim_k(G)$
+is the smallest cardinality of a weak $k$-resolving set. The condition is
+imposed on \emph{every} pair, including pairs of vertices that lie in $S$.
+
+The \emph{direct} (tensor, categorical) product $G\times H$ has vertex set
+$V(G)\times V(H)$, with $(g,h)$ adjacent to $(g',h')$ if and only if
+$gg'\in E(G)$ \emph{and} $hh'\in E(H)$. Throughout, $n\ge3$ and we identify
+$V(K_n\times K_n)$ with the cells of an $n\times n$ array,
+$[n]\times[n]$, written $(\text{row},\text{column})$ and indexed from $1$. For
+$n\ge3$ the graph $K_n\times K_n$ is connected of diameter $2$, and for
+$u=(i,j)$, $v=(i',j')$,
+\begin{equation}\label{eq:dist}
+  d(u,v)=
+  \begin{cases}
+    0,&u=v,\\
+    1,&i\ne i'\ \text{and}\ j\ne j',\\
+    2,&\text{otherwise (exactly one coordinate agrees).}
+  \end{cases}
+\end{equation}
+The Cartesian analogue is settled: $\wdim_4(K_n\,\square\,K_n)=2n$, a special
+case of the treatment of Hamming graphs in \cite{FKKMY}.
+
+\subsection*{The statement under test}
+
+A.~Farhan, D.~Kuziak and I.~G. Yero, \emph{The weak $k$-metric dimension of the
+direct product of complete graphs} \cite{FKY}, determine
+$\wdim_k(K_n\times K_n)$ for every $n\ge4$ and every admissible $k$ except
+$k=4$, where they prove an upper bound. In the notation of \cite{FKY},
+Theorem~3.3 reads
+\begin{equation}\label{eq:thm33}
+  \wdim_4(K_n\times K_n)\le 2n+1+\Bigl\lfloor\frac n4\Bigr\rfloor
+  \qquad\text{for every integer } n\ge9 ,
+\end{equation}
+and the first item of the concluding remarks of \cite{FKY}, introduced by
+``the following open questions might be of interest'', reads verbatim
+\begin{quote}\small
+``Since the case $k=4$ is the only one in which an exact formula was not
+deduced, it is clearly of interest to complete this case, and we wonder on
+whether the exact value is precisely that shown as an upper bound in
+Theorem~[3.3].''
+\end{quote}
+The bracketed number replaces a cross-reference of the source, which resolves to
+Theorem~3.3, i.e.\ to \eqref{eq:thm33}. Resolved into a quantified statement,
+what is surmised is
+\begin{equation}\label{eq:surmise}
+  \wdim_4(K_n\times K_n)=2n+1+\Bigl\lfloor\frac n4\Bigr\rfloor
+  \qquad\text{for every integer } n\ge9 .
+\end{equation}
+It carries no statement number in \cite{FKY}, which is why it is quoted in full
+rather than cited by number.
+
+\subsection*{Results}
+
+\begin{theorem}\label{thm:main}
+The set of $24$ cells
+\begin{equation}\label{eq:S}
+\begin{aligned}
+ S=\{&(1,1),(1,10),(2,1),(2,11),(3,2),(3,10),(4,2),(4,11),\\
+     &(5,3),(5,10),(6,3),(6,11),(7,4),(7,5),(8,6),(8,7),\\
+     &(9,8),(9,9),(10,4),(10,6),(10,8),(11,5),(11,7),(11,9)\}
+\end{aligned}
+\end{equation}
+is a weak $4$-resolving set of $K_{11}\times K_{11}$. Hence
+$\wdim_4(K_{11}\times K_{11})\le 24<25=2\cdot11+1+\lfloor11/4\rfloor$, and
+\eqref{eq:surmise} is false.
+\end{theorem}
+
+\begin{theorem}\label{thm:lower}
+For every integer $n\ge4$,
+\[
+  \wdim_4(K_n\times K_n)\ \ge\ 2n+\Bigl\lceil\frac{2n}{11}\Bigr\rceil .
+\]
+\end{theorem}
+
+\begin{theorem}\label{thm:exact}
+For $n=11,12,13,14$,
+\[
+  \wdim_4(K_n\times K_n)=2n+\Bigl\lfloor\frac n4\Bigr\rfloor
+  =24,\ 27,\ 29,\ 31 ,
+\]
+which is exactly one less than the value $25,28,30,32$ surmised in
+\eqref{eq:surmise}. Moreover
+$\wdim_4(K_{11m}\times K_{11m})=24m$ for every integer $m\ge1$, whereas
+\eqref{eq:surmise} gives $22m+1+\lfloor 11m/4\rfloor$ there; the gap
+$1+\lfloor 11m/4\rfloor-2m$ grows linearly, like $3n/44$.
+\end{theorem}
+
+\section{The distance sums, and a two-line criterion}\label{sec:crit}
+
+Let $S\subseteq[n]\times[n]$. Write $a_i=\lvert\{j:(i,j)\in S\}\rvert$ for the
+$i$-th row degree and $b_j=\lvert\{i:(i,j)\in S\}\rvert$ for the $j$-th column
+degree, so $\sum_ia_i=\sum_jb_j=\lvert S\rvert$. For distinct
+$x=(i,j)$ and $y=(i',j')$ put $\alpha=\lvert\{x,y\}\cap S\rvert$, and when
+$i\ne i'$ and $j\ne j'$ also
+$\beta=\lvert S\cap\{(i,j'),(i',j)\}\rvert$ --- the number of the two remaining
+corners of the rectangle spanned by $x$ and $y$ that lie in $S$.
+
+\begin{lemma}\label{lem:delta}
+Let $n\ge3$ and $x=(i,j)\ne y=(i',j')$ in $K_n\times K_n$. Then
+\[
+  \Delta_S(x,y)=
+  \begin{cases}
+    b_j+b_{j'}+\alpha, & i=i',\\[2pt]
+    a_i+a_{i'}+\alpha, & j=j',\\[2pt]
+    a_i+a_{i'}+b_j+b_{j'}-\alpha-2\beta, & i\ne i'\ \text{and}\ j\ne j'.
+  \end{cases}
+\]
+\end{lemma}
+
+This is Proposition~2.2 of \cite{FKY}; we include the proof to keep the note
+self-contained.
+
+\begin{proof}
+Throughout, $z=(p,q)$ ranges over $S$ and distances are read off
+\eqref{eq:dist}.
+
+Suppose first $i=i'$ and $j\ne j'$. If $z=x$ then $d(x,z)=0$ while $z$ and $y$
+share their row, so $d(y,z)=2$ and the term is $2$; symmetrically $z=y$
+contributes $2$. For $z\notin\{x,y\}$: if $p=i$ then $z$ shares its row with
+both $x$ and $y$, so $d(x,z)=d(y,z)=2$ and the term is $0$; if $p\ne i$ then
+$d(x,z)=2$ exactly when $q=j$ and $d(y,z)=2$ exactly when $q=j'$, so the term
+is $1$ precisely when $q\in\{j,j'\}$ and $0$ otherwise. The cells of $S$ with
+$q=j$ and $p\ne i$ number $b_j-[x\in S]$, and those with $q=j'$ and $p\ne i$
+number $b_{j'}-[y\in S]$. Altogether
+$\Delta_S(x,y)=2\alpha+(b_j-[x\in S])+(b_{j'}-[y\in S])=b_j+b_{j'}+\alpha$.
+Exchanging the roles of the two coordinates gives the case $j=j'$.
+
+Now let $i\ne i'$ and $j\ne j'$, so $d(x,y)=1$. If $z=x$ the term is
+$\lvert0-1\rvert=1$, and likewise for $z=y$; these contribute $\alpha$. For
+$z\notin\{x,y\}$ we have $d(x,z),d(y,z)\in\{1,2\}$, and $d(x,z)=2$ exactly when
+$z$ shares a coordinate with $x$, i.e.\ when $p=i$ or $q=j$. Hence the term is
+$1$ precisely when $z$ shares a coordinate with exactly one of $x,y$. The cells
+of $S$ sharing a coordinate with $x$ are $a_i+b_j-[x\in S]$ in number, of which
+$x$ itself is one when $x\in S$, so $a_i+b_j-2[x\in S]$ of them lie in
+$S\setminus\{x,y\}$ (note $y$ shares no coordinate with $x$); symmetrically for
+$y$. A cell sharing a coordinate with both $x$ and $y$ satisfies
+($p=i$ or $q=j$) and ($p=i'$ or $q=j'$); as $p$ cannot equal both $i$ and $i'$
+and $q$ cannot equal both $j$ and $j'$, it is $(i,j')$ or $(i',j)$, so there
+are $\beta$ of them and none is $x$ or $y$. By inclusion--exclusion the number
+of $z\in S\setminus\{x,y\}$ sharing a coordinate with exactly one of $x,y$ is
+\[
+  \bigl(a_i+b_j-2[x\in S]\bigr)+\bigl(a_{i'}+b_{j'}-2[y\in S]\bigr)-2\beta
+  =a_i+a_{i'}+b_j+b_{j'}-2\alpha-2\beta,
+\]
+and adding the contribution $\alpha$ of $z\in\{x,y\}$ gives the third case.
+\end{proof}
+
+Let $G_S$ be the bipartite graph with parts $\{r_1,\dots,r_n\}$ and
+$\{c_1,\dots,c_n\}$ in which $r_ic_j$ is an edge if and only if $(i,j)\in S$;
+thus $\lvert E(G_S)\rvert=\lvert S\rvert$, $\deg r_i=a_i$ and $\deg c_j=b_j$.
+For a subgraph $F$ of $G_S$ write $T(F)$ for the sum of the $G_S$-degrees of
+the vertices of $F$. Rectangles with three corners in $S$ are exactly the
+paths with three edges in $G_S$, and rectangles with four corners in $S$ are
+exactly the $4$-cycles of $G_S$.
+
+\begin{lemma}\label{lem:crit}
+Let $n\ge3$ and let $S\subseteq[n]\times[n]$ have $a_i\ge2$ and $b_j\ge2$ for
+all $i,j$. Then $S$ is a weak $4$-resolving set of $K_n\times K_n$ if and only
+if
+\begin{enumerate}
+\item[\textup{(P)}] $T(P)\ge9$ for every path $P$ with three edges in $G_S$,
+      and
+\item[\textup{(C)}] $T(C)\ge10$ for every $4$-cycle $C$ in $G_S$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Pairs with $i=i'$ or $j=j'$ are settled at once: by Lemma~\ref{lem:delta} their
+$\Delta_S$ is at least $b_j+b_{j'}\ge4$, resp.\ $a_i+a_{i'}\ge4$, and they
+involve neither (P) nor (C). So only pairs with $i\ne i'$ and $j\ne j'$ matter,
+where Lemma~\ref{lem:delta} gives $\Delta_S(x,y)=T-\alpha-2\beta$ with
+$T=a_i+a_{i'}+b_j+b_{j'}\ge8$, and the requirement $\Delta_S(x,y)\ge4$ reads
+\begin{equation}\label{eq:need}
+  \alpha+2\beta\le T-4 .
+\end{equation}
+Here $\alpha+\beta$ is the number of corners of the rectangle spanned by
+$x,y$ that lie in $S$, and $\alpha$ counts those on the diagonal $\{x,y\}$.
+If $\alpha+\beta\le2$ then $\alpha+2\beta\le4\le T-4$ and \eqref{eq:need}
+holds. If $\alpha+\beta=3$ then either $(\alpha,\beta)=(2,1)$, when
+$\alpha+2\beta=4\le T-4$ holds automatically, or $(\alpha,\beta)=(1,2)$, when
+\eqref{eq:need} says exactly $T\ge9$. If $\alpha+\beta=4$ then
+$(\alpha,\beta)=(2,2)$ and \eqref{eq:need} says exactly $T\ge10$.
+
+Thus $S$ is weak $4$-resolving if and only if every rectangle with exactly
+three corners in $S$ has $T\ge9$ and every rectangle with four corners in $S$
+has $T\ge10$. The second condition is (C). Given (C), the first condition is
+equivalent to (P): a three-edge path whose fourth rectangle corner also lies in
+$S$ spans a $4$-cycle, for which (C) already gives $T\ge10\ge9$; and a
+three-edge path whose fourth corner is outside $S$ is a rectangle with exactly
+three corners in $S$, with the same $T$.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}\label{sec:upper}
+
+The $24$ cells of $S$ in \eqref{eq:S} are distinct, and the row and column
+degree sequences are
+\[
+  (a_1,\dots,a_{11})=(b_1,\dots,b_{11})=(2,2,2,2,2,2,2,2,2,3,3),
+\]
+summing to $9\cdot2+2\cdot3=24$ both ways. In particular every degree is at
+least $2$, so Lemma~\ref{lem:crit} applies. The row neighbourhoods in $G_S$ are
+\begin{equation}\label{eq:nbhds}
+\begin{gathered}
+ N(r_1)=\{c_1,c_{10}\},\quad N(r_2)=\{c_1,c_{11}\},\quad
+ N(r_3)=\{c_2,c_{10}\},\\
+ N(r_4)=\{c_2,c_{11}\},\quad N(r_5)=\{c_3,c_{10}\},\quad
+ N(r_6)=\{c_3,c_{11}\},\\
+ N(r_7)=\{c_4,c_5\},\quad N(r_8)=\{c_6,c_7\},\quad
+ N(r_9)=\{c_8,c_9\},\\
+ N(r_{10})=\{c_4,c_6,c_8\},\quad N(r_{11})=\{c_5,c_7,c_9\}.
+\end{gathered}
+\end{equation}
+
+\emph{Condition} (C) \emph{holds vacuously: $G_S$ has no $4$-cycle.} A
+$4$-cycle is a pair of rows sharing two columns, so it suffices that any two of
+the eleven sets in \eqref{eq:nbhds} meet in at most one element. Split the
+columns into the block $B=\{c_1,c_2,c_3\}$, the block
+$B'=\{c_{10},c_{11}\}$ and the block $M=\{c_4,\dots,c_9\}$. Each of
+$N(r_1),\dots,N(r_6)$ consists of one column of $B$ and one column of $B'$, and
+the six pairs so formed are the six distinct elements of $B\times B'$; two
+distinct pairs agree in at most one coordinate. Each of
+$N(r_7),\dots,N(r_{11})$ lies inside $M$, hence is disjoint from every
+$N(r_i)$ with $i\le6$. Finally $N(r_7),N(r_8),N(r_9)$ are pairwise
+disjoint, $N(r_{10})$ and $N(r_{11})$ are disjoint, and $N(r_{10})$ meets each
+of $N(r_7),N(r_8),N(r_9)$ in exactly one column, as does $N(r_{11})$.
+
+\emph{Condition} (P) \emph{holds because no three-edge path avoids a vertex of
+degree~$3$.} The vertices of degree $3$ are $r_{10},r_{11},c_{10},c_{11}$; call
+the remaining $18$ vertices \emph{light}. If a three-edge path $P$ contains a
+degree-$3$ vertex then $T(P)\ge3+2+2+2=9$, as required. So it suffices to show
+that the subgraph $L$ of $G_S$ induced by the light vertices contains no path
+with three edges. The edges of $L$ are the twelve cells of $S$ lying in a light
+row and a light column, namely
+\[
+\begin{gathered}
+  (1,1),(2,1);\qquad (3,2),(4,2);\qquad (5,3),(6,3);\\
+  (7,4),(7,5);\qquad (8,6),(8,7);\qquad (9,8),(9,9),
+\end{gathered}
+\]
+and these form six vertex-disjoint two-edge paths, whose centres are
+respectively $c_1$, $c_2$, $c_3$, $r_7$, $r_8$ and $r_9$. Every component of
+$L$ therefore has
+three vertices and two edges, and no three-edge path fits inside one.
+
+By Lemma~\ref{lem:crit}, $S$ is a weak $4$-resolving set of
+$K_{11}\times K_{11}$, so $\wdim_4(K_{11}\times K_{11})\le\lvert S\rvert=24$.
+Since \eqref{eq:surmise} asserts the value $2\cdot11+1+\lfloor11/4\rfloor=25$
+at $n=11$, it is false. \qed
+
+\section{Proof of Theorem \ref{thm:lower}}\label{sec:lower}
+
+Let $n\ge4$ and let $S$ be a weak $4$-resolving set of $K_n\times K_n$ with
+$s=\lvert S\rvert$.
+
+\emph{Step 1: any two row degrees sum to at least $4$, and likewise for
+columns.} Fix $i\ne i'$. The cells of $S$ in rows $i$ and $i'$ occupy at most
+$a_i+a_{i'}$ columns, so if $a_i+a_{i'}<n$ there is a column $j$ with
+$(i,j)\notin S$ and $(i',j)\notin S$. Applying Lemma~\ref{lem:delta} to the
+same-column pair $x=(i,j)$, $y=(i',j)$, which has $\alpha=0$, gives
+$a_i+a_{i'}=\Delta_S(x,y)\ge4$. Hence $a_i+a_{i'}\ge\min(n,4)=4$, since
+$n\ge4$. The column statement is symmetric.
+
+\emph{Step 2: we may assume every degree is at least $2$.} Suppose
+$a_{i_0}\le1$ for some $i_0$. By Step~1 every other row has degree at least
+$4-a_{i_0}$, so $s\ge a_{i_0}+(n-1)(4-a_{i_0})$, which is $4n-4$ if
+$a_{i_0}=0$ and $3n-2$ if $a_{i_0}=1$; in either case $s\ge3n-2$ because
+$n\ge2$. Now $n\ge4$ gives $9n\ge33$, that is $\frac{2n}{11}+1\le n-2$, and
+therefore $\lceil\frac{2n}{11}\rceil<\frac{2n}{11}+1\le n-2$, so
+$s\ge3n-2=2n+(n-2)\ge2n+\lceil2n/11\rceil$ and we are done. The same argument
+applies to a column of degree at most $1$. So assume from now on that
+$a_i\ge2$ and $b_j\ge2$ for all $i,j$, and set $E=s-2n\ge0$.
+
+\emph{Step 3: heavy vertices.} Call a vertex of $G_S$ \emph{heavy} if its
+degree is at least $3$ and \emph{light} if its degree is exactly $2$, and let
+$h$ be the number of heavy vertices. Since $G_S$ has $2n$ vertices and $s$
+edges,
+\[
+  \sum_{v\in V(G_S)}(\deg v-2)=2s-4n=2E ,
+\]
+and every summand is $\ge0$ with the heavy ones $\ge1$; hence $h\le 2E$ and
+\begin{equation}\label{eq:heavydeg}
+  \sum_{v\ \mathrm{heavy}}\deg v=2h+2E .
+\end{equation}
+
+\emph{Step 4: the light part is a union of short paths.} Let $L$ be the
+subgraph of $G_S$ induced by the light vertices. Every vertex of $L$ has
+$L$-degree at most $2$. If $L$ contained a path with three edges, that path
+would be a three-edge path of $G_S$ with $T=8$, contradicting
+Lemma~\ref{lem:crit}(P). In particular $L$ contains no cycle: $G_S$ is
+bipartite, so a shortest cycle of $L$ has length at least $4$ and any four
+consecutive vertices of it form a three-edge path. Hence $L$ is a disjoint
+union of paths, each with at most $3$ vertices.
+
+\emph{Step 5: counting light--heavy edges.} Let $k$ be the number of
+components of $L$. A component with $c\in\{1,2,3\}$ vertices has $c-1$ edges,
+and the $G_S$-degrees of its vertices sum to $2c$, so exactly
+$2c-2(c-1)=2$ edges leave it for heavy vertices. Summing over components, the
+number of light--heavy edges of $G_S$ is exactly $2k$. Every such edge has a
+heavy endpoint, so by \eqref{eq:heavydeg},
+\[
+  2k\ \le\ \sum_{v\ \mathrm{heavy}}\deg v\ =\ 2h+2E ,
+  \qquad\text{i.e.}\qquad k\le h+E .
+\]
+On the other hand $L$ has $2n-h$ vertices distributed among $k$ components of
+at most $3$ vertices each, so $k\ge(2n-h)/3$.
+
+\emph{Step 6.} Combining, $2n-h\le3k\le3h+3E$, whence
+\[
+  2n\ \le\ 4h+3E\ \le\ 8E+3E\ =\ 11E .
+\]
+As $E$ is an integer, $E\ge\lceil2n/11\rceil$ and
+$s=2n+E\ge2n+\lceil2n/11\rceil$. \qed
+
+\begin{remark}
+The hypothesis $n\ge4$ cannot be dropped: at $n=3$ Step~1 yields only
+$a_i+a_{i'}\ge3$, and \cite{FKY} report
+$\wdim_4(K_3\times K_3)=6<7=2\cdot3+\lceil6/11\rceil$.
+\end{remark}
+
+\section{Proof of Theorem \ref{thm:exact}}\label{sec:exact}
+
+For $n=11$: Theorem~\ref{thm:main} gives $\wdim_4\le24$ and
+Theorem~\ref{thm:lower} gives $\wdim_4\ge22+\lceil22/11\rceil=24$.
+
+For $n=12,13,14$ the lower bounds are
+$24+\lceil24/11\rceil=27$, $26+\lceil26/11\rceil=29$ and
+$28+\lceil28/11\rceil=31$, and the matching upper bounds are witnessed by the
+following sets, whose row and column degrees are all at least $2$ and which may
+be checked against Lemma~\ref{lem:crit} or directly against
+\eqref{eq:dist}:
+\begin{align}
+ S_{12}=\{&(1,11),(1,12),(2,5),(2,9),(3,7),(3,10),(3,12),(4,2),(4,4),(5,1),\notag\\
+          &(5,3),(5,6),(6,6),(6,8),(7,2),(7,8),(7,11),(8,2),(8,9),(9,4),\notag\\
+          &(9,9),(10,1),(10,10),(11,3),(11,7),(12,2),(12,5)\},\label{eq:S12}\\[4pt]
+ S_{13}=\{&(1,6),(1,12),(2,7),(2,13),(3,1),(3,2),(3,5),(4,6),(4,10),(5,3),\notag\\
+          &(5,5),(6,10),(6,12),(7,1),(7,7),(8,8),(8,11),(9,9),(9,10),(10,4),\notag\\
+          &(10,8),(10,9),(11,3),(11,7),(11,11),(12,2),(12,4),(13,12),\notag\\
+          &(13,13)\},\label{eq:S13}\\[4pt]
+ S_{14}=\{&(1,12),(1,13),(2,3),(2,8),(3,1),(3,8),(4,6),(4,9),(4,14),(5,8),\notag\\
+          &(5,10),(6,2),(6,4),(7,4),(7,10),(8,1),(8,2),(8,5),(9,7),(9,11),\notag\\
+          &(9,12),(10,5),(10,11),(11,4),(11,9),(12,13),(12,14),(13,3),\notag\\
+          &(13,13),(14,6),(14,7)\}.\label{eq:S14}
+\end{align}
+Here $\lvert S_{12}\rvert=27$, $\lvert S_{13}\rvert=29$ and
+$\lvert S_{14}\rvert=31$. This proves the first assertion, and the surmised
+values at these $n$ are $28,30,32$.
+
+For the family, let $m\ge1$ and let
+\[
+  S(m)=\bigl\{\,(i+11t,\ j+11t)\ :\ 0\le t<m,\ (i,j)\in S\,\bigr\}
+  \ \subseteq\ [11m]\times[11m]
+\]
+be the $m$-fold \emph{block-diagonal} copy of \eqref{eq:S}, of size
+$24m$. Its bipartite graph $G_{S(m)}$ is the disjoint union of $m$ copies of
+$G_S$, so all its degrees are $2$ or $3$, it has no $4$-cycle, and every
+three-edge path lies inside one block and hence meets a vertex of degree $3$ by
+the argument of Section~\ref{sec:upper}. Lemma~\ref{lem:crit} therefore gives
+$\wdim_4(K_{11m}\times K_{11m})\le24m$. Theorem~\ref{thm:lower} with
+$n=11m$ gives the reverse inequality,
+\[
+  \wdim_4(K_{11m}\times K_{11m})\ \ge\ 22m+\Bigl\lceil\frac{22m}{11}\Bigr\rceil
+  \ =\ 22m+2m\ =\ 24m ,
+\]
+so equality holds. Finally $24m<22m+1+\lfloor11m/4\rfloor$ for every $m\ge1$,
+since $1+\lfloor11m/4\rfloor-2m\ge1+\frac{11m-3}{4}-2m=\frac{3m+1}{4}>0$. \qed
+
+\section{Scope}\label{sec:status}
+
+Inequality \eqref{eq:thm33} is a theorem of \cite{FKY} and is not contradicted
+here: $24\le25$, $27\le28$, $29\le30$ and $31\le32$. What is refuted is only
+the surmised \emph{equality} \eqref{eq:surmise}, so this note is not an
+erratum.
+
+Theorem~\ref{thm:lower} gives $\wdim_4(K_9\times K_9)\ge20$ and
+$\wdim_4(K_{10}\times K_{10})\ge22$, against the surmised $21$ and $23$;
+combined with \eqref{eq:thm33} this leaves
+$\wdim_4(K_9\times K_9)\in\{20,21\}$ and
+$\wdim_4(K_{10}\times K_{10})\in\{22,23\}$. We settle neither, so
+\eqref{eq:surmise} may well be correct at the two smallest members of its own
+range. Theorem~\ref{thm:main} nevertheless refutes \eqref{eq:surmise}, which is
+universally quantified over $n\ge9$.
+
+Theorem~\ref{thm:exact} determines $\wdim_4(K_n\times K_n)$ at $n=11,12,13,14$
+and at every multiple of $11$. For every other $n\ge9$ we have only
+$2n+\lceil2n/11\rceil\le\wdim_4(K_n\times K_n)\le2n+1+\lfloor n/4\rfloor$, and
+we do not know which end is attained. The lower bounds above are the hand proof
+of Section~\ref{sec:lower}; no enumeration of candidate sets was carried out at
+any $n$, and no claim of minimality rests on a solver.
+
+\section{Verification}
+
+Every object needed above is printed in this note, and the arguments of
+Sections~\ref{sec:crit}--\ref{sec:exact} use nothing else. The accompanying
+program \texttt{verify.py} reads the cell lists \eqref{eq:S},
+\eqref{eq:S12}--\eqref{eq:S14} exactly as printed and uses the Python standard
+library only. It checks \eqref{eq:dist} against breadth-first distances in the
+explicitly constructed product for $3\le n\le7$; it checks
+Lemma~\ref{lem:delta} against raw distance sums over all pairs; it recomputes
+$\min\Delta_S$ over all pairs for each printed set and for the block-diagonal
+sets $S(1),S(2),S(3)$, obtaining $\min\Delta_S=4$ in each case; and it verifies
+the degree sequences, the absence of a $4$-cycle in $G_S$ and the
+six-component structure of $L$. Of Theorem~\ref{thm:lower} it checks only the
+arithmetic --- the chain $2n\le4h+3E\le11E$ for $4\le n\le300$ --- and not the
+combinatorial Steps~1, 4 and 5, which are hand proofs; likewise the
+block-diagonal family is machine-checked only at small $m$, the statement for
+all $m\ge1$ being the hand proof of Section~\ref{sec:exact}. The recorded run
+\texttt{verify.output.txt} reports $109$ passing checks and states in its own
+output what it does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{FKY}
+A.~Farhan, D.~Kuziak, and I.~G. Yero,
+\emph{The weak $k$-metric dimension of the direct product of complete graphs},
+arXiv:2605.22307v1, 21 May 2026.
+\href{https://arxiv.org/abs/2605.22307}{arXiv:2605.22307}.
+Theorem and section numbers are quoted from v1, the only version at the time of
+writing.
+
+\bibitem{FKKMY}
+J.~A. Fern\'andez, S.~Klav\v{z}ar, D.~Kuziak, M.~Mu\~noz-M\'arquez, and
+I.~G. Yero,
+\emph{On the weak $k$-metric dimension of Hamming graphs},
+Discrete Optim. \textbf{60} (2026), 100945;
+\href{https://arxiv.org/abs/2505.19642}{arXiv:2505.19642}.
+
+\bibitem{PSSY}
+I.~Peterin, J.~Sedlar, R.~\v{S}krekovski, and I.~G. Yero,
+\emph{Resolving vertices of graphs with differences},
+Comput. Appl. Math. \textbf{43} (2024), article~275;
+\href{https://arxiv.org/abs/2309.00922}{arXiv:2309.00922}.
+Introduces $\wdim_k$.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,400 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Two-Circulant Butson Hadamard Matrices of Orders 46 and 74}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\circulant}{circ}
+\newcommand{\zzz}{\zeta}
+\newcommand{\Om}{\Omega}
+
+\title[Two-circulant BH(46,6) and BH(74,6)]
+{Two-Circulant Butson Hadamard Matrices of Orders 46 and 74}
+
+\date{}
+
+\subjclass[2020]{05B20, 15B34, 11R18}
+\keywords{Butson Hadamard matrix, complex Hadamard matrix, circulant,
+bicirculant, sixth root of unity, Loeschian number, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+A $BH(n,q)$ matrix is an $n\times n$ matrix with all entries in
+$\Om_q=\{1,\zzz_q,\ldots,\zzz_q^{q-1}\}$, $\zzz_q=e^{2\pi i/q}$, satisfying
+$HH^{*}=nI_n$. Szöll\H osi conjectured that a $BH(2p,6)$ matrix exists for
+every prime $p$; Czifra, Matolcsi and Szöll\H osi report that, hedging with
+``it seems'', $46$, $74$, $86$ and $94$ are the even orders below $100$ at
+which existence is still undecided. We exhibit a $BH(46,6)$ and a $BH(74,6)$,
+each in the two-circulant form
+$H=\bigl[\begin{smallmatrix}X&Y\\Y^{*}&-X^{*}\end{smallmatrix}\bigr]$ of
+Czifra, Matolcsi and Szöll\H osi, whose method this is. Each matrix is
+specified by $2p$ integers printed below, and $HH^{*}=2pI$ reduces to
+$p-1$ identities in $\mathbb Z[\zzz_6]$, so the objects are checkable by
+hand. Szöll\H osi's conjecture itself remains open.
+\end{abstract}
+
+\maketitle
+
+\section{Setting}
+
+Fix $q\ge2$ and put $\zzz_q=e^{2\pi i/q}$,
+$\Om_q=\{1,\zzz_q,\ldots,\zzz_q^{q-1}\}$. A \emph{Butson Hadamard matrix}
+$BH(n,q)$ is an $n\times n$ matrix $H$ with every entry in $\Om_q$ and
+$HH^{*}=nI_n$ \cite{Butson}. Throughout, $q=6$, we write $\zzz=\zzz_6$, and
+we use $\zzz^2=\zzz-1$, so that $\mathbb Z[\zzz]=\mathbb Z\oplus\mathbb Z\zzz$
+is free of rank~$2$ and
+\begin{equation}\label{eq:norm}
+ |A+B\zzz|^{2}=A^{2}+AB+B^{2}
+ \qquad(A,B\in\mathbb Z),
+\end{equation}
+a \emph{Loeschian} number: a positive integer is Loeschian if and only if
+every prime $\equiv2\pmod 3$ occurs in it to an even power.
+
+Szöll\H osi's thesis \cite{Szollosi} states, verbatim and without side
+conditions:
+\begin{quote}
+For every prime $p$ there is a $BH(2p,6)$ matrix.
+\end{quote}
+It is cited as Conjecture~1.4.47 of that thesis in \cite{CMS}. The existence
+table for $BH(n,6)$ with $n\le62$, $n\equiv2\pmod4$, at
+\cite[p.~32]{Szollosi} carries exactly two question marks, at $n=46$ and
+$n=62$. Czifra, Matolcsi and Szöll\H osi \cite{CMS} constructed a $BH(62,6)$;
+they also state, hedged with ``it seems'', that ``$BH(46,6)$, $BH(74,6)$,
+$BH(86,6)$, and $BH(94,6)$ are the remaining undecided even orders less than
+$100$'', reading that off a comparison of the tables at
+\cite[p.~32]{Szollosi} and \cite[p.~111]{NP}. We reproduce their hedge
+rather than harden it.
+
+\begin{theorem}\label{thm:main}
+A $BH(46,6)$ matrix and a $BH(74,6)$ matrix exist. Explicit examples are
+$H(W_1)$, $H(W_2)$ and $H(W_3)$ of Section~\textup{\ref{sec:witness}}.
+\end{theorem}
+
+\medskip
+\noindent\textbf{Credit.} The construction, the search method and the pruning
+identity used to find these matrices are all from \cite{CMS}: their Section~4
+introduces the two-circulant form \eqref{eq:form} with first rows
+\emph{simple of index~$k$} for $k\mid p-1$, the meet-in-the-middle search
+over the autocorrelation vector, and the identity
+$|k+(p-1)\sum b_i|^{2}=2k^{2}p-|k+(p-1)\sum a_i|^{2}$, and applies them to
+$BH(62,6)$, $BH(82,6)$ and $BH(146,6)$, at $p=31,41,73$. Whether the two
+orders below already occur in \cite{CMS} we do not establish: its Table~1
+lists the indices $k=4,6,8$; none of these divides $22$, but $k=6$ divides
+$36$, so $p=37$ lies inside that range of indices.
+
+\section{The reduction to \texorpdfstring{$p-1$}{p-1}
+identities}\label{sec:reduce}
+
+For $e\in\mathbb Z_6^{\,p}$ write $x_i=\zzz^{e_i}$ and
+$X=\circulant(x)$, meaning $X[r][c]=x_{(c-r)\bmod p}$; likewise $Y$ from
+$e_y$. Set
+\begin{equation}\label{eq:form}
+ H=\begin{bmatrix} X & Y\\ Y^{*} & -X^{*}\end{bmatrix}
+ \in\mathbb C^{2p\times2p}.
+\end{equation}
+Every entry of $H$ lies in $\Om_6$: this uses $q$ even, since
+$-1=\zzz^{3}$, so $-\overline{\zzz^{a}}=\zzz^{3-a}$. Explicitly, $H$ has
+entries $\zzz^{E[i][j]}$ with
+\begin{equation}\label{eq:expmat}
+\begin{aligned}
+ E[i][j]&=e_x[j-i], & E[i][p+j]&=e_y[j-i],\\
+ E[p+i][j]&=-e_y[i-j], & E[p+i][p+j]&=3-e_x[i-j],
+\end{aligned}
+\end{equation}
+for $0\le i,j<p$, with all index arithmetic taken mod $p$ and all exponents
+mod $6$. Put
+$\gamma_s(x)=\sum_{i\in\mathbb Z_p}x_i\overline{x_{i+s}}\in\mathbb Z[\zzz]$.
+
+\begin{lemma}\label{lem:reduce}
+With $X,Y$ circulant as above, $HH^{*}=2p\,I_{2p}$ holds if and only if
+\begin{equation}\label{eq:gam}
+ \gamma_s(x)+\gamma_s(y)=0
+ \qquad\text{for } s=1,\ldots,p-1 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+From \eqref{eq:form},
+$H^{*}=\bigl[\begin{smallmatrix}X^{*}&Y\\Y^{*}&-X\end{smallmatrix}\bigr]$
+and hence
+\[
+ HH^{*}=
+ \begin{bmatrix}
+  XX^{*}+YY^{*} & XY-YX\\
+  Y^{*}X^{*}-X^{*}Y^{*} & Y^{*}Y+X^{*}X
+ \end{bmatrix}.
+\]
+The conjugate transpose of a circulant is circulant: $X^{*}=\circulant(w)$
+with $w_m=\overline{x_{-m}}$. Circulants of the same order commute, so both
+off-diagonal blocks vanish identically, and $X^{*}X=XX^{*}$,
+$Y^{*}Y=YY^{*}$. Finally
+$(XX^{*})[r][c]=\sum_t x_{t-r}\overline{x_{t-c}}=\gamma_{r-c}(x)$, so both
+diagonal blocks equal $\circulant\bigl(\gamma_{\bullet}(x)+\gamma_{\bullet}(y)\bigr)$.
+Since $\gamma_0(x)+\gamma_0(y)=p+p=2p$ automatically, $HH^{*}=2pI$ is
+exactly \eqref{eq:gam}.
+\end{proof}
+
+So a candidate is decided by $p-1$ identities in a rank-$2$ lattice, each a
+sum of $p$ roots of unity: about $500$ integer additions at $p=23$. All the
+arithmetic is exact, because collecting the exponent multiplicities
+$n_0,\ldots,n_5$ of a sum $\sum_m n_m\zzz^m$ gives
+\begin{equation}\label{eq:red}
+ \sum_{m=0}^{5}n_m\zzz^{m}=A+B\zzz,
+ \qquad A=n_0-n_2-n_3+n_5,\quad B=n_1+n_2-n_4-n_5 .
+\end{equation}
+
+Two consequences of \eqref{eq:gam} organise the search. Summing
+\eqref{eq:gam} over $s=1,\ldots,p-1$ and adding $\gamma_0$ gives
+\begin{equation}\label{eq:split}
+ \Bigl|\sum_i x_i\Bigr|^{2}+\Bigl|\sum_i y_i\Bigr|^{2}=2p,
+\end{equation}
+and by \eqref{eq:norm} both summands are Loeschian. Taking $y=x$ in
+\eqref{eq:gam} shows that a circulant $BH(p,6)$ would force
+$|\sum_ix_i|^{2}=p$; since $23$ is prime and $\equiv2\pmod3$ it is not
+Loeschian, so no circulant $BH(23,6)$ exists. (This argument is
+special to $p=23$: $37=3^{2}+3\cdot4+4^{2}$ \emph{is} Loeschian.)
+
+Following \cite{CMS}, for $k\mid p-1$ let $G_0=\{h^{k}:h\in\mathbb Z_p^{*}\}$
+be the subgroup of index $k$, and call $x\in\Om_6^{\,p}$ \emph{simple of
+index $k$} if $x_0=1$ and $i\mapsto x_i$ is constant on each of the $k$
+cosets of $G_0$ in $\mathbb Z_p^{*}$. Such an $x$ is coded by $k$ exponents
+$a_1,\ldots,a_k\in\mathbb Z_6$, so a lane $(p,k)$ holds $6^{k}$ vectors per
+side.
+
+\begin{lemma}\label{lem:coset}
+If $x$ is simple of index $k$ then $\gamma_s(x)$ depends only on the coset
+$sG_0$. If moreover $-1\in G_0$ then $x_{-i}=x_i$, every $\gamma_s(x)$ is a
+rational integer, $\gamma_s=\gamma_{-s}$, and
+$2\sum_{s=1}^{(p-1)/2}\gamma_s(x)=|\sum_ix_i|^{2}-p$.
+\end{lemma}
+
+\begin{proof}
+For $u\in G_0$ the map $i\mapsto ui$ permutes $\mathbb Z_p$, fixes $0$ and
+preserves each coset of $G_0$, so it fixes $x$; replacing $i$ by $ui$ in
+$\gamma_s(x)$ gives $\gamma_{us}(x)$. If $-1\in G_0$ then $x_{-i}=x_i$,
+whence $\gamma_{-s}(x)=\overline{\gamma_s(x)}=\gamma_s(x)$, so $\gamma_s(x)$
+is real and lies in $\mathbb Z[\zzz]\cap\mathbb R=\mathbb Z$. The last
+identity is $\sum_{s\ne0}\gamma_s=|\sum_ix_i|^{2}-\gamma_0$ together with
+$\gamma_s=\gamma_{-s}$.
+\end{proof}
+
+At $p=23$ the admissible indices are $k\mid22$, i.e.\ $k\in\{1,2,11,22\}$;
+Proposition~\ref{prop:empty} rules out $k=1$ and $k=2$, and for $k=11$ we
+have $G_0=\{1,22\}=\{\pm1\}$, so Lemma~\ref{lem:coset} applies in full.
+By \eqref{eq:split} the two norms are then odd (the coset sizes are $2$, so
+$\sum_ix_i=1+2\sum_{s=1}^{11}\zzz^{a_s}$ has $A$ odd and $B$ even), and the
+odd Loeschian numbers below $46$ are
+$1,3,7,9,13,19,21,25,27,31,37,39,43$; hence the split \eqref{eq:split} must
+be one of exactly
+\[
+ \{3,43\},\quad\{7,39\},\quad\{9,37\},\quad\{19,27\},\quad\{21,25\}.
+\]
+The two $BH(46,6)$ matrices below realise two different members of this
+list.
+
+\begin{proposition}\label{prop:empty}
+No two-circulant matrix \eqref{eq:form} with both first rows simple of index
+$1$ or $2$ is a $BH(46,6)$, and none is a $BH(94,6)$. Consequently the
+present method says nothing about $BH(94,6)$: at $p=47$ the admissible
+indices are $k\mid46$, i.e.\ $k\in\{1,2,23,46\}$, the first two are empty
+and the last two have $6^{23}$ and $6^{46}$ vectors per side.
+\end{proposition}
+
+\begin{proof}
+An index-$1$ vector is also simple of index $2$, so it suffices to treat
+index $2$: there $\sum_ix_i=1+\tfrac{p-1}{2}(\zzz^{a_1}+\zzz^{a_2})$, and
+$\zzz^{a_1}+\zzz^{a_2}$ is either $0$ (when $a_2=a_1+3$) or of modulus at
+least $1$, since the six sums of two sixth roots of unity have moduli
+$2,\sqrt3,1,0$. Hence
+\begin{equation}\label{eq:index2}
+ \Bigl|\sum_ix_i\Bigr|^{2}\in
+ \{1\}\cup\Bigl[\bigl(\tfrac{p-1}{2}-1\bigr)^{2},\infty\Bigr),
+\end{equation}
+which is $\{1\}\cup[100,\infty)$ at $p=23$ and $\{1\}\cup[484,\infty)$ at
+$p=47$.
+Now apply \eqref{eq:split}. If both norms are $1$ then their sum is $2\ne2p$.
+If one is $1$, the other must be $2p-1$, i.e.\ $45$ or $93$, and neither lies
+in the set \eqref{eq:index2} ($45$ is not even Loeschian). If neither is $1$,
+their sum is at least $200>46$, respectively $968>94$. The accompanying
+program checks the $36\times36$ ordered index-$2$
+pairs at each prime directly against \eqref{eq:gam} and finds $0$ solutions
+out of $1296$ ordered ($666$ unordered) pairs at each of $p=23,47$.
+\end{proof}
+
+\section{The matrices}\label{sec:witness}
+
+Each witness is the pair $(e_x,e_y)\in\mathbb Z_6^{\,p}\times\mathbb Z_6^{\,p}$
+used in \eqref{eq:form}--\eqref{eq:expmat}. For $W_1$ and $W_3$ we also print
+the coset code $(k,g,G_0,a,b)$ from which $(e_x,e_y)$ is expanded, $g$ being a
+primitive root mod $p$ and the $j$-th coset being $g^{j}G_0$; for $W_2$ only
+the expanded form is printed.
+
+\medskip
+\noindent$W_1$: a $BH(46,6)$. $p=23$, $k=11$, $g=5$, $G_0=\{1,22\}$,
+\[
+ a=(1,5,5,2,4,4,3,2,2,1,0),\qquad b=(2,1,4,3,2,1,5,3,3,0,2),
+\]
+\[
+\begin{aligned}
+ e_x&=(0,1,5,4,4,5,2,2,3,0,2,1,1,2,0,3,2,2,5,4,4,5,1),\\
+ e_y&=(0,2,4,1,2,1,3,3,5,2,3,0,0,3,2,5,3,3,1,2,1,4,2),
+\end{aligned}
+\]
+with $|\sum x|^{2}=3$, $|\sum y|^{2}=43$, $3+43=46$.
+
+\medskip
+\noindent$W_2$: a second $BH(46,6)$, on a different Loeschian branch.
+$p=23$, $k=11$,
+\[
+\begin{aligned}
+ e_x&=(0,1,2,3,4,1,4,3,4,1,4,0,0,4,1,4,3,4,1,4,3,2,1),\\
+ e_y&=(0,5,3,3,5,4,1,0,1,0,4,0,0,4,0,1,0,1,4,5,3,3,5),
+\end{aligned}
+\]
+with $|\sum x|^{2}=9$, $|\sum y|^{2}=37$, $9+37=46$, and
+\[
+ \bigl(2\gamma_s(x)\bigr)_{s=1}^{11}
+ =(-4,2,-4,6,-8,-2,0,-16,2,6,4)
+ =-\bigl(2\gamma_s(y)\bigr)_{s=1}^{11},
+\]
+whose entries sum to $-14=9-23$, as Lemma~\ref{lem:coset} requires.
+
+\medskip
+\noindent$W_3$: a $BH(74,6)$. $p=37$, $k=12$, $g=2$, $G_0=\{1,10,26\}$,
+\[
+ a=(1,4,2,0,4,3,4,3,2,5,5,0),\qquad b=(1,5,4,0,0,2,1,2,4,2,0,3),
+\]
+\[
+\begin{aligned}
+ e_x&=(0,1,4,2,2,0,0,2,0,4,1,4,4,0,5,4,4,3,3,\\
+     &\qquad\ \ 0,4,5,3,0,3,5,1,4,5,5,2,5,3,2,2,3,4),\\
+ e_y&=(0,1,5,4,4,3,0,4,0,0,1,1,0,3,2,5,0,2,2,\\
+     &\qquad\ \ 3,5,0,2,0,2,0,1,1,0,2,4,2,2,4,4,2,1),
+\end{aligned}
+\]
+with $|\sum x|^{2}=31$, $|\sum y|^{2}=43$, $31+43=74$. Here $|G_0|=3$ and
+$-1\notin G_0$, so only the first half of Lemma~\ref{lem:coset} applies and
+the $\gamma_s$ are genuinely non-real: $\gamma_1(x)=-4+\zzz$ and
+$\gamma_{14}(x)=6-7\zzz$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Each $e$ above has length $p$, first entry $0$ and all entries in
+$\{0,\ldots,5\}$, so by \eqref{eq:expmat} every entry of the corresponding
+$H$ lies in $\Om_6$. By Lemma~\ref{lem:reduce} it remains to check
+\eqref{eq:gam}, which is $22$ integer pairs for $W_1$ and $W_2$ and $36$ for
+$W_3$; collecting exponent multiplicities and reducing with \eqref{eq:red}
+gives $0$ in both components in every case. The accompanying program
+performs that check and also, redundantly, forms all
+$\binom{47}{2}=1081$ and $\binom{75}{2}=2775$ inner products
+$\langle H_i,H_j\rangle$ for $i\le j$ in exact $\mathbb Z[\zzz]$ arithmetic,
+obtaining $2p$ on the diagonal and $0$ off it with no exceptions.
+\end{proof}
+
+\begin{remark}
+None of the following symmetries of the ansatz carries $W_1$ to $W_2$:
+swapping the two blocks, conjugating both first rows, and the multiplier
+action $x_i\mapsto x_{ui}$, $u\in\mathbb Z_{23}^{*}$. Each of the three
+preserves the unordered pair $\{|\sum x|^{2},|\sum y|^{2}\}$, which is
+$\{3,43\}$ for one witness and $\{9,37\}$ for the other. We claim nothing
+beyond that: in particular we do not claim that $H(W_1)$ and $H(W_2)$ are
+inequivalent as Butson Hadamard matrices, whose equivalence group (row and
+column permutations and multiplications by sixth roots of unity) is far
+larger and does not preserve the two-circulant shape.
+\end{remark}
+
+\section{What is not settled}
+
+\noindent\textbf{The conjecture remains open.} It is universally quantified
+over infinitely many primes, and two further confirming instances cannot
+prove it. Nothing here refutes anything.
+
+\medskip
+\noindent\textbf{$BH(86,6)$ and $BH(94,6)$ are still undecided.} We did not
+search $p=43$. At $p=47$, Proposition~\ref{prop:empty} empties the two
+smallest admissible indices, and the remaining two, $k=23$ and $k=46$, were
+not searched; so the method as run is silent at $n=94$. Neither order is
+excluded by anything here.
+
+\medskip
+\noindent\textbf{$n=46$ is the smallest undecided \emph{even} order, not the
+smallest open case of $BH(n,6)$.} The $BH(n,6)$ existence table at
+\cite[p.~111]{NP} marks $n=31$, $37$ and $43$ undecided, all smaller than
+$46$.
+
+\medskip
+\noindent\textbf{No priority is claimed.} Our literature search was
+incomplete --- in particular the small-order existence table of \cite{Egan}
+was not consulted --- so we do not assert that these two orders were
+previously unrealised.
+
+\section{Reproduction}
+
+The objects are the $2p$ integers of Section~\ref{sec:witness}; a reader who
+wants only Theorem~\ref{thm:main} can build $H$ from \eqref{eq:expmat} and
+check \eqref{eq:gam} by hand. A short program, \texttt{verify.py}, does this
+from the printed vectors alone, in exact $\mathbb Z[\zzz]$ integer
+arithmetic with no floating point and no third-party package: it rebuilds
+each $H$, confirms all entries lie in $\Om_6$, verifies \eqref{eq:gam}, forms
+every inner product $\langle H_i,H_j\rangle$ with $i\le j$, re-derives the
+row-sum norms and their Loeschian splits, re-derives $G_0$ from
+$\{h^{k}\bmod p\}$ and checks that the coset codes expand to the printed
+$e_x,e_y$, recomputes the $\gamma$ values quoted above, re-proves the
+enumeration of admissible splits at $2p=46$, and carries out the exhaustive
+index-$\le2$ sweeps of Proposition~\ref{prop:empty}. Its transcript
+accompanies this note. It does not re-derive the counts reported by the
+searches that produced $W_1$, $W_2$ and $W_3$, and nothing above depends on
+them.
+
+\begin{thebibliography}{9}
+
+\bibitem{Butson}
+A.~T. Butson,
+\emph{Generalized Hadamard matrices},
+Proc. Amer. Math. Soc. \textbf{13} (1962), 894--898.
+\href{https://doi.org/10.1090/S0002-9939-1962-0142557-0}{doi:10.1090/S0002-9939-1962-0142557-0}.
+
+\bibitem{CMS}
+D.~Czifra, M.~Matolcsi, and F.~Szöll\H osi,
+\emph{A nonexistence criterion and new constructions for Butson Hadamard
+matrices},
+J. Algebraic Combin. (2026),
+\href{https://doi.org/10.1007/s10801-026-01584-x}{doi:10.1007/s10801-026-01584-x};
+\href{https://arxiv.org/abs/2511.11230}{arXiv:2511.11230}.
+
+\bibitem{Egan}
+R.~Egan,
+\emph{Phased unitary Golay pairs, Butson Hadamard matrices and a conjecture
+of Ito's},
+Des. Codes Cryptogr. \textbf{87} (2019), 67--74.
+\href{https://doi.org/10.1007/s10623-018-0485-2}{doi:10.1007/s10623-018-0485-2}.
+
+\bibitem{NP}
+G.~Nuñez Ponasso,
+\emph{Combinatorics of complex maximal determinant matrices},
+PhD thesis, Worcester Polytechnic Institute, 2023;
+\href{https://arxiv.org/abs/2404.09040}{arXiv:2404.09040}.
+
+\bibitem{Szollosi}
+F.~Szöll\H osi,
+\emph{Construction, classification and parametrization of complex Hadamard
+matrices},
+PhD thesis, Central European University, 2012;
+\href{https://arxiv.org/abs/1110.5590}{arXiv:1110.5590}.
+
+\end{thebibliography}
+
+\end{document}

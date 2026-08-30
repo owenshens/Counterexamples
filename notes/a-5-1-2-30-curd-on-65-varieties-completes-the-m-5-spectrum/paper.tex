@@ -1,0 +1,317 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 5^1 2^30-CURD on 65 varieties, completing the 5^1 2^b-CURD
+            spectrum}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[A $5^12^{30}$-CURD on $65$ varieties]
+{A $5^1 2^{30}$-CURD on $65$ Varieties, Completing the $5^1 2^{b}$-CURD
+Spectrum}
+
+\date{}
+
+\subjclass[2020]{05B05, 05B30, 05B10}
+\keywords{class-uniformly resolvable design, pairwise balanced design,
+resolution, difference matrix, exact cover, spectrum}
+
+\begin{document}
+
+\begin{abstract}
+\sloppy
+Cordova, Diesl, Roth and Trenk proved that a class-uniformly resolvable design
+with partition $5^1 2^{(n-5)/2}$ can exist only for $n\in\{5,25,65\}$, and
+wrote of the last of those three orders: \emph{``We do not know if a
+$5^12^{30}$-CURD exists.''} It does. We exhibit one, as four base parallel
+classes on $\mathbb Z_{13}\times\{0,1,2,3,4\}$ developed by a single
+order-$13$ permutation, and the whole of $\lambda=1$ reduces to the statement
+that the $160$ pair orbits the four classes meet are pairwise distinct. One
+quarter of those labels --- the forty carried by the four large blocks, which
+are four rows of the multiplication table of $\mathbb Z_{13}$ read as a
+difference matrix --- is distinct for a reason needing no computation.
+Together with the two orders the source itself settles, this completes the
+spectrum: a $5^1 2^{(n-5)/2}$-CURD exists if and only if $n\in\{5,25,65\}$.
+The object is printed in full, so no code is needed to check it.
+\end{abstract}
+
+\maketitle
+
+\section{The open cell}
+
+Following the source \cite{CDRT}, a \emph{pairwise balanced $(n,K,\lambda)$-design}
+is a pair $(X,\mathcal B)$ with $|X|=n$, every block size in $K$, and every pair
+of \emph{varieties} in exactly $\lambda$ blocks. Quoting \cite{CDRT} verbatim,
+\begin{quote}
+``It is resolvable if $\mathcal B$ can be partitioned into sets (called parallel
+classes) so that each parallel class contains each member of $X$ exactly once.
+Furthermore, it is a Class-Uniformly Resolvable Design (CURD) if in addition,
+each parallel class has the same block sizes.''
+\end{quote}
+The notation $m^1 2^b$ names the common block-size multiset: one block of size
+$m$ and $b$ blocks of size $2$, so $n=m+2b$. Throughout $\lambda=1$, as in
+\cite{CDRT}; thus a $5^1 2^{30}$-CURD on $n=65$ varieties is an exact
+decomposition of the edge set of $K_{65}$ into $52$ parallel classes, each one
+$5$-subset together with thirty disjoint pairs, with nothing doubled and nothing
+missed.
+
+The target is not a conjecture but a declared gap inside a numbered theorem.
+Theorem~2.9 of \cite{CDRT} reads, verbatim,
+\begin{quote}
+``If $(X,\mathcal B)$ is a CURD with partition $5^1 2^{(\frac{n-5}{2})}$ then
+$n=5,\,25$ or $65$.''
+\end{quote}
+and a few lines further on, ``We do not know if a $5^12^{30}$-CURD exists.''
+Statement numbers quoted here are those of the arXiv e-print of \cite{CDRT},
+the only full text available to us.
+
+Writing $m=5$, $n=65$ and $\lambda=1$, the source's necessary conditions leave
+the cell no arithmetic slack. Theorem~2.1 of \cite{CDRT} gives the number of
+parallel classes
+\[
+ w=\frac{n(n-1)}{m^2-2m+n}=\frac{4160}{80}=52,
+\]
+Theorem~2.2 gives the number of $5$-blocks through a variety
+\[
+ t=\frac{n-w-1}{m-2}=\frac{12}{3}=4,
+\]
+and Theorem~2.3 requires $mw=tn$, which holds: $5\cdot52=4\cdot65=260$. The
+census then closes exactly: $52$ blocks of size $5$ and $52\cdot30=1560$ blocks
+of size $2$, so $1612$ blocks, covering
+$52\cdot\bigl(\binom52+30\bigr)=52\cdot40=2080=\binom{65}2$ pairs. Of the three
+orders Theorem~2.9 admits, $n=5$ is the one-block design of Example~1.2 of
+\cite{CDRT} and $n=25$ is built there in Theorem~4.7 and Corollary~4.11 at
+$q=5$. Only $n=65$ was undecided.
+
+\section{The design}
+
+\begin{theorem}\label{thm:main}
+A $5^1 2^{30}$-CURD on $65$ varieties exists.
+\end{theorem}
+
+Let $X=\mathbb Z_{13}\times\{0,1,2,3,4\}$, written $c_x$ for the variety in
+column $c$ with $\mathbb Z_{13}$-coordinate $x$, and identified with
+$\{0,1,\dots,64\}$ by $u=13c+x$. Let
+\[
+ \sigma\colon c_x\longmapsto c_{x+1\bmod13}
+\]
+be the order-$13$ permutation adding $1$ inside every column. The design is the
+family of $52$ parallel classes
+\[
+ \sigma^{s}(P_k),\qquad k=1,2,3,4,\quad s=0,1,\dots,12,
+\]
+where the four base classes $P_1,\dots,P_4$ are these. Each line gives one
+block: \texttt{5-BLOCK} the $5$-subset, and each \texttt{PAIRS} line six of the
+thirty $2$-subsets, written \texttt{a|b}.
+
+\small
+\begin{verbatim}
+P1 5-BLOCK 0_0 1_0 2_0 3_0 4_0
+P1 PAIRS   0_1|0_8 0_2|0_12 0_3|4_12 0_4|1_10 0_5|3_2 0_6|3_4
+P1 PAIRS   0_7|0_9 0_10|3_12 0_11|2_9 1_1|1_4 1_2|1_9 1_3|1_8
+P1 PAIRS   1_5|3_8 1_6|2_1 1_7|3_3 1_11|2_7 1_12|3_11 2_2|2_12
+P1 PAIRS   2_3|2_4 2_5|4_10 2_6|4_4 2_8|2_10 2_11|4_8 3_1|3_9
+P1 PAIRS   3_5|4_3 3_6|3_7 3_10|4_7 4_1|4_2 4_5|4_11 4_6|4_9
+P2 5-BLOCK 0_0 1_1 2_2 3_3 4_4
+P2 PAIRS   0_1|1_6 0_2|4_9 0_3|2_6 0_4|3_8 0_5|1_12 0_6|2_7
+P2 PAIRS   0_7|3_2 0_8|4_0 0_9|0_10 0_11|4_1 0_12|3_4 1_0|2_4
+P2 PAIRS   1_2|3_10 1_3|4_2 1_4|2_3 1_5|1_9 1_7|2_0 1_8|2_5
+P2 PAIRS   1_10|3_7 1_11|4_12 2_1|2_9 2_8|4_7 2_10|3_1 2_11|3_5
+P2 PAIRS   2_12|3_11 3_0|3_9 3_6|4_11 3_12|4_5 4_3|4_8 4_6|4_10
+P3 5-BLOCK 0_0 1_2 2_4 3_6 4_8
+P3 PAIRS   0_1|0_10 0_2|1_6 0_3|4_1 0_4|0_9 0_5|2_10 0_6|1_4
+P3 PAIRS   0_7|3_1 0_8|4_10 0_11|2_6 0_12|1_9 1_0|2_7 1_1|3_12
+P3 PAIRS   1_3|4_0 1_5|2_3 1_7|4_11 1_8|3_0 1_10|3_4 1_11|4_3
+P3 PAIRS   1_12|4_7 2_0|3_8 2_1|3_11 2_2|3_7 2_5|2_12 2_8|4_9
+P3 PAIRS   2_9|3_2 2_11|4_6 3_3|3_10 3_5|4_12 3_9|4_5 4_2|4_4
+P4 5-BLOCK 0_0 1_3 2_6 3_9 4_12
+P4 PAIRS   0_1|1_10 0_2|2_1 0_3|2_10 0_4|4_1 0_5|2_2 0_6|4_7
+P4 PAIRS   0_7|3_8 0_8|3_7 0_9|2_5 0_10|1_5 0_11|4_4 0_12|1_11
+P4 PAIRS   1_0|1_1 1_2|2_7 1_4|4_11 1_6|1_8 1_7|4_9 1_9|3_10
+P4 PAIRS   1_12|4_10 2_0|2_9 2_3|4_6 2_4|3_0 2_8|3_6 2_11|4_5
+P4 PAIRS   2_12|4_8 3_1|3_11 3_2|3_4 3_3|4_2 3_5|4_0 3_12|4_3
+\end{verbatim}
+\normalsize
+
+\noindent
+The four $5$-blocks are not arbitrary: for $k=1,2,3,4$,
+\begin{equation}\label{eq:transversal}
+ B_k=\bigl\{\,c_{(k-1)c\bmod13}\;:\;c=0,1,2,3,4\,\bigr\},
+\end{equation}
+which one reads off the printed lines. Thus the array $a(k,c)=(k-1)c\bmod13$ is
+the $4\times5$ submatrix of the multiplication table of $\mathbb Z_{13}$ on rows
+$0,\dots,3$ and columns $0,\dots,4$ --- a piece of the $(13,13;1)$-difference
+matrix.
+
+\subsection*{Pair orbits}
+Label the $\sigma$-orbit of a pair as follows. Since $\sigma$ preserves columns
+and translates $\mathbb Z_{13}$, the orbit of $\{c_x,c_y\}$ with $x\ne y$ is
+determined by $(S,c,d)$ with
+\[
+ d=\min\bigl(|x-y|,\,13-|x-y|\bigr)\in\{1,\dots,6\},
+\]
+and the orbit of $\{c_x,c'_y\}$ with $c<c'$ by $(C,c,c',d)$ with
+$d=(y-x)\bmod13$. Conversely each such label is realised, so the number of
+orbits is
+\[
+ 5\cdot6+\binom52\cdot13=30+130=160 .
+\]
+
+\begin{lemma}\label{lem:orbits}
+Every $\sigma$-orbit of a pair has size exactly $13$, and consequently
+$160\cdot13=2080=\binom{65}2$.
+\end{lemma}
+
+\begin{proof}
+$\sigma$ has prime order $13$, so an orbit has size $1$ or $13$, and size $1$
+would mean $\{c_x,c'_y\}=\{c_{x+1},c'_{y+1}\}$. If $c\ne c'$ this forces
+$x=x+1$; if $c=c'$ it forces either $x=x+1$ or ($y=x+1$ and $x=y+1$), whence
+$2\equiv0\pmod{13}$. Both are impossible.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Each printed $P_k$ is a partition of $X$ into one $5$-set and thirty pairs: the
+$5+60=65$ symbols listed on its six lines are $0_0,\dots,4_{12}$, each exactly
+once. Since $\sigma$ permutes $X$, every $\sigma^s(P_k)$ is again such a
+partition, so the $52$ classes are resolutions of $X$ with the constant
+block-size multiset $5^1 2^{30}$, giving $52\cdot31=1612$ blocks. The design is
+resolvable and class-uniform by construction; only $\lambda=1$ remains.
+
+Each class contributes $\binom52+30=40$ pairs, so the four base classes
+contribute $4\cdot40=160$ pairs, and the $52$ classes contribute
+$52\cdot40=2080$ pairs counted with multiplicity, which is exactly
+$\binom{65}2$. Hence $\lambda=1$ holds if and only if no pair is repeated, and
+since a class and its $\sigma$-translates cover a full orbit as soon as they
+cover one member of it, this happens if and only if
+\begin{center}
+\emph{the $160$ orbit labels of the $160$ pairs of $P_1\cup P_2\cup P_3\cup P_4$
+are pairwise distinct.}
+\end{center}
+They are. Reading the printed lines, the $30$ same-column labels $(S,c,d)$ each
+occur once and the $130$ cross-column labels $(C,c,c',d)$ each occur once, for
+$160$ distinct labels; by Lemma~\ref{lem:orbits} their orbits partition the
+$2080$ pairs.
+\end{proof}
+
+One quarter of that final tally is forced by \eqref{eq:transversal} and needs no
+computation. Each $B_k$ meets every column once, so it contributes no
+same-column label, and on the column pair $(c,c')$ with $c<c'$ it contributes
+the cross-label
+\[
+ d_k=(k-1)c'-(k-1)c=(k-1)\,\delta \pmod{13},\qquad \delta=c'-c\in\{1,2,3,4\}.
+\]
+As $k$ runs over $1,2,3,4$ these are $0,\delta,2\delta,3\delta$, pairwise
+distinct modulo the prime $13$. So the four $5$-blocks alone already use $40$
+distinct labels, four on each of the ten column pairs; the content of the
+construction is that the remaining $120$ pairs cover the remaining $120$ orbits
+--- all $30$ same-column ones and the $10\cdot(13-4)=90$ surviving cross-column
+ones --- and $120\cdot13=1560=52\cdot30$ is the number of $2$-blocks, so again
+there is no slack.
+
+\begin{remark}
+The $5$-blocks are more structured than $\lambda=1$ demands. By
+\eqref{eq:transversal}, the variety $c_x$ lies in the $5$-block of
+$\sigma^s(P_k)$ if and only if $s\equiv x-(k-1)c \pmod{13}$, one solution in
+$\mathbb Z_{13}$; so for each fixed $k$ the thirteen $5$-blocks
+$\sigma^s(B_k)$ themselves form a parallel class of $X$. The $52$ $5$-blocks
+are therefore distinct, they meet pairwise in at most one variety, and each
+variety lies in exactly $t=4$ of them --- the four families, one apiece.
+\end{remark}
+
+\begin{corollary}\label{cor:spectrum}
+A $5^1 2^{(n-5)/2}$-CURD exists if and only if $n\in\{5,25,65\}$.
+\end{corollary}
+
+\begin{proof}
+Necessity is Theorem~2.9 of \cite{CDRT}, which we quote and do not reprove.
+Sufficiency: $n=5$ is Example~1.2 of \cite{CDRT}, $n=25$ is its Theorem~4.7 with
+Corollary~4.11 at $q=5$, and $n=65$ is Theorem~\ref{thm:main} above.
+\end{proof}
+
+\section{A near miss}
+
+A published theorem prints the partition $5^12^{30}$ on $65$ points and is a
+different object, so we name it. Theorem~3.5 of Danziger and Stevens
+\cite{DaSt04} states, verbatim:
+\begin{quote}
+\sloppy
+``For $q$ a prime power, $2\le k\le q$, $0\le m\le q/(k-1)$, there exists a
+CURGDD$_{q-m(k-2)}$ of type $q^k$ with partition
+$2^{mk(k-1)/2}k^{q-m(k-1)}$, satisfying the conditions of Theorem~3.3.''
+\end{quote}
+At $(q,k,m)=(13,5,3)$ --- legal, since $3\le13/4$ and $5\le13$ --- this reads:
+type $13^5$, that is $65$ points, with partition $2^{30}5^{1}$. It is not the
+object of Theorem~\ref{thm:main}, for two reasons that are pure arithmetic.
+
+\begin{enumerate}
+\item It is \emph{group divisible} of type $13^5$. The
+$5\binom{13}2=390$ within-group pairs are covered $0$ times, and only
+$\binom52\cdot13^2=1690$ of the $2080$ pairs are covered at all, whereas a CURD
+covers all $2080$.
+\item Its index is $\lambda=q-m(k-2)=4$, and $4\cdot1690/40=169$ resolution
+classes, not $\lambda=1$ with $52$.
+\end{enumerate}
+
+\noindent
+Nor can the family be specialised to repair this: $\lambda=1$ requires
+$q-m(k-2)=1$ while ``exactly one $k$-block per class'' requires
+$q-m(k-1)=1$, and subtracting gives $m=0$, hence $q=1$. The only
+$\lambda=1$ CURD conclusion of \cite{DaSt04} is its Corollary~3.8, which lands
+on $q^2+q+1$ points; since $7^2+7+1=57$ and $8^2+8+1=73$, the value $65$ is not
+of that form.
+
+\section{Scope, and verification}
+
+This is a construction, not a classification. Uniqueness, enumeration and the
+number of solutions at $n=65$ are untouched, and no non-existence assertion is
+made anywhere in this note. Two of the three members of the spectrum in
+Corollary~\ref{cor:spectrum} are the source's, not ours: we reproduce no object
+at $n=5$ or $n=25$ and re-derive only their parameter arithmetic, and the
+necessity half of that corollary is quoted from \cite{CDRT} and was not
+reproved. The source states a second undecided cell, a $4^12^{12}$-CURD on
+$n=28$; nothing above bears on it in either direction. No resolvable
+$(65,5,1)$-design is claimed or used.
+
+The object is printed in full above and the argument of Section~2 is finite and
+short, so a reader can check Theorem~\ref{thm:main} from the page: confirm that
+each $P_k$ lists the $65$ varieties once, read off the $160$ orbit labels, and
+confirm they are distinct. The accompanying program \texttt{verify.py} performs
+that check mechanically, in exact integer arithmetic, from a copy of the printed
+block held inside it; it also develops all $52$ classes and re-derives the
+pair-multiplicity multiset $\{1{:}2080\}$ directly, without the orbit argument,
+though both routes read that one parsed copy through the same implementation. It
+reports $53$ checks, all passing, and states in its own output what it does not
+cover. The recorded run \texttt{verify.output.txt} carries the SHA-256 of
+\texttt{verify.py}, and the program prints the SHA-256 of the object string it
+read, so the bytes checked can be matched against the bytes printed above.
+
+\begin{thebibliography}{9}
+
+\bibitem{CDRT}
+R.~Cordova, A.~Diesl, H.~Roth, and A.~Trenk,
+\emph{Class-uniformly resolvable designs with all but one block having size
+two}, arXiv:2606.27519v1, 2026.
+\href{https://arxiv.org/abs/2606.27519}{arXiv:2606.27519}.
+
+\bibitem{DaSt04}
+P.~Danziger and B.~Stevens,
+\emph{Class-uniformly resolvable group divisible structures I: resolvable group
+divisible designs},
+Electron. J. Combin. \textbf{11} (2004), no.~1, Research Paper 23.
+\href{https://doi.org/10.37236/1776}{doi:10.37236/1776}.
+
+\end{thebibliography}
+
+\end{document}

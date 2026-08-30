@@ -1,0 +1,482 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Proof of the Bhagat-Kulkarni-Larsson-Murali Smallest-Discrepancy-Heap Formula}
+}
+
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\FvF}{FvF}
+\DeclareMathOperator{\AvA}{AvA}
+
+\title[The smallest discrepancy heap]
+{A Proof of the Bhagat--Kulkarni--Larsson--Murali\\
+ Smallest-Discrepancy-Heap Formula}
+
+\date{}
+
+\subjclass[2020]{91A46, 91A05, 91A10}
+\keywords{cumulative subtraction game, self-interest game, pure subgame perfect
+equilibrium, tie-breaking, friendly, antagonistic, discrepancy}
+
+\begin{document}
+
+\begin{abstract}
+In the two-player self-interest cumulative subtraction game on the subtraction
+set $S=\{s_2,s_1\}$, $0<s_2<s_1$, the mover takes some $s\in S$ with $s\le h$
+from a heap of size $h$ and adds $s$ to their own score. Indifferent positions
+must be resolved by a convention: under $\FvF$ the mover breaks a tie in the
+opponent's favour, under $\AvA$ against it. Bhagat, Kulkarni, Larsson and
+Murali conjectured that in the non-dominant regime $s_1<2s_2$ with
+$s_1/s_2\neq(k+1)/k$ for every $k\in\mathbb N$ some heap distinguishes the two
+conventions, and that the smallest such heap is
+$h=(n+2)s_2+ns_1$, where $n=\lfloor s_2/(s_1-s_2)\rfloor$. We prove both
+assertions. We exhibit, in closed form, the pure subgame perfect equilibrium
+outcome at \emph{every} heap below that value---the same in both
+conventions---and evaluate both conventions at the value itself, obtaining
+$o_{\FvF}=(s_2+ns_1,\,(n+1)s_2)$ and $o_{\AvA}=(s_2+ns_1,\,ns_1)$. Existence
+and minimality are then immediate, the mover's coordinate agrees at the
+distinguishing heap, and the whole discrepancy is
+$-\bigl(s_2\bmod(s_1-s_2)\bigr)$ in the non-mover's coordinate. We claim no
+priority: a manuscript of Kulkarni and Larsson listed as in preparation in that
+paper is on exactly this subject and could not be obtained.
+\end{abstract}
+
+\maketitle
+
+\section{The game and the conjecture}
+
+Fix a finite $S\subset\mathbb Z_{>0}$. In the \emph{self-interest cumulative
+subtraction game} on $S$ two players alternate; from a heap of $h$ tokens the
+mover removes some $s\in S$ with $s\le h$ and adds $s$ to their \emph{own}
+tally; play ends when $h<\min S$. The game is not zero-sum, and the relevant
+solution concept is a pure subgame perfect equilibrium (PSPE). Write
+$o(h)=(o^1(h),o^2(h))$ for the PSPE payoff pair, $o^1$ being the mover's total.
+Then $o(h)=(0,0)$ for $h<\min S$ and
+\begin{equation}\label{eq:rec}
+  o^1(h)=\max_{s\in S,\ s\le h}\bigl(s+o^2(h-s)\bigr),
+  \qquad
+  o^2(h)=o^1(h-s^*),
+\end{equation}
+where $s^*$ is the maximiser. When two moves are \emph{indifferent}, i.e.\ they
+attain the same value of $s+o^2(h-s)$, \eqref{eq:rec} does not determine
+$o^2(h)$ and a convention is needed. Following
+Bhagat--Kulkarni--Larsson--Murali \cite{BKLM}, in the \emph{friendly}
+convention $\FvF$ the mover selects, among indifferent moves, one
+\emph{maximising} $o^1(h-s)$, and in the \emph{antagonistic} convention $\AvA$
+one \emph{minimising} it. Both recursions are well defined and single-valued;
+we write $o_{\FvF}$ and $o_{\AvA}$, and set
+\[
+  \delta^1(h)=o^1_{\AvA}(h)-o^1_{\FvF}(h),
+  \qquad
+  \delta^2(h)=o^2_{\AvA}(h)-o^2_{\FvF}(h).
+\]
+Call $h$ a \emph{discrepancy heap} if $o_{\FvF}(h)\neq o_{\AvA}(h)$.
+
+From here on $S=\{s_2,s_1\}$ with $0<s_2<s_1$, and it is convenient to put
+\begin{equation}\label{eq:abd}
+  a:=s_2,\qquad b:=s_1,\qquad d:=b-a>0 .
+\end{equation}
+
+The object of this note is the following conjecture of \cite{BKLM}, which we
+quote verbatim, translating only its internal labels into words.
+
+\begin{conjecture}[\cite{BKLM}]\label{con:halfline}
+Consider $S=\{s_2,s_1\}$ in the non-dominant regime where $s_1<2s_2$, and
+suppose, for all $k\in\mathbb N$, $s_1/s_2\neq(k+1)/k$. Then there exists a
+heap $h$ that distinguishes the outcomes of the $\FvF$ and $\AvA$ conventions.
+The smallest such heap is defined by
+\begin{equation}\label{eq:smallestheap}
+  h=(n+2)s_2+ns_1 .
+\end{equation}
+\end{conjecture}
+
+The index $n$ is fixed in \cite{BKLM} by the interval condition
+$\frac{n+1}{n}>\frac{s_1}{s_2}>\frac{n+2}{n+1}$, and a remark there gives the
+equivalent closed form $n=\lfloor s_2/(s_1-s_2)\rfloor$. The two agree, and
+their agreement already encodes the hypotheses:
+
+\begin{lemma}\label{lem:hyp}
+With the notation \eqref{eq:abd}, the hypotheses of
+Conjecture~\ref{con:halfline} are exactly $0<d<a$ together with $d\nmid a$; and
+under them $n=\lfloor a/d\rfloor\ge1$ is the unique integer with
+$n<a/d<n+1$.
+\end{lemma}
+
+\begin{proof}
+$s_1/s_2=1+d/a$, so $\frac{n+1}{n}>1+\frac da$ reads $a/d>n$ and
+$1+\frac da>\frac{n+2}{n+1}$ reads $a/d<n+1$. Non-dominance $s_1<2s_2$ is
+$d<a$, i.e.\ $a/d>1$, i.e.\ $n\ge1$. The excluded ratios are
+$s_1/s_2=(k+1)/k$, i.e.\ $1+d/a=1+1/k$, i.e.\ $a=kd$; so excluding them is
+exactly $d\nmid a$, which is what makes both inequalities of the interval
+condition strict.
+\end{proof}
+
+Throughout, therefore,
+\begin{equation}\label{eq:data}
+  0<d<a,\quad d\nmid a,\quad
+  n:=\Bigl\lfloor\frac ad\Bigr\rfloor\ge1,\quad
+  \varepsilon:=a-nd\in(0,d),\quad
+  \alpha_t:=a-td,
+\end{equation}
+and the heap named by \eqref{eq:smallestheap} is
+\begin{equation}\label{eq:H}
+  H:=(n+2)a+nb=(2n+2)a+nd .
+\end{equation}
+
+The neighbouring regime is already settled in \cite{BKLM}: a proposition proved
+there forbids any discrepancy once $s_1\ge2s_2$. For
+Conjecture~\ref{con:halfline} \cite{BKLM} offer computational evidence, a figure
+reaching $n=48$ and further simulations.
+
+\section{The result}
+
+\begin{theorem}\label{thm:main}
+Assume \eqref{eq:data} and let $H$ be as in \eqref{eq:H}. Call a pair of
+integers $(m,i)$ \emph{admissible} if $m\ge0$ and $0\le i\le\lceil m/2\rceil$,
+and put
+\[
+  v(m,i):=ia+(m-i)b=mb-id .
+\]
+Let $W:=\{v(m,i):(m,i)\ \text{admissible}\}$, let
+$V(h):=\max\{w\in W:w\le h\}$, let $(m,i)$ be the admissible coordinates of
+$V(h)$ \textup{(}unique for $h\le H$, by Lemma~\textup{\ref{lem:lattice}}\/\textup{)}
+and $t:=\lfloor m/2\rfloor$. Then for every $h<H$, in \emph{both}
+conventions,
+\begin{equation}\label{eq:inv}
+  \bigl(o^1(h),o^2(h)\bigr)=
+  \begin{cases}
+    \bigl(tb,\ tb-id\bigr), & m=2t,\\[2pt]
+    \bigl((t+1)b-id,\ tb\bigr), & m=2t+1,
+  \end{cases}
+\end{equation}
+while at $h=H$
+\begin{equation}\label{eq:atH}
+  o_{\FvF}(H)=\bigl(a+nb,\ (n+1)a\bigr)
+  \neq
+  \bigl(a+nb,\ nb\bigr)=o_{\AvA}(H).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{cor:conj}
+Conjecture~\ref{con:halfline} is true. A discrepancy heap exists, the smallest
+one is exactly $H=(n+2)s_2+ns_1$, and there
+$\delta^1(H)=0$ while
+\[
+  \delta^2(H)=-\varepsilon=-\bigl(s_2\bmod(s_1-s_2)\bigr)<0 .
+\]
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:inv} the outcome at every $h<H$ is the same in both conventions,
+so no $h<H$ is a discrepancy heap; by \eqref{eq:atH}, $H$ is one. The two
+first coordinates in \eqref{eq:atH} are equal, and
+$nb-(n+1)a=n(a+d)-(n+1)a=nd-a=-\varepsilon$.
+\end{proof}
+
+Equation \eqref{eq:inv} is a complete description of the equilibrium payoff and
+aggregate move composition below $H$: PSPE play lasts $m$ moves and consumes $i$
+copies of $s_2$ and $m-i$ copies of $s_1$, leaving the residue $h-V(h)$ on the
+heap. It does not single out an equilibrium strategy or a unique move sequence.
+
+\section{The lattice $W$}
+
+Write $L_m:=\{v(m,i):0\le i\le\lceil m/2\rceil\}$, an arithmetic progression of
+step $d$ with
+\[
+  \max L_m=mb,\qquad
+  \min L_{2t}=t(a+b),\qquad
+  \min L_{2t+1}=(t+1)a+tb .
+\]
+
+\begin{lemma}\label{lem:lattice}
+Assume \eqref{eq:data}. Then
+\begin{enumerate}
+\item[\textup{(F1)}]
+  $\min L_{2t+1}-\max L_{2t}=\alpha_t$ and
+  $\min L_{2t+2}-\max L_{2t+1}=\alpha_t$ for every $t\ge0$;
+\item[\textup{(F2)}]
+  $\alpha_t\ge\alpha_n=\varepsilon>0$ for $t\le n$, hence
+  $L_0,L_1,\dots,L_{2n+2}$ are pairwise disjoint and increasing, and every
+  $w\in W$ with $w\le H$ has a \emph{unique} admissible coordinate pair;
+\item[\textup{(F3)}]
+  $\min L_{2n+2}=H+d$ and $\max L_{2n+1}=H+(d-\varepsilon)>H$; consequently
+  $W\cap[0,H]\subseteq L_0\cup\dots\cup L_{2n+1}$, $H\notin W$, and
+  $\max\bigl(W\cap[0,H]\bigr)=v(2n+1,1)=2nb+a=H-\varepsilon$;
+\item[\textup{(F4)}]
+  for admissible $(m,i)$ with $m\le2n+1$ --- which by \textup{(F3)} covers every
+  point of $W\cap[0,H]$ --- the gap in $W$ immediately above $v(m,i)$ is $d$ if
+  $i\ge1$ and $\alpha_{\lfloor m/2\rfloor}$ if $i=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(F1) $\min L_{2t+1}-\max L_{2t}=(t+1)a+tb-2tb=(t+1)a-tb=a-td=\alpha_t$, using
+$b=a+d$; and
+$\min L_{2t+2}-\max L_{2t+1}=(t+1)(a+b)-(2t+1)b=(t+1)a-tb=\alpha_t$.
+
+(F2) $\alpha_t=a-td$ is decreasing in $t$ and $\alpha_n=a-nd=\varepsilon>0$ by
+\eqref{eq:data}; so all the gaps in (F1) with $t\le n$ are strictly positive,
+each $L_m$ has step $d>0$, and $L_0<L_1<\dots<L_{2n+2}$ as sets of integers.
+Uniqueness of coordinates on $[0,H]$ follows, because by (F3) no
+$v(m,i)$ with $m\ge2n+2$ lies in $[0,H]$. (Positivity of $\varepsilon$ is
+exactly where $d\nmid a$ enters.)
+
+(F3) $\min L_{2n+2}=(n+1)(a+b)=(2n+2)a+(n+1)d=H+d$, and
+$\max L_{2n+1}=(2n+1)b=(2n+1)a+(2n+1)d=H+\bigl((n+1)d-a\bigr)=H+(d-\varepsilon)$,
+which exceeds $H$ since $\varepsilon<d$. As $\min L_m$ is increasing in $m$,
+every $v(m,i)$ with $m\ge2n+2$ is at least $H+d$, which gives the inclusion.
+Inside $L_{2n+1}$, $v(2n+1,i)\le H$ reads $(1-i)d\le\varepsilon$, true for
+$i\ge1$ and false for $i=0$; so the largest element of $W$ below $H$ is
+$v(2n+1,1)=(2n+1)b-d=2nb+a$, at distance
+$H-(2nb+a)=(2n+2)a+nd-(2n+1)a-2nd=\varepsilon$ from $H$. Since
+$0<\varepsilon<d$, that distance is not a multiple of $d$, so $H\notin L_{2n+1}$;
+and $H<\min L_{2n+2}$ while $H>\max L_{2n}=2nb$, so $H\notin W$.
+
+(F4) Let $m\le2n+1$. Since $\min L_{m'}$ is increasing in $m'$, every element of
+$W$ lying outside $L_0\cup\dots\cup L_{2n+2}$ is at least
+$\min L_{2n+3}>\min L_{2n+2}$; so on $\bigl[0,\min L_{2n+2}\bigr]$ the elements
+of $W$ are exactly those of $L_0\cup\dots\cup L_{2n+2}$, ordered as in (F2).
+Both $v(m,i)$ and $\min L_{m+1}$ lie in that range, since
+$\max L_{2n+1}<\min L_{2n+2}$ by (F3). If $i\ge1$ then the next element of
+$L_m$, and hence of $W$, is $v(m,i-1)=v(m,i)+d$. If $i=0$ then
+$v(m,0)=\max L_m$ and the next element of $W$ is $\min L_{m+1}$, at distance
+$\alpha_{\lfloor m/2\rfloor}$ by (F1).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+We induct on $h$. For $h<a$ the only admissible value $\le h$ is $v(0,0)=0$, so
+$m=i=t=0$ and \eqref{eq:inv} reads $o(h)=(0,0)$, which is the base of
+\eqref{eq:rec}.
+
+Let $a\le h\le H$ and let $(m,i)$ be the coordinates of $V(h)$, $t=\lfloor
+m/2\rfloor$, $r:=h-V(h)$. Since $v(1,1)=a\le h$ we have $m\ge1$, and by (F3)
+$m\le2n+1$, hence
+\begin{equation}\label{eq:tn}
+  t\le n,\qquad\text{so}\qquad \alpha_t\ge\varepsilon>0 .
+\end{equation}
+Put $c_a:=a+o^2(h-a)$ and, when $h\ge b$, $c_b:=b+o^2(h-b)$; by \eqref{eq:rec}
+the mover takes the larger, and on a tie $\FvF$ takes the $s$ maximising
+$o^1(h-s)$ while $\AvA$ takes the $s$ minimising it. By admissibility
+$0\le i\le t$ when $m=2t$ and $0\le i\le t+1$ when $m=2t+1$, so exactly one of
+the following five cases holds; the split is therefore exhaustive and disjoint.
+In each case we use the inductive hypothesis \eqref{eq:inv} at $h-a$ and $h-b$,
+whose coordinates we first locate using (F4).
+
+\medskip
+\noindent\textbf{Case 1: $m=2t$, $1\le i\le t$.}
+Here $r<d$ by (F4). Since $b-a=d$ and $v(m,i)-b=v(2t-1,i)$,
+$v(m,i)-a=v(2t-1,i-1)$, and since the gaps above $v(2t-1,i)$ and
+$v(2t-1,i-1)$ are $d$ (or $\alpha_{t-1}=\alpha_t+d>d$ when $i=1$) we get
+$V(h-b)=v(2t-1,i)$ and $V(h-a)=v(2t-1,i-1)$. Both have $m'=2t-1$ odd with
+$t'=t-1$, so \eqref{eq:inv} gives $o^2(h-b)=o^2(h-a)=(t-1)b$ and
+\[
+  c_b-c_a=b-a=d>0 .
+\]
+Thus $s^*=s_1$ \emph{uniquely}, $o^1(h)=c_b=tb$ and
+$o^2(h)=o^1(h-b)=tb-id$: this is \eqref{eq:inv} for $m=2t$, in both
+conventions.
+
+\medskip
+\noindent\textbf{Case 2: $m=2t$, $i=0$, $t\ge1$.}
+Here $r<\alpha_t$ by (F4). Now $h-b=v(2t-1,0)+r$ and
+$h-a=v(2t-1,0)+d+r$, and $d+r<d+\alpha_t=\alpha_{t-1}$, so \emph{both} residues
+sit on $v(2t-1,0)$ and $o^2(h-a)=o^2(h-b)=(t-1)b$. Again $c_b-c_a=d>0$, so
+$s^*=s_1$ uniquely, $o^1(h)=tb$ and $o^2(h)=o^1(h-b)=tb$, which is
+\eqref{eq:inv} with $i=0$.
+
+\medskip
+\noindent\textbf{Case 3: $m=2t+1$, $1\le i\le t$ \textup{(}so $t\ge1$\textup{)}.}
+Here $r<d$. As $v(m,i)-b=v(2t,i)$ with $i\ge1$, we get $V(h-b)=v(2t,i)$,
+$o^2(h-b)=tb-id$, $o^1(h-b)=tb$ and
+\[
+  c_b=(t+1)b-id .
+\]
+Also $v(m,i)-a=v(2t,i-1)$ exactly. Two sub-cases, according to (F4) applied at
+$v(2t,i-1)$, whose gap above is $d$ if $i\ge2$ and $\alpha_t$ if $i=1$.
+
+\emph{Case 3A: $i\ge2$, or $i=1$ and $r<\alpha_t$.} Then
+$V(h-a)=v(2t,i-1)$, so $o^2(h-a)=tb-(i-1)d$ and
+$c_a=a+tb-(i-1)d=(t+1)b-id=c_b$: the two moves are indifferent. But the
+tie-breaking comparands agree, $o^1(h-a)=tb=o^1(h-b)$ by \eqref{eq:inv}, so
+both conventions return the same pair
+$\bigl((t+1)b-id,\ tb\bigr)$ --- the tie is not load-bearing.
+
+\emph{Case 3B: $i=1$ and $r\ge\alpha_t$.} Since $r<d$ this forces
+$\alpha_t<d$, i.e.\ $a<(t+1)d$, i.e.\ $t\ge n$; with \eqref{eq:tn}, $t=n$.
+Hence $\alpha_t=\varepsilon$, $V(h)=v(2n+1,1)=H-\varepsilon$ by (F3), and
+$r\ge\varepsilon$ forces $h\ge H$, so $h=H$. \emph{Case 3B therefore occurs at
+$h=H$ and nowhere below it}; this is the minimality assertion. At $h=H$ we have
+$r=\varepsilon$ and
+\[
+  H-a=(2n+1)a+nd=v(2n+1,n+1),\qquad
+  H-b=v(2n,1)+\varepsilon ,
+\]
+so by \eqref{eq:inv}
+\[
+  o^1(H-a)=(n+1)b-(n+1)d=(n+1)a,\quad o^2(H-a)=nb,
+\]
+\[
+  o^1(H-b)=nb,\quad o^2(H-b)=nb-d .
+\]
+Hence $c_a=a+nb$ and $c_b=b+nb-d=(n+1)a+nd=a+nb=c_a$: again a tie. This time
+the comparands \emph{split},
+\[
+  o^1(H-a)-o^1(H-b)=(n+1)a-nb=a-nd=\varepsilon>0 .
+\]
+So $\FvF$, which maximises the opponent's payoff, plays $s_2$ and the non-mover
+receives $o^1(H-a)=(n+1)a$; $\AvA$ plays $s_1$ and the non-mover receives
+$o^1(H-b)=nb$. Both give $o^1(H)=a+nb$. This is \eqref{eq:atH}.
+
+\medskip
+\noindent\textbf{Case 4: $m=2t+1$, $i=0$.}
+Here $r<\alpha_t$ by (F4), and $t\le n-1$: indeed $v(2n+1,0)>H$ by (F3). Now
+$h-b=v(2t,0)+r$ with $r<\alpha_t$, so $V(h-b)=v(2t,0)$, $o^2(h-b)=tb$ and
+$c_b=(t+1)b$. For $h-a=v(2t,0)+d+r$ there are two possibilities --- if
+$d+r<\alpha_t$ then $V(h-a)=v(2t,0)$, and otherwise
+$v(2t,0)+\alpha_t\le h-a<v(2t,0)+\alpha_t+d$ so $V(h-a)=v(2t+1,t+1)$ --- but
+\eqref{eq:inv} returns $o^2(h-a)=tb$ in \emph{either} case, so $c_a=a+tb$ and
+\[
+  c_b-c_a=b-a=d>0 .
+\]
+Thus $s^*=s_1$ uniquely, $o^1(h)=(t+1)b$ and $o^2(h)=o^1(h-b)=tb$, which is
+\eqref{eq:inv}.
+
+\medskip
+\noindent\textbf{Case 5: $m=2t+1$, $i=t+1$.}
+Then $V(h)=\min L_{2t+1}=(t+1)a+tb$ and $r<d$. If $t=0$ then $a\le h<b$ and
+only $s_2$ is legal, giving $o(h)=(a,0)$, which is \eqref{eq:inv}. If $t\ge1$,
+then $h-a=v(2t,t)+r$ with $t\ge1$, so $V(h-a)=v(2t,t)$ and
+$o^2(h-a)=tb-td=ta$, whence $c_a=(t+1)a$; and
+$h-b=v(2t-1,0)+\alpha_t+r$ with $\alpha_t+r<\alpha_t+d=\alpha_{t-1}$, so
+$V(h-b)=v(2t-1,0)$ and $o^2(h-b)=(t-1)b$, whence $c_b=tb$. Therefore
+\[
+  c_a-c_b=(t+1)a-tb=\alpha_t>0
+\]
+by \eqref{eq:tn}: the \emph{sacrifice} $s^*=s_2$ is uniquely optimal. Then
+$o^1(h)=(t+1)a=(t+1)b-(t+1)d$ and $o^2(h)=o^1(h-a)=tb$, which is
+\eqref{eq:inv} with $i=t+1$.
+
+\medskip
+Every case with $h<H$ --- that is, Cases 1, 2, 3A, 4, 5 --- produces a
+convention-independent pair satisfying \eqref{eq:inv}, and $h=H$ falls in
+Case 3B and produces \eqref{eq:atH}. This completes the induction and the
+proof. \qed
+
+\begin{remark}[where the hypotheses are used]
+The two hypotheses enter together, through $\varepsilon>0$: non-dominance
+$d<a$ gives $n\ge1$, and $d\nmid a$ then gives $\varepsilon=a-nd>0$, hence
+$\alpha_t\ge\varepsilon>0$ for $t\le n$ in \eqref{eq:tn}, hence the strict
+sacrifice of Case 5 and the strict comparand gap $\varepsilon$ at $H$. At
+$d\ge a$ the ordering of Lemma~\ref{lem:lattice} collapses and the proposition
+of \cite{BKLM} recalled in \S1 takes over; at $\varepsilon=0$ Case 3B
+degenerates into Case 3A and that tie is not load-bearing.
+\end{remark}
+
+\section{An example}
+
+The hypothesis set $\{(a,d):1\le d<a,\ d\nmid a\}$ is non-empty from $a=3$,
+$d=2$, i.e.\ $S=\{3,5\}$, which is the running example of \cite{BKLM}. Here
+$n=1$, $\varepsilon=1$ and $H=3\cdot3+1\cdot5=14$. The admissible values
+$\le13$ are $0,3,5,8,10,11,13$ with coordinates
+$(0,0),(1,1),(1,0),(2,1),(2,0),(3,2),(3,1)$, and \eqref{eq:inv} gives the
+block table
+
+\begin{center}
+\begin{tabular}{l|ccccccc}
+$h$ & $[0,3)$ & $[3,5)$ & $[5,8)$ & $[8,10)$ & $[10,11)$ & $[11,13)$ & $[13,14)$\\
+\hline
+$(o^1,o^2)$ & $(0,0)$ & $(3,0)$ & $(5,0)$ & $(5,3)$ & $(5,5)$ & $(6,5)$ & $(8,5)$
+\end{tabular}
+\end{center}
+
+\noindent
+while \eqref{eq:atH} gives $o_{\FvF}(14)=(8,6)$ and $o_{\AvA}(14)=(8,5)$. The
+table for $S=\{3,5\}$ in \cite{BKLM} prints the columns $h=0,\dots,15$ with
+$\delta^1\equiv0$ and the single non-zero entry $\delta^2(14)=-1$, and records
+the PSPE move sequences $3\text{-}3\text{-}5\text{-}3$ under $\FvF$ and
+$5\text{-}5\text{-}3$ under $\AvA$, which is Case 3B's $s_2$ against $s_1$.
+
+\section{Scope and verification}
+
+What is proved is Conjecture~\ref{con:halfline} in full, uniformly in $n\ge1$.
+Not settled: the companion statement of \cite{BKLM}, that at the excluded ratios
+$s_1/s_2=(k+1)/k$ there is no discrepancy at any heap---nothing here bears on
+it, and at $d\mid a$ one has $\alpha_n=0$, Lemma~\ref{lem:lattice}(F2) fails at
+$t=n$ and the coordinates of Theorem~\ref{thm:main} are not even well defined,
+so in particular this proof does not show the absence of a discrepancy at or
+below $H$ there; heaps $h>H$, where the outcome genuinely is
+convention-dependent and no claim is made; subtraction sets with $|S|\ge3$; and
+formalisation, this being a hand proof, not checked in a proof assistant.
+Reference~[12] of \cite{BKLM} is \cite{KL}, by two of its four authors and on
+this subject, listed there as \emph{in preparation}, with no arXiv identifier
+and no DOI; we were unable to obtain it, so we do not know what it contains. We
+claim no novelty or priority against it, nor against \cite{CLMW}, whose
+solution of the two-action \emph{zero-sum} game already contains part of the
+structure of play below $H$ (a zero-sum game has a single-valued outcome and so
+no conventions to disagree, so \cite{CLMW} states neither half of
+Conjecture~\ref{con:halfline}), nor against \cite{LMZ}, where the instance
+$S=\{3,5\}$ at $h=14$ is on record.
+
+A program accompanying this note, \texttt{verify.py}, with a transcript of one
+run in \texttt{verify.output.txt}, brute-forces \eqref{eq:rec} in both
+conventions in exact integer arithmetic over the $4568$ pairs with $s_2\le100$
+satisfying \eqref{eq:data}, and checks the invariant \eqref{eq:inv} and its
+convention-independence at every $h<H$, the values \eqref{eq:atH} and
+$\delta^2(H)=-\varepsilon$, that the least discrepancy heap is exactly $H$,
+each part of Lemma~\ref{lem:lattice}, and the exhaustiveness, disjointness and
+per-case arithmetic of the five-case split of \S4; all $32$ of its checks pass.
+Since $d\nmid a$ forces $d\ge2$, that box reaches only $n\le49$, so for the
+formula itself it adds little to the computational evidence already in
+\cite{BKLM}; what it adds is the check of the structural claims. It audits the
+induction on a finite range and does not certify Theorem~\ref{thm:main}, which
+is proved above by hand.
+
+\begin{thebibliography}{9}
+
+\bibitem{BKLM}
+A.~Bhagat, T.~Kulkarni, U.~Larsson, and A.~Murali,
+\emph{Tie-breaking in self interest cumulative subtraction games},
+arXiv:2510.24280, 2025 (v1, 28 Oct 2025; v2, 20 Jan 2026).
+\href{https://arxiv.org/abs/2510.24280}{arXiv:2510.24280}.
+Quotations above are from the version~2 e-print.
+
+\bibitem{CLMW}
+G.~Cohensius, U.~Larsson, R.~Meir, and D.~Wahlstedt,
+\emph{Cumulative subtraction games},
+Electron. J. Combin. \textbf{26} (2019), no.~4, Paper 4.52.
+\href{https://doi.org/10.37236/7904}{doi:10.37236/7904};
+\href{https://arxiv.org/abs/1805.09368}{arXiv:1805.09368}.
+
+\bibitem{LMZ}
+U.~Larsson, R.~Meir, and Y.~Zick,
+\emph{Cumulative games: who is the current player?},
+arXiv:2005.06326, 2020.
+\href{https://arxiv.org/abs/2005.06326}{arXiv:2005.06326}.
+The observation cited above is in the December 2025 revision.
+
+\bibitem{KL}
+T.~Kulkarni and U.~Larsson,
+\emph{Discrepancies in various 2-player self-interest cumulative subtraction
+games}, in preparation. Cited as reference~[12] of \cite{BKLM}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,105 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  f5dc0380ca031ec8f51d4a096c3f0e5f6ddf780deaa62bdbd264f9d570fa8edd
+python:  Python 3.9.6
+=== program output follows ===
+verification of the note: a proof of Tang and Zhang's order -2 Schoenberg
+conjecture (Conjecture C1 of arXiv:2508.10341v3), with the equality case
+python 3.9.6 ; exact arithmetic in Q(sqrt(n+1))(i), no floating point anywhere
+
+=== Step 1: the exact arithmetic, validated before it is used to decide anything
+PASS sqrt_of_two_squares_to_exactly_two [(sqrt 2)^2 = 2]
+PASS inverse_in_the_quadratic_field_round_trips
+PASS complex_inverse_round_trips_over_the_quadratic_field
+PASS conjugation_is_an_involution_and_fixes_the_reals
+PASS modulus_squared_is_real_and_matches_z_times_conj_z [|w|^2 = 2873/196-5/7*sqrt(5)]
+PASS control_distinct_surds_are_not_identified
+PASS control_a_perfect_square_surd_is_normalised_to_a_rational
+PASS control_a_nonzero_element_has_nonzero_field_norm
+
+=== Step 2: Q = I + cJ is a square root of M = I + J, and M is not idempotent
+PASS c_satisfies_n_c_squared_plus_two_c_minus_one_equals_zero [n = 1..12, failures []]
+PASS Q_squared_equals_I_plus_J_exactly [n = 1..12, failures []]
+PASS Q_inverse_is_I_plus_c_prime_J_on_both_sides [n = 1..12, failures []]
+PASS control_M_is_never_idempotent_so_no_projection_can_replace_Q [M^2 = I + (n+2)J; n = 1..12, idempotent at []]
+PASS c_is_exactly_one_third_at_n_three_and_one_quarter_at_n_eight [c(3) = 1/3, c(8) = 1/4]
+PASS K_entries_match_the_closed_form_printed_in_the_paper [20 instances, n = 1..6, failures []]
+
+=== Step 3: the matrix model -- det(wI-A) = P'(w)/(n+1), B = A^-1 = UM, K = QBQ^-1
+PASS P_prime_is_monic_of_degree_n_after_dividing_by_n_plus_one [40 instances, failures []]
+PASS char_poly_of_A_equals_P_prime_over_n_plus_one_coefficientwise [40 instances, n = 1..6, failures []]
+PASS A_times_D_inverse_times_I_plus_J_is_the_identity_so_B_is_A_inverse [40 instances, failures []]
+PASS K_Q_equals_Q_B_so_K_is_similar_to_B_and_shares_its_spectrum [40 instances, failures []]
+PASS no_critical_point_vanishes_the_constant_term_of_P_prime_is_nonzero [40 instances, failures []]
+PASS product_of_the_critical_points_equals_e_n_of_z_over_n_plus_one [20 instances, failures []]
+
+=== Step 4: the conjectured right-hand side of eq:C1 IS ||K||_F^2
+PASS frobenius_norm_squared_of_K_equals_the_conjectured_RHS [40 instances, n = 1..7, failures []]
+PASS frobenius_norm_squared_of_the_unsandwiched_UM_is_the_authors_published_bound [(n+3)sum|u_j|^2; 40 instances, failures []]
+PASS ANTI_CONTROL_the_unsandwiched_norm_differs_from_the_RHS_whenever_n_at_least_two [so the sandwich by Q is load-bearing; failures []]
+PASS eq_C1_refines_the_published_bound_and_the_slack_is_the_cauchy_schwarz_gap [40 instances; strict 40, equality 0]
+
+=== Step 5: the algebraic identity sum_k 1/w_k^2 = 3 sum_j 1/z_j^2 + (sum_j 1/z_j)^2
+PASS the_trace_identity_holds_for_every_gaussian_rational_tuple [40 instances, n = 1..7, failures []]
+PASS e_i_of_the_reciprocal_critical_points_equals_i_plus_one_times_e_i_of_1_over_z [the source's eq:w-sum relation; 40 instances, failures []]
+PASS eq_C1_is_the_modulus_wise_weakening_of_that_identity_at_a_real_tuple [both sides 67/9 at z = (1,2,3)]
+
+=== Step 6: instance (E1) of the paper -- n = 3, z = (1,2,3), every printed number
+PASS E1_P_prime_coefficients_are_the_printed_minus6_22_minus18_4 [low to high: [Fraction(-6, 1), Fraction(22, 1), Fraction(-18, 1), Fraction(4, 1)]]
+PASS E1_elementary_symmetric_functions_of_w_are_the_printed_9_2_11_2_3_2 [e1,e2,e3 = [Fraction(9, 2), Fraction(11, 2), Fraction(3, 2)]]
+PASS E1_LHS_via_the_polynomial_route_is_67_over_9 [(e2^2-2e1e3)/e3^2 = 67/9]
+PASS E1_RHS_in_closed_form_is_67_over_9 [3*49/36 + (11/6)^2 = 67/9]
+PASS E1_the_printed_matrix_54K_is_reproduced_entry_by_entry [54K = [[101, 38, 35], [38, 56, 26], [35, 26, 41]]]
+PASS E1_the_squared_numerators_sum_to_the_printed_21708_and_21708_over_2916_is_67_9 [sum = 21708]
+PASS E1_frobenius_route_gives_67_over_9_as_well [||K||_F^2 = 67/9]
+PASS E1_trace_of_B_squared_gives_67_over_9_a_third_independent_route [tr(B^2) = 67/9]
+PASS E1_K_is_real_symmetric_hence_normal
+PASS E1_equality_holds_in_eq_C1
+PASS E1_the_published_bound_is_49_over_6_loose_by_13_over_18_the_cauchy_schwarz_gap [bound 49/6, slack 13/18, gap n*sum|u|^2-|S|^2 = 13/18]
+
+=== Step 7: instances (E2), (E3), (S1), (S2) and (M1) of the paper
+PASS E2_P_prime_is_the_printed_3z2_minus_6z_plus_2
+PASS E2_both_sides_equal_6_with_distinct_zeros [L = R = 6, so the equality stratum is not the diagonal]
+PASS E3_P_prime_is_the_printed_3z2_minus_1
+PASS E3_both_sides_equal_6_while_the_sum_of_reciprocals_vanishes [L = R = 6 with sum 1/z_j = 0]
+PASS S1_P_prime_is_the_printed_3z2_minus_2_1_plus_i_z_plus_i [coefficients [(0+1i), (-2-2i), 3]]
+PASS S1_LHS_is_6_and_RHS_is_8_so_the_inequality_is_strict [L = 6, R = 8]
+PASS S1_K_is_not_normal_because_u_1_conj_u_2_is_not_real
+PASS S2_P_is_z4_minus_z_and_P_prime_is_4z3_minus_1 [so w_k^3 = 1/4 for every k]
+PASS S2_L_cubed_is_432_and_R_cubed_is_729_so_L_is_strictly_below_R [L = 3*4^(2/3), L^3 = 27*16 = 432 < 729 = 9^3]
+PASS S2_RHS_is_9_because_the_cube_roots_have_modulus_one_and_reciprocal_sum_zero [3*sum 1/|z_j|^2 = 9, |sum 1/z_j|^2 = 0]
+PASS M1_P_prime_at_z_1_1_1_is_4z3_minus_9z2_plus_6z_minus_1 [which factors as (z-1)^2(4z-1)]
+PASS M1_both_sides_equal_18_using_the_MULTISET_of_critical_points [1+1+16 = 18 = 9+9; the SET reading would give 1+16 = 17]
+PASS ANTI_CONTROL_replacing_the_constant_3_by_2_is_false_already_at_E2 [L = 6 > 19/4 = 2*(5/4)+9/4]
+PASS control_equality_does_not_force_the_z_j_to_be_equal [E2: z = (1,2) attains equality with distinct entries]
+PASS control_equality_does_not_require_the_reciprocal_sum_to_be_nonzero [E3: z = (1,-1) attains equality with sum 1/z_j = 0]
+
+=== Step 8: an EXACT decision of eq:C1 at n = 2 over a seeded battery
+PASS n2_decision_procedure_reproduces_the_three_printed_n2_instances [(1,2) -> 6=6 ; (1,-1) -> 6=6 ; (1,i) -> 6<8]
+PASS n2_eq_C1_holds_on_every_pair_of_the_battery [250 pairs, violations 0]
+PASS n2_equality_holds_on_every_collinear_pair_of_the_battery [13 collinear pairs, equality on 13]
+PASS n2_the_inequality_is_STRICT_on_every_non_collinear_pair_of_the_battery [237 non-collinear pairs, strict on 237, equality on 0]
+PASS ANTI_CONTROL_the_same_procedure_REFUTES_the_variant_with_3_replaced_by_2 [violations of the false variant: 217 of 250 -- must be > 0 or the sweep proves nothing]
+
+=== Step 9: K is normal if and only if the z_j are collinear with the origin
+PASS K_normal_iff_the_z_j_are_collinear_with_the_origin [200 instances, n = 1..7, mismatches 0]
+PASS control_the_battery_contains_both_normal_and_non_normal_instances [normal 24, non-normal 176 -- the iff is not vacuous on either side]
+PASS the_entrywise_criterion_u_j_conj_u_k_real_matches_matrix_normality [200 instances, mismatches []]
+PASS forced_positive_every_rotated_real_tuple_gives_a_normal_K [30 tuples z_j = rho r_j with r_j rational, failures []]
+PASS forced_negative_rotating_a_single_entry_by_45_degrees_destroys_normality [failures []]
+
+=== Step 10: the "if" half for EVERY n -- homogeneity plus the real case
+PASS the_critical_points_scale_correctly_B_of_rho_z_times_rho_equals_B_of_z [30 instances, failures []]
+PASS the_RHS_of_eq_C1_is_homogeneous_of_degree_minus_two [30 instances, failures []]
+PASS equality_holds_for_every_real_rational_tuple_with_n_from_1_to_8 [64 tuples, failures 0]
+PASS equality_therefore_holds_for_every_ROTATED_real_tuple_with_n_from_1_to_8 [64 tuples, failures []]
+
+=== Step 11: what this program does NOT cover
+NOT RE-RUN: Schur's inequality itself (Lemma 2 of the paper) is NOT proved here. It is quoted from Horn-Johnson and is also the source paper's own lem:weyl. Every check above is an identity or a finite instance; the passage from 'K is normal' to 'equality in eq:C1' is the LEMMA, not the program.
+NOT RE-RUN: the 'only if' half for n >= 3 is NOT machine-checked. Step 8 decides eq:C1 exactly, including strictness, only at n = 2, where the critical points are the roots of a quadratic; for n >= 3 the program verifies the normality criterion (Step 9) but not the strict inequality, because sum_k 1/|w_k|^2 is not a rational function of the z_j when the w_k are complex.
+NOT RE-RUN: no statement about the other orders. The paper's order -1, -4, -2m and -p inequalities, and the dual order -2 corollary of the source's later section, are outside both the paper and this program.
+NOT RE-RUN: nothing is verified about arbitrary real or complex z_j -- every instance above has Gaussian-rational or rational entries, chosen from a seeded generator over [-5,5]^2 and [-6,6]. The theorem is proved for all z_j by the argument of Section 3; the batteries corroborate the identities the argument uses.
+NOT RE-RUN: no search for a counterexample was performed and none could be, the statement being proved. The anti-controls (constant 3 -> 2, and the unsandwiched Frobenius norm) are the only negative-direction evidence, and both fire.
+
+VERDICT: ALL 67 CHECKS PASS
+=== program exited with status 0 ===

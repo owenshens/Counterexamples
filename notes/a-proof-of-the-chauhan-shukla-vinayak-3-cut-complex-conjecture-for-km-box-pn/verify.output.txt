@@ -1,0 +1,218 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  fc678cb04c8cb7f27b53b1f89a7a2805e8ea239b3f5cd4b81697d09ee3bd23a4
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- the 3-cut complex of K_m box P_n
+Python 3.9.6
+exact integer arithmetic only; homology by integer Smith normal form
+
+=== A. ENGINE CONTROLS -- the homology engine, on objects with known answers ===
+PASS engine-full-tetrahedron-acyclic [Delta^3: all reduced homology 0]
+PASS engine-S2-boundary-of-tetrahedron [H~_2=Z^1]
+PASS engine-S1-triangle [H~_1=Z^1]
+PASS engine-three-points-b0-is-2 [H~_0=Z^2]
+PASS engine-RP2-torsion-visible [H~_1=Z^0+Z/2 -- an engine that could not see torsion would print H~_1=Z^0 here]
+PASS engine-7-vertex-torus [H~_1=Z^2, H~_2=Z^1]
+
+=== B. THE HOST GRAPH, from the paper's definition ===
+PASS graph-edge-count-n*C(m,2)+m*(n-1) [49 cells 2<=m,n<=8, e.g. (5,5): 70 edges]
+PASS graph-degree-profile-m-or-m+1 [end columns have degree m, interior columns m+1]
+PASS graph-connected [25 cells 3<=m,n<=7]
+
+=== C. THEOREM 3 (T0): the dual is the three printed families over the full 1-skeleton ===
+PASS dual-rule-two-enumerations-agree-m3n3 [all 2^9 subsets tested against the rule = 82 faces = the grown enumeration]
+PASS dual-rule-two-enumerations-agree-m3n4 [all 2^12 subsets tested against the rule = 134 faces = the grown enumeration]
+PASS dual-rule-two-enumerations-agree-m4n3 [all 2^12 subsets tested against the rule = 158 faces = the grown enumeration]
+PASS dual-rule-two-enumerations-agree-m3n5 [all 2^15 subsets tested against the rule = 195 faces = the grown enumeration]
+PASS dual-rule-two-enumerations-agree-m5n3 [all 2^15 subsets tested against the rule = 274 faces = the grown enumeration]
+PASS dual-rule-two-enumerations-agree-m4n4 [all 2^16 subsets tested against the rule = 255 faces = the grown enumeration]
+PASS T0-identity-m3n3 [D* == Y u (all pairs): True, 82 faces]
+PASS T0-identity-m3n4 [D* == Y u (all pairs): True, 134 faces]
+PASS T0-identity-m4n3 [D* == Y u (all pairs): True, 158 faces]
+PASS T0-identity-m4n4 [D* == Y u (all pairs): True, 255 faces]
+PASS T0-identity-m5n3 [D* == Y u (all pairs): True, 274 faces]
+PASS T0-identity-m3n5 [D* == Y u (all pairs): True, 195 faces]
+PASS T0-identity-m5n5 [D* == Y u (all pairs): True, 621 faces]
+PASS T0-identity-m6n4 [D* == Y u (all pairs): True, 706 faces]
+PASS T0-identity-m4n6 [D* == Y u (all pairs): True, 497 faces]
+PASS T0-identity-m3n7 [D* == Y u (all pairs): True, 344 faces]
+PASS T0-identity-m7n3 [D* == Y u (all pairs): True, 746 faces]
+PASS T0-identity-m6n6 [D* == Y u (all pairs): True, 1318 faces]
+PASS T0-identity-m7n5 [D* == Y u (all pairs): True, 1567 faces]
+PASS T0-identity-m5n7 [D* == Y u (all pairs): True, 1068 faces]
+PASS T0-identity-m8n4 [D* == Y u (all pairs): True, 1841 faces]
+PASS T0-maximal-face-census [15 cells: exactly n column simplices, (n-1)C(m,2) squares, m(n-2) row triangles, every other maximal face an edge]
+PASS dual-f-vector-and-euler-m3n8 [f = [24, 276, 110, 21] ; chi~ = -164 = A - B = 7 - 171]
+PASS dual-f-vector-and-euler-m8n3 [f = [24, 276, 400, 266, 168, 84, 24, 3] ; chi~ = -14 = A - B = 42 - 56]
+PASS dual-f-vector-and-euler-m10n9 [f = [90, 4005, 2590, 2250, 2268, 1890, 1080, 405, 90, 9] ; chi~ = -2442 = A - B = 288 - 2730]
+PASS dual-f-vector-and-euler-m10n10 [f = [100, 4950, 2900, 2505, 2520, 2100, 1200, 450, 100, 10] ; chi~ = -3196 = A - B = 324 - 3520]
+
+=== D. THE CLOSED FORMS, as identities in Z[m, n] -- coefficients, not samples ===
+PASS poly-2A-two-forms-agree [(m^2-3m+2)(n-1) == 2(n-1)C(m-1,2) : +1m^2n-3mn-1m^2+2n+3m-2]
+PASS poly-2E-equals-2B [2(C(mn,2) - nC(m,2) - m^2(n-1) - m(n-2)) == m(mn-m-2)(n-2) == +1m^2n^2-3m^2n-2mn+2m^2+4m]
+PASS poly-block-euler-gives-C(m-1,2) [2(1 + (m^2-3m)/2) == 2C(m-1,2)]
+PASS poly-duality-degree-mn-5-goes-to-2 [N - i - 3 = 2 at i = mn-5]
+PASS poly-duality-degree-mn-4-goes-to-1 [N - i - 3 = 1 at i = mn-4]
+PASS poly-boundary-line-n2 [A(m,2) = C(m-1,2), B(m,2) = 0 -- the prism over a clique, Bayer et al. 2024]
+PASS poly-boundary-line-m2 [A(2,n) = 0, B(2,n) = 2(n-2)^2 -- the grid G(2,n), Cut Complexes II]
+PASS AB-integral-and-nonnegative [1444 cells 3<=m,n<=40: both halved products are even and both values >= 0]
+
+=== E. THE SOURCE'S OWN TABLE, and the four values this project retracted ===
+PASS source-table-ten-numeric-cells [all 10 SageMath cells of Table "3-cut Km[]Pn" reproduced as (A,B) in the printed degrees mn-5, mn-4]
+PASS starred-cells-have-values [the 6 cells the source marks "not known": (4,6)->15/144, (6,4)->30/96, (5,5)->24/135, (5,6)->30/230, (6,5)->40/198, (6,6)->50/336]
+PASS retracted-B-values-rejected [the four mis-transcribed B values 90/180/280/240 are NOT the closed form; the corrected 96/135/230/198 are]
+
+=== F. STEP 3: the two-column block B_k ===
+PASS block-1-skeleton-is-complete-on-2m-vertices [m = 3..7: every one of the C(2m,2) pairs is an edge of B_k, which is what makes H_1(B_k) generated by the triangles of K_2m]
+PASS block-homology-m3 [H~_2=Z^1 ; expected H~_2 = Z^C(m-1,2) = Z^1 and nothing else, no torsion]
+PASS block-homology-m4 [H~_2=Z^3 ; expected H~_2 = Z^C(m-1,2) = Z^3 and nothing else, no torsion]
+PASS block-homology-m5 [H~_2=Z^6 ; expected H~_2 = Z^C(m-1,2) = Z^6 and nothing else, no torsion]
+PASS block-homology-m6 [H~_2=Z^10 ; expected H~_2 = Z^C(m-1,2) = Z^10 and nothing else, no torsion]
+PASS block-homology-m7 [H~_2=Z^15 ; expected H~_2 = Z^C(m-1,2) = Z^15 and nothing else, no torsion]
+PASS block-every-K2m-triangle-bounds-m3 [all C(2m,3) = 20 triples: 14 are already 2-faces of B_k and the other 6 are boundaries of the paper's three-term chain with coefficients +-1, so H_1(B_k) = 0 INTEGRALLY and Z^A carries no torsion]
+PASS block-every-K2m-triangle-bounds-m4 [all C(2m,3) = 56 triples: 32 are already 2-faces of B_k and the other 24 are boundaries of the paper's three-term chain with coefficients +-1, so H_1(B_k) = 0 INTEGRALLY and Z^A carries no torsion]
+PASS block-every-K2m-triangle-bounds-m5 [all C(2m,3) = 120 triples: 60 are already 2-faces of B_k and the other 60 are boundaries of the paper's three-term chain with coefficients +-1, so H_1(B_k) = 0 INTEGRALLY and Z^A carries no torsion]
+PASS block-every-K2m-triangle-bounds-m6 [all C(2m,3) = 220 triples: 100 are already 2-faces of B_k and the other 120 are boundaries of the paper's three-term chain with coefficients +-1, so H_1(B_k) = 0 INTEGRALLY and Z^A carries no torsion]
+PASS block-every-K2m-triangle-bounds-m7 [all C(2m,3) = 364 triples: 154 are already 2-faces of B_k and the other 210 are boundaries of the paper's three-term chain with coefficients +-1, so H_1(B_k) = 0 INTEGRALLY and Z^A carries no torsion]
+PASS block-intersection-is-the-full-shared-column-simplex [B_k n B_{k+1} = the closure of column k+1, a non-empty full simplex, so reduced Mayer-Vietoris splits with no connecting map]
+
+=== G. STEP 4: Y, the subcomplex generated by the faces of dimension >= 2 ===
+PASS row-triangle-is-an-elementary-expansion [19 cells: each row triangle adds exactly its own skip edge and itself, nothing else -- the expansion is elementary, coefficient +-1]
+PASS Y-homology-m3n3 [H~_2=Z^2 ; expected H~_1 = 0 and H~_2 = Z^A = Z^2 only, no torsion]
+PASS Y-homology-m3n4 [H~_2=Z^3 ; expected H~_1 = 0 and H~_2 = Z^A = Z^3 only, no torsion]
+PASS Y-homology-m3n5 [H~_2=Z^4 ; expected H~_1 = 0 and H~_2 = Z^A = Z^4 only, no torsion]
+PASS Y-homology-m3n6 [H~_2=Z^5 ; expected H~_1 = 0 and H~_2 = Z^A = Z^5 only, no torsion]
+PASS Y-homology-m3n7 [H~_2=Z^6 ; expected H~_1 = 0 and H~_2 = Z^A = Z^6 only, no torsion]
+PASS Y-homology-m3n12 [H~_2=Z^11 ; expected H~_1 = 0 and H~_2 = Z^A = Z^11 only, no torsion]
+PASS Y-homology-m4n3 [H~_2=Z^6 ; expected H~_1 = 0 and H~_2 = Z^A = Z^6 only, no torsion]
+PASS Y-homology-m4n4 [H~_2=Z^9 ; expected H~_1 = 0 and H~_2 = Z^A = Z^9 only, no torsion]
+PASS Y-homology-m4n5 [H~_2=Z^12 ; expected H~_1 = 0 and H~_2 = Z^A = Z^12 only, no torsion]
+PASS Y-homology-m4n6 [H~_2=Z^15 ; expected H~_1 = 0 and H~_2 = Z^A = Z^15 only, no torsion]
+PASS Y-homology-m5n3 [H~_2=Z^12 ; expected H~_1 = 0 and H~_2 = Z^A = Z^12 only, no torsion]
+PASS Y-homology-m5n4 [H~_2=Z^18 ; expected H~_1 = 0 and H~_2 = Z^A = Z^18 only, no torsion]
+PASS Y-homology-m5n5 [H~_2=Z^24 ; expected H~_1 = 0 and H~_2 = Z^A = Z^24 only, no torsion]
+PASS Y-homology-m6n3 [H~_2=Z^20 ; expected H~_1 = 0 and H~_2 = Z^A = Z^20 only, no torsion]
+PASS Y-homology-m6n4 [H~_2=Z^30 ; expected H~_1 = 0 and H~_2 = Z^A = Z^30 only, no torsion]
+PASS Y-homology-m7n3 [H~_2=Z^30 ; expected H~_1 = 0 and H~_2 = Z^A = Z^30 only, no torsion]
+PASS Y-homology-m8n3 [H~_2=Z^42 ; expected H~_1 = 0 and H~_2 = Z^A = Z^42 only, no torsion]
+PASS Y-homology-m9n3 [H~_2=Z^56 ; expected H~_1 = 0 and H~_2 = Z^A = Z^56 only, no torsion]
+PASS Y-homology-m3n20 [H~_2=Z^19 ; expected H~_1 = 0 and H~_2 = Z^A = Z^19 only, no torsion]
+
+=== H. STEP 1 + STEP 5: the dual end to end, and the conjecture ===
+PASS step1-wedge-and-edge-count-m3n3 [E = 6 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m3n3 [H~_1=Z^6, H~_2=Z^2 ; expected H~_1 = Z^B = Z^6, H~_2 = Z^A = Z^2, nothing else, no torsion]
+PASS conjecture-4.4-m3n3 [H~_4 = Z^2, H~_5 = Z^6, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m3n4 [E = 21 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m3n4 [H~_1=Z^21, H~_2=Z^3 ; expected H~_1 = Z^B = Z^21, H~_2 = Z^A = Z^3, nothing else, no torsion]
+PASS conjecture-4.4-m3n4 [H~_7 = Z^3, H~_8 = Z^21, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m4n3 [E = 12 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m4n3 [H~_1=Z^12, H~_2=Z^6 ; expected H~_1 = Z^B = Z^12, H~_2 = Z^A = Z^6, nothing else, no torsion]
+PASS conjecture-4.4-m4n3 [H~_7 = Z^6, H~_8 = Z^12, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m4n4 [E = 40 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m4n4 [H~_1=Z^40, H~_2=Z^9 ; expected H~_1 = Z^B = Z^40, H~_2 = Z^A = Z^9, nothing else, no torsion]
+PASS conjecture-4.4-m4n4 [H~_11 = Z^9, H~_12 = Z^40, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m3n5 [E = 45 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m3n5 [H~_1=Z^45, H~_2=Z^4 ; expected H~_1 = Z^B = Z^45, H~_2 = Z^A = Z^4, nothing else, no torsion]
+PASS conjecture-4.4-m3n5 [H~_10 = Z^4, H~_11 = Z^45, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m5n3 [E = 20 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m5n3 [H~_1=Z^20, H~_2=Z^12 ; expected H~_1 = Z^B = Z^20, H~_2 = Z^A = Z^12, nothing else, no torsion]
+PASS conjecture-4.4-m5n3 [H~_10 = Z^12, H~_11 = Z^20, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m3n6 [E = 78 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m3n6 [H~_1=Z^78, H~_2=Z^5 ; expected H~_1 = Z^B = Z^78, H~_2 = Z^A = Z^5, nothing else, no torsion]
+PASS conjecture-4.4-m3n6 [H~_13 = Z^5, H~_14 = Z^78, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m6n3 [E = 30 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m6n3 [H~_1=Z^30, H~_2=Z^20 ; expected H~_1 = Z^B = Z^30, H~_2 = Z^A = Z^20, nothing else, no torsion]
+PASS conjecture-4.4-m6n3 [H~_13 = Z^20, H~_14 = Z^30, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m4n5 [E = 84 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m4n5 [H~_1=Z^84, H~_2=Z^12 ; expected H~_1 = Z^B = Z^84, H~_2 = Z^A = Z^12, nothing else, no torsion]
+PASS conjecture-4.4-m4n5 [H~_15 = Z^12, H~_16 = Z^84, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m5n4 [E = 65 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m5n4 [H~_1=Z^65, H~_2=Z^18 ; expected H~_1 = Z^B = Z^65, H~_2 = Z^A = Z^18, nothing else, no torsion]
+PASS conjecture-4.4-m5n4 [H~_15 = Z^18, H~_16 = Z^65, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m5n5 [E = 135 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m5n5 [H~_1=Z^135, H~_2=Z^24 ; expected H~_1 = Z^B = Z^135, H~_2 = Z^A = Z^24, nothing else, no torsion]
+PASS conjecture-4.4-m5n5 [H~_20 = Z^24, H~_21 = Z^135, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m4n6 [E = 144 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m4n6 [H~_1=Z^144, H~_2=Z^15 ; expected H~_1 = Z^B = Z^144, H~_2 = Z^A = Z^15, nothing else, no torsion]
+PASS conjecture-4.4-m4n6 [H~_19 = Z^15, H~_20 = Z^144, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m6n4 [E = 96 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m6n4 [H~_1=Z^96, H~_2=Z^30 ; expected H~_1 = Z^B = Z^96, H~_2 = Z^A = Z^30, nothing else, no torsion]
+PASS conjecture-4.4-m6n4 [H~_19 = Z^30, H~_20 = Z^96, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m5n6 [E = 230 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m5n6 [H~_1=Z^230, H~_2=Z^30 ; expected H~_1 = Z^B = Z^230, H~_2 = Z^A = Z^30, nothing else, no torsion]
+PASS conjecture-4.4-m5n6 [H~_25 = Z^30, H~_26 = Z^230, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m6n5 [E = 198 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m6n5 [H~_1=Z^198, H~_2=Z^40 ; expected H~_1 = Z^B = Z^198, H~_2 = Z^A = Z^40, nothing else, no torsion]
+PASS conjecture-4.4-m6n5 [H~_25 = Z^40, H~_26 = Z^198, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m6n6 [E = 336 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m6n6 [H~_1=Z^336, H~_2=Z^50 ; expected H~_1 = Z^B = Z^336, H~_2 = Z^A = Z^50, nothing else, no torsion]
+PASS conjecture-4.4-m6n6 [H~_31 = Z^50, H~_32 = Z^336, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m3n7 [E = 120 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m3n7 [H~_1=Z^120, H~_2=Z^6 ; expected H~_1 = Z^B = Z^120, H~_2 = Z^A = Z^6, nothing else, no torsion]
+PASS conjecture-4.4-m3n7 [H~_16 = Z^6, H~_17 = Z^120, all else 0 -- exactly Conjecture 4.4]
+PASS step1-wedge-and-edge-count-m7n3 [E = 42 = closed form = B ; b_1(D*) = b_1(Y) + E and b_k(D*) = b_k(Y) for k >= 2]
+PASS dual-homology-m7n3 [H~_1=Z^42, H~_2=Z^30 ; expected H~_1 = Z^B = Z^42, H~_2 = Z^A = Z^30, nothing else, no torsion]
+PASS conjecture-4.4-m7n3 [H~_16 = Z^30, H~_17 = Z^42, all else 0 -- exactly Conjecture 4.4]
+
+=== I. NO DUALITY AT ALL: Delta_3 computed directly, against the published table ===
+PASS primal-delta3-m3n3 [54 facets, 430 faces; H~_4=Z^2, H~_5=Z^6 -- matches the source's table and the closed forms, computed with no Alexander duality anywhere]
+PASS duality-reproduces-the-primal-answer-m3n3 [the dual route gives the same groups in the same degrees]
+PASS primal-delta3-m3n4 [174 facets, 3962 faces; H~_7=Z^3, H~_8=Z^21 -- matches the source's table and the closed forms, computed with no Alexander duality anywhere]
+PASS duality-reproduces-the-primal-answer-m3n4 [the dual route gives the same groups in the same degrees]
+PASS primal-delta3-m4n3 [156 facets, 3938 faces; H~_7=Z^6, H~_8=Z^12 -- matches the source's table and the closed forms, computed with no Alexander duality anywhere]
+PASS duality-reproduces-the-primal-answer-m4n3 [the dual route gives the same groups in the same degrees]
+
+=== J. ANTI-FIT: the source's own k = 2 theorem, which this work did not produce ===
+PASS delta2-dual-is-the-clique-complex-m3n3 [Delta_2(G)* = {S : every pair in S is an edge}, 28 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m3n3 [H~_1=Z^4 -> H~_5(Delta_2) = Z^4: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS delta2-dual-is-the-clique-complex-m3n4 [Delta_2(G)* = {S : every pair in S is an edge}, 38 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m3n4 [H~_1=Z^6 -> H~_8(Delta_2) = Z^6: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS delta2-dual-is-the-clique-complex-m4n3 [Delta_2(G)* = {S : every pair in S is an edge}, 54 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m4n3 [H~_1=Z^6 -> H~_8(Delta_2) = Z^6: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS delta2-dual-is-the-clique-complex-m4n4 [Delta_2(G)* = {S : every pair in S is an edge}, 73 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m4n4 [H~_1=Z^9 -> H~_12(Delta_2) = Z^9: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS delta2-dual-is-the-clique-complex-m5n3 [Delta_2(G)* = {S : every pair in S is an edge}, 104 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m5n3 [H~_1=Z^8 -> H~_11(Delta_2) = Z^8: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS delta2-dual-is-the-clique-complex-m3n5 [Delta_2(G)* = {S : every pair in S is an edge}, 48 faces]
+PASS delta2-is-a-wedge-of-(m-1)(n-1)-spheres-m3n5 [H~_1=Z^8 -> H~_11(Delta_2) = Z^8: Chauhan-Shukla-Vinayak's own Theorem for k = 2, reproduced by the same machinery]
+PASS primal-delta2-m3n3 [21 facets, 484 faces, H~_5=Z^4 = wedge of (m-1)(n-1) = 4 spheres S^5, computed directly]
+
+=== K. FORCED NEGATIVES: the comparator must reject wrong predictions ===
+PASS control-rejects-A-plus-one [at (4,4) the comparator says NO to Z^10 at degree 11]
+PASS control-rejects-B-plus-one [and NO to Z^41 at degree 12]
+PASS control-rejects-swapped-degrees [and NO to the two groups exchanged]
+PASS control-rejects-spurious-torsion [and NO to Z^9 + Z/2 at degree 11, so the freeness claim is a decided answer and not an unchecked default]
+
+=== SCOPE: what this program does NOT cover ===
+NOT RE-RUN: the theorem itself.  The paper's claim is a statement about ALL m, n >= 3 and it is
+settled by the hand proof of Section 4, not by any census.  Every cell this program computes is a
+finite check of that proof's intermediate claims and of its two closed forms.  A program cannot
+verify an infinite family, and nothing below should be read as if it had.
+
+NOT RE-RUN: the large census.  The discovery run computed the reduced homology of D* on 66
+distinct cells, out to (10,10) at 100 vertices, on AWS instances.  This program re-derives the
+same quantities on the much smaller list printed above, chosen so that a referee can run it in
+under a minute on a laptop with nothing installed.  The cells (10,9) and (10,10) appear here only
+in the f-vector and Euler-characteristic check, not in a homology computation.
+
+NOT RE-RUN: Delta_3 computed directly, with no Alexander duality, at any cell beyond (3,3),
+(3,4) and (4,3).  Those three are the three smallest cells of the source's table and they are
+where the duality step is pinned to an independently computed answer; larger cells are checked
+through the dual only.
+
+NOT RE-RUN: the exhaustive-subset enumeration of D* beyond mn <= 16.  For larger cells the dual
+is enumerated by the incremental rule instead, and the two enumerations are shown to agree
+wherever both are affordable.
+
+NOT RE-RUN: anything bibliographic.  The wording of Conjecture 4.4, its position at lines 871-880
+of the source's 80,146-byte main .tex file, the numbering that follows from the shared theorem
+counter, the contents of the source's table, the two boundary lines quoted from Bayer et al.
+(2024) and Cut Complexes II (2025), and the prior-art search, were established by fetching and
+reading those sources.  This program checks mathematics, not provenance, and fetches nothing.
+
+NOT RE-RUN: the total k-cut complex Delta_3^t, and with it the source's sibling Conjectures 4.3,
+4.5 and 4.6.  Nothing in this program touches the total operator.
+
+VERDICT: ALL 155 CHECKS PASS
+=== program exited with status 0 ===

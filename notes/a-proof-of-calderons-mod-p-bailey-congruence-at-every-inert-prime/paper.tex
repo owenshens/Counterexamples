@@ -1,0 +1,361 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Proof of Calderon's mod-p Bailey Congruence at Every Odd Inert Prime}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Rw}{R_{\omega}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+\title[Calderon's Bailey congruence at every odd inert prime]
+{A Proof of Calderon's mod-$p$ Bailey Congruence at Every Odd Inert Prime}
+
+\date{}
+
+\subjclass[2020]{Primary 11B65; Secondary 11A07, 11R11, 05A10}
+\keywords{Bailey congruence, Lucas' theorem, rectangular Gaussian binomial
+coefficient, quadratic order, inert prime, Frobenius}
+
+\begin{document}
+
+\begin{abstract}
+Let $\omega$ be a root of $x^{2}-Tx+N$ with $T,N\in\ZZ$, let
+$\OO=\ZZ[\omega]$, and for $A\ge C\ge1$, $B\ge D\ge1$ let
+$\Rw(A,B;C,D)$ be the rectangular coefficient of Calderon
+[arXiv:2608.00347v1]. His Conjecture~6.5 asserts a mod-$p$ digit
+factorisation of $\Rw$ for every imaginary quadratic order and every prime
+satisfying his hypothesis~(6.3). We prove it, under the weaker hypothesis
+that $p$ is odd, $p\nmid\Delta:=T^{2}-4N$ and $\legendre{\Delta}{p}=-1$;
+neither $p>5$ nor $\Delta<0$ is used. The proof is elementary: the only
+inputs are that $\{1,\omega\}$ is an $\Fp$-basis of
+$\OO/p\OO\cong\mathbb{F}_{p^{2}}$ and that $\omega^{p}\equiv\bar\omega$
+there. The mechanism is the one the author sketches in the twenty-five
+lines above his conjecture; what this note supplies is the verification he
+defers.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Fix $T,N\in\ZZ$ and let $\omega$ be a root of $x^{2}-Tx+N$ with conjugate
+$\bar\omega=T-\omega$ and discriminant $\Delta=T^{2}-4N$. Put
+$\OO=\ZZ[\omega]$, and for a finite box
+$\mathcal B\subset\ZZ_{\ge1}\times\ZZ_{\ge1}$ put
+\[
+ F(\mathcal B)=\prod_{(u,v)\in\mathcal B}(u+v\omega)\in\OO .
+\]
+For $A\ge C\ge1$ and $B\ge D\ge1$ the \emph{rectangular coefficient} is
+\begin{equation}\label{eq:R}
+ \Rw(A,B;C,D)
+ =\frac{F\bigl([A-C+1,A]\times[B-D+1,B]\bigr)}
+        {F\bigl([1,C]\times[1,D]\bigr)}
+ \in\QQ(\omega).
+\end{equation}
+For a prime $p$ write $\OO_{\omega,p}=\OO\otimes_{\ZZ}\ZZ_p
+=\ZZ_p+\ZZ_p\omega$; note that this last equality holds for
+\emph{every} $p$, because $\{1,\omega\}$ is a $\ZZ$-basis of $\OO$.
+
+Calderon \cite{Calderon} states the following. We keep the author's
+hypotheses and index names and set the display in our own notation.
+
+\begin{quote}
+\textbf{Conjecture 6.5.} Let $p$ satisfy (6.3), and suppose
+$1\le\gamma\le\alpha\le p-1$ and $1\le\delta\le\beta\le p-1$. Then
+\begin{equation}\label{eq:C65}
+\begin{split}
+ \Rw(pA+\alpha,&\,pB+\beta;pC+\gamma,pD+\delta)\\
+ &\equiv
+ \Rw(A,B;C,D)\,\Rw(\alpha,\beta;\gamma,\delta)
+ \binom{\alpha}{\gamma}^{\!D}\binom{\beta}{\delta}^{\!C}
+ \pmod{p\,\OO_{\omega,p}}.
+\end{split}
+\end{equation}
+\end{quote}
+
+Three clauses are inherited from the surrounding text rather than restated
+in that environment. The defining relation of $\omega$ asks only for
+$\omega^{2}-T\omega+N=0$ with $T,N\in\ZZ$ and $\Delta<0$; the ring $\OO_{\omega}:=\ZZ[\omega]$ is called
+an order in an imaginary quadratic field, so \emph{maximality is never
+assumed}. Hypothesis~(6.3) is
+\begin{equation}\label{eq:63}
+ p>5,\qquad p\nmid\Delta,\qquad \legendre{\Delta}{p}=-1 .
+\end{equation}
+The index ranges $A\ge C\ge1$, $B\ge D\ge1$ come from the definition
+\eqref{eq:R}.
+
+What \cite{Calderon} \emph{proves} is his Theorem~1.3, and only for
+$\omega=i$, since the coefficient there is defined over $\ZZ[i]$ alone;
+its hypothesis is that $p\equiv3\bmod4$ be an odd prime. For $\omega=i$
+one has $\Delta=-4$ and $\legendre{-4}{p}=-1$ exactly when
+$p\equiv3\bmod4$, so Theorem~1.3 is precisely the case $T=0$, $N=1$ of
+what follows.
+
+\begin{theorem}\label{thm:main}
+Let $p$ be an odd prime and $T,N\in\ZZ$ with
+\begin{equation}\label{eq:I}
+ p\nmid\Delta
+ \qquad\text{and}\qquad
+ \legendre{\Delta}{p}=-1 .
+\end{equation}
+Let $A\ge C\ge1$, $B\ge D\ge1$, and let
+$1\le\gamma\le\alpha\le p-1$, $1\le\delta\le\beta\le p-1$. Then all three
+rectangular coefficients occurring in \eqref{eq:C65} lie in
+$\OO_{\omega,p}$, and \eqref{eq:C65} holds.
+In particular Conjecture~6.5 of \cite{Calderon} is true, and it remains
+true when \eqref{eq:63} is weakened to \eqref{eq:I}.
+\end{theorem}
+
+\section{The proof}\label{sec:proof}
+
+Assume \eqref{eq:I}. Then $x^{2}-Tx+N$ is irreducible over $\Fp$, so
+$\mathfrak p:=p\,\OO_{\omega,p}$ is a maximal ideal, $\OO_{\omega,p}$ is a
+discrete valuation ring with uniformiser $p$ and residue field
+\[
+ \OO_{\omega,p}/\mathfrak p\cong\mathbb F_{p^{2}},
+\]
+in which $\{1,\omega\}$ is an $\Fp$-basis. Write $v$ for the valuation
+with $v(p)=1$, extended to $\QQ(\omega)^{\times}$, and write $\equiv$ for
+congruence modulo $\mathfrak p$. We use exactly three facts.
+
+\begin{itemize}
+\item[(i)] For $a,b\in\ZZ$ not both zero,
+  $v(a+b\omega)=\min\bigl(v_p(a),v_p(b)\bigr)$.
+
+  Indeed, with $m=\min(v_p(a),v_p(b))$ write $a+b\omega=p^{m}(u'+v'\omega)$;
+  then $u',v'$ are not both divisible by $p$, so $u'+v'\omega\not\equiv0$
+  because $\{1,\omega\}$ is an $\Fp$-basis of the residue field, i.e.
+  $u'+v'\omega$ is a unit of $\OO_{\omega,p}$.
+
+\item[(ii)] $\omega^{p}\equiv\bar\omega$. The map $x\mapsto x^{p}$ is the
+  nontrivial element of $\operatorname{Gal}(\mathbb F_{p^{2}}/\Fp)$, so it
+  interchanges the two roots of $x^{2}-Tx+N$.
+
+\item[(iii)] For $x,y\in\Fp$,
+  \[
+   \prod_{t\in\Fp}(x+t\omega)=c_{1}x,
+   \qquad
+   \prod_{t\in\Fp}(t+y\omega)=c_{2}y,
+   \qquad
+   c_{1}=\frac{\omega-\bar\omega}{\omega},\quad c_{2}=\bar\omega-\omega ,
+  \]
+  and $c_{1},c_{2}\ne0$. For the first, $\prod_{t\in\Fp}(X+t)=X^{p}-X$
+  gives, on putting $X=x/\omega$ and multiplying by $\omega^{p}$,
+  \[
+   \prod_{t\in\Fp}(x+t\omega)=x^{p}-\omega^{p-1}x
+   =x-\frac{\bar\omega}{\omega}x=c_{1}x
+  \]
+  by (ii) and $x^{p}=x$; the second is
+  $\prod_{t}(t+y\omega)=(y\omega)^{p}-y\omega=y(\bar\omega-\omega)$.
+  Finally $(\omega-\bar\omega)^{2}=\Delta\ne0$ in $\Fp$ by \eqref{eq:I},
+  and $\omega$ is a unit by (i), so $c_{1}$ and $c_{2}$ are nonzero.
+  Note that neither constant is evaluated below.
+\end{itemize}
+
+\begin{lemma}[integrality]\label{lem:int}
+For all $A\ge C\ge1$ and $B\ge D\ge1$ we have
+$v\bigl(\Rw(A,B;C,D)\bigr)\ge0$; that is, $\Rw(A,B;C,D)\in\OO_{\omega,p}$.
+\end{lemma}
+
+\begin{proof}
+By (i) and $\min(a,b)=\#\{j\ge1:p^{j}\mid\text{both}\}$,
+\[
+ v\bigl(F(\mathcal I\times\mathcal J)\bigr)
+ =\sum_{j\ge1}M_{\mathcal I}(p^{j})\,M_{\mathcal J}(p^{j}),
+\]
+where $M_{\mathcal I}(q)$ is the number of multiples of $q$ in the
+interval $\mathcal I$. An interval of length $C$ contains at least
+$\lfloor C/q\rfloor$ multiples of $q$, and $[1,C]$ contains exactly
+$\lfloor C/q\rfloor$. Applying this to $\mathcal I=[A-C+1,A]$ and
+$\mathcal J=[B-D+1,B]$ gives
+$v\bigl(F([A-C+1,A]\times[B-D+1,B])\bigr)\ge
+ v\bigl(F([1,C]\times[1,D])\bigr)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Write $A'=pA+\alpha$, $B'=pB+\beta$, $C'=pC+\gamma$, $D'=pD+\delta$, and
+put $\mathcal I=[A'-C'+1,A']$, $\mathcal J=[B'-D'+1,B']$, so that
+$|\mathcal I|=C'$ and $|\mathcal J|=D'$ and the left side of
+\eqref{eq:C65} is
+$F(\mathcal I\times\mathcal J)/F([1,C']\times[1,D'])$.
+
+\smallskip
+\noindent\emph{Step 1: split off the $p$-divisible factors, exactly.}
+By (i), $p\mid(u+v\omega)$ if and only if $p\mid u$ and $p\mid v$. An
+integer $pk$ lies in $\mathcal I$ if and only if
+$p(A-C)+(\alpha-\gamma+1)\le pk\le pA+\alpha$; since
+$1\le\alpha-\gamma+1\le p-1$ and $0\le\alpha\le p-1$, this says exactly
+$A-C+1\le k\le A$, so $\mathcal I$ contains exactly the $C$ multiples
+$\{pk:A-C+1\le k\le A\}$. Likewise $\mathcal J$ contains exactly
+$\{pl:B-D+1\le l\le B\}$, and, because $1\le\gamma\le p-1$ and
+$1\le\delta\le p-1$, the interval $[1,C']$ contains exactly
+$\{pk:1\le k\le C\}$ and $[1,D']$ exactly $\{pl:1\le l\le D\}$. Therefore
+\begin{align*}
+ F(\mathcal I\times\mathcal J)
+  &=p^{CD}\,F\bigl([A-C+1,A]\times[B-D+1,B]\bigr)\cdot \mathrm{Num},\\
+ F\bigl([1,C']\times[1,D']\bigr)
+  &=p^{CD}\,F\bigl([1,C]\times[1,D]\bigr)\cdot \mathrm{Den},
+\end{align*}
+where $\mathrm{Num}$ and $\mathrm{Den}$ are the products over those pairs
+$(u,v)$ of the respective boxes that do \emph{not} have both coordinates
+divisible by $p$. The powers $p^{CD}$ cancel, so as an identity in
+$\QQ(\omega)^{\times}$,
+\begin{equation}\label{eq:step1}
+ \Rw(A',B';C',D')=\Rw(A,B;C,D)\cdot\frac{\mathrm{Num}}{\mathrm{Den}},
+\end{equation}
+and by (i) both $\mathrm{Num}$ and $\mathrm{Den}$ are units of
+$\OO_{\omega,p}$. In particular
+\[
+ v\bigl(\Rw(A',B';C',D')\bigr)=v\bigl(\Rw(A,B;C,D)\bigr):
+\]
+the $p$-power bookkeeping cancels uniformly, on \eqref{eq:I} alone.
+
+\smallskip
+\noindent\emph{Step 2: a residue census.}
+Modulo $\mathfrak p$ the factor $u+v\omega$ depends only on
+$(u\bmod p,\ v\bmod p)$, so
+\[
+ \mathrm{Num}\equiv\prod_{(r,s)\ne(0,0)}(r+s\omega)^{e(r)f(s)},
+ \qquad
+ \mathrm{Den}\equiv\prod_{(r,s)\ne(0,0)}(r+s\omega)^{e_{0}(r)f_{0}(s)},
+\]
+the products running over $(r,s)\in\Fp\times\Fp$, where $e(r)$ is the
+number of $u\in\mathcal I$ with $u\equiv r$ and $e_{0}$, $f$, $f_{0}$ are
+defined likewise for $[1,C']$, $\mathcal J$, $[1,D']$. Since
+$|\mathcal I|=pC+\gamma$ and $\mathcal I$ ends at $A'\equiv\alpha$,
+\[
+ e(r)=C+a_{r},\quad a_{r}=[\,r\in S_{\alpha}\,],\qquad
+ S_{\alpha}:=\{\alpha-\gamma+1,\dots,\alpha\},
+\]
+and similarly $e_{0}(r)=C+a'_{r}$ with $a'_{r}=[\,r\in\{1,\dots,\gamma\}\,]$,
+$f(s)=D+b_{s}$ with $b_{s}=[\,s\in S_{\beta}\,]$,
+$S_{\beta}:=\{\beta-\delta+1,\dots,\beta\}$, and $f_{0}(s)=D+b'_{s}$ with
+$b'_{s}=[\,s\in\{1,\dots,\delta\}\,]$. \emph{The residue $0$ lies in none
+of the four sets $S_{\alpha}$, $\{1,\dots,\gamma\}$, $S_{\beta}$,
+$\{1,\dots,\delta\}$} --- this is exactly what
+$1\le\gamma\le\alpha\le p-1$ and $1\le\delta\le\beta\le p-1$ buy --- so
+$a_{0}=a'_{0}=b_{0}=b'_{0}=0$, and the exponent of $(r+s\omega)$ in
+$\mathrm{Num}/\mathrm{Den}$ is
+\[
+ e(r)f(s)-e_{0}(r)f_{0}(s)
+ =C(b_{s}-b'_{s})+D(a_{r}-a'_{r})+(a_{r}b_{s}-a'_{r}b'_{s}).
+\]
+
+\smallskip
+\noindent\emph{Step 3: three groups.}
+Summing the three terms separately, and using $a_{0}=b_{0}=0$ to see that
+the first two extend over all $s$ resp.\ all $r$,
+\[
+ \frac{\mathrm{Num}}{\mathrm{Den}}
+ \equiv
+ \Biggl[\frac{\prod_{r\in S_{\alpha}}V(r)}{\prod_{r=1}^{\gamma}V(r)}\Biggr]^{D}
+ \cdot
+ \Biggl[\frac{\prod_{s\in S_{\beta}}W(s)}{\prod_{s=1}^{\delta}W(s)}\Biggr]^{C}
+ \cdot
+ \frac{F(S_{\alpha}\times S_{\beta})}{F([1,\gamma]\times[1,\delta])},
+\]
+where $V(r)=\prod_{s\in\Fp}(r+s\omega)$ and
+$W(s)=\prod_{r\in\Fp}(r+s\omega)$.
+
+\smallskip
+\noindent\emph{Step 4: cardinality does the rest.}
+The third group is $\Rw(\alpha,\beta;\gamma,\delta)$ by the definition
+\eqref{eq:R}, since $S_{\alpha}=[\alpha-\gamma+1,\alpha]$ and
+$S_{\beta}=[\beta-\delta+1,\beta]$; it is a unit of $\OO_{\omega,p}$
+because every entry of both boxes lies in $[1,p-1]$. By (iii),
+$V(r)=c_{1}r$ and $W(s)=c_{2}s$, and $|S_{\alpha}|=\gamma=|\{1,\dots,\gamma\}|$,
+so $c_{1}^{\gamma}$ cancels \emph{by cardinality alone}, leaving
+\[
+ \frac{\prod_{r\in S_{\alpha}}V(r)}{\prod_{r=1}^{\gamma}V(r)}
+ =\frac{\alpha(\alpha-1)\cdots(\alpha-\gamma+1)}{\gamma!}
+ =\binom{\alpha}{\gamma}
+ \quad\text{in }\Fp,
+\]
+and symmetrically the second group contributes $\binom{\beta}{\delta}^{C}$.
+Hence, writing $U=\mathrm{Num}/\mathrm{Den}$ and
+$Z=\Rw(\alpha,\beta;\gamma,\delta)\binom{\alpha}{\gamma}^{D}
+\binom{\beta}{\delta}^{C}$, we have $U\equiv Z$ with $U,Z$ units, and by
+\eqref{eq:step1}
+\[
+ \Rw(A',B';C',D')-\Rw(A,B;C,D)\,Z
+ =\Rw(A,B;C,D)\,(U-Z).
+\]
+Here $v(U-Z)\ge1$ and $v\bigl(\Rw(A,B;C,D)\bigr)\ge0$ by
+Lemma~\ref{lem:int}, so the left side has valuation at least $1$, which is
+\eqref{eq:C65}. Nothing in the argument used $\Delta<0$, $p>5$, the unit
+group of $\OO$, or the maximality of $\OO$.
+\end{proof}
+
+\begin{remark}
+Two of the four sets in Step~2 exclude $0$ only because
+$\gamma\le\alpha\le p-1$. Drop the digit bounds and $0$ enters
+$S_{\alpha}$, at which point $V(0)=0$ and Step~4 collapses.
+\end{remark}
+
+\begin{remark}
+At a split $p$ fact (i) fails --- $p$ divides $u+v\omega$ for pairs with
+$p\nmid u$ --- and the congruence fails in general: for $\omega=i$ and
+$p=13$ it already fails at $(A,B,C,D)=(1,2,1,1)$ with
+$\alpha=\beta=\gamma=\delta=1$. Theorem~\ref{thm:main} does \emph{not}
+answer Problem~6.7 of \cite{Calderon}, which asks for a \emph{pair} of
+local congruences at the two primes above a split $p$.
+\end{remark}
+
+\medskip
+\noindent\textbf{Artifacts.}
+Theorem~\ref{thm:main} is a hand proof, and the program accompanying this
+note does not stand in for it. That program, \texttt{verify.py}, re-derives
+the finite combinatorial content of Steps~1, 2 and 4 and of
+Lemma~\ref{lem:int} over stated finite ranges; checks facts (i)--(iii) in
+each family it uses; exhausts \eqref{eq:C65} itself, without failure, over
+the index ranges it prints, in families satisfying \eqref{eq:I} both
+inside and outside \eqref{eq:63}; and reproduces the split-prime failure
+quoted in the remark above. It uses the Python standard library and exact
+integer arithmetic alone, and reports what it does not cover. A recorded
+run is included as \texttt{verify.output.txt}.
+
+\begin{thebibliography}{9}
+
+\bibitem{Calderon}
+K.~Calderon,
+\emph{Ljunggren--Jacobsthal and Bailey-type congruences for rectangular
+Gaussian binomial coefficients},
+arXiv:2608.00347v1, 31 July 2026.
+\href{https://arxiv.org/abs/2608.00347}{arXiv:2608.00347}.
+
+\bibitem{Bailey}
+D.~F. Bailey,
+\emph{Two $p^{3}$ variations of Lucas' theorem},
+J. Number Theory \textbf{35} (1990), no.~2, 208--215.
+
+\bibitem{Lucas}
+E.~Lucas,
+\emph{Th\'eorie des fonctions num\'eriques simplement p\'eriodiques},
+Amer. J. Math. \textbf{1} (1878), 184--196, 197--240, 289--321.
+
+\bibitem{Kalinin}
+N.~Kalinin,
+\emph{Wolstenholme's theorem over Gaussian integers},
+Funct. Approx. Comment. Math. \textbf{74} (2026), no.~2, 213--223;
+\href{https://doi.org/10.7169/facm/250713-21-7}
+{doi:10.7169/facm/250713-21-7}.
+
+\end{thebibliography}
+
+\end{document}

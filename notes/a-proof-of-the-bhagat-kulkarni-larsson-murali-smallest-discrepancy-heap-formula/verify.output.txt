@@ -1,0 +1,68 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  893c15fea8e299b10e65fcae5d51b7d95a4998467948dbf8f192884a050b3412
+python:  Python 3.9.6
+=== program output follows ===
+==============================================================================
+PART A -- CONTROLS.  Both polarities, before any sweep.
+==============================================================================
+PASS control-published-table-fvf                    S={3,5}, all 16 columns h=0..15 reproduced
+PASS control-published-table-ava                    S={3,5}, all 16 columns h=0..15 reproduced
+PASS control-published-delta1-identically-zero      delta^1(h) = 0 for h=0..15, as published
+PASS control-published-delta2-bold-entry            the only non-zero entry is delta^2(14) = -1, as published in bold
+PASS control-tie-break-branch-is-exercised          ties met on S={3,5}, h<=15: FvF 2, AvA 2
+PASS control-sacrifice-anchor-s2-3-h7               value(s_2=2)=4 > value(s_1=3)=3, strict sacrifice
+PASS control-sacrifice-anchor-s3-4-h17              value(s_2=3)=9 > value(s_1=4)=8, strict sacrifice
+PASS control-dominant-regime-proved-silent          1130 pairs, 679130 heap values, 0 discrepancies (0 required)
+PASS mutation-parity-shifted-invariant-rejected     S={3,5}: invariant (6) holds on 14/14 heaps h<H, the m->m+1 mutant on 0/14
+PASS mutation-collapsed-comparison-silent           662 pairs with s_2<=40; with both arms on one convention the detector fired on 0
+PASS control-excluded-ratio-produces-a-collision    a=100, d=1: eps=0 and v(200,0)=v(201,101)=20200 < H=20300
+
+==============================================================================
+PART B -- THE OBJECTS PRINTED IN THE PAPER, re-derived from the recursion.
+==============================================================================
+PASS paper-block-table-for-s-3-5                    7 blocks, both conventions, covering exactly h=0..13
+PASS paper-values-at-h-for-s-3-5                    o_FvF(14)=(8,6), o_AvA(14)=(8,5) as printed
+PASS paper-six-instance-table                       n, eps and H = (n+2)s_2+n*s_1 agree on all 6 printed instances
+PASS paper-six-instance-least-discrepancy-heap      the least discrepancy heap is exactly H on all 6 printed instances
+PASS paper-quoted-outcome-pairs                     S={5,7} at 34 -> (19,15)/(19,14); S={10,13} at 89 -> (49,40)/(49,39)
+PASS paper-lemma-1-hypothesis-equivalence           3658 (a,b) pairs tested, 1569 in the hypothesis set, 0 disagreements
+PASS paper-box-denominator-closed-form              enumeration 4568 == sum_{a<=100}(a - tau(a)) = 4568
+
+==============================================================================
+PART C -- THE THEOREM AND ITS LEMMA, over every hypothesis pair with s_2 <= 100.
+==============================================================================
+PASS mutation-case-5-deleted-leaves-heaps-uncovered S={3,5}: with Case 5 removed the split leaves 4 heaps uncovered (>0 required)
+PASS lemma-4-f1-gap-identities                      4568 / 4568 pairs
+PASS lemma-4-f2-unique-admissible-coordinates       4568 / 4568 pairs, 0 collisions on [0,H]
+PASS lemma-4-f3-endpoints-and-h-not-in-w            4568 / 4568 pairs
+PASS lemma-4-f4-gap-above-each-lattice-point        4568 / 4568 pairs
+PASS theorem-2-invariant-below-h-both-conventions   4568 / 4568 pairs
+PASS theorem-2-conventions-agree-below-h            4568 / 4568 pairs
+PASS theorem-2-values-at-h                          4568 / 4568 pairs: o_FvF(H)=(a+nb,(n+1)a), o_AvA(H)=(a+nb,nb)
+PASS corollary-3-delta-1-zero-and-delta-2-minus-eps 4568 / 4568 pairs
+PASS corollary-3-least-discrepancy-heap-is-h        4568 / 4568 pairs, H = (n+2)s_2 + n*s_1
+PASS section-4-split-exhaustive-and-disjoint        4568 / 4568 pairs; 0 of 2480562 heap assignments in no case or two cases
+PASS section-4-per-case-claims                      4568 / 4568 pairs, 2480562 heap-level case assignments
+PASS section-4-case-3b-fires-exactly-once-per-pair  case 3B assignments 4568 == pairs 4568, and 1 per pair -- minimality, measured
+PASS section-4-case-4-has-t-at-most-n-minus-1       Case 4 never occurs with t > n-1, as claimed from Lemma 4(F3)
+
+  case occupancy over the whole box: {'1': 555151, '2': 400588, '3A': 450176, '3B': 4568, '4': 653633, '5': 416446}
+
+NOT RE-RUN -- what this program does NOT cover:
+  * Heaps h > H.  Above H the outcome genuinely is convention-dependent and neither
+    the paper nor this program claims anything there.
+  * The excluded ratios s_1/s_2 = (k+1)/k (i.e. d | a): the target's COMPANION
+    conjecture.  Only one control touches them, and only to show that the paper's
+    Lemma 4(F2) genuinely fails there; no claim of any kind is checked at d | a.
+  * Subtraction sets with |S| >= 3.
+  * The induction itself.  Theorem 2 is proved by hand for every n >= 1; this program
+    audits it on the finite box s_2 <= 100 and cannot certify the general case.  It is
+    not a proof assistant and the proof has not been formalised in one.
+  * Pairs with s_2 > 100.  The box is finite and stated; a wider census (s_2 <= 200,
+    19002 pairs) was run elsewhere for the CONJECTURE only and is not re-run here.
+  * The bibliographic exposure named in section 5 of the paper: the in-preparation
+    manuscript Kulkarni-Larsson cannot be fetched, and no program can settle that.
+
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

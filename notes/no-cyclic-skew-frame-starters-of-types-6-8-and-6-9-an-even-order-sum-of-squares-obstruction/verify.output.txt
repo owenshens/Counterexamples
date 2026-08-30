@@ -1,0 +1,109 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  91134b47271d98deb0331b6a0c58310a57e6d5a5b1f17f220d0b0db01829ea36
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- "No Cyclic Skew Frame Starters of Types 6^8 and 6^9"
+python: 3.9.6, standard library only, exact integer arithmetic
+
+--- Table 1 of arXiv:2211.12367v1 as transcribed by the paper ---
+PASS table1-row-count [35 rows = 12 yes + 20 no + 3 open]
+PASS table1-partition-12-20-3 [12 / 20 / 3, as the paper states]
+PASS table1-rows-distinct [no type appears in two verdict classes]
+PASS table1-open-cells-are-4pow11-6pow8-6pow9 [g = 44, 48, 54]
+PASS exhaustive-search-rows-are-table1-no-rows [9 dagger-marked rows, all with verdict no]
+PASS off-table-cell-not-a-table1-row [5^5 is omitted from Table 1 by its tablenote 2]
+
+--- Lemma (parity) on every cell ---
+PASS subgroup-order-h [H = <g/h> has order h on all 36 cells]
+PASS parity-g-equals-parity-h [g = h (mod 2) on all 36 cells; equivalently g-h is even]
+PASS even-order-involution-lies-in-H [g/2 in H on all 25 even-order cells, so Z_g \ H has no self-inverse element]
+PASS half-decomposition-of-T [T = half U (-half) with |half| = m = (g-h)/2 on all 36 cells]
+PASS parity-step-4^11 [g=44, g/2=22 in H=[0, 11, 22, 33]]
+PASS parity-step-6^8 [g=48, g/2=24 in H=[0, 8, 16, 24, 32, 40]]
+PASS parity-step-6^9 [g=54, g/2=27 in H=[0, 9, 18, 27, 36, 45]]
+
+--- Q computed two independent ways, and its elementary form ---
+PASS Q-direct-equals-g-N-over-6 [sum of squares over Z_g \ H equals g*N/6 on all 36 cells]
+PASS Q-congruent-2-Theta [the starter-free identity Q = 2*Theta (mod g) on all 36 cells]
+PASS Q-zero-iff-six-divides-N [Q = 0 (mod g)  <=>  6 | N  on all 36 cells]
+PASS clause-form-agrees [clauses (i) and (ii) hold  <=>  Q = 0 (mod g)  on all 36 cells]
+PASS clause-form-agrees-on-a-wide-range [6 | N  <=>  clauses (i) and (ii), over every admissible 2<=h,u<=40]
+
+--- both polarities of the criterion on Table 1 (paper items (a)-(e)) ---
+PASS a-criterion-never-fires-on-a-published-yes-row [0 of 12 -- a necessary condition must be silent where a starter is exhibited]
+PASS b-criterion-fires-on-18-of-20-no-rows [18 of 20]
+PASS b-silent-exactly-on-3pow7-and-4pow7 [silent on 3^7 4^7]
+PASS b-off-table-5pow5-silent [N = 996 = 6*166, so Q = 0 mod 25 and the criterion is silent]
+PASS c-criterion-fires-on-exactly-two-open-cells [fires on 6^8 6^9, silent on 4^11]
+PASS d-supersedes-seven-of-nine-exhaustive-searches [2^8 2^9 2^16 4^8 4^9 4^10 6^5]
+PASS d-all-seven-have-even-order [g = 16 18 32 32 36 40 30]
+PASS d-the-two-not-superseded-are-the-silent-no-rows [3^7 and 4^7 remain the source's own searches; the criterion adds nothing there]
+PASS e-weak-form-fires-on-only-12-of-20-no-rows [12 of 20, versus 18 for the strong form]
+PASS e-weak-form-supersedes-only-three-exhaustive-searches [2^9 4^9 6^5]
+PASS e-weak-form-still-kills-6pow8-and-6pow9 [2Q = 32 mod 48 and 2Q = 18 mod 54]
+PASS e-weak-form-implied-by-strong-form [every cell the weak form kills, the strong form kills too]
+
+--- Theorem: the cells 6^8 and 6^9 ---
+PASS cell-6^9-subgroup-as-printed [H = [0, 9, 18, 27, 36, 45]]
+PASS cell-6^9-m [m = (g-h)/2 = 24 pairs]
+PASS cell-6^9-N [N = 5176, paper says 5176; 6 does not divide it (N mod 6 = 4)]
+PASS cell-6^9-Q [Q = 46584 = 54*862 + 36, so Q = 36 mod 54, nonzero]
+PASS cell-6^9-clause-that-fails [clause (i) holds, clause (ii) FAILS]
+PASS cell-6^9-nonexistence [NO CYCLIC SKEW FRAME STARTER OF TYPE 6^9]
+PASS cell-6^8-subgroup-as-printed [H = [0, 8, 16, 24, 32, 40]]
+PASS cell-6^8-m [m = (g-h)/2 = 21 pairs]
+PASS cell-6^8-N [N = 4025, paper says 4025; 6 does not divide it (N mod 6 = 5)]
+PASS cell-6^8-Q [Q = 32200 = 48*670 + 40, so Q = 40 mod 48, nonzero]
+PASS cell-6^8-clause-that-fails [clause (i) FAILS, clause (ii) FAILS]
+PASS cell-6^8-nonexistence [NO CYCLIC SKEW FRAME STARTER OF TYPE 6^8]
+PASS cell-6pow9-arithmetic-as-printed [53*107 - 9*5*11 = 5176; 54*5176/6 = 46584 = 54*862 + 36]
+PASS cell-6pow8-arithmetic-as-printed [47*95 - 8*5*11 = 4025 is odd; 48*4025/6 = 32200 = 48*670 + 40]
+
+--- Remark: the criterion is provably silent on 4^11 ---
+PASS cell-4pow11-N-divisible-by-six [N = 43*87 - 11*3*7 = 3741 - 231 = 3510 = 6*585]
+PASS cell-4pow11-criterion-silent [Q = 0 mod 44: both clauses hold, so the criterion decides nothing]
+
+--- the three starters printed in the paper, against (P1),(P2),(P3) ---
+PASS printed-starter-2^5-is-a-cyclic-skew-frame-starter [Z_10, m=4 pairs, P1 True, P2 True, P3 True]
+PASS printed-starter-2^5-proof-quantities [sum(x^2+y^2) = Q, sum d^2 = sum s^2 = Theta = 0, and sum s^2 + sum d^2 = 2Q, all mod 10]
+PASS printed-starter-2^5-satisfies-the-theorem [Q = 0 mod 10, as Theorem (crit) requires of any type carrying a starter]
+PASS printed-starter-4^5-is-a-cyclic-skew-frame-starter [Z_20, m=8 pairs, P1 True, P2 True, P3 True]
+PASS printed-starter-4^5-proof-quantities [sum(x^2+y^2) = Q, sum d^2 = sum s^2 = Theta = 0, and sum s^2 + sum d^2 = 2Q, all mod 20]
+PASS printed-starter-4^5-satisfies-the-theorem [Q = 0 mod 20, as Theorem (crit) requires of any type carrying a starter]
+PASS printed-starter-5^7-is-a-cyclic-skew-frame-starter [Z_35, m=15 pairs, P1 True, P2 True, P3 True]
+PASS printed-starter-5^7-proof-quantities [sum(x^2+y^2) = Q, sum d^2 = sum s^2 = Theta = 0, and sum s^2 + sum d^2 = 2Q, all mod 35]
+PASS printed-starter-5^7-satisfies-the-theorem [Q = 0 mod 35, as Theorem (crit) requires of any type carrying a starter]
+--- the Z_21 anti-control: a frame starter that is not skew ---
+PASS anti-control-has-the-right-size [m = (21-3)/2 = 9 pairs {x,-x}, 1 <= x <= 10, 7 does not divide x]
+PASS anti-control-satisfies-P1-and-P2 [it really is a frame starter of type 3^7]
+PASS anti-control-is-rejected-on-P3-alone [every sum x + (-x) is 0, which lies in H, so (P3) fails]
+PASS anti-control-cell-is-a-silent-row [3^7 has Q = 0 mod 21: the obstruction there is not Q, consistently with item (b)]
+PASS source-Z10-example [sum of squares over Z_10 \ {0,5} is 260 = 10*26, so Q = 0 mod 10]
+
+--- the 4^11 exact-cover model stated in the paper (arithmetic only) ---
+PASS model-subgroup [H = <11> = [0, 11, 22, 33]]
+PASS model-T-size [|Z_44 \ H| = 40]
+PASS model-no-self-inverse-in-T [22 in H, so every class {z,-z} in T has two elements]
+PASS model-column-count [40 element + 20 difference + 20 sum classes = 80 columns]
+PASS model-pair-total [C(40,2) = 780]
+PASS model-excluded-counts [60 with difference in H, 80 with sum in H, 0 with both]
+PASS model-row-count-by-inclusion-exclusion [780 - 60 - 80 = 640 admissible rows]
+PASS model-row-count-by-degree [every element has exactly 32 admissible partners, and 40*32/2 = 640]
+PASS model-solution-size [a solution is 20 rows, each covering 2 element + 1 difference + 1 sum column, so 20*4 = 80 columns]
+PASS model-shard-arithmetic [7 + 13 + 12 = 32 level-one shards; 7*26 + 13*27 + 12*28 = 869 sub-shards]
+
+NOT RE-RUN: the exhaustive census of the 4^11 exact-cover instance.  The paper
+  does not claim the 4^11 cell and this program does not decide it.  Only the MODEL
+  arithmetic above (80 columns, 640 rows, 869 sub-shards) is checked; no search is
+  performed here, and the engine that ran that census is not part of this folder.
+NOT RE-RUN: nothing about NONCYCLIC groups of order 44, 48 or 54, about skew Room
+  FRAMES as opposed to starters, or about STRONG (non-skew) frame starters.  Those
+  boundaries are asserted in the paper on the cited literature, not recomputed here.
+NOT RE-RUN: the transcription itself.  The 35 verdicts, the nine "exhaustive search"
+  authorities and the three printed starters are read off arXiv:2211.12367v1 by hand;
+  this program checks that they are internally consistent with the criterion, which
+  is a strong test of the transcription but not a substitute for reading the source.
+
+VERDICT: ALL 70 CHECKS PASS
+=== program exited with status 0 ===

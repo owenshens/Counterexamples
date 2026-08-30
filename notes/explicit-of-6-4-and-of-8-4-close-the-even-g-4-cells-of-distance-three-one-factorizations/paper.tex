@@ -1,0 +1,419 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An explicit OF(6,4) and an explicit OF(8,4)}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\OF}{\mathrm{OF}}
+\newcommand{\Km}[2]{K_{#1\times #2}}
+\newcommand{\Zp}{\mathbb Z}
+
+\title[An explicit $\OF(6,4)$ and $\OF(8,4)$]
+{An explicit $\OF(6,4)$ and an explicit $\OF(8,4)$}
+
+\date{}
+
+\subjclass[2020]{05C70, 94B25, 05C25}
+\keywords{one-factorization, complete multipartite graph, distance constraint,
+constant-weight code, prescribed automorphism group, starter}
+
+\begin{document}
+
+\begin{abstract}
+An $\OF(n,g)$ is a one-factorization of the complete multipartite graph
+$\Km ng$ in which no one-factor contains two edges joining the same pair of
+parts; equivalently, an optimal decomposition of $\Km ng$ with respect to
+distance $3$. Tan, Zhou and Etzion state that for even $g\ge4$ an $\OF(n,g)$
+exists if and only if $n>g$, \emph{possibly except} odd $n$ with
+$g+3\le n\le 2g-3$ and even $n$ with $g+2\le n\le 4g-4$; at $g=4$ that
+exception list is $\{6,8,10,12\}$, and they settle $n=10$. We exhibit a
+$12$-edge base factor whose $20$ translates under $\Zp_5\times\Zp_4$ form an
+$\OF(6,4)$, and a $16$-edge base factor whose $28$ translates under
+$\Zp_7\times\Zp_4$ form an $\OF(8,4)$. Both base factors are printed in full,
+and verifying each is a finite inspection of its twelve resp.\ sixteen edges
+together with three short lemmas. Granting the statements we quote from Tan,
+Zhou and Etzion, their doubling lemma turns the $\OF(6,4)$ into an $\OF(12,4)$
+--- which we neither reprove nor write out --- and an $\OF(n,4)$ then exists for
+every $n>4$. We do not determine whether an $\OF(6,4)$ or an $\OF(8,4)$ already
+follows from known amalgamation--detachment results.
+\end{abstract}
+
+\maketitle
+
+\section{Definitions and the quoted exception list}
+
+For integers $n\ge2$ and $g\ge1$ let $\Km ng$ be the complete multipartite
+graph with $n$ parts of size $g$, so
+$|V(\Km ng)|=ng$ and $|E(\Km ng)|=g^2\binom n2$. Two disjoint edges of
+$\Km ng$ are \emph{parallel} if their ends lie in the same pair of parts.
+Following Tan, Zhou and Etzion \cite{TZE}, an $\OF(n,g)$ is a
+one-factorization of $\Km ng$ in which no one-factor contains a pair of
+parallel edges; equivalently, an optimal decomposition of $\Km ng$ with respect
+to distance $3$, since a one-factor read as a set of words of length $n$ and
+weight $2$ over $\{0,1,\dots,g\}$ has minimum Hamming distance $\ge3$ exactly
+when it has no two edges on one pair of parts. The notation carries $g>1$ and
+$n>g$. The necessary conditions recorded in \cite{TZE} are that $ng$ be
+even and $n>g$; at $g=4$ the parity clause is vacuous, so $n>4$ is the whole of
+it.
+
+Part (2) of the main existence theorem of \cite{TZE} reads: for even $g\ge4$
+there exists an $\OF(n,g)$ if and only if $n>g$, possibly except odd $n$ with
+$g+3\le n\le2g-3$ and even $n$ with $g+2\le n\le4g-4$. This clause and the other
+clauses of \cite{TZE} used below are quoted from the e-print cited in the
+bibliography, not from a published version. At $g=4$ the
+odd range $[g+3,2g-3]=[7,5]$ is empty and the even range $[g+2,4g-4]=[6,12]$
+contributes $\{6,8,10,12\}$, the four values that quoted statement leaves open
+at $g=4$. Of these, $n=10$ is settled inside \cite{TZE} itself, by their
+$\OF(g+1,g)$ for even $g$ (which gives an $\OF(5,4)$) followed by their
+doubling lemma. We exhibit objects for $n=6$ and $n=8$.
+
+\begin{theorem}\label{thm:main}
+An $\OF(6,4)$ and an $\OF(8,4)$ exist. Both are exhibited in
+Section~\textup{\ref{sec:objects}} as the orbit of a single one-factor under a
+group of order $20$ resp.\ $28$ acting freely on the edge set.
+\end{theorem}
+
+\begin{corollary}\label{cor:spectrum}
+Grant the clauses quoted from \cite{TZE} above and the doubling lemma of
+\cite{TZE} recorded as Lemma~\textup{\ref{lem:double}} below. Then an $\OF(n,4)$
+exists if and only if $n>4$.
+\end{corollary}
+
+Only Theorem~\ref{thm:main} is established here. The rest of
+Corollary~\ref{cor:spectrum} is quoted: $n=12$ is Theorem~\ref{thm:main} put
+through the doubling lemma of \cite{TZE}, no $\OF(12,4)$ being written out
+below, and every other $n>4$ --- including $n=10$ --- is already in \cite{TZE}.
+
+We claim no priority for the two objects. We have not determined whether an
+amalgamation--detachment theorem controlling per-colour degrees and total
+multiplicities at once, such as that of Bahmanian and Rodger
+\cite{BahmanianRodger}, yields these cells directly, and we have not established
+that no $\OF(6,4)$ or $\OF(8,4)$ appears in the literature. What is offered is
+two explicit objects with a verification a reader can carry out by hand.
+
+\section{The two objects}\label{sec:objects}
+
+Fix an odd integer $p\ge3$ and an integer $g\ge1$, and put $n=p+1$. Take the
+parts of $\Km ng$ to be indexed by $\Zp_p\cup\{\infty\}$ and the $g$ vertices
+of a part by $\Zp_g$, so that
+\[
+ V=\bigl(\Zp_p\cup\{\infty\}\bigr)\times\Zp_g,
+ \qquad
+ P_u=\{u\}\times\Zp_g \quad(u\in\Zp_p\cup\{\infty\})
+\]
+and $E=E(\Km ng)$ is the set of pairs of vertices lying in different parts. Let
+\[
+ G=\Zp_p\times\Zp_g,
+ \qquad
+ (t,s)\colon (x,a)\longmapsto (x+t,\;a+s),
+ \qquad \infty+t=\infty ,
+\]
+a group of order $pg=(n-1)g$ acting on $V$, permuting the parts, and therefore
+acting on $E$.
+
+\subsection*{An $\OF(6,4)$}
+Take $p=5$, $g=4$: six parts, $24$ vertices, $|E|=\binom{24}2-6\binom42=240$,
+and $|G|=20$. Let $M$ be the following one-factor of $\Km64$. Each line is one
+edge, written as \texttt{part value part value}, with \texttt{inf} for
+$\infty$ and values in $\Zp_4$:
+\begin{center}
+\begin{minipage}{0.42\textwidth}
+\begin{verbatim}
+0 0  1 1
+1 2  2 2
+3 3  4 1
+4 3  0 2
+0 1  2 1
+1 3  3 1
+2 3  4 2
+3 2  0 3
+inf 0  1 0
+inf 1  2 0
+inf 2  3 0
+inf 3  4 0
+\end{verbatim}
+\end{minipage}
+\end{center}
+The $12$ edges cover the $24$ vertices once each, so $M$ is a perfect matching,
+and each part contributes the four values $0,1,2,3$.
+
+\subsection*{An $\OF(8,4)$}
+Take $p=7$, $g=4$: eight parts, $32$ vertices,
+$|E|=\binom{32}2-8\binom42=496-48=448$, and $|G|=28$. Let $M_8$ be
+\begin{center}
+\begin{minipage}{0.42\textwidth}
+\begin{verbatim}
+0 0  1 0
+0 1  2 1
+0 2  4 1
+0 3  5 0
+1 1  2 2
+1 2  inf 2
+1 3  5 1
+2 0  3 2
+2 3  6 0
+3 0  4 3
+3 1  5 2
+3 3  6 3
+4 0  6 2
+4 2  inf 1
+5 3  inf 0
+6 1  inf 3
+\end{verbatim}
+\end{minipage}
+\end{center}
+Again the $16$ edges cover the $32$ vertices once each and each part
+contributes $0,1,2,3$.
+
+\begin{theorem}\label{thm:objects}
+The $20$ translates $M+\gamma$, $\gamma\in\Zp_5\times\Zp_4$, form an
+$\OF(6,4)$, and the $28$ translates $M_8+\gamma$,
+$\gamma\in\Zp_7\times\Zp_4$, form an $\OF(8,4)$.
+\end{theorem}
+
+\section{The argument}
+
+Theorem~\ref{thm:objects} follows from two lemmas that hold for every odd $p$
+and every $g$, plus a finite check on the printed edges.
+
+\begin{lemma}\label{lem:free}
+$G$ acts freely on $E$, and $E$ splits into exactly $gn/2$ orbits, each of
+size $|G|=(n-1)g$.
+\end{lemma}
+
+\begin{proof}
+Let $\gamma=(t,s)\in G$ fix an edge $e\in E$.
+
+If $e=\{(x,a),(y,b)\}$ with $x,y\in\Zp_p$, $x\ne y$, then either $\gamma$
+fixes each end or it interchanges them. In the second case $x+t=y$ and
+$y+t=x$, so $2t\equiv0\pmod p$; as $p$ is odd, $2$ is invertible modulo $p$,
+whence $t=0$ and then $x=y$, a contradiction. In the first case $x+t=x$ gives
+$t=0$ and $a+s=a$ gives $s=0$, i.e.\ $\gamma$ is the identity.
+
+If $e=\{(\infty,a),(y,b)\}$ with $y\in\Zp_p$, the two ends lie in different
+parts and $\infty$ is fixed by every element of $G$, so $\gamma$ cannot
+interchange them; fixing them individually gives $t=0$ and $s=0$ as before.
+
+So the stabiliser of every edge is trivial and every orbit has exactly $|G|$
+elements. Consequently the number of orbits is
+\[
+ \frac{|E|}{|G|}
+ =\frac{g^2\binom n2}{(n-1)g}
+ =\frac{gn}2 . \qedhere
+\]
+\end{proof}
+
+Since a one-factor of $\Km ng$ has $ng/2$ edges, Lemma~\ref{lem:free} says that
+the number of $G$-orbits on $E$ equals the size of a one-factor; so a
+one-factor meeting every orbit at most once meets every orbit exactly once.
+
+\begin{lemma}\label{lem:starter}
+Let $M\subseteq E$ be a perfect matching of $\Km ng$ such that
+\begin{enumerate}
+\item[\textup{(T)}] $M$ contains exactly one edge from each $G$-orbit on $E$,
+and
+\item[\textup{(P)}] the pairs of parts spanned by the edges of $M$ are pairwise
+distinct.
+\end{enumerate}
+Then $\{M+\gamma:\gamma\in G\}$ is an $\OF(n,g)$.
+\end{lemma}
+
+\begin{proof}
+Each element of $G$ permutes $V$ and maps parts onto parts, so every
+$M+\gamma$ is again a perfect matching of $\Km ng$ and, by (P), again has
+pairwise distinct part-pairs: no $M+\gamma$ contains parallel edges.
+
+The translates are pairwise edge-disjoint. Suppose
+$e_1+\gamma_1=e_2+\gamma_2$ with $e_1,e_2\in M$ and
+$\gamma_1,\gamma_2\in G$. Then $e_1$ and $e_2$ lie in one orbit, so $e_1=e_2$
+by (T), and then $e_1+\gamma_1\gamma_2^{-1}=e_1$ forces
+$\gamma_1=\gamma_2$ by Lemma~\ref{lem:free}. In particular the $|G|$
+translates are pairwise distinct, and they carry
+\[
+ |G|\cdot\frac{ng}2
+ =(n-1)g\cdot\frac{ng}2
+ =g^2\binom n2
+ =|E|
+\]
+distinct edges, i.e.\ they partition $E$. A partition of $E(\Km ng)$ into
+perfect matchings is a one-factorization, and none of its factors has parallel
+edges.
+\end{proof}
+
+It remains to verify (T) and (P) for the two printed matchings, and for (T) we
+need to name the orbits. For $e\in E$ set
+\begin{equation}\label{eq:inv}
+ \iota(e)=
+ \begin{cases}
+ (d,\,b-a) & e=\{(x,a),(x+d,b)\},\ x\in\Zp_p,\ 1\le d\le\tfrac{p-1}2,\\[2pt]
+ (\infty,\,b-a) & e=\{(\infty,a),(y,b)\},\ y\in\Zp_p ,
+ \end{cases}
+\end{equation}
+the first line being well defined because exactly one of the two orientations
+of a finite--finite edge has its part-difference in $\{1,\dots,(p-1)/2\}$.
+
+\begin{lemma}\label{lem:inv}
+$\iota$ is a complete invariant of the $G$-orbits on $E$: two edges lie in one
+orbit if and only if they have the same value of $\iota$.
+\end{lemma}
+
+\begin{proof}
+$\iota$ is $G$-invariant, since $(t,s)$ shifts the two part-indices of an edge
+by the same $t$ and its two values by the same $s$. The fibre of $\iota$ over
+$(d,j)$ with $1\le d\le(p-1)/2$ is
+$\{\{(x,a),(x+d,a+j)\}: x\in\Zp_p,\ a\in\Zp_g\}$ and the fibre over
+$(\infty,j)$ is $\{\{(\infty,a),(y,a+j)\}: y\in\Zp_p,\ a\in\Zp_g\}$; each has
+exactly $pg=|G|$ elements. So $\iota$ has
+$g\bigl(\frac{p-1}2+1\bigr)=\frac{g(p+1)}2=\frac{gn}2$ fibres, each of size
+$|G|$, and each fibre is a union of orbits. By Lemma~\ref{lem:free} there are
+$gn/2$ orbits and each has size $|G|$, so each fibre is a single orbit.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:objects}]
+Both matchings were seen to be perfect matchings in Section~\ref{sec:objects},
+so by Lemmas~\ref{lem:starter} and~\ref{lem:inv} it suffices to read off
+$\iota$ and the part-pairs.
+
+For $M$ at $p=5$ there are $12$ orbits, indexed by
+$d\in\{1,2\}$ and $\infty$, each with four values of $b-a$ in $\Zp_4$. In the
+order the edges are printed:
+\[
+\begin{array}{lcccc}
+ d=1: & (0,0)(1,1) & (1,2)(2,2) & (3,3)(4,1) & (4,3)(0,2)\\
+      & b-a=1 & 0 & 2 & 3\\[4pt]
+ d=2: & (0,1)(2,1) & (1,3)(3,1) & (2,3)(4,2) & (3,2)(0,3)\\
+      & b-a=0 & 2 & 3 & 1\\[4pt]
+ \infty: & (\infty,0)(1,0) & (\infty,1)(2,0) & (\infty,2)(3,0) &
+ (\infty,3)(4,0)\\
+      & b-a=0 & 3 & 2 & 1
+\end{array}
+\]
+(the two entries in the fourth column of the first two rows use the
+orientations $4\mapsto0$ and $3\mapsto0$, of difference $1$ and $2$). Each of
+the three rows shows each element of $\Zp_4$ exactly once, so all $12$ values
+of $\iota$ are distinct and (T) holds. The part-pairs of $M$ are
+\[
+\begin{gathered}
+ \{0,1\},\ \{1,2\},\ \{3,4\},\ \{4,0\},\ \{0,2\},\ \{1,3\},\\
+ \{2,4\},\ \{3,0\},\ \{\infty,1\},\ \{\infty,2\},\ \{\infty,3\},\
+ \{\infty,4\},
+\end{gathered}
+\]
+twelve distinct pairs out of $\binom62=15$, so (P) holds.
+
+For $M_8$ at $p=7$ there are $16$ orbits, indexed by $d\in\{1,2,3\}$ and
+$\infty$. Reading \eqref{eq:inv} off the printed edges gives, grouped by
+index,
+\[
+\begin{array}{@{}l@{\,}c@{\,}c@{\,}c@{\,}c@{}}
+ d=1: & (0,0)(1,0)\mapsto0, & (1,1)(2,2)\mapsto1,
+      & (2,0)(3,2)\mapsto2, & (3,0)(4,3)\mapsto3;\\[2pt]
+ d=2: & (0,1)(2,1)\mapsto0, & (3,1)(5,2)\mapsto1,
+      & (4,0)(6,2)\mapsto2, & (0,3)(5,0)\mapsto3;\\[2pt]
+ d=3: & (3,3)(6,3)\mapsto0, & (0,2)(4,1)\mapsto1,
+      & (1,3)(5,1)\mapsto2, & (2,3)(6,0)\mapsto3;\\[2pt]
+ \infty: & (1,2)(\infty,2)\mapsto0, & (4,2)(\infty,1)\mapsto1,
+      & (6,1)(\infty,3)\mapsto2, & (5,3)(\infty,0)\mapsto3 .
+\end{array}
+\]
+Four of the sixteen edges are read in the orientation that starts at the larger
+part label, that being the one whose difference lies in $\{1,2,3\}$:
+$(0,2)(4,1)$ from $4$ to $0$, since $4+3=0$ in $\Zp_7$, giving $b-a=2-1=1$;
+$(0,3)(5,0)$ from $5$ to $0$, giving $3-0=3$; $(1,3)(5,1)$ from $5$ to $1$,
+giving $3-1=2$; and $(2,3)(6,0)$ from $6$ to $2$, giving $3-0=3$. Each of the
+four rows shows each element of
+$\Zp_4$ exactly once, so (T) holds. The part-pairs of $M_8$ are the sixteen
+\[
+\begin{gathered}
+ \{0,1\},\ \{0,2\},\ \{0,4\},\ \{0,5\},\ \{1,2\},\ \{1,5\},\
+ \{1,\infty\},\ \{2,3\},\\
+ \{2,6\},\ \{3,4\},\ \{3,5\},\ \{3,6\},\ \{4,6\},\ \{4,\infty\},\
+ \{5,\infty\},\ \{6,\infty\},
+\end{gathered}
+\]
+distinct, out of $\binom82=28$, so (P) holds.
+\end{proof}
+
+\section{What follows from the quoted clauses}\label{sec:spectrum}
+
+\begin{lemma}[\cite{TZE}, doubling lemma; quoted, not proved here]\label{lem:double}
+Let $n,g$ be positive integers with $ng$ even and $n>g$. If there exists an
+$\OF(n,g)$, then there exists an $\OF(2n,g)$.
+\end{lemma}
+
+At $(n,g)=(6,4)$ we have $ng=24$ even and $n=6>4=g$, which is all
+Lemma~\ref{lem:double} as quoted asks, so Theorem~\ref{thm:main} and that lemma
+give an $\OF(12,4)$; we do not write the object out. (The proof of
+Lemma~\ref{lem:double} in \cite{TZE} uses a pair of orthogonal Latin squares of
+order $g$ and excludes $g=2,6$; both conditions are satisfied at $g=4$. We have
+not reproved the lemma.)
+
+\begin{proof}[Proof of Corollary~\ref{cor:spectrum}]
+Necessity is the necessary condition of \cite{TZE} quoted in Section~1:
+$n>g=4$. For sufficiency, let $n>4$. By part (2) of the existence theorem of
+\cite{TZE}, an $\OF(n,4)$ exists for every $n>4$ outside the exception list
+$\{6,8,10,12\}$. Within it, $n=6$ and $n=8$ are Theorem~\ref{thm:main};
+$n=12$ is Theorem~\ref{thm:main} with Lemma~\ref{lem:double}; and $n=10$ is
+the $\OF(5,4)$ of \cite{TZE} with Lemma~\ref{lem:double}, whose hypotheses hold
+at $(n,g)=(5,4)$ since $ng=20$ is even and $5>4$. Every step but the two cases
+of Theorem~\ref{thm:main} is a clause of \cite{TZE} taken on trust.
+\end{proof}
+
+\section{Verification}
+
+Theorem~\ref{thm:objects} can be checked by hand from the two printed matchings:
+Lemmas~\ref{lem:free}--\ref{lem:inv} are three short arguments, and the two
+finite checks are the $\iota$-tables and part-pair lists displayed in its proof.
+
+The accompanying program \texttt{verify.py} also expands the factorizations. It
+parses the two blocks of Section~\ref{sec:objects} as printed, rebuilds $\Km64$,
+$\Km84$ and the two groups, verifies freeness, computes the orbits explicitly
+and confirms that $\iota$ is a complete invariant, and expands the $20$ and $28$
+translates, checking that each is a perfect matching with pairwise distinct
+part-pairs and that the translates partition the $240$ resp.\ $448$ edges. Its
+recorded output (\texttt{verify.output.txt}) reports
+
+\begin{center}
+\texttt{VERDICT: ALL 56 CHECKS PASS}
+\end{center}
+
+\noindent
+and states what it does not cover: it does not reprove Lemma~\ref{lem:double}
+and constructs no $\OF(12,4)$; it takes the clauses of \cite{TZE} used in
+Corollary~\ref{cor:spectrum} on trust, and checks their joint coverage only over
+the finite range $5\le n\le4000$; it does not check the wording quoted from
+\cite{TZE} against any other version of that source; and it says nothing about
+minimality, uniqueness, priority or $g\ge5$.
+
+\begin{thebibliography}{9}
+
+\bibitem{BahmanianRodger}
+M.~A. Bahmanian and C.~A. Rodger,
+\emph{Multiply balanced edge colorings of multigraphs},
+J. Graph Theory \textbf{70} (2012), no.~3, 297--317.
+\href{https://doi.org/10.1002/jgt.20617}{doi:10.1002/jgt.20617}.
+
+\bibitem{TZE}
+Y.~Tan, J.~Zhou, and T.~Etzion,
+\emph{One-factorizations of complete multipartite graphs with distance
+constraints},
+\href{https://arxiv.org/abs/2602.16319v1}{arXiv:2602.16319v1}, 18 February
+2026. Statements are cited descriptively from the \LaTeX{} source of that
+e-print; they have not been checked against a published version.
+
+\end{thebibliography}
+
+\end{document}

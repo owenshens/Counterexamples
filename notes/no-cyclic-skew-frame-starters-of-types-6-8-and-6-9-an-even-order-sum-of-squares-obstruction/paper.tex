@@ -1,0 +1,272 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={No Cyclic Skew Frame Starters of Types
+            6\textasciicircum 8 and 6\textasciicircum 9:
+            An Even-Order Sum-of-Squares Obstruction}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[No cyclic skew frame starters of types $6^8$ and $6^9$]
+{No Cyclic Skew Frame Starters of Types $6^{8}$ and $6^{9}$:\\
+An Even-Order Sum-of-Squares Obstruction}
+
+\date{}
+
+\subjclass[2020]{05B15, 05B30, 05B10}
+\keywords{skew frame starter, frame starter, Room frame, cyclic group,
+sum of squares, nonexistence}
+
+\begin{document}
+
+\begin{abstract}
+Let $H$ be the subgroup of order $h$ of $\mathbb Z_g$, where $g=hu$, and put
+$T=\mathbb Z_g\setminus H$ and $Q=\sum_{z\in T}z^{2}$. We prove that if a
+cyclic skew frame starter of type $h^{u}$ exists in $\mathbb Z_g\setminus H$
+then $Q\equiv0\pmod g$, \emph{with no hypothesis on the parity of $g$}; for
+odd $g$ this is a theorem of Stinson, whose proof halves and therefore needs
+$2$ invertible. Since $Q\equiv40\pmod{48}$ for the type $6^{8}$ and
+$Q\equiv36\pmod{54}$ for the type $6^{9}$, there is no cyclic skew frame
+starter of either type. These are two of the three cells left open in
+Table~1 of Stinson's paper. The third, $4^{11}$, has $Q\equiv0\pmod{44}$, so
+the criterion is silent there and that cell remains open.
+\end{abstract}
+
+\maketitle
+
+\section{The open cells}
+
+Let $G$ be an additive abelian group of order $g$ and $H\le G$ a subgroup of
+order $h$ with $g-h$ even; put $m=(g-h)/2$. Following Stinson
+\cite[\S1]{Stinson23}, a \emph{frame starter} in $G\setminus H$ is a set
+\[
+  S=\bigl\{\{x_i,y_i\}: 1\le i\le m\bigr\}
+\]
+of $m$ unordered pairs such that
+\begin{align}
+  \{x_i,y_i : 1\le i\le m\} &= G\setminus H, \label{eq:P1}\\
+  \{\pm(x_i-y_i) : 1\le i\le m\} &= G\setminus H, \label{eq:P2}
+\end{align}
+both as multisets, i.e.\ every element of $G\setminus H$ occurs exactly once
+as an entry and exactly once as a signed difference. The \emph{type} of $S$ is
+$h^{g/h}$. The starter is \emph{skew} if moreover
+\begin{equation}
+  \{\pm(x_i+y_i) : 1\le i\le m\} = G\setminus H. \label{eq:P3}
+\end{equation}
+Skew frame starters produce skew Room frames, and a skew frame starter is in
+particular strong. Throughout, $G=\mathbb Z_g$ is \emph{cyclic}, so
+$H=\langle u\rangle$ with $u=g/h$ is the unique subgroup of order $h$, and we
+write
+\[
+  T=\mathbb Z_g\setminus H,\qquad Q=\sum_{z\in T}z^{2}\in\mathbb Z .
+\]
+All congruences are modulo $g$ unless said otherwise.
+
+Table~1 of \cite{Stinson23} tabulates, for cyclic groups and $u>1$, the
+existence of a skew frame starter of type $h^{u}$ for $h\le 8$, with a named
+authority for each decided cell. Exactly three of its cells are left open:
+\[
+  4^{11}\ (\mathbb Z_{44}),\qquad
+  6^{8}\ (\mathbb Z_{48}),\qquad
+  6^{9}\ (\mathbb Z_{54}).
+\]
+
+\begin{theorem}\label{thm:main}
+There is no cyclic skew frame starter of type $6^{8}$ and none of type
+$6^{9}$. Explicitly, no set of $21$ pairs satisfies \eqref{eq:P1},
+\eqref{eq:P2}, \eqref{eq:P3} in
+$\mathbb Z_{48}\setminus\langle 8\rangle$, and no set of $24$ pairs satisfies
+them in $\mathbb Z_{54}\setminus\langle 9\rangle$.
+\end{theorem}
+
+\section{The criterion, at every parity}
+
+\begin{lemma}[parity]\label{lem:parity}
+Suppose $H\le\mathbb Z_g$ has order $h$ and $g-h$ is even. Then $g$ and $h$
+have the same parity, and if $g$ is even then $g/2\in H$. Consequently $T$
+contains no self-inverse element, and
+\[
+  T=\mathcal H\ \sqcup\ (-\mathcal H),
+  \qquad
+  \mathcal H:=\Bigl\{\,j : 1\le j\le\bigl\lfloor\tfrac{g-1}{2}\bigr\rfloor,\
+                       j\notin H\,\Bigr\},
+  \qquad |\mathcal H|=m .
+\]
+\end{lemma}
+
+\begin{proof}
+$g-h$ even is exactly ``$g\equiv h\pmod 2$''. If $g$ is even then so is $h$,
+and $g/2=u\cdot(h/2)$ is a multiple of $u$, hence lies in $H=\langle
+u\rangle$. The self-inverse elements of $\mathbb Z_g$ are $0$ and, when $g$ is
+even, $g/2$; both lie in $H$. So $z\mapsto-z$ is a fixed-point-free involution
+of $T$, and it pairs each $j\in\mathcal H$ with $g-j\notin\mathcal H$, which
+gives the decomposition and $|\mathcal H|=|T|/2=m$.
+\end{proof}
+
+Write $\Theta=\sum_{j\in\mathcal H}j^{2}\in\mathbb Z$. Lemma~\ref{lem:parity}
+gives an identity in which no starter appears:
+\begin{equation}\label{eq:QT}
+  Q=\sum_{j\in\mathcal H}\bigl(j^{2}+(g-j)^{2}\bigr)\equiv 2\Theta \pmod g .
+\end{equation}
+
+\begin{theorem}\label{thm:crit}
+If a cyclic skew frame starter of type $h^{u}$ exists in
+$\mathbb Z_g\setminus H$, then $Q\equiv0\pmod g$. No hypothesis on the parity
+of $g$ is used.
+\end{theorem}
+
+\begin{proof}
+Let $S=\{\{x_i,y_i\}\}$ be such a starter and put $d_i=x_i-y_i$,
+$s_i=x_i+y_i$ in $\mathbb Z_g$; choose integer representatives once and for
+all, all congruences being mod $g$. By \eqref{eq:P1},
+$\sum_i(x_i^{2}+y_i^{2})\equiv Q$. By \eqref{eq:P2} the $2m$ residues $\pm
+d_i$ are exactly $T$, so by Lemma~\ref{lem:parity} the map sending $i$ to the
+unique $j_i\in\mathcal H$ with $d_i\equiv\pm j_i$ is a bijection
+$\{1,\dots,m\}\to\mathcal H$; since $(\pm j_i)^{2}=j_i^{2}$,
+\[
+  \sum_i d_i^{2}\equiv\sum_{j\in\mathcal H}j^{2}=\Theta .
+\]
+By \eqref{eq:P3} the same argument applied to the sums gives
+$\sum_i s_i^{2}\equiv\Theta$. Summing the integer identity
+$(x+y)^{2}+(x-y)^{2}=2x^{2}+2y^{2}$ over $i$ yields
+\[
+  \sum_i s_i^{2}+\sum_i d_i^{2}\equiv 2Q,
+\]
+hence $2\Theta\equiv 2Q$. Substituting \eqref{eq:QT} in the form
+$Q\equiv2\Theta$ gives $Q\equiv 2Q$, that is $Q\equiv0\pmod g$. No step
+divides by $2$, which is why $g$ need not be odd.
+\end{proof}
+
+\begin{lemma}[elementary form]\label{lem:form}
+Put $N=(g-1)(2g-1)-u(h-1)(2h-1)$. Then $Q=gN/6$, and
+$Q\equiv0\pmod g$ holds if and only if $6\mid N$, which in turn holds if and
+only if both
+\begin{itemize}
+\item[(i)] if $h$ is even then $u$ is odd; \quad and
+\item[(ii)] if $3\mid g$ then $3\mid h$ and $u\equiv1\pmod 3$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+$\sum_{z=0}^{g-1}z^{2}=g(g-1)(2g-1)/6$ and
+$\sum_{z\in H}z^{2}=\sum_{k=0}^{h-1}(uk)^{2}=u^{2}h(h-1)(2h-1)/6
+ =gu(h-1)(2h-1)/6$, since $u^{2}h=ug$. Subtracting gives $Q=gN/6$. Write
+$N=6q+r$ with $0\le r<6$; then $Q=gq+gr/6$, and $gr/6$ is an integer because
+$Q$ and $gq$ are, so $Q\equiv gr/6\pmod g$ with $0\le gr/6<g$. Hence
+$Q\equiv0$ iff $r=0$.
+
+Modulo $2$: $N\equiv(g+1)+u(h+1)$. If $h$ is even then $g=hu$ is even, so
+$N\equiv1+u$ and $2\mid N$ iff $u$ is odd. If $h$ is odd then, by
+Lemma~\ref{lem:parity}, $g$ is odd and hence $u$ is odd, so $g+1$ and $h+1$
+are both even and $2\mid N$ automatically.
+
+Modulo $3$: if $3\nmid g$ then $3\nmid h$ and $3\nmid u$, and running through
+the four possibilities for $(g\bmod 3,h\bmod 3)$ one finds
+$(g-1)(2g-1)\equiv0$ and $u(h-1)(2h-1)\equiv0$ in each, so $3\mid N$. If
+$3\mid g$ then $(g-1)(2g-1)\equiv1$, and $3\mid N$ iff
+$u(h-1)(2h-1)\equiv1$; this forces $3\nmid h-1$ and $3\nmid 2h-1$, i.e.\
+$3\mid h$, in which case $(h-1)(2h-1)\equiv1$ and the condition becomes
+$u\equiv1\pmod 3$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For type $6^{9}$ we have $g=54$, $h=6$ and $u=9$, so that
+$H=\{0,9,18,27,36,45\}$ and $m=24$, and
+\[
+  N=53\cdot107-9\cdot5\cdot11=5671-495=5176=6\cdot862+4,
+\]
+so $6\nmid N$ and $Q=54\cdot5176/6=46{,}584=54\cdot862+36$, i.e.\
+$Q\equiv36\not\equiv0\pmod{54}$. In the elementary form, clause~(i) holds
+($u=9$ is odd) and clause~(ii) fails, because $3\mid54$ and $3\mid 6$ but
+$u=9\equiv0\pmod3$.
+
+For type $6^{8}$: $g=48$, $h=6$, $u=8$, $H=\{0,8,16,24,32,40\}$, $m=21$, and
+\[
+  N=47\cdot95-8\cdot5\cdot11=4465-440=4025,
+\]
+which is odd, so $6\nmid N$ and $Q=48\cdot4025/6=32{,}200=48\cdot670+40$,
+i.e.\ $Q\equiv40\not\equiv0\pmod{48}$. Clause~(i) fails: $h=6$ is even and
+$u=8$ is even.
+
+In both cases Theorem~\ref{thm:crit} is contradicted, so no such starter
+exists.
+\end{proof}
+
+\begin{remark}[the third open cell]
+For $g=44$, $h=4$, $u=11$ one has
+$N=43\cdot87-11\cdot3\cdot7=3741-231=3510=6\cdot585$, so $6\mid N$ and
+$Q\equiv0\pmod{44}$: both clauses of Lemma~\ref{lem:form} hold, and
+Theorem~\ref{thm:crit} is \emph{provably silent} on the cell $4^{11}$, which
+remains open.
+\end{remark}
+
+\begin{remark}[scope]
+Only cyclic groups are treated. Nothing here bears on the noncyclic abelian
+groups of order $48$ or $54$, and the distinction is not a formality:
+\cite{Stinson23} records types admitting no cyclic skew frame starter but
+admitting noncyclic ones. A skew Room \emph{frame} of type $6^{9}$ exists
+\cite{ChenZhu96}; what Theorem~\ref{thm:main} excludes is the starter
+construction in a cyclic group.
+\end{remark}
+
+\begin{remark}[attribution]
+For $g$ \emph{odd}, Theorem~\ref{thm:crit} is Theorem~2.4 of
+\cite{Stinson23}, whose Lemma~2.3 evaluates
+$Q=g(2gh-1)(g-h)/(6h)$ and whose condition
+$(2gh-1)(g-h)\not\equiv0\pmod{6h}$ is the same congruence. That proof passes
+through the patterned-starter theorem of \cite{Stinson23} and sets
+$a_i=(x_i+y_i)/2$, so it needs $2$ invertible; for even order cyclic groups
+\cite{Stinson23} uses a different approach. The only new content in
+Theorem~\ref{thm:crit} is the removal of ``$g$ odd'', obtained through
+Lemma~\ref{lem:parity} and \eqref{eq:QT}. The sum-of-squares technique itself
+is credited in \cite{Stinson23} to Constable and to Wallis and Mullin. Besides
+the two cells of Theorem~\ref{thm:main}, the criterion gives noncomputational
+proofs of nonexistence for seven of the nine types that \cite{Stinson23}
+settles by exhaustive search; all seven of those have $g$ even.
+\end{remark}
+
+\section{Verification}
+
+Both theorems can be redone at a desk: form $H=\langle g/h\rangle$, sum
+$z^{2}$ over $\mathbb Z_g\setminus H$, and compare with $gN/6$. The
+accompanying program \texttt{verify.py} does this in exact integer arithmetic
+using only the Python standard library. It checks Lemma~\ref{lem:parity} and
+the identity \eqref{eq:QT} cell by cell, recomputes $Q$ two independent ways,
+verifies that the clause form of Lemma~\ref{lem:form} agrees with
+$Q\equiv0\pmod g$, and reproduces the arithmetic of the two cells of
+Theorem~\ref{thm:main} and the silence at $4^{11}$. It runs these checks
+across the types tabulated in Table~1 of \cite{Stinson23} and across further
+material not reproduced in this paper, and its transcript
+\texttt{verify.output.txt} reports $70$ checks, all passing. Neither
+Theorem~\ref{thm:main} nor Theorem~\ref{thm:crit} depends on a machine.
+
+\begin{thebibliography}{9}
+
+\bibitem{ChenZhu96}
+K.~Chen and L.~Zhu,
+\emph{On the existence of skew Room frames of type $t^{u}$},
+Ars Combin. \textbf{43} (1996), 65--79.
+
+\bibitem{Stinson23}
+D.~R. Stinson,
+\emph{Some new results on skew frame starters in cyclic groups},
+Discrete Math. \textbf{346} (2023), no.~9, Art.~113476.
+\href{https://doi.org/10.1016/j.disc.2023.113476}{doi:10.1016/j.disc.2023.113476};
+\href{https://arxiv.org/abs/2211.12367v1}{arXiv:2211.12367v1}. Table~1 and the
+numbering of results cited here are those of the arXiv version; the journal
+version was not accessible to us and may number differently.
+
+\end{thebibliography}
+
+\end{document}

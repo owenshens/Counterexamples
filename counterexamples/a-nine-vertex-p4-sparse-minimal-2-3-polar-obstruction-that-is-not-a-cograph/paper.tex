@@ -1,0 +1,336 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{textcomp}
+\usepackage{upquote}
+\usepackage[hidelinks]{hyperref}
+
+\raggedbottom
+
+\hypersetup{
+  pdftitle={A nine-vertex P4-sparse minimal (2,3)-polar obstruction that is not a cograph}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{problem}{Problem 1}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Hstar}{H^{*}}
+\newcommand{\Pfour}{P_{4}}
+
+\title[A $P_4$-sparse minimal $(2,3)$-polar obstruction that is not a cograph]
+{A nine-vertex $P_4$-sparse minimal $(2,3)$-polar obstruction\\ that is not a cograph}
+
+\date{}
+
+\subjclass[2020]{05C75, 05C17, 05C70}
+\keywords{polarity, $(s,k)$-polar partition, minimal obstruction, $P_4$-sparse graph,
+cograph, spider, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Contreras-Mendoza and Hern\'andez-Cruz asked, as Problem~1 of their paper on minimal
+obstructions for polarity in generalizations of cographs, whether every $P_4$-sparse minimal
+$(s,k)$-polar obstruction is a cograph. We answer this in the negative at $(s,k)=(2,3)$. The
+witness is the $9$-vertex, $15$-edge thin spider $\Hstar$ with head $2K_2+K_1$: it is
+$P_4$-sparse, its unique induced $P_4$ shows that it is not a cograph, it is not
+$(2,3)$-polar, and all nine of its one-vertex deletions are. Complementation gives a second
+counterexample at $(s,k)=(3,2)$. The graph is exhibited by its edge list, and the proof is a
+short case analysis together with nine explicit polar partitions, so no computation is needed
+to check it.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+All graphs are finite, simple and undirected. A \emph{$k$-cluster} is a disjoint union of at
+most $k$ cliques. For positive integers $s$ and $k$, a graph $G$ is \emph{$(s,k)$-polar} if
+$V(G)$ has a partition $(A,B)$ such that $G[A]$ is a complete multipartite graph with at most
+$s$ parts and $G[B]$ is a $k$-cluster; such a pair $(A,B)$ is an \emph{$(s,k)$-polar
+partition}. Either side may be empty. Since $(1,1)$-polar is exactly split, polarity
+generalises the F\"oldes--Hammer notion \cite{FoldesHammer}. The property is hereditary, so it
+is characterised by its \emph{minimal obstructions}: graphs that are not $(s,k)$-polar although
+every proper induced subgraph is. Consequently a graph is a minimal $(s,k)$-polar obstruction
+as soon as it is not $(s,k)$-polar and all of its one-vertex deletions are.
+
+A \emph{cograph} is a $P_4$-free graph, and a graph is \emph{$P_4$-sparse} if no five of its
+vertices induce more than one $P_4$; every cograph is $P_4$-sparse. Contreras-Mendoza and
+Hern\'andez-Cruz determined the minimal $(s,k)$-polar obstructions in these classes when
+$\min\{s,k\}\le 1$ and posed the following question \cite[Problem~1]{CMHC24}.
+
+\begin{problem}
+For any positive integers $s$ and $k$, is every $P_4$-sparse minimal $(s,k)$-polar obstruction
+a cograph?
+\end{problem}
+
+The problem carries this number both in the version of record of \cite{CMHC24} and in
+version~2 of its arXiv e-print, and it is quoted verbatim above.
+
+Two further facts from \cite{CMHC24} locate the question. First, a $P_4$-sparse minimal
+$(s,k)$-polar obstruction has at most $(s+1)(k+1)$ vertices \cite[Theorem~57]{CMHC24}, a bound
+the authors credit to Hannebauer's thesis \cite{Hannebauer}. Second, the authors' sequel proves
+that there are exactly $50$ $P_4$-sparse minimal $2$-polar obstructions and that each of them
+is a cograph \cite{CMHC22polar}; here $2$-polar means $(2,2)$-polar, and the minimal $2$-polar
+obstructions inside the smaller class of cographs had been determined earlier
+\cite{HellHCLS}. Together with the settled range $\min\{s,k\}\le1$, this leaves
+$(s,k)=(2,3)$, where the bound reads $12$, as the smallest cell not covered by those results.
+That is the cell we settle.
+
+\begin{theorem}\label{thm:main}
+Let $\Hstar$ be the graph on
+$V=\{s_1,s_2,k_1,k_2,a_1,a_2,b_1,b_2,x\}$ whose edge set consists of exactly the following
+fifteen pairs and no others:
+\begin{center}
+$s_1k_1$,\quad $s_2k_2$,\quad $k_1k_2$,\\
+$k_1a_1$,\; $k_1a_2$,\; $k_1b_1$,\; $k_1b_2$,\; $k_1x$,\\
+$k_2a_1$,\; $k_2a_2$,\; $k_2b_1$,\; $k_2b_2$,\; $k_2x$,\\
+$a_1a_2$,\quad $b_1b_2$.
+\end{center}
+Then $\Hstar$ is $P_4$-sparse, it is not a cograph, and it is a minimal $(2,3)$-polar
+obstruction. In particular, the answer to Problem~1 is \emph{no}.
+\end{theorem}
+
+Writing $S=\{s_1,s_2\}$, $K=\{k_1,k_2\}$ and $R=\{a_1,a_2,b_1,b_2,x\}$, the graph $\Hstar$ is
+the spider \cite{JamisonOlariu} with independent set $S$, clique $K$, the two legs $s_1k_1$
+and $s_2k_2$, and head
+$R$, where $K$ is complete and $S$ is anticomplete to $R$ and $\Hstar[R]=2K_2+K_1$. Its degree
+sequence is $(1,1,7,7,3,3,3,3,2)$, summing to $30=2\cdot15$, and the remaining $21$ of the
+$\binom92=36$ pairs are non-edges. In \texttt{graph6} format, with the vertices in the order
+$s_1,s_2,k_1,k_2,a_1,a_2,b_1,b_2,x$, the graph is the seven-character string
+\begin{center}
+\verb|HRKx`co|
+\end{center}
+and the same order presents the fifteen edges above as the $0$-indexed list
+\begin{center}
+\texttt{02 13 23 24 25 26 27 28 34 35 36 37 38 45 67}.
+\end{center}
+The graph is also $2K_2$-split: $V$ is the disjoint union of the clique $K$, the independent
+set $\{s_1,s_2,x\}$, and the set $\{a_1,a_2,b_1,b_2\}$, which induces $2K_2$.
+
+\begin{corollary}\label{cor:dual}
+The complement $\overline{\Hstar}$ is a $P_4$-sparse minimal $(3,2)$-polar obstruction that is
+not a cograph. Hence the answer to Problem~1 is also \emph{no} at $(s,k)=(3,2)$.
+\end{corollary}
+
+\begin{proof}
+A graph $G$ is $(s,k)$-polar if and only if $\overline G$ is $(k,s)$-polar: complementation
+exchanges ``complete multipartite with at most $s$ parts'' and ``disjoint union of at most $s$
+cliques'', and it commutes with taking induced subgraphs, so it also exchanges minimal
+$(s,k)$-polar obstructions with minimal $(k,s)$-polar obstructions. Complementation fixes the
+set of induced $P_4$'s of a graph, because $\overline{P_4}\cong P_4$, so it preserves both
+$P_4$-sparseness and the property of not being a cograph. Now apply
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{remark}
+What is refuted is Problem~1 as a statement quantified over all pairs $(s,k)$. The settled
+range $\min\{s,k\}\le1$ and the case $(2,2)$ are theorems of \cite{CMHC24} and
+\cite{CMHC22polar} and remain so, and nothing here bears on any other cell with
+$\min\{s,k\}\ge2$, or on the classification, or even the finiteness, of the $P_4$-sparse
+minimal $(2,3)$-polar obstructions; in particular we do not claim that $9$ is the least order
+of a non-cograph example. Finally, $\Hstar$ is not among the $50$ obstructions of
+\cite{CMHC22polar}, since $\Hstar-x$ is not $(2,2)$-polar and therefore $\Hstar$ is not a
+minimal $(2,2)$-polar obstruction at all.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Throughout, $S$, $K$ and $R$ are as above. We use two elementary observations repeatedly:
+every vertex of $K$ is adjacent to every vertex of $R$ and to the other vertex of $K$; and
+$s_i$ has degree~$1$, its unique neighbour being $k_i$.
+
+\medskip
+\noindent\emph{Step 1: the only induced $\Pfour$ of $\Hstar$ is $s_1k_1k_2s_2$; hence $\Hstar$
+is $P_4$-sparse and is not a cograph.}
+The set $K\cup R$ induces the join of $K$ with $\Hstar[R]=2K_2+K_1$; a join of two cographs is
+a cograph, so no induced $P_4$ lies inside $K\cup R$ and every induced $P_4$ of $\Hstar$ meets
+$S$. Suppose $Q$ induces a $P_4$ and $s_1\in Q$. As $s_1$ has degree $1$, it is an endpoint of
+that path and $k_1\in Q$. The third vertex of the path is a neighbour of $k_1$ other than
+$s_1$, and the fourth is adjacent to the third but not to $k_1$; the only vertex of $\Hstar$
+other than $s_1$ that is not adjacent to $k_1$ is $s_2$, so the fourth vertex is $s_2$ and the
+third is its unique neighbour $k_2$. Thus $Q=\{s_1,k_1,k_2,s_2\}$, and symmetrically if
+$s_2\in Q$. Conversely $s_1k_1k_2s_2$ is an induced path, since $s_1s_2$, $s_1k_2$ and
+$s_2k_1$ are non-edges. So $\Hstar$ has exactly one induced $P_4$: no five vertices can
+contain two of them, so $\Hstar$ is $P_4$-sparse, and $\Hstar$ is not $P_4$-free, so it is not
+a cograph.
+
+\medskip
+For the remaining two steps, note that a complete multipartite graph with at most two parts is
+exactly a complete bipartite graph $K_{p,q}$ with $p+q\ge1$, $p,q \ge 0$; in particular it is
+triangle-free. We record the only property of it we need.
+
+\begin{lemma}\label{lem:cb}
+Let $G[A]$ be complete multipartite with at most two parts and let $uv$ be an edge with
+$u,v\in A$. Then every $w\in A$ is adjacent to $u$ or to $v$.
+\end{lemma}
+
+\begin{proof}
+Parts are independent, so $u$ and $v$ lie in different parts, and there are at most two parts,
+so $w$ lies in the part of $u$ or in the part of $v$. Distinct parts are completely joined, so
+in the first case $w$ is adjacent to $v$ and in the second to $u$.
+\end{proof}
+
+\begin{lemma}\label{lem:B}
+Let $(A,B)$ be a partition of $V(\Hstar)$ with $\Hstar[B]$ a $3$-cluster. If $B\cap K \ne
+\emptyset$, then $B\cap R$ is a clique, and consequently $\{a_1,a_2\}\subseteq A$ or
+$\{b_1,b_2\}\subseteq A$.
+\end{lemma}
+
+\begin{proof}
+Let $k\in B\cap K$. As $k$ is adjacent to every vertex of $R$, the set $(B\cap R)\cup\{k\}$
+lies in a single connected component of $\Hstar[B]$, and components of a cluster are cliques;
+hence $B \cap R$ is a clique. The cliques of $\Hstar[R]=2K_2+K_1$ are the subsets of
+$\{a_1,a_2\}$, of $\{b_1,b_2\}$ and of $\{x\}$, so $B\cap R$ misses one of the two pairs
+$\{a_1,a_2\}$, $\{b_1,b_2\}$ entirely, and that pair lies in $A$.
+\end{proof}
+
+\medskip
+\noindent\emph{Step 2: $\Hstar$ is not $(2,3)$-polar.}
+Suppose $(A,B)$ were a $(2,3)$-polar partition. We distinguish two cases.
+
+\emph{Case $B\cap K\ne\emptyset$.} By Lemma~\ref{lem:B} the set $A$ contains one of the edges
+$a_1a_2$, $b_1b_2$; call it $uv$. If the other vertex $k'$ of $K$ lies in $A$, then $k'$ is
+adjacent to both $u$ and $v$, so $\{k',u,v\}$ is a triangle in $A$, contradicting the fact that
+$\Hstar[A]$ is complete bipartite. So $K\subseteq B$. Then $s_1\in A$: for if $s_1\in B$, its
+unique neighbour $k_1$ lies in $B$ as well, so $s_1$ and $k_1$ are in one component of
+$\Hstar[B]$, a clique that also contains $k_2$ because $k_1k_2$ is an edge, while $s_1k_2$ is a
+non-edge --- impossible. But $s_1$ is adjacent to neither $u$ nor $v$, since $S$ is
+anticomplete to $R$, and this contradicts Lemma~\ref{lem:cb} applied to the edge $uv$ of $A$.
+
+\emph{Case $K\subseteq A$.} No vertex $r\in R$ can lie in $A$, since $\{k_1,k_2,r\}$ would be a
+triangle; hence $R\subseteq B$. The three components of $\Hstar[R]$ are pairwise anticomplete
+and $K\cap B=\emptyset$, so they are already three distinct components of $\Hstar[B]$. If some
+$s_i$ lay in $B$, it would be a fourth component, its unique neighbour $k_i$ being in $A$; then
+$\Hstar[B]$ would have at least four components and could not be a $3$-cluster. So
+$S\subseteq A$ and $A=\{s_1,s_2,k_1,k_2\}$, which induces the path $s_1k_1k_2s_2$. Apply
+Lemma~\ref{lem:cb} to the edge $s_1k_1$ of $A$ and to $w=s_2$: the vertex $s_2$ would have to be
+adjacent to $s_1$ or to $k_1$, and it is adjacent to neither.
+
+Both cases are impossible, so no $(2,3)$-polar partition of $\Hstar$ exists.
+
+\medskip
+\noindent\emph{Step 3: every one-vertex deletion of $\Hstar$ is $(2,3)$-polar.}
+The nine partitions below are $(2,3)$-polar partitions of the nine graphs $\Hstar-v$. For each
+we list $A$ split into its parts, and $B$ split into its clique components, so that each line
+can be checked against the definition by inspection: the parts are independent sets pairwise
+completely joined, the components are cliques pairwise anticomplete, and $A\cup B=V\setminus
+\{v\}$.
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llll}
+$v$ & parts of $A$ & clique components of $B$ & \\
+\hline
+$s_1$ & $\{k_2\}\mid\{k_1,s_2\}$ & $\{a_1,a_2\}\mid\{b_1,b_2\}\mid\{x\}$ & \\
+$s_2$ & $\{k_1\}\mid\{k_2,s_1\}$ & $\{a_1,a_2\}\mid\{b_1,b_2\}\mid\{x\}$ & \\
+$k_1$ & $\{k_2\}\mid\{s_2,x\}$   & $\{a_1,a_2\}\mid\{b_1,b_2\}\mid\{s_1\}$ & \\
+$k_2$ & $\{k_1\}\mid\{s_1,x\}$   & $\{a_1,a_2\}\mid\{b_1,b_2\}\mid\{s_2\}$ & \\
+$x$   & $\{k_1\}\mid\{k_2,s_1\}$ & $\{a_1,a_2\}\mid\{b_1,b_2\}\mid\{s_2\}$ & \\
+$a_1$ & $\{s_1,s_2,a_2,x\}$      & $\{k_1,k_2,b_1,b_2\}$ & \\
+$a_2$ & $\{s_1,s_2,a_1,x\}$      & $\{k_1,k_2,b_1,b_2\}$ & \\
+$b_1$ & $\{s_1,s_2,b_2,x\}$      & $\{k_1,k_2,a_1,a_2\}$ & \\
+$b_2$ & $\{s_1,s_2,b_1,x\}$      & $\{k_1,k_2,a_1,a_2\}$ & \\
+\end{tabular}
+\end{center}
+
+\medskip
+For the first five rows, $A$ has two parts and $B$ is a $3$-cluster; for the last four, $A$ is
+independent (one part) and $B$ is the clique $K_4$ induced by $K$ together with the surviving
+pair of the head. Two rows deserve a word. In the row $v=k_1$ the vertex $s_1$ becomes isolated
+because its only neighbour has been deleted, which is why it can be a clique component of $B$
+on its own; the pair $\{s_2,x\}$ is independent and both of its vertices are adjacent to $k_2$,
+so $\Hstar[A]$ is $K_{1,2}$. In the row $v=a_1$ the set $\{s_1,s_2,a_2,x\}$ is independent,
+because $S$ is anticomplete to $R$ and $a_2$'s only neighbour inside $R$ was $a_1$; and
+$\{k_1,k_2,b_1,b_2\}$ is a $K_4$ since $K$ is a clique complete to $R$ and $b_1b_2$ is an edge.
+
+By Step~2 and Step~3, $\Hstar$ is a minimal $(2,3)$-polar obstruction, and by Step~1 it is
+$P_4$-sparse and not a cograph. \qed
+
+\section{Verification}
+
+Everything asserted about $\Hstar$ in Theorem~\ref{thm:main} is decided by the hand argument of
+Section~2 from the edge list printed in Section~1, and a reader who wants to check it needs no
+computer. The claims were nevertheless re-derived independently, by a program written from the
+printed strings alone and using exact bitmask and integer arithmetic with no third-party
+library: it decodes the \texttt{graph6} string, checks that the decoded edge set is
+\emph{equal} to the printed labelled edge list, and then recomputes the degree sequence, the
+spider structure, the single induced $P_4$ over all $\binom94=126$ four-subsets, the
+$P_4$-sparseness over all $\binom95=126$ five-subsets, the failure of $(2,3)$-polarity by
+exhausting all $2^9=512$ bipartitions, the nine deletion certificates of Step~3 one at a time
+against the definition, and independently of them a $(2,3)$-polar partition of each deletion
+found by exhaustion; it also recomputes Corollary~\ref{cor:dual} on the complement. All $71$ of
+its checks passed. The program \texttt{verify.py} and the transcript
+\texttt{verify.output.txt} of the run accompany this note; they are not needed in order to
+check the theorem.
+
+\medskip
+\noindent\textbf{Relation to the literature.}
+The nearest published work is the same authors' characterisation of polarity on $H$-split
+graphs \cite{CMHCsplit}: $\Hstar$ is a $2K_2$-split graph, it satisfies the order bound
+$s+2k+2=10$ proved there, and that characterisation confirms clause by clause both the failure
+of $(2,3)$-polarity and the nine certificates above; it is not applied there to $P_4$-sparse
+graphs or to cographs. We make no priority claim. In particular we have not inspected
+\cite{Hannebauer}, the 2010 thesis on matrix colorings of $P_4$-sparse graphs from which the
+order bound $(s+1)(k+1)$ is quoted in \cite{CMHC24}.
+
+\begin{thebibliography}{9}
+
+\bibitem{CMHC24}
+F.~E. Contreras-Mendoza and C.~Hern\'andez-Cruz,
+\emph{Minimal obstructions for polarity, monopolarity, unipolarity and $(s,1)$-polarity in
+generalizations of cographs},
+Graphs Combin. \textbf{40} (2024), no.~3, Paper No.~53.
+\href{https://doi.org/10.1007/s00373-024-02784-7}{doi:10.1007/s00373-024-02784-7};
+\href{https://arxiv.org/abs/2203.04953}{arXiv:2203.04953}.
+
+\bibitem{CMHC22polar}
+F.~E. Contreras-Mendoza and C.~Hern\'andez-Cruz,
+\emph{$2$-polarity and algorithmic aspects of polarity variants on cograph superclasses},
+Discrete Math. Theor. Comput. Sci.
+\href{https://doi.org/10.46298/dmtcs.11479}{doi:10.46298/dmtcs.11479};
+\href{https://arxiv.org/abs/2210.02497}{arXiv:2210.02497}.
+
+\bibitem{CMHCsplit}
+F.~E. Contreras-Mendoza and C.~Hern\'andez-Cruz,
+\emph{Polarity on $H$-split graphs},
+Discrete Appl. Math. \textbf{384} (2026), 229--242.
+\href{https://doi.org/10.1016/j.dam.2025.12.065}{doi:10.1016/j.dam.2025.12.065};
+\href{https://arxiv.org/abs/2303.17055}{arXiv:2303.17055}.
+An earlier version appeared in Procedia Comput. Sci. \textbf{223} (2023), 184--192.
+
+\bibitem{FoldesHammer}
+S.~F\"oldes and P.~L. Hammer,
+\emph{Split graphs},
+in: Proceedings of the Eighth Southeastern Conference on Combinatorics, Graph Theory and
+Computing, Congress. Numer. \textbf{XIX}, 1977, pp.~311--315.
+
+\bibitem{Hannebauer}
+C.~Hannebauer,
+\emph{Matrix colorings of $P_4$-sparse graphs},
+Master's thesis, FernUniversit\"at in Hagen, 2010.
+Cited as the source of the bound $(s+1)(k+1)$ in \cite[Theorem~57]{CMHC24}.
+
+\bibitem{HellHCLS}
+P.~Hell, C.~Hern\'andez-Cruz and A.~Linhares-Sales,
+\emph{Minimal obstructions to $2$-polar cographs},
+Discrete Appl. Math. \textbf{261} (2019).
+
+\bibitem{JamisonOlariu}
+B.~Jamison and S.~Olariu,
+\emph{A tree representation for $P_4$-sparse graphs},
+Discrete Appl. Math. \textbf{35} (1992), no.~2, 115--129.
+\href{https://doi.org/10.1016/0166-218X(92)90036-B}{doi:10.1016/0166-218X(92)90036-B}.
+
+\end{thebibliography}
+
+\end{document}

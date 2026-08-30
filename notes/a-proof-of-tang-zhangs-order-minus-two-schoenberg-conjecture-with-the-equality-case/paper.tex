@@ -1,0 +1,339 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Proof of Tang and Zhang's Order -2 Schoenberg Conjecture, with
+the Equality Case}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{conjecture}{Conjecture C1 (Tang--Zhang)}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Frob}[1]{\lVert #1\rVert_F}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\spec}{\operatorname{spec}}
+
+\title[The order $-2$ Schoenberg conjecture, with equality]
+{A Proof of Tang and Zhang's Order $-2$ Schoenberg Conjecture,
+with the Equality Case}
+
+\date{}
+
+\subjclass[2020]{Primary 30C15; Secondary 15A42, 30C10, 26C10}
+\keywords{Schoenberg type inequality, negative order, critical points of a
+polynomial, Schur inequality, normal matrix, equality case}
+
+\begin{document}
+
+\begin{abstract}
+Let $P(z)=z\prod_{j=1}^{n}(z-z_j)$ with $z_j\in\CC\setminus\{0\}$, and let
+$w_1,\ldots,w_n$ be the zeros of $P'$ counted with multiplicity. Conjecture C1
+of Tang and Zhang asserts that
+$\sum_k|w_k|^{-2}\le 3\sum_j|z_j|^{-2}+\bigl|\sum_j z_j^{-1}\bigr|^{2}$, and
+that equality holds whenever the $z_j$ are collinear with the origin; they
+prove it for $n=2$. We prove the inequality for every $n$, and show that
+equality holds \emph{if and only if} $z_1,\ldots,z_n$ lie on one line through
+the origin. Writing $U=\diag(z_1^{-1},\ldots,z_n^{-1})$ and $J$ for the
+all-ones matrix, the proof conjugates the authors' matrix model $B=U(I+J)$,
+whose spectrum is $\{w_k^{-1}\}$, by the explicit square root
+$Q=(I+J)^{1/2}=I+\frac{\sqrt{n+1}-1}{n}J$: the conjectured right-hand side is
+exactly $\Frob{QUQ}^{2}$, so Schur's inequality with its equality case gives
+both halves at once, equality occurring precisely when $QUQ$ is normal, which
+is precisely collinearity.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+For a monic polynomial with a simple zero at the origin,
+\begin{equation}\label{eq:P}
+  P(z)=z\prod_{j=1}^{n}(z-z_j),
+  \qquad z_1,\ldots,z_n\in\CC\setminus\{0\}
+  \quad\text{(repetitions allowed),}
+\end{equation}
+the derivative $P'$ has degree exactly $n$ and no zero at the origin; write
+$w_1,\ldots,w_n$ for its zeros, \emph{as a multiset}. Quanyu Tang and Teng
+Zhang state the following as Conjecture~C1 of \cite{TZ}, in its section
+``Schoenberg type inequality of order $-2$''.
+
+\begin{conjecture}
+Let $P(z)=z\prod_{j=1}^{n}(z-z_j)$, $z_j\in\CC\setminus\{0\}$, and let
+$w_1,\ldots,w_n$ denote the zeros of $P'(z)$. Then
+\begin{equation}\label{eq:C1}
+  \sum_{k=1}^{n}\frac{1}{|w_k|^{2}}
+  \;\le\;
+  3\sum_{j=1}^{n}\frac{1}{|z_j|^{2}}
+  +\Biggl|\sum_{j=1}^{n}\frac{1}{z_j}\Biggr|^{2}.
+\end{equation}
+Moreover, equality in \eqref{eq:C1} holds whenever $z_1,\ldots,z_n$ all lie on
+the same line passing through the origin.
+\end{conjecture}
+
+Tang and Zhang prove \eqref{eq:C1} for $n=2$.
+
+\section{Notation and the result}
+
+Throughout, $n\ge1$ and $z_1,\ldots,z_n$ are as in \eqref{eq:P}. Put
+\begin{gather}
+  u_j=\frac{1}{z_j},\quad
+  U=\diag(u_1,\ldots,u_n),\quad
+  S=\sum_{j=1}^{n}u_j,\quad
+  D=\diag(z_1,\ldots,z_n),
+  \label{eq:notation}\\
+  J=\mathbf{1}\mathbf{1}^{T}\ \text{(all ones)},\quad
+  M=I+J,\quad
+  c=\frac{\sqrt{n+1}-1}{n},\quad
+  Q=I+cJ,
+  \label{eq:notation2}\\
+  K=QUQ,
+  \quad\text{that is}\quad
+  K_{jk}=\delta_{jk}u_j+c\,(u_j+u_k)+c^{2}S .
+  \label{eq:K}
+\end{gather}
+Say that $z_1,\ldots,z_n$ are \emph{collinear with the origin} if they all lie
+on a single line through $0$, i.e.\ if $z_j=\rho r_j$ for some
+$\rho\in\CC\setminus\{0\}$ and some real $r_j\ne0$; equivalently, if
+$z_j\overline{z_k}\in\RR$ for all $j,k$. For $n=1$ the condition is vacuous.
+
+\begin{theorem}\label{thm:main}
+For every $n\ge1$ and all $z_1,\ldots,z_n\in\CC\setminus\{0\}$, repetitions
+allowed, the inequality \eqref{eq:C1} holds. Equality holds in \eqref{eq:C1}
+if and only if $z_1,\ldots,z_n$ are collinear with the origin.
+\end{theorem}
+
+Only the inequality and the ``whenever'' half of the equality clause are
+stated in \cite{TZ}; the ``only if'' half does not appear there. We use Schur's
+inequality in the form in which it carries its own equality case.
+
+\begin{lemma}[Schur]\label{lem:schur}
+For every $X\in\CC^{n\times n}$ with eigenvalues $\lambda_1,\ldots,\lambda_n$
+listed with multiplicity, $\sum_k|\lambda_k|^{2}\le\Frob{X}^{2}$, with equality
+if and only if $X$ is normal.
+\end{lemma}
+
+The inequality is \cite{Schur}; for the equality case see
+\cite[\S2.5]{HornJohnson}. It is quoted in this form, with the equality case,
+in \cite{TZ}.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+\subsection*{Step 1: an explicit square root of $M=I+J$}
+
+Since $J^{2}=nJ$,
+\[
+  Q^{2}=(I+cJ)^{2}=I+(2c+nc^{2})J=I+J=M,
+\]
+because $nc^{2}+2c-1=0$ by the choice of $c$ in \eqref{eq:notation2}. The
+matrix $Q$ is real symmetric with positive entries, and it is invertible with
+$Q^{-1}=I+c'J$, $c'=\bigl(\tfrac{1}{\sqrt{n+1}}-1\bigr)/n$, since
+$c+c'+ncc'=0$. Note $M^{2}=I+(n+2)J\ne M$: the sandwich matrix of the order
+$-2$ problem is not idempotent, which is why a square root is taken here
+rather than a projection inserted.
+
+\subsection*{Step 2: the spectrum of $K$, as a multiset}
+
+Let $A=(I-\tfrac{1}{n+1}J)D$. Since $JD$ is the rank-one matrix $\mathbf1z^{T}$,
+the Schur determinant formula gives
+\[
+  \det(wI-A)
+  =\prod_{j=1}^{n}(w-z_j)\cdot
+   \Bigl(1+\tfrac{1}{n+1}\sum_{j=1}^{n}\tfrac{z_j}{w-z_j}\Bigr).
+\]
+Substituting $\tfrac{z_j}{w-z_j}=-1+\tfrac{w}{w-z_j}$ turns the bracket into
+$\tfrac{1}{n+1}\bigl(1+w\sum_j\tfrac{1}{w-z_j}\bigr)$, and since
+$P'(w)=\prod_j(w-z_j)\cdot\bigl(1+w\sum_j\tfrac{1}{w-z_j}\bigr)$ we get the
+identity
+\begin{equation}\label{eq:charpoly}
+  \det(wI-A)=\frac{P'(w)}{n+1},
+\end{equation}
+whose right-hand side is monic of degree $n$. Hence
+$\spec(A)=\{w_1,\ldots,w_n\}$ \emph{as a multiset}, and
+$\prod_kw_k=e_n(z)/(n+1)\ne0$, so no $w_k$ vanishes and $A$ is invertible.
+Because $(I-\tfrac{1}{n+1}J)(I+J)=I$ exactly, we may read off the inverse:
+\begin{equation}\label{eq:B}
+  B:=A^{-1}=D^{-1}(I+J)=UM,
+  \quad
+  \spec(B)=\Bigl\{\tfrac{1}{w_1},\ldots,\tfrac{1}{w_n}\Bigr\}
+  \ \text{with mult.}
+\end{equation}
+
+Finally $K=QUQ=Q(UM)Q^{-1}=QBQ^{-1}$ is similar to $B$, so
+$\spec(K)=\{w_k^{-1}\}$ with multiplicity, and
+\begin{equation}\label{eq:lhs}
+  \sum_{k=1}^{n}\frac{1}{|w_k|^{2}}
+  =\sum_{k=1}^{n}\bigl|\lambda_k(K)\bigr|^{2}.
+\end{equation}
+
+The multiset reading in \eqref{eq:charpoly} is what \eqref{eq:C1} requires,
+since it sums over the $n$ zeros of $P'$ with multiplicity. At $z=(1,1,1)$ one
+has $P'(z)=4z^{3}-9z^{2}+6z-1=(z-1)^{2}(4z-1)$, so $w=1$ is a double zero and
+\eqref{eq:C1} closes as $1+1+16=18=9+9$.
+
+\subsection*{Step 3: the conjectured right-hand side is $\Frob{K}^{2}$}
+
+Since $Q$ is real symmetric, $K^{*}=Q\overline UQ$, so using $Q^{2}=M$,
+\begin{align*}
+  \Frob{K}^{2}
+  &=\tr(KK^{*})=\tr(QUQ\cdot Q\overline UQ)
+   =\tr(Q^{2}UM\overline U)\\
+  &=\tr(MUM\overline U)
+   =\sum_{j,m}M_{jm}^{2}\,u_m\overline{u_j}.
+\end{align*}
+Now $M_{jm}^{2}=(1+\delta_{jm})^{2}=1+3\delta_{jm}$ and
+$\sum_{j,m}u_m\overline{u_j}=|S|^{2}$, whence
+\begin{equation}\label{eq:rhs}
+  \Frob{K}^{2}=3\sum_{j=1}^{n}|u_j|^{2}+|S|^{2}
+  =3\sum_{j=1}^{n}\frac{1}{|z_j|^{2}}
+   +\Biggl|\sum_{j=1}^{n}\frac{1}{z_j}\Biggr|^{2},
+\end{equation}
+which is the right-hand side of \eqref{eq:C1} exactly.
+
+\subsection*{Step 4: the inequality}
+
+Combine \eqref{eq:lhs}, \eqref{eq:rhs} and Lemma~\ref{lem:schur} applied to
+$X=K$:
+\[
+  \sum_{k}\frac{1}{|w_k|^{2}}
+  =\sum_k|\lambda_k(K)|^{2}
+  \le\Frob{K}^{2}
+  =3\sum_j\frac{1}{|z_j|^{2}}+\Bigl|\sum_j\frac1{z_j}\Bigr|^{2},
+\]
+with equality if and only if $K$ is normal. This is \eqref{eq:C1} for every
+$n$.
+
+\subsection*{Step 5: $K$ is normal exactly when the $z_j$ are collinear with
+the origin}
+
+We have $KK^{*}=Q\,(UM\overline U)\,Q$ and $K^{*}K=Q\,(\overline UMU)\,Q$ with
+$Q$ invertible, so $K$ is normal if and only if
+$UM\overline U=\overline UMU$. Entrywise, $U$ being diagonal and
+$M_{jk}=1+\delta_{jk}$,
+\[
+  (UM\overline U)_{jk}=(1+\delta_{jk})\,u_j\overline{u_k},
+  \qquad
+  (\overline UMU)_{jk}=(1+\delta_{jk})\,\overline{u_j}u_k .
+\]
+The diagonal entries agree always, both being $2|u_j|^{2}$. Off the diagonal
+the factor is $1$, so normality says precisely that
+$u_j\overline{u_k}\in\RR$ for all $j\ne k$. Writing
+$u_j=\rho_je^{i\varphi_j}$ with $\rho_j>0$, this says
+$\varphi_j\equiv\varphi_k \pmod \pi$ for all $j,k$, a transitive condition;
+that is, all $u_j$ lie on one line through $0$. Since
+$1/(re^{i\theta})=r^{-1}e^{-i\theta}$, the $u_j$ lie on a line through $0$ if
+and only if the $z_j$ do. Combining with Step~4 proves
+Theorem~\ref{thm:main}. \qed
+
+\begin{remark}
+The ``if'' half is also visible directly: if $z_j=\rho r_j$ with $r_j$ real,
+then $U=\rho^{-1}R$ with $R$ real diagonal, so $K=\rho^{-1}(QRQ)$ is a scalar
+times a real symmetric matrix, hence normal.
+\end{remark}
+
+\begin{remark}[method]
+Steps~3 and~5 transpose a template published earlier by one of the two authors
+of \cite{TZ} and cited there, namely \cite{Tang25}, where the projection
+$S=I-\tfrac1nJ$ plays the role of $Q$ and the same passage from normality to
+collinearity is carried out; the step added here is the use of the square root
+$Q=M^{1/2}$, $M=I+J$ not being idempotent.
+\end{remark}
+
+\section{Two instances}
+
+Write $L(z)$ and $R(z)$ for the two sides of \eqref{eq:C1}.
+
+\medskip
+\noindent\textbf{Equality at $n=3$, $z=(1,2,3)$.}
+Here $n+1=4$ is a square, so $c=\tfrac13$ exactly and everything is rational.
+$P(z)=z^{4}-6z^{3}+11z^{2}-6z$ and $P'(z)=4z^{3}-18z^{2}+22z-6$, so the
+elementary symmetric functions of $w_1,w_2,w_3$ are
+$(e_1,e_2,e_3)=(\tfrac92,\tfrac{11}2,\tfrac32)$ and, all $w_k$ being real,
+\begin{align*}
+  L(z)&=\sum_k\frac{1}{w_k^{2}}
+      =\frac{e_2^{2}-2e_1e_3}{e_3^{2}}
+      =\frac{\tfrac{121}{4}-\tfrac{27}{2}}{\tfrac94}
+      =\frac{67}{9},\\
+  R(z)&=3\cdot\frac{49}{36}+\Bigl(\frac{11}{6}\Bigr)^{2}=\frac{67}{9}.
+\end{align*}
+Through the matrix of \eqref{eq:K}: with $u=(1,\tfrac12,\tfrac13)$,
+$S=\tfrac{11}6$ and $c=\tfrac13$,
+\[
+  K=\frac{1}{54}
+  \begin{pmatrix}
+    101 & 38 & 35\\
+     38 & 56 & 26\\
+     35 & 26 & 41
+  \end{pmatrix},
+  \qquad
+  \Frob{K}^{2}=\frac{21708}{2916}=\frac{67}{9},
+\]
+the squared numerators summing to $21708$. This $K$ is real symmetric, hence
+normal, as Step~5 requires.
+
+\medskip
+\noindent\textbf{Strict at $n=2$, $z=(1,i)$.}
+$u_1\overline{u_2}=i\notin\RR$, so $K$ is not normal. $P'(z)=3z^{2}-2(1+i)z+i$,
+and $L=6<8=R$.
+
+\section{Verification}
+
+The algebraic identities used above, and every number displayed in \S4, are
+re-derived by the program \texttt{verify.py} accompanying this note, in exact
+arithmetic over $\mathbb{Q}(\sqrt{n+1}\,)(i)$ with no floating point anywhere
+and no third-party package; its recorded output is \texttt{verify.output.txt}
+($67$ checks, all passing). Checked there are the identity $nc^{2}+2c-1=0$ and
+$Q^{2}=I+J$ symbolically for $n\le12$; the determinant identity
+\eqref{eq:charpoly}, the inverse \eqref{eq:B}, the similarity $KQ=QB$ and the
+Frobenius identity \eqref{eq:rhs} on batteries of Gaussian-rational tuples; the
+equivalence ``$K$ normal $\iff$ collinear with the origin'' on a battery with
+both classes non-empty; and an exact decision of \eqref{eq:C1} at $n=2$ on
+$250$ Gaussian-rational pairs, where the inequality holds always and equality
+occurs exactly on the collinear pairs. The program does not prove
+Lemma~\ref{lem:schur}, and it decides \eqref{eq:C1} only at $n=2$; for
+$n\ge3$ both halves of Theorem~\ref{thm:main} rest on the proof of \S3 and not
+on any computation. Nothing is claimed here about the other Schoenberg type
+inequalities of \cite{TZ}, of orders $-1$, $-4$, $-2m$ and $-p$.
+
+\begin{thebibliography}{9}
+
+\bibitem{HornJohnson}
+R.~A. Horn and C.~R. Johnson,
+\emph{Matrix Analysis}, 2nd ed.,
+Cambridge University Press, Cambridge, 2013.
+(Schur's inequality with its equality case: \S2.5.)
+
+\bibitem{Schur}
+I.~Schur,
+\emph{\"Uber die charakteristischen Wurzeln einer linearen Substitution mit
+einer Anwendung auf die Theorie der Integralgleichungen},
+Math. Ann. \textbf{66} (1909), no.~4, 488--510.
+\href{https://doi.org/10.1007/BF01450045}{doi:10.1007/BF01450045}.
+
+\bibitem{Tang25}
+Q.~Tang,
+\emph{Schoenberg type inequalities},
+arXiv:2504.09837v2, 2025.
+\href{https://arxiv.org/abs/2504.09837}{arXiv:2504.09837}.
+
+\bibitem{TZ}
+Q.~Tang and T.~Zhang,
+\emph{Sharp Schoenberg type inequalities and the de Bruin--Sharma problem},
+arXiv:2508.10341v3, 2025.
+\href{https://arxiv.org/abs/2508.10341}{arXiv:2508.10341}.
+Conjecture~C1 is as numbered in the v3 preprint.
+
+\end{thebibliography}
+
+\end{document}

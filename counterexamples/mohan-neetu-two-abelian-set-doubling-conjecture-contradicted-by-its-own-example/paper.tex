@@ -1,0 +1,243 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A four-element counterexample to Conjecture 6.1 of Mohan and Neetu
+            on two disjoint abelian sets}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{conjA}{Conjecture 6.1 (Mohan and Neetu)}
+\newtheorem*{exA}{Example 6.1 (Mohan and Neetu)}
+
+\newcommand{\K}{K}
+
+\title[A counterexample to a two-abelian-set conjecture]
+{A Four-Element Counterexample to Conjecture~6.1 of Mohan and Neetu
+ on Two Disjoint Abelian Sets}
+
+\date{}
+
+\subjclass[2020]{11P70, 20F60, 20F65, 11B13}
+\keywords{small doubling, product set, torsion-free group, right-ordered group,
+Klein bottle group, Baumslag--Solitar group, corrigendum}
+
+\begin{document}
+
+\begin{abstract}
+Call a subset $S$ of a group \emph{abelian} when $\langle S\rangle$ is abelian.
+Conjecture~6.1 of Mohan and Neetu (arXiv:2607.11194v1, \S6) asserts that if
+$S=A\cup B$ is a finite subset of a torsion-free group, $A$ and $B$ disjoint
+abelian sets, and $|S^{2}|\le3k-3$, then $\langle S\rangle$ is abelian; the
+usage in that paper fixes $k=|S|$. The conjecture is false. In the Klein bottle
+group $\mathrm{BS}(1,-1)$, written additively in two coordinates, the
+four-element set $S=A\cup B$ with $A=\{(-1,1),(-1,3)\}$ and
+$B=\{(1,1),(1,3)\}$ has $A$ and $B$ disjoint abelian sets, $|S^{2}|=9=3|S|-3$,
+and $\langle S\rangle$ nonabelian. This set is not new: it is the union of the
+first two of the three parts of Example~6.1 of that paper, printed two lines
+below the conjecture, at parameter value~$2$. No theorem of the paper is
+contradicted.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+Throughout, $G$ is a group with identity $e$, $S\subseteq G$ is finite, and
+\[
+  S^{2}=\{s_{1}s_{2}:s_{1},s_{2}\in S\}
+\]
+is the product set over \emph{ordered} pairs. Following \cite[\S1]{MN} ---
+``a set $S$ is said to be abelian if $\langle S\rangle$ is an abelian subgroup
+of $G$'' --- a set is called \emph{abelian} when the subgroup it generates is
+abelian. Freiman, Herzog, Longobardi and Maj proved that if $G$ is
+\emph{orderable}, $|S|\ge3$ and $|S^{2}|\le3|S|-3$, then $S$ is abelian
+\cite[Theorem~1.3]{FHLM}, quoted as \cite[Theorem~2.3]{MN}; the last section of
+\cite{MN}, ``Future Problems'', proposes ways to keep that conclusion while
+weakening the hypothesis. The first of them is:
+
+\begin{conjA}
+Let $S$ be a nonempty finite subset of a torsion-free group $G$ such that
+$S=A\cup B$, where $A$ and $B$ are disjoint abelian sets. If
+$|S^{2}|\le 3k-3$, $\langle S\rangle$ is abelian.
+\end{conjA}
+
+\noindent
+The conjecture does not define $k$; the usage in \cite{MN} fixes $k=|S|$.
+Example~6.1, printed two lines below the conjecture and quoted in full in \S2,
+asserts ``$|S^{2}|=3|S|-3$'' of a set satisfying the antecedent, and
+\cite[Theorem~2.9]{MN} writes ``where $k=|S|$''. This is not a formality: under
+the alternative reading $k=|A|$ the set exhibited below would fall outside the
+antecedent, since there $3|A|-3=3<9=|S^{2}|$.
+
+\section{The witness}
+
+Let $\K=\mathbb{Z}\rtimes_{-1}\mathbb{Z}=\mathrm{BS}(1,-1)$ be the Klein bottle
+group, in the coordinates used by \cite[\S5]{MN}: elements are pairs
+$(r,n)\in\mathbb{Z}^{2}$ and
+\begin{equation}\label{eq:law}
+  (r,n)(s,m)=\bigl(r+(-1)^{n}s,\;n+m\bigr),
+  \qquad
+  (r,n)^{-1}=\bigl(-(-1)^{n}r,\,-n\bigr),
+\end{equation}
+with $e=(0,0)$. This is the group and the operation of \cite{MN}:
+\cite[\S5]{MN} writes $\mathrm{BS}(1,q)\cong\mathbb{Z}[1/q]\rtimes\mathbb{Z}$
+with $(r,n)(s,m)=(r+q^{n}s,n+m)$, and the examples of its \S6 are stated in a
+group the authors write $\mathbb{Z}\rtimes\mathbb{Z}$; that $q=-1$ there is
+fixed by their Example~6.2, which records the identity $(i,1)(j,1)=(i-j,2)$,
+and for $q=1$ the group would be abelian. All coordinates therefore stay in
+$\mathbb{Z}$ and every computation below is on pairs of integers.
+
+\begin{lemma}\label{lem:tf}
+$\K$ is torsion-free and nonabelian.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:law} the second coordinate is additive, so $(r,n)^{j}$ has second
+coordinate $jn$: if $n\ne0$ and $j\ne0$ this is nonzero, so
+$(r,n)^{j}\ne e$. If $n=0$ then $(r,0)^{j}=(jr,0)\ne e$ whenever $r\ne0$ and
+$j\ne0$. Hence no element other than $e$ has finite order. Finally
+$(-1,1)(1,1)=(-2,2)$ while $(1,1)(-1,1)=(2,2)$.
+\end{proof}
+
+\begin{lemma}\label{lem:pc}
+If the elements of a set $X\subseteq G$ commute pairwise, then $\langle X\rangle$
+is abelian, i.e.\ $X$ is an abelian set in the sense of \cite{MN}.
+\end{lemma}
+
+\begin{proof}
+The centraliser $C_{G}(X)$ is a subgroup containing $X$, hence containing
+$\langle X\rangle$; so $\langle X\rangle\subseteq C_{G}(\langle X\rangle)$.
+\end{proof}
+
+Two lines below Conjecture~6.1, the authors print:
+
+\begin{exA}
+Let
+\begin{align*}
+  A&=\{(-1,1),(-1,3),\ldots,(-1,2k-1)\},\\
+  B&=\{(1,1),(1,3),\ldots,(1,2k-1)\},\\
+  C&=\{(-1,2),(1,2),(-1,4),(1,4),\ldots,(-1,2k),(1,2k)\}
+\end{align*}
+be subsets of the group $\mathbb{Z}\rtimes\mathbb{Z}$. Let $S=A\cup B\cup C$.
+Then, we have $|S^{2}|=3|S|-3$. It is easy to observe that $\langle A\rangle$,
+$\langle B\rangle$, and $\langle C\rangle$ are abelian, whereas $\langle
+S\rangle$ is nonabelian.
+\end{exA}
+
+\noindent
+Set the parameter the authors call $k$ there --- not the $k$ of the conjecture
+--- to $2$, and delete the third part $C$. What is left is the following.
+
+\begin{theorem}\label{thm:main}
+In $\K$ let
+\[
+  A=\{(-1,1),(-1,3)\},\qquad B=\{(1,1),(1,3)\},\qquad S=A\cup B .
+\]
+Then $A$ and $B$ are disjoint abelian sets, $|S|=4$,
+\[
+  S^{2}=\bigl\{(d,2j):d\in\{-2,0,2\},\ j\in\{1,2,3\}\bigr\},
+  \qquad |S^{2}|=9=3|S|-3,
+\]
+and $\langle S\rangle$ is nonabelian. Since $\K$ is torsion-free by
+Lemma~\ref{lem:tf} and $9\le3\cdot4-3$, Conjecture~6.1 of \cite{MN} is false.
+\end{theorem}
+
+\begin{proof}
+The four listed pairs are distinct, and $A\cap B=\varnothing$ because the first
+coordinates $-1$ and $1$ differ. Every second coordinate occurring in $S$ is
+odd, so $(-1)^{n}=-1$ throughout and \eqref{eq:law} gives, for
+$\varepsilon,\delta\in\{-1,1\}$ and odd $n,n'$,
+\[
+  (\varepsilon,n)(\delta,n')=(\varepsilon-\delta,\,n+n'),
+  \qquad \varepsilon-\delta\in\{-2,0,2\}.
+\]
+Taking $\delta=\varepsilon$ gives $(0,n+n')$, which is symmetric in $n,n'$; so
+the elements of $A$ commute pairwise and so do those of $B$, and by
+Lemma~\ref{lem:pc} both are abelian sets.
+
+For the product set: with $n,n'\in\{1,3\}$ the sum $n+n'$ takes exactly the
+values $2,4,6$, and $S$ contains both $(-1,n)$ and $(1,n)$ for $n=1$ and
+$n=3$, so at each of those three levels all four choices of
+$(\varepsilon,\delta)$ occur and $\varepsilon-\delta$ realises each of
+$-2,0,2$. That is the displayed set, and it has $3\cdot3=9$ elements, while
+$3|S|-3=3\cdot4-3=9$.
+
+Finally $(-1,1)(1,1)=(-2,2)$ and $(1,1)(-1,1)=(2,2)$, and both factors lie in
+$S$, so $\langle S\rangle$ is nonabelian.
+\end{proof}
+
+\noindent
+No minimality is claimed: nothing here decides whether a witness of
+cardinality less than four exists, nor whether $3|S|-3$ is the least doubling
+attainable by such a configuration, nor anything about host groups other than
+$\K$.
+
+\begin{remark}[the contrast drawn after the conjecture]
+In \cite{MN} the conjecture is followed by ``Whereas this may not hold for
+three abelian sets. Consider the following example.'', introducing Example~6.1.
+Read literally, the first sentence asserts only that the conclusion may fail
+for three abelian sets, which it does; but the contrast it draws with the
+two-set case is misleading, since by Theorem~\ref{thm:main} the conclusion
+fails for two abelian sets as well, and the witness comes from the very example
+that sentence introduces.
+\end{remark}
+
+\begin{remark}[no theorem of \cite{MN} is contradicted]
+The set of Theorem~\ref{thm:main} lies outside the hypotheses of the two
+positive results of \cite{MN} nearest to it. \cite[Theorem~2.10]{MN} requires,
+among other hypotheses, $|A|\ge4$ and $|B|\ge3$, whereas here $|A|=|B|=2$;
+and \cite[Theorem~2.7]{MN} requires
+$|(A\cup B)^{2}|\le3|A\cup B|-4=8$, whereas $|S^{2}|=9$.
+\end{remark}
+
+\section{Verification}
+
+Every object used above is printed above, and the decisive computation is the
+sixteen ordered products of the four-element set $S$, carried out in the proof
+of Theorem~\ref{thm:main} by the identity
+$(\varepsilon,n)(\delta,n')=(\varepsilon-\delta,n+n')$ for odd $n,n'$; a reader
+needs no code.
+
+The program \texttt{verify.py} accompanies this note and its recorded output is
+\texttt{verify.output.txt}. It re-implements \eqref{eq:law} in exact integer
+arithmetic --- the sign $(-1)^{n}$ taken as a parity lookup, so that no float
+can appear --- forms the sixteen products of $S$ one by one, compares $S^{2}$
+with the nine pairs displayed in Theorem~\ref{thm:main} \emph{as a set of
+coordinate pairs, not merely by cardinality}, and confirms $|S^{2}|=9=3|S|-3$,
+that $A$ and $B$ are disjoint commuting pairs, and that
+$(-1,1)(1,1)\ne(1,1)(-1,1)$. Torsion-freeness of $\K$ is confirmed there only
+on a bounded box of coordinates and exponents; the unbounded statement is
+Lemma~\ref{lem:tf}. The recorded output also contains checks on objects not
+used above, among them the three-set Example~6.1 of \cite{MN} and the family of
+which the set of Theorem~\ref{thm:main} is one member; nothing above depends on
+them.
+
+\begin{thebibliography}{9}
+
+\bibitem{FHLM}
+G.~A. Freiman, M.~Herzog, P.~Longobardi, and M.~Maj,
+\emph{Small doubling in ordered groups},
+J. Aust. Math. Soc. \textbf{96} (2014), 316--325.
+Its Theorem~1.3 is quoted as \cite[Theorem~2.3]{MN}, which is the form used
+here.
+
+\bibitem{MN}
+Mohan and Neetu,
+\emph{On small doubling in right-ordered groups and Baumslag--Solitar
+groups~--~II},
+arXiv:2607.11194v1, 13 July 2026.
+\href{https://arxiv.org/abs/2607.11194}{arXiv:2607.11194}.
+Statement numbers are those the source compiles to.
+
+\end{thebibliography}
+
+\end{document}

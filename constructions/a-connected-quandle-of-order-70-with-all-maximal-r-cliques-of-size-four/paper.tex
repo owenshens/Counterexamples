@@ -1,0 +1,248 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A connected quandle of order 70 all of whose maximal R-cliques have size four}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{problem}{Problem (Kauffman, Mukherjee and Vojt\v{e}chovsk\'y)}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\Mlt}{Mlt}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\Rt}{R}
+
+\title[Maximal $R$-cliques of size four]
+{A Connected Quandle of Order~70 All of Whose Maximal $R$-Cliques Have Size Four}
+
+\date{}
+
+\subjclass[2020]{20N02, 57K12, 05C69}
+\keywords{rack, quandle, connected quandle, conjugation quandle,
+$R$-clique, commuting right translations}
+
+\begin{document}
+
+\begin{abstract}
+For a rack $(Q,*)$ write $\Rt_x(y)=y*x$, and call a subset $C\subseteq Q$ an
+$R$-clique if $[\Rt_a,\Rt_b]=1$ for all $a,b\in C$. Kauffman, Mukherjee and
+Vojt\v{e}chovsk\'y ask whether there is a finite \emph{connected} rack $Q$ with
+a maximal $R$-clique $C$ such that $|C|$ does not divide $|Q|$. We answer this
+affirmatively. Let $Q$ be the set of the $70$ three-cycles of $A_7$ with
+$x*y=y^{-1}xy$. Then $Q$ is a connected quandle of order $70$, every maximal
+$R$-clique of $Q$ has size $4$ --- for instance
+$C=\{(1\,2\,3),(1\,3\,2),(4\,5\,6),(4\,6\,5)\}$ --- and $4\nmid70$. The same
+argument gives, for every $m\ge1$, a connected quandle of order $2m(36m^2-1)$
+all of whose maximal $R$-cliques have size $4m$. We do not claim that $70$ is
+the least order of such a quandle.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Following \cite{KMV}, a \emph{rack} is a set $Q$ with a binary operation $*$
+such that every right translation
+\[
+  \Rt_y\colon Q\to Q,\qquad \Rt_y(x)=x*y,
+\]
+is a bijection and such that $(x*y)*z=(x*z)*(y*z)$ for all $x,y,z\in Q$; a
+\emph{quandle} is a rack that also satisfies $x*x=x$. The
+\emph{right multiplication group} is $\Mlt_r(Q)=\langle \Rt_y: y\in Q\rangle
+\le\operatorname{Sym}(Q)$, and $Q$ is \emph{connected} if $\Mlt_r(Q)$ acts
+transitively on $Q$. Write $a\sim b$ when $[\Rt_a,\Rt_b]=1$, i.e.\ when
+$\Rt_a\Rt_b=\Rt_b\Rt_a$ as maps on $Q$. A subset $C\subseteq Q$ is an
+\emph{$R$-clique} if $a\sim b$ for all $a,b\in C$, and it is \emph{maximal} if
+no $R$-clique properly contains it. Section~5 of \cite{KMV} studies quandles
+with many pairwise commuting right translations and closes with a list of
+problems. The following is one of them, quoted verbatim from the e-print
+arXiv:2504.09368v1 (line~1155 of the source file \texttt{main.tex}).
+
+\begin{problem}
+Does there exist a finite connected rack $Q$ and a maximal $R$-clique $C$ of
+$Q$ such that $|C|$ does not divide $|Q|$?
+\end{problem}
+
+The hypotheses are exactly \emph{finite}, \emph{connected} and \emph{rack}. A
+quandle witness is a fortiori a rack witness, so we may and do produce a
+quandle.
+
+\section{The witness}
+
+For a finite group $G$ and a subset $X\subseteq G$ closed under conjugation by
+$X$, the \emph{conjugation quandle} on $X$ is $(X,*)$ with $x*y=y^{-1}xy$; the
+construction is classical \cite{Joyce,Matveev}. We use one conjugacy class.
+
+\begin{theorem}\label{thm:main}
+Let $Q$ be the set of all $70$ three-cycles of $A_7$, with $x*y=y^{-1}xy$.
+Then $Q$ is a connected quandle of order $70$, every maximal $R$-clique of $Q$
+has size $4$, and in particular
+\[
+  C=\{(1\,2\,3),\,(1\,3\,2),\,(4\,5\,6),\,(4\,6\,5)\}
+\]
+is a maximal $R$-clique with $|C|=4\nmid 70=|Q|$. Hence the question above has
+answer \emph{yes}.
+\end{theorem}
+
+We prove the theorem in the following slightly more general form, which costs
+nothing extra.
+
+\begin{proposition}\label{prop:gen}
+Let $n\ge5$ and let $Q_n$ be the set of all three-cycles of $A_n$ with
+$x*y=y^{-1}xy$. Then:
+\begin{enumerate}
+\item[(a)] $Q_n$ is a quandle, and $|Q_n|=2\binom n3$;
+\item[(b)] $Q_n$ is connected;
+\item[(c)] for $a,b\in Q_n$ one has $a\sim b$ if and only if $ab=ba$ in $S_n$;
+\item[(d)] distinct $a,b\in Q_n$ satisfy $ab=ba$ if and only if
+$\supp(a)=\supp(b)$, in which case $b=a^{-1}$, or
+$\supp(a)\cap\supp(b)=\emptyset$;
+\item[(e)] every maximal $R$-clique of $Q_n$ has size $2\lfloor n/3\rfloor$,
+and the maximal $R$-cliques are exactly the sets
+$\{a_1,a_1^{-1},\dots,a_k,a_k^{-1}\}$ with $k=\lfloor n/3\rfloor$ and
+$\supp(a_1),\dots,\supp(a_k)$ pairwise disjoint.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) The set of three-cycles of $A_n$ is a union of $S_n$-conjugacy classes,
+hence closed under conjugation, so $*$ is defined. Each $\Rt_y$ is a bijection
+with inverse $\Rt_{y^{-1}}$; $x*x=x^{-1}xx=x$; and self-distributivity is an
+identity of groups,
+\[
+  (x*z)*(y*z)
+  =(z^{-1}yz)^{-1}(z^{-1}xz)(z^{-1}yz)
+  =z^{-1}y^{-1}xyz
+  =(x*y)*z .
+\]
+A three-cycle is determined by its support together with one of the two cyclic
+orders on it, so $|Q_n|=2\binom n3$; for $n=7$ this is $2\cdot35=70$.
+
+(b) The $S_n$-class of a three-cycle $a$ does not split in $A_n$: since
+$n\ge5$, at least two points lie outside $\supp(a)$, and a transposition of two
+of them is an odd permutation centralising~$a$. Hence $Q_n$ is a single
+$A_n$-class. Now $\Mlt_r(Q_n)$ is the image of the conjugation action of
+$\langle Q_n\rangle=A_n$ on $Q_n$, so its orbits are the $A_n$-classes
+contained in $Q_n$, of which there is one. Thus $\Mlt_r(Q_n)$ is transitive.
+
+(c) The composite $\Rt_b\Rt_a$ sends $x$ to $a^{-1}b^{-1}xba=(ba)^{-1}x(ba)$,
+and $\Rt_a\Rt_b$ sends $x$ to $(ab)^{-1}x(ab)$. These maps agree on $Q_n$ if
+and only if $g:=(ab)(ba)^{-1}$ centralises every element of $Q_n$, hence
+centralises $\langle Q_n\rangle=A_n$; as $Z(A_n)=1$ for $n\ge4$ this says
+$g=1$, i.e.\ $ab=ba$. Conversely $ab=ba$ clearly gives
+$\Rt_a\Rt_b=\Rt_b\Rt_a$.
+
+(d) Suppose $ab=ba$ with $a\ne b$. Then $b$ maps $\supp(a)$ onto itself, and
+$b$ maps $\supp(b)$ onto itself, so $\supp(a)\cap\supp(b)$ is $b$-invariant.
+As $b$ is a three-cycle it acts transitively on $\supp(b)$, so a $b$-invariant
+subset of $\supp(b)$ is $\emptyset$ or $\supp(b)$. In the first case the
+supports are disjoint. In the second, $\supp(b)\subseteq\supp(a)$ and both have
+three elements, so $\supp(a)=\supp(b)=:T$; then $b$ centralises $a$ inside
+$\operatorname{Sym}(T)\cong S_3$, whose centraliser of the three-cycle $a$ is
+$\langle a\rangle=\{1,a,a^{-1}\}$, and $b\notin\{1,a\}$ forces $b=a^{-1}$.
+Both stated conditions do give commuting elements: permutations with disjoint
+supports commute, and $a$ commutes with $a^{-1}$.
+
+(e) Let $S$ be an $R$-clique. By (c) and (d) the supports of the elements of
+$S$ form a family of pairwise disjoint triples $T_1,\dots,T_k$, and $S$ is
+contained in $\{a_1,a_1^{-1},\dots,a_k,a_k^{-1}\}$ where $\supp(a_i)=T_i$.
+Conversely any such set is an $R$-clique, again by (d). If $S$ is maximal then
+$a_i^{-1}\in S$ for every $i$, since $a_i^{-1}$ has support $T_i$ and so
+commutes with every element of $S$; hence $|S|=2k$. Moreover at most two
+points of $\{1,\dots,n\}$ lie outside $T_1\cup\dots\cup T_k$, for three
+uncovered points would carry a three-cycle disjoint from all of $S$, which
+could be adjoined. Therefore $k=\lfloor n/3\rfloor$ and
+$|S|=2\lfloor n/3\rfloor$, and conversely every family of
+$\lfloor n/3\rfloor$ pairwise disjoint triples yields a maximal $R$-clique.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Proposition~\ref{prop:gen} with $n=7$: $Q=Q_7$ is a connected quandle of
+order $2\binom73=70$ and every maximal $R$-clique has size
+$2\lfloor7/3\rfloor=4$. Since $70=4\cdot17+2$, no maximal $R$-clique divides
+the order. The displayed $C$ consists of the two three-cycles on $\{1,2,3\}$
+together with the two on $\{4,5,6\}$; these two triples are disjoint and
+$\lfloor7/3\rfloor=2$, so $C$ is one of the maximal $R$-cliques described in
+Proposition~\ref{prop:gen}(e).
+\end{proof}
+
+\begin{corollary}\label{cor:family}
+For $m\ge1$ put $n=6m+1$. Then $Q_n$ is a connected quandle of order
+$2\binom n3=2m(36m^2-1)$, every maximal $R$-clique of $Q_n$ has size
+$2\lfloor n/3\rfloor=4m$, and
+\[
+  \frac{|Q_n|}{4m}=\frac{36m^2-1}{2}\notin\mathbb Z .
+\]
+\end{corollary}
+
+\begin{proof}
+Immediate from Proposition~\ref{prop:gen}, together with
+$\lfloor(6m+1)/3\rfloor=2m$, the identity
+\[
+  2\binom{6m+1}3=\frac{(6m+1)\,6m\,(6m-1)}3=2m(6m+1)(6m-1)=2m(36m^2-1),
+\]
+and the fact that $36m^2-1$ is odd.
+\end{proof}
+
+\section{Verification}
+
+The proof above is self-contained and uses no computation. The accompanying
+program \texttt{verify.py} independently re-derives, in exact arithmetic, the
+assertions of Theorem~\ref{thm:main} about $Q$ together with bounded cases of
+Proposition~\ref{prop:gen} and Corollary~\ref{cor:family}. It builds the
+$70\times70$ multiplication table of $Q$ from the definition $x*y=y^{-1}xy$;
+confirms that each $\Rt_y$ is a permutation of $Q$, that $x*x=x$, and that
+there are $0$ violations of self-distributivity over all $70^3=343000$ triples;
+confirms connectedness by computing an $\Mlt_r$-orbit; checks that the
+table-level relation $\Rt_a\Rt_b=\Rt_b\Rt_a$ holds on exactly the pairs that
+commute in $S_7$; parses $C$ from the cycle strings printed in
+Theorem~\ref{thm:main} and certifies that it is a maximal $R$-clique;
+enumerates all maximal $R$-cliques of $Q$ by Bron--Kerbosch, finding $70$ of
+them, each of size $4$; verifies Proposition~\ref{prop:gen}(e) by direct
+enumeration of clique sizes and counts for $5\le n\le12$, with the quandle
+axioms and the comparison against commuting in $S_n$ re-run in full only for
+$5\le n\le8$; and evaluates the closed forms of Corollary~\ref{cor:family} for
+$1\le m\le40$. The recorded run reports
+\begin{center}
+\texttt{VERDICT: ALL 85 CHECKS PASS}
+\end{center}
+For $n\ge13$ the program checks only closed-form arithmetic, and it enumerates
+no connected racks or quandles by order, so nothing in it bears on the least
+order of a witness.
+
+\begin{thebibliography}{9}
+
+\bibitem{Joyce}
+D.~Joyce,
+\emph{Simple quandles},
+J. Algebra \textbf{79} (1982), no.~2, 307--318.
+\href{https://doi.org/10.1016/0021-8693(82)90305-2}{doi:10.1016/0021-8693(82)90305-2}.
+
+\bibitem{KMV}
+L.~H. Kauffman, M.~Mukherjee, and P.~Vojt\v{e}chovsk\'y,
+\emph{Algebraic invariants of multi-virtual links},
+J. Algebra \textbf{698} (2026), 493--532.
+\href{https://doi.org/10.1016/j.jalgebra.2026.03.018}{doi:10.1016/j.jalgebra.2026.03.018}.
+Quoted here from the e-print
+\href{https://arxiv.org/abs/2504.09368v1}{arXiv:2504.09368v1}.
+
+\bibitem{Matveev}
+S.~V. Matveev,
+\emph{Distributive groupoids in knot theory},
+Mat. Sb. (N.S.) \textbf{119(161)} (1982), no.~1, 78--88, 160;
+English translation: Math. USSR-Sb. \textbf{47} (1984), 73--83.
+
+\end{thebibliography}
+
+\end{document}

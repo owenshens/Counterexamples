@@ -1,0 +1,152 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  868422cc0363c2e1683529417986b3011151373341baade7c126286c985add06
+python:  Python 3.9.25
+=== program output follows ===
+
+=== Step 1: the matrix M printed in the paper, and its zero-entry graph G
+PASS printed_matrix_is_7_by_7 [n=7]
+PASS printed_matrix_has_a_star_exactly_on_the_diagonal [a dissimilarity matrix has no diagonal entry]
+PASS printed_off_diagonal_entries_are_all_0_or_1
+PASS printed_matrix_is_symmetric
+NOTE zero-entry graph G read off the printed matrix: {12,14,15,16,17,24,25,26,27,34,35,36,37,47,56}
+NOTE one-entries of M: {13,23,45,46,57,67}
+PASS zero_entry_graph_matches_the_edge_list_printed_in_the_paper [15 edges]
+PASS one_entries_match_the_non_edge_list_printed_in_the_paper [{13,23,45,46,57,67}]
+PASS edges_and_non_edges_partition_all_21_pairs [15 + 6 = 21, intersection empty]
+PASS G_is_complete_bipartite_between_A_and_B_plus_the_printed_inside_edges [A={1,2,3} B={4,5,6,7}: 12 cross edges, plus 12 inside A, plus 47,56 inside B]
+NOTE degrees in G: {1: 5, 2: 5, 3: 4, 4: 4, 5: 4, 6: 4, 7: 4}
+PASS G_has_no_isolated_vertex [minimum degree 4]
+PASS minimum_degree_of_G_is_the_value_the_paper_uses [delta(G) = 4]
+PASS no_principal_6x6_zero_entry_graph_has_an_isolated_vertex_either [so the +1 branch of the source proposition never fires, for G or for any G-i]
+PASS edge_counts_of_the_seven_deletions_are_as_printed [|E(G-1)|=10 |E(G-2)|=10 |E(G-3)|=11 |E(G-4)|=11 |E(G-5)|=11 |E(G-6)|=11 |E(G-7)|=11]
+
+=== Step 2: complete multipartite graphs -- definition, transitivity test, closed form
+PASS definition_enumeration_counts_the_nonempty_complete_multipartite_graphs_at_n_5 [171 nonempty; the closed form below and the source agree at 171]
+PASS closed_form_sum_of_C_n_a_times_Bell_a_minus_1_agrees_at_n_5 [sum_{a>=2} C(5,a)(Bell(a)-1) = 171]
+PASS definition_enumeration_counts_the_nonempty_complete_multipartite_graphs_at_n_6 [813 nonempty; the closed form below and the source agree at 813]
+PASS closed_form_sum_of_C_n_a_times_Bell_a_minus_1_agrees_at_n_6 [sum_{a>=2} C(6,a)(Bell(a)-1) = 813]
+PASS definition_enumeration_counts_the_nonempty_complete_multipartite_graphs_at_n_7 [4012 nonempty; the closed form below and the source agree at 4012]
+PASS closed_form_sum_of_C_n_a_times_Bell_a_minus_1_agrees_at_n_7 [sum_{a>=2} C(7,a)(Bell(a)-1) = 4012]
+PASS the_recogniser_agrees_with_the_definition_over_every_graph_at_n_5 [172 masks of 2^10, identical lists]
+PASS the_recogniser_agrees_with_the_definition_over_every_graph_at_n_6 [814 masks of 2^15, identical lists]
+PASS the_recogniser_agrees_with_the_sources_literal_transitivity_wording_at_n_5 [all 1024 graphs on 5 vertices]
+PASS control_the_5_cycle_is_not_complete_multipartite
+PASS control_every_complete_graph_is_complete_multipartite
+PASS control_two_disjoint_edges_are_not_but_one_edge_with_isolated_vertices_is [K_2 + K_2 no; K_2 plus two vertices in no part yes]
+
+=== Step 3: restriction, hence monotonicity of r under principal submatrices
+PASS an_induced_subgraph_of_a_complete_multipartite_graph_is_complete_multipartite [exhaustive at n=6: all 814 such graphs x all 62 nonempty proper subsets, 0 violations -- this is what makes r monotone]
+PASS r_never_increases_when_a_vertex_is_deleted [exhaustive at n=6: 32768 graphs x 6 deletions, 0 violations]
+
+=== Step 4: the printed three-element cover, so r(G) <= 3
+PASS cover_member_1_is_complete_multipartite_and_a_subgraph_of_G [parts [[1, 2, 3], [4, 5, 6, 7]] -> {14,15,16,17,24,25,26,27,34,35,36,37}]
+PASS cover_member_2_is_complete_multipartite_and_a_subgraph_of_G [parts [[1], [2], [4], [7]] -> {12,14,17,24,27,47}]
+PASS cover_member_3_is_complete_multipartite_and_a_subgraph_of_G [parts [[5], [6]] -> {56}]
+PASS the_three_members_contribute_the_printed_edge_counts [12 + 6 + 1]
+PASS the_printed_edge_slot_total_is_the_sum_of_those_counts [12 + 6 + 1 = 19 edge slots, which is not 15]
+PASS the_duplicated_edges_are_exactly_the_four_the_paper_names [{14,17,24,27}]
+PASS slots_minus_duplicates_is_the_printed_union_size [19 - 4 = 15 = |E(G)|]
+PASS the_three_members_union_to_exactly_E_of_G [15 edges, and no edge outside G]
+
+=== Step 5: r(G) >= 3 -- exhaustively, over the complete multipartite subgraphs of G
+PASS the_number_of_complete_multipartite_subgraphs_of_G_is_as_the_paper_states [209 nonempty ones]
+PASS no_single_complete_multipartite_subgraph_of_G_covers_E_of_G [so r(G) >= 2; 209 candidates examined]
+PASS no_complete_multipartite_subgraph_of_G_contains_both_47_and_56 [step (i) of the paper, which is also what excludes r(G) <= 1]
+PASS no_pair_of_complete_multipartite_subgraphs_of_G_covers_E_of_G [43681 ordered pairs examined, 0 of them a cover; hence r(G) >= 3]
+PASS r_of_G_is_therefore_exactly_3 [lower bound from the pair search, upper bound from the printed cover]
+
+=== Step 6: each principal 6x6 submatrix, from the printed pair of covers
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_1 [[[4], [7], [2, 3]] and [[5], [6], [2, 3]], union E(G-1) with 10 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_2 [[[4], [7], [1, 3]] and [[5], [6], [1, 3]], union E(G-2) with 10 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_3 [[[4], [7], [1, 2]] and [[1], [2], [5], [6]], union E(G-3) with 11 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_4 [[[1, 2, 3], [5, 6, 7]] and [[1], [2], [5], [6]], union E(G-4) with 11 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_5 [[[1, 2, 3], [4, 6, 7]] and [[1], [2], [4], [7]], union E(G-5) with 11 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_6 [[[1, 2, 3], [4, 5, 7]] and [[1], [2], [4], [7]], union E(G-6) with 11 edges]
+PASS printed_two_cover_is_valid_for_the_deletion_of_vertex_7 [[[1, 2, 3], [4, 5, 6]] and [[1], [2], [5], [6]], union E(G-7) with 11 edges]
+PASS no_principal_6x6_zero_entry_graph_is_complete_multipartite [so every r(G-i) is exactly 2, never 1]
+PASS an_independent_minimum_cover_search_returns_2_for_every_deletion [r(G-1)=2 r(G-2)=2 r(G-3)=2 r(G-4)=2 r(G-5)=2 r(G-6)=2 r(G-7)=2]
+
+=== Step 7: the source proposition applied, and the refutation
+PASS tree_rank_of_M_is_the_value_the_paper_claims [no isolated vertex, so tree rank = r = 3]
+PASS tree_rank_of_every_principal_6x6_submatrix_is_the_value_the_paper_claims [each is a union of two complete multipartite subgraphs and of no single one]
+PASS REFUTATION_M_has_tree_rank_3_while_every_principal_6x6_has_tree_rank_at_most_2 [the right-hand side of the conjecture holds for M and the left-hand side fails]
+
+=== Step 8: controls -- values published in the source paper, recomputed
+PASS maximum_tree_rank_over_the_whole_0_1_cell_at_n_3_matches_the_source_table [max 1, source says 1; distribution {1: 8}]
+PASS maximum_tree_rank_over_the_whole_0_1_cell_at_n_4_matches_the_source_table [max 2, source says 2; distribution {1: 31, 2: 33}]
+PASS maximum_tree_rank_over_the_whole_0_1_cell_at_n_5_matches_the_source_table [max 3, source says 3; distribution {1: 122, 2: 890, 3: 12}]
+PASS control_the_5_cycle_has_the_tree_rank_the_source_publishes [tree rank(C_5) = 3]
+PASS the_number_of_labelled_tree_rank_3_objects_at_n_5_is_as_the_paper_states [12 labelled objects]
+PASS they_form_one_isomorphism_class_and_it_is_the_5_cycle [1 class(es), orbit size 12, contains C_5]
+PASS maximum_tree_rank_over_the_whole_0_1_cell_at_n_6_matches_the_source_table [max 3, source says 3; distribution {1: 509, 2: 20535, 3: 11724}]
+PASS the_number_of_6x6_objects_of_tree_rank_at_most_2_is_as_the_paper_states [21044 of 2^15 = 32768]
+
+=== Step 9: the uniform family, re-run for n = 8..14
+PASS the_matrix_of_order_8_has_the_same_six_one_entries_and_no_isolated_vertex [22 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_8 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_8 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_8 [all 28 six-element subsets of [8] checked]
+PASS the_matrix_of_order_9_has_the_same_six_one_entries_and_no_isolated_vertex [30 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_9 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_9 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_9 [all 84 six-element subsets of [9] checked]
+PASS the_matrix_of_order_10_has_the_same_six_one_entries_and_no_isolated_vertex [39 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_10 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_10 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_10 [all 210 six-element subsets of [10] checked]
+PASS the_matrix_of_order_11_has_the_same_six_one_entries_and_no_isolated_vertex [49 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_11 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_11 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_11 [all 462 six-element subsets of [11] checked]
+PASS the_matrix_of_order_12_has_the_same_six_one_entries_and_no_isolated_vertex [60 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_12 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_12 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_12 [all 924 six-element subsets of [12] checked]
+PASS the_matrix_of_order_13_has_the_same_six_one_entries_and_no_isolated_vertex [72 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_13 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_13 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_13 [all 1716 six-element subsets of [13] checked]
+PASS the_matrix_of_order_14_has_the_same_six_one_entries_and_no_isolated_vertex [85 edges, 6 one-entries, so tree rank = r]
+PASS the_three_element_cover_of_the_uniform_theorem_is_valid_at_n_14 [so r <= 3 and tree rank <= 3]
+PASS the_first_seven_vertices_induce_exactly_G_at_n_14 [with r(G) = 3 and monotonicity this forces r >= 3, hence tree rank exactly 3]
+PASS every_principal_6x6_submatrix_has_tree_rank_at_most_2_at_n_14 [all 3003 six-element subsets of [14] checked]
+PASS the_number_of_complete_multipartite_subgraphs_at_n_8_is_as_the_paper_states [1004 nonempty ones]
+PASS an_exhaustive_pair_search_confirms_r_at_least_3_at_n_8_without_using_monotonicity [1004 complete multipartite subgraphs, 1008016 ordered pairs, 0 covers]
+
+=== Step 10: the exhaustive census of the 0/1 cell at n = 7
+PASS the_cell_size_is_2_to_the_21 [2^21 = 2097152]
+PASS the_number_of_graphs_with_r_at_most_1_is_as_the_paper_states [4013, the empty graph included]
+PASS the_number_of_graphs_with_r_at_most_2_is_as_the_paper_states [502511]
+PASS the_number_of_7x7_objects_of_tree_rank_at_most_2_is_as_the_paper_states [486761]
+PASS the_number_of_7x7_objects_of_tree_rank_at_least_3_is_as_the_paper_states [1610391]
+PASS those_two_counts_exhaust_the_cell [486761 + 1610391 = 2^21]
+PASS the_whole_cell_bitset_agrees_with_the_by_hand_verdict_on_M_and_its_seven_deletions [M excluded, all seven principal 6x6 included]
+PASS the_number_of_objects_whose_seven_principal_6x6_all_have_tree_rank_at_most_2_is_as_stated [488336]
+PASS the_number_of_counterexamples_in_the_cell_is_as_the_paper_states [1575]
+PASS the_arithmetic_of_the_two_census_totals_reproduces_that_count [488336 - 486761 = 1575]
+PASS the_only_if_half_of_the_conjecture_is_silent_over_the_whole_cell [objects of tree rank <= 2 with a principal 6x6 of tree rank >= 3: 0, and that half is a theorem, so it must be 0]
+PASS the_paper_witness_is_one_of_the_counterexamples [mask 425917]
+PASS no_counterexample_in_the_cell_has_an_isolated_vertex [so at n=7 the conjecture survives on every matrix with an all-ones off-diagonal row]
+PASS the_extracted_list_of_counterexamples_has_the_counted_length [1575 masks]
+NOTE one-entry counts among the counterexamples: {5: 1260, 6: 315}
+
+=== Step 11: isomorphism classes of the counterexamples
+PASS the_counterexample_set_is_closed_under_relabelling [every image of a counterexample under S_7 is one; 1575 masks]
+PASS the_number_of_isomorphism_classes_of_counterexamples_is_as_the_paper_states [2 classes]
+PASS the_orbit_sizes_are_as_the_paper_states [sizes [315, 1260], summing to 1575]
+PASS the_paper_witness_lies_in_the_smaller_class [the orbit of M has size 315]
+PASS the_other_class_has_the_number_of_one_entries_the_paper_states [representative zero-entry graph {12,14,15,16,17,24,25,26,27,34,35,36,37,45,47,56}, 5 one-entries]
+PASS the_other_class_is_the_class_of_G_with_the_edge_45_added [G + 45 is a counterexample too, so M does not have the fewest one-entries]
+PASS control_Burnside_over_the_same_permutation_tables_returns_A000088_of_7 [unlabelled graphs on 7 nodes: 1044, and OEIS A000088(7) = 1044]
+
+=== Scope of this re-run
+NOTE NOT RE-RUN: the uniform theorem is proved in the paper for every n >= 7; this program confirms it only for n = 7,...,14, so n >= 15 rests on the hand proof alone.
+NOTE NOT RE-RUN: whether some local size k >= 7 does certify tree rank 2. The paper leaves that open and this family cannot settle it, because for k >= 7 the principal k x k submatrices of the uniform family include M itself.
+NOTE NOT RE-RUN: the Pachter--Sturmfels notion of tree rank named in the same bullet of the source. It is a different notion of mixtures, nothing here touches it, and no computation could -- their text was not read.
+NOTE NOT RE-RUN: the wording of the conjecture in the printed Combinatorica text. The statement is quoted from arXiv:0912.1411v1, and no computation can check a transcription.
+NOTE NOT RE-RUN: dissimilarity matrices that are not 0/1. The source proposition used here as the decider applies only to the 0/1 sub-family, and the census of Steps 10-11 is a census of that sub-family alone; a real counterexample of smaller order is not excluded.
+NOTE NOT RE-RUN: anything about the tropical Grassmannian directly. Every tree rank above is obtained through the source paper's own combinatorial proposition, which this program takes as given rather than reproving.
+
+VERDICT: ALL 110 CHECKS PASS
+=== program exited with status 0 ===

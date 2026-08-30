@@ -1,0 +1,193 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A mod 32 counterexample to the congruence form of Propp's
+            Conjecture 2 for Aztec diamond tilings by dominoes and square
+            tetrominoes}
+}
+
+\newtheorem{theorem}{Theorem}
+
+\DeclareMathOperator{\vtwo}{v_2}
+
+\emergencystretch=3em
+
+\title[A mod $32$ counterexample to Propp's Conjecture 2, congruence form]
+{A mod $32$ counterexample to the congruence form of Propp's Conjecture 2
+for Aztec diamond tilings by dominoes and square tetrominoes}
+
+\date{}
+
+\subjclass[2020]{05B45, 05A15, 11A07}
+\keywords{Aztec diamond, polyomino tiling, square tetromino, 2-adic valuation,
+congruence, transfer matrix, counterexample, OEIS A356512}
+
+\begin{document}
+
+\begin{abstract}
+Let $M(n)$ be the number of tilings of the Aztec diamond of order $n$ by
+dominoes and square tetrominoes (OEIS A356512). Conjecture~2 of Propp
+[\emph{Integers} \textbf{23} (2023), Art.~A30] asserts that for all $k\ge1$,
+$n+n'\equiv-3 \pmod{2^k}$ implies $M(n)+M(n')\equiv0 \pmod{2^k}$. We refute this congruence form
+at the single instance $(n,n',k)=(14,15,5)$: here $14+15=29\equiv-3
+\pmod{32}$, while
+\[
+  M(14)\equiv 79,\qquad M(15)\equiv 225 \pmod{256},
+\]
+so $M(14)+M(15)\equiv48\pmod{256}$, whose $2$-adic valuation is $4$, not
+$\ge5$. Propp's Conjecture~1, on the $2$-adic continuity of $M$, is not
+refuted, and neither is the antisymmetry restatement of Conjecture~2, which
+presupposes it.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}\label{sec:conj}
+
+For $n\ge0$ let $AD_n$ be the Aztec diamond region of order $n$: the union of
+the closed unit squares of the integer lattice that lie entirely inside
+$|x|+|y|\le n+1$. Equivalently $AD_n$ has $2n$ rows, the row $r$
+($0\le r\le 2n-1$) consisting of $2\min(r+1,\,2n-r)$ cells centred on the
+vertical axis, so that
+\begin{equation}\label{eq:cells}
+  |AD_n| \;=\; 2n(n+1).
+\end{equation}
+Let
+\[
+  M(n) \;=\; \#\bigl\{\text{tilings of } AD_n \text{ by } 1\times2,\ 2\times1
+  \text{ and } 2\times2 \text{ tiles}\bigr\},
+\]
+that is, by dominoes in either orientation together with the square
+tetromino. Then $M(0)=1$, $M(1)=3$, and $M$ is the sequence
+OEIS~\textbf{A356512}. Propp \cite{Propp} states two conjectures about the
+$2$-adic behaviour of $M$; the second, quoted here from p.~6 of the published
+version, is the object of this note.
+
+\begin{quote}
+\textbf{Conjecture 2} (Propp \cite{Propp}). \emph{For all $k\ge1$, if
+$n+n'\equiv-3 \pmod{2^k}$ then $M(n)+M(n')\equiv0 \pmod{2^k}$.}
+\end{quote}
+
+Both $n,n'$ range over $\mathbb{Z}_{\ge0}$ and $k$ over $\mathbb{Z}_{\ge1}$;
+there is no existential quantifier, so a single triple $(n,n',k)$ satisfying
+the hypothesis and violating the conclusion refutes the statement. Propp
+prints $M(n)$ for $0\le n\le12$ and remarks that he has no efficient method of
+computing further terms; since $n,n'\le12$ forces $n+n'\le24<29$, that table
+cannot test $k=5$ at any point.
+
+\section{The counterexample}\label{sec:refute}
+
+\begin{theorem}\label{thm:main}
+The congruence form of Conjecture~$2$ of \cite{Propp}, as quoted in
+\S\ref{sec:conj}, is false. Explicitly, take $n=14$, $n'=15$ and
+$k=5$. Then $n+n'\equiv-3 \pmod{2^k}$, while
+$\vtwo\bigl(M(14)+M(15)\bigr)=4$ and so $M(n)+M(n')\not\equiv0 \pmod{2^{k}}$.
+\end{theorem}
+
+\begin{proof}
+The two residues, computed as described in \S\ref{sec:verify}, are
+\begin{equation}\label{eq:M1415}
+  M(14)\equiv 79 \pmod{256},
+  \qquad
+  M(15)\equiv 225 \pmod{256}.
+\end{equation}
+The hypothesis holds: $14+15=29$ and $29+3=32=2^5$, so $14+15\equiv-3
+\pmod{32}$; equivalently $(-3-14) \bmod 32 = 15 = n'$. Both indices are
+nonnegative and $k=5\ge1$, so the triple lies in the range quantified over.
+
+The conclusion fails. By \eqref{eq:M1415}, $M(14)+M(15)\equiv 79+225=304\equiv
+48\pmod{256}$, and $48=2^4\cdot3$. A residue modulo $256=2^8$ determines the
+$2$-adic valuation of an integer whenever that valuation is less than $8$, so
+$\vtwo(M(14)+M(15))=\vtwo(48)=4$. In particular
+$M(14)+M(15)\equiv16\not\equiv0\pmod{32}$. The valuation is short of the
+required $5$ by exactly one power of two.
+\end{proof}
+
+\section{The computation and its controls}\label{sec:verify}
+
+The residues \eqref{eq:M1415} were obtained by a dense broken-profile transfer
+computation over the $2n\times2n$ bounding box of $AD_n$, one cell at a time,
+with $2n$ frontier bits and one extra bit for the cell that a $2\times2$ tile
+placed at the previous column occupies on the next row; cells outside $AD_n$
+are treated as permanently blocked, and the programs assert that the number of
+admissible cells equals $2n(n+1)$ as in \eqref{eq:cells}. At $n=14$ and $n=15$
+this carries $2^{29}$ and $2^{31}$ states. Two implementations written
+independently of each other, in C, agreed on both residues, and each residue
+was produced twice, on different machines. A separate corroboration of $M(14)$
+is arithmetic: an exact accumulator modulo $2^{128}$ returned
+$M(14)\equiv 228062845944308165005028192227771743567 \pmod{2^{128}}$, and
+since $2^8$ divides $10^8$ the last eight decimal digits of that number
+determine the residue modulo $256$, giving $71743567 = 280248\cdot256+79$, in
+agreement with \eqref{eq:M1415}.
+
+A third implementation accompanies this note as \texttt{verify.py}: a pure
+Python program, standard library only, exact integer arithmetic, sharing no
+code with either C engine. It recomputes $AD_n$ from the inequality
+$|x|+|y|\le n+1$ and checks \eqref{eq:cells}; reproduces $M(0),\dots,M(4)$ by
+plain backtracking with no transfer computation at all; reproduces all thirteen
+published terms of A356512 exactly; reproduces the domino-only specialisation
+$2^{n(n+1)/2}$ of Elkies, Kuperberg, Larsen and Propp \cite{EKLP}
+(OEIS A006125) for $n\le12$ as a control on the region and the domino rules;
+then recomputes $M(14)$ and $M(15) \bmod 256$ from scratch, obtaining $79$ and
+$225$, and re-derives Theorem~\ref{thm:main} from its own residues rather than
+from the printed ones. Its recorded run, \texttt{verify.output.txt}, reports
+\texttt{VERDICT: ALL 63 CHECKS PASS}. The deep part is expensive for an
+interpreted language: in that run the two residues took $777$ and $1835$
+seconds on one core and the process peaked at $9.81$ GB.
+
+Two remarks of that transcript overreach --- its check \texttt{E8} and its
+closing scope note --- and nothing here relies on either.
+
+\section{Scope}\label{sec:scope}
+
+Only the congruence form of Conjecture~2, exactly as printed and quoted in
+\S\ref{sec:conj}, is refuted. Propp restates it as: \emph{``if one extends
+$M:\mathbb{N}\to\mathbb{N}$ to the $2$-adic function
+$\widehat M:\mathbb{Z}_2\to\mathbb{Z}_2$, one has
+$\widehat M(-3-n)=-\widehat M(n)$''}; that form presupposes the $2$-adic
+extension, i.e.\ his Conjecture~1, which is neither used nor refuted here.
+$M(14)$ and $M(15)$ are established modulo $256$ only; the exact integers are
+not computed anywhere here, and Theorem~\ref{thm:main} does not need them.
+Nothing is claimed for an index $\ge16$: every other pair on the diagonal
+$n+n'=29$ has an index $\ge16$, where $M$ is unknown to us, so those instances
+are settled in neither direction, no instance with $k\ge6$ was tested, and
+$(14,15,5)$ is not claimed to be the least failure. Finally, every control
+listed in \S\ref{sec:verify} lies at $n\le12$, the range where published data
+exists; at $n=14$ and $n=15$ there is nothing external to compare against, and
+what stands in place of a control there is the agreement of the three
+independently written programs.
+
+\begin{thebibliography}{9}
+
+\bibitem{EKLP}
+N.~Elkies, G.~Kuperberg, M.~Larsen, and J.~Propp,
+\emph{Alternating-sign matrices and domino tilings I},
+J. Algebraic Combin. \textbf{1} (1992), no.~2, 111--132.
+\href{https://doi.org/10.1023/A:1022420103267}{doi:10.1023/A:1022420103267}.
+The specialisation used as a control here, $2^{n(n+1)/2}$ domino tilings of
+$AD_n$, is OEIS A006125.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+sequence \href{https://oeis.org/A356512}{A356512} ($M$, contributed by
+J.~Propp, August 2022; thirteen terms, $n=0,\dots,12$) and
+\href{https://oeis.org/A006125}{A006125}.
+
+\bibitem{Propp}
+J.~Propp,
+\emph{Some $2$-adic conjectures concerning polyomino tilings of Aztec
+diamonds},
+Integers \textbf{23} (2023), Art.~A30;
+\href{https://arxiv.org/abs/2204.00158}{arXiv:2204.00158}.
+Conjecture~2 is quoted from the published version, p.~6.
+
+\end{thebibliography}
+
+\end{document}

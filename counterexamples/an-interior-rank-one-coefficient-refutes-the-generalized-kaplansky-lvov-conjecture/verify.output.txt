@@ -1,0 +1,127 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  b0a1f7a2b994cee2d08fe2118a6e4e99af59c0131adff22562561200b790e8d0
+python:  Python 3.9.6
+=== program output follows ===
+========================================================================================
+PART 1 -- THE WITNESS PRINTED IN THE PAPER (parsed out of PAPER_DISPLAY, not
+          hard-coded), over Z and hence over every field
+========================================================================================
+PASS display-parsed -- PAPER_DISPLAY yields exactly A, X1, Y1, X2, Y2, each 2x2
+PASS A-is-e11 -- A = ((1, 0), (0, 0)) = e_11, the INTERIOR coefficient of omega(x_1,x_2) = x_1 A x_2
+PASS A-nonzero -- A != 0, so the pair (omega, A) is inside the conjecture's quantifier
+PASS entries-0-1 -- every printed entry is 0 or 1, so the witness transports to EVERY field along Z -> K
+PASS X1-is-I -- first evaluation point is (X,Y) = (I_2, I_2)
+PASS X2-is-e21 -- second evaluation point is (X,Y) = (e_21, e_12)
+PASS omega-I-I -- omega(I_2, I_2) = I A I = ((1, 0), (0, 0)) = e_11
+PASS omega-e21-e12 -- omega(e_21, e_12) = e_21 e_11 e_12 = ((0, 0), (0, 1)) = e_22
+PASS sum-is-identity -- e_11 + e_22 = ((1, 0), (0, 1)) = I_2
+PASS rankQ-A -- rank A = 1 over Q
+PASS rankQ-w1 -- rank omega(I,I) = 1 over Q
+PASS rankQ-w2 -- rank omega(e_21,e_12) = 1 over Q
+PASS rankQ-sum -- rank(e_11 + e_22) = rank I_2 = 2 over Q
+PASS det-sum -- det(e_11 + e_22) = 1 is nonzero in every field, so the sum has rank 2 in every field
+PASS ranks-mod-2 -- over GF(2): rank A = rank omega(I,I) = rank omega(e_21,e_12) = 1, rank(sum) = 2
+PASS ranks-mod-3 -- over GF(3): rank A = rank omega(I,I) = rank omega(e_21,e_12) = 1, rank(sum) = 2
+PASS ranks-mod-5 -- over GF(5): rank A = rank omega(I,I) = rank omega(e_21,e_12) = 1, rank(sum) = 2
+PASS ranks-mod-7 -- over GF(7): rank A = rank omega(I,I) = rank omega(e_21,e_12) = 1, rank(sum) = 2
+PASS ranks-mod-11 -- over GF(11): rank A = rank omega(I,I) = rank omega(e_21,e_12) = 1, rank(sum) = 2
+PASS witness-strict -- rank(sum) = 2 > 1 = rank A -- this inequality is the entire refutation
+
+========================================================================================
+PART 2 -- THE FACTORIZATION IDENTITY  X e_11 Y = (col_1 X)(row_1 Y)
+========================================================================================
+PASS identity-basis-n2 -- X e_11 Y == (col_1 X)(row_1 Y) on all 16 ordered pairs of matrix units of M_2, over Z
+PASS identity-basis-n3 -- X e_11 Y == (col_1 X)(row_1 Y) on all 81 ordered pairs of matrix units of M_3, over Z
+PASS identity-basis-n4 -- X e_11 Y == (col_1 X)(row_1 Y) on all 256 ordered pairs of matrix units of M_4, over Z
+PASS identity-allpairs-n2-q2 -- identity verified on ALL 256 ordered pairs (X,Y) in M_2(GF(2))^2, 0 violations
+PASS identity-allpairs-n2-q3 -- identity verified on ALL 6561 ordered pairs (X,Y) in M_2(GF(3))^2, 0 violations
+PASS identity-allpairs-n3-q2 -- identity verified on ALL 262144 ordered pairs (X,Y) in M_3(GF(2))^2, 0 violations
+PASS multilinear-n2-q2 -- omega = x e_11 y is additive in x (0 violations), additive in y (0) and homogeneous in x (0); the free variable ran over all 16 of M_2(GF(2)), the spectator over all of it
+PASS multilinear-n2-q3 -- omega = x e_11 y is additive in x (0 violations), additive in y (0) and homogeneous in x (0); the free variable ran over all 81 of M_2(GF(3)), the spectator over the 4 matrix units and I
+
+========================================================================================
+PART 3 -- THE IMAGE IS EXACTLY THE RANK-<=1 LOCUS, AND IT IS NOT A SUBSPACE
+========================================================================================
+PASS image-allpairs-agrees-n2-q2 -- the image over ALL 256 pairs (X,Y) equals the image over the 16 outer products
+PASS image-is-rank1-locus-n2-q2 -- image(x e_11 y) = {M in M_2(GF(2)) : rank M <= 1} exactly; both sides have 10 elements out of 16
+PASS image-size-n2-q2 -- |image| = 10 = 1 + (q^n - 1)^2/(q - 1) at n = 2, q = 2
+PASS summands-in-image-n2-q2 -- e_11 = omega(I,I) and e_22 = omega(e_21,e_12) both lie in the image over GF(2)
+PASS sum-outside-image-n2-q2 -- e_11 + e_22 has rank 2 and is NOT in the image: the image is not closed under addition over GF(2)
+PASS image-scalar-closed-n2-q2 -- the image DOES contain 0 and IS closed under scalar multiplication -- it is a cone, and only additivity fails
+PASS image-not-subspace-n2-q2 -- VERDICT for M_2(GF(2)): the image of the multilinear omega(x,y) = x e_11 y is NOT a vector space
+PASS image-allpairs-agrees-n2-q3 -- the image over ALL 6561 pairs (X,Y) equals the image over the 81 outer products
+PASS image-is-rank1-locus-n2-q3 -- image(x e_11 y) = {M in M_2(GF(3)) : rank M <= 1} exactly; both sides have 33 elements out of 81
+PASS image-size-n2-q3 -- |image| = 33 = 1 + (q^n - 1)^2/(q - 1) at n = 2, q = 3
+PASS summands-in-image-n2-q3 -- e_11 = omega(I,I) and e_22 = omega(e_21,e_12) both lie in the image over GF(3)
+PASS sum-outside-image-n2-q3 -- e_11 + e_22 has rank 2 and is NOT in the image: the image is not closed under addition over GF(3)
+PASS image-scalar-closed-n2-q3 -- the image DOES contain 0 and IS closed under scalar multiplication -- it is a cone, and only additivity fails
+PASS image-not-subspace-n2-q3 -- VERDICT for M_2(GF(3)): the image of the multilinear omega(x,y) = x e_11 y is NOT a vector space
+PASS image-is-rank1-locus-n3-q2 -- image(x e_11 y) = {M in M_3(GF(2)) : rank M <= 1} exactly; both sides have 50 elements out of 512
+PASS image-size-n3-q2 -- |image| = 50 = 1 + (q^n - 1)^2/(q - 1) at n = 3, q = 2
+PASS summands-in-image-n3-q2 -- e_11 = omega(I,I) and e_22 = omega(e_21,e_12) both lie in the image over GF(2)
+PASS sum-outside-image-n3-q2 -- e_11 + e_22 has rank 2 and is NOT in the image: the image is not closed under addition over GF(2)
+PASS image-scalar-closed-n3-q2 -- the image DOES contain 0 and IS closed under scalar multiplication -- it is a cone, and only additivity fails
+PASS image-not-subspace-n3-q2 -- VERDICT for M_3(GF(2)): the image of the multilinear omega(x,y) = x e_11 y is NOT a vector space
+PASS image-is-rank1-locus-n3-q3 -- image(x e_11 y) = {M in M_3(GF(3)) : rank M <= 1} exactly; both sides have 339 elements out of 19683
+PASS image-size-n3-q3 -- |image| = 339 = 1 + (q^n - 1)^2/(q - 1) at n = 3, q = 3
+PASS summands-in-image-n3-q3 -- e_11 = omega(I,I) and e_22 = omega(e_21,e_12) both lie in the image over GF(3)
+PASS sum-outside-image-n3-q3 -- e_11 + e_22 has rank 2 and is NOT in the image: the image is not closed under addition over GF(3)
+PASS image-scalar-closed-n3-q3 -- the image DOES contain 0 and IS closed under scalar multiplication -- it is a cone, and only additivity fails
+PASS image-not-subspace-n3-q3 -- VERDICT for M_3(GF(3)): the image of the multilinear omega(x,y) = x e_11 y is NOT a vector space
+
+========================================================================================
+PART 4 -- THE FAMILY: AN INTERIOR A OF RANK r WITH 0 < r < n GIVES THE RANK-<=r LOCUS
+========================================================================================
+PASS rankA-n3-q2-r1 -- A = diag(1^1, 0^2) has rank 1 over GF(2), and 0 < 1 < 3
+PASS family-image-n3-q2-r1 -- image(x A y) = {M : rank M <= 1} in M_3(GF(2)), 50 of 512 matrices, computed from all 64 factorizations X A Y = (X's first 1 columns)(Y's first 1 rows)
+PASS family-sum-escapes-n3-q2-r1 -- diag(1^1,0^2) and e_22 lie in the image; their sum has rank 2 > 1 and does not
+PASS rankA-n3-q2-r2 -- A = diag(1^2, 0^1) has rank 2 over GF(2), and 0 < 2 < 3
+PASS family-image-n3-q2-r2 -- image(x A y) = {M : rank M <= 2} in M_3(GF(2)), 344 of 512 matrices, computed from all 4096 factorizations X A Y = (X's first 2 columns)(Y's first 2 rows)
+PASS family-sum-escapes-n3-q2-r2 -- diag(1^2,0^1) and e_33 lie in the image; their sum has rank 3 > 2 and does not
+PASS rankA-n3-q3-r1 -- A = diag(1^1, 0^2) has rank 1 over GF(3), and 0 < 1 < 3
+PASS family-image-n3-q3-r1 -- image(x A y) = {M : rank M <= 1} in M_3(GF(3)), 339 of 19683 matrices, computed from all 729 factorizations X A Y = (X's first 1 columns)(Y's first 1 rows)
+PASS family-sum-escapes-n3-q3-r1 -- diag(1^1,0^2) and e_22 lie in the image; their sum has rank 2 > 1 and does not
+PASS rankA-n4-q2-r1 -- A = diag(1^1, 0^3) has rank 1 over GF(2), and 0 < 1 < 4
+PASS family-image-n4-q2-r1 -- image(x A y) = {M : rank M <= 1} in M_4(GF(2)), 226 of 65536 matrices, computed from all 256 factorizations X A Y = (X's first 1 columns)(Y's first 1 rows)
+PASS family-sum-escapes-n4-q2-r1 -- diag(1^1,0^3) and e_22 lie in the image; their sum has rank 2 > 1 and does not
+PASS rankA-n4-q2-r2 -- A = diag(1^2, 0^2) has rank 2 over GF(2), and 0 < 2 < 4
+PASS family-image-n4-q2-r2 -- image(x A y) = {M : rank M <= 2} in M_4(GF(2)), 7576 of 65536 matrices, computed from all 65536 factorizations X A Y = (X's first 2 columns)(Y's first 2 rows)
+PASS family-sum-escapes-n4-q2-r2 -- diag(1^2,0^2) and e_33 lie in the image; their sum has rank 3 > 2 and does not
+
+========================================================================================
+PART 5 -- POSITIVE CONTROLS: THE NEIGHBOURING CASES WHERE THE IMAGE *IS* A VECTOR
+          SPACE, so the attack is not breaking everything it touches
+========================================================================================
+PASS control-A-invertible-n2-q2 -- A = I_2 invertible: image(x A y) is all 16 of M_2(GF(2)), a vector space (closure re-checked elementwise)
+PASS control-A-invertible-n2-q3 -- A = I_2 invertible: image(x A y) is all 81 of M_2(GF(3)), a vector space (closure re-checked elementwise)
+PASS control-A-invertible-n3-q2 -- A = I_3 invertible: image(x A y) is all 512 of M_3(GF(2)), a vector space (closure re-checked elementwise)
+PASS control-A-invertible-n3-q3 -- A = I_3 invertible: image(x A y) is all 19683 of M_3(GF(3)), a vector space
+PASS control-m1-n2-q2 -- omega(x) = e_11 x with m = 1: image = {M : rows 2..2 vanish}, 4 elements, IS a subspace
+PASS control-m1-n2-q3 -- omega(x) = e_11 x with m = 1: image = {M : rows 2..2 vanish}, 9 elements, IS a subspace
+PASS control-m1-n3-q2 -- omega(x) = e_11 x with m = 1: image = {M : rows 2..3 vanish}, 8 elements, IS a subspace
+PASS control-end-coefficient-n2-q2 -- omega(x,y) = e_11 x y with the coefficient at an END: image = {e_11 M} = {M : col M contained in col A}, 4 elements, IS a subspace
+PASS control-end-coefficient-n2-q3 -- omega(x,y) = e_11 x y with the coefficient at an END: image = {e_11 M} = {M : col M contained in col A}, 9 elements, IS a subspace
+PASS control-end-coefficient-n3-q2 -- omega(x,y) = e_11 x y with the coefficient at an END: image = {e_11 M} = {M : col M contained in col A}, 8 elements, IS a subspace
+PASS control-YeqI-collapse-n2-q2 -- for omega(x,y) = A x y - B y x: omega(X, I) = (A - B)X for all 16 X and all 4 tested (A,B) over GF(2), so that image always CONTAINS the subspace (A-B)M_2 -- which is why no rank obstruction can reach that shape
+PASS control-YeqI-collapse-n2-q3 -- for omega(x,y) = A x y - B y x: omega(X, I) = (A - B)X for all 81 X and all 4 tested (A,B) over GF(3), so that image always CONTAINS the subspace (A-B)M_2 -- which is why no rank obstruction can reach that shape
+PASS control-YeqI-collapse-n3-q2 -- for omega(x,y) = A x y - B y x: omega(X, I) = (A - B)X for all 512 X and all 4 tested (A,B) over GF(2), so that image always CONTAINS the subspace (A-B)M_3 -- which is why no rank obstruction can reach that shape
+PASS control-YeqI-collapse-n3-q3 -- for omega(x,y) = A x y - B y x: omega(X, I) = (A - B)X for all 19683 X and all 4 tested (A,B) over GF(3), so that image always CONTAINS the subspace (A-B)M_3 -- which is why no rank obstruction can reach that shape
+PASS control-commutators-sl2-q2 -- image of xy - yx on M_2(GF(2)) over all 256 pairs is exactly {tr = 0}: 8 = 2^(2^2-1) elements, a subspace, matching the published Albert-Muckenhoupt count
+PASS control-e11-commutator-n2-q2 -- A = B = e_11 on M_2(GF(2)): the image of e_11(xy - yx) has 4 elements, EVERY one of rank <= 1, and it IS a subspace -- a rank CEILING alone refutes nothing; cell 1 fails because its confinement is a rank condition, not a linear one
+PASS control-commutators-sl2-q3 -- image of xy - yx on M_2(GF(3)) over all 6561 pairs is exactly {tr = 0}: 27 = 3^(2^2-1) elements, a subspace, matching the published Albert-Muckenhoupt count
+PASS control-e11-commutator-n2-q3 -- A = B = e_11 on M_2(GF(3)): the image of e_11(xy - yx) has 9 elements, EVERY one of rank <= 1, and it IS a subspace -- a rank CEILING alone refutes nothing; cell 1 fails because its confinement is a rank condition, not a linear one
+PASS control-commutators-sl3-q2 -- image of xy - yx on M_3(GF(2)) over all 262144 pairs is exactly {tr = 0}: 256 = 2^(3^2-1) elements, a subspace, matching the published Albert-Muckenhoupt count
+PASS control-e11-commutator-n3-q2 -- A = B = e_11 on M_3(GF(2)): the image of e_11(xy - yx) has 8 elements, EVERY one of rank <= 1, and it IS a subspace -- a rank CEILING alone refutes nothing; cell 1 fails because its confinement is a rank condition, not a linear one
+
+========================================================================================
+SCOPE -- WHAT THIS PROGRAM DOES NOT COVER
+========================================================================================
+NOT RE-RUN: the PUBLISHED wording of the conjecture.  Every locator is the e-print arXiv:2312.13865v1 (conc.tex, lines 21-23).  The Wiley text of Mathematika 71 (2025) e70031 returned HTTP 403 and was never read, so whether the published sentence restricts the coefficient positions is settled neither here nor in the paper.
+NOT RE-RUN: the generalized-commutator cell of the original row -- omega(x,y) = A x y - B y x over an algebraically closed field of characteristic 0.  Parts 5(d) and 5(e) show only why a rank obstruction cannot reach that shape; nothing here decides it, and the paper claims nothing about it.
+NOT RE-RUN: any infinite, characteristic-0 or algebraically closed field.  Every enumeration runs over GF(2) or GF(3).  The refutation does not depend on them: Part 1 is an exact computation valid over an arbitrary field, and Parts 2-4 verify the structural identities that carry it to every field and every n >= 2.
+NOT RE-RUN: n >= 5; at n = 4 only q = 2, and only r in {1, 2}.  The rank-r family claim is PROVED in the paper by rank factorization -- Part 4 is a finite confirmation, not a proof by exhaustion.
+NOT RE-RUN: the two AWS finite-field censuses filed with the original row (census_kl_job1.py, census_kl_job2.py, numpy-based, 78 s and 1982 s).  Their stdout was never captured to a file and the claim they supported was struck in review as off-cell.  Their decisive negative-polarity integers -- |image| = 10, 50, 33, 339 -- are recomputed from scratch in Part 3 here, with no numpy and no floats.
+
+VERDICT: ALL 89 CHECKS PASS
+=== program exited with status 0 ===

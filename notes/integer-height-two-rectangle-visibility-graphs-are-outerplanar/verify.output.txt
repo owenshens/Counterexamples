@@ -1,0 +1,68 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  200e8e2bbf37b84391b7590475594f9a63fd82dff8d533a92da9e43efb963dc7
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- integer height-two rectangle visibility graphs are outerplanar
+exact arithmetic only (int / fractions.Fraction); standard library only
+
+--- Part 1: the objects printed in the paper -------------------------------
+PASS K14_layout_is_legal  [interiors pairwise disjoint]
+PASS K14_definition_equals_theoremA  [definition (Fraction midpoints) = definition (unit columns) = THEOREM A = 4 edges]
+PASS K14_graph_is_the_star_centred_at_the_FULL_rectangle  [E = [('a', 'c'), ('b', 'c'), ('c', 'd'), ('c', 'e')], centre c = [2,3]x[0,2] is FULL]
+PASS K14_bounding_box_5_tuple_matches_source_line_370  [(n,height,width,area,perimeter) = (5, 2, 5, 10, 14)]
+PASS K14_outerplanar_by_independent_cyclic_order_search  [brute force over all cyclic orders]
+PASS G5_layout_is_legal  [interiors pairwise disjoint]
+PASS G5_definition_equals_theoremA  [8 edges by all three routes]
+PASS G5_is_two_triangles_joined_by_the_path_c_d_e  [7 vertices, 8 edges: triangles abc and efg, path c-d-e]
+PASS G5_bounding_box_5_tuple_matches_source_line_417  [(n,height,width,area,perimeter) = (7, 2, 5, 10, 14)]
+PASS G5_outerplanar_by_independent_cyclic_order_search  [brute force over all cyclic orders]
+PASS struck_lemma_premise_is_false_B_star_contains_a_triangle  [B* = {F1,b,F2} (all three), E = [('F1', 'F2'), ('F1', 'b'), ('F2', 'b')] is a triangle, so a clique inside B* has size 3, not <= 2]
+PASS K13_is_realised_with_a_BOTTOM_centre  [layout [(1, 2, 0, 1), (0, 1, 0, 1), (2, 3, 0, 1), (1, 2, 1, 2)] in a 3x2 box gives the star E = [('L', 'v'), ('R', 'v'), ('t', 'v')] centred at the BOTTOM rectangle v, so the "FULL centre" clause of the star lemma holds at m=4 and not at m=3]
+PASS bounding_box_quintuple_is_not_a_graph_identifier  [layout [(0, 1, 0, 1), (0, 1, 1, 2), (1, 2, 0, 1), (1, 3, 1, 2), (2, 4, 0, 1), (3, 5, 1, 2), (4, 5, 0, 1)] has the same quintuple (7,2,5,10,14) as G_5 but 10 edges, not 8, and a vertex of degree 4]
+
+--- Part 2: exhaustive enumeration, integer layouts of bounding box [0,w]x[0,2] ----
+PASS structure_theorem_w1  [2 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w1  [2 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w1  [max degree over vertices with an independent neighbourhood = 1]
+PASS structure_theorem_w2  [22 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w2  [22 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w2  [max degree over vertices with an independent neighbourhood = 2]
+PASS structure_theorem_w3  [184 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w3  [184 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w3  [max degree over vertices with an independent neighbourhood = 3]
+PASS structure_theorem_w4  [1430 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w4  [1430 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w4  [max degree over vertices with an independent neighbourhood = 3]
+PASS structure_theorem_w5  [10868 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w5  [10868 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w5  [max degree over vertices with an independent neighbourhood = 4]
+PASS structure_theorem_w6  [81976 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w6  [81976 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w6  [max degree over vertices with an independent neighbourhood = 4]
+PASS structure_theorem_w7  [616720 layouts, THEOREM A = the definition on all of them]
+PASS outerplanarity_proof_w7  [616720 layouts: split, non-crossing two-layer drawing, contraction returns G]
+PASS independent_neighbourhood_degree_bound_w7  [max degree over vertices with an independent neighbourhood = 4]
+
+--- Part 3: the raw definition, cross-checked, and the corollary -------------------
+PASS integer_and_rational_definitions_agree  [12506 layouts (w <= 5): unit-column test = Fraction-midpoint test]
+PASS K_1_5_is_realised_by_no_height_2_layout  [over all 711202 layouts (w <= 7) the star sizes realised are m in [1, 2, 3, 4]]
+PASS K_1_4_is_realised_and_its_centre_is_always_FULL  [centre y-classes for m=4: [(0, 2)]]
+PASS K_1_3_centre_need_not_be_FULL  [centre y-classes for m=3: [(0, 1), (0, 2), (1, 2)] -- so the certificate's "FULL centre" clause is needed only at m=4]
+PASS independent_neighbourhood_bound_is_exactly_4  [attained, and never exceeded, over all 711202 layouts]
+
+--- Part 4: anti-controls (a vacuous pass must be distinguishable) -----------------
+PASS anticontrol_K4_is_rejected_by_the_outerplanarity_search  [no cyclic order of K_4 avoids a crossing]
+PASS anticontrol_K_2_3_is_rejected_by_the_outerplanarity_search  [no cyclic order of K_{2,3} avoids a crossing]
+PASS anticontrol_height_3_admits_a_K4  [layout [(0, 2, 0, 1), (0, 2, 2, 3), (1, 2, 1, 2), (2, 3, 0, 3)] in a 3x3 box has visibility graph K_4, so the height-2 hypothesis is load-bearing and this machinery can see a non-outerplanar graph]
+PASS anticontrol_y_rescaling_gives_K4_bounding_box_height_2_in_the_real_model  [y -> (2/3)y maps that layout to bounding-box height exactly 2 with the SAME graph K_4, so without INTEGRALITY the theorem is false]
+PASS anticontrol_height_3_admits_K_1_5  [layout [(2, 3, 0, 2), (1, 2, 0, 1), (0, 1, 1, 2), (3, 4, 0, 1), (4, 5, 1, 2), (2, 3, 2, 3)] in a 5x3 box realises K_{1,5} centred at C, E = [('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E'), ('C', 'G')]]
+PASS independent_outerplanarity_route_w_le_4  [1638 layouts: a non-crossing cyclic order was FOUND by brute force, without using the split/contract argument]
+
+NOT RE-RUN: the enumeration is exhaustive for bounding boxes [0,w]x[0,2] with w <= 7 (711,202 layouts) and NOT beyond; the proof in the paper is what covers all w and all n, and this program checks that proof only on those widths.
+NOT RE-RUN: the brute-force cyclic-order route runs on w <= 4 only (1,638 layouts); for 5 <= w <= 7 outerplanarity is certified by the proof's own construction, not by an independent search.
+NOT RE-RUN: nothing here touches height(G) for h >= 3 beyond the two exhibited anti-control layouts, and nothing here verifies that height(K_{1,5}) equals 3 (only that K_{1,5} is realisable at height 3 and at no height 2).
+NOT RE-RUN: no literature claim is checked by this program. The prior-art status of the result -- including the reading of the 2014 GD poster abstract cited in the paper, which was obtained and searched by hand and not by this program -- is outside its scope.
+
+VERDICT: ALL 45 CHECKS PASS
+=== program exited with status 0 ===

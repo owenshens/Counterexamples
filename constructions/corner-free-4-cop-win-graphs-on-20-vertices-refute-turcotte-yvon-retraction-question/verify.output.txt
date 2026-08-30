@@ -1,0 +1,74 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  2e4b4832507e03107ad7a95ec6fcec9edd03fa9ed412da9ce8d45ad850f29a76
+python:  Python 3.9.6
+=== program output follows ===
+=== the two witnesses, as printed in Section 2 of the paper ===
+PASS g6-length-W1                       graph6 line is 33 bytes = 1 + ceil(C(20,2)/6) = 1 + 32
+PASS g6-roundtrip-W1                    re-encoding the decoded graph reproduces the printed string exactly
+PASS encodings-agree-W1                 graph6 and the printed adjacency table describe the SAME labelled graph (20 rows, 40 edges)
+PASS order-W1                           n = 20 = M_4 + 1, since M_4 = 19 (target paper, its own corollary)
+PASS size-W1                            m = 40
+PASS regular-W1                         every degree is 4, so delta = Delta = 4 (degree multiset {4})
+PASS connected-W1                       one component
+PASS triangle-free-W1                   0 triangles over the 40 edges
+PASS c4-free-W1                         max |N(a) cap N(b)| = 1 over all C(20,2) = 190 pairs, so no C_4
+PASS girth-W1                           BFS girth = 5, and the exhibited cycle 0-8-15-3-18-0 is adjacency-checked
+PASS corner-free-W1                     0 corners over all 380 ordered pairs (x,u): no induced subgraph on 19 vertices is a retract, and none on fewer is reached by a chain
+PASS forest-certificate-W1              S = [0, 14, 16], |N[S]| = 14, R = [2, 5, 11, 12, 15, 19] induces exactly 2-12 2-19 5-15 5-19 11-19 -- 5 edges on 6 vertices and acyclic, so c <= 4 by Lemma 3.2
+PASS forest-census-W1                   380 of the C(20,3) = 1140 three-element subsets have a forest remainder (exhaustive)
+PASS aigner-fromme-hypotheses-W1        girth 5 >= 5 and delta = 4, which is exactly what Theorem 3.1 (Aigner-Fromme) needs for c >= delta = 4
+PASS g6-length-W2                       graph6 line is 33 bytes = 1 + ceil(C(20,2)/6) = 1 + 32
+PASS g6-roundtrip-W2                    re-encoding the decoded graph reproduces the printed string exactly
+PASS encodings-agree-W2                 graph6 and the printed adjacency table describe the SAME labelled graph (20 rows, 40 edges)
+PASS order-W2                           n = 20 = M_4 + 1, since M_4 = 19 (target paper, its own corollary)
+PASS size-W2                            m = 40
+PASS regular-W2                         every degree is 4, so delta = Delta = 4 (degree multiset {4})
+PASS connected-W2                       one component
+PASS triangle-free-W2                   0 triangles over the 40 edges
+PASS c4-free-W2                         max |N(a) cap N(b)| = 1 over all C(20,2) = 190 pairs, so no C_4
+PASS girth-W2                           BFS girth = 5, and the exhibited cycle 0-6-12-1-15-0 is adjacency-checked
+PASS corner-free-W2                     0 corners over all 380 ordered pairs (x,u): no induced subgraph on 19 vertices is a retract, and none on fewer is reached by a chain
+PASS forest-certificate-W2              S = [0, 2, 5], |N[S]| = 13, R = [1, 3, 4, 7, 10, 12, 19] induces exactly 1-7 1-12 3-10 4-10 4-12 7-19 -- 6 edges on 7 vertices and acyclic, so c <= 4 by Lemma 3.2
+PASS forest-census-W2                   480 of the C(20,3) = 1140 three-element subsets have a forest remainder (exhaustive)
+PASS aigner-fromme-hypotheses-W2        girth 5 >= 5 and delta = 4, which is exactly what Theorem 3.1 (Aigner-Fromme) needs for c >= delta = 4
+
+=== the domination route, and the domination numbers ===
+PASS perfect-code-W1                    D = {8,9,10,11}: the four closed neighbourhoods are disjoint and cover all 20 vertices once each, so gamma(W1) <= 4 and four cops finish on move one
+PASS gamma-W1                           gamma(W1) = 4 exhaustively -- no subset of size 3 or less dominates, and D is the UNIQUE minimum dominating set (1 of the C(20,4) = 4845 four-subsets dominate)
+PASS gamma-W2                           gamma(W2) = 5 exhaustively -- 0 of the C(20,4) = 4845 four-subsets dominate and 10 of the C(20,5) = 15504 five-subsets do, so the domination route does NOT reach W2 and W2 needs the forest certificate
+PASS witnesses-not-isomorphic           gamma(W1) = 4 differs from gamma(W2) = 5, so W1 and W2 are non-isomorphic: the refutation rests on two distinct graphs
+
+=== the cop number, decided outright by a second independent solver ===
+PASS three-cops-lose-W1                 the 3-cop game is a robber win (fixed point in 2 iterations), so c(W1) >= 4 without appeal to Theorem 3.1
+PASS four-cops-win-W1                   the 4-cop game is a cop win (fixed point in 4 iterations), so c(W1) <= 4 without appeal to Lemma 3.2
+PASS cop-number-W1                      c(W1) = 4 exactly, on 20 = M_4 + 1 vertices
+PASS three-cops-lose-W2                 the 3-cop game is a robber win (fixed point in 2 iterations), so c(W2) >= 4 without appeal to Theorem 3.1
+PASS four-cops-win-W2                   the 4-cop game is a cop win (fixed point in 4 iterations), so c(W2) <= 4 without appeal to Lemma 3.2
+PASS cop-number-W2                      c(W2) = 4 exactly, on 20 = M_4 + 1 vertices
+
+=== provenance: these are Meringer census graphs, not constructions of ours ===
+PASS automorphisms-W1                   |Aut(W1)| = 96, matching the published census entry (Graph 2 of 20_4_5.asc)
+PASS automorphisms-W2                   |Aut(W2)| = 20, matching the published census entry (Graph 1 of 20_4_5.asc)
+
+=== controls, both polarities, on published integers that are not ours ===
+PASS control-petersen-shape             the transcribed graph6 really is the Petersen graph: 10 vertices, 15 edges, cubic, girth 5
+PASS control-robertson-shape            the transcribed graph6 really is the (4,5)-cage: 19 vertices, 38 edges, 4-regular, girth 5
+PASS control-cop-number-P5              solver returns c = 1, published value 1
+PASS control-cop-number-C4              solver returns c = 2, published value 2  [M_2 = 4, the minimum 2-cop-win graph]
+PASS control-cop-number-C5              solver returns c = 2, published value 2  [the authors' own k = 2 refuter]
+PASS control-cop-number-Petersen        solver returns c = 3, published value 3  [the crucial negative: it must not say 4]
+PASS control-cop-number-Robertson       solver returns c = 4, published value 4  [the positive control AT the value in question, on the paper's own M_4 witness]
+PASS corner-detector-positive-control   the corner detector finds 4 corners in C_4 (girth 4), so its zero on W1 and W2 is a measurement and not a constant
+PASS corner-free-C5                     C_5 is corner-free too, which is why the authors' own k = 2 counterexample works and why the mechanism used here is theirs
+PASS forest-lemma-forced-positive       555 of the C(19,3) = 969 three-element subsets of the Robertson graph have a forest remainder, so Lemma 3.2 delivers c(Robertson) <= 4, and with Theorem 3.1 the published 4
+PASS forest-lemma-anti-control          0 of the 10 one-element subsets of the Petersen graph have a forest remainder, so the same lemma REFUSES the false bound c(Petersen) <= 2; the published value is 3
+
+NOT RE-RUN: the completeness of the census lane.  This program generates no graphs, so it does not re-derive that the connected 4-regular graphs of girth at least 5 on 20 vertices are exactly two.  That count is Meringer's published census (file 20_4_5.asc) and OEIS A058343; what is checked here is that the two graphs named in the paper have the claimed automorphism orders, 96 and 20.
+NOT RE-RUN: M_4 = 19.  It is the target paper's own corollary and is used, not verified; the paper's claim is conditional on it in exactly the way the source states it.
+NOT RE-RUN: girth 3 and girth 4 graphs on 20 vertices.  Nothing here bounds how many 20-vertex graphs with cop number 4 and no corner exist, so no minimality or uniqueness is claimed.
+NOT RE-RUN: k = 2, k = 3 and k >= 5 of the question.  k = 2 is refuted in the source itself, k = 3 is TRUE there by its own classification, and k >= 5 is untouched because M_5 is unknown.  Only k = 4 is settled here.
+NOT RE-RUN: the authors' published table of 25148 cop numbers.  The solver above is controlled on five published values, not regression-tested against that table.
+
+VERDICT: ALL 51 CHECKS PASS
+=== program exited with status 0 ===

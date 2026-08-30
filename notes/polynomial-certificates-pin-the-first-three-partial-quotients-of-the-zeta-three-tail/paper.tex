@@ -1,0 +1,458 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Polynomial Certificates for the First Two Partial Quotients of
+            sqrt((zeta(3)-S_N)/2), and the Third for N at least 2}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{conjecture}{Conjecture (Feldman)}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\PQ}{a}
+\newcommand{\Rt}{R}
+\newcommand{\ps}{\psi}
+\newcommand{\pss}{\psi_3}
+
+\title[Certificates for leading partial quotients]
+{Polynomial Certificates for the First Two Partial Quotients of
+ $\sqrt{(\zeta(3)-S_N)/2}$, and the Third for $N\ge2$}
+
+\date{}
+
+\subjclass[2020]{11A55, 11J70, 11Y65, 11M06}
+\keywords{continued fraction, partial quotient, Riemann zeta at three,
+quasi-polynomial, Euler--Maclaurin, positivity certificate, Pell number}
+
+\begin{document}
+
+\begin{abstract}
+Let $S_N=\sum_{j=1}^{N}j^{-3}$, let $\Rt_N=\zeta(3)-S_N$ and let
+$g(N)=\sqrt{\Rt_N/2}$. Feldman displays the continued fraction
+$g(N)=\bigl[0;2N+1,\,4N+2,\,\lfloor(12N+6)/19\rfloor,\ldots\bigr]$ and records, as
+the first of his open problems, that his uniform Euler--Maclaurin remainder does
+not pin even the first two of these at the smallest index; in particular his
+claim that $\PQ_1(g)|_{N_k}=Q_{2k+1}$ and $\PQ_2(g)|_{N_k}=2Q_{2k+1}$ along the
+Pell indices $N_k$ is left unproved. We prove $\PQ_1(g(N))=2N+1$ and
+$\PQ_2(g(N))=4N+2$ for every integer $N\ge1$, which gives that claim at every
+$k\ge1$. We also prove $\PQ_3(g(N))=\lfloor(12N+6)/19\rfloor$ for every $N\ge2$;
+at $N=1$ the displayed value $0$ is not the third partial quotient of $g(1)$,
+which is $1$. Each floor decision is reduced to the non-negativity of the
+coefficient vector of an explicit integer polynomial; no value of $\zeta(3)$ is
+used in any proof. The trailing ellipsis of the display is untouched, so
+Feldman's conjecture as a whole remains open.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+For a real $x$ we write $x=[a_0;\PQ_1,\PQ_2,\ldots]$ for its regular continued
+fraction and $\PQ_i(x)$ for its $i$-th partial quotient. Throughout,
+\[
+ S_N=\sum_{j=1}^{N}\frac1{j^3},\qquad
+ \Rt_N=\zeta(3)-S_N=\sum_{j>N}\frac1{j^3},\qquad
+ g(N)=\sqrt{\frac{\Rt_N}{2}} .
+\]
+Since $\Rt_1=\zeta(3)-1<2$ we have $0<g(N)<1$, so $a_0=0$ and the index $1$
+really is the first floor-and-invert. Also $g(N)$ is irrational for every $N$:
+$\zeta(3)$ is irrational \cite{Apery,Beukers} and $S_N$ is rational, so
+$\Rt_N\notin\mathbb Q$, and a rational $g(N)$ would make
+$\Rt_N=2g(N)^2$ rational. Hence the continued fraction of $g(N)$ is infinite
+and every partial quotient below is unambiguous.
+
+Feldman \cite{Feldman} introduces $g$ and states the following, quoted from the
+e-print source.
+
+\begin{conjecture}[\cite{Feldman}]
+The formal continued fraction of $g(N)=\sqrt{\Rt_N/2}$ is
+\begin{equation}\label{eq:gcf}
+ g(N)=\Bigl[0;\;2N+1,\;4N+2,\;
+   \Bigl\lfloor\frac{12N+6}{19}\Bigr\rfloor,\;\ldots\Bigr]
+\end{equation}
+with quasi-polynomial partial quotients of periods $1,1,19,\ldots$. In
+particular, at $N=N_k$:
+\begin{equation}\label{eq:gcfpell}
+ \PQ_1(g)\big|_{N_k}=2N_k+1=Q_{2k+1},\qquad
+ \PQ_2(g)\big|_{N_k}=4N_k+2=2Q_{2k+1}.
+\end{equation}
+\end{conjecture}
+
+Here $P_k$ are the Pell numbers $0,1,2,5,12,29,70,169,\dots$, $Q_k=P_k+P_{k-1}$,
+$M_k=P_{2k+1}$ and $N_k=(Q_{2k+1}-1)/2=3,20,119,696,\ldots$, so that
+$Q_{2k+1}^2-2M_k^2=-1$. Thus \eqref{eq:gcfpell} is the restriction of the first
+two entries of \eqref{eq:gcf} to $N=N_k$, and is strictly weaker than
+\eqref{eq:gcf}.
+
+What is open is stated by the author himself, at the first of his open problems,
+again quoted:
+\begin{quote}
+``The derivation is only formal: the uniform Euler--Maclaurin remainder
+\dots\ does not pin the leading floors at the smallest index
+$k=1$ ($M_k=5$), so even the first two quotients
+$\PQ_1(g)|_{N_k}=Q_{2k+1}$, $\PQ_2(g)|_{N_k}=2Q_{2k+1}$ are not proved there.
+A sharper index-dependent remainder, or a direct treatment of the small cases,
+would settle it.''
+\end{quote}
+The author's main theorem, which is proved, concerns $\sqrt{\Rt_{N_k}}$ --- a
+different real number, $\sqrt2$ times ours --- and only for $k\ge3$, so it says
+nothing at $k=1$.
+
+We prove the following.
+
+\begin{theorem}\label{thm:a12}
+For every integer $N\ge1$,
+\[
+ \PQ_1\bigl(g(N)\bigr)=2N+1
+ \qquad\text{and}\qquad
+ \PQ_2\bigl(g(N)\bigr)=4N+2 .
+\]
+\end{theorem}
+
+\begin{theorem}\label{thm:a3}
+For every integer $N\ge2$,
+\[
+ \PQ_3\bigl(g(N)\bigr)=\Bigl\lfloor\frac{12N+6}{19}\Bigr\rfloor ,
+\]
+and this fails at $N=1$: there $\PQ_3(g(1))=1$ while
+$\lfloor 18/19\rfloor=0$.
+\end{theorem}
+
+Theorem~\ref{thm:a12} discharges \eqref{eq:gcfpell} at every $k\ge1$, the
+index $k=1$ ($N_1=3$, $M_1=5$) included, which is exactly the statement the
+author's open problem names as unproved. Theorem~\ref{thm:a3} is an additional
+numeric statement about the third entry of \eqref{eq:gcf}, with $N=1$ excluded.
+What is \emph{not} settled is recorded in Section~\ref{sec:status}.
+
+The mechanism is elementary, which is why no value of $\zeta(3)$ appears: we
+build two short antidifferences of opposite defect sign, obtaining a tail-free
+two-sided enclosure of $\Rt_N$ valid from $N=1$; each floor decision then becomes
+the positivity of a rational function of $N$ whose shifted numerator has
+non-negative integer coefficients.
+
+\section{Two antidifferences of opposite defect sign}\label{sec:anti}
+
+Put
+\begin{equation}\label{eq:psi}
+ \ps(x)=\frac1{2x^2}+\frac1{2x^3}+\frac1{4x^4}-\frac1{12x^6}
+        =\frac{A(x)}{12x^{6}},
+ \qquad
+ \pss(x)=\ps(x)+\frac1{12x^8}=\frac{B(x)}{12x^{8}},
+\end{equation}
+where
+\begin{equation}\label{eq:psi3}
+ A(x)=6x^4+6x^3+3x^2-1,
+ \qquad
+ B(x)=x^2A(x)+1=6x^6+6x^5+3x^4-x^2+1.
+\end{equation}
+Both vanish at infinity. Define the defects
+\[
+ D(j)=\ps(j)-\ps(j+1)-\frac1{j^3},
+ \qquad
+ D_3(j)=\pss(j)-\pss(j+1)-\frac1{j^3}.
+\]
+
+\begin{lemma}\label{lem:signs}
+As identities of polynomials in $j$,
+\begin{align}
+ 12\,j^6(j+1)^6\,D(j)   &= -(2j+1)^3=-\bigl(8j^3+12j^2+6j+1\bigr),
+ \label{eq:D}\\
+ 12\,j^8(j+1)^8\,D_3(j) &= 18j^5+45j^4+48j^3+27j^2+8j+1 .
+ \label{eq:D3}
+\end{align}
+Hence $D(j)<0$ and $D_3(j)>0$ for every $j\ge1$.
+\end{lemma}
+
+\begin{proof}
+Both are polynomial identities after clearing denominators, and both are
+verified by expansion. Explicitly, \eqref{eq:D} is
+$A(j)(j+1)^6-A(j+1)j^6-12j^3(j+1)^6=-(2j+1)^3$, and \eqref{eq:D3} is
+$B(j)(j+1)^8-B(j+1)j^8-12j^5(j+1)^8=18j^5+45j^4+48j^3+27j^2+8j+1$. The two
+coefficient vectors $(-1,-6,-12,-8)$ and $(1,8,27,48,45,18)$, in ascending
+powers of $j$, have all entries of one sign, and the signs are opposite; the
+denominators $12j^6(j+1)^6$ and $12j^8(j+1)^8$ are positive for $j\ge1$. As a
+hand check at $j=1$: $\ps(1)-\ps(2)-1=\tfrac76-\tfrac{155}{768}-1=-\tfrac{27}{768}$
+and $\pss(1)-\pss(2)-1=\tfrac{49}{1024}$.
+\end{proof}
+
+\begin{lemma}\label{lem:enclosure}
+For every integer $N\ge1$,
+\begin{equation}\label{eq:enc}
+ \ps(N+1)\;<\;\Rt_N\;<\;\pss(N+1),
+\end{equation}
+and moreover
+\begin{equation}\label{eq:enctight}
+ \pss(N+1)-\frac{49}{40N^{10}}\;<\;\Rt_N\;<\;\pss(N+1).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since $\ps(x)\to0$, the series $\sum_{j>N}\bigl(\ps(j)-\ps(j+1)\bigr)$
+telescopes exactly to $\ps(N+1)$, whence
+\[
+ \Rt_N=\sum_{j>N}\frac1{j^3}
+      =\sum_{j>N}\Bigl(\ps(j)-\ps(j+1)\Bigr)-\sum_{j>N}D(j)
+      =\ps(N+1)-\sum_{j>N}D(j),
+\]
+and likewise $\Rt_N=\pss(N+1)-\sum_{j>N}D_3(j)$. Both tail series converge
+absolutely, since \eqref{eq:D} and \eqref{eq:D3} give
+$|D(j)|=O(j^{-9})$ and $D_3(j)=O(j^{-11})$. By Lemma~\ref{lem:signs} the
+first tail is negative and the second positive, which is \eqref{eq:enc}; note
+that the upper bound carries \emph{no} remainder term.
+
+For \eqref{eq:enctight} we bound the second tail. From \eqref{eq:D3},
+$D_3(j)\le \tfrac{49}{4}j^{-11}$ for every $j\ge1$: clearing denominators, the
+claim is that $588(j+1)^8-4j^3\bigl(18j^5+45j^4+48j^3+27j^2+8j+1\bigr)$ has
+non-negative coefficients, and indeed it equals
+$516j^8+4524j^7+16272j^6+32820j^5+41128j^4+32924j^3+16464j^2+4704j+588$. Next,
+$\sum_{j>N}j^{-11}\le\tfrac1{10}N^{-10}$, because
+$\tfrac1{10}j^{-10}-\tfrac1{10}(j+1)^{-10}\ge(j+1)^{-11}$ for $j\ge1$ --- which
+after clearing denominators reads
+$(j+1)^{11}-j^{11}-11j^{10}\ge0$, true coefficientwise --- and the left side
+telescopes. Hence $0<\sum_{j>N}D_3(j)\le\tfrac{49}{4}\cdot\tfrac1{10}N^{-10}$.
+\end{proof}
+
+\section{The first two quotients}\label{sec:a12}
+
+Write $V=1/g(N)=\sqrt{2/\Rt_N}$ and
+\begin{equation}\label{eq:lohi}
+\begin{aligned}
+ \ell(N)&=(2N+1)+\frac1{4N+3}=\frac{8N^2+10N+4}{4N+3},\\
+ h(N)&=(2N+1)+\frac1{4N+2}=\frac{8N^2+8N+3}{4N+2}.
+\end{aligned}
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:a12}]
+Consider the two rational functions
+\[
+ I_2(N)=h(N)^2\,\ps(N+1)-2,
+ \qquad
+ I_1(N)=2-\ell(N)^2\,\pss(N+1).
+\]
+Clearing denominators, $I_2=\mathcal I_2/\bigl(12(N+1)^6(4N+2)^2\bigr)$ and
+$I_1=\mathcal I_1/\bigl(12(N+1)^8(4N+3)^2\bigr)$ with
+$\mathcal I_1,\mathcal I_2\in\mathbb Z[N]$; substituting $N=1+t$,
+\begin{equation}\label{eq:I2}
+ \mathcal I_2(1+t)=659+1380\,t+1055\,t^2+342\,t^3+38\,t^4,
+\end{equation}
+\begin{equation}\label{eq:I1}
+\begin{aligned}
+ \mathcal I_1(1+t)={}&492+3448\,t+7664\,t^2+8328\,t^3\\
+ &{}+5032\,t^4+1728\,t^5+316\,t^6+24\,t^7 .
+\end{aligned}
+\end{equation}
+Every coefficient in \eqref{eq:I2} and \eqref{eq:I1} is positive, and both
+denominators are manifestly positive for $N\ge1$; therefore
+$I_1(N)>0$ and $I_2(N)>0$ for every integer $N\ge1$. (As a hand check
+of \eqref{eq:I1} at $N=1$: $2\cdot12\cdot256\cdot49-484\cdot621=301056-300564=492$.
+Values of $\mathcal I_2$ at $N=1,\dots,5$ are $659,3474,10983,26606,54675$; of
+$\mathcal I_1$, $492,27032,263772,1415016,5415116$.)
+
+Now $I_2(N)>0$ says $h(N)^2>2/\ps(N+1)$, and $\Rt_N>\ps(N+1)$ by
+\eqref{eq:enc}, so $h(N)^2>2/\ps(N+1)>2/\Rt_N=V^2$ and hence $V<h(N)$.
+Symmetrically $I_1(N)>0$ says $\ell(N)^2<2/\pss(N+1)$, and
+$\Rt_N<\pss(N+1)$, so $\ell(N)^2<2/\pss(N+1)<2/\Rt_N=V^2$ and $V>\ell(N)$.
+Thus
+\begin{equation}\label{eq:Vbox}
+ (2N+1)+\frac1{4N+3}\;<\;V\;<\;(2N+1)+\frac1{4N+2}
+ \qquad(N\ge1).
+\end{equation}
+Since $0<\tfrac1{4N+2}<1$, \eqref{eq:Vbox} gives $\lfloor V\rfloor=2N+1$, i.e.
+$\PQ_1(g(N))=2N+1$. Taking reciprocals of the fractional part in
+\eqref{eq:Vbox}, $1/(V-(2N+1))$ lies strictly between $4N+2$ and $4N+3$, so its
+floor is $4N+2$, i.e. $\PQ_2(g(N))=4N+2$.
+\end{proof}
+
+\begin{corollary}\label{cor:pell}
+$\PQ_1(g)|_{N_k}=Q_{2k+1}$ and $\PQ_2(g)|_{N_k}=2Q_{2k+1}$ for every $k\ge1$;
+that is, \eqref{eq:gcfpell} holds, including at $k=1$.
+\end{corollary}
+
+\begin{proof}
+$N_k=(Q_{2k+1}-1)/2$ gives $2N_k+1=Q_{2k+1}$ and $4N_k+2=2Q_{2k+1}$
+identically; apply Theorem~\ref{thm:a12} at $N=N_k\ge3$.
+\end{proof}
+
+\section{The third quotient}\label{sec:a3}
+
+The displayed third quotient is quasi-polynomial of period $19$: writing
+$N=19s+\rho$ with $0\le\rho\le18$,
+\begin{equation}\label{eq:A3}
+ A_3(N):=\Bigl\lfloor\frac{12N+6}{19}\Bigr\rfloor
+ =12s+\Bigl\lfloor\frac{12\rho+6}{19}\Bigr\rfloor .
+\end{equation}
+Fix $\rho$ and put, with $A_1=2N+1$ and $A_2=4N+2$ as above,
+\[
+ \ell_3=A_1+\cfrac1{A_2+\cfrac1{A_3}},
+ \qquad
+ h_3=A_1+\cfrac1{A_2+\cfrac1{A_3+1}} ,
+\]
+which are rational functions of $s$ with $\ell_3<h_3$. Because
+$\PQ_1=A_1$ and $\PQ_2=A_2$ are already known from Theorem~\ref{thm:a12},
+$\PQ_3(g(N))=A_3$ holds if and only if $\ell_3<V<h_3$. (Both $\ell_3$ and $h_3$
+require $A_3\ge1$; every class below is certified only from an $s_0$ at which
+$A_3\ge1$, the extreme case being $\rho=0$, $s_0=1$, $A_3=12$.) Exactly as in
+Section~\ref{sec:a12}, using \eqref{eq:enctight} in place of \eqref{eq:enc},
+$\ell_3<V$ follows from the positivity of
+\[
+ J_1(s)=2-\ell_3^{\,2}\,\pss(N+1)\Big|_{N=19s+\rho},
+\]
+and $V<h_3$ from the positivity of
+\[
+ J_2(s)=h_3^{\,2}\Bigl(\pss(N+1)-\frac{49}{40N^{10}}\Bigr)-2\Big|_{N=19s+\rho}.
+\]
+(No separate check that the lower bound in \eqref{eq:enctight} is positive is
+needed: if it were not, $J_2$ would be at most $-2$.)
+
+\begin{proposition}\label{prop:classes}
+For each of the $19$ residue classes $\rho$, the numerators and denominators of
+both $J_1$ and $J_2$, written as polynomials in $s-s_0$, have all coefficients
+non-negative, with $s_0=s_0(\rho)$ as tabulated:
+\begin{center}
+\normalfont
+\setlength{\tabcolsep}{2.5pt}
+\footnotesize
+\begin{tabular}{l|ccccccccccccccccccc}
+ $\rho$ & 0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18\\
+ \hline
+ $\lfloor(12\rho+6)/19\rfloor$
+         & 0&0&1&2&2&3&4&4&5&6&6&7&7&8&9&9&10&11&11\\
+ $s_0(\rho)$
+         & 1&1&1&1&1&0&0&0&0&0&0&0&0&0&0&0&0&0&0\\
+\end{tabular}
+\end{center}
+Consequently $\PQ_3(g(N))=A_3(N)$ for every $N\ge5$, and the only integers
+$N\ge1$ not covered are $N\in\{1,2,3,4\}$.
+\end{proposition}
+
+\begin{proof}
+Each entry is a finite exact computation with integer-coefficient polynomials in
+one variable: substitute $N=19s+\rho$ and $A_3=12s+\lfloor(12\rho+6)/19\rfloor$,
+clear denominators, shift $s\mapsto s_0+t$ and read the signs. As the covering
+statement: the classes $\rho=5,\dots,18$ certify from $s=0$, giving
+$N=5,\dots,18$ and then $N=19s+\rho$ for all $s\ge1$; the classes
+$\rho=0,1,2,3,4$ certify from $s=1$, giving $N=19,20,21,22,23$ and upwards.
+The union is $\{N: N\ge5\}$, and its complement in $\mathbb Z_{\ge1}$ is
+$\{1,2,3,4\}$.
+\end{proof}
+
+In the class $\rho=9$ one has $12N+6\equiv0\pmod{19}$, so the floor in
+\eqref{eq:A3} sits \emph{on} an integer; that class too certifies from $s=0$,
+with
+\begin{multline}\label{eq:rho9}
+ \operatorname{num}J_1\big|_{\rho=9}
+ =12491451+142067432\,s+671815989\,s^2+1690280508\,s^3\\
+ {}+2385550453\,s^4+1789910922\,s^5+557513238\,s^6 ,
+\end{multline}
+of degree $6$ with all coefficients positive, while $\operatorname{num}J_2$ has
+$18$ positive coefficients, the constant one being $37139362880053056000$. Here
+$\operatorname{num}$ is the numerator over
+$12(N+1)^{8}\bigl(A_2A_3+1\bigr)^{2}$, evaluated at $N=19s+9$ with
+$A_2=4N+2$ and $A_3=12s+6$; as a check on the normalisation, the right-hand side
+of \eqref{eq:rho9} takes the values $12491451$, $7249629993$ and
+$147632938319$ at $s=0,1,2$.
+
+\section{The four remaining indices}\label{sec:small}
+
+The four indices $N\in\{1,2,3,4\}$ left over by
+Proposition~\ref{prop:classes} are decided by hand from
+Lemma~\ref{lem:enclosure} together with an exact rational partial sum
+$\sum_{j=N+1}^{J}j^{-3}$, for one small $J$. Since
+$\Rt_N=\sum_{j=N+1}^{J}j^{-3}+\Rt_J$, applying \eqref{eq:enc} at $J$ gives
+\begin{equation}\label{eq:small}
+\begin{aligned}
+ \tfrac{155}{768}&<\Rt_1<\tfrac{207}{1024}
+   &&(J=1), &\quad g(1)&=[0;3,6,1,\ldots],\\
+ \tfrac{337}{4374}&<\Rt_2<\tfrac{6067}{78732}
+   &&(J=2), &\quad g(2)&=[0;5,10,1,\ldots],\\
+ \tfrac{1967}{49152}&<\Rt_3<\tfrac{10491}{262144}
+   &&(J=3), &\quad g(3)&=[0;7,14,2,\ldots],\\
+ \tfrac{1707247}{69984000}&<\Rt_4<\tfrac{61461017}{2519424000}
+   &&(J=5), &\quad g(4)&=[0;9,18,2,\ldots].
+\end{aligned}
+\end{equation}
+In each line the printed bracket already determines the first three partial
+quotients: one applies $x\mapsto1/x$ and $x\mapsto x-\lfloor x\rfloor$ three
+times to the two endpoints and observes that the two integer parts agree at
+every step. This completes the proof of Theorem~\ref{thm:a3}: the displayed
+values at $N=2,3,4$ are $1,2,2$, which \eqref{eq:small} confirms, while at
+$N=1$ the displayed value is $\lfloor18/19\rfloor=0$ and the true value is $1$.
+
+\begin{remark}[the exceptional index]
+$\lfloor(12N+6)/19\rfloor=0$ can only happen at $N=1$, and $0$ is not a legal
+partial quotient at a position $\ge1$; so under the numeric reading the third
+entry of \eqref{eq:gcf} needs the hypothesis $N\ge2$. That reading may not be
+the intended one: \eqref{eq:gcf} is captioned ``the \emph{formal} continued
+fraction'', and under a strictly formal, series-level reading it makes no
+assertion at the integer $N=1$.
+\end{remark}
+
+\section{Scope}\label{sec:status}
+
+\noindent\textbf{Not settled.} The trailing ellipsis of
+\eqref{eq:gcf}. Nothing here addresses $\PQ_4$, $\PQ_5$ or their
+quasi-periods, and the phrase ``periods $1,1,19,\ldots$'' therefore remains a
+conjecture: \textbf{the Conjecture of Section~1 is not proved}. Nor is anything
+proved about $\PQ_i(g(N))$ for $i\ge4$, about the growth of the quotients, or
+about irrationality or normality questions for $\zeta(3)$.
+
+\medskip\noindent\textbf{No Lean.} We wrote no Lean and inspected none: what is
+discharged is a mathematical statement, not a machine proof.
+
+\medskip\noindent\textbf{Attribution.} The values $2N+1$, $4N+2$ and
+$\lfloor(12N+6)/19\rfloor$ are Feldman's, printed in \cite{Feldman}, which also
+observes that \eqref{eq:gcfpell} is immediate from $N_k=(Q_{2k+1}-1)/2$ once the
+quotients are known.
+
+\medskip\noindent\textbf{Reproduction.} Everything above is finite and exact.
+Lemmas~\ref{lem:signs} and~\ref{lem:enclosure}, Theorem~\ref{thm:a12} and
+Proposition~\ref{prop:classes} are polynomial identities and coefficient-sign
+readings in $\mathbb Z[N]$ or $\mathbb Z[s]$; Section~\ref{sec:small} is four
+rational brackets. No floating-point number, no enumeration, no solver and no
+decimal expansion of $\zeta(3)$ enters any proof. The accompanying program
+\texttt{verify.py} re-derives every displayed quantity from the definitions
+\eqref{eq:psi}--\eqref{eq:psi3} alone, in exact integer and \texttt{Fraction}
+arithmetic and using only the Python standard library, and reports $95$ passing
+checks; the recorded run \texttt{verify.output.txt} also states, in the
+program's own words, what it does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{Feldman}
+D.~V. Feldman,
+\emph{Anomalous partial quotients in the continued fraction of
+$\sqrt{\zeta(3)-S_N}$},
+arXiv:2607.04077v1, 2026.
+\href{https://arxiv.org/abs/2607.04077}{arXiv:2607.04077}.
+The conjecture and open problem quoted in Section~1 are the statements labelled
+\texttt{prop:gcf} and \texttt{op:gcf} in the e-print source \texttt{q2.tex};
+the main theorem referred to there is \texttt{thm:main}, its uniform remainder
+\texttt{lem:key}, and the corresponding Lean declaration \texttt{prop\_gcf}.
+The e-print was at v1 and had no journal version when this was written.
+
+\bibitem{Apery}
+R.~Ap\'ery,
+\emph{Irrationalit\'e de $\zeta(2)$ et $\zeta(3)$},
+Ast\'erisque \textbf{61} (1979), 11--13.
+
+\bibitem{Beukers}
+F.~Beukers,
+\emph{A note on the irrationality of $\zeta(2)$ and $\zeta(3)$},
+Bull. London Math. Soc. \textbf{11} (1979), no.~3, 268--272.
+\href{https://doi.org/10.1112/blms/11.3.268}{doi:10.1112/blms/11.3.268}.
+
+\end{thebibliography}
+
+\end{document}

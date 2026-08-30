@@ -1,0 +1,79 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  587a6553fc2b98e115b114fc451e9f23d7eb8de7609544b0484b2b7fb6467480
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- an STS(13) whose burning number increases on doubling and on tripling
+python 3.9.6
+
+-- the objects --
+PASS sts13-printed-blocks the 26 blocks printed in the paper cover each of the 78 pairs of a 13-set exactly once
+PASS sts13-cyclic-development and they are label-for-label the development of {0,1,4} and {0,2,7} modulo 13
+PASS sts13-checker-is-not-vacuous the same test REJECTS H with the block {0,1,4} replaced by {0,1,5}
+PASS one-factorization-k14 F_0..F_12 are 13 perfect matchings of K_14 on Z_13 u {inf} partitioning all 91 edges
+PASS sts27-double the 117 blocks of the double-and-add-one image cover each of the 351 pairs exactly once
+PASS sts27-restricts-to-H D induces exactly H on {0,...,12}, and each of its 91 other blocks meets {0,...,12} once
+PASS sts39-triple the 247 blocks of the tripling image cover each of the 741 pairs of a 39-set exactly once
+PASS sts39-three-copies-of-H T induces a copy of H on each of the three classes V x {0}, V x {1}, V x {2}
+PASS tripling-control-affine the same tripling rule applied to AG(2,3) returns AG(3,3) block for block, the classical fact the target relies on
+
+-- H is non-degenerate --
+PASS subsystems-of-H-exhaustive all 2^13 subsets tested: exactly 41 subsystems, of orders 0 (1), 1 (13), 3 (26), 13 (1)
+PASS maximal-proper-subsystems the maximal proper subsystems of H are exactly its 26 blocks; H has no subsystem of order 7 or 9, so it is subsystem-free
+PASS lazy-burning-of-H b_L(H) = 3: no 2-subset of the 78 generates H, and some 3-subset does
+PASS lazy-burning-of-maximal-subsystems every one of the 26 maximal proper subsystems has b_L = 2
+PASS H-is-non-degenerate every maximal proper subsystem has b_L exactly b_L(H) - 1 = 2, which is the target's definition of non-degenerate
+
+-- the LAZY burning number does not increase, so Zeitler's theorem is not contradicted --
+PASS lazy-consistency-doubling b_L(D) = b_L(H) = 3: the LAZY burning number does not increase on doubling. Zeitler proved the projective systems are the only non-degenerate systems for which it does, and H is non-degenerate and not projective, so a lazy increase here would have been a contradiction rather than a result
+PASS lazy-consistency-tripling b_L(T) = b_L(H) = 3 as well, so the separate lazy-burning conjecture of the target, which allows an increase on tripling only for affine systems, is also untouched
+
+-- H is neither projective nor affine --
+PASS order-13-not-projective 13 is not of the form 2^(n+1) - 1; the neighbouring values are 7 and 15
+PASS order-13-not-affine 13 is not of the form 3^m; the neighbouring values are 9 and 27
+
+-- ROUTE B: the target's own two unconditional bounds --
+PASS h-recursion-vs-printed-table h(1..9) = [1, 2, 4, 8, 25, 266, 34732, 603069104, 181846170592008673], reproducing the nine integers the target prints
+PASS rho-values rho_13 = 5 (h(4) = 8 < 13 <= 25), rho_27 = 6 (h(5) = 25 < 27), rho_39 = 6
+PASS upper-bound-values ceil(log2 v) + 1 = 5, 6, 7 at v = 13, 27, 39, computed by bit_length with no float
+PASS order-13-pinned b(K) = 5 for EVERY Steiner triple system K of order 13
+PASS order-27-pinned b(K) = 6 for EVERY Steiner triple system K of order 27, hence for every 1-factorization used in the doubling
+PASS routeB-doubling-increase 5 = b(H) < 6 = b(D): the burning number increases on doubling
+PASS routeB-tripling-increase 5 = b(H) < 6 <= b(T): the burning number increases on tripling, though the bounds leave b(T) in {6,7} and so do not pin the increase to exactly one
+
+-- ROUTE A: burning numbers computed from the definition, using no theorem of the target --
+PASS burn-control-order-3 b(STS(3)) = 3, the value the target computes
+PASS burn-control-fano b(PG(2,2)) = 4, the value the target computes and its closed form n+2 at n = 2
+PASS burn-control-ag23 b(AG(2,3)) = 5, the value the target computes and its closed form m+3 at m = 2
+PASS burn-control-pg32 b(PG(3,2)) = 5, the target's closed form n+2 at n = 3
+PASS burn-control-ag33 b(AG(3,3)) = 6, the target's closed form m+3 at m = 3
+PASS burn-H-exact b(H) = 5 from the definition alone; no reachable burnt set after 3 rounds leaves at most one point unburnt (levels: [14, 92, 378, 1028])
+PASS burn-H-printed-sequence the sequence [0, 1, 2, 3, 6] printed in the paper burns H; burnt sets have sizes [1, 2, 4, 8, 13]
+PASS burn-double-exact b(D) = 6 from the definition alone: every reachable burnt set after 4 rounds leaves at least two points unburnt (levels: [28, 379, 3304, 47764, 303606])
+PASS burn-triple-lower b(T) > 5 from the definition alone: none of the 218882 reachable burnt sets after 4 rounds leaves at most one point unburnt
+PASS routeA-doubling-increase 5 = b(H) < 6 = b(D), with no appeal to any theorem of the target paper
+PASS routeA-tripling-increase 5 = b(H) < b(T), with no appeal to any theorem of the target paper
+
+-- the census that decides how much of the question survives --
+PASS census-pinned-orders over all 3333 admissible orders 3 <= v < 10000, the two bounds coincide exactly at v = 3, 7, 9, 13, 15, 27, 31
+PASS census-forced-doubling the bounds force an increase on doubling exactly at source orders 3, 7, 13, 15; 3 and 7 are projective, so 13 and 15 are the only ones they leave
+PASS census-forced-tripling and on tripling exactly at 3, 7, 9, 13, 15; 3 and 7 are projective and 9 affine, so again only 13 and 15 remain
+PASS census-anti-control the same sandwich pins nothing at v = 19, 21, 25 (bounds [5,6]) nor at PG(5,2), v = 63 ([6,7]), nor at AG(4,3), v = 81 ([6,8]): [(19, 5, 6), (21, 5, 6), (25, 5, 6), (63, 6, 7), (81, 6, 8)]
+PASS census-induction-range h(r) > 3*2^r for r = 6..20, which is exactly the inequality the paper's Proposition proves for every r >= 6 by induction; its base case r = 6 is h(6) = 266 against 3*2^6 = 192, and it is what carries the previous three censuses from v < 10000 to every larger order
+
+NOT RE-RUN: the target e-print is not fetched or parsed here. The verbatim question, its
+NOT RE-RUN: byte offset, the theorem labels and the nine printed values of h are quoted in
+NOT RE-RUN: the paper from the source; only the h values are re-derived above.
+NOT RE-RUN: Constructions 2.15 and 2.17 of the Colbourn-Dinitz Handbook are not consulted.
+NOT RE-RUN: The doubling and tripling rules are implemented from the standard statements
+NOT RE-RUN: reproduced in the paper, and are validated only by (i) the resulting designs
+NOT RE-RUN: being Steiner triple systems and (ii) the control triple(AG(2,3)) = AG(3,3).
+NOT RE-RUN: No isomorphism census is performed. The remark that there are exactly two
+NOT RE-RUN: STS(13) is neither used nor checked, and the non-projective non-degenerate
+NOT RE-RUN: STS(15) that would give a second witness order are not enumerated.
+NOT RE-RUN: b(T) is bounded below only; its exact value, 6 or 7, is not determined here.
+NOT RE-RUN: The separate observation about the target's Corollary with a missing rho >= 9
+NOT RE-RUN: hypothesis is not tested; nothing above depends on that Corollary.
+
+VERDICT: ALL 41 CHECKS PASS
+=== program exited with status 0 ===

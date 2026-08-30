@@ -1,0 +1,433 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Proof of the Grinberg-Lafreniere Lower Bound for the Random-to-Below Shuffle}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\Sfun}{S}
+\newcommand{\Hn}{H}
+
+\title[The Grinberg--Lafreni\`ere lower bound]
+{A Proof of the Grinberg--Lafreni\`ere Lower Bound for the Random-to-Below Shuffle}
+
+\date{}
+
+\subjclass[2020]{05A20, 26D15, 60C05, 60J10}
+\keywords{random-to-below shuffle, one-sided cycle shuffle, strong stationary time,
+harmonic numbers, Euler--Mascheroni constant, explicit inequality}
+
+\begin{document}
+
+\begin{abstract}
+For an integer $n\ge2$ put
+$\Sfun(n)=\sum_{i=2}^{n} n\bigl/\bigl(i\,(H_n-H_{i-1})\bigr)$,
+where $H_k=\sum_{j\le k}1/j$. Grinberg and Lafreni\`ere proved that $\Sfun(n)$ is the
+expected value of an explicit strong stationary time for the random-to-below shuffle on
+$n$ cards, and conjectured that
+$\Sfun(n)\ge n\log n+n\log\log n$ for every $n\ge2$
+(\cite[Conjecture~15.8]{GL}; $\log$ is the natural logarithm throughout). We prove this,
+with a uniform explicit slack:
+\[
+ \Sfun(n)\;\ge\;n\log n+n\log\log n+0.0034553\,n
+ \qquad\text{for every integer }n\ge2 .
+\]
+The proof rests on the exact identity
+$\Sfun(n)/n=1+\log n+\log(H_n-1)-D_n$, where $D_n$ is a sum of convexity defects; this
+makes the conjecture equivalent to $D_n+\log\bigl(\log n/(H_n-1)\bigr)\le1$. Bounding
+$D_n$ by a telescoping estimate followed by summation by parts produces an upper bound
+that is non-increasing in $n$, so a single two-line evaluation at $n=36$ settles every
+$n\ge36$; the remaining $34$ integers $2\le n\le35$ are exhibited as a table.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Grinberg and Lafreni\`ere \cite{GL} study the \emph{somewhere-to-below} shuffles in the
+symmetric group algebra. Among them is the \emph{random-to-below} shuffle, which removes a
+uniformly random card and reinserts it at a uniformly random position at or below the one
+it came from. For an explicit strong stationary time $\tau$ of this shuffle on $n$ cards
+they evaluate
+\begin{equation}\label{eq:S}
+ \mathbb E(\tau)\;=\;\Sfun(n)\;:=\;\sum_{i=2}^{n}\frac{n}{i\,(\Hn_n-\Hn_{i-1})},
+ \qquad \Hn_k=\sum_{j=1}^{k}\frac1j ,
+\end{equation}
+prove the upper bound $\Sfun(n)\le n\log n+n\log\log n+n\log2+1$, and conjecture the
+matching lower bound:
+
+\medskip
+\noindent\textbf{Conjecture} (\cite[Conjecture~15.8]{GL}).
+\emph{Let $n\ge2$. The expected number of steps to get to the strong stationary time for
+the random-to-below shuffle satisfies the following lower bound:}
+\[
+ \mathbb E(\tau)\;=\;\sum_{i=2}^{n}\frac{n}{i\,(\Hn_n-\Hn_{i-1})}
+ \;\ge\;n\log n+n\log\log n .
+\]
+
+\medskip
+Since \eqref{eq:S} is the authors' own evaluation of $\mathbb E(\tau)$ and is reprinted
+inside the conjecture, what remains to be proved is an inequality about the sum; nothing
+probabilistic. The hypothesis is $n\ge2$ with no ``sufficiently large $n$'' clause, so a
+proof must cover every integer.
+
+\begin{theorem}\label{thm:main}
+For every integer $n\ge2$,
+\[
+ \Sfun(n)\;\ge\;n\log n+n\log\log n+0.0034553\,n .
+\]
+In particular \cite[Conjecture~15.8]{GL} holds.
+\end{theorem}
+
+\section{Notation, and an exact identity}
+
+Fix $n\ge2$ and abbreviate, for $2\le i\le n$,
+\[
+ a_i:=\Hn_n-\Hn_{i-1},\qquad
+ b_i:=\frac1{a_i},\qquad
+ x_i:=\frac{a_{i+1}}{a_i}\ \ (2\le i\le n-1).
+\]
+Thus $a_i-a_{i+1}=1/i$, $a_2=\Hn_n-1>0$ and $a_n=1/n$, and the $a_i$ are positive and
+strictly decreasing, so $0<x_i<1$. Put
+\[
+ f(x):=x-1-\log x\ \ (>0\text{ for }x\ne1),\qquad
+ D_n:=\sum_{i=2}^{n-1}f(x_i),
+\]
+\[
+ L_n:=\log\frac{\log n}{\Hn_n-1},\qquad
+ M(n):=\frac{\Sfun(n)}{n}-\log n-\log\log n .
+\]
+All of these are defined for $n\ge2$, because $\log n\ge\log2>0$ and $\Hn_n-1>0$
+there. ($D_2$ is an empty sum, hence $0$.)
+
+\begin{lemma}\label{lem:identity}
+For every $n\ge2$,
+\begin{equation}\label{eq:I}
+ \frac{\Sfun(n)}{n}\;=\;1+\log n+\log(\Hn_n-1)-D_n ,
+\end{equation}
+and consequently $M(n)=1-D_n-L_n$.
+\end{lemma}
+
+\begin{proof}
+Since $a_{i+1}-a_i=-1/i$ and $a_n=1/n$,
+\[
+ \sum_{i=2}^{n-1}(x_i-1)
+ =\sum_{i=2}^{n-1}\frac{a_{i+1}-a_i}{a_i}
+ =-\sum_{i=2}^{n-1}\frac1{i\,a_i}
+ =-\left(\frac{\Sfun(n)}{n}-\frac1{n\,a_n}\right)
+ =1-\frac{\Sfun(n)}{n},
+\]
+using $\Sfun(n)/n=\sum_{i=2}^{n}1/(i\,a_i)$ and $1/(n\,a_n)=1$. The logarithmic part
+telescopes:
+\[
+ -\sum_{i=2}^{n-1}\log x_i
+ =-\log\prod_{i=2}^{n-1}\frac{a_{i+1}}{a_i}
+ =-\log\frac{a_n}{a_2}
+ =\log\bigl(n(\Hn_n-1)\bigr).
+\]
+Adding the two displays gives $D_n=1-\Sfun(n)/n+\log n+\log(\Hn_n-1)$, which is
+\eqref{eq:I}. Subtracting $\log n+\log\log n$ from \eqref{eq:I} and using
+$\log(\Hn_n-1)-\log\log n=-L_n$ gives $M(n)=1-D_n-L_n$.
+\end{proof}
+
+\begin{corollary}\label{cor:equiv}
+For $c\ge0$, the inequality $\Sfun(n)\ge n\log n+n\log\log n+cn$ is \emph{equivalent} to
+$D_n+L_n\le1-c$. The slack in the conjecture is exactly $n\,M(n)$.
+\end{corollary}
+
+So the whole problem is to bound $D_n+L_n$ away from $1$ from above.
+
+\section{An upper bound for $D_n$}
+
+\begin{lemma}\label{lem:III}
+For $n\ge3$,
+\begin{equation}\label{eq:III}
+ D_n\;\le\;\frac12\left[\frac{n}{n-1}-\frac1{2(\Hn_n-1)}+R_n\right],
+ \qquad
+ R_n:=\sum_{j=3}^{n-1}\frac1{j(j-1)\,a_j}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $x=1-u$ with $u\in(0,1)$. Then
+$f(x)=-u-\log(1-u)=\sum_{m\ge2}u^m/m\le\tfrac12\sum_{m\ge2}u^m=u^2/(2(1-u))$, i.e.
+\begin{equation}\label{eq:fbound}
+ f(x)\le\frac{(1-x)^2}{2x}\qquad(0<x<1).
+\end{equation}
+Next, $1-x_i=(a_i-a_{i+1})/a_i=(1/i)/a_i$, so
+\[
+ \frac{(1-x_i)^2}{2x_i}
+ =\frac{1}{2i^2\,a_ia_{i+1}}
+ =\frac1{2i}\left(\frac1{a_{i+1}}-\frac1{a_i}\right)
+ =\frac1{2i}\,(b_{i+1}-b_i),
+\]
+the middle step being $a_i-a_{i+1}=1/i$. Hence
+$D_n\le\tfrac12\sum_{i=2}^{n-1}\tfrac1i(b_{i+1}-b_i)$. Summation by parts against the
+decreasing weights $1/i$ gives the identity
+\[
+ \sum_{i=2}^{n-1}\frac1i\,(b_{i+1}-b_i)
+ =\frac{b_n}{n-1}-\frac{b_2}{2}+\sum_{j=3}^{n-1}\frac{b_j}{j(j-1)} ,
+\]
+and $b_n=n$, $b_2=1/(\Hn_n-1)$ turn this into \eqref{eq:III}.
+\end{proof}
+
+\begin{lemma}\label{lem:IV}
+Let $N:=n+1$ and let $\lfloor\sqrt N\rfloor$ be the integer square root. For $n\ge8$,
+\begin{equation}\label{eq:IV}
+ D_n\;\le\;\Phi(n):=\frac12\left[\frac{n}{n-1}+\frac1{2\log n}
+ +\frac{1.4426951}{\lfloor\sqrt N\rfloor}
+ +\frac{4\log(N/2)}{n-1}\right],
+\end{equation}
+and every one of the four bracketed terms is non-increasing in $n$; hence $\Phi$ is
+non-increasing and $D_n\le\Phi(n_0)$ for all $n\ge n_0\ge8$.
+\end{lemma}
+
+\begin{proof}
+We bound $R_n$ of \eqref{eq:III}. Comparison with an integral gives
+\[
+ a_j=\sum_{k=j}^{n}\frac1k\ \ge\ \int_j^{N}\frac{dx}{x}=\log\frac{N}{j} .
+\]
+Write $J:=\sqrt N$ and split the range $3\le j\le n-1=N-2$ into three blocks. Since
+$N\ge9$ we have $3\le N/2\le N-2$ and $J\le N/2$, so the blocks do cover it.
+
+\emph{Block $3\le j\le J$.} Here $a_j\ge\log(N/J)=\tfrac12\log N$, and
+$\sum_{j\ge3}1/(j(j-1))=1/2$, so the block contributes at most $1/\log N$.
+
+\emph{Block $J<j<N/2$.} Here $a_j\ge\log2$. The summation runs over the \emph{integers}
+$j>J$, which begin at $\lfloor J\rfloor+1$; since $\sum_{j\ge m}1/(j(j-1))=1/(m-1)$, the
+sum $\sum_{j>J}1/(j(j-1))$ is $1/\lfloor J\rfloor$, and so the block contributes at most
+$(1/\log 2)/\lfloor\sqrt N\rfloor\le1.4426951/\lfloor\sqrt N\rfloor$.
+
+\emph{Block $N/2\le j\le N-2$.} Put $t:=N-j\in[2,N/2]$. Then
+$a_j\ge\log\bigl(N/(N-t)\bigr)=-\log(1-t/N)\ge t/N$, and
+$j(j-1)\ge(N/2)\bigl((N-2)/2\bigr)=N(N-2)/4$, so each term is at most
+$4/\bigl((N-2)t\bigr)$; and $\sum_{t=2}^{\lfloor N/2\rfloor}1/t\le\log(N/2)$. The block
+contributes at most $4\log(N/2)/(N-2)$.
+
+Adding, $R_n\le 1/\log N+1.4426951/\lfloor\sqrt N\rfloor+4\log(N/2)/(N-2)$. Finally
+$\Hn_n\le1+\log n$ (again by integral comparison) gives $\Hn_n-1\le\log n$ and therefore
+$-1/(2(\Hn_n-1))\le-1/(2\log n)$; together with $1/\log N\le1/\log n$ this replaces the
+first two terms of the bracket by $n/(n-1)+1/(2\log n)$, and $N-2=n-1$ rewrites the last.
+That is \eqref{eq:IV}.
+
+Monotonicity. The terms $n/(n-1)$ and $1/(2\log n)$ decrease, and
+$\lfloor\sqrt N\rfloor$ is a non-decreasing integer-valued step function of $N$, so its
+reciprocal is non-increasing. For the last term, put $\psi(N):=\log(N/2)/(N-2)$; then
+\[
+ \psi'(N)=\frac{(N-2)/N-\log(N/2)}{(N-2)^2}<0
+ \qquad\text{as soon as }\ \log(N/2)>1-\frac2N ,
+\]
+which holds for $N\ge8$ because then $\log(N/2)\ge\log4>1>1-2/N$.
+\end{proof}
+
+\section{An upper bound for $L_n$}
+
+\begin{lemma}\label{lem:gamma}
+$\gamma>0.57721566$, where $\gamma=\lim_{n\to\infty}(\Hn_n-\log n)$; consequently
+$1-\gamma<0.42278434$.
+\end{lemma}
+
+\begin{proof}
+Let $g_n:=\Hn_n-\log n-1/(2n)$, so $g_n\to\gamma$. With $x:=1/n>0$,
+\[
+ g_{n+1}-g_n=\frac1{n+1}+\frac1{2n}-\frac1{2(n+1)}-\log\!\left(1+\frac1n\right)
+ =\frac{x(2+x)}{2(1+x)}-\log(1+x)>0,
+\]
+the inequality $\log(1+x)<\tfrac{x}{2}\bigl(1+\tfrac1{1+x}\bigr)=\tfrac{x(2+x)}{2(1+x)}$
+being the strict overestimation of $\int_1^{1+x}dt/t$ by the trapezoidal rule on the
+strictly convex integrand $1/t$. So $(g_n)$ increases to $\gamma$, whence $\gamma>g_n$
+for every $n$. At $n=10^4$, exact rational arithmetic on $\Hn_{10^4}$ together with a
+rigorous enclosure of $\log 10^4$ gives
+\[
+ g_{10^4}=\Hn_{10^4}-\log10^4-\tfrac1{20000}>0.577215664068>0.57721566 . \qedhere
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:V}
+For every $n\ge2$,
+\begin{equation}\label{eq:V}
+ L_n\;\le\;\Psi(n):=-\log\!\left(1-\frac{0.42278434}{\log n}\right),
+\end{equation}
+and $\Psi$ is decreasing; hence $L_n\le\Psi(n_0)$ for all $n\ge n_0\ge2$.
+\end{lemma}
+
+\begin{proof}
+The sequence $\Hn_n-\log n$ is decreasing, because
+$(\Hn_{n+1}-\log(n+1))-(\Hn_n-\log n)=1/(n+1)-\log(1+1/n)<0$ by
+$\log(1+x)>x/(1+x)$. Its limit is $\gamma$, so
+$\Hn_n-\log n>\gamma>0.57721566$ by Lemma~\ref{lem:gamma}, i.e.
+$\Hn_n-1>\log n-0.42278434>0$ for $n\ge2$ (note $\log2=0.693\ldots>0.4228$). Therefore
+\[
+ L_n=\log\frac{\log n}{\Hn_n-1}
+ \le\log\frac{\log n}{\log n-0.42278434}
+ =-\log\!\left(1-\frac{0.42278434}{\log n}\right),
+\]
+which is decreasing in $n$ because $0.42278434/\log n$ is.
+\end{proof}
+
+\section{The tail: $n\ge36$}
+
+\begin{proposition}\label{prop:tail}
+For every integer $n\ge36$, \ $M(n)>0.0034553$, i.e.
+$\Sfun(n)\ge n\log n+n\log\log n+0.0034553\,n$.
+\end{proposition}
+
+\begin{proof}
+By Lemmas~\ref{lem:IV} and~\ref{lem:V} it suffices to check
+$\Phi(36)+\Psi(36)<1-0.0034553$. Here $N=37$ and $\lfloor\sqrt{37}\rfloor=6$, so the four
+bracketed terms of \eqref{eq:IV} are bounded by
+\begin{align*}
+ \tfrac{36}{35}&\le1.028571429, &
+ \tfrac1{2\log36}&\le0.139527657,\\
+ \tfrac{1.4426951}{6}&\le0.240449184, &
+ \tfrac{4\log(18.5)}{35}&\le0.333459513,
+\end{align*}
+whose sum is at most $1.742007783$; halving,
+\[
+ \Phi(36)\le0.871003892 .
+\]
+For \eqref{eq:V}, $\log36=3.5835189\ldots$ and
+$0.42278434/\log36=0.1179802\ldots$, so
+\[
+ \Psi(36)=-\log(1-0.1179802\ldots)\le0.125540793 .
+\]
+Adding, $\Phi(36)+\Psi(36)\le0.996544685<1$, hence for all $n\ge36$
+\[
+ M(n)=1-D_n-L_n\ \ge\ 1-\Phi(36)-\Psi(36)\ \ge\ 0.003455315\ >\ 0.0034553 .
+\]
+Corollary~\ref{cor:equiv} converts this into the displayed inequality.
+\end{proof}
+
+\section{The finite range $2\le n\le35$}
+
+The remaining $34$ integers are handled one at a time. For each, $\Sfun(n)$ is a rational
+number: from \eqref{eq:S},
+\[
+ \Sfun(2)=2,\quad
+ \Sfun(3)=\frac{24}{5},\quad
+ \Sfun(4)=\frac{740}{91},\quad
+ \Sfun(5)=\frac{386080}{32571},\quad
+ \Sfun(6)=\frac{3561064}{224257},
+\]
+\[
+ \Sfun(7)=\frac{915340590661}{45418769253},\qquad
+ \Sfun(8)=\frac{44929799655432}{1823748678895},
+\]
+and so on, the numerator and denominator of $\Sfun(35)$ having $353$ and $351$ decimal
+digits respectively. Three of the rows can be read off by hand:
+$\Sfun(2)=2/(2\cdot\frac12)=2$ against $2\log2+2\log\log2=0.65326852\ldots$;
+$\Sfun(3)=\frac95+3=\frac{24}5=4.8$ against $3.57798035\ldots$; and
+$\Sfun(4)=\frac{24}{13}+\frac{16}{7}+4=\frac{740}{91}=8.13186813\ldots$ against
+$6.85171448\ldots$.
+
+Table~\ref{tab:cell} lists, for each $n$, the margin
+$\Sfun(n)-\bigl(n\log n+n\log\log n\bigr)$, the normalised margin $M(n)$, and $D_n$.
+
+\begin{table}[htbp]
+\caption{The finite range. Columns: the margin
+$\Sfun(n)-(n\log n+n\log\log n)$ to $12$ decimal places, $M(n)$ to $10$, $D_n$ to $9$.
+Every margin is positive; the least is at $n=3$, and $\min_{2\le n\le35}M(n)=M(7)$.}
+\label{tab:cell}
+\medskip
+\begin{tabular}{r@{\qquad}r@{\qquad}l@{\qquad}l}
+\hline
+$n$ & margin & $M(n)$ & $D_n$\\
+\hline
+ 2 &  1.346731480043 & 0.6733657400 & 0.000000000\\
+ 3 &  1.222019651146 & 0.4073398837 & 0.316290732\\
+ 4 &  1.280153647475 & 0.3200384119 & 0.433370036\\
+ 5 &  1.426874761492 & 0.2853749523 & 0.488200912\\
+ 6 &  1.629643080232 & 0.2716071800 & 0.516758296\\
+ 7 &  1.871875508071 & 0.2674107869 & 0.532388751\\
+ 8 &  2.143632805281 & 0.2679541007 & 0.541024198\\
+ 9 &  2.438399017356 & 0.2709332242 & 0.545623780\\
+10 &  2.751643886956 & 0.2751643887 & 0.547788443\\
+11 &  3.080080611049 & 0.2800073283 & 0.548438078\\
+12 &  3.421244838997 & 0.2851037366 & 0.548126242\\
+13 &  3.773239425541 & 0.2902491866 & 0.547198309\\
+14 &  4.134571669591 & 0.2953265478 & 0.545876014\\
+15 &  4.504045289409 & 0.3002696860 & 0.544304950\\
+16 &  4.880686334613 & 0.3050428959 & 0.542582404\\
+17 &  5.263690953326 & 0.3096288796 & 0.540774226\\
+18 &  5.652387688680 & 0.3140215383 & 0.538925378\\
+19 &  6.046209700325 & 0.3182215632 & 0.537066694\\
+20 &  6.444673927241 & 0.3222336964 & 0.535219308\\
+21 &  6.847365206445 & 0.3260650098 & 0.533397608\\
+22 &  7.253923995463 & 0.3297238180 & 0.531611256\\
+23 &  7.664036758584 & 0.3332189895 & 0.529866561\\
+24 &  8.077428351275 & 0.3365595146 & 0.528167456\\
+25 &  8.493855923618 & 0.3397542369 & 0.526516174\\
+26 &  8.913103992586 & 0.3428116920 & 0.524913738\\
+27 &  9.334980423760 & 0.3457400157 & 0.523360310\\
+28 &  9.759313127911 & 0.3485468974 & 0.521855443\\
+29 & 10.185947324781 & 0.3512395629 & 0.520398267\\
+30 & 10.614743260850 & 0.3538247754 & 0.518987619\\
+31 & 11.045574293407 & 0.3563088482 & 0.517622145\\
+32 & 11.478325272393 & 0.3586976648 & 0.516300372\\
+33 & 11.912891166026 & 0.3609967020 & 0.515020759\\
+34 & 12.349175887291 & 0.3632110555 & 0.513781734\\
+35 & 12.787091286981 & 0.3653454653 & 0.512581727\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{proposition}\label{prop:cell}
+For every integer $n$ with $2\le n\le35$ one has
+$M(n)>0.2674107868>0.0034553$, the minimum over this range being attained at $n=7$.
+\end{proposition}
+
+\begin{proof}
+Each of the $34$ values of $\Sfun(n)$ is an exact rational, computed from \eqref{eq:S} by
+rational arithmetic; each right-hand side $n\log n+n\log\log n$ is enclosed in a rational
+interval of width below $10^{-25}$. Comparing the two gives the margins of
+Table~\ref{tab:cell}, all positive; the smallest is $1.222019651146$ at $n=3$ and the
+smallest normalised margin is $M(7)=0.2674107869$. The least margin exceeds the width of
+the enclosures by more than twenty orders of magnitude. Of the $34$ rows only the three
+displayed above, $n=2,3,4$, are carried out by hand, so this proposition is
+computer-assisted.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:tail} covers $\{n\ge36\}$ and Proposition~\ref{prop:cell} covers
+$\{2,3,\ldots,35\}$; the union is $\{n\ge2\}$. Both give $M(n)>0.0034553$, which by
+Corollary~\ref{cor:equiv} is the assertion.
+\end{proof}
+
+\medskip
+\noindent\textbf{Verification.}
+The probabilistic content is quoted, not reproved: that $\Sfun(n)$ equals
+$\mathbb E(\tau)$ for the authors' strong stationary time is their theorem, and everything
+above is an inequality about the sum \eqref{eq:S}. Every numerical assertion above --- the
+seven exact rationals and the digit counts of $\Sfun(35)$, the $34$ rows of
+Table~\ref{tab:cell}, the four displayed term bounds at $n=36$ and the two totals, and the
+transcribed decimals $1.4426951\ge1/\log2$, $0.57721566<\gamma$ and
+$0.42278434>1-\gamma$ --- was recomputed from \eqref{eq:S} in exact rational interval
+arithmetic with a rigorous interval logarithm, so that no comparison is decided in floating
+point. The program \texttt{verify.py} and its recorded output \texttt{verify.output.txt}
+accompany this note. Every object the program consumes is printed above, so any single row
+of Table~\ref{tab:cell} can also be rechecked by hand or in a computer algebra system.
+
+\begin{thebibliography}{9}
+
+\bibitem{GL}
+D.~Grinberg and N.~Lafreni\`ere,
+\emph{The one-sided cycle shuffles in the symmetric group algebra},
+Algebraic Combinatorics \textbf{7} (2024), no.~2, 275--326.
+\href{https://doi.org/10.5802/alco.346}{doi:10.5802/alco.346};
+e-print \href{https://arxiv.org/abs/2212.06274}{arXiv:2212.06274}.
+Conjecture~15.8 is printed on p.~323 of the journal version and numbered
+Conjecture~15.14 in \texttt{arXiv:2212.06274v4}.
+
+\end{thebibliography}
+
+\end{document}

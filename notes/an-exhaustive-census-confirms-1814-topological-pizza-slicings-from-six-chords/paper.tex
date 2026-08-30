@@ -1,0 +1,433 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Exhaustive Census Confirms a(6) = 1814 for Topologically Distinct
+            Pizza Slicings}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Tn}{\mathcal T}
+\newcommand{\Dsk}{\mathbb D}
+
+\title[An exhaustive census confirms $a(6)=1814$]
+{An Exhaustive Census Confirms $a(6) = 1814$ for Topologically Distinct
+ Pizza Slicings}
+
+\date{}
+
+\subjclass[2020]{05A15, 52C30, 05C30}
+\keywords{chord arrangement, pizza slicing, region graph, exhaustive enumeration,
+line arrangement, stretchability, OEIS A272906}
+
+\begin{document}
+
+\begin{abstract}
+Let $a(n)$ be the number of graphs, up to isomorphism, obtained by cutting a disk with
+$n$ chords no three of which meet at a single strictly interior point, taking the pieces
+as vertices and joining two pieces when a segment separates them; this is
+OEIS \texttt{A272906}. That entry has carried the value $a(6)=1814$ since May 2016,
+together with the note that the term is \emph{unconfirmed} because it was obtained from
+guided random trials. We prove $a(6)=1814$. An exhaustive census of the
+\emph{topological} six-chord arrangements in a disk produces exactly $1824$ types, whose
+region graphs fall into exactly $1814$ isomorphism classes, giving $a(6)\le 1814$; and
+$47$ explicitly printed twelve-tuples of integers, swept over all $10395$ perfect
+matchings each, realize all $1824$ types by straight chords with rational endpoints,
+giving $a(6)\ge 1814$. The value $1814$ is due to Jon Hart; we are unaware of a previous
+exhaustive proof. A corollary of the realization step is that no non-stretchable
+topological type occurs at $n=6$.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Let $\Dsk$ be a closed disk. A \emph{slicing} is a finite set of chords of $\Dsk$,
+pairwise distinct, each with two distinct endpoints on the boundary circle, such that no
+three of them pass through a common point of the open disk. The chords cut $\Dsk$ into
+\emph{pieces}. The \emph{region graph} of the slicing has the pieces as vertices, two
+pieces being adjacent when a line segment of positive length separates them; sharing a
+single point, or sharing a boundary arc, does not count. Let
+\[
+ a(n)=\#\{\text{region graphs of slicings by $n$ chords}\}/{\cong}.
+\]
+This is OEIS \texttt{A272906} \cite{A272906}, \emph{Number of topologically-distinct
+pizza slicings from $n$ chords in general position}, whose data line reads
+\[
+ 1,\;1,\;2,\;5,\;19,\;130,\;1814
+ \qquad (n=0,\ldots,6)
+\]
+and whose second comment records that the terms up to $a(5)=130$ are confirmed by
+independent programs while $a(6)=1814$, obtained from guided random trials, is not.
+Cutler, Karlsson and Sloane list the sequence in Open Problem~2 of \cite{CKS} and repeat
+that the last term is unconfirmed.
+
+\begin{theorem}\label{thm:main}
+$a(6)=1814$.
+\end{theorem}
+
+\begin{corollary}\label{cor:stretch}
+Every one of the $1824$ topological types of six-chord arrangements of a disk
+$($Section~\textup{\ref{sec:upper}}$)$ is realized by six straight chords whose $12$
+endpoints are rational points of the unit circle. In particular no non-stretchable type
+arises at $n=6$.
+\end{corollary}
+
+The value $1814$ is due to Jon Hart, who entered it in \texttt{A272906} on 9 May 2016.
+What is supplied here is an exhaustive argument: the census of
+Section~\ref{sec:upper} bounds $a(6)$ from above by $1814$. We are unaware of a previous
+exhaustive proof.
+
+\section{What is counted}\label{sec:counted}
+
+Two clauses of the definition decide the answer, and \texttt{A272906}'s own first comment
+fixes both. It reads, verbatim,
+\begin{quote}
+``For each such slicing, construct the graph on vertices (pieces of the pizza) connected by
+edges (line segments separating two pieces). $a(n)$ gives the number of such graphs up to
+isomorphism.''
+\end{quote}
+First, adjacency is \emph{sharing a segment} --- ``line segments separating two pieces'' ---
+not sharing a point; the entry's example confirms the strictness by recording that at $n=3$
+the five slicings ``exclude a sixth configuration found when the three chords meet at a point
+strictly internal to the pizza''. Second, what is counted is \emph{graphs} up to
+isomorphism and not arrangements: two arrangements with isomorphic region graphs are one
+object. The second clause is why two totals appear below. The census of
+Section~\ref{sec:upper} produces $1824$ \emph{arrangement types}; their region graphs fall
+into $1814$ \emph{isomorphism classes}, and it is that clause which makes $1814$ rather
+than $1824$ the upper bound for $a(6)$. The two numbers first differ at $n=6$: for
+$n\le5$ every arrangement type has its own region graph.
+
+\begin{remark}\label{rem:reading}
+The prose of \cite{CKS} introduces \texttt{A272906} inside a clause that omits ``in
+general position''. Read literally that would permit three chords to be concurrent inside
+the disk and would give $6$, not $5$, at $n=3$. \texttt{A272906} does not permit it, and
+Theorem~\ref{thm:main} is about \texttt{A272906} as \texttt{A272906} defines it. The
+degeneracy-permitting variant is strictly larger and is not settled here.
+\end{remark}
+
+Two chords may share a boundary endpoint: they then meet on the circle, not strictly
+inside, so the configuration is admissible. The census of Section~\ref{sec:upper}
+enumerates only arrangements with $2n$ distinct boundary endpoints, and the following
+lemma says nothing is lost.
+
+\begin{lemma}\label{lem:perturb}
+Let $A$ be a slicing by $n$ chords in which some boundary points carry more than one
+endpoint. Then there is a slicing $A'$ by $n$ chords with $2n$ distinct boundary
+endpoints, the same number of interior crossings, and an isomorphic region graph.
+\end{lemma}
+
+\begin{proof}
+It suffices to separate the endpoints at one boundary point $p$ and iterate. Let
+$c_1,\ldots,c_j$ be the chords with an endpoint at $p$, with other endpoints
+$q_1,\ldots,q_j$ listed in counterclockwise order starting from $p$. Choose an open arc
+$\gamma$ immediately counterclockwise of $p$ that contains no endpoint of any chord, and
+pick points $p_j,p_{j-1},\ldots,p_1$ in $\gamma$ in that counterclockwise order; replace
+$c_i$ by the chord $p_iq_i$. Two chords $c_a,c_b$ with $a<b$ do not cross after the
+change: in the new counterclockwise order
+$p_j,\ldots,p_1,q_1,\ldots,q_j$, the arc from $p_a$ to $q_a$ contains
+$p_{a-1},\ldots,p_1,q_1,\ldots,q_{a-1}$, and neither $p_b$ nor $q_b$ is among them. A
+chord not through $p$ has both endpoints outside $\gamma$, so its interleaving with each
+$c_i$ is unchanged, hence so is each crossing. Taking $\gamma$ short enough, the crossings
+along each $c_i$ keep their order, so every chord keeps its number of sub-segments and
+every crossing keeps its four incident sub-segments.
+
+For a slicing with $n$ chords, $X$ interior crossings and $\beta$ distinct boundary
+endpoints, Euler's formula gives $V=\beta+X$, $E=\beta+(n+2X)$ and hence
+$F-1=1+n+X$ pieces, independently of $\beta$. So $A$ and $A'$ have the same number of
+pieces. Each of the $j+1$ sectors at $p$ in $A$ opens into exactly one piece of $A'$, and
+the correspondence extends to a bijection of pieces; since no sub-segment is created or
+destroyed, two pieces of $A'$ are separated by a segment if and only if the corresponding
+pieces of $A$ are. Hence the region graphs are isomorphic.
+\end{proof}
+
+\section{The upper bound}\label{sec:upper}
+
+\subsection*{Types and maps}
+Encode an arrangement of $n$ chords with $2n$ distinct boundary endpoints
+combinatorially. Number the boundary endpoints $0,\ldots,2n-1$ counterclockwise, give the
+chords the labels $0,\ldots,n-1$ in order of the first appearance of an endpoint, and set
+\begin{align*}
+ \mathrm{bw}[i] &= \text{the label of the chord with an endpoint at position } i,\\
+ \mathrm{ord}[c] &= \text{the chords crossing } c, \text{ in order along } c
+   \text{ from its first endpoint.}
+\end{align*}
+The pair $(\mathrm{bw},\mathrm{ord})$ is the \emph{topological type} of the arrangement,
+taken up to the dihedral action on the boundary circle and relabelling of chords.
+
+A pair $(\mathrm{bw},\mathrm{ord})$ of a word of length $2n$ over $\{0,\ldots,n-1\}$ and a
+list of $n$ sequences of labels is called \emph{consistent} when the following four
+conditions hold. Write $X$ for half the total length of the sequences $\mathrm{ord}[c]$.
+\begin{enumerate}
+\item[(C1)] Every label occurs exactly twice in $\mathrm{bw}$.
+\item[(C2)] No label repeats inside one $\mathrm{ord}[c]$, no $\mathrm{ord}[c]$ contains
+$c$, and $d\in\mathrm{ord}[c]$ if and only if $c\in\mathrm{ord}[d]$.
+\item[(C3)] Whenever $d\in\mathrm{ord}[c]$, exactly one of the two positions of $d$ in
+$\mathrm{bw}$ lies strictly between the two positions of $c$; that is, $c$ and $d$
+interleave on the boundary circle.
+\item[(C4)] The map $M(\mathrm{bw},\mathrm{ord})$ defined next has $V-E+F=2$, has exactly
+one face bounded by all $2n$ boundary arcs, and has $1+n+X$ further faces.
+\end{enumerate}
+Here $M(\mathrm{bw},\mathrm{ord})$ is the following map. Its vertices are the $2n$
+boundary positions together with one vertex $x_{cd}$ for each pair with
+$d\in\mathrm{ord}[c]$. The \emph{station sequence} of a chord $c$ is its first boundary
+position, then the vertices $x_{cd}$ for $d$ running through $\mathrm{ord}[c]$ in that
+order, then its second boundary position; the \emph{sub-segments} of $c$ are the
+consecutive pairs of that sequence. The edges of $M$ are the $2n$ boundary arcs together
+with the $n+2X$ sub-segments. The rotation at a boundary position is (outgoing arc, chord
+sub-segment, incoming arc), and the rotation at $x_{cd}$ alternates the two sub-segments of
+$c$ with the two of $d$, in the cyclic order fixed by the interleaving of (C3). Faces are
+traced from this rotation system in the usual way. A consistent pair determines the pieces
+--- the $1+n+X$ faces other than the outer one --- and hence the region graph, in which
+two pieces are joined when a sub-segment separates them. The type of a genuine
+arrangement is consistent, $M$ being its own map.
+
+\subsection*{The insertion enumeration}
+Let $\Tn_1$ consist of the single one-chord type. Let $A$ be a consistent type on $i$
+chords. An \emph{insertion datum} for $A$ is a triple
+$(\alpha,(\sigma_1,\ldots,\sigma_r),\beta)$ in which
+\begin{itemize}
+\item $\alpha$ is one of the $2i$ boundary arcs of $A$, and $f_0$ is the piece incident
+with $\alpha$;
+\item $\sigma_1,\ldots,\sigma_r$ are sub-segments of $A$ and $f_1,\ldots,f_r$ are pieces
+with $\sigma_s$ separating $f_{s-1}$ from $f_s$ for $1\le s\le r$;
+\item $f_0,\ldots,f_r$ are pairwise distinct, and the chords $c_1,\ldots,c_r$ carrying
+$\sigma_1,\ldots,\sigma_r$ are pairwise distinct;
+\item $\beta$ is a boundary arc incident with $f_r$.
+\end{itemize}
+Both $r=0$ and $\beta=\alpha$ are allowed. The datum produces a pair on $i+1$ chords:
+insert the new label $i$ into $\mathrm{bw}$ immediately after the arc $\alpha$ and
+immediately after the arc $\beta$ --- twice after $\alpha$ if $\beta=\alpha$ ---; for each
+$s$ insert the new label into $\mathrm{ord}[c_s]$ at the index of $\sigma_s$ along $c_s$,
+so that the new crossing falls where $\sigma_s$ was; and let the sequence of the new chord
+be $c_1,\ldots,c_r$, reversed if $\beta$ precedes $\alpha$ on the boundary circle. Then
+$\Tn_{i+1}$ is the set of pairs so produced, from every member of $\Tn_i$ and every
+insertion datum, \emph{retained only when consistent}, and taken up to the dihedral action
+on the boundary circle and relabelling of chords.
+
+\begin{lemma}\label{lem:superset}
+The topological type of every $n$-chord slicing with $2n$ distinct boundary endpoints
+lies in $\Tn_n$.
+\end{lemma}
+
+\begin{proof}
+Induction on $n$, the case $n=1$ being $\Tn_1$. Let $A$ be such a slicing with $n\ge2$
+chords, let $c$ be one of them and let $A^-=A\setminus\{c\}$, again a slicing with
+$2(n-1)$ distinct boundary endpoints, so the type of $A^-$ lies in $\Tn_{n-1}$ by
+induction. Two distinct straight lines meet at most once, so $c$ crosses each chord of
+$A^-$ at most once. Every piece of $A^-$ is the intersection of the disk with finitely
+many half-planes, hence convex, so the line of $c$ meets it in a connected set and $c$
+meets each piece of $A^-$ in at most one segment. Therefore the pieces of $A^-$ met by
+$c$, listed in order along $c$, are pairwise distinct; the sub-segments of $A^-$ crossed
+by $c$, in that same order, lie on pairwise distinct chords; and the two endpoints of $c$
+lie in the interiors of two boundary arcs of $A^-$. This is an insertion datum for the
+type of $A^-$, and the pair it produces is the type of $A$, which is consistent because
+$A$ has a map. Since the enumeration discards only pairs that are not consistent, the type
+of $A$ lies in $\Tn_n$.
+\end{proof}
+
+Lemma~\ref{lem:superset} makes $\Tn_n$ a superset of the straight-realizable types, so
+counting region graphs over $\Tn_n$ can only overshoot $a(n)$. Running the process gives
+\[
+ |\Tn_2|=2,\quad |\Tn_3|=5,\quad |\Tn_4|=19,\quad |\Tn_5|=130,\quad
+ |\Tn_6|=1824,
+\]
+and, writing $X$ for the number of interior crossings,
+
+\medskip
+\noindent
+{\small\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{l|*{16}{r}}
+$X$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
+\hline
+types & 12 & 30 & 51 & 87 & 108 & 142 & 165 & 179 & 184 & 187 & 182 & 148 &
+129 & 101 & 76 & 43\\
+graphs & 11 & 28 & 47 & 85 & 107 & 142 & 165 & 179 & 184 & 187 & 182 & 148 &
+129 & 101 & 76 & 43
+\end{tabular}}
+
+\medskip
+\noindent
+The second row sums to $1814$. Exactly ten types of $\Tn_6$ have a region graph
+isomorphic to that of an earlier type, and all ten collisions occur at $X\le4$. For
+$n\le5$ there is no collision at all, and the four totals $2,5,19,130$ agree with the
+confirmed terms of \texttt{A272906}. Hence
+\begin{equation}\label{eq:upper}
+ a(6)\le 1814 .
+\end{equation}
+
+\section{The lower bound}\label{sec:lower}
+
+\subsection*{Exact objects} Put
+\begin{equation}\label{eq:param}
+ P(t)=\left(\frac{1-t^2}{1+t^2},\ \frac{2t}{1+t^2}\right),
+\end{equation}
+so that $P(t)$ is a rational point of the unit circle for every rational $t$, exactly, and
+$t\mapsto P(t)$ is a bijection from $\mathbb Q$ onto the rational points of the circle
+other than $(-1,0)$, strictly monotone counterclockwise. An \emph{object} is a strictly
+increasing $12$-tuple $t=(t_0,\ldots,t_{11})$ of rationals together with a perfect
+matching $M$ of $\{0,\ldots,11\}$; its chords are the segments $P(t_a)P(t_b)$ for
+$(a,b)\in M$. Because $P$ is monotone, the index order \emph{is} the counterclockwise
+boundary order; equivalently, every triple $i<j<k$ of the points $P(t_i)$ is positively
+oriented, which is an exact determinant test.
+
+Two chords $(a,b)$ and $(p,q)$ with four distinct endpoints cross in the open disk if and
+only if exactly one of $p,q$ lies strictly between $a$ and $b$; this is an integer test,
+and it agrees with the exact segment-intersection test. Writing $A=P(t_a)$, $B=P(t_b)$,
+$C=P(t_p)$, $D=P(t_q)$ and $[u,v]=u_1v_2-u_2v_1$, the crossing sits at the parameter
+\begin{equation}\label{eq:s}
+ s=\frac{[\,C-A,\ D-C\,]}{[\,B-A,\ D-C\,]}\ \in(0,1)
+\end{equation}
+along the chord $(a,b)$, an exact rational. On each chord the parameters of its crossings
+are pairwise distinct if and only if no two of them coincide, and that \emph{is} the
+no-strictly-interior-multiple-point clause: three concurrent chords would put two
+crossings of one chord at the same $s$. Sorting the parameters along each chord yields
+$\mathrm{ord}$, and $(\mathrm{bw},\mathrm{ord})$ is the topological type of the object.
+
+\begin{example}\label{ex:wit}
+Take $M=\{(0,6),(1,7),(2,8),(3,9),(4,10),(5,11)\}$ and
+\[
+ t=(-7,\,-5,\,-4,\,-3,\,-2,\,-1,\,2,\,3,\,4,\,7,\,8,\,9),
+\]
+row~$1$ of Table~\ref{tab:one}. Every one of the $\binom62=15$ pairs of indices
+interleaves, and by \eqref{eq:s} the five crossing parameters on each chord are pairwise
+distinct rationals in $(0,1)$, so the object is a slicing with the maximal $X=15$ interior
+crossings and $7+15=22$ pieces.
+\end{example}
+
+\subsection*{The sweep} Table~\ref{tab:one} lists $47$ objects' worth of boundary data:
+$47$ strictly increasing $12$-tuples of integers, row~$1$ being the tuple of
+Example~\ref{ex:wit}. For each row and each of the $11!!=10395$ perfect matchings of
+$\{0,\ldots,11\}$, form the object and discard it when two crossings coincide on a chord.
+Of the $47\cdot10395=488565$ pairs, $487831$ survive and $734$ are discarded. Every
+surviving type lies in $\Tn_6$, as Lemma~\ref{lem:superset} demands, and together they
+realize \emph{all} $1824$ types of $\Tn_6$. Consequently all $1814$ region graphs of
+$\Tn_6$ occur:
+\begin{equation}\label{eq:lower}
+ a(6)\ge 1814 .
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} and Corollary~\ref{cor:stretch}]
+By Lemma~\ref{lem:perturb} every slicing by six chords has the region graph of one with
+$12$ distinct boundary endpoints, and by Lemma~\ref{lem:superset} the type of the latter
+lies in $\Tn_6$; the region graphs of $\Tn_6$ fall into $1814$ classes, which is
+\eqref{eq:upper}. The sweep exhibits a straight rational slicing for each of the $1824$
+types of $\Tn_6$, hence for each of the $1814$ classes, which is \eqref{eq:lower} and, at
+the level of types rather than classes, Corollary~\ref{cor:stretch}.
+\end{proof}
+
+\begin{table}[htbp]
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{r|*{12}{r}}
+\multicolumn{1}{c|}{} & \multicolumn{12}{c}{$t_0,\ \ldots,\ t_{11}$}\\
+\hline
+1 & $-7$ & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $2$ & $3$ & $4$ & $7$ & $8$ & $9$ \\
+2 & $-60$ & $-50$ & $-39$ & $-37$ & $-36$ & $-20$ & $-3$ & $21$ & $31$ & $39$ & $54$ & $60$ \\
+3 & $-59$ & $-51$ & $-18$ & $1$ & $5$ & $6$ & $11$ & $14$ & $19$ & $20$ & $43$ & $47$ \\
+4 & $-58$ & $-51$ & $-12$ & $0$ & $3$ & $4$ & $23$ & $31$ & $33$ & $51$ & $58$ & $59$ \\
+5 & $-55$ & $-47$ & $-40$ & $-30$ & $-16$ & $-4$ & $0$ & $6$ & $50$ & $51$ & $52$ & $57$ \\
+6 & $-55$ & $-40$ & $-39$ & $-36$ & $-31$ & $-28$ & $-26$ & $-18$ & $15$ & $24$ & $57$ & $60$ \\
+7 & $-53$ & $-47$ & $-39$ & $-37$ & $-34$ & $-22$ & $-20$ & $4$ & $11$ & $16$ & $27$ & $45$ \\
+8 & $-53$ & $-45$ & $-33$ & $-28$ & $-25$ & $-5$ & $17$ & $20$ & $44$ & $53$ & $57$ & $60$ \\
+9 & $-51$ & $-45$ & $-44$ & $-36$ & $-35$ & $0$ & $5$ & $27$ & $36$ & $39$ & $50$ & $54$ \\
+10 & $-49$ & $-44$ & $-11$ & $-8$ & $13$ & $25$ & $26$ & $27$ & $28$ & $35$ & $46$ & $59$ \\
+11 & $-49$ & $-29$ & $-27$ & $-24$ & $-23$ & $-9$ & $21$ & $35$ & $46$ & $54$ & $57$ & $60$ \\
+12 & $-40$ & $-38$ & $-18$ & $-9$ & $-1$ & $7$ & $9$ & $14$ & $16$ & $17$ & $24$ & $34$ \\
+13 & $-40$ & $-37$ & $-34$ & $-28$ & $-27$ & $-21$ & $3$ & $6$ & $28$ & $32$ & $36$ & $38$ \\
+14 & $-40$ & $-36$ & $-35$ & $-27$ & $-22$ & $-14$ & $-13$ & $3$ & $4$ & $7$ & $36$ & $39$ \\
+15 & $-40$ & $-36$ & $-32$ & $-23$ & $-21$ & $-15$ & $-14$ & $-12$ & $2$ & $4$ & $21$ & $23$ \\
+16 & $-40$ & $-34$ & $-32$ & $-30$ & $-2$ & $8$ & $15$ & $17$ & $19$ & $21$ & $28$ & $40$ \\
+17 & $-40$ & $-33$ & $-25$ & $-22$ & $-21$ & $-18$ & $1$ & $20$ & $26$ & $31$ & $37$ & $39$ \\
+18 & $-40$ & $-30$ & $-17$ & $-15$ & $-13$ & $-9$ & $-5$ & $2$ & $5$ & $8$ & $20$ & $24$ \\
+19 & $-40$ & $-25$ & $-22$ & $-2$ & $0$ & $1$ & $2$ & $3$ & $4$ & $8$ & $10$ & $13$ \\
+20 & $-39$ & $-35$ & $-26$ & $-24$ & $-20$ & $-10$ & $-6$ & $3$ & $13$ & $27$ & $30$ & $39$ \\
+21 & $-39$ & $-34$ & $-31$ & $-24$ & $-23$ & $-15$ & $-8$ & $3$ & $4$ & $11$ & $15$ & $40$ \\
+22 & $-38$ & $-37$ & $-35$ & $-30$ & $-27$ & $-23$ & $-11$ & $6$ & $8$ & $17$ & $31$ & $34$ \\
+23 & $-38$ & $-32$ & $-3$ & $2$ & $3$ & $9$ & $16$ & $18$ & $25$ & $26$ & $30$ & $39$ \\
+24 & $-38$ & $-29$ & $-27$ & $-23$ & $-19$ & $-17$ & $-12$ & $-9$ & $-8$ & $-1$ & $28$ & $39$ \\
+25 & $-38$ & $-29$ & $-20$ & $-15$ & $0$ & $3$ & $5$ & $6$ & $11$ & $13$ & $15$ & $25$ \\
+26 & $-38$ & $-28$ & $-14$ & $3$ & $7$ & $12$ & $18$ & $20$ & $25$ & $26$ & $29$ & $33$ \\
+27 & $-38$ & $-24$ & $-21$ & $-17$ & $13$ & $16$ & $24$ & $25$ & $26$ & $27$ & $28$ & $34$ \\
+28 & $-37$ & $-34$ & $-32$ & $-30$ & $-26$ & $-23$ & $-16$ & $0$ & $8$ & $24$ & $25$ & $38$ \\
+29 & $-37$ & $-32$ & $-15$ & $-5$ & $1$ & $16$ & $17$ & $24$ & $25$ & $31$ & $37$ & $38$ \\
+30 & $-36$ & $-35$ & $-28$ & $-24$ & $-22$ & $-13$ & $2$ & $13$ & $21$ & $22$ & $25$ & $40$ \\
+31 & $-34$ & $-33$ & $-31$ & $-28$ & $-21$ & $-13$ & $1$ & $6$ & $10$ & $24$ & $28$ & $34$ \\
+32 & $-34$ & $-29$ & $-25$ & $-14$ & $-1$ & $4$ & $5$ & $8$ & $13$ & $15$ & $20$ & $31$ \\
+33 & $-33$ & $-32$ & $-28$ & $-16$ & $-14$ & $7$ & $23$ & $28$ & $30$ & $32$ & $33$ & $39$ \\
+34 & $-33$ & $-29$ & $-21$ & $-17$ & $-5$ & $1$ & $11$ & $14$ & $23$ & $25$ & $28$ & $33$ \\
+35 & $-33$ & $-25$ & $-17$ & $-14$ & $-8$ & $-5$ & $5$ & $8$ & $10$ & $18$ & $25$ & $38$ \\
+36 & $-32$ & $-31$ & $-29$ & $-14$ & $-11$ & $-10$ & $-8$ & $-7$ & $18$ & $20$ & $27$ & $28$ \\
+37 & $-32$ & $-31$ & $-28$ & $-22$ & $-19$ & $-11$ & $5$ & $9$ & $11$ & $24$ & $25$ & $35$ \\
+38 & $-32$ & $-24$ & $-19$ & $-16$ & $-13$ & $-12$ & $-2$ & $10$ & $11$ & $19$ & $20$ & $27$ \\
+39 & $-32$ & $-20$ & $-15$ & $-14$ & $-9$ & $-8$ & $-3$ & $-2$ & $7$ & $30$ & $35$ & $36$ \\
+40 & $-31$ & $-30$ & $-28$ & $-27$ & $-20$ & $-14$ & $-7$ & $13$ & $14$ & $17$ & $23$ & $39$ \\
+41 & $-31$ & $-25$ & $-19$ & $-4$ & $-2$ & $3$ & $13$ & $17$ & $23$ & $25$ & $27$ & $37$ \\
+42 & $-30$ & $-29$ & $-26$ & $-15$ & $-13$ & $-2$ & $16$ & $23$ & $27$ & $30$ & $37$ & $38$ \\
+43 & $-30$ & $-29$ & $-24$ & $-20$ & $-19$ & $-18$ & $2$ & $10$ & $11$ & $15$ & $19$ & $21$ \\
+44 & $-30$ & $-26$ & $-5$ & $-4$ & $6$ & $7$ & $28$ & $31$ & $32$ & $37$ & $38$ & $39$ \\
+45 & $-28$ & $-26$ & $-16$ & $-12$ & $-11$ & $-8$ & $18$ & $22$ & $27$ & $29$ & $30$ & $33$ \\
+46 & $-27$ & $-25$ & $-23$ & $-22$ & $-17$ & $-3$ & $-1$ & $13$ & $29$ & $31$ & $33$ & $34$ \\
+47 & $-27$ & $-13$ & $-11$ & $-9$ & $-1$ & $10$ & $15$ & $17$ & $20$ & $23$ & $24$ & $29$ \\
+\end{tabular}
+\medskip
+\caption{The $47$ boundary parameter vectors. Swept over all $10395$ perfect matchings
+each, they realize all $1824$ topological types of $\Tn_6$ by straight chords with
+rational endpoints. Row $1$ is Example~\ref{ex:wit}. Nothing here claims $47$ is
+least.}\label{tab:one}
+\end{table}
+
+\section{Scope}\label{sec:scope}
+
+Nothing here bears on $a(n)$ for $n\ge7$, nor on the other sequences of Open Problem~2 of
+\cite{CKS}. The degeneracy-permitting reading of the definition (Remark~\ref{rem:reading})
+is a strictly larger count and is not settled. No claim is made that $47$ parameter
+vectors are fewest.
+
+\section{Verification}
+
+Lemma~\ref{lem:perturb} and Lemma~\ref{lem:superset} are hand proofs. The rest is
+determined by the printed data: the census of Section~\ref{sec:upper} is fixed by the
+insertion rule and takes no input, and the sweep of Section~\ref{sec:lower} is fixed by
+Table~\ref{tab:one}.
+
+A program accompanying this note re-derives every computational claim above from the
+printed data and nothing else, in exact integer and \texttt{Fraction} arithmetic
+throughout, using only the Python standard library. It re-runs the census; counts the
+region graphs by two independent routes, a refinement-based canonical form and an
+invariant-plus-exact-iso\-morphism search, and checks that the two agree; verifies the
+object of Example~\ref{ex:wit}, including a sign-vector derivation of its region graph;
+sweeps all $488565$ pairs of Table~\ref{tab:one}; and runs four controls, among them the
+reproduction of the confirmed terms $2,5,19,130$. All $53$ of its checks pass. It re-runs
+the enumeration Lemma~\ref{lem:superset} licenses, not the lemma.
+
+\begin{thebibliography}{9}
+
+\bibitem{A272906}
+J.~Hart, \emph{Number of topologically-distinct pizza slicings from $n$ chords in general
+position}, Entry \texttt{A272906} of The On-Line Encyclopedia of Integer Sequences,
+9 May 2016. \href{https://oeis.org/A272906}{oeis.org/A272906}. The value $a(6)=1814$ and
+the ``unconfirmed'' disclaimer are his; the quotation in Section~\ref{sec:counted} is
+comment~1 of the entry.
+
+\bibitem{CKS}
+D.~Cutler, A.~Karlsson, and N.~J.~A. Sloane, \emph{Cutting a pancake with an exotic
+knife}, arXiv:2511.15864v4, 2026.
+\href{https://arxiv.org/abs/2511.15864}{arXiv:2511.15864}.
+
+\end{thebibliography}
+
+\end{document}

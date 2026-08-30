@@ -1,0 +1,53 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  174f359ef2ec03c35080bee8b4c09262f0d9d862860faa4ad9914889916811c7
+python:  Python 3.9.25
+=== program output follows ===
+--- the array M of Section 2 ---
+PASS hadamard-24-orthogonal H = C + I from q = 23: all 576 inner products of rows are 24 on the diagonal and 0 off it; entries all +-1: True
+PASS paley-reproduces-M normalising the first column to +1, deleting it and mapping -1 -> 0 gives exactly the 24 x 23 array printed in the paper (24 rows of 23 characters compared)
+PASS M-shape M has 24 rows, 23 columns, and its rows are pairwise distinct
+PASS M-is-OA-24-23-2-2 all 253 coordinate pairs of M give 6/6/6/6 (1012 pattern counts, 0 violations)
+--- the subspace D of Section 2 ---
+PASS D-is-3-dimensional span(h1,h2,h3) has 8 elements, so h1,h2,h3 are independent and dim D = 3
+PASS D-minimum-weight-3 the 7 nonzero words of D have weights [3, 3, 3, 3, 4, 4, 4]; minimum 3 >= 3, so no word of weight 1 or 2 lies in D
+PASS V-printed-equals-D-dual the 32 printed words of V are exactly D^perp in F_2^8, recomputed from h1,h2,h3 (|V| = 32, |D^perp| = 32, equal as sets)
+PASS syndromes-balanced the 24 syndromes (h1.g, h2.g, h3.g) hit each of the 8 values of F_2^3 exactly 3 times: [3, 3, 3, 3, 3, 3, 3, 3]
+PASS parity-12-per-word equivalently, each of the 7 nonzero words of D has odd inner product with exactly 12 of the 24 rows: [12, 12, 12, 12, 12, 12, 12]
+--- the population of admissible D on columns 0..7 ---
+PASS printed-D-is-admissible all 7 nonzero words of the printed D are admissible, so (h1,h2,h3) is one of the triples counted next (132 admissible words in F_2^8 in total)
+PASS triple-count-21252 columns 0..7 of M carry exactly 21252 such triples {h1,h2,h3}, the figure the paper's Remark reports; they span 759 DISTINCT subspaces D, each with 28 bases (21252 = 28 x 759), so the choice of D is not delicate and the triple count is not a count of subspaces
+--- hypotheses of Theorem 1, for every K with 8 <= K <= 23 ---
+PASS hypotheses-hold-for-every-K for all 16 values of K: columns 0..K-1 of M form an OA(24,K,2,2), the zero-padded D still has 7 nonzero words of minimum weight 3, and the syndromes stay [3]*8 (7872 pattern counts, 0 failures)
+--- the seven designs I_{k+3}(24, 2^k, 2, 2), 5 <= k <= 11 ---
+PASS design-k=5 I_8(24,32,2,2) verified from the definition: index lambda = 3, 6528 counts (256 multiplicities + 2688 row + 3584 column pattern counts), first failure: None
+PASS design-k=6 I_9(24,64,2,2) verified from the definition: index lambda = 3, 13184 counts (512 multiplicities + 3456 row + 9216 column pattern counts), first failure: None
+PASS design-k=7 I_10(24,128,2,2) verified from the definition: index lambda = 3, 28384 counts (1024 multiplicities + 4320 row + 23040 column pattern counts), first failure: None
+PASS design-k=8 I_11(24,256,2,2) verified from the definition: index lambda = 3, 63648 counts (2048 multiplicities + 5280 row + 56320 column pattern counts), first failure: None
+PASS design-k=9 I_12(24,512,2,2) verified from the definition: index lambda = 3, 145600 counts (4096 multiplicities + 6336 row + 135168 column pattern counts), first failure: None
+PASS design-k=10 I_13(24,1024,2,2) verified from the definition: index lambda = 3, 335168 counts (8192 multiplicities + 7488 row + 319488 column pattern counts), first failure: None
+PASS design-k=11 I_14(24,2048,2,2) verified from the definition: index lambda = 3, 770592 counts (16384 multiplicities + 8736 row + 745472 column pattern counts), first failure: None
+PASS seven-cases-all-present all seven cases 5 <= k <= 11 were built and checked: k = [5, 6, 7, 8, 9, 10, 11]
+PASS total-definition-level-counts the seven cells together make 1363104 definition-level counts (per k: [6528, 13184, 28384, 63648, 145600, 335168, 770592]), the number the paper reports
+PASS naive-counter-agrees-k=5 the transparent triple loop over the 768 cells of the printed k = 5 array makes the same 6528 counts and reaches the same verdict as the bit-parallel counter (failure: None)
+PASS naive-counter-agrees-k=6 and again on k = 6: 13184 counts, same verdict (failure: None)
+--- admissibility against the conjecture's own hypotheses ---
+PASS all-seven-are-instances for every k in 5..11 with m = 6, n = 2^(k-2): n >= 6, 2^(k+3) | 16mn, k+3 <= 4m-1 = 23, and m > 1 -- so each design is a case the conjecture asserts (0 objections)
+PASS hadamard-of-order-4m-exists the conjecture's hypothesis is a Hadamard matrix of order 4m = 24, and one was built and checked above
+--- the reading of the source's definition ---
+PASS printed-shapes-match-the-labels the dimensions of each of the 4 designs the source prints agree with the {m,n} of its label (Table 5.1: I_4(9,9,3,2) printed 9 x 9; Table 5.3, rows marked by the superscripts A..L: I_5(12,8,2,2) printed 12 x 8; Table 5.5: I_4(12,12,2,2) printed 12 x 12; Table 5.6, printed sideways: I_6(12,16,2,2) printed 12 x 16), and in the one non-square example whose rows the source marks the count of marked rows is m and the count of words in a row is n (0 label mismatches, 0 orientation mismatches)
+PASS reading-A-fits-every-label-reading-B-none for all 11 labels -- the 4 the source prints and the 7 at issue here -- reading A makes n/q^t, m/q^t and the index mn/q^k positive integers (0 failures), while reading B would require n = k, which holds for none of them (0 cases where it holds)
+PASS source-necessary-conditions-exhibited for each of the seven k, with K = k+3: 2^K divides mn = 24 * 2^k, the first K columns of M are an OA(24,K,2,2) and the 2^k words of V^(K) are an OA(2^k,K,2,2) -- the two orthogonal arrays the source's own necessary conditions for an I_K(24,2^k,2,2) demand, in the source's own notation (0 failures)
+--- controls: deliberately damaged witnesses must be rejected ---
+PASS control-swap-rejected transposing two cells inside row 0 of the k = 5 array is rejected: ('column', 0, (0, 1), [7, 6, 6, 5])
+PASS control-duplicate-rejected overwriting one cell with a copy of another is rejected: ('multiplicity', 255, 4, 3)
+PASS control-weight-2-D-rejected replacing h3 by 10010000 keeps dim D = 3 and |D^perp| = 32 but breaks hypothesis (ii) (weights [2, 2, 3, 3, 3, 3, 4], minimum 2); the resulting array is rejected: ('multiplicity', 255, 2, 3)
+PASS control-broken-G-rejected duplicating a row of G destroys the OA(24,8,2,2) property, and the same routine that certified G reports it (27 offending pairs, first ((0, 1), [7, 6, 6, 5]))
+
+NOT RE-RUN: the cells 12 <= k <= 20 at definition level. Their arrays have up to 2^20 columns, which is not referee-sized; what is re-checked here for every K in 8..23 is the hypotheses of Theorem 1, from which those cells follow. They are in any case NOT new -- they are Rahim and Cavenagh's own published theorem for 12 <= k <= 20.
+NOT RE-RUN: nothing here bears on the whole m = 6 case of the conjecture. This program checks the seven MINIMAL cases the source lists as unknown; the reduction of a general admissible (k,n) at m = 6 to those minimal cases is not verified here, and no such reduction is proved in the source.
+NOT RE-RUN: the search over CHOICES OF COLUMN SET. The generating column set is the first eight columns of M and is fixed in the source of this program; only the 21,252 admissible generator triples {h1,h2,h3} on THAT one column set -- the 759 subspaces D they span -- are enumerated. The exhaustive C(23,8) = 490,314 census over column sets was never completed (the original run sampled 20,000 subsets, 4.079%), and existence needs none of it. Nothing here claims this witness is unique, canonical or least.
+NOT RE-RUN: the source's own printed examples at the level of their DIGITS. Those arrays are the source's, they are not transcribed into this program, and no cell of them is counted here. What section 5b checks about the reading of the definition is their printed DIMENSIONS, transcribed with their labels, and the parameter arithmetic of the two readings. The passages of the source quoted or paraphrased in Section 1 of the paper were read by hand and are not machine checkable at all.
+
+VERDICT: ALL 32 CHECKS PASS
+=== program exited with status 0 ===

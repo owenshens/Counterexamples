@@ -1,0 +1,145 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  fe9f087d151babcaab2b995d698d4da238c5a4b96b324c2cc2c776d0c2022f65
+python:  Python 3.9.25
+=== program output follows ===
+[   0.7s] A_1 ... A_14 built to q^360
+PASS A1-is-sigma1                   [1, 3, 4, 7, 6, 12, 8]
+PASS A2-head                        [1, 3, 9, 15, 30, 45]
+PASS newton-divisibility-exact      True
+PASS Ar-vs-newton-r1..14            True
+[   0.9s] Newton cross-check of A_1..A_14 to q^190 done
+[   4.3s] A-monomials of degree <= 14 built: 508
+PASS monomials-deg-le-13            373
+PASS monomials-deg-le-14            508
+PASS dimF-le-18                     53
+PASS dimF-le-20                     67
+PASS dimF-le-24                     102
+PASS dimF-le-26                     123
+PASS dimF-le-28                     147
+PASS dim-two-spellings-agree        True
+PASS rank-Lambda9-at-N300           53
+PASS rank-Lambda10-at-N360          67
+PASS rank-Lambda13-at-N300          123
+PASS rank-F20-at-72-coeffs          67
+PASS rank-F26-at-170-coeffs         123
+[   6.7s] rank controls done
+[   6.7s]   k= 4 n= 2  i(k,n,N=300) = 1
+PASS published-index-k4             1
+PASS published-B-k4                 2
+[   6.7s]   k= 6 n= 3  i(k,n,N=300) = 3
+[   6.7s]   k= 6 n= 4  i(k,n,N=300) = 1
+PASS published-index-k6             3
+PASS published-B-k6                 4
+[   6.8s]   k= 8 n= 4  i(k,n,N=300) = 3
+[   6.8s]   k= 8 n= 5  i(k,n,N=300) = 1
+PASS published-index-k8             3
+PASS published-B-k8                 5
+[   6.9s]   k=10 n= 5  i(k,n,N=300) = 9
+[   6.9s]   k=10 n= 6  i(k,n,N=300) = 1
+PASS published-index-k10            9
+PASS published-B-k10                6
+[   7.1s]   k=12 n= 6  i(k,n,N=300) = 81
+[   7.1s]   k=12 n= 7  i(k,n,N=300) = 3
+[   7.2s]   k=12 n= 8  i(k,n,N=300) = 1
+PASS published-index-k12            81
+PASS published-B-k12                8
+[   7.7s]   k=14 n= 7  i(k,n,N=300) = 729
+[   7.8s]   k=14 n= 8  i(k,n,N=300) = 3
+[   8.0s]   k=14 n= 9  i(k,n,N=300) = 1
+PASS published-index-k14            729
+PASS published-B-k14                9
+[   9.0s]   k=16 n= 8  i(k,n,N=300) = 6561
+[   9.2s]   k=16 n= 9  i(k,n,N=300) = 9
+[   9.7s]   k=16 n=10  i(k,n,N=300) = 1
+PASS published-index-k16            6561
+PASS published-B-k16                10
+PASS published-B-matches-guess-k4..16 True
+PASS published-indices-are-3-powers [3]
+[   9.7s] all 14 published integers reproduced
+PASS forced-negative-k16-flat       [1, 1, 1]
+PASS k6-certificate-integral        True
+PASS k6-certificate-in-Lambda4      True
+PASS k6-certificate-not-in-Lambda3  False
+[  22.0s] controls done
+[  24.2s]   k=18 n= 9  i(k,n,N=300) = 4782969
+[  24.7s]   k=18 n=10  i(k,n,N=300) = 243
+[  26.0s]   k=18 n=11  i(k,n,N=300) = 9
+[  29.0s]   k=18 n=12  i(k,n,N=300) = 3
+[  37.1s]   k=18 n=13  i(k,n,N=300) = 1
+PASS index-18-9                     4782969
+PASS index-18-10                    243
+PASS index-18-11                    9
+PASS index-18-12                    3
+PASS index-18-13                    1
+PASS base-index-18                  4782969
+PASS B18                            13
+[  43.5s]   k=20 n=10  i(k,n,N=360) = 5811307335
+[  44.9s]   k=20 n=11  i(k,n,N=360) = 32805
+[  48.1s]   k=20 n=12  i(k,n,N=360) = 27
+[  56.6s]   k=20 n=13  i(k,n,N=360) = 3
+[  78.8s]   k=20 n=14  i(k,n,N=360) = 1
+PASS index-20-10                    5811307335
+PASS index-20-11                    32805
+PASS index-20-12                    27
+PASS index-20-13                    3
+PASS index-20-14                    1
+PASS base-index-20                  5811307335
+PASS B20                            14
+PASS guess-18                       12
+PASS guess-20                       13
+PASS B18-exceeds-guess-by-1         1
+PASS B20-exceeds-guess-by-1         1
+PASS squeeze-closes-18              (1, True)
+PASS squeeze-closes-20              (1, True)
+PASS chain-18-divides               True
+PASS chain-20-divides               True
+PASS index-18-12-other-coords       3
+PASS index-18-13-other-coords       1
+PASS index-20-13-other-coords       3
+PASS index-20-14-other-coords       1
+PASS factor-4782969                 {3: 14}
+PASS factor-5811307335              {3: 19, 5: 1}
+PASS factor-32805                   {3: 8, 5: 1}
+PASS k18-chain-is-3-primary         [3]
+PASS k20-chain-not-3-primary        [3, 5]
+PASS prime-5-enters-first-at-k20    (4, True, True)
+PASS excess-sequence                [0, 1, 1, 1, 2, 2, 2, 4, 4]
+PASS excess-skips-3                 False
+PASS B-values-k4..20                [2, 4, 5, 6, 8, 9, 10, 13, 14]
+PASS base18-N72                     4782969
+PASS base18-N80                     4782969
+PASS base18-N100                    4782969
+PASS base18-N120                    4782969
+PASS base18-N150                    4782969
+PASS base18-N200                    4782969
+PASS base18-N250                    4782969
+PASS base18-N300                    4782969
+PASS base20-N72                     87169610025
+PASS base20-N80                     5811307335
+PASS base20-N100                    5811307335
+PASS base20-N120                    5811307335
+PASS base20-N150                    5811307335
+PASS base20-N200                    5811307335
+PASS base20-N250                    5811307335
+PASS base20-N300                    5811307335
+PASS factor-87169610025             {3: 20, 5: 2}
+PASS N72-insufficient-at-k20        True
+
+NOT RE-RUN: the following are OUTSIDE this program and are not asserted by it.
+NOT RE-RUN: (a) B(k) for k = 22 and beyond, and for odd k -- only k <= 20 is computed here;
+NOT RE-RUN: (b) any replacement closed form for B(k) -- nine data points are printed, no
+NOT RE-RUN:     formula is fitted or tested;
+NOT RE-RUN: (c) Bachmann-Yu mainconj:integralspan (R_g = M_Z) in general -- what is verified
+NOT RE-RUN:     is only its weight-18 and weight-20 instances, which follow from the attained
+NOT RE-RUN:     index 1 at n = 13 and n = 14;
+NOT RE-RUN: (d) any explicit element h of F_{<=18}M_Z \ Lambda_12 -- no witness element is
+NOT RE-RUN:     claimed or checked, because 31 or 259 printed coefficients cannot pin a
+NOT RE-RUN:     53-dimensional space; the deciding object is the index chain itself;
+NOT RE-RUN: (e) the literature: novelty, priority and the Craig near-miss are not machine
+NOT RE-RUN:     checkable and nothing here speaks to them;
+NOT RE-RUN: (f) the byte offsets quoted from the arXiv source -- this program reads no
+NOT RE-RUN:     external file and cannot confirm a line number in someone else's TeX.
+
+VERDICT: ALL 90 CHECKS PASS
+=== program exited with status 0 ===

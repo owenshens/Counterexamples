@@ -1,0 +1,189 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\emergencystretch=1.5em
+
+\hypersetup{
+  pdftitle={A Multilinear Polynomial with Constants Whose Image on M_2(K) Is
+            Not a Vector Space}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\Mn}{M_n(K)}
+\newcommand{\im}{\widetilde\omega}
+
+\title[An image that is not a vector space]
+{A Multilinear Polynomial with Constants Whose Image on $M_2(K)$
+ Is Not a Vector Space}
+
+\date{}
+
+\subjclass[2020]{16S50, 15A03, 16R99}
+\keywords{L'vov--Kaplansky conjecture, image of a polynomial map, multilinear
+polynomial, polynomial with constants, matrix algebra, rank, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+The concluding remarks of the e-print \texttt{arXiv:2312.13865v1} of Panja,
+Saini and Singh state, as Conjecture~2, that for every field $K$ the image of
+every multilinear polynomial $\omega$ in the free product of $M(n,K)$ with the
+free algebra on $x_1,\dots,x_m$ is a vector space. Take $n=m=2$ and
+$\omega(x_1,x_2)=x_1e_{11}x_2$, a single monomial with one interior
+coefficient. Its image is exactly the set of matrices of rank at most one in
+$M_2(K)$, so it contains $\omega(I_2,I_2)=e_{11}$ and
+$\omega(e_{21},e_{12})=e_{22}$ but not their sum $e_{11}+e_{22}=I_2$; the
+printed statement is therefore false. Every entry of the witness is $0$ or
+$1$, so it serves over every field. We address only that sentence, in the
+version quoted; the published version of the source we were unable to read.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+Let $K$ be a field and let $\Mn\langle x_1,\dots,x_m\rangle$ denote the free
+product of the matrix algebra $\Mn$ with the free algebra on
+$x_1,\dots,x_m$; its elements are the \emph{polynomials with constants}, and
+each such $\omega$ induces a map $\im\colon\Mn^m\to\Mn$ by evaluation.
+
+Section~5 (\emph{Concluding remarks}) of the e-print \cite{PSS}, on page~33,
+calls a polynomial \emph{multilinear} ``if it is linear in each variable'',
+offers
+\[
+  x_1A_1x_2A_2x_3+x_2A_4x_1x_3A_5-x_3x_1A_6x_2,
+  \qquad A_i\in M(n,K),
+\]
+as ``a multilinear polynomial in 3 variables in algebra $M(n,K)$'', writes
+``Generalizing Theorem B, we present a generalized version of the
+L'vov-Kaplansky conjecture'', and states the following.
+
+\begin{quote}
+\textbf{Conjecture 2} (\cite{PSS}, p.~33). Let $K$ be a field. For any
+multilinear polynomial in $\omega\in M(n,K)\langle x_1,x_2,\dots,x_m\rangle$,
+the image $\im(M(n,K))$ is a vector space.
+\end{quote}
+
+\noindent
+The wording is as printed, including ``polynomial in $\omega$''. By the
+displayed example, coefficients standing \emph{between} variables are inside
+the quantifier, and no hypothesis of invertibility or nonvanishing on the
+$A_i$ appears; the quantifier on $K$ is ``Let $K$ be a field'', although
+\cite{PSS} assumes algebraic closure for its theorems. The witness below is
+insensitive to the latter point.
+
+That e-print is the only version on arXiv and carries the comment
+``Preliminary version; 34 pp;''. A published version appeared as
+\emph{Mathematika} \textbf{71} (2025), no.~3, Paper e70031; the DOI returned
+HTTP 403 and we were unable to read it, so we make no claim about its wording.
+If the published concluding remarks restrict the positions of the
+coefficients, then what follows is a correction to the e-print rather than a
+counterexample to the published statement. We make no claim about the
+L'vov--Kaplansky conjecture, nor about the theorems of \cite{PSS}, nor about
+any statement other than the one displayed above.
+
+\section{The counterexample}\label{sec:witness}
+
+Take $n=2$, $m=2$, let $K$ be any field, and let
+\[
+  \omega(x_1,x_2)=x_1Ax_2,\qquad A=e_{11},
+\]
+a single monomial with one interior coefficient, of the shape of the example
+quoted above. The object, and the two evaluation points that decide the
+matter, are these five matrices, written as lists of rows:
+
+\begin{verbatim}
+A   = [[1, 0], [0, 0]]
+X1  = [[1, 0], [0, 1]]
+Y1  = [[1, 0], [0, 1]]
+X2  = [[0, 0], [1, 0]]
+Y2  = [[0, 1], [0, 0]]
+\end{verbatim}
+
+\noindent
+All entries are $0$ or $1$, so the same five matrices are defined over every
+field through the unique ring map $\mathbb Z\to K$.
+
+\begin{theorem}\label{thm:main}
+Let $K$ be a field and $\omega(x_1,x_2)=x_1e_{11}x_2$ in
+$M_2(K)\langle x_1,x_2\rangle$. Then $\omega$ is multilinear and
+\[
+  \im\bigl(M_2(K)\bigr)=\{M\in M_2(K):\rank M\le1\}.
+\]
+In particular $e_{11}=\omega(X_1,Y_1)$ and $e_{22}=\omega(X_2,Y_2)$ lie in
+the image while $e_{11}+e_{22}=I_2$ does not, so the image is not closed
+under addition and Conjecture~2 of \cite{PSS} is false.
+\end{theorem}
+
+\begin{proof}
+Multilinearity is immediate: $\omega$ is a single monomial containing each of
+$x_1,x_2$ exactly once, and $(X,Y)\mapsto XAY$ is $K$-bilinear.
+
+Write $e_1=(1,0)^{\mathsf T}$, so that $A=e_1e_1^{\mathsf T}$. Then for all
+$X,Y\in M_2(K)$
+\begin{equation}\label{eq:fact}
+  XAY=(Xe_1)(e_1^{\mathsf T}Y)=u\,v^{\mathsf T},
+\end{equation}
+where $u$ is the first column of $X$ and $v^{\mathsf T}$ is the first row
+of $Y$.
+Every such product is an outer product and therefore has rank at most $1$.
+Conversely a matrix of rank at most $1$ is $uv^{\mathsf T}$ for some
+$u,v\in K^2$ (rank $0$ being $u=0$), and choosing $X$ with first column $u$
+and $Y$ with first row $v^{\mathsf T}$ realises it as $XAY$ by
+\eqref{eq:fact}. This proves the displayed equality.
+
+For the two witnesses, $X_1=Y_1=I_2$ gives $\omega(I_2,I_2)=A=e_{11}$, and
+$X_2=e_{21}$, $Y_2=e_{12}$ give
+$\omega(e_{21},e_{12})=e_{21}e_{11}e_{12}=e_{21}e_{12}=e_{22}$. Both have
+rank $1$. Their sum is $I_2$, and $\det I_2=1\ne0$ in every field, so
+$\rank(e_{11}+e_{22})=2>1$ and $I_2\notin\im(M_2(K))$.
+\end{proof}
+
+\begin{remark}
+The image contains $0=\omega(0,0)$ and is closed under scalar multiplication,
+since $\lambda(XAY)=(\lambda X)AY$; of the vector space axioms only
+additivity fails.
+\end{remark}
+
+\section{What was checked}
+
+The proof above is by hand and needs no machine. The accompanying program
+\texttt{verify.py} uses the Python standard library only, decides nothing in
+floating point, and uses no randomness. It parses the five matrices out of the
+verbatim display in Section~\ref{sec:witness} rather than carrying its own
+copy, and from them re-derives: the two evaluations and all four ranks, over
+$\mathbb Q$ and over $\mathbb F_p$ for $p\le11$; the
+factorization~\eqref{eq:fact} on every ordered pair of matrix units of $M_n$
+for $n\le4$ over $\mathbb Z$ and on all $262{,}144$ ordered pairs of
+$M_3(\mathbb F_2)$; multilinearity by exhaustion; and the set equality of
+Theorem~\ref{thm:main} over $\mathbb F_2$ and $\mathbb F_3$. The recorded run
+\texttt{verify.output.txt} reports \texttt{VERDICT: ALL 89 CHECKS PASS} and
+exit status $0$; the checks it reports beyond those just listed concern
+statements this note does not make. No enumeration runs over an infinite
+field, and none is needed: the proof of Theorem~\ref{thm:main} is uniform in
+$K$. The program cannot reach the published version of \cite{PSS}, so the
+qualification recorded in Section~1 is not machine checked.
+
+\begin{thebibliography}{9}
+
+\bibitem{PSS}
+S.~Panja, P.~Saini, and A.~Singh,
+\emph{Images of polynomial maps with constants},
+e-print \href{https://arxiv.org/abs/2312.13865v1}{arXiv:2312.13865v1}, 2023,
+the version quoted throughout this note. A published version appeared as
+Mathematika \textbf{71} (2025), no.~3, Paper e70031,
+\href{https://doi.org/10.1112/mtk.70031}{doi:10.1112/mtk.70031}; we were
+unable to read it.
+
+\end{thebibliography}
+
+\end{document}

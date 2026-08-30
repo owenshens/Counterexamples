@@ -1,0 +1,368 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Morrow-Patterson Lebesgue Function Is Not Centrally Symmetric at n=2}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\DeclareMathOperator{\MP}{MP}
+\newcommand{\Q}{Q}
+\newcommand{\ph}{\varphi}
+
+\title[MP Lebesgue function: no central symmetry at $n=2$]
+{The Morrow--Patterson Lebesgue Function\\Is Not Centrally Symmetric at $n=2$}
+
+\date{}
+
+\subjclass[2020]{41A05, 41A10, 65D05}
+\keywords{Lebesgue function, Lebesgue constant, Morrow--Patterson points,
+bivariate polynomial interpolation, Chebyshev polynomials of the second kind,
+counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Beberok, Bia\l as-Cie\.z and De~Marchi study the Lebesgue function $\lambda_n$
+of polynomial interpolation at the Morrow--Patterson points
+$\MP_n\subset\Q=[-1,1]^2$ for $n$ a positive even integer. They prove
+$\lambda_n(x,y)=\lambda_n(-x,y)$, and in their final remarks they pose the proof
+of $\lambda_n(x,y)=\lambda_n(-x,-y)$ as an open problem. That identity is false
+at $n=2$: the point $Q_0=\bigl(0,\cos\frac{2\pi}{5}\bigr)$ has
+\[
+  \lambda_2(Q_0)=2-\frac1{\sqrt5}=1.552786404500042061\ldots,
+  \qquad
+  \lambda_2(-Q_0)=1,
+\]
+the second value holding because $-Q_0$ is an interpolation node. Both are exact
+elements of $\mathbb Q(\sqrt2,\sqrt5)$ and the refutation reduces to
+$2-1/\sqrt5\ne1$; in fact $\lambda_2>1$ at all six points of $-\MP_2$. We also
+show, for every even $n$, that $-\MP_n$ is disjoint from $\MP_n$ and that the two
+sets partition the full tensor grid, so central symmetry in degree $n$ would
+force one $\binom{n+2}{2}\times\binom{n+2}{2}$ integer-indexed kernel matrix to
+be entrywise nonnegative; we prove that implication in this direction only, and
+make no claim about a converse. At $n=2$ that matrix has a negative entry equal
+to $-2$. The failure of central symmetry is proved here only at $n=2$.
+\end{abstract}
+
+\maketitle
+
+\section{The identity in question}
+
+Let $n$ be a positive even integer, $\Q=[-1,1]^2$, and let $U_j$ denote the
+Chebyshev polynomial of the second kind, $U_0=1$, $U_1(t)=2t$,
+$U_{j+1}(t)=2tU_j(t)-U_{j-1}(t)$. The \emph{Morrow--Patterson points}
+\cite{MP} of degree $n$ are
+\begin{equation}\label{eq:nodes}
+  \MP_n=\Bigl\{(x_m,y_k)\ :\ 1\le m\le n+1,\ 1\le k\le \tfrac n2+1\Bigr\},
+  \qquad
+  x_m=\cos\frac{m\pi}{n+2},
+\end{equation}
+with
+\[
+  y_k=\cos\frac{2k\pi}{n+3}\ \ (m\text{ odd}),
+  \qquad
+  y_k=\cos\frac{(2k-1)\pi}{n+3}\ \ (m\text{ even}),
+\]
+in the form used in \cite[\S3.2]{BBD}. Then
+$\#\MP_n=\frac{(n+1)(n+2)}2=\dim\mathcal P_n^2$ and $\MP_n$ is unisolvent
+for total-degree-$n$ bivariate polynomials, so the Lebesgue function
+\[
+  \lambda_n(x,y)=\sum_{P\in\MP_n}\bigl|L_P(x,y)\bigr|
+\]
+is defined, $L_P$ being the Lagrange basis. Beberok, Bia\l as-Cie\.z and
+De~Marchi \cite{BBD} write it as
+\begin{equation}\label{eq:leb}
+  \lambda_n(x,y)=\sum_{(x_m,y_k)\in\MP_n}\omega_{m,k}
+  \Bigl|\,\sum_{i+j\le n}U_i(x_m)U_j(y_k)\,U_i(x)U_j(y)\Bigr|,
+\end{equation}
+where the cubature weights are given both by
+\begin{equation}\label{eq:wdef}
+  \frac1{\omega_{m,k}}=\sum_{i+j\le n}U_i^2(x_m)U_j^2(y_k)
+\end{equation}
+and, in closed form, by
+$\omega_{m,k}=C_n\bigl(1-x_m^2\bigr)\bigl(1-y_k^2\bigr)$ with
+$C_n=\frac{8}{(n+2)(n+3)}$ \cite[Thm.~2]{BBD}. Write
+\begin{equation}\label{eq:kernel}
+  K_n(P,Q)=\sum_{i+j\le n}U_i(x_P)U_j(y_P)\,U_i(x_Q)U_j(y_Q),
+  \qquad L_P=\omega_P\,K_n(P,\cdot).
+\end{equation}
+
+The reflection identity
+\begin{equation}\label{eq:lem15}
+  \lambda_n(x,y)=\lambda_n(-x,y)\qquad\bigl((x,y)\in\Q\bigr)
+\end{equation}
+is \cite[Lemma~1]{BBD}, and \cite{BBD} closes with the following passage, its
+\emph{Final remarks}, \S7.1 (quoted from the e-print arXiv:2412.14595v1):
+
+\begin{quote}
+``The numerical evidence shows that the Lebesgue function, with the notation of
+the paper $\lambda(x,y)$, is symmetric not only for $y$, but also to the origin.
+By Lemma~18 above we proved that $\lambda(x,y)=\lambda(-x,y)$. However, it is an
+open problem of proving that $\lambda(x,y)=\lambda(-x,-y)$. Another open problem
+is to prove that the Lebesgue constant is attained at each corner of the square
+as suggested by the numerical results.''
+\end{quote}
+
+\noindent
+The identity proved there is \eqref{eq:lem15}; the second of the two open
+problems is not considered here. The identity
+$\lambda(x,y)=\lambda(-x,-y)$ is posed in the notation of \cite{BBD}, in which
+$n$ is a positive even integer, and it is set against \eqref{eq:lem15}, which is
+proved there for every such $n$. The degree $n=2$ is among the degrees at issue
+in \cite{BBD}: the set $\MP_2$ is displayed in its Figure~2, and the Lebesgue
+constants evaluated there run over $n=2,4,\dots,60$.
+
+\begin{theorem}\label{thm:main}
+The identity $\lambda_n(x,y)=\lambda_n(-x,-y)$ fails at $n=2$. Explicitly, let
+$n=2$ and
+\[
+  Q_0=\Bigl(0,\ \cos\tfrac{2\pi}5\Bigr)=\Bigl(0,\ \tfrac{\sqrt5-1}4\Bigr).
+\]
+Then $-Q_0\in\MP_2$, whence $\lambda_2(-Q_0)=1$, while
+\[
+  \lambda_2(Q_0)=2-\frac1{\sqrt5}=\frac{10-\sqrt5}5
+  =1.552786404500042061\ldots\;\ne\;1 .
+\]
+\end{theorem}
+
+Since $2-1/\sqrt5=1$ would force $\sqrt5=1$, one exact evaluation in
+$\mathbb Q(\sqrt2,\sqrt5)$ refutes the identity; no decimal approximation enters
+the argument.
+
+\section{The counterexample}
+
+Throughout this section $n=2$, so $\dim\mathcal P_2^2=6$, and we abbreviate
+\[
+  \ph=\frac{1+\sqrt5}2,\qquad
+  a=\cos\frac\pi4=\frac{\sqrt2}2,
+\]
+\[
+  c_1=\cos\frac\pi5=\frac{\ph}2=\frac{\sqrt5+1}4,\qquad
+  c_2=\cos\frac{2\pi}5=\frac{\ph-1}2=\frac{\sqrt5-1}4 .
+\]
+Only $\ph^2=\ph+1$ and $a^2=\frac12$ are used below. From \eqref{eq:nodes},
+$x_1=a$, $x_2=0$, $x_3=-a$; the odd columns $m=1,3$ carry
+$y\in\{\cos\frac{2\pi}5,\cos\frac{4\pi}5\}=\{c_2,-c_1\}$ and the even column
+$m=2$ carries $y\in\{\cos\frac{\pi}5,\cos\frac{3\pi}5\}=\{c_1,-c_2\}$, so
+\begin{equation}\label{eq:MP2}
+\begin{gathered}
+  \MP_2=\{P_1,\dots,P_6\}, \\
+  \begin{aligned}
+   P_1&=\bigl(\tfrac{\sqrt2}2,\tfrac{\sqrt5-1}4\bigr), &
+   P_2&=\bigl(\tfrac{\sqrt2}2,-\tfrac{\sqrt5+1}4\bigr), &
+   P_3&=\bigl(0,\tfrac{\sqrt5+1}4\bigr), \\
+   P_4&=\bigl(0,\tfrac{1-\sqrt5}4\bigr), &
+   P_5&=\bigl(-\tfrac{\sqrt2}2,\tfrac{\sqrt5-1}4\bigr), &
+   P_6&=\bigl(-\tfrac{\sqrt2}2,-\tfrac{\sqrt5+1}4\bigr).
+  \end{aligned}
+\end{gathered}
+\end{equation}
+
+\begin{lemma}\label{lem:pos}
+$-Q_0=\bigl(0,\frac{1-\sqrt5}4\bigr)$ is the node $(x_2,y_2)$ of $\MP_2$, and
+$Q_0\notin\MP_2$. Consequently $\lambda_2(-Q_0)=1$, with no computation.
+\end{lemma}
+
+\begin{proof}
+$m=2$ is even, so the $m=2$ column carries $y_k=\cos\frac{(2k-1)\pi}5$; at
+$k=2$ this is $\cos\frac{3\pi}5=-\cos\frac{2\pi}5$, which is the second
+coordinate of $-Q_0$, and the first coordinate is $x_2=\cos\frac\pi2=0$. That
+column carries only $y\in\{c_1,-c_2\}$ and $\cos\frac{2\pi}5=c_2$ is neither,
+while every other column has $x=\pm a\ne0$; hence $Q_0\notin\MP_2$. A Lebesgue
+function equals $1$ at each interpolation node.
+\end{proof}
+
+By \eqref{eq:wdef}, or equally from the closed form with $C_2=\frac25$, the six
+weights of \eqref{eq:MP2} are
+\begin{equation}\label{eq:weights}
+  \bigl(\omega_{P_1},\dots,\omega_{P_6}\bigr)
+  =\Bigl(
+   \tfrac{2+\ph}{20},\ \tfrac{3-\ph}{20},\ \tfrac{3-\ph}{10},\
+   \tfrac{2+\ph}{10},\ \tfrac{2+\ph}{20},\ \tfrac{3-\ph}{20}
+  \Bigr),
+\end{equation}
+and $\sum_P\omega_P=1$ exactly.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+At $Q_0=(0,c_2)$ the kernel \eqref{eq:kernel} collapses: $U_1(0)=0$ and
+$U_2(0)=-1$, so every term with $i=1$ vanishes and, using
+$U_1(c_2)=\ph-1$ and $U_2(c_2)=(\ph-1)^2-1=1-\ph$,
+\begin{equation}\label{eq:collapse}
+  K_2(P,Q_0)=1+(\ph-1)\bigl[U_1(y_P)-U_2(y_P)\bigr]-U_2(x_P)
+  \qquad (P\in\MP_2).
+\end{equation}
+Evaluating \eqref{eq:collapse} on \eqref{eq:MP2}, with $U_2(\pm a)=1$,
+$U_2(0)=-1$ and $\ph^2=\ph+1$:
+\[
+\begin{array}{llll}
+ P_1: & U_1-U_2=2(\ph-1), & U_2(x)=1,  & K_2=2(2-\ph)=3-\sqrt5,\\[2pt]
+ P_2: & U_1-U_2=-2\ph,    & U_2(x)=1,  & K_2=-2\ph(\ph-1)=-2,\\[2pt]
+ P_3: & U_1-U_2=0,        & U_2(x)=-1, & K_2=+2,\\[2pt]
+ P_4: & U_1-U_2=0,        & U_2(x)=-1, & K_2=+2,\\[2pt]
+ P_5: & \text{as }P_1,    &            & K_2=3-\sqrt5,\\[2pt]
+ P_6: & \text{as }P_2,    &            & K_2=-2 ,
+\end{array}
+\]
+abbreviating $U_1-U_2$ for $U_1(y_P)-U_2(y_P)$ and $U_2(x)$ for $U_2(x_P)$.
+Exactly two of the six values are negative, both equal to $-2$, at
+$P_2$ and $P_6$, whose common weight is $\omega=\frac{3-\ph}{20}
+=\frac{5-\sqrt5}{40}$.
+
+The Lagrange functions reproduce constants, so that $\sum_PL_P\equiv1$,
+i.e.\ $\sum_P\omega_PK_2(P,Q)=1$ for every $Q$; here
+\[
+  \sum_P\omega_PK_2(P,Q_0)
+  =2\cdot\tfrac{2+\ph}{20}(4-2\ph)-2\cdot\tfrac{3-\ph}{20}\cdot2
+   +\tfrac{3-\ph}{10}\cdot2+\tfrac{2+\ph}{10}\cdot2=1 .
+\]
+Splitting $|t|=t+2t^-$ with $t^-=\max(-t,0)$ therefore gives
+\begin{align*}
+  \lambda_2(Q_0)&=\sum_P\omega_P\bigl|K_2(P,Q_0)\bigr|
+   =1+2\!\!\sum_{K_2(P,Q_0)<0}\!\!\omega_P\bigl(-K_2(P,Q_0)\bigr)\\
+  &=1+2\cdot\Bigl(2\cdot\tfrac{5-\sqrt5}{40}\cdot2\Bigr)
+   =1+8\cdot\tfrac{5-\sqrt5}{40}
+   =1+\frac{5-\sqrt5}5,
+\end{align*}
+that is
+\[
+  \lambda_2(Q_0)=2-\frac{\sqrt5}5=2-\frac1{\sqrt5}=\frac{10-\sqrt5}5
+  =1.552786404500042061\ldots
+\]
+With Lemma~\ref{lem:pos}, $\lambda_2(Q_0)-\lambda_2(-Q_0)=1-\frac{\sqrt5}5\ne0$.
+\end{proof}
+
+At $n=2$ the identity fails at every one of the six antipodal node pairs.
+Indeed $\lambda_2\equiv1$ on $\MP_2$, while negating \eqref{eq:MP2} pointwise
+and evaluating \eqref{eq:leb} in $\mathbb Q(\sqrt2,\sqrt5)$ gives
+\begin{equation}\label{eq:table2}
+\begin{gathered}
+  \lambda_2(-P_1)=\lambda_2(-P_5)=\tfrac52-\tfrac{3\sqrt5}{10},\qquad
+  \lambda_2(-P_2)=\lambda_2(-P_6)=2+\tfrac{3\sqrt5}5,\\
+  \lambda_2(-P_3)=2+\tfrac{\sqrt5}5,\qquad
+  \lambda_2(-P_4)=\lambda_2(Q_0)=2-\tfrac{\sqrt5}5 ,
+\end{gathered}
+\end{equation}
+none of which is $1$; the value at $Q_0$ is the smallest of the six.
+
+\section{The parity mechanism, for every even \texorpdfstring{$n$}{n}}
+
+Theorem~\ref{thm:main} is an evaluation. Behind it is a parity count, which
+holds in every even degree.
+
+Index a point of the full tensor grid by $(m,jj)$, meaning
+$\bigl(\cos\frac{m\pi}p,\cos\frac{jj\pi}q\bigr)$ with
+\[
+  p=n+2\ \text{(even)},\qquad q=n+3\ \text{(odd)},\qquad
+  1\le m\le p-1,\quad 1\le jj\le q-1 .
+\]
+In this indexing \eqref{eq:nodes} reads
+\begin{equation}\label{eq:parity}
+  \MP_n=\bigl\{(m,jj)\ :\ jj\ \text{even}\iff m\ \text{odd}\bigr\},
+\end{equation}
+and the antipodal map $(x,y)\mapsto(-x,-y)$ is
+$\sigma:(m,jj)\mapsto(p-m,\,q-jj)$.
+
+\begin{proposition}\label{prop:mech}
+For every even $n\ge2$:
+\begin{enumerate}
+\item $\sigma_x:(m,jj)\mapsto(p-m,jj)$ maps $\MP_n$ onto itself, because $p$ is
+      even and so $m\mapsto p-m$ preserves the parity of $m$. This is
+      \eqref{eq:lem15}.
+\item $jj\mapsto q-jj$ reverses the parity of $jj$, because $q$ is odd. Hence
+      $\sigma(\MP_n)=-\MP_n$ is the set defined by the opposite parity rule to
+      \eqref{eq:parity}: it is \emph{disjoint} from $\MP_n$, and
+      $\MP_n\sqcup(-\MP_n)$ is the whole grid, of cardinality $(n+1)(n+2)$.
+\item $\lambda_n(-x,-y)=\lambda_n(x,-y)$ for all $(x,y)\in\Q$. Hence the
+      identity $\lambda_n(x,y)=\lambda_n(-x,-y)$ on $\Q$ holds if and only if
+      $\lambda_n$ is symmetric about the $x$-axis.
+\item Since $L_P=\omega_PK_n(P,\cdot)$ and $\sum_PL_P\equiv1$, one has
+      $\lambda_n\ge1$ everywhere, with equality at $Q$ if and only if
+      $K_n(P,Q)\ge0$ for every $P\in\MP_n$. As $\lambda_n\equiv1$ on $\MP_n$,
+      the identity $\lambda_n(x,y)=\lambda_n(-x,-y)$ forces $\lambda_n\equiv1$
+      on $-\MP_n$, hence forces the $D\times D$ matrix
+      $\bigl[K_n(P,Q)\bigr]_{P\in\MP_n,\;Q\in-\MP_n}$,
+      $D=\frac{(n+1)(n+2)}2$, to be entrywise nonnegative. A single negative
+      entry refutes it.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) and (2) are the parity statements just made, and the cardinality
+$\#\MP_n=\frac{(n+1)(n+2)}2$ is half the grid, which is what (2) asserts.
+(3) is \eqref{eq:lem15} with $y$ replaced by $-y$. For (4), $\sum_PL_P\equiv1$
+gives $\lambda_n(Q)=\sum_P|L_P(Q)|\ge\bigl|\sum_PL_P(Q)\bigr|=1$, with equality
+exactly when no $L_P(Q)$ is negative, and $\omega_P>0$.
+\end{proof}
+
+We use Proposition~\ref{prop:mech}(4) in one direction only: one negative entry
+of that matrix refutes central symmetry in degree $n$. We neither prove nor
+claim a converse, so the criterion is a necessary condition and not a finite
+reduction of the identity. At $n=2$ Theorem~\ref{thm:main} exhibits a negative
+entry: in the column $Q=Q_0$ of that $6\times6$ matrix two of the six entries
+equal $-2$, and $14$ of its $36$ entries are negative.
+
+Proposition~\ref{prop:mech} holds in every even degree, but the failure of
+central symmetry is proved here only at $n=2$; we do not claim that
+$\lambda_n(x,y)=\lambda_n(-x,-y)$ fails for any $n\ge4$. A reader who takes the
+passage quoted in Section~1 to concern only the large degrees at which the
+Lebesgue function is plotted in \cite{BBD} should treat that reading as
+untouched by Theorem~\ref{thm:main}.
+
+\section{Verification}
+
+Every quantity displayed above lies in $\mathbb Q(\sqrt2,\sqrt5)$ and was
+recomputed independently in exact arithmetic. The accompanying program
+\texttt{verify.py} reads the printed objects --- the node set \eqref{eq:MP2},
+the weights \eqref{eq:weights}, the kernel column of the proof of
+Theorem~\ref{thm:main} and the values \eqref{eq:table2} --- as literal strings,
+and rederives each of them from \eqref{eq:nodes}, \eqref{eq:leb},
+\eqref{eq:wdef} and \eqref{eq:kernel}. It represents an element of
+$\mathbb Q(\sqrt2,\sqrt5)$ by its four rational coordinates in the basis
+$1,\sqrt2,\sqrt5,\sqrt{10}$, so equality is decided coordinatewise; the only
+order decisions, those inside the absolute values of \eqref{eq:leb}, are made by
+bracketing the element between rational bounds obtained from integer square
+roots and refining until the bracket excludes $0$. No floating-point number
+decides anything. The program also confirms the cosine values used in
+Section~2 by the Chebyshev identity $T_5(\cos\frac{k\pi}5)=(-1)^k$ together with
+the ordering, checks unisolvence of $\MP_2$ through
+$\omega_iK_2(P_i,P_j)=\delta_{ij}$ on all $36$ pairs, and verifies
+Proposition~\ref{prop:mech}(1),(2) as integer statements about
+\eqref{eq:parity} for every even $n$ from $2$ to $40$. It uses the Python
+standard library only, prints one line per check, and reports
+\[
+  \texttt{VERDICT: ALL 39 CHECKS PASS}
+\]
+Its transcript accompanies this note. Five of those checks concern quantities
+not claimed here: two further forms of the weights \eqref{eq:weights}, and the
+values $\lambda_2(1,1)$ and $\lambda_2(-1,-1)$ together with their difference,
+which belong to the separate corner-attainment problem of the passage quoted in
+Section~1. The program is not needed in order to redo the computation: the proof
+of Theorem~\ref{thm:main} is five lines of arithmetic in $\ph$, and every input
+it consumes is printed above.
+
+\begin{thebibliography}{9}
+
+\bibitem{BBD}
+T.~Beberok, L.~Bia\l as-Cie\.z, and S.~De~Marchi,
+\emph{On the Lebesgue constant of the Morrow--Patterson points},
+Constr. Approx. \textbf{63} (2026), 31--65.
+\href{https://doi.org/10.1007/s00365-025-09710-x}{doi:10.1007/s00365-025-09710-x};
+\href{https://arxiv.org/abs/2412.14595}{arXiv:2412.14595}.
+
+\bibitem{MP}
+C.~R. Morrow and T.~N.~L. Patterson,
+\emph{Construction of algebraic cubature rules using polynomial ideal theory},
+SIAM J. Numer. Anal. \textbf{15} (1978), 953--976.
+
+\end{thebibliography}
+
+\end{document}

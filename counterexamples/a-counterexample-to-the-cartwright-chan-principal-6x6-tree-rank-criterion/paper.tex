@@ -1,0 +1,253 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to Cartwright-Chan's Principal 6x6 Criterion for Tree Rank}
+}
+
+\emergencystretch=3em
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\trank}{tree\text{-}rank}
+\newcommand{\GM}{G_M}
+
+\title[A counterexample to a principal $6\times6$ criterion for tree rank]
+{A Counterexample to Cartwright--Chan's Principal $6\times6$ Criterion for Tree Rank}
+
+\date{}
+
+\subjclass[2020]{14T15, 15A80, 05C70}
+\keywords{tree rank, tropical Grassmannian, dissimilarity matrix, complete multipartite
+cover, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Cartwright and Chan ask, in the sixth of the seven open questions of \cite{CC}, whether a matrix
+has tree rank $2$ if and only if all of its principal $6\times6$ submatrices have tree rank at
+most $2$. We refute the ``if'' half. The witness is the $7\times7$ zero-one dissimilarity matrix
+$M$ whose one-entries are exactly the six pairs $13,23,45,46,57,67$: its tree rank is $3$, while
+each of its seven principal $6\times6$ submatrices has tree rank exactly $2$. All tree ranks are
+computed from the source paper's own criterion for zero-one matrices.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Cartwright and Chan \cite{CC} study three notions of rank for symmetric matrices. A
+\emph{dissimilarity matrix} of order $n$ is a map from the $2$-element subsets of
+$[n]=\{1,\dots,n\}$ to $\mathbb R$, written as a symmetric matrix with no diagonal entries. A
+\emph{tree matrix} is a point of the tropical Grassmannian $G(2,n)$ of \cite{SS}, i.e.\ a
+dissimilarity matrix satisfying the three-term Pl\"ucker relations. The \emph{tree rank}
+$\trank(M)$ of a dissimilarity matrix $M$ is the least $k$ such that $M$ is the entrywise
+minimum of $k$ tree matrices. The last section of \cite{CC} lists seven open questions; the
+sixth reads, verbatim:
+
+\begin{quote}
+Does a matrix have tree rank $2$ if and only if all its principal $6\times6$ submatrices have
+tree rank at most $2$? Pachter and Sturmfels have made the same conjecture for their definition
+of tree rank \cite[p.~124]{PS}.
+\end{quote}
+
+Both sides are read as ``at most $2$''; with ``exactly $2$'' on the left the statement is
+refuted by any tree matrix, a degeneracy we do not use. Nothing in the sentence bounds the
+order, so it quantifies over all $n$ and all real dissimilarity matrices of order $n$.
+
+The ``only if'' half is a theorem and is not what falls. The three-term Pl\"ucker relations
+involve four indices at a time, so a principal submatrix of a tree matrix is a tree matrix, and
+the entrywise minimum commutes with restriction; hence $\trank$ never increases when a principal
+submatrix is taken. The open half is the local-to-global ``if'', and it is false. The
+Pachter--Sturmfels analogue named in the same sentence is for a different notion of mixtures, and
+nothing below touches it.
+
+\section{The witness}
+
+Throughout, for a $0/1$ dissimilarity matrix $M$ of order $n$ we write $\GM$ for its
+\emph{zero-entry graph} on $[n]$: $\{i,j\}$ is an edge if and only if $M_{ij}=0$. Given
+pairwise disjoint (not necessarily covering) sets $I_1,\dots,I_k\subseteq[n]$ with $k\ge2$, the
+associated \emph{complete multipartite} graph has an edge between every two elements of
+distinct $I_a$; vertices in no part are isolated. Equivalently, a graph is complete
+multipartite when, \emph{among the vertices incident to some edge}, non-adjacency is a
+transitive relation. Write $r(G)$ for the least number of complete multipartite subgraphs of
+$G$ whose union contains every \emph{edge} of $G$ (vertices need not be covered).
+
+Every tree rank below is computed from the following proposition of \cite{CC} on $0/1$ matrices,
+which we do not reprove. The statement is our wording, not a quotation, and it fixes the two
+conventions just given: parts need not cover $[n]$, and a cover is a cover of edges. The values
+$3$ and $2$ obtained below are the values this proposition assigns under those conventions.
+
+\begin{proposition}[\cite{CC}, proposition on $0/1$ matrices]\label{prop:cc}
+Let $M$ be a $0/1$ dissimilarity matrix of order $n$ and let $r=r(\GM)$. If $\GM$ has at most
+one isolated vertex then $\trank(M)=r$; otherwise $\trank(M)=r+1$.
+\end{proposition}
+
+\begin{theorem}\label{thm:main}
+Let $M$ be the $0/1$ dissimilarity matrix of order $7$
+\[
+ M=\begin{pmatrix}
+ *&0&1&0&0&0&0\\
+ 0&*&1&0&0&0&0\\
+ 1&1&*&0&0&0&0\\
+ 0&0&0&*&1&1&0\\
+ 0&0&0&1&*&0&1\\
+ 0&0&0&1&0&*&1\\
+ 0&0&0&0&1&1&*
+ \end{pmatrix},
+\]
+that is, the matrix whose one-entries are exactly the six pairs $13$, $23$, $45$, $46$,
+$57$, $67$. Then
+$\trank(M)=3$, while each of the seven principal $6\times6$ submatrices of $M$ has $\trank$
+exactly $2$. Consequently the ``if'' half of the sentence quoted in \S1 is false, and the
+biconditional is refuted.
+\end{theorem}
+
+The zero-entry graph $G=\GM$ has the fifteen edges
+\[
+ 12,\;14,\;15,\;16,\;17,\;24,\;25,\;26,\;27,\;34,\;35,\;36,\;37,\;47,\;56,
+\]
+the remaining six pairs $13,23,45,46,57,67$ being the non-edges; fifteen and six exhaust the
+$\binom72=21$ pairs. With $A=\{1,2,3\}$ and $B=\{4,5,6,7\}$, $G$ is the complete bipartite
+graph between $A$ and $B$ --- all twelve cross pairs --- together with the single edge $12$
+inside $A$ and the two disjoint edges $47$ and $56$ inside $B$. Its degree sequence is
+$(5,5,4,4,4,4,4)$, so $\delta(G)=4$; in particular neither $G$ nor any $G-i$ has an isolated
+vertex, and Proposition~\ref{prop:cc} reads $\trank=r$ throughout the proof.
+
+\begin{proof}[Proof that $r(G)\le3$]
+Three complete multipartite subgraphs of $G$ cover $E(G)$:
+\[
+\footnotesize
+\begin{array}{l|l|c}
+ \text{member} & \text{parts} & \#\text{edges}\\\hline
+ c_a & \{1,2,3\},\{4,5,6,7\} \;\to\; 14,15,16,17,24,25,26,27,34,35,36,37 & 12\\
+ c_b & \{1\},\{2\},\{4\},\{7\} \;\to\; 12,14,17,24,27,47 & 6\\
+ c_c & \{5\},\{6\} \;\to\; 56 & 1
+\end{array}
+\]
+The three members contribute $12+6+1=19$ edge slots, of which four are duplicated ---
+$c_b$ repeats $14,17,24,27$ from $c_a$ --- so the union has $19-4=15$ edges and is exactly
+$E(G)$.
+\end{proof}
+
+\begin{proof}[Proof that $r(G)\ge3$]
+Suppose $E(G)=c_1\cup c_2$ with $c_1,c_2$ complete multipartite subgraphs of $G$; taking
+$c_2=c_1$ is allowed, so the case $r(G)\le1$ is included in what follows.
+
+\emph{(i) No complete multipartite subgraph $c$ of $G$ contains both $47$ and $56$.} If it did,
+then $4,7$ lie in distinct parts of $c$ and so do $5,6$. Since $45$ is a non-edge of $G$ it is
+a non-edge of $c$, so $4$ and $5$ lie in one part; since $46$ is a non-edge, $4$ and $6$ lie in
+one part. Hence $5$ and $6$ lie in one part, contradicting $56\in c$. This already excludes
+$r(G)\le1$. Relabelling, we may take $47\in c_1$ and $56\in c_2$.
+
+\emph{(ii) The member containing $12$ does not meet vertex~$3$.} Say $12\in c_i$. As $13$ and
+$23$ are non-edges of $G$, they are non-edges of $c_i$; in the triple $(1,3,2)$ the outer pair
+is an edge of $c_i$ while both inner pairs are not, so if $3$ were incident to an edge of
+$c_i$, non-adjacency would fail to be transitive among the vertices of $c_i$ incident to an
+edge, and $c_i$ would not be complete multipartite. Hence $3$ is isolated in $c_i$ and all four
+of $34,35,36,37$ lie in the other member.
+
+\emph{(iii) The case $12\in c_1$.} Then $34,35,36,37\in c_2$, which also contains $56$. Inside
+$c_2$ vertex~$3$ is adjacent to each of $4,5,6,7$, so those four lie in parts other than that
+of $3$. Now $57$ is a non-edge of $G$, so $5,7$ lie in one part of $c_2$, and $67$ is a
+non-edge, so $6,7$ lie in one part. Hence $5,6$ lie in one part, contradicting $56\in c_2$.
+
+\emph{(iv) The case $12\in c_2$.} Then $34,35,36,37\in c_1$, which also contains $47$. As in
+(iii), $4,5,6,7$ lie in parts other than that of $3$; $45$ a non-edge puts $4,5$ in one part,
+and $57$ a non-edge puts $5,7$ in one part, so $4,7$ lie in one part, contradicting $47\in c_1$.
+
+Both cases are impossible, so $r(G)\ge3$. With the upper bound, $r(G)=3$ and, $G$ having no
+isolated vertex, $\trank(M)=3$.
+\end{proof}
+
+\begin{proof}[Proof that every principal $6\times6$ submatrix has $\trank$ exactly $2$]
+Deleting index $i$ leaves the zero-entry graph $G-i$, with $|E(G-1)|=|E(G-2)|=10$ and
+$|E(G-i)|=11$ for $i=3,\dots,7$. For each $i$ the following two complete multipartite subgraphs
+of $G-i$ have union exactly $E(G-i)$; the parts are listed first, and after the arrow the edges
+they contribute.
+\[
+\scriptsize
+\begin{array}{c|l|l}
+ i & \text{first member} & \text{second member}\\\hline
+ 1 & \{4\},\{7\},\{2,3\}\!\to\!47,24,34,27,37 & \{5\},\{6\},\{2,3\}\ \rightarrow\
+     56,25,35,26,36\\
+ 2 & \{4\},\{7\},\{1,3\}\!\to\!47,14,34,17,37 & \{5\},\{6\},\{1,3\}\ \rightarrow\
+     56,15,35,16,36\\
+ 3 & \{4\},\{7\},\{1,2\}\!\to\!47,14,24,17,27 & \{1\},\{2\},\{5\},\{6\}\ \rightarrow\
+     12,15,16,25,26,56\\
+ 4 & \{1,2,3\},\{5,6,7\}\!\to\!15,16,17,25,26,27,35,36,37 &
+     \{1\},\{2\},\{5\},\{6\}\!\to\!12,15,16,25,26,56\\
+ 5 & \{1,2,3\},\{4,6,7\}\!\to\!14,16,17,24,26,27,34,36,37 &
+     \{1\},\{2\},\{4\},\{7\}\!\to\!12,14,17,24,27,47\\
+ 6 & \{1,2,3\},\{4,5,7\}\!\to\!14,15,17,24,25,27,34,35,37 &
+     \{1\},\{2\},\{4\},\{7\}\!\to\!12,14,17,24,27,47\\
+ 7 & \{1,2,3\},\{4,5,6\}\!\to\!14,15,16,24,25,26,34,35,36 &
+     \{1\},\{2\},\{5\},\{6\}\!\to\!12,15,16,25,26,56
+\end{array}
+\]
+A reader checks each row by confirming that every listed pair is an edge of $G$ and that the
+two lists together are exactly the edge list of $G-i$. So $r(G-i)\le2$.
+
+It is not $1$, i.e.\ no $G-i$ is itself complete multipartite. For $i=1,2,3$ the graph $G-i$
+still contains both $47$ and $56$, as well as the non-edges $45$ and $46$, so step~(i) of the
+previous proof --- which used nothing but those four pairs --- applies with $c=G-i$. For
+$i=4,5,6,7$ the graph $G-i$ contains the edge $12$ and the non-edges $13,23$, and vertex~$3$ is
+still incident to an edge there ($35,36,37$; $34,36,37$; $34,35,37$; $34,35,36$ respectively),
+so step~(ii) applies with $c=G-i$ and is contradicted. Hence $r(G-i)=2$, and as $G-i$ has no
+isolated vertex, the corresponding principal
+$6\times6$ submatrix has $\trank$ exactly $2$. Together with $\trank(M)=3$ this proves
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{Verification}
+
+The program \texttt{verify.py} accompanying this note re-derives, in exact integer arithmetic
+and using nothing outside the Python standard library, the claims of \S2 from the matrix as
+printed in Theorem~\ref{thm:main}: it reads $M$ off the display, recomputes $G$ and its
+non-edges, checks the three-element cover and the seven two-element covers member by member,
+and re-proves $r(G)\ge3$ by an exhaustive search over all $209$ nonempty complete multipartite
+subgraphs of $G$, so that the lower bound does not rest on the hand argument alone. The recorded
+run is \texttt{verify.output.txt}; it also contains checks of further facts about the $0/1$ cell
+that this note does not claim. The refutation itself needs none of it: the argument of \S2 is a
+page of finite combinatorics on the printed object.
+
+Proposition~\ref{prop:cc} is taken as given, and no computation checks a transcription: the
+sentence quoted in \S1 rests on the e-print cited below.
+
+\begin{thebibliography}{9}
+
+\bibitem{CC}
+D.~Cartwright and M.~Chan,
+\emph{Three notions of tropical rank for symmetric matrices},
+Combinatorica \textbf{32} (2012), no.~1, 55--84.
+\href{https://doi.org/10.1007/s00493-012-2701-4}{doi:10.1007/s00493-012-2701-4}.
+The open question and the proposition on $0/1$ matrices are taken from the e-print
+\href{https://arxiv.org/abs/0912.1411v1}{arXiv:0912.1411v1}, the only full text we could
+reach; we do not assert the wording of the printed text.
+
+\bibitem{PS}
+L.~Pachter and B.~Sturmfels (eds.),
+\emph{Algebraic Statistics for Computational Biology},
+Cambridge University Press, 2005; the analogous conjecture for their notion of tree rank is on
+p.~124. Not consulted here.
+
+\bibitem{SS}
+D.~Speyer and B.~Sturmfels,
+\emph{The tropical Grassmannian},
+Adv. Geom. \textbf{4} (2004), no.~3, 389--411.
+\href{https://doi.org/10.1515/advg.2004.023}{doi:10.1515/advg.2004.023}.
+
+\end{thebibliography}
+
+\end{document}

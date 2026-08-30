@@ -1,0 +1,84 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  326c6211683fb6d98d0e81a649b9a3953b8b847b2deeb9092b23f60c7f520f62
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- Explicit OF(6,4) and OF(8,4): three of the four even
+exceptions at g = 4 are closed.  Exact integer arithmetic throughout.
+
+=== A. THE OBJECTS PRINTED IN SECTION 2 OF THE PAPER ===
+PASS A1-M6-parses [12 lines, 12 distinct undirected edges, no loop]
+PASS A2-M6-is-a-perfect-matching-of-K_6x4 [24 ends, all distinct, covering all 6*4 = 24 vertices exactly once]
+PASS A3-M6-every-edge-crosses-parts [no edge inside a part, so M6 lies in E(K_{6x4})]
+PASS A4-M6-each-part-shows-every-value-once [each of the 6 parts contributes the values {0,1,2,3}]
+PASS A5-M8-parses [16 lines, 16 distinct undirected edges, no loop]
+PASS A6-M8-is-a-perfect-matching-of-K_8x4 [32 ends, all distinct, covering all 8*4 = 32 vertices exactly once]
+PASS A7-M8-every-edge-crosses-parts [no edge inside a part, so M8 lies in E(K_{8x4})]
+PASS A8-M8-each-part-shows-every-value-once [each of the 8 parts contributes the values {0,1,2,3}]
+
+=== B. THE AMBIENT GRAPHS, THE GROUPS, FREENESS, THE ORBIT COUNTS ===
+PASS B1-ambient-K_6x4 [|V| = 24, |E| = 240 = C(24,2) - 6*C(4,2) = 276 - 36]
+PASS B2-ambient-K_8x4 [|V| = 32, |E| = 448 = C(32,2) - 8*C(4,2) = 496 - 48]
+PASS B3-p=5-G-acts-on-E-and-preserves-the-parts [|G| = 20 = 5*4; every element maps E onto E and each part onto a part]
+PASS B4-p=5-G-acts-FREELY-on-E [no non-identity element of G fixes an edge; 240 edge x 19 element tests]
+PASS B5-p=5-orbit-count-and-orbit-sizes [12 orbits, every orbit of size 20, 12*20 = 240 = |E|]
+PASS B6-p=5-the-printed-invariant-is-a-COMPLETE-orbit-invariant [the 12 invariant classes are exactly the 12 G-orbits, so "one edge per orbit" can be read off the invariants]
+PASS B7-p=5-a-one-factor-has-exactly-one-edge-per-orbit [factor size gn/2 = 12 equals the number of orbits 12, so a base factor MUST be an orbit transversal]
+PASS B3-p=7-G-acts-on-E-and-preserves-the-parts [|G| = 28 = 7*4; every element maps E onto E and each part onto a part]
+PASS B4-p=7-G-acts-FREELY-on-E [no non-identity element of G fixes an edge; 448 edge x 27 element tests]
+PASS B5-p=7-orbit-count-and-orbit-sizes [16 orbits, every orbit of size 28, 16*28 = 448 = |E|]
+PASS B6-p=7-the-printed-invariant-is-a-COMPLETE-orbit-invariant [the 16 invariant classes are exactly the 16 G-orbits, so "one edge per orbit" can be read off the invariants]
+PASS B7-p=7-a-one-factor-has-exactly-one-edge-per-orbit [factor size gn/2 = 16 equals the number of orbits 16, so a base factor MUST be an orbit transversal]
+
+=== C. THE TWO HYPOTHESES OF THE REDUCTION LEMMA ===
+PASS C1-M6-is-an-orbit-transversal [the 12 edges of M6 lie in 12 distinct orbits, one per orbit]
+PASS C2-M6-part-pairs-pairwise-distinct [12 distinct part-pairs out of C(6,2) = 15]
+PASS C3-M6-missed-part-pairs-form-a-perfect-matching-of-K_6 [missed = {inf,0},{1,4},{2,3}; every part in exactly one of them]
+PASS C4-M6-orbit-invariants-in-the-printed-order [pentagon d=1 gives (1,0,2,3), pentagram d=2 gives (0,2,3,1), infinity gives (0,3,2,1) -- each a permutation of Z_4]
+PASS C5-M8-is-an-orbit-transversal [the 16 edges of M8 lie in 16 distinct orbits, one per orbit]
+PASS C6-M8-part-pairs-pairwise-distinct [16 distinct part-pairs out of C(8,2) = 28]
+PASS C7-M8-misses-12-part-pairs-forming-a-3-regular-complement [28 - 16 = 12 missed part-pairs, every part in exactly 3 of them, 12*2 = 8*3]
+PASS C8-M8-orbit-invariants-cover-every-class-once [difference classes d = 1,2,3 and infinity each carry the shifts 0,1,2,3 once]
+
+=== D. THE FACTORIZATIONS BY DIRECT EXPANSION ===
+PASS D1-OF(6,4)-number-of-factors [20 translates = g(n-1) = 4*5, the degree of K_{6x4}]
+PASS D2-OF(6,4)-the-factors-are-pairwise-distinct [the 20 translates are 20 different one-factors]
+PASS D3-OF(6,4)-every-factor-is-a-perfect-matching [all 20 factors are perfect matchings of size 12]
+PASS D4-OF(6,4)-no-factor-has-two-edges-on-one-part-pair [the OF axiom: no parallel edges in any of the 20 factors]
+PASS D5-OF(6,4)-minimum-Hamming-distance-inside-every-factor-is-at-least-3 [each factor read as a constant-weight code has minimum distance 3 >= 3]
+PASS D6-OF(6,4)-the-factors-PARTITION-the-edge-set [20*12 = 240 edges, all distinct, and equal to E(K_{6x4}) as a set]
+PASS D7-OF(6,4)-every-part-pair-is-missed-the-same-number-of-times [each of the 15 part-pairs is missed by exactly 4 of the 20 factors; 20*3 = 60 = 15*4]
+PASS D8-OF(6,4)-part-pair-multiplicity-accounting [every part-pair carries g^2 = 16 edges and 15*16 = 240 = |E| = 20*12]
+PASS D1-OF(8,4)-number-of-factors [28 translates = g(n-1) = 4*7, the degree of K_{8x4}]
+PASS D2-OF(8,4)-the-factors-are-pairwise-distinct [the 28 translates are 28 different one-factors]
+PASS D3-OF(8,4)-every-factor-is-a-perfect-matching [all 28 factors are perfect matchings of size 16]
+PASS D4-OF(8,4)-no-factor-has-two-edges-on-one-part-pair [the OF axiom: no parallel edges in any of the 28 factors]
+PASS D5-OF(8,4)-minimum-Hamming-distance-inside-every-factor-is-at-least-3 [each factor read as a constant-weight code has minimum distance 3 >= 3]
+PASS D6-OF(8,4)-the-factors-PARTITION-the-edge-set [28*16 = 448 edges, all distinct, and equal to E(K_{8x4}) as a set]
+PASS D7-OF(8,4)-every-part-pair-is-missed-the-same-number-of-times [each of the 28 part-pairs is missed by exactly 12 of the 28 factors; 28*12 = 336 = 28*12]
+PASS D8-OF(8,4)-part-pair-multiplicity-accounting [every part-pair carries g^2 = 16 edges and 28*16 = 448 = |E| = 28*16]
+
+=== E. CONTROLS ON THE DECIDER, IN BOTH POLARITIES ===
+PASS E1-negative-control-is-still-a-perfect-matching [the perturbed base factor swaps two edges and is still a perfect matching, so the control isolates the two hypotheses and nothing else]
+PASS E2-negative-control-is-REJECTED [the perturbed factor repeats the part-pair {0,1}, its minimum distance drops to 2, and its 20 translates cover only 200 distinct edges of 240 -- so the decider is not one that says yes unconditionally]
+PASS E3-positive-control-classical-1-factorization-of-K_6 [g = 1, p = 5: the 5 translates of the starter are 5 perfect matchings partitioning the 15 edges of K_6 -- the textbook 1-factorization, produced by the SAME code path]
+PASS E4-proved-negative-perfect-matchings-of-K_4x4-enumerated [exhaustive enumeration finds 368064 perfect matchings of K_{4x4}]
+PASS E5-proved-negative-the-same-count-by-inclusion-exclusion [(1+6x+3x^2)^4 = [1, 24, 228, 1080, 2646, 3240, 2052, 648, 81] and sum_k (-1)^k c_k (15-2k)!! = 368064, against 15!! = 2027025 for K_16 -- a second, independent route to the same integer]
+PASS E6-proved-negative-none-of-them-is-parallel-edge-free [0 of the 368064 matchings has 8 distinct part-pairs, as gn/2 = 8 > C(4,2) = 6 forces; the decider therefore returns NO where the answer is provably NO]
+
+=== F. OF(12,4) BY THE SOURCE'S DOUBLING LEMMA, AND THE g = 4 SPECTRUM ===
+PASS F1-doubling-lemma-hypotheses-hold-at-(n,g)=(6,4) [ng = 24 is even and n = 6 > g = 4, which is all the quoted lemma asks; it yields OF(12,4) from the OF(6,4) exhibited here]
+PASS F2-the-lemma-s-side-conditions-at-g=4 [g = 4 is neither 2 nor 6, and the exhibited pair of order-4 Latin squares is orthogonal: their superimposition realises all 16 ordered pairs]
+PASS F3-the-source-s-printed-exception-ranges-at-g=4 [odd range [g+3, 2g-3] = [7,5] is EMPTY; even range [g+2, 4g-4] = [6,12] gives exactly {6,8,10,12}]
+PASS F4-the-g=4-spectrum-is-completely-covered [every n with 5 <= n <= 4000 is settled by one of the six clauses, so an OF(n,4) exists for every n > 4]
+PASS F5-exactly-{6,8,12}-comes-from-this-paper [the clauses of the source leave exactly {6,8,12}, which this paper supplies; n = 10 is NOT ours -- it is the source's OF(5,4) doubled]
+PASS F6-no-claim-below-the-necessary-condition [nothing is asserted for n <= g = 4; at g = 4 the parity clause ng even is vacuous, so n > 4 is the whole necessary condition]
+
+NOT RE-RUN: the source's doubling lemma itself.  Checks F1-F2 verify its stated hypotheses and side conditions at (n,g) = (6,4); the lemma is QUOTED, not reproved, and NO OF(12,4) is constructed here.  Only OF(6,4) and OF(8,4) are exhibited and verified edge by edge by this program.
+NOT RE-RUN: the clauses labelled "source:" in F4/F5.  They are the target paper's own results (OF(g+1,g) for even g, odd n >= 2g-1, the doubling lemma, and the n = 0 mod 4 proposition) and are taken on trust; F4 checks only that the six clauses TOGETHER (four of the source, two of this paper) leave no n > 4 uncovered, and it checks it over the finite range 5 <= n <= 4000; beyond it the clauses are residue conditions and the coverage argument is the paper's, not the program's.
+NOT RE-RUN: MINIMALITY and UNIQUENESS.  No census of the prescribed-automorphism lane was run here, neither base factor is claimed unique or smallest, and no OF is claimed to be the only one on its parameters.
+NOT RE-RUN: g >= 5, the range n <= g (the source's ODAR objects), and Hamming distances other than 3.  Nothing in this program touches them.
+NOT RE-RUN: the wording, numbering and line offsets quoted from arXiv:2602.16319v1, and the prior-art channels (arXiv API, Crossref, Semantic Scholar, zbMATH) that bound the novelty.  MathSciNet was never consulted and OpenAlex never answered.  This program checks mathematics, not provenance.
+
+VERDICT: ALL 56 CHECKS PASS
+=== program exited with status 0 ===
