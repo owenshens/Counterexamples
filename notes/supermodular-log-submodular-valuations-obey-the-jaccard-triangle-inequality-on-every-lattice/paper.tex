@@ -1,0 +1,298 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Jaccard Triangle Inequality for Supermodular Log-Submodular
+            Valuations on Arbitrary Lattices}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Lat}{L}
+\newcommand{\dJ}{d_{f,J}}
+
+\title[Jaccard triangle inequality on arbitrary lattices]
+{The Jaccard Triangle Inequality for Supermodular Log-Submodular Valuations
+on Arbitrary Lattices}
+
+\date{}
+
+\subjclass[2020]{06B05, 06B99, 54E35}
+\keywords{generalized Jaccard distance, Tanimoto distance, supermodular
+valuation, log-submodular valuation, lattice, triangle inequality,
+non-distributive lattice}
+
+\begin{document}
+
+\begin{abstract}
+Let $\Lat$ be a lattice and $f\colon \Lat\to(0,\infty)$ a valuation. The
+generalized Jaccard distance is
+$\dJ(A,B)=1-f(A\wedge B)/f(A\vee B)$.
+Badica and Badica prove that $\dJ$ satisfies the triangle inequality when $f$
+is strictly positive, monotone, supermodular and log-submodular, provided
+$\Lat$ is relatively complemented and distributive, and ask in their
+Section~7 whether those two structural hypotheses on $\Lat$ can be removed. We
+observe that they can: the triangle inequality holds on an arbitrary lattice,
+with no distributivity, relative complementation, bounds or finiteness assumed.
+The proof applies supermodularity once and log-submodularity once, not to
+$A,B,C$ but to the derived pairs $(A\wedge B,\,B\wedge C)$ and
+$(A\vee B,\,B\vee C)$, and collapses to the inequality
+$(P-p)(Q-q)\ge(b-p)(b-q)$ between five values of $f$. Dropping either
+supermodularity or log-submodularity breaks the conclusion already on the
+four-element Boolean lattice.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $\Lat$ be a lattice, written with $\wedge$ and $\vee$ and ordered by
+$X\le Y\iff X\wedge Y=X$. Call $f\colon\Lat\to(0,\infty)$
+\emph{monotone} if $X\le Y\Rightarrow f(X)\le f(Y)$,
+\emph{supermodular} if
+\begin{equation}\label{eq:super}
+ f(X)+f(Y)\ \le\ f(X\vee Y)+f(X\wedge Y)
+ \qquad(X,Y\in \Lat),
+\end{equation}
+and \emph{log-submodular} if
+\begin{equation}\label{eq:logsub}
+ f(X)\,f(Y)\ \ge\ f(X\vee Y)\,f(X\wedge Y)
+ \qquad(X,Y\in \Lat).
+\end{equation}
+The \emph{generalized Jaccard distance} of $f$ is
+\begin{equation}\label{eq:jac}
+ \dJ(A,B)\ =\ 1-\frac{f(A\wedge B)}{f(A\vee B)},
+ \qquad
+ S(A,B)\ :=\ \frac{f(A\wedge B)}{f(A\vee B)},
+\end{equation}
+so $\dJ=1-S$, and the triangle inequality
+$\dJ(A,C)\le\dJ(A,B)+\dJ(B,C)$ is exactly
+\begin{equation}\label{eq:TI}
+ S(A,B)+S(B,C)\ \le\ 1+S(A,C).
+\end{equation}
+
+In the preprint \cite{BB}, Badica and Badica prove \eqref{eq:TI} for strictly
+positive monotone supermodular log-submodular $f$ on a lattice that is
+relatively complemented \emph{and} distributive (their supermodular
+log-submodular theorem), and separately prove \eqref{eq:TI} for modular $f$ on
+an arbitrary lattice (their modular theorem). Their Section~7, \emph{Discussion
+of Open Theoretical Problems}, lists four open problems; the second of them
+reads verbatim and in full:
+
+\begin{quote}\sloppy
+\textbf{Arbitrary lattices for supermodular valuations:} While we established
+metricity for supermodular and $\log$-submodular valuations, the proof relies
+on the lattice being both relatively complemented and distributive. It is
+still unknown whether the standard generalized Jaccard formula holds up to the
+triangle inequality for these valuations on arbitrary lattices that lack those
+two specific traits.
+\end{quote}
+
+Here ``the standard generalized Jaccard formula'' is \eqref{eq:jac} and
+``these valuations'' is the hypothesis class of their supermodular
+log-submodular theorem, namely strictly positive, monotone, supermodular and
+log-submodular. No conjecture is attached to the bullet, so what follows
+answers it in the affirmative and neither confirms nor refutes a stated guess.
+
+\section{The theorem}
+
+\begin{theorem}\label{thm:main}
+Let $\Lat$ be a lattice, not assumed distributive, relatively complemented,
+bounded or finite, and let $f\colon\Lat\to(0,\infty)$ be monotone,
+supermodular and log-submodular. Then $\dJ$ satisfies the triangle inequality: for all
+$A,B,C\in \Lat$,
+\[
+ \dJ(A,C)\ \le\ \dJ(A,B)+\dJ(B,C).
+\]
+\end{theorem}
+
+Hence the supermodular log-submodular theorem of \cite{BB} holds verbatim with
+the words ``relatively complemented distributive'' deleted, which answers the
+bullet quoted above.
+
+\begin{proof}
+Fix $A,B,C\in \Lat$ and abbreviate the seven values of $f$ involved:
+\[
+ p=f(A\wedge B),\quad P=f(A\vee B),\quad
+ q=f(B\wedge C),\quad Q=f(B\vee C),
+\]
+\[
+ r=f(A\wedge C),\quad R=f(A\vee C),\quad
+ b=f(B).
+\]
+All seven are $>0$. Since $A\wedge B\le B\le A\vee B$ and
+$B\wedge C\le B\le B\vee C$, monotonicity gives
+\begin{equation}\label{eq:mono}
+ 0<p\le b\le P,
+ \qquad
+ 0<q\le b\le Q .
+\end{equation}
+By \eqref{eq:TI} it suffices to prove $p/P+q/Q\le 1+r/R$.
+
+\smallskip
+\noindent\textbf{Step 1 (supermodularity, on the pair of meets).}
+Put $X=A\wedge B$ and $Y=B\wedge C$. Both lie below $B$, so $X\vee Y\le B$;
+and $X\wedge Y=A\wedge B\wedge C\le A\wedge C$. Applying \eqref{eq:super} to
+this pair and then monotonicity twice,
+\[
+ p+q\ =\ f(X)+f(Y)\ \le\ f(X\vee Y)+f(X\wedge Y)\ \le\ b+r,
+\]
+that is
+\begin{equation}\label{eq:lem1}
+ r\ \ge\ p+q-b .
+\end{equation}
+
+\smallskip
+\noindent\textbf{Step 2 (log-submodularity, on the pair of joins).}
+Put $X=A\vee B$ and $Y=B\vee C$. Both lie above $B$, so $X\wedge Y\ge B$; and
+$X\vee Y=A\vee B\vee C\ge A\vee C$. Applying \eqref{eq:logsub} to this pair
+and then monotonicity twice,
+\[
+ PQ\ =\ f(X)f(Y)\ \ge\ f(X\vee Y)\,f(X\wedge Y)\ \ge\ R\,b,
+\]
+that is
+\begin{equation}\label{eq:lem2}
+ R\ \le\ \frac{PQ}{b}.
+\end{equation}
+
+\smallskip
+\noindent\textbf{Step 3 (a lower bound for $S(A,C)$).}
+We claim $r/R\ \ge\ b(p+q-b)/(PQ)$. If $p+q-b\le 0$ the right-hand side is
+$\le0<r/R$. If $p+q-b>0$ then $r\ge p+q-b>0$ by \eqref{eq:lem1} and
+$0<R\le PQ/b$ by \eqref{eq:lem2}, so
+$r/R\ge (p+q-b)\,b/(PQ)$. In either case it suffices to prove
+\begin{equation}\label{eq:suff}
+ \frac{p}{P}+\frac{q}{Q}\ \le\ 1+\frac{b\,(p+q-b)}{PQ}.
+\end{equation}
+
+\smallskip
+\noindent\textbf{Step 4 (clearing denominators).}
+Multiplying \eqref{eq:suff} by $PQ>0$ turns it into
+$pQ+qP\le PQ+bp+bq-b^2$, and
+\[
+ \bigl(pQ+qP\bigr)-\bigl(PQ+bp+bq-b^{2}\bigr)
+ \ =\ -\Bigl[(P-p)(Q-q)-(b-p)(b-q)\Bigr]
+\]
+identically in $p,P,q,Q,b$ --- both sides expand to
+$pQ+Pq-PQ-bp-bq+b^{2}$. So \eqref{eq:suff} is precisely
+\begin{equation}\label{eq:prod}
+ (P-p)(Q-q)\ \ge\ (b-p)(b-q).
+\end{equation}
+
+\smallskip
+\noindent\textbf{Step 5 (a termwise certificate for \eqref{eq:prod}).}
+Identically in $p,P,q,Q,b$,
+\begin{equation}\label{eq:cert}
+ (P-p)(Q-q)-(b-p)(b-q)\ =\ (P-b)(Q-q)+(b-p)(Q-b).
+\end{equation}
+By \eqref{eq:mono} each of $P-b$, $Q-q$, $b-p$, $Q-b$ is $\ge0$, so the
+right-hand side of \eqref{eq:cert} is a sum of two products of non-negative
+numbers and is $\ge0$. This proves \eqref{eq:prod}, hence \eqref{eq:suff},
+hence \eqref{eq:TI}.
+\end{proof}
+
+\begin{remark}\sloppy
+The proof uses only the four inequalities \eqref{eq:mono} and one application
+each of \eqref{eq:super} and \eqref{eq:logsub}, to the derived pairs
+$(A\wedge B,\,B\wedge C)$ and $(A\vee B,\,B\vee C)$ rather than to $(A,B)$,
+$(B,C)$ or $(A,C)$. The proof in \cite{BB} instead constructs relative
+complements inside the interval $[A\wedge B\wedge C,\ A\vee B\vee C]$ and then
+applies distributivity, which is where its two structural hypotheses on $\Lat$
+enter.
+\end{remark}
+
+\begin{remark}\label{rem:pseudo}
+Theorem~\ref{thm:main} is about the triangle inequality, which is what the
+bullet asks about. It does not upgrade $\dJ$ to a metric: $\dJ(X,Y)=0$ exactly
+when $f$ is constant on $[X\wedge Y,\,X\vee Y]$, so $\dJ$ is a pseudometric in
+general and a metric exactly when $f$ is strictly monotone. The same caveat
+attaches to the theorems of \cite{BB}.
+\end{remark}
+
+\section{Both hypotheses on $f$ are needed}
+
+Write $B_2$ for the four-element Boolean lattice, given by its covers:
+\begin{equation}\label{eq:B2}
+ B_2:\quad 0<x,\ \ 0<y,\ \ x<1,\ \ y<1 .
+\end{equation}
+Write a valuation on $B_2$ as the tuple $\bigl(f(0),f(x),f(y),f(1)\bigr)$, and
+recall $\Delta(A,B,C):=S(A,B)+S(B,C)-1-S(A,C)$, so that $\Delta>0$ is a
+violation of \eqref{eq:TI}. Each row below is an exact rational computation on
+the object printed in \eqref{eq:B2}.
+\begin{center}
+\begin{tabular}{lcccl}
+$f$ & lost & $(A,B,C)$ & $\Delta$ & step that breaks\\
+\hline
+$(2,3,3,20)$ & \eqref{eq:logsub} & $(x,0,y)$ & $\tfrac{7}{30}$ & 2:
+ $Rb=40>9=PQ$\\
+$(1,3,3,4)$  & \eqref{eq:super}  & $(x,1,y)$ & $\tfrac14$ & 1:
+ $p+q-b=2>1=r$
+\end{tabular}
+\end{center}
+The first valuation is monotone and supermodular but not log-submodular
+($f(1)f(0)=40>9=f(x)f(y)$); the second is monotone and log-submodular but not
+supermodular ($f(1)+f(0)=5<6=f(x)+f(y)$). So neither supermodularity nor
+log-submodularity may be dropped from Theorem~\ref{thm:main}, and neither is
+implied by monotonicity; and since $B_2$ is distributive and relatively
+complemented, this bounds the hypotheses on $f$ and not the hypotheses on
+$\Lat$ that Theorem~\ref{thm:main} removes.
+
+Theorem~\ref{thm:main} is a sufficiency statement. Section~6 of \cite{BB}
+proves, on an arbitrary lattice, that monotonicity together with
+supermodularity of $f$ \emph{and} of $1/f$ is \emph{necessary} for
+\eqref{eq:TI}; that is a different hypothesis class, so
+Theorem~\ref{thm:main} is neither the converse of it nor half of a
+characterisation. The remaining open problems of Section~7 of \cite{BB} are
+untouched here.
+
+\section{Verification}\label{sec:verify}
+
+The proof of Theorem~\ref{thm:main} is a hand argument and needs no machine.
+The accompanying program \texttt{verify.py} (Python 3.9 or later, standard
+library only; exact arithmetic throughout, no floating point) re-derives the
+numbers stated here: it verifies the two polynomial identities of Steps~4
+and~5 as exact identities in $\mathbb{Z}[p,P,q,Q,b]$ by sparse expansion
+rather than by sampling; it confirms the four order facts used in Steps~1
+and~2 at every ordered triple of every lattice of order at most six; it checks
+that the covers \eqref{eq:B2} define a lattice; and it reproduces the two
+violation margins $7/30$ and $1/4$ tabulated above together with the step each
+breaks. It prints one line per check and closes with
+\texttt{VERDICT: ALL 27 CHECKS PASS}, exiting $0$ only if all pass.
+
+Most of the 27 checks bear no load on Theorem~\ref{thm:main}: finite sweeps
+over small lattices, an enumerator control and further example valuations are
+recorded but are not used above, and no program can quantify over the class the
+theorem covers. The recorded output is also not labelled for the present text:
+it letters its own sections A--G, calls the inequalities \eqref{eq:lem1}
+$r\ge p+q-b$ and \eqref{eq:lem2} $R\le PQ/b$ of Steps~1 and~2 \emph{Lemma 1}
+and \emph{Lemma 2}, and describes three lattices, three totals and a valuation
+$g$ as printed in Sections~3 and~4 of the paper. None of those cross-references
+holds here: the only objects this paper prints are the lattice \eqref{eq:B2}
+and the two valuations tabulated in Section~3, it states no totals, and the
+valuation $g$ appears only in the program. The theorems of \cite{BB} are quoted
+there, not re-proved.
+
+\begin{thebibliography}{1}
+
+\bibitem{BB}
+C.~Badica and A.~Badica,
+\emph{On the triangle inequality for the Jaccard distance in arbitrary
+lattices},
+arXiv:2608.18194v1, 2026.
+\href{https://arxiv.org/abs/2608.18194}{arXiv:2608.18194}.
+The passages quoted above are from the v1 e-print, the only version available
+at the time of writing.
+
+\end{thebibliography}
+
+\end{document}

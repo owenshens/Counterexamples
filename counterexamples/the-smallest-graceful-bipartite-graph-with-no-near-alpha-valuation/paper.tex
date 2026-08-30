@@ -1,0 +1,386 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Disconnected Graceful Bipartite Graph with No Near alpha-Valuation}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[A disconnected graceful graph with no near $\alpha$-valuation]
+{A Disconnected Graceful Bipartite Graph with No Near $\alpha$-Valuation}
+
+\date{}
+
+\subjclass[2020]{05C78, 05C51}
+\keywords{graceful labelling, $\beta$-valuation, near $\alpha$-valuation, gracious labelling,
+bipartite graph, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Angus, Huczynska and McCartney ask, in the first Further Work item of
+arXiv:2603.05662: does every bipartite graph that possesses a
+$\beta$-valuation have a near $\alpha$-valuation? We answer no, with a
+\emph{disconnected} graph. The graph
+$G=C_4\cup P_3$, on $7$ vertices and $6$ edges, is bipartite and graceful, and
+none of its $32$ $\beta$-valuations is a near $\alpha$-valuation; the proof is a
+table of $15$ cases over the labels $\{0,1,\ldots,6\}$ and uses no computer.
+Up to isomorphism $G$ is the only counterexample with at most $6$ edges, and $6$
+is the least possible number of edges. Since every counterexample found here is
+disconnected, the question for connected bipartite graphs is not
+settled by this note: each of the $1052$ connected bipartite graceful
+isomorphism classes with at most $10$ edges does have a near
+$\alpha$-valuation.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $G$ be a finite simple graph with $m$ edges, no loops and no isolated
+vertices. Following Angus, Huczynska and McCartney \cite{AHM}, a
+\emph{$\beta$-valuation} of $G$ is an injective map
+\begin{gather*}
+ b\colon V(G)\longrightarrow\{0,1,\ldots,m\}
+ \qquad\text{such that}\\
+ \bigl\{\,|b(u)-b(v)| : uv\in E(G)\,\bigr\}=\{1,2,\ldots,m\},
+\end{gather*}
+also called a \emph{graceful labelling}; a graph admitting one is
+\emph{graceful}. A $\beta$-valuation $b$ is a \emph{near $\alpha$-valuation} if
+$V(G)$ admits a partition into $V_{\mathrm{small}}$ and $V_{\mathrm{large}}$
+such that every vertex of $V_{\mathrm{small}}$ carries a label smaller than all
+of its neighbours' and every vertex of $V_{\mathrm{large}}$ a label larger than
+all of its neighbours'; equivalently, in the authors' own gloss, every vertex is
+a source or a sink. It is an \emph{$\alpha$-valuation} if some integer $x$
+satisfies $\min\{b(u),b(v)\}\le x<\max\{b(u),b(v)\}$ for every edge $uv$. Only
+injectivity is required of $b$, so $|V(G)|\le m+1$; a graph with $|V(G)|=m+1$ has
+each of its $\beta$-valuations a bijection onto $\{0,1,\ldots,m\}$.
+
+The predicate is not new: it is the near $\alpha$-labeling of El-Zanati, Kenig
+and Vanden Eynden \cite{EKV}, the same condition as the \emph{gracious}
+labelling of Grannell, Griggs and Holroyd \cite{GGH}, and the
+\emph{$\beta^{+}$-labeling} of \cite[A342225]{OEIS}. The question we answer is
+the first bullet of the ``Further Work'' list of \cite{AHM}. It reads, in full:
+
+\begin{quote}
+Any graph which allows a near $\alpha$-valuation must be bipartite. Does every
+bipartite graph that possesses a $\beta$-valuation have a near
+$\alpha$-valuation? We have examples of $\beta$-valuations on bipartite graphs
+which are not near $\alpha$-valuations, but for each there exists a different
+vertex labelling which is a near $\alpha$-valuation.
+\end{quote}
+
+The third sentence is part of the question and fixes its level: what is asked is
+not whether a given $\beta$-valuation is a near $\alpha$-valuation --- the
+authors already have such examples --- but whether \emph{some} $\beta$-valuation
+of the graph is one. That is the statement refuted below.
+
+\medskip\noindent\textbf{The ambient convention.}
+The standing convention of \cite{AHM} is that ``our graphs are finite and simple
+with no loops or isolated vertices''. Nothing is assumed connected --- the word
+\emph{connected} occurs there only inside the definition of a sun graph --- and
+no bipartition is fixed in advance. Disconnected graphs are in scope: the
+illustrative non-example given immediately after the definition of a
+$\beta$-valuation is $P_1\cup P_1$, and $\beta$-valuations of the disconnected
+graphs $2C_{4k}$ and $2C_{4k+2}$ are computed there. This matters, because every
+counterexample below is disconnected; see Section~\ref{sec:open}.
+
+\section{The counterexample}\label{sec:main}
+
+Let
+\begin{gather*}
+ G=C_4\cup P_3,
+ \qquad
+ V(G)=\{v_1,v_2,\ldots,v_7\},\\
+ E(G)=\{v_1v_2,\;v_2v_3,\;v_3v_4,\;v_4v_1\}
+      \cup\{v_5v_6,\;v_6v_7\}:
+\end{gather*}
+a $4$-cycle together with a disjoint path on three vertices. Then
+$|V(G)|=7$, $m=|E(G)|=6=|V(G)|-1$, $G$ is simple with no loop and no isolated
+vertex, and $G$ is bipartite with parts $\{v_1,v_3,v_5,v_7\}$ and
+$\{v_2,v_4,v_6\}$. It is disconnected. Since $|V(G)|=m+1$, every
+$\beta$-valuation of $G$ is a bijection onto $\{0,1,\ldots,6\}$.
+
+\begin{theorem}\label{thm:main}
+$G=C_4\cup P_3$ is a bipartite graph that possesses a $\beta$-valuation and has
+no near $\alpha$-valuation. Consequently the answer to the question quoted above
+is negative.
+\end{theorem}
+
+\emph{$G$ is graceful.} Put
+\begin{gather*}
+ b(v_1)=0,\quad b(v_2)=6,\quad b(v_3)=2,\quad b(v_4)=5,\\
+ b(v_5)=1,\quad b(v_6)=3,\quad b(v_7)=4,
+\end{gather*}
+that is, the cycle $0-6-2-5-0$ and the path $1-3-4$. The six edge labels are
+$6,4,3,5$ and $2,1$, so they are exactly $\{1,2,3,4,5,6\}$. (This half is not
+new: $C_m\cup P_n$ is graceful if and only if $m+n\ge6$, recorded in Gallian's
+survey \cite[Table~1]{Gal} with attribution to Traetta \cite{Tra}, and with
+$P_n$ on $n$ vertices our graph has $m+n=7$. The labelling above makes the note
+self-contained.) Note that $b$ itself is not a near $\alpha$-valuation: $v_6$
+carries $3$ and its neighbours carry $1$ and $4$. That is exactly the phenomenon
+\cite{AHM} reports; the content of Theorem~\ref{thm:main} is that no relabelling
+repairs it.
+
+\emph{No $\beta$-valuation of $G$ is a near $\alpha$-valuation.} We use one
+observation and then a table.
+
+\begin{lemma}\label{lem:extremal}
+Let $H$ have no isolated vertex and let $b$ be an injective labelling of
+$V(H)$. Then a partition of $V(H)$ into $V_{\mathrm{small}}$ and
+$V_{\mathrm{large}}$ as in the definition exists if and only if every vertex is
+a local extremum, that is, carries a label strictly below all of its
+neighbours' or strictly above all of them.
+\end{lemma}
+
+\begin{proof}
+If the partition exists, each vertex of $V_{\mathrm{small}}$ is a local minimum
+and each vertex of $V_{\mathrm{large}}$ a local maximum. Conversely, let
+$V_{\mathrm{small}}$ be the set of local minima and $V_{\mathrm{large}}$ its
+complement, which consists of local maxima. The two sets are disjoint by
+construction, and a vertex cannot be both a local minimum and a local maximum
+because it has a neighbour.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $b$ be a $\beta$-valuation of $G$ that is a near $\alpha$-valuation, so by
+Lemma~\ref{lem:extremal} every vertex is a local extremum. Recall that $b$ is a
+bijection onto $\{0,\ldots,6\}$.
+
+\emph{Step 1: the cycle.} On $C_4$ the local minima form a set meeting every
+edge in exactly one endpoint, so they are one of the two bipartition classes
+$\{v_1,v_3\}$, $\{v_2,v_4\}$; the other class consists of local maxima. Hence
+the four labels on the cycle split as a low pair $\{p,q\}$ and a high pair
+$\{r,s\}$ with
+\[
+ p<q<r<s ,
+\]
+and, since $C_4=K_{2,2}$, the four cycle edge labels are the four differences
+\[
+ D=\{\,s-p,\; r-p,\; s-q,\; r-q\,\}.
+\]
+They must be pairwise distinct. Note for later that $s-p$ is the largest and
+$r-q$ the smallest of the four, and that
+$(s-p)+(r-q)=(r-p)+(s-q)$.
+
+\emph{Step 2: the two labels $0$ and $6$ are adjacent.} The difference $6$ must
+occur as an edge label, and the only pair of labels in $\{0,\ldots,6\}$ at
+distance $6$ is $\{0,6\}$.
+
+\emph{Step 3: fifteen cases.} The vertex labelled $0$ can only be a local
+minimum and the vertex labelled $6$ only a local maximum. By Step~2 they lie in
+the same component.
+
+If both lie on the cycle, then $p=0$ and $s=6$, so the cycle carries the labels
+$\{0,q,r,6\}$ with $0<q<r<6$: ten possibilities. If both lie on the path, the
+cycle carries a $4$-element subset $L$ of $\{1,2,3,4,5\}$, and the only splitting
+of $L$ into a low pair below a high pair is (two smallest $\mid$ two largest):
+five possibilities.
+
+In each of these fifteen cases the four cycle labels, hence $D$, are determined,
+and so are the three labels left for the path $x-y-z$ and the two edge labels
+$\{1,\ldots,6\}\setminus D$ that the path must realise. The path contributes the
+edge labels $|y-x|$ and $|y-z|$, and its centre $y$ must be a local extremum,
+i.e.\ $y$ must not lie strictly between $x$ and $z$. Table~\ref{tab:cases} lists
+all fifteen cases; every one of them is impossible, for one of three reasons:
+
+\begin{itemize}
+\item[\textbf{R}] two of the four cycle edge labels coincide, so $b$ is not a
+      $\beta$-valuation;
+\item[\textbf{N}] no choice of centre among the three remaining labels realises
+      the required pair of path edge labels;
+\item[\textbf{X}] exactly one choice of centre realises it, and that centre lies
+      strictly between its two neighbours, so it is not a local extremum.
+\end{itemize}
+
+Five cases fall to \textbf{R}, eight to \textbf{N} and two to \textbf{X}. No
+case survives, so no such $b$ exists.
+\end{proof}
+
+\begin{table}[htbp]
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{clllll}
+\hline
+ & cycle labels & cycle edge labels $D$ & path labels & path needs & \\
+\hline
+A & $\{0,1,2,6\}$ & $1,2,5,6$ & $\{3,4,5\}$ & $\{3,4\}$ & \textbf{N}\\
+A & $\{0,1,3,6\}$ & $2,3,5,6$ & $\{2,4,5\}$ & $\{1,4\}$ & \textbf{N}\\
+A & $\{0,1,4,6\}$ & $3,4,5,6$ & $\{2,3,5\}$ & $\{1,2\}$ & \textbf{X}\\
+A & $\{0,1,5,6\}$ & $4,5,5,6$ & $\{2,3,4\}$ & --- & \textbf{R}\\
+A & $\{0,2,3,6\}$ & $1,3,4,6$ & $\{1,4,5\}$ & $\{2,5\}$ & \textbf{N}\\
+A & $\{0,2,4,6\}$ & $2,4,4,6$ & $\{1,3,5\}$ & --- & \textbf{R}\\
+A & $\{0,2,5,6\}$ & $3,4,5,6$ & $\{1,3,4\}$ & $\{1,2\}$ & \textbf{X}\\
+A & $\{0,3,4,6\}$ & $1,3,4,6$ & $\{1,2,5\}$ & $\{2,5\}$ & \textbf{N}\\
+A & $\{0,3,5,6\}$ & $2,3,5,6$ & $\{1,2,4\}$ & $\{1,4\}$ & \textbf{N}\\
+A & $\{0,4,5,6\}$ & $1,2,5,6$ & $\{1,2,3\}$ & $\{3,4\}$ & \textbf{N}\\
+B & $\{1,2,3,4\}$ & $1,2,2,3$ & $\{0,5,6\}$ & --- & \textbf{R}\\
+B & $\{1,2,3,5\}$ & $1,2,3,4$ & $\{0,4,6\}$ & $\{5,6\}$ & \textbf{N}\\
+B & $\{1,2,4,5\}$ & $2,3,3,4$ & $\{0,3,6\}$ & --- & \textbf{R}\\
+B & $\{1,3,4,5\}$ & $1,2,3,4$ & $\{0,2,6\}$ & $\{5,6\}$ & \textbf{N}\\
+B & $\{2,3,4,5\}$ & $1,2,2,3$ & $\{0,1,6\}$ & --- & \textbf{R}\\
+\hline
+\end{tabular}
+\medskip
+\caption{The fifteen cases in the proof of Theorem~\ref{thm:main}. Case A is
+``$0$ and $6$ on the cycle'', case B is ``$0$ and $6$ on the path''. The two
+\textbf{X} rows are the only ones where the required path edge labels can be
+realised at all, and in both of them the forced centre is $3$, lying strictly
+between $2$ and $5$, respectively between $1$ and $4$.}
+\label{tab:cases}
+\end{table}
+
+\section{Edge-minimality, and the census to ten edges}
+\label{sec:census}
+
+Because a graceful graph with $m$ edges has at most $m+1$ vertices, the class of
+graphs to be searched at each $m$ is finite and can be reached by enumerating
+labellings rather than graphs: a graceful labelled edge set with $m$ edges is
+exactly a choice, for each difference $d\in\{1,\ldots,m\}$, of one of the
+$m-d+1$ pairs $\{a,a+d\}\subseteq\{0,\ldots,m\}$, so there are precisely $m!$ of
+them. Classifying these up to isomorphism and recording, for each class, whether
+any of its graceful labellings is a near $\alpha$-valuation yields
+Table~\ref{tab:census}.
+
+\begin{theorem}\label{thm:minimal}
+Up to isomorphism, $C_4\cup P_3$ is the only graph with at most $6$ edges that
+is bipartite, graceful and has no near $\alpha$-valuation. In particular no
+counterexample to the question of \cite{AHM} has fewer than $6$ edges: each of
+the $15$ bipartite graceful isomorphism classes with at most $5$ edges has a
+near $\alpha$-valuation, and $18$ have exactly $6$ edges, of which exactly one
+fails.
+\end{theorem}
+
+The qualifier ``up to isomorphism'' is needed: $C_4\cup P_3$ alone accounts for
+$32$ graceful labellings, in two orbits under its automorphism group of order
+$16$.
+
+\begin{theorem}\label{thm:classification}
+Up to isomorphism, $C_4\cup P_3\ (m=6)$ and $C_6\cup K_{1,4}\ (m=10)$ are the
+only bipartite graceful graphs with at most $10$ edges having no near
+$\alpha$-valuation. Both are disconnected, and each has exactly $m+1$ vertices.
+\end{theorem}
+
+For $C_6\cup K_{1,4}$, take the labelled cycle $0-9-5-3-2-10-0$ together with
+the star of centre $1$ and leaves $4,6,7,8$. The cycle edge labels are
+$9,4,2,1,8,10$ and the star edge labels are $3,5,6,7$, together
+$\{1,\ldots,10\}$; so this graph too is graceful. That none of its
+$576$ $\beta$-valuations is a near $\alpha$-valuation is part of the census, and
+is not proved by hand here.
+
+\begin{table}[htbp]
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{rrrr@{\quad}rrrr}
+\hline
+$m$ & classes & bipart. & no near $\alpha$ &
+$m$ & classes & bipart. & no near $\alpha$\\
+\hline
+ 1 &     1 &   1 & 0 &  6 &    37 &   18 & 1\\
+ 2 &     1 &   1 & 0 &  7 &   112 &   44 & 0\\
+ 3 &     3 &   2 & 0 &  8 &   340 &  119 & 0\\
+ 4 &     5 &   4 & 0 &  9 &  1078 &  323 & 0\\
+ 5 &    12 &   7 & 0 & 10 &  3620 &  919 & 1\\
+\hline
+\end{tabular}
+\medskip
+\caption{Isomorphism classes of graceful graphs with $m$ edges and no isolated
+vertex; how many are bipartite; and how many of those have no near
+$\alpha$-valuation. The accompanying program re-derives every row; of the $1438$
+bipartite classes listed, $1052$ are connected and $386$ are disconnected.}
+\label{tab:census}
+\end{table}
+
+\section{What is not settled}\label{sec:open}
+
+\noindent\textbf{The connected question.} Both counterexamples of
+Theorem~\ref{thm:classification} are disconnected, and the refutation therefore
+depends on the convention of \cite{AHM} quoted in Section~1, under which graphs
+are not assumed connected. The strengthened question
+\begin{quote}
+does every \emph{connected} bipartite graph possessing a
+$\beta$-valuation have a near $\alpha$-valuation?
+\end{quote}
+is untouched by this note. What the census does say is that the answer is yes
+for all $1052$ connected bipartite graceful isomorphism classes with at most
+$10$ edges. Gallian frames the equivalent notion of a \emph{gracious} labelling
+explicitly for connected bipartite graphs, with the partite sets fixed in advance
+\cite[\S3.1]{Gal}; under that reading of ``bipartite graph'' this note is a scope
+correction together with a small-case verification. The tree sub-case is a
+conjecture of El-Zanati, Kenig and Vanden Eynden \cite{EKV}, restated for
+gracious labellings by Grannell, Griggs and Holroyd \cite{GGH} and verified by
+them to $20$ vertices; our census confirms it for every graceful tree with at
+most $10$ edges.
+
+\medskip\noindent\textbf{Eleven edges and beyond are unswept.} Nothing here
+bounds the number of counterexamples with $m\ge11$.
+
+\medskip\noindent\textbf{Vertex-minimality is not claimed.} Theorem~\ref{thm:minimal}
+minimises the number of edges. Graphs on at most $6$ vertices with more than $6$
+edges were not examined, so nothing here asserts that $7$ is the least possible
+number of vertices.
+
+\section{Verification}\label{sec:verif}
+
+The reader needs nothing but Section~\ref{sec:main} to check
+Theorem~\ref{thm:main}: six differences by eye for the graceful labelling, and
+fifteen rows of Table~\ref{tab:cases}. A program \texttt{verify.py} accompanies
+this note for the rest. It is Python 3.9+ using the standard library only, with
+no external data file and no floating-point arithmetic, and it reads the objects
+printed above. It re-derives: the structural claims about $G$; the exhibited
+labelling; the equivalence of Lemma~\ref{lem:extremal}, over all $5040$
+labellings of $G$; all fifteen rows of Table~\ref{tab:cases} including their
+reason codes; independently, by brute force over all $5040$ bijections, that $G$
+has exactly $32$ $\beta$-valuations of which none is near $\alpha$ and none is
+$\alpha$; all $576$ $\beta$-valuations of $C_6\cup K_{1,4}$ and the absence of a
+near $\alpha$-valuation among them; every row of Table~\ref{tab:census},
+together with the identification of the $6$-edge and $10$-edge
+counterexamples; and a list of named controls of both polarities.
+
+What that program does \emph{not} cover is stated in its own output: any
+$m\ge11$; the connected question; and vertex-minimality.
+
+\begin{thebibliography}{9}
+
+\bibitem{AHM}
+G.~Angus, S.~Huczynska, and S.~McCartney,
+\emph{Graph labellings and external difference families},
+\href{https://arxiv.org/abs/2603.05662}{arXiv:2603.05662}.
+
+\bibitem{EKV}
+S.~I. El-Zanati, M.~J. Kenig, and C.~Vanden Eynden,
+\emph{Near $\alpha$-labelings of bipartite graphs},
+Australas. J. Combin. \textbf{21} (2000), 275--285.
+
+\bibitem{Gal}
+J.~A. Gallian,
+\emph{A dynamic survey of graph labeling},
+Electron. J. Combin., Dynamic Survey DS6 (2025).
+
+\bibitem{GGH}
+M.~J. Grannell, T.~S. Griggs, and F.~C. Holroyd,
+\emph{Modular gracious labellings of trees},
+Discrete Math. \textbf{231} (2001), no.~1--3, 199--219.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+entry A342225,
+\href{https://oeis.org}{https://oeis.org}.
+
+\bibitem{Tra}
+T.~Traetta,
+\emph{A complete solution to the two-table Oberwolfach problems},
+J. Combin. Theory Ser. A \textbf{120} (2013), no.~5, 984--997.
+
+\end{thebibliography}
+
+\end{document}

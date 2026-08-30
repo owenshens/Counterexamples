@@ -1,0 +1,390 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Ta's Determinacy Problem for Good Involutions of Conjugation Quandles
+            Fails at Order 32, and, Granting the Published Group Counts,
+            at No Smaller Order}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{problem}{Problem 11.6 of Ta}
+
+\newcommand{\Conj}{\operatorname{Conj}}
+\newcommand{\Good}{\operatorname{Good}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Zc}{Z}
+\newcommand{\Hol}{\operatorname{Hol}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Dic}{\operatorname{Dic}}
+
+\title[Failure at order $32$; least, granting the published counts]
+{Ta's Determinacy Problem for Good Involutions of Conjugation Quandles
+ Fails at Order $32$, and, Granting the Published Group Counts,
+ at No Smaller Order}
+
+\date{}
+
+\subjclass[2020]{57K12, 20N02, 20D60}
+\keywords{quandle, rack, good involution, symmetric quandle, conjugation quandle,
+conjugacy class, class number, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For a finite group $G$ let $\Conj G$ be $G$ with the quandle operation
+$s_x(y)=xyx^{-1}$, let $k(G)$ be the class number, and let $\Good(\Conj G)$ be the set of
+good involutions of $\Conj G$ in the sense of Kamada. Problem~11.6 of Ta
+\cite{Ta} asks whether $\lvert\Good(\Conj G)\rvert$ is determined by the triple
+$\bigl(n,\lvert \Zc(G)\rvert,k(G)\bigr)$, $n=\lvert G\rvert$. It is not. The dihedral
+group $D$ of order $32$ and the holomorph $\Hol(C_8)$ both have invariants
+$(32,2,11)$, yet
+\[
+ \lvert\Good(\Conj D)\rvert=128,
+ \qquad
+ \lvert\Good(\Conj \Hol(C_8))\rvert=1024 .
+\]
+Granting the published isomorphism-type counts of \cite{A000001} for the orders $n\le 31$ ---
+external data that the accompanying program does not and cannot verify --- the order $32$ is
+the least at which this happens: for every nonabelian group of order at most $31$ the triple
+does determine the count.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let $G$ be a finite group. Its \emph{conjugation quandle} $\Conj G$ is the set $G$ equipped
+with $s_x(y)=xyx^{-1}$. Following Kamada \cite{Kamada}, a \emph{good involution} of a rack
+$(X,s)$ is an involution $\rho\in \mathfrak S_X$ (that is, $\rho\circ\rho=\mathrm{id}_X$)
+such that
+\begin{equation}\label{eq:def}
+ \rho\circ s_x=s_x\circ\rho
+ \quad\text{and}\quad
+ s_{\rho(x)}=s_x^{-1}
+ \qquad\text{for all }x\in X .
+\end{equation}
+Write $\Good(X,s)$ for the set of good involutions; the identity permutation belongs to it
+whenever it satisfies \eqref{eq:def}, and it is counted. Let $n=\lvert G\rvert$, let
+$\Zc(G)$ be the centre, let $\Cl(G)$ be the set of conjugacy classes and
+$k(G)=\lvert\Cl(G)\rvert$ the class number. For abelian $G$ the quandle $\Conj G$ is
+trivial, so the interesting case is $G$ nonabelian.
+
+Ta \cite[\S11]{Ta} closes an ``Open questions'' section, motivated by a computational
+census of the nonabelian groups of order at most $22$, with the following.
+
+\begin{problem}
+Let $G$ be a finite nonabelian group of order $n$. Is the number of good involutions of
+$\Conj G$ completely determined by $n$, the order of the center $\Zc(G)$, and the class
+number $k(G)$ of $G$? If so, is there an exact formula to compute this number?
+\end{problem}
+
+\noindent
+Our answer to the first question is \emph{no}. The refutation, Theorem~\ref{thm:main}, is
+unconditional; the accompanying statement that no smaller order refutes it,
+Proposition~\ref{prop:min}, is conditional on published isomorphism-type counts.
+
+\begin{theorem}\label{thm:main}
+Let $D=\langle r,s\mid r^{16}=s^2=1,\ srs=r^{-1}\rangle$ be the dihedral group of order
+$32$ and let
+\begin{align*}
+ H=\Hol(C_8)=C_8\rtimes\Aut(C_8)
+ =\langle a,b,c\mid\ &a^8=b^2=c^2=1,\ bc=cb,\\
+                     &bab^{-1}=a^{-1},\ cac^{-1}=a^5\rangle .
+\end{align*}
+Both are nonabelian of order $32$ with $\lvert \Zc\rvert=2$ and class number $11$, and
+\[
+ \lvert\Good(\Conj D)\rvert=128,
+ \qquad
+ \lvert\Good(\Conj H)\rvert=1024 .
+\]
+Consequently the answer to the first question of Problem~11.6 of \cite{Ta} is negative:
+$\lvert\Good(\Conj G)\rvert$ is not a function of $\bigl(n,\lvert \Zc(G)\rvert,k(G)\bigr)$.
+\end{theorem}
+
+\begin{proposition}\label{prop:min}
+Grant the isomorphism-type counts of \cite{A000001} for each order $n\le 31$. If $G_1$ and
+$G_2$ are nonabelian groups of order at most $31$ with
+$\lvert G_1\rvert=\lvert G_2\rvert$, $\lvert \Zc(G_1)\rvert=\lvert \Zc(G_2)\rvert$ and
+$k(G_1)=k(G_2)$, then
+\[
+ \lvert\Good(\Conj G_1)\rvert=\lvert\Good(\Conj G_2)\rvert .
+\]
+\end{proposition}
+
+\noindent
+Only the first question is answered here; the second, which asks for an exact formula in
+those three invariants, is explicitly conditional on the first (``If so''), and with the
+antecedent false it is vacuous rather than false.
+
+The characterisation of $\Good(\Conj G)$ on which both statements rest is not new: it is
+Lemma~\ref{lem:red} below, proved in \cite{Ta}, and it already shows that the count is
+governed by the action of $\Zc(G)$ and of inversion on $\Cl(G)$ rather than by $k(G)$ alone.
+Given that lemma the two counts below are a short computation, and the census behind
+Proposition~\ref{prop:min} is a short search. What remains is to exhibit a pair of groups on
+which those actions differ while the triple agrees, and --- granting the published
+isomorphism-type counts --- to check that no smaller order carries such a pair.
+
+\section{A reduction to labellings of the class set}
+
+The following lemma is the characterisation of the good involutions of $\Conj G$ proved in
+\cite{Ta}, in whose notation the labelling $z$ appears as a central-valued class function.
+Its proof is included so that Theorem~\ref{thm:main} depends on nothing quoted.
+
+For $\zeta\in \Zc(G)$ and $C\in\Cl(G)$ the set $\zeta C^{-1}=\{\zeta x^{-1}:x\in C\}$ is
+again a conjugacy class, because $\zeta$ is central and inversion permutes classes; write
+$\iota_\zeta(C)=\zeta C^{-1}$. Each $\iota_\zeta$ is an involution of $\Cl(G)$, since
+$\zeta(\zeta x^{-1})^{-1}=x$.
+
+\begin{lemma}\label{lem:red}
+Let $G$ be a finite group. The map $z\mapsto\rho_z$, where
+$\rho_z(x)=z(C_x)\,x^{-1}$ and $C_x$ is the class of $x$, is a bijection from
+\[
+ \Bigl\{\,z\colon\Cl(G)\to \Zc(G)\ \Bigm|\
+ z\bigl(\iota_{z(C)}(C)\bigr)=z(C)\ \text{for all }C\in\Cl(G)\,\Bigr\}
+\]
+onto $\Good(\Conj G)$. In particular $\lvert\Good(\Conj G)\rvert$ depends only on the
+action of $\Zc(G)$ and of inversion on $\Cl(G)$.
+\end{lemma}
+
+\begin{proof}
+Let $\rho$ be any permutation of $G$.
+
+\emph{Step 1.} For $x,y\in G$ one has $s_y=s_x^{-1}$ if and only if $yw y^{-1}=x^{-1}wx$
+for all $w$, that is, if and only if $xy$ centralises $G$. Hence
+$\{y: s_y=s_x^{-1}\}=\Zc(G)x^{-1}$, and the second condition in \eqref{eq:def} says
+precisely that $\rho(x)=z(x)x^{-1}$ for a function $z\colon G\to \Zc(G)$.
+
+\emph{Step 2.} Write $w=xyx^{-1}$. With $\rho(u)=z(u)u^{-1}$ the first condition in
+\eqref{eq:def} reads
+$z(w)w^{-1}=\rho(s_x(y))=s_x(\rho(y))=x\,z(y)y^{-1}x^{-1}=z(y)w^{-1}$, i.e.\
+$z(xyx^{-1})=z(y)$. So the first condition holds for all $x,y$ if and only if $z$ is
+constant on conjugacy classes, and we may regard $z$ as a function on $\Cl(G)$.
+
+\emph{Step 3.} For such a $z$,
+$\rho(\rho(x))=z(\rho(x))\rho(x)^{-1}=z(\rho(x))z(x)^{-1}x$, so $\rho$ is an involution if
+and only if $z(\rho(x))=z(x)$ for all $x$. The class of $\rho(x)=z(C_x)x^{-1}$ is
+$\iota_{z(C_x)}(C_x)$, which turns the last identity into
+$z\bigl(\iota_{z(C)}(C)\bigr)=z(C)$ for every class $C$. Distinct $z$ give distinct
+$\rho_z$, and by Steps 1--3 every good involution arises this way.
+\end{proof}
+
+\begin{corollary}\label{cor:formula}
+Suppose $\lvert \Zc(G)\rvert=2$, say $\Zc(G)=\{1,t\}$, and suppose every conjugacy class of
+$G$ satisfies $C=C^{-1}$. Then $\mu(C)=tC$ is an involution of $\Cl(G)$ and
+\[
+ \lvert\Good(\Conj G)\rvert=2^{\,o},
+\]
+where $o$ is the number of orbits of $\mu$. Equivalently, if $\mu$ has $p$ two-cycles then
+$\lvert\Good(\Conj G)\rvert=2^{\,k(G)-p}$.
+\end{corollary}
+
+\begin{proof}
+Inverse-closure gives $\iota_1=\mathrm{id}$ and $\iota_t=\mu$. In Lemma~\ref{lem:red} the
+constraint at a class $C$ with $z(C)=1$ reads $z(C)=z(C)$ and is vacuous, while at a class
+with $z(C)=t$ it reads $z(\mu(C))=t$. So the admissible $z$ are exactly the indicator
+functions of the $\mu$-invariant subsets $S=z^{-1}(t)$ of $\Cl(G)$, and since $\mu$ is an
+involution these are the unions of $\mu$-orbits. There are $2^o$ of them, and
+$o=k(G)-p$ because the $p$ two-cycles use $2p$ classes and the remaining $k(G)-2p$ classes
+are fixed points.
+\end{proof}
+
+\noindent
+Corollary~\ref{cor:formula} is used below only where both of its hypotheses hold; elsewhere
+the counts are obtained from Lemma~\ref{lem:red} directly.
+
+\section{The two groups of order \texorpdfstring{$32$}{32}}
+
+\subsection*{The dihedral group of order \texorpdfstring{$32$}{32}}
+Let $D=\langle r,s\mid r^{16}=s^2=1,\ srs=r^{-1}\rangle$. Its centre is
+$\Zc(D)=\{1,r^{8}\}$, and its $11$ conjugacy classes are
+\begin{align}
+\Cl(D)=\bigl\{\ &\{1\},\ \{r^{8}\},\ \{r,r^{15}\},\ \{r^{2},r^{14}\},\ \{r^{3},r^{13}\},\
+                 \{r^{4},r^{12}\},\notag\\
+              &\{r^{5},r^{11}\},\ \{r^{6},r^{10}\},\ \{r^{7},r^{9}\},\notag\\
+              &\{s,r^{2}s,r^{4}s,r^{6}s,r^{8}s,r^{10}s,r^{12}s,r^{14}s\},\notag\\
+              &\{rs,r^{3}s,r^{5}s,r^{7}s,r^{9}s,r^{11}s,r^{13}s,r^{15}s\}\ \bigr\}.
+\label{eq:clD}
+\end{align}
+Every listed class equals its own inverse. Multiplication by $t=r^{8}$ sends the class of
+$r^{i}$ to the class of $r^{i+8}=r^{-(8-i)}$, so it interchanges
+\[
+ \{1\}\leftrightarrow\{r^{8}\},\qquad
+ \{r\}^{\pm}\leftrightarrow\{r^{7}\}^{\pm},\qquad
+ \{r^{2}\}^{\pm}\leftrightarrow\{r^{6}\}^{\pm},\qquad
+ \{r^{3}\}^{\pm}\leftrightarrow\{r^{5}\}^{\pm},
+\]
+writing $\{r^{i}\}^{\pm}=\{r^{i},r^{-i}\}$, and it fixes $\{r^{4},r^{12}\}$ as well as both
+reflection classes, since $r^{8}$ preserves the parity of the exponent. Thus $\mu$ has
+$p=4$ two-cycles and $3$ fixed points, $3+2\cdot4=11=k(D)$, and
+Corollary~\ref{cor:formula} gives
+\[
+ \lvert\Good(\Conj D)\rvert=2^{\,11-4}=2^{7}=128 .
+\]
+
+\subsection*{The holomorph of \texorpdfstring{$C_8$}{C8}}
+Let $H=\Hol(C_8)=C_8\rtimes\Aut(C_8)$, presented as
+$\langle a,b,c\mid a^8=b^2=c^2=1,\ bc=cb,\ bab^{-1}=a^{-1},\ cac^{-1}=a^5\rangle$, of order
+$8\cdot 4=32$. Conjugation by $b^{e}c^{f}$ acts on $\langle a\rangle$ as
+$a\mapsto a^{u}$ with $u=7^{e}5^{f}\bmod 8$, and
+$\{7^{e}5^{f}\}=\{1,3,5,7\}=\Aut(C_8)\cong C_2\times C_2$. Hence
+$\Zc(H)=\{1,a^{4}\}$: an element $a^{i}$ is central exactly when $2i\equiv 0 \pmod 8$, and
+no element outside $\langle a\rangle$ commutes with $a$. The classes are computed as
+follows. Inside $\langle a\rangle$ they are the $\Aut(C_8)$-orbits on $\mathbb Z/8$. In the
+coset $\langle a\rangle b$, conjugation by $a^{j}$ sends $a^{i}b$ to $a^{i+2j}b$ and
+conjugation by $b$ or $c$ preserves the parity of $i$; in $\langle a\rangle bc$ the same
+computation with $u(1,1)=3$ gives $a^{i}bc\mapsto a^{i-2j}bc$. In $\langle a\rangle c$
+conjugation by $a^{j}$ sends $a^{i}c$ to $a^{i-4j}c$ while conjugation by $b$ sends it to
+$a^{-i}c$, which merges $\{ac,a^{5}c\}$ with $\{a^{3}c,a^{7}c\}$. The outcome is the list
+\begin{align}
+\Cl(H)=\bigl\{\ &\{1\},\ \{a^{4}\},\ \{a^{2},a^{6}\},\ \{a,a^{3},a^{5},a^{7}\},\notag\\
+                &\{c,a^{4}c\},\ \{a^{2}c,a^{6}c\},\ \{ac,a^{3}c,a^{5}c,a^{7}c\},\notag\\
+                &\{b,a^{2}b,a^{4}b,a^{6}b\},\ \{ab,a^{3}b,a^{5}b,a^{7}b\},\notag\\
+                &\{bc,a^{2}bc,a^{4}bc,a^{6}bc\},\ \{abc,a^{3}bc,a^{5}bc,a^{7}bc\}\ \bigr\},
+\label{eq:clH}
+\end{align}
+of size $4+3+2+2=11$, with class sizes $1+1+2+4+2+2+4+4+4+4+4=32$. Every class equals its
+own inverse. In $\langle a\rangle$ this is because $\Aut(C_8)$ contains $-1$. In
+$\langle a\rangle b$ every element is an involution, since
+$(a^{i}b)^{-1}=ba^{-i}=a^{i}b$. In $\langle a\rangle bc$ one has
+$(a^{i}bc)^{-1}=bc\,a^{-i}=a^{-3i}bc$, and $-3i$ has the parity of $i$, so inversion
+preserves each of the two classes there. In $\langle a\rangle c$ one has
+$(a^{i}c)^{-1}=ca^{-i}=a^{-5i}c$, which for odd $i$ stays in the four-element class and for
+$i=0,2,4,6$ gives $0,6,4,2$, again within the listed classes.
+Multiplication by $t=a^{4}$ interchanges $\{1\}$ and $\{a^{4}\}$
+and fixes the other nine classes, since $a^{4}$ preserves each of the nine listed sets
+displayed above. Thus $p=1$ and $9+2\cdot 1=11=k(H)$, so
+\[
+ \lvert\Good(\Conj H)\rvert=2^{\,11-1}=2^{10}=1024 .
+\]
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Both groups are nonabelian of order $32$ with $\lvert \Zc\rvert=2$ and $k=11$, and their
+good-involution counts are $128$ and $1024$ by the two computations above. Since the counts
+differ, $D\not\cong H$, and $\bigl(n,\lvert \Zc(G)\rvert,k(G)\bigr)=(32,2,11)$ therefore
+does not determine $\lvert\Good(\Conj G)\rvert$.
+\end{proof}
+
+\section{Minimality, granting the published counts}
+
+\begin{proof}[Proof of Proposition~\ref{prop:min}]
+An order $n$ can contribute a pair only if it carries at least two nonabelian isomorphism
+types. The number of groups of order $n$ is the OEIS sequence \texttt{A000001}
+\cite{A000001} and the number of abelian ones is $\prod_p p(a_p)$ for $n=\prod_p p^{a_p}$,
+where $p(\cdot)$ is the partition function; subtracting, the orders $n\le 31$ with two or
+more nonabelian types are exactly
+\[
+ 8,\ 12,\ 16,\ 18,\ 20,\ 24,\ 27,\ 28,\ 30 ,
+\]
+with $2,3,9,3,3,12,2,2,3$ types respectively. Every other $n\le 31$ has at most one
+nonabelian type --- in particular $23,29,31$ are prime and $9,25$ are squares of primes,
+with none at all --- and there is nothing to compare. For each of the nine remaining orders
+the accompanying program constructs that many pairwise non-isomorphic nonabelian groups ---
+the constructions are given in the program and are not printed here, and it is the program
+that computes the isomorphism invariants separating them --- which meets the count taken from
+\cite{A000001} and so, granting that count, completes the list; it then computes $\bigl(\lvert \Zc\rvert,k\bigr)$ and
+$\lvert\Good(\Conj G)\rvert$ for each by Lemma~\ref{lem:red}, and collects the groups into
+buckets of equal invariants. The buckets holding two or more groups are
+\[
+\begin{array}{ll}
+ (8,2,5):\ \{D_4,Q_8\}\ \text{at }16,
+ &(20,2,8):\ \{D_{10},\Dic_5\}\ \text{at }16,\\
+ (12,2,6):\ \{D_6,\Dic_3\}\ \text{at }8,
+ &(24,2,9):\ 3\ \text{groups at }64,\\
+ (16,2,7):\ 3\ \text{groups at }32,
+ &(24,4,12):\ 4\ \text{groups at }1000,\\
+ (16,4,10):\ 6\ \text{groups at }2160,
+ &(24,6,15):\ \{C_3{\times}D_4,C_3{\times}Q_8\}\ \text{at }608000,\\
+ (18,1,6):\ 2\ \text{groups at }1,
+ &(27,3,11):\ 2\ \text{groups at }324,\\
+ &(28,2,10):\ \{D_{14},\Dic_7\}\ \text{at }32.
+\end{array}
+\]
+(Here $D_m$ is dihedral of order $2m$ and $\Dic_m$ dicyclic of order $4m$. At order $30$
+the three nonabelian groups $D_{15}$, $C_3\times D_5$, $C_5\times S_3$ have pairwise
+distinct invariants $(30,1,9)$, $(30,3,12)$, $(30,5,15)$, so no bucket is live.) Each live
+bucket is constant, which is the assertion.
+\end{proof}
+
+\noindent
+The completeness of each order's list is the one point at which the census rests on external
+data: that nine orders and no others are live, and that the constructed groups exhaust each
+of them, follows only from the published counts of \cite{A000001}, which are quoted and not
+verified. Everything else about those groups, including their pairwise non-isomorphism, is
+established inside the program; but a reader who declines to grant \cite{A000001} is left
+with Theorem~\ref{thm:main} alone. The counts computed for
+the nonabelian groups of order at most $22$ agree with the table in Appendix~B of \cite{Ta},
+and their per-order sums with the published terms of \cite{A386233}.
+
+Proposition~\ref{prop:min} concerns orders at most $31$; nothing here says that $32$ is the
+only order at which the triple fails.
+
+\section{Verification}
+
+The computations above were re-run independently, in exact integer arithmetic. For the two
+groups of order $32$ the only inputs are the presentations and the class lists
+\eqref{eq:clD} and \eqref{eq:clH} printed in \S3; the census of
+Proposition~\ref{prop:min} additionally consumes the isomorphism-type counts of
+\cite{A000001} and constructions of the census groups that are not printed here. The program
+rebuilds each group as a Cayley table and checks associativity on all $n^{3}$ triples;
+verifies the three set-level equivalences of the proof of Lemma~\ref{lem:red} by exhaustion
+over all $x,y\in G$ and all pairs of central values; compares the class lists
+\eqref{eq:clD} and \eqref{eq:clH} element by element with the classes it computes; counts
+$\Good(\Conj G)$ by a matching recursion over $\Cl(G)$ and by a constraint enumeration, and
+for the two groups of order $32$ also by Corollary~\ref{cor:formula} and by a fourth route
+that tests \emph{every} function $\Cl(G)\to \Zc(G)$ against \eqref{eq:def} literally; and
+re-runs the
+census of Proposition~\ref{prop:min}. For $S_3$, $D_4$, $Q_8$ and $D_5$ it also scans every
+self-inverse permutation of $G$, recovering $1$, $16$, $16$, $1$; this pins the convention,
+in force throughout, that the identity permutation is counted, under which Appendix~B of
+\cite{Ta} likewise reports $16$ for $\Conj D_4$. Every check passed. For each of the nine
+live orders the recorded run prints the number of pairwise non-isomorphic nonabelian groups
+exhibited beside the quoted term of \cite{A000001} and the abelian count subtracted from it,
+so that the one external input to Proposition~\ref{prop:min} can be read off and checked
+against the source; it also prints every census group with its
+$\bigl(\lvert \Zc\rvert,k,\lvert\Good(\Conj G)\rvert\bigr)$. Granting those quoted terms,
+the run settles every order $6\le n\le 31$; it does not establish them. The program and its
+recorded run accompany this note, and the run states its own scope, including that
+\cite{A000001} is external input; it also records checks on material not discussed here, on
+which nothing above depends.
+
+\begin{thebibliography}{9}
+
+\bibitem{A000001}
+OEIS Foundation Inc.,
+\emph{Sequence A000001: number of groups of order $n$},
+The On-Line Encyclopedia of Integer Sequences.
+\href{https://oeis.org/A000001}{https://oeis.org/A000001}.
+
+\bibitem{A386233}
+OEIS Foundation Inc.,
+\emph{Sequence A386233: good involutions of nontrivial conjugation quandles},
+The On-Line Encyclopedia of Integer Sequences.
+\href{https://oeis.org/A386233}{https://oeis.org/A386233}.
+
+\bibitem{Kamada}
+S.~Kamada,
+\emph{Quandles with good involutions, their homologies and knot invariants},
+in: Intelligence of Low Dimensional Topology 2006, Ser. Knots Everything \textbf{40},
+World Scientific, 2007, pp.~101--108.
+\href{https://doi.org/10.1142/9789812770967_0013}{doi:10.1142/9789812770967\_0013}.
+
+\bibitem{Ta}
+L.~Ta,
+\emph{Good involutions of conjugation subquandles},
+arXiv:2505.08090v5, 2025.
+\href{https://arxiv.org/abs/2505.08090v5}{arXiv:2505.08090v5}.
+Statement numbers are quoted from v5.
+
+\end{thebibliography}
+
+\end{document}

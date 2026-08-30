@@ -1,0 +1,60 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  60a155f81c59b76ea33a8d7f5b9fd45a3fa7dbea4befb26d074ffa12dcd5345c
+python:  Python 3.9.6
+=== program output follows ===
+==========================================================================
+A COMPLETELY UNIFORM NESTED STEINER QUADRUPLE SYSTEM OF ORDER 56
+checker for the paper in this folder; exact integer arithmetic only
+==========================================================================
+PASS admissibility-of-56 | 56 = 2 mod 6; b = 56*55*54/24 = 6930; C(56,2) = 1540; 2b/C(56,2) = 9 = (56-2)/6
+PASS base-blocks-are-thirteen-4-sets | 13 distinct 4-subsets of {0,...,13}
+PASS z7-development-gives-91-blocks | 13 base blocks x 7 translates = 91 distinct blocks, no collision
+PASS sqs14-is-a-steiner-quadruple-system | 91 blocks, all 364 triples exactly once
+PASS round-robin-1-factorization-of-k14 | 13 factors, 91 edges each exactly once
+PASS doubling-counts-14-to-28 | 182 + 91 + 546 = 819 = 28*27*26/24
+PASS sqs28-is-a-steiner-quadruple-system | 819 blocks, all 3276 triples exactly once
+PASS round-robin-1-factorization-of-k28 | 27 factors, 378 edges each exactly once
+PASS doubling-counts-28-to-56 | 1638 + 378 + 4914 = 6930 = 56*55*54/24
+PASS sqs56-is-a-steiner-quadruple-system | 6930 blocks, all 27720 triples exactly once
+PASS sqs56-blocks-are-in-canonical-order | increasing 4-tuples, sorted lexicographically: B_0 = (0, 1, 2, 4), B_6929 = (51, 53, 54, 55)
+PASS sqs56-pair-degree-is-27 | every one of the 1540 pairs lies in exactly 27 = (56-2)/2 blocks, and 27/3 = 9
+PASS witness-base64-length-and-digest | 29 printed lines concatenate to 1832 ASCII characters, sha256 = f802277ca20184e1b026bddc89ed1b30ed791885fa832ef17b657fcc5b2970b8
+PASS witness-decodes-to-exactly-6930-trits | little-endian base 3, residue above t_6929 is 0, values in {0,1,2}
+PASS witness-trit-vector-digest | sha256 of the 6930 raw trit bytes = e5a8368b4a0b9f21d4e8e44be375a1cc9e00a364804e2b2366fa04e60aaf4016
+PASS witness-decimal-prefix-agrees-with-base64 | the two independent encodings printed in Section 4 agree digit for digit over all 200 trits
+PASS nested-blocks-are-well-formed | each of the 6930 nested blocks is an unordered pair of DISJOINT pairs whose union is its own 4-set
+PASS nested-blocks-underlie-the-sqs56 | the multiset of underlying 4-sets is exactly the SQS(56) rebuilt above
+PASS all-1540-pairs-occur-as-nested-pairs | distinct nested pairs = 1540 of C(56,2) = 1540, missing = 0
+PASS nesting-is-uniform-of-multiplicity-9 | multiplicity set = [9], target (56-2)/6 = 9
+PASS multiplicity-sum-is-consistent | sum = 13860 = 2*6930 = 1540*9
+PASS first-twenty-nested-blocks-as-printed | B_0..B_19 decode to the twenty nested blocks displayed in Section 4
+PASS anti-control-one-flipped-trit-is-rejected | trit t_0 changed from 2 to 0: correctly REJECTED -- 4 pairs have multiplicity != 9 (e.g. (0, 1) -> 10)
+PASS anti-control-trivial-all-zero-nesting-is-rejected | nesting every block as {a,b|c,d}: correctly REJECTED -- 756 of 1540 pairs occur; 784 missing
+PASS control-v8-forced-positive | SQS(8) rebuilt by the same doubling (14 blocks, all 56 triples exactly once); exhaustive search settled it in 16 nodes; 28 pairs, every multiplicity == 1 -- independently reproduces the v=8 entry of Lu's Table 4
+PASS control-v14-forced-positive | the SQS(14) above, nested by our own exhaustive search and NOT by Lu's printed pairings: settled in 585165 nodes; 91 pairs, every multiplicity == 2 -- independently reproduces the v=14 entry of Lu's Table 4
+PASS control-v16-arithmetically-silent | 16 = 4 mod 6, b(16) = 140, 2b = 280, C(16,2) = 120, 280/120 is not an integer, so no completely uniform nested SQS(16) exists
+PASS control-v28-arithmetically-silent | the SQS(28) built above has b = 819, 2b = 1638, C(28,2) = 378, 1638/378 is not an integer, so it admits no completely uniform nesting
+PASS sister-cells-of-the-v56-row | 924*15 = 1260*11 = 13860 = 2b(56): the two cells of the v=56 row that remain open are arithmetically consistent and are NOT settled here
+PASS order-62-already-in-print | C(62,2) = 1891 and (62-2)/6 = 10, so v = 62 -- which is settled in the published literature -- is LARGER than 56: 56 is a hole, not the frontier
+PASS admissible-orders-8-to-50-and-the-gap-to-56 | the admissible orders in [8,50] are exactly [8, 14, 20, 26, 32, 38, 44, 50]; none of 51..55 is 2 mod 6, so 56 is the next admissible order after 50
+
+NOT RE-RUN: nonexistence of anything. The two remaining open cells of the v=56
+NOT RE-RUN: row -- 924 nested pairs at multiplicity 15, and 1260 at multiplicity 11
+NOT RE-RUN: -- are only checked for arithmetic consistency above; no search for or
+NOT RE-RUN: against them was run, and they stay open.
+NOT RE-RUN: whether this SQS(56) is rotational, i.e. admits an automorphism of
+NOT RE-RUN: order 55 fixing a point. No automorphism computation was performed on
+NOT RE-RUN: the 6930 blocks; the paper claims only that rotationality is not USED.
+NOT RE-RUN: uniqueness, isomorphism, or any enumeration of the nestings of this or
+NOT RE-RUN: any other SQS(56). One witness is exhibited; 0% of the space is
+NOT RE-RUN: exhausted, and no claim of minimality or canonicity is made.
+NOT RE-RUN: Table 4 of Lu at v = 20, 26, 32, 38, 44, 50. Only v = 8 and v = 14 are
+NOT RE-RUN: re-derived here as forced positives; the other six rows are taken on
+NOT RE-RUN: the published authority and bear on novelty, never on correctness.
+NOT RE-RUN: the search that produced the witness. This program re-checks the
+NOT RE-RUN: witness only; the randomised descent that found it is not reproduced,
+NOT RE-RUN: and none of the above depends on it.
+
+VERDICT: ALL 31 CHECKS PASS
+=== program exited with status 0 ===

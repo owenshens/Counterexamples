@@ -1,0 +1,314 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  7abfe2ae5a4c3d3884f7c3badedc74cd6d1fb3a0cc31329bfd4e45a6790034e3
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+verify.py -- Ta's determinacy problem for good involutions of conjugation
+            quandles fails at order 32, and, GRANTING the published A000001
+            group counts, at no smaller order
+==============================================================================
+
+--- PART 2: definition-only control, no theory used at all ---
+PASS definition-only census S_3 scanned every self-inverse permutation of the 6-element set: 1 good
+PASS definition-only census D_4 scanned every self-inverse permutation of the 8-element set: 16 good
+PASS definition-only census Q_8 scanned every self-inverse permutation of the 8-element set: 16 good
+PASS definition-only census D_5 scanned every self-inverse permutation of the 10-element set: 1 good
+PASS identity counted the identity permutation of D_4 satisfies the definition, so |Good(Conj D_4)| = 16 includes it; this pins the convention against the value 16 in Appendix B of arXiv:2505.08090v5
+
+--- PART 3: the two order-32 witnesses ---
+PASS group axioms G_1 identity, all inverses and FULL associativity on all 32^3 = 32768 triples
+PASS nonabelian G_1 so Conj G is a nontrivial quandle and the Problem applies
+PASS invariant triple G_1 (n, |Z(G)|, k(G)) = (32, 2, 11)
+PASS class list G_1 all 11 conjugacy classes agree, element by element, with the list printed in Section 3
+PASS centre G_1 Z(G) = {1, r^8}
+PASS classes inverse-closed G_1 every one of the 11 classes satisfies C = C^{-1}
+PASS reduction lemma G_1 the three set-level equivalences of Lemma 2.1 hold by exhaustion over all x, y in G and all pairs of central values; no published theorem is assumed
+PASS central-involution action G_1 multiplication by t on Cl(G): 3 fixed classes and 4 two-cycles, 3 + 2*4 = 11 = k
+PASS closed form G_1 2^(k-p) = 2^(11-4) = 128
+PASS matching DP G_1 |Good(Conj G)| = 128
+PASS constraint enumeration G_1 128 labellings z: Cl(G) -> Z(G) satisfy the Lemma 2.1 constraint
+PASS FULL raw brute force G_1 all 2048 functions z: Cl(G) -> Z(G) tested by building rho and applying the definition literally: 128 good
+PASS every counted rho re-checked G_1 128 of 128 counted involutions satisfy the raw definition
+PASS group axioms G_2 identity, all inverses and FULL associativity on all 32^3 = 32768 triples
+PASS nonabelian G_2 so Conj G is a nontrivial quandle and the Problem applies
+PASS invariant triple G_2 (n, |Z(G)|, k(G)) = (32, 2, 11)
+PASS class list G_2 all 11 conjugacy classes agree, element by element, with the list printed in Section 3
+PASS centre G_2 Z(G) = {1, a^4}
+PASS classes inverse-closed G_2 every one of the 11 classes satisfies C = C^{-1}
+PASS reduction lemma G_2 the three set-level equivalences of Lemma 2.1 hold by exhaustion over all x, y in G and all pairs of central values; no published theorem is assumed
+PASS central-involution action G_2 multiplication by t on Cl(G): 9 fixed classes and 1 two-cycles, 9 + 2*1 = 11 = k
+PASS closed form G_2 2^(k-p) = 2^(11-1) = 1024
+PASS matching DP G_2 |Good(Conj G)| = 1024
+PASS constraint enumeration G_2 1024 labellings z: Cl(G) -> Z(G) satisfy the Lemma 2.1 constraint
+PASS FULL raw brute force G_2 all 2048 functions z: Cl(G) -> Z(G) tested by building rho and applying the definition literally: 1024 good
+PASS every counted rho re-checked G_2 1024 of 1024 counted involutions satisfy the raw definition
+PASS order-32 pair shares the triple both at (n, |Z(G)|, k(G)) = (32, 2, 11)
+PASS order-32 pair separates |Good| 128 vs 1024
+PASS order-32 pair non-isomorphic isomorphism invariants already differ, independently of the counts
+
+--- PART 4: the two order-48 witnesses ---
+PASS group axioms H_1 identity, all inverses and FULL associativity on all 48^3 = 110592 triples
+PASS invariant triple H_1 nonabelian, (n, |Z(G)|, k(G)) = (48, 2, 15)
+PASS structure H_1 all 15 classes inverse-closed and Lemma 2.1 verified by exhaustion
+PASS central-involution action H_1 3 fixed classes, 6 two-cycles
+PASS three counts agree H_1 closed form 2^(15-6) = 512, matching DP = 512, constraint enumeration = 512
+PASS FULL raw brute force H_1 all 32768 functions z tested against the literal definition: 512
+PASS group axioms H_2 identity, all inverses and FULL associativity on all 48^3 = 110592 triples
+PASS invariant triple H_2 nonabelian, (n, |Z(G)|, k(G)) = (48, 2, 15)
+PASS structure H_2 all 15 classes inverse-closed and Lemma 2.1 verified by exhaustion
+PASS central-involution action H_2 9 fixed classes, 3 two-cycles
+PASS three counts agree H_2 closed form 2^(15-3) = 4096, matching DP = 4096, constraint enumeration = 4096
+PASS FULL raw brute force H_2 all 32768 functions z tested against the literal definition: 4096
+PASS order-48 pair refutes too (48,2,15): 512 vs 4096
+
+--- PART 5: minimality GRANTING the published A000001 counts -- every order 6..31 ---
+PASS order 6 vacuous A000001(6) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 7 vacuous A000001(7) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 8 pool is groups of order 8 2 constructions, each with full associativity checked on all 512 triples
+PASS order 8 census exhaustive GRANTING A000001 2 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(8) - (abelian types) = 5 - 3 = 2, so, GRANTING that published count (not verified here), the census is complete
+PASS order 8 lemma D_4 Lemma 2.1 verified by exhaustion on this group
+PASS order 8 two counts agree D_4 matching DP = 16, constraint enumeration = 16
+PASS order 8 raw brute force D_4 all 32 functions z tested literally: 16
+PASS order 8 counted rho literal D_4 16 of 16 counted involutions satisfy the raw definition
+PASS order 8 lemma Q_8 Lemma 2.1 verified by exhaustion on this group
+PASS order 8 two counts agree Q_8 matching DP = 16, constraint enumeration = 16
+PASS order 8 raw brute force Q_8 all 32 functions z tested literally: 16
+PASS order 8 counted rho literal Q_8 16 of 16 counted involutions satisfy the raw definition
+PASS order 8 determinacy 2 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (8,2,5): D_4+Q_8 all at 16
+PASS order 9 vacuous A000001(9) = 2 groups, 2 abelian, so 0 nonabelian types and no pair to compare
+PASS order 10 vacuous A000001(10) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 11 vacuous A000001(11) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 12 pool is groups of order 12 3 constructions, each with full associativity checked on all 1728 triples
+PASS order 12 census exhaustive GRANTING A000001 3 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(12) - (abelian types) = 5 - 2 = 3, so, GRANTING that published count (not verified here), the census is complete
+PASS order 12 lemma A_4 Lemma 2.1 verified by exhaustion on this group
+PASS order 12 two counts agree A_4 matching DP = 1, constraint enumeration = 1
+PASS order 12 raw brute force A_4 all 1 functions z tested literally: 1
+PASS order 12 counted rho literal A_4 1 of 1 counted involutions satisfy the raw definition
+PASS order 12 lemma D_6 Lemma 2.1 verified by exhaustion on this group
+PASS order 12 two counts agree D_6 matching DP = 8, constraint enumeration = 8
+PASS order 12 raw brute force D_6 all 64 functions z tested literally: 8
+PASS order 12 counted rho literal D_6 8 of 8 counted involutions satisfy the raw definition
+PASS order 12 lemma Dic_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 12 two counts agree Dic_3 matching DP = 8, constraint enumeration = 8
+PASS order 12 raw brute force Dic_3 all 64 functions z tested literally: 8
+PASS order 12 counted rho literal Dic_3 8 of 8 counted involutions satisfy the raw definition
+PASS order 12 determinacy 3 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (12,2,6): D_6+Dic_3 all at 8
+PASS order 13 vacuous A000001(13) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 14 vacuous A000001(14) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 15 vacuous A000001(15) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 16 pool is groups of order 16 9 constructions, each with full associativity checked on all 4096 triples
+PASS order 16 census exhaustive GRANTING A000001 9 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(16) - (abelian types) = 14 - 5 = 9, so, GRANTING that published count (not verified here), the census is complete
+PASS order 16 lemma (C2xC2):C4 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree (C2xC2):C4 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma C4:C4 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree C4:C4 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma D_4xC2 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree D_4xC2 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma D_8 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree D_8 matching DP = 32, constraint enumeration = 32
+PASS order 16 raw brute force D_8 all 128 functions z tested literally: 32
+PASS order 16 counted rho literal D_8 32 of 32 counted involutions satisfy the raw definition
+PASS order 16 lemma M_16 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree M_16 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma Pauli_16 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree Pauli_16 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma Q_16 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree Q_16 matching DP = 32, constraint enumeration = 32
+PASS order 16 raw brute force Q_16 all 128 functions z tested literally: 32
+PASS order 16 counted rho literal Q_16 32 of 32 counted involutions satisfy the raw definition
+PASS order 16 lemma Q_8xC2 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree Q_8xC2 matching DP = 2160, constraint enumeration = 2160
+PASS order 16 lemma SD_16 Lemma 2.1 verified by exhaustion on this group
+PASS order 16 two counts agree SD_16 matching DP = 32, constraint enumeration = 32
+PASS order 16 raw brute force SD_16 all 128 functions z tested literally: 32
+PASS order 16 counted rho literal SD_16 32 of 32 counted involutions satisfy the raw definition
+PASS order 16 determinacy 9 isomorphism types, 2 buckets of the invariant triple hold two or more groups -- (16,2,7): D_8+Q_16+SD_16 all at 32; (16,4,10): (C2xC2):C4+C4:C4+D_4xC2+M_16+Pauli_16+Q_8xC2 all at 2160
+PASS order 17 vacuous A000001(17) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 18 pool is groups of order 18 3 constructions, each with full associativity checked on all 5832 triples
+PASS order 18 census exhaustive GRANTING A000001 3 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(18) - (abelian types) = 5 - 2 = 3, so, GRANTING that published count (not verified here), the census is complete
+PASS order 18 lemma (C3xC3):C2 Lemma 2.1 verified by exhaustion on this group
+PASS order 18 two counts agree (C3xC3):C2 matching DP = 1, constraint enumeration = 1
+PASS order 18 raw brute force (C3xC3):C2 all 1 functions z tested literally: 1
+PASS order 18 counted rho literal (C3xC3):C2 1 of 1 counted involutions satisfy the raw definition
+PASS order 18 lemma D_9 Lemma 2.1 verified by exhaustion on this group
+PASS order 18 two counts agree D_9 matching DP = 1, constraint enumeration = 1
+PASS order 18 raw brute force D_9 all 1 functions z tested literally: 1
+PASS order 18 counted rho literal D_9 1 of 1 counted involutions satisfy the raw definition
+PASS order 18 lemma S_3xC_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 18 two counts agree S_3xC_3 matching DP = 64, constraint enumeration = 64
+PASS order 18 counted rho literal S_3xC_3 64 of 64 counted involutions satisfy the raw definition
+PASS order 18 determinacy 3 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (18,1,6): (C3xC3):C2+D_9 all at 1
+PASS order 19 vacuous A000001(19) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 20 pool is groups of order 20 3 constructions, each with full associativity checked on all 8000 triples
+PASS order 20 census exhaustive GRANTING A000001 3 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(20) - (abelian types) = 5 - 2 = 3, so, GRANTING that published count (not verified here), the census is complete
+PASS order 20 lemma C5:C4 Lemma 2.1 verified by exhaustion on this group
+PASS order 20 two counts agree C5:C4 matching DP = 1, constraint enumeration = 1
+PASS order 20 raw brute force C5:C4 all 1 functions z tested literally: 1
+PASS order 20 counted rho literal C5:C4 1 of 1 counted involutions satisfy the raw definition
+PASS order 20 lemma D_10 Lemma 2.1 verified by exhaustion on this group
+PASS order 20 two counts agree D_10 matching DP = 16, constraint enumeration = 16
+PASS order 20 raw brute force D_10 all 256 functions z tested literally: 16
+PASS order 20 counted rho literal D_10 16 of 16 counted involutions satisfy the raw definition
+PASS order 20 lemma Dic_5 Lemma 2.1 verified by exhaustion on this group
+PASS order 20 two counts agree Dic_5 matching DP = 16, constraint enumeration = 16
+PASS order 20 raw brute force Dic_5 all 256 functions z tested literally: 16
+PASS order 20 counted rho literal Dic_5 16 of 16 counted involutions satisfy the raw definition
+PASS order 20 determinacy 3 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (20,2,8): D_10+Dic_5 all at 16
+PASS order 21 vacuous A000001(21) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 22 vacuous A000001(22) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 23 vacuous A000001(23) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 24 pool is groups of order 24 34 constructions, each with full associativity checked on all 13824 triples
+PASS order 24 census exhaustive GRANTING A000001 12 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(24) - (abelian types) = 15 - 3 = 12, so, GRANTING that published count (not verified here), the census is complete
+PASS order 24 lemma C2^2xS_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C2^2xS_3 matching DP = 1000, constraint enumeration = 1000
+PASS order 24 counted rho literal C2^2xS_3 1000 of 1000 counted involutions satisfy the raw definition
+PASS order 24 lemma C2xA_4 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C2xA_4 matching DP = 8, constraint enumeration = 8
+PASS order 24 raw brute force C2xA_4 all 256 functions z tested literally: 8
+PASS order 24 counted rho literal C2xA_4 8 of 8 counted involutions satisfy the raw definition
+PASS order 24 lemma C2xDic_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C2xDic_3 matching DP = 1000, constraint enumeration = 1000
+PASS order 24 counted rho literal C2xDic_3 1000 of 1000 counted involutions satisfy the raw definition
+PASS order 24 lemma C3:C8 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C3:C8 matching DP = 1000, constraint enumeration = 1000
+PASS order 24 counted rho literal C3:C8 1000 of 1000 counted involutions satisfy the raw definition
+PASS order 24 lemma C3:D_4[1] Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C3:D_4[1] matching DP = 64, constraint enumeration = 64
+PASS order 24 raw brute force C3:D_4[1] all 512 functions z tested literally: 64
+PASS order 24 counted rho literal C3:D_4[1] 64 of 64 counted involutions satisfy the raw definition
+PASS order 24 lemma C3xD_4 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C3xD_4 matching DP = 608000, constraint enumeration = 608000
+PASS order 24 lemma C3xQ_8 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C3xQ_8 matching DP = 608000, constraint enumeration = 608000
+PASS order 24 lemma C4xS_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree C4xS_3 matching DP = 1000, constraint enumeration = 1000
+PASS order 24 counted rho literal C4xS_3 1000 of 1000 counted involutions satisfy the raw definition
+PASS order 24 lemma D_12 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree D_12 matching DP = 64, constraint enumeration = 64
+PASS order 24 raw brute force D_12 all 512 functions z tested literally: 64
+PASS order 24 counted rho literal D_12 64 of 64 counted involutions satisfy the raw definition
+PASS order 24 lemma Dic_6 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree Dic_6 matching DP = 64, constraint enumeration = 64
+PASS order 24 raw brute force Dic_6 all 512 functions z tested literally: 64
+PASS order 24 counted rho literal Dic_6 64 of 64 counted involutions satisfy the raw definition
+PASS order 24 lemma SL(2,3) Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree SL(2,3) matching DP = 8, constraint enumeration = 8
+PASS order 24 raw brute force SL(2,3) all 128 functions z tested literally: 8
+PASS order 24 counted rho literal SL(2,3) 8 of 8 counted involutions satisfy the raw definition
+PASS order 24 lemma S_4 Lemma 2.1 verified by exhaustion on this group
+PASS order 24 two counts agree S_4 matching DP = 1, constraint enumeration = 1
+PASS order 24 raw brute force S_4 all 1 functions z tested literally: 1
+PASS order 24 counted rho literal S_4 1 of 1 counted involutions satisfy the raw definition
+PASS order 24 determinacy 12 isomorphism types, 3 buckets of the invariant triple hold two or more groups -- (24,2,9): C3:D_4[1]+D_12+Dic_6 all at 64; (24,4,12): C2^2xS_3+C2xDic_3+C3:C8+C4xS_3 all at 1000; (24,6,15): C3xD_4+C3xQ_8 all at 608000
+PASS order 25 vacuous A000001(25) = 2 groups, 2 abelian, so 0 nonabelian types and no pair to compare
+PASS order 26 vacuous A000001(26) = 2 groups, 1 abelian, so 1 nonabelian type and no pair to compare
+PASS order 27 pool is groups of order 27 2 constructions, each with full associativity checked on all 19683 triples
+PASS order 27 census exhaustive GRANTING A000001 2 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(27) - (abelian types) = 5 - 3 = 2, so, GRANTING that published count (not verified here), the census is complete
+PASS order 27 lemma C9:C3 Lemma 2.1 verified by exhaustion on this group
+PASS order 27 two counts agree C9:C3 matching DP = 324, constraint enumeration = 324
+PASS order 27 counted rho literal C9:C3 324 of 324 counted involutions satisfy the raw definition
+PASS order 27 lemma Heis_27 Lemma 2.1 verified by exhaustion on this group
+PASS order 27 two counts agree Heis_27 matching DP = 324, constraint enumeration = 324
+PASS order 27 counted rho literal Heis_27 324 of 324 counted involutions satisfy the raw definition
+PASS order 27 determinacy 2 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (27,3,11): C9:C3+Heis_27 all at 324
+PASS order 28 pool is groups of order 28 2 constructions, each with full associativity checked on all 21952 triples
+PASS order 28 census exhaustive GRANTING A000001 2 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(28) - (abelian types) = 4 - 2 = 2, so, GRANTING that published count (not verified here), the census is complete
+PASS order 28 lemma D_14 Lemma 2.1 verified by exhaustion on this group
+PASS order 28 two counts agree D_14 matching DP = 32, constraint enumeration = 32
+PASS order 28 raw brute force D_14 all 1024 functions z tested literally: 32
+PASS order 28 counted rho literal D_14 32 of 32 counted involutions satisfy the raw definition
+PASS order 28 lemma Dic_7 Lemma 2.1 verified by exhaustion on this group
+PASS order 28 two counts agree Dic_7 matching DP = 32, constraint enumeration = 32
+PASS order 28 raw brute force Dic_7 all 1024 functions z tested literally: 32
+PASS order 28 counted rho literal Dic_7 32 of 32 counted involutions satisfy the raw definition
+PASS order 28 determinacy 2 isomorphism types, 1 bucket of the invariant triple hold two or more groups -- (28,2,10): D_14+Dic_7 all at 32
+PASS order 29 vacuous A000001(29) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS order 30 pool is groups of order 30 3 constructions, each with full associativity checked on all 27000 triples
+PASS order 30 census exhaustive GRANTING A000001 3 pairwise non-isomorphic nonabelian groups exhibited (distinct isomorphism invariants) and A000001(30) - (abelian types) = 4 - 1 = 3, so, GRANTING that published count (not verified here), the census is complete
+PASS order 30 lemma C3xD_5 Lemma 2.1 verified by exhaustion on this group
+PASS order 30 two counts agree C3xD_5 matching DP = 256, constraint enumeration = 256
+PASS order 30 counted rho literal C3xD_5 256 of 256 counted involutions satisfy the raw definition
+PASS order 30 lemma C5xS_3 Lemma 2.1 verified by exhaustion on this group
+PASS order 30 two counts agree C5xS_3 matching DP = 17576, constraint enumeration = 17576
+PASS order 30 lemma D_15 Lemma 2.1 verified by exhaustion on this group
+PASS order 30 two counts agree D_15 matching DP = 1, constraint enumeration = 1
+PASS order 30 raw brute force D_15 all 1 functions z tested literally: 1
+PASS order 30 counted rho literal D_15 1 of 1 counted involutions satisfy the raw definition
+PASS order 30 determinacy 3 isomorphism types, 0 buckets of the invariant triple hold two or more groups
+PASS order 31 vacuous A000001(31) = 1 groups, 1 abelian, so 0 nonabelian types and no pair to compare
+PASS external cross-check order 6 our |Good(Conj G)| multiset [1] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 8 our |Good(Conj G)| multiset [16, 16] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 10 our |Good(Conj G)| multiset [1] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 12 our |Good(Conj G)| multiset [1, 8, 8] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 14 our |Good(Conj G)| multiset [1] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 16 our |Good(Conj G)| multiset [32, 32, 32, 2160, 2160, 2160, 2160, 2160, 2160] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 18 our |Good(Conj G)| multiset [1, 1, 64] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 20 our |Good(Conj G)| multiset [1, 16, 16] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 21 our |Good(Conj G)| multiset [1] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check order 22 our |Good(Conj G)| multiset [1] equals the table of Appendix B of arXiv:2505.08090v5
+PASS external cross-check OEIS A386233 per-order sums [1, 32, 1, 17, 1, 13056, 66, 33, 1, 1] equal the ten published terms of A386233
+PASS no |Z|^orbits rule beyond |Z|=2 at order 27 the group generated by inversion and by multiplication by Z(G) has 5 orbits on the 11 classes, so an |Z|^orbits rule would give 3^5 = 243, whereas |Good(Conj G)| = 324
+
+--- PART 6: the refutation, assembled ---
+PASS orders 23, 25, 26, 29, 31 carry no pair A000001 minus the abelian types gives 0 nonabelian groups at 23, 25, 29, 31 (three primes and 5^2) and exactly 1 at 26, so no two groups can share a triple
+PASS Problem 11.6, first question: NO D_32 and Hol(C_8) both have (n,|Z(G)|,k(G)) = (32,2,11) but |Good(Conj G)| = 128 and 1024
+PASS Problem 11.6, second question: MOOT it asks for a formula in the triple CONDITIONAL on the first answer being yes; with the antecedent refuted the conditional is vacuous, not false
+PASS GRANTING the published A000001 counts, 32 is minimal all 26 orders 6..31 settled: each is either vacuous (at most one nonabelian type) or carries a census, complete only by the quoted A000001 term, in which every invariant-triple bucket is constant; and orders 1..5 have no nonabelian group at all
+
+--- SUMMARY ---
+group                                                   n  |Z|    k     |Good|
+G_1 = D_32 = <r,s | r^16, s^2, srs=r^-1>               32    2   11        128
+G_2 = Hol(C_8) = <a,b,c | a^8,b^2,c^2, bab^-1=a^-1,    32    2   11       1024
+H_1 = D_48 = <r,s | r^24, s^2, srs=r^-1>               48    2   15        512
+H_2 = S_3 x D_4 (D_4 of order 8)                       48    2   15       4096
+
+  order  8  D_4            |Z|=2 k= 5 |Good|=16
+  order  8  Q_8            |Z|=2 k= 5 |Good|=16
+  order 12  A_4            |Z|=1 k= 4 |Good|=1
+  order 12  D_6            |Z|=2 k= 6 |Good|=8
+  order 12  Dic_3          |Z|=2 k= 6 |Good|=8
+  order 16  (C2xC2):C4     |Z|=4 k=10 |Good|=2160
+  order 16  C4:C4          |Z|=4 k=10 |Good|=2160
+  order 16  D_4xC2         |Z|=4 k=10 |Good|=2160
+  order 16  D_8            |Z|=2 k= 7 |Good|=32
+  order 16  M_16           |Z|=4 k=10 |Good|=2160
+  order 16  Pauli_16       |Z|=4 k=10 |Good|=2160
+  order 16  Q_16           |Z|=2 k= 7 |Good|=32
+  order 16  Q_8xC2         |Z|=4 k=10 |Good|=2160
+  order 16  SD_16          |Z|=2 k= 7 |Good|=32
+  order 18  (C3xC3):C2     |Z|=1 k= 6 |Good|=1
+  order 18  D_9            |Z|=1 k= 6 |Good|=1
+  order 18  S_3xC_3        |Z|=3 k= 9 |Good|=64
+  order 20  C5:C4          |Z|=1 k= 5 |Good|=1
+  order 20  D_10           |Z|=2 k= 8 |Good|=16
+  order 20  Dic_5          |Z|=2 k= 8 |Good|=16
+  order 24  C2^2xS_3       |Z|=4 k=12 |Good|=1000
+  order 24  C2xA_4         |Z|=2 k= 8 |Good|=8
+  order 24  C2xDic_3       |Z|=4 k=12 |Good|=1000
+  order 24  C3:C8          |Z|=4 k=12 |Good|=1000
+  order 24  C3:D_4[1]      |Z|=2 k= 9 |Good|=64
+  order 24  C3xD_4         |Z|=6 k=15 |Good|=608000
+  order 24  C3xQ_8         |Z|=6 k=15 |Good|=608000
+  order 24  C4xS_3         |Z|=4 k=12 |Good|=1000
+  order 24  D_12           |Z|=2 k= 9 |Good|=64
+  order 24  Dic_6          |Z|=2 k= 9 |Good|=64
+  order 24  SL(2,3)        |Z|=2 k= 7 |Good|=8
+  order 24  S_4            |Z|=1 k= 5 |Good|=1
+  order 27  C9:C3          |Z|=3 k=11 |Good|=324
+  order 27  Heis_27        |Z|=3 k=11 |Good|=324
+  order 28  D_14           |Z|=2 k=10 |Good|=32
+  order 28  Dic_7          |Z|=2 k=10 |Good|=32
+  order 30  C3xD_5         |Z|=3 k=12 |Good|=256
+  order 30  C5xS_3         |Z|=5 k=15 |Good|=17576
+  order 30  D_15           |Z|=1 k= 9 |Good|=1
+
+NOT RE-RUN: the isomorphism-type counts A000001(n) are taken from OEIS as external input and are not proved here; the program only exhibits enough pairwise non-isomorphic groups to meet them.
+NOT RE-RUN: the third bucket reported in the source row, (32,4,14) with 21600 against 552960, is not re-derived here and nothing above depends on it.
+NOT RE-RUN: the search that FOUND the witnesses -- a sweep of 2450 nonabelian groups of orders 6..48 -- is not reproduced; this program verifies exhibited objects only.
+NOT RE-RUN: orders 33..47 and every order above 48 are not examined, so nothing here claims 32 is the ONLY order at which the triple fails.
+NOT RE-RUN: the definition-only scan over ALL self-inverse permutations of G is done at orders 6, 8, 10 only; above that the count relies on Lemma 2.1, which is itself verified by exhaustion on every group used.
+NOT RE-RUN: the table of Appendix B of arXiv:2505.08090v5 is used as an external cross-check for orders 6..22; it is never an input to any claim above.
+
+VERDICT: ALL 237 CHECKS PASS
+=== program exited with status 0 ===

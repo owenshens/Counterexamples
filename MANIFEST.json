@@ -1,9 +1,9 @@
 {
- "what_this_is": "Papers from an automated mathematics solver framework, each with the program that checks its computational claims and a recorded run of that program.",
+ "what_this_is": "A hash manifest of every file in this repository, measured from the files themselves.",
  "measured_on": "2026-08-30",
  "papers": {
   "15-edge-c8-saturated-subgraph-of-k6-6-disproves-xu-he-lu-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/15-edge-c8-saturated-subgraph-of-k6-6-disproves-xu-he-lu-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -32,12 +32,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 135,
+     "transcript_records_program_sha256": "bbafe01c2d7ff733c105dc5bb26667e9996e15cb0ba5d3efe95b52cd1e7b914f",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 135,
    "transcript_records_program_sha256": "bbafe01c2d7ff733c105dc5bb26667e9996e15cb0ba5d3efe95b52cd1e7b914f",
    "transcript_matches_program": true
   },
   "79-vertex-tree-disproves-hurlbert-kamat-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/79-vertex-tree-disproves-hurlbert-kamat-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -66,12 +75,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 25,
+     "transcript_records_program_sha256": "d9c430af1f862dfbea910f5a55844b98888529ee1af28b18e3ee48e12cfe608c",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 25,
    "transcript_records_program_sha256": "d9c430af1f862dfbea910f5a55844b98888529ee1af28b18e3ee48e12cfe608c",
    "transcript_matches_program": true
   },
+  "a-15-vertex-refutation-of-the-kimura-matsumoto-sato-eternal-domination-conjecture": {
+   "repository_directory": "counterexamples/a-15-vertex-refutation-of-the-kimura-matsumoto-sato-eternal-domination-conjecture",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 7877,
+     "sha256": "ea1209c4928ef8da226435d647ba15871badf6c05962fb7453e6960a7ea9adce"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 83383,
+     "sha256": "fe22150f0271a110d289bb33c3dd096d4f6c598d8313f7c2a8371feea3b8329c"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14243,
+     "sha256": "992ed989744ba86e3a859544d89f15d141c8f8bf1b54fb826e54edb212e020d8"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 8600,
+     "sha256": "0c89bf085ccad47b320477f941352756edc82175668fb7d238f583e5c2fb1f9d"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 31705,
+     "sha256": "f56835dc5e64199f330d4f4213a19468bb8367471cc1961cb097311e05ea98ff"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 43,
+     "transcript_records_program_sha256": "f56835dc5e64199f330d4f4213a19468bb8367471cc1961cb097311e05ea98ff",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 43,
+   "transcript_records_program_sha256": "f56835dc5e64199f330d4f4213a19468bb8367471cc1961cb097311e05ea98ff",
+   "transcript_matches_program": true
+  },
   "a-24-cell-weak-4-resolving-set-of-k11-times-k11-refutes-a-surmised-exact-value": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-24-cell-weak-4-resolving-set-of-k11-times-k11-refutes-a-surmised-exact-value",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -100,12 +161,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 109,
+     "transcript_records_program_sha256": "c3f438ddeb1a37bb559cafd3a9ab36c1533e68cf77f5adf176ac2f8b4c018bfd",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 109,
    "transcript_records_program_sha256": "c3f438ddeb1a37bb559cafd3a9ab36c1533e68cf77f5adf176ac2f8b4c018bfd",
    "transcript_matches_program": true
   },
   "a-72-vertex-pancake-counterexample-to-the-greaves-zhu-spectral-gap-equality": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-72-vertex-pancake-counterexample-to-the-greaves-zhu-spectral-gap-equality",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -134,12 +204,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 109,
+     "transcript_records_program_sha256": "eb7512e187240f9652d5e34524311b2891815f75ce79bbd8cb9704f59ca050f9",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 109,
    "transcript_records_program_sha256": "eb7512e187240f9652d5e34524311b2891815f75ce79bbd8cb9704f59ca050f9",
    "transcript_matches_program": true
   },
+  "a-complete-mub-set-in-dimension-27-whose-projective-toric-design-is-not-a-group": {
+   "repository_directory": "counterexamples/a-complete-mub-set-in-dimension-27-whose-projective-toric-design-is-not-a-group",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5096,
+     "sha256": "b5f237886c09b0911709831052d728f21ed2acc0fb1fb36aa8c6cb9550cb3edd"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 112585,
+     "sha256": "32920d2f296e61c6bf23f0634de351f7efd9ea2634df71356f732f153ce48405"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 22310,
+     "sha256": "cf2ccd6ccd08886af98e35a3ed0c0cd08b704d339e15b82354586becdd0fe2ec"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 7871,
+     "sha256": "dc5e8998f0897c7c1f679433800f1341bd7a181c9949737b45119b0bce4fa225"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 29306,
+     "sha256": "9868086c4b1568cd97bc7055af363a998efa240efbe52a4d909bddadb9efc6f1"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 35,
+     "transcript_records_program_sha256": "9868086c4b1568cd97bc7055af363a998efa240efbe52a4d909bddadb9efc6f1",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 35,
+   "transcript_records_program_sha256": "9868086c4b1568cd97bc7055af363a998efa240efbe52a4d909bddadb9efc6f1",
+   "transcript_matches_program": true
+  },
   "a-counterexample-at-n-6-to-milicevic-blocking-point-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-counterexample-at-n-6-to-milicevic-blocking-point-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -157,10 +279,14 @@
      "sha256": "32efd741c1829e73f2f5b9c41cb16537cbfd9888222e4223e1204b7fc091d5f1"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "a-counterexample-to-a-rainbow-domination-implication-of-zerovnik": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-counterexample-to-a-rainbow-domination-implication-of-zerovnik",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -189,12 +315,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 34,
+     "transcript_records_program_sha256": "2b3eba795fa097dcf60590d3ae4a39fd9bf80eac840a64b27efa38f7cd625219",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 34,
    "transcript_records_program_sha256": "2b3eba795fa097dcf60590d3ae4a39fd9bf80eac840a64b27efa38f7cd625219",
    "transcript_matches_program": true
   },
   "a-counterexample-to-the-cartwright-chan-principal-6x6-tree-rank-criterion": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-counterexample-to-the-cartwright-chan-principal-6x6-tree-rank-criterion",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -223,12 +358,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 110,
+     "transcript_records_program_sha256": "868422cc0363c2e1683529417986b3011151373341baade7c126286c985add06",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 110,
    "transcript_records_program_sha256": "868422cc0363c2e1683529417986b3011151373341baade7c126286c985add06",
    "transcript_matches_program": true
   },
   "a-counterexample-to-the-etzion-vardy-yaakobi-conference-matrix-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-counterexample-to-the-etzion-vardy-yaakobi-conference-matrix-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -257,12 +401,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 43,
+     "transcript_records_program_sha256": "115bf26af674b922c35f128783603804025a3b45b11120ac93ed33cc4d14f5dc",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 43,
    "transcript_records_program_sha256": "115bf26af674b922c35f128783603804025a3b45b11120ac93ed33cc4d14f5dc",
    "transcript_matches_program": true
   },
   "a-counterexample-to-the-hibi-seyed-fakhari-conjecture-on-join-meet-ideals": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-counterexample-to-the-hibi-seyed-fakhari-conjecture-on-join-meet-ideals",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -291,12 +444,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 64,
+     "transcript_records_program_sha256": "e7141ba8053f3179c56fd7a3707f2b6e357ab5a3139691883b5cd76bc1117c81",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 64,
    "transcript_records_program_sha256": "e7141ba8053f3179c56fd7a3707f2b6e357ab5a3139691883b5cd76bc1117c81",
    "transcript_matches_program": true
   },
+  "a-counterexample-to-the-singh-singh-width-2-roabp-modular-stability-proposition": {
+   "repository_directory": "counterexamples/a-counterexample-to-the-singh-singh-width-2-roabp-modular-stability-proposition",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 12846,
+     "sha256": "5798062de81feeba919cf7bfdb261d09545766f87a5f945d1558c94b41749e15"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 88713,
+     "sha256": "a398f9fee566d7423d3e584b07e3c349891c5561bf36974204667b89ca9a9bac"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 12700,
+     "sha256": "44eedc4f3fc9c8986a07cdbcdb9608dab7a7e4994890aae716b94d0f0122bba1"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9242,
+     "sha256": "eb1522e4b9034910e01515572edaeee17602941c2c1a48669e4cc7a36c3d336a"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 23805,
+     "sha256": "0d8434bd54984d41719c11d14bf5749a4660ef138194ae3c7b23771b9cd72bc6"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 40,
+     "transcript_records_program_sha256": "0d8434bd54984d41719c11d14bf5749a4660ef138194ae3c7b23771b9cd72bc6",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 40,
+   "transcript_records_program_sha256": "0d8434bd54984d41719c11d14bf5749a4660ef138194ae3c7b23771b9cd72bc6",
+   "transcript_matches_program": true
+  },
   "a-double-suspension-counterexample-to-the-composition-converse-for-cw-subdivisions": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-double-suspension-counterexample-to-the-composition-converse-for-cw-subdivisions",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -325,12 +530,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 52,
+     "transcript_records_program_sha256": "ff1a0718dc0c37dc3251476944f579d9860b6086fd261e3f22602124e4314d76",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 52,
    "transcript_records_program_sha256": "ff1a0718dc0c37dc3251476944f579d9860b6086fd261e3f22602124e4314d76",
    "transcript_matches_program": true
   },
   "a-length-14-negative-answer-to-alderson-q-4-optimality-question": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-length-14-negative-answer-to-alderson-q-4-optimality-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -359,12 +573,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 71,
+     "transcript_records_program_sha256": "381a65cf99c1c9cabd3ab031fefa06645b4ccd0637a035f0e64176f68532d1d0",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 71,
    "transcript_records_program_sha256": "381a65cf99c1c9cabd3ab031fefa06645b4ccd0637a035f0e64176f68532d1d0",
    "transcript_matches_program": true
   },
   "a-mod-32-counterexample-to-propp-2-adic-antisymmetry-for-aztec-diamond-tilings": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-mod-32-counterexample-to-propp-2-adic-antisymmetry-for-aztec-diamond-tilings",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -393,12 +616,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 63,
+     "transcript_records_program_sha256": "3434223c3f9a6a04aef3fe9aeedcfd2cf0129532d07d5de40a43039b3f26de5c",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 63,
    "transcript_records_program_sha256": "3434223c3f9a6a04aef3fe9aeedcfd2cf0129532d07d5de40a43039b3f26de5c",
    "transcript_matches_program": true
   },
   "a-nine-element-counterexample-to-sinclair-front-loading-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-nine-element-counterexample-to-sinclair-front-loading-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -427,12 +659,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 72,
+     "transcript_records_program_sha256": "25a9c62def7860a0b6eb0ad8bef5fa12bbbd9317b90f342749f5fe331524e34e",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 72,
    "transcript_records_program_sha256": "25a9c62def7860a0b6eb0ad8bef5fa12bbbd9317b90f342749f5fe331524e34e",
    "transcript_matches_program": true
   },
   "a-nine-vertex-p4-sparse-minimal-2-3-polar-obstruction-that-is-not-a-cograph": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-nine-vertex-p4-sparse-minimal-2-3-polar-obstruction-that-is-not-a-cograph",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -461,12 +702,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 71,
+     "transcript_records_program_sha256": "119369d3571511ce67a47773edcfc2ff3f2d9656087d8bf55fb0478c71a99e16",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 71,
    "transcript_records_program_sha256": "119369d3571511ce67a47773edcfc2ff3f2d9656087d8bf55fb0478c71a99e16",
    "transcript_matches_program": true
   },
+  "a-ten-element-graded-poset-refutes-contractibility-monotonicity-for-filtered-order-complexes": {
+   "repository_directory": "counterexamples/a-ten-element-graded-poset-refutes-contractibility-monotonicity-for-filtered-order-complexes",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 7393,
+     "sha256": "586c2cf0c7fcc50e7585e053385978439a8dca87bad8857e2a0f837750cc8c74"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 83784,
+     "sha256": "45fd495329229cc9134bfff480964aa6bac4762c874fbe97cf8221577d8e2308"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14638,
+     "sha256": "fec89d4a599047f380c4712d25dade9aae68f006d9cd4e03fdc13d191e5571ac"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9653,
+     "sha256": "74c1f6fefd733d651b919455a12df39204ccf0fa5e6ebc0959e6d3ee2b148ea0"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 38211,
+     "sha256": "aff3d7777f6082a182a453ea227ed42bc25e63894bf691beb26c8c2ec580a9b3"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 92,
+     "transcript_records_program_sha256": "aff3d7777f6082a182a453ea227ed42bc25e63894bf691beb26c8c2ec580a9b3",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 92,
+   "transcript_records_program_sha256": "aff3d7777f6082a182a453ea227ed42bc25e63894bf691beb26c8c2ec580a9b3",
+   "transcript_matches_program": true
+  },
   "a-ten-vertex-counterexample-to-an-endpoint-dichotomy-for-facet-ideals-of-graphic": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-ten-vertex-counterexample-to-an-endpoint-dichotomy-for-facet-ideals-of-graphic",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -484,10 +777,14 @@
      "sha256": "ab0aea3663fdacf9b6bf559ecc81230de02749424de341cb9beec8469985818d"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "a-third-derivative-counterexample-for-chromatic-polynomials": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-third-derivative-counterexample-for-chromatic-polynomials",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -516,12 +813,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 80,
+     "transcript_records_program_sha256": "b8cc8534d4fb3c646e9376ecc25709a87f5efcdf5fb5eefa9e96d47078b91040",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 80,
    "transcript_records_program_sha256": "b8cc8534d4fb3c646e9376ecc25709a87f5efcdf5fb5eefa9e96d47078b91040",
    "transcript_matches_program": true
   },
+  "a-weighted-triangle-squared-refutes-three-weighted-graham-pebbling-conjectures": {
+   "repository_directory": "counterexamples/a-weighted-triangle-squared-refutes-three-weighted-graham-pebbling-conjectures",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 4432,
+     "sha256": "063fae6395288c0f7e300b982bad4084c5d6cc13b87e342bb0f375e9daab8ea0"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 92696,
+     "sha256": "a5a2910fcd2bee90551ea82354e14583f85599fc32f36caaea0b096f90505d30"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 18769,
+     "sha256": "42e46b569f3a1c72d9196b53fd6e58a1004a8debcc135cbe9967152ea141eab0"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 8709,
+     "sha256": "c016c97a52a282d9e0703390fd3df7b9c6227b3986631327dd1ab1833061fe74"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 28013,
+     "sha256": "9be96339491d8a6145963995743d53c8c1eded0fa8b6cbe1fd353b135139eca5"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 60,
+     "transcript_records_program_sha256": "9be96339491d8a6145963995743d53c8c1eded0fa8b6cbe1fd353b135139eca5",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 60,
+   "transcript_records_program_sha256": "9be96339491d8a6145963995743d53c8c1eded0fa8b6cbe1fd353b135139eca5",
+   "transcript_matches_program": true
+  },
   "a-z-visibility-representation-of-k6-6-minus-a-perfect-matching": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/a-z-visibility-representation-of-k6-6-minus-a-perfect-matching",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -550,12 +899,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 66,
+     "transcript_records_program_sha256": "22f074564e707cf84eeea3433d8e2568b1d7ee381eb3330f8a1ef264662ba167",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 66,
    "transcript_records_program_sha256": "22f074564e707cf84eeea3433d8e2568b1d7ee381eb3330f8a1ef264662ba167",
    "transcript_matches_program": true
   },
   "alpha-valuations-of-c4-bouquets": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/alpha-valuations-of-c4-bouquets",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -573,10 +931,14 @@
      "sha256": "4d223bb2734b0d7cb6d42c86686da979535cffb78dc0862b48a254ff269d355d"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "alpha-zero-jacobi-family-disproves-gautschi-leopardi-conjecture-4-wide-interval": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/alpha-zero-jacobi-family-disproves-gautschi-leopardi-conjecture-4-wide-interval",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -605,12 +967,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 22,
+     "transcript_records_program_sha256": "f438bcab7b69f431baf7b8b41f532cf3e2147c277d1a776ca48d7e5cd8fa6bec",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 22,
    "transcript_records_program_sha256": "f438bcab7b69f431baf7b8b41f532cf3e2147c277d1a776ca48d7e5cd8fa6bec",
    "transcript_matches_program": true
   },
   "an-endpoint-reveal-refutes-the-exact-two-liminal-burning-formula-for-paths": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/an-endpoint-reveal-refutes-the-exact-two-liminal-burning-formula-for-paths",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -639,12 +1010,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 53,
+     "transcript_records_program_sha256": "4723944b34def8a71151614d7a43d4ebf608784666a21280d614b8e1a8d2d7d8",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 53,
    "transcript_records_program_sha256": "4723944b34def8a71151614d7a43d4ebf608784666a21280d614b8e1a8d2d7d8",
    "transcript_matches_program": true
   },
   "an-interior-rank-one-coefficient-refutes-the-generalized-kaplansky-lvov-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/an-interior-rank-one-coefficient-refutes-the-generalized-kaplansky-lvov-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -673,12 +1053,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 89,
+     "transcript_records_program_sha256": "b0a1f7a2b994cee2d08fe2118a6e4e99af59c0131adff22562561200b790e8d0",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 89,
    "transcript_records_program_sha256": "b0a1f7a2b994cee2d08fe2118a6e4e99af59c0131adff22562561200b790e8d0",
    "transcript_matches_program": true
   },
+  "an-order-128-2-group-whose-squares-form-a-non-powerful-subgroup": {
+   "repository_directory": "counterexamples/an-order-128-2-group-whose-squares-form-a-non-powerful-subgroup",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5644,
+     "sha256": "337893ca484ebf65b60101fe8c959c9a424dbfca3062ef38a91e5ffc80e34ba4"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 87908,
+     "sha256": "ecce6332f4a3791a3eb171d7e6d7dcee5949540c04e49c8cfce180299094d5f6"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 15049,
+     "sha256": "c1533bd8735d77eb425552064e7cbb2cf05bd7d9d0d7880ce278dc9b4c6b7f4e"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 6836,
+     "sha256": "9cbeff687ca2b97273d9358cc68536a13db97afb9230f3924a5a0f4ce00edd64"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 24177,
+     "sha256": "dbab58e2472790f91c5985900e326f0cd40fa922cfe7fac3408e41d4ad56cb22"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 55,
+     "transcript_records_program_sha256": "dbab58e2472790f91c5985900e326f0cd40fa922cfe7fac3408e41d4ad56cb22",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 55,
+   "transcript_records_program_sha256": "dbab58e2472790f91c5985900e326f0cd40fa922cfe7fac3408e41d4ad56cb22",
+   "transcript_matches_program": true
+  },
   "an-order-49-partition-refutes-the-heavy-chopped-rectangle-interval-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/an-order-49-partition-refutes-the-heavy-chopped-rectangle-interval-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -707,12 +1139,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 87,
+     "transcript_records_program_sha256": "73088e9c7083b0932e6269e611e8a9e9eae8f3d1dbbb91196ae8a3f046c41449",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 87,
    "transcript_records_program_sha256": "73088e9c7083b0932e6269e611e8a9e9eae8f3d1dbbb91196ae8a3f046c41449",
    "transcript_matches_program": true
   },
   "an-order-three-counterexample-to-the-barat-korondi-varga-projection-area-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/an-order-three-counterexample-to-the-barat-korondi-varga-projection-area-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -741,12 +1182,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "2c6ec98080d7fdb5f0a449ba09974bd4079a533ddaaf4dec25359fe4dc3bbd85",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "2c6ec98080d7fdb5f0a449ba09974bd4079a533ddaaf4dec25359fe4dc3bbd85",
    "transcript_matches_program": true
   },
   "an-sts-13-whose-burning-number-increases-on-doubling-and-on-tripling": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/an-sts-13-whose-burning-number-increases-on-doubling-and-on-tripling",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -775,12 +1225,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 41,
+     "transcript_records_program_sha256": "587a6553fc2b98e115b114fc451e9f23d7eb8de7609544b0484b2b7fb6467480",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 41,
    "transcript_records_program_sha256": "587a6553fc2b98e115b114fc451e9f23d7eb8de7609544b0484b2b7fb6467480",
    "transcript_matches_program": true
   },
   "balanced-sidon-partition-of-65-disproves-espinosa-garcia-pellicer-exhaustiveness": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/balanced-sidon-partition-of-65-disproves-espinosa-garcia-pellicer-exhaustiveness",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -809,12 +1268,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 93,
+     "transcript_records_program_sha256": "4b3e3b2cfbf3aba126bf5b4220a2405793a31a8c408c3b35f29715a334f9ceee",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 93,
    "transcript_records_program_sha256": "4b3e3b2cfbf3aba126bf5b4220a2405793a31a8c408c3b35f29715a334f9ceee",
    "transcript_matches_program": true
   },
   "bell-basis-refutes-johnston-russo-unambiguous-ppt-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/bell-basis-refutes-johnston-russo-unambiguous-ppt-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -832,10 +1300,14 @@
      "sha256": "37dfc654be3c1d11fc49ba1fe01c00b54802a75d3c16f05bf5a2b186ef9f573e"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "cayley-digraphs-refute-sullivan-exact-distance-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/cayley-digraphs-refute-sullivan-exact-distance-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -853,10 +1325,14 @@
      "sha256": "32b33d2a305d4f50f1c35150e3149cd92fa3b1e7fed2eca0ac8fccbaa209caf1"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "central-enlargement-refutes-kourovka-problem-20-28": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/central-enlargement-refutes-kourovka-problem-20-28",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -874,10 +1350,14 @@
      "sha256": "7e9b04f76145037fc4fef5e5ce17b3f31685f1c49735e3698d99aa97eb3b5c65"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "cm-point-counterexample-samart-n4-half-shift-formula": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/cm-point-counterexample-samart-n4-half-shift-formula",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -906,12 +1386,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 51,
+     "transcript_records_program_sha256": "a400331eee18a94a2f183746228e07fed48b769a99646a56d88552cef13e5df4",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 51,
    "transcript_records_program_sha256": "a400331eee18a94a2f183746228e07fed48b769a99646a56d88552cef13e5df4",
    "transcript_matches_program": true
   },
   "complete-bipartite-counterexamples-conjecture-20-equality": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/complete-bipartite-counterexamples-conjecture-20-equality",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -940,12 +1429,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 20,
+     "transcript_records_program_sha256": "19638bfb24ded3d13d48a20d53a3ebe22446d1b55764e1fb5bd18eb0c34271cc",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 20,
    "transcript_records_program_sha256": "19638bfb24ded3d13d48a20d53a3ebe22446d1b55764e1fb5bd18eb0c34271cc",
    "transcript_matches_program": true
   },
   "complete-intersection-counterexample-boix-lima-pereira-tor-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/complete-intersection-counterexample-boix-lima-pereira-tor-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -974,12 +1472,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 22,
+     "transcript_records_program_sha256": "1ff0a0679d737a1d7de53871b0b4fb45f15898b3bc5d2971386f75d4b9a0ac8a",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 22,
    "transcript_records_program_sha256": "1ff0a0679d737a1d7de53871b0b4fb45f15898b3bc5d2971386f75d4b9a0ac8a",
    "transcript_matches_program": true
   },
   "consecutive-fiber-family-disproves-guillot-et-al-harborth-formula-for-c3-c3p": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/consecutive-fiber-family-disproves-guillot-et-al-harborth-formula-for-c3-c3p",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -997,10 +1504,14 @@
      "sha256": "29421b2f03a02d48e6fcc7360fb93f9a1be0e082d432e049e50c07065e8009ae"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "counterexamples-to-conjecture-6-18-in-sullivan-caccetta-haggkvist-survey": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/counterexamples-to-conjecture-6-18-in-sullivan-caccetta-haggkvist-survey",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1018,10 +1529,14 @@
      "sha256": "66e53aef4c44ad5fda633e562303e7396bd29a525c9f294407fef4b44cf66c27"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "counterexamples-to-gyoda-injectivity-conjecture-for-generalized-markov-trees": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/counterexamples-to-gyoda-injectivity-conjecture-for-generalized-markov-trees",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1050,12 +1565,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 24,
+     "transcript_records_program_sha256": "60865f7b4608afbac1bc1e6b2f077f91eb5570d65ebc2180122c246283ae7d18",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 24,
    "transcript_records_program_sha256": "60865f7b4608afbac1bc1e6b2f077f91eb5570d65ebc2180122c246283ae7d18",
    "transcript_matches_program": true
   },
   "counterexamples-to-the-zhang-wan-deep-hole-completeness-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/counterexamples-to-the-zhang-wan-deep-hole-completeness-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1084,12 +1608,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 24,
+     "transcript_records_program_sha256": "21fa80814bd3f7b3ba0e6d58560594576dd4e2780e975ed98d17f8bee9ed27d8",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 24,
    "transcript_records_program_sha256": "21fa80814bd3f7b3ba0e6d58560594576dd4e2780e975ed98d17f8bee9ed27d8",
    "transcript_matches_program": true
   },
   "cycle-stars-refute-fouli-ha-morey-associated-prime-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/cycle-stars-refute-fouli-ha-morey-associated-prime-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1107,10 +1640,14 @@
      "sha256": "53615150d2c13ab7810a3215b7aa83401cda88c0c7b5dd5c3368a63a444e4bc5"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "degree-18-vector-disproves-acevedo-blekherman-debus-riener-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/degree-18-vector-disproves-acevedo-blekherman-debus-riener-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1159,12 +1696,35 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "paper_appendix_listing.py",
+     "transcript": "paper_appendix_listing.output.txt",
+     "checks": null,
+     "transcript_records_program_sha256": "24fbb096bb7b4f6ac849f3561fe8c9c0b9e4d64afb3ad25c4b6d11f442afcb9a",
+     "transcript_matches_program": true
+    },
+    {
+     "program": "search_trop_vs_T2_small_degrees.py",
+     "transcript": "search_trop_vs_T2_small_degrees.output.txt",
+     "checks": null,
+     "transcript_records_program_sha256": "35de846bffbcbf410e88a8f15e241d987f09f95f0238fccd68ec96cabf343b3b",
+     "transcript_matches_program": true
+    },
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 19,
+     "transcript_records_program_sha256": "0542cd17ce2613ee2971068ab588b1f00c362506a488a3314c800cd2806645ff",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 19,
    "transcript_records_program_sha256": "0542cd17ce2613ee2971068ab588b1f00c362506a488a3314c800cd2806645ff",
    "transcript_matches_program": true
   },
   "diamond-counterexample-devriendt-resistance-curvature": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/diamond-counterexample-devriendt-resistance-curvature",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1193,12 +1753,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 35,
+     "transcript_records_program_sha256": "39067b5ccbe0c28cddb1c2e5871826b2c61773a83aa995d56dab1dcba354875c",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 35,
    "transcript_records_program_sha256": "39067b5ccbe0c28cddb1c2e5871826b2c61773a83aa995d56dab1dcba354875c",
    "transcript_matches_program": true
   },
   "disconnected-triangles-refute-weighted-bond-real-rootedness": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/disconnected-triangles-refute-weighted-bond-real-rootedness",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1227,12 +1796,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "3da8de4440e9a8a4aac4dc73eba495909121804444346982a2589d05e67f21d1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "3da8de4440e9a8a4aac4dc73eba495909121804444346982a2589d05e67f21d1",
    "transcript_matches_program": true
   },
   "edge-deleted-bipartite-disprove-aliabadi-krop-gap": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/edge-deleted-bipartite-disprove-aliabadi-krop-gap",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1250,10 +1828,14 @@
      "sha256": "d5b7b7f8a555e481678057837b8515686dd93ab7958f3a6ee9f63c6901bc8ad4"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "eight-stage-order-five-runge-kutta-refutes-he-huang-necessity-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/eight-stage-order-five-runge-kutta-refutes-he-huang-necessity-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1282,12 +1864,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 47,
+     "transcript_records_program_sha256": "222c9e5d5688dcd31da1a91f2dbe096070c27ee758c93e92a533b0fb3442e6a9",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 47,
    "transcript_records_program_sha256": "222c9e5d5688dcd31da1a91f2dbe096070c27ee758c93e92a533b0fb3442e6a9",
    "transcript_matches_program": true
   },
   "eight-vertex-graph-disproves-mohammadi-cover-ideal-powers-question": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/eight-vertex-graph-disproves-mohammadi-cover-ideal-powers-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1316,12 +1907,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 123,
+     "transcript_records_program_sha256": "9bf539e18fc331bfd8a090233da71fdd2fe550894c79bee3a20cca48ea148dfc",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 123,
    "transcript_records_program_sha256": "9bf539e18fc331bfd8a090233da71fdd2fe550894c79bee3a20cca48ea148dfc",
    "transcript_matches_program": true
   },
   "eight-vertex-moebius-ladder-disproves-lau-shiu-ng-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/eight-vertex-moebius-ladder-disproves-lau-shiu-ng-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1339,10 +1939,14 @@
      "sha256": "185ae9da8eea867040a1b7868c2842e3f5ec3ea14b68bcf68c0b0ef0a878353d"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "exact-inversion-count-refutes-franklin-321-1342-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/exact-inversion-count-refutes-franklin-321-1342-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1371,12 +1975,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 101,
+     "transcript_records_program_sha256": "8a618a677b3fcf918542ebf777134a89bb5699c16b81c84f20cc61a2e3881137",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 101,
    "transcript_records_program_sha256": "8a618a677b3fcf918542ebf777134a89bb5699c16b81c84f20cc61a2e3881137",
    "transcript_matches_program": true
   },
   "finite-subset-posets-refute-mobius-uncertainty": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/finite-subset-posets-refute-mobius-uncertainty",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1394,10 +2007,14 @@
      "sha256": "98b0fd63c88bc450c0b2b9d3a5b172ab29fcc45793c0c3e402d8222ee072d74c"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "five-variable-semigraphoid-disproves-boege-bolt-studeny-self-adhesivity-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/five-variable-semigraphoid-disproves-boege-bolt-studeny-self-adhesivity-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1426,12 +2043,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 20,
+     "transcript_records_program_sha256": "aeebbb009953639a47a42cc822a3d837f05d91f6655fd00fa8d3cac5d3f202a8",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 20,
    "transcript_records_program_sha256": "aeebbb009953639a47a42cc822a3d837f05d91f6655fd00fa8d3cac5d3f202a8",
    "transcript_matches_program": true
   },
   "five-vertex-composite-refutes-conjecture-5-8": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/five-vertex-composite-refutes-conjecture-5-8",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1460,12 +2086,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 42,
+     "transcript_records_program_sha256": "fc71bceab7074b048ae1e7c9c143d8e3d85e57420e4371d3630d6c279ff8a4cd",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 42,
    "transcript_records_program_sha256": "fc71bceab7074b048ae1e7c9c143d8e3d85e57420e4371d3630d6c279ff8a4cd",
    "transcript_matches_program": true
   },
   "four-distinct-triangles-force-at-most-seven-points-and-the-regular-heptagon": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/four-distinct-triangles-force-at-most-seven-points-and-the-regular-heptagon",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1494,12 +2129,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 48,
+     "transcript_records_program_sha256": "8235ca9efc5ae55e3f028461e873eeedb9e3188573cfc5fa60084b2ffa431e92",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 48,
    "transcript_records_program_sha256": "8235ca9efc5ae55e3f028461e873eeedb9e3188573cfc5fa60084b2ffa431e92",
    "transcript_matches_program": true
   },
+  "four-mubs-detect-bound-entanglement-in-dimension-eight-where-five-were-conjectured": {
+   "repository_directory": "counterexamples/four-mubs-detect-bound-entanglement-in-dimension-eight-where-five-were-conjectured",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5089,
+     "sha256": "3cf5cf2119714e611390eb0f8a1a3754763a211e50a091c17b295263418df2f9"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 96771,
+     "sha256": "861c28376af7592186389f4743b8d474e5d32f1a30b280bdcf662f3652d23906"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 17007,
+     "sha256": "3cb014c68bbf6044d1dc7d39f2111866f7de5e43f90651e3449958fa8c7fcf6f"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 4567,
+     "sha256": "3c2de0dd61808d8aa7936f575197ce269f1b65372ca358d6eda5c6952951e316"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 21554,
+     "sha256": "e6462c241ab4d4f0a59e160f92ca6760138a50a17aa7e1d90d399442d37bd986"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 23,
+     "transcript_records_program_sha256": "e6462c241ab4d4f0a59e160f92ca6760138a50a17aa7e1d90d399442d37bd986",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 23,
+   "transcript_records_program_sha256": "e6462c241ab4d4f0a59e160f92ca6760138a50a17aa7e1d90d399442d37bd986",
+   "transcript_matches_program": true
+  },
   "four-vertex-path-disproves-lew-h-free-laplacian-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/four-vertex-path-disproves-lew-h-free-laplacian-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1528,12 +2215,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 38,
+     "transcript_records_program_sha256": "0a3c429c34286bf0cd2699b8314167bd979711f13c08649bd8182c7dfa535325",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 38,
    "transcript_records_program_sha256": "0a3c429c34286bf0cd2699b8314167bd979711f13c08649bd8182c7dfa535325",
    "transcript_matches_program": true
   },
   "glushkov-automata-disprove-mfn-memoization-conjectures": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/glushkov-automata-disprove-mfn-memoization-conjectures",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1551,10 +2247,14 @@
      "sha256": "ffa835749cce7323b94c0f8151605dd1242ad4cfb0869a2fa6aaea597b7258f4"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "hessian-arrangement-needs-four-added-lines-disproves-dimca-kuhne-pokora-question": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/hessian-arrangement-needs-four-added-lines-disproves-dimca-kuhne-pokora-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1583,12 +2283,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 41,
+     "transcript_records_program_sha256": "6bc3d6d6b28bab1f01a12438f7ccdfbd266d9ee7626e57cdc16e280ac44e9c4f",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 41,
    "transcript_records_program_sha256": "6bc3d6d6b28bab1f01a12438f7ccdfbd266d9ee7626e57cdc16e280ac44e9c4f",
    "transcript_matches_program": true
   },
   "house-graph-refutes-tang-bunkbed-self-avoiding-walk-question": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/house-graph-refutes-tang-bunkbed-self-avoiding-walk-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1617,12 +2326,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 20,
+     "transcript_records_program_sha256": "93938a4ecfd5face28807004dfa7f5c70d623fab3902f2a637aaf8deddb742b8",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 20,
    "transcript_records_program_sha256": "93938a4ecfd5face28807004dfa7f5c70d623fab3902f2a637aaf8deddb742b8",
    "transcript_matches_program": true
   },
   "hypercube-zero-forcing-sets-disprove-propagation-time-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/hypercube-zero-forcing-sets-disprove-propagation-time-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1651,12 +2369,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 22,
+     "transcript_records_program_sha256": "35f5d85df2f2b66ee35671a94088a2897a5b098044038798db13c4860b15cd0e",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 22,
    "transcript_records_program_sha256": "35f5d85df2f2b66ee35671a94088a2897a5b098044038798db13c4860b15cd0e",
    "transcript_matches_program": true
   },
   "integer-parameter-3f2-disproves-karp-sitnik-aggregate-condition-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/integer-parameter-3f2-disproves-karp-sitnik-aggregate-condition-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1685,12 +2412,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 30,
+     "transcript_records_program_sha256": "a2807bd5c9149cf306490caadfa1fc4b1182a04b2d8dc067c864f34b4f21293c",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 30,
    "transcript_records_program_sha256": "a2807bd5c9149cf306490caadfa1fc4b1182a04b2d8dc067c864f34b4f21293c",
    "transcript_matches_program": true
   },
   "jahanbekam-west-matching-conjecture-fails-at-t-n-minus-1": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/jahanbekam-west-matching-conjecture-fails-at-t-n-minus-1",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1708,10 +2444,14 @@
      "sha256": "a3a843f7f23cf575956c666686006b82f9e0db6648a56494a5d02a9775316a49"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "k4-counterexample-devriendt-resistance-curvature-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/k4-counterexample-devriendt-resistance-curvature-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1740,12 +2480,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 21,
+     "transcript_records_program_sha256": "f2e03baaab73f6b991b6c94776462c90ad6b12b75ce12262845af76edd7637b1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 21,
    "transcript_records_program_sha256": "f2e03baaab73f6b991b6c94776462c90ad6b12b75ce12262845af76edd7637b1",
    "transcript_matches_program": true
   },
   "k8-one-factorization-refutes-barat-nagy-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/k8-one-factorization-refutes-barat-nagy-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1763,10 +2512,14 @@
      "sha256": "d4c562471d41940fb5bfc24139837352c8d5eb895972154522e7d8ce65270802"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "kite-counterexamples-zhou-wang-chai-distance-laplacian": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/kite-counterexamples-zhou-wang-chai-distance-laplacian",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1795,12 +2548,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 22,
+     "transcript_records_program_sha256": "46726f496ca934a99f6cb11f89eb3a4688de40b171ef3528dc975f865d774b88",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 22,
    "transcript_records_program_sha256": "46726f496ca934a99f6cb11f89eb3a4688de40b171ef3528dc975f865d774b88",
    "transcript_matches_program": true
   },
   "klein-bottle-sets-of-doubling-3k-minus-3-refute-mohan-neetu-torsion-free-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/klein-bottle-sets-of-doubling-3k-minus-3-refute-mohan-neetu-torsion-free-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1829,12 +2591,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 304,
+     "transcript_records_program_sha256": "e46199f25989cd6723c886df4f61dcab1abd74613aa3e14dbb803b9c864073ba",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 304,
    "transcript_records_program_sha256": "e46199f25989cd6723c886df4f61dcab1abd74613aa3e14dbb803b9c864073ba",
    "transcript_matches_program": true
   },
   "length-100-golay-pair-refutes-compression-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/length-100-golay-pair-refutes-compression-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1863,12 +2634,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 39,
+     "transcript_records_program_sha256": "aa1c7cd572b6f4a7dc4dfcc6e98f9e2e187385181332414fffc34fca6b1dfbd1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 39,
    "transcript_records_program_sha256": "aa1c7cd572b6f4a7dc4dfcc6e98f9e2e187385181332414fffc34fca6b1dfbd1",
    "transcript_matches_program": true
   },
   "mesh-pair-113-refutes-lv-zhang-cross-pair-equidistribution": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/mesh-pair-113-refutes-lv-zhang-cross-pair-equidistribution",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1897,12 +2677,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 30,
+     "transcript_records_program_sha256": "8932406ee1a809f15d99afc8e024085f2f3e7e5f4bb1e64f07e735ba443ac6a1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 30,
    "transcript_records_program_sha256": "8932406ee1a809f15d99afc8e024085f2f3e7e5f4bb1e64f07e735ba443ac6a1",
    "transcript_matches_program": true
   },
   "mohan-neetu-two-abelian-set-doubling-conjecture-contradicted-by-its-own-example": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/mohan-neetu-two-abelian-set-doubling-conjecture-contradicted-by-its-own-example",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1931,12 +2720,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 244,
+     "transcript_records_program_sha256": "5c362f18ac6ac3fc6e63f119d5c9e01108def048c2ba7f1e9e223f333ad860e1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 244,
    "transcript_records_program_sha256": "5c362f18ac6ac3fc6e63f119d5c9e01108def048c2ba7f1e9e223f333ad860e1",
    "transcript_matches_program": true
   },
   "multigraph-1110-refutes-abdi-cornuejols-zlatin-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/multigraph-1110-refutes-abdi-cornuejols-zlatin-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1954,10 +2752,14 @@
      "sha256": "d6e5419611b5adc19e8c756c4d5612a0996def17ede6d1e41af7e206fea755ac"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "nine-unit-cubes-disprove-fekete-meijer-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/nine-unit-cubes-disprove-fekete-meijer-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -1986,12 +2788,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 24,
+     "transcript_records_program_sha256": "4b405c18a5df23b10a5ed43db068db2677bc84e5f976c5189dc4a00c0d31aba4",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 24,
    "transcript_records_program_sha256": "4b405c18a5df23b10a5ed43db068db2677bc84e5f976c5189dc4a00c0d31aba4",
    "transcript_matches_program": true
   },
   "nine-vertex-counterexample-davila-zombie-damage": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/nine-vertex-counterexample-davila-zombie-damage",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2020,12 +2831,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 42,
+     "transcript_records_program_sha256": "e4a97b2c6fb66a395fe1fa30826a69346922bdbf89a2ce21906210fbe481d5ac",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 42,
    "transcript_records_program_sha256": "e4a97b2c6fb66a395fe1fa30826a69346922bdbf89a2ce21906210fbe481d5ac",
    "transcript_matches_program": true
   },
   "odd-partitions-disprove-qu-zang-hook-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/odd-partitions-disprove-qu-zang-hook-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2043,10 +2863,57 @@
      "sha256": "9bfbac7346653af3a9e1dbce1926e2097f2f2045aa5d6ec1852ef47d8ebd7a36"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
+  },
+  "order-32-is-the-minimal-counterexample-to-ta-good-involution-determinacy-problem": {
+   "repository_directory": "counterexamples/order-32-is-the-minimal-counterexample-to-ta-good-involution-determinacy-problem",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 3963,
+     "sha256": "62521098043393a8ec80c84f0aeae2f679822188869cbf3c036e9f1fb903e205"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 97318,
+     "sha256": "7fee2580c8b0f647cba03504eb67fbdad7dd761568e221725caac69cafac0d4f"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 19257,
+     "sha256": "c614bfef4dfa66134f138c9020db1ad2318019db44efcedf83765090568f8cc4"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 28145,
+     "sha256": "b068e98b02f1d1b648e290a53c043a88afd615976e63628ce52951c3154c0d72"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 39558,
+     "sha256": "7abfe2ae5a4c3d3884f7c3badedc74cd6d1fb3a0cc31329bfd4e45a6790034e3"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 237,
+     "transcript_records_program_sha256": "7abfe2ae5a4c3d3884f7c3badedc74cd6d1fb3a0cc31329bfd4e45a6790034e3",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 237,
+   "transcript_records_program_sha256": "7abfe2ae5a4c3d3884f7c3badedc74cd6d1fb3a0cc31329bfd4e45a6790034e3",
+   "transcript_matches_program": true
   },
   "order-36-counterexamples-mortada-packing-coloring-problem": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/order-36-counterexamples-mortada-packing-coloring-problem",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2064,10 +2931,14 @@
      "sha256": "92e474adcc1acdce40a9857c9fb54ea97a4844ed8e47ad315a0147634b9bcf86"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "order-nine-template-disproves-triplication-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/order-nine-template-disproves-triplication-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2085,10 +2956,14 @@
      "sha256": "10dbe1ea1b3ef2b57d422eed2f3bc4d30f3d63ae6f3057d00c455c830e785166"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "order-seven-counterexamples-nurdin-irregularity-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/order-seven-counterexamples-nurdin-irregularity-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2117,12 +2992,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 28,
+     "transcript_records_program_sha256": "aa2f88eca7e965b1bd745d8e7ee0716d3a0044ae9b58ce7514fbd86afb12da8e",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 28,
    "transcript_records_program_sha256": "aa2f88eca7e965b1bd745d8e7ee0716d3a0044ae9b58ce7514fbd86afb12da8e",
    "transcript_matches_program": true
   },
   "parity-refutes-the-symmetric-four-term-amicable-totient-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/parity-refutes-the-symmetric-four-term-amicable-totient-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2151,12 +3035,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 66,
+     "transcript_records_program_sha256": "aa92eeb641d80ec17404736f38f6bc784cbeea44991f4d82e10c3ac51566c89d",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 66,
    "transcript_records_program_sha256": "aa92eeb641d80ec17404736f38f6bc784cbeea44991f4d82e10c3ac51566c89d",
    "transcript_matches_program": true
   },
   "polystochastic-array-refutes-taranenko-diagonal-decomposition": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/polystochastic-array-refutes-taranenko-diagonal-decomposition",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2174,10 +3067,14 @@
      "sha256": "904e2e0ea1f68f1c64ee1f0fff03ee43684217a8be517f5a75b5dc3c8360547f"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "posets-disprove-chan-pak-panova-matching-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/posets-disprove-chan-pak-panova-matching-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2195,10 +3092,14 @@
      "sha256": "0f308b62ce4fb23524519351129f72cfb19258dd570dbb5bc0b99dbd7cf6b91f"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "positive-generalized-corner-vector-designs-on-s3-have-degree-at-most-13": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/positive-generalized-corner-vector-designs-on-s3-have-degree-at-most-13",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2227,12 +3128,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 48,
+     "transcript_records_program_sha256": "5e1de55cadafb6d86c4ea4d3a1230c92392a107ff9e42d4b7d880d1e1e450758",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 48,
    "transcript_records_program_sha256": "5e1de55cadafb6d86c4ea4d3a1230c92392a107ff9e42d4b7d880d1e1e450758",
    "transcript_matches_program": true
   },
   "ramanujan-exceptions-refute-sondow-nicholson-noe-conjecture-five": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/ramanujan-exceptions-refute-sondow-nicholson-noe-conjecture-five",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2261,12 +3171,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 28,
+     "transcript_records_program_sha256": "5fc1042f36e2e49f542a864e2244bdbd2c50714f998b316479189061b42daf25",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 28,
    "transcript_records_program_sha256": "5fc1042f36e2e49f542a864e2244bdbd2c50714f998b316479189061b42daf25",
    "transcript_matches_program": true
   },
   "rank-two-counterexample-zhang-weak-drury-inequality": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/rank-two-counterexample-zhang-weak-drury-inequality",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2295,12 +3214,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 52,
+     "transcript_records_program_sha256": "338e6456518e249d9a3b79c0b2c7b3342e7e9795741ab2b25b1615a6bfb829fa",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 52,
    "transcript_records_program_sha256": "338e6456518e249d9a3b79c0b2c7b3342e7e9795741ab2b25b1615a6bfb829fa",
    "transcript_matches_program": true
   },
   "reduced-kronecker-counterexamples-gui-sorting-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/reduced-kronecker-counterexamples-gui-sorting-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2329,12 +3257,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 18,
+     "transcript_records_program_sha256": "02d5d37e5cfd5c8442af0c4f09868e0fa33e5ad3cdd534a765a8f63dca2faa9a",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 18,
    "transcript_records_program_sha256": "02d5d37e5cfd5c8442af0c4f09868e0fa33e5ad3cdd534a765a8f63dca2faa9a",
    "transcript_matches_program": true
   },
   "residue-b-domination-refutes-unrestricted-dargad-larsson-problem": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/residue-b-domination-refutes-unrestricted-dargad-larsson-problem",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2363,12 +3300,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 31,
+     "transcript_records_program_sha256": "fbcb362333b58849ca0ece0c80d459da6f39acbec5f0caa0904c0765af8fc6b1",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 31,
    "transcript_records_program_sha256": "fbcb362333b58849ca0ece0c80d459da6f39acbec5f0caa0904c0765af8fc6b1",
    "transcript_matches_program": true
   },
   "rooted-trees-refute-node-curvature-product-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/rooted-trees-refute-node-curvature-product-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2397,12 +3343,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 26,
+     "transcript_records_program_sha256": "b98fb7cc508e4e44fa40f66e6d043343b8c58b1a42130ae7d88459688ef577fc",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 26,
    "transcript_records_program_sha256": "b98fb7cc508e4e44fa40f66e6d043343b8c58b1a42130ae7d88459688ef577fc",
    "transcript_matches_program": true
   },
   "s6-covering-number-refutes-kundu-velmurugan-conjecture-36-3": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/s6-covering-number-refutes-kundu-velmurugan-conjecture-36-3",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2431,12 +3386,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 46,
+     "transcript_records_program_sha256": "1632b8cf0cc14fde08be5c8c965f69c0931c9c885b9a52fedbcab59987fc9fec",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 46,
    "transcript_records_program_sha256": "1632b8cf0cc14fde08be5c8c965f69c0931c9c885b9a52fedbcab59987fc9fec",
    "transcript_matches_program": true
   },
   "s6-reversal-factorizations-disprove-45312-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/s6-reversal-factorizations-disprove-45312-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2465,12 +3429,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 35,
+     "transcript_records_program_sha256": "09cb79d93fa2900c3dd28c08a4bac83d40eb2c10149812e1e0f955a8a3b633f0",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 35,
    "transcript_records_program_sha256": "09cb79d93fa2900c3dd28c08a4bac83d40eb2c10149812e1e0f955a8a3b633f0",
    "transcript_matches_program": true
   },
   "set-partition-orbit-harmonics-disprove-sn-log-concavity": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/set-partition-orbit-harmonics-disprove-sn-log-concavity",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2499,12 +3472,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "6e7c509e04cf62217c1ccc54357f33509a79598d8a38a7c4ec9f1d93ea62f382",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "6e7c509e04cf62217c1ccc54357f33509a79598d8a38a7c4ec9f1d93ea62f382",
    "transcript_matches_program": true
   },
   "seven-vertex-colored-paths-disprove-gobel-misra-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/seven-vertex-colored-paths-disprove-gobel-misra-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2533,12 +3515,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 25,
+     "transcript_records_program_sha256": "262d41a5b11c73087fc40dc5ca0f829ec5770124c2b273e410a2b09eaa288b25",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 25,
    "transcript_records_program_sha256": "262d41a5b11c73087fc40dc5ca0f829ec5770124c2b273e410a2b09eaa288b25",
    "transcript_matches_program": true
   },
   "short-cycle-counterexamples-to-conjecture-12-of-berman-gevay-pisanski": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/short-cycle-counterexamples-to-conjecture-12-of-berman-gevay-pisanski",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2556,10 +3547,14 @@
      "sha256": "2d8134e899a0a024acfb1d372c723decb8ca028c78e2d1a663026c94b18ea189"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "size-three-involutions-disprove-fang-et-al-class-69-equidistribution": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/size-three-involutions-disprove-fang-et-al-class-69-equidistribution",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2588,12 +3583,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 21,
+     "transcript_records_program_sha256": "aa6a3b7c54507f52b71bff155e1110295ca078e02d1046a18e6f627877074abf",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 21,
    "transcript_records_program_sha256": "aa6a3b7c54507f52b71bff155e1110295ca078e02d1046a18e6f627877074abf",
    "transcript_matches_program": true
   },
   "small-parameter-subtraction-sets-disprove-larsson-manabe-miyadera-conjecture-3": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/small-parameter-subtraction-sets-disprove-larsson-manabe-miyadera-conjecture-3",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2622,12 +3626,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 24,
+     "transcript_records_program_sha256": "f7f9867eb7576863ceea2ab5675437b91a65d8b764785f5ac180fef395bf35ce",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 24,
    "transcript_records_program_sha256": "f7f9867eb7576863ceea2ab5675437b91a65d8b764785f5ac180fef395bf35ce",
    "transcript_matches_program": true
   },
   "small-trace-families-disprove-frankl-wang-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/small-trace-families-disprove-frankl-wang-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2656,12 +3669,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 56,
+     "transcript_records_program_sha256": "332a38f5e2cf986cfbebbec1d479d36bbc40731662020daf69e4b3afae4ae2b3",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 56,
    "transcript_records_program_sha256": "332a38f5e2cf986cfbebbec1d479d36bbc40731662020daf69e4b3afae4ae2b3",
    "transcript_matches_program": true
   },
   "star-forests-disprove-gallian-schoenhard-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/star-forests-disprove-gallian-schoenhard-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2679,10 +3701,57 @@
      "sha256": "8d5b4146ce1712e834123d9835b5cf5e248c23301948f360f81134f1af406ab9"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
+  },
+  "the-face-angle-map-of-a-tetrahedron-is-not-injective-on-the-danger-cylinder": {
+   "repository_directory": "counterexamples/the-face-angle-map-of-a-tetrahedron-is-not-injective-on-the-danger-cylinder",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 6609,
+     "sha256": "3fef1710b2612bf51798224f0af292c848ba841331883eaec6617498f562b458"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 84012,
+     "sha256": "a3f6218e4ac8ba8241ecc470490a3cfd272398faf04519d94b066ab148c87748"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 12004,
+     "sha256": "2150c24d43d25104226902d8c712df5bcb06cfe574c795f204705e1a7ee4e2fb"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 12126,
+     "sha256": "bb3122e8d4c49dfdc2a9396a0eb0e9f6a7e12690ab8764bc855a3ae6aca9079b"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 24153,
+     "sha256": "e454c9a28c4ea042410249dd8ed74a155e469c79548c5893e29dc94e76b0aefd"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 84,
+     "transcript_records_program_sha256": "e454c9a28c4ea042410249dd8ed74a155e469c79548c5893e29dc94e76b0aefd",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 84,
+   "transcript_records_program_sha256": "e454c9a28c4ea042410249dd8ed74a155e469c79548c5893e29dc94e76b0aefd",
+   "transcript_matches_program": true
   },
   "the-hafnian-van-der-waerden-conjecture-fails-in-order-six": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/the-hafnian-van-der-waerden-conjecture-fails-in-order-six",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2700,10 +3769,14 @@
      "sha256": "bd936fda96c895b4b84a8ba10a1ea67a6aa2e22f0351a0d89696c31f9ada7ce0"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "the-holtz-sturmfels-ideal-generation-conjecture-fails-for-n-at-least-5": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/the-holtz-sturmfels-ideal-generation-conjecture-fails-for-n-at-least-5",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2732,12 +3805,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 36,
+     "transcript_records_program_sha256": "cebc860b3d14a2dbdba62a944bb217871f880f63945ae21163a02e9119c207ec",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 36,
    "transcript_records_program_sha256": "cebc860b3d14a2dbdba62a944bb217871f880f63945ae21163a02e9119c207ec",
    "transcript_matches_program": true
   },
+  "the-iterated-beatty-range-criterion-fails-below-5-4-and-holds-above-2": {
+   "repository_directory": "counterexamples/the-iterated-beatty-range-criterion-fails-below-5-4-and-holds-above-2",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5690,
+     "sha256": "568a5655fbbfb30957d23fd3475ad32c99806e5457d2ef082388e0ddfee2ca23"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 117659,
+     "sha256": "f9f8c689a97b70562973ede43f02231f27488f5f5b62cd35898b605c6c4937f0"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 25046,
+     "sha256": "8f3e81837c4333e2e9f81d91b4afd50b8a14e3132782155e838e9891118ad0ce"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 5659,
+     "sha256": "4be3f1d9a9c98c3f17b8d31233b1e4777a2e17a5e04bf4c2879926efeb5f5ad8"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 36064,
+     "sha256": "2513064e7e7ee37064078b062b5c2f35e7f1651c86fd07b295644b6e4dd56de7"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 31,
+     "transcript_records_program_sha256": "2513064e7e7ee37064078b062b5c2f35e7f1651c86fd07b295644b6e4dd56de7",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 31,
+   "transcript_records_program_sha256": "2513064e7e7ee37064078b062b5c2f35e7f1651c86fd07b295644b6e4dd56de7",
+   "transcript_matches_program": true
+  },
   "the-least-counterexample-to-conjecture-4-3-of-dolfi-hafezieh-and-spiga": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/the-least-counterexample-to-conjecture-4-3-of-dolfi-hafezieh-and-spiga",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2766,12 +3891,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 36,
+     "transcript_records_program_sha256": "a23614b99c13aaf54da969bf59accb6221bdad7e728dbbcf9035f7e1d87a4515",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 36,
    "transcript_records_program_sha256": "a23614b99c13aaf54da969bf59accb6221bdad7e728dbbcf9035f7e1d87a4515",
    "transcript_matches_program": true
   },
   "the-morrow-patterson-lebesgue-function-is-not-centrally-symmetric": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/the-morrow-patterson-lebesgue-function-is-not-centrally-symmetric",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2800,12 +3934,107 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 39,
+     "transcript_records_program_sha256": "a5aec2e60725a47e1f7174e35c87fb9c59ea45429cb5d00a6d2ef80702bacbba",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 39,
    "transcript_records_program_sha256": "a5aec2e60725a47e1f7174e35c87fb9c59ea45429cb5d00a6d2ef80702bacbba",
    "transcript_matches_program": true
   },
+  "the-smallest-graceful-bipartite-graph-with-no-near-alpha-valuation": {
+   "repository_directory": "counterexamples/the-smallest-graceful-bipartite-graph-with-no-near-alpha-valuation",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 3739,
+     "sha256": "101f3b36a8bb3e766b9591a44a66b74f95ae99c4cc5e9492137a6859a8d4557a"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 86362,
+     "sha256": "1c98402f36beb30f40583db43518f32f8a46ad1f56aeefa04a53569f79c0d8c2"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 17728,
+     "sha256": "abd0835404e64ddc2887760725ebafea1be7971176a3b3214583860ec154cabf"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 13001,
+     "sha256": "979cb2c1756963d94a8bf7ca8b289aca2d7f68ad8d4a7f85a956ae90e57ac4a8"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 34093,
+     "sha256": "a88c05df5e29a21a56dbf63e6d1642155a097162e30b2e7910e0184002c4441e"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 86,
+     "transcript_records_program_sha256": "a88c05df5e29a21a56dbf63e6d1642155a097162e30b2e7910e0184002c4441e",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 86,
+   "transcript_records_program_sha256": "a88c05df5e29a21a56dbf63e6d1642155a097162e30b2e7910e0184002c4441e",
+   "transcript_matches_program": true
+  },
+  "the-smallest-magic-state-code-refutes-the-zheng-liu-fixed-plane-universality-claim": {
+   "repository_directory": "counterexamples/the-smallest-magic-state-code-refutes-the-zheng-liu-fixed-plane-universality-claim",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 4176,
+     "sha256": "538f43906392cab90e252a39cb4f6fa85caae2aa15c3e2451079269b6bd751b5"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 77020,
+     "sha256": "5e28971c1f4623b531d69624eebe353209daa96ffa7f3541cd33cf8fd113fa06"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 12469,
+     "sha256": "4fec70210687e49183651842f12cc27774e41bb2d0d825025b237354519ba1ad"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 21019,
+     "sha256": "6d93c481b15ee1a80bac02ccd4e1349b573797c6acae36715ea285903c39ae71"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 30733,
+     "sha256": "666f544ee013410f2ee38c6d290f0161e8a2d3f7d984a824006a26c75ef7d2d8"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 211,
+     "transcript_records_program_sha256": "666f544ee013410f2ee38c6d290f0161e8a2d3f7d984a824006a26c75ef7d2d8",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 211,
+   "transcript_records_program_sha256": "666f544ee013410f2ee38c6d290f0161e8a2d3f7d984a824006a26c75ef7d2d8",
+   "transcript_matches_program": true
+  },
   "three-dimensional-counterexample-matrix-variety-stabilization": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/three-dimensional-counterexample-matrix-variety-stabilization",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2823,10 +4052,14 @@
      "sha256": "a57fec7684f197c403177a597a1805a61a99aecd4591d1899543291ef073012a"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "three-families-disprove-wirdane-cyclotomic-catalan-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/three-families-disprove-wirdane-cyclotomic-catalan-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2855,12 +4088,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 52,
+     "transcript_records_program_sha256": "dc87789a14e22ca7a474d3ecd4d57d2eaa19332cfadea0c15f70cc7954732604",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 52,
    "transcript_records_program_sha256": "dc87789a14e22ca7a474d3ecd4d57d2eaa19332cfadea0c15f70cc7954732604",
    "transcript_matches_program": true
   },
   "three-fold-tie-disproves-marin-tie-cancellation-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/three-fold-tie-disproves-marin-tie-cancellation-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2889,12 +4131,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 89,
+     "transcript_records_program_sha256": "ac8f7b5498e2f669953415c994a47e8aa37a8d771d5c76faff40df95ad217579",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 89,
    "transcript_records_program_sha256": "ac8f7b5498e2f669953415c994a47e8aa37a8d771d5c76faff40df95ad217579",
    "transcript_matches_program": true
   },
   "three-pile-slow-nim-disproves-gurvich-naumova-gm-nash-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/three-pile-slow-nim-disproves-gurvich-naumova-gm-nash-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2912,10 +4163,14 @@
      "sha256": "b6d3346e69771fc46bf580dba354a9353f58f57c5e67cdc4d09346bd8c69b28e"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "tor-stabilization-refutes-boix-lima-pereira-conjecture-4-2": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/tor-stabilization-refutes-boix-lima-pereira-conjecture-4-2",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2944,12 +4199,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 26,
+     "transcript_records_program_sha256": "a950df1bbd027c8746abdf9aaabcf0c3414199a838c3410e2fc374858a984278",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 26,
    "transcript_records_program_sha256": "a950df1bbd027c8746abdf9aaabcf0c3414199a838c3410e2fc374858a984278",
    "transcript_matches_program": true
   },
   "truncated-support-family-disproves-dargad-larsson-atomic-weight-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/truncated-support-family-disproves-dargad-larsson-atomic-weight-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -2978,12 +4242,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 33,
+     "transcript_records_program_sha256": "82674291f6c25f8cdbcdc21b52a4b7b82e00973c120337819d546f78c7936060",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 33,
    "transcript_records_program_sha256": "82674291f6c25f8cdbcdc21b52a4b7b82e00973c120337819d546f78c7936060",
    "transcript_matches_program": true
   },
+  "two-zonotopes-with-equal-arithmetic-matroid-and-different-graded-ehrhart-series": {
+   "repository_directory": "counterexamples/two-zonotopes-with-equal-arithmetic-matroid-and-different-graded-ehrhart-series",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5174,
+     "sha256": "1f6a6672f678fb6eccd38812d1b3b2b623cc7a579de9cd9418716dc0b32fcb2b"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 86541,
+     "sha256": "dbef34664d027f93bb44b7407cfec533e88cd210ef3345774211985cc3e32b68"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 12818,
+     "sha256": "ede2c209f24a04c94a2f338b2803bf3e1ad32b030d8144468e19db5df61760c4"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9933,
+     "sha256": "b64a45539958efeba97b5826c30b4bb6d15e68fb1c325168231d99dfb106c1fe"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 37014,
+     "sha256": "af52f9ec93cba098aaa0c4dcdd06c9ec9cb316544e28b60f3ccb58028258301b"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 48,
+     "transcript_records_program_sha256": "af52f9ec93cba098aaa0c4dcdd06c9ec9cb316544e28b60f3ccb58028258301b",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 48,
+   "transcript_records_program_sha256": "af52f9ec93cba098aaa0c4dcdd06c9ec9cb316544e28b60f3ccb58028258301b",
+   "transcript_matches_program": true
+  },
   "unconditional-body-counterexample-projection-conjecture": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/unconditional-body-counterexample-projection-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3012,12 +4328,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 49,
+     "transcript_records_program_sha256": "884fe18b77cf755c673b600ff41d90fbeeb367b63357671e3aa70ae3d11c80da",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 49,
    "transcript_records_program_sha256": "884fe18b77cf755c673b600ff41d90fbeeb367b63357671e3aa70ae3d11c80da",
    "transcript_matches_program": true
   },
   "vietoris-rips-q6-scale-four-refutes-galetto-montano-wellner-multiplicity-freeness": {
-   "repository_directory": "counterexamples",
+   "repository_directory": "counterexamples/vietoris-rips-q6-scale-four-refutes-galetto-montano-wellner-multiplicity-freeness",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3046,12 +4371,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 37,
+     "transcript_records_program_sha256": "9630ec10fd54ae5cccbc6f39fd1ef0a4afbecffd0a4e71724b824508be60ae87",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 37,
    "transcript_records_program_sha256": "9630ec10fd54ae5cccbc6f39fd1ef0a4afbecffd0a4e71724b824508be60ae87",
    "transcript_matches_program": true
   },
+  "a-13-vertex-c4-free-graph-whose-worst-orientation-beats-the-matching-bound": {
+   "repository_directory": "constructions/a-13-vertex-c4-free-graph-whose-worst-orientation-beats-the-matching-bound",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 6743,
+     "sha256": "b58f00f7e8410328575e121b83dabbe156046b504a239a4b906d8d713a932c93"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 88225,
+     "sha256": "d5409230a41e8074e1d1ad6c5cd5994d9fef6d5ec70feb382ccdd444a3705be0"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 13762,
+     "sha256": "d09d66fa1fa0cb7dec3d307a8fa8e1f10b1b7d89ddf73871f4fdef70ae1a6815"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9392,
+     "sha256": "e75ce3baadde5f5fd29406c1360bbe7bc1fbfaa896178fd3d70fe1f6f088bc03"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 30109,
+     "sha256": "a905912f956fc52e4126745d4dc27be46b2614702cbb5080f13ccc0e571beb91"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 57,
+     "transcript_records_program_sha256": "a905912f956fc52e4126745d4dc27be46b2614702cbb5080f13ccc0e571beb91",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 57,
+   "transcript_records_program_sha256": "a905912f956fc52e4126745d4dc27be46b2614702cbb5080f13ccc0e571beb91",
+   "transcript_matches_program": true
+  },
   "a-32-digit-prime-x-with-x2-plus-x-plus-1-square-full-answers-ochem-zelinsky": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/a-32-digit-prime-x-with-x2-plus-x-plus-1-square-full-answers-ochem-zelinsky",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3080,12 +4457,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 74,
+     "transcript_records_program_sha256": "289a9b2f3da65350b94ccf993d60a9b0d55d9a10953702fc159d936c78cfc338",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 74,
    "transcript_records_program_sha256": "289a9b2f3da65350b94ccf993d60a9b0d55d9a10953702fc159d936c78cfc338",
    "transcript_matches_program": true
   },
+  "a-completely-uniform-nested-steiner-quadruple-system-of-order-56": {
+   "repository_directory": "constructions/a-completely-uniform-nested-steiner-quadruple-system-of-order-56",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5057,
+     "sha256": "40ad800b40657836b022a3a4f02d8cffbbe69e10e1f9c8ff6b1964edef72946c"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 100469,
+     "sha256": "f605214561fa2e895b57b9fd61b6f45aad8c5466312badb08e6970449c3b8c5b"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 19125,
+     "sha256": "579c7b42fe96508758c75eb48c84690741cdf360a573a41f177a1a07972b39a2"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 5734,
+     "sha256": "b605f425167b9432e2a886ad8608868a72af2556591062d924f79e82e499ce70"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 22166,
+     "sha256": "60a155f81c59b76ea33a8d7f5b9fd45a3fa7dbea4befb26d074ffa12dcd5345c"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 31,
+     "transcript_records_program_sha256": "60a155f81c59b76ea33a8d7f5b9fd45a3fa7dbea4befb26d074ffa12dcd5345c",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 31,
+   "transcript_records_program_sha256": "60a155f81c59b76ea33a8d7f5b9fd45a3fa7dbea4befb26d074ffa12dcd5345c",
+   "transcript_matches_program": true
+  },
   "a-connected-quandle-of-order-70-with-all-maximal-r-cliques-of-size-four": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/a-connected-quandle-of-order-70-with-all-maximal-r-cliques-of-size-four",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3114,12 +4543,150 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 85,
+     "transcript_records_program_sha256": "d5fbe36a7d2595a791d31c31e4b3c00e69d4f9ea4d0e4cbea08edaa31ccfb6d0",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 85,
    "transcript_records_program_sha256": "d5fbe36a7d2595a791d31c31e4b3c00e69d4f9ea4d0e4cbea08edaa31ccfb6d0",
    "transcript_matches_program": true
   },
+  "a-non-resolvable-7x15-35-triple-array-answers-gordeev-ohman-problem-58": {
+   "repository_directory": "constructions/a-non-resolvable-7x15-35-triple-array-answers-gordeev-ohman-problem-58",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 4560,
+     "sha256": "a55b25344f3c15071098035fb093779d53e3baf9608f159a9a861fccb6c4eced"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 63535,
+     "sha256": "8f91bba4c3a40ba9f523003af0eee21c76d303a3e311fa3f7f735854dbb5f619"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 8085,
+     "sha256": "fe7f541d3d5be279916754eb46d252496ed71b24c552cd34c915044e3c09df0a"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 5302,
+     "sha256": "b71c1fe3b3eb1757688734d9537101d91fe8f30783163984b5acb10401f44f27"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 21072,
+     "sha256": "4831224b97f2cc4cc559a3994e0ccded24b5fe666fa1701a2c76dedeaa85296b"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 29,
+     "transcript_records_program_sha256": "4831224b97f2cc4cc559a3994e0ccded24b5fe666fa1701a2c76dedeaa85296b",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 29,
+   "transcript_records_program_sha256": "4831224b97f2cc4cc559a3994e0ccded24b5fe666fa1701a2c76dedeaa85296b",
+   "transcript_matches_program": true
+  },
+  "a-non-standard-5-4-broadcast-of-density-1-20-refutes-the-blessing-et-al-grid-conjecture": {
+   "repository_directory": "constructions/a-non-standard-5-4-broadcast-of-density-1-20-refutes-the-blessing-et-al-grid-conjecture",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5507,
+     "sha256": "0a59c41c10a47957814bb434cfda225b0d9ba982c20b842e33f311ea3459948c"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 90291,
+     "sha256": "32804a851cafb69b67abfe9987883ffb1d5ceae7a8e69a38b75dd45af915166d"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14391,
+     "sha256": "81a91772f86b1d00598a661b5f745fa831251eac43e340fb8600a3595368f97d"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9197,
+     "sha256": "9797b4bdc07ebef6122c8075cf6ef015eb78bf8acc6a632408baab1546f90f0d"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 23230,
+     "sha256": "9ac0d861f012352d3f807673e5fec65130d6b1a0f7fde7d8ab336034978d284c"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 43,
+     "transcript_records_program_sha256": "9ac0d861f012352d3f807673e5fec65130d6b1a0f7fde7d8ab336034978d284c",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 43,
+   "transcript_records_program_sha256": "9ac0d861f012352d3f807673e5fec65130d6b1a0f7fde7d8ab336034978d284c",
+   "transcript_matches_program": true
+  },
+  "an-affirmative-answer-to-the-levit-kadrawi-multi-break-unicyclic-closure-problem": {
+   "repository_directory": "constructions/an-affirmative-answer-to-the-levit-kadrawi-multi-break-unicyclic-closure-problem",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 6282,
+     "sha256": "a01c433b9dee71fb5ecb18f234253d9976e17dbc30447b1431631327ce222f01"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 100521,
+     "sha256": "3e8286aa7fbaf2dfc366cf6a46d633ba01e4114f528f6fe00b1058a5791877dd"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 20511,
+     "sha256": "a32232cb823a279955ba6650dcaa0f718776eec58a179433317d2f2e133133ac"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 8690,
+     "sha256": "86a378cf6fbbe63088f4735419c9d4cebcaf7c996a01f1f46138d05118b8c41d"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 32775,
+     "sha256": "657b5af756aafcc731a13b5c9e0c2945a0dfdb45c7a8c4cfdcb5a77fa8fffa50"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 56,
+     "transcript_records_program_sha256": "657b5af756aafcc731a13b5c9e0c2945a0dfdb45c7a8c4cfdcb5a77fa8fffa50",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 56,
+   "transcript_records_program_sha256": "657b5af756aafcc731a13b5c9e0c2945a0dfdb45c7a8c4cfdcb5a77fa8fffa50",
+   "transcript_matches_program": true
+  },
   "corner-free-4-cop-win-graphs-on-20-vertices-refute-turcotte-yvon-retraction-question": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/corner-free-4-cop-win-graphs-on-20-vertices-refute-turcotte-yvon-retraction-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3148,12 +4715,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 51,
+     "transcript_records_program_sha256": "2e4b4832507e03107ad7a95ec6fcec9edd03fa9ed412da9ce8d45ad850f29a76",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 51,
    "transcript_records_program_sha256": "2e4b4832507e03107ad7a95ec6fcec9edd03fa9ed412da9ce8d45ad850f29a76",
    "transcript_matches_program": true
   },
   "cubic-girth-eleven-graphs-orders-138-142": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/cubic-girth-eleven-graphs-orders-138-142",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3182,12 +4758,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 51,
+     "transcript_records_program_sha256": "ea140b634871765fc414f02a851edc299bb37ef19c8be1fa7341812ed7895476",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 51,
    "transcript_records_program_sha256": "ea140b634871765fc414f02a851edc299bb37ef19c8be1fa7341812ed7895476",
    "transcript_matches_program": true
   },
   "cvt10842-settles-kuzman-noncayley-3rdr-question": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/cvt10842-settles-kuzman-noncayley-3rdr-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3216,12 +4801,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 26,
+     "transcript_records_program_sha256": "986e591a9bd5909fbbce2731fc0abed2848218c9e43dbfec99f6c8392079e805",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 26,
    "transcript_records_program_sha256": "986e591a9bd5909fbbce2731fc0abed2848218c9e43dbfec99f6c8392079e805",
    "transcript_matches_program": true
   },
   "eight-vertex-spiders-obstruct-seven-all-six-isolating-sets": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/eight-vertex-spiders-obstruct-seven-all-six-isolating-sets",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3239,10 +4833,14 @@
      "sha256": "d24a9f0724d11d3bf145ec13ed234e9c75e9397c7c48af8f6f7584062bef1708"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "hamiltonian-paths-settle-coprime-bhr-support-1618": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/hamiltonian-paths-settle-coprime-bhr-support-1618",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3271,12 +4869,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 26,
+     "transcript_records_program_sha256": "ce10e45eecea4b84b226105c583f7bf9623c484c9df1fce7e2f8e909702363dd",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 26,
    "transcript_records_program_sha256": "ce10e45eecea4b84b226105c583f7bf9623c484c9df1fce7e2f8e909702363dd",
    "transcript_matches_program": true
   },
   "mcdsqs-38-settles-tan-zhou-smallest-unknown-case": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/mcdsqs-38-settles-tan-zhou-smallest-unknown-case",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3305,12 +4912,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "59734838646641e7b7742407ec4d3c78eb242281460d243add3ed8517801b936",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "59734838646641e7b7742407ec4d3c78eb242281460d243add3ed8517801b936",
    "transcript_matches_program": true
   },
   "mixed-radial-moore-graph-resolves-5-2-2-existence": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/mixed-radial-moore-graph-resolves-5-2-2-existence",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3339,12 +4955,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 18,
+     "transcript_records_program_sha256": "bd4e40705697c43e0f176128e8e067805cdf64384eeea10000ce1a80613accc7",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 18,
    "transcript_records_program_sha256": "bd4e40705697c43e0f176128e8e067805cdf64384eeea10000ce1a80613accc7",
    "transcript_matches_program": true
   },
   "nine-orthogonal-cyclic-9-cycle-systems-k19": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/nine-orthogonal-cyclic-9-cycle-systems-k19",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3373,12 +4998,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 19,
+     "transcript_records_program_sha256": "d209d90fff30183e1f30e18a08614ae40131cfcbb1e3aa1ff87c2bd9cd6a687b",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 19,
    "transcript_records_program_sha256": "d209d90fff30183e1f30e18a08614ae40131cfcbb1e3aa1ff87c2bd9cd6a687b",
    "transcript_matches_program": true
   },
   "order-14-gram-matrix-pioge-conjecture-4": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/order-14-gram-matrix-pioge-conjecture-4",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3407,12 +5041,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 40,
+     "transcript_records_program_sha256": "06483ebc3042d86926e8807bf2a93736559745a87154699d9dd42435fed159bf",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 40,
    "transcript_records_program_sha256": "06483ebc3042d86926e8807bf2a93736559745a87154699d9dd42435fed159bf",
    "transcript_matches_program": true
   },
   "order-six-counterexample-brualdi-liu-even-permanent": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/order-six-counterexample-brualdi-liu-even-permanent",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3441,12 +5084,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 29,
+     "transcript_records_program_sha256": "4ddc78b506b394dd3b2457b306a8add002c13d4e9baa44f5c45b5036e22c9a0c",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 29,
    "transcript_records_program_sha256": "4ddc78b506b394dd3b2457b306a8add002c13d4e9baa44f5c45b5036e22c9a0c",
    "transcript_matches_program": true
   },
   "powerful-two-group-braces-answer-verbeken-question-10-2": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/powerful-two-group-braces-answer-verbeken-question-10-2",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3464,10 +5116,14 @@
      "sha256": "90a92210e7e6d87f6f3de5756ea4e7c2c302a36dc61516e1a7b832a6ae5e08c8"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "residual-polygonal-bigraphs-close-simmons-finite-range": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/residual-polygonal-bigraphs-close-simmons-finite-range",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3496,12 +5152,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 43,
+     "transcript_records_program_sha256": "8827318baeb3c4eb0e072fc227810d49cd1d6c1efcf0d205467b96b98df20021",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 43,
    "transcript_records_program_sha256": "8827318baeb3c4eb0e072fc227810d49cd1d6c1efcf0d205467b96b98df20021",
    "transcript_matches_program": true
   },
   "rm-7-3-2-construction-corrects-status-table": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/rm-7-3-2-construction-corrects-status-table",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3530,12 +5195,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 45,
+     "transcript_records_program_sha256": "d5b8d73e8974bee16e1f115cb86dbccc2208fc1507f01977cacc0aa85561e811",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 45,
    "transcript_records_program_sha256": "d5b8d73e8974bee16e1f115cb86dbccc2208fc1507f01977cacc0aa85561e811",
    "transcript_matches_program": true
   },
   "squared-8-cycle-times-c5-attains-the-pettersson-sylvester-tensor-bound": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/squared-8-cycle-times-c5-attains-the-pettersson-sylvester-tensor-bound",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3564,12 +5238,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 58,
+     "transcript_records_program_sha256": "8b9574f9f180cfebe774455c313be8ddcd880119bbd9934864ef1f4b526e1332",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 58,
    "transcript_records_program_sha256": "8b9574f9f180cfebe774455c313be8ddcd880119bbd9934864ef1f4b526e1332",
    "transcript_matches_program": true
   },
   "ten-element-b3-free-singular-lcm-extension": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/ten-element-b3-free-singular-lcm-extension",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3587,10 +5270,14 @@
      "sha256": "01fe85eae3f12a61f0cacd75891a2f7d14646dd6fe6c23fcfe3106f09e4f690b"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "two-circulant-butson-hadamard-matrices-of-orders-46-and-74": {
-   "repository_directory": "constructions",
+   "repository_directory": "constructions/two-circulant-butson-hadamard-matrices-of-orders-46-and-74",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3619,12 +5306,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 63,
+     "transcript_records_program_sha256": "8ac467d190f63b4b4bea549567f6a24c14c9659e96e011b2988e0bae3dfa8ca3",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 63,
    "transcript_records_program_sha256": "8ac467d190f63b4b4bea549567f6a24c14c9659e96e011b2988e0bae3dfa8ca3",
    "transcript_matches_program": true
   },
   "a-5-1-2-30-curd-on-65-varieties-completes-the-m-5-spectrum": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-5-1-2-30-curd-on-65-varieties-completes-the-m-5-spectrum",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3653,12 +5349,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 53,
+     "transcript_records_program_sha256": "58aa5e7e893828542d79e0002c4bf6a628592a5293979f9217c1c4a661dc5986",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 53,
    "transcript_records_program_sha256": "58aa5e7e893828542d79e0002c4bf6a628592a5293979f9217c1c4a661dc5986",
    "transcript_matches_program": true
   },
   "a-proof-of-a-conjecture-of-balanescu-and-cimpoeas-on-the-hilbert-depth-of-intersections": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-a-conjecture-of-balanescu-and-cimpoeas-on-the-hilbert-depth-of-intersections",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3676,10 +5381,14 @@
      "sha256": "6858c7c1dd9b9187a0200e06a7462a24ce4bd5b76218427dc1702dfbf6b19420"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "a-proof-of-calderons-mod-p-bailey-congruence-at-every-inert-prime": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-calderons-mod-p-bailey-congruence-at-every-inert-prime",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3708,12 +5417,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 82,
+     "transcript_records_program_sha256": "35d79341b188b3ab68e88caaba3f71b67b4d311c5f25130bbe2e728effa65889",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 82,
    "transcript_records_program_sha256": "35d79341b188b3ab68e88caaba3f71b67b4d311c5f25130bbe2e728effa65889",
    "transcript_matches_program": true
   },
   "a-proof-of-tang-zhangs-order-minus-two-schoenberg-conjecture-with-the-equality-case": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-tang-zhangs-order-minus-two-schoenberg-conjecture-with-the-equality-case",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3742,12 +5460,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 67,
+     "transcript_records_program_sha256": "f5dc0380ca031ec8f51d4a096c3f0e5f6ddf780deaa62bdbd264f9d570fa8edd",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 67,
    "transcript_records_program_sha256": "f5dc0380ca031ec8f51d4a096c3f0e5f6ddf780deaa62bdbd264f9d570fa8edd",
    "transcript_matches_program": true
   },
   "a-proof-of-the-bhagat-kulkarni-larsson-murali-smallest-discrepancy-heap-formula": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-the-bhagat-kulkarni-larsson-murali-smallest-discrepancy-heap-formula",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3776,12 +5503,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "893c15fea8e299b10e65fcae5d51b7d95a4998467948dbf8f192884a050b3412",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "893c15fea8e299b10e65fcae5d51b7d95a4998467948dbf8f192884a050b3412",
    "transcript_matches_program": true
   },
   "a-proof-of-the-chauhan-shukla-vinayak-3-cut-complex-conjecture-for-km-box-pn": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-the-chauhan-shukla-vinayak-3-cut-complex-conjecture-for-km-box-pn",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3810,12 +5546,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 155,
+     "transcript_records_program_sha256": "fc678cb04c8cb7f27b53b1f89a7a2805e8ea239b3f5cd4b81697d09ee3bd23a4",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 155,
    "transcript_records_program_sha256": "fc678cb04c8cb7f27b53b1f89a7a2805e8ea239b3f5cd4b81697d09ee3bd23a4",
    "transcript_matches_program": true
   },
   "a-proof-of-the-grinberg-lafreniere-lower-bound-for-the-random-to-below-shuffle": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/a-proof-of-the-grinberg-lafreniere-lower-bound-for-the-random-to-below-shuffle",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3844,12 +5589,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 72,
+     "transcript_records_program_sha256": "9943242ec03abba0658c109c30dd72b185c3ee70eb6e3f42660e6b3f167d9c05",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 72,
    "transcript_records_program_sha256": "9943242ec03abba0658c109c30dd72b185c3ee70eb6e3f42660e6b3f167d9c05",
    "transcript_matches_program": true
   },
+  "a-proof-of-the-kiani-tavakolipour-dichotomy-at-m-5-for-symmetric-tropical-matrices": {
+   "repository_directory": "notes/a-proof-of-the-kiani-tavakolipour-dichotomy-at-m-5-for-symmetric-tropical-matrices",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 4301,
+     "sha256": "690eaca95fa88e0f78c37c2b809b5c768df51b63031071c80bfec61c7e232cfd"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 108302,
+     "sha256": "fc11436fc6e6ae0185c6d26f3dec2f649e809a7b64f06bbd1f3ff7b7381feaa4"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 20786,
+     "sha256": "8b89271a5d357797c048a5c55a8fb6bd86a6b56a54c0190326b8900b66ab4bb6"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 7977,
+     "sha256": "3e1428c401cebec94defd71c61e701c4b5dd8afdd2b103953b81e86b8b67db9e"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 37326,
+     "sha256": "9eda9c97d8564728d4e32ee7cee423881d2c54259757374262cb243a6054321e"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 47,
+     "transcript_records_program_sha256": "9eda9c97d8564728d4e32ee7cee423881d2c54259757374262cb243a6054321e",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 47,
+   "transcript_records_program_sha256": "9eda9c97d8564728d4e32ee7cee423881d2c54259757374262cb243a6054321e",
+   "transcript_matches_program": true
+  },
   "an-exhaustive-census-confirms-1814-topological-pizza-slicings-from-six-chords": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/an-exhaustive-census-confirms-1814-topological-pizza-slicings-from-six-chords",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3878,12 +5675,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 53,
+     "transcript_records_program_sha256": "bdca61d83544b22776d7eed1c9e90778a8cb967b86a14d22e927d345059dc932",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 53,
    "transcript_records_program_sha256": "bdca61d83544b22776d7eed1c9e90778a8cb967b86a14d22e927d345059dc932",
    "transcript_matches_program": true
   },
   "an-exhaustive-census-for-the-n-20-case-of-the-aouchiche-caporossi-hansen-tricyclic": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/an-exhaustive-census-for-the-n-20-case-of-the-aouchiche-caporossi-hansen-tricyclic",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3912,12 +5718,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 64,
+     "transcript_records_program_sha256": "5ac349bdfcbbb536f0088e0b6d2b691a2116a4aae1bf54539397311a685a905b",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 64,
    "transcript_records_program_sha256": "5ac349bdfcbbb536f0088e0b6d2b691a2116a4aae1bf54539397311a685a905b",
    "transcript_matches_program": true
   },
   "an-explicit-32-point-half-turn-symmetric-set-with-no-convex-7-gon": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/an-explicit-32-point-half-turn-symmetric-set-with-no-convex-7-gon",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3946,12 +5761,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 49,
+     "transcript_records_program_sha256": "ce68b660416ca793f0b3119daf6077a3ae54157d7f8b4c26a168aa94b8aa28ce",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 49,
    "transcript_records_program_sha256": "ce68b660416ca793f0b3119daf6077a3ae54157d7f8b4c26a168aa94b8aa28ce",
    "transcript_matches_program": true
   },
   "an-explicit-degree-m-minimal-polynomial-proves-a-lasjaunias-hyperquadratic-conjecture": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/an-explicit-degree-m-minimal-polynomial-proves-a-lasjaunias-hyperquadratic-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -3980,12 +5804,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 81,
+     "transcript_records_program_sha256": "bc2b807c53a2e058ff9df68ba50e69b66b0b747e400629df1ab04a6096fe0eca",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 81,
    "transcript_records_program_sha256": "bc2b807c53a2e058ff9df68ba50e69b66b0b747e400629df1ab04a6096fe0eca",
    "transcript_matches_program": true
   },
   "an-infinite-family-of-polyominoes-whose-c4-face-magic-spectrum-omits-its-centre": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/an-infinite-family-of-polyominoes-whose-c4-face-magic-spectrum-omits-its-centre",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4014,12 +5847,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 99,
+     "transcript_records_program_sha256": "11012681b63de78e60d4b901fabcde4a724dfa71488b114a92cd3ae83b2f1395",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 99,
    "transcript_records_program_sha256": "11012681b63de78e60d4b901fabcde4a724dfa71488b114a92cd3ae83b2f1395",
    "transcript_matches_program": true
   },
   "canon-permutations-avoiding-213-and-312-are-counted-by-four-catalan-numbers": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/canon-permutations-avoiding-213-and-312-are-counted-by-four-catalan-numbers",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4048,12 +5890,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 196,
+     "transcript_records_program_sha256": "fb9289378fc4cf0abb3e08d91834f0f8227d480a8d90ceac2d3a6c2e87fe8608",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 196,
    "transcript_records_program_sha256": "fb9289378fc4cf0abb3e08d91834f0f8227d480a8d90ceac2d3a6c2e87fe8608",
    "transcript_matches_program": true
   },
   "constrained-ramsey-numbers-for-the-loose-3-uniform-path": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/constrained-ramsey-numbers-for-the-loose-3-uniform-path",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4071,10 +5922,14 @@
      "sha256": "12900c27930b8d5d248960ea43d050cd611c3ec26895de31dd6783cfe205b137"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "cp6-maximal-face-minimum-dimension-is-seven": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/cp6-maximal-face-minimum-dimension-is-seven",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4103,12 +5958,124 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 47,
+     "transcript_records_program_sha256": "8fdea5ac3d5738e32c3aa356bdb7c5b972c545bf567d1f1c62278a4cd671d5fb",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 47,
    "transcript_records_program_sha256": "8fdea5ac3d5738e32c3aa356bdb7c5b972c545bf567d1f1c62278a4cd671d5fb",
    "transcript_matches_program": true
   },
+  "cyclic-antibandwidth-of-the-3x3x4-mesh-is-thirteen-not-the-conjectured-fourteen": {
+   "repository_directory": "notes/cyclic-antibandwidth-of-the-3x3x4-mesh-is-thirteen-not-the-conjectured-fourteen",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 7863,
+     "sha256": "d4019b1edb8ae37c3a9d0364a34110dbd8173ce490527779ee489f2326171b45"
+    },
+    {
+     "file": "exhaust.output.txt",
+     "bytes": 3045,
+     "sha256": "6afb490883603b46942a8ccd6626233e75277b11855bdbaacc22a1739c1a4f76"
+    },
+    {
+     "file": "exhaust.py",
+     "bytes": 6473,
+     "sha256": "9fe82e9d862fe2cb828f8aa5367c5524f60ac06d453ff8d5d745fa8a3d30578a"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 86421,
+     "sha256": "9309aa0e0e6350f0302e0cc920d09301a8576f2b10972f7e65229c31c3ed1a40"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 15656,
+     "sha256": "385e5cccbb2e1ac4752eac06fdff217521dde8f25172a5c60b214e017dbfa23d"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 11618,
+     "sha256": "3182890b6d4464930f2112bd2003aa0aace72ddf530c12bbafc7d2f0ad4e0eb3"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 35763,
+     "sha256": "7f02fa53909e089ef8ce504a6743f7ec916b5247ed42480e1259ad1f754d6f2f"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "exhaust.py",
+     "transcript": "exhaust.output.txt",
+     "checks": 4,
+     "transcript_records_program_sha256": "9fe82e9d862fe2cb828f8aa5367c5524f60ac06d453ff8d5d745fa8a3d30578a",
+     "transcript_matches_program": true
+    },
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 56,
+     "transcript_records_program_sha256": "7f02fa53909e089ef8ce504a6743f7ec916b5247ed42480e1259ad1f754d6f2f",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 56,
+   "transcript_records_program_sha256": "7f02fa53909e089ef8ce504a6743f7ec916b5247ed42480e1259ad1f754d6f2f",
+   "transcript_matches_program": true
+  },
+  "depth-four-hole-refill-is-dry-on-a-2969-word-23-6-10-constant-weight-code": {
+   "repository_directory": "notes/depth-four-hole-refill-is-dry-on-a-2969-word-23-6-10-constant-weight-code",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 7111,
+     "sha256": "e74b606c1c36135ecb96c15cb99cd5cf310090cf7aad4cd57952f41dfcbf5bd4"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 117453,
+     "sha256": "0ee7aa451a6cd34e195f0f5007fd00e789013588b700f172d32e5ba1841c70a9"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 42150,
+     "sha256": "1c704d5d785d22bf519466650bad8d5c8225f4f033515bfd5b64f5812873702f"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 8947,
+     "sha256": "73668c714542945597e3b02b3f308497d8f33f6a771490e8d728e551c846b63c"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 47383,
+     "sha256": "e09bb7f631b32f18e02d10f14c16dd3b22b276e415bb1dc660fa0ece71bbd600"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 39,
+     "transcript_records_program_sha256": "e09bb7f631b32f18e02d10f14c16dd3b22b276e415bb1dc660fa0ece71bbd600",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 39,
+   "transcript_records_program_sha256": "e09bb7f631b32f18e02d10f14c16dd3b22b276e415bb1dc660fa0ece71bbd600",
+   "transcript_matches_program": true
+  },
   "eliminating-the-4r-7-alternative-for-diameter-two-mixed-almost-moore-graphs": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/eliminating-the-4r-7-alternative-for-diameter-two-mixed-almost-moore-graphs",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4126,10 +6093,14 @@
      "sha256": "c9412f4c6282ccaccc40508349a6a9234c73dda2cf3382221131287c78b9f189"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "explicit-of-6-4-and-of-8-4-close-the-even-g-4-cells-of-distance-three-one-factorizations": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/explicit-of-6-4-and-of-8-4-close-the-even-g-4-cells-of-distance-three-one-factorizations",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4158,12 +6129,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 56,
+     "transcript_records_program_sha256": "326c6211683fb6d98d0e81a649b9a3953b8b847b2deeb9092b23f60c7f520f62",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 56,
    "transcript_records_program_sha256": "326c6211683fb6d98d0e81a649b9a3953b8b847b2deeb9092b23f60c7f520f62",
    "transcript_matches_program": true
   },
   "exterior-point-proof-of-jordaan-kumar-completed-interlacing-conjectures": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/exterior-point-proof-of-jordaan-kumar-completed-interlacing-conjectures",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4192,12 +6172,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 12,
+     "transcript_records_program_sha256": "1c7388f2105a60160a1ddd66d7f0d81f654cf5f49c1fcab6391bc2cf1bd7e468",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 12,
    "transcript_records_program_sha256": "1c7388f2105a60160a1ddd66d7f0d81f654cf5f49c1fcab6391bc2cf1bd7e468",
    "transcript_matches_program": true
   },
   "fourteen-vertex-graph-refutes-davila-conjecture-9": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/fourteen-vertex-graph-refutes-davila-conjecture-9",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4226,12 +6215,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 35,
+     "transcript_records_program_sha256": "3721bb78c1301ac5cb966b4d2852cb131081386c085db95c85f798c07d0d110a",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 35,
    "transcript_records_program_sha256": "3721bb78c1301ac5cb966b4d2852cb131081386c085db95c85f798c07d0d110a",
    "transcript_matches_program": true
   },
+  "frobergs-conjecture-for-6-to-21-septics-in-four-variables-in-every-characteristic": {
+   "repository_directory": "notes/frobergs-conjecture-for-6-to-21-septics-in-four-variables-in-every-characteristic",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5609,
+     "sha256": "45b64abda422cea69168227cc5daf155080051d261c039b39e3df12d42746772"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 108097,
+     "sha256": "86a36f9e07611af065de70fd82f7f12515f6f2458e8506e0d8c85e1c1df41de8"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 21836,
+     "sha256": "f06dcd367d629ccf4e134e425371f79e9e3d6412ee223667add4ca6e0d6728e0"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 20831,
+     "sha256": "898e0b13a453fe37b1a1625650f3a3089596669c2231b177932e9f2c326b82ad"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 43380,
+     "sha256": "7aed8da9d5c7e949dd08fea339271119ce7aef99ccf9261a9301653f2fb26385"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 222,
+     "transcript_records_program_sha256": "7aed8da9d5c7e949dd08fea339271119ce7aef99ccf9261a9301653f2fb26385",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 222,
+   "transcript_records_program_sha256": "7aed8da9d5c7e949dd08fea339271119ce7aef99ccf9261a9301653f2fb26385",
+   "transcript_matches_program": true
+  },
   "integer-height-two-rectangle-visibility-graphs-are-outerplanar": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/integer-height-two-rectangle-visibility-graphs-are-outerplanar",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4260,12 +6301,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 45,
+     "transcript_records_program_sha256": "200e8e2bbf37b84391b7590475594f9a63fd82dff8d533a92da9e43efb963dc7",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 45,
    "transcript_records_program_sha256": "200e8e2bbf37b84391b7590475594f9a63fd82dff8d533a92da9e43efb963dc7",
    "transcript_matches_program": true
   },
   "lins-hot-cold-maximum-determinant-correspondence-proved-at-order-ten": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/lins-hot-cold-maximum-determinant-correspondence-proved-at-order-ten",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4294,12 +6344,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 43,
+     "transcript_records_program_sha256": "92a2e214a19ae8a9424e337e08c5266b98b2427f40b992c51cdf2e92883aeb2a",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 43,
    "transcript_records_program_sha256": "92a2e214a19ae8a9424e337e08c5266b98b2427f40b992c51cdf2e92883aeb2a",
    "transcript_matches_program": true
   },
   "matroid-intersection-settles-ferguson-mayeli-sothanaphan-simultaneous-basis-question": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/matroid-intersection-settles-ferguson-mayeli-sothanaphan-simultaneous-basis-question",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4317,10 +6376,14 @@
      "sha256": "bb4f6fd5df5c23421cd0f640d92a6c7cff7adcc78a836d30347c94dc7b080228"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "no-cyclic-skew-frame-starters-of-types-6-8-and-6-9-an-even-order-sum-of-squares-obstruction": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/no-cyclic-skew-frame-starters-of-types-6-8-and-6-9-an-even-order-sum-of-squares-obstruction",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4349,12 +6412,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 70,
+     "transcript_records_program_sha256": "91134b47271d98deb0331b6a0c58310a57e6d5a5b1f17f220d0b0db01829ea36",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 70,
    "transcript_records_program_sha256": "91134b47271d98deb0331b6a0c58310a57e6d5a5b1f17f220d0b0db01829ea36",
    "transcript_matches_program": true
   },
   "p8s-4sminus2-confirms-simmons-hamiltonian-conjecture": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/p8s-4sminus2-confirms-simmons-hamiltonian-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4372,10 +6444,14 @@
      "sha256": "130c8bef46a494fd08ccce0da9778acb61e619037c0c3e0c75d9cd81a175c304"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   },
   "polynomial-certificates-pin-the-first-three-partial-quotients-of-the-zeta-three-tail": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/polynomial-certificates-pin-the-first-three-partial-quotients-of-the-zeta-three-tail",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4404,12 +6480,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 95,
+     "transcript_records_program_sha256": "cfcf324171ef9310a73f056ff83b675648ac5a0d15cb0153514d376ebf9ea5d3",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 95,
    "transcript_records_program_sha256": "cfcf324171ef9310a73f056ff83b675648ac5a0d15cb0153514d376ebf9ea5d3",
    "transcript_matches_program": true
   },
   "seven-unknown-minimal-row-column-factorial-designs-of-strength-two-at-m-6-all-exist": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/seven-unknown-minimal-row-column-factorial-designs-of-strength-two-at-m-6-all-exist",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4438,12 +6523,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "174f359ef2ec03c35080bee8b4c09262f0d9d862860faa4ad9914889916811c7",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "174f359ef2ec03c35080bee8b4c09262f0d9d862860faa4ad9914889916811c7",
    "transcript_matches_program": true
   },
+  "supermodular-log-submodular-valuations-obey-the-jaccard-triangle-inequality-on-every-lattice": {
+   "repository_directory": "notes/supermodular-log-submodular-valuations-obey-the-jaccard-triangle-inequality-on-every-lattice",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5752,
+     "sha256": "f63e895b966f4f1e7ff5443d9cb43f8d90659f435c7ea956bd46428aac380730"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 76866,
+     "sha256": "2a2d51c8cb2903e8077af7fc64f759dc5c6db4804383f5f91a60b4630c3dd665"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 11894,
+     "sha256": "0190fdfd4f9ab75d8019a8c403db654109621c20c823bc6d0d8f131b993ddc91"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 7420,
+     "sha256": "6ac430fa0e8f542f37b5b5d731688d75ce87b442740d228d8fc096d1ab9daff5"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 34164,
+     "sha256": "36bfe417e3afc7cf11fb4dbc9777ee2e0bc65ea656c529103b03cc6f103aac9f"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 27,
+     "transcript_records_program_sha256": "36bfe417e3afc7cf11fb4dbc9777ee2e0bc65ea656c529103b03cc6f103aac9f",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 27,
+   "transcript_records_program_sha256": "36bfe417e3afc7cf11fb4dbc9777ee2e0bc65ea656c529103b03cc6f103aac9f",
+   "transcript_matches_program": true
+  },
   "ten-bamboo-counterexample-reduce-max-backlog-bound": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/ten-bamboo-counterexample-reduce-max-backlog-bound",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4472,12 +6609,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 21,
+     "transcript_records_program_sha256": "72a5002681ab6626a046001af94bab6fff1bd1be361efa2025d46094a98be7ad",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 21,
    "transcript_records_program_sha256": "72a5002681ab6626a046001af94bab6fff1bd1be361efa2025d46094a98be7ad",
    "transcript_matches_program": true
   },
   "the-3-cut-complex-of-the-circular-ladder-is-a-wedge-of-spheres-in-degree-2n-4": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-3-cut-complex-of-the-circular-ladder-is-a-wedge-of-spheres-in-degree-2n-4",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4506,12 +6652,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 45,
+     "transcript_records_program_sha256": "9d8f711929de37c4e7603f103c604a1660e99e920fab1a587e12c630ddb15178",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 45,
    "transcript_records_program_sha256": "9d8f711929de37c4e7603f103c604a1660e99e920fab1a587e12c630ddb15178",
    "transcript_matches_program": true
   },
   "the-bachmann-yu-filtered-span-closed-form-fails-at-weights-18-and-20": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-bachmann-yu-filtered-span-closed-form-fails-at-weights-18-and-20",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4540,12 +6695,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 90,
+     "transcript_records_program_sha256": "fe9f087d151babcaab2b995d698d4da238c5a4b96b324c2cc2c776d0c2022f65",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 90,
    "transcript_records_program_sha256": "fe9f087d151babcaab2b995d698d4da238c5a4b96b324c2cc2c776d0c2022f65",
    "transcript_matches_program": true
   },
   "the-clow-zaguia-cop-bound-is-tight-at-independence-number-four-so-f-4-equals-3": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-clow-zaguia-cop-bound-is-tight-at-independence-number-four-so-f-4-equals-3",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4574,12 +6738,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 37,
+     "transcript_records_program_sha256": "6291dc37a520a7075e9e7d37a1a33504e305b0d14fa241e957f0829bb9440758",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 37,
    "transcript_records_program_sha256": "6291dc37a520a7075e9e7d37a1a33504e305b0d14fa241e957f0829bb9440758",
    "transcript_matches_program": true
   },
   "the-first-r-columns-of-the-hypercube-rips-spectral-sequence-are-the-cube-chain-complex": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-first-r-columns-of-the-hypercube-rips-spectral-sequence-are-the-cube-chain-complex",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4608,12 +6781,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 144,
+     "transcript_records_program_sha256": "41c0edbec3e7ab512c4b31a0b23bf22f5f3dbb322b1eeb0ac60c504efaaf64ec",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 144,
    "transcript_records_program_sha256": "41c0edbec3e7ab512c4b31a0b23bf22f5f3dbb322b1eeb0ac60c504efaaf64ec",
    "transcript_matches_program": true
   },
   "the-gaetz-gao-closure-conjecture-for-finite-coxeter-systems": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-gaetz-gao-closure-conjecture-for-finite-coxeter-systems",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4642,12 +6824,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 53,
+     "transcript_records_program_sha256": "2f2f768706b0fa9530522f1bd9707110ff1d15009f118d5c0ba9a50dd9bc0593",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 53,
    "transcript_records_program_sha256": "2f2f768706b0fa9530522f1bd9707110ff1d15009f118d5c0ba9a50dd9bc0593",
    "transcript_matches_program": true
   },
   "the-harborth-constant-of-c9-plus-c9": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-harborth-constant-of-c9-plus-c9",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4676,12 +6867,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 61,
+     "transcript_records_program_sha256": "088e81e998a1dae913ee32236c53b58bbe257efef66c53e4ece47172b470f734",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 61,
    "transcript_records_program_sha256": "088e81e998a1dae913ee32236c53b58bbe257efef66c53e4ece47172b470f734",
    "transcript_matches_program": true
   },
   "the-ivan-wang-conjecture-on-induced-n-saturation-for-1-n-5": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-ivan-wang-conjecture-on-induced-n-saturation-for-1-n-5",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4710,12 +6910,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 105,
+     "transcript_records_program_sha256": "728948996e3eacbcb3b9bf2886c2ad393fda62be91d55bb17d93eadf389f62a7",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 105,
    "transcript_records_program_sha256": "728948996e3eacbcb3b9bf2886c2ad393fda62be91d55bb17d93eadf389f62a7",
    "transcript_matches_program": true
   },
   "the-maximum-binary-case-of-ribot-zariski-closedness-conjecture": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-maximum-binary-case-of-ribot-zariski-closedness-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4744,12 +6953,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 35,
+     "transcript_records_program_sha256": "863ff75154ee185efab0e86db0e961778c69c049bcc684f7ff508836135153c9",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 35,
    "transcript_records_program_sha256": "863ff75154ee185efab0e86db0e961778c69c049bcc684f7ff508836135153c9",
    "transcript_matches_program": true
   },
   "the-p-3-case-of-a-conjecture-of-chauhan-shukla-and-vinayak": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-p-3-case-of-a-conjecture-of-chauhan-shukla-and-vinayak",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4778,12 +6996,64 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 138,
+     "transcript_records_program_sha256": "aebe853ec86c85852da1923fb2af01bb2e2782d456042fd852c191acfdcd86d5",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 138,
    "transcript_records_program_sha256": "aebe853ec86c85852da1923fb2af01bb2e2782d456042fd852c191acfdcd86d5",
    "transcript_matches_program": true
   },
+  "the-real-roots-of-consecutive-yablonskii-vorobev-polynomials-interlace-for-every-n": {
+   "repository_directory": "notes/the-real-roots-of-consecutive-yablonskii-vorobev-polynomials-interlace-for-every-n",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 5802,
+     "sha256": "267af2a54e18d1866a74211024c5d1aa1221a605ebefb1ee97bcdcbff305ee42"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 87453,
+     "sha256": "b09ae329ff05f3f7397698290661c0603f3e3455f76798d9bdb6093f29e30a04"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14812,
+     "sha256": "144629a657d297cb0c777b18acd89aaba89f140f26e80ee212cd0ed2882de353"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 12946,
+     "sha256": "9340fc61da8496929c10f44e9c7b25915b86a6d5d47f2ddf18e535ca9c2bb8e4"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 31343,
+     "sha256": "7b4d9dca68fe1116c960f01737ef886d0b0ec2989cc9a5c26e65360b15bb97b0"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 24,
+     "transcript_records_program_sha256": "7b4d9dca68fe1116c960f01737ef886d0b0ec2989cc9a5c26e65360b15bb97b0",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 24,
+   "transcript_records_program_sha256": "7b4d9dca68fe1116c960f01737ef886d0b0ec2989cc9a5c26e65360b15bb97b0",
+   "transcript_matches_program": true
+  },
   "the-saturation-number-of-k3-union-2k2": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/the-saturation-number-of-k3-union-2k2",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4812,12 +7082,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 60,
+     "transcript_records_program_sha256": "101f80647e43bad25182fab24646cf35de9d2ca2e45fc189f903135af4215cf3",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 60,
    "transcript_records_program_sha256": "101f80647e43bad25182fab24646cf35de9d2ca2e45fc189f903135af4215cf3",
    "transcript_matches_program": true
   },
   "triangulation-census-confirms-gyori-hama-karim-induced-p6-conjecture-at-n-20": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/triangulation-census-confirms-gyori-hama-karim-induced-p6-conjecture-at-n-20",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4856,12 +7135,28 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 32,
+     "transcript_records_program_sha256": "68e116cfc183e62700f30b90a57ce1f94811ff0877c007a1616890e47375f8ed",
+     "transcript_matches_program": true
+    },
+    {
+     "program": "verify_planarity_and_p6_freeness.py",
+     "transcript": "verify_planarity_and_p6_freeness.output.txt",
+     "checks": null,
+     "transcript_records_program_sha256": "92dd1d7d020846def40b960073da818f3d03a7915139e69a998bb47a7c6cbbfb",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 32,
    "transcript_records_program_sha256": "68e116cfc183e62700f30b90a57ce1f94811ff0877c007a1616890e47375f8ed",
    "transcript_matches_program": true
   },
   "verification-of-the-weighted-szeged-tree-minimizer-conjecture-through-order-eleven": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/verification-of-the-weighted-szeged-tree-minimizer-conjecture-through-order-eleven",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4890,12 +7185,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 83,
+     "transcript_records_program_sha256": "18081259928ccf0846b5efe12127d098e7897b3c17d754324487acc728120567",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 83,
    "transcript_records_program_sha256": "18081259928ccf0846b5efe12127d098e7897b3c17d754324487acc728120567",
    "transcript_matches_program": true
   },
   "vu-cover-ideal-linearity-question-through-twelve-nonisolated-vertices": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/vu-cover-ideal-linearity-question-through-twelve-nonisolated-vertices",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4924,12 +7228,21 @@
     }
    ],
    "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 53,
+     "transcript_records_program_sha256": "89ef4a2c61628cbe6094ee36144188c2a26073b32fb086bdf39e4e68316c0daf",
+     "transcript_matches_program": true
+    }
+   ],
    "checks": 53,
    "transcript_records_program_sha256": "89ef4a2c61628cbe6094ee36144188c2a26073b32fb086bdf39e4e68316c0daf",
    "transcript_matches_program": true
   },
   "wagner-graph-refutes-local-girth-packing-conjecture": {
-   "repository_directory": "notes",
+   "repository_directory": "notes/wagner-graph-refutes-local-girth-packing-conjecture",
    "files": [
     {
      "file": "REVIEW_NOTE.md",
@@ -4947,15 +7260,21 @@
      "sha256": "1fdb447b7df75ff5d1942d69fb239428f7aaae2df7c710aafea2fb72fa03a2d4"
     }
    ],
-   "has_verification_program": false
+   "has_verification_program": false,
+   "programs": [],
+   "checks": null,
+   "transcript_records_program_sha256": null,
+   "transcript_matches_program": null
   }
  },
  "coverage": {
-  "papers": 158,
-  "with_verification_program": 123,
+  "papers": 182,
+  "with_verification_program": 147,
   "no_program_needed": 35,
-  "checks_recorded": 6994,
-  "transcripts_matching_their_program": 123,
+  "programs_total": 151,
+  "additional_programs_beyond_the_first": 4,
+  "checks_recorded": 8674,
+  "transcripts_matching_their_program": 151,
   "transcripts_not_matching_or_unhashed": 0
  },
  "root_files": [
@@ -4976,13 +7295,13 @@
   },
   {
    "file": "OPEN_RESULTS.md",
-   "bytes": 59126,
-   "sha256": "7572a08ccaefa0bdfcce59b7f6575026d1c3e6987c840f7015317bd9818e1b0e"
+   "bytes": 69862,
+   "sha256": "09fb07043660ec355106e78de2603e75e8687bc4999f42a51449f95df97ffe84"
   },
   {
    "file": "README.md",
-   "bytes": 4074,
-   "sha256": "a2187f52c74afc4c3f1d25c84b672d0033e98e3715ed11cc3f0bf5b9902e68d0"
+   "bytes": 4640,
+   "sha256": "61e360356c4211b41d9379f82feec4ec51cc8cbd87355ecad250db46a1d80e0c"
   }
  ]
 }

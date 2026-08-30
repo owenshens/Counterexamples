@@ -1,0 +1,322 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 13-Vertex Graph With No 4-Cycle Whose Worst Orientation Beats the Matching Bound}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{problem}{Open problem 37 of Bousquet, Deschamps, Lehtil\"a and Parreau}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\mold}{mold}
+\newcommand{\gammaLD}{\gamma_{\mathrm{LD}}}
+\newcommand{\Nin}{N^-}
+
+\title[A graph with no $4$-cycle beating the matching bound]
+{A 13-Vertex Graph With No $4$-Cycle Whose Worst Orientation\\ Beats the Matching Bound}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C20, 05C35}
+\keywords{locating-dominating set, oriented graph, worst orientation,
+matching number, graph without $C_4$, open problem}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ let $\mold(G)$ be the largest value of the locating-domination
+number $\gammaLD(D)$ over all orientations $D$ of $G$. Bousquet, Deschamps,
+Lehtil\"a and Parreau proved that $\mold(G)\le n-\alpha'(G)$ whenever $G$ has
+no $C_4$ subgraph, where $n=|V(G)|$ and $\alpha'$ is the matching number, and
+asked whether the inequality is ever strict (Open problem 37 in the e-print of
+their paper). It is. We exhibit a graph $G$ on $13$ vertices and $22$ edges
+with no $4$-cycle, graph6 string \texttt{L??E@agXAp@wdC}, for which
+\[
+ \mold(G)=6<7=n-\alpha'(G).
+\]
+The lower bound $\mold(G)\ge6$ is exhibited by one orientation and is checkable
+by hand; the upper bound $\mold(G)\le6$ is a finite statement about all
+$2^{22}=4\,194\,304$ orientations. We do not claim that $G$ is smallest or
+unique.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+All graphs are finite, simple and undirected; an \emph{orientation} $D$ of $G$
+assigns to each edge one of its two directions. For $u\in V(D)$ write
+$\Nin_D(u)$ for the set of in-neighbours of $u$. Following Bousquet,
+Deschamps, Lehtil\"a and Parreau \cite{BDLP}, a set $S\subseteq V(D)$ is
+\emph{locating-dominating} in the oriented graph $D$ when the sets
+\[
+ I_D(u)=\Nin_D(u)\cap S \qquad (u\in V(D)\setminus S)
+\]
+are all non-empty and pairwise distinct; $\gammaLD(D)$ denotes the least size
+of such a set, which exists because $S=V(D)$ is vacuously
+locating-dominating. The parameter studied in \cite[Section~4]{BDLP} is the
+\emph{worst} orientation value
+\[
+ \mold(G)=\max\{\,\gammaLD(D)\;:\;D\text{ an orientation of }G\,\}.
+\]
+Say that $G$ is \emph{without $C_4$} if $G$ has no $4$-cycle as a subgraph,
+induced or not; equivalently, no two vertices of $G$ -- adjacent or not -- have
+two common neighbours. This is the hypothesis of \cite[Lemma~34]{BDLP}, which
+states that
+\begin{equation}\label{eq:L34}
+ \mold(G)\;\le\;n-\alpha'(G)
+ \qquad\text{for every graph $G$ of order $n$ without $C_4$,}
+\end{equation}
+$\alpha'(G)$ being the matching number. Immediately after
+\cite[Corollary~36]{BDLP} they ask:
+
+\begin{problem}
+Does there exist a graph $G$ without $C_4$ as a subgraph with
+$\mold(G)<n-\alpha'(G)$?
+\end{problem}
+
+\noindent The statement is quoted from the e-print \texttt{arXiv:2112.01910v2}
+of \cite{BDLP}, where it is numbered Open problem~37. In
+\cite{BDLP} ``without $H$'' and ``$H$-free'' are different, the latter being
+reserved for the induced version, so the hypothesis of the problem is that $G$
+contains no $4$-cycle at all.
+
+\begin{theorem}\label{thm:main}
+Let $G$ be the graph on $V=\{0,1,\dots,12\}$ with graph6 string
+\texttt{L??E@agXAp@wdC}, that is, with the $22$ edges
+\[
+\begin{array}{llllll}
+ \{0,6\},&\{0,8\},&\{0,12\},&\{1,6\},&\{1,9\},&\{1,10\},\\
+ \{2,7\},&\{2,8\},&\{2,9\},&\{3,7\},&\{3,10\},&\{3,12\},\\
+ \{4,8\},&\{4,10\},&\{4,11\},&\{5,9\},&\{5,11\},&\{5,12\},\\
+ \{6,11\},&\{7,11\},&\{8,10\},&\{9,12\}. & &
+\end{array}
+\]
+Then $G$ has no $C_4$ subgraph, $n=13$, $\alpha'(G)=6$ and $\mold(G)=6$. In
+particular
+\[
+ \mold(G)=6<7=n-\alpha'(G),
+\]
+so Open problem 37 of \cite{BDLP} has an affirmative answer.
+\end{theorem}
+
+\section{The graph, and its matching number}\label{sec:obj}
+
+The adjacency lists of $G$ are
+\[
+\begin{array}{llll}
+ 0:6,8,12 & 1:6,9,10 & 2:7,8,9 & 3:7,10,12\\
+ 4:8,10,11 & 5:9,11,12 & 6:0,1,11 & 7:2,3,11\\
+ 8:0,2,4,10 & 9:1,2,5,12 & 10:1,3,4,8 & 11:4,5,6,7\\
+ 12:0,3,5,9 & & &
+\end{array}
+\]
+so $G$ is connected with eight vertices of degree $3$, five of degree $4$, and
+$\sum_v\deg v=44=2\cdot22$. The edge list above is written in lexicographic
+order and we keep that order throughout: an \emph{orientation index} is an
+integer $o$ with $0\le o<2^{22}$, and bit $i$ of $o$ is $1$ exactly when the
+$i$-th listed edge $\{a,b\}$ (with $a<b$) is oriented $a\to b$. Thus bit $0$
+governs the edge $\{0,6\}$ and bit $21$ the edge $\{9,12\}$.
+
+\begin{lemma}\label{lem:noC4}
+$G$ has no $C_4$ subgraph.
+\end{lemma}
+
+\begin{proof}
+A $4$-cycle $uxvy$ consists of two distinct vertices $u,v$ together with two
+distinct common neighbours $x,y$ of them, and conversely any two distinct
+vertices with two distinct common neighbours span a $4$-cycle. The pair $u,v$
+need \emph{not} be adjacent, so the condition to check is that every one of the
+$\binom{13}{2}=78$ unordered pairs of vertices has at most one common
+neighbour, not merely each of the $22$ adjacent ones. Inspection of the
+thirteen adjacency lists above shows that it holds: $54$ of the $78$ pairs have
+exactly one common neighbour and the other $24$ have none, in agreement with
+the count $\sum_v\binom{\deg v}{2}=8\binom32+5\binom42=54$ of paths of length
+two.
+\end{proof}
+
+\begin{lemma}\label{lem:alpha}
+$\alpha'(G)=6$, hence $n-\alpha'(G)=7$; and $A=\{0,1,2,3,4,5\}$ is independent
+in $G$.
+\end{lemma}
+
+\begin{proof}
+The six edges $\{0,6\},\{1,9\},\{2,7\},\{3,10\},\{4,11\},\{5,12\}$ are listed
+above and have twelve distinct endpoints, so they form a matching and
+$\alpha'(G)\ge6$. Since $n=13$ is odd, $\alpha'(G)\le\lfloor13/2\rfloor=6$.
+Hence $\alpha'(G)=6$ and $n-\alpha'(G)=13-6=7$. Finally, none of the fifteen
+pairs inside $A$ appears in the edge list, so $A$ is independent.
+\end{proof}
+
+\section{$\mold(G)\ge6$, from a single orientation}\label{sec:lower}
+
+\begin{proposition}\label{prop:lower}
+$\mold(G)\ge6$.
+\end{proposition}
+
+\begin{proof}
+Let $A=\{0,1,2,3,4,5\}$, independent by Lemma~\ref{lem:alpha}. Exactly $18$ of
+the $22$ edges have an endpoint in $A$ -- all of them but $\{6,11\}$,
+$\{7,11\}$, $\{8,10\}$ and $\{9,12\}$ -- and each of those $18$ has its other endpoint in
+$B=\{6,\dots,12\}$. Let $D^{*}$ be any orientation of $G$ in which all $18$ of
+those edges are directed \emph{away} from $A$; the remaining four edges, which
+lie inside $B$, may be oriented arbitrarily, so there are $16$ such
+orientations and the argument below applies to each.
+
+In $D^{*}$ every vertex of $A$ is a source, i.e.\ $\Nin_{D^{*}}(u)=\emptyset$
+for $u\in A$. Hence if $S$ is locating-dominating in $D^{*}$ and $u\in A$ were
+outside $S$, then $I_{D^{*}}(u)=\emptyset$, which is forbidden. So
+$A\subseteq S$ and $\gammaLD(D^{*})\ge|A|=6$.
+
+Conversely $S=A$ is locating-dominating in $D^{*}$: the seven traces are
+\[
+ I(6)=\{0,1\},\quad I(7)=\{2,3\},\quad I(8)=\{0,2,4\},\quad I(9)=\{1,2,5\},
+\]
+\[
+ I(10)=\{1,3,4\},\quad I(11)=\{4,5\},\quad I(12)=\{0,3,5\},
+\]
+that is, $I(v)=N(v)\cap A$ for each $v\in B$. They are non-empty, and they are
+pairwise distinct: three of them have size~$2$ and four have size~$3$, and the
+three of size~$2$ are pairwise distinct, as are the four of size~$3$. Hence
+$\gammaLD(D^{*})=6$ and $\mold(G)\ge6$.
+\end{proof}
+
+\section{$\mold(G)\le6$: the one finite computation}\label{sec:upper}
+
+\begin{lemma}[monotonicity]\label{lem:mono}
+Let $D$ be an orientation of a graph and let $S\subseteq S'\subseteq V(D)$. If
+$S$ is locating-dominating in $D$, so is $S'$.
+\end{lemma}
+
+\begin{proof}
+Let $v\in V(D)\setminus S'$. Then $v\notin S$ and
+$I'(v):=\Nin_D(v)\cap S'\supseteq\Nin_D(v)\cap S=I(v)$, which is non-empty, so
+$I'(v)\neq\emptyset$. Moreover $S\subseteq S'$ gives $I'(v)\cap S=I(v)$ for every
+such $v$; hence if $I'(u)=I'(v)$ for two distinct $u,v\notin S'$ then
+$I(u)=I'(u)\cap S=I'(v)\cap S=I(v)$, contradicting that $S$ is
+locating-dominating. No hypothesis on the graph is used.
+\end{proof}
+
+In particular, for $k\le n$ the inequality $\gammaLD(D)\le k$ holds if and only
+if some set of size \emph{exactly} $k$ is locating-dominating in $D$, so it is
+enough to examine sets of one size.
+
+\begin{proposition}\label{prop:upper}
+Every one of the $2^{22}=4\,194\,304$ orientations of $G$ admits a
+locating-dominating set of size $6$. Hence $\mold(G)\le6$, and with
+Proposition~\ref{prop:lower}, $\mold(G)=6$.
+\end{proposition}
+
+This is a finite statement, but not hand-sized: the number of orientations
+times the $\binom{13}{6}=1716$ candidate six-sets is about $7\times10^{9}$
+pairs. Here is the reduction used.
+
+Fix a $6$-set $S$ and put $T=V\setminus S$, $|T|=7$. Whether $S$ is
+locating-dominating in an orientation $D$ depends on $D$ only through the seven
+traces $I_D(v)=\Nin_D(v)\cap S$, $v\in T$; and $I_D(v)$ is determined by the
+directions of the edges joining $v$ to $S$. Those edge sets, over $v\in T$, are
+pairwise disjoint, and edges inside $S$ or inside $T$ are irrelevant. Inside
+the $2^{22}$-element space of orientation indices:
+\begin{itemize}
+\item[(a)] ``$I_D(v)=\emptyset$'' is the set of indices agreeing with one
+  prescribed pattern on the $|N(v)\cap S|$ bits of the edges from $v$ to $S$,
+  and free on the other $22-|N(v)\cap S|$ bits;
+\item[(b)] ``$I_D(u)=I_D(v)$'' for $u\ne v$ in $T$ is the union, over the
+  non-empty subsets $c\subseteq N(u)\cap N(v)\cap S$, of the sets of indices
+  agreeing with one prescribed pattern on the bits of the edges from $u$ to $S$
+  and from $v$ to $S$. By Lemma~\ref{lem:noC4} the set $N(u)\cap N(v)$ has at
+  most one element, so there is at most one such $c$ and the union has at most
+  one term.
+\end{itemize}
+Each of the sets in (a) and (b) is a subcube of the orientation cube: the
+indices agreeing with a prescribed pattern on a set $F$ of bit positions are
+obtained from the single index carrying that pattern by the $22-|F|$ doublings
+$X\mapsto X\cup(X+2^{q})$, one per free position $q$, each a shift-and-or on a
+$2^{22}$-bit word. So for fixed $S$ the set of orientations in which $S$ is
+\emph{not} locating-dominating is a union of at most $7+\binom72=28$ such
+subcubes; unioning the complements over the six-sets $S$ and comparing with the
+all-ones mask decides Proposition~\ref{prop:upper} exactly.
+
+Carrying this out, $980$ of the $1716$ six-sets already suffice: the union of
+their masks is all of $\{0,1,\dots,2^{22}-1\}$. Proposition~\ref{prop:upper}
+follows, and hence Theorem~\ref{thm:main}.
+
+\section{Scope}\label{sec:status}
+
+Existence is all that is claimed. We do not claim that $G$ is of least order or
+least size, nor that it is unique, and nothing here shows that $13$ is the
+least order at which the answer is affirmative. The bound
+$\mold(G)\le n-\alpha'(G)$ of \cite[Lemma~34]{BDLP} remains a theorem; we show
+only that it is not always tight, and we do not determine for which graphs
+without $C_4$ it is tight.
+
+Neighbouring settings: locating-dominating sets in graphs of
+girth at least $5$ \cite{BFH}, a subclass of the graphs without $C_4$ that does
+not contain $G$, since $G$ has the triangle $\{4,8,10\}$; location-domination
+together with matchings in undirected cubic graphs \cite{FH}; the
+\emph{minimum} of the identifying-code number over all orientations \cite{CH};
+best and worst orientations for the metric dimension \cite{ABC}; and $\gammaLD$
+of local tournaments \cite{BBLP}.
+
+Lemmas~\ref{lem:noC4} and \ref{lem:alpha} and Proposition~\ref{prop:lower} need
+no machine. A program that carries out the computation of
+Proposition~\ref{prop:upper} from the graph6 string alone by the reduction of
+Section~\ref{sec:upper}, together with a recorded run of it, accompanies this
+note; the program also re-derives the statements proved above by hand and
+cross-checks the mask construction against the naive per-orientation predicate.
+
+\begin{thebibliography}{9}
+
+\bibitem{BDLP}
+N.~Bousquet, Q.~Deschamps, T.~Lehtil\"a, and A.~Parreau,
+\emph{Locating-dominating sets: from graphs to oriented graphs},
+Discrete Math. \textbf{346} (2023), 113124,
+\href{https://doi.org/10.1016/j.disc.2022.113124}{doi:10.1016/j.disc.2022.113124}.
+Statement labels and numbering are quoted from the e-print
+\href{https://arxiv.org/abs/2112.01910}{arXiv:2112.01910v2}.
+
+\bibitem{ABC}
+J.~Araujo, J.~Bensmail, V.~Campos, F.~Havet, A.~K. Maia, N.~Nisse, and
+A.~Silva,
+\emph{On finding the best and worst orientations for the metric dimension},
+Algorithmica (2023),
+\href{https://doi.org/10.1007/s00453-023-01132-0}{doi:10.1007/s00453-023-01132-0}.
+
+\bibitem{BBLP}
+T.~Bellitto, C.~Brosse, B.~Lev\^eque, and A.~Parreau,
+\emph{Locating-dominating sets in local tournaments},
+Discrete Appl. Math. (2023),
+\href{https://arxiv.org/abs/2109.03102}{arXiv:2109.03102}.
+
+\bibitem{BFH}
+C.~Balbuena, F.~Foucaud, and A.~Hansberg,
+\emph{Locating-dominating sets and identifying codes in graphs of girth at
+least 5},
+Electron. J. Combin. \textbf{22} (2015), no.~2, Paper 2.15.
+\href{https://arxiv.org/abs/1407.7263}{arXiv:1407.7263}.
+
+\bibitem{CH}
+N.~Cohen and F.~Havet,
+\emph{On the minimum size of an identifying code over all orientations of a
+graph},
+Electron. J. Combin. \textbf{25} (2018), no.~1, Paper 1.49.
+
+\bibitem{FH}
+F.~Foucaud and M.~A. Henning,
+\emph{Location-domination and matching in cubic graphs},
+Discrete Math. \textbf{339} (2016), no.~4, 1221--1231.
+\href{https://arxiv.org/abs/1412.2865}{arXiv:1412.2865}.
+
+\end{thebibliography}
+
+\end{document}

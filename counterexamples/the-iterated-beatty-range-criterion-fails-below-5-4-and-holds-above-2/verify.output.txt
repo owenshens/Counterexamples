@@ -1,0 +1,46 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  2513064e7e7ee37064078b062b5c2f35e7f1651c86fd07b295644b6e4dd56de7
+python:  Python 3.9.25
+=== program output follows ===
+PASS exact-arithmetic-selftest  13443 certified assertions on floor/frac/sign/inverse, 0 failures
+PASS alpha-phi-minimal-polynomial  phi^2-phi-1 = 0 and phi in (1.6,1.7)
+PASS alpha-surd-minimal-polynomial  64a^2-112a+47 = 0 and a in (1.05,1.06)
+PASS rc-form-equivalence  printed fractional-part form == rho form on 5000 instances, 0 mismatches
+PASS nbonacci-constants  a_2..a_6 bracketed to 10 decimals, a_2 = phi, monotone; 0 failures
+PASS threshold-four-equivalent-forms  the four forms of the threshold condition agree on 48 (alpha,n) pairs, 0 mismatches
+PASS threshold-alpha-gt-2  sum_{j<n} alpha^-j < alpha-1 for all n<=20 at 6 moduli above 2, 0 failures
+PASS thmA-above-2-exhaustive  9 moduli above 2, n=1..7, x<=3000: 0 disagreements in 63 (alpha,n) cells
+PASS thmA-per-level-exhaustive  91 (alpha,n) cells with alpha >= a_n: 0 with a disagreement; 14 cells left permitted by the theorem
+PASS thmA-unconditional-direction  over 315000 (alpha,n,x) instances, 'RC holds but x not in range' occurred 0 times
+PASS band-phi-to-2-undecided  at alpha = sqrt3 in [phi,2) the equivalence holds for all n <= 7, x <= 3000, although Theorem A covers only n <= 2: bounded-negative, not a proof
+PASS thmB-window-nonempty-iff-phi  all 13532 enumerated alpha in (1,phi) have a nonempty window (Theorem 7), 0 exceptions
+PASS thmB-family-witnesses  13532 distinct quadratic irrationals of (1,phi); 9109 with an integer in the window; 49013 integer witnesses, each a fixed point with RC failing exactly at i=2 and D_2 = (1-1/alpha) + {x/alpha}; 0 failures
+PASS thmB-corollary-xstar  x* = floor(1/(alpha-1)) lies in the window for 5985 of the 5985 enumerated alpha with 2a^2-a-2 <= 0
+PASS witness2-window-endpoints  alpha^2/(alpha^2-1) = (1055+896 sqrt2)/223 and 1/(alpha-1) = 8+8 sqrt2, with alpha-1 = (sqrt2-1)/8 and alpha^2-1 = (14 sqrt2-13)/64
+PASS witness2-window-integers  integers strictly inside the window: 11,12,13,14,15,16,17,18,19 (nine of them), x* = floor(1/(a-1)) = 19
+PASS witness2-fixed-points  f(x) = x for all of x = 11..19; f(10) = 10, f(20) = 21, f(21) = 22
+PASS witness2-floors  floor(x/alpha) = x-1 and floor(x/alpha^2) = x-2 for x = 11..19
+PASS witness2-D2-closed-form  D_2(alpha,x) = (9x+38-8(x-1)sqrt2)/47 = (x-1)/alpha-(x-2) = {(x-1)/alpha} for x = 11..19
+PASS witness2-D2-exceeds-bound  1-1/alpha = (8 sqrt2-9)/47; D_2(alpha,x)-(1-1/alpha) = {x/alpha} > 0 for x = 11..19; and 47*(D_2(x)-(1-1/alpha)) = 9x+47-8x sqrt2, which is positive exactly when x < 9+8 sqrt2 (checked for x = 1..60)
+PASS witness2-exhaustive-table-24  x = 1..24, n = 2: the equivalence is false at exactly 11,12,13,14,15,16,17,18,19 (nine values) and true at the other fifteen
+PASS witness1-chain  3 -> 4 -> 6 -> 9 -> 14 -> 22 under y -> floor(phi*y), so 22 in range(f^5)
+PASS witness1-membership-independent  an exhaustive preimage sieve over y <= 30 independently puts 22 in range(f^5); its only 5-fold preimage is y = 3
+PASS witness1-fractional-parts  {22/phi^i} = 22phi-35, 36-22phi, 44phi-71, 107-66phi, 110phi-177 for i = 1..5
+PASS witness1-D-closed-forms  D_2 = 13phi-21, D_3 = 8phi-13, D_4 = 5phi-8, D_5 = 3phi-4
+PASS witness1-rc-verdict  1-1/phi = 2-phi and 1-2/phi = 3-2phi; RC<=4(phi,22) holds, RC<=5 fails at i=5, and D_5-(1-1/phi) = 4phi-6 > 0
+PASS witness1-level-permission  phi = a_2: Theorem A covers n <= 2 at phi and permits failure for n >= 3
+PASS witness1-least-x-at-level-5  least disagreement at (phi, n=5) is x = 22, exhaustive for x <= 3000 (70 disagreements there)
+PASS phi-level-4-least-137  least disagreement at (phi, n=4) is x = 137, exhaustive for x <= 3000 (21 disagreements there)
+PASS phi-level-3-none-to-20000  no disagreement at (phi, n=3) for x <= 20000; Theorem A permits one, so this cell is UNDECIDED, not settled
+PASS printed-decimals  23 decimal expansions printed in the paper re-derived by exact rational bracketing (truncation toward zero); 0 wrong
+
+NOT RE-RUN: the following are recorded in the paper but are NOT re-derived here.
+NOT RE-RUN:  (a) the machine census reporting 38,417 disagreements at alpha=(7+sqrt2)/8 for x <= 10^5. No claim of the paper depends on it; this program checks x <= 24 exhaustively and nothing beyond.
+NOT RE-RUN:  (b) any statement about which inequalities the proof printed in arXiv:2607.12817 uses (the threshold remark of Section 3). That is a reading of a text, not a computation; the line numbers, byte count and sha256 given in the paper let a referee repeat it, and this program does not fetch the source.
+NOT RE-RUN:  (c) the literature search behind the novelty remark of Section 5 and behind Section 6. No database is contacted.
+NOT RE-RUN:  (d) the open cells are not resolved: whether the equivalence fails anywhere in the OPEN band (phi,2), and whether it fails at alpha=phi for n=3, are left open. The searches here are BOUNDED (x <= 20000 at n=3, x <= 3000 otherwise) and a bounded negative is not a proof. The left endpoint alpha=phi is NOT among these open cells: the failure at level 5 there is established above (least disagreement x = 22, exhaustive for x <= 3000), so the band written here is open at phi.
+NOT RE-RUN:  (e) the family sweep behind Theorem 7 (the negative half) enumerates quadratic irrationals only, of the shape (p+q sqrt d)/r with d <= 43, q <= 3, r <= 25, p < 60; the theorem itself is proved for all irrational alpha in (1,phi) and its proof, not this sweep, is what carries it.
+
+VERDICT: ALL 31 CHECKS PASS
+=== program exited with status 0 ===

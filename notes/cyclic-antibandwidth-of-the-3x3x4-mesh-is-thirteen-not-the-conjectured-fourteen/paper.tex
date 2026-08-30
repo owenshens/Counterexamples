@@ -1,0 +1,320 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The cyclic antibandwidth of the 3x3x4 mesh is 13}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\emergencystretch=1.5em
+
+\DeclareMathOperator{\cab}{cab}
+
+\title[The cyclic antibandwidth of the $3\times3\times4$ mesh]
+{The cyclic antibandwidth of the $3\times3\times4$ mesh is $13$}
+
+\date{}
+
+\subjclass[2020]{05C78, 05C85, 68R10}
+\keywords{cyclic antibandwidth, antibandwidth, three-dimensional mesh, graph labeling,
+exact value, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ on $n$ vertices, a labeling is a bijection $f\colon V(G)\to\{1,\dots,n\}$, and
+the cyclic antibandwidth $\cab(G)$ is the largest $k$ for which some labeling places the two ends
+of every edge at distance at least $k$ apart on the cycle $\mathbb Z_n$.
+We prove $\cab(P_3\times P_3\times P_4)=13$. The lower bound is a printed $36$-label bijection,
+certified by $75$ integer comparisons. The upper bound is a complete backtracking exhaustion at
+$k=14$, using no solver and no library, run twice --- once under the symmetry reduction argued
+here and once with no symmetry reduction at all; a degree count disposes of $k\ge16$ by hand.
+The appendix table of conjectured $3$-dimensional-mesh values reproduced in the $2026$
+exact-method paper of Xuan and Van lists $14$ at this instance, one above the value proved here.
+What that table records, and by whom the entry was posed, are not settled here; nothing is
+claimed about any other instance.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Let $G$ be a graph on $n=|V(G)|$ vertices. A \emph{labeling} of $G$ is a bijection
+$f\colon V(G)\to\{1,\dots,n\}$. For labels $a,b$ put
+\[
+ d_c(a,b)=\min\bigl(|a-b|,\;n-|a-b|\bigr),
+\]
+the distance between $a$ and $b$ on the cycle $\mathbb Z_n$, and set
+\[
+ \cab_f(G)=\min_{uv\in E(G)}d_c\bigl(f(u),f(v)\bigr),
+ \qquad
+ \cab(G)=\max_f \cab_f(G).
+\]
+This is the \emph{cyclic antibandwidth} of $G$. It is a max-min parameter, so a single labeling
+certifies a lower bound and nothing else: one edge sets the value of $\cab_f$, and a claimed
+witness is checked in $O(|E|)$ integer arithmetic with no search. The $3$-dimensional mesh is the
+Cartesian product $P_{n_1}\times P_{n_2}\times P_{n_3}$ of paths.
+
+Exact values of $\cab$ are known for paths, cycles, two-dimensional and toroidal meshes and
+hypercubes \cite{STV,RSSTV}, as surveyed in \cite{XT}; for three-dimensional meshes what the
+literature offers is a table of conjectured values obtained from a heuristic. Nothing below uses
+the contents of \cite{STV,RSSTV,TV}.
+
+One such table is the source of the value we compare with. The exact-method paper of Xuan and Van
+\cite{XT} reproduces, in its appendix on the experimental datasets, a $3$-dimensional mesh table
+captioned ``Conjectured CAB value of 3D mesh instances. Source: Bansal et al.''; in the row for
+$3\times3\times n_3$ meshes, read from the e-print \texttt{arXiv:2601.04239v1} (source lines
+$1398$--$1422$), the entry at $n_3=4$ is $14$. In \cite{XT} the tabulated values are used to set
+the search bound for $3$-dimensional meshes, which ``is chosen as the value immediately above the
+conjectured CAB value reported by Bansal et al.''\ (source line $1395$), with the caveat that
+``since this value is conjectured, it may be less than the actual optimal CAB value'' (line
+$1534$).
+
+\begin{theorem}\label{thm:main}
+$\cab(P_3\times P_3\times P_4)=13$.
+\end{theorem}
+
+So the tabulated entry $14$ is one above the cyclic antibandwidth of that instance, and it is
+unattained: no labeling of $P_3\times P_3\times P_4$ reaches $14$.
+
+\begin{remark}
+We do not claim to have refuted a stated conjecture. We did not read the body of \cite{BS}, which
+is closed access, so we cannot say what closed form, if any, its authors posed; the accessible
+source is the dataset caption quoted above. Nor do we establish which parameter the entry records.
+The recorded run accompanying this note reports that the row's entries at the smallest six values
+of $n_3$ coincide with values reported for the \emph{linear} antibandwidth of the same meshes, so
+the printed $14$ may be a
+linear rather than a cyclic value; on that reading it is not in conflict with anything proved here.
+What is proved here is the displayed theorem.
+\end{remark}
+
+Section~\ref{sec:lower} exhibits a witness for $\cab\ge13$; six of its $75$ comparisons are
+displayed and the rest are the same integer arithmetic.
+Section~\ref{sec:upper} bounds $\cab$ above: a degree count gives $\cab\le15$ by hand, and a
+complete backtracking exhaustion at $k=14$ of a reformulation (Lemma~\ref{lem:window}) gives
+$\cab\le13$, using no solver, no library and no floating-point arithmetic.
+Section~\ref{sec:status} says what is not settled.
+
+\section{The lower bound: a printed witness}\label{sec:lower}
+
+Write a vertex of $P_3\times P_3\times P_4$ as $(x,y,z)$ with $x,y\in\{1,2,3\}$ and
+$z\in\{1,2,3,4\}$; two vertices are adjacent when they differ by $1$ in exactly one coordinate.
+So $n=36$ and $|E|=75$. The labeling $W$ below is printed as four rows $z=1,\dots,4$; each row
+groups $x=1\mid x=2\mid x=3$ and within a group lists $y=1,2,3$.
+
+\begin{center}
+$W$:\qquad
+\begin{tabular}{r@{\;}|@{\;}ccc@{\;}|@{\;}ccc@{\;}|@{\;}ccc}
+ $z=1$ & 31 & 14 & 30 & 13 & 29 & 10 & 35 & 12 & 27\\
+ $z=2$ & 15 &  1 & 17 & 36 & 16 & 32 & 21 & 34 & 11\\
+ $z=3$ &  2 & 23 &  4 & 22 &  3 & 18 &  7 & 20 & 33\\
+ $z=4$ & 24 &  8 & 26 &  9 & 25 &  5 & 28 &  6 & 19
+\end{tabular}
+\end{center}
+
+\begin{proposition}\label{prop:lower}
+$W$ is a labeling of $P_3\times P_3\times P_4$ with $\cab_W=13$. Hence
+$\cab(P_3\times P_3\times P_4)\ge13$.
+\end{proposition}
+
+\begin{proof}
+The table lists each of $1,\dots,36$ exactly once, so $W$ is a bijection. For each of the $75$
+edges one computes $d_c$ with $n=36$; the minimum is $13$, attained on $15$ edges. Nothing but
+integer arithmetic is involved. As an illustration, take the
+degree-$6$ vertex $(2,2,2)$, which carries label $16$; its six neighbours
+\[
+ (1,2,2),\;(3,2,2),\;(2,1,2),\;(2,3,2),\;(2,2,1),\;(2,2,3)
+\]
+carry $1,34,36,32,29,3$ respectively, and
+\[
+ d_c(16,\cdot)=15,\;18,\;16,\;16,\;13,\;13,
+\]
+all at least $13$.
+\end{proof}
+
+\section{The upper bound}\label{sec:upper}
+
+Everything in this section rests on one elementary reformulation. For a label $l\in\mathbb Z_n$
+put
+\[
+ F_k(l)=\{\,l'\in\mathbb Z_n : d_c(l,l')\ge k\,\}
+      =\{\,l+k,\;l+k+1,\;\dots,\;l+n-k\,\},
+\]
+an \emph{arc} of exactly $n-2k+1$ labels antipodal to $l$.
+
+\begin{lemma}\label{lem:window}
+Let $G$ have $n$ vertices and let $1\le k\le\lfloor n/2\rfloor$. For a labeling $f$ the following
+are equivalent.
+\begin{enumerate}
+\item[(i)] $\cab_f(G)\ge k$.
+\item[(ii)] For every edge $uv$, $f(v)\in F_k(f(u))$; equivalently, $G$ is a spanning subgraph of
+      the circulant $\mathrm{Ci}_n(k,k+1,\dots,\lfloor n/2\rfloor)$ under $f$.
+\item[(iii)] For every $s\in\mathbb Z_n$ the set $f^{-1}(\{s,s+1,\dots,s+k-1\})$ of vertices
+      carrying $k$ cyclically consecutive labels is independent in $G$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i)$\Leftrightarrow$(ii) is the definition of $F_k$, and the circulant with connection set
+$\{k,\dots,\lfloor n/2\rfloor\}$ is precisely the graph on $\mathbb Z_n$ whose edges join labels
+at cyclic distance at least $k$. For (i)$\Leftrightarrow$(iii): two labels in a common window of
+$k$ cyclically consecutive labels are at cyclic distance at most $k-1$, and conversely two labels
+at cyclic distance $d\le k-1$ lie in a common such window. So some window carries an edge iff
+some edge has $d_c<k$.
+\end{proof}
+
+Two consequences.
+
+\begin{lemma}[$k\ge16$]\label{lem:cap}
+$\cab(P_3\times P_3\times P_4)\le15$.
+\end{lemma}
+
+\begin{proof}
+Let $\Delta=\Delta(G)$ and let $v$ have degree $\Delta$. By Lemma~\ref{lem:window}(ii) the $\Delta$
+neighbours of $v$ receive distinct labels from the $n-2k+1$ labels of $F_k(f(v))$, so
+$\cab(G)\le\lfloor(n-\Delta+1)/2\rfloor$. Here $n=36$ and $\Delta=6$, attained exactly at
+$(2,2,2)$ and $(2,2,3)$, so $\cab\le\lfloor31/2\rfloor=15$. Concretely, $k=16$ leaves only
+$36-31=5$ admissible labels for six neighbours.
+\end{proof}
+
+Neither of the two counting obstructions available here excludes $k=14$: the host circulant
+$\mathrm{Ci}_{36}(14,\dots,18)$ is $9$-regular, which is at least $\Delta=6$, and by
+Lemma~\ref{lem:window}(iii) a window of $14$ labels must be independent, which is no obstruction
+either, since $P_3\times P_3\times P_4$ has a perfect matching and hence independence number
+$36-18=18>14$. We decide $k=14$ by exhaustion.
+
+\begin{lemma}[$k=14$]\label{lem:search}
+There is no labeling $f$ of $P_3\times P_3\times P_4$ with $\cab_f\ge14$.
+\end{lemma}
+
+\begin{proof}[Proof (a complete backtracking exhaustion)]
+By Lemma~\ref{lem:window}(ii) with $k=14$ we must decide whether $G=P_3\times P_3\times P_4$
+embeds as a spanning subgraph of $\mathrm{Ci}_{36}(14,\dots,18)$. Order the $36$ vertices
+$v_1,\dots,v_{36}$ deterministically: $v_1$ is the vertex of largest degree that is least in the
+lexicographic order of $(x,y,z)$, so $v_1=(2,2,2)$; and $v_{i+1}$ is the unordered vertex with the
+most already-ordered neighbours, ties broken by larger degree and then by lexicographic order.
+Assign labels to $v_1,v_2,\dots$ in that order by depth-first search, trying admissible labels in
+increasing order: a label is admissible for $v_i$ if it is unused and lies in $F_{14}(f(w))$ for
+every already-labelled neighbour $w$ of $v_i$. After each assignment, propagate --- intersect the
+candidate arc of every not-yet-labelled neighbour, and backtrack as soon as one of them is left
+with no admissible label. This decides the question exactly: the search enumerates every
+labeling with the required property, and it terminates.
+
+Two reductions cut the tree, and both are exact.
+\emph{Rotation.} $f\mapsto f+t$ preserves every cyclic distance and acts transitively on which
+vertex carries a given label, so we may fix $f(v_1)=0$ (labels are taken in $\mathbb Z_{36}$
+here).
+\emph{The automorphisms of the layer.} The eight automorphisms of the $3\times3$ grid fix
+$v_1=(2,2,2)$ and act transitively on its four in-layer neighbours, so we may require the least
+of their four labels to sit on $(1,2,2)$; the one non-identity grid automorphism fixing $(1,2,2)$
+transposes $(2,1,2)$ and $(2,3,2)$, so we may require $f(2,1,2)<f(2,3,2)$ as well. Finally
+$f\mapsto-f$ fixes the label $0$, reverses every comparison and commutes with the grid
+automorphisms, which do not touch $z$, so we may require $f(2,2,1)<f(2,2,3)$. Together these
+quotient a group of order $16$ acting on the solution set.
+
+Executed at $k=14$, the search reports no labeling in either run:
+\[
+\begin{array}{lrr}
+ \text{reduced}, & 281{,}957{,}255 \text{ nodes}, & 0 \text{ labelings};\\
+ \text{no symmetry reduction}, & 2{,}463{,}942{,}873 \text{ nodes}, & 0 \text{ labelings}.
+\end{array}
+\]
+In the reduced run the tree never reaches beyond its $31$st level: every branch is
+abandoned with at least five vertices still unlabelled. The second run uses no symmetry reduction
+at all beyond the rotation pin, so it does not depend on the argument of the previous paragraph,
+and it agrees.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+$\cab\ge13$ by Proposition~\ref{prop:lower}, and $\cab\le13$ by Lemma~\ref{lem:search}.
+\end{proof}
+
+\section{Status}\label{sec:status}
+
+What is settled is $\cab(P_3\times P_3\times P_4)=13$. Every layer of that proof is re-derived by
+the programs accompanying this note, from the labeling printed in Section~\ref{sec:lower}, with no
+solver and no third-party library.
+
+What is not settled:
+\begin{itemize}
+\item \emph{No other instance.} Nothing here bounds $\cab(P_3\times P_3\times P_{n_3})$ for any
+      $n_3\ne4$, and the tabulated row is not repaired.
+\item \emph{The status of the tabulated $14$.} Who posed it, in what form, and which parameter it
+      records are all outside this note; see the remark in Section~\ref{sec:intro}.
+\item \emph{The $k=14$ layer is a computation, not a readable proof.} It is solver-free,
+      exhaustive and deterministic, but it is a search of hundreds of millions of nodes: a referee
+      must re-run it rather than read it, and no independently checkable refutation object (a DRAT
+      or LRAT trace, or a hand-sized infeasible core) accompanies it.
+\end{itemize}
+
+\section{Reproduction}
+
+Everything up to and including Lemma~\ref{lem:cap} needs no code: rebuild
+$P_3\times P_3\times P_4$, confirm $|V|=36$, $|E|=75$ and $\Delta=6$ at exactly $(2,2,2)$ and
+$(2,2,3)$; confirm that the table of $W$ is a bijection onto $\{1,\dots,36\}$; compute the $75$
+cyclic distances and read off the minimum $13$; and check the arithmetic of Lemma~\ref{lem:cap}.
+That is one page, and it gives $13\le\cab\le15$.
+
+The exhaustion of Lemma~\ref{lem:search} is machine work. Two programs accompany this note, each
+with a recorded run: \texttt{verify.py} with \texttt{verify.output.txt} re-derives the objects and
+the reduced $k=14$ exhaustion, and \texttt{exhaust.py} with \texttt{exhaust.output.txt} re-decides
+$k=14$ with the symmetry reduction removed entirely. Both need Python~3.9 or later and the standard
+library only --- no third-party package, no external data file, no network, no randomness and no
+floating-point value in any decision --- and both are deterministic, so the node counts printed
+above are reproducible exactly. Run them as \texttt{python3 verify.py} and
+\texttt{python3 exhaust.py}; in the recorded runs they took about three minutes and about
+twenty-three minutes on one core. Each program closes with a list of what it does not do; neither
+checks a bibliographic locator, and neither bears on prior art.
+
+\begin{thebibliography}{9}
+
+\bibitem{BS}
+R.~Bansal and K.~Srivastava,
+\emph{A memetic algorithm for the cyclic antibandwidth maximization problem},
+Soft Comput. \textbf{15} (2011), no.~2, 397--412.
+\href{https://doi.org/10.1007/s00500-009-0538-6}{doi:10.1007/s00500-009-0538-6}.
+Cited by \cite{XT} as the source of the tabulated values; the body is closed access and we did not
+read it.
+
+\bibitem{RSSTV}
+A.~Raspaud, H.~Schr\"oder, O.~S\'ykora, L.~T\"or\"ok, and I.~Vr\v{t}o,
+\emph{Antibandwidth and cyclic antibandwidth of meshes and hypercubes},
+Discrete Math. \textbf{309} (2009), no.~11, 3541--3552.
+\href{https://doi.org/10.1016/j.disc.2007.12.058}{doi:10.1016/j.disc.2007.12.058}.
+
+\bibitem{STV}
+O.~S\'ykora, L.~T\"or\"ok, and I.~Vr\v{t}o,
+\emph{The cyclic antibandwidth problem},
+Electron. Notes Discrete Math. \textbf{22} (2005), 223--227.
+\href{https://doi.org/10.1016/j.endm.2005.06.030}{doi:10.1016/j.endm.2005.06.030}.
+
+\bibitem{TV}
+L.~T\"or\"ok and I.~Vr\v{t}o,
+\emph{Antibandwidth of three-dimensional meshes},
+Discrete Math. \textbf{310} (2010), no.~3, 505--510.
+\href{https://doi.org/10.1016/j.disc.2009.03.029}{doi:10.1016/j.disc.2009.03.029}.
+
+\bibitem{XT}
+H.~T.~Xuan and K.~T.~Van,
+\emph{Solving cyclic antibandwidth problem by SAT},
+Comput. Optim. Appl. (2026),
+\href{https://doi.org/10.1007/s10589-026-00819-8}{doi:10.1007/s10589-026-00819-8};
+e-print \href{https://arxiv.org/abs/2601.04239}{arXiv:2601.04239v1}.
+The caption and the entry quoted in Section~\ref{sec:intro} are read from the e-print source, in
+the appendix table of conjectured $3$D-mesh CAB values, lines $1398$--$1422$.
+
+\end{thebibliography}
+
+\end{document}

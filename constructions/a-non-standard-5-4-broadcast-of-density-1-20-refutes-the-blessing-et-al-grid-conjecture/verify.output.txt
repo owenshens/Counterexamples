@@ -1,0 +1,69 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9ac0d861f012352d3f807673e5fec65130d6b1a0f7fde7d8ab336034978d284c
+python:  Python 3.9.6
+=== program output follows ===
+====================================================================================================
+VERIFICATION OF THE PRINTED OBJECT   S = {(x,y) in Z^2 : y = 0 mod 2, x = 2y mod 10} = span{(10,0),(4,2)}
+====================================================================================================
+PASS predicate-equals-basis-span        three independent constructions of S agree over [-40,40]^2, 337 points each
+PASS tower-count-in-window              |S cap [-40,40]^2| = 337, paper prints 337
+PASS index-is-the-determinant           det [[10,0],[4,2]] = 20 = index of S in Z^2
+PASS reps-count                         20 representatives (x in 0..9, y in 0..1)
+PASS reps-are-a-transversal             the 20 reps are pairwise inequivalent mod S, and every cell of [-25,25]^2 is congruent to exactly one of them
+PASS reception-is-S-periodic            rec(u) = rec(u+(10,0)) = rec(u+(4,2)) at all 20 representatives
+PASS coset-table-row-y0                 recomputed [5, 4, 5, 4, 5, 4, 5, 4, 5, 4]
+PASS coset-table-row-y1                 recomputed [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+PASS coset-table-row-sums               row sums 45 and 40
+PASS cone-weight-W5-two-ways            W_5 = sum_z max(0,5-|z|_1) = 85 by direct summation and = 5 + sum_m 4m(5-m) = 85
+PASS checksum-lemma-instance            the 20 coset receptions sum to 85 = W_5; one slip anywhere in the table would break this
+PASS min-reception-equals-r             min over the 20 classes = 4 = r, so S IS a (5,4) broadcast dominating set of Z^2
+PASS tight-class-count                  15 of the 20 classes receive exactly 4; the other 5 receive 5
+PASS window-recheck-81x81               min = 4, histogram = {4: 4880, 5: 1681} over the 6561 cells of [-40,40]^2
+PASS window-histogram-accounting        6561 = 4880 + 1681, and the 1681 cells receiving 5 are exactly the 41^2 cells with both coordinates even
+PASS closed-form-count-agrees           the O(1) congruence count is validated against a brute-force count at n = 50 (11)
+PASS density-is-one-twentieth           exact rational counts |S cap [-n,n]^2|/(2n+1)^2 within 1/n of 1/20: n=50:521/10201, n=200:8081/160801, n=500:50201/1002001, n=2000:238273/4763074, n=1000000:349999/6999973
+PASS min-nonzero-L1-norm                the shortest nonzero vector of S has L1 norm 6 > 4, so a tower receives only its own 5
+PASS S-is-twice-the-Lee-code            T(5,2) is a perfect Lee code of radius 1 (every cell within distance 1 of exactly one codeword) and 2*T(5,2) = S over [-40,40]^2
+PASS S-is-not-standard-by-a-line        S has no tower on the line y = 1, while every T(d,e), d <= 25, meets every horizontal line
+PASS quotient-is-not-cyclic             Z^2/S has invariant factors (2,10), i.e. Z/2 + Z/10, not cyclic; every Z^2/T(d,e) has invariant factors (1,d) and is cyclic. Non-cyclicity is GL_2(Z)-invariant, so S is no relabelling of a T(d,e).
+PASS delta-4-2-from-DHR-formula         the Drews-Harris-Randolph value 1/(2(t-1)^2) at t = 4 is 1/18
+PASS strict-inequality-1-20-lt-1-18     delta_{5,4} <= 1/20 < 1/18 = delta_{4,2} as exact rationals, so the equality delta_{t,r} = delta_{t+1,r+2} FAILS at (t,r) = (4,2)
+PASS index-19-census-empty              all 20 sublattices of index 19 examined (= sigma(19)); none is a (5,4) broadcast
+PASS index-20-census                    all 42 sublattices of index 20 examined (= sigma(20)); exactly two are (5,4) broadcasts: [(10, 4, 2), (10, 6, 2)] -- our witness and its mirror image
+PASS index-21-census-empty              all 32 sublattices of index 21 examined (= sigma(21)); none is a (5,4) broadcast
+PASS index-22-census-empty              all 36 sublattices of index 22 examined (= sigma(22)); none is a (5,4) broadcast
+PASS checksum-bound-D-at-most-21        a sublattice with one tower per period and rec >= 4 everywhere obeys 4D <= W_5 = 85, hence D <= 21; this is what makes the standard-broadcast search below finite
+PASS shlomi-constant-C-5-4              sum over the ball of min(sig,r) = 4+16+24+24+16 = 84, and Shlomi's closed form 2r^3/3 - 2r^2 t + 2rt^2 + r/3 = 84 -- equal
+PASS delta-5-4-not-determined           Shlomi's bound gives delta_{5,4} >= 4/84 = 1/21, and our witness gives <= 1/20; 1/21 < 1/20 strictly, so the exact value of delta_{5,4} is NOT settled here
+PASS control-positive-T(18,4)           T(18,4) IS a (5,4) broadcast: receptions [5, 5, 6, 5, 5, 4, 5, 4, 4, 4, 4, 4, 5, 4, 5, 5, 6, 5], min 4, sum 85 = W_5. So 1/18 is achieved at (5,4) and the comparison 1/20 < 1/18 is against a realisable density.
+PASS control-best-standard-is-18        over d = 1..25 the largest d admitting a standard (5,4) broadcast is 18, at e = [4, 5, 7, 11, 13, 14] -- reproducing the published T(18,4) including its lowest-e tie-break
+PASS control-negative-d-19-to-22        no T(d,e) with d in 19..22 is a (5,4) broadcast (must be empty, and is: [])
+PASS control-third-party-T(18,5)        our (4,2) reception vector for T(18,5) is [4, 3, 2, 3, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2, 3, 2, 3], identical entry by entry to the published one; sum 44 = W_4. This pins our orientation, offset and weight conventions against a third party.
+PASS control-DHR-non-standard-(2,3)     the known non-standard optimum at (t,r) = (2,3), {(x,y): x+2y mod 4 in {0,1}} of density 1/2, validates with receptions [3, 3, 3, 3] -- so this checker can recognise a non-standard optimum
+PASS no-standard-5-4-is-optimal         the least density of a standard (5,4) broadcast is 1/18, and 1/18 > 1/20; the search is complete because 4D <= 85 forces D <= 21. So (5,4) is a pair for which no standard broadcast is optimal, answering the Drews-Harris-Randolph Further Question affirmatively.
+PASS table-entries-exceed-our-bounds    the printed reciprocal-density entries 18, 50, 98 at (5,4),(7,4),(9,4) correspond to densities 1/18, 1/50, 1/98, each STRICTLY GREATER than our 1/20, 1/52, 1/100 -- so as captioned ("the reciprocal of the minimum density") those three entries are wrong
+PASS family-t-prime-2                   L is a perfect Lee code of radius 1 (index 5); S = 2L has index 20, min reception 4 over all 20 classes, checksum 85 = W_5; density 1/20 < 1/18 = delta_{4,2}. So the conjecture also fails at (t,r) = (4,2).
+PASS family-t-prime-3                   L is a perfect Lee code of radius 2 (index 13); S = 2L has index 52, min reception 4 over all 52 classes, checksum 231 = W_7; density 1/52 < 1/50 = delta_{6,2}. So the conjecture also fails at (t,r) = (6,2).
+PASS family-t-prime-4                   L is a perfect Lee code of radius 3 (index 25); S = 2L has index 100, min reception 4 over all 100 classes, checksum 489 = W_9; density 1/100 < 1/98 = delta_{8,2}. So the conjecture also fails at (t,r) = (8,2).
+PASS family-t-prime-5                   L is a perfect Lee code of radius 4 (index 41); S = 2L has index 164, min reception 4 over all 164 classes, checksum 891 = W_11; density 1/164 < 1/162 = delta_{10,2}. So the conjecture also fails at (t,r) = (10,2).
+PASS family-t-prime-6                   L is a perfect Lee code of radius 5 (index 61); S = 2L has index 244, min reception 4 over all 244 classes, checksum 1469 = W_13; density 1/244 < 1/242 = delta_{12,2}. So the conjecture also fails at (t,r) = (12,2).
+PASS herrman-van-hintum-range           counterexamples to delta_{t+1,4} = delta_{t,2} are exhibited at t = [4, 6, 8, 10, 12], so the Herrman-van Hintum weakening "there exists t_0 such that for all t >= t_0 ..." is refuted at r = 2 for EVERY t_0 <= 12 and for no larger t_0
+----------------------------------------------------------------------------------------------------
+NOT RE-RUN: the lower bound delta_{t,2} >= 1/(2(t-1)^2) of Drews-Harris-Randolph is QUOTED, not
+            reproved. Only its value at t = 4 is arithmetic-checked. The strict inequality
+            1/20 < delta_{4,2} rests entirely on that published theorem.
+NOT RE-RUN: Shlomi's lower bound delta_{t,r} >= r / C_{t,r} is QUOTED, not reproved; only the
+            arithmetic C_{5,4} = 84 and 4/84 = 1/21 is checked here.
+NOT RE-RUN: no search above index 22. Nothing in this program excludes a (5,4) broadcast of
+            density below 1/20, so delta_{5,4} is bounded, not determined: 1/21 <= d <= 1/20.
+NOT RE-RUN: the censuses at index 19..22 enumerate SUBLATTICES ONLY (one tower per period).
+            Periodic sets with two or more towers per period are not enumerated at any index.
+NOT RE-RUN: the doubling family is enumerated only for 2 <= t' <= 6. The general lemma
+            "S_{t'} = 2 L_{t'} is a (2t'+1,4) broadcast for every t' >= 2" is NOT proved,
+            so a Herrman-van Hintum threshold t_0 >= 13 is untouched.
+NOT RE-RUN: no literature search. In particular Harris-Insko-Johnson, "Projects in (t,r) Broadcast
+            Domination" (Springer 2020, doi 10.1007/978-3-030-37853-0_8), is paywalled and unread.
+----------------------------------------------------------------------------------------------------
+VERDICT: ALL 43 CHECKS PASS
+=== program exited with status 0 ===

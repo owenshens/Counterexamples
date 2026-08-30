@@ -1,0 +1,300 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{upquote}   % so that ` and ' inside \verb are the ASCII characters of a graph6 string
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample to the Kimura-Matsumoto-Sato Eternal Domination Conjecture}
+}
+
+\emergencystretch=2em
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{conjKMS}{Conjecture 2.1 (Kimura, Matsumoto, Sato)}
+
+\DeclareMathOperator{\edom}{\gamma^{\infty}}
+\DeclareMathOperator{\thet}{\theta}
+\DeclareMathOperator{\dom}{\gamma}
+\newcommand{\Gz}{G_0}
+\newcommand{\Hs}{H^{*}}
+
+\title[A counterexample on eternal domination]
+{A Counterexample to the Kimura--Matsumoto--Sato\\ Eternal Domination Conjecture}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C70, 05C10}
+\keywords{eternal domination, clique cover number, vertex-critical graph, triangle-free graph,
+factor-critical graph, odd ear, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $\edom(G)$ be the eternal domination number of $G$ in the model in which one guard moves per
+attack, and let $\thet(G)$ be the clique cover number. Conjecture~2.1 of Kimura, Matsumoto and
+Sato asserts that for a vertex-critical triangle-free graph $G$ of order $n$ with
+$|E(G)|\le 2n-3$, one has $\edom(G)=\thet(G)$ if and only if $\edom(G-v)=\thet(G-v)$ for every
+vertex $v$. We exhibit a single graph $\Gz$ that refutes the ``if'' half. It has order $15$ and
+exactly $27=2n-3$ edges, so it lies on the conjecture's own edge boundary; it is triangle-free
+and vertex-critical; $\edom(\Gz)=7<8=\thet(\Gz)$; and $\edom(\Gz-v)=\thet(\Gz-v)=7$ for every one
+of its $15$ vertices. The graph is the order-$13$ graph of the authors' own Figure~2.1 with one
+odd ear of length three attached. The machine
+content is sixteen lower-bound tests: the fifteen bounds $\edom(\Gz-v)>6$, together with
+$\edom(\Gz)>6$, which is what pins the value $7$ rather than only $\edom(\Gz)\le 7$. Each is
+certified by a well-founded attacker ranking over at most $1313$ six-sets.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+All graphs are finite, simple and undirected. In the \emph{eternal domination} model of Goddard,
+Hedetniemi and Hedetniemi \cite{GHH}, a set $S\subseteq V(G)$ of guarded vertices must dominate
+$G$; an attack at a vertex $r\notin S$ must be answered by moving one guard from some
+$w\in S$ with $wr\in E(G)$ to $r$; and the resulting set must again dominate $G$ and be able to
+answer any further attack, indefinitely. The least size of a set that can defend forever is the
+\emph{eternal domination number} $\edom(G)$. Writing $\alpha(G)$ for the independence number and
+$\thet(G)$ for the clique cover number, \cite{GHH} gives
+\begin{equation}\label{eq:sandwich}
+  \alpha(G)\ \le\ \edom(G)\ \le\ \thet(G).
+\end{equation}
+Whether $\edom=\thet$ can fail was raised by Klostermeyer and Mynhardt \cite{KM2015}; it can, and
+MacGillivray, Mynhardt and Virgile \cite{MMV} exhibit triangle-free examples.
+
+Kimura, Matsumoto and Sato \cite{KMS} study the question inside vertex-critical graphs. Their
+Fact~2.1 records that $\thet(G)=\chi(\overline G)$ and that $G$ is \emph{vertex-critical} exactly
+when $\overline G$ is vertex $\chi$-critical, that is,
+\begin{equation}\label{eq:crit}
+  \thet(G-v)=\thet(G)-1\qquad\text{for every }v\in V(G).
+\end{equation}
+Criticality is therefore a condition on $\thet$, not on $\edom$. Their Corollary~2.1 adds that a
+connected vertex-critical triangle-free graph has odd order $n$ and $\thet=(n+1)/2$. They then
+pose the following.
+
+\begin{conjKMS}
+Let $G$ be a vertex-critical triangle-free graph of order $n$. If $|E(G)|\le 2n-3$, then
+\[
+  \edom(G)=\thet(G)
+  \quad\Longleftrightarrow\quad
+  \edom(G-v)=\thet(G-v)
+\]
+for any vertex $v$ in $V(G)$.
+\end{conjKMS}
+
+The display above is transcribed from journal page~47 of \cite{KMS}, which is open access; the
+transcription, the numbering and the locator are bibliographic facts that the accompanying program
+does not check. What is refuted below is the displayed statement, with ``for any vertex $v$'' read
+as ranging over all of $V(G)$.
+
+The forward implication is the easy half, so a refutation must make the right-hand side true and
+the left-hand side false: we need a graph in the region whose every vertex-deleted subgraph is
+\emph{tight}, while the graph itself is not.
+
+\section{The witness}
+
+Let $\Hs$ be the order-$13$ graph drawn as Figure~2.1 of \cite{KMS}, with graph6 string
+\begin{center}\verb+L?`@?boNAsOwYO+\end{center}
+which is also the fourth entry of Table~10 of \cite{MMV}. It has $24$ edges, is triangle-free and
+factor-critical, and satisfies $\thet(\Hs)=7$ and $\edom(\Hs)<7$; the strict inequality is the
+content of the caption of \cite[Figure 2.1]{KMS}, so
+\begin{equation}\label{eq:seed}
+  \edom(\Hs)\le 6 .
+\end{equation}
+Define
+\[
+  \Gz \;=\; \Hs \;+\; \text{the odd ear } 0\text{--}13,\ 13\text{--}14,\ 14\text{--}1 ,
+\]
+a graph of order $15$ whose $27$ edges are, on the vertex set $\{0,1,\dots,14\}$,
+\begin{center}
+\texttt{0-4\quad 0-8\quad 0-11\quad 0-13\quad 1-5\quad 1-8\quad 1-10\quad 1-12\quad 1-14}\\
+\texttt{2-6\quad 2-8\quad 2-9\quad 2-12\quad 3-7\quad 3-8\quad 3-9\quad 3-10\quad 4-9}\\
+\texttt{4-10\quad 4-12\quad 5-9\quad 5-11\quad 6-10\quad 6-11\quad 7-11\quad 7-12\quad 13-14}
+\end{center}
+equivalently the graph6 string \verb+N?`@?boNAsOwYO_?G?G+. Its degree sequence is
+$(4,5,4,4,4,3,3,3,4,4,4,4,4,2,2)$; deleting the two degree-$2$ vertices $13$ and $14$ returns
+$\Hs$.
+
+\begin{theorem}\label{thm:main}
+The graph $\Gz$ is triangle-free and vertex-critical, of order $n=15$ with
+$|E(\Gz)|=27=2n-3$, and
+\[
+  \edom(\Gz)=7<8=\thet(\Gz)
+  \qquad\text{and}\qquad
+  \edom(\Gz-v)=\thet(\Gz-v)=7
+\]
+for every one of the $15$ vertices $v$.
+Consequently the ``if'' half of Conjecture~2.1 of \cite{KMS} is false, and the conjecture is
+false as stated.
+\end{theorem}
+
+The graph $\Gz$ is $2$-connected.
+
+\section{Proof}
+
+We use one lemma, which is not new.
+
+\begin{lemma}[subadditivity]\label{lem:S}
+If $V(G)=V_1\sqcup\cdots\sqcup V_t$, then
+\[
+  \edom(G)\le\sum_{i=1}^{t}\edom\bigl(G[V_i]\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+For each $i$ fix an eternal dominating family for $G[V_i]$ of size $\edom(G[V_i])$ and let the
+guards on $V_i$ play it, ignoring the other parts. A set that dominates $V_i$ inside $G[V_i]$
+dominates $V_i$ inside $G$, so the union of the current sets dominates $V(G)$; and an attack at
+$r\in V_i$ is answered by a move inside $V_i$, which is legal in $G$ because
+$E(G[V_i])\subseteq E(G)$ and leaves every other part untouched. The union is therefore a valid
+configuration after every attack.
+\end{proof}
+
+Special cases of Lemma~\ref{lem:S} occur in the proofs of \cite[Proposition 2.1]{KMS} and
+\cite[Corollary 5.1]{MMV}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+\emph{Triangle-freeness.} $\Hs$ is triangle-free, and the only new adjacencies are $0$--$13$,
+$13$--$14$ and $14$--$1$. A triangle using them would need $0$--$14$ or $1$--$13$, and neither is
+an edge.
+
+\emph{Size.} $|E(\Gz)|=24+3=27=2\cdot 15-3$.
+
+\emph{Clique cover number.} Since $\Gz$ is triangle-free, every clique of $\Gz$ has at most two
+vertices, so a clique cover is a matching together with the vertices it misses and
+$\thet(\Gz)=15-\mu(\Gz)$, where $\mu$ is the matching number. The matching
+\[
+  \{\,1\text{-}5,\ 2\text{-}8,\ 3\text{-}9,\ 4\text{-}10,\ 6\text{-}11,\ 7\text{-}12,\
+  13\text{-}14\,\}
+\]
+has $7$ edges, and $7$ cliques cover at most $14<15$ vertices, so $\mu(\Gz)=7$ and
+$\thet(\Gz)=8$. (The displayed matching plus the singleton $\{0\}$ is the corresponding cover of
+size $8$.)
+
+\emph{Vertex-criticality.} By \eqref{eq:crit} and the previous paragraph, $\Gz$ is
+vertex-critical if and only if $\thet(\Gz-v)=7$, i.e.\ $\mu(\Gz-v)=7$, for every $v$: that is,
+if and only if $\Gz$ is factor-critical. Now $\Hs$ is factor-critical: it is connected,
+triangle-free and vertex-critical --- \cite[Figure 2.1]{KMS} presents it as such --- so
+$\mu(\Hs)=13-\thet(\Hs)=6$ and, by the same equivalence applied to $\Hs$, $\mu(\Hs-v)=6$ for
+every $v$, i.e.\ $\Hs-v$ has a perfect matching. Attaching an odd ear preserves that; this is the
+ear step of Lov\'asz's odd ear decomposition \cite{LP}, and we verify it directly. Let $G$ be
+factor-critical, $a,b\in V(G)$, and let
+$G'=G+\{ax,xy,yb\}$ with $x,y\notin V(G)$, so $|V(G')|$ is again odd. For $v\in V(G)$, take a
+perfect matching $M$ of $G-v$ and use $M\cup\{xy\}$ in $G'-v$; for $v=x$, take a perfect
+matching $M$ of $G-b$ and use $M\cup\{yb\}$; for $v=y$, take a perfect matching $M$ of $G-a$ and
+use $M\cup\{ax\}$. In each case $G'-v$ has a perfect matching, so $G'$ is factor-critical. Hence
+$\Gz$ is factor-critical, so vertex-critical, and $\thet(\Gz-v)=7$ for all $15$ vertices $v$.
+
+\emph{The left-hand side fails.} Partition $V(\Gz)=V(\Hs)\sqcup\{13,14\}$. The second part
+induces a $K_2$, and $\edom(K_2)=1$. By Lemma~\ref{lem:S} and the published bound
+\eqref{eq:seed},
+\[
+  \edom(\Gz)\ \le\ \edom(\Hs)+\edom(K_2)\ \le\ 6+1\ =\ 7\ <\ 8\ =\ \thet(\Gz),
+\]
+so $\edom(\Gz)\ne\thet(\Gz)$.
+
+\emph{The right-hand side holds.} Fix $v$. We have $\thet(\Gz-v)=7$ and, by
+\eqref{eq:sandwich}, $\edom(\Gz-v)\le 7$; so it suffices to show $\edom(\Gz-v)>6$. This is the
+machine step, and it is a finite emptiness test: $\edom(H)\le k$ holds if and only if the
+greatest fixed point of
+\[
+  \mathcal F\ \longmapsto\
+  \bigl\{\,S\in\mathcal F:\ \forall r\notin S\ \exists w\in S\cap N_H(r)
+  \text{ with } S-w+r\in\mathcal F \,\bigr\},
+\]
+started from the family of all dominating $k$-subsets of $V(H)$, is non-empty. For
+$H=\Gz-v$ and $k=6$ there are at most $\binom{14}{6}=3003$ candidate sets, and in each of the
+$15$ cases the fixed point is empty. Together with $\edom(\Gz-v)\le7=\thet(\Gz-v)$ this gives
+$\edom(\Gz-v)=\thet(\Gz-v)=7$ for every $v$.
+
+The right-hand side of Conjecture~2.1 therefore holds for $\Gz$ and the left-hand side fails,
+while $\Gz$ is vertex-critical, triangle-free and satisfies $|E(\Gz)|\le 2n-3$. Finally
+$\edom(\Gz)=7$ exactly, since $\edom(\Gz)\le 7$ was shown above and the same emptiness test at
+$k=6$ on $\Gz$ itself (over $\binom{15}{6}=5005$ candidates, of which $1313$ are dominating)
+comes out empty.
+\end{proof}
+
+\section{Scope}
+
+We refute only the ``if'' half of the equivalence; nothing here bears on
+``$\edom(G)=\thet(G)\Rightarrow\edom(G-v)=\thet(G-v)$''. Theorem~\ref{thm:main} says the least
+order of a counterexample is at most $15$; we do not claim it is $15$, and no census of the
+smaller orders, or of order $15$ itself, is carried out here. The value $\edom(\Hs)=6$ is not
+published: what is in print is $\edom(\Hs)<\thet(\Hs)=7$, and \eqref{eq:seed} is all the proof
+uses.
+
+\section{Reproduction and verification}
+
+Everything above can be redone from the printed edge list of $\Gz$. The machine step is sixteen
+emptiness tests on families of at most $\binom{15}{7}=6435$ subsets, each recorded as a
+certificate.
+
+In the positive direction the certificate is the surviving family itself, checked member by member
+to consist of dominating $k$-sets closed under every attack; for $\edom(\Gz)\le 7$ it has $2196$
+members. In the negative direction it is a well-founded attacker ranking, so that no answer depends
+on an iteration having converged: every dominating $k$-set $D$ carries the round $\mathrm{rk}(D)$
+at which it was discarded, and one checks that there is an attack vertex $r\notin D$ such that
+every legal response $D-w+r$ is either not dominating or has $\mathrm{rk}(D-w+r)<\mathrm{rk}(D)$;
+induction on $\mathrm{rk}$ then gives $\edom(H)>k$. For $H=\Gz-v$ and $k=6$ the numbers of
+dominating $6$-sets ranked, for $v=0,1,\dots,14$ in turn, are
+\begin{gather*}
+  851,\ 721,\ 890,\ 890,\ 977,\ 1120,\ 1091,\ 1091,\\
+  1003,\ 890,\ 924,\ 757,\ 924,\ 1004,\ 1026,
+\end{gather*}
+and every one of them receives a rank. Neither check refers to the iteration that produced the
+data.
+
+The accompanying program \texttt{verify.py} (Python 3.9 or later, standard library only, no
+external data file, no randomness, integer arithmetic throughout) is run by
+\begin{center}\verb+python3 verify.py+\end{center}
+and its recorded output is \texttt{verify.output.txt}. It reads the graph6 string and the edge
+list printed in Section~2, checks that they agree under the identity labelling, and re-derives the
+quantities stated above: the degree sequence; triangle-freeness; the maximum clique size $2$;
+$2$-connectedness; $\mu(\Gz)=7$ and $\thet(\Gz)=8$ with an explicit
+cover; factor-criticality, by computing a perfect matching of $\Gz-v$ for every $v$;
+$\thet(\Gz-v)=7$ and $\edom(\Gz-v)=7$ for all $15$ vertices; $\edom(\Gz)=7$; and the fifteen
+counts of dominating $6$-sets displayed above. Every eternal-domination verdict is re-verified
+from its certificate in a separate pass. The program prints one line per check, exits $0$ only if
+all pass, and states in its own output what it does not cover; the recorded run also contains
+checks of objects and cases beyond those the paper claims.
+
+\begin{thebibliography}{9}
+
+\bibitem{GHH}
+W.~Goddard, S.~M. Hedetniemi, and S.~T. Hedetniemi,
+\emph{Eternal security in graphs},
+J. Combin. Math. Combin. Comput. \textbf{52} (2005), 169--180.
+
+\bibitem{KMS}
+K.~Kimura, N.~Matsumoto, and T.~Sato,
+\emph{Note on the eternal domination number of planar graphs and vertex-critical graphs},
+Discrete Math. Lett. \textbf{17} (2026), 45--50.
+\href{https://doi.org/10.47443/dml.2025.208}{doi:10.47443/dml.2025.208}.
+
+\bibitem{KM2015}
+W.~F. Klostermeyer and C.~M. Mynhardt,
+\emph{Domination, eternal domination and clique covering},
+Discuss. Math. Graph Theory \textbf{35} (2015), no.~2, 283--300.
+
+\bibitem{LP}
+L.~Lov\'asz and M.~D. Plummer,
+\emph{Matching Theory},
+North-Holland Math. Studies \textbf{121}, North-Holland, Amsterdam, 1986.
+
+\bibitem{MMV}
+G.~MacGillivray, C.~M. Mynhardt, and V.~Virgile,
+\emph{Eternal domination and clique covering},
+Electron. J. Graph Theory Appl. \textbf{10} (2022), no.~2, 603--624.
+\href{https://arxiv.org/abs/2110.09732}{arXiv:2110.09732}.
+
+\end{thebibliography}
+
+\end{document}

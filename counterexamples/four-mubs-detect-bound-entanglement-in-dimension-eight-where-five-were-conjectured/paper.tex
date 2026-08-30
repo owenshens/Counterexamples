@@ -1,0 +1,373 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Four Mutually Unbiased Bases in Dimension Eight Give a
+Non-Decomposable Witness}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\Tr}{tr}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F_2}
+\newcommand{\W}{W^{\Gamma}}
+\newcommand{\M}{\mathcal M}
+\newcommand{\ii}{\mathrm i}
+
+\title[A non-decomposable four-MUB witness in dimension eight]
+{Four Mutually Unbiased Bases in Dimension Eight Give a Non-Decomposable
+Witness}
+
+\date{}
+
+\subjclass[2020]{81P40, 81P55, 15B48}
+\keywords{mutually unbiased bases, bound entanglement, entanglement witness,
+decomposable witness, positive partial transpose, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For $d=2^r$ with $r>1$, Bae, Bera, Chru\'sci\'nski, Hiesmayr and McNulty conjectured
+that the minimal number of mutually unbiased bases needed to detect bound entanglement
+is $m=\tfrac d2+1$. We refute this at $d=8$, inside the one witness family that
+statement quantifies over. We exhibit a set $\M_4$ of four mutually
+unbiased bases of $\CC^8$ --- so $m=\tfrac d2$, one below the conjectured minimum ---
+and a shift $s=1$, for which the witness $\W(\M_4,s)$ of their family is
+\emph{non-decomposable}. The certificate is a positive partial transpose state $\rho$
+on $\CC^8\otimes\CC^8$, printed here in full as an integer matrix divided by
+$1049602$, with
+\[
+  \Tr\bigl[\W(\M_4,1)\,\rho\bigr]=-\frac{14588}{524801}<0 .
+\]
+Every quantity is exact: $64\,\W(\M_4,1)$ is an integral symmetric matrix, and the
+positivity of $\rho$ and of $\rho^{\Gamma}$ is certified by exact rational
+$LDL^{\!\top}$ factorisations. Hence the least number of mutually unbiased bases of
+$\CC^8$ for which that family has a non-decomposable member is at most $4$, and not
+the $\tfrac d2+1=5$ asserted at $r=3$.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Let $\M_m=\{B^{(1)},\dots,B^{(m)}\}$ be a set of $m$ pairwise mutually unbiased bases
+(MUBs) of $\CC^d$. Spengler, Huber, Brierley, Adaktylos and Hiesmayr
+\cite{Spengler} attach to $\M_m$ and a shift $s\in\mathbb Z_d$ an operator
+$\W(\M_m,s)$ on $\CC^d\otimes\CC^d$ (recalled in \S2) which is nonnegative on every
+separable state. When $\W(\M_m,s)$ is \emph{non-decomposable}, i.e.\ cannot be written
+as $P+Q^{\Gamma}$ with $P,Q\succeq0$, it detects a state with positive partial
+transpose, that is a bound entangled state. Bae, Bera, Chru\'sci\'nski, Hiesmayr and
+McNulty \cite{BBCHM} asked how many MUBs are needed for this, and conjectured a
+sharp answer in the power-of-two dimensions.
+
+Their Conjecture~1 reads: ``\emph{If $d=2^r$ and $r>1$, the minimal number of MUBs
+required for bound entanglement detection equals $m=\frac d2+1=2^{r-1}+1$}.''
+
+Two clauses of \cite{BBCHM} fix what a counterexample must be. The sentence
+immediately above the conjecture reads ``\emph{When $d=2^r$, we predict that
+$\frac d2+1$ MUBs are both necessary and sufficient for the witness
+$\mathbf W^{\Gamma}(\mathcal M_m,s)$ to be non-decomposable}'', so the minimum is taken
+over the paper's own family and ``detects bound entanglement'' means ``is
+non-decomposable''. Second, the minimum is \emph{existential}: at $d=4$ that paper
+exhibits particular triples of MUBs and still calls $\frac d2+1$ minimal. One
+$m=\frac d2$ example at $d=8$ is therefore the right shape of counterexample, and
+everything below stays inside that family.
+
+What is settled below is the cell $r=3$, by one exhibited object: at $d=8$ the least
+$m$ for which the family \eqref{eq:W} has a non-decomposable member is at most
+$4=\frac d2$, so it is not $\frac d2+1=5$. Only the necessity half of the quoted
+statement is at issue; the sufficiency theorem of \cite{BBCHM} concerns
+$m>\frac d2+1$.
+
+\section{The witness family}
+
+Fix $d=8$ and index the computational basis of $\CC^8$ by
+$x=4x_1+2x_2+x_3$ with $x_1,x_2,x_3\in\FF$. For a symmetric matrix
+$S\in\FF^{3\times3}$ and $v\in\FF^3$ put
+\begin{equation}\label{eq:vS}
+  |v_S\rangle
+  =\frac1{\sqrt8}\sum_{x\in\FF^3}
+   \ii^{\,S_{11}x_1+S_{22}x_2+S_{33}x_3}
+   (-1)^{S_{12}x_1x_2+S_{13}x_1x_3+S_{23}x_2x_3+v\cdot x}\,|x\rangle ,
+\end{equation}
+where the exponent of $\ii$ is read modulo $4$ and the exponent of $-1$ modulo $2$,
+and set $B_S=\{\,|v_S\rangle : v\in\FF^3\,\}$. Each $B_S$ is an orthonormal basis of
+$\CC^8$. We encode $S$ by the integer
+\begin{equation}\label{eq:idx}
+  \mathrm{idx}(S)=S_{11}+2S_{12}+4S_{13}+8S_{22}+16S_{23}+32S_{33}\in\{0,\dots,63\}.
+\end{equation}
+
+Let $\M_m=\{B^{(1)},\dots,B^{(m)}\}$ with $B^{(1)}$ the computational basis, and let
+$s\in\mathbb Z_8$. Writing $\overline{\,\cdot\,}$ for entrywise complex conjugation in
+the computational basis, the witness of \cite{Spengler} in the form quantified over by
+the conjecture is
+\begin{equation}\label{eq:W}
+\begin{split}
+  \W(\M_m,s)
+  =\ &\frac{d+m-1}{d}\,I\otimes I
+   -\sum_{l=0}^{d-1}|l\rangle\langle l|\otimes|l\oplus s\rangle\langle l\oplus s|\\
+   &-\sum_{k=2}^{m}\ \sum_{v}
+     |v^{(k)}\rangle\langle v^{(k)}|\otimes
+     \overline{|v^{(k)}\rangle\langle v^{(k)}|},
+\end{split}
+\end{equation}
+the inner sum running over the $d$ elements $|v^{(k)}\rangle$ of $B^{(k)}$ and
+$\oplus$ denoting addition modulo $d$. It is nonnegative on every
+separable state \cite{Spengler}.
+
+For comparison, \cite{BBCHM} displays the same operator as
+\begin{gather*}
+  \mathbf W^{\Gamma}(\mathcal M_m,s)
+  =\frac{d+m-1}{d}\,\mathbf 1_d\otimes\mathbf 1_d-\mathbf B^{\Gamma}(\mathcal M_m,s),\\
+  \mathbf B^{\Gamma}(\mathcal M_m,s)
+  =\sum_{\ell=0}^{d-1}|\ell\rangle\langle\ell|\otimes|\ell+s\rangle\langle\ell+s|
+   +\sum_{\alpha=1}^{m-1}\sum_{i=0}^{d-1}
+    |i_{\alpha}\rangle\langle i_{\alpha}|\otimes
+    |i_{\alpha}^{*}\rangle\langle i_{\alpha}^{*}| ,
+\end{gather*}
+where $\mathbf 1_d$ is the $d\times d$ identity, $\mathcal B_0$ is the canonical basis,
+conjugation and transposition are taken with respect to $\mathcal B_0$, and $\ell+s$ is
+read modulo $d$. Term by term this is
+\eqref{eq:W}: the prefactor $\frac{d+m-1}{d}$, the shifted diagonal term and the
+conjugation in the second tensor factor are theirs unchanged; our $k=2,\dots,m$ indexes
+their $\alpha=1,\dots,m-1$ (the $m-1$ bases other than the computational one), our
+$\overline{\,\cdot\,}$ is their ${}^{*}$, and our $\oplus$ is their $+$ modulo $d$.
+
+\section{The objects}
+
+\begin{equation}\label{eq:obj}
+  \M_4=\{B^{(1)},\,B_{S_0},\,B_{S_{13}},\,B_{S_{19}}\},
+  \qquad s=1,\qquad m=4=\tfrac d2,
+\end{equation}
+with $B^{(1)}$ the computational basis and, by \eqref{eq:idx},
+\[
+ S_0=\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix},\qquad
+ S_{13}=\begin{pmatrix}1&0&1\\0&1&0\\1&0&0\end{pmatrix},\qquad
+ S_{19}=\begin{pmatrix}1&1&0\\1&0&1\\0&1&0\end{pmatrix}.
+\]
+
+\begin{lemma}\label{lem:mub}
+The four bases in \eqref{eq:obj} are orthonormal and pairwise mutually unbiased: all
+$\binom42\cdot64=384$ cross overlaps satisfy $|\langle u\mid u'\rangle|^2=\frac18$.
+\end{lemma}
+
+Since $\sqrt8\,|v_S\rangle$ has entries in $\{\pm1,\pm\ii\}$, Lemma~\ref{lem:mub} is
+an identity in $\mathbb Z[\ii]$: the $384$ overlaps of the rescaled vectors have
+squared modulus exactly $8$, and the $64$ overlaps within a rescaled $B_S$ are
+$8\delta_{vv'}$. No floating point occurs.
+
+\begin{lemma}\label{lem:W}
+$64\,\W(\M_4,1)$ is a symmetric matrix of integers of absolute value at most $64$; its
+imaginary part vanishes identically. Its diagonal has $56$ entries equal to $64$ and
+$8$ equal to $0$, so
+\[
+  \Tr \W(\M_4,1)=\tfrac{3584}{64}=56=d^2-d .
+\]
+\end{lemma}
+
+Finally the state. Let $N=1049602=2\cdot524801$ and let $M\in\mathbb Z^{64\times64}$
+be the symmetric matrix whose entries on and above the diagonal are those listed in
+Table~\ref{tab:rho} and zero elsewhere, with $M_{ji}=M_{ij}$. Row $i$ of the table is
+printed as \texttt{i | j:$M_{ij}$ j:$M_{ij}$ \dots} over the $j\ge i$ with
+$M_{ij}\ne0$; the $288$ listed entries extend to $512$ nonzero entries of $M$. Put
+\begin{equation}\label{eq:rho}
+  \rho=\frac1N\,M .
+\end{equation}
+The indices are $i=8a+c$ with $a$ the index in the first tensor factor and $c$ that in
+the second, so the partial transpose is
+$(\rho^{\Gamma})_{8a+c,\,8b+e}=\rho_{8a+e,\,8b+c}$.
+
+\begin{table}[htbp]
+\caption{The $288$ integers on and above the diagonal of $M=N\rho$, $N=1049602$.}
+\label{tab:rho}
+\begin{center}
+\begingroup\scriptsize
+\begin{verbatim}
+ 0 | 0:13090 9:13229 18:13171 27:12881 36:12852 45:13179 54:13190 63:12939
+ 1 | 1:57650 8:13270 19:5884 26:4196 37:5429 44:4029 55:-6688 62:-5143
+ 2 | 2:12536 11:3191 16:3951 25:-5082 38:3182 47:12324 52:-5067 61:3955
+ 3 | 3:12118 10:4380 17:-6578 24:3461 39:-7078 46:5584 53:10793 60:4002
+ 4 | 4:12962 13:3941 22:4016 31:-4767 32:-4764 41:4021 50:3890 59:12707
+ 5 | 5:10924 12:4029 23:10749 30:4031 33:5426 40:-5093 51:5440 58:-5084
+ 6 | 6:13551 15:-6379 20:-5067 29:13165 34:3425 43:3589 48:4226 57:3866
+ 7 | 7:10281 14:-4675 21:5450 28:4002 35:10153 42:-4621 49:5587 56:4754
+ 8 | 8:3911 19:4196 26:1129 37:4029 44:1076 55:-5143 62:-1587
+ 9 | 9:13713 18:13534 27:13171 36:13179 45:13456 54:13398 63:13190
+10 | 10:26484 17:4481 24:-1699 39:5584 46:-4404 53:4106 60:16959
+11 | 11:12536 16:-5082 25:3951 38:12324 47:3182 52:3955 61:-5067
+12 | 12:17079 23:4031 30:16880 33:-5093 40:1209 51:-5084 58:1239
+13 | 13:13566 22:-5521 31:4016 32:4021 41:-5464 50:13385 59:3890
+14 | 14:16021 21:4106 28:1086 35:-4621 42:15709 49:3658 56:891
+15 | 15:13551 20:13165 29:-5067 34:3589 43:3425 48:3866 57:4226
+16 | 16:14089 25:4956 38:-5067 47:3955 52:4930 61:13904
+17 | 17:9972 24:3967 39:10793 46:4106 53:-6110 60:2457
+18 | 18:13713 27:13229 36:13190 45:13398 54:13456 63:13179
+19 | 19:57650 26:13270 37:-6688 44:-5143 55:5429 62:4029
+20 | 20:13245 29:-3745 34:4226 43:3866 48:4411 57:4916
+21 | 21:11631 28:-5748 35:5587 42:3658 49:9750 56:-5601
+22 | 22:13566 31:3941 32:3890 41:13385 50:-5464 59:4021
+23 | 23:10924 30:4029 33:5440 40:-5084 51:5426 58:-5093
+24 | 24:15267 39:4002 46:16959 53:2457 60:-3588
+25 | 25:14089 38:3955 47:-5067 52:13904 61:4930
+26 | 26:3911 37:-5143 44:-1587 55:4029 62:1076
+27 | 27:13090 36:12939 45:13190 54:13179 63:12852
+28 | 28:30395 35:4754 42:891 49:-5601 56:15140
+29 | 29:13245 34:3866 43:4226 48:4916 57:4411
+30 | 30:17079 33:-5084 40:1239 51:-5093 58:1209
+31 | 31:12962 32:12707 41:3890 50:4021 59:-4764
+32 | 32:12962 41:3941 50:4016 59:-4767
+33 | 33:10924 40:4029 51:10749 58:4031
+34 | 34:13551 43:-6379 48:-5067 57:13165
+35 | 35:10281 42:-4675 49:5450 56:4002
+36 | 36:13090 45:13229 54:13171 63:12881
+37 | 37:57650 44:13270 55:5884 62:4196
+38 | 38:12536 47:3191 52:3951 61:-5082
+39 | 39:12118 46:4380 53:-6578 60:3461
+40 | 40:17079 51:4031 58:16880
+41 | 41:13566 50:-5521 59:4016
+42 | 42:16021 49:4106 56:1086
+43 | 43:13551 48:13165 57:-5067
+44 | 44:3911 55:4196 62:1129
+45 | 45:13713 54:13534 63:13171
+46 | 46:26484 53:4481 60:-1699
+47 | 47:12536 52:-5082 61:3951
+48 | 48:13245 57:-3745
+49 | 49:11631 56:-5748
+50 | 50:13566 59:3941
+51 | 51:10924 58:4029
+52 | 52:14089 61:4956
+53 | 53:9972 60:3967
+54 | 54:13713 63:13229
+55 | 55:57650 62:13270
+56 | 56:30395
+57 | 57:13245
+58 | 58:17079
+59 | 59:12962
+60 | 60:15267
+61 | 61:14089
+62 | 62:3911
+63 | 63:13090
+\end{verbatim}
+\endgroup
+\end{center}
+\end{table}
+
+\begin{lemma}\label{lem:rho}
+$\rho$ defined by \eqref{eq:rho} is a state with positive partial transpose:
+$\rho=\rho^{\top}$, $\Tr\rho=1$ (the $64$ diagonal entries of $M$ sum to $N$),
+$\rho\succeq0$ and $\rho^{\Gamma}\succeq0$. Moreover
+\[
+  \Tr\bigl[\W(\M_4,1)\,\rho\bigr]
+  =-\frac{14588}{524801}
+  =-0.0277972031303\ldots<0 .
+\]
+\end{lemma}
+
+\begin{proof}
+Symmetry and the trace are immediate from Table~\ref{tab:rho}. For the two positivity
+statements, the exact rational $LDL^{\!\top}$ factorisation without pivoting runs to
+completion on $M$ and on $M^{\Gamma}$; all $64$ pivots are strictly positive in each
+case, the smallest being
+\begin{align*}
+  \frac{63834948025622562}{457387529428466097047}
+   &=1.395643\ldots\times10^{-4}\quad\text{for }\rho,\\
+  \frac{329439466941518560}{2324566123790645652773}
+   &=1.417208\ldots\times10^{-4}\quad\text{for }\rho^{\Gamma},
+\end{align*}
+after division by $N$. A Hermitian matrix admitting an $LDL^{\!\top}$ factorisation
+with all pivots positive is positive definite. The trace is the integer pairing
+$\sum_{i,j}(64\,\W)_{ij}M_{ji}$ divided by $64N$; the numerator is $-1867264$, and
+$-1867264/(64\cdot1049602)=-14588/524801$. The largest denominator occurring in $\rho$
+is $N$ itself, and every entry of $M$ has absolute value at most $57650$.
+\end{proof}
+
+\section{The result}
+
+\begin{theorem}\label{thm:main}
+$\W(\M_4,1)$ of \eqref{eq:obj} is non-decomposable. Consequently $m=4=\frac d2$
+mutually unbiased bases of $\CC^8$ detect bound entanglement through \eqref{eq:W}, the
+least number of mutually unbiased bases of $\CC^8$ for which \eqref{eq:W} has a
+non-decomposable member is at most $4$, and the conjecture of \cite{BBCHM} quoted
+in \S1, which asserts $\frac d2+1=5$ at $d=8$, is false at $r=3$.
+\end{theorem}
+
+\begin{proof}
+Suppose $\W(\M_4,1)=P+Q^{\Gamma}$ with $P,Q\succeq0$. For any state $\sigma$ with
+$\sigma^{\Gamma}\succeq0$,
+\[
+  \Tr\bigl[\W(\M_4,1)\sigma\bigr]
+  =\Tr[P\sigma]+\Tr\bigl[Q^{\Gamma}\sigma\bigr]
+  =\Tr[P\sigma]+\Tr\bigl[Q\,\sigma^{\Gamma}\bigr]\ \ge 0 ,
+\]
+because the trace of a product of two positive semidefinite operators is nonnegative
+and $\Tr[XY^{\Gamma}]=\Tr[X^{\Gamma}Y]$. By Lemma~\ref{lem:rho} the state $\rho$ has
+$\rho^{\Gamma}\succeq0$ and $\Tr[\W(\M_4,1)\rho]<0$, so no such $P,Q$ exist.
+
+By \cite{Spengler} the operator $\W(\M_4,1)$ is nonnegative on separable
+states, so $\Tr[\W(\M_4,1)\rho]<0$ forces $\rho$ to be entangled; since
+$\rho^{\Gamma}\succeq0$, it is bound entangled. It is detected by the witness built
+from the four MUBs of \eqref{eq:obj}, and Lemma~\ref{lem:mub} confirms that these are
+four pairwise mutually unbiased bases. Hence four MUBs suffice at $d=8$, and the
+minimum over the family \eqref{eq:W} is at most $4<5=\frac d2+1$.
+\end{proof}
+
+\section{Scope}
+
+Only the cell $r=3$ is treated; dimensions $d=2^r$ with $r\ge4$ are untouched, and no
+pattern is proposed in place of the refuted one. What is proved is ``at most $4$'', not
+``exactly $4$'': whether $m=3$ or $m=2$ also suffice at $d=8$ is not addressed. Only the
+particular $\M_4$ and the shift $s=1$ of \eqref{eq:obj} are certified, and nothing here
+asserts that every set of four mutually unbiased bases of $\CC^8$, or every shift, gives
+a non-decomposable witness. The number $-\frac{14588}{524801}$ is the value at the
+$\rho$ printed above, not the minimum of $\Tr[\W(\M_4,1)\sigma]$ over PPT states
+$\sigma$; only its sign is used in Theorem~\ref{thm:main}. That $\W(\M_m,s)$ is
+nonnegative on separable states is the defining property established in
+\cite{Spengler}; it is used, not reproved, here.
+
+\section{Reproduction and verification}
+
+Everything needed is printed above: the index conventions \eqref{eq:vS} and
+\eqref{eq:idx}, the three symmetric matrices $S_0,S_{13},S_{19}$, the shift $s=1$,
+the witness \eqref{eq:W}, and the $288$ integers of Table~\ref{tab:rho}. From these,
+$64\,\W(\M_4,1)$ is assembled in $\mathbb Z[\ii]$ --- the rescaled basis vectors
+$\sqrt8\,|v_S\rangle$ have entries in $\{\pm1,\pm\ii\}$, and each summand of
+\eqref{eq:W} contributes $u_a\bar u_b\bar u_c u_e$ to the entry indexed by
+$\bigl((a,c),(b,e)\bigr)$ --- and the four facts of Lemma~\ref{lem:rho} are three
+integer computations and two rational $LDL^{\!\top}$ factorisations.
+
+The calculation was re-run independently, in exact integer and rational arithmetic
+throughout, from the objects as printed above and from nothing else. The program
+rebuilds the four bases from \eqref{eq:vS}, checks orthonormality and the $384$ cross
+overlaps of Lemma~\ref{lem:mub}, assembles $64\,\W(\M_4,1)$ and verifies
+Lemma~\ref{lem:W}, parses Table~\ref{tab:rho}, and verifies Lemma~\ref{lem:rho}: the
+trace, both $LDL^{\!\top}$ factorisations with their smallest pivots, and
+$\Tr[\W(\M_4,1)\rho]$ by two independent routes. All of its checks passed. The program
+and its transcript accompany this note; they are not needed in order to redo the
+calculation, since every input they consume is printed above.
+
+\begin{thebibliography}{9}
+
+\bibitem{BBCHM}
+J.~Bae, A.~Bera, D.~Chru\'sci\'nski, B.~C. Hiesmayr, and D.~McNulty,
+\emph{How many mutually unbiased bases are needed to detect bound entangled states?},
+J. Phys. A \textbf{55} (2022), no.~50, 505303.
+\href{https://doi.org/10.1088/1751-8121/acaa16}{doi:10.1088/1751-8121/acaa16};
+\href{https://arxiv.org/abs/2108.01109}{arXiv:2108.01109}.
+
+\bibitem{Spengler}
+C.~Spengler, M.~Huber, S.~Brierley, T.~Adaktylos, and B.~C. Hiesmayr,
+\emph{Entanglement detection via mutually unbiased bases},
+Phys. Rev. A \textbf{86} (2012), 022311.
+\href{https://doi.org/10.1103/PhysRevA.86.022311}{doi:10.1103/PhysRevA.86.022311}.
+
+\end{thebibliography}
+
+\end{document}

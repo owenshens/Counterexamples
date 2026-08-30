@@ -1,0 +1,407 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A nine-vertex counterexample to the weighted Graham pebbling
+            conjectures as stated in the e-print of Herscovici, Hester and
+            Hurlbert}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{conjecture}{Conjecture}
+
+\DeclareMathOperator{\VAL}{VAL}
+
+\title[A weighted triangle squared]
+{A nine-vertex counterexample to the weighted Graham pebbling conjectures
+as stated in the e-print of Herscovici, Hester and Hurlbert}
+
+\date{}
+
+\subjclass[2020]{05C57, 05C76, 05C22}
+\keywords{graph pebbling, weighted graph, Cartesian product, Graham's
+conjecture, pebbling number, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+In a weighted graph every edge $e$ carries a weight $w(e)\in\mathbb Z_{>0}$,
+and a pebbling move along $e=(x,x')$ removes $w(e)$ pebbles from $x$ and
+places one of them on $x'$. The e-print of Herscovici, Hester and Hurlbert
+conjectures that $\pi(G\times H,(x,y))\le\pi(G,x)\pi(H,y)$ for all weighted
+graphs $G,H$ and all vertices $x\in V(G)$, $y\in V(H)$. Let $G$ be the
+triangle on
+$\{1,2,3\}$ with $w(1,2)=2$, $w(1,3)=3$, $w(2,3)=2$. Then $\pi(G,v)=3$ at
+every vertex $v$, while in $G\times G$ the distribution with seven pebbles on
+$(3,3)$ and one pebble each on $(2,3)$ and $(3,2)$ cannot place a pebble on
+$(1,1)$; hence
+\[
+  \pi(G\times G,(1,1))\ \ge\ 10\ >\ 9\ =\ \pi(G,1)\pi(G,1).
+\]
+The same nine-vertex object refutes the weighted
+$st$-pebbling conjecture of that e-print, by its own specialisation $s=t=1$,
+and, because $\pi(G)=3$, also the unrooted form $\pi(G\times
+H)\le\pi(G)\pi(H)$, which Sieben had asked about. Every statement refuted
+here is quoted from the e-print source; the printed text in \emph{Discrete
+Math.} was not accessible to us, so it is the e-print formulations that are
+refuted. The unsolvability is proved by hand in two cases; a finite
+computation adds the exact value $\pi(G\times G,(1,1))=10$. The weights are
+non-uniform, so Graham's conjecture is untouched.
+\end{abstract}
+
+\maketitle
+
+\section{The conjectures}
+
+We use the definitions of the e-print source of Herscovici, Hester and
+Hurlbert \cite{HHH} verbatim. A \emph{weighted graph} is a graph $G=(V,E)$ together
+with a function $w:E(G)\to\mathbb N^{+}$, and a \emph{pebbling move along the
+edge $e=(x,x')$} consists of removing $w(e)$ pebbles from $x$, moving one of
+the pebbles onto $x'$, and throwing the other pebbles away.
+A \emph{distribution} $D$
+assigns a nonnegative integer $D(v)$ to each vertex, $|D|=\sum_vD(v)$, and
+$D$ is \emph{$r$-solvable} if some sequence of moves reaches a distribution
+with at least one pebble on $r$. As in the unweighted theory, $\pi(G,r)$ is
+the least $N$ such that every distribution of $N$ pebbles is $r$-solvable,
+$\pi_t(G,r)$ is the least $N$ such that $t$ pebbles can be moved to $r$ from
+every distribution of $N$ pebbles, and
+\begin{equation}\label{eq:unrooted}
+  \pi(G)=\max_{v\in V(G)}\pi(G,v).
+\end{equation}
+The \emph{weighted Cartesian product} $G\times
+H$ has the vertex set and the edge set of the unweighted product, with
+\[
+  w\bigl((x,y),(x,y')\bigr)=w(y,y'),\qquad
+  w\bigl((x,y),(x',y)\bigr)=w(x,x').
+\]
+Setting every weight to $2$ recovers
+unweighted pebbling, so each weighted conjecture is stronger than its
+unweighted counterpart. Finally, any connected weighted graph may be regarded
+as a complete graph in which every weight is the least product of weights
+along a path between its endpoints; we call such a graph \emph{tight}, and the
+graph we exhibit is tight. For the wider theory of pebbling numbers see
+Hurlbert's survey \cite{Hurlbert}.
+
+The two statements of the e-print source of \cite{HHH} that concern us are
+the following, quoted word for word.
+
+\begin{conjecture}[\cite{HHH}]\label{conj:W}
+For all weighted graphs $G$ and $H$ and all vertices $x\in V(G)$ and $y\in
+V(H)$, we have $\pi(G\times H,(x,y))\le\pi(G,x)\pi(H,y)$.
+\end{conjecture}
+
+\noindent
+(E-print source, lines 690--694.)
+
+\begin{conjecture}[\cite{HHH}]\label{conj:Wst}
+For all weighted graphs $G$ and $H$, all positive integers $s$ and $t$, and
+all vertices $x\in V(G)$ and $y\in V(H)$, we have
+\[
+  \pi_{st}(G\times H,(x,y))\le\pi_s(G,x)\pi_t(H,y).
+\]
+\end{conjecture}
+
+\noindent
+(E-print source, lines 683--688.)
+
+Conjecture~\ref{conj:Wst} implies Conjecture~\ref{conj:W} by letting
+$s=t=1$, as the e-print itself notes (its lines 741--743); this is all we use
+of it. The unrooted weighted statement
+\begin{equation}\label{eq:WG}
+  \pi(G\times H)\ \le\ \pi(G)\pi(H)
+  \qquad\text{for all weighted graphs }G,H,
+\end{equation}
+which is implied by Conjecture~\ref{conj:W} through \eqref{eq:unrooted}, is
+among the statements \cite{HHH} says can be made for weighted graphs, and it
+is exactly what Sieben asks in the last section of \cite{Sieben}: ``What
+general results are there about the pebbling number of weighted graphs? In
+particular, does Graham's conjecture hold for weighted graphs?''
+(\cite[e-print source, lines 1016--1021]{Sieben}).
+
+On the positive side, Chung essentially proved
+Conjecture~\ref{conj:W} when $G$ and $H$ are powers of $K_2$, that is,
+cubes in which the weights of parallel edges are equal
+(\cite[lines 696--699]{HHH}, citing \cite[Theorem~3]{Chung}).
+
+\section{The counterexample}
+
+Let $G$ be the complete graph on $\{1,2,3\}$ with
+\[
+  w(1,2)=2,\qquad w(1,3)=3,\qquad w(2,3)=2 .
+\]
+It is tight, since $2\le3\cdot2$, $3\le2\cdot2$ and $2\le2\cdot3$. For a root
+$r$ let $d_r(v)$ denote the least product of weights along a path from $v$ to
+$r$, with $d_r(r)=1$; thus $d_1=(1,2,3)$, $d_2=(2,1,2)$ and $d_3=(3,2,1)$.
+
+Two elementary facts are used throughout. First, solvability is monotone:
+if $D\le D'$ pointwise and $D$ is $r$-solvable then so is $D'$. Second, if
+$D(v)\ge d_r(v)$ for some $v$ then $D$ is $r$-solvable, because $d_r(v)$
+pebbles on $v$ deliver exactly one pebble to $r$ along a minimising path.
+Consequently every $r$-unsolvable distribution satisfies $D(v)<d_r(v)$ at
+every vertex, and $\pi(G,r)$ is one more than the largest size of an
+unsolvable distribution in that finite box.
+
+\begin{lemma}\label{lem:factor}
+$\pi(G,1)=\pi(G,2)=\pi(G,3)=3$, and hence $\pi(G)=3$.
+\end{lemma}
+
+\begin{proof}
+For $r=1$ the box is $D(1)=0$, $D(2)\le1$, $D(3)\le2$, six distributions.
+Exactly one of them is solvable, namely $D(2)=1$, $D(3)=2$: move $3\to2$ and
+then $2\to1$. In the other five no winning play exists --- in
+$(0,0,0),(0,1,0),(0,0,1),(0,1,1)$ no move is even legal, since every weight
+is at least $2$, and from $(0,0,2)$ the only legal move is $3\to2$ at cost
+$2$, which lands in $(0,1,0)$. The largest unsolvable distributions are
+$(0,1,1)$ and $(0,0,2)$, of size $2$, so $\pi(G,1)=3$.
+
+For $r=2$ the box is $D(1)\le1$, $D(2)=0$, $D(3)\le1$; no move is legal in
+any of those four distributions, the largest being $(1,0,1)$, so
+$\pi(G,2)=3$.
+
+For $r=3$ the box is $D(1)\le2$, $D(2)\le1$, $D(3)=0$. Its largest member
+$(2,1,0)$ is solvable: move $1\to2$ at cost $2$, reaching $(0,2,0)$, then
+$2\to3$ at cost $2$. Of the distributions of size $2$, from $(2,0,0)$ the
+only legal move is $1\to2$, which lands in $(0,1,0)$ and sticks, and $(1,1,0)$
+admits no legal move; both are unsolvable, so $\pi(G,3)=3$. Now
+\eqref{eq:unrooted} gives $\pi(G)=3$.
+\end{proof}
+
+\begin{lemma}\label{lem:dist}
+In $G\times H$ with root $(x,y)$ one has
+$d_{(x,y)}\big((i,j)\big)=d_x(i)\,d_y(j)$.
+\end{lemma}
+
+\begin{proof}
+The weights along a path from $(i,j)$ to $(x,y)$ split into those of its
+$G$-direction steps and those of its $H$-direction steps; the two projections
+are walks from $i$ to $x$ in $G$ and from $j$ to $y$ in $H$, so the product
+is at least $d_x(i)d_y(j)$. Concatenating a minimising path in the second
+coordinate with one in the first attains that value.
+\end{proof}
+
+From now on $H=G$ and the root is $(1,1)$. By Lemma~\ref{lem:dist},
+\[
+\begin{array}{c|ccccccccc}
+ v & (1,1) & (1,2) & (1,3) & (2,1) & (2,2) & (2,3) & (3,1) & (3,2) & (3,3)\\\hline
+ d(v) & 1 & 2 & 3 & 2 & 4 & 6 & 3 & 6 & 9\\
+ D(v) & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 7
+\end{array}
+\]
+where $D$ is the distribution we exhibit: seven pebbles on $(3,3)$ and one
+each on $(2,3)$ and $(3,2)$, so $|D|=9$. The unweighted skeleton of
+$G\times G$ is the $3\times3$ rook graph $K_3\,\square\,K_3$ on $9$ vertices
+and $18$ edges; in the labelling $k\mapsto(\lfloor k/3\rfloor+1,\,k\bmod3+1)$,
+$0\le k\le8$, its graph6 string is \texttt{H\{S\{aSf}.
+
+\begin{theorem}\label{thm:main}
+$D$ is not $(1,1)$-solvable. Consequently
+$\pi(G\times G,(1,1))\ge10>9=\pi(G,1)\pi(G,1)$.
+\end{theorem}
+
+\begin{proof}
+Put $\varphi(v)=1/d(v)$ and $\VAL(E)=\sum_vE(v)\varphi(v)$ for a
+distribution $E$ on $G\times G$. Since $d(u)\le w(u,u')d(u')$ for every edge,
+we have $\varphi(u')\le w(u,u')\varphi(u)$, so a move along $(u,u')$ changes
+$\VAL$ by
+\[
+  -\bigl(w\varphi(u)-\varphi(u')\bigr)=:-\mathrm{loss}(u,u')\le0 .
+\]
+Thus $\VAL$ never increases. It does not by itself settle the matter, since
+$\VAL(D)=7/9+1/6+1/6=10/9$ exceeds $1$; the obstruction is integrality, and
+the rest of the proof is an accounting of it.
+
+Suppose some play from $D$ reaches $(1,1)$, and stop it the instant a pebble
+lands there. The stopping distribution $E$ has $E(1,1)=1$, so
+\[
+  \tfrac{10}{9}=\VAL(D)=\VAL(E)+L=1+R+L,
+\]
+where $L$ is the total loss of the play and
+$R:=\sum_{v\neq(1,1)}E(v)\varphi(v)$; whence
+\begin{equation}\label{eq:budget}
+  R+L=\tfrac19 .
+\end{equation}
+Both terms are nonnegative, so every single move of the play has loss at most
+$1/9$.
+
+By Lemma~\ref{lem:dist} the loss of a move that changes the first coordinate
+$i\to i'$ while the second is $j$ equals $\ell(i\to i')/d_1(j)$, where
+$\ell(i\to i')=w(i,i')/d_1(i)-1/d_1(i')$ is computed in $G$ alone; and
+symmetrically. The six values of $\ell$ are
+\begin{gather*}
+  \ell(2\to1)=\ell(3\to1)=0,\qquad \ell(3\to2)=\tfrac16,\qquad
+  \ell(2\to3)=\tfrac23,\\
+  \ell(1\to2)=\tfrac32,\qquad \ell(1\to3)=\tfrac83 .
+\end{gather*}
+Dividing by $d_1(j)\in\{1,2,3\}$, the moves of loss at most $1/9$ are exactly
+these sixteen: the twelve moves in which a coordinate drops to $1$ (loss $0$);
+$(2,3)\to(2,2)$ and $(3,2)\to(2,2)$, of loss $1/12$; and $(3,3)\to(2,3)$ and
+$(3,3)\to(3,2)$, of loss $1/18$. Every other move costs at least
+$1/6>1/9$, so none occurs in the play. Since off the root
+$\varphi\ge\varphi(3,3)=1/9$, the quantity $R$ is either $0$ or at least
+$1/9$, and \eqref{eq:budget} leaves two cases.
+
+\emph{Case B: $L=0$ and $R=1/9$.} Only the twelve lossless moves occur, and
+each of them lands on a vertex having a coordinate equal to $1$; in
+particular none lands on $(3,2)$. So $(3,2)$ never gains a pebble, and its
+single pebble can never be spent, every weight being at least $2$. Hence
+$E(3,2)\ge1$ and $R\ge\varphi(3,2)=1/6>1/9$, a contradiction.
+
+\emph{Case A: $R=0$ and $L=1/9$.} The positive losses available are $1/18$
+and $1/12$ (the others exceeding the budget), and $1/9=4/36$ while
+$1/18=2/36$ and $1/12=3/36$; the only multiset summing to $4/36$ is
+$\{2/36,2/36\}$. So the play uses exactly two moves of loss $1/18$ and no
+move of loss $1/12$, and every other move it makes is lossless; call the
+fourteen moves of loss $0$ or $1/18$ \emph{available}. We now count pebbles at
+four vertices; $R=0$ means every vertex other than $(1,1)$ is empty at the
+end.
+
+No available move lands on $(3,3)$: such a move raises a coordinate to $3$
+and so costs at least $\ell(2\to3)/d_1(3)=2/9$. Hence the seven pebbles on
+$(3,3)$ are only spent, in moves of weight $3$ (the two lossless moves
+$(3,3)\to(1,3)$ and $(3,3)\to(3,1)$) and of weight $2$ (the two moves of loss
+$1/18$, namely $(3,3)\to(2,3)$ and $(3,3)\to(3,2)$). As exactly two of the
+latter occur, $3a+2\cdot2=7$, so $a=1$: precisely one weight-$3$ move leaves
+$(3,3)$, delivering one pebble to $(1,3)$ or to $(3,1)$.
+
+Say $p$ of the two lossy moves go to $(2,3)$ and $q=2-p$ to $(3,2)$. The only
+available move landing on $(2,3)$ is $(3,3)\to(2,3)$, so $(2,3)$ receives
+exactly $p$ pebbles and must spend all $1+p$ of them, in moves of weight $2$
+or $3$. A single pebble can pay for no move, so $1+p\neq1$ and $p\ge1$;
+symmetrically $q\ge1$; hence
+$p=q=1$. So $(2,3)$ and $(3,2)$ each hold exactly two pebbles, which they can
+only spend on their weight-$2$ moves $(2,3)\to(1,3)$ and $(3,2)\to(3,1)$.
+
+Counting what arrives at $(1,3)$ and $(3,1)$: one pebble from the weight-$3$
+move out of $(3,3)$, one at $(1,3)$ from $(2,3)$ and one at $(3,1)$ from
+$(3,2)$, three in all, split $2+1$ or $1+2$ between the two vertices. But from
+$(1,3)$, the only available move is the weight-$3$ move $(1,3)\to(1,1)$: the
+alternative $(1,3)\to(1,2)$ has loss $\ell(3\to2)/d_1(1)=1/6$, and moves
+raising the first coordinate cost at least $1/2$. The same holds at $(3,1)$.
+With at most two pebbles on each, no move is possible, so those three pebbles
+survive and $R\ge3\cdot\tfrac13=1>0$, a contradiction.
+
+Both cases being impossible, no play from $D$ reaches $(1,1)$. As
+$|D|=9$, this gives $\pi(G\times G,(1,1))\ge10$, while
+$\pi(G,1)\pi(G,1)=9$ by Lemma~\ref{lem:factor}.
+\end{proof}
+
+\begin{corollary}\label{cor:three}
+Conjectures~\ref{conj:W} and~\ref{conj:Wst}, in the form quoted above from
+the e-print source, are false, and so is the unrooted statement
+\eqref{eq:WG}; the answer to Sieben's question is no.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} contradicts Conjecture~\ref{conj:W} at
+$G=H$, $x=y=1$. Conjecture~\ref{conj:Wst} implies
+Conjecture~\ref{conj:W} at $s=t=1$, so it fails too. For \eqref{eq:WG},
+Lemma~\ref{lem:factor} gives $\pi(G)=\pi(H)=3$, whence
+$\pi(G\times G)\ge\pi(G\times G,(1,1))\ge10>9=\pi(G)\pi(H)$. Note that the
+last step needs $\pi(G,v)=3$ at \emph{every} $v$, not only at the root of the
+witness: \eqref{eq:WG} is weaker than Conjecture~\ref{conj:W}, and a rooted
+counterexample alone would not refute it.
+\end{proof}
+
+\section{The exact value}
+
+A terminating exhaustive computation in integer arithmetic over the
+$46656$-state box described above, re-run by the program that accompanies this
+note, gives $\pi(G\times G,(1,1))=10$: no distribution of ten pebbles is
+$(1,1)$-unsolvable. This equality, unlike the lower bound, is not proved by
+hand, and neither Theorem~\ref{thm:main} nor Corollary~\ref{cor:three}
+depends on it.
+
+\section{Status}
+
+\noindent\textbf{What is untouched.} The weights of $G$ are not all
+equal, so nothing here bears on Graham's conjecture, on the unweighted rooted
+conjecture $\pi(G\times H,(x,y))\le\pi(G,x)\pi(H,y)$, or on the unweighted
+$st$-conjecture. Chung's proved region is not contradicted either: in a
+weighted power of $K_2$ with parallel weights equal, every edge lies on a
+minimum-product path to the root, that is, $d(u)=w(u,u')d(u')$ for the
+endpoint $u$ further from the root. In our $G$ that fails at the edge
+$\{2,3\}$, where $d_1(3)=3<4=w(2,3)d_1(2)$ and $d_1(2)=2<6=w(2,3)d_1(3)$, so
+the edge is geodesic in neither direction and $G$ is not such a cube.
+
+\medskip\noindent\textbf{What is not claimed.} No minimality: we do not
+assert that $G\times G$ is a counterexample of least order, of least total
+weight, or of least maximum weight, among weighted graphs or even among
+weighted triangles. No priority either: we make no claim about what has or
+has not appeared in print.
+
+\medskip\noindent\textbf{The wording of the conjectures.} Both statements are
+quoted from the e-print source of \cite{HHH}, where they are unnumbered; the
+printed text of \emph{Discrete Math.} \textbf{312} (2012) 2286--2293 was not
+accessible to us, so the printed statements and their numbering are
+unverified here. What is refuted is accordingly the e-print form: we cannot
+exclude that the printed versions carry a hypothesis on the weights that the
+e-print statements do not. Our $G$ is tight in the sense
+recalled in Section~1, so a tightness hypothesis on the factors would be met;
+a hypothesis
+requiring every edge to be geodesic to the root would not, as the paragraph on
+Chung's region above records.
+
+\section{Verification}
+
+Everything a reader needs in order to redo the work is printed above: the
+three weights of $G$, the definition of the product, the distribution $D$,
+the distance vector, and a graph6 encoding of the skeleton. The hand proof of
+Theorem~\ref{thm:main} uses no computer.
+
+A short program accompanies this note, in Python and using only its standard
+library, which reads those printed data and re-derives the quantities claimed
+here: it rebuilds $G$ and $G\times G$ and checks the graph6 string against
+them; recomputes $\pi(G,v)$ at all three roots and $\pi(G)$; confirms that
+$D$ is unsolvable twice over, once by enumerating all $229$ distributions
+reachable from $D$ with no use of distances, boxes or potentials, and once by
+mechanising the proof above --- every move of a successful play costs at most
+$1/9$, only sixteen of the thirty-six directed moves do, and the $112$ states
+reachable from $D$ by those sixteen never carry a pebble on $(1,1)$;
+recomputes $\pi(G\times G,(1,1))=10$; and re-derives every fraction of the
+loss table and of the case analysis exactly, with no floating point. It also
+runs controls in which the same semantics reproduce pebbling numbers
+published by other authors. All $60$ of its checks passed, and every value
+printed here agrees with the value it recomputed; the transcript records in
+addition some checks on objects not discussed in this note. The program and a
+transcript of that run accompany this note; neither is needed in order to redo
+the hand proof, since every input it consumes is printed above.
+
+\begin{thebibliography}{10}
+
+\bibitem{Chung}
+F.~R.~K. Chung,
+\emph{Pebbling in hypercubes},
+SIAM J. Discrete Math. \textbf{2} (1989), no.~4, 467--472.
+
+\bibitem{Hurlbert}
+G.~H. Hurlbert,
+\emph{General graph pebbling},
+Discrete Appl. Math. \textbf{161} (2013), no.~9, 1221--1231.
+\href{https://doi.org/10.1016/j.dam.2012.03.010}{doi:10.1016/j.dam.2012.03.010}.
+
+\bibitem{HHH}
+D.~S. Herscovici, B.~D. Hester, and G.~H. Hurlbert,
+\emph{Generalizations of Graham's pebbling conjecture},
+Discrete Math. \textbf{312} (2012), no.~15, 2286--2293.
+\href{https://doi.org/10.1016/j.disc.2012.03.032}{doi:10.1016/j.disc.2012.03.032}.
+All quotations and line references are to the source of the e-print
+\href{https://arxiv.org/abs/0905.3197}{arXiv:0905.3197}.
+
+\bibitem{Sieben}
+N.~Sieben,
+\emph{A graph pebbling algorithm on weighted graphs},
+J. Graph Algorithms Appl. \textbf{14} (2010), no.~2, 221--244.
+\href{https://doi.org/10.7155/jgaa.00205}{doi:10.7155/jgaa.00205};
+\href{https://arxiv.org/abs/0904.1651}{arXiv:0904.1651}.
+
+\end{thebibliography}
+
+\end{document}

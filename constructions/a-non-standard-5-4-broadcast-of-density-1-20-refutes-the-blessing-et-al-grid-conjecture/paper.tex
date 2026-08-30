@@ -1,0 +1,324 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Non-Standard (5,4) Broadcast of the Infinite Grid of Density 1/20}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\dens}{\delta}
+\newcommand{\rec}{\operatorname{rec}}
+\newcommand{\Tstd}{T}
+
+\title[A non-standard $(5,4)$ broadcast of density $1/20$]
+{A Non-Standard $(5,4)$ Broadcast of the Infinite Grid of Density $1/20$}
+
+\date{}
+
+\subjclass[2020]{05C69, 05B40, 94B25}
+\keywords{broadcast domination, $(t,r)$ broadcast domination, infinite grid,
+density, counterexample, perfect Lee code}
+
+\begin{document}
+
+\begin{abstract}
+Blessing, Insko, Johnson, and Mauretour conjectured that the optimal $(t,r)$ and
+$(t-1,r-2)$ broadcast dominating sets of $\ZZ\times\ZZ$ have equal density,
+equivalently that $\dens_{t,r}=\dens_{t+1,r+2}$ for all $r\le t$. That
+conjecture was already known to fail at other parameters; we add the instance
+$(t,r)=(4,2)$, that is the pair of cells $(4,2)$ and $(5,4)$. The sublattice
+$S=\langle(10,0),(4,2)\rangle$ of index $20$, obtained by doubling the perfect
+Lee code of radius one, is a $(5,4)$ broadcast dominating set of $\ZZ^2$, so
+\[
+ \dens_{5,4}\le\tfrac1{20}<\tfrac1{18}=\dens_{4,2}.
+\]
+The certificate is the table of twenty coset receptions. $S$ is not a standard
+broadcast: it has no vertex on any odd horizontal line, and
+$\ZZ^2/S\cong\ZZ/2\oplus\ZZ/10$ is not cyclic. We do not determine
+$\dens_{5,4}$; with a quoted lower bound of Shlomi it lies in
+$\tfrac1{21}\le\dens_{5,4}\le\tfrac1{20}$.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Throughout, $\ZZ^2=\ZZ\times\ZZ$ is the infinite grid graph, whose graph
+distance $d$ is the $\ell_1$ distance. Fix integers $1\le r\le t$. A vertex
+$v$ of a set $S\subseteq\ZZ^2$ --- a \emph{tower} --- provides a vertex $u$ with
+the signal $\max(0,t-d(u,v))$, so that a tower provides \emph{itself} with $t$.
+The total signal received at $u$ is
+\[
+ \rec_S(u)\;=\;\sum_{v\in S}\max\bigl(0,\;t-d(u,v)\bigr),
+\]
+the sum including the term $v=u$ when $u\in S$. The set $S$ is a \emph{$(t,r)$
+broadcast dominating set} if $\rec_S(u)\ge r$ for \emph{every} $u\in\ZZ^2$,
+towers included. Its density is
+$\dens(S)=\lim_{n\to\infty}\lvert S\cap[-n,n]^2\rvert/(2n+1)^2$, and
+$\dens_{t,r}=\dens_{t,r}(\ZZ^2)$ denotes the least density of a $(t,r)$
+broadcast dominating set of $\ZZ^2$. A \emph{standard} broadcast is a lattice
+\[
+ \Tstd(d,e)\;=\;\langle(d,0),(e,1)\rangle\;=\;\{(x,y)\in\ZZ^2:\ x\equiv ey\ (\mathrm{mod}\ d)\},
+\]
+one tower out of every $d$ on \emph{every} horizontal line; its density is $1/d$.
+
+Blessing, Insko, Johnson, and Mauretour \cite{BIJM} close their paper with a
+list of conjectures and open problems, whose fourth item reads, verbatim:
+
+\begin{quote}
+``We have seen that $(3,3)$ and $(2,1)$ broadcast dominating sets are equal for
+large grids. We conjecture that the optimal $(t,r)$ and $(t-1,r-2)$ broadcast
+dominating sets of $\ZZ\times\ZZ$ are equal. If this is true, then all $(t,r)$
+broadcast domination problems for large grids can be reduced to $(t,2)$ and
+$(t,1)$ broadcast domination problems.''
+\end{quote}
+
+\noindent
+The parameter range $1\le r\le t$ is fixed earlier in that paper, and the
+statement is made for the infinite grid, not for finite grids. Drews, Harris,
+and Randolph restate it as a conjecture \cite{DHR}:
+\emph{``For all $t,r\in\ZZ^+$, the optimal $(t,r)$ and $(t+1,r+2)$ broadcast
+densities are equal.''} In the notation above the assertion is
+\begin{equation}\label{eq:conj}
+ \dens_{t,r}\;=\;\dens_{t+1,r+2}
+ \qquad\text{for all } 1\le r\le t .
+\end{equation}
+We refute \eqref{eq:conj} at $(t,r)=(4,2)$.
+
+\section{The witness}
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+ S\;=\;\bigl\langle(10,0),\,(4,2)\bigr\rangle
+   \;=\;\bigl\{(x,y)\in\ZZ^2:\ y\equiv0\ (\mathrm{mod}\ 2),\
+        \ x\equiv2y\ (\mathrm{mod}\ 10)\bigr\}.
+\]
+Then $S$ is a $(5,4)$ broadcast dominating set of $\ZZ^2$ of density exactly
+$1/20$. Consequently
+\[
+ \dens_{5,4}\;\le\;\tfrac1{20}\;<\;\tfrac1{18}\;=\;\dens_{4,2},
+\]
+so \eqref{eq:conj} is false at $(t,r)=(4,2)$.
+\end{theorem}
+
+Towers sit on even horizontal lines only; within an occupied line they are $10$
+apart; each occupied line is shifted $4$ to the right of the occupied line two
+below it. The two descriptions agree: $(x,y)=m(10,0)+n(4,2)$ has $y=2n$ even and
+$x=10m+4n\equiv 2y\pmod{10}$, and conversely $y=2n$ together with
+$x\equiv2y\pmod{10}$ gives $x-4n\equiv0\pmod{10}$. The basis matrix
+$\begin{psmallmatrix}10&0\\4&2\end{psmallmatrix}$ has determinant $20$, so $S$
+has index $20$ in $\ZZ^2$ and the twenty classes of $\ZZ^2/S$ are represented by
+the pairs $(x,y)$ with $0\le x\le9$ and $y\in\{0,1\}$.
+
+The certificate is the list of receptions at those twenty
+representatives:
+\begin{center}
+\begin{tabular}{c|cccccccccc|c}
+ & \multicolumn{10}{c|}{$x=0,1,\ldots,9$} & sum\\\hline
+ $y=0$ & 5&4&5&4&5&4&5&4&5&4 & 45\\
+ $y=1$ & 4&4&4&4&4&4&4&4&4&4 & 40\\\hline
+ \multicolumn{11}{c}{} & 85
+\end{tabular}
+\end{center}
+The minimum is $4=r$, attained at fifteen of the twenty classes. Two entries
+worked out by hand: the shortest nonzero vector of $S$ is $(4,2)$, of
+$\ell_1$ norm $6>4$, so a tower receives nothing but its own $5$, giving the
+entry at $(0,0)$; and $(1,0)$ is at distance $1$ from the tower $(0,0)$ and at
+distance $\ge5$ from every other tower --- the next nearest are $(4,2)$ and
+$(2,-4)$, both at distance $5$ --- so it receives exactly $4$, which is the
+tight case.
+
+The sum of the twenty numbers is forced, which checks the table as a whole.
+
+\begin{lemma}\label{lem:checksum}
+Let $\Lambda\subseteq\ZZ^2$ be a sublattice of index $D$, let $t\ge1$, and let
+$R$ be any set of coset representatives of $\ZZ^2/\Lambda$. Then
+\[
+ \sum_{u\in R}\rec_\Lambda(u)\;=\;W_t
+ \;:=\;\sum_{z\in\ZZ^2}\max\bigl(0,t-\lVert z\rVert_1\bigr)
+ \;=\;t+\sum_{m=1}^{t-1}4m(t-m),
+\]
+independently of $\Lambda$ and of $D$. In particular $W_5=5+16+24+24+16=85$.
+\end{lemma}
+
+\begin{proof}
+Write $f(z)=\max(0,t-\lVert z\rVert_1)$, a nonnegative function of finite
+support, so that $\rec_\Lambda(u)=\sum_{\lambda\in\Lambda}f(u-\lambda)$. As $u$
+runs over $R$ and $\lambda$ over $\Lambda$, the difference $u-\lambda$ takes
+each value of $\ZZ^2$ exactly once, because $R$ meets every coset of $\Lambda$
+exactly once. Hence $\sum_{u\in R}\rec_\Lambda(u)=\sum_{z\in\ZZ^2}f(z)=W_t$.
+Counting cells by $\ell_1$ norm --- one of norm $0$ and $4m$ of norm $m\ge1$ ---
+gives the displayed formula.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The twenty entries of the table sum to $45+40=85=W_5$, in agreement with
+Lemma~\ref{lem:checksum}. That agreement checks the table jointly and does not
+by itself bound the individual entries; read one by one, their minimum is $4$.
+Since $\rec_S$ is invariant under
+translation by $S$, and the twenty representatives meet every class of
+$\ZZ^2/S$, we get $\rec_S(u)\ge4$ for every $u\in\ZZ^2$: the set $S$ is a
+$(5,4)$ broadcast dominating set. It contains exactly one point per fundamental
+domain, of area $20$, so $\dens(S)=1/20$.
+
+For the consequence, $\dens_{4,2}=1/18$: Drews, Harris, and Randolph prove
+$\dens_{t,2}=1/\bigl(2(t-1)^2\bigr)$ for all $t\ge2$ \cite{DHR}, which at $t=4$
+gives $1/(2\cdot3^2)=1/18$. Since
+$1/20<1/18$ and $\dens_{5,4}\le\dens(S)=1/20$, the two densities
+$\dens_{4,2}$ and $\dens_{5,4}$ differ, contradicting~\eqref{eq:conj} at
+$(t,r)=(4,2)$.
+\end{proof}
+
+\begin{remark}[$S$ as a doubled perfect Lee code]
+Let $\varphi(X,Y)=(2X,2Y)$ and let
+$L=\Tstd(5,2)=\langle(5,0),(2,1)\rangle=\{(X,Y):X\equiv2Y\ (\mathrm{mod}\ 5)\}$,
+the perfect Lee code of radius $1$ \cite{GW} --- equivalently the optimal $(2,1)$
+broadcast, of density $1/5$: every cell of $\ZZ^2$ is within distance $1$ of
+exactly one codeword. Then $S=\varphi(L)$ and
+$\dens(S)=\tfrac14\cdot\tfrac15=\tfrac1{20}$. Doubling doubles all $\ell_1$
+distances, so at $t=5$ a tower $\varphi(v)$ reaches $\varphi(u)$ only when
+$d(u,v)\le2$, with signal $5,3,1$ according as $d(u,v)=0,1,2$. On $2\ZZ^2$ this
+settles the reception outright: a codeword receives its own $5$ and nothing else,
+because the shortest nonzero vector of $L$ has norm $3$; a non-codeword receives
+$3$ from the unique codeword at distance $1$ together with $1$ from each of the
+two codewords at distance $2$, again $5$. The receptions off $2\ZZ^2$ are not
+settled by this argument; the table above gives each of them as exactly~$4$.
+\end{remark}
+
+\begin{proposition}\label{prop:nonstandard}
+$S$ is not a standard broadcast, nor a translate of one, nor the image of one
+under any change of basis of $\ZZ^2$.
+\end{proposition}
+
+\begin{proof}
+Every point of $S$ has even second coordinate, so $S$ misses the horizontal line
+$y=1$ entirely, whereas every $\Tstd(d,e)$ contains a point on every horizontal
+line; the same holds after translating. For the stronger statement, the basis
+$\{(d,0),(e,1)\}$ of $\Tstd(d,e)$ has an entry equal to $1$, so the greatest
+common divisor of the entries of its basis matrix is $1$, the invariant factors
+are $(1,d)$, and $\ZZ^2/\Tstd(d,e)\cong\ZZ/d$ is cyclic. All four entries of the
+basis matrix of $S$ are even, so its invariant factors are $(2,10)$ and
+$\ZZ^2/S\cong\ZZ/2\oplus\ZZ/10$ is not cyclic. The isomorphism type of
+$\ZZ^2/\Lambda$ is invariant under $GL_2(\ZZ)$, so no reflection, transposition,
+or relabelling of a standard broadcast is $S$.
+\end{proof}
+
+\section{Scope}
+
+What is refuted is the equality~\eqref{eq:conj} at the single instance
+$(t,r)=(4,2)$. Each instance of \eqref{eq:conj} is a separate statement and needs
+its own witness; we exhibit one only at $(4,2)$. The equality was already refuted
+in print at other parameters: \cite{DHRcode} reports counterexamples, and
+\cite{HvH} restates that Drews, Harris, and Randolph ``showed \dots\ that, in
+fact, $\dens_{t+1,r+2}(\ZZ^2)<\dens_{t,r}(\ZZ^2)$ for several values of $t$ and
+$r$''. The instance $(4,2)$ falls in the sub-case $r=2$ with $t$ even and $t>3$
+singled out in \cite{DHRcode}.
+
+\medskip\noindent
+We do not determine $\dens_{5,4}$. Shlomi \cite{Shlomi} proves
+$\dens_{t,r}\ge r/C_{t,r}$ with
+$C_{t,r}=\tfrac23r^3-2r^2t+2rt^2+\tfrac13r$, which at $(t,r)=(5,4)$ gives
+$C_{5,4}=84$ and hence
+\[
+ \tfrac1{21}\;=\;\tfrac4{84}\;\le\;\dens_{5,4}\;\le\;\tfrac1{20}.
+\]
+We made no search above index $22$, so nothing here excludes a $(5,4)$ broadcast
+of density below $1/20$.
+
+\section{Reproduction and verification}\label{sec:verif}
+
+Everything above is determined by the two lines of data
+\[
+ \text{basis } \{(10,0),(4,2)\},
+ \quad
+ (x,y)\in S \iff y\equiv0\ (\mathrm{mod}\ 2),\ \ x\equiv2y\ (\mathrm{mod}\ 10),
+\]
+and a reader who wants only Theorem~\ref{thm:main} needs no computer: the twenty
+receptions of the table are twenty sums of at most three terms each.
+
+The program \texttt{verify.py} accompanying this note re-derives from those two
+lines, in exact integer and rational arithmetic and using only the Python
+standard library, the quantities printed above: the agreement of the predicate
+with the span, the index $20$ and the transversality of the twenty
+representatives, the $S$-periodicity of $\rec_S$, the two table rows entry by
+entry with their sums and the value $W_5=85$, the minimum $4$, the density as an
+exact rational, the shortest nonzero vector, the identity $S=2\,\Tstd(5,2)$, the
+two arguments of Proposition~\ref{prop:nonstandard}, the value
+$\dens_{4,2}=1/18$ from the quoted formula with the strict inequality
+$1/20<1/18$, and the constant $C_{5,4}=84$ with $4/84=1/21<1/20$. Its $43$
+checks all pass; the recorded run is \texttt{verify.output.txt}. That run also
+contains checks of statements outside the scope of this note --- sublattice
+censuses at indices $19$--$22$, standard broadcasts, further members of the
+doubling family, and remarks on published tables and on a further question of
+Drews, Harris, and Randolph. None of those is claimed here, and nothing above
+depends on them.
+
+The lower bounds of \cite{DHR} and \cite{Shlomi} are quoted, not reproved --- only
+their arithmetic at the relevant parameters is checked, and the strict inequality
+of Theorem~\ref{thm:main} rests on the theorem of \cite{DHR}. The program makes no
+search above index $22$ and no literature search.
+
+\begin{thebibliography}{9}
+
+\bibitem{BIJM}
+D.~Blessing, E.~Insko, K.~Johnson, and C.~Mauretour,
+\emph{On $(t,r)$ broadcast domination numbers of grids},
+Discrete Appl. Math. \textbf{187} (2015), 19--40.
+\href{https://arxiv.org/abs/1401.2499}{arXiv:1401.2499}.
+The conjecture refuted here is item~4 of the subsection ``Conjectures and Open
+Problems''.
+
+\bibitem{DHR}
+B.~F. Drews, P.~E. Harris, and T.~W. Randolph,
+\emph{Optimal $(t,r)$ broadcasts on the infinite grid},
+Discrete Appl. Math. \textbf{255} (2019), 183--197.
+\href{https://arxiv.org/abs/1711.11116}{arXiv:1711.11116}.
+Restates the conjecture and proves $\dens_{t,2}=1/(2(t-1)^2)$.
+
+\bibitem{DHRcode}
+B.~F. Drews, P.~E. Harris, and T.~W. Randolph,
+\emph{Computing upper bounds for optimal density of $(t,r)$ broadcasts on the
+infinite grid},
+\href{https://arxiv.org/abs/1712.00150}{arXiv:1712.00150}, 2017.
+Carries the counterexamples at other parameters and the remark on $r=2$ with $t$
+even and greater than $3$.
+
+\bibitem{HvH}
+R.~Herrman and P.~van Hintum,
+\emph{$(t,r)$ broadcast domination in the infinite grid},
+Discrete Appl. Math. \textbf{289} (2021), 270--280.
+\href{https://arxiv.org/abs/1912.11560}{arXiv:1912.11560}.
+
+\bibitem{Shlomi}
+T.~Shlomi,
+\emph{Bounds on $(t,r)$ broadcast domination of $n$-dimensional grids},
+Discrete Math. Theor. Comput. Sci. \textbf{24} (2023), no.~1, paper
+\texttt{dmtcs:5732}.
+\href{https://doi.org/10.46298/dmtcs.5732}{doi:10.46298/dmtcs.5732};
+\href{https://arxiv.org/abs/1908.07586}{arXiv:1908.07586}.
+Lower bound $\dens_{t,r}\ge r/C_{t,r}$ with
+$C_{t,r}=\tfrac23r^3-2r^2t+2rt^2+\tfrac13r$.
+
+\bibitem{GW}
+S.~W. Golomb and L.~R. Welch,
+\emph{Perfect codes in the Hamming metric and the Lee metric},
+SIAM J. Appl. Math. \textbf{18} (1970), 302--317.
+The perfect Lee codes in $\ZZ^2$, of which $\Tstd(5,2)$ is the one of radius $1$.
+
+\end{thebibliography}
+
+\end{document}

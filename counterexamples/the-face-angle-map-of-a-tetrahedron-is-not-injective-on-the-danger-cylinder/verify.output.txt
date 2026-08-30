@@ -1,0 +1,147 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e454c9a28c4ea042410249dd8ed74a155e469c79548c5893e29dc94e76b0aefd
+python:  Python 3.9.6
+=== program output follows ===
+========================================================================================
+PART 1 -- the object printed in paper.tex, Section 2
+========================================================================================
+PASS on-unit-circle-A A = (1, 0), x^2 + y^2 = 1
+PASS on-unit-circle-B B = (15/17, 8/17), x^2 + y^2 = 1
+PASS on-unit-circle-C C = (0, -1), x^2 + y^2 = 1
+PASS on-unit-circle-P P = (4/5, 3/5), x^2 + y^2 = 1
+PASS base-nondegenerate twice signed area of ABC = 10/17 != 0
+PASS P-distinct-from-vertices P = (4/5, 3/5) is none of A, B, C
+PASS P-on-arc-BC-not-containing-A cross(B,C,A) = 10/17 and cross(B,C,P) = -4/17 have opposite signs
+PASS squared-length-PB2 |PB|^2 = 2/85 (paper: 2/85)
+PASS squared-length-PC2 |PC|^2 = 16/5 (paper: 16/5)
+PASS squared-length-PA2 |PA|^2 = 2/5 (paper: 2/5)
+PASS squared-length-BC2 |BC|^2 = 50/17 (paper: 50/17)
+PASS squared-length-CA2 |CA|^2 = 2 (paper: 2)
+PASS squared-length-AB2 |AB|^2 = 4/17 (paper: 4/17)
+PASS sigma-value sigma = 4 - (2/85 + 16/5 + 2/5) = 32/85
+PASS pi-value pi = |PB|^2 |PC|^2 |PA|^2 / 4 = 16/2125
+PASS disc-value disc = sigma^2 - 4 pi = 4032/36125
+PASS sigma-positive sigma = 32/85 > 0
+PASS pi-positive pi = 16/2125 > 0
+PASS disc-positive disc = 4032/36125 > 0
+PASS K1-value K1 = 12/85 (paper: 12/85)
+PASS K2-value K2 = 4/5 (paper: 4/5)
+PASS K3-value K3 = 8/85 (paper: 8/85)
+PASS K-all-positive K1 = 12/85, K2 = 4/5, K3 = 8/85 all > 0
+PASS OH2-value |OH|^2 = |A+B+C|^2 = 65/17
+PASS base-obtuse-via-Euler |OH|^2 = 65/17 > 1 = R^2
+PASS base-obtuse-at-A |CA|^2 + |AB|^2 - |BC|^2 = -12/17 < 0
+PASS base-angles-B-and-C-acute a^2+c^2-b^2 = 20/17 > 0 and a^2+b^2-c^2 = 80/17 > 0
+PASS angle-ABC-is-45-degrees 2 (a^2+c^2-b^2)^2 = 800/289 = 4 a^2 c^2, and the cosine is positive
+PASS angle-BAC-exceeds-120-degrees N = b^2+c^2-a^2 = -12/17 < 0 and N^2 = 144/289 > b^2 c^2 = 8/17, so cos BAC < -1/2
+PASS sigma-equals-2(P.H-R2) P.H = 101/85, 2(P.H - 1) = 32/85 = sigma
+
+========================================================================================
+PART 2 -- the two apex heights, exactly, in Q(sqrt 35)
+========================================================================================
+PASS root-of-quadratic-s1 s1 = (16/85 + -12/425*sqrt(35)) satisfies s^2 - (32/85)s + 16/2125 = 0
+PASS root-of-quadratic-s2 s2 = (16/85 + 12/425*sqrt(35)) satisfies s^2 - (32/85)s + 16/2125 = 0
+PASS roots-sum-to-sigma s1 + s2 = (32/85 + 0*sqrt(35)) = sigma
+PASS roots-multiply-to-pi s1 s2 = (16/2125 + 0*sqrt(35)) = pi
+PASS roots-distinct s1 != s2 since disc = 4032/36125 != 0
+PASS s1-positive s1 = (16/85 + -12/425*sqrt(35)) has exact sign +
+PASS s2-positive s2 = (16/85 + 12/425*sqrt(35)) has exact sign +
+PASS s1-less-than-s2 s2 - s1 = (0 + 24/425*sqrt(35)) has exact sign +
+PASS both-apexes-in-Pi-plus r1 = sqrt(s1) > 0 and r2 = sqrt(s2) > 0, so D1, D2 lie in Pi^+ = {r > 0}
+PASS D1-and-D2-are-distinct-points r1 != r2 because s1 != s2 and both are positive
+PASS D1-and-D2-lie-on-Cyl both have horizontal part P = (4/5, 3/5) on S, so both lie on Cyl = S x R
+
+========================================================================================
+PART 3 -- F(D1) = F(D2), decided exactly (no floating point)
+========================================================================================
+PASS squared-cosine-equal-coord1 (K1+s1)^2 (p+s2)(q+s2) = (K1+s2)^2 (p+s1)(q+s1) = (2725632/76765625 + 0*sqrt(35))
+PASS numerators-positive-coord1 K1 + s1 = (28/85 + -12/425*sqrt(35)) and K1 + s2 = (28/85 + 12/425*sqrt(35)) are both positive, so the two cosines have the same sign and equality of squares upgrades to equality
+PASS denominators-positive-coord1 (p+s1)(q+s1) = (1584/2125 + -216/2125*sqrt(35)) and (p+s2)(q+s2) = (1584/2125 + 216/2125*sqrt(35)) are positive
+PASS cos-squared-agrees-coord1 cos^2 = (28/153 + 0*sqrt(35)) at both heights
+PASS cos-squared-is-the-rational-in-the-paper-coord1 cos^2 = 28/153, exactly the rational 28/153 printed in the paper
+PASS squared-cosine-equal-coord2 (K2+s1)^2 (p+s2)(q+s2) = (K2+s2)^2 (p+s1)(q+s1) = (8176896/4515625 + 0*sqrt(35))
+PASS numerators-positive-coord2 K2 + s1 = (84/85 + -12/425*sqrt(35)) and K2 + s2 = (84/85 + 12/425*sqrt(35)) are both positive, so the two cosines have the same sign and equality of squares upgrades to equality
+PASS denominators-positive-coord2 (p+s1)(q+s1) = (73008/36125 + -4056/36125*sqrt(35)) and (p+s2)(q+s2) = (73008/36125 + 4056/36125*sqrt(35)) are positive
+PASS cos-squared-agrees-coord2 cos^2 = (84/169 + 0*sqrt(35)) at both heights
+PASS cos-squared-is-the-rational-in-the-paper-coord2 cos^2 = 84/169, exactly the rational 84/169 printed in the paper
+PASS squared-cosine-equal-coord3 (K3+s1)^2 (p+s2)(q+s2) = (K3+s2)^2 (p+s1)(q+s1) = (292032/76765625 + 0*sqrt(35))
+PASS numerators-positive-coord3 K3 + s1 = (24/85 + -12/425*sqrt(35)) and K3 + s2 = (24/85 + 12/425*sqrt(35)) are both positive, so the two cosines have the same sign and equality of squares upgrades to equality
+PASS denominators-positive-coord3 (p+s1)(q+s1) = (324/2125 + -48/2125*sqrt(35)) and (p+s2)(q+s2) = (324/2125 + 48/2125*sqrt(35)) are positive
+PASS cos-squared-agrees-coord3 cos^2 = (12/17 + 0*sqrt(35)) at both heights
+PASS cos-squared-is-the-rational-in-the-paper-coord3 cos^2 = 12/17, exactly the rational 12/17 printed in the paper
+PASS F(D1)-equals-F(D2) all three coordinates of F agree exactly at s1 and s2, and every cosine is positive, so F(D1) = F(D2) with D1 != D2: F is NOT injective on Cyl cap Pi^+
+PASS hand-check-linear-coefficient-coord1 (2 K1 + sigma)/(p + q + sigma) = 28/153 = cos^2
+PASS hand-check-constant-term-coord1 K1^2 - pi = 448/36125 = cos^2 (p q - pi)
+PASS hand-check-linear-coefficient-coord2 (2 K2 + sigma)/(p + q + sigma) = 84/169 = cos^2
+PASS hand-check-constant-term-coord2 K2^2 - pi = 1344/2125 = cos^2 (p q - pi)
+PASS hand-check-linear-coefficient-coord3 (2 K3 + sigma)/(p + q + sigma) = 12/17 = cos^2
+PASS hand-check-constant-term-coord3 K3^2 - pi = 48/36125 = cos^2 (p q - pi)
+PASS closed-form-of-image-coord1 (2 sqrt(119) / 51)^2 = 28/153 = cos^2, so the coordinate equals 2 sqrt(119)/51 exactly
+PASS closed-form-of-image-coord2 (2 sqrt(21) / 13)^2 = 84/169 = cos^2, so the coordinate equals 2 sqrt(21)/13 exactly
+PASS closed-form-of-image-coord3 (2 sqrt(51) / 17)^2 = 12/17 = cos^2, so the coordinate equals 2 sqrt(51)/17 exactly
+PASS Lemma1-form-vanishes-coord1 L(K1, p, q; sigma, pi) = 0
+PASS Lemma1-form-vanishes-coord2 L(K2, p, q; sigma, pi) = 0
+PASS Lemma1-form-vanishes-coord3 L(K3, p, q; sigma, pi) = 0
+
+========================================================================================
+PART 4 -- the universal identity of Section 3, over a rational scan
+========================================================================================
+PASS universal-identity-over-scan all three linear forms vanish for every one of the 4004 concyclic configurations scanned (12012 form evaluations, all zero)
+PASS sigma-identity-over-scan sigma = 2 (P.H - R^2) held in all 4004 configurations
+PASS acute-base-forces-sigma-negative among the 891 scanned configurations with an ACUTE base, sigma < 0 in every one, so no vertical generator over an acute base carries a coincident pair
+PASS obtuse-bases-do-occur-with-sigma-positive 523 scanned configurations have a non-acute base and sigma > 0
+
+========================================================================================
+PART 5 -- control: the target paper's own published value on the circle
+========================================================================================
+PASS published-value-on-circle-coord1 K1^2 (2 x)(2 y) products agree (4608/122825) and both sides have the same sign
+PASS published-value-on-circle-coord2 K2^2 (2 x)(2 y) products agree (512/289) and both sides have the same sign
+PASS published-value-on-circle-coord3 K3^2 (2 x)(2 y) products agree (1024/4913) and both sides have the same sign
+
+========================================================================================
+PART 6 -- the decimal expansions printed in the paper (digit checks only)
+========================================================================================
+PASS digits-r1 r1 = 0.145578299956977730629014815152298766413745039553849774633957260278614379842 (paper prints 0.145578299956977730629014815152)
+PASS digits-r2 r2 = 0.596051630999303897819170306389082096031127059473119774849085454941080943260 (paper prints 0.596051630999303897819170306389)
+PASS digits-F-coord1 cos = 0.427792631946498604372633509308741249913926811870377402079088035091699167650 (paper prints 0.427792631946498604372633509308)
+PASS digits-F-coord2 cos = 0.705011645377821539475084183650462844459147165656611061939575711370287450084 (paper prints 0.705011645377821539475084183650)
+PASS digits-F-coord3 cos = 0.840168050416805882117576448396148856325431901165027509789227162678331812522 (paper prints 0.840168050416805882117576448396)
+PASS dot-product-route-agrees-coord1 F(D1)_1 = 0.427792631946498604372633509308741249913926811870377402079088035091699167650 ; F(D2)_1 = 0.427792631946498604372633509308741249913926811870377402079088035091699167650 ; |difference| = 1E-140
+PASS dot-product-route-agrees-coord2 F(D1)_2 = 0.705011645377821539475084183650462844459147165656611061939575711370287450084 ; F(D2)_2 = 0.705011645377821539475084183650462844459147165656611061939575711370287450084 ; |difference| = 6E-140
+PASS dot-product-route-agrees-coord3 F(D1)_3 = 0.840168050416805882117576448396148856325431901165027509789227162678331812522 ; F(D2)_3 = 0.840168050416805882117576448396148856325431901165027509789227162678331812522 ; |difference| = 2E-140
+
+========================================================================================
+SCOPE -- what this program does NOT cover
+========================================================================================
+NOT RE-RUN: pairs of points of Cyl cap Pi^+ lying over DIFFERENT base points.  The
+  paper settles only the same-vertical-generator cell, and nothing here touches the
+  rest of Problem 3.
+NOT RE-RUN: the dimension, topology, triple points and global structure of the
+  self-intersection locus of the surface FC.
+NOT RE-RUN: the behaviour on Cyl cap Pi^0 (the plane r = 0), which the source paper
+  already settles and which is a different subdomain.
+NOT RE-RUN: Proposition 3 and Lemma 2 as THEOREMS.  This program CONFIRMS THE
+  EXHIBITED OBJECT: it re-derives every number and inequality of Theorem 1 from the
+  four points A, B, C, P, and it checks the universal (sigma, pi) of Remark 3 on a
+  finite rational scan.  The general statements -- the reduction modulo the
+  quadratic (Lemma 2), the uniqueness of (sigma, pi) from linear independence, and
+  hence the "only if" half of Proposition 3 -- are proved in the paper, by hand, and
+  are not re-derived here.
+NOT RE-RUN: the necessity proof of Section 4 as a THEOREM.  Part 4 above verifies
+  the identity sigma = 2(P.H - R^2) and confirms sigma < 0 on every acute base in a
+  finite rational scan; the step from that scan to "every acute base" is the
+  Cauchy-Schwarz and Euler argument in the paper, which is not re-derived here.
+NOT RE-RUN: the claim that strictly obtuse is NOT sufficient.  The three auxiliary
+  bases the paper names in Section 4(iii) -- the empty cells of (5,3,3) and of the
+  isosceles (120,30,30) family, and the nonempty cell of the scalene (7,5,3) -- are
+  not re-derived here.  Nothing in Theorem 1 depends on them.
+NOT RE-RUN: every statement in Section 5 about the P3P literature.  Those are
+  quotations from other papers, not computations, and this program does not fetch or
+  check any external source.
+NOT RE-RUN: the conversions of the exact cosines into degrees quoted in the paper.
+NOT RE-RUN: any minimality or uniqueness claim.  The paper makes none, and this
+  program exhibits one witness and one universal identity, not a classification.
+
+VERDICT: ALL 84 CHECKS PASS
+=== program exited with status 0 ===

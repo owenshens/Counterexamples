@@ -1,0 +1,57 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  4831224b97f2cc4cc559a3994e0ccded24b5fe666fa1701a2c76dedeaa85296b
+python:  Python 3.9.6
+=== program output follows ===
+object: the 7 x 15 array printed in Section 2 of paper.tex, read from this file and from nowhere else
+arithmetic: exact integers and Fractions only; no floating point is used
+
+-- Definition 6: the array is a (7 x 15, 35)-triple array --
+PASS shape r=7 rows, c=15 columns, 105 cells
+PASS symbol-set the entries are exactly the v=35 symbols 1..35
+PASS equireplicate every symbol occurs e=3 times, and e = rc/v = 105/35 = 3
+PASS row-binary each of the 7 rows holds 15 DISTINCT symbols, so no symbol repeats in a row
+PASS column-binary each of the 15 columns holds 7 DISTINCT symbols, so no symbol repeats in a column
+PASS lambda_rc |R_i cap C_j| = 3 on all 105 row-column pairs
+PASS lambda_rr |R_i cap R_s| = 5 on all 21 row pairs, and c(e-1)/(r-1) = 15*2/6 = 5
+PASS lambda_cc |C_j cap C_t| = 1 on all 105 column pairs, and r(e-1)/(c-1) = 7*2/14 = 1
+PASS non-trivial max(r,c) = 15 < v = 35 < rc = 105
+PASS non-extremal v = 35 > r + c - 1 = 21, so this is OUTSIDE the extremal case v = r+c-1
+PASS cell-admits-resolutions k = c/e = 15/3 = 5 is an integer and rk = 7*5 = v = 35, so the PARAMETER SET does admit resolvable arrays and non-resolvability here is substantive, not an integrality failure
+
+-- the row-set multiset, which is the whole proof --
+PASS row-sets-are-triples every symbol occupies exactly 3 distinct rows
+PASS distinct-row-sets 31 distinct row-sets among the 35 symbols
+PASS multiplicity-multiset multiplicities are [1 x 27, 2 x 4], summing to 35
+PASS the-four-coincidences the only repeated row-sets are 5=15=(1, 3, 5), 17=35=(1, 6, 7), 28=32=(3, 4, 6), 21=25=(4, 5, 7)
+PASS max-multiplicity-below-k maximum row-set multiplicity is 2, and a resolution needs k = 5 symbols with a COMMON row-set
+PASS brute-force-no-common-row-set-quintuple of all C(35,5) = 324632 five-element sets of symbols, 0 have a common row-set
+PASS not-resolvable the Definition 21 decider answers NO: a row-set class has size not a multiple of k=5 (class sizes [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2])
+
+-- controls: the decider is not a machine that only ever says NO --
+PASS control-positive-fano on a synthetic row-set map that is five copies of each Fano triple the SAME decider answers YES, class sizes [5, 5, 5, 5, 5, 5, 5]
+PASS control-negative-non-fano a synthetic map with class sizes [5, 5, 5, 5, 5, 5, 5] whose 7 row-sets are NOT a 2-(7,3,1) design is rejected for that reason: the group row-sets do not form a 2-(7,3,1) design
+
+-- the lemma: five copies of a Fano plane is the only resolvable pattern --
+PASS fano-gram-matrix N N^T = 2I + J for the 7 x 7 Fano incidence matrix N
+PASS fano-system-unique-solution N has rank 7 over Q, so N m = 3*1 has the UNIQUE solution m = (1,...,1): each group meets each column-set exactly once, and the column clause of Definition 21 is automatic
+
+-- the independent second proof, via the column design --
+PASS column-design-blocks 35 distinct blocks of size 3 on 15 points
+PASS column-design-is-sts15 every one of the 105 point pairs lies in exactly one block: a 2-(15,3,1) design
+PASS parallel-classes exhaustive search finds exactly 3 parallel classes: {1,3,6} {2,8,10} {4,5,13} {7,9,14} {11,12,15} | {1,4,10} {2,7,11} {3,13,15} {5,8,14} {6,9,12} | {1,14,15} {2,9,13} {3,8,11} {4,6,7} {5,10,12}
+PASS no-resolutions a resolution needs 7 pairwise disjoint parallel classes and only 3 classes exist, so the design has 0 resolutions and is one of the non-resolvable STS(15)
+PASS column-design-automorphisms |Aut| = 6 by exhaustive backtracking
+PASS column-design-is-not-pg32 |Aut| = 6 differs from |Aut(PG(3,2))| = 20160, so the column design here is NOT the projective design carried by the previously known (7 x 15, 35)-triple array
+
+-- the array is not a quad array, so Question 60 is untouched --
+PASS triple-intersection-multiset over all 315 (row-pair, column) triples the multiset of |R_i cap R_s cap C_j| is {0: 45, 1: 226, 2: 43, 3: 1}, which is NOT constant
+
+NOT RE-RUN: the CP-SAT search that PRODUCED this array is not re-run and is not needed -- the array above is the input, and every claim of the paper is re-derived from it by the checks above.
+NOT RE-RUN: no minimality, uniqueness or counting claim. This program does not enumerate the (7 x 15, 35)-triple arrays, does not decide how many non-resolvable ones exist, and does not identify the column design inside any published catalogue of the 80 STS(15) isomorphism classes -- it only computes that design's own invariants.
+NOT RE-RUN: nothing about the PREVIOUSLY known (7 x 15, 35)-triple array. Its array is not printed here, so the statements that its column design is PG(3,2) and that it is resolvable are quoted from the literature, not verified.
+NOT RE-RUN: no bibliographic claim. Whether this is the first non-resolvable triple array on any non-extremal parameter set is a literature question and is outside this program.
+NOT RE-RUN: Problems 56 and 57 and Questions 59 and 60 of the same section, and the resolvable-array enumeration of the source paper.
+
+VERDICT: ALL 29 CHECKS PASS
+=== program exited with status 0 ===

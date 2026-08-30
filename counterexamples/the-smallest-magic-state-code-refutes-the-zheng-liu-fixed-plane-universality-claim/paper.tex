@@ -1,0 +1,239 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A stabilizer code admitting no logical Z that meets the hypothesis of Zheng-Liu Proposition 3}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\PP}{\mathcal P}
+\newcommand{\NN}{\mathcal N}
+\newcommand{\Zb}{\overline Z}
+\newcommand{\Xb}{\overline X}
+\newcommand{\Yb}{\overline Y}
+\newcommand{\str}[1]{\texttt{#1}}
+
+\title[Failure of the hypothesis of Zheng--Liu Proposition~3]
+{A Stabilizer Code Admitting No Logical $Z$\\That Meets the Hypothesis of Zheng--Liu Proposition~3}
+
+\date{}
+
+\subjclass[2020]{81P73, 81P68, 94B05}
+\keywords{magic state distillation, stabilizer code, logical Pauli operator, invariant plane,
+counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Zheng and Liu map a magic-state distillation protocol to a dynamical system on the Bloch
+coordinates $(x,y,z)$. Their Proposition~3 shows that the plane $z=0$ is a fixed plane of the map
+provided that $s_j\Zb_i$ contains at least one tensor factor $Z$ for every logical operator
+$\Zb_i$ and every element $s_j$ of the stabilizer group. Immediately after that proposition they
+conjecture, in a hedged sentence of unnumbered running text, that the hypothesis can always be met,
+for any stabilizer code, by properly choosing the logical $Z$ operators. For the $[[3,1,1]]$
+code $S=\langle \str{XZI},\str{ZXX}\rangle$ used by the same paper, each of the four cosets of $S$
+in its normalizer contains a Pauli string with no tensor factor $Z$, so no choice of logical $Z$
+meets the condition. Proposition~3 itself is correct and is untouched; the map is never computed
+here, and nothing here shows that this code lacks an invariant coordinate plane. What fails is only
+the assertion that the hypothesis of Proposition~3 can always be arranged.
+\end{abstract}
+
+\maketitle
+
+\section{The claim}\label{sec:claim}
+
+Let $\PP_n$ be the group of $n$-qubit Pauli operators. For a stabilizer code with abelian
+stabilizer group $S\le\PP_n$ of rank $n-k$ \cite{G}, write $\NN(S)$ for the normalizer of $S$ in
+$\PP_n$ and call the nontrivial cosets of $S$ in $\NN(S)$ the \emph{logical classes} of the code;
+there are $4^k$ cosets in all, since $|\NN(S)|=2^{n+k}$ and $|S|=2^{n-k}$ modulo phases.
+
+Zheng and Liu \cite{ZL} send a stabilizer-code magic-state distillation protocol to a polynomial map
+of the Bloch vector of the input state --- a viewpoint going back to Rall \cite{R}, on top of the
+structural theory of stabilizer-code distillation protocols of Campbell and Browne \cite{CB}. Their
+Proposition~3 reads, verbatim:
+
+\begin{quote}
+For a stabilizer code $Q$, $z=0$ is a fixed plane in the mapped dynamical system if $s_j\Zb_i$
+explicitly contains Pauli $Z$ operators for every logical operator $\Zb_i$ $(i=1,\dots,k)$ and
+every stabilizer element $s_j$ $(j=1,\dots,2^{\bar n})$.
+\end{quote}
+
+Here $\bar n=n-k$, so the index $j$ runs over the whole group $S$ and not over a generating set.
+Immediately after the two-line proof of that proposition, the following sentence appears:
+
+\begin{quote}
+This condition is satisfied by most known protocols that we have examined and \emph{we conjecture it
+to be generally true for any stabilizer codes by properly choosing the logical $Z$ operators without
+modifying the stabilizer groups.}
+\end{quote}
+
+It is the universal form of this sentence that is at issue below. Three conventions of \cite{ZL} fix
+its content, and we record them because the counterexample is sensitive to all three.
+
+\smallskip\noindent\emph{(i) ``Contains Pauli $Z$'' is about tensor-factor type, and a $Y$ factor
+does not count.} The proof of Proposition~1 of \cite{ZL} writes a stabilizer element as
+$s_j=(-1)^{\alpha_j}s_j^1\otimes\cdots\otimes s_j^n$ with $s_j^\ell\in\{I,X,Y,Z\}$, and the paper
+then counts the weights $w^X,w^Y,w^Z$ of $\Zb_is_j$ separately, $Y$ contributing to the Bloch
+monomial $y$ and not to $z$. The factorisation $T^z_i=z\cdot\widetilde T^z_i$ that the proof of
+Proposition~3 needs therefore requires a genuine factor $Z$.
+
+\smallskip\noindent\emph{(ii) Phases are irrelevant,} for the same reason: only the multiset of
+tensor-factor letters is read. We accordingly work in $\PP_n$ modulo phases throughout, identifying
+a Pauli operator with its string over $\{I,X,Y,Z\}$; the product of two strings is the factorwise
+product, e.g.\ $\str{XZI}\cdot\str{ZXX}=\str{YYX}$.
+
+\smallskip\noindent\emph{(iii) ``Without modifying the stabilizer groups'' fixes $S$.} A legitimate
+choice of logical $Z$ operators is then $k$ elements $\Zb_1,\dots,\Zb_k$ of $\NN(S)$ that pairwise
+commute and are independent modulo $S$.
+
+\begin{definition}\label{def:clean}
+A Pauli string is \emph{$Z$-free} if none of its tensor factors is $Z$, i.e.\ if it is a string over
+$\{I,X,Y\}$. A coset $QS\subseteq\NN(S)$ is
+\emph{dirty} if it contains a $Z$-free string, and \emph{clean} otherwise.
+\end{definition}
+
+\begin{lemma}[the coset reduction]\label{lem:coset}
+Fix $Q\in\NN(S)$. Then $Q$ satisfies the hypothesis of Proposition~3 --- that $s_jQ$ contains a
+factor $Z$ for every $s_j\in S$ --- if and only if the coset $QS$ is clean. In particular the
+hypothesis depends only on the class of $Q$ in $\NN(S)/S$, and multiplying $Q$ by an element of $S$
+buys nothing.
+\end{lemma}
+
+\begin{proof}
+As $s_j$ runs over $S$ the product $s_jQ$ runs over the coset $QS$ exactly once, because $S$ is a
+group. So ``every $s_jQ$ contains a factor $Z$'' says precisely that no member of $QS$ is $Z$-free.
+The identity lies in $S$, so $Q$ itself is one of the strings tested.
+\end{proof}
+
+By Lemma~\ref{lem:coset}, ``properly choosing the logical $Z$ operators'' is a choice among the
+$4^k-1$ nontrivial logical classes: the conjecture asserts that every stabilizer code admits $k$
+pairwise commuting, independent-modulo-$S$ elements of $\NN(S)$ whose classes are all clean. We
+call such a $k$-tuple a \emph{clean frame}. Note that the trivial class $S$ is always dirty, since
+the identity string is $Z$-free; and for a code with no clean class at all, not merely does no valid
+frame exist but no single $\Zb_i$ does.
+
+\section{A code of the source paper for which no choice works}\label{sec:witness}
+
+\begin{theorem}\label{thm:311}
+Let $S=\langle \str{XZI},\str{ZXX}\rangle$, the stabilizer group of the $[[3,1,1]]$ code worked out
+in \cite{ZL}. Then
+$S=\{\str{III},\str{XZI},\str{ZXX},\str{YYX}\}$, $|\NN(S)|=16$, and $\NN(S)/S$ has four classes,
+each of them dirty:
+\[
+\begin{array}{llll}
+ \text{class of }\str{III}: & \str{III}\cdot\str{III}=\str{III}, &
+ \text{class of }\str{IIX}: & \str{IIX}\cdot\str{III}=\str{IIX},\\
+ \text{class of }\str{IZZ}: & \str{IZZ}\cdot\str{YYX}=\str{YXY}, &
+ \text{class of }\str{IZY}: & \str{IZY}\cdot\str{XZI}=\str{XIY}.
+\end{array}
+\]
+Hence no $Q\in\NN(S)$ satisfies the hypothesis of Proposition~3 for this code, so the universal
+claim of the conjectural sentence quoted in Section~\ref{sec:claim} fails.
+\end{theorem}
+
+\begin{proof}
+The two generators commute --- their symplectic product is
+$(1,0,0)\cdot(1,0,0)+(0,1,0)\cdot(0,1,1)=1+1=0$ over $\mathbb F_2$ --- and are independent, so
+$S$ is an abelian group of order $4$ with $\str{XZI}\cdot\str{ZXX}=\str{YYX}$, and the code is a
+$[[3,1]]$ code, $k=1$. The published logical pair of \cite{ZL} is
+$\Zb=\str{IIX}$, $\Xb=\str{IZZ}$; both lie in $\NN(S)$, neither lies in $S$, and they anticommute,
+so they are a genuine conjugate pair and the third nontrivial class is that of
+$\Yb=\Zb\,\Xb=\str{IZY}$. For $k=1$ these three classes together with $S$ exhaust $\NN(S)/S$, since
+$4^k=4$.
+
+Each displayed line is an identity in $\PP_3$ modulo phase whose multiplier is an element of $S$,
+and each right-hand side is a string over $\{I,X,Y\}$, i.e.\ $Z$-free. So each of the four cosets
+contains a $Z$-free string and is dirty. By Lemma~\ref{lem:coset} no $Q\in\NN(S)$ has $s_jQ$
+containing a factor $Z$ for all $s_j\in S$. A~fortiori no clean frame exists. The stabilizer group
+has not been modified.
+\end{proof}
+
+\section{Scope}\label{sec:scope}
+
+Proposition~3 is a sufficient condition, stated with ``if'' and never with ``iff'', and it is
+correct; nothing above touches it. What Theorem~\ref{thm:311} contradicts is only the separate,
+unnumbered and hedged sentence asserting that the hypothesis of Proposition~3 can always be
+arranged, and in that sentence only the universal quantifier over stabilizer codes. In particular
+nothing above says that $z=0$ fails to be a fixed plane of the map for this code: we do not compute
+the map at all. Nor is the coordinate-plane route to a fixed plane closed for it, since the analogue
+of the condition in the $y$ direction --- every member of the coset carries a factor $Y$ --- is
+satisfied by exactly one of its four classes. The other codes and protocols of \cite{ZL} are not
+examined here, and nothing here contradicts any numerical result of \cite{ZL}.
+
+The witness code is not ours: \cite{ZL} takes it from Howard and Dawkins~\cite{HD} and reproduces it
+verbatim, and what is new here is the statement about it rather than the object.
+
+\section{Reproduction and verification}
+
+Theorem~\ref{thm:311} is a short computation in $\PP_3$ modulo phase: encode a
+length-$n$ string as the pair $(a,b)\in\mathbb F_2^n\times\mathbb F_2^n$ with $a_i=1$ iff factor $i$
+is $X$ or $Y$ and $b_i=1$ iff it is $Z$ or $Y$; the product is $(a\oplus a',b\oplus b')$, two
+strings commute iff $\langle a,b'\rangle+\langle b,a'\rangle=0$ over $\mathbb F_2$, and a string
+contains a factor $Z$ iff $\overline a\wedge b\neq0$.
+
+The files \str{verify.py} and \str{verify.output.txt} accompanying this note are a program and a
+recorded run of it. From literals only, with no external data, in exact integer arithmetic and with
+no randomness, it checks for the code of Theorem~\ref{thm:311} that $S$ is abelian with the printed
+element list, that $|\NN(S)|=2^{n+k}$ and $|\NN(S)/S|=4^k$, that each displayed product closes as
+Pauli arithmetic with a multiplier genuinely in $S$ and a $Z$-free right-hand side, and that the four
+representatives lie in pairwise distinct cosets and so exhaust the classes; independently of those
+certificates it then sweeps all of $\NN(S)$ and counts the classes on which the condition holds, in
+each of the three coordinate directions. Those are the checks that bear on this paper. The recorded
+run also carries checks on other codes and statements, and its labels and commentary refer to
+sections, lemmas, propositions and tables of a longer draft rather than to anything printed here;
+none of that is claimed in this paper. Nothing in the program computes a dynamical map: what it
+decides is the satisfiability of the hypothesis of Proposition~3, not whether $z=0$ is a fixed plane.
+
+\begin{thebibliography}{9}
+
+\bibitem{CB}
+E.~T. Campbell and D.~E. Browne,
+\emph{On the structure of protocols for magic state distillation},
+Theory of Quantum Computation, Communication and Cryptography (TQC 2009),
+Lecture Notes in Comput. Sci. \textbf{5906}, Springer, 2009, 20--32.
+\href{https://arxiv.org/abs/0908.0838}{arXiv:0908.0838}.
+
+\bibitem{G}
+D.~Gottesman,
+\emph{Stabilizer codes and quantum error correction},
+Ph.D. thesis, California Institute of Technology, 1997.
+\href{https://arxiv.org/abs/quant-ph/9705052}{arXiv:quant-ph/9705052}.
+
+\bibitem{HD}
+M.~Howard and H.~Dawkins,
+\emph{Small codes for magic state distillation},
+Eur. Phys. J. D \textbf{70} (2016), 55.
+\href{https://doi.org/10.1140/epjd/e2016-60682-y}{doi:10.1140/epjd/e2016-60682-y};
+\href{https://arxiv.org/abs/1512.04765}{arXiv:1512.04765}.
+
+\bibitem{R}
+P.~Rall,
+\emph{Fractal properties of magic state distillation},
+preprint, 2017.
+\href{https://arxiv.org/abs/1708.09256}{arXiv:1708.09256}.
+
+\bibitem{ZL}
+Y.~Zheng and Y.~Liu,
+\emph{From magic state distillation to dynamical systems},
+Quantum \textbf{9} (2025), 1858.
+\href{https://doi.org/10.22331/q-2025-09-15-1858}{doi:10.22331/q-2025-09-15-1858};
+\href{https://arxiv.org/abs/2412.04402}{arXiv:2412.04402}. Proposition~3 and the conjectural
+sentence following it are quoted from the accepted version, arXiv:2412.04402v2, which carries the
+journal acceptance date.
+
+\end{thebibliography}
+
+\end{document}

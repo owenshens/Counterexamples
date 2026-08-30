@@ -1,0 +1,183 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A non-resolvable (7 x 15, 35)-triple array}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\TA}{\mathsf{TA}}
+\newcommand{\rs}{\operatorname{rs}}
+
+\title[A non-resolvable $(7\times15,35)$-triple array]
+{A non-resolvable $(7\times 15,35)$-triple array}
+
+\date{}
+
+\subjclass[2020]{05B05, 05B30, 62K10}
+\keywords{triple array, row-column design, resolvable design, non-resolvable design}
+
+\begin{document}
+
+\begin{abstract}
+Gordeev and \"Ohman ask, in Problem~58 of \cite{GO}, for a non-resolvable
+$(7\times 15,35)$-triple array. We exhibit one. The witness is printed in full, and its
+non-resolvability is decided by a single multiset a reader can read off the array: the
+$35$ symbols realise $31$ distinct row-triples, with maximum multiplicity $2$, whereas a
+resolution needs five symbols sharing one row-triple.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+We follow \cite[Definition~6]{GO}. For an $r\times c$ array $T$ on a symbol set of size
+$v$, write $R_i$ for the set of symbols occurring in row $i$ and $C_j$ for the set of
+symbols occurring in column~$j$.
+
+\begin{definition}\label{def:ta}
+$T$ is an \emph{$(r\times c,v)$-triple array} if
+\begin{enumerate}
+\item[(T1)] no symbol occurs more than once in a row and no symbol occurs more than once in
+a column (so $T$ is \emph{binary} in rows and in columns);
+\item[(T2)] every symbol occurs exactly $e=rc/v$ times;
+\item[(T3)] $|R_i\cap C_j|=\lambda_{rc}$ for all $i,j$;
+\item[(T4)] $|R_i\cap R_s|=\lambda_{rr}$ for all $i\ne s$;
+\item[(T5)] $|C_j\cap C_t|=\lambda_{cc}$ for all $j\ne t$.
+\end{enumerate}
+\end{definition}
+
+For $(r,c,v)=(7,15,35)$ the parameters are forced:
+$e=rc/v=3$, $\lambda_{rc}=e=3$, $\lambda_{rr}=c(e-1)/(r-1)=5$ and
+$\lambda_{cc}=r(e-1)/(c-1)=1$. In the notation of \cite{GO} the object below is a
+$\TA(35,3,5,1,3:7\times 15)$.
+
+\begin{definition}[{\cite[Definition~21]{GO}}]\label{def:res}
+An $(r\times c,v)$-triple array is \emph{resolvable} if its $v$ symbols can be partitioned
+into $r$ \emph{groups} of size $k=c/e$ such that all symbols of a group occur in the same
+set of rows, and every column set $C_j$ contains precisely one symbol of each group.
+\end{definition}
+
+Here $k=c/e=5$ is an integer and $rk=7\cdot 5=35=v$, so the numerical conditions that
+Definition~\ref{def:res} imposes on the parameters are met; these are necessary and not
+sufficient, but resolvable arrays on this cell are known \cite{GO}. Non-resolvability here
+is therefore a genuine property and not an integrality obstruction. The same paper then
+asks, in Section~9.2 (``Open questions''):
+
+\begin{quote}
+\textbf{Problem 58.} Construct a non-resolvable $(7\times 15,35)$-triple array.
+\end{quote}
+
+The preceding paragraph of \cite{GO} supplies the quantifier: ``\emph{a triple array does
+not have to be resolvable even when its parameter set is admissible for resolvable triple
+arrays. Despite our full enumeration of resolvable $(7\times 15,35)$-triple arrays, it is
+therefore still an open question whether there are further, non-resolvable triple arrays on
+these parameters.}'' Definitions~\ref{def:ta} and~\ref{def:res} are reproduced from
+\cite{GO} and everything below is relative to them as reproduced: an array satisfying
+Definition~\ref{def:ta} and failing Definition~\ref{def:res} settles the problem as stated
+there, and no other reading of ``resolvable'' is treated.
+
+\section{The array}
+
+Rows $1,\dots,7$ downwards, columns $1,\dots,15$ rightwards, symbols $1,\dots,35$:
+\[
+{\small\setlength{\arraycolsep}{3.2pt}
+T=\ \begin{array}{r|rrrrrrrrrrrrrrr}
+R_1 &  1 & 10 & 18 & 20 & 19 & 27 & 15 & 12 &  5 & 17 & 22 &  4 & 35 & 33 & 34\\
+R_2 &  2 & 12 &  8 & 22 & 24 & 23 & 20 & 30 & 31 &  3 & 34 & 26 & 13 &  7 & 18\\
+R_3 &  3 &  8 & 16 & 19 & 15 & 10 & 31 &  5 & 28 & 32 &  6 & 34 & 29 & 24 &  9\\
+R_4 &  4 &  1 & 14 &  3 & 25 & 28 & 30 & 16 & 13 & 33 & 23 & 21 & 18 & 10 & 32\\
+R_5 &  5 & 13 & 15 & 21 & 26 & 20 & 11 & 27 & 25 & 29 & 33 &  8 &  6 & 14 &  7\\
+R_6 &  6 &  9 & 17 & 14 &  1 &  2 & 32 & 24 & 22 & 26 & 11 & 28 & 30 & 35 & 27\\
+R_7 &  7 & 11 &  2 &  9 & 23 & 29 &  4 & 21 & 17 & 12 & 16 & 35 & 19 & 31 & 25
+\end{array}}
+\]
+
+\begin{theorem}\label{thm:main}
+$T$ is a $(7\times 15,35)$-triple array in the sense of Definition~\ref{def:ta}, and $T$ is
+not resolvable in the sense of Definition~\ref{def:res}. Hence Problem~58 of \cite{GO}, as
+reproduced above, has an affirmative answer.
+\end{theorem}
+
+That $T$ satisfies Definition~\ref{def:ta} is a finite check on the printed array: all
+$105$ cells carry symbols from $\{1,\dots,35\}$, each of the $35$ symbols exactly three
+times; each row holds $15$ distinct symbols and each column $7$; $|R_i\cap C_j|=3$ on all
+$105$ row--column pairs; $|R_i\cap R_s|=5$ on all $21$ row pairs; and $|C_j\cap C_t|=1$ on
+all $105$ column pairs. The array is non-trivial, $\max(r,c)=15<v=35<rc=105$.
+
+\subsection*{Non-resolvability}
+For a symbol $s$ let
+\[
+ \rs(s)=\{\,i : s\in R_i\,\}
+\]
+be its \emph{row-set}. By (T1) and (T2) each symbol occurs three times in three distinct
+rows, so $\rs(s)$ is a $3$-subset of $\{1,\dots,7\}$. Reading them off $T$:
+\[
+{\small\setlength{\arraycolsep}{2pt}
+\begin{array}{llllll}
+\rs(1)=146 & \rs(2)=267 & \rs(3)=234 & \rs(4)=147 & \rs(5)=135 & \rs(6)=356\\
+\rs(7)=257 & \rs(8)=235 & \rs(9)=367 & \rs(10)=134 & \rs(11)=567 & \rs(12)=127\\
+\rs(13)=245 & \rs(14)=456 & \rs(15)=135 & \rs(16)=347 & \rs(17)=167 & \rs(18)=124\\
+\rs(19)=137 & \rs(20)=125 & \rs(21)=457 & \rs(22)=126 & \rs(23)=247 & \rs(24)=236\\
+\rs(25)=457 & \rs(26)=256 & \rs(27)=156 & \rs(28)=346 & \rs(29)=357 & \rs(30)=246\\
+\rs(31)=237 & \rs(32)=346 & \rs(33)=145 & \rs(34)=123 & \rs(35)=167 &
+\end{array}}
+\]
+(here $146$ abbreviates $\{1,4,6\}$).
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose $T$ were resolvable, with groups $G_1,\dots,G_7$ as in
+Definition~\ref{def:res}. All $k=5$ symbols of a group occur in the same rows, so each
+$G_i$ is contained in one fibre of $\rs$. Consequently every fibre of $\rs$ is a disjoint
+union of groups, and in particular
+\begin{equation}\label{eq:div}
+ 5 \mid |\rs^{-1}(A)| \qquad\text{for every } A\subseteq\{1,\dots,7\}.
+\end{equation}
+The list above takes exactly $31$ distinct values, and the only coincidences are
+\[
+ \rs(5)=\rs(15)=135,\qquad
+ \rs(21)=\rs(25)=457,
+\]
+\[
+ \rs(28)=\rs(32)=346,\qquad
+ \rs(17)=\rs(35)=167 .
+\]
+So the multiset of fibre sizes is $\{1^{27},2^{4}\}$, of total $27+8=35$, and its maximum
+is $2$. As $2<5$, \eqref{eq:div} fails --- there is not even one set of five symbols with a
+common row-set, so no group can be formed at all. This contradiction proves that $T$ is not
+resolvable.
+\end{proof}
+
+\section{Verification}
+
+The array above is the only input needed. Everything asserted about it --- the five clauses
+of Definition~\ref{def:ta}, the row-set list and its fibre-size multiset $\{1^{27},2^4\}$,
+and the failure of Definition~\ref{def:res} --- was recomputed in exact integer arithmetic
+by a standard-library Python program that reads the printed array and nothing else. The
+program (\texttt{verify.py}) and a recorded run of it (\texttt{verify.output.txt}) accompany
+this paper; the run also reports further checks on the array that the argument above does
+not use. It checks nothing bibliographic: the wording of Problem~58 and of the two
+definitions reproduced above is taken from \cite{GO} and is confirmed by no computation
+here. Neither file is needed to redo the work: the deciding fact, that no five symbols
+share a row-set, can be read off the row-set list by hand.
+
+\begin{thebibliography}{9}
+
+\bibitem{GO}
+A.~Gordeev and L.-D. \"Ohman,
+\emph{Resolvable triple arrays},
+Electron. J. Combin. \textbf{33} (2026), no.~2, Paper No.~2.35.
+\href{https://doi.org/10.37236/14977}{doi:10.37236/14977};
+\href{https://arxiv.org/abs/2512.08681}{arXiv:2512.08681v2}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,340 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Gap-Only Interlacing of the Real Roots of Consecutive Yablonskii-Vorob'ev Polynomials, Given the Published Real-Root Count}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\DeclareMathOperator{\sgn}{sign}
+\newcommand{\Zs}{\mathcal Z}
+\newcommand{\NN}{N}
+
+\title[Gap-only interlacing of $Y_n$ and $Y_{n+1}$]
+{Gap-Only Interlacing of the Real Roots of Consecutive Yablonskii--Vorob'ev
+Polynomials, Given the Published Real-Root Count}
+
+\date{}
+
+\subjclass[2020]{34M55, 33E17, 26C10}
+\keywords{Yablonskii--Vorob'ev polynomials, Painlev\'e II, real roots,
+interlacing, Okamoto polynomials}
+
+\begin{document}
+
+\begin{abstract}
+Let $Y_n$ be the Yablonskii--Vorob'ev polynomials. In the Conclusions of their
+paper on the roots of generalised Okamoto polynomials, Roffelsen and Stokes
+record that the numbers of real roots of the $Y_n$ are known and that
+interlacing of the real roots of $Y_{n-1}$ and $Y_{n+1}$ is a theorem of
+Clarkson, ``but interlacing of roots of consecutive polynomials $Y_n$ and
+$Y_{n+1}$ has not been proved''. Their own definition of interlacing is a
+two-sided condition on gaps alone: between two real roots of one polynomial
+there lies a real root of the other. Granting three published facts about the
+$Y_n$ --- simplicity of the roots, coprimality of consecutive members, and
+Roffelsen's count of the real roots --- we prove the quoted statement for every
+$n\ge1$ in that gap-only sense and in no other, and in the sharper form that the
+merged real-root list of $Y_n$ and $Y_{n+1}$ has exactly $n+1$ elements,
+strictly alternates, and begins with a root of $Y_{n+1}$. The qualification is
+not idle. Under the stronger reading of interlacing that a reader may well have
+in mind, which also demands that the two root counts differ by one, that same
+merged word makes the
+statement false for every odd $n$, since $m_{n+1}=m_n$ there; under that reading
+nothing here settles the sentence quoted above, and we do not claim it does. A
+sign identity read
+off the Yablonskii--Vorob'ev recurrence forces the parity of the number of roots
+of $Y_{n+1}$ in each gap between consecutive roots of $Y_n$, and the published
+count of real roots leaves no room for more than the forced minimum.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+The Yablonskii--Vorob'ev polynomials are defined by
+\begin{equation}\label{eq:rec}
+ Y_0=1,\qquad Y_1=z,\qquad
+ Y_{n+1}Y_{n-1}=zY_n^2-4\bigl(Y_nY_n''-(Y_n')^2\bigr)\quad(n\ge1),
+\end{equation}
+and $Y_n\in\mathbb Z[z]$ is monic of degree $d_n=n(n+1)/2$. They carry the
+rational solutions of the second Painlev\'e equation. Write
+\[
+ \Zs_k=\{x\in\mathbb R: Y_k(x)=0\},\qquad m_k=\#\Zs_k .
+\]
+
+The Conclusions of Roffelsen and Stokes \cite{RS}, quoted here from the e-print
+\texttt{arXiv:2402.15887v1}, name one gap in the picture for the
+Yablonskii--Vorob'ev family:
+
+\begin{quote}
+the numbers of real roots of these polynomials $Y_n$ are known
+\cite{Roffelsen2012}, as well as interlacing of roots of $Y_{n-1}$ and
+$Y_{n+1}$ on the real line \cite{ClarksonCMFT}, but interlacing of roots of
+consecutive polynomials $Y_n$ and $Y_{n+1}$ has not been proved.
+\end{quote}
+
+\noindent
+The two citations inside the quotation are \cite{Roffelsen2012} and
+\cite{ClarksonCMFT} of the present bibliography. The journal version of record
+was not consulted, so the wording above and the definition below are those of
+that e-print:
+
+\begin{definition}[\cite{RS}]\label{def:interlace}
+The real roots of $P$ and $Q$ are \emph{interlaced} on a connected
+$I\subseteq\mathbb R$ if between any two real roots of $P$ in $I$ there lies a
+real root of $Q$, and between any two real roots of $Q$ in $I$ there lies a
+real root of $P$.
+\end{definition}
+
+\noindent
+This is a two-sided condition on gaps only; it does \emph{not} require the two
+root counts to differ by one, and every assertion below is under it. Under a
+stronger variant that adds that demand, the word proved below makes the
+statement true for every even $n$ and false for every odd $n$, since
+$m_{n+1}=m_n$ for odd $n$. So the sentence quoted above is settled here in the
+gap-only reading only; in the stronger reading it is not settled but refuted for
+odd $n$, and which of the two the quoted sentence intends we do not know.
+
+\begin{theorem}\label{thm:main}
+For every $n\ge1$ the real roots of $Y_n$ and $Y_{n+1}$ are interlaced on all
+of $\mathbb R$ in the sense of Definition~\ref{def:interlace}. More precisely,
+$\Zs_n\cup\Zs_{n+1}$ has exactly $n+1$ elements, its elements alternate
+strictly between the two polynomials, and its least element belongs to
+$\Zs_{n+1}$; for even $n$ its greatest element also belongs to $\Zs_{n+1}$.
+Equivalently, writing $1$ for a root of $Y_{n+1}$ and $0$ for a root of $Y_n$
+and reading left to right along the real line, the merged root word is
+\[
+ \underbrace{1010\cdots10}_{n+1}\quad(n\text{ odd}),
+ \qquad
+ \underbrace{1010\cdots01}_{n+1}\quad(n\text{ even}).
+\]
+\end{theorem}
+
+\section{The inputs}
+
+Everything below uses only \eqref{eq:rec} and the following published facts,
+none of them ours:
+\begin{itemize}
+\item[(F1)] every root of $Y_n$ is simple;
+\item[(F2)] $\gcd(Y_n,Y_{n+1})=1$;
+\item[(F3)] $m_k=\lfloor(k+1)/2\rfloor$ for every $k\ge0$;
+\item[(F4)] $Y_k$ is monic of degree $d_k=k(k+1)/2$, hence
+ $\sgn Y_k(+\infty)=+1$ and $\sgn Y_k(-\infty)=(-1)^{d_k}$.
+\end{itemize}
+(F1) and (F2) are due to Fukutani, Okamoto and Umemura \cite{FOU}; see
+\cite[Thm.~7.1]{ClarksonSMF} and \cite[Thm.~4]{Roffelsen2012}. (F3) was
+conjectured by Clarkson \cite[Conj.~7.4]{ClarksonSMF} and proved by Roffelsen
+\cite[Thm.~1]{Roffelsen2012}. (F4) is immediate from \eqref{eq:rec}.
+
+\section{The proof}
+
+\begin{lemma}\label{lem:sign}
+For every $n\ge1$ and every $a\in\Zs_n$,
+\[
+ Y_{n+1}(a)\,Y_{n-1}(a)=4\,Y_n'(a)^2>0 .
+\]
+In particular $Y_{n+1}$ and $Y_{n-1}$ take the same, nonzero, sign at every real
+root of $Y_n$.
+\end{lemma}
+
+\begin{proof}
+Rearranging \eqref{eq:rec},
+\begin{equation}\label{eq:l1}
+ Y_{n+1}Y_{n-1}-4(Y_n')^2=Y_n\bigl(zY_n-4Y_n''\bigr),
+\end{equation}
+an identity in $\mathbb Z[z]$. The right-hand side vanishes at $a$, and
+$Y_n'(a)\ne0$ because $a$ is a simple root by (F1).
+\end{proof}
+
+For an open interval $I$ whose endpoints (possibly $\pm\infty$) are not roots of
+$Y_k$, write $\NN_k(I)=\#(\Zs_k\cap I)$. Since all roots of $Y_k$ are simple by
+(F1) and non-real roots occur in conjugate pairs, $\NN_k(I)$ is odd if and only
+if $Y_k$ takes opposite signs at the two ends of $I$.
+
+\begin{lemma}[parity transfer]\label{lem:parity}
+Let $n\ge1$ and $\Zs_n=\{a_1<\dots<a_{m_n}\}$ (nonempty, by (F3)). Put
+$L=(-\infty,a_1)$, $G_i=(a_i,a_{i+1})$ for $1\le i<m_n$, and
+$R=(a_{m_n},+\infty)$. Then
+\begin{align*}
+ \NN_{n+1}(G_i)&\equiv \NN_{n-1}(G_i)\pmod 2\quad(1\le i<m_n),\\
+ \NN_{n+1}(R)&\equiv \NN_{n-1}(R)\pmod 2,\\
+ \NN_{n+1}(L)&\equiv \NN_{n-1}(L)+1\pmod 2 .
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+By (F2), applied to the pairs $(Y_{n-1},Y_n)$ and $(Y_n,Y_{n+1})$, no $a_i$ is a
+root of $Y_{n-1}$ or of $Y_{n+1}$, so all four counts are over intervals with
+non-root endpoints and the sign criterion above applies. By
+Lemma~\ref{lem:sign}, $Y_{n+1}$ and $Y_{n-1}$ share their sign at each $a_i$;
+by (F4) they are both positive at $+\infty$. Hence across each $G_i$, and
+across $R$, the two polynomials change sign together or not at all, which is the
+first two congruences. At $-\infty$, however, (F4) gives signs $(-1)^{d_{n+1}}$
+and $(-1)^{d_{n-1}}$, and
+\[
+ d_{n+1}-d_{n-1}=\tfrac{(n+1)(n+2)}{2}-\tfrac{(n-1)n}{2}=2n+1
+\]
+is \emph{odd}, so those two signs are opposite while the signs at $a_1$ agree:
+exactly one of $Y_{n+1},Y_{n-1}$ changes sign across $L$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $k\ge0$ let $S(k)$ be the assertion
+\begin{quote}
+$\Zs_k\cup\Zs_{k+1}$ alternates strictly between $\Zs_k$ and $\Zs_{k+1}$, and
+its least element lies in $\Zs_{k+1}$.
+\end{quote}
+By (F3), $\#(\Zs_k\cup\Zs_{k+1})=\lfloor\frac{k+1}2\rfloor+\lfloor\frac{k+2}2\rfloor=k+1$,
+so $S(k)$ determines the merged word completely: it is $1010\cdots$ of length
+$k+1$, which is the word displayed in Theorem~\ref{thm:main}. We prove $S(n)$
+for all $n\ge0$ by induction.
+
+$S(0)$ holds: $\Zs_0=\varnothing$ because $Y_0=1$, and $\Zs_1=\{0\}$.
+
+Let $n\ge1$ and assume $S(n-1)$. Keep the notation of
+Lemma~\ref{lem:parity}. Reading $S(n-1)$ off, the merged word of
+$(\Zs_{n-1},\Zs_n)$ has length $n$, alternates, and begins with an element of
+$\Zs_n$; therefore
+\begin{equation}\label{eq:step1}
+ \NN_{n-1}(L)=0,\qquad
+ \NN_{n-1}(G_i)=1\ (1\le i<m_n),\qquad
+ \NN_{n-1}(R)=[\,n\text{ even}\,],
+\end{equation}
+the last because the alternating word of length $n$ starting in $\Zs_n$ ends in
+$\Zs_{n-1}$ exactly when $n$ is even. Lemma~\ref{lem:parity} now transfers these
+to $Y_{n+1}$ as parities, hence as lower bounds:
+\begin{equation}\label{eq:step2}
+ \NN_{n+1}(L)\ \text{odd},\qquad
+ \NN_{n+1}(G_i)\ \text{odd},\qquad
+ \NN_{n+1}(R)\equiv[\,n\text{ even}\,]\pmod2 .
+\end{equation}
+Summing the forced minima over the $m_n+1$ pieces of $\mathbb R\setminus\Zs_n$,
+\begin{equation}\label{eq:sum}
+\begin{aligned}
+ m_{n+1}
+ &=\NN_{n+1}(L)+\sum_{i}\NN_{n+1}(G_i)+\NN_{n+1}(R)\\
+ &\ge 1+(m_n-1)+[\,n\text{ even}\,]
+ = m_n+[\,n\text{ even}\,].
+\end{aligned}
+\end{equation}
+But (F3) makes the right-hand side \emph{equal} to $m_{n+1}$ in both parities,
+because
+$\lfloor\frac{n+2}2\rfloor=\lfloor\frac{n+1}2\rfloor+[\,n\text{ even}\,]$.
+So \eqref{eq:sum} is an equality and every term is pinned at its minimum:
+\[
+ \NN_{n+1}(L)=1,\qquad \NN_{n+1}(G_i)=1,\qquad \NN_{n+1}(R)=[\,n\text{ even}\,].
+\]
+For odd $n$ the last value is forced to be $0$ rather than merely at most $1$
+\emph{by its parity} in \eqref{eq:step2}. Thus
+$\Zs_n\cup\Zs_{n+1}$ reads
+\[
+ \bullet<a_1<\bullet<a_2<\cdots<a_{m_n}\ (<\bullet\ \text{iff } n \text{ even}),
+\]
+with each $\bullet$ a single element of $\Zs_{n+1}$: it alternates strictly and
+begins in $\Zs_{n+1}$. That is $S(n)$.
+
+Finally, $S(n)$ gives Definition~\ref{def:interlace} on $I=\mathbb R$: between
+any two real roots of $Y_n$ there lie two \emph{consecutive} ones, and
+alternation puts a root of $Y_{n+1}$ between those; symmetrically with the roles
+exchanged.
+\end{proof}
+
+\section{Related statements}
+
+(F3) is load-bearing above: parity alone bounds each interval count from below,
+and it is the published total that pins every one of them at its minimum. Our
+use of the index-$2$ pair is confined to Lemma~\ref{lem:sign}, where only a sign
+is needed.
+
+For the index-$2$ pair $(Y_{n-1},Y_{n+1})$ an alternating chain is proved by
+Roffelsen \cite[p.~6]{Roffelsen2012} and interlacing by Clarkson
+\cite[Thm.~7.3]{ClarksonSMF}, \cite{ClarksonCMFT}; Roffelsen also gives
+$\min\Zs_{n-1}>\min\Zs_{n+1}$, $\max\Zs_{n-1}<\max\Zs_{n+1}$
+\cite[Thm.~2]{Roffelsen2012} and the separate counts of positive and negative
+real roots \cite[Thm.~3]{Roffelsen2012}. Roffelsen and Stokes
+\cite[Cor.~3.15]{RS} prove adjacent-direction interlacing for the generalised
+Okamoto polynomials $Q_{m,n}$, $Q_{m,n-1}$.
+
+\section{Verification}
+
+A program \texttt{verify.py} accompanies this note as a control on the interior
+of the induction, in exact integer and rational arithmetic and using only the
+Python standard library. It generates $Y_0,\dots,Y_{43}$ from \eqref{eq:rec} by
+exact division in $\mathbb Z[z]$ and checks the monicity and degrees (F4); the
+identity \eqref{eq:l1}; (F1) and (F2) as squarefreeness and coprimality over
+finite fields; the real-root count (F3) by exact isolation with a Fujiwara
+bound for $n\le41$, where the expected value from (F3) is what certifies the
+isolation complete, with an independent Sturm computation that uses (F3)
+nowhere confirming the count only for $n\le12$; the occupancy statements
+\eqref{eq:step1} and their forced counterparts for $Y_{n+1}$, for
+$1\le n\le40$; and the arithmetic of \eqref{eq:sum} for $1\le n\le 200000$. Its
+recorded run reports
+\begin{center}
+\texttt{VERDICT: ALL 24 CHECKS PASS}
+\end{center}
+Three of those checks, the ones whose names begin \texttt{regression-}, compare
+the generated objects against coefficient lists, isolating intervals and merged
+root words held as literals inside the program itself; those literals are not
+displayed in this paper, and the checks are labelled in the run as the internal
+regression checks they are. No check asserts agreement with a display, a table
+or a numbered result that this paper does not contain. The program verifies no
+published proof and it verifies the root order only for $n\le40$; the theorem is
+the hand proof above and covers every $n$. It also confirms, for
+$1\le n\le200000$, the arithmetic behind the failure of the stronger reading of
+interlacing recorded after Definition~\ref{def:interlace}.
+
+\begin{thebibliography}{9}
+
+\bibitem{ClarksonSMF}
+P.~A. Clarkson,
+\emph{Special polynomials associated with rational and algebraic solutions of
+the Painlev\'e equations},
+in: Th\'eories asymptotiques et \'equations de Painlev\'e,
+S\'emin. Congr. \textbf{14}, Soc. Math. France, Paris, 2006, pp.~21--52.
+Section~7 contains Thm.~7.1 (simplicity), Thm.~7.3 (index-$2$ interlacing)
+and Conj.~7.4 (the real-root count).
+
+\bibitem{ClarksonCMFT}
+P.~A. Clarkson,
+\emph{Special polynomials associated with rational solutions of the Painlev\'e
+equations and applications to soliton equations},
+Comput. Methods Funct. Theory \textbf{6} (2006), no.~2, 329--401.
+\href{https://doi.org/10.1007/BF03321618}{doi:10.1007/BF03321618}.
+
+\bibitem{FOU}
+S.~Fukutani, K.~Okamoto, and H.~Umemura,
+\emph{Special polynomials and the Hirota bilinear relations of the second and
+the fourth Painlev\'e equations},
+Nagoya Math. J. \textbf{159} (2000), 179--200.
+\href{https://doi.org/10.1017/S0027763000007405}{doi:10.1017/S0027763000007405}.
+
+\bibitem{Roffelsen2012}
+P.~Roffelsen,
+\emph{On the number of real roots of the Yablonskii--Vorob'ev polynomials},
+SIGMA Symmetry Integrability Geom. Methods Appl. \textbf{8} (2012), 099,
+9~pp.
+\href{https://doi.org/10.3842/SIGMA.2012.099}{doi:10.3842/SIGMA.2012.099};
+\href{https://arxiv.org/abs/1208.2337}{arXiv:1208.2337}.
+
+\bibitem{RS}
+P.~Roffelsen and A.~Stokes,
+\emph{On real and imaginary roots of generalised Okamoto polynomials},
+J. London Math. Soc. \textbf{112} (2025), no.~4, e70329.
+\href{https://doi.org/10.1112/jlms.70329}{doi:10.1112/jlms.70329};
+\href{https://arxiv.org/abs/2402.15887}{arXiv:2402.15887}.
+The sentence quoted in Section~1, Definition~\ref{def:interlace} and the
+numbered results cited above are taken from \texttt{arXiv:2402.15887v1}
+(24 February 2024).
+
+\end{thebibliography}
+
+\end{document}

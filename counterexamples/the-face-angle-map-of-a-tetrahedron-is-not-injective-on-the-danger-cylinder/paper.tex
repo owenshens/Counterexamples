@@ -1,0 +1,276 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The face-angle map of a tetrahedron is not injective on the danger cylinder}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{problem}{Problem 3 \textup{(Nikitenko--Nikonorov)}}
+
+\DeclareMathOperator{\Cyl}{Cyl}
+
+\title[The face-angle map is not injective on the danger cylinder]
+{The face-angle map of a tetrahedron is not injective on the danger cylinder}
+
+\date{}
+
+\subjclass[2020]{51M04, 51M20, 68T45}
+\keywords{face angle, tetrahedron with a given base, danger cylinder, P3P problem,
+self-intersection, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Fix a nondegenerate triangle $ABC$ in the plane $z=0$ with circumcircle $S$, let
+$\Cyl=S\times\mathbb R$, let $\Pi^{+}=\{(p,q,r):r>0\}$, and let
+$F(D)=(\cos\angle BDC,\cos\angle CDA,\cos\angle ADB)$ be the triple of face angles at the
+apex $D$ of the tetrahedron $ABCD$. Problem~3 of Nikitenko and Nikonorov asks whether $F$
+is injective on $\Cyl\cap\Pi^{+}$, stated there in the equivalent form that the surface
+$F(\Cyl\cap\Pi^{+})$ has no self-intersection. The answer is no. For the base
+$A=(1,0,0)$, $B=(\tfrac{15}{17},\tfrac{8}{17},0)$, $C=(0,-1,0)$ on the unit circle and the
+base point $P=(\tfrac45,\tfrac35,0)$, the two apexes $D_j=(\tfrac45,\tfrac35,r_j)$ whose
+heights satisfy $r_1^2,r_2^2=(80\mp12\sqrt{35})/425$ are distinct points of
+$\Cyl\cap\Pi^{+}$ with
+\[
+ F(D_1)=F(D_2)=\Bigl(\tfrac{2}{51}\sqrt{119},\ \tfrac{2}{13}\sqrt{21},\
+ \tfrac{2}{17}\sqrt{51}\Bigr).
+\]
+All the coordinates defining the base and the base point are rational, and the
+verification reduces to two rational identities per coordinate.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Let $ABC$ be a nondegenerate triangle in the plane $z=0$, with circumcircle $S$ of centre
+$O$ and radius $R$. For a point $D=(p,q,r)$ with $r\neq0$ the four points $A,B,C,D$ span a
+tetrahedron, and Nikitenko and Nikonorov \cite{NN} study the map that records its three
+face angles at the apex,
+\begin{equation}\label{eq:F}
+ F(D)=\bigl(\cos\angle BDC,\ \cos\angle CDA,\ \cos\angle ADB\bigr),
+\end{equation}
+on the half-space $\Pi^{+}=\{(p,q,r):r>0\}$. Writing $\Cyl=S\times(-\infty,\infty)$ for the
+right cylinder over the circumcircle and $FC=F(\Cyl\cap\Pi^{+})$ for its image, they ask
+\cite[Problem~3]{NN}:
+
+\begin{problem}
+\sloppy
+Is it true that the surface $FC=F(\Cyl\cap\Pi^{+})$ has no self-intersection, i.e.\ the map
+$F$ is injective on the set $\Cyl\cap\Pi^{+}$?
+\end{problem}
+
+\noindent The quoted statement itself identifies the absence of a self-intersection of $FC$
+with injectivity of $F$ on $\Cyl\cap\Pi^{+}$, and it is that injectivity which we refute.
+Its negation is existential, so a single explicit configuration decides it; we exhibit one
+whose base and base point have rational coordinates.
+
+Throughout we place $S$ as the unit circle in the plane $z=0$ centred at the origin, so
+$R=1$; this is the normalisation of \cite{NN}. The cylinder $\Cyl$ over the circumcircle is
+known in computer vision as the \emph{danger cylinder} of the perspective-three-point
+problem.
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+In the plane $z=0$ let
+\[
+ A=(1,0,0),\qquad B=\Bigl(\tfrac{15}{17},\tfrac{8}{17},0\Bigr),\qquad C=(0,-1,0),
+\]
+so that $A,B,C$ are rational points of the unit circle $S$ and $ABC$ is nondegenerate, and
+let
+\[
+ P=\Bigl(\tfrac45,\tfrac35,0\Bigr)\in S .
+\]
+Let $s_1<s_2$ be the two roots of
+\begin{equation}\label{eq:quad}
+ s^{2}-\tfrac{32}{85}\,s+\tfrac{16}{2125}=0,
+ \qquad\text{that is}\qquad
+ s_{1,2}=\frac{80\mp12\sqrt{35}}{425},
+\end{equation}
+and put $r_j=\sqrt{s_j}$ and $D_j=\bigl(\tfrac45,\tfrac35,r_j\bigr)$ for $j=1,2$. Then
+$D_1$ and $D_2$ are two distinct points of $\Cyl\cap\Pi^{+}$ and
+\begin{equation}\label{eq:image}
+ F(D_1)=F(D_2)
+ =\Bigl(\tfrac{2}{51}\sqrt{119},\ \tfrac{2}{13}\sqrt{21},\ \tfrac{2}{17}\sqrt{51}\Bigr).
+\end{equation}
+Consequently $F$ is not injective on $\Cyl\cap\Pi^{+}$, and Problem~3 is answered in the
+negative.
+\end{theorem}
+
+The two tetrahedra $ABCD_1$ and $ABCD_2$ share the base $ABC$ and all three face angles at
+the apex, and their apexes differ: $|D_1A|^{2}=\tfrac25+s_1\neq\tfrac25+s_2=|D_2A|^{2}$.
+
+\section{Proof}
+
+\subsection*{The reduction along one generator}
+Fix $P\in S$ and let $D=(P,r)$ run up the vertical generator of $\Cyl$ through $P$. Put
+\[
+ s=r^{2},\qquad u=|PB|^{2},\quad v=|PC|^{2},\quad w=|PA|^{2},
+\]
+\[
+ a=|BC|,\qquad b=|CA|,\qquad c=|AB|,
+\]
+and
+\[
+ K_1=\tfrac12(u+v-a^{2}),\qquad K_2=\tfrac12(v+w-b^{2}),\qquad K_3=\tfrac12(w+u-c^{2}).
+\]
+Because $D$ lies vertically above $P$ we have $|DB|^{2}=u+s$, $|DC|^{2}=v+s$ and
+$|DA|^{2}=w+s$, so the law of cosines in the triangle $BDC$ gives
+\begin{equation}\label{eq:g}
+ \cos\angle BDC=\frac{K_1+s}{\sqrt{(u+s)(v+s)}},
+\end{equation}
+and cyclically for the other two coordinates: each coordinate of $F$ along the generator is
+a function of the single variable $s$ of the shape
+$g(s)=(K+s)\bigl/\sqrt{(p+s)(q+s)}$.
+
+\subsection*{Equal values at two heights}
+Suppose $s_1\neq s_2$ are positive and put $\sigma=s_1+s_2$, $\pi=s_1s_2$, so that $s_1,s_2$
+are the roots of $s^{2}-\sigma s+\pi$. Reducing modulo that quadratic replaces $s^{2}$ by
+$\sigma s-\pi$, and therefore, for a rational constant $\gamma$,
+\[
+ (K+s)^{2}-\gamma\,(p+s)(q+s)
+ \equiv
+ \bigl[(K^{2}-\pi)-\gamma\,(pq-\pi)\bigr]
+ +\bigl[(2K+\sigma)-\gamma\,(p+q+\sigma)\bigr]s .
+\]
+The right-hand side is linear in $s$, so it vanishes at both roots if and only if both
+brackets vanish. Hence:
+
+\begin{lemma}\label{lem:two}
+Let $s_1\neq s_2$ be the roots of $s^{2}-\sigma s+\pi$ and let $p,q,K$ be given. Then
+$g(s_1)^{2}=g(s_2)^{2}=\gamma$ holds with
+\begin{equation}\label{eq:gamma}
+ \gamma=\frac{2K+\sigma}{p+q+\sigma}
+ \qquad\text{if and only if}\qquad
+ K^{2}-\pi=\gamma\,(pq-\pi),
+\end{equation}
+provided $p+q+\sigma\neq0$ and $(p+s_j)(q+s_j)\neq0$. If moreover $K+s_1$ and $K+s_2$ have
+the same sign, then $g(s_1)=g(s_2)$.
+\end{lemma}
+
+\begin{proof}
+Immediate from the displayed reduction: the coefficient of $s$ vanishes exactly when
+$\gamma$ has the stated value, and then the constant term vanishes exactly when the stated
+identity holds. For the last sentence, $g(s_1)^{2}=g(s_2)^{2}$ gives
+$g(s_1)=\pm g(s_2)$; the denominators in \eqref{eq:g} are positive, so the sign of $g(s_j)$
+is the sign of $K+s_j$, and equal signs force the $+$ case.
+\end{proof}
+
+\subsection*{Proof of Theorem \ref{thm:main}}
+Every quantity below is a rational number computed from the rational coordinates of
+$A,B,C,P$ in Theorem~\ref{thm:main}; a reader can confirm each in a line.
+
+The four points lie on the unit circle, since $15^{2}+8^{2}=17^{2}$ and
+$4^{2}+3^{2}=5^{2}$; the base is nondegenerate, three distinct points of a circle never
+being collinear; and $P\notin\{A,B,C\}$. The six squared distances are
+\begin{equation}\label{eq:lengths}
+ \begin{gathered}
+ u=|PB|^{2}=\tfrac{2}{85},\qquad v=|PC|^{2}=\tfrac{16}{5},\qquad w=|PA|^{2}=\tfrac25,\\
+ a^{2}=\tfrac{50}{17},\qquad b^{2}=2,\qquad c^{2}=\tfrac{4}{17},
+ \end{gathered}
+\end{equation}
+whence
+\begin{equation}\label{eq:sigmapi}
+ \sigma:=4-(u+v+w)=4-\tfrac{308}{85}=\tfrac{32}{85},
+ \qquad
+ \pi:=\tfrac14\,uvw=\tfrac{16}{2125},
+\end{equation}
+and
+\[
+ K_1=\tfrac{12}{85},\qquad K_2=\tfrac45,\qquad K_3=\tfrac{8}{85}.
+\]
+The quadratic \eqref{eq:quad} is exactly $s^{2}-\sigma s+\pi$, its discriminant is
+\begin{equation}\label{eq:disc}
+ \sigma^{2}-4\pi=\Bigl(\tfrac{32}{85}\Bigr)^{2}-\tfrac{64}{2125}
+ =\tfrac{4032}{36125}>0,
+\end{equation}
+and $\sigma>0$, $\pi>0$, so its roots $s_1,s_2$ are two \emph{distinct positive} reals. Hence
+$r_1=\sqrt{s_1}$ and $r_2=\sqrt{s_2}$ are distinct positive heights, $D_1\neq D_2$, both
+$D_j$ lie in $\Pi^{+}$, and both have horizontal part $P\in S$, so both lie on $\Cyl$: they
+are two distinct points of $\Cyl\cap\Pi^{+}$.
+
+Now apply Lemma~\ref{lem:two} once per coordinate, taking $(K,p,q)$ to be $(K_1,u,v)$, then
+$(K_2,v,w)$, then $(K_3,w,u)$; all denominators below are nonzero. The values
+\eqref{eq:gamma} are
+\[
+ \gamma_1=\frac{\tfrac{24}{85}+\tfrac{32}{85}}{\tfrac{2}{85}+\tfrac{16}{5}+\tfrac{32}{85}}
+ =\frac{56/85}{306/85}=\frac{28}{153},
+\]
+\[
+ \gamma_2=\frac{\tfrac85+\tfrac{32}{85}}{\tfrac{16}{5}+\tfrac25+\tfrac{32}{85}}
+ =\frac{168/85}{338/85}=\frac{84}{169},
+ \qquad
+ \gamma_3=\frac{\tfrac{16}{85}+\tfrac{32}{85}}{\tfrac25+\tfrac{2}{85}+\tfrac{32}{85}}
+ =\frac{48/85}{68/85}=\frac{12}{17},
+\]
+and the three constant-term identities hold:
+\begin{align}
+ K_1^{2}-\pi&=\tfrac{144}{7225}-\tfrac{16}{2125}=\tfrac{448}{36125}
+   =\tfrac{28}{153}\cdot\tfrac{144}{2125}=\gamma_1(uv-\pi),\notag\\
+ K_2^{2}-\pi&=\tfrac{16}{25}-\tfrac{16}{2125}=\tfrac{1344}{2125}
+   =\tfrac{84}{169}\cdot\tfrac{2704}{2125}=\gamma_2(vw-\pi),\label{eq:three}\\
+ K_3^{2}-\pi&=\tfrac{64}{7225}-\tfrac{16}{2125}=\tfrac{48}{36125}
+   =\tfrac{12}{17}\cdot\tfrac{4}{2125}=\gamma_3(wu-\pi).\notag
+\end{align}
+Finally $K_1,K_2,K_3>0$ and $s_1,s_2>0$, so $K_i+s_1$ and $K_i+s_2$ are positive for every
+$i$, and Lemma~\ref{lem:two} upgrades the equality of squares to equality of the cosines
+themselves. Therefore
+\[
+ F(D_1)=F(D_2)=\bigl(\sqrt{\gamma_1},\sqrt{\gamma_2},\sqrt{\gamma_3}\bigr)
+ =\Bigl(\tfrac{2}{51}\sqrt{119},\ \tfrac{2}{13}\sqrt{21},\ \tfrac{2}{17}\sqrt{51}\Bigr),
+\]
+which is \eqref{eq:image}, using $\tfrac{28}{153}=\tfrac{4\cdot119}{51^{2}}$,
+$\tfrac{84}{169}=\tfrac{4\cdot21}{13^{2}}$ and
+$\tfrac{12}{17}=\tfrac{4\cdot51}{17^{2}}$. \qed
+
+\section{Scope}\label{sec:scope}
+
+Theorem~\ref{thm:main} refutes Problem~3 as printed: $F$ is not injective on
+$\Cyl\cap\Pi^{+}$. Nothing more is claimed; in particular the non-injectivity locus of $F$
+on $\Cyl\cap\Pi^{+}$ is not described here.
+
+\section{Verification}
+
+Theorem~\ref{thm:main} needs no computer: the object is four rational points of a circle, and its proof
+is the three rational identities \eqref{eq:three} together with three sign checks. A
+program \texttt{verify.py} and a recorded run \texttt{verify.output.txt} accompany this note
+nonetheless. The program reads the four points $A,B,C,P$ printed in Theorem~\ref{thm:main}
+and nothing else, recomputes \eqref{eq:lengths}--\eqref{eq:disc}, the three $\gamma_i$ and
+the three identities \eqref{eq:three}, and then decides $F(D_1)=F(D_2)$ in exact arithmetic
+in the real quadratic field $\mathbb Q(\sqrt{35})$ -- including an exact sign test, so no
+floating-point number enters that decision. It also evaluates the two face-angle triples by
+three-dimensional dot products of the edge vectors in high-precision arithmetic; that route
+reports only numerical agreement to the precision used, and the equality of the triples is
+established by the exact checks alone. Every check in the recorded run passes.
+Lemma~\ref{lem:two} is proved above by hand and is not re-derived by the program.
+
+The recorded run is not confined to this note. Parts of it, and of the scope list it prints,
+refer to a Proposition~3, a Remark~3 and Sections~4 and~5 that do not occur here, and to a
+rational scan, a control computation, decimal expansions and properties of the base triangle
+that support no statement made here; those lines should be read as bearing on other
+statements, and nothing in Theorem~\ref{thm:main} depends on them. What the run establishes for this note is the
+exhibited object: every number and every inequality of Theorem~\ref{thm:main}, re-derived
+from the four points $A,B,C,P$.
+
+\begin{thebibliography}{9}
+
+\bibitem{NN}
+E.~V. Nikitenko and Yu.~G. Nikonorov,
+\emph{On face angles of tetrahedra with a given base},
+Results Math. \textbf{81} (2026), no.~3, Paper No.~60.
+\href{https://doi.org/10.1007/s00025-026-02610-x}{doi:10.1007/s00025-026-02610-x};
+\href{https://arxiv.org/abs/2505.22374v4}{arXiv:2505.22374v4}.
+Problem~3 is quoted from the e-print, version~4.
+
+\end{thebibliography}
+
+\end{document}

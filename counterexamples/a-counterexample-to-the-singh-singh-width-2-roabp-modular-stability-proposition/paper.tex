@@ -1,0 +1,246 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Counterexample, as Printed, to the Singh--Singh Width-2 ROABP Modular-Stability Proposition}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\KK}{K}
+\newcommand{\Rr}{\mathcal{R}_r}
+\newcommand{\Zrs}{\mathbb{Z}_r^{*}}
+\newcommand{\Bad}{B_r}
+\newcommand{\Gam}{\Gamma}
+
+\title[A counterexample, as printed, to a modular-stability proposition]
+{A Counterexample, as Printed, to the Singh--Singh Width-2 ROABP Modular-Stability Proposition}
+
+\date{}
+
+\subjclass[2020]{68Q25, 11T06, 12Y05, 68W30}
+\keywords{polynomial identity testing, read-once oblivious algebraic branching program,
+Kronecker substitution, cyclic hashing, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Singh and Singh (arXiv:2602.13449v1) study the modular substitution
+$\Gam_g\colon x_i\mapsto\lambda^{g^{\,i}}$ into
+$\Rr=\KK[\lambda]/\langle\lambda^r-1\rangle$ and its bad set
+$\Bad(C)=\{g\in\Zrs: \Gam_g(C)=0\}$. Their Conjecture~4.7.2 asserts
+$|\Bad(C)|\le r^{1-\varepsilon}$ for every nonzero width-$w$, degree-$d$ ROABP $C$ and every
+prime $r\ge R(w,d)$, and their Proposition~4.7.3 asserts that conjecture, unconditionally, for
+width-$2$ diagonal ROABPs.
+For any prime $r\ne\operatorname{char}\KK$ and any $n\ge r$, the polynomial
+$C=x_1-x_r$ is a nonzero width-$2$ diagonal ROABP of individual degree $1$ with
+$\Bad(C)=\Zrs$, so $|\Bad(C)|=r-1$, the largest value possible; more generally
+$\Bad(x_i-x_j)=\{g:g^{\,j-i}=1\}$, of order $\gcd(j-i,r-1)$. The mechanism is Fermat's little
+theorem: $g^{\,r}\equiv g \pmod r$. Since Proposition~4.7.3 is unconditional, one witness in its
+class falsifies it as printed; letting $r$ range over the primes falsifies the conjecture as it is
+quantified.
+The witness is a difference of two monomials, and thus lies in the degenerate class that the
+authors' own Remark on p.~27 removes from the conjecture's intended scope; the regime that Remark
+describes --- $C$ of width at least $3$ with non-degenerate coefficient support --- is untouched
+here and remains open.
+\end{abstract}
+
+\maketitle
+
+\section{The statements at issue, and the counterexample}
+
+Throughout, $\KK$ is a field, $r$ is a prime with $r\ne\operatorname{char}\KK$ (a condition that is
+automatic when $\operatorname{char}\KK=0$), $\Rr=\KK[\lambda]/\langle\lambda^r-1\rangle$, and $\Zrs=\{1,\dots,r-1\}$ is the multiplicative
+group modulo $r$. We follow \cite[Definition~4.7.1, printed p.~26]{SS}: for $g\in\Zrs$ the
+\emph{modular substitution} $\Gam_g$ is the $\KK$-algebra map
+\[
+ \Gam_g\colon \KK[x_1,\dots,x_n]\longrightarrow\Rr,
+ \qquad
+ x_i\longmapsto \lambda^{g^{\,i}} ,
+\]
+so that a monomial $\prod_i x_i^{a_i}$ is sent to $\lambda^{e}$ with
+$e\equiv\sum_i a_i g^{\,i}\pmod r$. The exponent of $g$ is the \emph{index} $i$ of the variable,
+nested; it is not the product $g\cdot i$. We write $C_g:=\Gam_g(C)$ and
+\[
+ \Bad(C):=\bigl\{\,g\in\Zrs \;:\; C_g=0 \text{ in }\Rr\,\bigr\}.
+\]
+Since $\lambda^0,\lambda^1,\dots,\lambda^{r-1}$ is a $\KK$-basis of $\Rr$, deciding $C_g=0$ is
+deciding whether the $r$ coefficients obtained by collecting the monomials of $C$ into residue
+classes of exponents modulo $r$ all vanish.
+
+\begin{definition}\label{def:roabp}
+A \emph{read-once oblivious algebraic branching program} (ROABP) of width $w$ and individual
+degree $d$ in the variable order $x_1,\dots,x_n$ computes
+$C=u^{\mathsf T}M_1(x_1)M_2(x_2)\cdots M_n(x_n)\,v$, where $u,v\in\KK^{w}$ and each $M_i$ is a
+$w\times w$ matrix whose entries are univariate polynomials in $x_i$ of degree at most $d$. It is
+\emph{diagonal} if every $M_i$ is a diagonal matrix; a width-$2$ diagonal ROABP therefore computes
+exactly a sum of two products of univariate polynomials.
+\end{definition}
+
+\medskip
+\noindent The passages below are transcribed by hand from the printed pages of \cite{SS}, which is
+PDF-only; only the mathematical symbols are reset in \TeX. The source reuses the label 4.7.3 (an
+Example on p.~27, a Proposition on p.~28) and prints Remarks on both p.~27 and p.~28, so each
+reference names the page and the kind. \cite[Conjecture~4.7.2, printed pp.~26--27]{SS}, in full:
+
+\begin{quote}
+\textbf{4.7.2 Conjecture (modular stability / hinge conjecture).} There exists an explicit
+polynomial $R(w,d)$ and an absolute constant $\varepsilon>0$ such that for every nonzero
+polynomial $C$ computed by a width-$w$, degree-$d$ ROABP, and for every prime $r\ge R(w,d)$
+(e.g., typically $r\ge (wd)^{7}$), the bad set
+$\Bad(C):=\{g\in\Zrs : C_g\equiv 0 \text{ in } \KK[\lambda]/\langle\lambda^{r}-1\rangle\}$
+satisfies $|\Bad(C)|\le r^{\,1-\varepsilon}$.
+\end{quote}
+
+\noindent As printed, the threshold carries no $n$: it depends on $w$ and $d$ only, so a witness
+with $n\ge r$ is admissible. One page later,
+\cite[Proposition~4.7.3, printed p.~28]{SS} states, in full:
+
+\begin{quote}
+\textbf{Proposition 4.7.3 (Special Case).} Conjecture 4.7.2 holds for width-2 diagonal ROABPs.
+\emph{Proof:} In the diagonal case, coefficients are sums of scalars. Modular reduction acts as a
+hash on exponents, and standard sparse polynomial results apply.
+\end{quote}
+
+\noindent The source also prints passages hedging the conjecture's scope; their bearing is taken up
+in Section~\ref{sec:notsettled}.
+
+\begin{theorem}\label{thm:main}
+Let $\KK$ be a field, let $r$ be a prime with $r\ne\operatorname{char}\KK$, and let
+$1\le i<j\le n$. Then
+\[
+ \Bad(x_i-x_j)=\bigl\{\,g\in\Zrs \;:\; g^{\,j-i}=1\,\bigr\},
+\]
+a subgroup of $\Zrs$ of order $\gcd(j-i,\,r-1)$. In particular, if $n\ge r$ and $C=x_1-x_r$, then
+$\Bad(C)=\Zrs$ and $|\Bad(C)|=r-1$.
+\end{theorem}
+
+\begin{proof}
+Fix $g\in\Zrs$. By definition $C_g=\lambda^{a}-\lambda^{b}$ with
+$a\equiv g^{\,i}$ and $b\equiv g^{\,j} \pmod r$, the exponents reduced into $\{0,\dots,r-1\}$.
+Since $\lambda^0,\dots,\lambda^{r-1}$ is a $\KK$-basis of $\Rr$, we have $C_g=0$ if and only if
+$a=b$, that is, if and only if $g^{\,i}\equiv g^{\,j}\pmod r$; this step uses only that the two
+coefficients $1$ and $-1$ are nonzero in $\KK$.
+As $g$ is invertible modulo $r$, $g^{\,i}\equiv g^{\,j}$ is equivalent to $g^{\,j-i}\equiv 1$.
+The set of such $g$ is the kernel of the endomorphism $g\mapsto g^{\,j-i}$ of the cyclic group
+$\Zrs$ of order $r-1$, hence a subgroup, and its order is $\gcd(j-i,r-1)$.
+
+For the last sentence take $i=1$, $j=r$, so $j-i=r-1$ and $\gcd(r-1,r-1)=r-1$; equivalently,
+$g^{\,r}\equiv g\pmod r$ for every $g$ by Fermat's little theorem, so every $g\in\Zrs$ is bad.
+\end{proof}
+
+\begin{proposition}\label{prop:class}
+For any $1\le i<j\le n$ the polynomial $C=x_i-x_j$ is nonzero over every field, has exactly two
+monomials, and is computed by a width-$2$ \emph{diagonal} ROABP of individual degree $1$ in the
+variable order $x_1,\dots,x_n$.
+\end{proposition}
+
+\begin{proof}
+Put $u=(1,1)^{\mathsf T}$, $v=(1,-1)^{\mathsf T}$ and, for $1\le t\le n$,
+\[
+ M_t(x_t)=\operatorname{diag}\bigl(\alpha_t,\beta_t\bigr),
+ \qquad
+ \alpha_t=\begin{cases}x_t,& t=i\\ 1,&t\ne i\end{cases}
+ \qquad
+ \beta_t=\begin{cases}x_t,& t=j\\ 1,&t\ne j\end{cases}
+\]
+Every $M_t$ is diagonal with entries of degree at most $1$ in $x_t$, and
+$\prod_t M_t=\operatorname{diag}(x_i,x_j)$, so
+$u^{\mathsf T}\bigl(\prod_t M_t\bigr)v=x_i-x_j$. Nonzeroness is immediate: $x_i$ and $x_j$ are
+distinct monomials and their coefficients $1,-1$ are nonzero in every field. In characteristic
+$2$ the polynomial is $x_i+x_j$, which is the same object.
+\end{proof}
+
+\begin{corollary}[Proposition 4.7.3 is false as printed]\label{cor:prop}
+Let $r$ be a prime with $r\ne\operatorname{char}\KK$, let $n\ge r$ and let $C=x_1-x_r$.
+Then $C$ is a nonzero width-$2$ diagonal ROABP of individual degree $1$ with $|\Bad(C)|=r-1$.
+Consequently, for a given $\varepsilon>0$, the bound of \cite[Conjecture~4.7.2]{SS} fails on $C$ at
+every such $r$ with $r-1>r^{\,1-\varepsilon}$, and in particular at every $r>2^{1/\varepsilon}$.
+Hence \cite[Proposition~4.7.3, printed p.~28]{SS} is false as printed.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} gives $|\Bad(C)|=r-1$ and Proposition~\ref{prop:class} places $C$ in the
+class. For the last inequality, $r-1\ge r/2$ for $r\ge 2$, and $r/2>r^{\,1-\varepsilon}$ is
+$r^{\varepsilon}>2$.
+\end{proof}
+
+\begin{corollary}[the printed form of Conjecture 4.7.2 is false]\label{cor:conj}
+For every candidate pair $(R,\varepsilon)$ with $\varepsilon>0$ there are a nonzero width-$2$,
+degree-$1$ ROABP $C$ and a prime $r\ge R(2,1)$ with $|\Bad(C)|>r^{\,1-\varepsilon}$. It suffices
+to pick any prime $r$ with $r\ge R(2,1)$, $r>2^{1/\varepsilon}$ and
+$r\ne\operatorname{char}\KK$, then $n\ge r$ and $C=x_1-x_r$, and apply
+Corollary~\ref{cor:prop}. Hence \cite[Conjecture~4.7.2]{SS} is false as printed, that is, as a
+statement quantified over all nonzero width-$w$, degree-$d$ ROABPs and all primes
+$r\ge R(w,d)$.
+\end{corollary}
+
+\section{Scope}\label{sec:notsettled}
+
+\noindent The source itself puts objects of this shape outside the conjecture's intended scope. Its
+p.~27 Remark observes that differences of two monomials can be annihilated by $\Gam_g$, calls such
+constructions ``highly structured and algebraically degenerate'' and of ``extremely low algebraic
+density'', and says that Conjecture~4.7.2 ``concerns the complementary regime''; the p.~28 Remark
+repeats that reading. Now $C=x_1-x_r$ has width $2$ and support size $2$, so it lies in the class
+those passages exclude. Against the statement they describe --- $C$ of width at least $3$ with
+non-degenerate coefficient support --- nothing here bears, and that statement remains open; we
+offer no evidence either way about it. What those passages do not do is qualify
+Proposition~4.7.3, which carries no degeneracy hypothesis, so one witness in its class suffices. No
+repair of Proposition~4.7.3 is offered here.
+
+\medskip
+\noindent The witness object is not new. \cite[Example~4.7.3, printed p.~27]{SS} already states
+that if $S\ne S'$ are subsets of $[n]$ with
+$\sum_{i\in S}g^{\,i}\equiv\sum_{i\in S'}g^{\,i}\pmod r$, then
+$C=\prod_{i\in S}x_i-\prod_{i\in S'}x_i$ satisfies $C_g=0$; Theorem~\ref{thm:main} is that Example
+at $S=\{1\}$, $S'=\{r\}$, where the hypothesis reads $g\equiv g^{\,r}\pmod r$ and so holds for
+every $g$ simultaneously. Likewise $\Bad(x_i-x_j)$ is the kernel of $g\mapsto g^{\,j-i}$ on the
+cyclic group $\Zrs$, and the order of such a kernel is $\gcd(j-i,r-1)$: this is textbook. We claim
+novelty neither for the object nor for the count.
+
+\section{Verification}
+
+Theorem~\ref{thm:main} is a two-line argument in the cyclic group $\Zrs$ and needs no machine, so
+the accompanying program \texttt{verify.py} is corroboration at particular parameters and not a
+premise. It implements $\Gam_g$ directly from Definition~4.7.1, building $C_g$ as a full length-$r$
+coefficient vector over the basis $\lambda^0,\dots,\lambda^{r-1}$; it obtains $\Bad(x_1-x_r)=\Zrs$
+at $r=31,131,1039$ over characteristics $0,2,3$ and, by the exponent-congruence route, also at
+$r=4099$ and $r=10007$; it confirms the subgroup order $\gcd(j-i,r-1)$ for every index difference
+at those primes; and it evaluates the explicit width-$2$ diagonal matrix product of
+Proposition~\ref{prop:class} symbolically. It uses only the Python standard library and exact
+integer arithmetic.
+
+\medskip
+\noindent The program covers finitely many primes at the single value $\varepsilon=1/10$ and the
+source's illustrative threshold $R(2,1)=128$; the quantification over all $\varepsilon>0$ and all
+candidate thresholds in Corollary~\ref{cor:conj} rests on the proof of Theorem~\ref{thm:main}
+alone, not on the run. Its output also records what it does not cover: no ROABP of width at least
+$3$ and no object of non-degenerate coefficient support is tested, no sweep at $n\ll r$ is offered,
+and the source PDF is not fetched, so the passages quoted above are hand transcriptions from the
+printed pages named --- no program here can re-check a transcription, and a reader who doubts one
+should compare it against the PDF by eye.
+
+\begin{thebibliography}{9}
+
+\bibitem{SS}
+S.~Singh and V.~Singh,
+\emph{An Algebraic Rigidity Framework for Order-Oblivious Deterministic Black-Box PIT of ROABPs},
+arXiv:2602.13449v1, 13 February 2026, 48~pp.
+\href{https://arxiv.org/abs/2602.13449}{arXiv:2602.13449}.
+The submission is PDF-only; page references are to the printed pages of that PDF.
+
+\end{thebibliography}
+
+\end{document}

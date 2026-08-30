@@ -1,0 +1,89 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  657b5af756aafcc731a13b5c9e0c2945a0dfdb45c7a8c4cfdcb5a77fa8fffa50
+python:  Python 3.9.6
+=== program output follows ===
+=== verify.py -- An Affirmative Answer to the Levit-Kadrawi Multi-Break Unicyclic Closure Problem ===
+exact integer arithmetic throughout; no floating point decides anything
+
+--- 0. the machinery ---
+PASS machinery-vs-brute-force 1441 trees and 3898 unicyclic graphs of order <= 6; forest recursion and both identities (A) and (B) agree with 2^n subset enumeration on every one
+PASS control-paths i_k(P_n) = C(n-k+1,k) reproduced coefficient by coefficient for n = 3..40; 0 breaks on all 38
+PASS control-cycles i_k(C_n) = (n/(n-k))C(n-k,k) reproduced for n = 3..40 by BOTH identities; 0 breaks on all 38.  With the paths above: the break detector is silent on all 76 log-concave controls
+PASS control-detector 5 synthetic sequences with 0, 1, 2, 3 and 1 breaks classified exactly
+PASS construction-sizes |S_{2,t}| = 1+2t, |T_{1,l}| = 2+2l, |T_{G,m,t}| = m(4+6t)+2 and equation (2) |(G:H)_k^(m)| = |G| + m(1+k|H|) hold on every parameter the paper uses
+
+--- 1. positive controls on OTHER authors' published integers ---
+PASS control-BR-GT25 GT_{2,5}: degree 37, breaks [34, 36] (published: degree 37, indices 34 and 36)
+PASS control-BR-multiplicity GT_{4,6} breaks [78, 80, 82, 84] and GT_{5,6} breaks [97, 99, 101, 103, 105] -- m breaks for m = 4, 5, as Bautista-Ramos reports for t large enough
+PASS control-BRGG-two-consecutive alpha = 10m+4 with breaks {10m+2, 10m+3} at m=16:alpha=164,B=[162, 163] m=17:alpha=174,B=[172, 173] m=18:alpha=184,B=[182, 183]
+PASS control-BRGG-three-consecutive alpha = 12m+8 with breaks {12m+5, 12m+6, 12m+7} at m=13:alpha=164,B=[161, 162, 163] m=14:alpha=176,B=[173, 174, 175]
+PASS control-KL-order-26 least order in T_{3,m,n}, 1 <= m,n <= 8, carrying a break is 26, at T_{3,4,4} with breaks [13] -- and nothing smaller breaks
+
+--- 2. the six witnesses of Theorem 1 ---
+PASS H_1-structure n = |E| = 82, connected, tree + one edge, unique cycle = [0, 2, 3] (length 3), as printed
+PASS H_1-two-routes identity (A) (delete cycle edge (0, 3)) and identity (B) (split at cycle vertex 0) give the same 44 coefficients
+PASS H_1-alpha-unimodal alpha = 43, unimodal, unique mode at i_25
+PASS H_1-breaks-exactly B(H_1) = [40, 42] -- every one of the 42 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_1-tree-comparison the tree has alpha = 43 and breaks [40, 42]; the closure PRESERVES
+PASS H_star-structure n = |E| = 58, connected, tree + one edge, unique cycle = [0, 1, 2, 3] (length 4), as printed
+PASS H_star-two-routes identity (A) (delete cycle edge (0, 3)) and identity (B) (split at cycle vertex 0) give the same 32 coefficients
+PASS H_star-alpha-unimodal alpha = 31, unimodal, unique mode at i_18
+PASS H_star-breaks-exactly B(H_star) = [28, 29] -- every one of the 30 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_star-tree-comparison the tree has alpha = 31 and breaks [28, 29]; the closure PRESERVES
+PASS H_2star-structure n = |E| = 155, connected, tree + one edge, unique cycle = [0, 3, 4, 5] (length 4), as printed
+PASS H_2star-two-routes identity (A) (delete cycle edge (0, 5)) and identity (B) (split at cycle vertex 0) give the same 83 coefficients
+PASS H_2star-alpha-unimodal alpha = 82, unimodal, unique mode at i_47
+PASS H_2star-breaks-exactly B(H_2star) = [78, 79, 80] -- every one of the 81 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_2star-tree-comparison the tree has alpha = 82 and breaks [78, 79, 80]; the closure PRESERVES
+PASS H_A-structure n = |E| = 312, connected, tree + one edge, unique cycle = [0, 8, 9, 10] (length 4), as printed
+PASS H_A-two-routes identity (A) (delete cycle edge (0, 10)) and identity (B) (split at cycle vertex 0) give the same 165 coefficients
+PASS H_A-alpha-unimodal alpha = 164, unimodal, unique mode at i_95
+PASS H_A-breaks-exactly B(H_A) = [162, 163] -- every one of the 163 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_A-tree-comparison the tree has alpha = 164 and breaks [162, 163]; the closure PRESERVES
+PASS H_B-structure n = |E| = 315, connected, tree + one edge, unique cycle = [0, 1, 62, 63, 72] (length 5), as printed
+PASS H_B-two-routes identity (A) (delete cycle edge (1, 72)) and identity (B) (split at cycle vertex 0) give the same 165 coefficients
+PASS H_B-alpha-unimodal alpha = 164, unimodal, unique mode at i_97
+PASS H_B-breaks-exactly B(H_B) = [161, 162, 163] -- every one of the 163 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_B-tree-comparison the tree has alpha = 164 and breaks [161, 162, 163]; the closure PRESERVES
+PASS H_7-structure n = |E| = 282, connected, tree + one edge, unique cycle = [0, 2, 3] (length 3), as printed
+PASS H_7-two-routes identity (A) (delete cycle edge (0, 3)) and identity (B) (split at cycle vertex 0) give the same 149 coefficients
+PASS H_7-alpha-unimodal alpha = 148, unimodal, unique mode at i_88
+PASS H_7-breaks-exactly B(H_7) = [135, 137, 139, 141, 143, 145, 147] -- every one of the 147 indices 1 <= k <= alpha-1 was tested, so this is exact, not a subset
+PASS H_7-tree-comparison the tree has alpha = 148 and breaks [135, 137, 139, 141, 143, 145]; the closure AMPLIFIES 6 -> 7
+PASS H_1-printed-coefficients 5 coefficients printed in the paper (i_39..i_43) all agree
+PASS H_2star-printed-coefficients 6 coefficients printed in the paper (i_77..i_82) all agree
+PASS H_A-printed-coefficients 5 coefficients printed in the paper (i_160..i_164) all agree
+PASS H_B-printed-coefficients 6 coefficients printed in the paper (i_159..i_164) all agree
+PASS H_7-printed-coefficients 15 coefficients printed in the paper (i_134..i_148) all agree
+PASS H_star-full-coefficient-list all 32 coefficients i_0..i_31 printed in the paper agree with the recomputation
+PASS printed-products 17 printed products i_k^2 and i_{k-1}i_{k+1} recomputed exactly, and each inequality points the way the paper says
+PASS H_7-alternating the 7 inequalities at k = 135,137,...,147 all fail and the 6 at k = 136,138,...,146 all hold
+PASS H_star-graph6 the 277-character graph6 string printed in the paper decodes to n = 58 and to exactly the 58 edges of the constructed H*, label for label
+PASS H_star-i2-drop i_2 goes 1596 -> 1595 from T* to H*, so the polynomial really does change even though the break set does not (Ts order 58)
+
+--- 3. the two exhaustive censuses of Proposition 4 ---
+PASS T_{G,2,6}-nonedge-count enumerated 3240 nonedges; C(82,2) - (82-1) = 3240 -- the enumeration and the arithmetic agree
+PASS T_{G,2,6}-census complete census of all 3240 closures: 0 non-unimodal, break-count distribution [(1, 864), (2, 2376)], all 2376 of the 2-break closures have break set exactly [40, 42], longest consecutive run over the cell = 1
+PASS T*-nonedge-count enumerated 1596 nonedges; C(58,2) - (58-1) = 1596 -- the enumeration and the arithmetic agree
+PASS T*-census complete census of all 1596 closures: 0 non-unimodal, break-count distribution [(0, 417), (1, 207), (2, 972)], all 972 of the 2-break closures have break set exactly [28, 29], longest consecutive run over the cell = 2
+
+--- 4. the Remark: preserving versus amplifying ---
+PASS amplification-table all 7 rows m = 1..7 of the table reproduce: orders [42, 82, 122, 162, 202, 242, 282], every tree and every closure unimodal, the closure preserving the break set for m <= 5 and adding one break at index alpha-1 for m = 6, 7
+PASS non-monotonicity T_{G,m,5} has NO break for m = 5, 6, 7, so the break count is not a function of m alone -- the caveat section 6 records
+
+NOT RE-RUN: this program checks the paper, and the paper only.  It does NOT
+NOT RE-RUN: enumerate the nonedges of the four cells other than T_{G,2,6}
+NOT RE-RUN: and T* -- in particular no census of (T_{1,3}:S_{2,4})_2^(16) or
+NOT RE-RUN: of (T_{1,7}:S_{2,5})_2^(13) is performed, and none is claimed;
+NOT RE-RUN: H_A and H_B are checked as the two individual graphs they are.
+NOT RE-RUN: It does NOT search for smaller witnesses, so no minimality claim
+NOT RE-RUN: is supported.  It does NOT verify any statement about arbitrarily
+NOT RE-RUN: many breaks: the largest number of breaks it exhibits is 7, and
+NOT RE-RUN: the m = 1..7 table is a finite computation, not a proof of a law.
+NOT RE-RUN: It does NOT re-read the source e-print arXiv:2603.17114, so the
+NOT RE-RUN: quotations, line numbers and byte counts in section 1 of the paper
+NOT RE-RUN: are outside its reach and must be checked against the e-print.
+
+VERDICT: ALL 56 CHECKS PASS
+=== program exited with status 0 ===

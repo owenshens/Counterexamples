@@ -1,0 +1,467 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Kiani-Tavakolipour Dichotomy at m = 5 for Symmetric Tropical Matrices, in Additive Form}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Rmax}{\mathbb R_{\max}}
+\newcommand{\dd}{\delta}
+\newcommand{\Cov}{\mathcal C}
+\newcommand{\Ee}{E}
+\newcommand{\Allowed}{\mathcal A}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\pos}{\operatorname{pos}}
+
+\title[The Kiani--Tavakolipour dichotomy at $m=5$, in additive form]
+{The Kiani--Tavakolipour Dichotomy at $m=5$ for Symmetric Tropical Matrices,
+in Additive Form}
+
+\date{}
+
+\subjclass[2020]{15A80, 14T90, 90C05}
+\keywords{tropical characteristic polynomial, max-plus algebra, symmetric matrix,
+principal submatrix, tropical permanent, concavity, Gordan's theorem}
+
+\begin{document}
+
+\begin{abstract}
+For an $n\times n$ matrix $A$ over $\Rmax=\mathbb R\cup\{-\infty\}$ let
+$\dd_k(A)$ be the largest tropical permanent of a principal $k\times k$
+submatrix of $A$, with $\dd_0=0$; these are the coefficients of the tropical
+characteristic polynomial. Kiani and Tavakolipour conjecture that for symmetric
+$A$ and every $m$ with $3\le m\le n$ at least one of
+$\dd_m-\dd_{m-1}\le\dd_{m-1}-\dd_{m-2}$ and
+$\dd_m-\dd_{m-2}\le2(\dd_{m-2}-\dd_{m-3})$ holds; they prove the cases $m=3$ and
+$m=4$ and leave $m\ge5$ open. We prove that for every $n\ge5$ and every
+symmetric $A$ over $\Rmax$, at least one of the additive inequalities
+$\dd_5+\dd_3\le2\dd_4$ and $\dd_5+2\dd_2\le3\dd_3$ holds. Whenever the $\dd_k$
+involved are finite these are equivalent to the two conjectured inequalities at
+$m=5$, so the conjecture is settled at $m=5$ in every case in which its
+differences are
+defined; when some $\dd_k=-\infty$ the additive inequalities are our chosen
+subtraction-free extension of the source statement rather than that statement
+itself. The failure of both additive inequalities is first rewritten as a system
+of strict homogeneous linear inequalities in the entries of $A$; a nonnegative
+rational combination of those forms that vanishes identically then refutes the
+failure. A failure is witnessed by three optimal selections of sizes $5$, $3$
+and $2$, whose union meets at most $10$ indices, and entrywise nonnegativity
+shows that a certificate may be sought inside that index set, which handles all
+$n$ at once. What remains is a finite check:
+$7\times600\times90=378{,}000$ triples, falling into $53{,}900$ classes with
+identical constraint systems, each carrying such a combination; $38{,}524$ of
+the classes are killed by a two-term identity between multisets of matrix
+positions, the rest by longer identities or a general rational combination. The
+cases $m\ge6$ remain open.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Let $\Rmax=\mathbb R\cup\{-\infty\}$ with $a\oplus b=\max(a,b)$ and
+$a\odot b=a+b$. For a $k\times k$ matrix $B$ over $\Rmax$ the tropical permanent
+is $\per(B)=\max_{\pi\in S_k}\sum_{i=1}^k b_{i\pi(i)}$. For an $n\times n$
+matrix $A$ over $\Rmax$ and $0\le k\le n$ set
+\begin{equation}\label{eq:delta}
+ \dd_k(A)=\max_{S\subseteq[n],\,|S|=k}\per\bigl(A[S]\bigr),
+ \qquad \dd_0(A)=0,
+\end{equation}
+where $A[S]$ is the principal submatrix on the rows and columns indexed by $S$.
+Up to sign these are the coefficients of the tropical characteristic polynomial
+of $A$; \eqref{eq:delta} is the description used throughout
+\cite[Thm.~2.6 and eq.~(2.3)]{KT}. We write $\dd_k$ for $\dd_k(A)$.
+
+The conjecture below is Conjecture~6.1 of \cite{KT}, stated there for ``the
+sequence $(\dd_m)$ associated with \emph{symmetric} tropical matrices''. It
+reads, verbatim:
+
+\begin{conjecture}[Kiani--Tavakolipour {\cite[Conj.~6.1]{KT}}]\label{conj:KT}
+For $3\le m\le n$, at least one of the following inequalities holds:
+\begin{align}
+ \dd_m-\dd_{m-1}&\le\dd_{m-1}-\dd_{m-2},\quad\text{or}\label{eq:C1}\\
+ \dd_m-\dd_{m-2}&\le2(\dd_{m-2}-\dd_{m-3}).\label{eq:C2}
+\end{align}
+\end{conjecture}
+
+\medskip
+\noindent\textbf{The additive reading.}
+The semiring is $\Rmax$, so a matrix may have $-\infty$ entries and a $\dd_k$
+may equal $-\infty$; in that case the differences in \eqref{eq:C1} and
+\eqref{eq:C2} have no literal meaning, and we make no claim about what
+Conjecture~\ref{conj:KT} asserts there. We work instead with the following
+additive forms, obtained by moving the negative terms to the other side. These
+are the statements we prove:
+\begin{align}
+ \dd_m+\dd_{m-2}&\le2\dd_{m-1},\label{eq:I}\tag{I}\\
+ \dd_m+2\dd_{m-3}&\le3\dd_{m-2}.\label{eq:II}\tag{II}
+\end{align}
+Whenever all the $\dd_k$ involved are finite, \eqref{eq:I} is equivalent to
+\eqref{eq:C1} and \eqref{eq:II} to \eqref{eq:C2}; outside that case
+\eqref{eq:I}--\eqref{eq:II} are our chosen extension of the source's
+subtraction-based statement, not a reading we attribute to \cite{KT}.
+
+Conjecture~\ref{conj:KT} is proved in \cite{KT} for $m=3$ (their Thm.~4.1) and
+$m=4$ (their Thm.~4.5); $m=5$ is the first case the source leaves open.
+
+\begin{theorem}\label{thm:main}
+Let $n\ge5$ and let $A$ be a symmetric $n\times n$ matrix over $\Rmax$. Then
+\begin{equation*}
+ \dd_5+\dd_3\le2\dd_4
+ \qquad\text{or}\qquad
+ \dd_5+2\dd_2\le3\dd_3 .
+\end{equation*}
+\end{theorem}
+
+\noindent That is, at least one of \eqref{eq:I}, \eqref{eq:II} holds at $m=5$,
+for every $n$ and with no finiteness assumption on $A$. Whenever
+$\dd_5,\dd_4,\dd_3,\dd_2$ are finite this is exactly the assertion of
+Conjecture~\ref{conj:KT} at $m=5$, so the conjecture is settled at $m=5$ in
+every case in which its differences are defined; in the remaining cases the
+theorem asserts the additive reading \eqref{eq:I}--\eqref{eq:II} and not the
+source statement.
+
+\section{Covers}
+
+A \emph{$k$-cover} of $[n]$ is a pair $P=(S,\pi)$ with $S\subseteq[n]$,
+$|S|=k$, and $\pi$ a permutation of $S$; write $\supp P=S$ and
+$w(P)=\sum_{i\in S}a_{i\pi(i)}\in\Rmax$. Let $\Cov_k$ be the set of $k$-covers.
+Reading \eqref{eq:delta} through the permanent gives
+\begin{equation}\label{eq:cover}
+ \dd_k=\max_{P\in\Cov_k}w(P),
+\end{equation}
+the point being that a principal submatrix forces the row set and the column set
+to coincide. The unique $0$-cover has weight $0$, consistent with $\dd_0=0$.
+
+Since $A$ is symmetric, $w(P)$ depends on $P$ only through the multiset
+\[
+ \Ee(P)=\bigl\{\!\{\,\{i,\pi(i)\}\;:\;i\in\supp P\,\}\!\bigr\}
+\]
+of \emph{positions} $\{i,j\}$ (with $i=j$ allowed), which we regard as a vector
+of nonnegative integers indexed by positions; then
+$w(P)=\sum_p\Ee(P)_p\,a_p$. A loop $i\mapsto i$ contributes $\{i,i\}$ once; a
+transposition $(i\,j)$ contributes $\{i,j\}$ twice, and indeed weight
+$2a_{ij}$. Write $\pos P$ for the \emph{set} of positions occurring in
+$\Ee(P)$. A $k$-cycle and its inverse have the same $\Ee$, so for symmetric $A$
+the relevant object is $\Ee(P)$, not $P$.
+
+\section{The failure of both inequalities, as a linear system}
+
+Throughout this section $m=5$; nothing in the argument is special to $5$.
+
+\begin{lemma}\label{lem:reform}
+Both \eqref{eq:I} and \eqref{eq:II} fail at a symmetric $A$ if and only if there
+are $P\in\Cov_5$, $Q\in\Cov_3$, $S\in\Cov_2$ with
+\begin{align}
+ w(P)+w(Q)&>2w(R) &&\text{for every }R\in\Cov_4,\label{eq:sysI}\\
+ w(P)+2w(S)&>3w(Q') &&\text{for every }Q'\in\Cov_3.\label{eq:sysII}
+\end{align}
+Moreover $w(P),w(Q),w(S)$ are then finite.
+\end{lemma}
+
+\begin{proof}
+Suppose both fail, i.e.\ $\dd_5+\dd_3>2\dd_4$ and $\dd_5+2\dd_2>3\dd_3$. In
+$\Rmax$ a left-hand side equal to $-\infty$ exceeds nothing, so
+$\dd_5,\dd_3,\dd_2$ are finite. Take $P,Q,S$ attaining the maxima in
+\eqref{eq:cover} for $k=5,3,2$; their weights are $\dd_5,\dd_3,\dd_2$, finite.
+For $R\in\Cov_4$, $2w(R)\le2\dd_4<\dd_5+\dd_3=w(P)+w(Q)$, which is
+\eqref{eq:sysI}; \eqref{eq:sysII} is identical with $\dd_3,\dd_2$ in place of
+$\dd_4,\dd_3$.
+
+Conversely, given such $P,Q,S$, the right-hand sides of \eqref{eq:sysI} and
+\eqref{eq:sysII} already range over everything the maxima $\dd_4,\dd_3$ range
+over, so $2\dd_4<w(P)+w(Q)\le\dd_5+\dd_3$ and
+$3\dd_3<w(P)+2w(S)\le\dd_5+2\dd_2$, using $\dd_5\ge w(P)$, $\dd_3\ge w(Q)$,
+$\dd_2\ge w(S)$ and monotonicity of $\oplus$-addition. Finiteness of $w(P)$,
+$w(Q)$, $w(S)$ is forced by \eqref{eq:sysI} and \eqref{eq:sysII} themselves.
+\end{proof}
+
+Fix such a triple and set
+\[
+ \Allowed=\pos P\cup\pos Q\cup\pos S,
+ \qquad D=|\Allowed|\le5+3+2=10 .
+\]
+Because $w(P),w(Q),w(S)$ are finite, \emph{every entry $a_p$ with
+$p\in\Allowed$ is finite}. Put
+\[
+ \mathrm{Pool}_4=\{R\in\Cov_4:\pos R\subseteq\Allowed\},
+ \qquad
+ \mathrm{Pool}_3=\{Q'\in\Cov_3:\pos Q'\subseteq\Allowed\},
+\]
+where multiplicities are unconstrained: a transposition on $\{i,j\}$ uses the
+single position $\{i,j\}$ twice and belongs to the pool as soon as
+$\{i,j\}\in\Allowed$. For $R\in\mathrm{Pool}_4$ and $Q'\in\mathrm{Pool}_3$
+define integer vectors in $\mathbb Z^{\Allowed}$,
+\begin{equation}\label{eq:forms}
+ f_R=\Ee(P)+\Ee(Q)-2\Ee(R),
+ \qquad
+ g_{Q'}=\Ee(P)+2\Ee(S)-3\Ee(Q').
+\end{equation}
+Evaluated at the vector $x=(a_p)_{p\in\Allowed}\in\mathbb R^D$ of \emph{finite}
+entries, $f_R(x)=w(P)+w(Q)-2w(R)$ and $g_{Q'}(x)=w(P)+2w(S)-3w(Q')$; so
+\eqref{eq:sysI} and \eqref{eq:sysII}, restricted to the pool, say exactly that
+$x$ makes every form in \eqref{eq:forms} strictly positive.
+
+\begin{lemma}[certificates]\label{lem:cert}
+Let $\Ee(P),\Ee(Q),\Ee(S)$ be given, with $\Allowed$ and the pools as above.
+Suppose there are nonnegative rationals $\lambda_R$ $(R\in\mathrm{Pool}_4)$ and
+$\mu_{Q'}$ $(Q'\in\mathrm{Pool}_3)$, not all zero, with
+\begin{equation}\label{eq:certificate}
+ \sum_R\lambda_Rf_R+\sum_{Q'}\mu_{Q'}g_{Q'}=0
+ \qquad\text{in }\mathbb Q^{\Allowed}.
+\end{equation}
+Then no symmetric $A$, over any index set containing $\Allowed$, satisfies
+\eqref{eq:sysI} and \eqref{eq:sysII} for this triple.
+\end{lemma}
+
+\begin{proof}
+If it did, all entries indexed by $\Allowed$ would be finite by
+Lemma~\ref{lem:reform} and each form would take a strictly positive real value
+at $x$; evaluating \eqref{eq:certificate} at $x$ gives
+$0=\sum\lambda_Rf_R(x)+\sum\mu_{Q'}g_{Q'}(x)>0$, since the coefficients are
+nonnegative and not all zero. Contradiction.
+\end{proof}
+
+Normalising $\sum\lambda_R+\sum\mu_{Q'}=1$ and writing
+$L=\sum\lambda_R$, $M=\sum\mu_{Q'}$, \eqref{eq:certificate} is the identity of
+position multisets
+\begin{equation}\label{eq:identity}
+ \Ee(P)+L\,\Ee(Q)+2M\,\Ee(S)
+ = 2\sum_R\lambda_R\Ee(R)+3\sum_{Q'}\mu_{Q'}\Ee(Q') ,
+\end{equation}
+with $L+M=1$, $L,M\ge0$. Suppose $A$ is symmetric and $P,Q,S$ \emph{attain} the
+maxima in \eqref{eq:cover} for $k=5,3,2$, so that $w(P)=\dd_5$, $w(Q)=\dd_3$ and
+$w(S)=\dd_2$, all finite, as for the triple supplied by
+Lemma~\ref{lem:reform}. Evaluating \eqref{eq:identity} at $A$ and using
+$\dd_4\ge w(R)$ for $R\in\mathrm{Pool}_4$, $\dd_3\ge w(Q')$ for
+$Q'\in\mathrm{Pool}_3$, together with $\sum_R\lambda_R=L$,
+$\sum_{Q'}\mu_{Q'}=M$ and $L+M=1$, then gives
+$L(\dd_5+\dd_3-2\dd_4)+M(\dd_5+2\dd_2-3\dd_3)\le0$, so one of \eqref{eq:I},
+\eqref{eq:II} holds. Checking one certificate requires only that the
+multipliers be nonnegative and that a rational linear identity hold; but the
+multipliers are printed below only for the sample certificates, so for the rest
+of the census that check is available only by running the program. No
+linear-programming
+duality is needed: only the trivial direction of Gordan's theorem
+\cite{Gordan} is used, namely that \eqref{eq:certificate} obstructs a strictly
+positive solution; the converse is not used.
+
+\section{All $n$ at once: the window $[3m-5]$}
+
+\begin{lemma}\label{lem:window}
+Suppose both \eqref{eq:I} and \eqref{eq:II} fail at some symmetric $A$ over
+$\Rmax$ of some size $n\ge5$. Then there are $P_0\in\Cov_5([5])$,
+$Q_0\in\Cov_3([10])$, $S_0\in\Cov_2([10])$, with $P_0$ a representative of its
+cycle type, such that the triple $(\Ee(P_0),\Ee(Q_0),\Ee(S_0))$ admits no
+certificate \eqref{eq:certificate}.
+\end{lemma}
+
+\begin{proof}
+Take $P,Q,S$ from Lemma~\ref{lem:reform}. Their supports have union of size at
+most $5+3+2=10$, and $|\supp P|=5$. Choose a bijection of that union with a
+subset of $[10]$ carrying $\supp P$ onto $[5]$, then compose with a permutation
+of $[5]$, extended by the identity on $\{6,\dots,10\}$, carrying $P$ to the
+chosen representative of its cycle type. Relabelling the index set carries
+$\Allowed$, $\mathrm{Pool}_4$ and $\mathrm{Pool}_3$ bijectively onto the
+relabelled ones and permutes the coordinates of every form in
+\eqref{eq:forms}, so a certificate for the image triple would be a certificate
+for the original, contradicting Lemma~\ref{lem:cert} together with
+\eqref{eq:sysI}--\eqref{eq:sysII}. The images $Q_0,S_0$ are covers of $[10]$ of
+sizes $3$ and $2$.
+\end{proof}
+
+The window comes from the union of the supports of $P$, $Q$ and $S$:
+$|\Allowed|\le m+(m-2)+(m-3)=3m-5$, which is $10$ at $m=5$. Entrywise
+nonnegativity is what makes it enough to search there. In the identity
+\eqref{eq:identity} every vector has nonnegative entries, so at a position
+outside $\Allowed$ the left side is $0$ and therefore every $R$ with
+$\lambda_R>0$ and every $Q'$ with $\mu_{Q'}>0$ vanishes there; a certificate
+never leaves the window, so restricting the pools to it loses nothing.
+
+\section{The finite check}
+
+By Lemma~\ref{lem:window}, Theorem~\ref{thm:main} follows once a certificate is
+exhibited for every triple $(\Ee(P_0),\Ee(Q_0),\Ee(S_0))$ in the following
+finite list. The list is completely specified by the three counts below, and a
+reader can regenerate it without any code.
+
+\medskip
+\noindent\emph{$P_0$: seven triples' worth of cycle type.}
+Two $5$-covers of a $5$-set have relabelling-equivalent position multisets
+precisely when they have the same cycle type, since a cycle and its inverse have
+the same $\Ee$ and relabelling preserves cycle type. So $P_0$ runs over the
+\textbf{seven} partitions of $5$,
+\[
+ 1^5,\quad 2\cdot1^3,\quad 2^2\cdot1,\quad 3\cdot1^2,\quad 3\cdot2,
+ \quad 4\cdot1,\quad 5 .
+\]
+
+\medskip
+\noindent\emph{$Q_0$: the $\mathbf{600}$ distinct $\Ee$ of a $3$-cover of
+$[10]$.}
+Three loops, $\binom{10}{3}=120$; a transposition and a loop,
+$\binom{10}{2}\cdot8=360$; a $3$-cycle, one position multiset per $3$-subset
+because a $3$-cycle and its inverse agree, $\binom{10}{3}=120$. Total
+$120+360+120=600$.
+
+\medskip
+\noindent\emph{$S_0$: the $\mathbf{90}$ distinct $\Ee$ of a $2$-cover of
+$[10]$.}
+Two loops, $\binom{10}{2}=45$; a transposition, $45$. Total $90$.
+
+\medskip
+\noindent The list therefore has
+\[
+ 7\times600\times90=378{,}000
+\]
+entries. Every one of them carries a certificate \eqref{eq:certificate}; none is
+live. This is the computational content of the paper and it is what
+\texttt{verify.py} in the accompanying folder re-derives from scratch. Under the
+order-preserving relabelling of the index set the $378{,}000$ triples fall into
+$53{,}900$ classes with identical constraint systems, and the program solves one
+system per class.
+
+The certificates are small and mostly of two shapes. Writing $ij$ for the
+position $\{i,j\}$:
+
+\begin{itemize}
+\item $38{,}524$ of the $53{,}900$ classes are killed by a
+\emph{two-term identity in branch \textup{(I)}}: two pool $4$-covers $R_1,R_2$
+with
+\[
+ \Ee(P)+\Ee(Q)=\Ee(R_1)+\Ee(R_2),
+\]
+i.e.\ \eqref{eq:certificate} with $\lambda_{R_1}=\lambda_{R_2}=\tfrac12$,
+$L=1$, $M=0$.
+\item $1{,}016$ classes are killed by a \emph{three-term identity in branch
+\textup{(II)}}: pool $3$-covers with
+$\Ee(P)+2\Ee(S)=\Ee(Q'_1)+\Ee(Q'_2)+\Ee(Q'_3)$, i.e.\
+$\mu_{Q'_i}=\tfrac13$, $L=0$, $M=1$.
+\item the remaining $14{,}360$ classes need a general nonnegative rational
+combination. Over all $53{,}900$ classes the largest denominator occurring in
+any multiplier is $48$, so every certificate is a small rational vector.
+\end{itemize}
+
+Two certificates in full, hand-checkable by counting symbols. In each, $P$ is
+the all-loops $5$-cover of $\{0,1,2,3,4\}$.
+\begin{align*}
+ \Ee(P)+\Ee(Q)
+ &=\{00,11,22,33,44\}+\{00,11,22\}\\
+ &=\{00,00,11,11,22,22,33,44\}\\
+ &=\{00,11,22,33\}+\{00,11,22,44\}
+ =\Ee(R_1)+\Ee(R_2),
+\end{align*}
+with $Q$ the three loops on $\{0,1,2\}$ and $R_1,R_2$ the all-loops $4$-covers
+of $\{0,1,2,3\}$ and $\{0,1,2,4\}$; and, with $Q$ the transposition $(0\,1)$
+together with the loop at $2$,
+\begin{align*}
+ \Ee(P)+\Ee(Q)
+ &=\{00,11,22,33,44\}+\{01,01,22\}\\
+ &=\{01,01,22,33\}+\{00,11,22,44\}
+ =\Ee(R_1)+\Ee(R_2),
+\end{align*}
+where now $R_1$ is the transposition $(0\,1)$ with loops at $2,3$. In both
+cases $L=1$, $M=0$ and the two multipliers are $\tfrac12$, so
+\eqref{eq:identity} gives $\dd_5+\dd_3\le2\dd_4$ at $A$; that is, branch~(I)
+holds.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If the conclusion failed for some symmetric $A$ and some $n\ge5$, then by
+Lemma~\ref{lem:window} some triple in the list above would admit no certificate
+\eqref{eq:certificate}. Every triple in the list does admit one. Hence no such
+$A$ exists.
+\end{proof}
+
+\section{What is not settled}
+
+\noindent\textbf{$m\ge6$.} Theorem~\ref{thm:main} settles the single value
+$m=5$. Conjecture~\ref{conj:KT} ranges over $3\le m\le n$ and remains open for
+every $m\ge6$. The reduction above is generic in $m$ and gives the window
+$[3m-5]=[13]$ at $m=6$, with a raw count of
+$11\times|\Cov_4([13])|\times|\Cov_3([13])|=11\times12{,}155\times1{,}430
+\approx1.9\times10^8$ triples, which we have not attempted. Nothing here
+suggests the answer at $m\ge6$ either way.
+
+\medskip
+\noindent\textbf{Nonsymmetric matrices.} Symmetry is essential and \cite{KT}
+says so; Theorem~\ref{thm:main} makes no claim about nonsymmetric $A$.
+
+\medskip
+\noindent\textbf{The multiplier vectors are not shipped.}
+Only the two certificates above appear in print. The multipliers for the rest of
+the $53{,}900$ classes exist only inside a run of \texttt{verify.py}, which
+regenerates and re-verifies them but writes no file listing them, so the census
+is reproducible without being auditable from data in this folder.
+
+\medskip
+\noindent\textbf{Only one direction of Gordan's theorem is used.} We never claim
+that a triple \emph{without} a certificate yields a genuine counterexample.
+
+\section{Relation to earlier work}
+
+Lewis \cite{Lewis} studies the same object under the name \emph{best principal
+submatrix problem}, settling the symmetric case with entries in
+$\{0,-\infty\}$ and the symmetric case whose digraph has no odd cycle; neither
+states an inequality of the shape \eqref{eq:C1}--\eqref{eq:C2}. Rosenmann
+\cite{Rosenmann} proves concavity in $k$ for the bipartite $k$-cardinality
+assignment problem, where the $k$ rows and the $k$ columns are chosen
+independently, whereas \eqref{eq:delta} forces the two sets to coincide.
+
+\section{Reproduction and verification}
+
+Sections~2--5 are self-contained: the census is specified by the seven cycle
+types, $\Cov_3([10])$ and $\Cov_2([10])$, and a reader can regenerate it in a
+few lines and search for the certificates directly. The accompanying
+\texttt{verify.py} does exactly that, in Python~3 with the standard library only
+and in exact integer and \texttt{Fraction} arithmetic. It re-derives the counts
+$7$, $600$, $90$ and $378{,}000$; checks the printed certificates as exact
+multiset identities; and re-runs the $m=5$ census, re-substituting every one of
+the $53{,}900$ multiplier vectors it finds into its own forms. It closes with
+\texttt{VERDICT: ALL 47 CHECKS PASS}; \texttt{verify.output.txt} in the same
+folder records one such run.
+
+The program prints its own limits: it does not touch $m\ge6$, it does not
+persist the multiplier vectors it verifies, and it makes no literature claim.
+
+\begin{thebibliography}{9}
+
+\bibitem{Gordan}
+P.~Gordan,
+\emph{\"Uber die Aufl\"osung linearer Gleichungen mit reellen Coefficienten},
+Math. Ann. \textbf{6} (1873), 23--28.
+\href{https://doi.org/10.1007/BF01442864}{doi:10.1007/BF01442864}.
+
+\bibitem{KT}
+D.~Kiani and H.~Tavakolipour,
+\emph{Properties of the tropical characteristic polynomial of symmetric
+matrices},
+arXiv:2607.10922v1, 12 July 2026.
+\href{https://arxiv.org/abs/2607.10922}{arXiv:2607.10922}.
+Statement numbers are those of that e-print, the only text we could access.
+
+\bibitem{Lewis}
+S.~C. Lewis,
+\emph{On the best principal submatrix problem},
+Ph.D. thesis, University of Birmingham, 2007.
+\href{https://etheses.bham.ac.uk/id/eprint/26}{etheses.bham.ac.uk/id/eprint/26}.
+
+\bibitem{Rosenmann}
+A.~Rosenmann,
+\emph{Computing the sequence of $k$-cardinality assignments},
+J. Comb. Optim. \textbf{44} (2022), 1265--1283.
+\href{https://doi.org/10.1007/s10878-022-00840-7}{doi:10.1007/s10878-022-00840-7};
+\href{https://arxiv.org/abs/2104.04037}{arXiv:2104.04037}.
+
+\end{thebibliography}
+
+\end{document}

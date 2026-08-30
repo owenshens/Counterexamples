@@ -1,0 +1,41 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e6462c241ab4d4f0a59e160f92ca6760138a50a17aa7e1d90d399442d37bd986
+python:  Python 3.9.6
+=== program output follows ===
+PASS S-matrices -- idx(S) = 0, 13, 19 decode to the three symmetric F_2 matrices printed in the paper
+PASS m-equals-4 -- the exhibited set has m = 4 = d/2 bases with d = 8
+PASS gaussian-entries -- every entry of sqrt(8)|v_S> lies in {1,-1,i,-i}, so all of the following is arithmetic in Z[i]
+PASS orthonormal -- 256 within-basis overlaps of the 4 bases, 0 violations
+PASS mutually-unbiased -- all C(4,2)*64 = 384 cross overlaps have |<u|u'>|^2 = 1/8 exactly, 0 violations
+PASS witness-integral -- 64*W^Gamma is built in Z[i] with a vanishing imaginary part; the prefactor is 64*(d+m-1)/d = 88
+PASS witness-symmetric -- 64*W^Gamma is symmetric with entries of absolute value at most 64
+PASS witness-trace -- diagonal of 64*W^Gamma is 56 entries 64 and 8 entries 0, so tr W^Gamma = 3584/64 = 56 = d^2-d
+PASS projectors -- A and Q_0, Q_13, Q_19 are orthogonal projectors of rank 8 (Q^2 = Q and tr Q = 8, exactly)
+PASS lambda-max -- A + Q_0 + Q_13 + Q_19 has rank 30, kernel dimension 34 > 0, so lambda_max(W^Gamma) = (d+m-1)/d = 11/8 exactly
+PASS witness-not-psd -- with z = e_1 + e_19: W_{1,1} = W_{19,19} = 0, W_{1,19} = -1/8, z^T W^Gamma z = -1/4 < 0 (NEGATIVE control: the same pairing code returns a negative number, and W^Gamma is not PSD)
+PASS table-parse -- Table 1 lists 288 integers on and above the diagonal, over rows 0..63
+PASS state-shape -- M is symmetric with 512 nonzero entries of absolute value at most 57650
+PASS state-trace -- the 64 diagonal entries of M sum to 1049602 = N, so tr rho = 1 exactly
+PASS state-denominators -- every entry of rho has denominator dividing N = 1049602, and N is attained
+PASS psd-rho -- exact LDL^T of rho: all 64 pivots > 0, smallest = 63834948025622562/457387529428466097047 (the value printed in the paper)
+PASS psd-rho-Gamma -- exact LDL^T of rho^Gamma: all 64 pivots > 0, smallest = 329439466941518560/2324566123790645652773 (the value printed in the paper)
+PASS ppt -- rho is a state with rho >= 0 and rho^Gamma >= 0, hence PPT (this line records the conjunction of the three preceding checks)
+PASS objective -- tr[W^Gamma rho] = -1867264/(64*1049602) = -14588/524801 = -0.027797203130329 < 0
+PASS objective-second-route -- the same value from 11/8 - tr[A rho] - sum_k tr[Q_k rho] = -14588/524801
+PASS forced-positive-control -- tr[W^Gamma . I_64/64] = 7/8 > 0 (POSITIVE control: the identical pairing code returns a positive number on a PPT state, so the sign above is not an artefact of the convention)
+PASS non-decomposability -- if W^Gamma = P + Q^Gamma with P,Q >= 0 then tr[W^Gamma sigma] = tr[P sigma] + tr[Q sigma^Gamma] >= 0 for every PPT sigma; rho is PPT and tr[W^Gamma rho] < 0, so W^Gamma(M_4,1) is NON-decomposable
+PASS refutation -- m = 4 = d/2 < d/2+1 = 5, so at d = 8 the minimal number of MUBs detecting bound entanglement is at most 4 and the conjecture (which asserts 5) is false at r = 3
+
+NOT RE-RUN: the search that located the exhibited object: the reduction of the stabilizer MUB sets of C^8 to 1045 configurations and the 8360 non-decomposability decisions over all 8 shifts are NOT re-run here; only the printed object is.
+NOT RE-RUN: the numerical optimisation that produced rho is NOT re-run; rho is read from Table 1 of the paper and only re-verified.
+NOT RE-RUN: the exact minimum of tr[W^Gamma(M_4,1) sigma] over PPT sigma is NOT determined; the numerical upper bound -0.0350501 quoted in the paper is NOT certified here, and only the SIGN of -14588/524801 is used.
+NOT RE-RUN: lambda_min(W^Gamma) = -13/8 is NOT certified; only lambda_max = 11/8 is (via the rank of A + Q_0 + Q_13 + Q_19), and neither is needed for the result.
+NOT RE-RUN: m = 3 at d = 8, which would widen the margin to two, and the m = 5 = d/2+1 sufficiency question at d = 8, are NOT addressed here.
+NOT RE-RUN: dimensions d = 2^r with r >= 4 are NOT addressed; nothing here is run at d = 16.
+NOT RE-RUN: MUB families of C^8 outside the stabilizer class (2.1) are NOT considered, and no claim is made that every 4-MUB set or every shift gives a non-decomposable witness.
+NOT RE-RUN: that W^Gamma(M_m,s) is nonnegative on separable states is quoted from Spengler et al., Phys. Rev. A 86, 022311 (2012); it is NOT reproved here.
+NOT RE-RUN: the d = 4 (r = 2) refutation mentioned in the paper's Status paragraph is NOT reproduced here.
+
+VERDICT: ALL 23 CHECKS PASS
+=== program exited with status 0 ===

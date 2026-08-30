@@ -1,0 +1,75 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e09bb7f631b32f18e02d10f14c16dd3b22b276e415bb1dc660fa0ece71bbd600
+python:  Python 3.9.6
+=== program output follows ===
+--- [   0.0s] A. the object
+PASS A1-listing-parses  2969 six-hex-digit tokens, every value < 2^23
+PASS A2-words-distinct  2969 distinct words
+PASS A3-constant-weight-10  popcount set [10]
+PASS A4-min-distance-6-and-tight  max pairwise intersection over all 4405996 pairs = 7, so min distance = 2*(10-7) = 6
+PASS A5-identity-sha256  2cfc5d1bd8e2e61dc73a2ab31e3ec985d268d67cc635468912828c8a21b5cbfd
+--- [   0.7s] B. blocker census, method 1: 2-swap neighbourhoods
+PASS B1-candidate-count  C(23,10) - 2969 = 1144066 - 2969 = 1141097
+PASS B2-no-zero-blocker-candidate  every one of the 1141097 candidates has at least one blocker, so C_0 is a MAXIMAL (23,6,10) code; zero-blocker candidates = 0
+PASS B3-exactly-k-histogram-method-1  exactly 1/2/3/4 blockers: [70, 1178, 6503, 22496]
+PASS B4-cumulative-pool-sizes  #{|B| <= 1,2,3,4} = [70, 1248, 7751, 30247]  (the source publishes 1248, 7751, 30247)
+PASS B5-pool-partitions-into-blocker-sets  30247 candidates with at most 4 blockers, carried by 30117 distinct blocker sets
+--- [   4.1s] B. blocker census, method 2: 8-subset containment index (independent)
+PASS B6-exactly-k-histogram-method-2  exactly 0/1/2/3/4 blockers: [0, 70, 1178, 6503, 22496]  (the 0 is an exhaustive sweep of all C(23,10) masks and is the independent proof that C_0 is maximal)
+PASS B7-the-two-censuses-agree  the 30247 (candidate, blocker set) pairs are identical under both methods
+--- [  45.7s] C. calibration: the source paper's own pair counts
+PASS C1-all-conflicting-pairs-in-the-1248-pool  the source publishes 5261 conflicting pairs among the 1248 candidates with at most two blockers; recomputed 5261
+PASS C2-conflict-and-share-pairs-in-the-7751-pool  the source publishes 43105; recomputed 43105
+PASS C3-conflict-and-share-pairs-in-the-30247-pool  the source publishes "about 888k"; recomputed 887964
+PASS C4-the-two-conventions-are-different  in the 7751 and 30247 pools: ALL conflicting pairs = 200311 and 2870892; pairs sharing a blocker = 135753 and 3475687; the conjunction = 43105 and 887964. Reading 887964 as "all conflicting pairs among the 30247" is wrong by a factor 3.2 -- the source is right, the trap is in the reading.
+PASS C5-conflict-and-share-in-the-1248-pool-is-not-5261  so the 5261 of C1 is unambiguously the ALL-conflicting convention, and 803 is the conjunction; the two conventions cannot be confused on this pool
+--- [  47.7s] D. the deletion space
+    distinct blocker sets by size: {1: 70, 2: 1155, 3: 6454, 4: 22438}
+PASS D1-partner-index-is-complete  on 300 sampled blocker sets the indexed enumeration equals a brute-force scan over all 30117 seeds
+    closure round 1 -> |D-space| = 1254755, new small sets = 84534
+    closure round 2 -> |D-space| = 4184754, new small sets = 54536
+    closure round 3 -> |D-space| = 5094818, new small sets = 0
+PASS D2-deletion-space-size  |D| = 1,2,3,4: [70, 3567, 143112, 4948069] ; 70 + 3567 + 143112 + 4948069 = 5094818
+PASS D3-reduction-factor  C(2969,4) = 3231108527626 unrestricted 4-subsets against 4948069 in the D-space, a factor 6.530e+05
+PASS D4-deletion-space-is-saturated  adjoining any one blocker set to any of the 146749 members of size <= 3 produces nothing outside the family, so it is the least fixed point
+--- [  71.2s] E. the sweep: exact maximum clique in Cand(D) for every D
+PASS E1-every-set-was-tested  swept 5094818 of 5094818 deletion sets, no shard, no cap, no early exit; 14447 had |Cand(D)| > |D| and received a full exact maximum-clique search
+PASS E2-live-count  14447 deletion sets passed the necessary count filter
+PASS E3-candidate-histogram  |Cand(D)| = 1..6 over the 4948069 four-sets: [17027, 936347, 2791429, 1189193, 13911, 162] ; sums to 4948069 ; max |Cand(D)| = 6 ; only 13911 + 162 = 14073 four-sets carry as many as 5 candidates
+PASS E4-clique-histogram  (|D|, max clique) over the live sets: [((2, 1), 2), ((2, 2), 3), ((3, 1), 7), ((3, 2), 154), ((3, 3), 208), ((4, 1), 16), ((4, 2), 753), ((4, 3), 6179), ((4, 4), 7125)] ; sums to 14447
+PASS E5-the-two-tallies-cross-agree  live four-sets counted by the clique tally = 14073 = 14073 = four-sets with |Cand(D)| >= 5 counted by the candidate tally; two independently accumulated histograms agree
+PASS E6-THEOREM-no-clique-ever-exceeds-D  for every one of the 5094818 deletion sets the maximum set of pairwise-compatible insertable candidates has size at most |D|; there is no depth-<=4 exchange with |S| > |D|
+PASS E7-margin-histogram  margin -3/-2/-1/0 = [17043, 942405, 2874164, 1261206], sums to 5094818, and the "+1 or more" bucket is EMPTY
+--- [  85.1s] F. attainment
+PASS F1-exhibited-deletion-set-is-in-the-space  D = [27, 31, 585, 1333] = ['294CE8', '29630D', '463A0D', '623607']
+PASS F2-Cand-of-the-exhibited-set  |Cand(D)| = 5 > 4 = |D|, so this D is one of the 14447 live sets; each of ['0B630D', '214D69', '423E0D', '4A3705', '4E3305'] has weight 10, is not in C_0, and has all its blockers inside D: {'0B630D': [31], '214D69': [27], '423E0D': [585, 1333], '4A3705': [1333], '4E3305': [585]}
+    |0x0B630D cap 0x214D69| = 5
+    |0x0B630D cap 0x423E0D| = 6
+    |0x0B630D cap 0x4A3705| = 7
+    |0x0B630D cap 0x4E3305| = 7
+    |0x214D69 cap 0x423E0D| = 4
+    |0x214D69 cap 0x4A3705| = 3
+    |0x214D69 cap 0x4E3305| = 2
+    |0x423E0D cap 0x4A3705| = 8   CONFLICT
+    |0x423E0D cap 0x4E3305| = 7
+    |0x4A3705 cap 0x4E3305| = 9   CONFLICT
+PASS F3-exactly-two-conflicting-pairs  the only conflicts inside Cand(D) are |0x423E0D cap 0x4A3705| = 8 and |0x4A3705 cap 0x4E3305| = 9
+PASS F4-maximum-clique-is-4-and-unique  brute force over all 31 non-empty subsets of Cand(D): the largest pairwise-compatible set has size 4, is unique, and equals ['0B630D', '214D69', '423E0D', '4E3305']; there is NO 5-clique, so the margin at this D is exactly 0
+PASS F5-clique-pairwise-intersections  pairwise intersections inside the maximum clique, in order 01 02 03 12 13 23: [5, 6, 7, 4, 2, 7]
+PASS F6-break-even-exchange-at-k-4  delete [27, 31, 585, 1333], insert ['214D69', '0B630D', '423E0D', '4E3305'] -> a valid (23,6,10) code with 2969 words and worst pairwise intersection 7; gain = |S| - |D| = 0 exactly
+PASS F6-break-even-exchange-at-k-3  delete [27, 585, 1333], insert ['214D69', '423E0D', '4E3305'] -> a valid (23,6,10) code with 2969 words and worst pairwise intersection 7; gain = |S| - |D| = 0 exactly
+PASS F6-break-even-exchange-at-k-2  delete [585, 1333], insert ['423E0D', '4E3305'] -> a valid (23,6,10) code with 2969 words and worst pairwise intersection 7; gain = |S| - |D| = 0 exactly
+PASS F6-break-even-exchange-at-k-1  delete [27], insert ['214D69'] -> a valid (23,6,10) code with 2969 words and worst pairwise intersection 7; gain = |S| - |D| = 0 exactly
+PASS F7-k-1-attainment-is-universal  all 70 singleton deletion sets in the D-space have |Cand(D)| = 1, so every one of them gives a 1-for-1 break-even exchange and none gives a 2-for-1
+PASS F8-the-refilled-code-is-a-different-code  the k = 4 exchange yields a 2969-word (23,6,10) code sharing 2965 words with C_0, so it is a genuinely different code of the same size, not a relabelling
+
+--- [  87.2s] scope
+NOT RE-RUN: Section XII of Brouwer-Shearer-Sloane-Smith 1990, which the source paper describes as certifying k-optimality of this move for k = 2..5, is paywalled and was never read. If it certifies k-optimality for the 2969-word code specifically, the |D| = 4 layer of Theorem 1 is not new. Nothing in this program can settle that.
+NOT RE-RUN: the |D| <= 3 layer of the sweep (70 + 3567 + 143112 = 146749 sets) RE-PROVES a theorem already published in the source paper; only the |D| = 4 layer is new, and within it the source's own depth-unbounded theorem already excludes every S all of whose members carry at most two blockers.
+NOT RE-RUN: in check E7 the -2, -1 and 0 buckets are UPPER-BOUND-DERIVED for the 5080371 sets with |Cand(D)| <= |D|: the recorded margin there is min(|Cand(D)|,|D|) - |D| and no clique search was run, so a set counted in one of those buckets may truly sit lower. Only the -3 bucket and the 14447 live margins are measured. The conclusion "+1 or more is empty" is untouched, a clique being unable to exceed |Cand(D)|.
+NOT RE-RUN: depth 5 and above; any code other than C_0; and any lower bound on A(23,6,10). C_0 is superseded -- the source paper itself proves A(23,6,10) >= 2979 and Brouwer's table reads 2992 -- so nothing here moves a bound.
+NOT RE-RUN: the two forced-positive controls on modified codes (2968 and 2961 words) that were used during the search to show the decision procedure can return YES. Their role is replaced here by check F6, which exhibits genuine break-even exchanges at every k in 1..4, and by check B7, which compares two disjoint censuses.
+
+VERDICT: ALL 39 CHECKS PASS
+=== program exited with status 0 ===

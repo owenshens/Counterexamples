@@ -1,0 +1,79 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9be96339491d8a6145963995743d53c8c1eded0fa8b6cbe1fd353b135139eca5
+python:  Python 3.9.6
+=== program output follows ===
+--- 1. the weighted triangle G: w(1,2)=2, w(1,3)=3, w(2,3)=2 ---
+PASS factor-is-tight [every edge weight equals the least path product: 2 <= 3*2, 3 <= 2*2, 2 <= 2*3]
+PASS factor-distances-root-1 [d = [1, 2, 3]]
+PASS pi-factor-root-1 [pi = 3, d = [1, 2, 3], every largest unsolvable distribution: (0, 0, 2) (0, 1, 1)]
+PASS pi-factor-root-2 [pi = 3, d = [2, 1, 2], every largest unsolvable distribution: (1, 0, 1)]
+PASS pi-factor-root-3 [pi = 3, d = [3, 2, 1], every largest unsolvable distribution: (1, 1, 0) (2, 0, 0)]
+PASS pi-factor-unrooted [pi(G) = max_v pi(G,v) = 3, so the unrooted right-hand side is 3*3 = 9]
+PASS rhs-rooted [pi(G,1) pi(G,1) = 3*3 = 9]
+--- 2. the product G x G ---
+PASS product-order-and-size [9 vertices, 18 edges]
+PASS product-weights-match-the-definition [each G-direction edge carries its G-weight, each H-direction edge its H-weight]
+PASS product-skeleton-is-4-regular [the 3x3 rook graph K_3 box K_3]
+PASS graph6-decodes-to-the-skeleton ['H{S{aSf' -> 9 vertices, 18 edges, identical to the product skeleton]
+PASS distance-vector-as-printed [d = (1, 2, 3, 2, 4, 6, 3, 6, 9)]
+PASS distance-product-formula [d((i,j)) = d(i) d(j) at all nine vertices]
+--- 3. the distribution D: 7 on (3,3), one on (2,3), one on (3,2) ---
+PASS witness-size [|D| = 9 = pi(G,1) pi(G,1)]
+PASS witness-inside-the-box [D(v) < d(v) at every vertex, so no single stack reaches the root by itself]
+PASS witness-unsolvable-by-plain-forward-search [229 states reachable from D, none of them carries a pebble on (1,1)]
+PASS pi-product-at-root-(1,1) [pi(G x G,(1,1)) = 10, over a box of 46656 states]
+PASS violation-rooted [10 > 9 = pi(G,1) pi(G,1): the rooted conjecture fails]
+PASS unsolvable-level-counts [by size: (1, 8, 34, 98, 205, 302, 275, 121, 24, 4, 0)]
+PASS exactly-four-failures-of-size-9 [4 of the C(17,8) = 24310 distributions of 9 pebbles fail, and D is one of them]
+PASS size-9-failures-under-the-factor-swap [exchanging the two factors permutes the four failures: it fixes the first two, (0, 0, 0, 0, 0, 1, 0, 1, 7) and (0, 0, 0, 0, 1, 0, 0, 0, 8), and exchanges the last two, so there are three up to that symmetry]
+PASS pi-product-at-all-nine-roots [(1, 1):10, (1, 2):9, (1, 3):10, (2, 1):9, (2, 2):9, (2, 3):9, (3, 1):10, (3, 2):9, (3, 3):10]
+PASS violating-roots [[(1, 1), (1, 3), (3, 1), (3, 3)], all at 10 against 9]
+PASS pi-product-unrooted [pi(G x G) = 10 > 9 = pi(G) pi(G): the unrooted conjecture fails too]
+--- 4. the potential argument of Section 2, step by step ---
+PASS potential-is-valid [phi = 1/d satisfies phi(u') <= w phi(u) on all 36 directed moves, so VAL never rises]
+PASS potential-is-pointwise-minimal [every vertex has a root path on which phi(u) = w phi(u') is tight, so any valid potential normalised at the root has phi >= 1/d: 1/d is the BEST such certificate]
+PASS val-of-the-witness [VAL(D) = 7/9 + 1/6 + 1/6 = 10/9 > 1]
+PASS potential-alone-does-not-suffice [the obstruction is integrality, not the potential: VAL(D) = 10/9 exceeds 1]
+PASS budget-identity [stopping when the root is first reached: RESIDUAL + TOTAL LOSS = 10/9 - 1 = 1/9]
+PASS factor-loss-table [1->2: 3/2, 1->3: 8/3, 2->1: 0, 2->3: 2/3, 3->1: 0, 3->2: 1/6]
+PASS product-loss-is-factor-loss-over-the-other-coordinate [LOSS((i,j)->(i',j)) = L(i->i')/d(j), and symmetrically]
+PASS minimum-off-root-potential [phi >= 1/9 off the root, so RESIDUAL is 0 or at least 1/9: either TOTAL LOSS = 0 (case B) or RESIDUAL = 0 and TOTAL LOSS = 1/9 (case A)]
+PASS admissible-move-set [16 of the 36 directed moves cost at most the whole budget 1/9: the 12 lossless ones (a coordinate dropping to 1), (2,3)->(2,2) and (3,2)->(2,2) at 1/12, and (3,3)->(2,3) and (3,3)->(3,2) at 1/18]
+PASS only-two-eighteenths-fill-the-budget [over every multiset of positive losses {1/18, 1/12, 1/6, 2/9, 1/3, 1/2, 2/3, 3/4, 8/9, 4/3, 3/2, 8/3}, the budget 1/9 is filled in exactly one way: two 1/18 moves, both out of (3,3). 1/12 = 1.5/18 leaves an unachievable half, so case A admits no 1/12 move and case B no lossy move at all]
+PASS caseB-strands-(3,2) [with TOTAL LOSS = 0 only the 12 lossless moves occur; none lands on (3,2), and its single pebble cannot pay for any move (all weights are at least 2), so RESIDUAL >= phi(3,2) = 1/6 > 1/9]
+PASS caseA-move-set [case A drops the two 1/12 moves from the 16, leaving 14]
+PASS caseA-vertex-(3,3)-never-gains [every move landing on (3,3) costs at least 2/9 > 1/9]
+PASS caseA-emptying-(3,3) [its 7 pebbles leave in weight-3 and weight-2 moves only; with exactly two weight-2 moves, 3a + 4 = 7 forces a = 1]
+PASS caseA-forces-one-lossy-move-each-way [(2,3) gains only from (3,3), and must end empty; 1 pebble cannot be spent by any move, so it must receive one, and symmetrically for (3,2): the two lossy moves split 1 and 1]
+PASS caseA-endgame-is-stuck [from (1,3) the only admissible move is the weight-3 move to the root; the three surviving pebbles split 2 + 1 across (1,3) and (3,1), so none can move and RESIDUAL = 1 > 0]
+PASS hand-proof-closure [every move of a successful play has loss <= the total loss, hence <= 1/9, hence is one of the 16; exhausting the 112 states reachable from D by those 16 moves never reaches (1,1). This is the whole hand proof in one search, independent of the case split above]
+PASS hand-proof-gives-the-bound [an unsolvable distribution of 9 pebbles gives pi(G x G,(1,1)) >= 10 > 9 without any census]
+--- 5. controls: the semantics reproduce values published by other authors ---
+PASS control-published-pi-C_5 [all weights 2: pi = 5, published value 5]
+PASS control-published-pi-C_6 [all weights 2: pi = 8, published value 8]
+PASS control-published-pi-Q_3 [all weights 2: pi = 8, published value 8]
+PASS control-published-pi-K_6 [all weights 2: pi = 6, published value 6]
+PASS control-published-pi-Petersen [all weights 2: pi = 10, published value 10]
+PASS control-chung-theorem-3-grid [pi((K_2,a) x (K_2,b), corner) = ab on all 144 pairs with a,b <= 12, 0 failures]
+PASS control-weight-blindness-discriminator [pi((K_2,3) x (K_2,2)) = 6; a weight-blind engine would print 4]
+PASS control-source-paper-K4-cover-13 [the source paper's own example, its lines 658-665: thirteen pebbles on any single vertex cover the weighted K_4 with w(x1,x2) = w(x3,x4) = 2 and every other weight 5]
+PASS control-source-paper-K4-cover-9-plus-4 [nine on x_1 and four on x_2 do NOT cover it -- the paper's printed negative]
+PASS control-source-paper-K4-cover-12-fails [twelve on x_1 do not cover, so the threshold is exactly the printed thirteen]
+PASS outside-chungs-proved-region [in a weighted power of K_2 with parallel weights equal every edge is geodesic to the root; here d(3) = 3 < 4 = w(2,3) d(2) and d(2) = 2 < 6 = w(2,3) d(3), so the edge {2,3} is geodesic in neither direction and G is not such a cube]
+--- 6. anti-controls: the same code must NOT refute these ---
+PASS anti-control-unweighted-K3xK3 [pi = 9 = 3 * 3: no violation, so the phenomenon is weight ASYMMETRY at the root and not total weight]
+PASS anti-control-K3(2,2,3)-same-total-weight-7 [pi = 9 = 3 * 3: no violation, so the phenomenon is weight ASYMMETRY at the root and not total weight]
+--- 7. the two further witnesses of Section 3 ---
+PASS second-triangle-pi-at-its-three-roots [K_3(2,4,3): pi = 4, 4, 5, so pi(K_3(2,4,3)) = 5 and vertex 1 is NOT a worst root]
+PASS witness-2-rooted [pi(K_3(2,3,2) x K_3(2,4,3),(1,1)) = 13 > 12 = 3*4]
+PASS witness-2-unrooted-not-violated [its unrooted value is 14, at or below 3*5 = 15: no unrooted violation]
+PASS witness-3-rooted [pi(K_3(2,4,3)^2,(1,1)) = 18 > 16 = 4*4]
+PASS witness-3-unrooted-not-violated [its unrooted value is 19, well below 5*5 = 25: no unrooted violation]
+
+NOT RE-RUN: the search that FOUND this witness -- a census of 47,336 tight weighted instances over six cells -- is not repeated here, and no minimality claim of any kind is made or checked. The smallest counterexample, over weighted graphs or even over weighted triangles, is not determined by this program.
+NOT RE-RUN: the printed text of Discrete Math. 312 (2012) 2286-2293 is paywalled and was never read, so the printed CONJECTURE NUMBERS are unverified; the paper quotes the statements from the e-print source by LaTeX label and line range instead, and this program checks mathematics only, never bibliography.
+NOT RE-RUN: nothing here bears on Graham's (unweighted) conjecture, on the unweighted rooted conjecture, or on Chung's proved region beyond the 144-instance grid check above.
+
+VERDICT: ALL 60 CHECKS PASS
+=== program exited with status 0 ===

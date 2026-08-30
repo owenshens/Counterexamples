@@ -1,0 +1,442 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A characteristic-free integral witness for Froberg's series for six
+            to twenty-one septics in four variables}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\FF}{\mathbb F}
+
+\title[A characteristic-free witness for six to twenty-one septics]
+{A characteristic-free integral witness for Fr\"oberg's series for six to
+twenty-one septics in four variables}
+
+\date{}
+
+\subjclass[2020]{13D40, 13A02, 13P10, 15A15}
+\keywords{Fr\"oberg's conjecture, Hilbert series, generic forms, positive
+characteristic, determinantal divisor, coprime minors}
+
+\begin{document}
+
+\begin{abstract}
+Fr\"oberg's Conjecture~1, as stated in the Fr\"oberg--Lundqvist survey, predicts
+the Hilbert series of a quotient of a polynomial ring by generic forms; the
+positive-characteristic cases the survey records are $n\le 2$ and $n=3$ over an
+infinite field. We exhibit, for every $r$ with $6\le r\le 21$, an explicit
+$r$-tuple of septics in $\ZZ[x_1,x_2,x_3,x_4]$ with all coefficients $0$ or $1$
+whose reduction modulo the characteristic of a field $k$ generates an ideal of
+$k[x_1,x_2,x_3,x_4]$ with the conjectured quotient series, for \emph{every}
+field $k$. This is a statement about one explicit tuple and not about generic
+forms; specialisation carries it to the generic forms over the purely
+transcendental coefficient field $k(c_{i,a})$, so Conjecture~1 for
+$(n;d_1,\dots,d_r)=(4;7,\dots,7)$ and $6\le r\le21$ holds over such a field in
+every characteristic, and nothing is claimed over a finite field, where there
+are no generic forms in that sense. The certificate is a coprime pair: for
+each of ten endpoint cells $(r,j)$ we exhibit two maximal square minors of one
+integer matrix whose determinants are coprime, so no prime divides both, so the
+rank is maximal modulo every prime at once; ten cells then spread over the whole
+interval by a characteristic-free propagation lemma, proved here. The family,
+the endpoint table and the propagation lemma are Wang--Zhang's, as is the
+characteristic-zero case; inside $6\le r\le21$ the characteristic-$2$ slice is
+already an immediate consequence of their printed rank table over $\FF_2$
+together with their propagation lemma, which carries no field hypothesis. What
+is added here is the coprime-pair certificate and, with it, the remaining
+primes.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+Let $k$ be a field, $S=k[x_1,\dots,x_n]$ with the standard grading, and let
+$f_1,\dots,f_r$ be forms of degrees $d_1,\dots,d_r$. Write
+$R=S/(f_1,\dots,f_r)$. Fr\"oberg's conjecture predicts the Hilbert series of $R$
+when the $f_i$ are \emph{generic}, meaning that their coefficients are
+algebraically independent over the prime field of $k$. In the numbering of the
+Fr\"oberg--Lundqvist survey \cite[Conjecture~1]{FL} the statement reads,
+verbatim:
+
+\begin{quote}
+$R(z)=\Bigl(\prod_{i=1}^{r}(1-z^{d_i})/(1-z)^n\Bigr)_+$, \emph{where}
+$\bigl(\sum_{i\ge0}a_iz^i\bigr)_+=\sum_{i\ge0}b_iz^i$, \emph{where} $b_i=a_i$
+\emph{if} $a_j\ge0$ \emph{for all} $j\le i$ \emph{and} $b_i=0$
+\emph{otherwise.}
+\end{quote}
+
+\noindent
+Conjecture~1 sits on p.~416 of \cite{FL}. The survey assumes $k=\mathbb C$
+unless otherwise stated (p.~415); its Section~7, \emph{Positive characteristic}
+(p.~426), is where it is otherwise stated, and the positive-characteristic cases
+recorded there are $n\le2$ together with $n=3$ over an infinite field, followed
+by the sentence ``We believe that Conjecture~1 is true for any field.'' So the
+conjecture is posed over an arbitrary field by its own authors. For $n=4$ and
+$d=7$ in characteristic $p$, $r\le4$ is the monomial complete intersection
+$(x_1^7,\dots,x_4^7)$.
+
+\section{The result}
+
+Throughout, $n=4$, $d=7$, $S=k[x_1,x_2,x_3,x_4]$, and for forms
+$F_1,\dots,F_r\in S_7$ we write $I(r)=(F_1,\dots,F_r)$ and
+\[
+  \mu_{r,j}\colon (S_{j-7})^{r}\longrightarrow S_j,
+  \qquad (h_1,\dots,h_r)\longmapsto \sum_{i=1}^{r}h_iF_i ,
+\]
+whose image is $I(r)_j$, so that
+\begin{equation}\label{eq:hf}
+  \dim_k (S/I(r))_j=\binom{j+3}{3}-\rank \mu_{r,j}.
+\end{equation}
+For the equal-degree case at hand put
+\[
+  a_j(r)=[z^j]\;\frac{(1-z^{7})^{r}}{(1-z)^{4}}
+        =\sum_{i\ge0}(-1)^i\binom{r}{i}\binom{j-7i+3}{3},
+\]
+and let $q(r)$ be the largest $j$ with $a_0(r),\dots,a_j(r)$ all positive. The
+truncation in Conjecture~1 then says: the conjectured series has coefficient
+$a_j(r)$ for $j\le q(r)$ and $0$ for $j>q(r)$. (If some $a_j(r)$ vanishes, the
+two readings of ``$a_j\ge0$'' in the conjecture's truncation rule agree, because
+the coefficient printed is $0$ either way; for $6\le r\le21$ no coefficient
+$a_j(r)$ with $j\le q(r)$ vanishes, and this is re-derived in the verification.)
+
+\begin{theorem}\label{thm:main}
+Let $k$ be \emph{any} field and $S=k[x_1,x_2,x_3,x_4]$. Let
+$G_1,\dots,G_{21}\in\ZZ[x_1,x_2,x_3,x_4]_7$ be the $21$ septics printed in
+Appendix~\ref{app:family}, each a sum of distinct degree-$7$ monomials with
+coefficient $1$, and read them in $S$ by reducing their coefficients modulo the
+characteristic of $k$. Then for every $r$ with $6\le r\le 21$ the quotient
+$S/(G_1,\dots,G_r)$ has Hilbert series
+\[
+  \sum_{j=0}^{q(r)}a_j(r)\,z^{j}
+  \;=\;\Bigl(\tfrac{(1-z^{7})^{r}}{(1-z)^{4}}\Bigr)_+ ,
+\]
+the series predicted by Conjecture~1 for $(n;d_1,\dots,d_r)=(4;7,\dots,7)$.
+\end{theorem}
+
+Theorem~\ref{thm:main} is a statement about one explicit integral tuple; no
+genericity enters it. Genericity enters only through the specialisation argument
+below, which is the mechanism behind the criterion that \cite[p.~416]{FL} states
+for this purpose: ``if one finds an algebra with the conjectured series for some
+$(n,r,d_1,\dots,d_r)$, then the conjecture is proved for these values''.
+
+\begin{proposition}\label{prop:generic}
+Let $k$ be a field, $K=k(c_{i,a})$ the purely transcendental extension of $k$
+generated by indeterminates $c_{i,a}$ indexed by $1\le i\le r$ and the
+monomials $x^a$ of degree $7$, and $F_i=\sum_a c_{i,a}x^a\in K[x_1,\dots,x_4]_7$
+the generic forms. If some specialisation of the $c_{i,a}$ to elements of $k$
+makes $\rank\mu_{r,j}$ equal to $\min\bigl(\dim S_j,\;r\dim S_{j-7}\bigr)$ for
+every $j$, then the same holds for the generic $F_i$ over $K$, and hence
+$K[x]/(F_1,\dots,F_r)$ has the series of Theorem~\ref{thm:main}.
+\end{proposition}
+
+\begin{proof}
+The entries of the matrix of $\mu_{r,j}$ are $\ZZ$-linear in the $c_{i,a}$. Let
+$s=\min(\dim S_j,\;r\dim S_{j-7})$. By hypothesis some $s\times s$ minor is
+nonzero after the specialisation; that minor is a polynomial in the $c_{i,a}$
+with coefficients in the prime field, and it does not vanish at a point of
+$k^N$, hence it is not the zero polynomial, hence it is nonzero in $K$. So the
+generic rank is at least $s$, and it is at most $s$ trivially. Now
+\eqref{eq:hf} computes the generic Hilbert function.
+\end{proof}
+
+Theorem~\ref{thm:main} supplies the hypothesis of
+Proposition~\ref{prop:generic} over a field of any characteristic: for the
+specialisation sending $c_{i,a}$ to the coefficients of $G_i$, its dimension
+formula read through \eqref{eq:hf} says exactly that $\rank\mu_{r,j}$ is the
+smaller of $\dim S_j$ and $r\dim S_{j-7}$ in every degree $j$. So for every
+field $k$ Conjecture~1 holds for $n=4$, $d_1=\dots=d_r=7$ and $6\le r\le21$ over
+the coefficient field $K=k(c_{i,a})$, whose characteristic is that of $k$ and
+hence arbitrary. Over a \emph{finite} field there are no generic forms in the
+above sense, and we claim nothing about Conjecture~1 there; what
+Theorem~\ref{thm:main} gives over $\FF_p$ is the explicit tuple itself.
+
+\section{The witness family}\label{sec:family}
+
+Order the $\binom{10}{3}=120$ monomials of degree $7$ in $x_1,x_2,x_3,x_4$ by
+\emph{decreasing lexicographic order of their exponent vectors}, so that the
+list begins $[7,0,0,0]$, $[6,1,0,0]$, $[6,0,1,0]$, $[6,0,0,1]$, $[5,2,0,0]$,
+\dots\ and ends $[0,0,1,6]$, $[0,0,0,7]$; call this ordered list
+$\mathrm{MON}_7$ and index it from $0$. Each form of the family is a sum of
+distinct monomials from $\mathrm{MON}_7$, all coefficients $1$, and is written as
+a $30$-digit hexadecimal \emph{mask}: the monomial with index $i$ occurs in the
+form if and only if bit $i$ --- the coefficient of $2^i$ --- of the mask is $1$.
+The family has $120$ members; Appendix~\ref{app:family} prints the masks of the
+$21$ used in Theorem~\ref{thm:main}, whose support sizes run from $49$ to $78$,
+and all $120$ masks are listed in the accompanying program \texttt{verify.py}.
+
+To make the convention checkable by hand, here is $G_1$ in full. Its mask is
+\texttt{49ed660e53a564e3fb9f22d51e14f7} and it is the sum of $x^a$ over these $65$ exponent
+vectors $a$:
+
+\begin{center}\footnotesize\begin{verbatim}
+[7,0,0,0] [6,1,0,0] [6,0,1,0] [5,2,0,0] [5,1,1,0] [5,1,0,1]
+[5,0,2,0] [4,3,0,0] [4,2,0,1] [4,0,2,1] [4,0,1,2] [4,0,0,3]
+[3,4,0,0] [3,2,1,1] [3,1,3,0] [3,1,1,2] [3,0,4,0] [3,0,3,1]
+[3,0,1,3] [2,4,0,1] [2,3,0,2] [2,2,3,0] [2,2,2,1] [2,2,1,2]
+[2,2,0,3] [2,1,2,2] [2,1,1,3] [2,1,0,4] [2,0,4,1] [2,0,3,2]
+[2,0,2,3] [2,0,1,4] [2,0,0,5] [1,6,0,0] [1,5,1,0] [1,4,0,2]
+[1,3,3,0] [1,3,2,1] [1,2,4,0] [1,2,1,3] [1,2,0,4] [1,1,4,1]
+[1,1,2,3] [1,0,6,0] [1,0,4,2] [1,0,3,3] [1,0,2,4] [0,7,0,0]
+[0,6,0,1] [0,5,0,2] [0,4,3,0] [0,4,2,1] [0,3,1,3] [0,3,0,4]
+[0,2,3,2] [0,2,2,3] [0,2,0,5] [0,1,5,1] [0,1,4,2] [0,1,2,4]
+[0,1,1,5] [0,1,0,6] [0,0,7,0] [0,0,4,3] [0,0,1,6]
+\end{verbatim}\end{center}
+
+The witness for a given $r$ is the \emph{prefix} $G_1,\dots,G_r$. Writing each
+form as the sorted list of its exponent vectors and the family of $120$ as the
+list of those lists, the canonical JSON encoding
+\texttt{[[[7,0,0,0],[6,1,0,0],\dots]],\dots]} (no whitespace) has
+\[
+  \text{\texttt{sha256}} =
+  \text{\footnotesize\texttt{f93339e7b30deb19b81fe74fa3b79a7859cf8da9a4c6fadbd740f98c975c8e20}}.
+\]
+This is the digest of the \texttt{forms} array of the ancillary certificate
+published with \cite{WZ}: the family is theirs.
+
+\section{Ten cells, and why they suffice}
+
+\begin{lemma}[endpoint propagation; \cite{WZ}]\label{lem:endpoint}
+Let $k$ be any field, $S=k[x_1,\dots,x_n]$, and $G_1,\dots,G_b\in S_d$. Let
+$1\le a\le b$ and $q\ge d$, and suppose
+\begin{enumerate}
+\item[(i)] $\mu_{b,q}$ is injective, and
+\item[(ii)] $\mu_{a,q+1}$ is surjective.
+\end{enumerate}
+Then for every $r$ with $a\le r\le b$: $\mu_{r,j}$ is injective for
+$d\le j\le q$, and $(S/I(r))_j=0$ for every $j\ge q+1$. Consequently
+\[
+  \dim_k (S/I(r))_j=
+  \begin{cases}
+   \binom{j+n-1}{n-1}, & 0\le j<d,\\[2pt]
+   \binom{j+n-1}{n-1}-r\binom{j-d+n-1}{n-1}, & d\le j\le q,\\[2pt]
+   0,& j>q.
+  \end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+(a) For $r\le b$, $\mu_{r,q}$ is the restriction of $\mu_{b,q}$ to the subspace
+$\{h_{r+1}=\dots=h_b=0\}$, so it is injective by (i).
+(b) Let $d\le j\le q$ and let $h=(h_1,\dots,h_r)$ satisfy $\mu_{r,j}(h)=0$ with
+$h\ne0$. Choose any monomial $m$ of degree $q-j$. Then $mh\ne0$, because $S$ is
+a domain, and $\mu_{r,q}(mh)=m\,\mu_{r,j}(h)=0$, contradicting (a). So
+$\mu_{r,j}$ is injective.
+(c) For $r\ge a$ the image of $\mu_{r,q+1}$ contains the image of
+$\mu_{a,q+1}$, which is all of $S_{q+1}$ by (ii); hence $I(r)_{q+1}=S_{q+1}$.
+(d) For $j\ge q+1$, $S_j=S_{j-q-1}\cdot S_{q+1}=S_{j-q-1}\cdot I(r)_{q+1}
+\subseteq I(r)_j$, so $(S/I(r))_j=0$.
+The displayed dimensions are then \eqref{eq:hf} with
+$\rank\mu_{r,j}=r\dim S_{j-d}$ in the injective range. No hypothesis on $k$ is
+used beyond $S$ being a domain, which holds over every field; in particular the
+lemma transports to characteristic $p$ unchanged.
+\end{proof}
+
+For $6\le r\le21$ the value $q(r)$ is constant on five blocks:
+\[
+\begin{array}{c|ccccc}
+ \text{block of } r & \{6\} & \{7,8\} & \{9,10\} & \{11,\dots,14\}
+   & \{15,\dots,21\}\\\hline
+ q(r) & 13 & 12 & 11 & 10 & 9
+\end{array}
+\]
+so Lemma~\ref{lem:endpoint} needs one injective endpoint $(b,q)$ and one
+surjective endpoint $(a,q+1)$ per block: ten cells in all, listed in Table~1.
+The blocks cover $\{6,\dots,21\}$ with no gap and no overlap, and the arithmetic
+behind the table --- including that no second Koszul term
+$\binom{r}{2}\binom{j-14+3}{3}$ enters $a_j(r)$ in the ranges used, the one
+exception being the surjective endpoint $(6,14)$, where
+$a_{14}(6)=680-720+15=-25<0$ so that the truncation still begins at $q+1$ --- is
+re-derived in the verification.
+
+\begin{table}[ht]
+\caption{The ten endpoint cells. In each row the matrix is that of $\mu_{r,j}$
+in the monomial bases, of size $\dim S_j\times r\dim S_{j-7}$;
+$s=\min$ of the two, so ``injective'' means $\rank=s=\#\text{columns}$ and
+``surjective'' means $\rank=s=\#\text{rows}$. The last two columns give the bit
+lengths of the two exhibited minor determinants and their gcd.}
+\begin{center}
+\begin{tabular}{ccccccc}
+$r$ & $j$ & matrix & $s$ & endpoint & $\log_2$ of the two $|\det|$ & gcd\\\hline
+$6$ & $13$ & $560\times 504$ & $504$ & injective & $800$, $789$ & $1$ \\
+$6$ & $14$ & $680\times 720$ & $680$ & surjective & $1070$, $1073$ & $1$ \\
+$8$ & $12$ & $455\times 448$ & $448$ & injective & $745$, $737$ & $1$ \\
+$7$ & $13$ & $560\times 588$ & $560$ & surjective & $905$, $912$ & $1$ \\
+$10$ & $11$ & $364\times 350$ & $350$ & injective & $592$, $570$ & $1$ \\
+$9$ & $12$ & $455\times 504$ & $455$ & surjective & $756$, $752$ & $1$ \\
+$14$ & $10$ & $286\times 280$ & $280$ & injective & $475$, $467$ & $1$ \\
+$11$ & $11$ & $364\times 385$ & $364$ & surjective & $611$, $613$ & $1$ \\
+$21$ & $9$ & $220\times 210$ & $210$ & injective & $365$, $362$ & $1$ \\
+$15$ & $10$ & $286\times 300$ & $286$ & surjective & $484$, $488$ & $1$ \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{lemma}\label{lem:puniform}
+Let $M$ be an $R\times C$ integer matrix and $s=\min(R,C)$. Suppose two
+$s\times s$ submatrices $N_1,N_2$ of $M$ satisfy
+$\gcd(\det N_1,\det N_2)=1$. Then for every field $k$ the image of $M$ in
+$k^{R\times C}$ has rank exactly $s$.
+\end{lemma}
+
+\begin{proof}
+If $\operatorname{char}k=p>0$ then $p$ cannot divide both determinants, so one
+of them is a unit in $\FF_p\subseteq k$; if $\operatorname{char}k=0$ then
+$\gcd(\det N_1,\det N_2)=1$ forces $\det N_1\ne0$, and a nonzero integer is
+nonzero in $k$. Either way some $s\times s$ minor of the image of $M$ is
+nonzero, so its rank is at least $s$, and it is at most $s$ by size.
+\end{proof}
+
+Lemma~\ref{lem:puniform} is the whole of the new input. A single maximal minor
+that is nonzero modulo one prime --- for instance nonzero modulo $2$, which is
+what the rank tables of \cite{WZ} record --- certifies that the integer
+determinant is nonzero, hence maximal rank over $\QQ$ and over every field of
+characteristic zero, and \emph{nothing} at any other prime. Two maximal minors
+of the same integer matrix with coprime determinants certify maximal rank at
+every prime at once.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For each of the ten cells $(r,j)$ of Table~1 the accompanying program
+\texttt{verify.py} holds two index sets, each naming an $s\times s$ submatrix of
+the matrix of $\mu_{r,j}$ built from the prefix $G_1,\dots,G_r$ over $\ZZ$,
+together with the two integer determinants, whose bit lengths and gcd are the
+last two columns of Table~1. Rows there are indexed from $0$ by $\mathrm{MON}_j$
+in decreasing lexicographic order, and columns from $0$ so that column
+$i\cdot\dim S_{j-7}+m$ carries the $m$-th monomial of $\mathrm{MON}_{j-7}$
+multiplying $G_{i+1}$, with $0\le i<r$; at an injective endpoint the minor uses
+every column and the rows outside the listed set, at a surjective endpoint every
+row and the columns outside it. The two determinants are coprime in every one of
+the ten cells. By Lemma~\ref{lem:puniform} the rank of $\mu_{r,j}$ is $s$ over every
+field $k$, which is injectivity at the five cells with $s=\#\text{columns}$ and
+surjectivity at the five cells with $s=\#\text{rows}$. Feeding the two endpoints
+of each block into Lemma~\ref{lem:endpoint} gives, for every $r$ in that block
+and every field $k$, the dimensions displayed there; and those dimensions are
+$a_j(r)$ for $j\le q(r)$ and $0$ beyond, which is the truncated series.
+\end{proof}
+
+\section{Scope, and what is taken from elsewhere}
+
+\noindent\textbf{The interval.} For $r=21$ one has $a_9(21)=10>0$ and
+$a_{10}(21)=-134$, so the predicted series has support through degree~$9$ and
+vanishes from degree~$10$ on; establishing the conjecture at $r=21$ accordingly
+requires surjectivity in degree~$10$, which is what the surjective endpoint
+$(15,10)$ of Table~1 supplies through Lemma~\ref{lem:endpoint}. For $r=22$ one
+has $a_9(22)=0$, so the predicted series
+stops at degree~$8$. Nothing is claimed here for $r\ge22$, and nothing for
+$r=5$; at the lower end $r\le4$ is the monomial complete intersection.
+
+\medskip\noindent\textbf{What is taken from \cite{WZ}, and what is added.} The
+family of Appendix~\ref{app:family} is theirs, the block table is theirs, and
+Lemma~\ref{lem:endpoint} is theirs; the second is re-derived here from the series
+arithmetic, and the third is proved above rather than cited so that the argument
+is self-contained. Their Theorem~1.1 settles the characteristic-zero case, and
+their Table~3 records maximal rank over $\FF_2$ for the ten cells of Table~1.
+Since their propagation lemma is stated with no hypothesis on the field, the
+characteristic-$2$ slice of Theorem~\ref{thm:main} for $6\le r\le21$ is an
+immediate consequence of that table together with that lemma; they do not assert
+it, their Section~5 claiming characteristic zero only. What is added here is
+Lemma~\ref{lem:puniform} and the coprime pairs, which cover the remaining
+primes, and the fact that the witness is a single explicit tuple over $\FF_p$
+rather than an open set of tuples. The integer determinants were computed
+independently of \cite{WZ},
+which reports ranks modulo $2$ and no integer determinants.
+
+\section{Verification}
+
+The folder that accompanies this note contains one program, \texttt{verify.py}
+(Python~3.9 or later, standard library only, no third-party package and no
+external data file), and a recorded run of it, \texttt{verify.output.txt}. The
+program holds the $120$ masks, the ten cells of Table~1 and the twenty index sets
+and twenty integer determinants, and re-derives every quantity claimed here: it
+decodes the masks and recomputes the \texttt{sha256} of \S\ref{sec:family};
+re-derives $q(r)$ for $r=6,\dots,21$, the five blocks, and the claim that the ten
+cells of Table~1 are exactly the ten endpoint cells; rebuilds each of the ten
+integer matrices from the decoded forms, checks its shape against $\dim S_j$ and
+$r\dim S_{j-7}$, extracts the twenty named minors and recomputes their
+determinants from scratch; takes the ten gcds; and, independently of the gcd
+argument, recomputes the rank of each of the ten matrices over $\FF_2$, $\FF_3$
+and $\FF_5$. The arithmetic is exact: modular Gaussian elimination over $62$-bit
+prime fields and Chinese remaindering against the integer Hadamard bound
+$\det(N)^2\le\prod_i(\text{$i$-th row sum of }N)$, valid because every entry is
+$0$ or $1$, so that the modulus used exceeds $2|\det N|$ and the lift is the true
+integer; then one Euclid gcd per cell. No floating point enters any decision. The
+recorded run reports
+\begin{center}
+\texttt{VERDICT: ALL 222 CHECKS PASS}
+\end{center}
+and the program exits $0$ if and only if every check passes.
+
+Two limits are recorded in the program's own output. It reads no file and no
+network, so it does not fetch the ancillary file of \cite{WZ}: the
+\texttt{sha256} of \S\ref{sec:family} is recomputed from the masks it holds, and
+its equality with the published digest is a claim a referee must check against
+arXiv. And it checks nothing about $r\le5$, $r\ge22$, or any $(n,d)$ other than
+$(4,7)$.
+
+\appendix
+
+\section{The twenty-one forms}\label{app:family}
+
+The $21$ forms used in Theorem~\ref{thm:main}, as $30$-digit hexadecimal masks
+over the ordered basis $\mathrm{MON}_7$ of \S\ref{sec:family}. Bit $i$ of the
+mask is $1$ if and only if the $i$-th monomial of $\mathrm{MON}_7$ occurs in the
+form.
+
+{\scriptsize\begin{verbatim}
+G1    49ed660e53a564e3fb9f22d51e14f7
+G2    2728e9577f9976d66df364ad739e9b
+G3    e4642c6e3d0c00c837aad525608035
+G4    a697391e0adb52a5bbbdb4606db8a6
+G5    476783c09aedb8c07d24678ea4bbdd
+G6    b29ddfdd727b6b736069bafd78deff
+G7    53c2fe37a5bc1a5e7c15ddfefcc5a3
+G8    8bc155a7fb2fdaca14f9b5219eeaf4
+G9    6703cbffc1ee6058f28ea9114ed06c
+G10   4c1f42a4ceb4857b5f07e66cedd8ef
+G11   4cc658bc60373a0e6d46cc4493e1c5
+G12   f380fa591a18fe94d6e091acd9979a
+G13   d654523b92b9bb4034ce8b4d293176
+G14   44e3a772aea91b2853a289bd834cc9
+G15   2b2671f51fac829ce9e991ce47bc38
+G16   b53b6f0b4b896b8cbf7f55fb902070
+G17   4495e190e5533494c2071c137aa59d
+G18   73837221ac7cb93029c29f2e30e086
+G19   26ed68177571506497c38afb7b43fd
+G20   42be9cc2a6dbe2f55faf1411447aa5
+G21   9fe550885e47ed36507d97205539e0
+\end{verbatim}}
+
+\begin{thebibliography}{9}
+
+\bibitem{FL}
+R.~Fr\"oberg and S.~Lundqvist,
+\emph{Questions and conjectures on extremal Hilbert series},
+Rev.\ Un.\ Mat.\ Argentina \textbf{59} (2018), no.~2, 415--429.
+\href{https://doi.org/10.33044/revuma.v59n2a10}{doi:10.33044/revuma.v59n2a10}.
+All quotations above are from this text.
+
+\bibitem{WZ}
+Y.~Wang and L.~Zhang,
+\emph{Fr\"oberg's conjecture for quintics and septics in four variables},
+arXiv:2608.24797.
+The origin of the family of Appendix~\ref{app:family}, of the block table, and
+of Lemma~\ref{lem:endpoint}. A preprint, not refereed.
+
+\end{thebibliography}
+
+\end{document}

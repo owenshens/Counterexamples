@@ -1,0 +1,58 @@
+=== provenance (added by the run harness, not by the program) ===
+program: exhaust.py
+sha256:  9fe82e9d862fe2cb828f8aa5367c5524f60ac06d453ff8d5d745fa8a3d30578a
+python:  Python 3.9.6
+=== program output follows ===
+P_3 x P_3 x P_4 : |V| = 36, |E| = 75
+deciding cab >= 14 by complete exhaustion, NO symmetry reduction (rotation pin only)
+
+    ... 67108864 nodes, 38 s
+    ... 134217728 nodes, 76 s
+    ... 201326592 nodes, 114 s
+    ... 268435456 nodes, 151 s
+    ... 335544320 nodes, 188 s
+    ... 402653184 nodes, 225 s
+    ... 469762048 nodes, 262 s
+    ... 536870912 nodes, 300 s
+    ... 603979776 nodes, 337 s
+    ... 671088640 nodes, 376 s
+    ... 738197504 nodes, 414 s
+    ... 805306368 nodes, 451 s
+    ... 872415232 nodes, 489 s
+    ... 939524096 nodes, 526 s
+    ... 1006632960 nodes, 564 s
+    ... 1073741824 nodes, 602 s
+    ... 1140850688 nodes, 640 s
+    ... 1207959552 nodes, 679 s
+    ... 1275068416 nodes, 718 s
+    ... 1342177280 nodes, 757 s
+    ... 1409286144 nodes, 795 s
+    ... 1476395008 nodes, 835 s
+    ... 1543503872 nodes, 873 s
+    ... 1610612736 nodes, 912 s
+    ... 1677721600 nodes, 950 s
+    ... 1744830464 nodes, 989 s
+    ... 1811939328 nodes, 1028 s
+    ... 1879048192 nodes, 1067 s
+    ... 1946157056 nodes, 1105 s
+    ... 2013265920 nodes, 1143 s
+    ... 2080374784 nodes, 1180 s
+    ... 2147483648 nodes, 1218 s
+    ... 2214592512 nodes, 1256 s
+    ... 2281701376 nodes, 1294 s
+    ... 2348810240 nodes, 1333 s
+    ... 2415919104 nodes, 1371 s
+
+    RESULT INFEASIBLE ; search-tree nodes = 2463942873 ; complete labelings found = 0 ; 1399.0 s
+    DEPTH PROFILE (nodes created while placing the i-th vertex of the order, i = 1..35):
+    i1=9 i2=72 i3=336 i4=2352 i5=9240 i6=31332 i7=71136 i8=372240 i9=969940 i10=2007716 i11=3087640 i12=13130292 i13=32446938 i14=69745196 i15=136996488 i16=386793072 i17=327912478 i18=285605126 i19=132677842 i20=127289766 i21=179604962 i22=202738854 i23=270137392 i24=258821680 i25=30255984 i26=2801650 i27=272828 i28=39362 i29=51634 i30=37266 i31=31130 i32=920 i33=0 i34=0 i35=0
+
+PASS k-14-is-infeasible-with-no-symmetry-reduction-at-all [2463942873 search-tree nodes exhausted, 0 complete labelings, 1399.0 s]
+PASS depth-profile-sums-to-the-reported-node-count [sum over the 35 placement levels = 2463942873]
+PASS the-exhaustion-is-not-a-trivially-empty-one [levels 1..32 of the tree are non-empty and every level beyond is empty: the search dies 4 vertices short of a complete labeling, which is exactly what "no labeling exists" looks like from inside a backtracking search]
+PASS hence-cab-P_3x3x4-is-at-most-13 [combined with the printed bijection of min cyclic distance 13, cab(P_3x3x4) = 13, against the conjectured 14]
+
+NOT RE-RUN: everything else. This program decides one question on one graph. The lower bound, the degree cap, the k = 15 layer, the controls on published values and the soundness of the symmetry reduction are all in verify.py; the cells n3 = 5..8 are decided nowhere in this folder.
+
+VERDICT: ALL 4 CHECKS PASS
+=== program exited with status 0 ===

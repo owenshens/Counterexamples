@@ -1,0 +1,342 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Contractibility Can Fail at the Top of the Rank-Spread Filtration:
+            A Ten-Element Graded Poset}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\DeclareMathOperator{\St}{St}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\Dl}{\Delta}
+\newcommand{\Susp}{\Sigma}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\Ho}{\widetilde H}
+
+\title[Contractibility can fail at the top filtration stage]
+{Contractibility Can Fail at the Top of the Rank-Spread Filtration:
+A Ten-Element Graded Poset}
+
+\date{}
+
+\subjclass[2020]{06A07, 55U10, 05E45}
+\keywords{graded poset, order complex, rank-spread filtration, contractibility,
+collapsibility, magnitude homology, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $P$ be a finite graded poset of rank $n$ and let $\Dl^{(k)}(P)$ be the
+subcomplex of the order complex $\Dl(P)$ spanned by the chains of rank spread
+at most $k$, so that $\Dl^{(0)}(P)$ is the vertex set and
+$\Dl^{(n)}(P)=\Dl(P)$. Kitajima asks whether $\Dl^{(k)}(P)$ is contractible
+whenever $\Dl^{(k-1)}(P)$ is. We exhibit a counterexample to that implication
+as stated. Let $P$ be the poset on the ten elements
+$a_0,a_1,b_0,b_1,b_2,c_0,c_1,c_2,d_0,d_1$, of ranks $0,0,1,1,1,2,2,2,3,3$,
+whose covers are exactly the fifteen relations displayed in
+Section~\ref{sec:witness}. Then $P$ is graded of rank $3$, the complex
+$\Dl^{(2)}(P)$ collapses to a point in $27$ elementary steps, and
+$\Dl^{(3)}(P)=\Dl(P)$ is homotopy equivalent to $S^2$; in particular
+$\Ho_2(\Dl^{(3)}(P);\ZZ)=\ZZ$ and $\Dl^{(3)}(P)$ is not contractible. The
+witness has $k=n$, so what fails to be contractible is the full order complex;
+whether the implication can fail at a proper stage $k<n$ we leave open.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:question}
+
+Let $P$ be a finite poset. Its \emph{order complex} $\Dl(P)$ is the simplicial
+complex whose faces are the nonempty chains of $P$. Following
+Kitajima~\cite{Kitajima}, $P$ is \emph{graded of rank $n$} if every maximal
+chain of $P$ has length $n$ --- that is, $P$ is \emph{pure}; no bound is
+imposed, so $P$ may have several minimal and several maximal elements. A graded
+poset carries a rank function $\rk\colon P\to\{0,\ldots,n\}$, the
+\emph{rank spread} of a chain $C\subseteq P$ is
+$\max_{x\in C}\rk(x)-\min_{x\in C}\rk(x)$, and for $0\le k\le n$
+\[
+  \Dl^{(k)}(P)\ :=\ \bigl\{\,C\in\Dl(P)\ :\ \text{the rank spread of $C$ is at
+  most }k\,\bigr\}
+\]
+is a subcomplex of $\Dl(P)$. Thus $\Dl^{(0)}(P)$ is the vertex set,
+$\Dl^{(1)}(P)$ is the Hasse diagram viewed as a $1$-complex,
+\[
+  \Dl^{(0)}(P)\subseteq\cdots\subseteq\Dl^{(n)}(P)=\Dl(P),
+\]
+and the filtration is the poset case of the filtered nerve of
+Di et al.~\cite{DIMZ}, whose relative homology
+$H_*\bigl(\Dl^{(k)}(P),\allowbreak\Dl^{(k-1)}(P)\bigr)$ is the magnitude
+homology of $P$
+\cite[Lemma~1.7]{DIMZ}; the order-complex antecedent for metric spaces is due
+to Kaneta and Yoshinaga~\cite{KY}. In that context Kitajima records, verbatim:
+
+\begin{quote}
+``It is an open problem whether $\Dl^{(k)}(P)$ is contractible whenever
+$\Dl^{(k-1)}(P)$ is contractible.''
+\end{quote}
+
+The sentence is in Remark~2.13 on page~8 of \cite{Kitajima} (version~v2 of
+24 June 2026); the ambient definition of ``graded of rank $n$'' as purity is
+Definition~1.9 on page~5.
+
+Since the sentence quantifies over all finite graded posets $P$, all $n$, and
+all $k$, a single pair $(P,k)$ with $\Dl^{(k-1)}(P)$ contractible and
+$\Dl^{(k)}(P)$ not contractible settles it, negatively. The witness below has
+$k=n$; Section~\ref{sec:scope} says what that does and does not leave open.
+
+\section{The witness}\label{sec:witness}
+
+Let $P$ be the poset on the ten elements
+\[
+  \underbrace{a_0,\ a_1}_{\rk=0}\qquad
+  \underbrace{b_0,\ b_1,\ b_2}_{\rk=1}\qquad
+  \underbrace{c_0,\ c_1,\ c_2}_{\rk=2}\qquad
+  \underbrace{d_0,\ d_1}_{\rk=3}
+\]
+whose cover relations are exactly the following fifteen:
+\begin{equation}\label{eq:covers}
+\begin{array}{lll}
+ a_0<b_0 & &\\
+ a_1<b_1 & a_1<b_2 &\\
+ b_0<c_0 & b_0<c_1 & b_0<c_2\\
+ b_1<c_0 & b_1<c_1 &\\
+ b_2<c_0 & b_2<c_2 &\\
+ c_0<d_0 & &\\
+ c_1<d_0 & c_1<d_1 &\\
+ c_2<d_0 & c_2<d_1 &
+\end{array}
+\end{equation}
+The order on $P$ is the transitive closure of \eqref{eq:covers}. It consists of
+$31$ strict pairs: the fifteen covers, the six pairs $a_i<c_j$ that are
+present, the six pairs $b_i<d_j$, and all four pairs $a_i<d_j$. Recomputing
+the cover relation from that closure returns exactly the fifteen pairs of
+\eqref{eq:covers}, so \eqref{eq:covers} is a faithful presentation.
+
+\begin{lemma}\label{lem:graded}
+$P$ is graded of rank $3$; it has two minimal elements $a_0,a_1$ and two
+maximal elements $d_0,d_1$, hence neither a minimum nor a maximum, and
+$\Dl^{(3)}(P)=\Dl(P)$.
+\end{lemma}
+
+\begin{proof}
+Every relation in \eqref{eq:covers} raises the rank by exactly $1$; every
+element of rank $<3$ has an upper cover and every element of rank $>0$ has a
+lower cover. Hence every maximal chain of $P$ starts at rank $0$, ends at
+rank $3$ and passes through one element of each rank, so it has length $3$;
+there are eleven such chains, and $P$ is graded of rank $3$. Only $a_0,a_1$
+have no lower cover and only $d_0,d_1$ have no upper cover, so these are
+exactly the minimal and the maximal elements; each of the two sets has two
+members, so $P$ has neither a minimum nor a maximum. Finally, every chain of
+$P$ has rank spread at most $3$, so $\Dl^{(3)}(P)=\Dl(P)$.
+\end{proof}
+
+The face numbers of the two filtration stages used below are
+\begin{equation}\label{eq:fvec}
+  \Dl^{(2)}(P)\colon\ (10,27,18),\qquad
+  \Dl^{(3)}(P)\colon\ (10,31,34,11),
+\end{equation}
+with Euler characteristics $+1$ and $+2$.
+
+For $S\subseteq\{0,1,2,3\}$ write $P_S=\{x\in P:\rk(x)\in S\}$ and abbreviate
+$P_{[i,j]}=P_{\{i,i+1,\ldots,j\}}$.
+
+We use one standard fact throughout.
+
+\begin{lemma}\label{lem:susp}
+Let $X=A\cup B$ be a simplicial complex covered by two subcomplexes with
+$Y=A\cap B\ne\emptyset$. If $A$ and $B$ are contractible, then $X$ is homotopy
+equivalent to the suspension $\Susp Y$.
+\end{lemma}
+
+\begin{proof}
+$X$ is the pushout of the two inclusions $A\hookleftarrow Y\hookrightarrow B$,
+which are cofibrations of CW pairs, so $X$ is also their homotopy pushout.
+Replacing $A$ and $B$ by points, which is a homotopy equivalence of pushout
+diagrams, gives $X\simeq\bigl(\{*\}\leftarrow Y\rightarrow\{*\}\bigr)$-pushout
+$=\Susp Y$.
+\end{proof}
+
+For a vertex $v$ of a complex $X$ we write $\St_X(v)$ for its closed star, the
+subcomplex of faces $\sigma$ with $\sigma\cup\{v\}\in X$, together with their
+faces. If $X=\Dl(Q)$ is an order complex and $v\in Q$, then $\St_X(v)$ is the
+cone with apex $v$ over the order complex of $\{x\in Q:x<v\text{ or }x>v\}$,
+so it is contractible.
+
+\section{$\Dl^{(3)}(P)$ is homotopy equivalent to $S^2$}\label{sec:top}
+
+\begin{proposition}\label{prop:S2}
+$\Dl^{(3)}(P)=\Dl(P)\simeq S^2$. In particular
+$\Ho_2(\Dl(P);\ZZ)=\ZZ$ and $\Dl(P)$ is not contractible.
+\end{proposition}
+
+\begin{proof}
+The maximal elements of $P$ are $d_0$ and $d_1$, and they are incomparable, so
+no chain contains both, while every chain of $P$ that is maximal ends in $d_0$
+or in $d_1$. Hence
+\[
+  \Dl(P)=\St(d_0)\cup\St(d_1),
+\]
+and both stars are cones, hence contractible. Their intersection is the order
+complex of $\{x\in P:x<d_0\}\cap\{x\in P:x<d_1\}$. Now
+$\{x<d_0\}=P_{[0,2]}$, all eight elements of rank $\le2$, whereas
+$\{x<d_1\}=P_{[0,2]}\setminus\{c_0\}$: indeed $c_1,c_2<d_1$ by
+\eqref{eq:covers}, hence $b_0,b_1<c_1<d_1$ and $b_2<c_2<d_1$ and
+$a_0<b_0<d_1$, $a_1<b_1<d_1$, while $c_0<d_1$ is not among the relations of
+$P$. So
+\[
+  Y:=\St(d_0)\cap\St(d_1)=\Dl\bigl(P_{[0,2]}\setminus\{c_0\}\bigr),
+\]
+the complex on the seven vertices $a_0,a_1,b_0,b_1,b_2,c_1,c_2$ with the eleven
+edges
+\[
+  a_0b_0,\ a_1b_1,\ a_1b_2,\ b_0c_1,\ b_0c_2,\ b_1c_1,\ b_2c_2,\
+  a_0c_1,\ a_0c_2,\ a_1c_1,\ a_1c_2
+\]
+and the four triangles $a_0b_0c_1$, $a_0b_0c_2$, $a_1b_1c_1$, $a_1b_2c_2$; its
+Euler characteristic is $7-11+4=0$.
+
+Apply the same argument to $Y$, at the bottom instead of the top. Every vertex
+of $Y$ other than $a_0,a_1$ lies above $a_0$ or above $a_1$, so
+$Y=\St_Y(a_0)\cup\St_Y(a_1)$ with both stars cones. In $Y$ we have
+$\{x>a_0\}=\{b_0,c_1,c_2\}$ and $\{x>a_1\}=\{b_1,b_2,c_1,c_2\}$, whose
+intersection is $\{c_1,c_2\}$, two incomparable elements. So
+$\St_Y(a_0)\cap\St_Y(a_1)$ is a pair of points, i.e.\ $S^0$, and
+Lemma~\ref{lem:susp} gives $Y\simeq\Susp S^0=S^1$. A second application of
+Lemma~\ref{lem:susp}, now to $\Dl(P)=\St(d_0)\cup\St(d_1)$, gives
+\[
+  \Dl(P)\ \simeq\ \Susp Y\ \simeq\ \Susp S^1\ =\ S^2 .\qedhere
+\]
+\end{proof}
+
+As a check, $\chi(\Dl(P))=10-31+34-11=2=\chi(S^2)$ by \eqref{eq:fvec},
+whereas a contractible complex has $\chi=1$.
+
+\section{$\Dl^{(2)}(P)$ is collapsible}\label{sec:collapse}
+
+Recall that a face $\tau$ of a simplicial complex $X$ is \emph{free} if it is
+contained in exactly one proper coface $\sigma$; deleting the pair
+$\{\tau,\sigma\}$ is an \emph{elementary collapse} and does not change the
+homotopy type. A complex that can be reduced to a single vertex by elementary
+collapses is \emph{collapsible}, hence contractible.
+
+\begin{proposition}\label{prop:coll}
+$\Dl^{(2)}(P)$ is collapsible, hence contractible.
+\end{proposition}
+
+\begin{proof}
+$\Dl^{(2)}(P)$ has $10+27+18=55$ faces by \eqref{eq:fvec}. The following
+$27$ elementary collapses delete $54$ of them and leave the single vertex
+$d_1$. In each row, $\tau$ has exactly one proper coface in the complex
+remaining at that step, namely $\sigma$; the reader may check the rows in
+order, and each check involves listing the at most three cofaces of a face.
+\begin{center}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{r>{$}l<{$}>{$}l<{$}@{\quad}r>{$}l<{$}>{$}l<{$}@{\quad}r>{$}l<{$}>{$}l<{$}}
+ & \tau & \sigma & & \tau & \sigma & & \tau & \sigma\\
+\hline
+ 1 & a_0c_0 & a_0b_0c_0 & 10 & b_0c_0 & b_0c_0d_0 & 19 & b_2 & b_2d_1\\
+ 2 & a_0c_1 & a_0b_0c_1 & 11 & b_1c_0 & b_1c_0d_0 & 20 & c_1d_0 & b_0c_1d_0\\
+ 3 & a_0b_0 & a_0b_0c_2 & 12 & b_1d_0 & b_1c_1d_0 & 21 & b_0c_1 & b_0c_1d_1\\
+ 4 & a_0    & a_0c_2    & 13 & b_1c_1 & b_1c_1d_1 & 22 & c_1 & c_1d_1\\
+ 5 & a_1c_1 & a_1b_1c_1 & 14 & b_1    & b_1d_1    & 23 & b_0d_0 & b_0c_2d_0\\
+ 6 & a_1b_1 & a_1b_1c_0 & 15 & b_2c_0 & b_2c_0d_0 & 24 & d_0 & c_2d_0\\
+ 7 & a_1c_0 & a_1b_2c_0 & 16 & c_0    & c_0d_0    & 25 & b_0c_2 & b_0c_2d_1\\
+ 8 & a_1b_2 & a_1b_2c_2 & 17 & b_2d_0 & b_2c_2d_0 & 26 & b_0 & b_0d_1\\
+ 9 & a_1    & a_1c_2    & 18 & b_2c_2 & b_2c_2d_1 & 27 & c_2 & c_2d_1
+\end{tabular}
+\end{center}
+The face counts run $55,53,51,\ldots,3,1$, and the last surviving face is the
+vertex $d_1$.
+\end{proof}
+
+\section{The result, and what it does not settle}\label{sec:scope}
+
+\begin{theorem}\label{thm:main}
+Let $P$ be the ten-element poset of \eqref{eq:covers}. Then $P$ is graded of
+rank $3$, $\Dl^{(2)}(P)$ is collapsible --- in particular contractible --- and
+$\Dl^{(3)}(P)$ is homotopy equivalent to $S^2$, so it is not contractible.
+Consequently it is false that $\Dl^{(k)}(P)$ is contractible whenever
+$\Dl^{(k-1)}(P)$ is.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:graded}, Proposition~\ref{prop:coll} and
+Proposition~\ref{prop:S2}.
+\end{proof}
+
+What falls is the universally quantified implication of Remark~2.13, p.~8 of
+\cite{Kitajima}, and nothing more. The witness has $k=n=3$, so the complex that
+fails to be contractible is the \emph{full} order complex
+$\Dl^{(n)}(P)=\Dl(P)$; that value of $k$ lies in the range $0\le k\le n$ of the
+definition recalled in Section~\ref{sec:question} and inside the sentence's
+quantifier, so the implication is false as stated. It is not a witness at a
+\emph{proper} filtration stage, and this note leaves untouched the question
+whether contractibility passes from $\Dl^{(k-1)}(P)$ to $\Dl^{(k)}(P)$ when
+$k<n$.
+
+No minimality is claimed: neither that ten is the least number of elements of
+such a witness, nor that $k=3$ or $n=3$ is least.
+
+\section{Verification}\label{sec:verify}
+
+Everything asserted above is determined by the fifteen relations
+\eqref{eq:covers}, and Sections~\ref{sec:top}--\ref{sec:collapse} are proofs a
+reader can follow with no machine. The program \texttt{verify.\allowbreak py}
+accompanying this note, with its recorded output in
+\texttt{verify.\allowbreak output.\allowbreak txt}, reads
+\eqref{eq:covers} as printed and re-derives, in exact integer arithmetic and
+using only the Python standard library, the transitive closure, the cover
+relation, purity, the $f$-vectors and Euler characteristics of
+\eqref{eq:fvec}, the integral homology of the filtration stages by Smith
+normal form, and the intermediate objects of the proof of
+Proposition~\ref{prop:S2}. The collapse of Section~\ref{sec:collapse} is
+checked rather than produced: the $27$ rows displayed in
+Proposition~\ref{prop:coll} are transcribed into the program and replayed,
+verifying at each row that the printed $\tau$ has exactly one proper coface in
+the complex then remaining and that this coface is the printed $\sigma$, and
+that after row $27$ the vertex $d_1$ alone remains.
+
+The recorded output reports that all $92$ of its checks pass. It was produced
+for a longer draft: its headings follow that draft's numbering, and it also
+lists checks and closing notes --- among them a Mayer--Vietoris computation of
+the homology of $\Dl^{(2)}(P)$, a discussion of coning this $P$, a census, and
+a correction to a remark of \cite{Kitajima} --- that concern material absent
+from the present note and on which nothing above depends. In particular
+nothing in it bears on the open case $k<n$.
+
+\begin{thebibliography}{9}
+
+\bibitem{DIMZ}
+Y.~Di, S.~Ivanov, L.~Mukoseev, and M.~Zhang,
+\emph{On the path homology of Cayley digraphs and covering digraphs},
+J. Algebra \textbf{653} (2024), 156--199;
+\href{https://arxiv.org/abs/2305.15683}{arXiv:2305.15683}.
+
+\bibitem{KY}
+R.~Kaneta and M.~Yoshinaga,
+\emph{Magnitude homology of metric spaces and order complexes},
+Bull. London Math. Soc. \textbf{53} (2021), no.~3, 893--905;
+\href{https://arxiv.org/abs/1803.04247}{arXiv:1803.04247}.
+
+\bibitem{Kitajima}
+Y.~Kitajima,
+\emph{Filtered order complexes and magnitude homology of finite graded
+posets},
+preprint, 2026.
+\href{https://arxiv.org/abs/2606.15241}{arXiv:2606.15241}.
+Statement numbers are those printed in version~v2 (24 June 2026), whose
+sectioning begins at Section~0.
+
+\end{thebibliography}
+
+\end{document}

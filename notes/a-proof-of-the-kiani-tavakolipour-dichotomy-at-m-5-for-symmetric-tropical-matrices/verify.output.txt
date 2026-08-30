@@ -1,0 +1,73 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9eda9c97d8564728d4e32ee7cee423881d2c54259757374262cb243a6054321e
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- "The Kiani-Tavakolipour Dichotomy at m = 5 for Symmetric
+              Tropical Matrices, in Additive Form"
+exact integer / Fraction arithmetic only; -infinity carried as None
+
+--- 1.  the census specification of Sections 4 and 5 ---
+PASS window-size-3m-5 |Allowed| <= m + (m-2) + (m-3) = 3m-5 = 10 at m = 5
+PASS P-classes-is-7 relabelling classes of a 5-cover = 7 = p(5), the partitions of 5
+PASS P-classes-are-the-partitions-of-5 ['1+1+1+1+1', '1+1+1+2', '1+1+3', '1+2+2', '1+4', '2+3', '5']
+PASS C3-of-10-is-600 |C_3([10])| = 600  (120 triples of loops + 360 two-cycle-plus-loop + 120 triangles)
+PASS C2-of-10-is-90 |C_2([10])| = 90  (45 pairs of loops + 45 two-cycles)
+PASS census-size-378000 7 x 600 x 90 = 378000 triples
+PASS C5-of-5-is-73 |C_5([5])| = 73
+PASS C4-of-5-is-85 |C_4([5])| = 85 = 5 x 17
+PASS C3-of-5-is-50 |C_3([5])| = 50 = 10 x 5
+PASS C2-of-5-is-20 |C_2([5])| = 20 = 10 x 2
+PASS forms-per-LP-at-n5-is-135 85 + 50 = 135 DISTINCT forms, not 180: for symmetric A permutations sharing a position multiset give the same form
+PASS unpooled-n5-census-is-7000 7 x 50 x 20 = 7000 distinct LPs, not 8400
+PASS every-5-cover-contains-a-4-cover-on-its-own-positions all 7 classes; counts of such 4-covers = [5, 3, 5, 1, 3, 3, 5] -- this is why delta_4 is finite once delta_5 is
+PASS partial-perms-of-principal-4x4-is-65 sum_k C(4,k) k! = 1+4+12+24+24 = 65 (NOT 209 = sum_k C(4,k)^2 k!, which chooses row and column sets independently)
+
+--- 2.  the matrices printed in the paper, delta_k by exact brute force ---
+PASS source-4x4-delta-sequence delta_0..delta_4 = [0, 0, 6, 6, 10], as published
+PASS source-4x4-is-not-a-both-fail-object (I) 10+6 = 16 > 12 = 2x6 FAILS; (II) 10+2x0 = 10 <= 18 = 3x6 HOLDS
+PASS source-9x9-delta-sequence delta_0..delta_9 = [0, 9, 18, 26, 38, 47, 56, 64, 72, 73], all ten as published
+PASS source-9x9-both-fail-at-m4 (I) 38+18 = 56 > 52 = 2x26 FAILS; (II) 38+2x9 = 56 > 54 = 3x18 FAILS
+PASS source-9x9-branch-I-holds-at-m5 delta_5+delta_3 = 47+26 = 73 <= 76 = 2x38 = 2 delta_4 (the right side is 2 delta_4, not 2 delta_5)
+PASS byproduct-4x4-delta-sequence delta_0..delta_4 = [0, 1, 1, 1, 2]
+PASS byproduct-4x4-both-fail-at-m4 delta = [0, 1, 1, 1, 2], so at m = 4 branch (I) delta_4+delta_2 <= 2 delta_3 FAILS and branch (II) delta_4+2 delta_1 <= 3 delta_2 FAILS
+PASS byproduct-4x4-all-finite-at--20 every -infinity replaced by -20: delta = [0, 1, 1, 1, 2], both branches still fail
+PASS byproduct-4x4-all-finite-at--50 every -infinity replaced by -50: delta = [0, 1, 1, 1, 2], both branches still fail
+PASS byproduct-4x4-all-finite-at--100 every -infinity replaced by -100: delta = [0, 1, 1, 1, 2], both branches still fail
+PASS byproduct-4x4-is-nonsymmetric a_{1,3} = -infinity while a_{3,1} = 0, so the object does not contradict the theorem of this paper
+PASS m4-violation-forces-n-at-least-4 the conjecture ranges over 3 <= m <= n, so an m = 4 violation needs n >= 4; this object attains n = 4
+PASS control-fails-branch-I-only symmetric 5x5 C_I, delta_0..delta_5 = [0, -100, 2, 3, 2, 3]; branch (I) FAILS, branch (II) HOLDS
+PASS control-fails-branch-II-only symmetric 5x5 C_II, delta_0..delta_5 = [0, 0, 2, 2, 4, 5]; branch (I) HOLDS, branch (II) FAILS
+PASS minus-infinity-does-not-walk-down-the-cycle-types symmetric 5-cycle with all loops and all chords -infinity: delta_2 = delta_4 = delta_5 = 0 are FINITE while delta_3 = -infinity, so "delta_5 finite forces delta_3 finite" is false
+PASS minus-infinity-witness-3x3-block-is-all-minus-infinity all 6 permutations of the principal 3x3 on {0,1,2} are -infinity
+PASS minus-infinity-witness-still-satisfies-the-dichotomy (I) reads -infinity <= 0 and holds trivially, so the theorem is untouched
+
+--- 3.  the three sample certificates printed in Section 5 ---
+PASS sample-certificate-1 m=5: E(P)+E(Q) = {00,00,11,11,22,22,33,44} = {00,00,11,11,22,22,33,44} = sum of the two 4-covers, multipliers ['1/2', '1/2'] (nonnegative, summing to 1)
+PASS sample-certificate-2 m=5: E(P)+E(Q) = {00,01,01,11,22,22,33,44} = {00,01,01,11,22,22,33,44} = sum of the two 4-covers, multipliers ['1/2', '1/2'] (nonnegative, summing to 1)
+PASS sample-certificate-3 m=4: E(P)+E(Q) = {00,00,11,11,22,33} = {00,00,11,11,22,33} = sum of the two 4-covers, multipliers ['1/2', '1/2'] (nonnegative, summing to 1)
+
+--- 4.  anti-controls: the engine must NOT certify a live system ---
+PASS anti-control-branch-I-only-is-live 3 pooled constraints; the matrix itself is a strict solution, so no nonnegative certificate may exist -- engine returned none (correct)
+PASS anti-control-branch-II-only-is-live 3 pooled constraints; the matrix itself is a strict solution, so no nonnegative certificate may exist -- engine returned none (correct)
+PASS anti-control-trivially-live-system forms x>0, y>0 admit a strict solution and the engine finds no certificate
+PASS positive-control-trivially-dead-system forms x>0, -x>0 are contradictory and the engine returns lambda = ['1/2', '1/2']
+
+--- 5.  the censuses (all n at once, in the window V0 = [3m-5]) ---
+PASS census-m3-symmetric-all-n-silent V0=[4]  3 x 4 x 1 = 12 triples in 12 classes, dead 12, live 0 -- the source theorem for m=3 re-proved for every n by this route
+PASS census-m4-symmetric-all-n-silent V0=[7]  5 x 42 x 7 = 1470 triples in 670 classes, dead 670, live 0 -- the source theorem for m=4 re-proved for every n
+PASS forced-positive-census-m4-nonsymmetric-is-not-silent V0=[7]  1470 triples in 670 classes, dead 538, LIVE 132 > 0 -- symmetry is load-bearing and the engine detects it rather than certifying everything put to it; the by-product 4x4 checked above is an explicit both-fail object of this kind
+PASS census-m5-symmetric-all-n-exhaustive 378000 triples, every one assigned to one of 53900 relabelling classes (378000 + 0 = 378000)
+PASS census-m5-symmetric-all-n-silent dead 53900 of 53900 classes, LIVE 0 -- so no symmetric matrix over Rmax, at any n >= 5, fails both m=5 inequalities
+PASS census-m5-multipliers-re-substituted 53900 of 53900 certificates re-substituted into their own forms and found to sum to the zero form exactly, with lambda >= 0 and sum lambda = 1
+PASS census-m5-certificate-shapes 38524 classes are killed by the two-term identity E(P)+E(Q) = E(R1)+E(R2), 1016 by the three-term identity E(P)+2E(S) = E(Q1)+E(Q2)+E(Q3), and 14360 need a general nonnegative rational combination (38524 + 1016 + 14360 = 53900, as stated in Section 5 of the paper)
+PASS census-m5-denominators-are-small largest denominator in any multiplier = 48, as stated in Section 5, so every certificate is a small rational vector
+PASS control-census-n5-unpooled-full-constraint-set n=5, D=15 symmetric positions, 135 constraints per LP (85 4-covers + 50 3-covers, no pooling), 7 x 50 x 20 = 7000 LPs, dead 7000, live 0
+
+NOT RE-RUN: m >= 6.  This program checks m = 5 (and re-proves the published m = 3 and m = 4 cases); the conjecture ranges over 3 <= m <= n and m >= 6 is untouched here.  For m = 6 the same reduction gives the window V0 = [13] and a raw triple count of about 1.9 x 10^8, which this program makes no attempt at.
+NOT RE-RUN: the 378,000 individual multiplier vectors are not shipped as data.  They are regenerated and re-verified by this run, but no file in this folder lists them, so a referee wanting the full list must run this program.
+NOT RE-RUN: the converse of the reduction.  Only the forward direction is checked and only it is used -- a pooled certificate is a certificate at every n.  The claim that a LIVE pooled triple always lifts to a real counterexample is not verified here and no conclusion of the paper rests on it.
+NOT RE-RUN: no prior-art or literature search is performed by this program; it settles mathematics, not novelty.
+
+VERDICT: ALL 47 CHECKS PASS
+=== program exited with status 0 ===

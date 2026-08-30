@@ -1,0 +1,234 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  666f544ee013410f2ee38c6d290f0161e8a2d3f7d984a824006a26c75ef7d2d8
+python:  Python 3.9.6
+=== program output follows ===
+verify.py -- the Zheng-Liu fixed-plane universality claim, refuted
+objects: read from the literals of paper.tex; no external data file, exact arithmetic
+
+--- 1. the named witness codes of Section 2 and Section 5 ------------------------------------------
+PASS W1.abelian S = <XZI,ZXX> is abelian (the target paper own [[3,1,1]], tex line 283)
+PASS W1.independent |S| = 2^2 = 4, so the 2 generators are independent
+PASS W1.group-printed the printed element list ['III', 'XZI', 'ZXX', 'YYX'] is exactly the closure of the generators
+PASS W1.dimension n - dim S = 3 - 2 = k = 1
+PASS W1.normaliser |N(S)| = 16 = 2^(n+k) = 2^4
+PASS W1.class-count |N(S)/S| = 4 = 4^k = 4^1
+PASS W1.ZL-in-N the frame operator Z_L = IIX of Section 2 lies in N(S) and outside S
+PASS W1.XL-in-N the frame operator X_L = IZZ of Section 2 lies in N(S) and outside S
+PASS W1.anticommute Z_L = IIX and X_L = IZZ anticommute, so they are a genuine conjugate logical pair
+PASS W1.YL Z_L * X_L = IZY, the third nontrivial class representative printed alongside it
+PASS W1.arith[III*III] III * III = III closes as Pauli arithmetic
+PASS W1.multiplier[III] the multiplier III is a genuine element of S
+PASS W1.inN[III] the class representative III lies in N(S)
+PASS W1.zfree[III] III has no tensor factor Z, so the class of III is dirty
+PASS W1.arith[IIX*III] IIX * III = IIX closes as Pauli arithmetic
+PASS W1.multiplier[III] the multiplier III is a genuine element of S
+PASS W1.inN[IIX] the class representative IIX lies in N(S)
+PASS W1.zfree[IIX] IIX has no tensor factor Z, so the class of IIX is dirty
+PASS W1.arith[IZZ*YYX] IZZ * YYX = YXY closes as Pauli arithmetic
+PASS W1.multiplier[YYX] the multiplier YYX is a genuine element of S
+PASS W1.inN[IZZ] the class representative IZZ lies in N(S)
+PASS W1.zfree[YXY] YXY has no tensor factor Z, so the class of IZZ is dirty
+PASS W1.arith[IZY*XZI] IZY * XZI = XIY closes as Pauli arithmetic
+PASS W1.multiplier[XZI] the multiplier XZI is a genuine element of S
+PASS W1.inN[IZY] the class representative IZY lies in N(S)
+PASS W1.zfree[XIY] XIY has no tensor factor Z, so the class of IZY is dirty
+PASS W1.distinct-cosets the 4 printed representatives lie in pairwise distinct cosets of S
+PASS W1.exhausts 4 distinct dirty classes = 4^k = 4: every logical class is accounted for
+PASS W1.sweep-Z exhaustive sweep of all 16 elements of N(S): 0 classes are Z-clean (paper says 0)
+PASS W1.sweep-Y exhaustive sweep of all 16 elements of N(S): 1 classes are Y-clean (paper says 1)
+PASS W1.sweep-X exhaustive sweep of all 16 elements of N(S): 0 classes are X-clean (paper says 0)
+PASS W1.no-frame no legitimate logical Z frame has all its classes Z-clean: Proposition 3 hypothesis is unsatisfiable for this code
+PASS W1.no-strict-frame and unsatisfiable under the stricter all-products reading too
+PASS W1.y-plane the analogous condition in the y direction is satisfiable for this code
+PASS W2.abelian S = <XZII,ZXZX,IZXI> is abelian (the target paper own [[4,1,1]], tex line 298)
+PASS W2.independent |S| = 2^3 = 8, so the 3 generators are independent
+PASS W2.group-printed the printed element list ['IIII', 'XZII', 'ZXZX', 'IZXI', 'YYZX', 'XIXI', 'ZYYX', 'YXYX'] is exactly the closure of the generators
+PASS W2.dimension n - dim S = 4 - 3 = k = 1
+PASS W2.normaliser |N(S)| = 32 = 2^(n+k) = 2^5
+PASS W2.class-count |N(S)/S| = 4 = 4^k = 4^1
+PASS W2.ZL-in-N the frame operator Z_L = IIIX of Section 2 lies in N(S) and outside S
+PASS W2.XL-in-N the frame operator X_L = IZIZ of Section 2 lies in N(S) and outside S
+PASS W2.anticommute Z_L = IIIX and X_L = IZIZ anticommute, so they are a genuine conjugate logical pair
+PASS W2.YL Z_L * X_L = IZIY, the third nontrivial class representative printed alongside it
+PASS W2.arith[IIII*IIII] IIII * IIII = IIII closes as Pauli arithmetic
+PASS W2.multiplier[IIII] the multiplier IIII is a genuine element of S
+PASS W2.inN[IIII] the class representative IIII lies in N(S)
+PASS W2.zfree[IIII] IIII has no tensor factor Z, so the class of IIII is dirty
+PASS W2.arith[IIIX*IIII] IIIX * IIII = IIIX closes as Pauli arithmetic
+PASS W2.multiplier[IIII] the multiplier IIII is a genuine element of S
+PASS W2.inN[IIIX] the class representative IIIX lies in N(S)
+PASS W2.zfree[IIIX] IIIX has no tensor factor Z, so the class of IIIX is dirty
+PASS W2.arith[IZIZ*YXYX] IZIZ * YXYX = YYYY closes as Pauli arithmetic
+PASS W2.multiplier[YXYX] the multiplier YXYX is a genuine element of S
+PASS W2.inN[IZIZ] the class representative IZIZ lies in N(S)
+PASS W2.zfree[YYYY] YYYY has no tensor factor Z, so the class of IZIZ is dirty
+PASS W2.arith[IZIY*XZII] IZIY * XZII = XIIY closes as Pauli arithmetic
+PASS W2.multiplier[XZII] the multiplier XZII is a genuine element of S
+PASS W2.inN[IZIY] the class representative IZIY lies in N(S)
+PASS W2.zfree[XIIY] XIIY has no tensor factor Z, so the class of IZIY is dirty
+PASS W2.distinct-cosets the 4 printed representatives lie in pairwise distinct cosets of S
+PASS W2.exhausts 4 distinct dirty classes = 4^k = 4: every logical class is accounted for
+PASS W2.sweep-Z exhaustive sweep of all 32 elements of N(S): 0 classes are Z-clean (paper says 0)
+PASS W2.sweep-Y exhaustive sweep of all 32 elements of N(S): 1 classes are Y-clean (paper says 1)
+PASS W2.sweep-X exhaustive sweep of all 32 elements of N(S): 0 classes are X-clean (paper says 0)
+PASS W2.no-frame no legitimate logical Z frame has all its classes Z-clean: Proposition 3 hypothesis is unsatisfiable for this code
+PASS W2.no-strict-frame and unsatisfiable under the stricter all-products reading too
+PASS W2.y-plane the analogous condition in the y direction is satisfiable for this code
+PASS W3.abelian S = <XZ> is abelian (the global minimum n=2)
+PASS W3.independent |S| = 2^1 = 2, so the 1 generators are independent
+PASS W3.group-printed the printed element list ['II', 'XZ'] is exactly the closure of the generators
+PASS W3.dimension n - dim S = 2 - 1 = k = 1
+PASS W3.normaliser |N(S)| = 8 = 2^(n+k) = 2^3
+PASS W3.class-count |N(S)/S| = 4 = 4^k = 4^1
+PASS W3.ZL-in-N the frame operator Z_L = IZ of Section 2 lies in N(S) and outside S
+PASS W3.XL-in-N the frame operator X_L = ZX of Section 2 lies in N(S) and outside S
+PASS W3.anticommute Z_L = IZ and X_L = ZX anticommute, so they are a genuine conjugate logical pair
+PASS W3.YL Z_L * X_L = ZY, the third nontrivial class representative printed alongside it
+PASS W3.arith[II*II] II * II = II closes as Pauli arithmetic
+PASS W3.multiplier[II] the multiplier II is a genuine element of S
+PASS W3.inN[II] the class representative II lies in N(S)
+PASS W3.zfree[II] II has no tensor factor Z, so the class of II is dirty
+PASS W3.arith[IZ*XZ] IZ * XZ = XI closes as Pauli arithmetic
+PASS W3.multiplier[XZ] the multiplier XZ is a genuine element of S
+PASS W3.inN[IZ] the class representative IZ lies in N(S)
+PASS W3.zfree[XI] XI has no tensor factor Z, so the class of IZ is dirty
+PASS W3.arith[ZX*XZ] ZX * XZ = YY closes as Pauli arithmetic
+PASS W3.multiplier[XZ] the multiplier XZ is a genuine element of S
+PASS W3.inN[ZX] the class representative ZX lies in N(S)
+PASS W3.zfree[YY] YY has no tensor factor Z, so the class of ZX is dirty
+PASS W3.arith[ZY*XZ] ZY * XZ = YX closes as Pauli arithmetic
+PASS W3.multiplier[XZ] the multiplier XZ is a genuine element of S
+PASS W3.inN[ZY] the class representative ZY lies in N(S)
+PASS W3.zfree[YX] YX has no tensor factor Z, so the class of ZY is dirty
+PASS W3.distinct-cosets the 4 printed representatives lie in pairwise distinct cosets of S
+PASS W3.exhausts 4 distinct dirty classes = 4^k = 4: every logical class is accounted for
+PASS W3.sweep-Z exhaustive sweep of all 8 elements of N(S): 0 classes are Z-clean (paper says 0)
+PASS W3.sweep-Y exhaustive sweep of all 8 elements of N(S): 1 classes are Y-clean (paper says 1)
+PASS W3.sweep-X exhaustive sweep of all 8 elements of N(S): 0 classes are X-clean (paper says 0)
+PASS W3.no-frame no legitimate logical Z frame has all its classes Z-clean: Proposition 3 hypothesis is unsatisfiable for this code
+PASS W3.no-strict-frame and unsatisfiable under the stricter all-products reading too
+PASS W3.y-plane the analogous condition in the y direction is satisfiable for this code
+PASS W4.abelian S = <ZIZ,XZX> is abelian (Howard-Dawkins 2016 eq. (3a-gen), prior art, not ours)
+PASS W4.independent |S| = 2^2 = 4, so the 2 generators are independent
+PASS W4.group-printed the printed element list ['III', 'ZIZ', 'XZX', 'YZY'] is exactly the closure of the generators
+PASS W4.dimension n - dim S = 3 - 2 = k = 1
+PASS W4.normaliser |N(S)| = 16 = 2^(n+k) = 2^4
+PASS W4.class-count |N(S)/S| = 4 = 4^k = 4^1
+PASS W4.ZL-in-N the frame operator Z_L = XXY of Section 2 lies in N(S) and outside S
+PASS W4.XL-in-N the frame operator X_L = IXZ of Section 2 lies in N(S) and outside S
+PASS W4.anticommute Z_L = XXY and X_L = IXZ anticommute, so they are a genuine conjugate logical pair
+PASS W4.YL Z_L * X_L = XIX, the third nontrivial class representative printed alongside it
+PASS W4.arith[III*III] III * III = III closes as Pauli arithmetic
+PASS W4.multiplier[III] the multiplier III is a genuine element of S
+PASS W4.inN[III] the class representative III lies in N(S)
+PASS W4.zfree[III] III has no tensor factor Z, so the class of III is dirty
+PASS W4.arith[XXY*III] XXY * III = XXY closes as Pauli arithmetic
+PASS W4.multiplier[III] the multiplier III is a genuine element of S
+PASS W4.inN[XXY] the class representative XXY lies in N(S)
+PASS W4.zfree[XXY] XXY has no tensor factor Z, so the class of XXY is dirty
+PASS W4.arith[IXZ*XZX] IXZ * XZX = XYY closes as Pauli arithmetic
+PASS W4.multiplier[XZX] the multiplier XZX is a genuine element of S
+PASS W4.inN[IXZ] the class representative IXZ lies in N(S)
+PASS W4.zfree[XYY] XYY has no tensor factor Z, so the class of IXZ is dirty
+PASS W4.arith[XIX*III] XIX * III = XIX closes as Pauli arithmetic
+PASS W4.multiplier[III] the multiplier III is a genuine element of S
+PASS W4.inN[XIX] the class representative XIX lies in N(S)
+PASS W4.zfree[XIX] XIX has no tensor factor Z, so the class of XIX is dirty
+PASS W4.distinct-cosets the 4 printed representatives lie in pairwise distinct cosets of S
+PASS W4.exhausts 4 distinct dirty classes = 4^k = 4: every logical class is accounted for
+PASS W4.sweep-Z exhaustive sweep of all 16 elements of N(S): 0 classes are Z-clean (paper says 0)
+PASS W4.sweep-Y exhaustive sweep of all 16 elements of N(S): 1 classes are Y-clean (paper says 1)
+PASS W4.sweep-X exhaustive sweep of all 16 elements of N(S): 1 classes are X-clean (paper says 1)
+PASS W4.no-frame no legitimate logical Z frame has all its classes Z-clean: Proposition 3 hypothesis is unsatisfiable for this code
+PASS W4.no-strict-frame and unsatisfiable under the stricter all-products reading too
+PASS W4.y-plane the analogous condition in the y direction is satisfiable for this code
+--- 2. the k=2 certificate with one clean class and no frame ------------------------
+PASS cert2.abelian S = <ZXXI,IZZZ> is abelian and n=4, k=2
+PASS cert2.normaliser |N(S)| = 64 = 2^6 and |N(S)/S| = 16 = 4^2
+PASS cert2.one-clean exactly 1 class is Z-clean
+PASS cert2.clean-coset the clean class is the coset ['IIIZ', 'IZZI', 'ZXXZ', 'ZYYI'] printed in the paper
+PASS cert2.clean-has-Z every one of its 4 members carries a tensor factor Z
+PASS cert2.no-frame and still no frame exists: one clean class cannot furnish k=2 commuting independent ones
+--- 3. the infinite family S(n,k) --------------------------------------------------
+PASS family.atom-reps the four printed representatives ['II', 'XI', 'YY', 'YX'] of the atom <XZ> in Lemma 5 are all Z-free
+PASS family.atom-normaliser N(<XZ>) is exactly the eight strings ['II', 'IZ', 'XI', 'XZ', 'YX', 'YY', 'ZX', 'ZY'] printed in the proof of Lemma 5
+PASS family.atom-coset-partition and it splits into exactly the four printed cosets [['II', 'XZ'], ['IZ', 'XI'], ['ZX', 'YY'], ['ZY', 'YX']]
+PASS family.atom-pad the normaliser of the one-qubit pad <Z> is {I,Z}, a single coset containing the Z-free I
+PASS family.atom-cosets and they lie in 4 = 4^1 pairwise distinct cosets, so all four classes of <XZ> are dirty
+PASS family.42-reps-zfree all 16 printed representatives of S(4,2) in the display of Section 3 are Z-free
+PASS family.42-reps-distinct they lie in 16 = 4^2 pairwise distinct cosets of S(4,2), hence every class is dirty
+PASS family.42-reps-inN and every one of them lies in N(S(4,2))
+PASS family.n2k1 S(2,1) = <XZ>: |N(S)| = 2^3, 4 = 4^1 classes, ALL dirty, 0 clean
+PASS family.n3k1 S(3,1) = <XZI,IIZ>: |N(S)| = 2^4, 4 = 4^1 classes, ALL dirty, 0 clean
+PASS family.n4k1 S(4,1) = <XZII,IIZI,IIIZ>: |N(S)| = 2^5, 4 = 4^1 classes, ALL dirty, 0 clean
+PASS family.n4k2 S(4,2) = <XZII,IIXZ>: |N(S)| = 2^6, 16 = 4^2 classes, ALL dirty, 0 clean
+PASS family.n5k2 S(5,2) = <XZIII,IIXZI,IIIIZ>: |N(S)| = 2^7, 16 = 4^2 classes, ALL dirty, 0 clean
+PASS family.n6k2 S(6,2) = <XZIIII,IIXZII,IIIIZI,IIIIIZ>: |N(S)| = 2^8, 16 = 4^2 classes, ALL dirty, 0 clean
+PASS family.n6k3 S(6,3) = <XZIIII,IIXZII,IIIIXZ>: |N(S)| = 2^9, 64 = 4^3 classes, ALL dirty, 0 clean
+PASS family.n7k3 S(7,3) = <XZIIIII,IIXZIII,IIIIXZI,IIIIIIZ>: |N(S)| = 2^10, 64 = 4^3 classes, ALL dirty, 0 clean
+PASS family.n8k3 S(8,3) = <XZIIIIII,IIXZIIII,IIIIXZII,IIIIIIZI,IIIIIIIZ>: |N(S)| = 2^11, 64 = 4^3 classes, ALL dirty, 0 clean
+--- 4. the exhaustive census over n <= 4 -------------------------------------------
+PASS census.n2m1.count n=2, dim S=1, k=1: 15 stabilizer groups enumerated = closed form 15 = paper 15
+PASS census.n2m1.zfail of those, 4 admit NO Z-clean logical frame (paper says 4)
+PASS census.n2m1.anyfail and 0 admit no clean frame in ANY of the three coordinate directions (paper says 0)
+PASS census.n3m1.count n=3, dim S=1, k=2: 63 stabilizer groups enumerated = closed form 63 = paper 63
+PASS census.n3m1.zfail of those, 0 admit NO Z-clean logical frame (paper says 0)
+PASS census.n3m1.anyfail and 0 admit no clean frame in ANY of the three coordinate directions (paper says 0)
+PASS census.n3m2.count n=3, dim S=2, k=1: 315 stabilizer groups enumerated = closed form 315 = paper 315
+PASS census.n3m2.zfail of those, 168 admit NO Z-clean logical frame (paper says 168)
+PASS census.n3m2.anyfail and 69 admit no clean frame in ANY of the three coordinate directions (paper says 69)
+PASS census.n4m1.count n=4, dim S=1, k=3: 255 stabilizer groups enumerated = closed form 255 = paper 255
+PASS census.n4m1.zfail of those, 0 admit NO Z-clean logical frame (paper says 0)
+PASS census.n4m1.anyfail and 0 admit no clean frame in ANY of the three coordinate directions (paper says 0)
+PASS census.n4m2.count n=4, dim S=2, k=2: 5355 stabilizer groups enumerated = closed form 5355 = paper 5355
+PASS census.n4m2.zfail of those, 1528 admit NO Z-clean logical frame (paper says 1528)
+PASS census.n4m2.anyfail and 404 admit no clean frame in ANY of the three coordinate directions (paper says 404)
+PASS census.n4m3.count n=4, dim S=3, k=1: 11475 stabilizer groups enumerated = closed form 11475 = paper 11475
+PASS census.n4m3.zfail of those, 8532 admit NO Z-clean logical frame (paper says 8532)
+PASS census.n4m3.anyfail and 5454 admit no clean frame in ANY of the three coordinate directions (paper says 5454)
+PASS census.totals totals over the six cells: 17478 codes, 10232 with z=0 unsatisfiable, 5927 with no plane at all (paper says (17478, 10232, 5927))
+PASS census.hist42 the n=4, k=2 clean-class histogram is {0: 208, 1: 456, 2: 1608, 3: 546, 4: 792, 6: 1172, 7: 573}, exactly as printed
+PASS census.hist42-sums and its buckets sum to 5355, the whole cell
+PASS census.split42 664 of the 1528 counterexamples have fewer than k=2 clean classes and 864 have two or more clean classes yet no commuting independent pair
+PASS census.minimal-k2 n=3, k=2 is counterexample-free (0 of 63), so the least n for a k=2 counterexample is 4
+--- 4b. the two three-qubit codes are genuinely different ---------------------------
+PASS distinct.unique-I-element each group has exactly one non-identity element containing a factor I: XZI and ZIZ
+PASS distinct.multisets their letter multisets differ (['I', 'X', 'Z'] vs ['I', 'Z', 'Z']), and a qubit permutation preserves the multiset, so no permutation of qubits carries one group to the other
+PASS distinct.as-sets the two stabilizer groups are distinct as sets of strings
+--- 5. the counting bound and the lambda table --------------------------------------
+PASS bound.zfree-count-n2 the Z-free strings of length 2 number 9 = 3^2, the bound used in Proposition 7
+PASS bound.zfree-count-n3 the Z-free strings of length 3 number 27 = 3^3, the bound used in Proposition 7
+PASS bound.zfree-count-n4 the Z-free strings of length 4 number 81 = 3^4, the bound used in Proposition 7
+PASS bound.zfree-count-n5 the Z-free strings of length 5 number 243 = 3^5, the bound used in Proposition 7
+PASS bound.threshold the collapse inequality 4^k <= 3^n is exactly k <= c*n with c = (log_2 3)/2, and 4^79248 <= 3^100000 < 4^79249 pins c to 0.79248 <= c < 0.79249 without any logarithm
+PASS bound.n2k1 4^1 = 4 vs 3^2 = 9: total collapse is not excluded, and 4 of 15 codes fail
+PASS bound.n3k2 4^2 = 16 vs 3^3 = 27: total collapse is not excluded, and 0 of 63 codes fail
+PASS bound.n3k1 4^1 = 4 vs 3^3 = 27: total collapse is not excluded, and 168 of 315 codes fail
+PASS bound.n4k3 4^3 = 64 vs 3^4 = 81: total collapse is not excluded, and 0 of 255 codes fail
+PASS bound.n4k2 4^2 = 16 vs 3^4 = 81: total collapse is not excluded, and 1528 of 5355 codes fail
+PASS bound.n4k1 4^1 = 4 vs 3^4 = 81: total collapse is not excluded, and 8532 of 11475 codes fail
+PASS lambda.n2k1 lambda = (3/2)^2 / 2^1 = 9/8 (1.1250) and the failure rate is 4/15 = 26.67%: the sign of lambda - 1 agrees with the sign of the count
+PASS lambda.n3k2 lambda = (3/2)^3 / 2^2 = 27/32 (0.8438) and the failure rate is 0/63 = 0.00%: the sign of lambda - 1 agrees with the sign of the count
+PASS lambda.n3k1 lambda = (3/2)^3 / 2^1 = 27/16 (1.6875) and the failure rate is 168/315 = 53.33%: the sign of lambda - 1 agrees with the sign of the count
+PASS lambda.n4k3 lambda = (3/2)^4 / 2^3 = 81/128 (0.6328) and the failure rate is 0/255 = 0.00%: the sign of lambda - 1 agrees with the sign of the count
+PASS lambda.n4k2 lambda = (3/2)^4 / 2^2 = 81/64 (1.2656) and the failure rate is 1528/5355 = 28.53%: the sign of lambda - 1 agrees with the sign of the count
+PASS lambda.n4k1 lambda = (3/2)^4 / 2^1 = 81/32 (2.5312) and the failure rate is 8532/11475 = 74.35%: the sign of lambda - 1 agrees with the sign of the count
+PASS bound.family-consistent the family lives at k <= n/2, strictly inside the collapse-permitted region k <= 0.79248 n
+--- 6. positive controls ------------------------------------------------------------
+PASS ctrl.n5.abelian the [[5,1,3]] code of the target paper is abelian with |N(S)| = 64 = 2^6
+PASS ctrl.n5.published-ZL-clean its published logical Z = ZZZZZ has a CLEAN class: every element of Z_L*S carries a Z, so the paper condition holds here exactly as the paper says
+PASS ctrl.n5.clean-count and it is the only clean class of the 4
+PASS ctrl.n7.abelian the [[7,1,3]] code of the target paper is abelian with |N(S)| = 256 = 2^8
+PASS ctrl.n7.published-ZL-clean its published logical Z = ZZZZZZZ has a CLEAN class: every element of Z_L*S carries a Z, so the paper condition holds here exactly as the paper says
+PASS ctrl.n7.clean-count and it is the only clean class of the 4
+PASS ctrl.noplane S = <ZZI,YXZ> at n=3, k=1 admits no clean frame in ANY coordinate direction (z:False y:False x:False)
+PASS ctrl.z-type all 82 Z-type stabilizer codes with n <= 4 satisfy the condition, so the conjecture is not vacuous and an unstructured survey of protocols could miss the failure
+
+NOT RE-RUN: the census here is exhaustive for n <= 4 only (all 17478 stabilizer groups with 1 <= dim S <= n-1). The n = 5 cells (1023, 86955, 782595, 11475-analogue 782595) and every n >= 6 row quoted in the discovery record are NOT recomputed here; a miss there would be inconclusive rather than negative.
+NOT RE-RUN: the target paper [[15,1,3]] and [[14,2,2]] protocols, and its [[6,1,2]] code, are not decided here -- only its [[3,1,1]], [[4,1,1]], [[5,1,3]] and [[7,1,3]] are. The paper own numerics are therefore neither confirmed nor contradicted by this program beyond those four codes.
+NOT RE-RUN: nothing here computes the dynamical map of the target paper. The claim checked is exactly that Proposition 3 hypothesis is unsatisfiable; whether z = 0 is nonetheless an invariant plane for these codes is a different question, and the y-direction checks above show these codes DO have an invariant coordinate plane.
+NOT RE-RUN: the lambda = (3/2)^n / 2^k rule is checked only for sign agreement on the six cells above. It is an empirical heuristic fitted to census data and no proof of it is claimed or attempted.
+
+VERDICT: ALL 211 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,80 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a905912f956fc52e4126745d4dc27be46b2614702cbb5080f13ccc0e571beb91
+python:  Python 3.9.6
+=== program output follows ===
+--- 1. the graph G, exactly as printed in Section 2 ---
+PASS edge-list-parses-to-22-distinct-edges-on-13-vertices [n = 13, m = 22]
+PASS the-printed-edge-order-is-the-one-the-orientation-index-uses [the list of Section 2 is already lexicographic, so bit i of an orientation index refers to edge (0, 6) for i = 0 and to edge (9, 12) for i = 21]
+PASS graph6-decodes-LABEL-EQUAL-to-the-printed-edge-list ['L??E@agXAp@wdC' <-> the 22 printed edges, symmetric difference 0]
+PASS graph6-consumes-78-bits-with-zero-padding-bits [bits = 78, padding = none]
+PASS adjacency-table-of-Section-2-is-reproduced [all 13 rows agree]
+PASS degree-sequence-is-eight-cubic-and-five-quartic-vertices [sum of degrees 44 = 2m, degrees [3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4]]
+PASS G-is-connected [one component]
+--- 2. G has no C_4 SUBGRAPH (induced or not) ---
+PASS all-78-unordered-vertex-pairs-have-at-most-one-common-neighbour [78 pairs tested (not just the 22 adjacent ones), maximum codegree 1]
+PASS no-4-subset-of-vertices-carries-a-4-cycle [independent route: all C(13,4) = 715 quadruples, 4-cycles found 0]
+PASS the-two-C4-routes-are-numerically-consistent [paths of length two 54 = pairs of codegree one; sum of C(codeg,2) = 0]
+PASS exactly-the-two-printed-triangles [[(4, 8, 10), (5, 9, 12)] -- a remark, NOT the reason G has no C_4]
+PASS girth-is-three-so-G-lies-outside-the-girth-at-least-five-literature [girth = 3]
+--- 3. n - alpha'(G) = 7, and alpha(G) = 6 ---
+PASS the-printed-6-edge-matching-is-a-matching-of-G [[(0, 6), (1, 9), (2, 7), (3, 10), (4, 11), (5, 12)] -- twelve distinct endpoints]
+PASS matching-number-is-exactly-six [alpha' = 6 by exhaustive search, and n = 13 is odd so alpha' <= 6; witness [(0, 6), (1, 9), (2, 7), (3, 10), (4, 8), (5, 11)]]
+PASS n-minus-the-matching-number-is-seven [13 - 6 = 7 is the Lemma-34 upper bound at issue]
+PASS the-printed-6-set-is-independent [[0, 1, 2, 3, 4, 5] -- all fifteen pairs are non-edges]
+PASS independence-number-is-exactly-six [alpha = 6 by exhaustive search over all 2^13 = 8192 subsets; witness [0, 1, 2, 3, 4, 5]]
+PASS G-is-NOT-a-Koenig-Egervary-graph [alpha + alpha' = 12 != 13 = n, so mold >= alpha does not force attainment]
+--- 4. mold(G) >= 6, from one explicit orientation ---
+PASS the-independent-6-set-meets-18-edges-and-4-edges-avoid-it [cross edges 18, edges inside {6,...,12} [(6, 11), (7, 11), (8, 10), (9, 12)]]
+PASS in-D-star-every-vertex-of-the-independent-6-set-is-a-source [checked for all 16 orientations of the four inner edges]
+PASS the-printed-traces-are-the-traces-of-D-star [{6: [0, 1], 7: [2, 3], 8: [0, 2, 4], 9: [1, 2, 5], 10: [1, 3, 4], 11: [4, 5], 12: [0, 3, 5]}]
+PASS gamma_LD-of-D-star-is-exactly-six [the independent 6-set is locating-dominating, and NO set of size 0..5 is, exhaustively over all C(13,0)+...+C(13,5) = 2380 subsets, for each of the 16 orientations of the inner edges]
+PASS hence-mold-is-at-least-six [mold(G) >= gamma_LD(D*) = 6]
+--- 5. mold(G) <= 6: ALL 2^22 = 4194304 orientations, exhaustively ---
+PASS every-orientation-of-G-admits-a-locating-dominating-set-of-size-six [union over six-sets covers 4194304 of 4194304 = 2^22 orientations; 980 of the 1716 six-sets examined, 800 of them contributed]
+PASS so-gamma_LD-is-at-most-six-for-every-orientation [orientations with NO locating-dominating 6-set: 0]
+PASS exactly-3192596-orientations-admit-no-locating-dominating-5-set [1001708 of 4194304 orientations admit a 5-set, so bad(5) = 3192596; this is the informative non-zero on the same code path that returns 0 at k = 6]
+PASS the-least-such-orientation-is-confirmed-by-the-naive-predicate [orientation index 438, in the convention fixed above (bit i = 1 means a -> b for the i-th edge of the Section 2 list): the naive scan over all 2380 sets of size AT MOST five finds none, so gamma_LD of that orientation is 6 without appealing to monotonicity]
+PASS monotonicity-of-locating-domination-holds-on-every-instance-sampled [1528 instances (S of size 5 locating-dominating, S union {w} of size 6) over 421 orientations at a fixed stride: 0 violations of the lemma that a superset of a locating-dominating set is locating-dominating]
+PASS mold-of-G-is-exactly-six [mold(G) = 6]
+--- 6. the bitset machinery cross-checked against the naive predicate ---
+PASS positive-polarity-sample-agrees-with-the-exhaustive-bitset [2048 orientations (0..1023, every 4096th, and the last): the naive scan finds a locating-dominating 6-set in each, exactly as the bitset says]
+PASS negative-polarity-sample-agrees-with-the-exhaustive-bitset [256 orientations the bitset calls bad at k = 5: the naive scan over all 1287 five-sets confirms NO locating-dominating 5-set in any of them]
+--- 7. published mold values reproduced, both polarities ---
+PASS mold-of-C3-is-2-as-published [n = 3, m = 3, mold = 2, naive per-orientation sweep over all 2^3 orientations agrees]
+PASS mold-of-C4-is-3-as-published [n = 4, m = 4, mold = 3, naive per-orientation sweep over all 2^4 orientations agrees]
+PASS mold-of-C5-is-3-as-published [n = 5, m = 5, mold = 3, naive per-orientation sweep over all 2^5 orientations agrees]
+PASS mold-of-C6-is-3-as-published [n = 6, m = 6, mold = 3, naive per-orientation sweep over all 2^6 orientations agrees]
+PASS mold-of-C7-is-4-as-published [n = 7, m = 7, mold = 4, naive per-orientation sweep over all 2^7 orientations agrees]
+PASS mold-of-C8-is-4-as-published [n = 8, m = 8, mold = 4, naive per-orientation sweep over all 2^8 orientations agrees]
+PASS mold-of-C9-is-5-as-published [n = 9, m = 9, mold = 5, naive per-orientation sweep over all 2^9 orientations agrees]
+PASS mold-of-C10-is-5-as-published [n = 10, m = 10, mold = 5, naive per-orientation sweep over all 2^10 orientations agrees]
+PASS mold-of-P2-is-1-as-published [n = 2, m = 1, mold = 1, naive per-orientation sweep over all 2^1 orientations agrees]
+PASS mold-of-P3-is-2-as-published [n = 3, m = 2, mold = 2, naive per-orientation sweep over all 2^2 orientations agrees]
+PASS mold-of-P4-is-2-as-published [n = 4, m = 3, mold = 2, naive per-orientation sweep over all 2^3 orientations agrees]
+PASS mold-of-P5-is-3-as-published [n = 5, m = 4, mold = 3, naive per-orientation sweep over all 2^4 orientations agrees]
+PASS mold-of-P7-is-4-as-published [n = 7, m = 6, mold = 4, naive per-orientation sweep over all 2^6 orientations agrees]
+PASS mold-of-P9-is-5-as-published [n = 9, m = 8, mold = 5, naive per-orientation sweep over all 2^8 orientations agrees]
+PASS mold-of-K3-is-2-as-published [n = 3, m = 3, mold = 2, naive per-orientation sweep over all 2^3 orientations agrees]
+PASS mold-of-K4-is-2-as-published [n = 4, m = 6, mold = 2, naive per-orientation sweep over all 2^6 orientations agrees]
+PASS mold-of-K5-is-3-as-published [n = 5, m = 10, mold = 3, naive per-orientation sweep over all 2^10 orientations agrees]
+PASS mold-of-K6-is-3-as-published [n = 6, m = 15, mold = 3]
+PASS mold-of-K7-is-4-as-published [n = 7, m = 21, mold = 4]
+PASS mold-of-K1-4-is-4-as-published [n = 5, m = 4, mold = 4, naive per-orientation sweep over all 2^4 orientations agrees]
+PASS mold-of-bowtie-is-3-as-published [n = 5, m = 6, mold = 3, naive per-orientation sweep over all 2^6 orientations agrees]
+PASS mold-of-Petersen-is-5-as-published [n = 10, m = 15, mold = 5]
+PASS the-two-independent-implementations-agree-on-every-small-control [19 control graphs with at most 10 edges were decided twice, by the bitset cover and by the naive per-orientation sweep, with no disagreement]
+PASS mold-of-C4-exceeds-n-minus-its-matching-number [mold(C_4) = 3 > 2 = n - alpha'(C_4): this alone rules out a minimum-over-orientations misreading of mold]
+PASS Petersen-is-in-the-same-class-and-ATTAINS-the-bound [no C_4 subgraph (max codegree 1 over all 45 pairs) and mold = 5 = n - alpha', so the decider says NO where it must]
+--- 8. the answer to the problem ---
+PASS G-has-no-C4-subgraph-and-mold-is-strictly-below-n-minus-the-matching-number [mold(G) = 6 < 7 = n - alpha'(G) on a graph with no 4-cycle]
+
+NOT RE-RUN: minimality of any kind. This program says nothing about whether 13 is the least order, or 22 the least size, of a graph with these properties, and it does not reproduce the census that suggested so; that census found 32 such graphs at n = 13, fourteen of them at m = 22, and its per-graph decisions were never re-run by a second implementation. The paper claims existence only, which needs none of it.
+NOT RE-RUN: the other thirteen graphs at (n, m) = (13, 22), and the two at m = 24. Only the single witness printed in the paper is decided here.
+NOT RE-RUN: n >= 14. No graph of order 14 or more is examined, so nothing here bounds how common such graphs are.
+NOT RE-RUN: the bibliographic locators. The line numbers, the page, the problem number "Open problem 37" and the DOI printed in the paper are not checked by this program; it checks mathematics only.
+NOT RE-RUN: prior art. Nothing here bears on whether the answer was known.
+NOT RE-RUN: ld(G) and the proof of the source's Lemma 34. The chain ld <= mold <= n - alpha' is not re-derived; only the two ends that the strict inequality needs, mold(G) = 6 and n - alpha'(G) = 7, are computed.
+
+VERDICT: ALL 57 CHECKS PASS
+=== program exited with status 0 ===

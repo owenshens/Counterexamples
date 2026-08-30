@@ -1,0 +1,49 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9868086c4b1568cd97bc7055af363a998efa240efbe52a4d909bddadb9efc6f1
+python:  Python 3.9.6
+=== program output follows ===
+PASS field-irreducible [t^3-t-1 sends 0,1,2 in F_3 to 2,2,2, so it has no root and, being cubic, is irreducible]
+PASS field-axioms [27 elements; multiplication commutative, associative, distributive over the componentwise mod-3 addition; all 26 nonzero elements invertible; F* cyclic of order 26]
+PASS frobenius [x -> x^3 is an additive, multiplicative automorphism of order 3 fixing exactly F_3 = {0,1,2}, hence F_3-linear]
+PASS trace [tr(x)=x+x^3+x^9 lands in F_3, is F_3-linear, and is balanced: fibres of size 9,9,9]
+PASS trace-nondegenerate [v -> tr(v .) is injective, so the 27 maps w -> tr(vw) are exactly all 27 = |Hom_{F_3}(F,F_3)| F_3-functionals on F]
+PASS fact1-minus-one-nonsquare [13 squares forming a subgroup of the ODD order 13; -1 = index 2 has multiplicative order 2, and 2 does not divide 13, so -1 is a nonsquare]
+PASS beta-inverts-alpha [beta(v)=2(-v+v^3+v^9) is F_3-linear and alpha(beta(v)) = beta(v)^3 + beta(v)^9 = v for all 27 v, 0 failures]
+PASS table-shape [Table 1 transcribes as 27 rows of 27 digits in {0,1,2}, all 27 rows distinct]
+PASS table-zero-row [the row labelled Q0 is identically zero]
+PASS table-nonsquare-rows [the 13 labels Qm* are exactly the 13 nonsquares 2,6,7,8,10,14,17,18,19,21,23,24,26, and each printed row equals w -> tr(m^3 w^4), 13 of 13]
+PASS table-class-rows [the 13 labels Qs* are 13 pairwise distinct classes of F*/{+-1}, and each printed row equals w -> tr(2 w s beta(w s)), 13 of 13]
+PASS lambda-generators [the 3 printed generators are w -> tr(vw) for v = 1, t, t^2; their F_3-span has 27 elements and equals the full set of trace functionals]
+PASS forms-from-spread-maps [the 27 maps h_0 = 0, h_m(x) = m x^9 + m^3 x^3, h_s(x) = s beta(xs) are distinct, and Q_h(w) = tr(2 w h(w)) reproduces the printed row of Table 1 for every one of them]
+PASS rows-are-even [every printed row satisfies Q(0) = 0 and Q(-w) = Q(w), 27 of 27]
+PASS polar-form-bilinear [B_Q(w,w') = Q(w+w') - Q(w) - Q(w') is symmetric and additive in each argument for all 27 rows, so each row is a genuine quadratic form on the F_3-space F]
+PASS polar-form-is-trace-pairing [B_{Q_h}(w,w') = tr(w h(w')) for all 27 maps h and all 729 pairs (w,w'); this step uses char F = 3 odd, via 1/2 in F_3]
+PASS spread-matrices-distinct [the 27 polar forms give 27 distinct symmetric 3x3 matrices over F_3]
+PASS spread-differences-nonsingular [all 351 = C(27,2) pairwise differences of the 27 symmetric matrices are nonsingular over F_3, 0 singular; with the component at infinity this is a symplectic spread of 28 components of GF(27) x GF(27)]
+PASS design-size [X = {Q + lambda : Q in Table 1, lambda in Lambda} has 729 = 27^2 distinct points, so (Q,lambda) -> Q + lambda is a bijection onto X]
+PASS design-normalised [the w = 0 coordinate of every one of the 729 points is 0, the normalisation of P(T^d) = T^d/T]
+PASS design-contains-identity [the identity of P(T^27), the all-zero point, lies in X (it is Q0 + 0)]
+PASS toric-angle [over all 265356 = C(729,2) unordered pairs phi != theta of X, |sum_w exp(i(phi_w-theta_w))|^2 lies in {0,27} = {0,d}: 0 violations. The residue counts (n_0,n_1,n_2) of the difference take exactly two shapes: (9,9,9) on 9477 pairs, giving 0, and permutations of (6,9,12) on 255879 pairs, giving 27]
+PASS characters-enumerated [the 27 coordinates give 378 size-2 multisets and 142884 ordered pairs of them, i.e. 142884 characters chi_k of Definition 2.6]
+PASS characters-nonzero-mod-3 [exactly 378 of the 142884 characters have k = 0 as an integer vector, and exactly the same 378 have k = 0 mod 3; so 'k nonzero' is unambiguous and 142506 characters must be tested]
+PASS two-design [all 142506 nonzero characters chi_k sum to zero over X: every one has residue counts (n_0,n_1,n_2) = (243,243,243), so sum_{x in X} exp(i k.x) = 243(1 + w + w^2) = 0; 0 failures]
+PASS witness-transcription [the printed witness phi is the row Qm2, it lies in X, the printed phi+phi is its digitwise double mod 3, and that point is not in X]
+PASS not-a-subgroup [435942 of the 531441 ordered sums x + y with x,y in X leave X; X is closed under neither, so it is not a subgroup of P(T^27)]
+PASS not-a-coset [for every one of the 729 base points x0 in X, the translate X - x0 fails additive closure: 0 of 729 base points give a subgroup (worst case 2191 pairs examined before a failure). Since X = x0 + G with G a subgroup and 0 in X forces G = X, this is also what the single check 'X is not a subgroup' already gives]
+PASS form-set-not-closed [598 of the 729 sums of two rows of Table 1 are not rows of Table 1; in the table's own order the first failure is Qm2 + Qm2, i.e. m = 2 = -1, the nonsquare the argument names]
+PASS fact2-doubling [in characteristic 3, h_m + h_m = 2m x^9 + 2 m^3 x^3 = (2m) x^9 + (2m)^3 x^3 = h_{-m}, verified as maps for all 27 values of m]
+PASS fact3-linearised-basis [the 27^3 = 3^9 maps a_0 x + a_1 x^3 + a_2 x^9 are pairwise distinct and all F_3-linear, so they exhaust End_{F_3}(GF(27)), whose cardinality is 3^9 = 19683: the linearised representation is unique]
+PASS fact3-families-disjoint [every h_m has linearised coefficient a_0 = 0 (and a_1 = m^3, a_2 = m); every h_s has a_0 = s^2 != 0. The two families are separated by that one coefficient]
+PASS non-closure-mechanism [for each of the 13 nonsquares m: -m is a square (FACT 1), h_m + h_m = h_{-m} (FACT 2), and h_{-m} is neither 0 nor any h_{m'} nor any h_s (FACT 3) -- 13 of 13. So the 27-element map set H is not closed under addition]
+PASS conjecture-4.9-false [X is a P(T^27) 2-design (0 of 142506 characters fail) of size |X| = 729 = 27^2 that is not a subgroup of P(T^27) (indeed not a coset of one) and yet satisfies eq:toric-angle (0 of 265356 pairs fail). Conjecture 4.9 of arXiv:2311.13479, main.tex L786-788, is therefore false at d = 27]
+PASS d2-literal-statement-fails [X_2 = {pi/4, 3pi/4, 5pi/4, 7pi/4} in P(T^2) has |X_2| = 4 = 2^2, all 6 of its nonzero characters vanish, all C(4,2) = 6 pairs give |sum|^2 in {0,2} = {0,d}, and it does not contain the identity, so it is not a subgroup: the LITERAL statement already fails at d = 2. But X_2 IS a coset of the subgroup {0, pi/2, pi, 3pi/2}, which is why the d = 27 object above, which contains the identity, is the substantive witness]
+
+NOT RE-RUN: nothing here concerns d = 6 or d = 8, or any characteristic-2 dimension. The polar-form step 'polar-form-is-trace-pairing' needs char F odd, and no even-characteristic (Galois-ring / Kerdock) construction was built or tested.
+NOT RE-RUN: no MUB matrices are constructed. The program verifies the spread and quadratic-form data from which Theorem 4.4 of arXiv:2311.13479 and Abdukhalikov's construction produce a complete set of 28 MUBs in C^27; it does not multiply out the 28 bases.
+NOT RE-RUN: MUB-equivalence is untouched. The program does not decide whether some complete set of MUBs MUB-equivalent to this one has a subgroup (or coset) projective toric design; the MUB-equivalence group is a continuum and was not searched. Nor does it recoordinatise the spread by sending each of the 28 components to infinity in turn.
+NOT RE-RUN: no minimality is claimed or tested. Nothing here says d = 27 is the least dimension, or the least prime-power dimension, admitting a non-group projective toric 2-design of size d^2 that satisfies the angle condition; no census of other dimensions was run.
+NOT RE-RUN: the bridging dictionary between group toric designs and semifield spreads is used only in the direction needed here, and only for this X. The program verifies steps (i)-(iii) of Lemma 3.1 computationally on the printed object, not as a general theorem.
+
+VERDICT: ALL 35 CHECKS PASS
+=== program exited with status 0 ===

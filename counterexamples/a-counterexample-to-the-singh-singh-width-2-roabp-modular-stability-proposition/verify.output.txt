@@ -1,0 +1,55 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  0d8434bd54984d41719c11d14bf5749a4660ef138194ae3c7b23771b9cd72bc6
+python:  Python 3.9.25
+=== program output follows ===
+# objects, primes and constants are the literals of block 0 below, all printed in the paper
+# w = 2, d = 1, R(w,d) = (w*d)^7 = 128, epsilon = 1/10
+
+PASS ring-basis-independence  lambda^a - lambda^b != 0 in R_31 at all 1395 = 465 x 3 combinations of a pair 0 <= a < b < 31 with a characteristic in {0, 2, 3}, so for a two-term C the condition C_g = 0 is exactly an exponent congruence mod r, in every characteristic
+PASS reading-is-nested-not-product  under the alternative reading x_i -> lambda^(g*i) the object x_1 - x_r has an EMPTY bad set at every r in [31, 131, 1039, 4099, 10007] (g*r = 0 mod r never equals g), so the nested exponent of Definition 4.7.1 is load-bearing and this note stands or falls with it
+PASS reading-control-ring-agrees  ring engine at r = 131 over F_2: bad set is empty under the product reading and all of Z_r^* (130 elements) under the nested reading
+PASS roabp-width-2-diagonal-realisation  the explicit product u^T diag-M_1 ... diag-M_n v of Proposition 2 evaluates symbolically to exactly x_i - x_j for n=31 j=31, n=131 j=131, n=520 j=520, every matrix entry of degree <= 1 in its own variable, width 2, diagonal
+PASS witness-nonzero-and-two-term  x_1 - x_131 is a nonzero polynomial over char 0, 2 and 3 and has exactly 2 monomials
+PASS witness-support-density  2 monomials out of the 2^n multilinear monomials in n = 131 variables: the object lies in the constant-width, extremely-low-density class that the source's own p.27 Remark excludes from the conjecture, which is why the correction is to Proposition 4.7.3 (p.28) and to the printed quantifier form, not to the conjecture as described
+PASS ring-bad-set-r31-char0  C = x_1 - x_31, n = 31: B_r(C) = Z_r^* exactly, |B| = 30 = r - 1, the maximum possible
+PASS ring-bad-set-r31-char2  C = x_1 - x_31, n = 31: B_r(C) = Z_r^* exactly, |B| = 30 = r - 1, the maximum possible
+PASS ring-bad-set-r31-char3  C = x_1 - x_31, n = 31: B_r(C) = Z_r^* exactly, |B| = 30 = r - 1, the maximum possible
+PASS ring-bad-set-r131-char0  C = x_1 - x_131, n = 131: B_r(C) = Z_r^* exactly, |B| = 130 = r - 1, the maximum possible
+PASS ring-bad-set-r131-char2  C = x_1 - x_131, n = 131: B_r(C) = Z_r^* exactly, |B| = 130 = r - 1, the maximum possible
+PASS ring-bad-set-r131-char3  C = x_1 - x_131, n = 131: B_r(C) = Z_r^* exactly, |B| = 130 = r - 1, the maximum possible
+PASS ring-bad-set-r1039-char0  C = x_1 - x_1039, n = 1039: B_r(C) = Z_r^* exactly, |B| = 1038 = r - 1, the maximum possible
+PASS ring-bad-set-r1039-char2  C = x_1 - x_1039, n = 1039: B_r(C) = Z_r^* exactly, |B| = 1038 = r - 1, the maximum possible
+PASS ring-bad-set-r1039-char3  C = x_1 - x_1039, n = 1039: B_r(C) = Z_r^* exactly, |B| = 1038 = r - 1, the maximum possible
+PASS congruence-bad-set-r31  g^1 = g^r mod 31 for all 30 elements of Z_r^*, so |B_r(x_1 - x_r)| = r - 1 = 30
+PASS congruence-bad-set-r131  g^1 = g^r mod 131 for all 130 elements of Z_r^*, so |B_r(x_1 - x_r)| = r - 1 = 130
+PASS congruence-bad-set-r1039  g^1 = g^r mod 1039 for all 1038 elements of Z_r^*, so |B_r(x_1 - x_r)| = r - 1 = 1038
+PASS congruence-bad-set-r4099  g^1 = g^r mod 4099 for all 4098 elements of Z_r^*, so |B_r(x_1 - x_r)| = r - 1 = 4098
+PASS congruence-bad-set-r10007  g^1 = g^r mod 10007 for all 10006 elements of Z_r^*, so |B_r(x_1 - x_r)| = r - 1 = 10006
+PASS two-routes-agree  the full length-r coefficient-vector engine and the exponent-congruence criterion give the SAME bad set at every (r, char) in [31, 131, 1039] x [0, 2, 3]
+PASS fermat-mechanism  g^r = g mod r for every g in Z_r^* at r in [31, 131, 1039, 4099, 10007] -- Fermat's little theorem, the whole mechanism of Theorem 1
+PASS subgroup-order-lemma-r31  |B_31(x_i - x_j)| = gcd(j - i, r - 1) for every one of the 30 index differences j - i = 1..30
+PASS subgroup-order-lemma-r131  |B_131(x_i - x_j)| = gcd(j - i, r - 1) for every one of the 130 index differences j - i = 1..130
+PASS subgroup-order-lemma-r1039  |B_1039(x_i - x_j)| = gcd(j - i, r - 1) for every one of the 1038 index differences j - i = 1..1038
+PASS subgroup-order-lemma-ring-r31  the ring engine confirms |B_31(x_i - x_j)| = gcd(j - i, 30) for all 465 pairs 1 <= i < j <= 31 over F_2
+PASS bad-set-is-a-subgroup  B_131(x_i - x_j) is closed under multiplication and contains 1 for every index difference, as the kernel of g -> g^(j-i) must be
+PASS inequality-at-r131-exact  130^10 = 1378584918490000000000 > 131^9 = 11361656654439817571, i.e. |B| = 130 > 131^(9/10), in exact integers
+PASS threshold-and-least-admissible-prime  (w*d)^7 = 128, and 131 is prime and is the LEAST prime >= 128 (128, 129, 130 are composite), so the witness clears the source's own illustrative threshold
+PASS inequality-holds-from-r7  (r-1)^10 > r^9 fails for every integer 2 <= r <= 6 and holds for every integer 7 <= r <= 20000, so the least r is exactly 7 -- far below the sufficient condition 2^(1/eps) = 1024 the paper quotes
+PASS sufficient-condition-r-above-2-to-the-1-over-eps  for eps = 1/m with m = 1..14, (r-1)^m > r^(m-1) at every one of the 5483 primes r with 2^m < r <= 2^m + 3000 -- the proof step r - 1 >= r/2 > r^(1-eps) of Corollary 3
+PASS qr-witness-r1039  C = x_1 - x_520 on n = 520 variables: |B| = 519 = (r-1)/2 = gcd(k, r-1), B is exactly the set of quadratic residues mod 1039 (Euler's criterion, computed independently), and 519^10 > 1039^9
+PASS qr-witness-r4099  C = x_1 - x_2050 on n = 2050 variables: |B| = 2049 = (r-1)/2 = gcd(k, r-1), B is exactly the set of quadratic residues mod 4099 (Euler's criterion, computed independently), and 2049^10 > 4099^9
+PASS qr-witness-ring-r1039  the full ring engine at r = 1039 over F_2 returns exactly the 519 quadratic residues for C = x_1 - x_520, matching the congruence route and Euler's criterion
+PASS qr-witness-least-prime-is-1039  for the HALVED witness ((r-1)/2)^10 > r^9 fails at every odd prime below 1039, including [1009, 1013, 1019, 1021, 1031, 1033] -- two of them above 2^10 = 1024 -- and first holds at r = 1039, where 519 > 1039^(9/10). The naive threshold 2^(1/eps) is NOT correct for this object.
+PASS qr-witness-leaves-algorithm-1-intact  a good parameter still exists for the halved witness, since (r-1)/2 <= r-2 at r in [1039, 4099], while the n >= r object of Theorem 1 has |B| = r-1 > r-2 and therefore removes EVERY good parameter; only the latter breaks the single step of Algorithm 1 (printed p.40)
+PASS control-forced-positive-x1-plus-x2  C = x_1 + x_2 at r = 1039 over F_2 MUST have B = {1}, since g^1 = g^2 mod r iff g = 1; the engine returned B = {1}, |B| = 1
+PASS control-proved-silent-x1  C = x_1 can never vanish under Gamma_g (it maps to a single basis vector), and the engine returned |B_1039(x_1)| = 0 over char 0, 2 and 3
+PASS control-characteristic-sensitivity  C = x_1 + x_2 + x_3 at r = 31 sends all three monomials to lambda^1 at g = 1 with coefficient sum 3, so g = 1 must be bad over F_3 and good over F_2 and char 0: the engine returned |B| = 1 with B = {1} over F_3, and 0 over both others -- the engine is not blind to characteristic
+PASS control-forced-negative-difference-1  C = x_1 - x_2 has index difference 1, so the lemma forces |B| = gcd(1, 30) = 1; the engine returned B = {1}. A decider tuned to manufacture large bad sets would not return a singleton here.
+NOT RE-RUN: the full length-r ring engine was run only at r = 31, 131 and 1039. The two largest primes the paper prints, r = 4099 and r = 10007, are checked by the exponent-congruence route alone; the two routes are shown to agree at the three smaller primes, but no coefficient vector of length 4099 or 10007 is built here.
+NOT RE-RUN: nothing here tests any ROABP of width >= 3, and nothing here tests any object of non-degenerate coefficient support density. The regime the source DESCRIBES in its p.27 Remark is therefore untouched by this program as it is by the paper, and remains open. This program exhibits no counterexample there and refutes nothing there.
+NOT RE-RUN: no search over a family of ROABPs is performed, and in particular the small-parameter census at r = 31, n = 5 that appears in this result's internal record is NOT reproduced here and is NOT offered as evidence anywhere. A sweep at n << r is structurally blind to the family of Theorem 1, so it could not bear on the surviving regime in either direction; Section 3 of the paper says so.
+NOT RE-RUN: the source PDF (arXiv:2602.13449v1, 1,086,923 bytes, PDF-only) is not fetched or parsed. Conjecture 4.7.2, Proposition 4.7.3, the p.27 Remark, Example 4.7.3, Definition 4.7.1, Algorithm 1 and the Appendix B table are TRANSCRIPTIONS from the printed pages named in the paper; this program cannot re-check a transcription, and a reader who doubts one should compare it against the PDF by eye.
+NOT RE-RUN: no prior-art search is performed here. The paper states that the witness OBJECT is the source's own Example 4.7.3 at S = {1}, S' = {r}, and it claims novelty for neither the object nor the count |B_r(C)| = r - 1. This program checks the count, not the literature.
+VERDICT: ALL 40 CHECKS PASS
+=== program exited with status 0 ===

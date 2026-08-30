@@ -1,0 +1,581 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Counterexamples to the Iterated Beatty Range Criterion Below 5/4, and a Sufficient Per-Level Cutoff}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{question}{Question 1 of \cite{KVZ}}
+
+\DeclarePairedDelimiter{\fl}{\lfloor}{\rfloor}
+\newcommand{\fp}[1]{\left\{#1\right\}}
+\newcommand{\RC}{\mathrm{RC}}
+
+\title[The iterated Beatty range criterion]
+{Counterexamples to the Iterated Beatty Range Criterion Below $5/4$,
+and a Sufficient Per-Level Cutoff}
+
+\date{}
+
+\subjclass[2020]{11B83, 11A67, 11U05}
+\keywords{Beatty sequence, iterated floor function, range criterion, golden ratio,
+$n$-bonacci constant, open question}
+
+\begin{document}
+
+\begin{abstract}
+For irrational $\alpha>1$ let $f_\alpha(y)=\fl{\alpha y}$ on the positive integers.
+Khani, Valizadeh and Zarei prove that for irrational $\alpha>(3+\sqrt5)/2\approx2.618$
+a positive integer $x$ lies in the range of $f_\alpha^{\,n}$ if and only if an explicit
+system $\RC_{\le n}(\alpha,x)$ of inequalities on
+$\fp{x/\alpha},\dots,\fp{x/\alpha^{n}}$ holds, and they ask (Question~1) whether the
+same equivalence holds for irrational $\alpha\in(1,2.618\ldots)$. It fails on $(1,5/4]$:
+if $1<\alpha<\varphi=(1+\sqrt5)/2$ then every integer $x$ with
+$\alpha^{2}/(\alpha^{2}-1)<x<1/(\alpha-1)$ is a fixed point of $f_\alpha$, hence lies in
+the range of every iterate, yet $\RC_{\le 2}(\alpha,x)$ fails, and for irrational
+$\alpha\le(1+\sqrt{17})/4=1.2807\ldots$, in particular for every irrational
+$\alpha\in(1,5/4]$, the integer $x^{*}=\fl{1/(\alpha-1)}$ lies in that window. It does
+hold at level $n$ under the sufficient condition
+$\alpha^{n}\ge\alpha^{n-1}+\dots+\alpha+1$, equivalently $\alpha\ge a_n$ (the
+$n$-bonacci constant); since $a_n<2$ for all $n$, it holds at every level for every
+irrational $\alpha>2$. One direction, $\RC_{\le n}\Rightarrow$ membership, needs no
+hypothesis on $\alpha$ at all. Sharpness of $a_n$ is not claimed: the cutoff is
+sufficient only, and no per-level threshold is established here.
+\end{abstract}
+
+\maketitle
+
+\section{Question 1 and the answer}
+
+Throughout, $\alpha>1$ is irrational, $\fl{t}$ and $\fp{t}=t-\fl{t}$ are the integral
+and fractional parts of $t$, and
+\[
+ f=f_\alpha:\mathbb Z_{\ge1}\to\mathbb Z_{\ge1},\qquad f(y)=\fl{\alpha y}.
+\]
+We write $\mathcal R_n=f^{\,n}(\mathbb Z_{\ge1})$ for the range of the $n$-th iterate.
+``Natural number'' means \emph{positive} integer; this is forced by the statement below,
+whose first clause reads $1-1/\alpha<\fp{x/\alpha}<1$ and so is false at $x=0$.
+
+Khani, Valizadeh and Zarei \cite{KVZ} prove the following (their unnumbered main
+theorem).
+
+\begin{quote}
+\emph{Suppose that $n\ge1$, and $\alpha$ is an irrational number strictly greater than
+$\frac{3+\sqrt5}{2}$. Then, a natural number $x$ belongs to the range of $f^{n}$ if and
+only if $1-\frac1\alpha<\fp{\frac x\alpha}<1$ and for each $i=2,\dots,n$ we have that}
+\begin{equation}\label{eq:CRn}
+ 1-\frac2\alpha<\fp{\frac{x}{\alpha^{i}}}-\frac{\fp{\frac{x}{\alpha^{i-1}}}}{\alpha}
+ <1-\frac1\alpha .
+\end{equation}
+\end{quote}
+
+\noindent
+Write $\RC_{\le n}(\alpha,x)$ for the conjunction of the first clause with
+\eqref{eq:CRn} for $i=2,\dots,n$, and $\RC_i(\alpha,x)$ for its $i$-th clause. The paper
+\cite{KVZ} closes with two questions; the first is reproduced here in full.
+
+\begin{question}
+\emph{Our assumption on $\alpha$ being strictly greater than
+$\frac{3+\sqrt5}{2}\approx2.618$ implies that it satisfies the algebraic inequalities
+below:
+\[
+ \alpha^{2}-3\alpha+1>0\quad\text{ and }\quad\alpha^{4}-2\alpha^{3}-\alpha+1>0.
+\]
+In fact, the greatest root of the polynomials above is approximately $2.618$ and
+$2.118$, respectively. As we observed, these inequalities are crucial to prove Lemma
+\textup{[}Technical Lemma\textup{]}. A natural question is whether our theorem holds also
+for irrationals belonging to the following set:
+\[
+ (1,\,2.618\!\sim)=(1,\,2.118\!\sim)\cup(2.118\!\sim,\,2.618\!\sim).
+\]
+In this regard, recall that the function $f_\alpha$ is surjective whenever $\alpha$ is
+less than or equal to one.}
+\end{question}
+
+\noindent
+A single counterexample answers Question~1 in the negative; the ones produced here are
+elementary. What is proved below says where the criterion fails, and gives a sufficient
+condition for it to hold.
+
+\begin{itemize}
+\item \textbf{No, on $(1,5/4]$.} Theorem~\ref{thm:B} and Corollary~\ref{cor:B} produce,
+ for every irrational $\alpha\in(1,5/4]$, an integer $x$ that lies in $\mathcal R_n$ for
+ \emph{every} $n$ and for which $\RC_{\le n}(\alpha,x)$ is false already at index $2$.
+ The witnesses are fixed points of $f_\alpha$.
+\item \textbf{Yes, on $\bigl(2,(3+\sqrt5)/2\bigr)$.} Theorem~\ref{thm:A} proves the
+ equivalence for every irrational $\alpha>2$ and every $n$, and at level $n$ under the
+ sufficient condition $\alpha^{n}\ge\alpha^{n-1}+\dots+1$, which is not claimed to be
+ necessary.
+\item \textbf{Open on $(\varphi,2)$.} For $\alpha$ in that band Theorem~\ref{thm:A}
+ settles the levels $n$ with $\alpha\ge a_n$ and leaves the others undecided, and we
+ exhibit no counterexample there. At the left endpoint $\alpha=\varphi$ the equivalence
+ itself is settled in the negative, at level $5$ (Section~\ref{sec:phi}); level $n=3$ at
+ $\varphi$ is left open. See Section~\ref{sec:open}.
+\end{itemize}
+
+Nothing here contradicts the theorem of \cite{KVZ}: its hypothesis
+$\alpha>(3+\sqrt5)/2$ is untouched, and both witnesses below lie at or below $\varphi<2$.
+
+The case $n=1$ of the criterion is published as Fraenkel--Levitt--Shimshoni \cite{FLS}
+and, in the short form used here, as Sz\"usz \cite{Szusz}.
+
+\section{Two elementary lemmas}\label{sec:lemmas}
+
+Following \cite{KVZ} put $v_0(x)=x$ and $v_k(x)=\fl{v_{k-1}(x)/\alpha}+1$, and
+\[
+ \rho_0(x)=0,\qquad
+ \rho_k(x)=\frac{1-\fp{x/\alpha^{k}}}{\alpha}\quad(k\ge1),
+\]
+so that $\rho_k(x)\in(0,1/\alpha)$ for $k\ge1$, because $x/\alpha^{k}$ is irrational.
+Multiplying by $\alpha$ one checks at once that for $k\ge1$
+\begin{equation}\label{eq:rcform}
+ \RC_k(\alpha,x)\iff
+ 0<\rho_k(x)-\frac{\rho_{k-1}(x)}{\alpha}<\frac1{\alpha^{2}},
+\end{equation}
+the case $k=1$ reading $0<\rho_1(x)<1/\alpha^{2}$: indeed
+$\alpha^{2}\bigl(\rho_k-\rho_{k-1}/\alpha\bigr)
+=\alpha-1-\alpha\fp{x/\alpha^{k}}+\fp{x/\alpha^{k-1}}$, and dividing the resulting
+double inequality $0<\cdot<1$ by $\alpha$ gives exactly \eqref{eq:CRn}. We use the form
+\eqref{eq:rcform} from now on.
+
+\begin{lemma}\label{lem:R1}
+Let $y\ge1$ be an integer. Then $y\in\mathcal R_1$ if and only if
+$\rho_1(y)<1/\alpha^{2}$, and in that case the unique $z$ with $f(z)=y$ is $v_1(y)$.
+\end{lemma}
+
+\begin{proof}
+$f(z)=y$ means $y\le\alpha z<y+1$, i.e.\ $y/\alpha\le z<(y+1)/\alpha$. As $\alpha$ is
+irrational and $y\ge1$, $y/\alpha\notin\mathbb Z$, so an integer $z$ in that window
+exists if and only if $\fl{y/\alpha}+1<(y+1)/\alpha$, and then it is unique and equals
+$v_1(y)$. Finally $\fl{y/\alpha}+1<(y+1)/\alpha$ is $1-\fp{y/\alpha}<1/\alpha$, that is
+$\rho_1(y)<1/\alpha^{2}$.
+\end{proof}
+
+\begin{lemma}\label{lem:tower}
+For all $n\ge1$ and all integers $x\ge1$:
+$x\in\mathcal R_n$ if and only if $v_k(x)\in\mathcal R_1$ for $k=0,1,\dots,n-1$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:R1}, $x\in\mathcal R_{n}$ iff $x\in\mathcal R_1$ and
+$v_1(x)\in\mathcal R_{n-1}$; iterate, using $v_k=v_1\circ v_{k-1}$.
+\end{proof}
+
+The next lemma is the whole mechanism. Say that $x$ \emph{carries at level $k$} if
+$c_k(x):=\fl{\fp{x/\alpha^{k}}+\rho_{k-1}(x)}$ equals $1$; since
+$\fp{x/\alpha^{k}}<1$ and $\rho_{k-1}(x)<1/\alpha<1$, indeed $c_k(x)\in\{0,1\}$.
+
+\begin{lemma}\label{lem:key}
+Fix $x\ge1$ and $k\ge1$, and suppose
+$v_{k-1}(x)=x/\alpha^{k-1}+\alpha\rho_{k-1}(x)$. Then
+\begin{align}
+ \rho_1\bigl(v_{k-1}(x)\bigr)
+ &=\rho_k(x)-\frac{\rho_{k-1}(x)}{\alpha}+\frac{c_k(x)}{\alpha},
+ \label{eq:key1}\\
+ v_k(x)&=\fl{x/\alpha^{k}}+1+c_k(x),
+ \label{eq:key2}
+\end{align}
+and $c_k(x)=0$ if and only if $\rho_k(x)-\rho_{k-1}(x)/\alpha>0$. Consequently, if
+$c_k(x)=1$ then $\RC_k(\alpha,x)$ is false, while if $c_k(x)=0$ then
+\[
+ \RC_k(\alpha,x)\iff v_{k-1}(x)\in\mathcal R_1
+ \qquad\text{and}\qquad
+ v_k(x)=x/\alpha^{k}+\alpha\rho_k(x).
+\]
+\end{lemma}
+
+\begin{proof}
+Dividing the hypothesis by $\alpha$ gives
+$v_{k-1}(x)/\alpha=x/\alpha^{k}+\rho_{k-1}(x)$, whence
+$\fp{v_{k-1}(x)/\alpha}=\fp{x/\alpha^{k}}+\rho_{k-1}(x)-c_k(x)$ and
+\[
+ \rho_1\bigl(v_{k-1}(x)\bigr)
+ =\frac{1-\fp{x/\alpha^{k}}-\rho_{k-1}(x)+c_k(x)}{\alpha}
+ =\rho_k(x)-\frac{\rho_{k-1}(x)}{\alpha}+\frac{c_k(x)}{\alpha},
+\]
+because $\alpha\bigl(\rho_k(x)-\rho_{k-1}(x)/\alpha\bigr)
+=1-\fp{x/\alpha^{k}}-\rho_{k-1}(x)$. The same identity shows that $c_k(x)=0$, i.e.\
+$\fp{x/\alpha^{k}}+\rho_{k-1}(x)<1$, is equivalent to
+$\rho_k(x)-\rho_{k-1}(x)/\alpha>0$. Next,
+\[
+ v_k(x)=\fl{\tfrac{v_{k-1}(x)}\alpha}+1
+ =\frac{v_{k-1}(x)}\alpha+\alpha\rho_1\bigl(v_{k-1}(x)\bigr)
+ =\frac{x}{\alpha^{k}}+1-\fp{\tfrac{x}{\alpha^{k}}}+c_k(x),
+\]
+which is \eqref{eq:key2}; when $c_k(x)=0$ this is
+$x/\alpha^{k}+\alpha\rho_k(x)$. Finally, if $c_k(x)=1$ then
+$\rho_k(x)-\rho_{k-1}(x)/\alpha\le0$ and $\RC_k$ fails by \eqref{eq:rcform}, while if
+$c_k(x)=0$ then $\rho_k(x)-\rho_{k-1}(x)/\alpha=\rho_1(v_{k-1}(x))$, which is positive,
+so $\RC_k(\alpha,x)$ reduces to $\rho_1(v_{k-1}(x))<1/\alpha^{2}$; apply
+Lemma~\ref{lem:R1}.
+\end{proof}
+
+\section{The positive half}\label{sec:A}
+
+One implication of \eqref{eq:CRn} costs nothing.
+
+\begin{proposition}\label{prop:free}
+For every irrational $\alpha>1$, every $n\ge1$ and every integer $x\ge1$:
+if $\RC_{\le n}(\alpha,x)$ holds then $x\in\mathcal R_n$.
+\end{proposition}
+
+\begin{proof}
+Induct on $k=1,\dots,n$ the statement ``$v_{k-1}(x)\in\mathcal R_1$ and
+$v_k(x)=x/\alpha^{k}+\alpha\rho_k(x)$''. The hypothesis of Lemma~\ref{lem:key} holds for
+$k=1$ because $v_0(x)=x=x/\alpha^{0}+\alpha\rho_0(x)$, and is carried forward by the
+induction. At each step $\RC_k(\alpha,x)$ gives
+$\rho_k(x)-\rho_{k-1}(x)/\alpha>0$, hence $c_k(x)=0$ by Lemma~\ref{lem:key}, hence
+$v_{k-1}(x)\in\mathcal R_1$ and $v_k(x)=x/\alpha^{k}+\alpha\rho_k(x)$. Now apply
+Lemma~\ref{lem:tower}.
+\end{proof}
+
+So every failure of the equivalence is of one shape: $x$ in the range, criterion false.
+The converse implication is where a hypothesis on $\alpha$ is needed; the one used below
+is sufficient, and is not claimed to be necessary. For $n\ge1$ let
+\[
+ p_n(t)=t^{n+1}-2t^{n}+1 .
+\]
+
+\begin{lemma}\label{lem:an}
+For each $n\ge2$, $p_n$ has exactly one root $a_n$ in $(1,\infty)$; it satisfies
+$1<a_n<2$, and for $t>1$
+\[
+ t^{n}\ge t^{n-1}+t^{n-2}+\dots+t+1
+ \iff p_n(t)\ge0
+ \iff t\ge a_n .
+\]
+Moreover $a_2<a_3<a_4<\cdots<2$ and $a_n\to2$, with
+\[
+ a_2=\varphi=1.6180339887\ldots,\qquad a_3=1.8392867552\ldots,
+\]
+\[
+ a_4=1.9275619754\ldots,\qquad a_5=1.9659482366\ldots,
+\]
+\[
+ a_6=1.9835828434\ldots
+\]
+For $n=1$ the displayed inequality reads $t\ge1$ and holds for all $t>1$; we set
+$a_1=1$.
+\end{lemma}
+
+\begin{proof}
+Multiplying $t^{n}\ge\sum_{i=0}^{n-1}t^{i}=(t^{n}-1)/(t-1)$ by $t-1>0$ gives
+$t^{n+1}-t^{n}\ge t^{n}-1$, i.e.\ $p_n(t)\ge0$; the steps are reversible. Now
+$p_n'(t)=t^{n-1}\bigl((n+1)t-2n\bigr)$, so on $(1,\infty)$ the function $p_n$ decreases
+on $\bigl(1,\tfrac{2n}{n+1}\bigr)$ and increases on $\bigl(\tfrac{2n}{n+1},\infty\bigr)$.
+Since $p_n(1)=0$ we get $p_n<0$ on $\bigl(1,\tfrac{2n}{n+1}\bigr]$, and since
+$p_n(2)=2^{n+1}-2^{n+1}+1=1>0$ there is exactly one root $a_n\in\bigl(\tfrac{2n}{n+1},2\bigr)$,
+with $p_n\ge0$ on $[a_n,\infty)$ and $p_n<0$ on $(1,a_n)$. For monotonicity,
+$p_{n+1}(t)-p_n(t)=t^{n}(t-1)(t-2)<0$ for $t\in(1,2)$, so $p_{n+1}(a_n)<p_n(a_n)=0$ and
+therefore $a_{n+1}>a_n$. For the limit, $p_n(2-\varepsilon)=1-\varepsilon(2-\varepsilon)^{n}\to-\infty$
+for fixed $\varepsilon\in(0,1)$, so $a_n>2-\varepsilon$ eventually. Finally
+$p_2(t)=t^{3}-2t^{2}+1=(t-1)(t^{2}-t-1)$, so $a_2=\varphi$; the four decimals are
+recomputed in the accompanying program.
+\end{proof}
+
+\begin{theorem}\label{thm:A}
+Let $\alpha>1$ be irrational, let $n\ge1$, and assume
+\begin{equation}\label{eq:thresh}
+ \alpha^{n}\ \ge\ \alpha^{n-1}+\alpha^{n-2}+\dots+\alpha+1,
+ \qquad\text{equivalently } \alpha\ge a_n .
+\end{equation}
+Then for every integer $x\ge1$,
+\[
+ x\in\mathcal R_n\iff\RC_{\le n}(\alpha,x).
+\]
+In particular the equivalence holds for every $n\ge1$ whenever $\alpha>2$, and at level
+$n$ whenever $\alpha\ge a_n$.
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:free} gives $\Leftarrow$ with no hypothesis. For $\Rightarrow$
+assume $x\in\mathcal R_n$; by Lemma~\ref{lem:tower}, $v_{k-1}(x)\in\mathcal R_1$ for
+$k=1,\dots,n$, i.e.\ $\rho_1\bigl(v_{k-1}(x)\bigr)<1/\alpha^{2}$ by Lemma~\ref{lem:R1}.
+
+Dividing \eqref{eq:thresh} by $\alpha^{n}$ turns it into
+$1\ge\sum_{j=1}^{n}\alpha^{-j}$, i.e.
+\begin{equation}\label{eq:thresh2}
+ \sum_{j=2}^{k}\alpha^{-j}\ \le\ \sum_{j=2}^{n}\alpha^{-j}\ \le\ 1-\frac1\alpha
+ \qquad (1\le k\le n),
+\end{equation}
+the first inequality because all terms are positive.
+
+We prove by induction on $k=1,\dots,n$ that $c_k(x)=0$, that $\RC_k(\alpha,x)$ holds and
+that $v_k(x)=x/\alpha^{k}+\alpha\rho_k(x)$; the last clause supplies the hypothesis of
+Lemma~\ref{lem:key} at the next step, and holds for $k=0$ trivially. For $k=1$,
+$c_1(x)=\fl{\fp{x/\alpha}}=0$, so Lemma~\ref{lem:key} gives everything.
+
+Let $k\ge2$ and suppose the claim holds below $k$. Then $\RC_j(\alpha,x)$ holds for
+$j\le k-1$, so by \eqref{eq:rcform} $\rho_j(x)<\alpha^{-2}+\rho_{j-1}(x)/\alpha$ for
+those $j$; starting from $\rho_0(x)=0$ this telescopes to
+\[
+ \rho_{k-1}(x)\ <\ \sum_{j=2}^{k}\alpha^{-j}\ \le\ 1-\frac1\alpha,
+\]
+the last step by \eqref{eq:thresh2}. Suppose $c_k(x)=1$. Then, by \eqref{eq:key1} and
+$\rho_k(x)>0$,
+\[
+ \rho_1\bigl(v_{k-1}(x)\bigr)
+ =\rho_k(x)-\frac{\rho_{k-1}(x)}{\alpha}+\frac1\alpha
+ >\frac{1-\rho_{k-1}(x)}{\alpha}
+ >\frac{1-\bigl(1-\tfrac1\alpha\bigr)}{\alpha}
+ =\frac1{\alpha^{2}},
+\]
+contradicting $v_{k-1}(x)\in\mathcal R_1$. Hence $c_k(x)=0$, so Lemma~\ref{lem:key}
+turns $v_{k-1}(x)\in\mathcal R_1$ into $\RC_k(\alpha,x)$, and it also gives the identity
+$v_k(x)=x/\alpha^{k}+\alpha\rho_k(x)$.
+
+If $\alpha>2$ then $\sum_{j=1}^{n}\alpha^{-j}<\sum_{j\ge1}\alpha^{-j}=1/(\alpha-1)<1$,
+so \eqref{eq:thresh} holds for every $n$; alternatively $a_n<2<\alpha$ by
+Lemma~\ref{lem:an}.
+\end{proof}
+
+\section{The negative half}\label{sec:B}
+
+\begin{theorem}\label{thm:B}
+Let $\alpha$ be irrational with $1<\alpha<\varphi$, and let $x$ be an integer with
+\begin{equation}\label{eq:window}
+ \frac{\alpha^{2}}{\alpha^{2}-1}\ <\ x\ <\ \frac1{\alpha-1}.
+\end{equation}
+Then
+\begin{enumerate}
+\item[(i)] $f_\alpha(x)=x$; consequently $x\in\mathcal R_n$ for every $n\ge1$;
+\item[(ii)] $\fl{x/\alpha}=x-1$ and $\fl{x/\alpha^{2}}=x-2$, and the quantity appearing
+ in \eqref{eq:CRn} at $i=2$ is
+ \[
+  D_2(\alpha,x):=\fp{\frac{x}{\alpha^{2}}}-\frac{\fp{x/\alpha}}{\alpha}
+  =\frac{x-1}{\alpha}-(x-2)
+  =\Bigl(1-\frac1\alpha\Bigr)+\fp{\frac x\alpha};
+ \]
+\item[(iii)] $\RC_1(\alpha,x)$ holds and $\RC_2(\alpha,x)$ fails, on the upper side:
+ $D_2(\alpha,x)>1-1/\alpha$. Hence $\RC_{\le n}(\alpha,x)$ is false for every $n\ge2$,
+ while $x\in\mathcal R_n$.
+\end{enumerate}
+The interval in \eqref{eq:window} is nonempty if and only if $\alpha<\varphi$.
+\end{theorem}
+
+\begin{proof}
+Nonemptiness: $\alpha^{2}/(\alpha^{2}-1)<1/(\alpha-1)$ iff $\alpha^{2}(\alpha-1)<\alpha^{2}-1$
+iff $\alpha^{2}<\alpha+1$ iff $\alpha<\varphi$.
+
+(i) $x<1/(\alpha-1)$ gives $\alpha x<x+1$, and $\alpha x>x$, so $\fl{\alpha x}=x$. A
+fixed point of $f_\alpha$ lies in $\mathcal R_n$ for all $n$.
+
+(ii) From $x<1/(\alpha-1)<\alpha/(\alpha-1)$ we get $x(\alpha-1)<\alpha$, i.e.
+$x/\alpha>x-1$; also $x/\alpha<x$; so $\fl{x/\alpha}=x-1$. The left inequality of
+\eqref{eq:window} gives $x(\alpha^{2}-1)>\alpha^{2}$, i.e.\ $x/\alpha^{2}<x-1$; and
+$\alpha+1\le2\alpha^{2}$ for $\alpha\ge1$ gives
+$1/(\alpha-1)=(\alpha+1)/(\alpha^{2}-1)\le2\alpha^{2}/(\alpha^{2}-1)$, so
+$x(\alpha^{2}-1)<2\alpha^{2}$, i.e.\ $x/\alpha^{2}>x-2$; so $\fl{x/\alpha^{2}}=x-2$.
+Therefore
+\[
+ D_2(\alpha,x)
+ =\Bigl(\frac{x}{\alpha^{2}}-x+2\Bigr)-\frac1\alpha\Bigl(\frac x\alpha-x+1\Bigr)
+ =\frac{x-1}\alpha-(x-2),
+\]
+and $\bigl(1-\tfrac1\alpha\bigr)+\fp{x/\alpha}
+=1-\tfrac1\alpha+\tfrac x\alpha-x+1=\tfrac{x-1}\alpha-(x-2)$, the same number.
+
+(iii) $\RC_1$ says $\fp{x/\alpha}>1-1/\alpha$, i.e.\ $x/\alpha-(x-1)>1-1/\alpha$, i.e.\
+$(x+1)/\alpha>x$, i.e.\ $x(\alpha-1)<1$: true by \eqref{eq:window}. And by (ii)
+\[
+ D_2(\alpha,x)-\Bigl(1-\frac1\alpha\Bigr)=\fp{\frac x\alpha}>0,
+\]
+strictly, since $x/\alpha$ is irrational. So the right-hand inequality of
+\eqref{eq:CRn} fails at $i=2$.
+\end{proof}
+
+\begin{corollary}\label{cor:B}
+Let $\alpha$ be irrational with $1<\alpha\le\frac{1+\sqrt{17}}4=1.2807764064\ldots$ --
+in particular let $\alpha\in(1,5/4]$ be irrational. Then
+$x^{*}=\fl{1/(\alpha-1)}$ satisfies \eqref{eq:window}, so
+Theorem~\ref{thm:B} applies to it: $x^{*}$ is a fixed point of $f_\alpha$ and
+$\RC_{\le n}(\alpha,x^{*})$ fails for every $n\ge2$.
+\end{corollary}
+
+\begin{proof}
+Put $L=1/(\alpha-1)$, which is irrational, so $x^{*}=\fl L<L$: the right half of
+\eqref{eq:window} holds. Also
+$\alpha^{2}/(\alpha^{2}-1)=cL$ with $c=\alpha^{2}/(\alpha+1)$, and $c<1$ because
+$\alpha<\varphi$. Now $x^{*}>cL$ is $(1-c)L>\fp L$, and $\fp L<1$, so it suffices that
+$(1-c)L\ge1$. But
+\[
+ (1-c)L=\frac{\alpha+1-\alpha^{2}}{\alpha^{2}-1},
+\]
+and $\alpha+1-\alpha^{2}\ge\alpha^{2}-1$ is $2\alpha^{2}-\alpha-2\le0$, i.e.\
+$\alpha\le\frac{1+\sqrt{17}}4$. Finally $5/4<\frac{1+\sqrt{17}}4$.
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{cor:B} is a sufficient condition, not a characterisation: for
+$\alpha\in\bigl(\frac{1+\sqrt{17}}4,\varphi\bigr)$ the interval \eqref{eq:window} is
+nonempty but need not contain an integer, and then Theorem~\ref{thm:B} produces nothing.
+\end{remark}
+
+\subsection*{A worked witness}
+Take
+\[
+ \alpha=\frac{7+\sqrt2}8=1.0517766952966\ldots,
+ \qquad 64\alpha^{2}-112\alpha+47=0,
+\]
+the unique root of $64t^{2}-112t+47$
+in $(1.05,1.06)$; it is irrational and less than $5/4$. Here $\alpha-1=(\sqrt2-1)/8$ and
+$\alpha^{2}-1=(14\sqrt2-13)/64$, so \eqref{eq:window} is
+\[
+ \frac{1055+896\sqrt2}{223}\ <\ x\ <\ 8+8\sqrt2,
+\]
+that is,
+\[
+ 10.4131630129\ldots\ <\ x\ <\ 19.3137084989\ldots,
+\]
+whose integers are $x=11,12,\dots,19$, the largest being
+$x^{*}=\fl{1/(\alpha-1)}=19$. For each of them $f_\alpha(x)=x$, and by
+Theorem~\ref{thm:B}(ii)
+\[
+ D_2(\alpha,x)=\frac{9x+38-8(x-1)\sqrt2}{47},
+ \qquad
+ 1-\frac1\alpha=\frac{8\sqrt2-9}{47},
+\]
+the latter being $0.0492278404\ldots$;
+so $D_2(\alpha,x)>1-1/\alpha$ is equivalent to $x<9+8\sqrt2=20.3137084989\ldots$, which
+the nine values satisfy. An exhaustive check at this $\alpha$ of the equivalence
+$x\in\mathcal R_2\Leftrightarrow\RC_{\le2}(\alpha,x)$ over $x=1,\dots,24$ finds it
+\emph{false} at exactly these nine values of $x$ and \emph{true} at the other fifteen;
+nothing here rules out further counterexamples at this $\alpha$ above $x=24$.
+
+\section{A second witness: \texorpdfstring{$\alpha=\varphi$, $n=5$, $x=22$}{alpha=phi, n=5, x=22}}
+\label{sec:phi}
+
+The witnesses of Theorem~\ref{thm:B} all fail at level $2$ and all have
+$\alpha<\varphi$. The equivalence also fails higher up, at $\alpha$ equal to the golden
+ratio itself, where Theorem~\ref{thm:A} guarantees levels $1$ and $2$ (because
+$\varphi=a_2$) and permits failure from level $3$ on.
+
+Let $\alpha=\varphi=(1+\sqrt5)/2$, so $1/\varphi=\varphi-1$. Then
+\[
+ 3\xrightarrow{\ f\ }4\xrightarrow{\ f\ }6\xrightarrow{\ f\ }9
+ \xrightarrow{\ f\ }14\xrightarrow{\ f\ }22,
+\]
+each step being $y\mapsto\fl{\varphi y}$, so $22\in\mathcal R_5$. On the other hand, from
+$\varphi^{-1}=\varphi-1$, $\varphi^{-2}=2-\varphi$, $\varphi^{-3}=2\varphi-3$,
+$\varphi^{-4}=5-3\varphi$, $\varphi^{-5}=5\varphi-8$ one computes in $\mathbb Z[\varphi]$
+\[
+ \fp{22/\varphi}=22\varphi-35,\quad
+ \fp{22/\varphi^{2}}=36-22\varphi,\quad
+ \fp{22/\varphi^{3}}=44\varphi-71,
+\]
+\[
+ \fp{22/\varphi^{4}}=107-66\varphi,\quad
+ \fp{22/\varphi^{5}}=110\varphi-177,
+\]
+and hence, writing $D_i=\fp{22/\varphi^{i}}-\fp{22/\varphi^{i-1}}/\varphi$,
+\begin{align*}
+ D_2&=13\varphi-21=\phantom{-}0.0344418537\ldots, &
+ D_3&=8\varphi-13=-0.0557280900\ldots,\\
+ D_4&=5\varphi-8=\phantom{-}0.0901699437\ldots, &
+ D_5&=3\varphi-4=\phantom{-}0.8541019662\ldots
+\end{align*}
+The bounds of \eqref{eq:CRn} are $1-2/\varphi=3-2\varphi=-0.2360679774\ldots$ and
+$1-1/\varphi=2-\varphi=0.3819660112\ldots$, so $D_2,D_3,D_4$ satisfy \eqref{eq:CRn}
+while
+\[
+ D_5-\Bigl(1-\frac1\varphi\Bigr)=(3\varphi-4)-(2-\varphi)=4\varphi-6
+ =0.4721359549\ldots>0 .
+\]
+Thus $\RC_{\le4}(\varphi,22)$ holds, $\RC_{\le5}(\varphi,22)$ fails at $i=5$, and
+$22\in\mathcal R_5$: the equivalence fails at $\alpha=\varphi$, $n=5$, $x=22$.
+
+\begin{remark}
+The identity that supplies a closed form for $f_\varphi^{\,n}$,
+namely $f_\varphi^{\,2}=f_\varphi+\mathrm{id}-1$, is in print: Theorem~1 of Connell
+\cite{Connell}, a lemma of Khani and Zarei \cite{KhaniZarei}, and axiom (A1.4)
+of \cite{KVZ-Fib}.
+\end{remark}
+
+\section{What is \emph{not} settled}\label{sec:open}
+
+For $\alpha$ in the band $(\varphi,2)$ we exhibit no counterexample, and
+Theorem~\ref{thm:A} settles level $n$ only when $\alpha\ge a_n$, leaving the levels $n$
+with $a_n>\alpha$ undecided in both directions. Since $\varphi=a_2$,
+Theorem~\ref{thm:A} covers levels $1$ and $2$ at $\alpha=\varphi$ and permits failure
+from level $3$ on; Section~\ref{sec:phi} exhibits a failure at level $5$, and whether
+level $3$ fails at $\varphi$ we do not know. We do not claim that $a_n$ is the least
+$\alpha$ for which the conclusion of Theorem~\ref{thm:A} holds at level $n$: condition
+\eqref{eq:thresh} is sufficient only, so this note establishes no per-level threshold,
+and the behaviour of the equivalence just below $a_n$ is among what is left open. At
+$\alpha=(7+\sqrt2)/8$ the nine integers $11,\dots,19$ are exactly the disagreements for
+$x\le24$ at $n=2$, and exactly the integers of \eqref{eq:window}; nothing here rules out
+counterexamples above $x=24$ that are not fixed points.
+
+\section{Verification}
+
+Every numerical assertion above is stated exactly, as an element of
+$\mathbb Q(\sqrt2)$, $\mathbb Q(\sqrt5)$ or $\mathbb Q$, and each is re-derived by
+the program \texttt{verify.py} accompanying this note: each modulus is given by its
+minimal polynomial and an isolating interval, and every inequality between algebraic
+numbers is decided by integer arithmetic, with no floating-point comparison anywhere.
+The program re-checks the equivalence of \eqref{eq:CRn} with the $\rho$-form
+\eqref{eq:rcform}; both witnesses in full, including membership of $22$ in
+$\mathcal R_5$ by a preimage sieve independent of the printed chain, the closed forms,
+the window \eqref{eq:window} with its nine integers, and the exhaustive table $x\le24$;
+the constants $a_2,\dots,a_6$ and the equivalent forms of \eqref{eq:thresh};
+Theorem~\ref{thm:B} over a family of quadratic irrationals of $(1,\varphi)$; and
+Theorem~\ref{thm:A} with Proposition~\ref{prop:free} by exhaustive checks of both
+directions over bounded ranges of $x$ and $n$ at moduli on both sides of every cutoff
+$a_n$. Those checks are bounded and a bounded check is not a proof; the theorems are
+carried by their proofs above. The program states in its own output what it does not
+cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{KVZ}
+M.~Khani, M.~Valizadeh, and A.~Zarei,
+\emph{A note on iterated Beatty sequences},
+arXiv:2607.12817v1, 14 July 2026.
+\href{https://arxiv.org/abs/2607.12817}{arXiv:2607.12817}.
+Statements are quoted from the \texttt{v1} source package.
+
+\bibitem{Connell}
+I.~G. Connell,
+\emph{Some properties of Beatty sequences I},
+Canad. Math. Bull. \textbf{2} (1959), no.~3, 190--197.
+
+\bibitem{KhaniZarei}
+M.~Khani and A.~Zarei,
+\emph{The additive structure of integers with the lower Wythoff sequence},
+Arch. Math. Logic \textbf{61} (2022), 1--13.
+\href{https://doi.org/10.1007/s00153-022-00846-2}{doi:10.1007/s00153-022-00846-2}.
+
+\bibitem{KVZ-Fib}
+M.~Khani, M.~Valizadeh, and A.~Zarei,
+\emph{Fibonacci numbers and model-complete axiomatization of Presburger arithmetic
+expanded with a Beatty sequence},
+arXiv:2508.02303 [math.LO], 2025.
+\href{https://arxiv.org/abs/2508.02303}{arXiv:2508.02303}.
+
+\bibitem{FLS}
+A.~S. Fraenkel, J.~Levitt, and M.~Shimshoni,
+\emph{Characterization of the set of values $f(n)=[n\alpha]$, $n=1,2,\ldots$},
+Discrete Math. \textbf{2} (1972), 335--345.
+
+\bibitem{Szusz}
+P.~Sz\"usz,
+\emph{On a theorem of Fraenkel, Levitt and Shimshoni},
+Discrete Math. \textbf{56} (1985), 75--77.
+\href{https://doi.org/10.1016/0012-365X(85)90194-3}{doi:10.1016/0012-365X(85)90194-3}.
+Cited here from its Zentralblatt review (Zbl 0583.10002), which states the criterion in
+the form used above.
+
+\end{thebibliography}
+
+\end{document}

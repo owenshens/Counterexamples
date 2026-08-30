@@ -1,0 +1,255 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  7aed8da9d5c7e949dd08fea339271119ce7aef99ccf9261a9301653f2fb26385
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: Froberg's conjecture for 6 <= r <= 21 general septics in four variables, in every characteristic
+python 3.9.25, exact integer arithmetic only
+
+=== Step 1: the printed family, decoded from its 120 hexadecimal masks
+PASS mask_table_has_120_rows [120]
+PASS every_mask_is_30_lowercase_hex_digits
+PASS degree_7_monomial_basis_has_120_elements [C(10,3)=120]
+PASS monomial_basis_is_in_decreasing_lexicographic_order
+PASS the_bit_count_of_every_mask_equals_the_support_of_the_form_it_decodes_to
+PASS every_decoded_form_is_a_sum_of_distinct_degree_7_monomials_with_coefficient_1
+PASS support_sizes_run_from_49_to_78_as_the_paper_states [min=49 max=78]
+PASS the_120_forms_are_pairwise_distinct
+PASS canonical_json_of_the_decoded_family_has_the_sha256_printed_in_the_paper [f93339e7b30deb19b81fe74fa3b79a7859cf8da9a4c6fadbd740f98c975c8e20]
+PASS G1_decodes_to_the_65_exponent_vectors_printed_in_the_paper [65 vectors]
+PASS the_printed_support_size_table_matches_the_decoded_supports [G1..G21 = [65, 71, 49, 63, 62, 78, 71, 67, 60, 66, 55, 61, 58, 57, 62, 65, 53, 54, 65, 62, 59]]
+NOTE supports of G1..G21 = [65, 71, 49, 63, 62, 78, 71, 67, 60, 66, 55, 61, 58, 57, 62, 65, 53, 54, 65, 62, 59]
+
+=== Step 2: the truncated Froberg series, and the five blocks of [6,21]
+PASS q_of_r_6_is_13_first_nonpositive_numerator_coefficient_at_14 [a_13=56 a_14=-25]
+PASS q_of_r_7_is_12_first_nonpositive_numerator_coefficient_at_13 [a_12=63 a_13=-28]
+PASS q_of_r_8_is_12_first_nonpositive_numerator_coefficient_at_13 [a_12=7 a_13=-112]
+PASS q_of_r_9_is_11_first_nonpositive_numerator_coefficient_at_12 [a_11=49 a_12=-49]
+PASS q_of_r_10_is_11_first_nonpositive_numerator_coefficient_at_12 [a_11=14 a_12=-105]
+PASS q_of_r_11_is_10_first_nonpositive_numerator_coefficient_at_11 [a_10=66 a_11=-21]
+PASS q_of_r_12_is_10_first_nonpositive_numerator_coefficient_at_11 [a_10=46 a_11=-56]
+PASS q_of_r_13_is_10_first_nonpositive_numerator_coefficient_at_11 [a_10=26 a_11=-91]
+PASS q_of_r_14_is_10_first_nonpositive_numerator_coefficient_at_11 [a_10=6 a_11=-126]
+PASS q_of_r_15_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=70 a_10=-14]
+PASS q_of_r_16_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=60 a_10=-34]
+PASS q_of_r_17_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=50 a_10=-54]
+PASS q_of_r_18_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=40 a_10=-74]
+PASS q_of_r_19_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=30 a_10=-94]
+PASS q_of_r_20_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=20 a_10=-114]
+PASS q_of_r_21_is_9_first_nonpositive_numerator_coefficient_at_10 [a_9=10 a_10=-134]
+NOTE q(r) for r=6..21 = [13, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9]
+PASS q_is_constant_on_exactly_five_blocks [[(6, 6, 13), (7, 8, 12), (9, 10, 11), (11, 14, 10), (15, 21, 9)]]
+PASS the_blocks_partition_the_interval_6_to_21_with_no_gap_and_no_overlap
+PASS the_ten_printed_cells_are_exactly_the_endpoint_cells_of_the_five_blocks [10 cells]
+PASS for_r_6_no_second_koszul_term_enters_in_degrees_7_to_13
+PASS for_r_7_no_second_koszul_term_enters_in_degrees_7_to_12
+PASS for_r_8_no_second_koszul_term_enters_in_degrees_7_to_12
+PASS for_r_9_no_second_koszul_term_enters_in_degrees_7_to_11
+PASS for_r_10_no_second_koszul_term_enters_in_degrees_7_to_11
+PASS for_r_11_no_second_koszul_term_enters_in_degrees_7_to_10
+PASS for_r_12_no_second_koszul_term_enters_in_degrees_7_to_10
+PASS for_r_13_no_second_koszul_term_enters_in_degrees_7_to_10
+PASS for_r_14_no_second_koszul_term_enters_in_degrees_7_to_10
+PASS for_r_15_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_16_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_17_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_18_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_19_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_20_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS for_r_21_no_second_koszul_term_enters_in_degrees_7_to_9
+PASS the_only_endpoint_at_or_above_2d_is_r_6_j_14_and_its_coefficient_is_negative [a_14(r=6) = 680-720+15 = -25]
+PASS every_endpoint_with_r_at_least_7_sits_strictly_below_2d [max j among r>=7 is 13 < 14]
+PASS r_21_still_has_positive_series_support_in_degree_10 [a_9=10 a_10=-134]
+PASS r_22_has_a_zero_in_degree_9_so_degree_d_plus_2_methods_reach_it_and_not_r_21 [a_9(r=22)=0, q(22)=8]
+
+=== Step 3: the ten cells -- shapes, roles and index sets
+PASS shape_of_cell_r=6,j=13_is_560x504_from_the_binomials [dim S_13=560, 6*dim S_6=504, s=504]
+PASS role_of_cell_r=6,j=13_is_inj
+PASS matrix_of_cell_r=6,j=13_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=6,j=13_is_increasing_in_range_and_of_size_56 [56 deleted from the row side]
+PASS minor_0_of_cell_r=6,j=13_is_square_of_size_504
+PASS index_set_1_of_cell_r=6,j=13_is_increasing_in_range_and_of_size_56 [56 deleted from the row side]
+PASS minor_1_of_cell_r=6,j=13_is_square_of_size_504
+PASS shape_of_cell_r=6,j=14_is_680x720_from_the_binomials [dim S_14=680, 6*dim S_7=720, s=680]
+PASS role_of_cell_r=6,j=14_is_surj
+PASS matrix_of_cell_r=6,j=14_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=6,j=14_is_increasing_in_range_and_of_size_40 [40 deleted from the column side]
+PASS minor_0_of_cell_r=6,j=14_is_square_of_size_680
+PASS index_set_1_of_cell_r=6,j=14_is_increasing_in_range_and_of_size_40 [40 deleted from the column side]
+PASS minor_1_of_cell_r=6,j=14_is_square_of_size_680
+PASS shape_of_cell_r=8,j=12_is_455x448_from_the_binomials [dim S_12=455, 8*dim S_5=448, s=448]
+PASS role_of_cell_r=8,j=12_is_inj
+PASS matrix_of_cell_r=8,j=12_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=8,j=12_is_increasing_in_range_and_of_size_7 [7 deleted from the row side]
+PASS minor_0_of_cell_r=8,j=12_is_square_of_size_448
+PASS index_set_1_of_cell_r=8,j=12_is_increasing_in_range_and_of_size_7 [7 deleted from the row side]
+PASS minor_1_of_cell_r=8,j=12_is_square_of_size_448
+PASS shape_of_cell_r=7,j=13_is_560x588_from_the_binomials [dim S_13=560, 7*dim S_6=588, s=560]
+PASS role_of_cell_r=7,j=13_is_surj
+PASS matrix_of_cell_r=7,j=13_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=7,j=13_is_increasing_in_range_and_of_size_28 [28 deleted from the column side]
+PASS minor_0_of_cell_r=7,j=13_is_square_of_size_560
+PASS index_set_1_of_cell_r=7,j=13_is_increasing_in_range_and_of_size_28 [28 deleted from the column side]
+PASS minor_1_of_cell_r=7,j=13_is_square_of_size_560
+PASS shape_of_cell_r=10,j=11_is_364x350_from_the_binomials [dim S_11=364, 10*dim S_4=350, s=350]
+PASS role_of_cell_r=10,j=11_is_inj
+PASS matrix_of_cell_r=10,j=11_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=10,j=11_is_increasing_in_range_and_of_size_14 [14 deleted from the row side]
+PASS minor_0_of_cell_r=10,j=11_is_square_of_size_350
+PASS index_set_1_of_cell_r=10,j=11_is_increasing_in_range_and_of_size_14 [14 deleted from the row side]
+PASS minor_1_of_cell_r=10,j=11_is_square_of_size_350
+PASS shape_of_cell_r=9,j=12_is_455x504_from_the_binomials [dim S_12=455, 9*dim S_5=504, s=455]
+PASS role_of_cell_r=9,j=12_is_surj
+PASS matrix_of_cell_r=9,j=12_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=9,j=12_is_increasing_in_range_and_of_size_49 [49 deleted from the column side]
+PASS minor_0_of_cell_r=9,j=12_is_square_of_size_455
+PASS index_set_1_of_cell_r=9,j=12_is_increasing_in_range_and_of_size_49 [49 deleted from the column side]
+PASS minor_1_of_cell_r=9,j=12_is_square_of_size_455
+PASS shape_of_cell_r=14,j=10_is_286x280_from_the_binomials [dim S_10=286, 14*dim S_3=280, s=280]
+PASS role_of_cell_r=14,j=10_is_inj
+PASS matrix_of_cell_r=14,j=10_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=14,j=10_is_increasing_in_range_and_of_size_6 [6 deleted from the row side]
+PASS minor_0_of_cell_r=14,j=10_is_square_of_size_280
+PASS index_set_1_of_cell_r=14,j=10_is_increasing_in_range_and_of_size_6 [6 deleted from the row side]
+PASS minor_1_of_cell_r=14,j=10_is_square_of_size_280
+PASS shape_of_cell_r=11,j=11_is_364x385_from_the_binomials [dim S_11=364, 11*dim S_4=385, s=364]
+PASS role_of_cell_r=11,j=11_is_surj
+PASS matrix_of_cell_r=11,j=11_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=11,j=11_is_increasing_in_range_and_of_size_21 [21 deleted from the column side]
+PASS minor_0_of_cell_r=11,j=11_is_square_of_size_364
+PASS index_set_1_of_cell_r=11,j=11_is_increasing_in_range_and_of_size_21 [21 deleted from the column side]
+PASS minor_1_of_cell_r=11,j=11_is_square_of_size_364
+PASS shape_of_cell_r=21,j=9_is_220x210_from_the_binomials [dim S_9=220, 21*dim S_2=210, s=210]
+PASS role_of_cell_r=21,j=9_is_inj
+PASS matrix_of_cell_r=21,j=9_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=21,j=9_is_increasing_in_range_and_of_size_10 [10 deleted from the row side]
+PASS minor_0_of_cell_r=21,j=9_is_square_of_size_210
+PASS index_set_1_of_cell_r=21,j=9_is_increasing_in_range_and_of_size_10 [10 deleted from the row side]
+PASS minor_1_of_cell_r=21,j=9_is_square_of_size_210
+PASS shape_of_cell_r=15,j=10_is_286x300_from_the_binomials [dim S_10=286, 15*dim S_3=300, s=286]
+PASS role_of_cell_r=15,j=10_is_surj
+PASS matrix_of_cell_r=15,j=10_is_0_1_with_the_stated_shape
+PASS index_set_0_of_cell_r=15,j=10_is_increasing_in_range_and_of_size_14 [14 deleted from the column side]
+PASS minor_0_of_cell_r=15,j=10_is_square_of_size_286
+PASS index_set_1_of_cell_r=15,j=10_is_increasing_in_range_and_of_size_14 [14 deleted from the column side]
+PASS minor_1_of_cell_r=15,j=10_is_square_of_size_286
+
+=== Step 4: scheduling the exact determinants and the small-prime ranks
+NOTE control J-I n=12 uses 1 prime(s)
+NOTE control J-I n=30 uses 2 prime(s)
+PASS every_scheduled_job_is_a_determinant_or_a_rank_over_a_prime_field [426 jobs]
+PASS the_crt_modulus_of_every_minor_provably_exceeds_twice_its_hadamard_bound [20 minors, 10..31 primes each]
+NOTE 426 modular jobs, 30 worker process(es)
+PASS every_scheduled_job_returned_a_value [426/426]
+
+=== Step 5: the twenty determinants, recomputed exactly and compared
+PASS determinant_0_of_cell_r=6,j=13_recomputes_to_the_printed_integer [800 bits, 23 primes]
+PASS determinant_0_of_cell_r=6,j=13_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=6,j=13_recomputes_to_the_printed_integer [789 bits, 23 primes]
+PASS determinant_1_of_cell_r=6,j=13_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=6,j=14_recomputes_to_the_printed_integer [1070 bits, 31 primes]
+PASS determinant_0_of_cell_r=6,j=14_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=6,j=14_recomputes_to_the_printed_integer [1073 bits, 31 primes]
+PASS determinant_1_of_cell_r=6,j=14_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=8,j=12_recomputes_to_the_printed_integer [745 bits, 21 primes]
+PASS determinant_0_of_cell_r=8,j=12_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=8,j=12_recomputes_to_the_printed_integer [737 bits, 21 primes]
+PASS determinant_1_of_cell_r=8,j=12_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=7,j=13_recomputes_to_the_printed_integer [905 bits, 26 primes]
+PASS determinant_0_of_cell_r=7,j=13_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=7,j=13_recomputes_to_the_printed_integer [912 bits, 26 primes]
+PASS determinant_1_of_cell_r=7,j=13_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=10,j=11_recomputes_to_the_printed_integer [592 bits, 17 primes]
+PASS determinant_0_of_cell_r=10,j=11_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=10,j=11_recomputes_to_the_printed_integer [570 bits, 17 primes]
+PASS determinant_1_of_cell_r=10,j=11_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=9,j=12_recomputes_to_the_printed_integer [756 bits, 22 primes]
+PASS determinant_0_of_cell_r=9,j=12_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=9,j=12_recomputes_to_the_printed_integer [752 bits, 21 primes]
+PASS determinant_1_of_cell_r=9,j=12_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=14,j=10_recomputes_to_the_printed_integer [475 bits, 14 primes]
+PASS determinant_0_of_cell_r=14,j=10_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=14,j=10_recomputes_to_the_printed_integer [467 bits, 13 primes]
+PASS determinant_1_of_cell_r=14,j=10_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=11,j=11_recomputes_to_the_printed_integer [611 bits, 17 primes]
+PASS determinant_0_of_cell_r=11,j=11_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=11,j=11_recomputes_to_the_printed_integer [613 bits, 17 primes]
+PASS determinant_1_of_cell_r=11,j=11_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=21,j=9_recomputes_to_the_printed_integer [365 bits, 10 primes]
+PASS determinant_0_of_cell_r=21,j=9_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=21,j=9_recomputes_to_the_printed_integer [362 bits, 10 primes]
+PASS determinant_1_of_cell_r=21,j=9_is_within_its_hadamard_bound
+PASS determinant_0_of_cell_r=15,j=10_recomputes_to_the_printed_integer [484 bits, 14 primes]
+PASS determinant_0_of_cell_r=15,j=10_is_within_its_hadamard_bound
+PASS determinant_1_of_cell_r=15,j=10_recomputes_to_the_printed_integer [488 bits, 14 primes]
+PASS determinant_1_of_cell_r=15,j=10_is_within_its_hadamard_bound
+
+=== Step 6: p-uniformity -- one Euclid gcd per cell
+PASS the_two_determinants_of_cell_r=6,j=13_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 800 and 789]
+PASS neither_determinant_of_cell_r=6,j=13_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and 3]
+PASS rank_of_cell_r=6,j=13_is_maximal_over_F_p_for_p_in_2_3_5 [rank=504=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=6,j=14_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 1070 and 1073]
+PASS neither_determinant_of_cell_r=6,j=14_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and 3]
+PASS rank_of_cell_r=6,j=14_is_maximal_over_F_p_for_p_in_2_3_5 [rank=680=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=8,j=12_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 745 and 737]
+PASS neither_determinant_of_cell_r=8,j=12_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and 3]
+PASS rank_of_cell_r=8,j=12_is_maximal_over_F_p_for_p_in_2_3_5 [rank=448=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=7,j=13_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 905 and 912]
+PASS neither_determinant_of_cell_r=7,j=13_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and 389]
+PASS rank_of_cell_r=7,j=13_is_maximal_over_F_p_for_p_in_2_3_5 [rank=560=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=10,j=11_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 592 and 570]
+PASS neither_determinant_of_cell_r=10,j=11_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and 3]
+PASS rank_of_cell_r=10,j=11_is_maximal_over_F_p_for_p_in_2_3_5 [rank=350=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=9,j=12_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 756 and 752]
+PASS neither_determinant_of_cell_r=9,j=12_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 31 and 2]
+PASS rank_of_cell_r=9,j=12_is_maximal_over_F_p_for_p_in_2_3_5 [rank=455=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=14,j=10_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 475 and 467]
+PASS neither_determinant_of_cell_r=14,j=10_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 53 and 2]
+PASS rank_of_cell_r=14,j=10_is_maximal_over_F_p_for_p_in_2_3_5 [rank=280=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=11,j=11_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 611 and 613]
+PASS neither_determinant_of_cell_r=11,j=11_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 11 and 2]
+PASS rank_of_cell_r=11,j=11_is_maximal_over_F_p_for_p_in_2_3_5 [rank=364=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=21,j=9_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 365 and 362]
+PASS neither_determinant_of_cell_r=21,j=9_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 2 and none below 10^4]
+PASS rank_of_cell_r=21,j=9_is_maximal_over_F_p_for_p_in_2_3_5 [rank=210=s at p=2,3,5]
+PASS the_two_determinants_of_cell_r=15,j=10_are_coprime_so_the_cell_is_p_uniform [gcd=1, bits 484 and 488]
+PASS neither_determinant_of_cell_r=15,j=10_is_a_unit_so_both_minors_are_needed [smallest prime factors below 10^4: 7 and none below 10^4]
+PASS rank_of_cell_r=15,j=10_is_maximal_over_F_p_for_p_in_2_3_5 [rank=286=s at p=2,3,5]
+
+=== Step 7: from the ten cells to every r in [6,21], in every characteristic
+PASS block_6_to_6_has_its_injective_endpoint_at_(6,13)_and_its_surjective_endpoint_at_(6,14)
+PASS block_7_to_8_has_its_injective_endpoint_at_(8,12)_and_its_surjective_endpoint_at_(7,13)
+PASS block_9_to_10_has_its_injective_endpoint_at_(10,11)_and_its_surjective_endpoint_at_(9,12)
+PASS block_11_to_14_has_its_injective_endpoint_at_(14,10)_and_its_surjective_endpoint_at_(11,11)
+PASS block_15_to_21_has_its_injective_endpoint_at_(21,9)_and_its_surjective_endpoint_at_(15,10)
+PASS hilbert_function_of_r_6_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=13, block [6,6]]
+PASS hilbert_function_of_r_7_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=12, block [7,8]]
+PASS hilbert_function_of_r_8_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=12, block [7,8]]
+PASS hilbert_function_of_r_9_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=11, block [9,10]]
+PASS hilbert_function_of_r_10_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=11, block [9,10]]
+PASS hilbert_function_of_r_11_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=10, block [11,14]]
+PASS hilbert_function_of_r_12_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=10, block [11,14]]
+PASS hilbert_function_of_r_13_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=10, block [11,14]]
+PASS hilbert_function_of_r_14_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=10, block [11,14]]
+PASS hilbert_function_of_r_15_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_16_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_17_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_18_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_19_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_20_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+PASS hilbert_function_of_r_21_equals_the_truncated_froberg_series_in_degrees_0_to_24 [q=9, block [15,21]]
+
+=== Step 8: controls, both polarities, each named to the object it tests
+PASS control_engine_reproduces_det_of_J_minus_I_at_n_12 [det=-11, closed form (-1)^(n-1)(n-1)=-11]
+PASS control_engine_reproduces_det_of_J_minus_I_at_n_30 [det=-29, closed form (-1)^(n-1)(n-1)=-29]
+PASS control_two_independent_engines_agree_on_a_40x40_block_of_a_real_minor [crt=bareiss=-103124]
+PASS control_forced_positive_monomial_complete_intersection_r_4_j_13_has_det_plus_or_minus_1 [size 336, det=1, so that cell is p-uniform at every prime]
+PASS control_proved_deficient_r_6_with_two_repeated_generators_has_rank_336_not_504 [rank=336 < s=504 at p=2 and p=1000003, so the decider says NO]
+PASS control_tampering_with_one_mask_bit_changes_the_(21,9)_determinant [one bit of the mask of G21 flipped]
+PASS control_a_determinant_off_by_one_fails_the_residue_test [the comparison in Step 5 is not vacuous]
+PASS control_a_single_minor_never_certifies_p_uniformity_on_its_own [gcd(det_0, det_0) = |det_0| != 1 in all ten cells]
+
+NOTE NOT RE-RUN, and the paper says so in its Section 7 and in REVIEW_NOTE.md's Scope: (1) the identity of the printed family with the ancillary file published with arXiv:2608.24797 -- the sha256 above is recomputed from the printed masks, but the external file is not fetched, since this program reads no file and no network; (2) r <= 5 and r >= 22, and every (n,d) other than (4,7) -- no claim is made and none is checked; (3) the 168-prime sweep reported in the source note: only p = 2, 3, 5 are re-run here as an independent confirmation, and the gcd argument, not that sweep, is what covers every prime; (4) the minor-selection heuristic -- which s x s minors to take is not re-derived, and it does not need to be, because the printed index sets are re-extracted and their determinants recomputed from scratch; (5) any claim about GENERIC forms beyond the specialisation argument of Section 2, which is a proof and not a computation.
+
+VERDICT: ALL 222 CHECKS PASS
+=== program exited with status 0 ===

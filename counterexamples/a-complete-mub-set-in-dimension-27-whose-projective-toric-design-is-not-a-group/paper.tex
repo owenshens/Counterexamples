@@ -1,0 +1,458 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A complete set of mutually unbiased bases in dimension 27
+            whose projective toric design is neither a group nor a coset of one}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PT}{\mathbb{P}(T^{d})}
+\newcommand{\Fq}{\mathbb{F}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\GF}{\mathrm{GF}}
+
+\title[A non-group projective toric design of a complete MUB set]
+{A complete set of mutually unbiased bases in dimension~$27$
+ whose projective toric design is neither a group nor a coset of one}
+
+\date{}
+
+\subjclass[2020]{05B10, 51E23, 81P15, 05B30}
+\keywords{mutually unbiased bases, projective toric design, symplectic spread,
+semifield, difference set, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Iosue, Mooney, Ehrenberg and Gorshkov conjectured that a projective toric
+$2$-design $X\subseteq\mathbb P(T^{d})$ of size $|X|=d^{2}$ which is not a
+subgroup of $\mathbb P(T^{d})$ cannot satisfy their angle condition.
+As printed the statement is trivially false, since
+the two conditions on $X$ depend only on differences of points and so are
+insensitive to translation, while ``subgroup'' is not; a translated group design
+at $d=2$ already refutes it. We refute the evident repair, in which ``subgroup''
+is replaced by ``coset of a subgroup'', at $d=27$. The witness is the $729$-point
+projective toric design of the complete set of $28$ mutually unbiased bases in
+$\mathbb C^{27}$ built from the Ball--Bamberg--Lavrauw--Penttila symplectic
+spread of the Hering plane of order $27$: it contains the identity, is a
+$2$-design of size $27^{2}$, satisfies the angle condition, and is neither a
+subgroup nor a coset of a subgroup. The obstruction is that the $27$
+linearised maps of that spread are not closed under addition, because $-1$ is a
+nonsquare in $\GF(27)$ and $h_{m}+h_{m}=h_{-m}$. All data determining the $729$
+points are printed here; the nonclosure argument is by hand, while the design and
+angle conditions are exact finite checks, carried out by the accompanying
+program.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}\label{sec:conj}
+
+Let $T=\{z\in\mathbb C:|z|=1\}$, let $T^{d}$ be the $d$-torus written additively
+as angles, and let $\mathbb P(T^{d})=T^{d}/T$ be the quotient by the diagonal
+subgroup, with representatives normalised so that the first angle is~$0$
+\cite[Definition 2.4]{IMEG}. For $k\in\mathbb Z^{d}$ put
+$\chi_{k}(\phi)=e^{\mathrm i\,k\cdot\phi}$. A finite $X\subseteq\mathbb P(T^{d})$
+is a \emph{projective toric $2$-design} if
+\begin{equation}\label{eq:design}
+  \sum_{\phi\in X}\chi_{k}(\phi)=0
+  \qquad\text{for every nonzero }
+  k=e_{a_{1}}+e_{a_{2}}-e_{b_{1}}-e_{b_{2}},
+\end{equation}
+the indices $a_{1},a_{2},b_{1},b_{2}$ ranging over $\{1,\dots,d\}$
+\cite[Definition 2.6]{IMEG}. Write \eqref{eq:angle} for the angle condition of
+\cite[Theorem 4.4]{IMEG},
+\begin{equation}\label{eq:angle}
+  \forall\,\phi\neq\theta\in X\colon\quad
+  \Bigl|\sum_{j=1}^{d}e^{\mathrm i(\phi_{j}-\theta_{j})}\Bigr|^{2}\in\{0,d\}.
+\end{equation}
+Theorem 4.4 of \cite{IMEG} says that a complete set of $d+1$ mutually unbiased
+bases (MUBs) in $\mathbb C^{d}$ exists if and only if some
+$X\subseteq\mathbb P(T^{d})$ with $|X|=d^{2}$ satisfies both \eqref{eq:design}
+and \eqref{eq:angle}. The statement at issue is the following, quoted verbatim
+from \cite{IMEG}.
+
+\begin{quote}
+\textbf{Conjecture 4.9.}
+Let $d$ be any dimension and let $X$ be a $\mathbb P(T^{d})$ $2$-design of size
+$|X|=d^{2}$. If $X$ is not a subgroup of $\mathbb P(T^{d})$, then $X$ does not
+satisfy \eqref{eq:angle}.
+\end{quote}
+
+\noindent
+The lead-in in \cite{IMEG} reads ``we conjecture that, in any dimension, a
+complete set of MUBs must come from a group projective toric $2$-design'', and
+the intended payoff is recorded there: with \cite[Proposition 4.6]{IMEG} the
+conjecture would prove that no complete set of MUBs exists in dimension~$6$. It
+is quoted as open in the survey \cite{MW}.
+
+Two failures must be separated. Conditions \eqref{eq:design} and \eqref{eq:angle}
+depend only on differences of points, so they are invariant under translation of
+$X$, whereas being a subgroup is not; hence any translate of a group design that
+misses the identity refutes the conjecture as printed, and
+$X_{2}=\{\pi/4,3\pi/4,5\pi/4,7\pi/4\}$ in $\mathbb P(T^{2})$ (second angle; the
+first is $0$) is such a translate. That is a normalisation slip, repaired for
+free by replacing ``subgroup'' by ``coset of a subgroup'': $X_{2}$ is such a
+coset. The
+witness below is what settles the repaired statement, since it contains the
+identity and fails anyway.
+
+\begin{theorem}\label{thm:main}
+Conjecture 4.9 of \textup{\cite{IMEG}} is false, and remains false with
+``subgroup'' replaced by ``coset of a subgroup''. Explicitly, let $X$ be the
+$729$-point subset of $\mathbb P(T^{27})$ determined by the data of
+Section~\textup{\ref{sec:witness}}. Then $|X|=27^{2}$, $X$ satisfies
+\eqref{eq:design} and \eqref{eq:angle}, $X$ contains the identity of
+$\mathbb P(T^{27})$, and $X$ is neither a subgroup of $\mathbb P(T^{27})$ nor a
+coset of one. By \textup{\cite[Theorem 4.4]{IMEG}}, $X$ is the projective toric
+design of a complete set of $28$ mutually unbiased bases in $\mathbb C^{27}$.
+\end{theorem}
+
+\section{The witness}\label{sec:witness}
+
+Every angle occurring below is an integer multiple of $2\pi/3$, so a point of
+$\mathbb P(T^{27})$ is recorded as a word of $27$ digits in
+$\Fq_{3}=\{0,1,2\}$, the $j$-th digit being the $j$-th angle in units of
+$2\pi/3$.
+
+Let $\Fq=\GF(27)=\Fq_{3}[t]/(t^{3}-t-1)$; the cubic is irreducible because it
+sends $0,1,2$ to $2,2,2$. Index the elements of $\Fq$ by
+\begin{equation}\label{eq:index}
+  e=a_{0}+3a_{1}+9a_{2}\ \longleftrightarrow\ a_{0}+a_{1}t+a_{2}t^{2},
+  \qquad a_{i}\in\{0,1,2\},
+\end{equation}
+and use this order for the $27$ coordinates of $\mathbb P(T^{27})$, so that
+coordinate $w=0$ is the normalised one. Let $\tr(x)=x+x^{3}+x^{9}$ be the
+absolute trace.
+
+Table~\ref{tab:forms} lists $27$ maps $Q\colon\Fq\to\Fq_{3}$, one per row, as
+the digit word $\bigl(Q(w)\bigr)_{w}$ in the order \eqref{eq:index}. They are
+\begin{equation}\label{eq:qset}
+\begin{aligned}
+  \mathcal Q=\{0\}
+  &\cup\bigl\{\,w\mapsto\tr(m^{3}w^{4})\ :\ m\ \text{a nonsquare of}\ \Fq\bigr\}\\
+  &\cup\bigl\{\,w\mapsto\tr\!\bigl(2\,w\,s\,\beta(ws)\bigr)
+              \ :\ s\in\Fq^{*}/\{\pm1\}\bigr\},
+\end{aligned}
+\end{equation}
+where $\beta(v)=\tfrac12(-v+v^{3}+v^{9})=2(-v+v^{3}+v^{9})$, the row
+labels recording $m$ and~$s$; there are $1+13+13=27$ of them.
+
+\begin{table}[htbp]
+\caption{The $27$ quadratic forms $\mathcal Q$ of \eqref{eq:qset}, each as the
+digit word $\bigl(Q(w)\bigr)_{w\in\GF(27)}$ in the index order
+\eqref{eq:index}.}
+\label{tab:forms}
+\begin{center}
+\ttfamily\footnotesize
+\begin{tabular}{@{}ll@{\qquad}ll@{}}
+Q0   & 000000000000000000000000000 & Qs1  & 000222222012201201021210210\\
+Qm2  & 000111111210021021201012012 & Qs3  & 022022022220001112202121010\\
+Qm6  & 000210201201111102210120111 & Qs4  & 022202220010112022001022121\\
+Qm7  & 000102120021120111012111102 & Qs5  & 022220202121022001112010022\\
+Qm8  & 000021012111102120111102120 & Qs9  & 000201210222012210222201021\\
+Qm10 & 022112121112010100121100001 & Qs10 & 011212221221200020212002200\\
+Qm14 & 022121112001211010010001211 & Qs11 & 022001010211220202211220202\\
+Qm17 & 022211211100100211100211100 & Qs12 & 022010001022121220022202112\\
+Qm18 & 011110101011002212011221020 & Qs13 & 000012021102222012120021222\\
+Qm19 & 011002020101011221110212011 & Qs14 & 011122122200122200200200122\\
+Qm21 & 011200200110221110101101212 & Qs15 & 022100100202202121220112220\\
+Qm23 & 011011011020212101002110221 & Qs16 & 000120102120210222102222201\\
+Qm24 & 011020002212110011221011101 & Qs17 & 011221212002020122020122002\\
+Qm26 & 011101110122101002122020110 &      & \\
+\end{tabular}
+\end{center}
+\end{table}
+
+Let $\Lambda=\{\,w\mapsto\tr(vw)\ :\ v\in\Fq\,\}$ be the group of all $27$
+$\Fq_{3}$-linear functionals on $\Fq$. As digit words it is the $\Fq_{3}$-span
+of the three rows
+\begin{center}
+\ttfamily\footnotesize
+\begin{tabular}{@{}ll@{}}
+$v=1$   & 000000000222222222111111111\\
+$v=t$   & 000222111000222111000222111\\
+$v=t^2$ & 021021021210210210102102102\\
+\end{tabular}
+\end{center}
+and $|\Lambda|=27$. Finally set
+\begin{equation}\label{eq:X}
+  \boxed{\ X=\{\,Q+\lambda\ :\ Q\in\mathcal Q,\ \lambda\in\Lambda\,\}
+  \subseteq\mathbb P(T^{27}),\ }
+\end{equation}
+sums taken digitwise modulo~$3$. Table~\ref{tab:forms} and the three rows above
+determine $X$ completely.
+
+\begin{proposition}\label{prop:hyp}
+$|X|=729=27^{2}$; every point of $X$ has $w=0$ coordinate $0$; the all-zero
+word, the identity of $\mathbb P(T^{27})$, lies in $X$; $X$ satisfies
+\eqref{eq:angle}, the quantity in \eqref{eq:angle} taking the value $0$ on
+$9\,477$ and the value $27$ on $255\,879$ of the $\binom{729}{2}=265\,356$
+unordered pairs and no other value; and $X$
+satisfies \eqref{eq:design}, all $142\,506$ nonzero characters
+$k=e_{a_{1}}+e_{a_{2}}-e_{b_{1}}-e_{b_{2}}$ summing to zero over~$X$.
+\end{proposition}
+
+\begin{proof}
+These are exhaustive finite verifications on the data of
+Table~\ref{tab:forms} and the three generators of $\Lambda$, each an exact count
+in $\mathbb Z$ rather than a numerical evaluation. Writing
+$\omega=e^{2\pi\mathrm i/3}$ and, for integers $n_{0},n_{1},n_{2}$,
+\[
+  n_{0}+n_{1}\omega+n_{2}\omega^{2}=0
+  \iff n_{0}=n_{1}=n_{2},
+\]
+\[
+  |n_{0}+n_{1}\omega+n_{2}\omega^{2}|^{2}
+  =\sum_{i} n_{i}^{2}-\sum_{i<j}n_{i}n_{j},
+\]
+each sum in \eqref{eq:design} and \eqref{eq:angle} is decided by the three
+residue counts of the relevant digit vector. For \eqref{eq:angle} let
+$(n_{0},n_{1},n_{2})$ count the residues of $\phi_{w}-\theta_{w}$ over the $27$
+coordinates, so $\sum n_{i}=27$; over all $265\,356$ pairs exactly two shapes
+occur, namely $(9,9,9)$ on $9\,477$ pairs, where the value is $0$, and the
+permutations of $(6,9,12)$ on the remaining $255\,879$ pairs, where the value is
+$144+81+36-108-54-72=27$. There are no other shapes and hence no violations. For
+\eqref{eq:design}, the $27$
+coordinates give $\binom{28}{2}=378$ size-$2$ multisets and hence
+$378^{2}=142\,884$ characters, of which exactly $378$ have $k=0$ --- and those
+are precisely the $378$ with $k\equiv0\bmod 3$, so ``nonzero'' is unambiguous;
+each of the remaining $142\,506$ has residue counts exactly $(243,243,243)$ over
+the $729$ points, so its character sum is $243(1+\omega+\omega^{2})=0$. The
+identity is the row \texttt{Q0} plus $\lambda=0$. Every row of
+Table~\ref{tab:forms} and every generator of $\Lambda$ begins with the digit
+$0$, hence so does every point of $X$. The program of
+Section~\ref{sec:verif} carries out these counts.
+\end{proof}
+
+\section{Why \texorpdfstring{$X$}{X} is not a group}\label{sec:arg}
+
+For an $\Fq_{3}$-linear map $h\colon\Fq\to\Fq$ put
+$Q_{h}(w)=\tr\bigl(\tfrac12\,w\,h(w)\bigr)=\tr(2\,w\,h(w))$, and let
+\begin{equation}\label{eq:H}
+\begin{gathered}
+  H=\{0\}\cup\{h_{m}:m\ \text{a nonsquare}\}\cup\{h_{s}:s\in\Fq^{*}/\{\pm1\}\},\\
+  h_{m}(x)=mx^{9}+m^{3}x^{3},\qquad h_{s}(x)=s\,\beta(xs),
+\end{gathered}
+\end{equation}
+so that $|H|=27$ and $\mathcal Q=\{Q_{h}:h\in H\}$, row by row. Call an
+$\Fq_{3}$-linear map $h$ \emph{self-adjoint} if $\tr\bigl(w\,h(w')\bigr)
+=\tr\bigl(w'\,h(w)\bigr)$ for all $w,w'\in\Fq$, and let $S$ be the set of
+self-adjoint maps. That defining identity is $\Fq_{3}$-linear in $h$, so $S$ is
+an $\Fq_{3}$-subspace of $\operatorname{End}_{\Fq_{3}}(\Fq)$; the program of
+Section~\ref{sec:verif} checks that the $27$ maps \eqref{eq:H} lie in $S$, so $S$
+contains $H$ together with its additive span. Items (ii) and (iii) of
+Lemma~\ref{lem:bridge} are asserted only for maps in $S$. The set $H$ is
+the spread set of the Ball--Bamberg--Lavrauw--Penttila symplectic spread of
+$\Fq\times\Fq$, i.e.\ of the Hering plane of order $27$; its $28$ components are
+$\{(0,y)\}$, $\{(x,0)\}$ and the graphs of the $26$ nonzero maps in
+\eqref{eq:H}, as printed in \cite[Corollary 1]{Abd} after \cite{BBLP}.
+
+\begin{lemma}\label{lem:bridge}
+With the notation above:
+\begin{enumerate}
+\item[\textup{(i)}] $h\mapsto Q_{h}$ is $\Fq_{3}$-linear;
+\item[\textup{(ii)}] for $h\in S$, the polar form of $Q_{h}$ is
+      $B_{h}(w,w')=Q_{h}(w+w')-Q_{h}(w)-Q_{h}(w')=\tr\bigl(w\,h(w')\bigr)$;
+\item[\textup{(iii)}] for $h,h'\in S$, $Q_{h}-Q_{h'}\in\Lambda$ if and only if
+      $h=h'$;
+\item[\textup{(iv)}] consequently the set $X$ of \eqref{eq:X} is a subgroup of
+      $\mathbb P(T^{27})$ if and only if $H$ is closed under addition;
+\item[\textup{(v)}] since $0\in X$, $X$ is a coset of a subgroup if and only if
+      it is a subgroup.
+\end{enumerate}
+Step \textup{(ii)} uses that $\operatorname{char}\Fq$ is odd.
+\end{lemma}
+
+\begin{proof}
+(i) is immediate. For (ii), expand
+$Q_{h}(w+w')-Q_{h}(w)-Q_{h}(w')=\tr\bigl(2(w\,h(w')+w'\,h(w))\bigr)$ and use the
+hypothesis $h\in S$, that is $\tr(w\,h(w'))=\tr(w'\,h(w))$; the right-hand side is
+$\tr(4\,w\,h(w'))=\tr(w\,h(w'))$ because $4\equiv1\bmod3$. Here $\tfrac12$ must
+exist in $\Fq_{3}$, which is where odd characteristic enters. For (iii), let
+$h,h'\in S$; if $Q_{h}-Q_{h'}=\lambda\in\Lambda$ then its polar form vanishes, so
+by (ii) $\tr\bigl(w\,(h-h')(w')\bigr)=0$ for all $w,w'$, and nondegeneracy of
+$\tr$ gives $h=h'$; conversely $Q_{h}-Q_{h}=0\in\Lambda$. For (iv): $\Lambda$ is
+a subgroup,
+and by (iii), applied inside $S\supseteq H$, the $27$ cosets $Q_{h}+\Lambda$ are
+pairwise disjoint, so $X=\bigsqcup_{h\in H}(Q_{h}+\Lambda)$ has $729$ elements and
+is closed under addition if and only if for all $h,h'\in H$ there is $h''\in H$
+with $Q_{h}+Q_{h'}-Q_{h''}\in\Lambda$; since $h+h'$ and $h''$ again lie in $S$,
+(i) and (iii) turn this into exactly $h+h'\in H$. For (v): if $X=x_{0}+G$ with $G$ a subgroup, then $0\in X$ gives
+$-x_{0}\in G$, hence $x_{0}\in G$ and $X=x_{0}+G=G$.
+\end{proof}
+
+\begin{remark}[attribution]\label{rem:attr}
+Lemma~\ref{lem:bridge} is not new: it is the classical dictionary between
+abelian semiregular relative $(d,d,d,1)$-difference sets, planar functions and
+commutative semifields, in the form used for MUBs by Godsil and Roy
+\cite[\S6]{GR} and by Klappenecker and R\"otteler \cite{KR}, going back to
+\cite{CCKS}, and it must be cited together with Kantor's published correction to
+\cite[p.~255]{GR}, which restricts that correspondence to \emph{semifield}
+spreads \cite{Kan}. Kantor \cite{Kan} gives the exponent parameterisation of the MUBs of
+a symplectic spread, which is $X=\{Q_{h}+\lambda\}$ written in exponents; states
+the spread-side half of (iv)--(v), that a symplectic spread yields a group-like
+design exactly when it is a semifield spread; and names the BBLP family among
+spreads ``not related to semifields''. Abdukhalikov \cite{Abd} prints the witness
+spread and its non-semifield property. Neither paper mentions projective toric
+designs, neither states the subgroup or coset condition on
+$\mathbb P(T^{d})$, and neither draws the conclusion of
+Theorem~\ref{thm:main}. Beyond that conclusion, nothing here is new.
+\end{remark}
+
+Three facts about $\GF(27)$ finish the proof.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Proposition~\ref{prop:hyp}, $X$ is a $\mathbb P(T^{27})$ $2$-design of size
+$27^{2}$ which satisfies \eqref{eq:angle} and contains the identity. It remains
+to show that $H$ is not closed under addition; Lemma~\ref{lem:bridge}(iv),(v)
+then says that $X$ is neither a subgroup nor a coset of one, and
+Conjecture 4.9 fails at $d=27$.
+
+\emph{Fact 1: $-1$ is a nonsquare in $\GF(27)$.} The group $\Fq^{*}$ is cyclic
+of order $26$, so the squares form its subgroup of index $2$ and \emph{odd}
+order $13$, while $-1$ has order $2$; as $2\nmid13$, $-1$ is a nonsquare. (In
+the labelling \eqref{eq:index}, $-1$ is the element $2$.)
+
+\emph{Fact 2: $h_{m}+h_{m}=h_{-m}$ for every $m\in\Fq$.} In characteristic $3$,
+$h_{m}+h_{m}=2mx^{9}+2m^{3}x^{3}=(2m)x^{9}+(2m)^{3}x^{3}=h_{2m}=h_{-m}$, using
+$(2m)^{3}=8m^{3}=2m^{3}$.
+
+\emph{Fact 3: the two families in \eqref{eq:H} are separated by one
+coefficient.} Every $\Fq_{3}$-linear map $\Fq\to\Fq$ has a unique linearised
+representation $a_{0}x+a_{1}x^{3}+a_{2}x^{9}$: there are $27^{3}=3^{9}$ such
+expressions, all $\Fq_{3}$-linear and pairwise distinct, and
+$|\operatorname{End}_{\Fq_{3}}(\GF(27))|=3^{9}$. In that representation every
+$h_{m}$ has $a_{0}=0$ (and $a_{1}=m^{3}$, $a_{2}=m$), while every $h_{s}$ has
+$a_{0}=s^{2}\neq0$.
+
+Now take any nonsquare $m$; by Fact~1 there are $13$ of them, and $m=-1$ is one.
+Then $h_{m}\in H$ and, by Fact~2, $h_{m}+h_{m}=h_{-m}$ with $-m$ a \emph{square}
+by Fact~1. Hence $h_{-m}\neq0$; $h_{-m}\neq h_{m'}$ for any nonsquare $m'$,
+because $m'\mapsto h_{m'}$ is injective (read off $a_{2}=m'$); and
+$h_{-m}\neq h_{s}$ for any $s$, by Fact~3. So $h_{m}+h_{m}\notin H$ and $H$ is
+not closed under addition.
+\end{proof}
+
+\noindent
+Table~\ref{tab:forms} exhibits the failing sum directly. Doubling the row
+\texttt{Qm2} digitwise modulo $3$,
+\begin{center}
+\ttfamily\footnotesize
+000111111210021021201012012 \quad$+$\quad 000111111210021021201012012
+\quad$=$\quad 000222222120012012102021021,
+\end{center}
+produces the form $Q_{h_{-m}}$ for $m=2=-1$, which is not a row of
+Table~\ref{tab:forms}; since $h_{-m}=h_{m}+h_{m}$ lies in $S$ but not in $H$,
+Lemma~\ref{lem:bridge}(iii) puts it in no coset $Q_{h}+\Lambda$ with $h\in H$, so
+it lies outside $X$.
+
+\section{Scope}\label{sec:scope}
+
+Nothing here bears on the existence of a complete set of MUBs in dimension~$6$;
+what is removed is one route to a negative answer. Conjecture 4.7 of
+\cite{IMEG}, quantified over non-prime-power $d$, is a different statement and is
+untouched. Characteristic $2$, and with it $d=8$, is not attempted:
+Lemma~\ref{lem:bridge}(ii) needs odd characteristic. We do
+not claim that no complete set of MUBs MUB-equivalent to the one behind $X$ has a
+subgroup design; the statement is about the specific $X$ of \eqref{eq:X}, and the
+MUB-equivalence group is a continuum that was not searched. We do not claim that
+$d=27$ is least; no other dimension is examined here.
+
+\section{Verification}\label{sec:verif}
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library only,
+no external data file) takes as input only what is printed above: the
+presentation $\Fq_{3}[t]/(t^{3}-t-1)$ with the index \eqref{eq:index}, the $27$
+digit words of Table~\ref{tab:forms}, and the three generators of $\Lambda$. From
+that data it rebuilds $\GF(27)$, its trace and its squares; checks that the
+printed rows are exactly the maps \eqref{eq:qset} and are reproduced by
+$Q_{h}(w)=\tr(2wh(w))$ from \eqref{eq:H}; checks that each row is a quadratic
+form whose polar form is symmetric and equals $\tr\bigl(w\,h(w')\bigr)$, so that
+each map \eqref{eq:H} lies in $S$, and that the $27$ polar forms give $27$
+distinct symmetric $3\times3$ matrices over $\Fq_{3}$ whose $\binom{27}{2}=351$
+pairwise differences are all nonsingular, so that \eqref{eq:H} really is a
+symplectic spread; builds $X$ and confirms Proposition~\ref{prop:hyp} by the
+exhaustive sweeps quoted there; confirms Facts 1--3 and that $X$ is not
+additively closed, which with $0\in X$ and Lemma~\ref{lem:bridge}(v) also settles
+the coset claim; and confirms the $d=2$ example of Section~\ref{sec:conj} in
+$\mathbb Z[\zeta_{8}]$. All arithmetic is exact in
+$\mathbb Z$, $\Fq_{3}$ or $\mathbb Z[\zeta_{8}]$; no floating-point value decides
+anything. The recorded run in \texttt{verify.output.txt} reports
+\texttt{VERDICT: ALL 35 CHECKS PASS} and closes with its own statement of what it
+does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{Abd}
+K.~Abdukhalikov,
+\emph{Symplectic spreads, planar functions, and mutually unbiased bases},
+J. Algebraic Combin. \textbf{41} (2015), no.~4, 1055--1077.
+\href{https://doi.org/10.1007/s10801-014-0565-y}{doi:10.1007/s10801-014-0565-y};
+\href{https://arxiv.org/abs/1306.3478}{arXiv:1306.3478}.
+
+\bibitem{BBLP}
+S.~Ball, J.~Bamberg, M.~Lavrauw, and T.~Penttila,
+\emph{Symplectic spreads},
+Des. Codes Cryptogr. \textbf{32} (2004), no.~1--3, 9--14.
+\href{https://doi.org/10.1023/B:DESI.0000029209.24742.89}
+{doi:10.1023/B:DESI.0000029209.24742.89}.
+
+\bibitem{CCKS}
+A.~R. Calderbank, P.~J. Cameron, W.~M. Kantor, and J.~J. Seidel,
+\emph{$\mathbb Z_{4}$-Kerdock codes, orthogonal spreads, and extremal Euclidean
+line-sets},
+Proc. London Math. Soc. (3) \textbf{75} (1997), no.~2, 436--480.
+\href{https://doi.org/10.1112/S0024611597000403}{doi:10.1112/S0024611597000403}.
+
+\bibitem{GR}
+C.~D. Godsil and A.~Roy,
+\emph{Equiangular lines, mutually unbiased bases, and spin models},
+European J. Combin. \textbf{30} (2009), no.~1, 246--262.
+\href{https://doi.org/10.1016/j.ejc.2008.01.002}{doi:10.1016/j.ejc.2008.01.002}.
+
+\bibitem{IMEG}
+J.~T. Iosue, T.~C. Mooney, A.~Ehrenberg, and A.~V. Gorshkov,
+\emph{Projective toric designs, difference sets, and quantum state designs},
+Quantum \textbf{8} (2024), 1546.
+\href{https://doi.org/10.22331/q-2024-12-03-1546}{doi:10.22331/q-2024-12-03-1546};
+\href{https://arxiv.org/abs/2311.13479}{arXiv:2311.13479}.
+The conjecture numbered 4.9 carries no label in the e-print source, so it is
+quoted above in full to make the reference independent of the numbering.
+
+\bibitem{Kan}
+W.~M. Kantor,
+\emph{MUBs inequivalence and affine planes},
+J. Math. Phys. \textbf{53} (2012), no.~3, 032204, 9 pp.
+\href{https://doi.org/10.1063/1.3690050}{doi:10.1063/1.3690050};
+\href{https://arxiv.org/abs/1104.3370}{arXiv:1104.3370}.
+
+\bibitem{KR}
+A.~Klappenecker and M.~R\"otteler,
+\emph{Constructions of mutually unbiased bases},
+in: Finite Fields and Applications (Fq7), Lecture Notes in Comput. Sci.
+\textbf{2948}, Springer, Berlin, 2004, pp.~137--144.
+\href{https://doi.org/10.1007/978-3-540-24633-6_10}
+{doi:10.1007/978-3-540-24633-6\_10}.
+
+\bibitem{MW}
+D.~McNulty and S.~Weigert,
+\emph{Mutually unbiased bases in composite dimensions --- a review},
+Quantum \textbf{10} (2026), 2051.
+\href{https://arxiv.org/abs/2410.23997}{arXiv:2410.23997}.
+
+\end{thebibliography}
+
+\end{document}

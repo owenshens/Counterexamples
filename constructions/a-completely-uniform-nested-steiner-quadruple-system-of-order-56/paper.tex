@@ -1,0 +1,402 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Completely Uniform Nested Steiner Quadruple System of Order 56}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\emergencystretch=3em
+
+\newcommand{\SQS}{\mathrm{SQS}}
+\newcommand{\NSQS}{\mathrm{NSQS}}
+
+\title[A completely uniform nested $\SQS(56)$]
+{A Completely Uniform Nested Steiner Quadruple System of Order 56}
+
+\date{}
+
+\subjclass[2020]{05B05, 05B30, 05B07}
+\keywords{Steiner quadruple system, nested design, completely uniform nesting,
+Hanani doubling, explicit construction}
+
+\begin{document}
+
+\begin{abstract}
+A \emph{nested Steiner quadruple system} of order $v$ is a set of blocks
+$\{x,y\mid z,w\}$, each an unordered pair of disjoint pairs, whose underlying
+$4$-sets form an $\SQS(v)$; it is \emph{completely uniform} if every one of the
+$\binom{v}{2}$ pairs occurs as a nested pair and all of them occur equally
+often. In the e-print of Lu's census --- the only text of it we could read ---
+every admissible order $v$ with $8\le v\le 50$ is settled, and the census closes
+with the remark that ``the next unresolved case is $v=56$'', expected there to be
+hard because the existence of a rotational $\SQS(56)$ is undetermined. We
+exhibit a completely uniform nested $\SQS(56)$. Its underlying design is
+obtained from Lu's $\SQS(14)$ by two Hanani doublings, so no rotational
+system is used, and the nesting is written out in full as one ternary digit per
+block: all $1540$ pairs occur, each with multiplicity $9=(56-2)/6$.
+\end{abstract}
+
+\maketitle
+
+\section{The source statement}
+
+Let $V$ be a $v$-set. A \emph{Steiner quadruple system} $\SQS(v)$ is a
+collection $\mathcal B$ of $4$-subsets of $V$ covering every $3$-subset of $V$
+exactly once; such a system exists iff $v\equiv2$ or $4\pmod 6$, or
+$v\in\{0,1\}$, and then
+\begin{equation}\label{eq:b}
+ |\mathcal B|=b(v)=\frac{v(v-1)(v-2)}{24}.
+\end{equation}
+
+Following Lu \cite[\S1]{Lu}, a \emph{nested $\SQS(v)$}, written $\NSQS(v)$, is a
+pair $(V,\mathcal N)$ in which each element of $\mathcal N$ is an unordered pair
+of disjoint pairs of $V$, written $\{x,y\mid z,w\}$ and called a \emph{nested
+block}, such that the $4$-sets $\{x,y,z,w\}$ obtained by forgetting the
+partition form an $\SQS(v)$. The two pairs $\{x,y\}$ and $\{z,w\}$ of a nested
+block are its \emph{nested pairs}. Lu calls a nested $\SQS$ \emph{uniform} if
+every pair that occurs as a nested pair occurs the same number of times, and
+records the following definition verbatim \cite[\S1]{Lu}:
+
+\begin{quote}
+``A uniform nested $\SQS$ is called \emph{completely uniform} if, in addition,
+all pairs in $\binom{V}{2}$ appear as nested pairs.''
+\end{quote}
+
+Lu's general existence theorem for complete uniformity is confined to orders
+$2^m$; \S5 of \cite{Lu} is a list of individual examples, closing with a table
+captioned \emph{``Existence of
+completely uniform nested $\SQS(v)$ for $8\le v\le 50$''}, listing all eight
+admissible orders $8,14,20,26,32,38,44,50$ as \emph{Exists}, followed
+immediately by this sentence:
+
+\begin{quote}
+``The next unresolved case is $v=56$. Because the existence of a rotational
+$\SQS(56)$ is undetermined, this case is especially challenging and may be
+difficult to approach even with computer search.''
+\end{quote}
+
+Both quotations are taken from the e-print version~v3 of \cite{Lu} ($9$
+November $2025$), the only full text we could reach; the published journal text
+was not available to us, so a change made at proof stage --- including a
+rewording or a closing of the $v=56$ case --- would be invisible here.
+
+\section{The arithmetic of order 56}
+
+Complete uniformity forces the multiplicity. Each nested block contributes
+exactly two nested pairs, so a completely uniform $\NSQS(v)$ of multiplicity
+$\mu$ satisfies $2b(v)=\mu\binom{v}{2}$, i.e.
+\begin{equation}\label{eq:mu}
+ \mu=\frac{2b(v)}{\binom{v}{2}}=\frac{v-2}{6},
+\end{equation}
+which is an integer exactly when $v\equiv2\pmod 6$ \cite[\S2]{Lu},
+\cite[\S4]{CDEKZ}. At $v=56$ everything is pinned:
+\begin{equation}\label{eq:56}
+\begin{gathered}
+ b(56)=\frac{56\cdot55\cdot54}{24}=6930,\qquad
+ \binom{56}{2}=1540,\\
+ \mu=\frac{2\cdot6930}{1540}=9=\frac{56-2}{6}.
+\end{gathered}
+\end{equation}
+The orders $51,\ldots,55$ are $3,4,5,0,1\pmod 6$, so none of them is admissible
+for complete uniformity: $56$ is the next admissible order after $50$.
+
+\begin{theorem}\label{thm:main}
+A completely uniform nested Steiner quadruple system of order $56$ exists.
+Explicitly, the nested system $\mathcal N$ of \S4 has $6930$ nested blocks,
+its underlying $4$-sets form an $\SQS(56)$, all $1540$ pairs of the point set
+occur as nested pairs, and every one of them occurs exactly $9$ times.
+\end{theorem}
+
+The proof occupies \S3 and \S4: \S3 builds the underlying $\SQS(56)$ from data
+printed here, and \S4 prints the nesting.
+
+\section{The underlying \texorpdfstring{$\SQS(56)$}{SQS(56)}}
+
+\noindent\textbf{Step 1: an $\SQS(14)$.} Identify $\mathbb Z_7\times\{0,1\}$
+with $\{0,1,\ldots,13\}$ by $(x,y)\mapsto x+7y$, and develop each of the
+thirteen $4$-sets
+\begin{equation}\label{eq:base}
+\begin{gathered}
+ \{0,1,10,11\},\ \{0,1,4,2\},\ \{0,2,9,7\},\ \{0,4,13,10\},\ \{0,7,4,11\},\\
+ \{0,8,7,1\},\ \{0,8,13,2\},\ \{0,9,11,8\},\ \{0,9,1,5\},\ \{0,10,12,2\},\\
+ \{0,12,9,4\},\ \{0,13,12,1\},\ \{7,13,12,10\}
+\end{gathered}
+\end{equation}
+under $x\mapsto x+1 \pmod 7$ acting on the first coordinate. The $13\cdot7=91$
+translates are distinct and equal $b(14)$, and they cover each of the $364$
+triples of a $14$-set exactly once, so they form an $\SQS(14)$. These are the
+underlying $4$-sets of the thirteen base blocks tabulated in \cite{Lu},
+with Lu's nested pairings discarded.
+
+\noindent\textbf{Step 2: a $1$-factorization.} For even $n$, let the round-robin
+$1$-factorization of $K_n$ on $\{0,\ldots,n-1\}$ be
+\begin{equation}\label{eq:rr}
+ F_i=\bigl\{\{n-1,i\}\bigr\}\cup
+ \Bigl\{\bigl\{(i+j)\bmod (n-1),\,(i-j)\bmod (n-1)\bigr\}
+ : 1\le j\le \tfrac{n-2}{2}\Bigr\},
+\end{equation}
+for $i=0,\ldots,n-2$; the vertex $n-1$ plays the role of infinity. Each $F_i$
+is a perfect matching and the $n-1$ of them partition $E(K_n)$.
+
+\noindent\textbf{Step 3: Hanani doubling.} The following is Hanani's
+$v\to 2v$ construction \cite{Hanani}, stated and proved in the normalisation
+used here.
+
+\begin{lemma}\label{lem:double}
+Let $(X,\mathcal B)$ be an $\SQS(n)$ with $X=\{0,\ldots,n-1\}$, and let
+$F_0,\ldots,F_{n-2}$ be a $1$-factorization of $K_n$ on $X$. Write
+$x_{\ell}:=x+n\ell$ for $x\in X$ and $\ell\in\{0,1\}$, so that
+$\{x_\ell\}$ is a labelling of $\{0,\ldots,2n-1\}$. Then the following
+$4$-sets form an $\SQS(2n)$:
+\begin{enumerate}
+\item[(a)] $\{x_\ell,y_\ell,z_\ell,w_\ell\}$ for every
+  $\{x,y,z,w\}\in\mathcal B$ and every $\ell\in\{0,1\}$;
+\item[(b)] $\{x_0,y_0,x_1,y_1\}$ for every pair $\{x,y\}\subseteq X$;
+\item[(c)] $\{x_0,y_0,z_1,w_1\}$ for every \emph{ordered} pair
+  $\bigl(\{x,y\},\{z,w\}\bigr)$ of distinct edges lying in a common $1$-factor
+  $F_i$.
+\end{enumerate}
+Their number is $2b(n)+\binom{n}{2}+(n-1)\tfrac n2\bigl(\tfrac n2-1\bigr)
+=b(2n)$.
+\end{lemma}
+
+\begin{proof}
+Split a triple of $\{0,\ldots,2n-1\}$ by how it meets the two levels.
+
+A triple $\{x_0,y_0,z_0\}$ inside level $0$ lies in no block of type (b) or
+(c), since those meet each level in exactly two points; and it lies in exactly
+one block of type (a), namely the level-$0$ copy of the unique block of
+$\mathcal B$ containing $\{x,y,z\}$. Symmetrically for level $1$.
+
+A triple $\{x_0,y_0,z_1\}$ with two points at level $0$ lies in no block of
+type (a). Suppose first $z\in\{x,y\}$, say $z=x$. The type-(b) block
+$\{x_0,y_0,x_1,y_1\}$ contains it, and no other type-(b) block does, because a
+type-(b) block is determined by its level-$0$ pair. A type-(c) block containing
+it would need the two distinct edges $\{x,y\}$ and $\{x,w\}$ in a common
+$1$-factor, which is impossible because distinct edges of a $1$-factor are
+disjoint; so no type-(c) block contains it, and the triple lies in exactly one
+block. Now suppose $z\notin\{x,y\}$. No type-(b) block contains
+$\{x_0,y_0,z_1\}$, since the level-$1$ pair of a type-(b) block is the level-$1$
+copy of its level-$0$ pair. The pair $\{x,y\}$ lies in exactly one $1$-factor
+$F_i$; in $F_i$ the point $z$ is matched to a unique $w$, and $w\notin\{x,y\}$
+because $\{x,y\}\in F_i$ is disjoint from the other edges of $F_i$. Hence
+$\bigl(\{x,y\},\{z,w\}\bigr)$ is the unique ordered pair of distinct edges of a
+common $1$-factor giving a type-(c) block through $\{x_0,y_0,z_1\}$, and there
+is exactly one such block. The mirror case $\{x_1,y_1,z_0\}$ is covered by the
+reversed ordered pair $\bigl(\{z,w\},\{x,y\}\bigr)$; this is where part~(c)
+requires \emph{ordered} pairs. Every triple is therefore covered exactly once,
+and the count follows by \eqref{eq:b}.
+\end{proof}
+
+Applying Lemma~\ref{lem:double} to the $\SQS(14)$ of Step~1 with the
+$1$-factorization \eqref{eq:rr} of $K_{14}$ gives an $\SQS(28)$ with
+\[
+ 2\cdot91+\binom{14}{2}+13\cdot7\cdot6=182+91+546=819=b(28)
+\]
+blocks; applying it again, with the $1$-factorization \eqref{eq:rr} of
+$K_{28}$, gives an $\SQS(56)$ with
+\begin{equation}\label{eq:count56}
+ 2\cdot819+\binom{28}{2}+27\cdot14\cdot13=1638+378+4914=6930=b(56)
+\end{equation}
+blocks. Neither doubling uses any group action on the doubled point set, and in
+particular no rotational $\SQS(56)$ is used anywhere.
+
+\noindent\textbf{Step 4: the canonical order.} Write each of these $6930$
+blocks as an increasing $4$-tuple $(a<b<c<d)$ and sort the resulting list
+lexicographically. Call the result $B_0,\ldots,B_{6929}$; thus
+$B_0=(0,1,2,4)$ and $B_{6929}=(51,53,54,55)$. Everything in \S4 refers to this
+order, which is determined by \eqref{eq:base}, \eqref{eq:rr} and
+Lemma~\ref{lem:double} alone.
+
+\section{The nesting}
+
+Given a block $B_i=(a,b,c,d)$, its three perfect matchings are indexed by a
+ternary digit
+\begin{equation}\label{eq:trit}
+ t=0\mapsto\{a,b\mid c,d\},\qquad
+ t=1\mapsto\{a,c\mid b,d\},\qquad
+ t=2\mapsto\{a,d\mid b,c\},
+\end{equation}
+so a nesting of the $\SQS(56)$ of \S3 is precisely a vector
+$(t_0,\ldots,t_{6929})\in\{0,1,2\}^{6930}$. The witness is the following
+vector.
+
+\noindent\textbf{Encoding.} Read $t_0,\ldots,t_{6929}$ as the base-$3$ digits
+of a non-negative integer $N$ with $t_0$ least significant, write $N$ in
+big-endian order into $1373$ bytes, and base-$64$ encode those bytes. The
+result is the following $1832$ ASCII characters, being the concatenation of the
+$29$ lines below with no separator of any kind (the final line carries the
+single \verb|=| pad):
+
+\begingroup\scriptsize
+\begin{verbatim}
+hF9sYBi/phDk3uDEIIRpc3YPCtCl0msS3gE9cj9VqFOQsji+JZGju+ceeQRUUCm3
++P17kIPeTVPgT5tNtC4meAhXExMYoxSZ+6ec/b+EUYi/c6yDYNCKAqDnlyW9S7Cc
+YRevrI4uIXCJ9D4vuBzV2OsF17fFbFjYWUUIa3YKwL3wfhrvr+a0wytpJaHxQErw
+7Lzv4i3Jk2BZUmRarFVQ5DV+XzlGIAY6ZG4WNlVZ8lvc7SV0Al+7AuVdk7kI5LgZ
+Tv/hb64QI1o0FavaN2IVPtHVDlpTeVcllnPDuW+mrJm2JE8RlERrmojt2KLbR/Dm
+bG4N2Vx92/cpHws1sA9vBh7GmRrvUPfJjkXBD5Q/ca9XKJsugiyrkPR6+QLwnUi7
+qVoMBOC6NshTzvPfKsDK+nVWKQ5AbWFDAkoUH58ne32tsfvDbMAyNj54DbtxASTx
+7OME+8+uie09QSSFfJjuIzYqGZg8tKm8LelnhqXPx4NeQNWw/1SGPkJYyIGm8r97
++KwPXKNniuK8kxcQ3PVyO6tHm7Kx8i8SXv9xFmf3mSiaRhV/U8TOw4Qg5g/DTA+i
+p2yR8Bt422FTQKHFRi9FgCo8xZCs+gzeiVVF4Mk3wu0ng5bWb0x4gEdyTcTOIKvf
+uNlyVPmlPQWdH1bQRXGz9aSxRQRPJXDT5PngSXDPI+kpnPqQoCIkz4JXV9XzjjAy
+QfzONSPEiiy0XWaApN1fz4Q2NwqTHSnP9GpvkSF3AtrTOQ5+5+J2Kp4lfc+OZH0q
+SNOe8l64HBwBqhjQ9yrKhGDIKTpj7faNRAnqmpTa7B5PAqfwsrPiV2GDTx9s4dVv
+F7laoL0A8MX+LAwJqnTBobeIgiLWc5osbg+zWuVFi6y+cxf8tv9b/oTvDHxQS50k
+TcIo4jxx1SJuSgP5UwpdQAl+JvAlai8gpToM0DcJQmoOBZEM3n8LJu0s0rYklFLv
+TVu8H8auEagap+Nx7SJehkjoFRfT+qMYGMGinyLTc+k2OL6Oy39mvUnnNH2BaZdj
+ypVAEZgl2S2X0uzWWIWib3uP8RyjaiP9kwGxtCR5EqeVwnj0QAK/AS4Me7bkZqnf
+X8vFNKUv9ZEOWjB3sKZGT38HY4wF8V6Z/0ri+3O9bMOvZFkPcu9tgAIrmbg7aGkP
+3j9ENOq8pM0XKsJaNAruYQkyEz/2pNuXDPGs7SDzyEEYan5wRT9Er5w9cqVBnONd
+/Z21das/eqFg3fqcW+h9iuBVLoU8s4uDokE4SjN9HMdu1IXKwoiyIgBvuu9GN115
+16u59LJp2GrtHV5Io5+XtH24pUDUKOrP+TJPkHHX2woE9JwNV9BMzaeulbTEh//0
+ObalAxRcF3qWwrzH25zhklBemnW+fNVCJnkP2s9Y76pO0LISgHBc4QqcTbDu1Kxl
+cDKxlHulkULfVn70jWTDFSquZ23/jcwyeSrLQG6sUkHrzQYn+XKzHin+Scj5CGLT
+zzuZLe2Q+Wby8JoWZExo3YimMAvOU+RFRi0AFatuxhwjQJ7c203UCc6F5suSJ7Wo
+GjiLEcs4J/14Oq+5APHxfvHs/wgTTPNXVY+zSBOBH6TZB82QxeO5ROccbd4AFfJi
+0LpNkVNj3CvmuE1T/GiS3p9tqoG4yi5BTMmCzSAs7rSWiTXNE5UZlk0OMrNZrX7J
+PAR5cdXpYW5u5HWCyiorA3m5o/J4iIgtIByMOOhN967/aTW4ti8paEn0lKNqFYr0
+sTARWLsgX+gFYudKk77xIoa9rEzemRIVpY/xbdfNtGavUguzQEDdabvnXpCQjPGC
+CqJTpqzgP4gW0/KuKrI5mO92ezE8LFaBl3bkY3c=
+\end{verbatim}
+\endgroup
+
+\noindent Its SHA-256, taken over those $1832$ ASCII bytes, is
+\begin{center}\ttfamily\small
+f802277ca20184e1b026bddc89ed1b30ed791885fa832ef17b657fcc5b2970b8,
+\end{center}
+and the SHA-256 of the $6930$ decoded digits, taken as $6930$ raw bytes with
+values in $\{0,1,2\}$, is
+\begin{center}\ttfamily\small
+e5a8368b4a0b9f21d4e8e44be375a1cc9e00a364804e2b2366fa04e60aaf4016.
+\end{center}
+Decoding terminates exactly: after extracting $6930$ digits the remaining
+quotient is $0$, so the encoded integer carries no digit above $t_{6929}$.
+
+\noindent\textbf{Transcription check.} As a check on the base-$64$ string above,
+the first $200$ digits $t_0,\ldots,t_{199}$ --- and only those --- are also
+printed in plain decimal, read left to right:
+
+\begingroup\scriptsize
+\begin{verbatim}
+20110111202222101002110202021011002010221201210012021202220021000
+10201012221121002112120000211102112120102202210102001221122122121
+2220212210100110101000112212100122112120002020112200211220001120110000
+\end{verbatim}
+\endgroup
+
+\noindent (the three lines concatenate, with no separator, to the $200$
+digits). Applying \eqref{eq:trit} to $B_0,\ldots,B_{19}$ with the digits
+$t_0,\ldots,t_{19}$ gives the first twenty nested blocks:
+\begin{gather*}
+ \{0,4\mid1,2\}\quad \{0,1\mid3,6\}\quad \{0,5\mid1,9\}\quad
+ \{0,7\mid1,8\}\quad \{0,1\mid10,11\}\\
+ \{0,12\mid1,13\}\quad \{0,14\mid1,15\}\quad \{0,16\mid1,26\}\quad
+ \{0,25\mid1,17\}\quad \{0,1\mid18,24\}\\
+ \{0,23\mid1,19\}\quad \{0,22\mid1,20\}\quad \{0,27\mid1,21\}\quad
+ \{0,29\mid1,28\}\quad \{0,30\mid1,54\}\\
+ \{0,1\mid31,53\}\quad \{0,32\mid1,52\}\quad \{0,1\mid33,51\}\quad
+ \{0,1\mid34,50\}\quad \{0,49\mid1,35\}.
+\end{gather*}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $\mathcal N=\bigl\{\,\eqref{eq:trit}\text{ applied to }B_i\text{ with
+}t_i \;:\; 0\le i\le 6929\,\bigr\}$, where $B_0,\ldots,B_{6929}$ is the
+canonical order of \S3 and $(t_i)$ is the vector decoded above. By
+Lemma~\ref{lem:double} and Step~4, the underlying $4$-sets of $\mathcal N$ form
+an $\SQS(56)$, and by \eqref{eq:trit} each nested block is an unordered pair of
+disjoint pairs whose union is its own block, so $\mathcal N$ is a nested
+$\SQS(56)$ with $6930$ nested blocks. It remains to tabulate, for each of the
+$1540$ pairs of the point set, how many of the $6930$ nested blocks have it as a
+nested pair. Doing so gives every pair the multiplicity $9$: all $1540$ pairs
+occur, none is missing, and the multiplicities sum to
+$1540\cdot9=13\,860=2\cdot6930$, as \eqref{eq:mu} and \eqref{eq:56} require.
+Hence $\mathcal N$ is completely uniform.
+\end{proof}
+
+The tabulation in the last paragraph is a single exact integer pass over data
+printed in this paper: rebuild the $6930$ blocks from \eqref{eq:base},
+\eqref{eq:rr} and Lemma~\ref{lem:double}, sort them, decode the base-$64$
+string, and increment a counter per nested pair. It involves no search and no
+solver, and it is what the program of \S6 does.
+
+\section{Scope}
+
+One statement is settled: a completely uniform nested $\SQS(56)$ exists, the
+case named in the closing sentence of \cite[\S5]{Lu}. The order $56$ is a gap
+rather than the boundary of knowledge; among the examples of \cite{CDEKZ} is one
+headed ``A complete uniform nested rotational $\SQS(62)$''. The $v=56$ row of
+\cite{CDEKZ} also lists uniform but not completely uniform nestings, with $924$
+nested pairs at multiplicity $15$ and with $1260$ at multiplicity $11$, both
+marked there as having no known design; nothing here bears on either. The reason
+\cite{Lu} gives for expecting difficulty is that the existence of a rotational
+$\SQS(56)$ --- one with an automorphism of order $55$ fixing a point --- is
+undetermined; our construction uses none, and since we have not computed the
+automorphism group of our $\SQS(56)$, whether it happens to be rotational is
+unknown to us. We exhibit one witness and make no enumeration, nonexistence,
+isomorphism or minimality statement; the general existence question for
+$v\equiv2\pmod 6$ remains open. Finally, as noted in \S1, we could not read the
+published version of \cite{Lu}, nor reviewing databases behind paywalls, so a
+prior record of this case there would be invisible to us.
+
+\section{Verification}
+
+The program \texttt{verify.py} accompanying this note re-derives the
+computational assertions above from the data printed above and nothing else; it
+establishes nothing about the literature, so the statements of \S5 about what is
+and is not in print are not among the things it checks. It is Python~3.9+, uses
+only the standard library, reads no external file, and all of its arithmetic is
+exact integer arithmetic. It rebuilds the $\SQS(14)$ from \eqref{eq:base},
+checks the $1$-factorizations
+\eqref{eq:rr} of $K_{14}$ and $K_{28}$, performs both doublings and checks at
+each stage that the blocks are distinct and cover every triple exactly once
+($364$, then $3276$, then $27\,720$); it verifies the counts
+\eqref{eq:count56}, the two SHA-256 digests of \S4, the exact termination of the
+base-$3$ decoding, the agreement of the base-$64$ string with the $200$-digit
+decimal prefix, and the twenty nested blocks printed above; and it then
+tabulates the $1540$ nested-pair multiplicities and confirms that all are $9$.
+Its recorded run, in \texttt{verify.output.txt}, reports
+\[
+ \texttt{VERDICT: ALL 31 CHECKS PASS}
+\]
+and closes with its own list of what it does not cover. That count of $31$
+includes control checks on other orders and on deliberately corrupted input,
+which bear on the $v=56$ witness only indirectly; the checks enumerated above
+are the ones Theorem~\ref{thm:main} rests on.
+
+\begin{thebibliography}{9}
+
+\bibitem{CDEKZ}
+Y.~M. Chee, S.~H. Dau, T.~Etzion, H.~M. Kiah, and X.~Zhang,
+\emph{Pairs in nested Steiner quadruple systems},
+J. Combin. Des. \textbf{33} (2025), no.~5, 177--187.
+\href{https://arxiv.org/abs/2410.14417}{arXiv:2410.14417}.
+Row and example data are quoted from the e-print source.
+
+\bibitem{Hanani}
+H.~Hanani,
+\emph{On quadruple systems},
+Canad. J. Math. \textbf{12} (1960), 145--157.
+\href{https://doi.org/10.4153/CJM-1960-013-3}{doi:10.4153/CJM-1960-013-3}.
+
+\bibitem{Lu}
+X.-N. Lu,
+\emph{Completely (quasi-)uniform nested Boolean Steiner quadruple systems},
+J. Combin. Des. \textbf{34} (2026), no.~3, 139--156.
+\href{https://doi.org/10.1002/jcd.22016}{doi:10.1002/jcd.22016};
+\href{https://arxiv.org/abs/2509.06663}{arXiv:2509.06663}.
+All quotations refer to the e-print, version~v3, the only full text we could
+reach.
+
+\end{thebibliography}
+
+\end{document}

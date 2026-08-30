@@ -1,0 +1,151 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  aff3d7777f6082a182a453ea227ed42bc25e63894bf691beb26c8c2ec580a9b3
+python:  Python 3.9.6
+=== program output follows ===
+=== Kitajima Remark 2.13 (arXiv:2606.15241v2, p. 8): a ten-element counterexample at k = 3 ===
+object read from the paper: 10 elements, 15 printed covers
+
+--- Section 2: the object is a graded poset of rank 3 ---
+PASS covers-parsed-15  the fifteen pairs of the printed table
+PASS covers-distinct
+PASS rank-step-one  every printed cover joins consecutive levels
+PASS level-sizes
+PASS closure-31-pairs  the fifteen covers plus sixteen further strict pairs
+PASS closure-rank-gap-profile
+PASS cover-relation-recovered  the covers of the closure are again exactly the printed fifteen
+PASS minimal-elements
+PASS maximal-elements
+PASS no-zero-hat-no-one-hat  so Delta(P) is not a cone for the trivial reason
+PASS maximal-chains-count
+PASS pure-of-rank-3  every maximal chain has length 3, so P is graded of rank n = 3
+PASS delta3-is-the-full-order-complex  k = n = 3, so Delta^{(3)}(P) = Delta(P)
+PASS delta0-is-the-vertex-set
+PASS filtration-is-increasing
+
+--- the filtration stages, integral homology by Smith normal form ---
+PASS delta1-f-vector
+PASS delta1-euler
+PASS delta1-betti  torsion none
+PASS delta1-NOT-contractible  so the witness is not swept up by the k = 2 sentence Kitajima proves one line earlier, whose hypothesis is Delta^{(1)} contractible
+PASS delta2-f-vector
+PASS delta2-face-count
+PASS delta2-euler
+PASS delta2-betti-acyclic  Delta^{(2)}(P) has the reduced homology of a point, and no torsion
+PASS delta3-f-vector
+PASS delta3-face-count
+PASS delta3-euler  a contractible complex has Euler characteristic 1
+PASS delta3-betti-H2-is-Z  H_2(Delta(P); Z) = Z, so Delta^{(3)}(P) is NOT contractible
+
+--- the headline: contractibility is not monotone in k ---
+PASS printed-collapse-table-has-27-rows  the table printed in Section 4 of the paper, transcribed and parsed
+PASS printed-collapse-faces-are-faces-of-delta2  every face named in the printed table really is a face of Delta^{(2)}(P), and there are 54 distinct ones
+PASS printed-collapse-names-54-distinct-faces
+PASS printed-collapse-replays-strictly  THE PAPER'S TABLE, replayed row by row: at its own step each printed tau has exactly one proper coface in the complex then present, and it is the printed sigma
+PASS printed-collapse-ends-at-one-vertex  after the paper's 27 rows exactly one face is left, the vertex d1
+PASS delta2-collapsible  27 elementary free-face collapses remove 54 of the 55 faces, leaving the single vertex d1
+PASS greedy-search-reproduces-the-printed-table  an independent free-face search of Delta^{(2)}(P), run without reference to the table, returns the paper's 27 rows in the paper's order -- so paper and program cannot disagree silently
+    the 27 collapse pairs AS PRINTED IN THE PAPER (tau -> sigma), each replayed above;
+    each tau has exactly one proper coface at its step, and it is sigma, so a referee
+    can redo the collapse by hand from this list:
+       1  a0<c0        ->  a0<b0<c0
+       2  a0<c1        ->  a0<b0<c1
+       3  a0<b0        ->  a0<b0<c2
+       4  a0           ->  a0<c2
+       5  a1<c1        ->  a1<b1<c1
+       6  a1<b1        ->  a1<b1<c0
+       7  a1<c0        ->  a1<b2<c0
+       8  a1<b2        ->  a1<b2<c2
+       9  a1           ->  a1<c2
+      10  b0<c0        ->  b0<c0<d0
+      11  b1<c0        ->  b1<c0<d0
+      12  b1<d0        ->  b1<c1<d0
+      13  b1<c1        ->  b1<c1<d1
+      14  b1           ->  b1<d1
+      15  b2<c0        ->  b2<c0<d0
+      16  c0           ->  c0<d0
+      17  b2<d0        ->  b2<c2<d0
+      18  b2<c2        ->  b2<c2<d1
+      19  b2           ->  b2<d1
+      20  c1<d0        ->  b0<c1<d0
+      21  b0<c1        ->  b0<c1<d1
+      22  c1           ->  c1<d1
+      23  b0<d0        ->  b0<c2<d0
+      24  d0           ->  c2<d0
+      25  b0<c2        ->  b0<c2<d1
+      26  b0           ->  b0<d1
+      27  c2           ->  c2<d1
+PASS delta2-contractible-because-collapsible  collapsible => contractible, and the homology agrees
+PASS delta3-greedy-collapse-stalls  CONTROL: the same routine does NOT reduce Delta^{(3)} to a point (30 collapses, 26 faces left), so it is not answering yes indiscriminately
+PASS THE-REFUTATION  Delta^{(2)}(P) contractible and H_2(Delta^{(3)}(P)) = Z: the implication of Remark 2.13 fails at k = 3
+
+--- Section 3: Delta(P) = St(d0) cup St(d1), and the complex Y ---
+PASS d0-d1-incomparable
+PASS no-face-contains-both-maxima
+PASS elements-below-d0
+PASS elements-below-d1
+PASS stars-cover-delta3
+PASS star-d0-is-a-cone  every face of the link joins d0, so the star is contractible
+PASS star-d1-is-a-cone  every face of the link joins d1, so the star is contractible
+PASS Y-is-the-order-complex-of-P02-minus-c0
+PASS Y-f-vector
+PASS Y-edges-match-the-printed-list
+PASS Y-triangles-match-the-printed-list
+PASS Y-euler
+PASS Y-connected
+PASS Y-betti  torsion none
+PASS Y-is-covered-by-two-cones
+PASS Y-star-a0-is-a-cone
+PASS Y-star-a1-is-a-cone
+PASS Y-cone-intersection-is-S0  two points, so Y is homotopy equivalent to the suspension of S^0, that is to S^1
+PASS mayer-vietoris-shifts-Y-into-degree-2  H_2(Delta P) = H_1(Y) = Z: Delta(P) is the union of two contractible stars along Y, hence homotopy equivalent to the suspension of Y, hence to S^2
+
+--- Section 4: Delta^{(2)} = A cup B with A cap B = Delta(P_[1,2]) ---
+PASS A-cup-B-is-delta2  a chain of rank spread <= 2 lies in levels 0-2 or in levels 1-3
+PASS A-cap-B-is-the-middle
+PASS A-f-vector
+PASS A-euler
+PASS A-betti-H1-is-Z2
+PASS A-is-covered-by-two-cones
+PASS A-star-a0-is-a-cone
+PASS A-star-a1-is-a-cone
+PASS A-cone-intersection-is-three-points  so A is homotopy equivalent to the suspension of three points, a wedge of two circles, which is why H_1(A) = Z^2
+PASS AB-f-vector
+PASS AB-connected-H1-is-Z2
+PASS B-f-vector
+PASS B-acyclic  B is contractible; the proof in the paper is that it is the union of the two cones St_B(d0), St_B(d1) along a tree
+PASS B-is-covered-by-its-two-cones
+PASS B-star-d0-is-a-cone
+PASS B-star-d1-is-a-cone
+PASS B-cone-intersection-is-a-tree  five vertices b0,b1,b2,c1,c2 and four edges: connected and acyclic, hence contractible
+PASS B-cone-intersection-connected-acyclic
+PASS A-cycle-lattice-rank  16 edges - 8 vertices + 1 component
+PASS A-has-seven-2-faces
+PASS gamma1-is-a-4-cycle-in-A-cap-B
+PASS gamma2-is-a-4-cycle-in-A-cap-B
+PASS boundaries-of-A-are-independent
+PASS phi-is-injective  gamma1, gamma2 are independent modulo the 2-boundaries of A
+PASS phi-is-surjective  the 2-boundaries together with gamma1, gamma2 generate the whole 1-cycle lattice of A -- equal rank and equal invariant factors, hence index 1
+PASS phi-is-an-isomorphism  so Mayer-Vietoris gives H_2(Delta^{(2)}) = ker phi = 0 and H_1(Delta^{(2)}) = coker phi = 0
+PASS printed-identity-for-gamma1  the difference is a 2-boundary of A, so the printed congruence modulo the a<b<c triangles holds
+PASS printed-identity-for-gamma2  the difference is a 2-boundary of A, so the printed congruence modulo the a<b<c triangles holds
+
+--- Section 5: this P cannot be coned into a witness at k < n ---
+PASS scope-adjoin-a-minimum-is-pure-of-rank-4  so it is a legitimate rank-4 graded poset and k = 2 < n = 4 would be a proper filtration stage
+PASS scope-adjoin-a-minimum-breaks-delta2  H_1 = Z: the coned poset has rank 4, but its Delta^{(2)} is no longer contractible, so the hypothesis of the implication is lost and this P cannot be lifted to a witness at k < n
+PASS scope-adjoin-a-maximum-is-pure-of-rank-4  so it is a legitimate rank-4 graded poset and k = 2 < n = 4 would be a proper filtration stage
+PASS scope-adjoin-a-maximum-breaks-delta2  H_2 = Z: the coned poset has rank 4, but its Delta^{(2)} is no longer contractible, so the hypothesis of the implication is lost and this P cannot be lifted to a witness at k < n
+
+--- controls, both polarities ---
+PASS CTRL+chain-collapsible-at-every-k  FORCED POSITIVE: for the 3-chain every stage is collapsible, so the collapser can say yes
+PASS CTRL-crown-not-collapsible  FORCED NEGATIVE: the 2+2 crown has Delta^{(1)} a 4-cycle
+PASS CTRL=kitajima-published-formula  FORCED SILENT: for Kitajima's Example P_n with n = 4 levels of two, Delta^{(2)} must be a wedge of 2n-2k-1 = 3 copies of S^2, and it is -- an independent engine check against a published value
+PASS CTRL-torsion-not-blind  the six-vertex minimal triangulation of the real projective plane has H_1 = Z/2; the engine reports it, so "no torsion" above is a measurement and not a blind spot
+
+NOT RE-RUN: the exhaustive census behind the minimality remark of Section 5 (all rank-3 graded posets with every level of size at most three: 22,930,191 labelled posets, 49,843 isomorphism classes, 201 witness classes). That search ran elsewhere, its stdout was not preserved, and nothing here reproduces it. The paper therefore asserts no minimality, and the refutation does not depend on it.
+NOT RE-RUN: the correction of Section 6 to Kitajima's Remark 4.8, p. 15 (three printed groups Z^12 that must read Z^11). That is a long-exact-sequence argument on the source's own printed integers, is logically independent of the refutation, and is not a computation this program performs.
+NOT RE-RUN: any search of the literature. Whether the k = 3 case was settled elsewhere is not a question a program can answer, and no claim of priority is checked here.
+NOT RE-RUN: the open case k < n. Nothing here bears on whether the implication of Remark 2.13 holds at a proper filtration stage; the witness has k = n = 3.
+
+VERDICT: ALL 92 CHECKS PASS
+=== program exited with status 0 ===

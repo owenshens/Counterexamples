@@ -1,0 +1,128 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a88c05df5e29a21a56dbf63e6d1642155a097162e30b2e7910e0184002c4441e
+python:  Python 3.9.6
+=== program output follows ===
+=== 1. THE OBJECT PRINTED IN SECTION 2: G = C_4 u P_3 ===
+PASS object-order-and-size  got (7, 6), paper says (7, 6)
+PASS object-vertices-is-edges-plus-one  n = 7, m = 6, so every beta-valuation of G is a bijection onto {0,...,6}
+PASS object-simple  no loop, no repeated edge
+PASS object-no-isolated-vertex  minimum degree 1
+PASS object-bipartite  parts {v1,v3,v5,v7} and {v2,v4,v6} as printed
+PASS object-two-components  got [4, 3], paper says [4, 3]; so G is DISCONNECTED
+PASS object-degree-sequence  got [1, 1, 2, 2, 2, 2, 2], paper says [1, 1, 2, 2, 2, 2, 2]; a 4-cycle and a path on three vertices
+PASS object-cycle-is-C4  component {v1,v2,v3,v4} is 2-regular on 4 vertices
+
+=== 2. THE BETA-VALUATION EXHIBITED IN SECTION 2 ===
+PASS exhibited-labels-injective  got 7, paper says 7
+PASS exhibited-label-set  got [0, 1, 2, 3, 4, 5, 6], paper says [0, 1, 2, 3, 4, 5, 6]
+PASS exhibited-edge-labels  got [6, 4, 3, 5, 2, 1], paper says [6, 4, 3, 5, 2, 1]; in the order the paper lists the edges
+PASS exhibited-is-graceful  edge labels are exactly {1,...,6}, so G is graceful
+PASS exhibited-is-not-near-alpha  v6 carries 3 with neighbours 1 and 4, so it is neither a local minimum nor a local maximum
+
+=== 3. THE PROOF OF THEOREM 1: THE 15-CASE TABLE ===
+PASS near-alpha-equals-every-vertex-extremal  got 0, paper says 0; over all 5040 labellings of G, the V_small/V_large partition exists exactly when every vertex is a local minimum or a local maximum
+PASS c4-identity  got 0, paper says 0; (s-p)+(r-q) = (r-p)+(s-q) for every p<q<r<s in {0,...,6}: 35 quadruples checked
+PASS c4-identity-extremes  got 0, paper says 0; s-p is the largest and r-q the smallest of the four cycle edge labels
+PASS c4-forced-split  got [(0, 2), (1, 3)], paper says [(0, 2), (1, 3)]; the only ways to split the four cycle vertices into minima and maxima are the two bipartition classes, so the cycle labels are a low pair {p<q} and a high pair {r<s} with q < r
+PASS case-table-row-count  got 15, paper says 15; 10 rows in case A and 5 in case B
+PASS case-table-case-A  got 10, paper says 10; the pairs 0<q<r<6 giving cycle labels {0,q,r,6}
+PASS case-table-case-B  got 5, paper says 5; the 4-subsets of {1,...,5} giving the cycle labels
+PASS case-table-matches-paper  0 of the 15 printed rows disagree; each row carries the cycle labels, the cycle edge labels, the path labels, the required path edge labels and the reason, and all of them are re-derived here
+PASS case-table-no-survivor  got [], paper says []; no row admits a near alpha-valuation, which proves Theorem 1
+PASS case-table-reason-tally  got (5, 8, 2), paper says (5, 8, 2); 5 rows die because two cycle edge labels coincide, 8 because no path centre realises the required pair, 2 because the only centre that realises it is not a local extremum
+
+=== 4. BRUTE FORCE OVER ALL 5040 LABELLINGS OF G (independent of the case table) ===
+PASS brute-labellings-examined  got 5040, paper says 5040; 7! bijections of V onto {0,...,6}
+PASS brute-graceful  got 32, paper says 32
+PASS brute-near-alpha  got 0, paper says 0; THE REFUTATION: no beta-valuation of G is a near alpha-valuation
+PASS brute-alpha  got 0, paper says 0; and none is an alpha-valuation either
+PASS brute-contains-exhibited  the labelling printed in Section 2 is among the 32 found
+PASS brute-automorphisms  got 16, paper says 16; |Aut(C_4)| * |Aut(P_3)| = 8 * 2
+PASS brute-orbits  got 2, paper says 2; 32 labellings in 2 orbits, so one graph and not several
+
+=== 5. THE TWO FURTHER WITNESSES OF SECTION 3 ===
+PASS C_6uK_{1,4}-order-and-size  got (11, 10), paper says (11, 10); vertices and edges, as printed
+PASS C_6uK_{1,4}-vertices-is-edges-plus-one  n = 11 = m + 1
+PASS C_6uK_{1,4}-bipartite  two-colourable
+PASS C_6uK_{1,4}-components  got [5, 6], paper says [5, 6]; DISCONNECTED: 2 components
+PASS C_6uK_{1,4}-printed-labelling-graceful  edge labels are exactly {1,...,10}
+PASS C_6uK_{1,4}-printed-middle-vertex  the vertex labelled 3 has neighbours [2, 5], and 2 < 3 < 5, so it is neither a local minimum nor a local maximum
+PASS C_6uK_{1,4}-graceful-count  got 576, paper says 576; every beta-valuation enumerated
+PASS C_6uK_{1,4}-printed-labelling-found  the printed labelling is one of the 576
+PASS C_6uK_{1,4}-near-alpha-count  got 0, paper says 0; A COUNTEREXAMPLE: no beta-valuation of this graph is a near alpha-valuation
+PASS C_6uK_{1,4}-automorphisms  got 288, paper says 288
+PASS C_6uK_{1,4}-orbits  got 2, paper says 2; 576 labellings in 2 orbits
+PASS 2C_4uK_{1,3}-order-and-size  got (12, 11), paper says (12, 11); vertices and edges, as printed
+PASS 2C_4uK_{1,3}-vertices-is-edges-plus-one  n = 12 = m + 1
+PASS 2C_4uK_{1,3}-bipartite  two-colourable
+PASS 2C_4uK_{1,3}-components  got [4, 4, 4], paper says [4, 4, 4]; DISCONNECTED: 3 components
+PASS 2C_4uK_{1,3}-printed-labelling-graceful  edge labels are exactly {1,...,11}
+PASS 2C_4uK_{1,3}-printed-middle-vertex  the vertex labelled 6 has neighbours [4, 5, 9], and 5 < 6 < 9, so it is neither a local minimum nor a local maximum
+PASS 2C_4uK_{1,3}-graceful-count  got 4608, paper says 4608; every beta-valuation enumerated
+PASS 2C_4uK_{1,3}-printed-labelling-found  the printed labelling is one of the 4608
+PASS 2C_4uK_{1,3}-near-alpha-count  got 0, paper says 0; A COUNTEREXAMPLE: no beta-valuation of this graph is a near alpha-valuation
+PASS 2C_4uK_{1,3}-automorphisms  got 768, paper says 768
+PASS 2C_4uK_{1,3}-orbits  got 6, paper says 6; 4608 labellings in 6 orbits
+
+=== 6. THE CENSUS: every graph with at most 10 edges, up to isomorphism ===
+    (enumerating LABELLINGS, which is legitimate because a graceful graph with m edges has
+     at most m+1 vertices: for each difference d in {1,...,m} the edge realising it is one of
+     the m-d+1 pairs {a, a+d}, so there are exactly m! graceful labelled edge sets.)
+    m=1   classes=1      bipartite=1     connected-bipartite=1     no-near-alpha=0
+    m=2   classes=1      bipartite=1     connected-bipartite=1     no-near-alpha=0
+    m=3   classes=3      bipartite=2     connected-bipartite=2     no-near-alpha=0
+    m=4   classes=5      bipartite=4     connected-bipartite=4     no-near-alpha=0
+    m=5   classes=12     bipartite=7     connected-bipartite=7     no-near-alpha=0
+    m=6   classes=37     bipartite=18    connected-bipartite=16    no-near-alpha=1
+       COUNTEREXAMPLE at m=6: 7 vertices, connected=False, labelled edges [(0, 4), (0, 6), (1, 4), (1, 6), (2, 3), (3, 5)]
+    m=7   classes=112    bipartite=44    connected-bipartite=36    no-near-alpha=0
+    m=8   classes=340    bipartite=119   connected-bipartite=94    no-near-alpha=0
+    m=9   classes=1078   bipartite=323   connected-bipartite=237   no-near-alpha=0
+    m=10  classes=3620   bipartite=919   connected-bipartite=654   no-near-alpha=1
+       COUNTEREXAMPLE at m=10: 11 vertices, connected=False, labelled edges [(0, 9), (0, 10), (1, 4), (1, 6), (1, 7), (1, 8), (2, 3), (2, 10), (3, 5), (5, 9)]
+PASS census-labellings-enumerated  got 4037913, paper says 4037913; the sum of m! for m = 1..10; 2018957 of them classified after the b -> m-b reduction
+PASS census-row-m1  got (1, 1, 0), paper says (1, 1, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m2  got (1, 1, 0), paper says (1, 1, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m3  got (3, 2, 0), paper says (3, 2, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m4  got (5, 4, 0), paper says (5, 4, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m5  got (12, 7, 0), paper says (12, 7, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m6  got (37, 18, 1), paper says (37, 18, 1); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m7  got (112, 44, 0), paper says (112, 44, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m8  got (340, 119, 0), paper says (340, 119, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m9  got (1078, 323, 0), paper says (1078, 323, 0); (classes, bipartite, with no near alpha-valuation)
+PASS census-row-m10  got (3620, 919, 1), paper says (3620, 919, 1); (classes, bipartite, with no near alpha-valuation)
+PASS census-counterexample-edge-counts  got [6, 10], paper says [6, 10]; these are the only edge counts at most 10 at which a bipartite graceful graph has no near alpha-valuation
+PASS census-counterexample-count  got 2, paper says 2; one at m=6 and one at m=10, up to isomorphism
+PASS census-m6-counterexample-is-G  the unique 6-edge counterexample is C_4 u P_3, which is the minimality and uniqueness statement of Section 3 of the paper
+PASS census-m10-counterexample-is-C6uK14  the unique 10-edge counterexample is C_6 u K_{1,4}
+PASS census-none-below-6-edges  got [], paper says []; MINIMALITY: every bipartite graceful graph with at most 5 edges has a near alpha-valuation (15 isomorphism classes)
+PASS census-all-counterexamples-disconnected  got [], paper says []; THE SCOPE LIMIT: both counterexamples in range are disconnected
+PASS census-connected-counterexamples  got 0, paper says 0; all 1052 connected bipartite graceful classes with at most 10 edges HAVE a near alpha-valuation
+PASS census-crossfoot  got (1438, 5209, 5209), paper says (1438, 5209, 5209); connected 1052 + disconnected 386 = 1438 bipartite classes; bipartite + non-bipartite = 5209 classes, which is also the sum of the per-m rows
+PASS control-A006967-paths  got [1, 2, 2, 4, 12, 16, 20, 60, 148, 324], paper says [1, 2, 2, 4, 12, 16, 20, 60, 148, 324]; graceful labelled edge sets of the path on m+1 vertices, against A006967(m+1)/2
+PASS control-A000055-trees  got [1, 1, 2, 3, 6, 11, 23, 47, 106, 235], paper says [1, 1, 2, 3, 6, 11, 23, 47, 106, 235]; graceful tree classes with m edges -- every tree on at most 11 vertices is graceful -- against A000055(m+1)
+PASS control-every-tree-has-near-alpha  got 0, paper says 0; all 435 tree classes in range have a near alpha-valuation, as El-Zanati-Kenig-Vanden Eynden and Grannell-Griggs-Holroyd conjecture in general
+PASS control-no-non-bipartite-has-near-alpha  got 0, paper says 0; none of the 3771 non-bipartite classes has one, as the source paper proves
+PASS control-cycles-graceful-iff-0-or-3-mod-4  got [3, 4, 7, 8], paper says [3, 4, 7, 8]; Rosa's theorem: C_m is graceful exactly for m = 0 or 3 mod 4, and the census finds a graceful 2-regular connected class at exactly those m
+
+=== 7. NAMED CONTROLS, both polarities ===
+PASS control-K_{2,3}  got (48, 48, 48), paper says (48, 48, 48); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_8  got (384, 96, 96), paper says (384, 96, 96); (beta-valuations, of which near alpha, of which alpha)
+PASS control-S_{3,2}  got (60, 24, 0), paper says (60, 24, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_3  got (12, 0, 0), paper says (12, 0, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_5  got (0, 0, 0), paper says (0, 0, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_6  got (0, 0, 0), paper says (0, 0, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_7  got (168, 0, 0), paper says (168, 0, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-C_4uK_2  got (0, 0, 0), paper says (0, 0, 0); (beta-valuations, of which near alpha, of which alpha)
+PASS control-P_7  got (32, 16, 16), paper says (32, 16, 16); (beta-valuations, of which near alpha, of which alpha)
+PASS control-2C_4uK_2  got (512, 512, 512), paper says (512, 512, 512); (beta-valuations, of which near alpha, of which alpha)
+
+NOT RE-RUN: the census at m = 11. This program re-derives the classification for m <= 10 only, so the paper's statement that C_4 u P_3, C_6 u K_{1,4} and 2C_4 u K_{1,3} are the ONLY counterexamples with at most 11 edges is verified here only up to 10 edges. The 11-edge witness 2C_4 u K_{1,3} is itself fully verified above, over all 4608 of its beta-valuations.
+NOT RE-RUN: any m >= 12. Nothing in this program, and nothing in the paper, bounds the number of counterexamples with 12 or more edges.
+NOT RE-RUN: the connected form of the question. It is OPEN. What is checked here is only that every connected bipartite graceful graph with at most 10 edges has a near alpha-valuation; its tree sub-case is an open conjecture of El-Zanati, Kenig and Vanden Eynden.
+NOT RE-RUN: vertex-minimality. Graphs on at most 6 vertices with more than 6 edges were never examined, so no claim is made or checked that 7 is the least possible number of vertices.
+NOT RE-RUN: the literature. That the non-existence half is new, and that the gracefulness of C_4 u P_3 is already published, are bibliographic statements no program can settle.
+
+VERDICT: ALL 86 CHECKS PASS
+=== program exited with status 0 ===
