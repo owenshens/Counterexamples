@@ -1,0 +1,84 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  faadf1f1fddb0c06295fa44859c2cfa6920eba0419fbc3df49abf1d0cb1f202b
+python:  Python 3.9.25
+=== program output follows ===
+
+=== Step 1: the object printed in Section 2 of the paper
+PASS matrix_is_9_by_9 [shape 9x[9]]
+PASS every_entry_is_a_star_or_a_symbol_in_1_to_9 [alphabet {*} u [9]]
+PASS nonstar_cells_number_36_equals_k_times_q [36 = 4*9]
+NOTE M = 1 2 3 4 * * * * * / 5 * * * 9 * 4 * 8 / 6 * * * * 8 3 2 * / 7 * 9 * * 4 * * 2 / * 8 6 * 1 * * 4 * / * * * 9 * 1 * 7 3 / * 9 * * * * 1 5 6 / * 7 * 6 3 5 * * * / * * 5 8 2 * 7 * *
+
+=== Step 2: Proposition 5 (source lines 3616--3629)
+PASS each_of_the_9_symbols_occurs_exactly_4_times [counts [4, 4, 4, 4, 4, 4, 4, 4, 4]]
+PASS every_row_holds_exactly_q_minus_k_equals_5_stars [rows [5, 5, 5, 5, 5, 5, 5, 5, 5]]
+PASS every_column_holds_exactly_q_minus_k_equals_5_stars [cols [5, 5, 5, 5, 5, 5, 5, 5, 5]]
+PASS no_symbol_repeats_within_a_row
+PASS no_symbol_repeats_within_a_column
+PASS proposition_5_holds_zero_violations [0 violations]
+
+=== Step 3: Proposition 6 (3643--3654), literally and by the block criterion
+PASS proposition_6_holds_by_exhaustive_search_over_all_i_j_m_n [0 violations; 2304 (i,j,m,n) quadruples examined]
+PASS each_symbol_occupies_4_distinct_rows_and_4_distinct_columns
+PASS the_symbol_table_of_section_2_agrees_with_the_matrix [all 9 rows of the printed table re-derived from M]
+PASS the_nine_4x4_blocks_R_a_x_C_a_contain_only_the_four_cells_of_a [non-star cells per block [4], all equal to a]
+NOTE so each block is a 4x4 permutation matrix over {a, *}, which is the paper's one-line equivalent of Proposition 6
+PASS block_criterion_and_proposition_6_agree_on_the_control_C_6_4 [control C(6,4) of Example 7: both routes reject; 68 P6 violations]
+PASS control_C_6_4_satisfies_proposition_5_so_the_rejection_is_p6_alone [0 P5 violations]
+
+=== Step 4: Proposition 7 (3660--3685), two encodings and the reduction of Section 2
+PASS the_six_forbidden_forms_are_the_six_column_permutations_of_one [6 distinct forms generated from the base form]
+PASS proposition_7_holds_printed_form_no_forbidden_3x3_submatrix [0 hits over 84 x 84 increasing triples x 6 forms = 42336 pattern tests]
+PASS proposition_7_holds_ordered_form_no_forbidden_configuration [0 hits over 504 x 504 ordered triples]
+PASS the_two_proposition_7_encodings_agree_on_M [both report zero]
+PASS all_84_row_triples_of_M_pairwise_share_a_symbol_so_no_triple_is_free [36 of 36 row pairs share at least one symbol]
+PASS the_reduction_leaves_exactly_162_candidate_configurations [162 candidates]
+PASS every_candidate_fails_one_of_the_three_column_equations [0 of 162 survive]
+PASS the_reduction_and_the_two_brute_force_encodings_agree_on_M [three encodings inside one program, all zero; per Section 4 of the paper they share one transcription of M, so their agreement bears on the encodings and is NOT an independent confirmation]
+
+=== Step 5: Definitions 2, 4 and 5 evaluated directly on the induced code
+PASS the_induced_code_has_36_codewords_of_length_3 [|B| = 36]
+PASS the_induced_code_is_9_4_3_homogeneous [every symbol appears exactly 4 times in each of the 3 coordinates]
+PASS any_two_codewords_agree_in_at_most_one_coordinate [0 pairs at Hamming distance < 2 over 630 pairs]
+PASS the_induced_code_is_3_hash_by_definition_5 [0 bad triples of 7140]
+PASS the_induced_code_is_3_separable_by_definition_4 [0 collisions over all 7806 subsets of size <= 3]
+PASS the_definitional_route_and_the_propositional_route_agree_on_M [C_HS(9,4) by Propositions 5/6/7 AND C_HS by Definitions 2/4/5]
+
+=== Step 6: controls on the source's own labelled matrices (Examples 8, 9, 10)
+NOTE C_S(3,2)  Example 8  (separable, not hash)     |B|=6   P5=0  P6=4  P7printed=0   P7ordered=0   3hash=2  3sep=0  
+NOTE C_H(3,2)  Example 8  (hash, not separable)     |B|=6   P5=0  P6=0  P7printed=1   P7ordered=6   3hash=0  3sep=1  
+NOTE C_HS(4,2) Example 8                            |B|=8   P5=0  P6=0  P7printed=0   P7ordered=0   3hash=0  3sep=0  
+NOTE C_H(6,3)  Example 9  (hash, not separable)     |B|=18  P5=0  P6=0  P7printed=4   P7ordered=24  3hash=0  3sep=4  
+NOTE C_HS(7,3) Example 9                            |B|=21  P5=0  P6=0  P7printed=0   P7ordered=0   3hash=0  3sep=0  
+NOTE C_H(8,4)  Example 10 (hash, not separable)     |B|=32  P5=0  P6=0  P7printed=32  P7ordered=192 3hash=0  3sep=32 
+NOTE C_HS(13,4) Example 10 (the published record)   |B|=52  P5=0  P6=0  P7printed=0   P7ordered=0   3hash=0  3sep=0  
+PASS control_the_published_C_HS_13_4_passes_all_three_propositions [P5/P6/P7 all clean, |B| = 52]
+PASS control_the_published_C_HS_13_4_is_C_HS_by_the_raw_definitions_too [so no corpus error hides in the C_HS(13,4) the source prints at q = 13; the paper claims no priority over it]
+PASS control_the_published_C_H_8_4_passes_propositions_5_and_6 [as the source labels it: a hash code]
+PASS control_the_published_C_H_8_4_fails_proposition_7 [32 printed-form hits and 192 ordered-form hits]
+PASS control_the_published_C_H_8_4_fails_3_separability_by_definition_4 [32 union collisions, 3-hash clean -- the definitional route agrees with Proposition 7]
+NOTE this is the anti-vacuity control that matters: it is at the SAME k = 4 as the witness, it comes from the source itself, and it shows the Proposition 7 clauses do real work rather than being satisfied by everything that passes Propositions 5 and 6
+PASS control_the_published_C_H_6_3_fails_proposition_7 [4 printed-form and 24 ordered-form hits]
+PASS control_the_published_C_H_3_2_fails_proposition_7_at_one_configuration [the single unordered hit the source itself marks]
+PASS control_C_H_3_2_the_hit_is_at_rows_1_2_3_and_columns_1_3_2 [located configuration ((1, 2, 3), (1, 3, 2))]
+PASS control_the_published_C_S_3_2_fails_proposition_6_but_is_3_separable [4 P6 violations, 0 union collisions]
+PASS control_the_published_C_S_3_2_fails_3_hash_by_definition_5 [2 non-hashing triples]
+PASS control_the_published_C_HS_4_2_and_C_HS_7_3_pass_every_check [both polarities of every checker are now exercised on published objects]
+PASS the_reduction_also_reproduces_the_negative_controls [C_H(6,3): 4 surviving; C_H(8,4): 32 surviving -- the reduction can say NO]
+
+=== Step 7: the shared-incidence counts of Section 2, a counting bound the paper does not state, the hand lemma of Section 3, and the conclusion
+PASS of_the_36_symbol_pairs_18_co_occur_in_two_rows_and_18_in_exactly_one [18 twice, 18 once]
+PASS the_total_symbol_pair_incidence_is_54_equals_q_times_c_k_2 [54 = 9 * C(4,2)]
+PASS so_the_symbol_pairs_of_distinct_rows_are_not_distinct_and_the_counting_bound_lapses [18 symbol pairs are reused, so 6q <= C(q,2) is not forced]
+PASS the_counting_bound_under_that_hypothesis_would_force_q_at_least_13_for_k_4 [least q with C(4,2)q <= C(q,2) is 13]
+PASS and_q_at_least_7_for_k_3_matching_the_published_q_3_hs_equals_7 [least q with C(3,2)q <= C(q,2) is 7]
+PASS 13_and_7_are_k_squared_minus_k_plus_1_for_k_4_and_k_3 [|PG(2,3)| = 13, |PG(2,2)| = 7]
+NOTE SCOPE: of this step, only the 18/18 and 54 = q*C(k,2) shared-incidence counts and the q >= 2k-1 hand lemma correspond to anything in the paper (the (P7) proof of Section 2 and the q >= 2k-1 lemma of Section 3).  The counting-bound checks -- that reusing symbol pairs makes C(k,2)q <= C(q,2) lapse, that the bound would otherwise force q >= 13 at k = 4 and q >= 7 at k = 3, and the k^2-k+1 / projective-plane identification -- correspond to NOTHING in the paper as revised, which draws no counting bound and makes no projective-plane remark.  They are established here, not claimed there.
+PASS the_hand_lemma_arithmetic_a_symbol_forces_q_at_least_2k_minus_1 [for q <= 6 a symbol forces k-1 = 3 stars into a row that may hold only q-k <= 2, so q >= 7]
+PASS M_witnesses_q_4_hs_at_most_9_which_is_strictly_below_the_published_13 [q_4^HS <= 9 < 13]
+PASS a_c_hs_q_4_matrix_with_q_below_13_exists_which_is_what_open_problem_1_asks_for [a C_HS(q,4)-matrix with q < 13 exists, exhibited at q = 9; the paper does not claim that Open problem 1 is thereby settled, and claims no priority]
+NOTE NOT RE-RUN, and not claimed by the paper: (a) NON-EXISTENCE of a C_HS(q,4)-matrix at q = 7 and q = 8, which in the run behind this paper rests on SAT-solver UNSAT and is NOT reproduced here -- so this program establishes q_4^HS <= 9 and says nothing about whether q_4^HS equals 9; (b) the cases q = 4, 5, 6, which the hand lemma above settles by arithmetic and which are NOT searched exhaustively here; (c) the C_HS(10,4), C_HS(11,4) and C_HS(12,4) matrices that the same search returned, which are not printed in the paper and are not examined here; (d) the k = 3 satisfying assignment at q = 6 reported by that search, whose matrix is not exhibited anywhere in this folder, so q_3^HS <= 6 is NOT verified here; (e) the source's six published minima as MINIMA -- only the objects it prints are re-checked, never the claim that nothing smaller exists; (f) Open problem 2 of the source (k >= 5), which is untouched; (g) PRIORITY -- whether a C_HS(q,4)-matrix with q < 13 is already recorded in the literature (Dyachkov-Rykov, Furedi-Ruszinko, the Kim-Lebedev and Lebedev tables, or the Blackburn k-plex literature) is not determined here, and the paper claims none, so nothing above should be read as a claim of first construction or as settling the source's Open problem 1.
+
+VERDICT: ALL 50 CHECKS PASS
+=== program exited with status 0 ===

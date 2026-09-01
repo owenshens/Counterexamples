@@ -1,6 +1,6 @@
 {
  "what_this_is": "A hash manifest of every file in this repository, measured from the files themselves.",
- "measured_on": "2026-08-30",
+ "measured_on": "2026-08-31",
  "papers": {
   "15-edge-c8-saturated-subgraph-of-k6-6-disproves-xu-he-lu-conjecture": {
    "repository_directory": "counterexamples/15-edge-c8-saturated-subgraph-of-k6-6-disproves-xu-he-lu-conjecture",
@@ -541,6 +541,49 @@
    ],
    "checks": 52,
    "transcript_records_program_sha256": "ff1a0718dc0c37dc3251476944f579d9860b6086fd261e3f22602124e4314d76",
+   "transcript_matches_program": true
+  },
+  "a-fractional-weak-tiling-measure-in-z-24-that-is-no-convex-combination-of-tiling-complements": {
+   "repository_directory": "counterexamples/a-fractional-weak-tiling-measure-in-z-24-that-is-no-convex-combination-of-tiling-complements",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 9942,
+     "sha256": "0102fdb34e9c1013fbe55fcb981022dd9bd1926618c80bd78e12cc90145362fc"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 97501,
+     "sha256": "b6c7900dc73c4580ddfcc968fecb30fdb1797f52045695ba71e7aa795350cdd6"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14570,
+     "sha256": "1e05f6672188ae6e96933caf8a2c526558a5d0eaf095fa04d67886abe4d8af22"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 10444,
+     "sha256": "eb3add1bbc20b121ee6106b6abfe31653e8f15133146c0d0534df6c071aaeaa9"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 21882,
+     "sha256": "f58b640463f9446fbc3627e75675faa269ebf2970e00bcd1e7556d39239b97ab"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 44,
+     "transcript_records_program_sha256": "f58b640463f9446fbc3627e75675faa269ebf2970e00bcd1e7556d39239b97ab",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 44,
+   "transcript_records_program_sha256": "f58b640463f9446fbc3627e75675faa269ebf2970e00bcd1e7556d39239b97ab",
    "transcript_matches_program": true
   },
   "a-length-14-negative-answer-to-alderson-q-4-optimality-question": {
@@ -4556,6 +4599,49 @@
    "transcript_records_program_sha256": "d5fbe36a7d2595a791d31c31e4b3c00e69d4f9ea4d0e4cbea08edaa31ccfb6d0",
    "transcript_matches_program": true
   },
+  "a-hash-and-separable-matrix-of-order-9-answers-dyachkovs-open-problem-1": {
+   "repository_directory": "constructions/a-hash-and-separable-matrix-of-order-9-answers-dyachkovs-open-problem-1",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 12525,
+     "sha256": "f3c82438b239a128cbed7a378607ab6bd0782a60add1f96c7e3d0a8106d6524a"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 86621,
+     "sha256": "b514473f94f528a48063c4c1ec10adebcff4259e93b5b63640636cca23ad929e"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 15106,
+     "sha256": "f84945e409114e6a5f912ea4139b36846fa9d6ea7c356a735f2bedd5997ea9e0"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9431,
+     "sha256": "90ae0a1c0cc6e3668a9b4735b230cb0573468e93d75b8095ae305995fe0817b7"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 30702,
+     "sha256": "faadf1f1fddb0c06295fa44859c2cfa6920eba0419fbc3df49abf1d0cb1f202b"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 50,
+     "transcript_records_program_sha256": "faadf1f1fddb0c06295fa44859c2cfa6920eba0419fbc3df49abf1d0cb1f202b",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 50,
+   "transcript_records_program_sha256": "faadf1f1fddb0c06295fa44859c2cfa6920eba0419fbc3df49abf1d0cb1f202b",
+   "transcript_matches_program": true
+  },
   "a-non-resolvable-7x15-35-triple-array-answers-gordeev-ohman-problem-58": {
    "repository_directory": "constructions/a-non-resolvable-7x15-35-triple-array-answers-gordeev-ohman-problem-58",
    "files": [
@@ -4683,6 +4769,49 @@
    ],
    "checks": 56,
    "transcript_records_program_sha256": "657b5af756aafcc731a13b5c9e0c2945a0dfdb45c7a8c4cfdcb5a77fa8fffa50",
+   "transcript_matches_program": true
+  },
+  "an-omega-8-primitive-weird-number-with-two-square-odd-prime-factors-settles-omega-2": {
+   "repository_directory": "constructions/an-omega-8-primitive-weird-number-with-two-square-odd-prime-factors-settles-omega-2",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 7395,
+     "sha256": "70df1588e348d2ff327991e712f8aeef1c5b0c3b3cfeb08e5e80c8e9a1ee044f"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 71674,
+     "sha256": "8c1bcbd17496392f14ee50267993feaf6d412c708caaf151312fa71fba8d5359"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 9151,
+     "sha256": "ce80d5d489c4e0e314fb021ca7db38cb9699b21d95d35c91c8f4982e2082549a"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 7971,
+     "sha256": "a44ac061306d8a166c5fbb44162b6b842535388de6e1398bdbc74c3a63d216af"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 23006,
+     "sha256": "e5e35939e8e1a447dd5d85aa54016907c17087ae465e55d6ecc32323fcceeb57"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 48,
+     "transcript_records_program_sha256": "e5e35939e8e1a447dd5d85aa54016907c17087ae465e55d6ecc32323fcceeb57",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 48,
+   "transcript_records_program_sha256": "e5e35939e8e1a447dd5d85aa54016907c17087ae465e55d6ecc32323fcceeb57",
    "transcript_matches_program": true
   },
   "corner-free-4-cop-win-graphs-on-20-vertices-refute-turcotte-yvon-retraction-question": {
@@ -4838,6 +4967,49 @@
    "checks": null,
    "transcript_records_program_sha256": null,
    "transcript_matches_program": null
+  },
+  "four-factorizations-of-k35-complete-the-hamilton-waterloo-spectrum-hwp-35-5-7": {
+   "repository_directory": "constructions/four-factorizations-of-k35-complete-the-hamilton-waterloo-spectrum-hwp-35-5-7",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 10976,
+     "sha256": "d78596fda843d80a9070012dd0d5734dc22a0386a482e1349ee73faa63c48de9"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 79966,
+     "sha256": "ff6e13d39060bb5b501ee5540a15e4e34be3ff8b32576b854c47f597ab5a7d36"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 17062,
+     "sha256": "b273e9697c4eba38ff61406c4fc27739667dfeadf0aa18aab90dcf6154569265"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 9129,
+     "sha256": "02bdb5144787d0cc545afe5d3acfa436cd19edb05600fe0e481018b02c39d7a5"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 21021,
+     "sha256": "303c24510bf6d2e780406421e36ca3cf84ed92b3f903da1ce435926d59430c5e"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 66,
+     "transcript_records_program_sha256": "303c24510bf6d2e780406421e36ca3cf84ed92b3f903da1ce435926d59430c5e",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 66,
+   "transcript_records_program_sha256": "303c24510bf6d2e780406421e36ca3cf84ed92b3f903da1ce435926d59430c5e",
+   "transcript_matches_program": true
   },
   "hamiltonian-paths-settle-coprime-bhr-support-1618": {
    "repository_directory": "constructions/hamiltonian-paths-settle-coprime-bhr-support-1618",
@@ -5645,6 +5817,49 @@
    "transcript_records_program_sha256": "9eda9c97d8564728d4e32ee7cee423881d2c54259757374262cb243a6054321e",
    "transcript_matches_program": true
   },
+  "a-proof-that-s2-of-3-equals-13-settling-one-cell-of-suns-zero-sum-conjecture": {
+   "repository_directory": "notes/a-proof-that-s2-of-3-equals-13-settling-one-cell-of-suns-zero-sum-conjecture",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 15178,
+     "sha256": "651b6331179c67c22cc60401b2adac8314466c587177c18160752a690f4f31a0"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 106096,
+     "sha256": "f696e5c0bb25ab5716639ad1f76d2e2188f434df3b8e54a464d30f25e43b8d6c"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 21111,
+     "sha256": "1e70ea4df30b0936a61fd3023296c34cccbd36fe21f09331543d8db2cdcce3bb"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 8530,
+     "sha256": "cf714dabf2d22eb6622d267b21139978afb92db47fa5ce13bf90a6b55849865e"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 22743,
+     "sha256": "51847de92075e28c557f3b890f226749685c81aa0d7e07150476f95736b15dc2"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 64,
+     "transcript_records_program_sha256": "51847de92075e28c557f3b890f226749685c81aa0d7e07150476f95736b15dc2",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 64,
+   "transcript_records_program_sha256": "51847de92075e28c557f3b890f226749685c81aa0d7e07150476f95736b15dc2",
+   "transcript_matches_program": true
+  },
   "an-exhaustive-census-confirms-1814-topological-pizza-slicings-from-six-chords": {
    "repository_directory": "notes/an-exhaustive-census-confirms-1814-topological-pizza-slicings-from-six-chords",
    "files": [
@@ -6098,6 +6313,49 @@
    "checks": null,
    "transcript_records_program_sha256": null,
    "transcript_matches_program": null
+  },
+  "every-nonassociative-right-bol-loop-of-order-pq-has-right-multiplication-group-p2q": {
+   "repository_directory": "notes/every-nonassociative-right-bol-loop-of-order-pq-has-right-multiplication-group-p2q",
+   "files": [
+    {
+     "file": "REVIEW_NOTE.md",
+     "bytes": 12331,
+     "sha256": "59b69fb288906616c4b5f294c8738851a01dde3224f84ff75aebef99b908d03a"
+    },
+    {
+     "file": "paper.pdf",
+     "bytes": 98588,
+     "sha256": "ecd7dd033a9debb35e90498a9e7b467520c02cc92a0ce7e1450e00cbea27c2dc"
+    },
+    {
+     "file": "paper.tex",
+     "bytes": 14457,
+     "sha256": "02c21e7c8c6a964f58ecac8bbd31714b55d580866bf54d443bfd40caeaf591aa"
+    },
+    {
+     "file": "verify.output.txt",
+     "bytes": 13847,
+     "sha256": "79858cda7c234b77165f19136f05defc400a8cdda596e958df13fb9b8b0ecce1"
+    },
+    {
+     "file": "verify.py",
+     "bytes": 48190,
+     "sha256": "8e1ca1578427b7187886f9f3e6c1dc84a4250d6e8774f55c99d9e36483e9a817"
+    }
+   ],
+   "has_verification_program": true,
+   "programs": [
+    {
+     "program": "verify.py",
+     "transcript": "verify.output.txt",
+     "checks": 63,
+     "transcript_records_program_sha256": "8e1ca1578427b7187886f9f3e6c1dc84a4250d6e8774f55c99d9e36483e9a817",
+     "transcript_matches_program": true
+    }
+   ],
+   "checks": 63,
+   "transcript_records_program_sha256": "8e1ca1578427b7187886f9f3e6c1dc84a4250d6e8774f55c99d9e36483e9a817",
+   "transcript_matches_program": true
   },
   "explicit-of-6-4-and-of-8-4-close-the-even-g-4-cells-of-distance-three-one-factorizations": {
    "repository_directory": "notes/explicit-of-6-4-and-of-8-4-close-the-even-g-4-cells-of-distance-three-one-factorizations",
@@ -7268,13 +7526,13 @@
   }
  },
  "coverage": {
-  "papers": 182,
-  "with_verification_program": 147,
+  "papers": 188,
+  "with_verification_program": 153,
   "no_program_needed": 35,
-  "programs_total": 151,
+  "programs_total": 157,
   "additional_programs_beyond_the_first": 4,
-  "checks_recorded": 8674,
-  "transcripts_matching_their_program": 151,
+  "checks_recorded": 9009,
+  "transcripts_matching_their_program": 157,
   "transcripts_not_matching_or_unhashed": 0
  },
  "root_files": [
@@ -7295,13 +7553,13 @@
   },
   {
    "file": "OPEN_RESULTS.md",
-   "bytes": 69862,
-   "sha256": "09fb07043660ec355106e78de2603e75e8687bc4999f42a51449f95df97ffe84"
+   "bytes": 73255,
+   "sha256": "e6770ebd4c05ac839a81de1bc3400446b47d16d95895dc6dbd0920b4b9a36538"
   },
   {
    "file": "README.md",
-   "bytes": 4640,
-   "sha256": "61e360356c4211b41d9379f82feec4ec51cc8cbd87355ecad250db46a1d80e0c"
+   "bytes": 4955,
+   "sha256": "70f1e6adb9906cd7ce9c835727689a507bbd4006233855b04be09e0d8647b6e8"
   }
  ]
 }

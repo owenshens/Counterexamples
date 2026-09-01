@@ -1,0 +1,461 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Proof that s_2(3) = 13, a Value Asserted without Proof by Sun}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\pio}{\pi}
+
+\title[A proof that $s_2(3)=13$]
+{A Proof that $s_2(3)=13$, a Value Asserted without Proof by Sun}
+
+\date{}
+
+\subjclass[2020]{11B75, 11P70, 20K01, 05B25}
+\keywords{zero-sum problem, Erd\H{o}s--Ginzburg--Ziv, finite abelian group,
+Davenport-type constant, affine plane of order three, exact value}
+
+\begin{document}
+
+\begin{abstract}
+For integers $n>1$ and $r\ge1$ let $s_r(n)$ be the least $k$ such that any $k$
+vectors $a_1,\dots,a_k\in\ZZ^r$, none congruent to $0$ modulo $n$, admit an index
+set $I$ with $|I|=n$ and $\sum_{i\in I}a_i\equiv0\pmod n$ but
+$\sum_{i\in I}a_i\not\equiv0\pmod{n^2}$. Zhi-Wei Sun's Conjecture~1.2 states
+that $s_1(n)=2n+1$ and $s_2(n)=4n+1$ for every $n>2$ --- the $s_1$ half being
+the conjecture of Gao, Jiang, Lei, Lin and Yang --- and he proved
+$3\cdot2^r+1\le s_r(3)\le2\cdot3^r-1$, i.e.\ $13\le s_2(3)\le17$. We prove
+\[
+  s_2(3)=13.
+\]
+The value is not new: Sun asserts $s_2(3)=13$ in his Remark~1.5 and calls it
+easy to see, giving no proof there or elsewhere in that paper, so what is
+supplied here is a proof of an author-asserted value. The lower bound is Sun's.
+For the upper bound, Sun's own two lemmas reduce the problem to the mod-$3$
+support $T$ of a candidate extremal multiset and give $|S|\le3|T|-|A|$, and he
+stops at a double count that yields $16$; a case analysis on
+$|T|\in\{0,\dots,8\}$ carries $16$ down to $12$. Seven of the nine cases are
+immediate; the two that are not fall to a linear elimination modulo $9$. The
+argument occupies about a page. Conjecture~1.2 remains open: $n\ge4$ and $r\ge3$
+are untouched and the method does not generalise in either.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture, and what is proved}
+
+Throughout, congruences between vectors are coordinatewise, and
+$a\not\equiv0\pmod m$ means that \emph{some} coordinate of $a$ is nonzero
+modulo $m$.
+
+We quote from the e-print of Zhi-Wei Sun, \emph{On zero-sum problems of new
+types}, arXiv:2606.18234 \cite{Sun}, version~v5. Our record of the printed
+numbering of the defining statement is not certain --- it appears as both
+``Definition 1.2'' and ``Definition 1.3'' --- so it is quoted by content below;
+``Conjecture~1.2'', ``Lemma 2.1'' and ``Remark~1.5'' are the printed numbers as
+read.
+
+\smallskip
+\noindent\textbf{The definition}, part~(i): for $n>1$ and $r\ge1$,
+$s_r(n)$ is the least $k\in\ZZ^{+}$ such that any $k$ vectors
+$a_1,\dots,a_k\in\ZZ^r$ with $a_i\not\equiv0\pmod n$ for all $i$ admit a set
+$I\subseteq\{1,\dots,k\}$ with
+\begin{equation}\label{eq:def}
+  |I|=n,\qquad
+  \sum_{i\in I}a_i\equiv0\ (\mathrm{mod}\ n),\qquad
+  \sum_{i\in I}a_i\not\equiv0\ (\mathrm{mod}\ n^2).
+\end{equation}
+Two clauses of \eqref{eq:def} are load-bearing and are used exactly as printed:
+$|I|=n$ \emph{exactly}, not $|I|\le n$; and the indices $i$ are distinct while
+the \emph{values} $a_i$ may repeat, so the input is a multiset.
+
+\smallskip
+\noindent\textbf{The conjecture} (Conjecture~1.2) reads: \emph{Let $n>2$ be an
+integer. Then}
+\begin{equation}\label{eq:C12}
+  s_1(n)=2n+1
+  \quad\text{and}\quad
+  s_2(n)=4n+1
+  \qquad(n>2).
+\end{equation}
+At $n=3$ the second half of \eqref{eq:C12} asserts $s_2(3)=4\cdot3+1=13$.
+
+\smallskip
+\noindent\textbf{What the source proves} is a bracket, not a value:
+\begin{equation}\label{eq:bracket}
+  3\cdot2^r+1\ \le\ s_r(3)\ \le\ 2\cdot3^r-1,
+\end{equation}
+which at $r=2$ is $13\le s_2(3)\le17$.
+
+\smallskip
+\noindent\textbf{What the source asserts without proof} is Remark~1.5:
+``\,\emph{It is easy to see that
+$s_r(3)=2\times3^r+1$ for $r=1,2$ but $s_3(3)>3\times2^3+1=25$.}\,'' As printed
+the formula gives $s_2(3)=2\cdot3^2+1=19$, which the same paper's own
+\eqref{eq:bracket} refutes; the intended formula is $3\cdot2^r+1$, forced both
+by the remark's own contrast with $3\cdot2^3+1=25$ and by the fact that the two
+candidate formulas agree at $r=1$ (both give $7$) and differ only at $r=2$. So
+Remark~1.5 asserts the value $s_2(3)=13$, calls it easy, gives no proof, and is
+followed a few lines later by the same value being posed as an open conjecture.
+No proof of any exact value of $s_2(3)$ occurs in the source.
+
+\begin{theorem}\label{thm:main}
+$s_2(3)=13$. Equivalently, the largest multiset of elements of
+$(\ZZ/9)^2$, none congruent to $0$ modulo $3$, containing no three distinct
+indices whose sum is $\equiv0\pmod 3$ and $\not\equiv0\pmod 9$, has exactly
+$12$ elements. Consequently the $n=3$ cell of the $s_2$ half of
+\eqref{eq:C12} is true, and Sun's interval $[13,17]$ collapses at its upper end.
+\end{theorem}
+
+\noindent\textbf{Attribution, and how little is new.}
+The value $s_2(3)=13$ is asserted, without proof and as something easy to see,
+in Sun's Remark~1.5. The lower bound $s_2(3)\ge13$ is Sun's \eqref{eq:bracket};
+we reproduce his witness in Section~\ref{sec:lower} only so that the reader needs
+nothing else. Facts \ref{fact:2} and \ref{fact:3} below are Sun's Lemma~2.1 and
+Sun's own collapsing claim; together with the elementary Fact~\ref{fact:1} they
+give the master bound $|S|\le3|T|-|A|$ of Section~\ref{sec:facts}. Sun
+double-counts that bound to $2(3^r-1)=16$, which is exactly how
+\eqref{eq:bracket} reaches $17$. The only new content of this paper is
+Section~\ref{sec:cases}, which replaces the double count by a case analysis on
+$|T|$ and carries $16$ to $12$. It is a page of elementary work, consistent with
+the source's own ``easy to see''.
+
+\smallskip
+\noindent\textbf{Nearest published work.} The $s_1$ half of \eqref{eq:C12} is
+the conjecture of Gao, Jiang, Lei, Lin and Yang \cite{GJLLY}, who work with
+integers rather than with vectors and give an upper bound of the form $3p-2$ for
+primes $p\ge3$; they say nothing about $s_2$, about $\ZZ^r$ for $r\ge2$, or about
+the value $13$. Gao, Jiang and Mu \cite{GJM} study analogous local invariants,
+again for integers rather than vectors, and for selections of size \emph{at
+most} $n$ rather than exactly $n$; the rank-$2$ case and the exact-size clause of
+\eqref{eq:def} do not occur there. Apart from Sun's unproved Remark~1.5 we found
+no statement of the value $s_2(3)$ and no improvement of the upper bound $17$;
+that records what our search turned up and is not a claim of novelty.
+
+\smallskip
+\noindent\textbf{Status: what is \emph{not} settled.}
+Conjecture~1.2 remains open. Only one cell of one half is proved. The case
+$n\ge4$ is untouched, and the argument does not generalise in $n$: it uses the
+coincidence that the required index-set size $n=3$ equals the number of points
+on a line of the affine plane $\mathrm{AG}(2,3)$, so Facts~\ref{fact:1}
+and~\ref{fact:3} have no analogue for $n\ne3$. The case $r\ge3$ is untouched,
+and the source itself records that the pattern breaks there ($s_3(3)>25$). The
+$s_1$ half of \eqref{eq:C12} is not addressed here. No claim of minimality or
+uniqueness is made for the extremal multisets: we exhibit one multiset of size
+$12$ and do not classify them. Finally, the correction of Remark~1.5's misprint is
+not offered as a separate result: it follows from the source's own
+\eqref{eq:bracket} with no new mathematics.
+
+\section{Reduction, and the three facts}\label{sec:facts}
+
+Every condition in \eqref{eq:def} at $n=3$ depends only on residues modulo
+$n^2=9$, so we work in $(\ZZ/9)^2$. Call $a\in(\ZZ/9)^2$ \emph{admissible} if
+$a\not\equiv0\pmod3$; there are $9^2-3^2=72$ admissible classes. Call a
+multiset $S$ of admissible classes \emph{bad} if no three distinct indices of
+$S$ have a sum that is $\equiv0\pmod3$ and $\not\equiv0\pmod9$. Being bad is
+inherited by sub-multisets, so
+\begin{equation}\label{eq:sbad}
+  s_2(3)=1+\max\{|S|:S\ \text{bad}\}.
+\end{equation}
+Theorem~\ref{thm:main} is therefore the statement $\max|S|=12$.
+
+Write $\pio\colon(\ZZ/9)^2\to\FF_3^2$ for reduction modulo $3$. For
+$v\in\FF_3^2\setminus\{0\}$ let $N_v$ be the sub-multiset of $S$ with
+$\pio=v$, and let $T=\{v:N_v\ne\emptyset\}$, the \emph{support}, so
+$|S|=\sum_{v\in T}|N_v|$. Call a $3$-sub-multiset of $S$ a \emph{candidate} if
+its reductions sum to $0$ in $\FF_3^2$; then $S$ is bad if and only if every
+candidate of $S$ sums to $0$ modulo $9$.
+
+\begin{fact}[candidate shapes; elementary]\label{fact:1}
+If $v_1+v_2+v_3=0$ in $\FF_3^2$ with every $v_i\ne0$, then either
+$v_1=v_2=v_3$, or $v_1,v_2,v_3$ are distinct and are the three points of an
+affine line of $\mathrm{AG}(2,3)$ not through the origin. There are exactly $8$
+such lines; each of the $8$ nonzero points lies on exactly $3$ of them; and no
+such line contains an antipodal pair $\{v,-v\}$, so each meets exactly $3$ of
+the $4$ antipodal pairs, in one point each.
+\end{fact}
+
+\begin{proof}
+If $v_1=v_2\ne v_3$ then $v_3=-2v_1=v_1$ because $-2\equiv1\pmod 3$, a
+contradiction; so the $v_i$ are all equal or all distinct, and in the latter
+case $v_3=-v_1-v_2$ is the third point of the line through $v_1$ and $v_2$.
+$\mathrm{AG}(2,3)$ has $12$ lines, of which $4$ pass through $0$, leaving $8$;
+each of the $8$ nonzero points lies on $4$ lines, one of them through $0$, hence
+on $3$ of the $8$, and $8\cdot3=24=8\cdot3$ counts incidences both ways. If a
+line missing $0$ contained $v$ and $-v$ its third point would be
+$-v-(-v)=0$.
+\end{proof}
+
+\begin{fact}[Sun's Lemma~2.1, source line $736$]\label{fact:2}
+For a bad $S$: \textup{(a)} no admissible class occurs three times in $S$; and
+\textup{(b)} $|N_v|\le3$ for every $v$.
+\end{fact}
+
+\begin{proof}
+Three elements of one $N_v$ are a candidate, since $3v=0$, so they must sum to
+$0$ modulo $9$. (a) Three copies of $a$ sum to $3a$, which is $\equiv0\pmod3$
+and is $\equiv0\pmod 9$ only if $a\equiv0\pmod3$, excluded. (b) If
+$a,b,c,d\in N_v$ are four elements then $a+b+c=a+b+d=0$ gives $c=d$ and
+$a+c+d=b+c+d=0$ gives $a=b$, so $|N_v|\ge4$ forces four copies of one class,
+contradicting (a).
+\end{proof}
+
+\begin{fact}[Sun's claim, source lines $741$--$760$]\label{fact:3}
+Call a line $L$ of $\mathrm{AG}(2,3)$ missing the origin \emph{full} (for $S$)
+if all three of its points lie in $T$. If $L=\{v_1,v_2,v_3\}$ is full, then each
+of $N_{v_1},N_{v_2},N_{v_3}$ consists of one class repeated, and that class
+triple sums to $0$ modulo $9$; in particular $|N_{v_i}|\le2$ for $i=1,2,3$ by
+Fact~\ref{fact:2}\textup{(a)}.
+\end{fact}
+
+\begin{proof}
+Any $a\in N_{v_1}$, $b\in N_{v_2}$, $c\in N_{v_3}$ form a candidate, so
+$a+b+c=0$ modulo $9$; for $a,a'\in N_{v_1}$ this gives $a=a'$.
+\end{proof}
+
+Let $A=A(T)$ be the union of the point sets of all full lines. Since
+$|N_v|\le2$ for $v\in A$ and $|N_v|\le3$ otherwise, Facts \ref{fact:2}
+and~\ref{fact:3} give the
+\begin{equation}\label{eq:master}
+  \textbf{master bound:}\qquad |S|\ \le\ 3|T|-|A(T)|.
+\end{equation}
+This is where the source stops: double counting over the origin-missing lines
+turns \eqref{eq:master} into $\max|S|\le2(3^r-1)$, which is $16$ at $r=2$ and
+gives the published $s_2(3)\le17$ of \eqref{eq:bracket}.
+
+\section{Coordinates}\label{sec:coords}
+
+The four antipodal pairs of $\FF_3^2\setminus\{0\}$ are
+\[
+\begin{gathered}
+  P_1=\{(1,0),(2,0)\},\qquad
+  P_2=\{(0,1),(0,2)\},\\
+  P_3=\{(1,1),(2,2)\},\qquad
+  P_4=\{(1,2),(2,1)\},
+\end{gathered}
+\]
+the first member of each being called $+$. By Fact~\ref{fact:1} there are
+$\binom43=4$ triples of pairs and two lines per triple (a line and its
+negative), $8$ in all. Name the frozen classes of Fact~\ref{fact:3} by
+\[
+\begin{gathered}
+  A=x_{(1,0)},\quad A'=x_{(2,0)},\quad B=x_{(0,1)},\quad B'=x_{(0,2)},\\
+  C=x_{(1,1)},\quad C'=x_{(2,2)},\quad D=x_{(1,2)},\quad D'=x_{(2,1)},
+\end{gathered}
+\]
+each an element of $(\ZZ/9)^2$ reducing to its subscript. Then the $8$ lines and
+the $8$ equations they impose, all modulo $9$, are:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llll}
+\hline
+ & line & equation & pairs met \\
+\hline
+$E_1$ & $(1,0)\ (0,1)\ (2,2)$ & $A+B+C'=0$   & $P_1P_2P_3$\\
+$E_2$ & $(1,0)\ (0,2)\ (2,1)$ & $A+B'+D'=0$  & $P_1P_2P_4$\\
+$E_3$ & $(1,0)\ (1,1)\ (1,2)$ & $A+C+D=0$    & $P_1P_3P_4$\\
+$E_4$ & $(2,0)\ (0,2)\ (1,1)$ & $A'+B'+C=0$  & $P_1P_2P_3$\\
+$E_5$ & $(2,0)\ (0,1)\ (1,2)$ & $A'+B+D=0$   & $P_1P_2P_4$\\
+$E_6$ & $(2,0)\ (2,2)\ (2,1)$ & $A'+C'+D'=0$ & $P_1P_3P_4$\\
+$E_7$ & $(0,1)\ (1,1)\ (2,1)$ & $B+C+D'=0$   & $P_2P_3P_4$\\
+$E_8$ & $(0,2)\ (2,2)\ (1,2)$ & $B'+C'+D=0$  & $P_2P_3P_4$\\
+\hline
+\end{tabular}
+
+\smallskip
+\textsc{Table 1.} The eight lines of $\mathrm{AG}(2,3)$ missing the origin
+($E_3,E_6$ are $x=1,x=2$ and $E_7,E_8$ are $y=1,y=2$).
+\end{center}
+
+Finally, a relabelling remark used once. A matrix with entries in $\{0,1,2\}$
+and determinant nonzero modulo $3$ has determinant coprime to $3$, hence a unit
+modulo $9$; so $GL_2(\FF_3)$ lifts into $GL_2(\ZZ/9)$ and acts on $(\ZZ/9)^2$
+preserving admissibility, ``$\equiv0\pmod3$'', ``$\equiv0\pmod9$'' and all
+incidences. Its action on $\FF_3^2\setminus\{0\}$ is transitive, and its action
+on $\{P_1,P_2,P_3,P_4\}$ is the full $S_4$ (the kernel is $\{\pm I\}$ and
+$48/2=24$).
+
+\section{The upper bound: $\max|S|\le12$}\label{sec:cases}
+
+The support size $|T|$ runs over $\{0,1,\dots,8\}$, which partitions every
+conceivable bad $S$; we take the nine values in turn. Throughout, $|S|\le3|T|-|A(T)|$
+is \eqref{eq:master}.
+
+\smallskip
+\noindent$\boldsymbol{|T|\le4}$. Then $|S|\le3|T|\le12$, and nothing else is
+needed.
+
+\smallskip
+\noindent$\boldsymbol{|T|=5}$. The distribution of $T$ over the four antipodal
+pairs is $(2,2,1,0)$ or $(2,1,1,1)$ up to order.
+
+\emph{$(2,2,1,0)$}: two pairs $P_i,P_j\subseteq T$, and $P_k$ contributes a
+single point of sign $s$. The triple $(P_i,P_j,P_k)$ carries two lines whose
+$P_k$-signs are opposite, so one of them has $P_k$-sign $s$ while its other two
+points lie in $P_i\cup P_j\subseteq T$. That line is full, so $|A|\ge3$ and
+$|S|\le15-3=12$.
+
+\emph{$(2,1,1,1)$}: relabel so that $P_1\subseteq T$ and $T$ contains
+$P_2^{s_2},P_3^{s_3},P_4^{s_4}$. Reading Table 1, a line on a given triple of
+pairs is full exactly when: on $(P_1,P_2,P_3)$, $s_2\ne s_3$; on
+$(P_1,P_2,P_4)$, $s_2=s_4$; on $(P_1,P_3,P_4)$, $s_3=s_4$; on $(P_2,P_3,P_4)$,
+$s_2=s_3\ne s_4$. If $s_2\ne s_3$ then $s_4$ agrees with one of them, so the
+second or third condition holds; if $s_2=s_3=s_4$ the second holds; if
+$s_2=s_3\ne s_4$ the fourth holds. All $8$ sign vectors are covered, a full
+line always exists, and $|S|\le12$.
+
+\smallskip
+\noindent$\boldsymbol{|T|=6}$. The distribution is $(2,2,2,0)$ or $(2,2,1,1)$,
+and in both cases $A(T)=T$, so $|S|\le18-6=12$.
+
+\emph{$(2,2,2,0)$}: relabel $P_1,P_2,P_3\subseteq T$, $P_4\cap T=\emptyset$.
+Both lines on $(P_1,P_2,P_3)$ are full and their union is all six points of
+$P_1\cup P_2\cup P_3=T$.
+
+\emph{$(2,2,1,1)$}: relabel $P_1,P_2\subseteq T$ together with $P_3^{s_3}$ and
+$P_4^{s_4}$. Since $-I$ flips all four signs at once, $(s_3,s_4)$ has two
+orbits. For $(-,-)$ the three full lines $\{P_1^+,P_2^+,P_3^-\}$,
+$\{P_1^+,P_2^-,P_4^-\}$, $\{P_1^-,P_3^-,P_4^-\}$ have union $T$; for $(-,+)$
+the three full lines $\{P_1^+,P_2^+,P_3^-\}$, $\{P_1^-,P_2^+,P_4^+\}$,
+$\{P_2^-,P_3^-,P_4^+\}$ have union $T$.
+
+\smallskip
+The two remaining cases are the ones \eqref{eq:master} does not settle: it gives
+$3\cdot7-7=14$ and $3\cdot8-8=16$. Both are excluded by one linear elimination
+modulo $9$ in the notation of Table 1.
+
+\begin{proposition}\label{prop:T7}
+No bad $S$ has $|T|\ge7$.
+\end{proposition}
+
+\begin{proof}
+It suffices to treat $|T|=7$: if $S$ is bad with $|T|=8$, then deleting one whole
+fibre $N_v$ leaves a bad multiset with support of size $7$.
+
+By transitivity of $GL_2(\FF_3)$ on $\FF_3^2\setminus\{0\}$ we may relabel the
+missing point to $(2,1)$. The full lines are exactly those rows of Table 1 that
+avoid $(2,1)$, namely $E_1,E_3,E_4,E_5,E_8$, and their union is all seven points
+of $T$; so by Fact~\ref{fact:3} every fibre is a single class and those five
+equations all hold. Now $E_1$ gives $C'=-A-B$; $E_3$ gives $D=-A-C$; $E_5$ gives
+$A'=-B-D=A-B+C$; $E_4$ gives $B'=-A'-C=-A+B-2C$; and substituting into $E_8$,
+\[
+  0=B'+C'+D=(-A+B-2C)+(-A-B)+(-A-C)=-3(A+C)
+\]
+modulo $9$, so $A+C\equiv0\pmod 3$. But $\pio(A)+\pio(C)=(1,0)+(1,1)=(2,1)\ne0$, a
+contradiction.
+\end{proof}
+
+Combining: $|T|\le6$ gives $|S|\le12$ by \eqref{eq:master}, and $|T|\ge7$ is
+impossible. Hence $\max|S|\le12$ and, by \eqref{eq:sbad}, $s_2(3)\le13$.
+
+\section{The lower bound is Sun's, with his witness}\label{sec:lower}
+
+The inequality $s_2(3)\ge13$ is the left half of \eqref{eq:bracket} and is not
+ours. For completeness --- so that a reader needs nothing beyond this page ---
+here is a multiset attaining it. Let
+\begin{equation}\label{eq:W}
+\begin{gathered}
+  W=\{\,(1,0),\ (4,0),\ (4,0),\ (8,0),\ (5,0),\ (5,0),\\
+  \phantom{W=\{\,}(0,1),\ (0,4),\ (0,4),\ (0,8),\ (0,5),\ (0,5)\,\}
+\end{gathered}
+\end{equation}
+in $(\ZZ/9)^2$. This is $4\cdot\{1,1,8,8,2,7\}\bmod 9$, i.e.\ the unit multiple
+$4$ of Sun's own one-dimensional extremal set ($n-1$ copies of $+1$, $n-1$ of
+$-1$, and $\pm(n-1)$), placed on each coordinate axis.
+
+\begin{lemma}
+$W$ is a bad multiset of $12$ admissible classes. Hence $\max|S|=12$ and, with
+Section~\ref{sec:cases} and \eqref{eq:sbad}, $s_2(3)=13$.
+\end{lemma}
+
+\begin{proof}
+Each of the twelve entries is nonzero modulo $3$, and $|W|=12$. The reductions
+are $(1,0)$ three times, $(2,0)$ three times, $(0,1)$ three times and $(0,2)$
+three times, so $T=P_1\cup P_2$ has size $4$, every fibre has size $3$, and no
+class occurs more than twice. Since $T$ consists of two whole antipodal pairs,
+Fact~\ref{fact:1} says $T$ contains no origin-missing line, so $A(T)=\emptyset$
+and every candidate of $W$ is a same-fibre triple. There are exactly four of
+them, one per fibre, and
+\[
+  (1,0)+(4,0)+(4,0)=(9,0),\quad (8,0)+(5,0)+(5,0)=(18,0),
+\]
+\[
+  (0,1)+(0,4)+(0,4)=(0,9),\quad (0,8)+(0,5)+(0,5)=(0,18),
+\]
+all $\equiv0\pmod9$. So $W$ is bad, giving $s_2(3)\ge13$.
+\end{proof}
+
+\section{Verification}\label{sec:verify}
+
+Nothing above needs a computer. The finite claims are nevertheless
+machine-checked from the objects printed here --- the multiset \eqref{eq:W} and
+Table 1 --- by \texttt{verify.py}, a standard-library Python program accompanying
+this note, in exact arithmetic modulo $3$ and modulo $9$. It checks that there
+are $72$ admissible classes; that the candidate reduction-triples split into $8$
+all-equal and $8$ all-distinct with none mixed, that the all-distinct ones are
+exactly the $8$ origin-missing lines with the incidence and antipodal counts of
+Fact~\ref{fact:1}, and that the rows of Table 1 are those lines with the
+equations printed; that $3a\not\equiv0\pmod9$ for all $72$ admissible $a$, the
+mechanism of Fact~\ref{fact:2}(a); that $W$ is admissible and bad, of size $12$,
+with the support, candidate list and candidate sums stated above; that
+$\max\bigl(3|T|-|A(T)|\bigr)$ over all $2^8=256$ supports is
+$0,3,6,9,12,12,12,14,16$ for $|T|=0,\dots,8$, so that \eqref{eq:master} settles
+$247$ supports and leaves exactly the $\binom87+\binom88=9$ with $|T|\ge7$; that
+the elimination displayed in Proposition~\ref{prop:T7} is an identity over all
+$9^3=729$ lifts of $(A,B,C)$; and --- going beyond what
+Section~\ref{sec:cases} argues --- that each of the eight supports of size $7$
+and the one of size $8$ is inconsistent modulo $9$ on its own, so that the
+exclusion does not depend on the relabelling. For the last of these, the
+substitution $x_v=v+3u_v$ with $u_v\in\FF_3^2$ turns each full-line equation
+$x_p+x_q+x_r\equiv0\pmod9$ into a linear equation $u_p+u_q+u_r=-w_L$ over
+$\FF_3$, and those systems are solved exhaustively. The recorded run, filed
+alongside the program as \texttt{verify.output.txt}, reports $64$ checks, all
+passing.
+
+The program does not re-derive the cancellation steps of Fact~\ref{fact:2}(b)
+and Fact~\ref{fact:3} or the counting in \eqref{eq:master}, which are proofs, and
+it performs no independent exhaustive search over multisets.
+
+\begin{thebibliography}{9}
+
+\bibitem{GJLLY}
+W.~Gao, X.~Jiang, W.~Lei, C.~Lin, and W.~Yang,
+\emph{A new problem from zero-sum theory},
+Acta Arith., published online 2026.
+\href{https://doi.org/10.4064/aa251115-21-1}{doi:10.4064/aa251115-21-1}.
+The source of the $s_1$ half of \eqref{eq:C12}; it treats the
+one-dimensional case only.
+
+\bibitem{GJM}
+W.~Gao, X.~Jiang, and Y.~Mu,
+\emph{Two local zero-sum problems},
+arXiv:2607.11313, 2026.
+\href{https://arxiv.org/abs/2607.11313}{arXiv:2607.11313}.
+One-dimensional, and with selections of size at most $n$.
+
+\bibitem{Sun}
+Zhi-Wei Sun,
+\emph{On zero-sum problems of new types},
+arXiv:2606.18234, 2026.
+\href{https://arxiv.org/abs/2606.18234}{arXiv:2606.18234}.
+We read version~v5 of the e-print; a printed version, if any, may number its
+statements differently.
+
+\end{thebibliography}
+
+\end{document}

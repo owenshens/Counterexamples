@@ -2,7 +2,7 @@
 
 The first three sections are the original collection; the rounds at the end hold the papers added afterwards.
 
-**182 papers**: 112 refute a published conjecture or question, 23 exhibit an object whose existence was open, and 47 prove a conjecture or record a note.
+**188 papers**: 113 refute a published conjecture or question, 26 exhibit an object whose existence was open, and 49 prove a conjecture or record a note.
 
 The three kinds are reported separately and never added together: refuting a published conjecture,
 settling an open existence question, and proving a conjecture are different contributions.
@@ -282,3 +282,30 @@ Added 30 August 2026. Each was taken through two independent review gates, each 
 | **[A characteristic-free integral witness for Fr\"oberg's series for six to twenty-one septics in four variables](notes/frobergs-conjecture-for-6-to-21-septics-in-four-variables-in-every-characteristic/paper.pdf)** | We exhibit, for every $r$ with $6\le r\le 21$, an explicit $r$-tuple of septics in $\ZZ[x_1,x_2,x_3,x_4]$ with all coefficients $0$ or $1$ whose reduction modulo the characteristic of a field $k$ generates an ideal of $k[x_1,x_2,x_3,x_4]$ with the conjectured quotient series, for every field $k$. |
 | **[The Jaccard Triangle Inequality for Supermodular Log-Submodular Valuations on Arbitrary Lattices](notes/supermodular-log-submodular-valuations-obey-the-jaccard-triangle-inequality-on-every-lattice/paper.pdf)** | Let $\Lat$ be a lattice and $f\colon \Lat\to(0,\infty)$ a valuation. The generalized Jaccard distance is $\dJ(A,B)=1-f(A\wedge B)/f(A\vee B)$. |
 | **[Gap-Only Interlacing of the Real Roots of Consecutive Yablonskii–Vorob'ev Polynomials, Given the Published Real-Root Count](notes/the-real-roots-of-consecutive-yablonskii-vorobev-polynomials-interlace-for-every-n/paper.pdf)** | Granting three published facts about the $Y_n$ --- simplicity of the roots, coprimality of consecutive members, and Roffelsen's count of the real roots --- we prove the quoted statement for every $n\ge1$ in that gap-only sense and in no other, and in the sharper form that the merged real-root list of $Y_n$ and $Y_{n+1} |
+
+---
+
+## Wave 23 (6)
+
+Added 31 August 2026. Two independent review gates, each run by two different model families and each followed by a revision pass; definitional drift checked against each source's own retrieved text; priority checked by live literature search, 244 queries across these six papers; and each transcript audited against its OWN checks, so no printed line asserts more than the run establishes.
+
+### Refuting a published conjecture or question (1)
+
+| paper | what it establishes |
+|---|---|
+| **[A Fractional Weak Tiling Measure in $\Zn{24}$ That Is No Convex Combination of Tiling Complements](counterexamples/a-fractional-weak-tiling-measure-in-z-24-that-is-no-convex-combination-of-tiling-complements/paper.pdf)** | Kadir and Fan ask, in the third item of the open problems of arXiv:2607.02149, whether every nonnegative weak tiling measure $\mu$ of a set $E\subseteq\ZM$ is a convex combination of the indicator measures of classical tiling complements of $E$. We answer this in the negative for cyclic groups. |
+
+### Exhibiting an object whose existence was open (3)
+
+| paper | what it establishes |
+|---|---|
+| **[A Hash-and-Separable Matrix of Order 9](constructions/a-hash-and-separable-matrix-of-order-9-answers-dyachkovs-open-problem-1/paper.pdf)** | D'yachkov's lecture notes on designing screening experiments print a $C_{HS}(13,4)$-matrix and then ask, as Open problem~1, whether a $C_{HS}(q,4)$-matrix can be constructed with a smaller $q$. We exhibit a $C_{HS}(9,4)$-matrix, so that $q_4^{HS}\le 9$. |
+| **[A Primitive Weird Number with Two Square Odd Prime Factors and $\Omega=8$](constructions/an-omega-8-primitive-weird-number-with-two-square-odd-prime-factors-settles-omega-2/paper.pdf)** | A weird number is an abundant number that is not semiperfect, and a primitive weird number (PWN) is a weird number no proper divisor of which is weird. |
+| **[Four Factorizations of $K_{35}$ Realizing $\beta\in\{1,2,4,6\}$ in the Hamilton–Waterloo Problem ${HWP}(35;5,7)$](constructions/four-factorizations-of-k35-complete-the-hamilton-waterloo-spectrum-hwp-35-5-7/paper.pdf)** | We print four factorizations of $K_{35}$ into seventeen two-factors, realizing $(\alpha,\beta)=(16,1)$, $(15,2)$, $(13,4)$ and $(11,6)$ in the Hamilton--Waterloo problem $\HWP(35;5,7)$. |
+
+### Proving a conjecture, or a note (2)
+
+| paper | what it establishes |
+|---|---|
+| **[A Proof that $s_2(3)=13$, a Value Asserted without Proof by Sun](notes/a-proof-that-s2-of-3-equals-13-settling-one-cell-of-suns-zero-sum-conjecture/paper.pdf)** | For integers $n>1$ and $r\ge1$ let $s_r(n)$ be the least $k$ such that any $k$ vectors $a_1,\dots,a_k\in\ZZ^r$, none congruent to $0$ modulo $n$, admit an index set $I$ with $\|I\|=n$ and $\sum_{i\in I}a_i\equiv0\pmod n$ but $\sum_{i\in I}a_i\not\equiv0\pmod{n^2}$. |
+| **[For Odd Primes $p>q$ with $q\mid p^{2}-1$, Every Nonassociative Right Bol Loop of Order $pq$ has Right Multiplication Group of Order $p^{2}q$](notes/every-nonassociative-right-bol-loop-of-order-pq-has-right-multiplication-group-p2q/paper.pdf)** | Kinyon, Nagy and Vojt\v{e}chovsk\'y classified the right Bol loops of order $pq$ for odd primes $p>q$ with $q\mid p^{2}-1$, and proved that the right multiplication group of such a loop has order $p^{k}q$ with $k\in\{2,3\}$. Their Problem~7.1 asks whether $k=2$ always. Granting their classification, we answer yes: the  |

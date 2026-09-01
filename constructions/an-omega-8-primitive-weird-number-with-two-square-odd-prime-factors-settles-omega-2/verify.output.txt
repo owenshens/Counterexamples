@@ -1,0 +1,78 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e5e35939e8e1a447dd5d85aa54016907c17087ae465e55d6ecc32323fcceeb57
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: a primitive weird number with two square odd prime
+factors and Omega = 8  --  m = 2^2 * 13^2 * 19^2 * 46219 * 1108619
+python 3.9.25, exact integer and Fraction arithmetic only
+
+=== Step 1: the exhibited object, read from the paper's own notation
+NOTE parsed factorisation: [(2, 2), (13, 2), (19, 2), (46219, 1), (1108619, 1)]
+PASS factorization_string_parses_to_five_prime_powers [5 prime powers]
+PASS bases_are_in_strictly_increasing_order [bases [2, 13, 19, 46219, 1108619]]
+PASS all_five_bases_are_prime [2, 13, 19, 46219, 1108619 all prime by trial division]
+PASS cofactor_46219_is_prime_no_factor_up_to_isqrt [isqrt(46219) = 214]
+PASS cofactor_1108619_is_prime_no_factor_up_to_isqrt [isqrt(1108619) = 1052]
+PASS product_of_prime_powers_equals_the_m_printed_in_the_paper [m = 12504224434300196]
+PASS Omega_of_m_is_8 [2+2+2+1+1 = 8]
+PASS omega_of_m_is_5 [5 distinct primes]
+PASS square_odd_prime_factors_are_exactly_13_and_19 [odd p with p^2 | m: [13, 19]]
+PASS there_are_exactly_two_square_odd_prime_factors [n = 2 line of Open Question 1]
+PASS the_two_readings_of_square_odd_prime_factor_agree_here [exponent >= 2 and exponent exactly 2 give the same set [13, 19]]
+PASS no_odd_prime_of_m_has_exponent_three_or_more [odd exponents [2, 2, 1, 1]]
+
+=== Step 2: sigma(m) by three independent routes, and Delta(m)
+PASS sigma_by_multiplicative_formula_matches_the_paper [sigma(m) = 25008448868600400]
+PASS the_papers_printed_product_form_of_sigma_evaluates_to_the_same_integer [7 * 183 * 381 * 46220 * 1108620 = 25008448868600400]
+PASS number_of_divisors_of_m_is_108 [3*3*3*2*2 = 108, all distinct]
+PASS sigma_by_explicit_summation_over_all_108_divisors_matches [sum of divisors = 25008448868600400]
+PASS two_m_matches_the_paper [2m = 25008448868600392]
+PASS Delta_of_m_is_8 [Delta = sigma(m) - 2m = 8]
+PASS m_is_abundant [Delta = 8 > 0]
+
+=== Step 3: m is weird -- Lemma 2 plus a sum of three integers
+PASS least_odd_prime_factor_of_m_exceeds_Delta [least odd prime 13 > Delta 8]
+PASS divisors_of_m_at_most_Delta_are_exactly_1_2_4 [[1, 2, 4]]
+PASS their_sum_is_7_which_is_less_than_Delta [1+2+4 = 7 < 8]
+PASS no_subset_of_the_proper_divisors_of_m_sums_to_Delta [exhaustive over the 3 eligible divisors (all subsets)]
+PASS m_is_weird_by_Lemma_2 [abundant and Delta not representable]
+PASS control_70_decided_WEIRD [Delta=4, eligible divisors [1, 2], weird (A002975)]
+PASS control_836_decided_WEIRD [Delta=8, eligible divisors [1, 2, 4], weird (A002975)]
+PASS control_4030_decided_WEIRD [Delta=4, eligible divisors [1, 2], weird (A002975)]
+PASS control_5830_decided_WEIRD [Delta=4, eligible divisors [1, 2], weird (A002975)]
+PASS control_12_decided_NOT_WEIRD [Delta=4, eligible divisors [1, 2, 3, 4], semiperfect (semiperfect)]
+PASS control_20_decided_NOT_WEIRD [Delta=2, eligible divisors [1, 2], semiperfect (semiperfect)]
+PASS control_945_decided_NOT_WEIRD [Delta=30, eligible divisors [1, 3, 5, 7, 9, 15, 21, 27], semiperfect (semiperfect)]
+
+=== Step 4: m is primitive abundant, hence primitive weird
+PASS the_five_row_table_of_maximal_divisors_matches_the_paper_digit_for_digit [5 of 5 rows, sigma(x) and 2x both]
+PASS every_one_of_the_five_maximal_divisors_is_strictly_deficient [sigma(m/q) < 2(m/q) for q in {2, 13, 19, 46219, 1108619}]
+PASS all_107_proper_divisors_of_m_are_strictly_deficient [checked one by one, exact integers]
+PASS abundancy_is_nondecreasing_along_divisibility_on_the_divisor_lattice_of_m [all 11664 ordered pairs of the 108 divisors, exact Fractions]
+PASS m_is_primitive_abundant [abundant, and every proper divisor deficient]
+PASS m_is_a_primitive_weird_number [weird, and no proper divisor is even abundant, so none is weird]
+
+=== Step 5: the closure Omega_2 = 8, conditional on the quoted lower bound Omega_2 >= 8
+PASS the_witness_meets_the_lower_bound_for_Omega_2_quoted_from_arXiv_1802_07178v2 [Omega(m) = 8, lower bound 8 quoted from arXiv:1802.07178v2 and not reproved here; the paper does not compare that source with its published version]
+PASS the_witness_is_four_below_the_transcribed_upper_bound_12_not_a_claim_of_the_paper [12 - 8 = 4; the arithmetic is correct, but the submitted paper makes no such comparison, so this check now corresponds to no claim of the paper]
+PASS Omega_2_equals_8 [a PWN with exactly 2 square odd primes and Omega = 8 gives Omega_2 <= 8; the source's own theorem gives Omega_2 >= 8]
+PASS the_general_bound_Omega_n_ge_8_for_n_ge_2_is_attained_at_n_equals_2 [attained by m -- granting, as the paper's corollary does, the quoted bound Omega_n >= 8]
+
+=== Step 6: consistency with the third-party record of the same integer
+PASS the_defining_relation_of_OEIS_A063788_holds_for_m [sigma(m) = 2m + Omega(m): 25008448868600400 = 25008448868600392 + 8]
+
+=== Step 7: an index sequence for m -- the submitted paper prints no such sequence, so these six checks correspond to nothing in it and establish more than it claims
+PASS the_index_sequence_re_derived_here_matches_the_transcribed_value [[(1, 2), (2, 2), (1, 2), (167, 1), (-1, 1)] -- transcribed value, not printed by the paper]
+PASS the_prefix_ratio_of_the_transcribed_index_sequence_is_correct [sigma(n)/(2n-sigma(n)) = 488061/11 for n = 2^2*13^2*19^2 = 244036; the paper prints no such ratio]
+PASS the_interval_contains_exactly_167_primes [167 primes in (488061/11, 46219]; the paper prints no such interval]
+PASS the_first_and_last_primes_of_that_interval_match_the_transcribed_sequence [first 44371, last 46219]
+PASS Delta_re_derived_by_the_terminal_prime_recursion [sigma(n) - r*(2n - sigma(n)) = 22558179420 - 1108619*20348 = 8]
+PASS the_terminal_prime_1108619_is_in_the_prime_sieve_used_above [sieve limit 1108620]
+
+NOTE SCOPE. Re-derived here, from the factorisation printed in the paper and nothing else: the value of m, Omega(m) = 8, omega(m) = 5, the two square odd prime factors, sigma(m) by three routes, Delta(m) = 8, weirdness via Lemma 2 with an exhaustive subset-sum over the eligible divisors, primitive abundance by checking ALL 107 proper divisors (not only the five maximal ones), the five-row table digit for digit, the A063788 relation, and the index sequence of Step 7 -- which the paper does not print.
+NOTE NOT CLAIMED BY THE PAPER. Step 7's six checks re-derive an index sequence, a prefix ratio 488061/11 and an interval of 167 primes, none of which appears in the submitted paper: it contains no Remark and prints no such quantities. Step 5's check that the witness is four below the upper bound 12 is likewise a comparison the paper no longer makes. Those checks are correct and are retained rather than deleted, but nothing in the paper rests on them; a transcript establishing more than its paper claims is not a defect in the paper.
+NOTE NOT RE-RUN, and this program makes no claim about any of it: the lower bound Omega_2 >= 8 is TRANSCRIBED from Theorem thm:patterns of Amato-Hasler-Melfi-Parton as it stands in arXiv:1802.07178v2 and is not proved here, so the equality Omega_2 = 8 above is conditional on that quoted theorem; the upper bound 12 is likewise transcribed from their table in the same arXiv v2 source. Neither bound is checked against the published journal version, which the paper states was not compared with v2, so 'published' would overstate what was checked. The exhaustive census that FOUND m is not re-run here and none of its by-products (that the cell Omega = 8 with at least two squared odd primes contains exactly one PWN, hence Omega_3 >= 9) is checked -- the paper does not claim them either. No value of Omega_n for n >= 3 is touched. The definition of the index sequence used in Step 7 is transcribed from the source's terminology; it is descriptive, and no claim of the paper rests on it.
+
+VERDICT: ALL 48 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,229 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A primitive weird number with two square odd prime factors and Omega = 8}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\Om}{\Omega}
+\newcommand{\sig}{\sigma}
+
+\emergencystretch=3em
+
+\title[A primitive weird number with two square odd prime factors]
+{A Primitive Weird Number with Two Square Odd Prime Factors
+ and $\Omega=8$}
+
+\date{}
+
+\subjclass[2020]{11A25, 11B83, 11Y55}
+\keywords{weird number, primitive weird number, primitive abundant number,
+sum-of-divisors function, number of prime factors with multiplicity}
+
+\begin{document}
+
+\begin{abstract}
+A \emph{weird} number is an abundant number that is not semiperfect, and a
+\emph{primitive weird number} (PWN) is a weird number no proper divisor of
+which is weird. For $n\in\mathbb N$ let $\Om_n$ denote the least value of
+$\Om(m)$, the number of prime factors of $m$ counted with multiplicity, over
+all PWN $m$ having exactly $n$ square odd prime factors. Open Question~1 of
+Amato, Hasler, Melfi and Parton, quoted here from arXiv:1802.07178v2, records
+$\Om_1=7$, $8\le\Om_2\le12$, $8\le\Om_3\le15$, and $\Om_n\ge8$ for $n\ge2$. We
+exhibit
+\[
+ m=2^2\cdot13^2\cdot19^2\cdot46219\cdot1108619=12504224434300196 ,
+\]
+a PWN with exactly two square odd prime factors and $\Om(m)=8$, so
+$\Om_2\le8$. With their lower bound $\Om_2\ge8$, which is quoted and not
+reproved here, this gives $\Om_2=8$ and shows that their bound $\Om_n\ge8$ for
+$n\ge2$ is attained; the equality is conditional on that quoted bound. The
+verification is exact
+integer arithmetic: two primality checks by trial division, then
+$\sig(m)-2m=8$ with the divisors of $m$ that are at most $8$ being $1,2,4$,
+whose total is $7$, and five comparisons showing the maximal divisors of $m$
+deficient.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Throughout, $\sig$ is the sum-of-divisors function, $\Om(m)$ is ``the number
+of prime factors counted with their multiplicity'' and $\omega(m)$ is the
+number of distinct prime factors. Write
+\[
+ \Delta(m)=\sig(m)-2m ,
+\]
+so that $m$ is \emph{abundant} exactly when $\Delta(m)>0$ and
+\emph{deficient} exactly when $\Delta(m)<0$. Following Amato, Hasler, Melfi
+and Parton \cite{AHMP19}, a number is \emph{semiperfect} if it is
+expressible as a sum of distinct proper divisors of itself; a \emph{weird}
+number is ``a number which is abundant but not semiperfect''; and a
+\emph{primitive weird number} (PWN) is ``a weird number which is not a
+multiple of any smaller weird number''. A \emph{square odd prime factor} of
+$m$ is an odd prime $p$ with $p^2\mid m$.
+
+In the section ``Open problems'' of \cite{AHMP19} the following appears, as
+the first numbered Open Question of that section. It and the theorem below are
+quoted from arXiv:1802.07178v2, which was not compared with the published
+version.
+
+\medskip
+\noindent\textbf{Open Question 1} (\cite{AHMP19}).
+\emph{For each $n$ in $\mathbb N$, find a PWN with exactly $n$ square odd
+prime factors and the least $\Om=\Om_n$. From the previous section and
+\textup{[the theorem quoted below]} we obtain $\Om_1=7$,
+$8\le\Om_2\le12$, $8\le\Om_3\le15$, and in general if $n\ge2$ we have
+$\Om_n\ge8$.}
+
+\medskip
+The lower bounds quoted there are the authors' own theorem, which reads
+verbatim and in full: \emph{``There are no PWN $m$ with a quadratic
+or higher power odd prime factor and $\Om(m)<7$. There are no PWN $m$ with $2$
+quadratic odd prime factor and $\Om(m)=7$. There are no PWN $m$ with a cubic
+or higher power odd prime factor and $\Om(m)=7$.''} The bound $\Om_2\ge8$ is
+taken here from that theorem as a whole, transcribed and not reproved. We do
+not apportion it among the three sentences: they distinguish a quadratic from a
+cubic or higher odd prime factor, whereas the definition of square odd prime
+factor used here, $p^2\mid m$, does not, and we do not settle which reading of
+``quadratic odd prime factor'' the source intends. The upper bound
+$\Om_2\le12$ is the smallest entry of the $\Om$ column of their table of
+PWN with more than one square odd prime factor, which reads
+$12,12,12,13,14,15$.
+
+\section{The witness}
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+ m=2^2\cdot13^2\cdot19^2\cdot46219\cdot1108619=12504224434300196 .
+\]
+Then $m$ is a primitive weird number, $\Om(m)=8$, and $m$ has exactly two
+square odd prime factors, namely $13$ and $19$. Consequently $\Om_2\le8$, and
+with the lower bound $\Om_2\ge8$ quoted from \cite{AHMP19} in \S1, $\Om_2=8$.
+\end{theorem}
+
+The following criterion is a proposition of \cite{AHMP19}, where it reads:
+\emph{``An abundant number $n$ is weird iff $\Delta(n)$ cannot be expressed
+as a sum of distinct proper divisors of $n$''}. A proof is included for
+completeness.
+
+\begin{lemma}\label{lem:crit}
+An abundant number $N$ is weird if and only if $\Delta(N)$ is not a sum of
+distinct proper divisors of $N$.
+\end{lemma}
+
+\begin{proof}
+Let $P$ be the set of proper divisors of $N$, so
+$\sum_{d\in P}d=\sig(N)-N=N+\Delta(N)$. If $S\subseteq P$ then its
+complement $T=P\setminus S$ satisfies
+$\sum_{d\in T}d=N+\Delta(N)-\sum_{d\in S}d$. Hence
+$\sum_{d\in S}d=N$ holds for some $S\subseteq P$ if and only if
+$\sum_{d\in T}d=\Delta(N)$ holds for some $T\subseteq P$. The left-hand
+condition is semiperfection and the right-hand one is representability of
+$\Delta(N)$; an abundant number is weird exactly when the former fails.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+\emph{(i) The factorisation.} $46219$ and $1108619$ are prime: neither is
+divisible by any prime up to $\lfloor\sqrt{46219}\rfloor=214$, respectively
+$\lfloor\sqrt{1108619}\rfloor=1052$. Hence
+$\Om(m)=2+2+2+1+1=8$ and $\omega(m)=5$, and the odd primes occurring in $m$
+to an exponent at least $2$ are exactly $13$ and $19$: two of them, both to
+the exponent exactly $2$, so the two readings of ``square odd prime factor''
+discussed in \S1 agree for $m$.
+
+\emph{(ii) Abundance.} By multiplicativity,
+\[
+ \sig(m)=7\cdot183\cdot381\cdot46220\cdot1108620=25008448868600400 ,
+\]
+\[
+ 2m=25008448868600392 ,
+\]
+so
+\[
+ \Delta(m)=8>0 .
+\]
+
+\emph{(iii) Weird.} The smallest odd prime factor of $m$ is $13>8$, so the
+divisors of $m$ that are at most $\Delta(m)=8$ are exactly $1$, $2$ and $4$,
+and
+\[
+ 1+2+4=7<8 .
+\]
+No sum of distinct divisors of $m$ can therefore equal $8$ --- the eligible
+divisors do not even total $8$ --- so by Lemma~\ref{lem:crit} the abundant
+number $m$ is weird.
+
+\emph{(iv) Primitive abundant.} The abundancy $\sig(x)/x$ is non-decreasing
+along divisibility, so every proper divisor of $m$ is deficient as soon as
+the five maximal ones are, and these are settled by exact integer
+comparison:
+\[
+\renewcommand{\arraystretch}{1.15}
+\begin{array}{lrr}
+ x & \sig(x)\hphantom{00} & 2x\hphantom{00}\\[2pt]
+ \hline
+ m/2       & 10717906657971600 & 12504224434300196\\
+ m/13      & 1913214667543200  & 1923726836046184\\
+ m/19      & 1312779468168000  & 1316234150978968\\
+ m/46219   & 541074185820      & 541085892568\\
+ m/1108619 & 22558179420       & 22558199768
+\end{array}
+\]
+Each left entry is smaller than the right entry beside it, so each $m/q$ is
+deficient and $m$ is primitive abundant. In particular no proper divisor of
+$m$ is abundant, hence none is weird, and $m$ is a \emph{primitive} weird
+number.
+
+\emph{(v) The closure.} $m$ is a PWN with exactly two square odd prime
+factors and $\Om(m)=8$, so $\Om_2\le8$; the theorem of \cite{AHMP19} quoted
+in \S1 gives $\Om_2\ge8$; hence $\Om_2=8$.
+\end{proof}
+
+\begin{corollary}
+Granting the bound $\Om_n\ge8$ recorded for $n\ge2$ in Open Question~$1$ of
+\cite{AHMP19}, it is attained at $n=2$.
+\end{corollary}
+
+\medskip
+\noindent\textbf{Status.}
+Only the case $n=2$ of Open Question~1 is settled. The bound $\Om_2\le8$ is
+proved above; the matching $\Om_2\ge8$ is the theorem of \cite{AHMP19} quoted
+in \S1, transcribed and not reproved, so the equality $\Om_2=8$ is conditional
+on that theorem. Nothing here bounds $\Om_n$ for $n\ge3$.
+
+The integer itself is not new: $12504224434300196$ appears as the tenth term
+of OEIS \texttt{A063788} \cite{OEIS}, ``numbers $k$ such that
+$\sig(k)=2k+\Om(k)$'', consistently with $\Delta(m)=8=\Om(m)$ above. We make
+no priority claim for the observation that $m$ is a PWN with two square odd
+prime factors, nor for the closure that follows from it; we have not
+established that either is unrecorded.
+
+\begin{thebibliography}{9}
+
+\bibitem{AHMP19}
+G.~Amato, M.~F. Hasler, G.~Melfi, and M.~Parton,
+\emph{Primitive abundant and weird numbers with many prime factors},
+J. Number Theory \textbf{201} (2019), 436--459.
+\href{https://doi.org/10.1016/j.jnt.2019.02.027}{doi:10.1016/j.jnt.2019.02.027};
+\href{https://arxiv.org/abs/1802.07178v2}{arXiv:1802.07178v2}.
+
+\bibitem{OEIS}
+OEIS Foundation Inc., \emph{The On-Line Encyclopedia of Integer Sequences}:
+sequence \texttt{A063788}, numbers $k$ with $\sigma(k)=2k+\Omega(k)$,
+\href{https://oeis.org/A063788}{oeis.org/A063788}.
+
+\end{thebibliography}
+
+\end{document}

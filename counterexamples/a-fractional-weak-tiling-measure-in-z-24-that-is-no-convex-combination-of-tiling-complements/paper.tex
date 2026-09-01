@@ -1,0 +1,329 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A fractional weak tiling measure in Z_24 that is no convex combination of tiling complements}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\ZM}{\mathbb Z_M}
+\newcommand{\Zn}[1]{\mathbb Z_{#1}}
+\newcommand{\one}{\mathbf 1}
+
+\title[A fractional weak tiling measure in $\Zn{24}$]
+{A Fractional Weak Tiling Measure in $\Zn{24}$
+ That Is No Convex Combination of Tiling Complements}
+
+\date{}
+
+\subjclass[2020]{05B45, 43A25, 52C22, 90C57}
+\keywords{weak tiling, tiling complement, cyclic group, exact cover polytope,
+extreme point, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Kadir and Fan ask, in the third item of the open problems of
+arXiv:2607.02149, whether every nonnegative weak tiling measure $\mu$ of a set
+$E\subseteq\ZM$ is a convex combination of the indicator measures of classical
+tiling complements of $E$. We answer this in the negative for cyclic groups.
+Take $M=24$ and $E=\{0,4,6,10\}$, a set which genuinely tiles $\Zn{24}$ and has
+exactly sixteen tiling complements, and let
+\[
+  g=\one_{\{0,8,16\}}+\tfrac12\,\one_{\{7,9,11,19,21,23\}} .
+\]
+Then $g\ge0$, $g(0)=1$ and $\one_E*g=\one_{\Zn{24}}$, and the linear functional
+$L(x)=x(7)+x(9)+x(11)+x(19)+x(21)+x(23)$ takes the value $3$ at $g$ and at most
+$2$ at each of the sixteen tiling complements, so $g$ lies outside their convex
+hull. Since $g$ satisfies the source's normalisation $f(0)=1$ and the separation
+is against all sixteen complements, the object answers the question negatively
+both with that normalisation and without it. The same construction, applied to
+$E=d\cdot\{0,2,3,5\}$ in $\Zn{12d}$, refutes the question for every modulus
+divisible by $12$ and larger than $12$.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $M\ge 2$ and let $\ZM=\mathbb Z/M\mathbb Z$. For $E,T\subseteq\ZM$ we write
+$E\oplus T=\ZM$ to mean that every element of $\ZM$ has exactly one
+representation $e+t$ with $e\in E$, $t\in T$; such a $T$ is a
+\emph{tiling complement} of $E$. Convolution is
+$(\one_E*f)(y)=\sum_{e\in E}f(y-e)$.
+
+Kadir and Fan \cite{KF} work with the following notion.
+
+\begin{definition}[\cite{KF}]
+A set $A$ \emph{weakly tiles} $G$ if there exists a nonnegative function
+$f\colon G\to\mathbb R_+$ such that $f(0)=1$ and $\one_A*f=\one_G$.
+\end{definition}
+
+The ``Open problems'' section of \cite{KF} states three problems ``for general
+finite groups $\ZM$''; the third, which carries no printed number, reads:
+
+\begin{quote}
+For a set $E\subseteq\ZM$, let $\mu$ be a non-negative weak tiling measure for
+$E$, that is, $\one_E*\mu=\one_{\ZM}$. Is it true that $\mu$ can be represented
+as a convex combination of measures associated with classical tiling
+complements of $E$? More precisely, do there exist finitely many sets
+$T_1,\ldots,T_N\subseteq\ZM$ and coefficients $c_1,\ldots,c_N\ge0$, with
+$\sum_{k=1}^N c_k=1$, such that $\mu=\sum_{k=1}^N c_k\delta_{T_k}$, where each
+$T_k$ satisfies $E\oplus T_k=\ZM$?
+\end{quote}
+
+\begin{remark}[the normalisation]\label{rem:pin}
+The inline ``that is'' clause of the quoted item abbreviates the Definition and
+omits the normalisation $f(0)=1$. We keep the normalisation, since it is part of
+the notion the source studies: without it every nonempty $A$ weakly tiles $G$,
+by $f\equiv 1/|A|$. Accordingly all statements below concern the polytope
+\begin{equation}\label{eq:PE}
+  P_E=\bigl\{g\colon\ZM\to\mathbb R \ :\ g\ge0,\ \ \one_E*g=\one_{\ZM},\ \ g(0)=1\bigr\},
+\end{equation}
+and the question is whether $P_E$ is contained in the convex hull of
+$\{\one_T : E\oplus T=\ZM\}$. Note that if $\mu=\sum_k c_k\one_{T_k}$ with
+$c_k\ge0$, $\sum_k c_k=1$ and $\mu(0)=1$, then $c_k=0$ whenever $0\notin T_k$;
+so under this reading only the complements through $0$ can carry weight, and
+those satisfy $\one_T\in P_E$. Nothing is lost by keeping the normalisation:
+the measure of Theorem~\ref{thm:main} satisfies $g(0)=1$, and the functional
+exhibited there separates it from the convex hull of \emph{all} tiling
+complements of $E$, so it answers the quoted item read either way.
+\end{remark}
+
+The normalisation constrains the support.
+
+\begin{lemma}\label{lem:pin}
+Let $g\in P_E$. Then $g(e-e')=0$ for all distinct $e,e'\in E$; that is,
+$\supp(g)\subseteq\{0\}\cup\bigl(\ZM\setminus(E-E)\bigr)$.
+\end{lemma}
+
+\begin{proof}
+Take $y=e\in E$ in $\one_E*g=\one_{\ZM}$: then
+$\sum_{e'\in E}g(e-e')=1$. The term $e'=e$ already contributes $g(0)=1$ and all
+terms are nonnegative, so every other term vanishes.
+\end{proof}
+
+Thus, after the normalisation is imposed, $P_E$ is exactly the fractional exact
+cover polytope of $\ZM\setminus E$ by the translates $\{E+t\}$ with
+$t\in\ZM\setminus(E-E)$, whose $0/1$ points are precisely the tiling
+complements of $E$ containing $0$. The quoted item therefore asserts that this
+polytope is integral for every pair $(M,E)$, and a single non-$0/1$ vertex
+refutes it.
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+Let $M=24$, let $E=\{0,4,6,10\}$, and let $g\colon\Zn{24}\to\mathbb Q_{\ge0}$ be
+\begin{gather*}
+  g(0)=g(8)=g(16)=1,\\
+  g(7)=g(9)=g(11)=g(19)=g(21)=g(23)=\tfrac12,
+\end{gather*}
+and $g=0$ at the remaining fifteen residues. Then
+\begin{enumerate}
+\item[(i)] $E$ tiles $\Zn{24}$, and has exactly sixteen tiling complements,
+namely the sets $(2a+\langle 8\rangle)\cup(2b+1+\langle8\rangle)$ with
+$a,b\in\{0,1,2,3\}$, of which exactly four contain $0$;
+\item[(ii)] $g\in P_E$, and $g$ is not $0/1$;
+\item[(iii)] $g$ is not a convex combination of measures $\one_T$ with
+$E\oplus T=\Zn{24}$.
+\end{enumerate}
+Consequently the third open problem of \cite{KF} has a negative answer for
+cyclic groups.
+\end{theorem}
+
+\begin{proof}
+\emph{(ii).} Nonnegativity and $g(0)=1$ are visible. For $\one_E*g=\one$, split
+by parity. We have
+\[
+  E-E=\{0,2,4,6,10,14,18,20,22\},
+\]
+which is contained in the even residues, so the three translates
+$E+0=\{0,4,6,10\}$, $E+8=\{8,12,14,18\}$ and $E+16=\{16,20,22,2\}$ are pairwise
+disjoint and partition the twelve even residues; each even $y$ therefore
+receives exactly one contribution, of weight $1$. For odd $y$, the six
+translates $E+s$ with $s\in\{7,9,11,19,21,23\}$ cover each of the twelve odd
+residues exactly twice --- explicitly, $y$ is covered by $E+s$ for exactly the
+two $s\in\{7,9,11,19,21,23\}$ with $y-s\in E$ --- and $2\cdot\tfrac12=1$. Since
+$g(7)=\tfrac12\notin\{0,1\}$, $g$ is not $0/1$.
+
+\emph{(i).} Every element of $E$ is even, so $E+t$ consists of even residues for
+even $t$ and of odd residues for odd $t$. Hence if $E\oplus T=\Zn{24}$ then the
+even part $T_0$ of $T$ must satisfy $E\oplus T_0=2\Zn{24}$ and the odd part
+$T_1$ must satisfy $E\oplus T_1=1+2\Zn{24}$; in particular
+$|T_0|=|T_1|=12/4=3$. Also $(T-T)\cap(E-E)=\{0\}$, since $t-t'=e'-e$ would give
+$t+e=t'+e'$. Within one parity class the available differences are even, and the
+even residues \emph{not} in $E-E$ are $8,12,16$; a $3$-subset of a parity class
+with all pairwise differences in $\{8,12,16\}$ must be a coset of
+$\langle8\rangle=\{0,8,16\}$, because a pair at difference $12$ admits no third
+element ($12+8=20$, $12+16=4$ and $12+12=0$ all reintroduce a forbidden
+difference). So $T_0=2a+\langle8\rangle$ and $T_1=2b+1+\langle8\rangle$ with
+$a,b\in\{0,1,2,3\}$, which is sixteen candidates. Each of them tiles: since
+\[
+  E\oplus\langle 8\rangle=\{0,4,6,10\}\cup\{8,12,14,18\}\cup\{16,20,22,2\}
+  =2\Zn{24},
+\]
+translating by $2a$ gives $E\oplus T_0=2\Zn{24}$ and translating by $2b+1$ gives
+$E\oplus T_1=1+2\Zn{24}$. Exactly four of the sixteen contain $0$, namely
+\begin{gather*}
+  \{0,1,8,9,16,17\},\qquad\{0,3,8,11,16,19\},\\
+  \{0,5,8,13,16,21\},\qquad\{0,7,8,15,16,23\}.
+\end{gather*}
+
+\emph{(iii).} Put
+\[
+  L(x)=x(7)+x(9)+x(11)+x(19)+x(21)+x(23),
+\]
+so that $L(g)=6\cdot\tfrac12=3$. Let $T=T_0\cup T_1$ be one of the sixteen. The
+six residues $7,9,11,19,21,23$ are odd, so $L(\one_T)=|T_1\cap H|$ with
+$H=\{7,9,11,19,21,23\}$, and the four possibilities are
+\begin{gather*}
+  \{1,9,17\}\cap H=\{9\},\qquad
+  \{3,11,19\}\cap H=\{11,19\},\\
+  \{5,13,21\}\cap H=\{21\},\qquad
+  \{7,15,23\}\cap H=\{7,23\}.
+\end{gather*}
+Hence $L(\one_T)\in\{1,2\}$ for all sixteen $T$, so $L\le2$ on their convex
+hull, while $L(g)=3>2$.
+\end{proof}
+
+\section{Every modulus divisible by $12$ above $12$}
+
+Write $E'=\{0,2,3,5\}\subseteq\Zn{12}$, $U=\{0,4,8\}$ and
+$V=\{3,4,5,9,10,11\}$, all inside $\Zn{12}$.
+
+\begin{proposition}\label{prop:family}
+Let $d\ge1$, $M=12d$ and $E=d\cdot E'=\{0,2d,3d,5d\}\subseteq\ZM$. Define
+$g_d\colon\ZM\to\mathbb Q_{\ge0}$ by
+\begin{gather*}
+  g_d(dj)=\one_U(j)\quad(j\in\Zn{12}),\\
+  g_d(dj+c)=\tfrac12\,\one_V(j)\quad(j\in\Zn{12},\ 1\le c\le d-1),
+\end{gather*}
+and $g_d=0$ elsewhere. Then $E$ tiles $\ZM$, $g_d\in P_E$ with total mass $3d$,
+and $g_d$ is an extreme point of $P_E$. For $d\ge2$ it is not $0/1$, so the
+third open problem of \cite{KF} fails for every $M\in\{12d : d\ge2\}$. For
+$d=2$ it is exactly the object of Theorem~\ref{thm:main}.
+\end{proposition}
+
+\begin{proof}
+Let $A[y][t]=1$ if $y-t\in E$ and $0$ otherwise, $y,t\in\ZM$, so that
+$\one_E*g=\one_{\ZM}$ reads $Ag=\one$.
+Since $E\subseteq d\ZM$, the equation $y-t\in E$ forces $y\equiv t\pmod d$;
+writing $y=dj+c$ and $t=ds+c'$ we get $y-t\in E$ iff $c=c'$ and
+$j-s\in E'$. So both the convolution and the matrix $A$ decouple over the $d$
+cosets of $d\ZM$, each block being the $\Zn{12}$ circulant
+$B[j][s]=\one_{E'}(j-s)$.
+
+Tiling: $E'\oplus U=\Zn{12}$ (the twelve sums $e'+u$ are
+$0,2,3,5,4,6,7,9,8,10,11,1$, all distinct), hence with
+$T=\{dt+c : t\in U,\ 0\le c\le d-1\}$ we get
+$E\oplus T=\{d(e'+u)+c\}=\ZM$, and $0\in T$.
+
+Membership: on the coset $c=0$ the block equation is $B\,\one_U=\one$, i.e.
+$E'\oplus U=\Zn{12}$, which was just checked; on each coset $c\ne0$ it is
+$B\bigl(\tfrac12\one_V\bigr)=\one$, i.e.\ each $j\in\Zn{12}$ has exactly two
+representations $j=e'+v$ with $e'\in E'$, $v\in V$. For that, note
+$V=\{3,4,5\}\oplus\{0,6\}$ and that the multiset $E'+\{3,4,5\}$ is
+$\{3,4,5,5,6,6,7,7,8,8,9,10\}$, whose multiplicity function $m$ satisfies
+$m(j)+m(j+6)=2$ for every $j\in\Zn{12}$; the number of representations of $j$
+over $V$ is $m(j)+m(j-6)=m(j)+m(j+6)=2$. Nonnegativity and $g_d(0)=1$
+are visible, and the mass is $3+3(d-1)=3d$.
+
+Extremality: the support columns of $A$ are, block by block, the columns of $B$
+indexed by $U$ in the block $c=0$ and by $V$ in each block $c\ne0$. Because $A$
+is block diagonal it suffices that $B|_U$ has rank $3$ and $B|_V$ has rank $6$.
+The first holds since the three columns have disjoint supports
+$E'$, $E'+4$, $E'+8$; the second because the $6\times6$ submatrix of $B|_V$ on
+the rows $(6,7,8,0,1,2)$ is block diagonal with two copies of
+$\begin{pmatrix}1&1&0\\0&1&1\\1&0&1\end{pmatrix}$ and so has determinant $4$.
+Hence the $3+6(d-1)$ support columns of $A$ are independent, so $g_d$ is a basic
+feasible solution of $\{x\ge0,\ Ax=\one,\ x(0)=1\}$ and therefore an extreme
+point of $P_E$ \cite[\S8.5]{Schrijver}. For $d\ge2$ some coset $c\ne0$ exists
+and $g_d$ takes the value $\tfrac12$, so $g_d$ equals no $\one_T$; by
+Remark~\ref{rem:pin} any convex combination $\sum_k\lambda_k\one_{T_k}$ equal to
+$g_d$ may be assumed supported on complements through $0$, all of which lie in
+$P_E$, and an extreme point is no convex combination of points of $P_E$ other
+than itself.
+For $d=1$ there is no coset $c\ne0$ and $g_1=\one_{\{0,4,8\}}$ is integral,
+which is why $d\ge2$ is required.
+\end{proof}
+
+\section{Scope}
+
+The variants in the same list of \cite{KF} that quantify over \emph{positive
+definite} measures are untouched by the object above: $g$ is real but not
+symmetric ($g(7)=\tfrac12$ while $g(-7)=g(17)=0$), hence not positive definite.
+We do not claim that $M=24$ is the least modulus carrying such an object;
+Theorem~\ref{thm:main} and Proposition~\ref{prop:family} say nothing about
+$M\notin12\mathbb Z$.
+
+The question descends from the open problems of Kolountzakis, Lev and Matolcsi
+\cite{KLM1}, which ask whether every extreme point of the weak tiling body is a
+proper tiling; for related results in the finite abelian setting see
+\cite{KLMS,KLMS2}.
+
+\section{Verification}
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library only,
+exact integer and \texttt{Fraction} arithmetic, no external data file)
+recomputes the twenty-four convolution values, finds the sixteen tiling
+complements by exhaustive enumeration of all $\binom{24}{6}=134{,}596$
+six-subsets of $\Zn{24}$, evaluates $L$ on all of them, and checks the four
+complements through $0$ against the list printed above. For
+Proposition~\ref{prop:family} it checks the two $\Zn{12}$ block ranks and the
+members $d=2,\ldots,8$ end to end; the block decomposition and the support
+pattern for general $d$ are not computed, so the passage from those members to
+every $M\in\{12d : d\ge2\}$ rests on the proof above and not on computation. The
+program prints one line per check and exits $0$ only if all of them pass; the
+recorded run is \texttt{verify.output.txt}.
+
+\begin{thebibliography}{9}
+
+\bibitem{KF}
+M.~Kadir and K.~Fan,
+\emph{Tiles and weak tiles in $\mathbb Z_{pq}$},
+arXiv:2607.02149, 2026.
+\href{https://arxiv.org/abs/2607.02149}{arXiv:2607.02149}.
+The statement refuted here is the third item of the ``Open problems'' list of
+v2 (4 July 2026), quoted in full in Section~1.
+
+\bibitem{KLM1}
+M.~N. Kolountzakis, N.~Lev, and M.~Matolcsi,
+\emph{Spectral sets and weak tiling},
+Sampl. Theory Signal Process. Data Anal. \textbf{21} (2023), no.~2, Paper
+No.~31.
+\href{https://doi.org/10.1007/s43670-023-00070-w}{doi:10.1007/s43670-023-00070-w};
+\href{https://arxiv.org/abs/2209.04540}{arXiv:2209.04540}.
+
+\bibitem{KLMS}
+G.~Kiss, I.~Londner, M.~Matolcsi, and G.~Somlai,
+\emph{A lonely weak tile},
+Expo. Math. \textbf{44} (2026), Paper No.~125636.
+\href{https://arxiv.org/abs/2410.04948}{arXiv:2410.04948}.
+
+\bibitem{KLMS2}
+G.~Kiss, I.~Londner, M.~Matolcsi, and G.~Somlai,
+\emph{Functional tilings and the Coven--Meyerowitz tiling conditions},
+arXiv:2411.03854, 2024.
+\href{https://arxiv.org/abs/2411.03854}{arXiv:2411.03854}.
+
+\bibitem{Schrijver}
+A.~Schrijver,
+\emph{Theory of Linear and Integer Programming},
+Wiley, Chichester, 1986.
+
+\end{thebibliography}
+
+\end{document}

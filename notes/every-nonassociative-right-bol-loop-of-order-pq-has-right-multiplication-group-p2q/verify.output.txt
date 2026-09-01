@@ -1,0 +1,99 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8e1ca1578427b7187886f9f3e6c1dc84a4250d6e8774f55c99d9e36483e9a817
+python:  Python 3.9.25
+=== program output follows ===
+checks of the computational content of the claim: FOR ODD PRIMES p > q WITH
+q DIVIDING p^2 - 1, every nonassociative right Bol loop of order pq has right
+multiplication group of order p^2 q -- the two hypotheses are part of the
+claim, exactly as in the title, abstract and theorem of the paper
+(the paper's affirmative answer to KNV Problem 7.1). This program does NOT
+prove that claim for all admissible p and q. It GRANTS the imported KNV
+Theorem 1.1(ii)-(iii) classification -- that every such loop is Z_{pq} or a
+member of the theta-family -- which is assumed here and NOT re-proved; it
+brute-forces |Mlt_r| over that family only for pq <= 255; and it checks the
+steps of the paper's hand proof as identities on finitely many cells.
+See the SCOPE note at the end for what is not established.
+python 3.9.25 -- exact integer arithmetic in F_p and F_{p^2}, no floats,
+no randomness, standard library only
+exactness guard: Fraction(1,3)*3 == 1 is True
+
+=== SECTION A -- the printed objects come out of the printed normal form ===
+PASS A1_least_nonresidue_mod_5_is_2 [t = 2]
+PASS A1_w_equals_2_plus_3z_has_order_3_in_F25 [w^2 + w + 1 = 0, order(w) = 3]
+PASS A1_the_programs_own_root_of_unity_at_5_3_is_that_w [w = (2, 3)]
+PASS A1_u_equals_1_2plus2b_2minus2b_for_every_b [b=0..4 -> (1, 2, 2), (1, 4, 0), (1, 1, 3), (1, 3, 1), (1, 0, 4)]
+PASS A1_gamma_3_plus_bz_has_trace_one_so_u_lies_in_F5 [Tr(3+bz) = 6 = 1 mod 5]
+PASS A1_admissible_b_is_exactly_0_2_3 [b in [0, 2, 3]; b=1 gives u_2=0, b=4 gives u_1=0]
+PASS A1_the_two_Gamma_classes_at_5_3_are_1_2_2_and_1_1_3 [classes: [(1, 2, 2), (1, 1, 3)]]
+PASS A1_class_b_0_is_symmetric_so_it_is_the_Bruck_loop_B_5_3 [u = (1,2,2), u_i = u_{-i}, gamma = 1/2 = 3]
+PASS A2_least_order_3_element_mod_7_is_2 [w = 2]
+PASS A2_admissible_gamma_mod_7_is_1_3_4_5 [gamma in [1, 3, 4, 5]; gamma=2 and 6 give some u_i = 0]
+PASS A2_Gamma_classes_at_7_3_are_gamma_1_3_4_as_KNV_print [representatives [1, 3, 4], since 5 = 1-3]
+PASS A2_their_u_vectors_are_1_2_4_and_1_5_1_and_1_3_3 [[(1, 2, 4), (1, 5, 1), (1, 3, 3)]]
+PASS A3_admissible_cells_with_pq_at_most_255_number_29 [29 cells, [(5, 3), (7, 3), (11, 3), (11, 5), (13, 3), (13, 7), (17, 3), (19, 3), (19, 5), (23, 3), (23, 11), (29, 3), (29, 5), (29, 7), (31, 3), (31, 5), (37, 3), (41, 3), (41, 5), (43, 3), (47, 3), (53, 3), (59, 3), (61, 3), (67, 3), (71, 3), (73, 3), (79, 3), (83, 3)]]
+PASS A3_every_cell_has_p_congruent_to_plus_or_minus_1_mod_q [q | p^2-1 <=> p = +-1 mod q]
+PASS A3_every_member_satisfies_u_0_1_and_u_i_nonzero_and_u_i_plus_u_j_nonzero [505 members over 29 cells, 0 violations]
+PASS A4_every_member_obeys_the_linear_recurrence_u_i2_eq_lambda_u_i1_minus_u_i [lambda = w + w^{-1} in F_p; 0 violations over all 29 cells]
+
+=== SECTION B -- the tables are right Bol loops, by the identity ===
+PASS B0_cells_checked_by_the_full_right_Bol_identity [[(5, 3), (7, 3), (11, 3), (11, 5), (13, 3), (13, 7), (17, 3), (19, 3), (19, 5), (23, 3), (29, 3), (31, 3)] (pq <= 105)]
+PASS B1_every_member_of_those_cells_is_a_loop_and_satisfies_the_right_Bol_identity [89 members, all right Bol loops]
+PASS B2_the_associative_members_of_those_cells_number_exactly_the_cells_with_q_dividing_p_minus_1 [5 associative among 89; cells with q | p-1: [(7, 3), (11, 5), (13, 3), (19, 3), (31, 3)]]
+PASS B3_the_affine_form_of_Step_1_equals_KNVs_printed_normal_form_entry_by_entry [two independent transcriptions agree on all 89 tables of those cells]
+
+=== SECTION C -- the census over the ASSUMED theta-family (plus Z_{pq}), pq <= 255; the classification that this family is exhaustive is imported, not checked here ===
+PASS C1_loops_in_the_census_number_534_equal_to_sum_of_p_minus_q_plus_4_over_2 [534 objects generated up to isomorphism = the theta-family members plus Z_{pq} over the 29 cells with pq <= 255; that these EXHAUST the right Bol loops of those orders is granted from KNV Thm 1.1(ii)-(iii), not established here]
+PASS C2_members_with_dim_R_equal_1_number_44_being_29_copies_of_Z_pq_plus_15_one_per_cell_with_q_dividing_p_minus_1 [44 = 29 cyclic Z_{pq} (added once per cell by construction, not re-tested here) + 15 theta-family members with dim R = 1, one for each cell with q | p-1. That such a member is exactly the nonabelian group of order pq is the classification statement quoted in Section 2 of the paper (Q_gamma is associative iff gamma = 1, which needs q | p-1), GRANTED here; is_assoc and is_abelian are actually run on one of these 15 only at (7,3) in E9, and as a count over the pq <= 105 cells in B2]
+PASS C3_members_with_dim_R_not_equal_1_the_criterion_used_here_for_nonassociativity_number_490 [490 members have dim R != 1, which is the criterion this census uses for nonassociativity; the test not is_assoc(T, pq) is NOT run member by member. The equivalence is granted from the paper's Section 2, and each of these members is separately found in C4 to have |Mlt_r| = p^2 q rather than the pq of a group]
+PASS C4_all_490_have_Mlt_r_of_order_p_squared_q_by_brute_force [490/490, |Mlt_r| computed by forced closure of ALL pq right translations]
+PASS C5_all_490_have_dim_R_equal_2_by_the_formula [490/490]
+PASS C6_anomalies_are_zero [0 anomalies]
+PASS C7_RInn_has_order_p_throughout_since_Mlt_r_equals_pq_times_RInn [|Mlt_r|/pq = p for all 490]
+PASS C8_the_two_routines_are_independent_and_agree_on_every_census_loop [mlt_r never reads the proof; dim_R never builds the group]
+PASS C9_the_kernel_of_the_shift_action_is_elementary_abelian_of_order_p_squared [84/84 nonassociative members of the pq<=105 cells: |P| = p^2, abelian, exponent p, pure translations only]
+
+=== SECTION D -- each step of the proof, checked as an identity on finitely many cells only, NOT symbolically for all p and q: D2-D4 stop at pq <= 105, the rest at pq <= 255, and D4 uses one sampled family of translations ===
+PASS D1_Step1_every_right_translation_is_the_stated_affine_map_with_alpha_i_u_i_over_u_i_plus_k [all 29 cells, all members, all (i,j,k,l): 0 mismatches]
+PASS D2_Step3_R_1_0_to_the_k_equals_R_k_0 [s = R_{(1,0)} has beta = 0; s^k = R_{(k,0)} for all k, over the pq<=105 cells]
+PASS D3_Step3_R_k_l_factors_as_the_translation_by_t_i_m_1_plus_u_i_plus_k_over_u_i_times_s_to_the_k [0 mismatches over the pq<=105 cells]
+PASS D4_Step3_conjugation_by_s_is_the_plain_cyclic_shift_in_the_coordinates_r_i_t_i_u_i [s^{-1} n s shifts r forward and s n s^{-1} shifts it back; 0 mismatches over the pq<=105 cells and every t of the sampled family]
+PASS D5_Step3_in_r_coordinates_the_generators_are_m_times_x_k_with_x_k_i_u_i_plus_u_i_plus_k [all 29 cells, all members, all (k,l): 0 mismatches]
+PASS D6_Step4_x_k_equals_gamma_1_plus_w_k_v_1_plus_1_minus_gamma_1_plus_w_minus_k_v_minus_1 [identity in F_{p^2}, all 29 cells, all members, all k, all coordinates]
+PASS D7_Step4_v_1_and_v_minus_1_are_independent_over_F_p2_so_dim_W_is_2 [minor w^{-1} - w != 0 in all 29 cells, since w has odd order q > 1]
+PASS D8_Step4_dim_R_never_exceeds_2_over_the_whole_census [F_p-independence inside F_p^{Z_q} survives extension to F_{p^2}]
+PASS D9_Step5_the_2x2_determinant_of_x_0_and_its_shift_is_4_gamma_1_minus_gamma_w_inv_minus_w [closed form verified over all 29 cells and every member]
+PASS D10_Step5_that_determinant_is_nonzero_for_every_nonassociative_member [490 of 505 members have nonzero determinant; the 15 with gamma = 1 are the nonabelian groups]
+PASS D11_the_plane_R_is_the_same_for_every_nonassociative_gamma_in_each_cell [exactly one 2-dimensional R per cell, over all 29 cells]
+PASS D12_the_shift_acting_on_R_has_characteristic_polynomial_X2_minus_w_plus_w_inv_X_plus_1 [trace = w + w^{-1}, determinant = 1, i.e. eigenvalues exactly w and w^{-1}, over all 29 cells]
+
+=== SECTION E -- the controls ===
+PASS E1_control_u_1_1_2_at_p_5_q_3_meets_KNVs_loop_conditions [u_0 = 1, all u_i != 0, all u_i + u_j != 0]
+PASS E2_control_is_a_loop_of_order_15 [both translations bijective, two-sided identity present]
+PASS E3_control_is_NOT_right_Bol [((zx)y)x = z((xy)x) fails]
+PASS E4_control_fails_the_recurrence_for_every_lambda_in_F_5 [so Niederreiter-Robinson does not apply, consistent with E3]
+PASS E5_control_has_Mlt_r_of_order_375_the_upper_branch_p_cubed_q [|Mlt_r| = 375 = 5^3 * 3, while p^2 q = 75]
+PASS E6_control_has_dim_R_equal_3_so_the_formula_returns_the_upper_branch_too [dim R = 3, and |Mlt_r| = p^{dim R} q]
+PASS E7_x_0_for_the_control_is_2_2_4 [x^(0) = 2u = (2,2,4)]
+PASS E8_the_circulant_of_2_2_4_has_determinant_minus_32_equal_3_mod_5 [first-column expansion 2(8-4) - 2(4-8) + 4(4-16) = 8 + 8 - 48 = -32 = 3 mod 5]
+PASS E9_gamma_equals_1_at_7_3_gives_the_nonabelian_group_of_order_21 [u = (1, 2, 4), associative, nonabelian, |Mlt_r| = 21 = pq, dim R = 1]
+PASS E10_u_identically_1_at_5_3_gives_the_cyclic_group_of_order_15 [associative, abelian, |Mlt_r| = 15 = pq, dim R = 1]
+PASS E10_u_identically_1_at_7_3_gives_the_cyclic_group_of_order_21 [associative, abelian, |Mlt_r| = 21 = pq, dim R = 1]
+PASS E11_B_5_3_matches_KNV_Theorem_1_1_v [u = (1, 2, 2) symmetric (gamma = 1/2), |Mlt_r| = 75 = p^2 q, kernel elementary abelian of order p^2]
+PASS E11_B_7_3_matches_KNV_Theorem_1_1_v [u = (1, 3, 3) symmetric (gamma = 1/2), |Mlt_r| = 147 = p^2 q, kernel elementary abelian of order p^2]
+PASS E11_B_11_3_matches_KNV_Theorem_1_1_v [u = (1, 5, 5) symmetric (gamma = 1/2), |Mlt_r| = 363 = p^2 q, kernel elementary abelian of order p^2]
+PASS E11_B_11_5_matches_KNV_Theorem_1_1_v [u = (1, 9, 7, 7, 9) symmetric (gamma = 1/2), |Mlt_r| = 605 = p^2 q, kernel elementary abelian of order p^2]
+PASS E11_B_13_7_matches_KNV_Theorem_1_1_v [u = (1, 4, 5, 10, 10, 5, 4) symmetric (gamma = 1/2), |Mlt_r| = 1183 = p^2 q, kernel elementary abelian of order p^2]
+
+=== SECTION F -- two cardinality counts the paper no longer states (F1, F2) and the wide dimension sweep ===
+PASS F1_Gamma_has_p_minus_q_plus_2_over_2_classes_a_count_the_paper_does_not_state [91 cells, q in [3, 5, 7, 11, 13], p < 200: 0 mismatches. NOT A PAPER CLAIM: the paper states no cardinality for Gamma, so this check corresponds to nothing in it; it is kept as extra verification of the parameterisation and is not evidence for the theorem]
+PASS F2_nonassociative_members_number_p_minus_q_over_2_when_q_divides_p_minus_1_and_p_minus_q_plus_2_over_2_otherwise_a_count_the_paper_does_not_state [0 mismatches over the same 91 cells. NOT A PAPER CLAIM: like F1, the number of nonassociative members per cell is asserted nowhere in the paper; the check is retained because it exercises the census, not because the paper rests on it]
+PASS F3_the_wide_sweep_covers_every_member_of_every_cell_with_q_at_most_13_and_p_at_most_400 [159 cells, 14522 members examined]
+PASS F4_every_member_of_the_wide_sweep_with_dim_R_not_equal_1_has_dim_R_equal_2 [14445 of 14445 members with dim R != 1 have dim R = 2; the other 77 have dim R = 1 and are the gamma = 1 nonabelian groups by the classification statement quoted in Section 2 of the paper. This sweep builds no multiplication table, so both labels come from dim_R alone: neither associativity nor gamma = 1 is tested here]
+PASS F5_the_dimension_distribution_of_the_wide_sweep_has_no_third_value [[(('group', 1), 77), (('nonassoc', 2), 14445)]]
+PASS F6_the_wide_sweep_reaches_p_400_far_beyond_the_brute_force_range_p_83 [brute force reached p = 83 (pq <= 255); the formula sweep reaches p = 397]
+
+NOTE SCOPE. What this program does NOT establish. (1) KNV Theorem 1.1(ii)-(iii), that every right Bol loop of order pq is isomorphic to Z_{pq} or to a member of the theta-family parameterised above, is NOT re-proved here: it is assumed, and every count in Sections C and F is a count over that family only. If the classification were incomplete the theorem would be too. (2) NOT RE-RUN: any loop outside the theta-family; any order other than pq -- and at order p^3 = 27 the analogous upper branch IS attained, so nothing here is a statement about right Bol loops in general. (3) The brute-force census is bounded at pq <= 255 (29 cells, p <= 83) and the dimension sweep at q <= 13, p <= 400; larger cells are covered only by the hand proof of Section 3 of the paper, which this program checks step by step but does not replace. (4) The control in Section E lies OUTSIDE the right Bol family, so it validates the decider, not the existence of a right Bol loop with |Mlt_r| = p^3 q -- the paper claims there is none. (5) Isotopism counts, KNV Conjecture 7.3 and the GAP LOOPS package are not touched by this program. (6) WORD USE, and it is load-bearing: the only checks that actually execute an associativity test are B2 (as a count over the pq <= 105 cells) and the individual samples E9 and E10. Everywhere else -- the census counts C2-C5, C7 and C9, the "nonassociative member" of D10 and D11, and the sweep counts F2, F4 and F5, including the "nonassoc" label printed in the F5 distribution -- membership in the nonassociative class is decided by dim R != 1 (equivalently, within this range, dim R = 2), and "the gamma = 1 nonabelian group" names the dim R = 1 members. That dim R = 1 holds exactly for the associative members, and exactly at gamma = 1, is imported from the classification statement quoted in Section 2 of the paper; it is NOT re-derived member by member here. (7) OVER-CHECK, corresponding to nothing in the paper: F1 and F2 verify the cardinality formulas |Gamma| = (p-q+2)/2 and (p-q)/2 or (p-q+2)/2 nonassociative members per cell, over 91 cells. The paper states neither formula anywhere, so those two checks establish more than the paper claims and support no statement in it; they are reported here for completeness and nothing in the theorem or its proof depends on them.
+
+VERDICT: ALL 63 CHECKS PASS
+=== program exited with status 0 ===

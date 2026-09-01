@@ -1,0 +1,357 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Hash-and-Separable Matrix of Order 9}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\st}{\ast}
+
+\title[A hash-and-separable matrix of order 9]
+{A Hash-and-Separable Matrix of Order~9}
+
+\date{}
+
+\subjclass[2020]{94B25, 05B30, 05D05}
+\keywords{hash code, separable code, superimposed code, screening design,
+characteristic matrix, explicit construction}
+
+\begin{document}
+
+\begin{abstract}
+D'yachkov's lecture notes on designing screening experiments print a
+$C_{HS}(13,4)$-matrix and then ask, as Open problem~1, whether a
+$C_{HS}(q,4)$-matrix can be constructed with a smaller $q$. We exhibit a
+$C_{HS}(9,4)$-matrix, so that $q_4^{HS}\le 9$. The matrix is
+printed in full; its three defining conditions reduce to nine $4\times4$ blocks
+and to $162$ configurations on its $84$ triples of rows. We claim no priority:
+whether such a matrix is already recorded in the literature is not determined
+here, and neither is whether $q_4^{HS}=9$, which would need non-existence at
+$q=7$ and $q=8$.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Throughout, $q\ge k\ge 2$ are integers, $[q]=\{1,\dots,q\}$, and $\st$ is a
+symbol not in $[q]$.
+
+\begin{definition}
+A \emph{$C(q,k)$-matrix} is a $q\times q$ matrix $C=(c_i(j))_{i,j\in[q]}$ with
+entries in $\{\st\}\cup[q]$.
+\end{definition}
+
+Such a matrix is the characteristic matrix of a code of length $3$: its
+non-$\st$ cells are read as the codewords $(c_i(j),i,j)$, and D'yachkov's
+Propositions~5, 6 and~7 \cite{Dya} translate the three properties that code may
+have into conditions on the grid. We reproduce those three conditions in the
+form in which they are used below.
+
+\begin{enumerate}
+\item[(P5)] Every symbol $a\in[q]$ occurs exactly $k$ times in $C$; every row
+and every column of $C$ contains exactly $q-k$ stars; and no symbol occurs
+twice in one row or twice in one column.
+
+\item[(P6)] If $c_i(j)=c_m(n)=a\ne\st$ with $i\ne m$ and $j\ne n$, then
+$c_i(n)=c_m(j)=\st$.
+
+\item[(P7)] No $3\times3$ submatrix of $C$, on rows $i_1<i_2<i_3$ and columns
+$j_1<j_2<j_3$, has any of the six forms obtained by permuting the columns of
+\[
+\begin{pmatrix}
+\st & a & c\\
+a & \st & b\\
+c & b & \st
+\end{pmatrix},
+\qquad a,b,c\in[q]\ \text{pairwise distinct.}
+\]
+\end{enumerate}
+
+By Proposition~6, a $C(q,k)$-matrix satisfying (P5) and (P6) is exactly a
+\emph{$C_H(q,k)$-matrix} (the hash case); by Proposition~7, one satisfying (P5),
+(P6) and (P7) is exactly a \emph{$C_{HS}(q,k)$-matrix}. The source supplies no
+grid condition for separable codes alone, and nothing below needs one:
+separability enters only through Definition~4 of the source, applied directly to
+a code, in the remark of Section~2. Following \cite{Dya} we write
+$q_k^{HS}$ for the least $q\ge k$ admitting a $C_{HS}(q,k)$-matrix, that text
+asking verbatim
+\begin{quote}
+``How to find the minimal possible integer $q_k\ge k$ such that there exists
+$C_S(q_k,k)$-matrix, $C_H(q_k,k)$-matrix or $C_{HS}(q_k,k)$-matrix?''
+\end{quote}
+Example~10 of \cite{Dya} then reads ``Let $k=4$. For hash codes, $q_4=8$ and
+for hash\&separable codes, $q_4=13$'', and prints a $C_H(8,4)$ and a
+$C_{HS}(13,4)$ to support the two values. Immediately afterwards comes the
+display containing the question at issue:
+\begin{quote}
+``\textbf{Open problems}. \textbf{1}. Is it possible to construct a
+$C_{HS}(q,4)$-matrix if $q<13$? \textbf{2}. Is it possible to construct
+$C_{HS}(q,k)$-matrices, if $k\ge5$ and $q<k^2$?''
+\end{quote}
+
+\medskip
+\noindent\textbf{Source.}
+Quotations are from the file \texttt{lect\_dse.tex} in the e-print source of
+\texttt{arXiv:1401.7505v1}; the printed lecture notes may number the
+propositions, examples and open problems differently, and nothing below depends
+on the labelling, since (P5)--(P7) and the question are reproduced in full
+above. The value $13$ is the smallest order at which the source prints a
+$C_{HS}(q,4)$-matrix, and Open problem~1 asks, one paragraph later, for a
+smaller one; the source does not prove that none exists.
+
+\medskip
+\noindent\textbf{Related objects.}
+Conditions (P5) and (P6) by themselves describe an object studied elsewhere
+under another name: a $q\times q$ array in which every row, every column and
+every symbol carries exactly $k$ entries, and in which two equal entries in
+distinct rows and distinct columns force the two opposite cells to be empty,
+matches the definition of a \emph{Blackburn $k$-plex} in \cite{Sto}, which
+proves a lower bound on the order of such an array and describes constructions
+for $k\le5$; (P7) is not among the conditions treated there. F\"uredi and
+Ruszink\'o \cite{FR} characterise $3$-union-free $3$-partite linear hypergraphs
+by the avoidance of three grids, a counterpart of (P7); they give no value of
+$q_4^{HS}$, and they name small-value tables of Kim--Lebedev and of Lebedev for
+this family. The source states that the results of the section quoted above were
+to appear in \cite{DyaRykov}. We claim no priority: a $C_{HS}(q,4)$-matrix with
+$q<13$ may already be recorded in that literature. What is offered here is the
+matrix and its verification.
+
+\section{The matrix}
+
+\begin{theorem}\label{thm:main}
+The $9\times9$ matrix
+\[
+M=
+\begin{pmatrix}
+1&2&3&4&\st&\st&\st&\st&\st\\
+5&\st&\st&\st&9&\st&4&\st&8\\
+6&\st&\st&\st&\st&8&3&2&\st\\
+7&\st&9&\st&\st&4&\st&\st&2\\
+\st&8&6&\st&1&\st&\st&4&\st\\
+\st&\st&\st&9&\st&1&\st&7&3\\
+\st&9&\st&\st&\st&\st&1&5&6\\
+\st&7&\st&6&3&5&\st&\st&\st\\
+\st&\st&5&8&2&\st&7&\st&\st
+\end{pmatrix}
+\]
+is a $C_{HS}(9,4)$-matrix. Consequently $q_4^{HS}\le 9$: a $C_{HS}(q,4)$-matrix
+with $q<13$ exists, which is what Open problem~1 of \cite{Dya} asks for.
+\end{theorem}
+
+For $a\in[q]$ let $R_a$ and $C_a$ be the sets of rows and of columns of $M$
+carrying $a$, and, for $i\in R_a$, let $\col_a(i)$ be the column of $a$ in
+row~$i$. Reading $M$ off:
+\[
+\renewcommand{\arraystretch}{1.05}
+\begin{array}{r|l|l}
+a & R_a & C_a\\\hline
+1 & 1,5,6,7 & 1,5,6,7\\
+2 & 1,3,4,9 & 2,5,8,9\\
+3 & 1,3,6,8 & 3,5,7,9\\
+4 & 1,2,4,5 & 4,6,7,8\\
+5 & 2,7,8,9 & 1,3,6,8\\
+6 & 3,5,7,8 & 1,3,4,9\\
+7 & 4,6,8,9 & 1,2,7,8\\
+8 & 2,3,5,9 & 2,4,6,9\\
+9 & 2,4,6,7 & 2,3,4,5
+\end{array}
+\]
+
+\begin{proof}[(P5)]
+Each row and each column of $M$ carries exactly $4$ symbols, hence exactly
+$9-4=5$ stars, and the four symbols in a row, and in a column, are distinct.
+Each $a\in[9]$ occupies the four cells listed in the table, so each occurs
+exactly $4$ times; the $36=4\cdot9$ non-star cells are accounted for exactly
+once.
+\end{proof}
+
+The next lemma is what makes (P6) a hand check: it replaces the quantifier over
+quadruples $(i,j,m,n)$ by one $k\times k$ block per symbol.
+
+\begin{lemma}\label{lem:block}
+Let $C$ be a $C(q,k)$-matrix satisfying \textup{(P5)} and let $a\in[q]$. Then
+\textup{(P6)} holds for the symbol $a$ if and only if the $k\times k$ submatrix
+$C[R_a\times C_a]$ contains no non-star entry other than the $k$ cells of $a$
+itself, i.e.\ if and only if that submatrix is a $k\times k$ permutation matrix
+over $\{a,\st\}$.
+\end{lemma}
+
+\begin{proof}
+By (P5) the $k$ cells of $a$ lie in $k$ distinct rows and $k$ distinct columns,
+so $i\mapsto\col_a(i)$ is a bijection $R_a\to C_a$; write $\row_a$ for its
+inverse. Let $i\in R_a$ and $n\in C_a$ with $n\ne\col_a(i)$, and put
+$m=\row_a(n)$. Then $m\ne i$, and $c_i(\col_a(i))=c_m(n)=a$ with
+$\col_a(i)\ne n$, so (P6) forces $c_i(n)=\st$. Every cell of
+$C[R_a\times C_a]$ off the bijection is of this form, which gives one
+direction. Conversely, any instance of (P6) for the symbol $a$ has $j=\col_a(i)$
+and $n=\col_a(m)$ with $i,m\in R_a$ and $j,n\in C_a$, so the two cells
+$c_i(n)$ and $c_m(j)$ it constrains lie in $C[R_a\times C_a]$ off the
+bijection.
+\end{proof}
+
+\begin{proof}[(P6)]
+By Lemma~\ref{lem:block} it suffices to inspect nine $4\times4$ blocks. For
+$a=1$, $R_1=C_1=\{1,5,6,7\}$ and
+$M[\{1,5,6,7\}\times\{1,5,6,7\}]$ has the four $1$'s on its diagonal and stars
+elsewhere. For $a=2$, $R_2=\{1,3,4,9\}$, $C_2=\{2,5,8,9\}$, and the block
+carries $2$ at $(1,2),(3,8),(4,9),(9,5)$ and stars in its other twelve cells.
+The remaining seven blocks are read off the same way from the table; each is a
+permutation matrix.
+\end{proof}
+
+For (P7) we first remove the star conditions, which (P6) already implies. Write
+$\sh(i,m)$ for the set of symbols occurring in both row $i$ and row $m$.
+
+\begin{lemma}\label{lem:red}
+Let $C$ be a $C(q,k)$-matrix satisfying \textup{(P5)} and \textup{(P6)}. Then
+$C$ fails \textup{(P7)} if and only if there are rows $i_1<i_2<i_3$ and
+pairwise distinct symbols
+\[
+a\in\sh(i_1,i_2),\qquad b\in\sh(i_2,i_3),\qquad c\in\sh(i_1,i_3)
+\]
+with
+\begin{equation}\label{eq:cols}
+\col_a(i_1)=\col_b(i_3),\qquad
+\col_a(i_2)=\col_c(i_3),\qquad
+\col_b(i_2)=\col_c(i_1),
+\end{equation}
+these three columns being distinct.
+\end{lemma}
+
+\begin{proof}
+Since the six forms of (P7) are the column permutations of one, and that one is
+symmetric, an occurrence on a set of three rows and a set of three columns may
+be taken with the rows in increasing order and the columns free. Such an
+occurrence, with columns $j_1,j_2,j_3$, has $a$ at $(i_1,j_2)$ and $(i_2,j_1)$,
+$b$ at $(i_2,j_3)$ and $(i_3,j_2)$, and $c$ at $(i_1,j_3)$ and $(i_3,j_1)$;
+reading off the columns gives \eqref{eq:cols} with
+$(j_1,j_2,j_3)=(\col_a(i_2),\col_a(i_1),\col_b(i_2))$, distinct. Conversely,
+suppose \eqref{eq:cols} holds with $j_1,j_2,j_3$ as just named. The six named
+cells are then filled as required, and the three diagonal cells are stars: $a$
+sits at $(i_1,j_2)$ and $(i_2,j_1)$ with $i_1\ne i_2$ and $j_1\ne j_2$, so (P6)
+gives $c_{i_1}(j_1)=c_{i_2}(j_2)=\st$; applying (P6) to $b$ gives
+$c_{i_2}(j_2)=c_{i_3}(j_3)=\st$ and to $c$ gives
+$c_{i_1}(j_1)=c_{i_3}(j_3)=\st$. So the submatrix on those rows and columns is
+a forbidden form.
+\end{proof}
+
+\begin{proof}[(P7)]
+$M$ has $\binom92=36$ pairs of rows; exactly $18$ of them share two symbols and
+$18$ share exactly one, a total of $2\cdot18+1\cdot18=54=q\binom k2$ shared
+incidences. In particular every one of the $\binom93=84$ triples of rows is
+pairwise sharing, so Lemma~\ref{lem:red} must be applied to all of them. Running
+over the $84$ triples and over the pairwise distinct choices of
+$(a,b,c)\in\sh(i_1,i_2)\times\sh(i_2,i_3)\times\sh(i_1,i_3)$ leaves exactly
+$162$ candidate configurations, and each of the $162$ violates one of the three
+equations \eqref{eq:cols}. Hence (P7) holds.
+\end{proof}
+
+The $162$ configurations are enumerated by the program described in
+Section~\ref{sec:repro}, which also verifies (P7) on $M$ with no reduction at
+all and re-derives every count quoted above. This completes the proof of
+Theorem~\ref{thm:main}.
+
+\begin{remark}[the definitions applied directly]
+Read $M$'s $36$ non-star cells as the codewords $(c_i(j),i,j)$. The resulting
+code of length $3$ satisfies Definitions~2, 4 and~5 of \cite{Dya} directly:
+each of the nine symbols occurs exactly $4$ times in each of the three
+coordinates, any two codewords agree in at most one coordinate, every one of the
+$\binom{36}3=7140$ triples has a coordinate on which all three differ, and the
+coordinatewise unions of the $7806$ subsets of size at most $3$ are pairwise
+distinct. So $M$ is a $C_{HS}(9,4)$-matrix by the raw definitions and not only
+by way of Propositions~5--7.
+\end{remark}
+
+\section{What is and is not settled}
+
+\begin{lemma}\label{lem:2k}
+Every $C_H(q,k)$-matrix, hence every $C_{HS}(q,k)$-matrix, has $q\ge2k-1$.
+\end{lemma}
+
+\begin{proof}
+Fix $a\in[q]$. By Lemma~\ref{lem:block} each of the $k$ rows in $R_a$ already
+carries $k-1$ stars inside $C[R_a\times C_a]$, while by (P5) a row carries
+exactly $q-k$ stars in total. So $k-1\le q-k$.
+\end{proof}
+
+For $k=4$ Lemma~\ref{lem:2k} gives $q\ge7$, so $q=7$ and $q=8$ are the orders
+below $9$ that this note does not decide.
+
+What is settled is $q_4^{HS}\le9$, by finite checks on the printed matrix. The
+exact value is not: $q_4^{HS}=9$ would additionally require that no
+$C_{HS}(7,4)$- and no $C_{HS}(8,4)$-matrix exists, and neither non-existence is
+attempted here or by the accompanying program. Open problem~2 of \cite{Dya}
+($k\ge5$, $q<k^2$) is untouched.
+
+\section{Reproduction and verification}\label{sec:repro}
+
+Nothing in Theorem~\ref{thm:main} needs a computer to be \emph{stated}: the
+matrix is printed above, (P5) and (P6) are read off it by way of the table and
+Lemma~\ref{lem:block}, and (P7) reduces by Lemma~\ref{lem:red} to $162$
+configurations. The program \texttt{verify.py} in this folder re-derives it all
+from the printed object, run as \texttt{python3\ verify.py} with the standard
+library only and in
+exact integer arithmetic: (P5) clause by clause; (P6) both by exhaustive search
+over the $2304$ quadruples $(i,j,m,n)$ and by the nine blocks of
+Lemma~\ref{lem:block}; (P7) both by the reduction of Lemma~\ref{lem:red} ($162$
+candidates, none surviving) and by unreduced search over row and column triples;
+and the definitional route of the remark above, including all $7140$ triples and
+all $7806$ subsets. Each check is also run on the labelled matrices of
+Examples~7--10 of \cite{Dya}, which the source itself marks as satisfying some
+of the three conditions and failing others. The treatments of (P7) are encodings
+inside one program and share one transcription of $M$, so their agreement bears
+on the encodings and is not an independent confirmation. The recorded run
+\texttt{verify.output.txt} reports $50$ checks, all passing, and lists in its
+own output what it does not cover --- in particular the non-existence claims at
+$q=7$ and $q=8$, which it does not attempt.
+
+\begin{thebibliography}{9}
+
+\bibitem{Dya}
+A.~G. D'yachkov,
+\emph{Lectures on Designing Screening Experiments},
+POSTECH Combinatorial and Computational Mathematics Center Lecture Note
+Series \textbf{10} (February 2004);
+\href{https://arxiv.org/abs/1401.7505v1}{arXiv:1401.7505v1} (29 January 2014).
+All quotations in this note are from \texttt{lect\_dse.tex} in the v1 e-print
+source.
+
+\bibitem{DyaRykov}
+A.~G. D'yachkov and V.~V. Rykov,
+\emph{Optimal superimposed codes and designs for R\'enyi's search model},
+J. Statist. Plann. Inference \textbf{100} (2001), no.~2, 281--302.
+\href{https://doi.org/10.1016/S0378-3758(01)00140-9}{doi:10.1016/S0378-3758(01)00140-9}.
+
+\bibitem{FR}
+Z.~F\"uredi and M.~Ruszink\'o,
+\emph{Uniform hypergraphs containing no grids},
+Adv. Math. (2013);
+\href{https://arxiv.org/abs/1103.1691}{arXiv:1103.1691}.
+
+\bibitem{Sto}
+R.~J. Stones,
+\emph{$k$-plex $2$-erasure codes and Blackburn partial Latin squares},
+IEEE Trans. Inform. Theory \textbf{66} (2020), no.~6, 3704--3713.
+\href{https://doi.org/10.1109/TIT.2020.2967758}{doi:10.1109/TIT.2020.2967758}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,91 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  51847de92075e28c557f3b890f226749685c81aa0d7e07150476f95736b15dc2
+python:  Python 3.9.25
+=== program output follows ===
+verification of "A Proof that s_2(3) = 13, a Value Asserted without Proof by Sun"
+-- inputs are the multiset W and Table 1, both printed
+in the paper and transcribed into this program as text.  Exact integers mod 3 and
+mod 9 only; no solver, no randomness, no network, no third-party module.
+
+=== Step 1: the ambient combinatorics of F_3^2, and Table 1 as printed
+PASS alphabet_size_is_72 [|{a in (Z/9)^2 : a not= 0 mod 3}| = 72 = 81 - 9]
+PASS fact1_no_mixed_candidate_shape [candidate reduction-triples = 16: all-equal 8, all-distinct 8, MIXED 0 (must be 0)]
+PASS fact1_distinct_candidates_are_the_origin_missing_lines [8 all-distinct candidates, 8 origin-missing lines, same set]
+PASS origin_missing_lines_number_eight [8 of the 12 lines of AG(2,3)]
+PASS every_nonzero_point_lies_on_three_of_them [incidences 8 x 3 = 24 = 8 lines x 3 points]
+PASS printed_antipodal_pairs_are_the_four_of_F_3_2 [P1..P4 partition the 8 nonzero points into v,-v pairs]
+PASS no_origin_missing_line_holds_an_antipodal_pair [so each line meets 3 of the 4 pairs in one point each]
+PASS each_origin_missing_line_meets_exactly_three_pairs
+PASS printed_table_has_eight_rows [E1 E2 E3 E4 E5 E6 E7 E8]
+PASS printed_table_rows_are_exactly_the_eight_origin_missing_lines [Table 1 transcription is correct: 8 distinct rows, and as a set of triples they are the 8 computed lines]
+PASS printed_table_symbols_name_the_printed_points [A,A',B,B',C,C',D,D' <-> (1,0),(2,0),(0,1),(0,2),(1,1),(2,2),(1,2),(2,1)]
+PASS printed_table_uses_each_symbol_three_times
+PASS fact2a_triple_of_one_class_is_always_violating [for all 72 admissible a: 3a = 0 mod 3 and 3a not= 0 mod 9, so no class occurs 3 times]
+
+=== Step 2: the multiset W printed in Section 5 -- the lower half
+PASS W_has_twelve_elements [|W| = 12]
+PASS W_is_admissible [every element is nonzero mod 3]
+PASS W_is_BAD [no 3 distinct indices sum to 0 mod 3 while not 0 mod 9]
+PASS W_class_multiplicity_is_two [max multiplicity 2, the cap of Fact 2(a)]
+PASS W_support_has_size_four [T(W) = [(0, 1), (0, 2), (1, 0), (2, 0)]]
+PASS W_support_is_two_whole_antipodal_pairs [P1 u P2]
+PASS W_fibres_all_have_size_three [|S| = 3|T| = 12 with equality in the master bound]
+PASS W_contains_no_full_line [full lines 0, so |A| = 0 and 3|T| - |A| = 12]
+PASS W_has_exactly_four_candidates [the four same-fibre triples]
+PASS W_candidate_sums_are_the_four_printed [sums [(0, 9), (0, 18), (9, 0), (18, 0)], every one 0 mod 9]
+PASS W_is_MAXIMAL_over_all_72_admissible_extensions [bad_extensions = 0 of 72]
+PASS lower_half_s2_3_at_least_13 [BAD is downward closed and s_2(3) = 1 + max|BAD|, so s_2(3) >= 13]
+
+=== Step 3: directed negatives -- the decider can fire
+PASS must_fire_three_copies_of_1_0_are_not_BAD [sum (3,0) is 0 mod 3 and not 0 mod 9, so is_bad returns False as it must]
+PASS anti_control_W_is_not_BAD_under_the_size_at_most_3_misreading [e.g. (1,0)+(5,0) = (6,0); |I| = n EXACTLY is load-bearing]
+PASS empty_and_singleton_multisets_are_BAD [downward closure has the expected base]
+
+=== Step 4: the master bound 3|T| - |A(T)| over ALL 2^8 = 256 supports
+PASS master_bound_table_by_support_size [max(3|T| - |A|) for |T| = 0..8 is [0, 3, 6, 9, 12, 12, 12, 14, 16]]
+PASS master_bound_settles_247_of_256_supports [settled 247, not settled 9]
+PASS the_unsettled_supports_are_exactly_the_nine_with_T_at_least_7 [C(8,7) + C(8,8) = 8 + 1 = 9; 247 + 9 = 256, fraction exhausted 1]
+PASS supports_of_size_five_and_six_are_tight_at_twelve [so |T| = 5 and |T| = 6 always force enough full lines]
+
+=== Step 5: the eliminations of Section 4, as identities over all 9^3 = 729 lifts
+PASS there_are_729_lift_triples_for_A_B_C
+PASS T8_elimination_gives_E7_equal_to_3C [for all 729 lifts: B + C + D' = 3C mod 9, and every derived class has the right reduction]
+PASS T8_contradiction_pi_C_is_nonzero [3C = 0 mod 9 forces C = 0 mod 3, but pi(C) = (1,1)]
+PASS T7_elimination_missing_2_1_gives_E8_equal_to_minus_3_A_plus_C [for all 729 lifts: B' + C' + D = -3(A + C) mod 9]
+PASS T7_contradiction_pi_A_plus_pi_C_is_nonzero [pi(A) + pi(C) = (1,0) + (1,1) = (2,1) not= 0]
+PASS T7_elimination_missing_1_2_gives_E6_equal_to_minus_3_B_plus_C [for all 729 lifts: A' + C' + D' = -3(B + C) mod 9, a second and different route]
+PASS T7_second_contradiction_pi_B_plus_pi_C_is_nonzero [pi(B) + pi(C) = (0,1) + (1,1) = (1,2) not= 0]
+
+=== Step 6: every support the master bound leaves open, solved mod 9 in full
+PASS nine_supports_reach_step_6 [the 8 supports with |T| = 7 and the 1 with |T| = 8]
+PASS T8_all_eight_points_covered_by_full_lines [full lines 8, A(T) = T (8 points), so every fibre is frozen]
+PASS T8_all_eight_points_has_NO_solution_mod_9 [the 8 full-line equations are inconsistent over Z/9]
+PASS T7_missing_2_2_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_2_2_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_2_1_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_2_1_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_2_0_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_2_0_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_1_2_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_1_2_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_1_1_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_1_1_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_1_0_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_1_0_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_0_2_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_0_2_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS T7_missing_0_1_covered_by_full_lines [full lines 5, A(T) = T (7 points), so every fibre is frozen]
+PASS T7_missing_0_1_has_NO_solution_mod_9 [the 5 full-line equations are inconsistent over Z/9]
+PASS upper_half_s2_3_at_most_13 [|T| <= 6 gives |S| <= 12 by the master bound; and each of the 9 supports the bound leaves open was just shown frozen and inconsistent mod 9; so, GRANTING Facts 2 and 3, which are proved by hand and not here, max|BAD| = 12]
+
+=== Step 7: the source's own numbers
+PASS conjectured_value_4n_plus_1_at_n_3_is_13
+PASS published_bracket_at_r_2_is_13_to_17 [3*2^r+1 <= s_r(3) <= 2*3^r-1 at r = 2]
+PASS remark_as_printed_gives_19_which_its_own_paper_refutes [2*3^r+1 at r = 2 is 19 > 17, so the printed formula is a typo for 3*2^r+1 = 13]
+PASS remark_alternative_agrees_at_r_1 [both formulas give 7 at r = 1, so r = 2 is the only place they can be told apart]
+PASS sun_double_count_at_r_2_is_16 [2(3^r - 1) = 16, whence the published s_2(3) <= 17 that this paper improves to 13]
+
+NOTE SCOPE. This program re-derives every quantity the paper claims about the objects printed in it, and it settles the two cases the master bound leaves open for EVERY support of size 7 or 8, not only for the relabelled representative the paper argues. NOT COVERED, and stated as such in the paper: (i) Sun's Lemma 2.1 (Fact 2) and Sun's collapsing claim (Fact 3) are quoted from the source and proved there and in Section 3 by hand -- only Fact 2(a)'s must-fire mechanism is machine checked here, the cancellation arguments of Fact 2(b) and Fact 3 are not; (ii) the master bound |S| <= 3|T| - |A| itself is a counting step, taken from Fact 2(b) and Fact 3 rather than re-derived; (iii) NO independent exhaustive search over the 2.25 x 10^34 multisets in {0,1,2}^72 is performed here, and none is shipped in this folder, so the upper bound rests on the hand proof plus the checks above; (iv) no minimality or uniqueness of W -- the paper claims none, and other extremal multisets exist at |T| = 5 and 6; (v) n >= 4 and r >= 3, which are untouched; (vi) the line and byte locators quoted from the e-print source, which are transcribed and not fetched by this program.
+VERDICT: ALL 64 CHECKS PASS
+=== program exited with status 0 ===

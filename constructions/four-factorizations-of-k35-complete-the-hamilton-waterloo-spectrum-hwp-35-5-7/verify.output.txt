@@ -1,0 +1,109 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  303c24510bf6d2e780406421e36ca3cf84ed92b3f903da1ce435926d59430c5e
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- HWP(35;5,7): four printed factorizations of K_35 realizing beta in {1,2,4,6},
+re-derived from the paper
+
+=== A. the two prescribed automorphisms and the orbit census ===
+PASS rho-permutation a permutation of the 35 vertices, order 7, preserving the 5 blocks of size 7
+PASS sigma-permutation a permutation of the 35 vertices, order 5, preserving the 7 blocks of size 5
+PASS rho-edge-orbits 85 orbits of size 7 (15 intra-class + 70 inter-class), 85 x 7 = 595 = |E(K_35)|
+PASS rho-orbit-shapes each of the 15 intra-class orbits is a 7-cycle on its class; each of the 70 inter-class orbits is a perfect matching between its two classes
+PASS sigma-edge-orbits 119 orbits of size 5 (14 intra-class + 105 inter-class), 119 x 5 = 595 = |E(K_35)|
+PASS sigma-orbit-shapes each of the 14 intra-class orbits is a 5-cycle on its class; each of the 105 inter-class orbits is a perfect matching between its two classes
+PASS necessity v=35 is odd, so alpha+beta=(v-1)/2=17, and there are 18 pairs with alpha,beta>=0
+PASS p7-lane-arithmetic-not-in-paper NO COUNTERPART IN THE PAPER: taking beta = 7*A7 + B7 with B7 <= 3, beta attains 1 and 2 but never 4, 5 or 6 -- which is why (13,4) and (11,6) were built in the p=5 lane.  The bound B7 <= 3 came from a p=7-lane lemma the revised paper deletes, so this line records the arithmetic alone and no claim of the paper rests on it
+
+=== B. the twenty-eight printed objects ===
+PASS object(16,1)/G1 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(16,1)/G2 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(16,1)/G3 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(16,1)/G4 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(16,1)/G5 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(15,2)/G1 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(15,2)/G2 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(15,2)/G3 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(15,2)/G4 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(15,2)/G5 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G1 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(13,4)/G2 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(13,4)/G3 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G4 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G5 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G6 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G7 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G8 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(13,4)/G9 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G1 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(11,6)/G2 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, base
+PASS object(11,6)/G3 7 disjoint 5-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G4 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G5 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G6 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G7 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G8 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+PASS object(11,6)/G9 5 disjoint 7-cycles spanning 0..34, 35 distinct edges, invariant
+
+=== C. the four cells ===
+PASS (16,1)/invariance [lane p7] 3 object(s) declared invariant, all fixed setwise by the lane map
+PASS (16,1)/base-orbits [lane p7] 2 base object(s); each orbit closes after exactly 7 steps into 7 distinct factors
+PASS (16,1)/seventeen-factors [lane p7] 5 objects expand to 17 2-factors
+PASS (16,1)/cycle-types [lane p7] all 17 factors 2-regular on 35 vertices, cycle type [5]*7 or [7]*5 as declared
+PASS (16,1)/partition [lane p7] 595 edges, 595 distinct, set equality with E(K_35): True
+PASS (16,1)/cell [lane p7] counted (alpha,beta)=(16,1), claimed (16,1), alpha+beta=17
+PASS (15,2)/invariance [lane p7] 3 object(s) declared invariant, all fixed setwise by the lane map
+PASS (15,2)/base-orbits [lane p7] 2 base object(s); each orbit closes after exactly 7 steps into 7 distinct factors
+PASS (15,2)/seventeen-factors [lane p7] 5 objects expand to 17 2-factors
+PASS (15,2)/cycle-types [lane p7] all 17 factors 2-regular on 35 vertices, cycle type [5]*7 or [7]*5 as declared
+PASS (15,2)/partition [lane p7] 595 edges, 595 distinct, set equality with E(K_35): True
+PASS (15,2)/cell [lane p7] counted (alpha,beta)=(15,2), claimed (15,2), alpha+beta=17
+PASS (13,4)/invariance [lane p5] 7 object(s) declared invariant, all fixed setwise by the lane map
+PASS (13,4)/base-orbits [lane p5] 2 base object(s); each orbit closes after exactly 5 steps into 5 distinct factors
+PASS (13,4)/seventeen-factors [lane p5] 9 objects expand to 17 2-factors
+PASS (13,4)/cycle-types [lane p5] all 17 factors 2-regular on 35 vertices, cycle type [5]*7 or [7]*5 as declared
+PASS (13,4)/partition [lane p5] 595 edges, 595 distinct, set equality with E(K_35): True
+PASS (13,4)/cell [lane p5] counted (alpha,beta)=(13,4), claimed (13,4), alpha+beta=17
+PASS (11,6)/invariance [lane p5] 7 object(s) declared invariant, all fixed setwise by the lane map
+PASS (11,6)/base-orbits [lane p5] 2 base object(s); each orbit closes after exactly 5 steps into 5 distinct factors
+PASS (11,6)/seventeen-factors [lane p5] 9 objects expand to 17 2-factors
+PASS (11,6)/cycle-types [lane p5] all 17 factors 2-regular on 35 vertices, cycle type [5]*7 or [7]*5 as declared
+PASS (11,6)/partition [lane p5] 595 edges, 595 distinct, set equality with E(K_35): True
+PASS (11,6)/cell [lane p5] counted (alpha,beta)=(11,6), claimed (11,6), alpha+beta=17
+
+=== D. negative control: the same routine on a one-edge-per-cell tamper ===
+PASS tamper-rejected(16,1) the tampered certificate fails: invariance, partition
+PASS tamper-rejected(15,2) the tampered certificate fails: partition
+PASS tamper-rejected(13,4) the tampered certificate fails: partition
+PASS tamper-rejected(11,6) the tampered certificate fails: partition
+
+=== E. assembling the spectrum of HWP(35;5,7): arithmetic on a QUOTED hypothesis ===
+PASS our-four-cells the four cells settled here have beta = [1, 2, 4, 6], exactly the four values Wang-Lu-Cao except at v=35
+PASS spectrum-complete-under-quoted-hypothesis their 14 values [0, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] together with our [1, 2, 4, 6] give every beta in 0..17.  This is the arithmetic of putting the two halves together, on a list of fourteen values QUOTED from Wang-Lu-Cao and not verified here; so what this line supports is the paper's Corollary 2 -- all 18 pairs with alpha+beta=17 are realizable IF the Wang-Lu-Cao paraphrase of Section 1 holds -- and that hypothesis is not decided by this program
+
+SCOPE NOTE -- what this program does and does not decide.
+  DECIDED HERE, in full: that the four printed certificates are factorizations of K_35
+  into 17 2-factors realizing (alpha,beta) = (16,1), (15,2), (13,4) and (11,6), i.e.
+  that those four cells lie in HWP(35;5,7).  Each is a finite, self-contained check on
+  the objects printed in the paper.
+  NOT DECIDED HERE (1): the fourteen remaining pairs with alpha+beta=17.  Those are
+  Wang-Lu-Cao's theorem, quoted, not re-proved; check E only does the arithmetic of
+  putting the two halves together.
+  NOT IN THE PAPER AT ALL (2): the p=7-lane lemma earlier drafts called Lemma 2 (a
+  rho-invariant C_7-factor is a union of five intra-class orbits, whence B7 <= 3).  The
+  revised paper DELETES that lemma and no claim of the paper depends on it, so the line
+  named p7-lane-arithmetic-not-in-paper corresponds to nothing in the paper: it records
+  an arithmetic consequence of a bound the paper no longer states.  The finite orbit
+  census it once consumed is checked on its own merits in check A and is used by the
+  paper's bookkeeping in Section 2.
+  NOT DECIDED HERE (3): anything about which cells the PRINTED journal version of
+  Burgess-Danziger-Traetta excepts.  That is a bibliographic question; the CONDITIONAL
+  completion of the paper's Corollary 2 rests on Wang-Lu-Cao as quoted plus these four
+  objects, and does not depend on it.
+  NOT CLAIMED ANYWHERE: uniqueness, enumeration, classification, minimality or
+  nonexistence for these factorizations, and no priority for the four cells -- the
+  paper claims none of these, and nothing above is evidence for any of them.
+
+VERDICT: ALL 66 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,76 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  f58b640463f9446fbc3627e75675faa269ebf2970e00bcd1e7556d39239b97ab
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: a fractional weak tiling measure in Z_24 that is no convex
+combination of tiling complements -- M = 24, E = {0,4,6,10}, item 3 of Kadir-Fan
+python 3.9.25, exact integer and Fraction arithmetic only
+
+=== Part A: the exhibited object, exactly as printed in the paper
+NOTE E = [0, 4, 6, 10],  g = 1 on [0, 8, 16], 1/2 on [7, 9, 11, 19, 21, 23], 0 elsewhere
+PASS A1_g_nonnegative [min = 0]
+PASS A2_g_is_pinned_at_zero [g(0) = 1 (the source Definition requires f(0) = 1)]
+PASS A3_g_is_not_zero_one [nine support values: 1 1/2 1 1/2 1/2 1 1/2 1/2 1/2]
+PASS A4_convolution_is_one_at_all_24_residues [violations: []]
+PASS A5_mass_equals_M_over_absE [sum g = 6 = 24/4]
+PASS A6_difference_set_is_all_even [E - E = [0, 2, 4, 6, 10, 14, 18, 20, 22]]
+PASS A7_support_obeys_the_pin_lemma [supp(g) = [0, 7, 8, 9, 11, 16, 19, 21, 23] is inside {0} u (Z_24 \ (E-E)) = [0, 1, 3, 5, 7, 8, 9, 11, 12, 13, 15, 16, 17, 19, 21, 23]]
+PASS A8_three_even_translates_partition_the_twelve_even_residues [E+0, E+8, E+16 are disjoint and cover {0,2,...,22}]
+PASS A10_g_is_not_positive_definite [g is real but not symmetric -- g(1) = 0 while g(23) = 1/2 -- and a real positive-definite function on an abelian group satisfies f(-t) = f(t); so the positive-definite variants asked in the same list are untouched by this object]
+PASS A9_six_odd_translates_cover_each_odd_residue_exactly_twice [multiplicity 2 on all twelve odd residues, and 2 * (1/2) = 1]
+
+=== Part B: E is a genuine tile, and ALL of its tiling complements
+PASS B1_E_has_exactly_sixteen_tiling_complements [exhaustive over all C(24,6) = 134596 six-subsets of Z_24: 16 found]
+PASS B2_the_sixteen_are_exactly_the_structural_family [T = (2a + <8>) u (2b+1 + <8>), a,b in {0,1,2,3}]
+PASS B3_exactly_four_complements_contain_zero [[[0, 1, 8, 9, 16, 17], [0, 3, 8, 11, 16, 19], [0, 5, 8, 13, 16, 21], [0, 7, 8, 15, 16, 23]]]
+PASS B4_only_complements_through_zero_can_carry_positive_weight [the other twelve complements have 1_T(0) = 0 while g(0) = 1, so in any convex combination summing to g the coefficients on them must all vanish]
+PASS B5_the_four_complements_through_zero_are_points_of_the_pinned_polytope [each 1_T is nonnegative, satisfies 1_E * 1_T = 1 and has 1_T(0) = 1, so the hull of item 3 is a nonempty subset of P_E -- which is what makes the refutation non-trivial]
+
+=== Part C: the separating functional -- refutation certificate 1, no linear algebra
+PASS C1_L_of_g_equals_three [L(x) = x(7)+x(9)+x(11)+x(19)+x(21)+x(23), L(g) = 3]
+PASS C2_L_is_at_most_two_on_every_tiling_complement [multiset of values of L(1_T) over all sixteen complements = ['1', '2'], max = 2]
+PASS C3_separation_two_is_less_than_three [L is linear, so L is at most 2 on the whole convex hull while L(g) = 3: g is NOT a convex combination of tiling complements]
+
+=== Part D: the vertex certificate -- refutation certificate 2, independent of Part C
+PASS D1_full_circulant_rank_on_the_nine_support_columns [rows: all 24 of Z_24; columns [0, 8, 16, 7, 9, 11, 19, 21, 23]; rank 9 = full column rank]
+PASS D2_reduced_pinned_system_rank_on_its_eight_free_columns [rows: the 20 residues of Z_24 \ E; columns [8, 16, 7, 9, 11, 19, 21, 23] (column 0 is the PINNED coordinate, not a variable, and vanishes identically on these rows); rank 8]
+PASS D3_the_two_rank_statements_are_about_different_systems [rank 9 on 24 rows / 9 columns and rank 8 on 20 rows / 8 columns are both correct; conflating them is not]
+PASS D4_odd_block_determinant_is_four [rows [13, 15, 17, 1, 3, 5] x columns [7, 9, 11, 19, 21, 23], block diagonal with two copies of [[1,1,0],[0,1,1],[1,0,1]] of determinant 2; det = 4]
+PASS D5_g_is_a_vertex_of_the_pinned_polytope [the support columns of the equality system (circulant rows plus the pin row) are linearly independent, so g is a basic feasible solution, hence an extreme point of P_E]
+PASS D6_an_extreme_point_that_is_not_zero_one_is_no_convex_combination [g differs from all sixteen 0/1 points 1_T, and an extreme point of P_E is no convex combination of points of P_E other than itself]
+
+=== Part E: anti-controls -- the four literal-reading pseudo-refuters are NOT refuters
+PASS E1_pinned_polytope_of_M3_E01_is_infeasible [E - E = Z_3 so the pin forces supp(g) = {0}; then (1_E * g)(y) = 0 at y in [2], not 1]
+PASS E2_pinned_polytope_of_M7_E013_is_infeasible [E - E = Z_7 so the pin forces supp(g) = {0}; then (1_E * g)(y) = 0 at y in [2, 4, 5, 6], not 1]
+PASS E3_pinned_polytope_of_M4_E012_is_infeasible [E - E = Z_4 so the pin forces supp(g) = {0}; then (1_E * g)(y) = 0 at y in [3], not 1]
+PASS E4_pinned_polytope_of_M6_E013_is_infeasible [E - E = Z_6 so the pin forces supp(g) = {0}; then (1_E * g)(y) = 0 at y in [2, 4, 5], not 1]
+
+=== Part F: the UNPINNED reading of item 3, disclosed rather than hidden
+PASS F1_the_Z7_circulant_of_the_Singer_set_has_determinant_plus_or_minus_24 [det = 24; the incidence matrix of the Fano plane PG(2,2), and the symmetric 2-(7,3,1) identity gives det^2 = (k-l)^(v-1)(k-l+lv) = 2^6 * 9 = 576 = 24^2]
+PASS F2_its_unique_solution_is_one_third_everywhere [nonsingular, so mu = 1/3 on all seven residues is the unique solution: nonnegative and FRACTIONAL]
+PASS F3_no_tiling_complement_exists_because_three_does_not_divide_seven [|E| = 3 does not divide M = 7, and an exhaustive search over all 127 nonempty subsets of Z_7 finds no T with E (+) T = Z_7: the hull of item 3 is EMPTY, so the unpinned reading of item 3 is false trivially, already at M = 7]
+
+=== Part G: the Z_12 seed, and why the failure is not visible at M = 12
+PASS G1_the_pin_leaves_three_free_variables_at_M12 [C = Z_12 \ (E' - E') = [4, 6, 8]]
+PASS G2_the_pinned_polytope_of_Z12_is_a_single_integral_point [unique solution x_4 = 1, x_6 = 0, x_8 = 1, i.e. g = 1_{{0,4,8}}: integral, so M = 12 carries no counterexample of this shape]
+
+=== Part H: the infinite family -- item 3 is CHECKED to fail at M = 12d for d = 2..8 (M = 24, 36, 48, 60, 72, 84, 96); the step from these members to EVERY M divisible by 12 with M >= 24 rests on the block-diagonal / rank argument stated in the note below, which is NOT verified for general d by any check here
+PASS H1_Eprime_plus_U_is_all_of_Z12 [{0,2,3,5} (+) {0,4,8} = Z_12 is what this check computes; the dilation step to d.{0,2,3,5} (+) (d.{0,4,8} + {0..d-1}) = Z_{12d} for every d -- E always has a tiling complement through 0, so the hull is never empty -- is asserted, not computed here, and is checked directly only for d = 2..8, in H4]
+PASS H2_block_rank_on_the_integral_coset_columns [the 12 x 3 submatrix of the Z_12 circulant on columns [0, 4, 8] has rank 3]
+PASS H3_block_rank_on_the_half_integral_coset_columns [the 12 x 6 submatrix on columns [3, 4, 5, 9, 10, 11] has rank 6, witnessed by the minor on rows [6,7,8,0,1,2] of determinant 4]
+NOTE the ARGUMENT of the family, asserted here and NOT executed for general d: the circulant of d.E' in Z_{12d} is claimed to be BLOCK DIAGONAL over the d cosets of d.Z_{12d} with every block equal to the Z_12 circulant above, and the support of g_d is claimed to meet those blocks in exactly one U block and d-1 V blocks; GRANTING both of those claims, the checked ranks H2 and H3 give full column rank 3 + 6(d-1) for every d, which is the whole proof of the family. No check below proves the block decomposition or the support pattern for arbitrary d -- the rank equality itself is executed only for d = 2..8, in H4
+PASS H4_family_member_d2_M24 [E = [0, 4, 6, 10]; g_d in P_E, mass 6 = 3d, half-integral, 9 support columns of rank 9 (a vertex), and T = [0, 1, 8, 9, 16, 17] is a tiling complement through 0]
+PASS H5_family_member_d2_is_exactly_the_object_of_Part_A [the d = 2 member of the family IS M = 24, E = {0,4,6,10} with the printed g]
+PASS H4_family_member_d3_M36 [E = [0, 6, 9, 15]; g_d in P_E, mass 9 = 3d, half-integral, 15 support columns of rank 15 (a vertex), and T = [0, 1, 2, 12, 13, 14, 24, 25, 26] is a tiling complement through 0]
+PASS H4_family_member_d4_M48 [E = [0, 8, 12, 20]; g_d in P_E, mass 12 = 3d, half-integral, 21 support columns of rank 21 (a vertex), and T = (d.{0,4,8} + {0..d-1}) is a tiling complement through 0]
+PASS H4_family_member_d5_M60 [E = [0, 10, 15, 25]; g_d in P_E, mass 15 = 3d, half-integral, 27 support columns of rank 27 (a vertex), and T = (d.{0,4,8} + {0..d-1}) is a tiling complement through 0]
+PASS H4_family_member_d6_M72 [E = [0, 12, 18, 30]; g_d in P_E, mass 18 = 3d, half-integral, 33 support columns of rank 33 (a vertex), and T = (d.{0,4,8} + {0..d-1}) is a tiling complement through 0]
+PASS H4_family_member_d7_M84 [E = [0, 14, 21, 35]; g_d in P_E, mass 21 = 3d, half-integral, 39 support columns of rank 39 (a vertex), and T = (d.{0,4,8} + {0..d-1}) is a tiling complement through 0]
+PASS H4_family_member_d8_M96 [E = [0, 16, 24, 40]; g_d in P_E, mass 24 = 3d, half-integral, 45 support columns of rank 45 (a vertex), and T = (d.{0,4,8} + {0..d-1}) is a tiling complement through 0]
+
+=== Scope
+NOTE SCOPE: what is verified above is item 3 of the source's open problems under the source's OWN Definition -- a nonnegative f with f(0) = 1 and 1_E * f = 1 -- in a CYCLIC group. NOT RE-RUN and NOT CLAIMED here: (i) that M = 24 is the least modulus carrying such an object -- an exhaustive census over 8 <= M <= 24 was run elsewhere in this project and its raw transcript is not part of this folder, so minimality is left open here; (ii) the positive-definite variants asked in the same list, which this object cannot reach at all (check A10: g is not even symmetric, hence not positive definite); (iii) the two continuous Kolountzakis-Lev-Matolcsi versions, for convex bodies in R^d and for finite unions of intervals in R, which a finite cyclic object says nothing about; (iv) further seed orbits at moduli 18, 20 and 24 recorded in this project's artifacts but not reproduced here, so the family addressed above is exactly {12d : d >= 2} and no more -- and within it only the members d = 2..8 are checked, the rest resting on the block-diagonal argument granted in Part H's note; (v) whether a cyclic group contains a LONELY weak tile, i.e. a set with a weak tiling measure and no tiling complement at all, which is untouched by everything above.
+
+VERDICT: ALL 44 CHECKS PASS
+=== program exited with status 0 ===

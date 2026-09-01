@@ -1,0 +1,321 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\emergencystretch=3em
+
+\hypersetup{
+  pdftitle={For odd primes p > q with q dividing p^2 - 1, every nonassociative
+            right Bol loop of order pq has right multiplication group of order
+            p^2 q}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{problem}{Problem 7.1 (Kinyon, Nagy, Vojt\v{e}chovsk\'y)}
+
+\newcommand{\Mltr}{\operatorname{Mlt}_r}
+\newcommand{\RInn}{\operatorname{RInn}}
+\newcommand{\FF}[1]{\mathbb F_{#1}}
+\newcommand{\Zq}{\mathbb Z_q}
+
+\title[$|\Mltr|=p^{2}q$ for nonassociative right Bol loops of order $pq$]
+{For Odd Primes $p>q$ with $q\mid p^{2}-1$, Every Nonassociative Right Bol Loop
+of Order $pq$ has Right Multiplication Group of Order $p^{2}q$}
+
+\date{}
+
+\subjclass[2020]{20N05, 20B25, 20D60}
+\keywords{Bol loop, right multiplication group, right inner mapping group,
+loops of order $pq$, Kinyon--Nagy--Vojt\v{e}chovsk\'y}
+
+\begin{document}
+
+\begin{abstract}
+Kinyon, Nagy and Vojt\v{e}chovsk\'y classified the right Bol loops of order
+$pq$ for odd primes $p>q$ with $q\mid p^{2}-1$, and proved that the right
+multiplication group of such a loop has order $p^{k}q$ with $k\in\{2,3\}$.
+Their Problem~7.1 asks whether $k=2$ always. Granting their classification, we
+answer yes: the $p^{3}q$ branch is empty. Once the right translations are put
+in affine form the proof is short linear algebra, and it identifies the module:
+for each such pair $p,q$ and every nonassociative right Bol loop $Q$ of order
+$pq$, $\Mltr(Q)\cong\FF p^{2}\rtimes_{C}\Zq$, where $C$ is the companion matrix of
+$X^{2}-\lambda X+1$ over $\FF p$, with $\lambda=w+w^{-1}$ for a primitive
+$q$-th root of unity $w$, and $\RInn(Q)\cong\mathbb Z_p$. This extends their
+Theorem~1.1(v) from the Bruck loop $B_{p,q}$ to the whole family.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+A loop $Q$ is a \emph{right Bol loop} if $((zx)y)x=z((xy)x)$ for all
+$x,y,z\in Q$. Its \emph{right multiplication group} is
+$\Mltr(Q)=\langle R_u:u\in Q\rangle\le\operatorname{Sym}(Q)$, where
+$R_u\colon x\mapsto xu$, and its \emph{right inner mapping group} $\RInn(Q)$ is
+the stabiliser of the identity in $\Mltr(Q)$, so that
+$|\Mltr(Q)|=|Q|\cdot|\RInn(Q)|$.
+
+Let $p>q$ be odd primes with $q\mid p^{2}-1$. Kinyon, Nagy and
+Vojt\v{e}chovsk\'y \cite{KNV} classify the right Bol loops of order $pq$
+(their Theorem~1.1(ii)--(iii)), show in Theorem~1.1(iv) that
+$|\Mltr(Q)|=p^{k}q$ with $k\in\{2,3\}$ for every nonassociative such loop, and
+prove in Theorem~1.1(v) that
+$\Mltr(B_{p,q})\cong(\mathbb Z_p\times\mathbb Z_p)\rtimes\Zq$ for the unique
+nonassociative right \emph{Bruck} loop $B_{p,q}$ of that order. The open half
+of the dichotomy is the last item of their Section~7:
+
+\begin{problem}
+Let $p>q$ be odd primes such that $q$ divides $p^{2}-1$, and let $Q$ be a
+nonassociative right Bol loop of order $pq$. Is the order of the right
+multiplication group of $Q$ equal to $p^{2}q$?
+\end{problem}
+
+\noindent The problem is quoted from the arXiv e-print
+\texttt{arXiv:1611.05785v3} of \cite{KNV}, whose numbering we follow throughout.
+
+\begin{theorem}\label{thm:main}
+Let $p>q$ be odd primes with $q\mid p^{2}-1$ and let $Q$ be a nonassociative
+right Bol loop of order $pq$. Then
+\[
+  |\Mltr(Q)|=p^{2}q,
+\]
+so the $k=3$ branch of \cite[Theorem~1.1(iv)]{KNV} is empty. Consequently
+$\RInn(Q)\cong\mathbb Z_p$.
+\end{theorem}
+
+The proof is in Section~\ref{sec:proof}. It uses
+\cite[Theorem~1.1(ii)--(iii)]{KNV}, which supplies the normal form of
+Section~\ref{sec:object} and is not reproved here, and it uses neither
+Theorem~1.1(iv) nor Theorem~1.1(v).
+
+\section{The object}\label{sec:object}
+
+Since $q\mid p^{2}-1$ and $q$ is an odd prime, $p\equiv\pm1\pmod q$ and exactly
+one of $q\mid p-1$, $q\mid p+1$ holds. Fix a primitive $q$-th root of unity
+$w\in\FF{p^{2}}$; then $w\in\FF p$ iff $q\mid p-1$, and $w^{p}=w^{-1}$ iff
+$q\mid p+1$. For $\gamma\in\FF{p^{2}}$ put
+\begin{equation}\label{eq:u}
+  u_i:=\gamma w^{i}+(1-\gamma)w^{-i}\qquad(i\in\Zq),
+\end{equation}
+so $u_0=1$, and let
+\[
+  \Gamma:=\bigl\{\gamma\neq0:\ u_i\in\FF p\text{ and }u_i\neq0
+             \text{ for all }i\in\Zq\bigr\}\big/(\gamma\sim1-\gamma).
+\]
+The identification $\gamma\mapsto1-\gamma$ replaces $u$ by $(u_{-i})_i$ and so
+does not change the loop below. Concretely $\Gamma$ is $\FF p^{*}$ cut down by
+the condition $1-\gamma^{-1}\notin\langle w\rangle$ when $q\mid p-1$, and the
+trace-one line $\{\gamma:\gamma+\gamma^{p}=1\}$ cut down by the same condition
+when $q\mid p+1$.
+
+For $\gamma\in\Gamma$ let $Q_\gamma$ be the loop on $\Zq\times\FF p$ with
+\begin{equation}\label{eq:mult}
+  (i,j)(k,l)=\Bigl(i+k,\ m+(j+m)\tfrac{u_i}{u_{i+k}}\Bigr),
+  \qquad m:=l\,\tfrac{u_k}{u_k+1},
+\end{equation}
+neutral element $(0,0)$. This is \cite[Theorem~1.1(iii)]{KNV} written with
+$\theta_i=u_i^{-1}$: their displayed product is
+$(i,j)(k,l)=\bigl(i+k,\ l(1+\theta_k)^{-1}+(j+l(1+\theta_k)^{-1})
+\theta_i^{-1}\theta_{i+k}\bigr)$, and substituting $\theta=u^{-1}$ gives
+\eqref{eq:mult}. Their Theorem~1.1(ii)--(iii) states that every right Bol loop
+of order $pq$ is isomorphic to $\mathbb Z_{pq}$ or to exactly one $Q_\gamma$;
+$Q_\gamma$ is associative iff $\gamma=1$, which occurs only when $q\mid p-1$
+and gives the nonabelian group of order $pq$; and $\gamma=1/2$ gives the Bruck
+loop $B_{p,q}$.
+
+Everything below depends on $Q_\gamma$ only through the vector
+$u=(u_0,\dots,u_{q-1})\in\FF p^{q}$.
+
+\section{The proof}\label{sec:proof}
+
+Throughout, $\gamma\in\Gamma$ with $\gamma\neq1$, $u$ is given by \eqref{eq:u},
+$Q=Q_\gamma$, and $S$ denotes the cyclic shift $(Sr)_i=r_{i+1}$ on $\FF p^{\Zq}$
+and on $\FF{p^{2}}^{\Zq}$.
+
+\begin{proof}[Step 1: the right translations are affine]
+By \eqref{eq:mult}, for $(k,l)\in Q$,
+\begin{equation}\label{eq:R}
+  R_{(k,l)}\colon(i,j)\longmapsto(i+k,\ \alpha_i j+\beta_i),
+  \qquad
+  \alpha_i=\frac{u_i}{u_{i+k}},\quad \beta_i=m(1+\alpha_i),
+\end{equation}
+with $m=l\,u_k/(u_k+1)$ as in \eqref{eq:mult}. All of $u_k$, $u_k+1=u_k+u_0$
+and $u_i$ are nonzero, so $\alpha_i\in\FF p^{*}$ and $m$ is defined; as $l$ runs
+over $\FF p$ so does $m$. Hence $\Mltr(Q)$ sits inside the group $A$ of maps
+$(i,j)\mapsto(i+c,\ a_ij+b_i)$ with $a\in(\FF p^{*})^{\Zq}$,
+$b\in\FF p^{\Zq}$, $c\in\Zq$, whose product is
+$(a,b,c)(a',b',c')=(a''\!,b''\!,c+c')$ with $a''_i=a_ia'_{i+c}$.
+\end{proof}
+
+\begin{proof}[Step 2: the kernel is exactly the pure translations, and
+$|\Mltr(Q)|=p^{\dim P}q$]
+Let $\psi\colon A\to(\FF p^{*})^{\Zq}\rtimes\Zq$ kill the translation part
+$b$. By \eqref{eq:R}, $\psi(R_{(k,l)})=\bigl((u_i/u_{i+k})_i,\,k\bigr)$
+\emph{independently of $l$}. Writing $h:=\psi(R_{(1,0)})$ and using the product
+rule of Step 1, $h^{k}=\bigl((u_i/u_{i+k})_i,\,k\bigr)$ by telescoping, so
+$\psi(\Mltr(Q))=\langle h\rangle$; and $h^{k}\neq1$ for $0<k<q$ because its
+$\Zq$-part is $k$, while $h^{q}=1$. Thus $\langle h\rangle$ has order exactly
+$q$ and the projection $\langle h\rangle\to\Zq$ is an isomorphism. Therefore an
+element of $\Mltr(Q)$ with trivial $\Zq$-part already has trivial linear part,
+i.e.
+\[
+  P:=\ker\bigl(\psi|_{\Mltr(Q)}\bigr)
+   =\{\,(i,j)\mapsto(i,j+t_i)\,\}\cap\Mltr(Q)
+   \ \le\ \FF p^{\Zq},
+\]
+an elementary abelian $p$-group, and
+\begin{equation}\label{eq:order}
+  |\Mltr(Q)|=|P|\cdot q=p^{\dim_{\FF p}P}\,q .
+\end{equation}
+\end{proof}
+
+\begin{proof}[Step 3: $P$ is a span of shifts, after one rescaling]
+Put $s:=R_{(1,0)}$; by \eqref{eq:R} it has $\beta\equiv0$, and $s^{k}=R_{(k,0)}$.
+For general $(k,l)$,
+\[
+  R_{(k,l)}=n_{k,l}\,s^{k},
+  \qquad n_{k,l}\in\FF p^{\Zq}\ \text{the translation by}\
+  t_i=m\Bigl(1+\frac{u_{i+k}}{u_i}\Bigr).
+\]
+Since $\Mltr(Q)$ is generated by the $R_{(k,l)}$ and $s^{q}=1$, the group $P$ is
+generated by the $s$-conjugates of the $n_{k,l}$; being elementary abelian, it is
+their $\FF p$-span. Conjugation by $s$ sends a translation vector $t$ to
+$\bigl(t_{i+1}u_{i+1}/u_i\bigr)_i$. Every $u_i$ is invertible, so
+$r_i:=t_iu_i$ is a change of coordinates on $\FF p^{\Zq}$, and in it that
+conjugation is the plain shift $S$. In the same coordinates
+\[
+  r_i=t_iu_i=m\,(u_i+u_{i+k})=m\,x^{(k)}_i,
+  \qquad x^{(k)}_i:=u_i+u_{i+k}.
+\]
+As $l$ runs over $\FF p$, $m$ runs over $\FF p$. Hence, in $r$-coordinates,
+\begin{equation}\label{eq:R2}
+  P=R:=\operatorname{span}_{\FF p}
+      \bigl\{S^{a}x^{(k)}:a,k\in\Zq\bigr\},
+  \qquad\text{so}\qquad \dim P=\dim R .
+\end{equation}
+\end{proof}
+
+\begin{proof}[Step 4: every generator lies in one fixed plane, so $\dim R\le2$]
+Set $v_1:=(w^{i})_{i\in\Zq}$ and $v_{-1}:=(w^{-i})_{i\in\Zq}$ in
+$\FF{p^{2}}^{\Zq}$, so that $u=\gamma v_1+(1-\gamma)v_{-1}$ by \eqref{eq:u} and
+$Sv_{\pm1}=w^{\pm1}v_{\pm1}$. Then, for every $k$,
+\begin{equation}\label{eq:key}
+  x^{(k)}=\gamma\bigl(1+w^{k}\bigr)v_1+(1-\gamma)\bigl(1+w^{-k}\bigr)v_{-1},
+\end{equation}
+because $x^{(k)}_i=u_i+u_{i+k}
+=\gamma(1+w^{k})w^{i}+(1-\gamma)(1+w^{-k})w^{-i}$. So every generator of $R$,
+and hence every $S$-shift of one, lies in
+$W:=\FF{p^{2}}v_1+\FF{p^{2}}v_{-1}$, which is $S$-stable and has
+$\dim_{\FF{p^{2}}}W=2$ since $w\neq w^{-1}$. A family of vectors of
+$\FF p^{\Zq}$ that is $\FF p$-independent stays independent over $\FF{p^{2}}$,
+so
+\[
+  \dim_{\FF p}R\ \le\ \dim_{\FF{p^{2}}}W\ =\ 2 .
+\]
+\end{proof}
+
+\begin{proof}[Step 5: two of them are already independent, so $\dim R=2$]
+Take $k=0$: $x^{(0)}=2u=2\gamma v_1+2(1-\gamma)v_{-1}$ and
+$Sx^{(0)}=2\gamma w\,v_1+2(1-\gamma)w^{-1}v_{-1}$. In the basis
+$(v_1,v_{-1})$ of $W$ their determinant is
+\begin{equation}\label{eq:det}
+  \det\begin{pmatrix}2\gamma & 2(1-\gamma)\\[2pt]
+                      2\gamma w & 2(1-\gamma)w^{-1}\end{pmatrix}
+  =4\gamma(1-\gamma)\bigl(w^{-1}-w\bigr).
+\end{equation}
+Every factor is nonzero: $4\neq0$ because $p$ is odd; $w^{-1}\neq w$ because
+$w$ has odd order $q>1$; $\gamma\neq0$ by the definition of $\Gamma$; and
+$1-\gamma\neq0$ because $\gamma=1$ is the associative member, excluded by
+hypothesis. So $x^{(0)}$ and $Sx^{(0)}$ are independent over $\FF{p^{2}}$, a
+fortiori over $\FF p$, and $\dim R\ge2$. With Step 4, $\dim R=2$; with
+\eqref{eq:R2} and \eqref{eq:order},
+\[
+  |\Mltr(Q)|=p^{2}q .
+\]
+Finally $|\RInn(Q)|=|\Mltr(Q)|/|Q|=p$, so $\RInn(Q)\cong\mathbb Z_p$. This
+proves Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{corollary}\label{cor:iso}
+$R=W\cap\FF p^{\Zq}$, independently of $\gamma$, and the shift $S$ acts on the
+$2$-dimensional $\FF p$-space $R$ with characteristic polynomial
+$X^{2}-\lambda X+1$, where $\lambda:=w+w^{-1}\in\FF p$, so with eigenvalues $w$
+and $w^{-1}$. Hence, for a fixed admissible pair $p,q$, all nonassociative
+right Bol loops of order $pq$ have mutually isomorphic right multiplication
+groups,
+\[
+  \Mltr(Q)\ \cong\ \FF p^{2}\rtimes_{C}\Zq ,
+  \qquad
+  C=\begin{pmatrix}0&-1\\1&\lambda\end{pmatrix}\in\mathrm{GL}_2(\FF p),
+\]
+the generator of $\Zq$ acting on $\FF p^{2}$ by the companion matrix $C$ of
+$X^{2}-\lambda X+1$. So \cite[Theorem~1.1(v)]{KNV} extends from $B_{p,q}$ to
+the whole family.
+\end{corollary}
+
+\begin{proof}
+$R\subseteq W\cap\FF p^{\Zq}$ by Step 4, and $\dim_{\FF p}(W\cap\FF p^{\Zq})=2$
+in both branches. If $q\mid p-1$ then $w\in\FF p$, so $v_{\pm1}$ themselves lie
+in $\FF p^{\Zq}$ and span a $2$-dimensional $\FF p$-subspace of
+$W\cap\FF p^{\Zq}$, which by Step 4 cannot be larger. If $q\mid p+1$ then
+$w^{p}=w^{-1}$, so the Frobenius $\sigma$ of $\FF{p^{2}}/\FF p$ interchanges
+$v_1$ and $v_{-1}$ coordinatewise; thus $W$ is $\sigma$-stable and Galois
+descent gives $\dim_{\FF p}(W\cap\FF p^{\Zq})=\dim_{\FF{p^{2}}}W=2$. Either way
+$R$ and $W\cap\FF p^{\Zq}$ are $2$-dimensional with the first inside the
+second, so they are equal --- and $W$ does not involve $\gamma$. Since
+$Sv_{\pm1}=w^{\pm1}v_{\pm1}$, the shift acts on $R\otimes\FF{p^{2}}=W$ with
+eigenvalues $w,w^{-1}$; as $R$ is an $\FF p$-space its characteristic
+polynomial lies in $\FF p[X]$, so it is
+$(X-w)(X-w^{-1})=X^{2}-\lambda X+1$ with $\lambda=w+w^{-1}\in\FF p$. The two
+eigenvalues are distinct, so the matrix of $S$ on $R$ in any $\FF p$-basis is
+conjugate in $\mathrm{GL}_2(\FF p)$ to the companion matrix $C$ of that polynomial. By
+Step 2 the extension $1\to P\to\Mltr(Q)\to\Zq\to1$ splits through $s$, with
+$P\cong R$ as an $\FF p[\Zq]$-module, so $\Mltr(Q)$ is determined up to
+isomorphism by that module, which is now the same for every $\gamma$ and is
+$\FF p^{2}$ with the generator of $\Zq$ acting by $C$.
+\end{proof}
+
+\section{Scope of the accompanying program}
+
+The proof above covers all admissible $(p,q)$ at once and is what the theorem
+rests on. The accompanying program \texttt{verify.py} checks it rather than
+replaces it, in exact integer arithmetic in $\FF p$ and $\FF{p^{2}}$; its
+transcript is \texttt{verify.output.txt}. On the cells with $pq\le105$ it builds
+the multiplication tables from \eqref{eq:mult} and from KNV's $\theta$-form
+independently, checks that the two agree entrywise, and verifies the loop axioms
+and the right Bol identity for every member. It checks Steps 1--5 as identities
+over the $29$ admissible cells with $pq\le255$, some of them only over the cells
+with $pq\le105$. Over those $29$ cells, all $490$ members that the imported
+classification marks nonassociative have $|\Mltr|=p^{2}q$ by brute-force closure
+of the right translations, using nothing from the proof; associativity itself is
+retested only on the cells with $pq\le105$ and on individual samples. A
+dimension sweep reaches $p\le400$ for $q\le13$. The program assumes
+\cite[Theorem~1.1(ii)--(iii)]{KNV}, which the theorem therefore also assumes;
+it examines no loop outside the family \eqref{eq:mult} and no order other than
+$pq$.
+
+No priority is claimed. The vector $u$ of \eqref{eq:u} obeys the recurrence
+$u_{i+2}=\lambda u_{i+1}-u_i$ that \cite{KNV} attribute to Niederreiter and
+Robinson, and Step 4 is that recurrence in the form of the shift-invariant plane
+it determines.
+
+\begin{thebibliography}{9}
+
+\bibitem{KNV}
+M.~K. Kinyon, G.~P. Nagy, and P.~Vojt\v{e}chovsk\'y,
+\emph{Bol loops and Bruck loops of order $pq$},
+J. Algebra \textbf{473} (2017), 481--512.
+\href{https://doi.org/10.1016/j.jalgebra.2016.11.023}{doi:10.1016/j.jalgebra.2016.11.023};
+\href{https://arxiv.org/abs/1611.05785}{arXiv:1611.05785v3}. Statement numbers
+are quoted from the e-print.
+
+\end{thebibliography}
+
+\end{document}
