@@ -1,0 +1,89 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  bc2df4acef917a915bb073eb2786a8cd6be0ab24217e07f024d7f92135ebf24b
+python:  Python 3.9.25
+=== program output follows ===
+verification of: A 71-point arc refutes the printed finite-p form of the
+entropic Cauchy-Davenport candidate of Gavalakis, Goh and Kontoyiannis
+python 3.9.25 -- standard library only, every decision an integer comparison
+
+=== Step 1: the object exhibited in the paper
+PASS p_is_prime [p = 101]
+PASS m_is_the_arc_length [S = {0,...,70} subset of F_101, m = |S| = 71]
+PASS arc_wraps_so_the_closed_form_applies [p = 101 < 2m-1 = 141 < 2p = 202]
+PASS two_to_H_plus_one_minus_one_is_the_integer_2m_minus_1 [X uniform on m points => 2^{H(X)+1} - 1 = 2m - 1 = 141 exactly]
+NOTE H(X) = log2(71) = 6.149747119504682 bits (orientation only; no check uses it)
+
+=== Step 2: the law of X + X'
+PASS convolution_counts_sum_to_m_squared [sum_k C_k = 5041 = 71^2]
+PASS closed_form_reproduces_the_brute_force_convolution [C_k = f(k) + f(k+p) agrees with the O(m^2) double loop on all 101 residues]
+PASS multiset_of_convolution_counts_matches_the_paper [41 with multiplicity 42, each of 42..70 twice, 71 once; 101 entries]
+PASS run_length_reading_matches_the_paper [C_k = 41 for 0<=k<=40, k+1 for 41<=k<=70, 141-k for 71<=k<=100]
+PASS sum_check_by_the_printed_decomposition [41*42 + 2*sum(42..70) + 71 = 1722 + 3248 + 71 = 5041 = 71^2]
+PASS X_plus_X_prime_is_not_uniform_on_F_p [p*C_41 = 4242 != m^2 = 5041]
+
+=== Step 3: which branch of the min is active (equation 4)
+PASS branch_test_integers_as_printed [(2m-1)^2 = 19881, 2p^2 = 20402]
+PASS witness_is_out_of_band_so_the_min_is_NOT_log_p [19881 < 20402, hence (2m-1)/sqrt2 < p and the active branch is log(141/sqrt2)]
+PASS second_branch_is_STRICTLY_below_log_p [strict, so log(141/sqrt2) < log 101 and the failure is not a saturation artefact]
+PASS saturation_floor_is_72_and_the_witness_is_one_step_below [least m with (2m-1)^2 >= 2p^2 is m = 72; witness m = 71]
+NOTE log2(141/sqrt2) = log2(141) - 1/2 = 6.639551352398794, log2(101) = 6.658211482751795 (orientation only)
+
+=== Step 4: the decisive inequality (Lemma 2, Proposition 3)
+PASS L_is_the_stated_integer [L = (2*71^4)^5041 = (2 m^4)^{m^2}]
+PASS R_is_the_stated_integer [R = 141^10082 * P^2 = (2m-1)^{2m^2} * (prod_k C_k^{C_k})^2]
+PASS L_has_38847_decimal_digits [digits(L) = 38847]
+PASS R_has_38874_decimal_digits [digits(R) = 38874]
+PASS THE_VIOLATION_L_less_than_R [(2m^4)^{m^2} < (2m-1)^{2m^2} * (prod C_k^{C_k})^2, so H(X+X') < log(141/sqrt2): the candidate FAILS at this X]
+PASS deficit_bracket_two_to_the_91_L_less_R_less_two_to_the_92_L [floor(log2(R/L)) = 91, so 91/10082 < deficit < 92/10082 bits, i.e. 0.0090260 < deficit < 0.0091252]
+NOTE floating-point corroboration (NOT a decision): H(X+X') = 6.6305238776406, log2(141/sqrt2) = 6.6395513523988, deficit = -9.0274747581995e-03
+PASS float_route_agrees_in_SIGN_with_the_integer_route [two structurally different routes give the same verdict; the integer route is the one the proof uses]
+PASS float_deficit_lies_inside_the_integer_bracket [0.0090260 < 0.0090275 < 0.0091252]
+
+=== Step 5: the guard of the Remark in Section 3 (S = F_p, equality)
+PASS equality_case_S_equals_F_p_is_IN_BAND_and_uniform_at_the_primes_tested [p in [7, 11, 13, 61, 101]: (2p-1)^2 >= 2p^2 and X+X' is uniform, so the active branch there is log p and the candidate holds with equality]
+PASS the_criterion_MISFIRES_in_band_exactly_as_the_Remark_discloses [at p in [7, 11, 13, 61, 101] the Lemma-2 inequality is true even though there is no violation, because it compares against the INACTIVE branch; the branch test is therefore a guard, not a formality]
+PASS no_reported_witness_is_affected_by_that_misfire [all 7 table witnesses satisfy (2m-1)^2 < 2p^2, the regime where the criterion is valid]
+
+=== Step 6: negative control -- the decider must be able to say NO
+PASS all_seven_control_arcs_are_out_of_band [(5,4), (7,4), (11,6), (101,2), (101,50), (61,30), (509,300)]
+PASS and_NONE_of_them_violates_the_candidate [violates = False for every one, so a True verdict elsewhere is informative rather than automatic]
+
+=== Step 7: the table of Section 4, recomputed row by row
+PASS table_row_p61_m43 [(2m-1)^2 = 7225 < 2p^2 = 7442 ; L < R = True ; digits L=12638 R=12645 ; 2^21 L < R < 2^22 L, so deficit in (5.67875e-03, 5.94916e-03) bits]
+PASS table_row_p101_m71 [(2m-1)^2 = 19881 < 2p^2 = 20402 ; L < R = True ; digits L=38847 R=38874 ; 2^91 L < R < 2^92 L, so deficit in (9.02599e-03, 9.12517e-03) bits]
+PASS table_row_p151_m106 [(2m-1)^2 = 44521 < 2p^2 = 45602 ; L < R = True ; digits L=94408 R=94481 ; 2^241 L < R < 2^242 L, so deficit in (1.07245e-02, 1.07690e-02) bits]
+PASS table_row_p211_m147 [(2m-1)^2 = 85849 < 2p^2 = 89042 ; L < R = True ; digits L=193840 R=193888 ; 2^160 L < R < 2^161 L, so deficit in (3.70216e-03, 3.72530e-03) bits]
+PASS table_row_p307_m213 [(2m-1)^2 = 180625 < 2p^2 = 188498 ; L < R = True ; digits L=436203 R=436214 ; 2^37 L < R < 2^38 L, so deficit in (4.07767e-04, 4.18788e-04) bits]
+PASS table_row_p401_m278 [(2m-1)^2 = 308025 < 2p^2 = 321602 ; L < R = True ; digits L=778808 R=778821 ; 2^46 L < R < 2^47 L, so deficit in (2.97604e-04, 3.04073e-04) bits]
+PASS table_row_p509_m353 [(2m-1)^2 = 497025 < 2p^2 = 518162 ; L < R = True ; digits L=1307414 R=1307509 ; 2^316 L < R < 2^317 L, so deficit in (1.26797e-03, 1.27198e-03) bits]
+NOTE the digit counts above are computed by exact comparison against powers of ten, not by a float estimate.  No verdict anywhere depends on a digit count.
+
+=== Step 7b: the deficits are NOT monotone, and they SHRINK (Section 5)
+PASS deficit_at_p401_is_more_than_35x_SMALLER_than_at_p151 [241 * 154568 = 37250888 > 36966440 = 35 * 47 * 22472, comparing the LOWER bound at p = 151 with the UPPER bound at p = 401; so the census does NOT show a persistent deficit and Section 5 claims none]
+PASS the_deficit_is_NOT_monotone_in_p [it falls from p = 151 to p = 211 (by more than 2x) and RISES again from p = 401 to p = 509 (by more than 4x), so no trend may be read off these seven rows in either direction]
+PASS every_table_deficit_bracket_is_strictly_positive_hence_a_real_violation [k >= 0 in every row, i.e. 2^k L < R with k >= 0 forces L < R strictly]
+NOTE deficit brackets, bits: p=61: (5.679e-03, 5.949e-03); p=101: (9.026e-03, 9.125e-03); p=151: (1.072e-02, 1.077e-02); p=211: (3.702e-03, 3.725e-03); p=307: (4.078e-04, 4.188e-04); p=401: (2.976e-04, 3.041e-04); p=509: (1.268e-03, 1.272e-03) -- the endpoints are floats printed for the reader; the ORDERING facts checked above were decided by integer cross-multiplication.
+
+=== Step 8: the intermittency list of Section 4, complete per prime
+PASS complete_out_of_band_violator_list_p29 [every m in 2..p-1 tested; violators = [21]]
+PASS complete_out_of_band_violator_list_p31 [every m in 2..p-1 tested; violators = []]
+PASS complete_out_of_band_violator_list_p37 [every m in 2..p-1 tested; violators = []]
+PASS complete_out_of_band_violator_list_p41 [every m in 2..p-1 tested; violators = [29]]
+PASS complete_out_of_band_violator_list_p43 [every m in 2..p-1 tested; violators = []]
+PASS complete_out_of_band_violator_list_p47 [every m in 2..p-1 tested; violators = []]
+PASS complete_out_of_band_violator_list_p53 [every m in 2..p-1 tested; violators = []]
+PASS complete_out_of_band_violator_list_p59 [every m in 2..p-1 tested; violators = [42]]
+PASS complete_out_of_band_violator_list_p61 [every m in 2..p-1 tested; violators = [43]]
+PASS complete_out_of_band_violator_list_p101 [every m in 2..p-1 tested; violators = [71]]
+PASS the_phenomenon_is_intermittent_at_small_primes [no out-of-band violating arc at all at p = 31, 37, 43, 47, 53, so the failure is not a uniform small-p wrap-around effect]
+
+=== Step 9: the scope arithmetic of Section 5
+PASS every_witness_has_log_p_minus_H_X_strictly_between_0p50_and_0p53 [certified by the integer comparisons p^100 > m^100 * 2^50 and p^100 < m^100 * 2^53 for all 7 witnesses]
+PASS entropy_increment_exceeds_0p477_at_every_witness [floor(log2(m^{m^2}/P)) * 1000 > 477 * m^2 for all 7 witnesses; weakest certified lower bound 0.47701 bits, at p = 61]
+PASS hence_no_witness_contradicts_the_epsilon_weakened_theorem_of_the_source [H(X+X') - H(X) + 0.023 > 1/2 at every witness, certified in integers, so all seven satisfy the windowed statement the source paper proves for every eps > 0.023]
+
+NOT RE-RUN / SCOPE.  This program re-derives the claims of the paper and nothing more.  It does NOT search primes p > 509; it does NOT examine any set other than arcs {0,...,m-1} (no two-arc, no general subset, no non-uniform X); it does NOT establish anything about the o_{p->infinity}(1) term of the candidate, which the paper explicitly leaves open; it does NOT touch the bulk regime where 2^{H(X)} is far below p/sqrt2; it does NOT re-derive the saturated-branch Fourier remark of Section 5, which the paper states as folklore and does not claim; and it does NOT verify the constant K_epsilon of the source paper's windowed theorem, which is used only qualitatively in Section 5.
+
+VERDICT: ALL 51 CHECKS PASS
+=== program exited with status 0 ===

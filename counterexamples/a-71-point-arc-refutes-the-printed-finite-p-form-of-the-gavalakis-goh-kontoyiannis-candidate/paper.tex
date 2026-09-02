@@ -1,0 +1,373 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 71-point arc refutes the printed finite-p form of the entropic
+            Cauchy-Davenport candidate of Gavalakis, Goh and Kontoyiannis}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\Ent}{H}
+\newcommand{\Fp}{\mathbb F_p}
+
+\title[A 71-point arc refutes the printed finite-$p$ form of a candidate]
+{A 71-Point Arc Refutes the Printed Finite-$p$ Form of the Entropic
+ Cauchy--Davenport Candidate of Gavalakis, Goh and Kontoyiannis}
+
+\date{}
+
+\subjclass[2020]{94A17, 11B13, 11B30, 05B10}
+\keywords{Shannon entropy, Cauchy--Davenport theorem, sumset,
+entropy power inequality, prime field, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Gavalakis, Goh and Kontoyiannis suggest, in a hedged display whose first line
+is the only part at issue here, that a candidate entropic Cauchy--Davenport
+theorem ``might be'' that
+\[
+  \Ent(X+X')\ \ge\ \min\bigl\{\log p,\
+  \log\bigl((2^{\Ent(X)+1}-1)/\sqrt2\bigr)\bigr\}
+\]
+for every prime $p$, every $\Fp$-valued $X$ and $X'$ an independent copy of
+$X$, the logarithm being to base~$2$.  We refute that first line read literally at
+finite $p$, in the branch where the minimum is \emph{not} the cap $\log p$:
+take $p=101$ and
+$X$ uniform on the arc $S=\{0,1,\dots,70\}$.  Then $2^{\Ent(X)+1}-1=141$
+exactly, the integer comparison $141^{2}=19881<20402=2\cdot101^{2}$ shows that
+the active branch is $\log(141/\sqrt2)$ and not $\log 101$, and
+$\Ent(X+X')<\log(141/\sqrt2)$.  The decisive step is a single comparison
+between two explicit positive integers; no logarithm is evaluated and no
+floating-point arithmetic is used.  Six further witnesses
+at $p=61,151,211,307,401,509$ are certified the same way.  Only the finite-$p$
+first line of the display is affected: the asymptotic second line, which
+carries an $o_{p\to\infty}(1)$, is untouched, and nothing here contradicts the
+authors' own theorem, an $\varepsilon$-weakened statement restricted to an
+entropy window: we do not determine that window's constant, and what we check
+is that all seven witnesses satisfy the theorem's conclusion for every
+$\varepsilon>0.023$.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+Throughout, $\log$ is the logarithm to base~$2$, entropies are in bits, and
+$0\log 0=0$, as in the source paper \cite{GGK}.  For a prime $p$ we write
+$\Fp$ for the field with $p$ elements, and $X'$ always denotes an independent
+copy of the $\Fp$-valued random variable $X$.
+
+Gavalakis, Goh and Kontoyiannis \cite{GGK} discuss what an entropic analogue
+of the Cauchy--Davenport theorem $|A+B|\ge\min\{p,|A|+|B|-1\}$ could say.
+Having observed that the naive analogue fails, they write ``In view of the
+above comments, a more appropriate candidate for an entropic
+Cauchy--Davenport theorem might be that'', and then display, as
+equation~(2) of \cite{GGK},
+\begin{align*}
+  \Ent(X+X')\ &\ge\ \min\left\{\log p,\
+   \log\!\left(\frac{2^{\Ent(X)+1}-1}{\sqrt2}\right)\right\}\\
+  &=\ \min\left\{\log p,\ \Ent(X)+\tfrac12-o_{p\to\infty}(1)\right\}.
+\end{align*}
+The first line of that display, which is the only part at issue here, reads
+\begin{equation}\label{eq:cand}
+  \Ent(X+X')\ \ge\ \min\left\{\log p,\
+  \log\!\left(\frac{2^{\Ent(X)+1}-1}{\sqrt2}\right)\right\}.
+\end{equation}
+Read literally, the quantifiers are the ones the display carries and no
+others: every prime $p$, every $\Fp$-valued $X$, and $X'$ an independent
+copy; there is no largeness hypothesis on $p$, no $\varepsilon$, and no
+restriction on $\Ent(X)$.  That literal finite-$p$ reading is the only thing
+tested below.  We do not claim to have established from the surrounding text
+what scope the authors intended for the display, and the second line of it
+carries an $o_{p\to\infty}(1)$, so an asymptotically intended reading is
+consistent with everything proved here.
+
+Two points bear on what is being refuted.  First, \eqref{eq:cand} is a hedged
+candidate display: the authors write ``might be'', they do not call it a
+conjecture, and we do not either.  It is nevertheless a definite mathematical
+assertion, and they refer back to it, describing their first result as a
+weaker form of it, so it is a statement one may test.  Second, what the
+authors actually \emph{prove}, via a theorem of Tao \cite{Tao}, is the
+$\varepsilon$-weakened, two-sided-window assertion
+\begin{equation}\label{eq:thm}
+  \Ent(X+X')\ \ge\ \Ent(X)+\tfrac12-\varepsilon
+  \qquad\text{whenever } k_\varepsilon<\Ent(X)<\log p-K_\varepsilon ,
+\end{equation}
+a window their prose says ``forbids, e.g., deterministic random variables and
+random variables uniformly distributed on the whole of $\mathbb F$''.  That
+gap --- \eqref{eq:cand} has no $\varepsilon$ and no window --- is what the
+witness below occupies.  Nothing in this note touches \eqref{eq:thm}; see
+Section~\ref{sec:scope}.
+
+\begin{theorem}\label{thm:main}
+Let $p=101$, let $S=\{0,1,\dots,70\}\subset\mathbb F_{101}$, let $X$ be
+uniform on $S$ and let $X'$ be an independent copy of $X$.  Then
+\[
+  \min\left\{\log p,\ \log\!\left(\frac{2^{\Ent(X)+1}-1}{\sqrt2}\right)\right\}
+  \ =\ \log\!\left(\frac{141}{\sqrt2}\right)\ <\ \log 101 ,
+\]
+and
+\[
+  \Ent(X+X')\ <\ \log\!\left(\frac{141}{\sqrt2}\right).
+\]
+Hence \eqref{eq:cand}, read literally at this finite $p$, is false, and false
+at a point where the minimum in \eqref{eq:cand} is \emph{not} the cap
+$\log p$.
+\end{theorem}
+
+The last clause is the substance of the example: in the saturated branch
+\eqref{eq:cand} degenerates into the demand that $X+X'$ be exactly uniform,
+whereas Theorem~\ref{thm:main} places the failure strictly \emph{below} the
+saturation threshold, in the branch that carries the content
+$\Ent(X)+\frac12-o(1)$.
+
+\section{The witness, exhibited}
+
+Fix $p=101$, $m=71$, $S=\{0,\dots,m-1\}$ and $X$ uniform on $S$, so that
+$\Ent(X)=\log 71=6.149747119504682\ldots$ and
+\begin{equation}\label{eq:int}
+  2^{\Ent(X)+1}-1\ =\ 2m-1\ =\ 141 \qquad\text{exactly.}
+\end{equation}
+Because $X$ is uniform on a set, the right-hand side of \eqref{eq:cand} is an
+\emph{integer} expression, and this is what makes the whole test finite and
+exact.
+
+\subsection*{Which branch is active}
+By \eqref{eq:int} the two branches compare as
+$(2m-1)/\sqrt2$ against $p$, i.e.\ as the integers $(2m-1)^2$ against $2p^2$:
+\begin{equation}\label{eq:branch}
+  (2m-1)^2 = 141^2 = 19881
+  \ <\ 20402 = 2\cdot 101^2 = 2p^2 .
+\end{equation}
+So $141/\sqrt2<101$ and the minimum in \eqref{eq:cand} is the second branch:
+\begin{align*}
+  \log\!\left(\frac{141}{\sqrt2}\right)&=\log 141-\tfrac12
+   =6.639551352398794\ldots\\
+  &<\ 6.658211482751795\ldots=\log 101 .
+\end{align*}
+Equivalently: the least $m$ for which the arc of length $m$ in
+$\mathbb F_{101}$ saturates, i.e.\ the least $m$ with $(2m-1)^2\ge 2p^2$, is
+$m=72$, and our witness has $m=71$, one step below that floor.
+
+\subsection*{The law of $X+X'$}
+Put $C_k=\#\{(i,j)\in S\times S: i+j\equiv k \bmod p\}$, so that
+$\Pr[X+X'=k]=C_k/m^2$ and $\sum_k C_k=m^2$.  For the arc
+$S=\{0,\dots,m-1\}$ with $p<2m-1<2p$ one has the closed form
+\begin{equation}\label{eq:closed}
+  C_k=f(k)+f(k+p),\qquad
+  f(s)=\begin{cases}
+   s+1, & 0\le s\le m-1,\\
+   2m-1-s, & m-1<s\le 2m-2,\\
+   0,&\text{otherwise,}
+  \end{cases}
+\end{equation}
+since the number of ordered representations of $s$ as a sum of two elements of
+$\{0,\dots,m-1\}$ \emph{over $\mathbb Z$} is $f(s)$, and each residue $k$ is
+hit by exactly the integers $k$ and $k+p$ in $[0,2m-2]$.  At $p=101$, $m=71$
+this gives the multiset
+\begin{equation}\label{eq:multiset}
+  \{C_k\}_{k=0}^{100}
+  =\bigl\{\,41^{(42)},\ 42^{(2)},43^{(2)},\dots,70^{(2)},\ 71^{(1)}\,\bigr\},
+\end{equation}
+that is: the value $41$ occurs $42$ times, each of $42,43,\dots,70$ occurs
+twice, and $71$ occurs once.  There are $42+29\cdot2+1=101$ entries and they
+sum to $41\cdot42+2\cdot\sum_{v=42}^{70}v+71=1722+3248+71=5041=71^2$, as they
+must.  Concretely, reading $k=0,1,\dots,100$ in order,
+$C_k=41$ for $0\le k\le 40$, $C_k=k+1$ for $41\le k\le 70$, and
+$C_k=141-k$ for $71\le k\le 100$.  In particular $101\,C_k\ne m^2$ for
+$k=41$, so $X+X'$ is not uniform on $\mathbb F_{101}$.
+
+For orientation only --- no step of the proof uses it ---
+$\Ent(X+X')=6.6305238776\ldots$, so the deficit in \eqref{eq:cand} is
+$-9.0274748\times10^{-3}$ bits.
+
+\section{The decisive inequality, in integers}
+
+\begin{lemma}\label{lem:crit}
+Let $p$ be prime, let $S\subseteq\Fp$ with $|S|=m\ge1$, let $X$ be uniform on
+$S$, let $X'$ be an independent copy and let $C_k$ be as above.  Then
+\begin{equation}\label{eq:crit}
+  \Ent(X+X')<\log\!\left(\frac{2m-1}{\sqrt2}\right)
+  \quad\Longleftrightarrow\quad
+  \bigl(2m^4\bigr)^{m^2}
+  \ <\ (2m-1)^{2m^2}\Bigl(\prod_{k}C_k^{\,C_k}\Bigr)^{2},
+\end{equation}
+and both sides of the right-hand inequality are positive integers.
+\end{lemma}
+
+\begin{proof}
+With $c_k=C_k/m^2$ and $\sum_k C_k=m^2$,
+\[
+  2^{\Ent(X+X')}=\prod_k c_k^{-c_k}
+  =\frac{(m^2)^{\sum_k C_k/m^2}}{\bigl(\prod_k C_k^{C_k}\bigr)^{1/m^2}}
+  =\frac{m^2}{P^{1/m^2}},\qquad P:=\prod_k C_k^{\,C_k},
+\]
+the products being over the $k$ with $C_k>0$.  Hence
+$\Ent(X+X')<\log((2m-1)/\sqrt2)$ says $m^2/P^{1/m^2}<(2m-1)/\sqrt2$, i.e.
+$\sqrt2\,m^2<(2m-1)P^{1/m^2}$.  Squaring (both sides are positive) gives
+$2m^4<(2m-1)^2P^{2/m^2}$, and raising to the power $m^2$ gives
+\eqref{eq:crit}.  Every $C_k$ is a nonnegative integer, so $P\in\mathbb Z_{>0}$.
+\end{proof}
+
+\begin{remark}\label{rem:guard}
+Criterion \eqref{eq:crit} tests \eqref{eq:cand} \emph{only after} the branch
+test \eqref{eq:branch} has returned ``out of band''.  In the saturated branch
+the right-hand side of \eqref{eq:cand} is $\log p$, not
+$\log((2m-1)/\sqrt2)$, and there the right-hand inequality of
+\eqref{eq:crit} can hold with no violation whatsoever: for $S=\Fp$ itself,
+$X+X'$ is uniform, \eqref{eq:cand} holds with equality, and yet
+$(2m^4)^{m^2}<(2m-1)^{2m^2}P^2$ is true because it is being compared against
+the \emph{inactive} branch.  So $(2m-1)^2<2p^2$ is a guard and not a
+formality.  It holds for the witness of Theorem~\ref{thm:main} by
+\eqref{eq:branch}.
+\end{remark}
+
+\begin{proposition}\label{prop:num}
+At $p=101$, $m=71$, with $C_k$ as in \eqref{eq:multiset} and
+$P=\prod_k C_k^{C_k}$, the two integers
+$L=(2m^4)^{m^2}=(2\cdot71^4)^{5041}$ and
+$R=(2m-1)^{2m^2}P^2=141^{10082}P^2$ satisfy
+\[
+  2^{91}\,L\ <\ R\ <\ 2^{92}\,L ,
+\]
+and in particular $L<R$.
+\end{proposition}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The branch identification is \eqref{eq:int} and \eqref{eq:branch}.  The
+inequality $L<R$ of Proposition~\ref{prop:num} together with
+Lemma~\ref{lem:crit} gives $\Ent(X+X')<\log(141/\sqrt2)$, which is exactly
+the failure of \eqref{eq:cand} at this $X$.
+\end{proof}
+
+The bracket $2^{91}L<R<2^{92}L$ is worth stating because it converts the
+deficit into a rational bound with no logarithm evaluated.  Indeed the proof
+of Lemma~\ref{lem:crit} shows
+$\log(R/L)=2m^2\bigl(\log((2m-1)/\sqrt2)-\Ent(X+X')\bigr)$, so with
+$2m^2=10082$,
+\[
+  \frac{91}{10082}
+  \ <\ \log\!\left(\frac{141}{\sqrt2}\right)-\Ent(X+X')\ <\ \frac{92}{10082},
+\]
+that is, $0.0090259\ldots<\text{deficit}<0.0091251\ldots$ bits.  The violation
+is therefore bounded away from zero by an inequality between integers.
+
+\section{Further witnesses}\label{sec:table}
+
+The same two integer tests certify a violation for the smallest out-of-band
+arc at each of six more primes.  In each row $S=\{0,\dots,m-1\}$, the third
+and fourth columns are the branch test $(2m-1)^2<2p^2$ of \eqref{eq:branch}, and the fifth is
+and $k:=\lfloor\log_2(R/L)\rfloor$, so that $2^kL<R<2^{k+1}L$ as in
+Proposition~\ref{prop:num}.  Since $k\ge0$ in every row, $L<R$ and
+\eqref{eq:cand} fails at each; and by the identity displayed above the deficit
+at each witness lies strictly between $k/2m^2$ and $(k+1)/2m^2$ bits.  The
+last column records that bracket to three significant figures; it is the only
+inexact entry in the table, and nothing depends on it.
+
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{rrrrrl}
+$p$ & $m$ & $(2m-1)^2$ & $2p^2$ & $k$
+ & deficit (bits)\\
+\hline
+$61$  & $43$  & $7225$   & $7442$   & $21$
+ & $5.68$--$5.95\cdot10^{-3}$\\
+$101$ & $71$  & $19881$  & $20402$  & $91$
+ & $9.03$--$9.13\cdot10^{-3}$\\
+$151$ & $106$ & $44521$  & $45602$  & $241$
+ & $1.072$--$1.077\cdot10^{-2}$\\
+$211$ & $147$ & $85849$  & $89042$  & $160$
+ & $3.70$--$3.73\cdot10^{-3}$\\
+$307$ & $213$ & $180625$ & $188498$ & $37$
+ & $4.08$--$4.19\cdot10^{-4}$\\
+$401$ & $278$ & $308025$ & $321602$ & $46$
+ & $2.98$--$3.04\cdot10^{-4}$\\
+$509$ & $353$ & $497025$ & $518162$ & $316$
+ & $1.268$--$1.272\cdot10^{-3}$\\
+\end{tabular}
+\end{center}
+
+\noindent
+The deficit column is not monotone in $p$, and no trend should be read into
+these seven rows; Section~\ref{sec:scope} returns to this.  We do not claim
+that a violating arc exists at every prime.
+
+\section{What is not settled}\label{sec:scope}
+
+\noindent\textbf{No theorem is contradicted.}  Every witness above has
+$0.50<\log p-\Ent(X)<0.53$ bits, so all seven sit at the near-uniform end of
+the entropy range.  We have not determined the constant $K_\varepsilon$ of the
+window of \eqref{eq:thm} and claim nothing about its size, so we do not assert
+that the window excludes our witnesses; what is checked directly is that
+$\Ent(X+X')-\Ent(X)>0.477$ at all seven witnesses (weakest certified bound
+$0.47701$, at $p=61$), so every one of them satisfies \eqref{eq:thm} for every
+$\varepsilon>0.023$.
+
+\medskip
+\noindent\textbf{Only the printed finite-$p$ form is refuted.}  What fails is
+\eqref{eq:cand} exactly as displayed, with no $\varepsilon$ and no window; the
+second line of the quoted display carries an $o_{p\to\infty}(1)$ and is
+untouched, and a reader who takes the display to be intended asymptotically
+should read this note as bearing on its finite-$p$ form alone.  We make no
+claim about the $p\to\infty$ behaviour, and the seven rows of
+Section~\ref{sec:table} support
+none: their deficits are not monotone in $p$, and the deficit of the smallest
+out-of-band arc may well tend to $0$, in which case the second line survives
+intact.  Nor are the rows maximal deficits, each being the \emph{smallest}
+out-of-band arc at its prime.  Whether the supremum of the deficit over all
+$X$ stays bounded away from $0$ as $p\to\infty$ is open, and we do not
+conjecture an answer.
+
+\medskip
+\noindent\textbf{The bulk regime is untouched, and no minimality is claimed.}
+All of our witnesses sit just below the saturation floor; the regime where
+$2^{\Ent(X)}$ is well below $p/\sqrt2$ is not addressed here at all.  We do
+not claim that $p=101$ or $m=71$ is extremal in any sense, we search no prime
+beyond $p=509$, and only arcs $\{0,\dots,m-1\}$ with uniform $X$ are
+considered; no other family of sets and no non-uniform $X$ is examined.
+
+
+
+\section{Reproduction}
+
+Everything needed is printed above: the prime $p=101$, the set
+$S=\{0,\dots,70\}$, the closed form \eqref{eq:closed} for the convolution
+counts, the resulting multiset \eqref{eq:multiset}, the branch test
+\eqref{eq:branch} and the integer criterion \eqref{eq:crit}.  A referee who
+prefers to recompute rather than to read can do so in a few lines of exact
+integer arithmetic.  A program that does exactly that, reading only the data
+printed here and using the standard library alone with no floating-point
+decision, accompanies this note as \texttt{verify.py}, together with the
+recorded output \texttt{verify.output.txt} of a run of it.
+
+\begin{thebibliography}{9}
+
+\bibitem{GGK}
+L.~Gavalakis, M.~Goh, and I.~Kontoyiannis,
+\emph{Entropy lower bounds and sum-product phenomena},
+\href{https://arxiv.org/abs/2604.20233}{arXiv:2604.20233}, version~3
+(28~August 2026); quotations and the equation number refer to that version.
+
+\bibitem{Tao}
+T.~Tao,
+\emph{Sumset and inverse sumset theory for Shannon entropy},
+Combin. Probab. Comput. \textbf{19} (2010), no.~4, 603--639.
+\href{https://doi.org/10.1017/S0963548309990642}{doi:10.1017/S0963548309990642};
+\href{https://arxiv.org/abs/0906.4387}{arXiv:0906.4387}.
+
+\end{thebibliography}
+
+\end{document}

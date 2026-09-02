@@ -1,0 +1,90 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a281fe0be52891748768d92c425e5edf7b4254e45ef9ca84e91bbb0d0bdeb124
+python:  Python 3.9.25
+=== program output follows ===
+verification of "Pure powers 3^7 and 3^8 in the integer group determinant image of D_54"
+python 3.9.25 -- exact integer arithmetic only, standard library only
+
+=== Step 1: the group D_54, built from its presentation
+PASS group_has_order_54 [order = 54]
+PASS closure_under_multiplication
+PASS identity_element
+PASS inverses_are_two_sided
+PASS associativity_on_all_157464_triples [54^3 = 157464 triples, 0 failures]
+PASS dihedral_relation_s_r_s_equals_r_inverse
+PASS r_has_order_27 [order(r) = 27]
+PASS s_has_order_2
+
+=== Step 2: a wiring control on the group determinant
+PASS control_group_determinant_of_0_then_all_ones_is_minus_53 [D = -53]
+NOTE a NEGATIVE value: the 54x54 determinant is not being computed up to sign or in absolute value.
+PASS group_determinant_is_multiplicative_on_three_deterministic_nonzero_pairs [8748==8748; -30502389939948==-30502389939948; 100009663763310010162489370923801431480086725480854336==100009663763310010162489370923801431480086725480854336]
+
+=== Step 3: the two witnesses of the main theorem, by four routes
+PASS W1_g_equals_f_minus_1_as_printed [g - (f-1) = 0]
+PASS W1_h_recomputed_from_f_and_g_matches_the_printed_h [h = {0: -1, 1: 1, 4: 1, 23: 1, 26: 1}]
+PASS W1_h_equals_f_plus_fstar_minus_one_equation_2
+PASS W1_h_is_symmetric
+PASS W1_h_at_1_matches_the_printed_value [h(1) = 3]
+PASS W1_h_at_1_is_odd_so_h_is_a_genuine_reduced_polynomial
+PASS W1_the_stated_realization_of_h_reproduces_h [a_0 = 0, a_1..a_13 = [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS W1_route1_54x54_group_table_determinant [D = 2187]
+PASS W1_route2_27x27_circulant_of_h_agrees [D = 2187]
+PASS W1_route3_resultant_of_x27_minus_1_and_h_agrees [D = 2187]
+PASS W1_route4_product_of_cyclotomic_resultants_agrees [h(1)*Res(Phi_3)*Res(Phi_9)*Res(Phi_27) = 2187]
+PASS W1_res_at_Phi_1_is_h_at_1
+PASS W1_each_Res_Phi_3m_equals_9_as_printed [Res = {3: 9, 9: 9, 27: 9}]
+PASS W1_each_Res_Phi_3m_is_a_perfect_square_P_m_squared_lemma_2 [P_m = +-[3, 3, 3]]
+PASS W1_v3_of_each_P_m_is_1 [v3(P_m) = [1, 1, 1]]
+PASS W1_valuation_formula_of_lemma_2_holds [v3(D) = v3(h(1)) + 2*sum v3(P_m) = 1 + 6]
+PASS W1_v3_of_D_is_7 [v3 = 7]
+PASS W1_v2_of_D_is_0
+PASS W1_cofactor_after_removing_all_2s_and_3s_is_1_a_PURE_power [cofactor = 1]
+PASS W1_D_equals_3_to_the_7_exactly [2187 == 3^7]
+PASS W1_hand_identity_P1_equals_h1_minus_3H1 [H_1 = 2, P_1 = -3, P_1^2 = 9]
+PASS W1_swapping_f_and_g_negates_the_determinant [D = -2187]
+PASS W2_g_equals_f_minus_1_as_printed [g - (f-1) = 0]
+PASS W2_h_recomputed_from_f_and_g_matches_the_printed_h [h = {0: 1, 1: 1, 2: 1, 4: 1, 5: 1, 22: 1, 23: 1, 25: 1, 26: 1}]
+PASS W2_h_equals_f_plus_fstar_minus_one_equation_2
+PASS W2_h_is_symmetric
+PASS W2_h_at_1_matches_the_printed_value [h(1) = 9]
+PASS W2_h_at_1_is_odd_so_h_is_a_genuine_reduced_polynomial
+PASS W2_the_stated_realization_of_h_reproduces_h [a_0 = 1, a_1..a_13 = [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS W2_route1_54x54_group_table_determinant [D = 6561]
+PASS W2_route2_27x27_circulant_of_h_agrees [D = 6561]
+PASS W2_route3_resultant_of_x27_minus_1_and_h_agrees [D = 6561]
+PASS W2_route4_product_of_cyclotomic_resultants_agrees [h(1)*Res(Phi_3)*Res(Phi_9)*Res(Phi_27) = 6561]
+PASS W2_res_at_Phi_1_is_h_at_1
+PASS W2_each_Res_Phi_3m_equals_9_as_printed [Res = {3: 9, 9: 9, 27: 9}]
+PASS W2_each_Res_Phi_3m_is_a_perfect_square_P_m_squared_lemma_2 [P_m = +-[3, 3, 3]]
+PASS W2_v3_of_each_P_m_is_1 [v3(P_m) = [1, 1, 1]]
+PASS W2_valuation_formula_of_lemma_2_holds [v3(D) = v3(h(1)) + 2*sum v3(P_m) = 2 + 6]
+PASS W2_v3_of_D_is_8 [v3 = 8]
+PASS W2_v2_of_D_is_0
+PASS W2_cofactor_after_removing_all_2s_and_3s_is_1_a_PURE_power [cofactor = 1]
+PASS W2_D_equals_3_to_the_8_exactly [6561 == 3^8]
+PASS W2_hand_identity_P1_equals_h1_minus_3H1 [H_1 = 4, P_1 = -3, P_1^2 = 9]
+PASS W2_swapping_f_and_g_negates_the_determinant [D = -6561]
+PASS the_two_witnesses_give_3_to_the_7_and_3_to_the_8 [2187 and 6561]
+
+=== Step 4: forced positive control on a PUBLISHED value
+PASS published_p5_witness_of_D18_returns_243_by_all_four_routes [D = [243, 243, 243, 243]]
+PASS published_p5_witness_of_D18_has_v3_5_and_unit_cofactor
+PASS the_same_published_witness_at_n_27_gives_3_to_the_7_times_53_squared [D = 6143283 = 3^7 * 53^2]
+PASS and_its_cofactor_is_NOT_1_so_it_is_not_a_pure_power [cofactor = 2809]
+
+=== Step 5: negative control -- the forbidden valuation band 1..6
+PASS no_v3_in_the_forbidden_band_1_to_6_over_243_deterministic_cases [v3 histogram = {0: 162, 7: 21, 8: 3, 11: 18, 15: 1, 27: 1, None: 37}]
+PASS the_band_test_is_not_silent_both_7_and_8_actually_occur [v3 = 7 in 21 cases, v3 = 8 in 3 cases]
+PASS no_v2_equal_to_1_over_the_same_family [v2 histogram = {0: 111, 2: 39, 4: 17, 6: 3, 8: 21, 10: 11, 12: 2, 14: 1, 16: 1, None: 37}]
+
+=== Step 6: the exponent semigroup used in the completeness theorem
+PASS attainable_b_set_up_to_60_is_exactly_0_together_with_7_and_above [min positive attainable b = 7]
+PASS the_two_new_pure_powers_are_what_closes_the_gap_7_and_8 [without b = 7, 8 the source alone attains only b = 0 or b >= 9]
+PASS the_band_1_to_6_stays_unattainable_matching_Theorem_5_4_necessity
+
+NOTE SCOPE: every claim re-derived above is a claim the note makes about the objects printed in it. NOT RE-RUN, and not covered by any check here: (1) the achievability results of [BP] that the completeness theorem consumes -- every 2^a m with (m,6)=1 and a = 0 or a >= 2 (the b = 0 members), and every pure power 3^b with b >= 9 -- which are quoted from the source and not verified; (2) the necessity statement of [BP] Theorem 5.4 / Lemma 4.4 in general, including the p = 2 clauses, which is likewise quoted and not verified: Step 5 is a finite deterministic CONTROL over 243 symmetric h with support in {0,+-1,+-2,+-3,+-4} and coefficients in {-1,0,1}, not a proof; (3) the measure set of any group other than D_54 -- nothing here determines S(D_162), S(D_250) or S of any p > 3; (4) minimality, uniqueness or exhaustiveness of W1 and W2, on which the note makes no claim and this program runs no census.
+
+VERDICT: ALL 65 CHECKS PASS
+=== program exited with status 0 ===

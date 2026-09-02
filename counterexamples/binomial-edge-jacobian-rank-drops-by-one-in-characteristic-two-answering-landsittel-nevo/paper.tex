@@ -1,0 +1,380 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Binomial Edge Jacobian of (K_3,K_3) Loses Rank in Characteristic Two}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{question}{Question}
+\newtheorem*{propB}{Proposition B}
+
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\adj}{adj}
+\newcommand{\Hm}{\mathcal H}
+\newcommand{\FF}{\mathbb F}
+
+\title[Binomial edge Jacobian of $(K_3,K_3)$ in characteristic two]
+{The Binomial Edge Jacobian of $(K_3,K_3)$ Loses Rank in Characteristic Two}
+
+\date{}
+
+\subjclass[2020]{13A30, 05E40, 13N15, 05B35}
+\keywords{analytic spread, binomial edge ideal of a pair of graphs, Jacobian,
+algebraic matroid, characteristic two, adjugate}
+
+\begin{document}
+
+\begin{abstract}
+For graphs $G$ on $[n]$ and $H$ on $[m]$ let
+$J_{G,H}=(x_{i,k}x_{j,l}-x_{i,l}x_{j,k}\mid\{i,j\}\in E(G),\{k,l\}\in E(H))$
+and let $\Hm(G,H)$ be the Jacobian of those generators. Landsittel and Nevo
+prove $\rk\Hm(G,H)=\ell(J_{G,H})$ over a field of characteristic $0$ or
+larger than $2^{nm}$, and ask whether the characteristic hypothesis can be
+removed. It cannot. At $G=H=K_3$, where $\Hm$ is the Jacobian of the
+$3\times3$ adjugate, we exhibit the $9\times9$ matrix and evaluate it at
+$X=I$: over every field of characteristic $2$,
+$\rk\Hm(K_3,K_3)=8$ while $\ell(J_{K_3,K_3})=9$; over every field of
+characteristic $\neq2$ the two agree, with no bound on the characteristic at
+all. The verification is a $3\times3$ determinant. The spread half is already
+in the source: Landsittel and Nevo prove $\ell(J_{K_n,K_m})=nm$ for
+$n,m\ge3$ over an arbitrary field, and we reprove only the case used here,
+from adjugate identities. Together with the inequality $\rk\Hm\le\ell$ over an
+arbitrary field, which they quote from Beecken--Mittmann--Saxena, the rank
+computation is short.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Fix a field $F$, integers $n,m\ge1$, the polynomial ring
+$S=F[x_{i,k}\mid i\in[n],k\in[m]]$ and its fraction field
+$K=F(x_{i,k})$. Write $X=(x_{i,k})$ for the generic $n\times m$ matrix. For
+graphs $G$ on $[n]$ and $H$ on $[m]$, the \emph{binomial edge ideal of the
+pair} $(G,H)$ is
+\[
+ J_{G,H}=\bigl(f_{e,e'}\;\big|\;e=\{i<j\}\in E(G),\ e'=\{k<l\}\in E(H)\bigr),
+\]
+\[
+ f_{e,e'}=x_{i,k}x_{j,l}-x_{i,l}x_{j,k},
+\]
+and $\Hm(G,H)\in K^{e(G)e(H)\times nm}$ is the Jacobian
+$\bigl(\partial f_{e,e'}/\partial x_{i,k}\bigr)$, its rows indexed by
+$E(G)\times E(H)$ and its columns by the variables. We write
+$\ell(I)$ for the analytic spread of $I$, the Krull dimension of its special
+fibre ring. Landsittel and Nevo \cite{LN} prove:
+
+\begin{propB}
+For any graphs $G$ and $H$, the rank of the Jacobian $\Hm(G,H)$ of the
+minimal binomial generators of $J_{G,H}$ equals the analytic spread of
+$J_{G,H}$, over any field of characteristic zero or larger than
+$2^{|V(G)||V(H)|}$.
+\end{propB}
+
+\noindent
+The threshold is inherited from \cite[Theorem 8]{BMS}, which turns an
+algebraic matroid into a linear one in characteristic $0$ or large enough. The
+authors ask whether it is an artefact:
+
+\begin{question}
+Can the characteristic conditions in [their theorem on $J_G=J_{G,K_2}$] and
+Proposition~B be removed? Is it true that for any field $F$, every algebraic
+matroid $F\subset F(g_1,\ldots,g_N)$ defined by degree two forms $g_i$ is
+representable?
+\end{question}
+
+\noindent
+Both statements are quoted from the e-print source of \cite{LN}, in which the
+characteristic hypothesis is twice recorded as technical: the authors say that
+they have no counterexample in nonzero characteristic below $2^n$ and that the
+assumption is introduced in order to apply \cite[Theorem 8]{BMS}, and later
+that possibly the restrictions can be removed. The bracketed phrase above
+replaces an internal cross-reference of that source. We quote rather than cite
+by number because the numbering of a published version was not available to
+us, so the statement being addressed here is fixed by the quotation and not by
+a number.
+
+This note answers the Proposition~B half of the Question, in both directions.
+
+\begin{theorem}\label{thm:main}
+Let $G=H=K_3$, so that $n=m=3$, $X$ is the generic $3\times3$ matrix and
+$\Hm=\Hm(K_3,K_3)$ is the $9\times9$ matrix of Table~\textup{1}. Then, over
+every field $F$,
+\[
+ \ell(J_{K_3,K_3})=9,
+ \qquad
+ \rk_K\Hm=
+ \begin{cases}
+  9, & \operatorname{char}F\neq2,\\
+  8, & \operatorname{char}F=2.
+ \end{cases}
+\]
+In particular the conclusion of Proposition~B fails over every field of
+characteristic $2$, so its characteristic hypothesis cannot be removed; and at
+this pair characteristic $2$ is the only obstruction, the conclusion holding in
+every other characteristic with no bound whatsoever.
+\end{theorem}
+
+Nothing printed in \cite{LN} is contradicted. Proposition~B as stated assumes
+$\operatorname{char}F=0$ or $\operatorname{char}F>2^{9}=512$, and $\FF_2$ lies
+outside that hypothesis; what is refuted is the affirmative answer to the
+Question for Proposition~B, which the authors pose as open. The
+degree-two representability half of the Question is untouched: at
+$(K_3,K_3)$ over $\FF_2$ the nine generators are algebraically independent
+(Lemma~\ref{lem:spread} below), so their algebraic matroid is the free matroid
+$U_{9,9}$, representable over every field. What fails is not
+representability of the matroid but the Jacobian's ability to compute it.
+Only the single pair $(K_3,K_3)$ is treated below: nothing is claimed at any
+other pair, in either direction, and no failure of Proposition~B's conclusion
+in odd characteristic is exhibited anywhere.
+
+\section{The witness}
+
+Order $E(K_3)=\{12,13,23\}$ and index the rows of $\Hm$ by $(e,e')$
+lexicographically with $e'$ prioritised, following the notation of \cite{LN};
+index the columns by
+$x_{1,1},x_{1,2},x_{1,3},x_{2,1},\ldots,x_{3,3}$. Since
+$f_{e,e'}=x_{i,k}x_{j,l}-x_{i,l}x_{j,k}$ has exactly four terms of degree $1$
+in each variable it involves, each row of $\Hm$ has exactly four nonzero
+entries, each a signed variable:
+
+\medskip
+\noindent\textbf{Table 1.} $\Hm(K_3,K_3)$.
+{\small
+\[
+\begin{array}{r|rrrrrrrrr}
+ (e,e') & x_{11} & x_{12} & x_{13} & x_{21} & x_{22} & x_{23}
+        & x_{31} & x_{32} & x_{33}\\\hline
+ (12,12) & x_{22} & -x_{21} & 0 & -x_{12} & x_{11} & 0 & 0 & 0 & 0\\
+ (13,12) & x_{32} & -x_{31} & 0 & 0 & 0 & 0 & -x_{12} & x_{11} & 0\\
+ (23,12) & 0 & 0 & 0 & x_{32} & -x_{31} & 0 & -x_{22} & x_{21} & 0\\
+ (12,13) & x_{23} & 0 & -x_{21} & -x_{13} & 0 & x_{11} & 0 & 0 & 0\\
+ (13,13) & x_{33} & 0 & -x_{31} & 0 & 0 & 0 & -x_{13} & 0 & x_{11}\\
+ (23,13) & 0 & 0 & 0 & x_{33} & 0 & -x_{31} & -x_{23} & 0 & x_{21}\\
+ (12,23) & 0 & x_{23} & -x_{22} & 0 & -x_{13} & x_{12} & 0 & 0 & 0\\
+ (13,23) & 0 & x_{33} & -x_{32} & 0 & 0 & 0 & 0 & -x_{13} & x_{12}\\
+ (23,23) & 0 & 0 & 0 & 0 & x_{33} & -x_{32} & 0 & -x_{23} & x_{22}
+\end{array}
+\]}
+
+\medskip
+The nine generators are exactly the nine $2\times2$ minors of $X$, that is, up
+to sign the nine entries of $\adj X$; so $\Hm$ is the Jacobian of the adjugate
+map, equivalently the Hessian of the cubic form $\det_3$.
+
+Specialising Table~1 at $X=I$ gives an integer matrix that a reader can put in
+echelon form by eye.
+
+\medskip
+\noindent\textbf{Table 2.} $\Hm(K_3,K_3)$ at $X=I$.
+{\small
+\[
+\begin{array}{r|rrrrrrrrr}
+ (e,e') & x_{11} & x_{12} & x_{13} & x_{21} & x_{22} & x_{23}
+        & x_{31} & x_{32} & x_{33}\\\hline
+ (12,12) & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+ (13,12) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+ (23,12) & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0\\
+ (12,13) & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+ (13,13) & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+ (23,13) & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+ (12,23) & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0\\
+ (13,23) & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+ (23,23) & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1
+\end{array}
+\]}
+
+\medskip
+Six of the nine rows of Table~2 --- all but $(12,12)$, $(13,13)$, $(23,23)$
+--- carry a single $\pm1$, and those six entries sit in six \emph{distinct}
+columns, namely $x_{32},x_{31},x_{23},x_{21},x_{13},x_{12}$. Deleting those
+six rows and columns leaves the three surviving rows supported on
+$x_{11},x_{22},x_{33}$, where they read
+\begin{equation}\label{eq:A}
+ A=\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix},
+ \qquad \det A=-2 .
+\end{equation}
+So $\rk\Hm(I)=6+\rk A$ over any field, and $\det\Hm(I)=\pm2$.
+
+\begin{lemma}\label{lem:euler}
+Let $G,H$ be any graphs and let $v=(x_{i,k})\in K^{nm}$ be the Euler vector.
+Then $\Hm(G,H)\,v=2f$, where $f$ is the column of generators. Consequently, if
+$\operatorname{char}F=2$ then $v$ is a nonzero kernel vector and
+$\rk_K\Hm(G,H)\le nm-1$.
+\end{lemma}
+
+\begin{proof}
+Every $f_{e,e'}$ is homogeneous of degree $2$, so Euler's identity gives
+$\sum_{i,k}x_{i,k}\,\partial f_{e,e'}/\partial x_{i,k}=2f_{e,e'}$, which is the
+$(e,e')$ entry of $\Hm v$. If $2=0$ in $F$ then $\Hm v=0$, and $v\neq0$.
+\end{proof}
+
+\begin{lemma}\label{lem:spread}
+Over every field $F$, $\ell(J_{K_3,K_3})=9$; equivalently the nine $2\times2$
+minors of the generic $3\times3$ matrix are algebraically independent over $F$.
+\end{lemma}
+
+\begin{proof}
+Let $g_1,\ldots,g_9$ be the generators and $L=F(g_1,\ldots,g_9)\subset K$.
+They are forms of the common degree $2$, so the special fibre ring of
+$J_{K_3,K_3}$ is $F[g_1,\ldots,g_9]$ and
+$\ell(J_{K_3,K_3})=\trdeg_FL$ by the equigenerated-ideal lemma of \cite{LN},
+which carries no hypothesis on $F$ and is taken there from
+\cite[Proposition 4.8]{HeinzerKim}. The entries of $\adj X$ are, up to sign,
+the $g_i$, so they lie in $L$; and the classical identities over $\mathbb Z$
+\[
+ \adj(\adj X)=\det(X)\,X,
+ \qquad
+ \det(\adj X)=\det(X)^2
+\]
+give, for each of the nine entries,
+\[
+ x_{i,k}^2=\frac{\bigl(\adj(\adj X)_{i,k}\bigr)^2}{\det(\adj X)}\in L .
+\]
+Hence $K^2\subset L\subset K$, so $K/L$ is algebraic and
+$\trdeg_FL=\trdeg_FK=9$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemma~\ref{lem:spread} gives $\ell(J_{K_3,K_3})=9$ over every field. For the
+rank, work with Table~2 and \eqref{eq:A}.
+
+If $\operatorname{char}F\neq2$ then $\det A=-2\neq0$ in $F$, so
+$\rk\Hm(I)=6+3=9$ by the paragraph after Table~2; a specialisation cannot raise
+rank, so $9=\rk\Hm(I)\le\rk_K\Hm\le9$, the last bound being the number of
+columns. Hence $\rk_K\Hm=9=\ell(J_{K_3,K_3})$: the conclusion of Proposition~B
+holds at $(K_3,K_3)$ over every field of characteristic $\neq2$, with no
+threshold.
+
+If $\operatorname{char}F=2$ then the three rows of $A$ sum to zero, and any two
+of them are independent, so $\rk A=2$ and $\rk\Hm(I)=6+2=8$; thus
+$\rk_K\Hm\ge8$. Lemma~\ref{lem:euler} gives $\rk_K\Hm\le nm-1=8$. Hence
+$\rk_K\Hm=8<9=\ell(J_{K_3,K_3})$.
+\end{proof}
+
+\begin{remark}
+The kernel of $\Hm(I)$ over a field of characteristic $2$ is exactly the line
+spanned by $(1,0,0,0,1,0,0,0,1)$, which is the Euler vector $v=(x_{i,k})$
+evaluated at $X=I$: the two upper bounds of the proof are the same vector seen
+twice, and this is why the deficiency is exactly $1$ and not more.
+\end{remark}
+
+\begin{remark}
+The determinant of Table~1 is
+$\det\Hm(K_3,K_3)=2\det(X)^3$, an identity in
+$\mathbb Z[x_{1,1},\ldots,x_{3,3}]$ with $54$ monomials on each side. (The
+\emph{sign} depends on the chosen orders of the rows and of the columns and is
+therefore not an invariant; the integer content $2$ is, and it is all that is
+used.) Nothing about this object is new: it is the case $n=3$ of the classical
+evaluation of the Hessian of $\det_n$ as
+$(-1)^{n^2-1}(n-1)\det(X)^{\,n(n-2)}$, whose integer factor at $n=3$ is
+$n-1=2$.
+\end{remark}
+
+\section{Prior art and attribution}
+
+The ingredients are other people's. The inequality
+$\rk_K\Hm(G,H)\le\ell(J_{G,H})$ over an arbitrary field is
+\cite[Lemma 9]{BMS}, quoted as such in \cite{LN}. The phenomenon that an
+algebraic matroid over a field of positive characteristic need not be
+representable is Ingleton's \cite[p.~166, Example 15]{Ingleton}, also cited by
+\cite{LN}. The determinant identity in the last remark of Section~2 is the
+classical Hessian of $\det_3$.
+
+The spread half of Theorem~\ref{thm:main} is in the cited source. Landsittel
+and Nevo prove $\ell(J_{K_n,K_m})=nm$ for $n,m\ge3$ and remark explicitly that
+the proof needs no assumption on the field and makes no reference to
+representability; at $n=m=3$ that statement is Lemma~\ref{lem:spread}. Their
+proof runs through \cite[Theorem 1]{DOG}, which we did not check for field
+generality, and that is the only reason Lemma~\ref{lem:spread} is proved here
+from the adjugate identities; the value is theirs. Granted that value and
+\cite[Lemma 9]{BMS}, what remains of the refutation is the Euler vector of
+Lemma~\ref{lem:euler} together with the evaluation in Table~2.
+
+A search for the rank statement itself returned nothing containing it, and we
+make no priority claim on that basis. The nearest items found do not settle it:
+\cite{LN} record it as open twice; \cite{BMS} bounds $\rk\Hm$ by $\ell$ but
+evaluates neither at any pair; \cite{DOG} inverts the multiplicative compound
+operator and treats neither the Jacobian rank nor characteristic $2$; and
+Ingleton's example produces a non-representable algebraic matroid, whereas at
+$(K_3,K_3)$ over $\FF_2$ the matroid is free and what fails is the Jacobian.
+
+\section{Verification}
+
+Everything decisive is in Tables~1 and~2, \eqref{eq:A} and
+Lemmas~\ref{lem:euler}--\ref{lem:spread}: a referee who wants to run nothing
+needs one $3\times3$ determinant, $\det A=-2$, plus the observation that the
+rows of $A$ sum to zero modulo $2$.
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library
+only, no external data file) re-derives from the printed edge lists, rather
+than reading, the quantities used above: it rebuilds the nine generators and
+checks they are the nine $2\times2$ minors and the signed entries of $\adj X$;
+reproduces Table~1 entry by entry against the symbolic Jacobian; expands
+$\det\Hm=2\det(X)^3$ exactly over $\mathbb Z$ and reports its content $2$ and
+its vanishing modulo $2$; verifies $\Hm v=2f$ and the adjugate identities
+of Lemma~\ref{lem:spread} as polynomial identities over $\mathbb Z$; and
+recomputes the ranks at $X=I$ over $\mathbb Q$, over $\FF_2$ (with the kernel)
+and over $\FF_p$ for $p=3,5,7,11,13,509$. All
+arithmetic is exact: integers, \texttt{fractions.Fraction}, and a
+$GF(2^{16})$ whose modulus is proved irreducible inside the program; every
+characteristic-$2$ rank it reports is an evaluation, hence a lower bound, and
+is asserted only once it meets a proved upper bound. The recorded run
+\texttt{verify.output.txt} reports $75$ checks, all passing.
+
+That run also carries checks for statements this note does not make: a family
+of pairs whose vertices lie in chained triangles, the pair $(2K_3,2K_3)$, and
+the $(K_n,K_2)$ side of the source's other theorem. Nothing above rests on
+them. One of those lines is labelled as saying that characteristic $2$
+degenerates only at $n=3$, which is false as stated, since $2$ divides $n-1$
+for every odd $n$; no claim in this note depends on it.
+
+\begin{thebibliography}{9}
+
+\bibitem{BMS}
+M.~Beecken, J.~Mittmann, and N.~Saxena,
+\emph{Algebraic independence and blackbox identity testing},
+Inform. and Comput. \textbf{222} (2013), 2--19.
+\href{https://doi.org/10.1016/j.ic.2012.10.004}{doi:10.1016/j.ic.2012.10.004};
+\href{https://arxiv.org/abs/1102.2789}{arXiv:1102.2789}.
+
+\bibitem{DOG}
+Dey, Ofir, and Grussler,
+\emph{Inversion of the multiplicative matrix compound operator},
+\href{https://arxiv.org/abs/2605.27682}{arXiv:2605.27682}.
+
+\bibitem{HeinzerKim}
+W.~J. Heinzer and M.-K. Kim,
+\emph{Properties of the fiber cone of ideals in local rings},
+Comm. Algebra \textbf{31} (2003), no.~7, 3529--3546.
+\href{https://doi.org/10.1081/AGB-120022240}{doi:10.1081/AGB-120022240}.
+
+\bibitem{Ingleton}
+A.~W. Ingleton,
+\emph{Representation of matroids},
+in: Combinatorial Mathematics and its Applications (Oxford, 1969),
+Academic Press, London, 1971, pp.~149--167.
+
+\bibitem{LN}
+S.~Landsittel and E.~Nevo,
+\emph{Analytic spread via linear matroids},
+arXiv:2607.07458v1 (8 July 2026).
+\href{https://arxiv.org/abs/2607.07458}{arXiv:2607.07458}.
+Statements are quoted from the e-print source
+\texttt{spread\_arxiv\_ver\_\_1\_.tex} of that version, the only full text we
+could reach.
+
+\end{thebibliography}
+
+\end{document}

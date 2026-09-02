@@ -1,0 +1,93 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8e6ca7abd9519a2b081d4a8620b0f67cf1fe2e632cb099d4131fa4e4b76a3839
+python:  Python 3.9.25
+=== program output follows ===
+exact verification of "K_5 minus an edge is 2-conformally rigid but not
+1-conformally rigid" -- all arithmetic in Python integers and Fractions
+python 3.9.25
+
+=== Step 1: the object exhibited in the paper
+PASS graph6_decodes_to_five_vertices [graph6 'D^{' -> n = 5]
+PASS graph6_has_nine_edges [|E| = 9]
+PASS graph6_graph_is_K5_minus_exactly_one_edge [complement edge = [(0, 1)] (0-based)]
+PASS printed_edge_list_has_nine_distinct_edges [|E| = 9]
+PASS printed_edge_list_is_K5_on_1_to_5_minus_the_pair_4_5 [missing pair = {4,5}]
+PASS printed_relabelling_carries_graph6_onto_the_paper_labelling [sigma = {0: 4, 1: 5, 2: 1, 3: 2, 4: 3}]
+PASS degree_sequence_is_3_3_4_4_4 [degrees [4, 4, 4, 3, 3]]
+
+=== Step 2: the unweighted Laplacian and the sums S_k(1), s_k(1)
+PASS laplacian_is_symmetric
+PASS laplacian_has_zero_row_sums
+PASS laplacian_trace_is_2E_equals_18 [tr L = 18]
+PASS laplacian_charpoly_is_x_times_x_minus_3_times_x_minus_5_cubed [coefficients (lowest first) ['0', '375', '-350', '120', '-18', '1']]
+PASS laplacian_spectrum_is_0_3_5_5_5 [spec L(1) = ['0', '3', '5', '5', '5']]
+PASS allones_is_the_trivial_eigenvector
+PASS e4_minus_e5_is_an_eigenvector_for_eigenvalue_3 [L(e4-e5) = 3(e4-e5)]
+PASS vector_a_is_an_eigenvector_for_eigenvalue_5 [a = ['1', '-1', '0', '0', '0']]
+PASS vector_b_is_an_eigenvector_for_eigenvalue_5 [b = ['0', '1', '-1', '0', '0']]
+PASS vector_c_is_an_eigenvector_for_eigenvalue_5 [c = ['2', '2', '2', '-3', '-3']]
+PASS the_five_exhibited_eigenvectors_are_linearly_independent [det = -30]
+PASS S_1_allones_equals_5 [S_1(1) = 5]
+PASS S_2_allones_equals_10 [S_2(1) = 10]
+PASS S_3_allones_equals_15 [S_3(1) = 15]
+PASS S_4_allones_equals_18 [S_4(1) = 18]
+PASS s_1_allones_equals_lambda_2_equals_3 [s_1(1) = 3]
+PASS S_4_allones_equals_the_trace_so_k_equals_n_minus_1_is_trivial [S_4 = s_4 = tr L = 18]
+
+=== Step 3: half (i) -- the dual certificate X = M/45 proves upper-2 rigidity
+PASS X_is_symmetric
+PASS trace_X_equals_2_equals_k [tr X = 2]
+PASS X_annihilates_allones [X.1 = 0]
+PASS X_charpoly_is_x2_times_x_minus_5_9_squared_times_x_minus_8_9 [coefficients (lowest first) ['0', '0', '-200/729', '35/27', '-2', '1']]
+PASS X_spectrum_is_0_0_5_9_5_9_8_9 [spec X = ['0', '0', '5/9', '5/9', '8/9']]
+PASS zero_le_X_le_I_holds_EXACTLY_not_to_a_tolerance [every eigenvalue of X lies in [0,1]]
+PASS X_acts_on_a_by_5_over_9 [X a = (5/9) a]
+PASS X_acts_on_b_by_5_over_9 [X b = (5/9) b]
+PASS X_acts_on_c_by_8_over_9 [X c = (8/9) c]
+PASS X_acts_on_e4_minus_e5_by_0 [X e4-e5 = (0) e4-e5]
+PASS X_acts_on_allones_by_0 [X allones = (0) allones]
+PASS L_times_X_equals_5X_so_the_range_of_X_lies_in_the_5_eigenspace [L X - 5 X = 0]
+PASS trace_LX_equals_10_equals_S_2_allones [tr(L X) = 10]
+PASS Lstar_X_is_the_constant_10_over_9_on_all_nine_edges [L*(X)_e = 10/9 for every e]
+PASS Lstar_X_edge_sum_is_10_equals_S_2_allones [9 * 10/9 = 10]
+PASS closed_form_X_equals_five_ninths_P_plus_c_cT_over_90 [P = I - J/5 - (e4-e5)(e4-e5)^T/2,  |c|^2 = 30,  (1/3)/30 = 1/90; this closed form is NOT printed in the paper -- the paper gives M and the eigen-facts]
+PASS P_is_a_symmetric_idempotent_of_trace_3 [tr P = 3]
+PASS L_times_P_equals_5P_so_P_projects_onto_the_5_eigenspace
+PASS pairing_identity_trace_L_w_X_equals_w_dot_Lstar_X [exact on 5 rational weight vectors]
+PASS constancy_makes_the_bound_on_the_five_TESTW_vectors [for each of the 5 TESTW vectors, <w, L*(X)> = (10/9) sum_e w_e]
+NOTE Ky Fan: for X with 0 <= X <= I, tr X = k and X.1 = 0, tr(L(w)X) <= S_k(w).  The three checks above therefore give S_2(w) >= 10 = S_2(1) for every w in Delta_E, with equality at all-ones: K_5 - e is upper-2 rigid.
+
+=== Step 4: half (ii) -- the weight w* kills lower-1 (equivalently upper-3).  The FACT that K_5 - e is not lower-1 rigid is not claimed as new by the paper: it is published numerical data (Niu, row id=450, lcr=False); only the exact rational w* is supplied here
+PASS w_star_is_nonnegative [values ['3/7', '9/7']]
+PASS w_star_sums_to_9_equals_E_so_it_lies_in_Delta_E [6*(9/7) + 3*(3/7) = 9]
+PASS w_star_is_9_over_7_on_the_six_edges_meeting_4_5_and_3_over_7_inside_1_2_3 [6 + 3 = 9 edges]
+PASS L_w_star_has_zero_row_sums
+PASS trace_L_w_star_equals_18_equals_2E [tr L(w*) = 18]
+PASS L_w_star_charpoly_is_x_times_x_minus_27_7_cubed_times_x_minus_45_7 [coefficients (lowest first) ['0', '885735/2401', '-118098/343', '5832/49', '-18', '1']]
+PASS L_w_star_spectrum_is_0_27_7_27_7_27_7_45_7 [spec L(w*) = ['0', '27/7', '27/7', '27/7', '45/7']]
+PASS w_star_eigenvector_a_has_eigenvalue_27_over_7 [L(w*) a = (27/7) a]
+PASS w_star_eigenvector_b_has_eigenvalue_27_over_7 [L(w*) b = (27/7) b]
+PASS w_star_eigenvector_e4_minus_e5_has_eigenvalue_27_over_7 [L(w*) e4-e5 = (27/7) e4-e5]
+PASS w_star_eigenvector_c_has_eigenvalue_45_over_7 [L(w*) c = (45/7) c]
+PASS s_1_w_star_is_27_over_7_strictly_greater_than_s_1_allones_equals_3 [27/7 = 27/7 > 3]
+PASS lower_1_rigidity_FAILS_so_K5_minus_e_is_NOT_1_conformally_rigid [all-ones does not maximise s_1 over Delta_E]
+PASS S_3_w_star_is_99_over_7_strictly_below_S_3_allones_equals_15 [99/7 = 99/7 < 15]
+PASS upper_3_rigidity_FAILS_by_the_same_weight
+PASS S_2_w_star_is_72_over_7_which_respects_the_certificate_bound_10 [72/7 = 72/7 >= 10]
+PASS duality_identity_S_k_plus_s_n_minus_1_minus_k_equals_2E [checked for w = all-ones and w = w*, k = 1,2,3; hence upper-k iff lower-(n-1-k)]
+PASS at_n_5_and_k_2_the_duality_is_self_paired_so_upper_2_gives_2_conformal_rigidity [n-1-k = 5-1-2 = 2 = k]
+PASS S_4_is_the_constant_18_on_Delta_E_so_k_equals_4_is_trivially_rigid [S_4(w) = tr L(w) = 2|E| = 18 for every w in Delta_E]
+
+=== Step 5: material BEYOND THE PAPER -- the upper-1 certificate X/2, the values of L*(P), and the k-map at n = 5
+NOTE The five checks in this step correspond to nothing in the paper: the paper proves no upper-1 certificate (it cites Niu, ucr=True, for that fact), never mentions P, and states no k-map.  They are recomputations the program supplies on its own; they are consistent with the paper and establish more than it claims, and none of them is evidence for a claim the paper makes.
+PASS half_X_is_a_feasible_upper_1_certificate [tr(X/2) = 1, (X/2).1 = 0, spectrum {0,0,5/18,5/18,4/9} in [0,1]]
+PASS Lstar_half_X_is_the_constant_5_over_9_with_edge_sum_5_equals_S_1_allones [9 * 5/9 = 5]
+PASS Lstar_P_is_2_inside_1_2_3_and_3_over_2_on_the_six_cross_edges_hence_NOT_constant [3*2 + 6*(3/2) = 15]
+PASS Lstar_P_edge_sum_is_15_equals_S_3_allones
+PASS k_conformal_rigidity_at_n_5_holds_exactly_for_k_in_2_and_4 [k-map {1: 'F', 2: 'T', 3: 'F', 4: 'T'} ; the non-trivial content is {1:F, 2:T, 3:F}, non-monotone in both directions -- computed here from the two witnesses; the paper states no k-map, asserting only 2-conformal rigidity and the failure of lower-1 (equivalently upper-3)]
+
+NOTE SCOPE -- what this program does NOT cover.  It re-derives, in exact arithmetic, the quantities named in the PASS lines above for the single graph K_5 - e.  Its inputs -- the graph6 string, the edge list, the matrix M and the weight w* -- are TRANSCRIBED BY HAND from the paper and hard-coded here: this program never reads paper.tex, so neither the faithfulness of that transcription nor the completeness of the list above against what the paper states is machine-checked, and "every quantity the paper states" is not something this program verifies.  NOT RE-RUN here: (a) the Ky Fan maximum principle and the source's upper-k/lower-(n-1-k) duality, which are quoted theorems, not recomputations; (b) minimality and uniqueness -- the paper claims NEITHER, asserting neither that K_5 - e is the smallest graph with this behaviour nor that it is the only 5-vertex witness; the census of the 994 connected graphs on 3..7 vertices that looked at those questions was float64 at a bound tolerance near 1e-7 and is NOT reproduced here, so nothing here bears on them either; (c) every order n >= 8, which was never swept; (d) any infinite family.  BEYOND THE PAPER, in the other direction: all of Step 5 (the upper-1 certificate X/2, the values of L*(P), the k-map) and the closed form for X in Step 3 are established here but are not stated or claimed by the paper.  This program certifies the two witnesses and nothing else.
+
+VERDICT: ALL 68 CHECKS PASS
+=== program exited with status 0 ===

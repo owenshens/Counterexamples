@@ -2,19 +2,19 @@
 
 Output of an automated mathematics solver framework we developed. The framework mines the
 literature for open conjectures and open existence questions, attacks them, and verifies
-what survives. This repository holds the results: 188 short papers, each with the code that
+what survives. This repository holds the results: 202 short papers, each with the code that
 checks it.
 
-**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **113 papers refuting a published
-conjecture or question**, **26 exhibiting an object whose existence was open**, and
-**49 proving a conjecture or recording a note**. Two statements each carry two independent
+**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **117 papers refuting a published
+conjecture or question**, **33 exhibiting an object whose existence was open**, and
+**52 proving a conjecture or recording a note**. Two statements each carry two independent
 papers, which exhibit different objects and are listed separately.
 
 | directory | n | contents |
 |---|---|---|
-| [`counterexamples/`](counterexamples/) | 113 | a published conjecture or question is refuted |
-| [`constructions/`](constructions/) | 26 | an object whose existence was open is exhibited |
-| [`notes/`](notes/) | 49 | conjectures proved, expository notes, and re-proofs of results due to others |
+| [`counterexamples/`](counterexamples/) | 117 | a published conjecture or question is refuted |
+| [`constructions/`](constructions/) | 33 | an object whose existence was open is exhibited |
+| [`notes/`](notes/) | 52 | conjectures proved, expository notes, and re-proofs of results due to others |
 
 ## One folder per paper
 
@@ -41,7 +41,9 @@ of it, and each paper's transcript was checked for *direction* — whether it es
 the paper claims, which is harmless, or less, which is not. From wave 23 onward each transcript is
 also audited against **its own checks**: a printed line that asserts more than the executed
 predicates establish is a false claim inside the evidence, and several were found and corrected this
-way, including one whose stated conclusion rested on a search that is not shipped. A paper was withheld if the statement
+way, including one whose stated conclusion rested on a search that is not shipped. From wave 24 onward each
+folder's `REVIEW_NOTE.md` is reconciled against the paper as finally revised: it is written before review and
+no earlier stage read it, so it had been keeping titles and claims the papers themselves had withdrawn. A paper was withheld if the statement
 it settles turned out not to be the statement its source posed, if its program did not establish
 its headline, or if the result was already in the literature. Of the 50 candidates in wave 22, 24
 were published: 16 were withheld because the source had never posed the statement, and one because
@@ -56,8 +58,8 @@ folders says so in its `REVIEW_NOTE.md`.
 Each program is **dependency-free** — Python 3.9 or later, standard library only, no
 third-party package and no external data file — so it runs with a bare `python3`. It prints
 one line per check and a final verdict, and exits 0 if and only if every check passed. Across
-the 157 programs — four folders ship a second, independent program beside the first — the recorded
-runs report **9,009 checks, all passing**.
+the 171 programs — four folders ship a second, independent program beside the first — the recorded
+runs report **9,757 checks, all passing**.
 
 A program takes the object exhibited in its paper as an *input* and derives everything else;
 only the derived quantities are checks. Where a program cannot verify a step — typically a

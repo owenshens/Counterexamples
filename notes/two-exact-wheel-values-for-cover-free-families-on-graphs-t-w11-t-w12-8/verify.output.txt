@@ -1,0 +1,64 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  ae52ee72e66f1d26058450e3305460eca89f94423babb12ea5de9cb33a51f78c
+python:  Python 3.9.25
+=== program output follows ===
+verification of: two exact wheel values for cover-free families on graphs
+                 t(W_11) = t(W_12) = 8   (Parida-Moura, arXiv:2605.12634v1, Table 4)
+checks the two printed witnesses against (S)-(CF), their hub extensions, and
+re-runs the two complete t=7 censuses; the note reports only those checks,
+the other checks below being auxiliary controls the note does not report
+python 3.9.25, standard library only, exact set and integer arithmetic
+cores available: 32
+
+--- the definition checker ---
+PASS checker_flags_an_S_violation [on P_4 with B_2 = {1} inside B_1 = {1,4}: exactly 1 violation(s), kinds ['S-fail'], the offending ordered pair being (B_2, B_1)]
+PASS checker_flags_a_CF_violation [on P_4 with B_4 = {1,2} covered by B_1 u B_2: 3 violation(s), kinds ['CF-fail'], no (S) failure]
+PASS checker_accepts_a_hand_verified_P3_CFF [({1},{2},{3}) is a P_3-CFF(3,3): 2 edges, 2 CF conditions, 0 violations]
+PASS brute_force_and_bitmask_search_agree_on_the_four_small_instances [P_4 t=3: literal 0 = DFS 0; C_4 t=3: literal 0 = DFS 0; C_4 t=4: literal 48 = DFS 48; W_5 t=3: literal 0 = DFS 0]
+PASS canonical_representatives_meet_every_subset_size_class_at_t_7 [t=7: 8 reps of sizes [0, 1, 2, 3, 4, 5, 6, 7]; all 128 subsets have a rep of their size]
+PASS canonical_reduction_and_vertex_order_agree_on_the_cases_tested [W_9 t=6 canonical 0 sols/26961 nodes vs unreduced 0 sols/289507 nodes; W_11 t=6 canonical 0 sols/26961 nodes vs unreduced 0 sols/289507 nodes; W_11 t=6 natural 0 sols/26961 nodes vs interleaved 0 sols/58817 nodes; W_12 t=6 natural 0 sols/26961 nodes vs interleaved 0 sols/58817 nodes]
+PASS validity_is_preserved_under_the_sampled_ground_set_relabellings [101 of the 40320 permutations of [8], applied to both printed families, every image still a CFF]
+
+--- the graphs ---
+PASS W_11_is_the_hub_plus_rim_C_10 [11 vertices, 20 edges, hub degree 10, all 10 rim degrees 3, rim edges form C_10]
+PASS W_12_is_the_hub_plus_rim_C_11 [12 vertices, 22 edges, hub degree 11, all 11 rim degrees 3, rim edges form C_11]
+
+--- the printed families, and the upper bound ---
+PASS R10_is_10_distinct_nonempty_subsets_of_a_7_set [10 sets, 10 distinct, largest element 7, sizes [1, 2]]
+PASS R10_is_an_antichain [all 90 ordered pairs have B_i \ B_j nonempty]
+PASS R10_is_a_C_10_CFF_7_10 [10 edges incl. the wrap edge {10,1}, 20 Sperner conditions, 80 CF conditions, 0 violations]
+PASS R11_is_11_distinct_nonempty_subsets_of_a_7_set [11 sets, 11 distinct, largest element 7, sizes [1, 2, 3]]
+PASS R11_is_an_antichain [all 110 ordered pairs have B_i \ B_j nonempty]
+PASS R11_is_a_C_11_CFF_7_11 [11 edges incl. the wrap edge {11,1}, 22 Sperner conditions, 99 CF conditions, 0 violations]
+PASS hub_construction_gives_a_W_11_CFF_8_11 [B_0 = [8] over the printed rim: 20 edges, 180 CF conditions, 0 violations -> t(W_11) <= 8]
+PASS hub_construction_gives_a_W_12_CFF_8_12 [B_0 = [8] over the printed rim: 22 edges, 220 CF conditions, 0 violations -> t(W_12) <= 8]
+PASS hub_construction_lemma_holds_on_the_small_cycles_m_4_to_9 [C_4-CFF(4,4) -> W_5-CFF(5,5); C_5-CFF(5,5) -> W_6-CFF(6,6); C_6-CFF(5,6) -> W_7-CFF(6,7); C_7-CFF(6,7) -> W_8-CFF(7,8); C_8-CFF(6,8) -> W_9-CFF(7,9); C_9-CFF(6,9) -> W_10-CFF(7,10)]
+
+--- controls: every bold t(W_n) entry of Table 4, recomputed ---
+PASS published_bold_wheel_value_t_W_5_is_5 [census at t=4: 0 solutions in 67 nodes; witness at t=5 verified by the literal checker: True]
+PASS published_bold_wheel_value_t_W_6_is_6 [census at t=5: 0 solutions in 731 nodes; witness at t=6 verified by the literal checker: True]
+PASS published_bold_wheel_value_t_W_7_is_6 [census at t=5: 0 solutions in 731 nodes; witness at t=6 verified by the literal checker: True]
+PASS published_bold_wheel_value_t_W_8_is_7 [census at t=6: 0 solutions in 26961 nodes; witness at t=7 verified by the literal checker: True]
+PASS published_bold_wheel_value_t_W_9_is_7 [census at t=6: 0 solutions in 26961 nodes; witness at t=7 verified by the literal checker: True]
+PASS published_bold_wheel_value_t_W_10_is_7 [census at t=6: 0 solutions in 26961 nodes; witness at t=7 verified by the literal checker: True]
+PASS monotonicity_in_t_holds_for_the_witnesses_collected_here [each witness re-verified over a ground set one larger: W_5: 5->6, W_6: 6->7, W_7: 6->7, W_8: 7->8, W_9: 7->8, W_10: 7->8, W_11: 8->9, W_12: 8->9]
+PASS differential_control_same_code_t_7_solvable_for_W_10 [W_10-CFF(7,10) found in 29727 nodes and verified: [[1], [2, 3], [2, 4], [2, 5], [2, 6], [6, 7], [4, 6], [3, 6], [3, 5], [3, 7]]]
+
+--- the censuses ---
+PASS W_11_has_no_CFF_at_t_6 [0 solutions in 26961 nodes]
+PASS W_12_has_no_CFF_at_t_6 [0 solutions in 26961 nodes]
+PASS the_1024_shards_are_a_disjoint_cover_of_the_canonical_space [8 canonical depth-0 masks x 128 depth-1 masks = 1024 pairwise distinct prefixes, and every canonical leaf lies under exactly one]
+    running the two decisive censuses on 31 process(es); expect a few minutes
+PASS W_11_census_at_t_7_is_empty [SOLUTIONS=0 shards=1024/1024 nodes=14002112 (paper reports 0, 1024, 14002112) in 120.8 s -> t(W_11) >= 8]
+PASS W_12_census_at_t_7_is_empty [SOLUTIONS=0 shards=1024/1024 nodes=14015792 (paper reports 0, 1024, 14015792) in 118.8 s -> t(W_12) >= 8]
+
+--- the conclusion ---
+PASS t_W_11_equals_8 [lower bound from the empty t=7 census plus monotonicity in t; upper bound from the printed W_11-CFF(8,11)]
+PASS t_W_12_equals_8 [lower bound from the empty t=7 census plus monotonicity in t; upper bound from the printed W_12-CFF(8,12)]
+PASS both_values_confirm_the_non_bold_table_entries_as_exact [Table 4 prints t(W_11) <= 8 and t(W_12) <= 8 non-bold; both are equalities, so the source's bounds are confirmed and nothing published is contradicted]
+
+NOTE SCOPE: this program re-derives both claims of the accompanying note and every number that note prints for them. NOT RE-RUN: (a) the five remaining non-bold cells of Table 4 -- t(C_10), t(P_11), t(C_11), t(P_12), t(C_12), each printed there as 7 -- which are neither used nor rechecked here, so the statement 'Table 4 is exact throughout for n <= 12' is NOT verified by this program; (b) any t(W_n) with n >= 13; (c) any minimality or least-order claim -- nothing here says W_11 is the smallest wheel whose table entry was inexact; (d) the transcription of Table 4 itself and of the two integers 8, 8, which are read off arXiv:2605.12634v1 by hand and cannot be recomputed.
+total wall clock 287.0 s
+VERDICT: ALL 34 CHECKS PASS
+=== program exited with status 0 ===

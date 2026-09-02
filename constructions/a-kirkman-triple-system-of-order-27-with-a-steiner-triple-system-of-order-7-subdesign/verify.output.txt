@@ -1,0 +1,91 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  421ae5f6996ac1f9dc43a0126f38a1bda94d11d90a4bd6de3b397ef4fc8eb73b
+python:  Python 3.9.25
+=== program output follows ===
+verification of "A Kirkman Triple System of Order 27 with a Steiner Triple System of Order 7 as a Subdesign"
+python 3.9.25, standard library only, exact integer arithmetic only
+the only input is the text pasted into TABLE below, copied by hand from Table 1 of the paper and re-parsed here; no check reads paper.tex
+
+=== Step 1: parsing the printed table
+PASS table_has_26_lines_two_per_class [26 lines]
+PASS labels_are_C00_through_C12_in_order [C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12]
+PASS every_class_parses_to_nine_triples [sizes [9]]
+PASS every_triple_has_three_distinct_points_in_0_26 [117 triples]
+PASS every_triple_is_printed_in_increasing_order
+PASS total_block_count_is_117 [13*9 = 117]
+PASS the_117_blocks_are_pairwise_distinct [117 distinct]
+
+=== Step 2: Theorem 1(a), the Kirkman triple system
+PASS each_of_the_13_classes_is_a_partition_of_the_27_points [13 classes of 9 disjoint triples]
+PASS pair_slots_number_351 [117 blocks * 3 pairs = 351]
+PASS arithmetic_binom_27_2_is_351 [27*26/2 = 351]
+PASS every_pair_of_points_is_covered_exactly_once [351 distinct pairs, multiplicities [1]]
+PASS the_design_is_an_STS_27
+PASS the_13_classes_form_a_resolution_so_it_is_a_KTS_27
+PASS number_of_classes_equals_v_minus_1_over_2 [(27-1)/2 = 13]
+PASS every_point_lies_in_exactly_13_blocks [replication [13]]
+PASS every_point_lies_in_exactly_one_block_of_every_class
+
+=== Step 3: Theorem 1(b), the STS(7) subdesign on U = {0,...,6}
+PASS exactly_seven_blocks_lie_inside_U [7 blocks]
+NOTE blocks inside U = [(0, 1, 3), (0, 2, 6), (0, 4, 5), (1, 2, 4), (1, 5, 6), (2, 3, 5), (3, 4, 6)]
+PASS the_seven_inner_blocks_are_the_ones_printed_in_the_theorem
+PASS inner_blocks_cover_all_21_pairs_of_U_exactly_once [7*6/2 = 21 pairs, multiplicities [1]]
+PASS U_with_its_seven_blocks_is_an_STS_7
+PASS every_point_of_U_lies_on_three_inner_blocks [r = (7-1)/2 = 3]
+PASS any_two_inner_blocks_meet_in_exactly_one_point [the Fano plane, 21 pairs of lines]
+PASS the_seven_inner_blocks_lie_one_each_in_C00_to_C06_in_the_printed_order [classes [0, 1, 2, 3, 4, 5, 6]]
+PASS no_block_meets_U_in_exactly_two_points [forced: such a pair is already covered inside U]
+
+=== Step 4: the 7 + 70 + 40 census of the Remark
+NOTE per-class (inner, one-point, disjoint) profiles = [(1, 4, 4), (1, 4, 4), (1, 4, 4), (1, 4, 4), (1, 4, 4), (1, 4, 4), (1, 4, 4), (0, 7, 2), (0, 7, 2), (0, 7, 2), (0, 7, 2), (0, 7, 2), (0, 7, 2)]
+PASS classes_C00_to_C06_have_profile_one_inner_four_cross_four_outer
+PASS classes_C07_to_C12_have_profile_no_inner_seven_cross_two_outer
+PASS census_splits_117_as_7_plus_70_plus_40 [totals (7, 70, 40), sum 117]
+PASS cross_block_count_is_seven_points_times_ten_blocks_each [13 blocks per point, 3 of them inner]
+
+=== Step 5: sigma, the prescribed automorphism of Section 4
+PASS sigma_is_a_permutation_of_the_27_points
+PASS sigma_has_order_3
+PASS sigma_fixes_exactly_the_points_0_7_8 [fixed points (0, 7, 8)]
+PASS sigma_orbit_shape_is_three_fixed_points_and_eight_3_cycles [orbit lengths [1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3]]
+PASS sigma_preserves_the_block_set
+PASS the_fixed_set_0_7_8_is_a_block_of_the_design
+PASS that_block_lies_in_class_C01 [C01]
+PASS sigma_preserves_U_setwise
+PASS sigma_on_U_is_x_maps_to_2x_mod_7 [a collineation of the Fano plane]
+PASS sigma_maps_each_class_onto_a_single_class
+PASS the_induced_class_permutation_is_the_printed_pi [pi = [6, 1, 3, 5, 0, 2, 4, 8, 9, 7, 11, 12, 10]]
+PASS the_printed_pi_fixes_only_C01
+PASS the_induced_class_permutation_has_order_3
+
+=== Step 6: the compact form -- sigma plus five base classes
+NOTE orbits of pi on the 13 classes = [(0, 6, 4), (1,), (2, 3, 5), (7, 8, 9), (10, 11, 12)]
+PASS the_five_named_classes_meet_every_orbit_of_pi_exactly_once [base classes ('C00', 'C01', 'C02', 'C07', 'C10')]
+PASS sigma_and_the_five_base_classes_rebuild_all_13_classes [13 classes rebuilt]
+PASS the_rebuilt_design_equals_the_printed_design_class_by_class
+
+=== Step 7: Proposition 3, the subdesign census
+PASS arithmetic_binom_27_3_is_2925 [27*26*25/6 = 2925]
+PASS closure_of_every_point_triple_is_a_closed_set [119 distinct closed sets from 2925 triples]
+NOTE closed-set sizes found (size: count) = [(3, 117), (7, 1), (27, 1)]
+PASS every_closed_set_of_size_at_least_three_is_a_subdesign
+PASS closed_sets_of_size_seven_number_exactly_one [1]
+PASS the_unique_order_7_subdesign_is_U [U = [0, 1, 2, 3, 4, 5, 6]]
+PASS no_subdesign_of_order_nine
+PASS no_subdesign_of_order_thirteen
+PASS the_closed_sets_of_size_three_are_exactly_the_117_blocks [117]
+PASS fano_subdesigns_through_a_point_is_1_on_U_and_0_off_U [values [0, 1]]
+PASS the_point_invariant_is_not_constant_so_Aut_is_not_point_transitive [7 points with 1, 20 points with 0]
+PASS lemma_2w_plus_1_excludes_a_proper_subdesign_of_order_7_9_or_13_inside_one [so every such subdesign is the closure of three of its own points]
+
+=== Step 8: admissibility arithmetic -- of these four the paper states only that 3 does not divide 7 (Section 1, on the vacuity of a sub-KTS(7)) and the inequality v >= 2u+1 (Lemma 2); the two congruences correspond to nothing in the paper and are recorded here as background
+PASS 27_is_admissible_for_a_Kirkman_triple_system [27 mod 6 = 3]
+PASS 7_is_admissible_for_a_Steiner_triple_system [7 mod 6 = 1]
+PASS the_necessary_condition_v_at_least_2u_plus_1_holds [27 >= 15]
+PASS a_sub_KTS_7_is_vacuous_since_3_does_not_divide_7 [7 points admit no partition into triples]
+
+NOTE SCOPE: this program certifies exactly ONE object -- the KTS(27) of Table 1 of the paper, copied by hand into TABLE above -- and the following quantities, which were inventoried by hand from the paper when this program was written: the resolution, the 351 pairs, the seven inner blocks and their Fano structure, the 7+70+40 census, sigma and its induced class permutation, the reconstruction from five base classes, and the subdesign census behind Proposition 3. NOT ESTABLISHED HERE: no check below opens paper.tex, so two things are asserted rather than verified -- that the table above is the paper's Table 1, and that the list just given is COMPLETE for what the paper states about the object; a quantity the paper states and that list omits would go unnoticed. NOT COVERED: (a) any COUNT of KTS(27) with an STS(7) subdesign -- one object is exhibited and no enumeration or isomorph rejection is performed, so nothing here bounds how many exist or claims minimality or canonicity; (b) the ORDER of Aut(D) -- only that it contains sigma and, by the invariant above, that it is not transitive on points; (c) the orders v = 33 and 39 of the quoted sentence, and Open Problem 4 itself, which are untouched; (d) the BIBLIOGRAPHIC claims -- the byte locator of the quoted passage in arXiv:2110.07874v1, the sentence quoted from Colbourn-Magliveras-Mathon, and the question of priority, which the paper's Scope section expressly declines to claim -- none of which this program fetches or re-reads; (e) a second witness recorded in the underlying run but NOT printed in this paper, which no check here touches. NOT RE-RUN: the constraint search that produced the design -- this program checks the object, not the search, and the paper needs only the object.
+VERDICT: ALL 59 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,312 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={K5 minus an edge is 2-conformally rigid but not 1-conformally rigid}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Real}{\mathbb R}
+\newcommand{\DeltaE}{\Delta_E}
+\newcommand{\Lop}{L}
+\newcommand{\Ladj}{L^{*}}
+
+\title[$K_5-e$ is $2$- but not $1$-conformally rigid]
+{$K_5$ Minus an Edge is $2$-Conformally Rigid but not $1$-Conformally Rigid}
+
+\date{}
+
+\subjclass[2020]{05C50, 05C22, 90C22, 15A42}
+\keywords{conformal rigidity, weighted Laplacian, eigenvalue sums, Ky Fan principle,
+dual certificate, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $G$ be a graph on $n$ vertices with edge set $E$, let
+$\DeltaE=\{w\in\Real_{\ge0}^{E}:\sum_e w_e=|E|\}$, and index the eigenvalues of the
+weighted Laplacian $\Lop(w)$ increasingly as
+$0=\lambda_1(w)\le\cdots\le\lambda_n(w)$. Write $S_k(w)$ for the sum of the $k$ largest
+and $s_k(w)$ for the sum of the $k$ smallest nontrivial eigenvalues. Following
+Assump\c{c}\~ao, Coutinho and Godsil, $G$ is \emph{$k$-conformally rigid} if the all-ones
+weight simultaneously minimises $S_k$ and maximises $s_k$ on $\DeltaE$. In the Conclusion
+of their paper they ask whether there is a graph that is $2$-conformally rigid but not
+$1$-conformally rigid. There is one at $n=5$: $K_5$ minus an edge. We answer the question with an
+exact rational dual certificate, a single $5\times5$ integer matrix, that proves
+$S_2(w)\ge10=S_2(\mathbf 1)$ for every $w\in\DeltaE$; since $n-1-k=2=k$ here, $2$-conformal
+rigidity follows. At this order the duality is self-paired, so the two conditions defining
+$2$-conformal rigidity coincide and one inequality discharges both; a witness at larger $n$,
+where the two conditions are genuinely distinct, is not provided here. That $K_5-e$ is not $1$-conformally rigid is already recorded as
+numerical data by Niu; we exhibit the exact rational weight behind it.
+\end{abstract}
+
+\maketitle
+
+\section{The question, and the answer}
+
+Let $G=(V,E)$ be a graph on $n$ vertices. For $w\in\Real_{\ge0}^{E}$ let
+\[
+ \Lop(w)=\sum_{\{a,b\}\in E}w_{ab}\,(e_a-e_b)(e_a-e_b)^{\mathsf T}
+\]
+be the weighted Laplacian, and let its eigenvalues be indexed \emph{increasingly},
+$0=\lambda_1(w)\le\lambda_2(w)\le\cdots\le\lambda_n(w)$. Put
+\[
+ \DeltaE=\Bigl\{w\in\Real_{\ge0}^{E}\ :\ \textstyle\sum_{e\in E}w_e=|E|\Bigr\},
+\]
+\[
+ S_k(w)=\sum_{j=n-k+1}^{n}\lambda_j(w),
+ \qquad
+ s_k(w)=\sum_{j=2}^{k+1}\lambda_j(w),
+\]
+so that $S_k$ and $s_k$ sum the $k$ largest and the $k$ smallest \emph{nontrivial}
+eigenvalues. The all-ones weight $\mathbf 1$ lies in $\DeltaE$ and $\Lop(\mathbf 1)$ is the
+ordinary Laplacian. Following the definition of $k$-conformal rigidity in
+Assump\c{c}\~ao, Coutinho and Godsil \cite{ACG}, call $G$
+\emph{upper-$k$ rigid} if $\mathbf 1$ minimises $S_k$
+over $\DeltaE$, \emph{lower-$k$ rigid} if $\mathbf 1$ maximises $s_k$ over $\DeltaE$, and
+\emph{$k$-conformally rigid} if both hold, for $k\in\{1,\dots,n-1\}$. For $k=1$ this is the
+notion of Steinerberger and Thomas \cite{ST}: $\mathbf 1$ minimises $\lambda_n$ and
+maximises $\lambda_2$; see also Gouveia, Steinerberger and Thomas \cite{GST} for the
+$k=1$ theory.
+
+The Conclusion of \cite{ACG} asks, in running prose,
+
+\begin{quote}
+``Are there graphs that are $2$-conformally rigid but not $1$-conformally rigid?''
+\end{quote}
+
+\noindent
+The answer is yes, at $n=5$.
+
+\begin{theorem}\label{thm:main}
+Let $H=K_5-e$ be the complete graph on $V=\{1,2,3,4,5\}$ with the pair $\{4,5\}$ deleted,
+so $|E(H)|=9$. Then $H$ is $2$-conformally rigid and is not $1$-conformally rigid.
+\end{theorem}
+
+Both halves are certified by objects printed below in full.
+
+The negative half of Theorem~\ref{thm:main} is not new as a fact: Niu's dataset
+\cite{Niu} tabulates lower- and upper-$1$ rigidity for the graphs of the House of Graphs
+census, and its row \texttt{id=450}, the $5$-vertex $9$-edge graph $H$, records
+\texttt{lcr=False}, \texttt{ucr=True}. What is supplied here is the dual certificate of
+Proposition~\ref{prop:upper2}, and the exact rational weight $w^{*}$ of
+Proposition~\ref{prop:lower1} behind that table cell. No claim of priority is made for
+the upper-$2$ fact itself: whether it already follows from results or data in \cite{ACG}
+or \cite{Niu} has not been checked here. Note that \cite{Niu} calls a graph
+conformally rigid when it is lower-$1$ \emph{or} upper-$1$ rigid, while \cite{ST} and
+\cite{ACG} use \emph{and}; we use the conjunction of \cite{ACG} throughout.
+
+\section{The two certificates}
+
+Both proofs use the adjoint of $w\mapsto\Lop(w)$. For a symmetric $X$ put
+\begin{equation}\label{eq:adj}
+\begin{gathered}
+ \Ladj(X)_{ab}=X_{aa}+X_{bb}-2X_{ab}\qquad(\{a,b\}\in E),\\
+ \text{so that}\qquad
+ \tr\bigl(\Lop(w)X\bigr)=\sum_{e\in E}w_e\,\Ladj(X)_e ,
+\end{gathered}
+\end{equation}
+which is immediate from
+$\tr\bigl((e_a-e_b)(e_a-e_b)^{\mathsf T}X\bigr)=(e_a-e_b)^{\mathsf T}X(e_a-e_b)$.
+
+The spectrum of $H$ is exact and elementary. Since $\Lop(\mathbf 1)=5I-J-dd^{\mathsf T}$
+with $J$ the all-ones matrix and $d=e_4-e_5$, a vector $x$ with $x^{\mathsf T}\mathbf 1=0$
+and $x_4=x_5$ satisfies $\Lop(\mathbf 1)x=5x$, while $\Lop(\mathbf 1)d=3d$. Hence
+\begin{equation}\label{eq:spec}
+ \operatorname{spec}\Lop(\mathbf 1)=\{0,3,5,5,5\},
+ \qquad
+ S_1=5,\ \ S_2=10,\ \ S_3=15,\ \ S_4=18,\ \ s_1=3 ,
+\end{equation}
+the $5$-eigenspace being $W=\{x:x^{\mathsf T}\mathbf 1=0,\ x_4=x_5\}$, spanned by
+$a=(1,-1,0,0,0)$, $b=(0,1,-1,0,0)$ and $c=(2,2,2,-3,-3)$.
+
+\begin{proposition}[upper-$2$ rigidity]\label{prop:upper2}
+Let
+\begin{equation}\label{eq:M}
+ X=\frac{1}{45}M,
+ \qquad
+ M=\begin{pmatrix}
+  22 & -3 & -3 & -8 & -8\\
+  -3 & 22 & -3 & -8 & -8\\
+  -3 & -3 & 22 & -8 & -8\\
+  -8 & -8 & -8 & 12 & 12\\
+  -8 & -8 & -8 & 12 & 12
+ \end{pmatrix}.
+\end{equation}
+Then $S_2(w)\ge10=S_2(\mathbf 1)$ for every $w\in\DeltaE$, so $H$ is upper-$2$ rigid.
+\end{proposition}
+
+\begin{proof}
+Four facts about $X$, each a direct computation with \eqref{eq:M}.
+
+\emph{(1) $X$ is symmetric with $\tr X=(3\cdot22+2\cdot12)/45=90/45=2$.}
+
+\emph{(2) $X\mathbf 1=0$ and $Xd=0$, and $Xa=\tfrac59a$, $Xb=\tfrac59b$,
+$Xc=\tfrac89c$.} The first two hold because every row of $M$ sums to $0$ and its last two
+columns are equal. For the others, $Ma=(25,-25,0,0,0)$, which is $25a$, and
+$Mc=(80,80,80,-120,-120)$, which is $40c$; and $Mb=25b$ because swapping the coordinates
+$1$ and $3$ permutes $M$ to itself and carries $a$ to $-b$. Since $\mathbf 1,d,a,b,c$ are linearly
+independent (the determinant of the matrix with these columns is $-30$), the spectrum of
+$X$ is exactly $\{0,0,\tfrac59,\tfrac59,\tfrac89\}$; equivalently the characteristic
+polynomial of $X$ is $x^2(x-\tfrac89)(x-\tfrac59)^2$. In particular
+\[
+ 0\preceq X\preceq I
+\]
+holds \emph{exactly}, not to a tolerance.
+
+\emph{(3) $\Lop(\mathbf 1)X=5X$, hence $\tr(\Lop(\mathbf 1)X)=5\tr X=10=S_2(\mathbf 1)$.}
+Indeed the range of $X$ is spanned by $a,b,c$ and lies in the $5$-eigenspace $W$.
+
+\emph{(4) $\Ladj(X)$ is the constant $\tfrac{10}{9}$ on all nine edges.} For an edge inside
+$\{1,2,3\}$, $\Ladj(X)=\tfrac{1}{45}(22+22+6)=\tfrac{50}{45}=\tfrac{10}{9}$; for an edge
+from $\{1,2,3\}$ to $\{4,5\}$, $\Ladj(X)=\tfrac{1}{45}(22+12+16)=\tfrac{50}{45}=\tfrac{10}{9}$.
+These are the only two edge types, so
+$\sum_{e\in E}\Ladj(X)_e=9\cdot\tfrac{10}{9}=10$.
+
+Now let $w\in\DeltaE$. Because $X\mathbf 1=0$, $X$ acts on the $(n-1)$-dimensional space
+$\mathbf 1^{\perp}$, on which $\Lop(w)$ has eigenvalues $\lambda_2(w),\dots,\lambda_n(w)$.
+The Ky Fan maximum principle \cite{Fan} applied on that subspace gives
+\[
+ \tr\bigl(\Lop(w)X\bigr)\le S_2(w)
+ \qquad\text{whenever } 0\preceq X\preceq I,\ \tr X=2,\ X\mathbf 1=0 .
+\]
+By (1), (2), \eqref{eq:adj} and (4),
+\[
+ \tr\bigl(\Lop(w)X\bigr)=\sum_{e\in E}w_e\,\Ladj(X)_e=\frac{10}{9}\sum_{e\in E}w_e
+ =\frac{10}{9}\,|E|=10 ,
+\]
+the constancy of $\Ladj(X)$ being exactly what makes this independent of $w$. Hence
+$S_2(w)\ge10$ for every $w\in\DeltaE$, and by (3) equality holds at $w=\mathbf 1$.
+\end{proof}
+
+\begin{lemma}[duality]\label{lem:dual}
+For $1\le k\le n-2$ and every $w\in\DeltaE$ we have $S_k(w)+s_{n-1-k}(w)=2|E|$.
+Consequently $G$ is upper-$k$ rigid if and only if it is lower-$(n-1-k)$ rigid.
+\end{lemma}
+
+\begin{proof}
+$\sum_{j=2}^{n}\lambda_j(w)=\tr\Lop(w)=2\sum_ew_e=2|E|$ on $\DeltaE$, and $S_k$ and
+$s_{n-1-k}$ partition that sum. A constant sum turns minimising one summand into
+maximising the other.
+\end{proof}
+
+This is the duality of \cite{ACG}, stated there for the same range
+$k\in\{1,\dots,n-2\}$, which is what $s_{n-1-k}$ requires.
+
+\begin{proposition}[failure of lower-$1$ rigidity]\label{prop:lower1}
+Let $w^{*}\in\Real_{\ge0}^{E}$ take the value $\tfrac97$ on the six edges meeting
+$\{4,5\}$ and $\tfrac37$ on the three edges inside $\{1,2,3\}$. Then $w^{*}\in\DeltaE$,
+\[
+ \operatorname{spec}\Lop(w^{*})=\Bigl\{0,\ \tfrac{27}{7},\ \tfrac{27}{7},\ \tfrac{27}{7},\ \tfrac{45}{7}\Bigr\},
+\]
+and $s_1(w^{*})=\tfrac{27}{7}>3=s_1(\mathbf 1)$. Hence $H$ is not lower-$1$ rigid, so it is
+not $1$-conformally rigid; equivalently, $S_3(w^{*})=\tfrac{99}{7}<15=S_3(\mathbf 1)$, so
+$H$ is not upper-$3$ rigid either.
+\end{proposition}
+
+\begin{proof}
+$w^{*}$ is nonnegative and $6\cdot\tfrac97+3\cdot\tfrac37=\tfrac{54+9}{7}=9=|E|$, so
+$w^{*}\in\DeltaE$. Write $\alpha=\tfrac37$, $\beta=\tfrac97$. With $a,b,c,d$ as above:
+$\Lop(w^{*})a=(3\alpha+2\beta)a=\tfrac{9+18}{7}a=\tfrac{27}{7}a$ and likewise for $b$;
+$\Lop(w^{*})d=3\beta d=\tfrac{27}{7}d$, because $d$ is supported on $\{4,5\}$, which is a
+non-edge, and each of $4,5$ has weighted degree $3\beta$; and reading off the first and
+fourth coordinates of $\Lop(w^{*})c$ gives $\tfrac{90}{7}=\tfrac{45}{7}\cdot2$ and
+$-\tfrac{135}{7}=\tfrac{45}{7}\cdot(-3)$, so $\Lop(w^{*})c=\tfrac{45}{7}c$. Together with
+$\Lop(w^{*})\mathbf 1=0$ these five independent vectors give the stated spectrum, whose sum
+is $\tfrac{81+45}{7}=18=2|E|$ as it must be. Now
+$s_1(w^{*})=\lambda_2(w^{*})=\tfrac{27}{7}>3=\lambda_2(\mathbf 1)=s_1(\mathbf 1)$, so
+$\mathbf 1$ does not maximise $s_1$ on $\DeltaE$. The upper-$3$ statement is the same fact
+through Lemma~\ref{lem:dual} with $n=5$, $k=3$: $S_3(w^{*})=\tfrac{27+27+45}{7}=\tfrac{99}{7}$
+and $18-\tfrac{27}{7}=\tfrac{99}{7}<15$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $n=5$ and $k=2$ we have $n-1-k=2=k$, so Lemma~\ref{lem:dual} turns upper-$2$ rigidity
+into lower-$2$ rigidity. Proposition~\ref{prop:upper2} gives the former, hence both, hence
+$H$ is $2$-conformally rigid. Proposition~\ref{prop:lower1} gives that $H$ is not
+lower-$1$ rigid, hence not $1$-conformally rigid.
+\end{proof}
+
+\begin{remark}
+At $n=5$ and $k=2$ the duality of Lemma~\ref{lem:dual} is self-paired, so the two
+conditions making up $2$-conformal rigidity coincide and one inequality discharges both.
+In general they are distinct, and a witness at larger $n$ would have to verify each; this
+note says nothing about that case.
+\end{remark}
+
+\section{Verification}
+
+Everything above is determined by the labelled graph $H$ and the two printed objects $M$
+and $w^{*}$. The nine edges of $H$ in the labelling of this note are
+\[
+ \{1,2\},\{1,3\},\{1,4\},\{1,5\},\{2,3\},\{2,4\},\{2,5\},\{3,4\},\{3,5\},
+\]
+and a machine-readable encoding is the graph6 string \texttt{D\textasciicircum\{}, on the
+vertex set $\{0,1,2,3,4\}$ with the pair $\{0,1\}$ deleted, carried onto the labelling
+above by $0\mapsto4$, $1\mapsto5$, $2\mapsto1$, $3\mapsto2$, $4\mapsto3$.
+
+The proofs are $5\times5$ rational arithmetic and can be checked by hand. A stand-alone
+program \texttt{verify.py} accompanies this note; it reads the graph6 string, the edge
+list, the matrix $M$ and the weight $w^{*}$ exactly as printed here, and re-derives in
+exact integer and \texttt{Fraction} arithmetic, using only the Python standard library and
+with no floating-point comparison anywhere: the graph and its edge list under the printed
+relabelling; the characteristic polynomial and spectrum \eqref{eq:spec} together with
+$S_1,\dots,S_4$ and $s_1$ at $\mathbf 1$; the pairing identity \eqref{eq:adj} on several
+rational weights; every claim (1)--(4) about $X$, including the exact containment
+$0\preceq X\preceq I$; and that $w^{*}\in\DeltaE$ with the stated spectrum and the two
+strict inequalities $\tfrac{27}{7}>3$ and $\tfrac{99}{7}<15$. Its recorded run reports
+$68$ checks, all passing. It does not reprove the Ky Fan principle or
+Lemma~\ref{lem:dual}, and it certifies nothing about minimality, about other graphs, or
+about other orders.
+
+\begin{thebibliography}{9}
+
+\bibitem{ACG}
+R.~Assump\c{c}\~ao, G.~Coutinho, and C.~Godsil,
+\emph{Total conformal rigidity in graphs},
+arXiv:2605.08508v2 (24 Jul 2026).
+\href{https://arxiv.org/abs/2605.08508}{arXiv:2605.08508}.
+The definition, the duality and the question quoted above are from v2.
+
+\bibitem{Fan}
+K.~Fan,
+\emph{On a theorem of Weyl concerning eigenvalues of linear transformations I},
+Proc. Nat. Acad. Sci. U.S.A. \textbf{35} (1949), 652--655.
+\href{https://doi.org/10.1073/pnas.35.11.652}{doi:10.1073/pnas.35.11.652}.
+
+\bibitem{Niu}
+A.~Niu,
+\emph{Conformal rigidity of graphs: subdifferentials and orbit-isometries},
+arXiv:2605.15017v1, 2026.
+\href{https://arxiv.org/abs/2605.15017}{arXiv:2605.15017};
+dataset at \href{https://github.com/andrewmniu/conformally-rigid-graphs}{github.com/andrewmniu/conformally-rigid-graphs},
+file \texttt{hog/numerical/numerical\_certs.csv}, row \texttt{id=450}.
+
+\bibitem{ST}
+S.~Steinerberger and R.~Thomas,
+\emph{Conformally rigid graphs},
+J. Graph Theory \textbf{109} (2025), no.~3, 366--386.
+\href{https://doi.org/10.1002/jgt.23229}{doi:10.1002/jgt.23229};
+\href{https://arxiv.org/abs/2402.11758}{arXiv:2402.11758}.
+
+\bibitem{GST}
+J.~Gouveia, S.~Steinerberger, and R.~Thomas,
+\emph{Conformal rigidity and spectral embeddings of graphs},
+Ann. Comb. (2026), \href{https://doi.org/10.1007/s00026-026-00828-8}{doi:10.1007/s00026-026-00828-8};
+\href{https://arxiv.org/abs/2506.20541}{arXiv:2506.20541}.
+
+\end{thebibliography}
+
+\end{document}

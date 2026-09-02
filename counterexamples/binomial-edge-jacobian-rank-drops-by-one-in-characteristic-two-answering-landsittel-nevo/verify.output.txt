@@ -1,0 +1,113 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9a398d5cfd74340e4e2a58e669ec6e291dec25be6e26a4fbd053f90d726dcab8
+python:  Python 3.9.25
+=== program output follows ===
+verification of the paper: the binomial edge Jacobian of (K_3,K_3)
+loses rank in characteristic two -- G = H = K_3, X the generic 3x3 matrix
+python 3.9.25, exact integer / Fraction / GF(2^16) arithmetic only
+
+--- 1. the engine ---
+PASS gf_modulus_0x1100B_is_irreducible_over_F2 [x^16+x^12+x^3+x+1, trial division by all 510 polynomials of degree 1..8]
+PASS gf_arithmetic_is_a_field_on_a_written_probe [a * a^{-1} = 1 for a = 12345]
+
+--- 2. the object printed in the paper ---
+PASS nine_minimal_generators_at_K3_K3 [|E(K_3)| |E(K_3)| = 3*3 = 9]
+PASS generators_are_exactly_the_nine_2x2_minors_of_X [9 of 9]
+PASS generators_are_signed_entries_of_the_adjugate_of_X [9 of 9, so H(K_3,K_3) is the Jacobian of the adjugate map]
+PASS table1_of_the_paper_is_the_jacobian_H_K3_K3 [81 of 81 entries agree]
+PASS every_row_of_H_has_exactly_four_nonzero_entries [row supports = [4]]
+
+--- 3. det H(K_3,K_3) = 2 det(X)^3 in the printed ordering ---
+PASS det_H_equals_two_times_det_X_cubed_in_the_printed_ordering [identity in Z[x_{1,1},...,x_{3,3}], 54 monomials each side, with the rows and columns ordered exactly as in Table 1]
+PASS det_H_sign_is_an_artefact_of_the_ordering_and_the_content_is_not [swapping two rows of Table 1 gives -2 det(X)^3; only the integer content 2 is ordering-free, and only the content is used below]
+PASS det_H_has_integer_content_exactly_two [gcd of coefficients = 2]
+PASS det_H_is_homogeneous_of_degree_nine [degrees present = [9]]
+PASS det_H_vanishes_identically_in_characteristic_two [det H = 0 in F_2[x], hence rk_{F_2(x)} H <= 8]
+PASS det_H_is_nonzero_modulo_every_odd_prime_probed [p = 3,5,7,11,13,509 (509 < 512 = 2^9, inside the source's own threshold): det H != 0 in F_p[x]]
+PASS negative_control_det_H_is_not_two_det_X_squared [the identity test returns NO on a deliberately wrong exponent]
+
+--- 4. the Euler vector v = (x_{i,k}) ---
+PASS H_times_euler_vector_equals_two_f_at_K3_K3 [9 of 9 rows, as an identity over Z; every generator is a quadric]
+PASS euler_vector_is_in_the_kernel_in_characteristic_two [2 f_r = 0 in char 2, an independent proof that rk_{F_2(x)} H <= 8]
+PASS euler_vector_is_not_in_the_kernel_in_characteristic_zero [2 f_r != 0 over Z for all 9 rows]
+
+--- 5. l(J_{K_3,K_3}) = 9 over every field ---
+PASS adj_adj_X_equals_det_X_times_X [9 of 9 entries, identity over Z]
+PASS det_adj_X_equals_det_X_squared [identity over Z]
+PASS x_ik_squared_times_det_adj_X_equals_adj_adj_entry_squared [9 of 9: x_{i,k}^2 = (adj(adj X)_{i,k})^2 / det(adj X) lies in the field F(g), so F(x)^2 is contained in F(g)]
+PASS hence_l_of_J_K3_K3_is_nine_in_every_characteristic [F(x)/F(g) is algebraic and trdeg_F F(x) = 9, so trdeg_F F(g) = 9 = l(J_{K_3,K_3}) with no hypothesis on char F]
+
+--- 6. the ranks of H at the printed point X = I (Table 2) ---
+PASS det_H_at_X_equals_I_is_two [det H(I) = 2 = 2 det(I)^3, and |det H(I)| = 2 is the content]
+PASS rank_of_H_at_identity_over_Q_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F2_is_eight [rank = 8]
+PASS kernel_at_identity_over_F2_is_spanned_by_the_euler_vector [one-dimensional, basis [1, 0, 0, 0, 1, 0, 0, 0, 1] = (x_{i,k}) at X = I]
+PASS rank_of_H_at_identity_over_F3_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F5_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F7_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F11_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F13_is_nine [rank = 9]
+PASS rank_of_H_at_identity_over_F509_is_nine [rank = 9]
+PASS char_two_rank_over_the_function_field_is_exactly_eight [8 <= rk_{F_2(x)} H <= 8: lower bound from the evaluation at X = I, upper bound from det H = 0 mod 2 and from the Euler vector]
+PASS propositionB_conclusion_fails_over_F2_at_K3_K3 [rk_{F_2(x)} H(K_3,K_3) = 8 < 9 = l(J_{K_3,K_3})]
+
+--- 7. the trace map E -> tr(E) I - E on n x n: the integer factor n-1,
+       of which the paper's remark uses only the case n = 3 ---
+PASS det_of_E_to_traceE_I_minus_E_on_2x2_is_-1 [det = -1 = (-1)^(n^2-1) (n-1), computed by exact elimination on the 4x4 integer matrix]
+PASS det_of_E_to_traceE_I_minus_E_on_3x3_is_2 [det = 2 = (-1)^(n^2-1) (n-1), computed by exact elimination on the 9x9 integer matrix]
+PASS det_of_E_to_traceE_I_minus_E_on_4x4_is_-3 [det = -3 = (-1)^(n^2-1) (n-1), computed by exact elimination on the 16x16 integer matrix]
+PASS det_of_E_to_traceE_I_minus_E_on_5x5_is_4 [det = 4 = (-1)^(n^2-1) (n-1), computed by exact elimination on the 25x25 integer matrix]
+PASS det_of_E_to_traceE_I_minus_E_on_6x6_is_-5 [det = -5 = (-1)^(n^2-1) (n-1), computed by exact elimination on the 36x36 integer matrix]
+PASS trace_map_determinant_sequence_is_minus1_2_minus3_4_minus5 [n = 2..6 gives [-1, 2, -3, 4, -5]]
+PASS the_trace_map_determinant_has_absolute_value_n_minus_one [|det| = n-1 for n = 2..6, so the degenerate characteristics at size n are the primes dividing n-1: char 2 degenerates for EVERY odd n, n = 5 included, and NOT only at n = 3. The paper flags this line's former label as false as stated and rests on none of it; only the case n = 3 is drawn on there]
+
+--- 8. seven triangle-covered pairs. NOT CLAIMED BY THE PAPER: the paper
+       treats the single pair (K_3,K_3) and states no theorem about any
+       family, so these lines correspond to nothing in it ---
+PASS both_factors_are_triangle_covered_and_chainable_for_K3_x_K3 [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_K3_x_K3_is_nm_equals_9 [an evaluation gives rank 9 and the matrix has 9 columns, so rk_{Q(x)} = 9 exactly]
+PASS rank_over_char2_of_H_K3_x_K3_is_nm_minus_one_equals_8 [an evaluation over GF(2^16) gives rank 8 and the Euler vector forces rk <= 8, so rk = 8 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_K3_x_diamond [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_K3_x_diamond_is_nm_equals_12 [an evaluation gives rank 12 and the matrix has 12 columns, so rk_{Q(x)} = 12 exactly]
+PASS rank_over_char2_of_H_K3_x_diamond_is_nm_minus_one_equals_11 [an evaluation over GF(2^16) gives rank 11 and the Euler vector forces rk <= 11, so rk = 11 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_diamond_x_diamond [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_diamond_x_diamond_is_nm_equals_16 [an evaluation gives rank 16 and the matrix has 16 columns, so rk_{Q(x)} = 16 exactly]
+PASS rank_over_char2_of_H_diamond_x_diamond_is_nm_minus_one_equals_15 [an evaluation over GF(2^16) gives rank 15 and the Euler vector forces rk <= 15, so rk = 15 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_K3_x_bowtie [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_K3_x_bowtie_is_nm_equals_15 [an evaluation gives rank 15 and the matrix has 15 columns, so rk_{Q(x)} = 15 exactly]
+PASS rank_over_char2_of_H_K3_x_bowtie_is_nm_minus_one_equals_14 [an evaluation over GF(2^16) gives rank 14 and the Euler vector forces rk <= 14, so rk = 14 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_bowtie_x_bowtie [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_bowtie_x_bowtie_is_nm_equals_25 [an evaluation gives rank 25 and the matrix has 25 columns, so rk_{Q(x)} = 25 exactly]
+PASS rank_over_char2_of_H_bowtie_x_bowtie_is_nm_minus_one_equals_24 [an evaluation over GF(2^16) gives rank 24 and the Euler vector forces rk <= 24, so rk = 24 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_K3_x_K4 [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_K3_x_K4_is_nm_equals_12 [an evaluation gives rank 12 and the matrix has 12 columns, so rk_{Q(x)} = 12 exactly]
+PASS rank_over_char2_of_H_K3_x_K4_is_nm_minus_one_equals_11 [an evaluation over GF(2^16) gives rank 11 and the Euler vector forces rk <= 11, so rk = 11 exactly in characteristic 2]
+PASS both_factors_are_triangle_covered_and_chainable_for_K4_x_K4 [both factors triangle-covered and triangle-chainable; this is the hypothesis of no statement of the paper]
+PASS rank_over_Q_of_H_K4_x_K4_is_nm_equals_16 [an evaluation gives rank 16 and the matrix has 16 columns, so rk_{Q(x)} = 16 exactly]
+PASS rank_over_char2_of_H_K4_x_K4_is_nm_minus_one_equals_15 [an evaluation over GF(2^16) gives rank 15 and the Euler vector forces rk <= 15, so rk = 15 exactly in characteristic 2]
+
+--- 9. 2K_3: triangle-covered but not chainable, deficiency 4. Also NOT
+       CLAIMED BY THE PAPER, which asserts nothing at this pair ---
+PASS 2K3_is_triangle_covered_but_not_triangle_chainable [two vertex-disjoint triangles]
+PASS H_2K3_x_2K3_is_a_direct_sum_of_four_copies_of_H_K3_K3 [36 rows split 9/9/9/9 over four disjoint 9-variable blocks, each block equal to Table 1 after relabelling]
+PASS rank_of_H_2K3_x_2K3_is_36_over_Q [an evaluation gives 36 and there are 36 columns]
+PASS rank_of_H_2K3_x_2K3_is_32_in_characteristic_two [an evaluation gives 32, and the direct-sum structure caps each of the four blocks at 8, so rk = 32 exactly: the deficiency is 4, not 1, which is what chainability buys]
+
+--- 10. control: the (K_n, K_2) side of the source's other theorem, on
+        J_G = J_{G,K_2}, which the paper leaves untouched; no drop here ---
+PASS K2_is_not_triangle_covered_so_the_section_8_condition_fails [K_2 has no triangle]
+PASS paw_is_not_triangle_covered_so_the_section_8_condition_fails [the pendant vertex of the paw lies in no triangle]
+PASS sl2_gives_three_independent_kernel_vectors_for_K3_x_K2 [the three trace-zero 2x2 matrices annihilate all 3 generators as identities over Z and stay independent mod 2, so rk H <= 2n-3 = 3 in every characteristic]
+PASS rank_of_H_K3_x_K2_is_2n_minus_3_equals_3_in_both_characteristics [rk_{Q(x)} = rk_{F_2(x)} = 3, so the mechanism is silent exactly where the source's other theorem, on J_G = J_{G,K_2}, lives -- a half the paper leaves untouched]
+PASS sl2_gives_three_independent_kernel_vectors_for_K4_x_K2 [the three trace-zero 2x2 matrices annihilate all 6 generators as identities over Z and stay independent mod 2, so rk H <= 2n-3 = 5 in every characteristic]
+PASS rank_of_H_K4_x_K2_is_2n_minus_3_equals_5_in_both_characteristics [rk_{Q(x)} = rk_{F_2(x)} = 5, so the mechanism is silent exactly where the source's other theorem, on J_G = J_{G,K_2}, lives -- a half the paper leaves untouched]
+PASS sl2_gives_three_independent_kernel_vectors_for_K5_x_K2 [the three trace-zero 2x2 matrices annihilate all 10 generators as identities over Z and stay independent mod 2, so rk H <= 2n-3 = 7 in every characteristic]
+PASS rank_of_H_K5_x_K2_is_2n_minus_3_equals_7_in_both_characteristics [rk_{Q(x)} = rk_{F_2(x)} = 7, so the mechanism is silent exactly where the source's other theorem, on J_G = J_{G,K_2}, lives -- a half the paper leaves untouched]
+PASS sl2_gives_three_independent_kernel_vectors_for_K6_x_K2 [the three trace-zero 2x2 matrices annihilate all 15 generators as identities over Z and stay independent mod 2, so rk H <= 2n-3 = 9 in every characteristic]
+PASS rank_of_H_K6_x_K2_is_2n_minus_3_equals_9_in_both_characteristics [rk_{Q(x)} = rk_{F_2(x)} = 9, so the mechanism is silent exactly where the source's other theorem, on J_G = J_{G,K_2}, lives -- a half the paper leaves untouched]
+
+NOTE SCOPE: what this program does NOT do. (i) It never computes an analytic spread from the definition of the special fibre ring: l(J_{G,H}) enters only through the source's own equigenerated lemma l = trdeg_F F(g), and the value 9 at (K_3,K_3) is certified here by the adjugate identities of section 5 rather than by a Rees-algebra computation. (ii) Sections 8, 9 and 10 CORRESPOND TO NOTHING IN THE PAPER: the paper claims the single pair (K_3,K_3) and nothing at any other pair in either direction, and it states no theorem about a triangle-covered family, so the 7 pairs of section 8, the pair (2K_3,2K_3) of section 9 and the (K_n,K_2) control of section 10 support no claim of the paper; they are corroboration kept on the record, and no census is re-run here. (iii) NOT RE-RUN: whether Proposition B can fail in ODD characteristic at some pair outside the triangle-covered family, and the half of the source's Question that concerns their other theorem, on J_G = J_{G,K_2} -- both remain open and neither is touched. (iv) The published integer l(J_{K_n,K_2}) = 2n-3 is NOT recomputed; section 10 verifies only that the rank is the same in characteristic 0 and in characteristic 2 there, which is the control. (v) Every rank over a field of characteristic 2 is obtained as an evaluation, hence a LOWER bound, and is only ever reported once it meets a proved upper bound (the Euler vector, or the vanishing of det H); no bound-only number is asserted as a rank.
+
+VERDICT: ALL 75 CHECKS PASS
+=== program exited with status 0 ===

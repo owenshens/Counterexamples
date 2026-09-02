@@ -2,7 +2,7 @@
 
 The first three sections are the original collection; the rounds at the end hold the papers added afterwards.
 
-**188 papers**: 113 refute a published conjecture or question, 26 exhibit an object whose existence was open, and 49 prove a conjecture or record a note.
+**202 papers**: 117 refute a published conjecture or question, 33 exhibit an object whose existence was open, and 52 prove a conjecture or record a note.
 
 The three kinds are reported separately and never added together: refuting a published conjecture,
 settling an open existence question, and proving a conjecture are different contributions.
@@ -309,3 +309,38 @@ Added 31 August 2026. Two independent review gates, each run by two different mo
 |---|---|
 | **[A Proof that $s_2(3)=13$, a Value Asserted without Proof by Sun](notes/a-proof-that-s2-of-3-equals-13-settling-one-cell-of-suns-zero-sum-conjecture/paper.pdf)** | For integers $n>1$ and $r\ge1$ let $s_r(n)$ be the least $k$ such that any $k$ vectors $a_1,\dots,a_k\in\ZZ^r$, none congruent to $0$ modulo $n$, admit an index set $I$ with $\|I\|=n$ and $\sum_{i\in I}a_i\equiv0\pmod n$ but $\sum_{i\in I}a_i\not\equiv0\pmod{n^2}$. |
 | **[For Odd Primes $p>q$ with $q\mid p^{2}-1$, Every Nonassociative Right Bol Loop of Order $pq$ has Right Multiplication Group of Order $p^{2}q$](notes/every-nonassociative-right-bol-loop-of-order-pq-has-right-multiplication-group-p2q/paper.pdf)** | Kinyon, Nagy and Vojt\v{e}chovsk\'y classified the right Bol loops of order $pq$ for odd primes $p>q$ with $q\mid p^{2}-1$, and proved that the right multiplication group of such a loop has order $p^{k}q$ with $k\in\{2,3\}$. Their Problem~7.1 asks whether $k=2$ always. Granting their classification, we answer yes: the  |
+
+---
+
+## Wave 24 (14)
+
+Added 1 September 2026. Two independent review gates, each run by two different model families and each followed by a revision pass; definitional drift judged against each source's own retrieved text; priority checked by live literature search, 1,334 queries across the wave; every transcript audited against its own checks; and every REVIEW_NOTE reconciled against the paper as finally revised. 748 checks recorded, each transcript carrying the SHA-256 of the program that produced it.
+
+### Refuting a published conjecture or question (4)
+
+| paper | what it establishes |
+|---|---|
+| **[A 15-Vertex Graph of Minimum Degree Two with $\alpha_{\operatorname{bnr}}>\Gamma_{b}$](counterexamples/a-15-vertex-counterexample-to-the-mynhardt-neilson-minimum-degree-two-question/paper.pdf)** | A 15-vertex graph of minimum degree two with irredundant boundary independence broadcast number exceeding its upper broadcast domination number, refuting the delta(G) >= 2 case of Mynhardt and Neilson's Question 4. |
+| **[A 71-Point Arc Refutes the Printed Finite-$p$ Form of the Entropic Cauchy--Davenport Candidate of Gavalakis, Goh and Kontoyiannis](counterexamples/a-71-point-arc-refutes-the-printed-finite-p-form-of-the-gavalakis-goh-kontoyiannis-candidate/paper.pdf)** | A uniform 71-point arc in F_101, certified by exact integer arithmetic, violates the printed finite-p form of the candidate entropic Cauchy-Davenport inequality of Gavalakis, Goh and Kontoyiannis in its non-saturated branch, with six further prime witnesses. |
+| **[A four-vertex counterexample to the Clow--van Bommel eternal distance-$k$ domination conjecture](counterexamples/a-four-vertex-counterexample-to-the-clow-van-bommel-eternal-distance-k-domination-conjecture/paper.pdf)** | The path P_4 at k=3 — and more generally any tree of diameter exactly k for odd k >= 3 — satisfies gamma_k = gamma_{all,k}^infty = 1 while gamma_{floor(k/2)} >= 2, refuting Conjecture 8.2 of Clow and van Bommel. |
+| **[The Binomial Edge Jacobian of $(K_3,K_3)$ Loses Rank in Characteristic Two](counterexamples/binomial-edge-jacobian-rank-drops-by-one-in-characteristic-two-answering-landsittel-nevo/paper.pdf)** | At G=H=K_3 the Jacobian of the binomial edge ideal of the pair has rank 8 in characteristic 2 while the analytic spread is 9, so the characteristic hypothesis in Landsittel-Nevo's Proposition B cannot be removed, while in every other characteristic the equality holds with no bound. |
+
+### Exhibiting an object whose existence was open (7)
+
+| paper | what it establishes |
+|---|---|
+| **[$K_5$ Minus an Edge is $2$-Conformally Rigid but not $1$-Conformally Rigid](constructions/k5-minus-an-edge-is-2-conformally-rigid-but-not-1-conformally-rigid/paper.pdf)** | K_5 minus an edge is exhibited, with exact rational certificates, as a graph that is 2-conformally rigid but not 1-conformally rigid, answering an existence question of Assumpção, Coutinho and Godsil. |
+| **[A 28-vertex circulant with integral fractional broadcast number strictly between its multipacking and broadcast numbers](constructions/a-28-vertex-circulant-answers-teshimas-integral-fractional-broadcast-problem/paper.pdf)** | The circulant $C_{28}(1,4)$ satisfies $mp=3<\gamma_{b,f}=4<\gamma_b=5$ with the middle term an integer, exhibiting a graph of the kind asked for in Problem 4 of Teshima's multipacking survey. |
+| **[A Cyclic Completely Quasi-Uniform Nested $\mathrm{SQS}(22)$](constructions/a-cyclic-completely-quasi-uniform-nested-sqs-22-settles-the-first-open-order/paper.pdf)** | Exhibits an explicit Z_22-invariant completely quasi-uniform nested SQS(22), given by 19 base nested blocks with pair multiplicities 3 and 4, the smallest order v≡4 (mod 6) for which no such example was previously known. |
+| **[A Kirkman Triple System of Order $27$ with a Steiner Triple System of Order $7$ as a Subdesign](constructions/a-kirkman-triple-system-of-order-27-with-a-steiner-triple-system-of-order-7-subdesign/paper.pdf)** | An explicit Kirkman triple system of order 27, printed as thirteen parallel classes and machine-verified, whose points 0..6 carry a Steiner triple system of order 7 as a subdesign, answering the case (v,u)=(27,7) flagged as difficult by Dukes and Lamken. |
+| **[A Seven-Vertex Bipartite Graph Whose Positive Matching Decomposition Number Lies Below Its Slope Invariant](constructions/a-seven-vertex-bipartite-graph-with-pmd-3-below-its-slope-invariant-4/paper.pdf)** | Exhibits the seven-vertex bipartite theta graph Theta(2,2,4) with positive matching decomposition number 3 but slope invariant 4, answering affirmatively Question 1 of Farrokhi D. G., Gharakhloo and Yazdan Pour on whether pmd can be strictly less than the greedy slope bound. |
+| **[An Identifying Code of Density $59/156$ in the 6-Row Square Strip](constructions/an-identifying-code-of-density-59-156-in-the-6-row-square-strip/paper.pdf)** | An explicit, fully verified period-52 identifying code of the 6-row square strip proves d*(S_6) <= 59/156 < 2/5, narrowing from above the interval [43/120, 2/5] recorded in the Lobstein-Hudry-Charon survey. |
+| **[Pure powers $3^7$ and $3^8$ in the integer group determinant image of $D_{54}$](constructions/the-complete-integer-group-determinant-image-of-the-dihedral-group-of-order-54/paper.pdf)** | Explicit elements of $\mathbb{Z}[D_{54}]$ with group determinants exactly $3^7$ and $3^8$ (pure powers, unit cofactor), filling the exponent gap left open by Boerkoel–Pinner and yielding the full description $\mathcal{S}(D_{54})=\{2^a3^bm:\gcd(m,6)=1,\ a=0\text{ or }a\ge2,\ b=0\text{ or }b\ge7\}$. |
+
+### Determining a value, or recording a note (3)
+
+| paper | what it establishes |
+|---|---|
+| **[The Monomial $x_0x_1^4x_2^5$ is Not $2$-Computable under Definition~3.5 as Printed](notes/the-monomial-x0x1-4x2-5-is-not-2-computable-answering-carlini-catalisano-et-al/paper.pdf)** | Proves a uniform upper bound $e\cdot\operatorname{rk}(F)\le N(F)-\sum_{j<e}\operatorname{HF}(T/F^{\perp},j)$ for $e$-computable forms and uses it to answer Remark 6.2 of Carlini--Catalisano--Chiantini--Geramita--Woo negatively: $x_0x_1^4x_2^5$ is not $2$-computable under their Definition 3.5 as printed. |
+| **[Two non-bold wheel entries of Parida--Moura's Table~4 are equalities: $t(W_{11})=t(W_{12})=8$](notes/two-exact-wheel-values-for-cover-free-families-on-graphs-t-w11-t-w12-8/paper.pdf)** | The two non-bold wheel entries of Parida–Moura's Table 4 are exact: t(W_11)=t(W_12)=8, the lower bounds coming from exhaustive censuses showing no W_11-CFF(7,11) and no W_12-CFF(7,12) exist. |
+| **[Under a simplicity hypothesis, the order of a $[3,1;4]$-mixed cage is twelve](notes/a-simple-3-1-4-mixed-cage-of-order-twelve-answering-araujo-pardo-et-al/paper.pdf)** | Under the hypothesis that mixed graphs are simple, an elementary digraph lemma yields n[z,1;4] >= ceil((5z+6)/2) for all z >= 2 and, with the known circulant on Z_12, the exact value n[3,1;4] = 12. |

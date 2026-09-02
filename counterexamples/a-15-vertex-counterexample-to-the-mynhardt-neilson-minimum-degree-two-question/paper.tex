@@ -1,0 +1,401 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 15-vertex graph of minimum degree two with alpha_bnr > Gamma_b}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{question}{Question}
+
+\DeclareMathOperator{\bnr}{bnr}
+\DeclareMathOperator{\bn}{bn}
+\newcommand{\abnr}{\alpha_{\bnr}}
+\newcommand{\abn}{\alpha_{\bn}}
+\newcommand{\Gb}{\Gamma_{b}}
+\newcommand{\Gp}{G'}
+\newcommand{\PB}{\mathrm{PB}}
+
+\title[Minimum degree two with $\abnr>\Gb$]
+{A 15-Vertex Graph of Minimum Degree Two with $\abnr>\Gb$}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C12}
+\keywords{broadcast domination, upper broadcast domination number, boundary
+independent broadcast, private boundary, true twin, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ let $\Gb(G)$ be its upper broadcast domination number and
+$\abnr(G)$ its irredundant boundary independence broadcast number. In the last
+section of their paper on the two parameters, Mynhardt and Neilson ask two
+questions: whether $\abnr(G)\le\Gb(G)$ when $G$ is $2$-connected, and whether
+the same holds when $\delta(G)\ge2$. We exhibit a graph $\Gp$ on $15$ vertices
+and $26$ edges with $\delta(\Gp)=2$ and
+\[
+ \abnr(\Gp)\ge6>5=\Gb(\Gp),
+\]
+The printed second sentence is malformed, and we answer the repair that reads it
+as a question about arbitrary $G$ with $\delta(G)\ge2$: under that reading the
+answer is \emph{no}. The tool is a doubling lemma: if $p$ is an end-vertex of a
+connected graph $H$ and $p'$ is a true twin of $p$, then $\Gb(H+p')=\Gb(H)$.
+Here $\Gp$ is the graph $G_1$ of their Section~4.2 with each of its four
+end-vertices doubled into a true twin, so the upper bound is inherited from
+their own published value $\Gb(G_1)=5$; the lower bound is a single exhibited
+broadcast. A second repair of the printed sentence is possible --- whether
+$\abnr-\Gb$ can be arbitrarily large when $\delta(G)\ge2$ --- and is not
+settled here: no member of the family $G_k$ with $k\ge2$ is treated. The
+\emph{first} question, for $2$-connected $G$, is not addressed either; $\Gp$ has
+four cut vertices.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Mynhardt and Neilson \cite{MN24} close their paper with four open questions. The
+fourth reads, verbatim,
+
+\begin{quote}
+Is it true that $\abnr(G)\le\Gb(G)$ when $G$ is $2$-connected? Is it true that
+$\abnr(G_k)\le\Gb(G_k)$ when $\delta(G)\ge2$?
+\end{quote}
+
+\noindent
+That is \emph{two} questions, and only the second is at issue here:
+
+\begin{question}[the second sentence of {\cite[Question~4]{MN24}}]
+Is it true that $\abnr(G)\le\Gb(G)$ when $\delta(G)\ge2$?
+\end{question}
+
+\medskip
+\noindent The printed second sentence carries the subscript $G_k$ under a
+hypothesis naming an unbound $G$, and $\delta(G_k)=1$ in that same paper, so it
+is answered here in the repaired reading displayed above, which is the evident
+intended one. The paragraph preceding it states the grounds for asking:
+``We showed in Theorem~4.9 that $\abn-\Gb$ and $\abnr-\Gb$ can be arbitrary for
+cyclic graphs, but the graphs used in the proof have end-vertices.'' That
+sentence admits a second repair, namely whether $\abnr-\Gb$ can be arbitrarily
+large when $\delta(G)\ge2$ --- the natural continuation of the quoted
+Theorem~4.9 remark. This note does not settle that reading: it exhibits one
+graph with $\delta=2$ and $\abnr>\Gb$, and treats no member of $G_k$ with
+$k\ge2$.
+
+\medskip
+\noindent\textbf{Definitions, as in \cite{MN24}.}
+A \emph{broadcast} on a connected graph $G$ is a function
+$f:V(G)\to\{0,1,\ldots,\operatorname{diam}G\}$ with $f(v)\le e(v)$ for every
+$v$, where $e(v)$ is the eccentricity of $v$; its \emph{weight} is
+$\sigma(f)=\sum_vf(v)$ and $V_f^{+}=\{v:f(v)>0\}$ is its set of
+\emph{broadcasters}. Write $N_f(v)$ for the ball and $B_f(v)$ for the sphere of
+radius $f(v)$ about $v$. For $v\in V_f^{+}$ the \emph{private boundary} is
+\[
+ \PB_f(v)=\Bigl(\,\Omega_f(v)\ \setminus \bigcup_{z\in V_f^{+},\,z\ne v}N_f(z)\Bigr),
+ \qquad
+ \Omega_f(v)=
+ \begin{cases}
+  N_f(v), & f(v)=1,\\
+  B_f(v), & f(v)\ge2;
+ \end{cases}
+\]
+so a broadcaster of strength $1$ belongs to its own private boundary and one of
+strength at least $2$ does not. Then $f$ is \emph{irredundant} if
+$\PB_f(v)\ne\emptyset$ for every $v\in V_f^{+}$, and \emph{bn-independent} if
+$N_f(u)\cap N_f(v)\subseteq B_f(u)\cap B_f(v)$ for all distinct
+$u,v\in V_f^{+}$; \emph{no domination is required in either notion}. Finally
+$\abn(G)$, $\abnr(G)$ are the largest weights of a bn-independent, respectively
+bn-independent and irredundant, broadcast, and $\Gb(G)$ is the largest weight of
+a \emph{minimal dominating} broadcast, equivalently (the characterisation used
+throughout \cite{MN24}, going back to Erwin \cite{Erwin}) of a dominating
+irredundant broadcast. The asymmetry used below is already visible: a
+\emph{non-dominating} broadcast is admissible for $\abnr$ and inadmissible for
+$\Gb$. The phenomenon $\abnr>\Gb$ is credited in \cite{MN24} to \cite{Ne19}.
+
+\section{The graph}
+
+Let $\Gp$ be the graph on the $15$ vertices
+\[
+ u_1,u_2,w_1,w_2,x_1,x_2,y_1,y_2,z_1,z_2,v,w_1',w_2',x_1',x_2'
+\]
+(in that order, indexed $0,\ldots,14$) with the following $26$ edges:
+\begin{center}
+\begin{tabular}{ll}
+$u_1u_2,\ u_1v,\ u_2v$ & $\{v,u_1,u_2\}$ a triangle, $v$ has no other neighbour\\
+$z_1z_2,\ u_1z_1,\ u_1z_2,\ u_2z_1,\ u_2z_2$ & $\{u_1,u_2,z_1,z_2\}$ a $K_4$\\
+$y_1z_1,\ y_1z_2,\ y_2z_1,\ y_2z_2$ & each $y_i$ joined to both $z_j$\\
+$u_1y_1,\ u_2y_2$ &\\
+$x_1y_1,\ x_2y_2$ &\\
+$x_1'x_1,\ x_1'y_1,\ x_2'x_2,\ x_2'y_2$ & $\{x_i,x_i',y_i\}$ a triangle,
+   $N[x_i']=N[x_i]$\\
+$w_1z_1,\ w_2z_2$ &\\
+$w_1'w_1,\ w_1'z_1,\ w_2'w_2,\ w_2'z_2$ & $\{w_i,w_i',z_i\}$ a triangle,
+   $N[w_i']=N[w_i]$
+\end{tabular}
+\end{center}
+Equivalently, $\Gp$ is the labelled graph with graph6 string
+\[
+ \texttt{N\_?CQJbs\}?CCCCA\_?g?}
+\]
+on the vertex order above. Its degrees and eccentricities are
+\[
+\begin{array}{l|ccccccccccccccc}
+ t   & u_1&u_2&w_1&w_2&x_1&x_2&y_1&y_2&z_1&z_2&v&w_1'&w_2'&x_1'&x_2'\\\hline
+ \deg t & 5&5&2&2&2&2&5&5&7&7&2&2&2&2&2\\
+ e(t)   & 3&3&3&3&4&4&3&3&2&2&3&3&3&4&4
+\end{array}
+\]
+so $\delta(\Gp)=2$, $\operatorname{diam}\Gp=4$, and the broadcast space of $\Gp$
+has $\prod_t(e(t)+1)=1{,}474{,}560{,}000$ elements. The cut vertices of $\Gp$
+are exactly $y_1,y_2,z_1,z_2$; in particular $\Gp$ is \emph{not} $2$-connected,
+so it is admissible for the question of Section~1 and inadmissible for the first
+sentence of \cite[Question~4]{MN24}.
+
+Deleting $x_1',x_2',w_1',w_2'$ leaves a graph on $11$ vertices and $18$ edges
+whose end-vertices are exactly $x_1,x_2,w_1,w_2$; this is the graph $G_1$ of
+\cite[Section~4.2]{MN24}, the member $k=1$ of their family. Thus $\Gp$ is $G_1$
+with each of its four end-vertices doubled into a true twin. The identification
+is what makes the upper bound quotable; the program of
+Section~\ref{sec:ver} returns for that subgraph the published values
+$\Gb(G_1)=5$ and $\abnr(G_1)=6$ of \cite[Propositions 4.7 and 4.8]{MN24}
+($\Gb(G_k)=2k+3$ at $k=1$).
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+$\Gp$ is a connected graph on $15$ vertices with $\delta(\Gp)=2$ and
+\[
+ \abnr(\Gp)\ge6>5=\Gb(\Gp).
+\]
+Consequently the answer to the question of Section~1 is \emph{no}.
+\end{theorem}
+
+\noindent
+Both bounds are by hand. The exact value $\abnr(\Gp)=6$ is not needed for
+Theorem~\ref{thm:main} and is not asserted by it; it comes from the census
+described in Section~\ref{sec:ver}.
+
+\begin{proof}[Proof of $\abnr(\Gp)\ge6$, by hand]
+Take
+\[
+ f(x_1)=f(x_2)=2,\qquad f(w_1)=f(w_2)=1,\qquad f\equiv0 \text{ elsewhere},
+\]
+so $\sigma(f)=6$; this is a legal broadcast because $e(x_i)=4$ and $e(w_i)=3$.
+Reading the balls and spheres off the edge list,
+\[
+\begin{array}{lll}
+ N_f(x_i)=\{x_i,x_i',y_i,u_i,z_1,z_2\}, & B_f(x_i)=\{u_i,z_1,z_2\},
+ & \PB_f(x_i)=\{u_i\},\\[2pt]
+ N_f(w_i)=\{w_i,w_i',z_i\}, & B_f(w_i)=\{w_i',z_i\},
+ & \PB_f(w_i)=\{w_i,w_i'\},
+\end{array}
+\]
+for $i=1,2$; the broadcasters $w_i$ lie in their own private boundaries because
+$f(w_i)=1$, the broadcasters $x_i$ do not because $f(x_i)=2$. All four private
+boundaries are non-empty, so $f$ is irredundant. For bn-independence it is
+enough that $d(u,v)\ge f(u)+f(v)$ for the six pairs of broadcasters, and indeed
+$d(x_1,x_2)=4\ge2+2$, $d(x_i,w_j)=3\ge2+1$ and $d(w_1,w_2)=3\ge1+1$. Hence $f$
+is a bn-independent irredundant broadcast of weight $6$ and $\abnr(\Gp)\ge6$.
+
+Exactly one vertex is unheard by $f$, namely $v$, at distance $3$ from every
+broadcaster. That is not an accident but the whole mechanism: a bn-independent
+irredundant \emph{dominating} broadcast of weight $6$ would be a minimal
+dominating broadcast of weight $6$ and would contradict $\Gb(\Gp)=5$.
+\end{proof}
+
+The upper bound rests on the following lemma. Recall that $p$ is an
+\emph{end-vertex} of $H$ if $\deg_Hp=1$, and that $p'$ is a \emph{true twin} of
+$p$ in $H+p'$ if $N[p']=N[p]$ there; for an end-vertex $p$ with neighbour $q$
+this means exactly that $p'$ is joined to $p$ and to $q$, so that $\{p,p',q\}$ is
+a triangle and $\deg p=\deg p'=2$.
+
+\begin{lemma}[end-vertex doubling]\label{lem:double}
+Let $H$ be a connected graph, $p$ an end-vertex of $H$ with neighbour $q$, and
+$H'=H+p'$ where $p'$ is a true twin of $p$. Then
+\[
+ \Gb(H')=\Gb(H).
+\]
+\end{lemma}
+
+\begin{proof}
+Throughout, $d$ denotes distance in $H'$. First, $H'$ changes nothing metric
+about $H$. For $a,b\in V(H)$ we have $d(a,b)=d_H(a,b)$, since a path through
+$p'$ can be shortcut through $q$. For $z\notin\{p,p'\}$ every $p'z$-path and
+every $pz$-path leaves through $q$, whence
+\begin{equation}\label{eq:twinmetric}
+ d(p',z)=1+d(q,z)=d(p,z)\qquad(z\notin\{p,p'\}),\qquad d(p,p')=1 .
+\end{equation}
+Consequently $e_{H'}(a)=\max\bigl(e_H(a),d(a,p')\bigr)=e_H(a)$ for every
+$a\in V(H)$ and $e_{H'}(p')=e_H(p)$: eccentricities, and therefore the
+constraints $f(t)\le e(t)$ defining a broadcast, are unchanged. Note also that
+the transposition of $p$ and $p'$ is an automorphism of $H'$.
+
+\emph{Step 1: no irredundant broadcast of $H'$ weights both twins.} Suppose $f$
+is a broadcast with $f(p),f(p')\ge1$; by the automorphism we may assume
+$f(p)\ge f(p')$. If $f(p')=1$ then
+$\Omega_f(p')=N_f(p')=\{p',p,q\}\subseteq N_f(p)$, because $f(p)\ge1$ and
+$d(p,p')=d(p,q)=1$. If $f(p')\ge2$ then $p\notin B_f(p')$, since
+$d(p',p)=1<f(p')$; and every $z\in B_f(p')$ satisfies $z\notin\{p,p'\}$ and so,
+by \eqref{eq:twinmetric}, $d(p,z)=d(p',z)=f(p')\le f(p)$, i.e.\ $z\in N_f(p)$.
+Either way $\Omega_f(p')\subseteq N_f(p)$ with $p\in V_f^{+}\setminus\{p'\}$,
+hence $\PB_f(p')=\emptyset$ and $f$ is redundant.
+
+\emph{Step 2: $\Gb(H')\ge\Gb(H)$.} Let $f$ be a minimal dominating broadcast of
+$H$ of weight $\Gb(H)$ and extend it by $f(p')=0$. It is a legal broadcast of
+$H'$ because eccentricities did not change. It dominates $p'$: some
+$z\in V_f^{+}$ has $d_H(z,p)\le f(z)$, and then $d(z,p')=d(z,p)\le f(z)$ if
+$z\ne p$, while $d(p,p')=1\le f(p)$ if $z=p$. It is still irredundant: for
+$w\in V_f^{+}$ the sets $\Omega$ and $N_f$ computed in $H'$ meet $V(H)$ in the
+sets computed in $H$, so any $u\in\PB_f^{H}(w)$ still lies in $\PB_f^{H'}(w)$.
+
+\emph{Step 3: $\Gb(H')\le\Gb(H)$.} Let $g$ be a minimal dominating broadcast of
+$H'$ of weight $\Gb(H')$. By Step~1 and the automorphism we may assume
+$g(p')=0$. We claim
+\begin{equation}\label{eq:pbtwin}
+ p'\in\PB_g(w)\ \Longrightarrow\ p\in\PB_g(w)
+ \qquad\text{for every } w\in V_g^{+}.
+\end{equation}
+Assume $p'\in\PB_g(w)$. Then $d(z,p')>g(z)$ for every
+$z\in V_g^{+}\setminus\{w\}$, hence by \eqref{eq:twinmetric} also $d(z,p)>g(z)$
+for every such $z$ other than $p$; and $p\ne w$ would force $g(p)=0$, since
+$g(p)\ge1$ would put $p'\in N_g(p)$ with $p\in V_g^{+}\setminus\{w\}$. So
+$p\notin N_g(z)$ for all $z\in V_g^{+}\setminus\{w\}$ in either case. It remains
+to see $p\in\Omega_g(w)$. If $w=p$ then $g(p)\ge1$; here $g(p)\ge2$ is
+impossible, because $\Omega_g(p)=B_g(p)$ would then exclude $p'$ at distance
+$1$, so $g(p)=1$ and $p\in N_g(p)=\Omega_g(p)$. If $w\ne p$ and $g(w)\ge2$ then
+$d(w,p')=g(w)$, so $d(w,p)=g(w)$ by \eqref{eq:twinmetric} and
+$p\in B_g(w)=\Omega_g(w)$. If $w\ne p$ and $g(w)=1$ then $p'\in N_g(w)$ forces
+$w\in\{p,q\}$, hence $w=q$ and $p\in N_g(q)=\Omega_g(w)$. This proves
+\eqref{eq:pbtwin}.
+
+Now restrict $g$ to $V(H)$. The restriction is a legal broadcast of $H$ of the
+same weight, and it dominates $H$ because $p'\notin V_g^{+}$ and distances did
+not change. For $w\in V_g^{+}$ the set $\PB_g(w)$ is non-empty; if it meets
+$V(H)$ we are done, and if $\PB_g(w)=\{p'\}$ then \eqref{eq:pbtwin} gives
+$p\in\PB_g(w)$, a contradiction. So $\PB_g(w)\cap V(H)\ne\emptyset$, which is
+exactly the private boundary of the restriction computed in $H$. The restriction
+is therefore a minimal dominating broadcast of $H$ of weight $\Gb(H')$.
+\end{proof}
+
+\begin{proof}[Proof of $\Gb(\Gp)=5$, and of Theorem~\ref{thm:main}]
+$\Gb(\Gp)\ge5$ is witnessed by $g(v)=g(x_1)=g(x_2)=g(w_1)=g(w_2)=1$, which
+dominates $\Gp$ and has
+$\PB_g(v)=\{v,u_1,u_2\}$, $\PB_g(x_i)=\{x_i,x_i',y_i\}$ and
+$\PB_g(w_i)=\{w_i,w_i',z_i\}$, all non-empty.
+
+For $\Gb(\Gp)\le5$, apply Lemma~\ref{lem:double} four times, once for each of the
+end-vertices $x_1,x_2,w_1,w_2$ of $G_1$ --- each doubling is legitimate because
+the vertex doubled is still an end-vertex of the graph reached so far, the four
+being pairwise non-adjacent --- to get $\Gb(\Gp)=\Gb(G_1)=5$, the last equality
+being \cite[Proposition~4.8]{MN24} at $k=1$. Independently, $\Gb(\Gp)=5$ is
+returned by the census of Section~\ref{sec:ver}.
+
+Combining with $\abnr(\Gp)\ge6$ gives $\abnr(\Gp)\ge6>5=\Gb(\Gp)$ while
+$\delta(\Gp)=2$, which answers that question negatively. The census also
+gives the exact values $\abnr(\Gp)=6$ and $\abn(\Gp)=7$.
+\end{proof}
+
+\begin{remark}
+$G_1$ itself already has $\abnr(G_1)=6>5=\Gb(G_1)$ --- both values are printed
+in \cite{MN24} --- but $\delta(G_1)=1$, which is precisely the case
+\cite{MN24} excludes and the reason the question is asked. The doubling
+raises the minimum degree to $2$ while preserving all distances among the
+vertices of $G_1$, so that the source's own broadcast survives verbatim.
+\end{remark}
+
+\begin{remark}
+Only the second sentence of \cite[Question~4]{MN24}, in the repaired reading of
+Section~1, is treated here. The first, for $2$-connected $G$, is not addressed:
+$\Gp$ has four cut vertices, and $\delta\ge2$ is strictly weaker than
+$2$-connectedness. No minimality is
+claimed. The definitions of
+bn-independence, irredundance, $\abnr$ and $\Gb$ used above, including the
+convention that a broadcaster of strength~$1$ lies in its own private boundary
+and the characterisation of a minimal dominating broadcast as a dominating
+irredundant one, are transcribed from \cite{MN24,Erwin} and not re-derived.
+\end{remark}
+
+\section{Verification}\label{sec:ver}
+
+Every quantity printed above for $\Gp$ and for $G_1$ is re-derived from the
+$26$-edge list of Section~2 by the program
+\texttt{verify.py} accompanying this note, whose recorded run is
+\texttt{verify.output.txt}. The program is Python~3.9+, standard library only, exact
+integer and bitmask arithmetic, no external data file; it runs in about $16$
+seconds and reports $53$ checks, all passing, exiting $0$ only if every check
+passes. It
+
+\begin{itemize}
+\item rebuilds $\Gp$ from the printed edge list and confirms that the printed
+graph6 string decodes to the same \emph{labelled} graph; re-derives the degree
+and eccentricity tables, $\delta=2$, $\operatorname{diam}=4$, the cut-vertex set
+$\{y_1,y_2,z_1,z_2\}$ and the count $1{,}474{,}560{,}000$;
+\item confirms the doubling structure: deleting the four primed vertices leaves
+$11$ vertices and $18$ edges with end-vertex set exactly $\{x_1,x_2,w_1,w_2\}$,
+each primed vertex is a true twin, and no distance and no eccentricity inside
+$V(G_1)$ changes;
+\item re-derives every set printed in the proof of Theorem~\ref{thm:main} ---
+$N_f$, $B_f$, $\PB_f$ for all four broadcasters, the six pairwise distances, the
+weight, the irredundance, the bn-independence, and that $v$ is the unique
+unheard vertex --- and the private boundaries of the weight-$5$ dominating
+broadcast;
+\item runs its own census of the broadcast space and returns
+$\Gb(\Gp)=5$, $\abnr(\Gp)=6$, $\abn(\Gp)=7$ with $283$ minimal dominating,
+$1140$ bn-independent irredundant and $1416$ bn-independent broadcasts, and
+$\Gb(G_1)=5$, $\abnr(G_1)=6$, $\delta(G_1)=1$; it also verifies over all $1780$
+irredundant broadcasts of $\Gp$ that none weights both members of a twin pair,
+which is Step~1 of Lemma~\ref{lem:double} at this graph;
+\item validates the census enumerator. The census prunes on irredundance and on
+bn-independence, both monotone conditions, so no member of either family is
+missed; to check the implementation rather than the argument, the same quantities
+are recomputed for $G_1$ by an \emph{unpruned} walk of all $3{,}686{,}400$ of
+its broadcasts and agree on all seven, and the enumerator reproduces published
+values for $P_6$, $P_7$, $C_6$ (cf.\ \cite{BBS20}) and the $3\times3$ and
+$3\times4$ grids. No unpruned walk of $\Gp$ itself is performed;
+\item checks $\Gb(H+p')=\Gb(H)$ for every connected labelled graph $H$ on
+$3,\ldots,6$ vertices and every end-vertex $p$ of $H$, with no mismatch. This
+corroborates Lemma~\ref{lem:double}; the lemma itself rests on its proof.
+\end{itemize}
+
+\noindent
+The program closes by printing its own scope.
+
+\begin{thebibliography}{9}
+
+\bibitem{Erwin}
+D.~Erwin,
+\emph{Dominating broadcasts in graphs},
+Bull. Inst. Combin. Appl. \textbf{42} (2004), 89--105.
+
+\bibitem{MN24}
+C.~M. Mynhardt and L.~Neilson,
+\emph{Comparing upper broadcast domination and boundary independence broadcast
+numbers of graphs},
+Trans. Combin. \textbf{13} (2024), no.~1, 105--126.
+\href{https://doi.org/10.22108/toc.2023.127904.1836}{doi:10.22108/toc.2023.127904.1836};
+e-print \href{https://arxiv.org/abs/2104.02257v2}{arXiv:2104.02257v2}, from
+which the statement numbers and the verbatim text of Question~4 are quoted.
+
+\bibitem{Ne19}
+L.~Neilson,
+Ph.D. thesis, University of Victoria, 2019; cited in \cite{MN24} as the source
+of the phenomenon $\abnr>\Gb$.
+
+\bibitem{BBS20}
+S.~Bouchouika, I.~Bouchemakh, and \'E.~Sopena,
+\emph{Broadcasts on paths and cycles},
+Discrete Appl. Math. \textbf{283} (2020), 375--395.
+
+\end{thebibliography}
+
+\end{document}

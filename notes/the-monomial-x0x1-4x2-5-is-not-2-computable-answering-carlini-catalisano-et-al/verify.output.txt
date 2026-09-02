@@ -1,0 +1,85 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  75b890ec370d819d075138f8fe49cd584bc23584d281018bf949ced3ea250e72
+python:  Python 3.9.25
+=== program output follows ===
+exact verification of "The monomial x_0 x_1^4 x_2^5 is not 2-computable"
+python 3.9.25 -- integers and fractions.Fraction only, no floating point
+
+-- the object of the paper: G_1 = x_0 x_1^4 x_2^5 in S = k[x_0,x_1,x_2]
+PASS degree_of_G1_is_10 [d = 1 + 4 + 5 = 10]
+PASS printed_apolar_ideal_equals_annihilator_on_every_monomial [560 monomials of degree <= 13: m o G_1 = 0 iff m in (X_0^2,X_1^5,X_2^6); 0 discrepancies]
+PASS apolarity_matrix_of_a_monomial_is_diagonal_so_F_perp_is_monomial [every m o G_1 is 0 or a single monomial of S, so ker is spanned by monomials]
+PASS hilbert_function_from_monomial_count_equals_printed_vector [HF(A) = [1, 3, 5, 7, 9, 10, 9, 7, 5, 3, 1]]
+PASS hilbert_function_from_apolarity_ranks_agrees_with_monomial_count [two independent routes agree in every degree 0..13]
+PASS hilbert_function_vanishes_above_the_socle_degree [HF(A,j) = 0 for j > 10, HF(A,10) = 1]
+PASS hilbert_function_is_positive_exactly_on_0_to_d [HF(A,j) > 0 for every 0 <= j <= 10]
+PASS gorenstein_symmetry_of_the_hilbert_function [HF(A,j) = HF(A,10-j) for all j -- A is artinian Gorenstein of socle degree 10]
+PASS N_of_G1_is_60_and_equals_the_product_of_the_generator_degrees [N(G_1) = dim_k T/G_1^perp = 60 = 2*5*6 (monomial complete intersection)]
+PASS quoted_rank_of_G1_is_30_by_the_CCG_monomial_formula [rk(G_1) = (4+1)(5+1) = 30 -- QUOTED from [CCG], not proved here]
+
+-- Lemma 2, step by step, at e = 2 on G_1 (d - e + 1 = 9)
+PASS the_threshold_degree_is_9 [d - e + 1 = 10 - 2 + 1 = 9]
+PASS step0_every_monomial_of_degree_above_d_annihilates_G1 [T_{>= 11} is contained in G_1^perp]
+PASS step1_T_ge_9_times_T_2_lies_in_G1_perp [2370 products h*g with deg h >= 9, deg g = 2 all annihilate G_1 (deg hg >= 11 > d)]
+PASS step2_containment_is_strict_because_HF_A_9_is_positive [HF(A,9) = 3 > 0, so T_9 is not contained in G_1^perp]
+PASS step3_cap_is_the_dimension_of_T_mod_G1perp_plus_T_ge_9 [dim_k T/(G_1^perp + T_{>=9}) = 56]
+PASS step3_cap_equals_the_truncated_hilbert_sum [sum_{i=0}^{d-e} HF(A,i) = sum_{i=0}^{8} [1, 3, 5, 7, 9, 10, 9, 7, 5] = 56]
+PASS step3_cap_equals_N_minus_the_bottom_e_values [N(G_1) - HF(A,0) - HF(A,1) = 60 - 1 - 3 = 56]
+PASS the_cap_is_strictly_below_N [56 < 60]
+
+-- the theorem
+PASS two_times_rank_of_G1_is_60 [e*rk(G_1) = 2*30 = 60]
+PASS crude_corollary_fails_60_is_not_less_than_60 [e*rk(G_1) = 60, N(G_1) = 60: 60 < 60 is FALSE]
+PASS sharp_corollary_fails_with_margin_4 [60 <= 56 is FALSE, margin 4]
+PASS THEOREM_G1_is_not_2_computable [x_0 x_1^4 x_2^5 is NOT 2-computable -- the negative answer to Remark 6.2]
+PASS best_lower_bound_obtainable_at_e_2_is_28_below_30 [floor(cap/e) = floor(56/2) = 28 < 30 = rk(G_1)]
+
+-- all 63 nonzero coordinate subspaces W of T_2: dim_k T/(G_1^perp : (W))
+PASS T_2_has_six_monomials [[(0, 0, 2), (0, 1, 1), (0, 2, 0), (1, 0, 1), (1, 1, 0), (2, 0, 0)]]
+PASS census_covers_all_63_nonzero_coordinate_subspaces [distribution of dim_k T/(G_1^perp:(W)): {0: 1, 24: 2, 25: 2, 29: 2, 36: 2, 40: 4, 42: 2, 44: 2, 45: 4, 46: 4, 47: 4, 48: 4, 49: 6, 51: 2, 52: 6, 53: 2, 54: 6, 55: 6, 56: 2}]
+PASS every_censused_colon_quotient_is_finite_and_supported_in_degrees_at_most_d [no standard monomial of degree > 10 in any of the 63 quotients]
+PASS census_maximum_is_exactly_the_cap_56 [max = 56, attained at W = ((0, 0, 2), (0, 1, 1), (0, 2, 0), (1, 0, 1), (1, 1, 0)) (all of T_2 except X_0^2)]
+PASS census_maximum_is_strictly_below_60 [56 < 60 = e*rk(G_1), so no coordinate ideal can witness 2-computability]
+PASS adjoining_t_can_only_shrink_the_quotient_so_the_census_bound_survives_it [G_1^perp:(W) is contained in G_1^perp:(W)+(t) for every t, so dim T/(G_1^perp:(W)+(t)) <= dim T/(G_1^perp:(W)) <= 56 < 60 for all 63]
+PASS the_degenerate_ideal_X0_squared_gives_0_which_is_why_the_cell_was_left_open [X_0^2 lies in G_1^perp, so G_1^perp:(X_0^2) = T and the sum collapses to 0 -- exactly one of the 63 does this, and it is the ideal Proposition 4.2 would use]
+
+-- controls -- the source's own positive assertions on page 387, recomputed
+PASS control_G2_apolar_ideal_and_invariants [G_2 = x_0^3x_1^4x_2^5: d = 12, N = 120, HF = [1, 3, 6, 10, 14, 17, 18, 17, 14, 10, 6, 3, 1]]
+PASS control_G2_rank_is_30_by_the_same_quoted_formula [rk(G_2) = (4+1)(5+1) = 30]
+PASS control_G2_is_2_computable_reproducing_page_387 [I = (X_0^2), t = X_0^2: sum_i HF(T/(G_2^perp:I+(t)),i) = 60, (1/2)*60 = 30 = rk(G_2)]
+PASS control_G1_is_1_computable_reproducing_page_387 [I = (X_0), t = X_0: sum_i HF(T/(G_1^perp:I+(t)),i) = 30 = rk(G_1)]
+PASS silence_check_the_bound_does_not_fire_on_G2_at_e_2 [cap = 116 >= 60 = e*rk(G_2): Lemma 2 is SILENT on the source's positive case]
+PASS silence_check_the_bound_does_not_fire_on_G1_at_e_1 [cap = 59 >= 30 = 1*rk(G_1): silent on the source's own 1-computability of G_1]
+
+-- Corollary 4 on a FINITE CENSUS: 120 monomials in 2-4 variables with exponents 1..5, e up to d+2 -- e-computable => e <= a_0 on every censused pair. The general case (arbitrary n, arbitrary ordered positive exponents) is the paper's proof of Corollary 4, IMPORTED, not executed below
+PASS monomial_family_invariants_N_and_socle_degree [120 monomials in 2..4 variables with exponents in 1..5: sum HF = prod(a_i+1), HF(A,d) = 1, HF(A,i) > 0 on 0..d, in every case]
+PASS corollary4_every_e_above_a0_is_excluded_by_the_cap_on_the_censused_family [1485 (monomial, e) pairs tested, e up to d+2; e > a_0 implies e*rk > cap without exception ON THIS CENSUS (2..4 variables, exponents 1..5). Arbitrary n and arbitrary exponents are covered by the paper's proof of Corollary 4, not by this loop]
+PASS corollary4_never_contradicts_proposition_4_2_of_the_source [the cap is SILENT on every e in the source's positive range 1 <= e <= (a_0+1)/2, for all 120 monomials]
+PASS the_cap_is_sometimes_strictly_sharper_than_e_at_most_a0_and_that_is_recorded_not_hidden [5 pairs with e <= a_0 are ALSO excluded, all in two variables: [((3, 3), 'e=3'), ((3, 4), 'e=3'), ((4, 4), 'e=4'), ((4, 5), 'e=4'), ((5, 5), 'e=5')]. Corollary 4 states only the implication e-computable => e <= a_0, which is what is checked above; it does not claim the converse, and these five show the converse is false]
+PASS for_a0_equal_1_the_window_closes_to_e_equal_1_exactly [55 of the family have a_0 = 1; there Proposition 4.2 gives e = 1 and Corollary 4 forbids e >= 2, so e-computability holds exactly for e = 1]
+PASS the_target_is_the_a0_equal_1_case [G_1 = x_0 x_1^4 x_2^5 has a_0 = 1, so e = 1 is the whole answer for it]
+
+-- what the obstruction does NOT settle: x_0^2 x_1^2 x_2^2 at e = 2
+PASS x0_2x1_2x2_2_at_e_2_is_left_open_by_the_bound [HF = [1, 3, 6, 7, 6, 3, 1], N = 27, cap = 23 >= 18 = e*rk: the bound is SILENT, the cell stays open]
+
+-- Corollary 5: F = w(x^3+y^3+z^3) in k[x,y,z,w] -- EXECUTED here for e = 2..11 only; e = 1 is IMPORTED from Remark 7.3 of the source, and the step from e = 2..11 to every e >= 2 is the paper's proof of Corollary 5, IMPORTED. No predicate below covers an unbounded range of e
+PASS printed_generators_of_F_perp_all_annihilate_F [W^2, YZ, XZ, XY, Y^3-Z^3, X^3-Z^3 each kill w(x^3+y^3+z^3)]
+PASS hilbert_function_of_F_is_1_4_6_4_1 [HF(T/F^perp) = [1, 4, 6, 4, 1] (by apolarity ranks)]
+PASS N_of_F_is_16_and_socle_degree_is_4 [N(F) = 16, HF(A,j) = 0 for j > 4]
+PASS gorenstein_symmetry_for_F [HF(A,j) = HF(A,4-j)]
+PASS degree_2_part_of_F_perp_is_the_printed_four_dimensional_space [dim (F^perp)_2 = 4 = dim span(W^2,YZ,XZ,XY); 10 - 4 = 6 = HF(A,2)]
+PASS printed_generators_generate_F_perp_in_every_degree_up_to_5 [dim T_j - dim (printed ideal)_j = HF(A,j) for j = 0..5]
+PASS quoted_rank_of_F_is_9 [rk(w(x^3+y^3+z^3)) = 9 -- QUOTED from Proposition 7.2 of the source, not proved here]
+PASS crude_corollary_forbids_e_2_through_11_for_F [e*rk(F) = 9e >= 18 > 16 = N(F) for e = 2..11, the range actually run; Corollary 3 excludes each of them. That 9e >= 18 > 16 for EVERY e >= 2 is the paper's one-line monotonicity remark, not a check here]
+PASS sharp_caps_for_F_are_11_5_1_0_against_18_27_36_45 [e=2: 11 < 18; e=3: 5 < 27; e=4: 1 < 36; e=5: 0 < 45]
+PASS F_is_not_e_computable_for_e_2_through_11_here_e_1_imported [the sharp cap excludes each of e = 2..11, the range run here; e = 1 is the source's own Remark 7.3 (not 1-computable), QUOTED. Corollary 5's "for any e >= 1" therefore rests on that import plus the paper's proof for unbounded e, neither of which is executed]
+
+-- arithmetic hygiene
+PASS every_deciding_quantity_is_an_exact_integer_or_fraction [types used in the comparisons above: ['Fraction', 'int']]
+PASS the_program_imports_nothing_outside_the_python_standard_library [top-level imports found by scanning this file: ['fractions', 'itertools', 'sys'] -- a referee needs nothing installed]
+
+NOTE SCOPE -- what this program does NOT cover. rk(G_1) = 30 and rk(w(x^3+y^3+z^3)) = 9 are QUOTED theorems ([CCG] and Proposition 7.2 of the source); this program checks that the paper uses them correctly, and does not reprove them.  Corollary 4 is executed here only as a FINITE CENSUS: 120 monomials in 2-4 variables with exponents 1..5, 1485 (monomial, e) pairs.  Arbitrary n and arbitrary 0 < a_0 <= ... <= a_n are NOT executed anywhere in this program; that generality is the paper's proof of Corollary 4, imported.  Proposition 4.2 of the source, which supplies e = 1 in the a_0 = 1 slice, is likewise quoted, not reproved.  the obstruction is a NECESSARY condition, so it settles no cell on which it is silent: x_0^2x_1^2x_2^2 at e = 2 (cap 23 >= 18) is the smallest such monomial cell and remains OPEN.  the e = 1 half of Corollary 5 is NOT reproved here: it is Remark 7.3 of the source, quoted.  For the other half this program supplies the finite range e = 2..11 only; it does not reduce the unbounded range e >= 2 to finitely many cases, which is the paper's step, imported.  NOT RE-RUN: the original run's GF(p) census of dim T/(G_1^perp:I+(t)) over 1,263 subspaces (whose stdout was never captured to a file); the 63-subspace census printed above is this program's own, is exact over Q, and bounds dim T/(G_1^perp:I) rather than dim T/(G_1^perp:I+(t)).  ALSO NOT RE-RUN: anything about Strassen's conjecture, and anything under the looser readings of e-computability that omit the clause "generated in degree e" -- under those readings step 1 of Lemma 2 fails and Remark 6.2 is not settled.
+
+VERDICT: ALL 55 CHECKS PASS
+=== program exited with status 0 ===

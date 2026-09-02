@@ -1,0 +1,81 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  1fcc3c995bdbb27e5573971d384becf3c1ae697426d6133b605b6bc6f8eb62cb
+python:  Python 3.9.6
+=== program output follows ===
+verification of the note: a 15-vertex counterexample to the minimum-degree-two question
+of Mynhardt and Neilson -- G' with alpha_bnr = 6 > 5 = Gamma_b and delta = 2
+python 3.9.6, exact integer arithmetic only
+
+=== A. the object exhibited in the paper
+PASS order_is_15 [n = 15]
+PASS edge_list_is_26_distinct_pairs_of_distinct_vertices [m = 26, distinct = 26]
+PASS every_endpoint_is_a_declared_vertex [15 declared names]
+PASS degree_table_matches_the_paper [u1:5 u2:5 w1:2 w2:2 x1:2 x2:2 y1:5 y2:5 z1:7 z2:7 v:2 w1p:2 w2p:2 x1p:2 x2p:2]
+PASS degree_sum_is_52_i_e_26_edges [sum deg = 52 = 2*26]
+PASS minimum_degree_is_2 [delta = 2, attained at v,w1,w1p,w2,w2p,x1,x1p,x2,x2p]
+PASS graph_is_connected
+PASS eccentricity_table_matches_the_paper [u1:3 u2:3 w1:3 w2:3 x1:4 x2:4 y1:3 y2:3 z1:2 z2:2 v:3 w1p:3 w2p:3 x1p:4 x2p:4]
+PASS diameter_is_4 [diam = 4]
+PASS graph6_string_decodes_to_the_same_LABELLED_graph [graph6 N_?CQJbs}?CCCCA_?g? -> order 15, 26 edges, label-equal to the printed edge list]
+PASS cut_vertices_are_exactly_y1_y2_z1_z2 [cut vertices y1 y2 z1 z2 -- so G' is NOT 2-connected]
+PASS broadcast_space_has_1474560000_elements [prod_t (e(t)+1) = 1474560000]
+
+=== B. G' is G_1 with its four end-vertices doubled into true twins
+PASS deleting_the_four_primed_vertices_leaves_11_vertices_and_18_edges [G_1: n = 11, m = 18]
+PASS G_1_is_connected
+PASS the_end_vertices_of_G_1_are_exactly_the_four_doubled_vertices [end-vertices of G_1: w1 w2 x1 x2]
+PASS each_primed_vertex_is_a_true_twin_closed_neighbourhoods_equal [N[x1p] = N[x1] = {x1,x1p,y1}; N[x2p] = N[x2] = {x2,x2p,y2}; N[w1p] = N[w1] = {w1,w1p,z1}; N[w2p] = N[w2] = {w2,w2p,z2}]
+PASS the_doubling_changes_no_distance_inside_V_G_1 [11x11 distance matrices agree entrywise]
+PASS the_doubling_changes_no_eccentricity_inside_V_G_1 [so every broadcast of G_1 is a broadcast of G' and conversely]
+PASS each_primed_vertex_inherits_the_eccentricity_of_its_partner [e(x1p) = e(x1) = 4; e(x2p) = e(x2) = 4; e(w1p) = e(w1) = 3; e(w2p) = e(w2) = 3]
+
+=== C. the witness broadcast f of Section 3 (the hand lower bound)
+PASS f_is_a_legal_broadcast_f_t_at_most_e_t [f(w1)=1 <= e(w1)=3, f(w2)=1 <= e(w2)=3, f(x1)=2 <= e(x1)=4, f(x2)=2 <= e(x2)=4]
+PASS the_weight_of_f_is_6 [sigma(f) = 6]
+PASS N_f_B_f_and_PB_f_of_w1_match_the_paper [f(w1)=1  N_f={w1,w1p,z1}  B_f={w1p,z1}  PB_f={w1,w1p}]
+PASS N_f_B_f_and_PB_f_of_w2_match_the_paper [f(w2)=1  N_f={w2,w2p,z2}  B_f={w2p,z2}  PB_f={w2,w2p}]
+PASS N_f_B_f_and_PB_f_of_x1_match_the_paper [f(x1)=2  N_f={u1,x1,x1p,y1,z1,z2}  B_f={u1,z1,z2}  PB_f={u1}]
+PASS N_f_B_f_and_PB_f_of_x2_match_the_paper [f(x2)=2  N_f={u2,x2,x2p,y2,z1,z2}  B_f={u2,z1,z2}  PB_f={u2}]
+PASS f_is_irredundant_every_private_boundary_is_non_empty [all 4 private boundaries non-empty]
+PASS f_is_bn_independent [all 6 pairs satisfy N_f(u) & N_f(w) subset of B_f(u) & B_f(w)]
+PASS the_pairwise_distances_of_the_support_match_the_paper [d(w1,w2)=3>=2, d(x1,w1)=3>=3, d(x1,w2)=3>=3, d(x1,x2)=4>=4, d(x2,w1)=3>=3, d(x2,w2)=3>=3]
+PASS f_is_NOT_dominating_and_the_only_unheard_vertex_is_v [uncovered = {v}; so f does not compete in Gamma_b]
+PASS alpha_bnr_of_G_prime_is_at_least_6_by_this_witness_alone [f bn-independent + irredundant of weight 6 -- no computation needed]
+PASS the_weight_5_broadcast_of_Section_4_is_minimal_dominating [sigma = 5, dominating, PB(w1)={w1,w1p,z1}; PB(w2)={w2,w2p,z2}; PB(x1)={x1,x1p,y1}; PB(x2)={x2,x2p,y2}; PB(v)={u1,u2,v}]
+
+=== E. the census enumerator, validated against an UNPRUNED brute force
+PASS pruned_and_unpruned_censuses_of_G_1_agree_on_all_seven_quantities [brute force visited all 3686400 broadcasts of G_1 (1890 DFS nodes pruned to); Gamma_b=5 alpha_bnr=6 alpha_bn=7, counts 72/260/295/499]
+NOTE the brute force took 6.7 s; it is the only check that touches the whole product space of a graph in this note
+PASS control_P6_reproduces_the_published_values [Gamma_b=5 alpha_bnr=5 alpha_bn=5]
+PASS control_P7_reproduces_the_published_values [Gamma_b=6 alpha_bnr=6 alpha_bn=6]
+PASS control_C6_reproduces_the_published_values [Gamma_b=4 alpha_bnr=3 alpha_bn=3]
+PASS control_grid3x3_reproduces_the_published_values [Gamma_b=6 alpha_bnr=5 alpha_bn=5]
+PASS control_grid3x4_reproduces_the_published_values [Gamma_b=9 alpha_bnr=6 alpha_bn=6]
+
+=== D. the exhaustive census of G_1 and of G'
+PASS Gamma_b_of_G_1_is_5_the_published_value_2k+3_at_k=1 [Gamma_b(G_1) = 5, 72 minimal dominating broadcasts]
+PASS alpha_bnr_of_G_1_is_6_the_published_value [alpha_bnr(G_1) = 6 > 5 = Gamma_b(G_1), but delta(G_1) = 1]
+PASS G_1_has_minimum_degree_1_so_it_is_not_itself_an_answer [delta(G_1) = 1]
+NOTE the census of G' visited 7251 DFS nodes in 0.02 s and found 1780 irredundant broadcasts
+PASS Gamma_b_of_G_prime_is_5 [Gamma_b(G') = 5]
+PASS G_prime_has_exactly_283_minimal_dominating_broadcasts [n = 283]
+PASS alpha_bnr_of_G_prime_is_6 [alpha_bnr(G') = 6]
+PASS G_prime_has_exactly_1140_bn_independent_irredundant_broadcasts [n = 1140]
+PASS alpha_bn_of_G_prime_is_7 [alpha_bn(G') = 7]
+PASS G_prime_has_exactly_1416_bn_independent_broadcasts [n = 1416]
+PASS Gamma_b_is_unchanged_by_the_four_doublings [Gamma_b(G_1) = Gamma_b(G') = 5, the conclusion of the doubling lemma at this graph]
+PASS the_optimal_Gamma_b_broadcast_found_is_the_twin_image_of_the_printed_one [v:1 w1p:1 w2p:1 x1p:1 x2p:1]
+PASS the_optimal_alpha_bnr_broadcast_found_is_the_twin_image_of_the_witness [w1p:1 w2p:1 x1p:2 x2p:2]
+PASS no_irredundant_broadcast_of_G_prime_weights_both_of_a_twin_pair [checked over all 1780 irredundant broadcasts and all 4 twin pairs -- the key step of the doubling lemma]
+PASS THE_RESULT_alpha_bnr_exceeds_Gamma_b_at_minimum_degree_2 [alpha_bnr(G') = 6 > 5 = Gamma_b(G'), delta(G') = 2, and G' is not 2-connected]
+
+=== F. the end-vertex doubling lemma, swept over all small graphs
+PASS the_connected_labelled_graph_counts_match_OEIS_A001187 [n=3..6: 4, 38, 728, 26704, total 27474]
+PASS Gamma_b_is_unchanged_by_doubling_an_end_vertex_on_every_small_instance [22654 (H,p) pairs with H connected on 3..6 vertices, 0 mismatches, 8.8 s]
+
+NOTE SCOPE -- what this program does NOT establish.  (1) It settles only the SECOND sentence of Question 4 of Mynhardt and Neilson, the delta(G) >= 2 one, in its repaired reading; the FIRST sentence, for 2-connected G, is untouched and remains open, and G' is deliberately not 2-connected (four cut vertices, checked above). (2) NOT RE-RUN: any claim of minimality -- no census of graphs of order below 15 with delta >= 2 is performed here, so nothing above says G' is a smallest witness. (3) NOT RE-RUN: the family G_k for k >= 2 -- this program reads only the 15-vertex object printed in the paper and the 11-vertex graph G_1 obtained from it, so the unbounded-gap statement is outside its scope. (4) GAPS NOT COVERED: the definitions of bn-independence, irredundance, alpha_bnr and Gamma_b, and the characterisation of a minimal dominating broadcast as a dominating irredundant one, are TRANSCRIBED from the source paper and not re-derived; the evidence that they were transcribed correctly is that the census reproduces the source's own published Gamma_b(G_1) = 5 and alpha_bnr(G_1) = 6 and the five independent published control values above. (5) The census of G' uses two monotone prunes rather than a full walk of its 1,474,560,000 broadcasts; the prunes are validated by exact agreement with an unpruned walk of all 3,686,400 broadcasts of G_1 and with all five controls, but no unpruned walk of G' itself is performed here. (6) The end-vertex doubling sweep is exhaustive only for H on at most 6 vertices; the general lemma rests on the hand proof in the paper, not on the sweep.
+
+NOTE elapsed 15.5 s
+VERDICT: ALL 53 CHECKS PASS
+=== program exited with status 0 ===

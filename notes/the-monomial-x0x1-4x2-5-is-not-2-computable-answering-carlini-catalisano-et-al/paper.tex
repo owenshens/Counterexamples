@@ -1,0 +1,252 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The monomial x0 x1^4 x2^5 is not 2-computable under Definition 3.5 as printed}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition 3.5 of the source}
+
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\HF}{HF}
+\newcommand{\perpp}{^{\perp}}
+
+\title[Not $2$-computable under Definition~3.5 as printed]
+{The Monomial $x_0x_1^4x_2^5$ is Not $2$-Computable under Definition~3.5 as Printed}
+
+\date{}
+
+\subjclass[2020]{15A69, 14N07, 13E10}
+\keywords{Waring rank, $e$-computability, apolarity, Hilbert function,
+artinian Gorenstein algebra, monomial, Strassen's conjecture}
+
+\begin{document}
+
+\begin{abstract}
+Carlini, Catalisano, Chiantini, Geramita and Woo introduced $e$-computability as a tool for
+Strassen's additivity conjecture, and asked in their Remark~6.2 whether $G_1=x_0x_1^4x_2^5$ is
+$2$-computable. Under their Definition~3.5 as printed, the answer is no. The reason is a
+one-line upper bound: if $F\in S_d$ is $e$-computable then
+$e\cdot\rk(F)\le N(F)-\sum_{j<e}\HF(T/F\perpp,j)$, where $N(F)=\dim_k T/F\perpp$; for $G_1$ this
+reads $60\le 56$. A remark records that the same bound forces $e\le a_0$ for every monomial
+$x_0^{a_0}\cdots x_n^{a_n}$ with $0<a_0\le\cdots\le a_n$. Nothing here bears on Strassen's
+conjecture itself, and nothing here covers readings of $e$-computability that drop the clause
+``generated in degree $e$''.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $k$ be algebraically closed of characteristic $0$, let $S=k[x_0,\dots,x_n]$ and
+$T=k[X_0,\dots,X_n]$, and let $T$ act on $S$ by $X_i\mapsto\partial/\partial x_i$. For
+$0\ne F\in S_d$ put $F\perpp=\operatorname{Ann}(F)\subset T$ and $A_F=T/F\perpp$; this is an
+artinian Gorenstein algebra of socle degree $d$, so
+\[
+ \HF(A_F,j)=\HF(A_F,d-j),
+ \qquad
+ \HF(A_F,j)>0 \iff 0\le j\le d,
+\]
+and we write $N(F)=\dim_kA_F=\sum_j\HF(A_F,j)$. Finally $\rk(F)$ is the Waring rank of $F$.
+
+Carlini, Catalisano, Chiantini, Geramita and Woo \cite{CCCGW} introduced the following notion.
+
+\begin{definition}
+$F\in S_d$ is \emph{$e$-computable} if there exists an ideal $I\subset T$
+\emph{generated in degree $e$} such that
+\begin{equation}\label{eq:ecomp}
+ \rk(F)=\frac1e\sum_i\HF\bigl(T/(F\perpp:I+(t)),\,i\bigr)
+\end{equation}
+for general $t\in I_e$.
+\end{definition}
+
+\noindent
+That is their definition restated in the notation fixed above; verbatim, Definition~3.5 of
+\cite{CCCGW} reads ``there exists an ideal $I\subset T$ generated in degree $e$ such that for
+general $t\in I_e$ we have
+$\rk(F)=\bigl(\tfrac1e\bigr)\sum_{i=0}^{\infty}\HF(T/(F\perpp:I+(t)),i)$''. The clause
+``generated in degree $e$'' is load-bearing for everything below; see the Scope paragraph. Their
+Remark~6.2, on journal page~387, contains the question we answer:
+
+\begin{quote}
+If $G_1=x_0x_1^4x_2^5$ then we showed that $G_1$ is $1$-computable and $\rk(G_1)=30$. But we do
+not know if $G_1$ is $2$-computable. Thus we cannot use the theorem to find the rank of $F+G_1$,
+although Strassen's conjecture says that the rank should be $25+30$. However, if
+$G_2=x_0^3x_1^4x_2^5$, by Proposition~4.2, we know that $G_2$ is $2$-computable and
+$\rk(G_2)=30$. Hence $\rk(F+G_2)=25+30=55$.
+\end{quote}
+
+\noindent
+Proposition~4.2 of \cite{CCCGW} makes $x_0^{a_0}\cdots x_n^{a_n}$, with $0<a_0\le\cdots\le a_n$,
+$e$-computable for $1\le e\le(a_0+1)/2$; for $G_1$ that gives only $e=1$. Neither that
+proposition nor Corollary~3.4 of \cite{CCCGW} bounds $e$ from above, and their Remark~4.3 asks
+whether such monomials are ``$e$-computable for $e$'s different from those described in the two
+propositions''.
+
+\begin{theorem}\label{thm:main}
+$G_1=x_0x_1^4x_2^5$ is not $2$-computable in the sense of Definition~3.5 of \cite{CCCGW} as
+quoted above. Consequently the question of Remark~6.2 of \cite{CCCGW} has a negative answer.
+\end{theorem}
+
+\section{The obstruction}
+
+Everything follows from one containment. Write $T_{\ge m}=\bigoplus_{i\ge m}T_i$, and read an
+empty sum as $0$.
+
+\begin{lemma}\label{lem:main}
+Let $0\ne F\in S_d$, let $e\ge1$, let $I\subset T$ be \emph{any} ideal generated in degree $e$,
+and let $t\in T$ be \emph{any} homogeneous element. Then $T_{\ge d-e+1}\subseteq F\perpp:I$, and
+\begin{equation}\label{eq:cap}
+\begin{aligned}
+ \sum_i\HF\bigl(T/(F\perpp:I+(t)),\,i\bigr)
+ &\;\le\;\sum_{i=0}^{d-e}\HF(A_F,i)\\
+ &\;=\;N(F)-\sum_{j=0}^{e-1}\HF(A_F,j)\;<\;N(F).
+\end{aligned}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+\emph{Step 1.} Since $I=(I_e)$, it suffices for $T_{\ge d-e+1}\subseteq F\perpp:I$ to check that
+$hg\in F\perpp$ whenever $\deg h\ge d-e+1$ and $g\in I_e$: then $\deg(hg)\ge d+1$, and every form
+of degree $>d$ annihilates $F$.
+
+\emph{Step 2.} The containment is strict over $F\perpp$ when $1\le e\le d+1$, because
+$\HF(A_F,d-e+1)>0$ forces $T_{d-e+1}\not\subseteq F\perpp$.
+
+\emph{Step 3.} Put $J=F\perpp:I+(t)$; since $F\perpp$, $I$ and $t$ are homogeneous, so is $J$,
+and $T/J$ is graded, so its Hilbert function is defined. By Step~1,
+$F\perpp+T_{\ge d-e+1}\subseteq F\perpp:I\subseteq J$, and all three quotients are artinian, so
+each Hilbert-function sum \emph{is} a $k$-dimension and
+\[
+\begin{aligned}
+ \sum_i\HF(T/J,i)=\dim_kT/J
+ &\;\le\;\dim_kT/(F\perpp:I)
+ \;\le\;\dim_kT/(F\perpp+T_{\ge d-e+1})\\
+ &\;=\;\sum_{i=0}^{d-e}\HF(A_F,i).
+\end{aligned}
+\]
+The equality in \eqref{eq:cap} is Gorenstein symmetry, and the last strict inequality holds
+because $\HF(A_F,0)=1$.
+\end{proof}
+
+Beyond homogeneity, nothing in the proof uses any property of $t$; in \eqref{eq:ecomp} one has
+$t\in I_e$, so $t$ is homogeneous of degree $e$. Hence \eqref{eq:cap} holds under either reading
+of ``for general $t\in I_e$'' --- a generic $t$, or merely some $t$ --- and the following
+corollary is insensitive to that choice.
+
+\begin{corollary}\label{cor:bound}
+If $F$ is $e$-computable then
+$e\cdot\rk(F)\le N(F)-\sum_{j=0}^{e-1}\HF(A_F,j)<N(F)$.
+\end{corollary}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Here $d=10$ and $G_1\perpp=(X_0^2,X_1^5,X_2^6)$, the apolar ideal of a monomial: a monomial
+$X_0^{c_0}X_1^{c_1}X_2^{c_2}$ kills $x_0x_1^4x_2^5$ exactly when $c_0>1$ or $c_1>4$ or $c_2>5$.
+It is a monomial complete intersection, so $A_{G_1}$ has
+\[
+ \bigl(\HF(A_{G_1},j)\bigr)_{j=0}^{10}=(1,3,5,7,9,10,9,7,5,3,1),
+ \qquad
+ N(G_1)=2\cdot5\cdot6=60 .
+\]
+By the monomial Waring-rank theorem of Carlini, Catalisano and Geramita \cite{CCG},
+$\rk(G_1)=(4+1)(5+1)=30$, the same value \cite{CCCGW} prints on page~387. If $G_1$ were
+$2$-computable, Corollary~\ref{cor:bound} at $e=2$ would give
+\[
+ 60=2\cdot30=e\cdot\rk(G_1)\;\le\;N(G_1)-\HF(A_{G_1},0)-\HF(A_{G_1},1)=60-1-3=56,
+\]
+which is false, with margin $4$. Hence $G_1$ is not $2$-computable.
+\end{proof}
+
+\begin{remark}
+The same bound also caps the right-hand side of \eqref{eq:ecomp} for $G_1$ at $e=2$ by $56$, so
+the best lower bound for $\rk(G_1)$ obtainable at $e=2$ from Corollary~3.4 of \cite{CCCGW} is
+$\lfloor56/2\rfloor=28<30$. Applied to $F=x_0^{a_0}\cdots x_n^{a_n}$ with
+$0<a_0\le\cdots\le a_n$, for which $F\perpp=(X_0^{a_0+1},\dots,X_n^{a_n+1})$,
+$N(F)=\prod_i(a_i+1)$ and $\rk(F)=N(F)/(a_0+1)$ by \cite{CCG}, Corollary~\ref{cor:bound}
+likewise forces $e\le a_0$ whenever $F$ is $e$-computable: for $e\le d+1$ it gives
+$e(\rk(F)+1)\le(a_0+1)\rk(F)$, hence $e<a_0+1$, and for $e>d+1$ the left side of \eqref{eq:cap}
+is the empty sum $0<e\cdot\rk(F)$. No converse is claimed.
+\end{remark}
+
+\section{Verification}
+
+Every number above is a small exact count, and the proof of Theorem~\ref{thm:main} can be redone
+by hand from the exponent vector $(1,4,5)$. The companion program \texttt{verify.py} (Python,
+standard library only, exact integer and \texttt{Fraction} arithmetic) re-derives it
+mechanically: it recomputes $G_1\perpp$ from the apolarity pairing and confirms it equals the
+printed ideal on every monomial of degree $\le13$; obtains $\HF(A_{G_1})$ twice, by counting
+standard monomials and by ranks of the apolarity matrices; checks the three steps of
+Lemma~\ref{lem:main} at $e=2$; and evaluates the cap $56$ as a dimension. It quotes
+$\rk(G_1)=30$ from \cite{CCG} rather than reproving it. The transcript also records finite
+censuses and control computations that bear on statements no longer made here; those are finite
+checks and establish nothing universal. Lemma~\ref{lem:main} itself, which is a statement about
+arbitrary $F$, $e$, $I$ and $t$, is proved by hand above and is not established by any finite
+computation. All $55$ of its checks pass; the recorded transcript is
+\texttt{verify.output.txt}.
+
+\medskip
+\noindent\textbf{Scope.} The clause ``generated in degree $e$'' in Definition~3.5 is what makes
+Step~1 of Lemma~\ref{lem:main} work. If $I$ is allowed to contain forms of degree $<e$, Step~1
+fails and nothing here settles Remark~6.2; restatements of the notion that do not carry that
+clause are in circulation, in the authors' withdrawn preprint arXiv:1502.01107, in the survey
+\cite{HG}, and in \cite{BCDM}, where it appears instead as a hypothesis of Theorem~2.2. So what
+is settled is Theorem~\ref{thm:main} under Definition~3.5 as printed in \cite{CCCGW}. Lemma~\ref{lem:main} and
+Corollary~\ref{cor:bound} are characteristic-free, but $\rk(G_1)=30$ is a characteristic-zero
+theorem \cite{CCG}, so Theorem~\ref{thm:main} is stated over a field of characteristic $0$. The
+bound is necessary, not sufficient, so it settles nothing where it does not fire; in particular
+it says nothing about the negative $e=1$ results of \cite{CCCGW}. Nothing here determines
+$\rk(F+G_1)$ or bears on Strassen's additivity conjecture: Theorem~\ref{thm:main} closes off the
+route of Remark~6.2 rather than completing it, and the value $\rk(F+G_2)=25+30=55$ in the
+passage quoted above is the assertion of \cite{CCCGW}, not of this note. Statement numbers are
+those of the journal version of \cite{CCCGW}.
+
+\medskip
+\noindent\textbf{Attribution and adjacent work.} The shape of the argument is the source's own:
+Remark~7.3 of \cite{CCCGW} already bounds the same Hilbert-function sum from above in order to
+defeat $1$-computability of $w(x^3+y^3+z^3)$. Corollary~3.4 of \cite{CCCGW} uses the sum in
+\eqref{eq:ecomp} to bound $\rk(F)$ from below; Lemma~\ref{lem:main} bounds that sum from above by
+an invariant of $F$ alone, uniformly in $I$ and in homogeneous $t$.
+
+\begin{thebibliography}{9}
+
+\bibitem{CCCGW}
+E.~Carlini, M.~V. Catalisano, L.~Chiantini, A.~V. Geramita, and Y.~Woo,
+\emph{Symmetric tensors: rank, Strassen's conjecture and $e$-computability},
+Ann. Sc. Norm. Super. Pisa Cl. Sci. (5) \textbf{XVIII} (2018), no.~1, 363--390.
+\href{https://doi.org/10.2422/2036-2145.201602_004}{doi:10.2422/2036-2145.201602\_004};
+preprint \href{https://arxiv.org/abs/1506.03176}{arXiv:1506.03176v2}.
+
+\bibitem{CCG}
+E.~Carlini, M.~V. Catalisano, and A.~V. Geramita,
+\emph{The solution to the Waring problem for monomials and the sum of coprime monomials},
+J. Algebra \textbf{370} (2012), 5--14.
+\href{https://doi.org/10.1016/j.jalgebra.2012.07.028}{doi:10.1016/j.jalgebra.2012.07.028}.
+
+\bibitem{BCDM}
+M.~Bhat, E.~Carlini, S.~Dubey, and S.~K. Masuti,
+\emph{Waring decompositions of the product of two quadrics: the small rank cases},
+Linear Algebra Appl.,
+\href{https://doi.org/10.1016/j.laa.2026.06.027}{doi:10.1016/j.laa.2026.06.027};
+\href{https://arxiv.org/abs/2511.23035}{arXiv:2511.23035}.
+
+\bibitem{HG}
+A.~Bernardi, E.~Carlini, M.~V. Catalisano, A.~Gimigliano, and A.~Oneto,
+\emph{The Hitchhiker guide to: secant varieties and tensor decomposition},
+Mathematics \textbf{6} (2018), no.~12, art.~314.
+\href{https://doi.org/10.3390/math6120314}{doi:10.3390/math6120314};
+\href{https://arxiv.org/abs/1812.10267}{arXiv:1812.10267}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,85 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  1bf24ae598802b8ea9d1d7a5af634c4a349afeec55dc80b256d13f42e850fef0
+python:  Python 3.9.25
+=== program output follows ===
+verification of "A 28-vertex circulant with integral fractional broadcast number strictly between its multipacking and broadcast numbers"
+python 3.9.25 ; exact integer and Fraction arithmetic only, no floating point
+
+=== part 1: the primary witness G = C_28(1,4) ===
+PASS graph6_header_gives_28_vertices [n = 28]
+PASS graph6_body_holds_56_edges [|E| = 56]
+PASS graph6_string_and_arithmetic_definition_are_label_equal [identical as sets of labelled 0-indexed pairs]
+PASS graph6_round_trips_to_the_printed_string [64 chars re-encoded byte-for-byte]
+PASS graph6_padding_bits_are_zero [the decoder refuses a nonzero pad; it did not]
+PASS G_is_4_regular [degree set = {4}]
+PASS G_is_connected [BFS from 0 reaches all 28 vertices]
+PASS G_has_56_edges [|E| = 56 = 28*4/2]
+PASS G_has_constant_eccentricity_5 [eccentricity set = {5}]
+PASS radius_equals_diameter_equals_5 [rad = diam = 5]
+NOTE rad = diam, so the two conventions for a multipacking (s <= diam, as in the source, and s <= rad, as much of the literature writes it) coincide on this graph.
+PASS bfs_level_sets_from_0_match_the_paper [levels 0..5 sizes [1, 4, 8, 8, 6, 1]]
+PASS ball_profile_is_5_13_21_27_28 [n_k = [5, 13, 21, 27, 28]]
+PASS ball_profile_is_the_same_at_every_vertex [n_k independent of v -- so a single profile row governs both certificates]
+PASS translation_is_an_automorphism_of_G [Z_28 acts on G; this is what licenses the "wlog 0 in M" below]
+PASS the_five_ratios_k_over_n_k_are_as_printed [1/5 2/13 1/7 4/27 5/28]
+PASS w_star_is_one_seventh_at_r_star_3 [w* = 1/7, r* = 3]
+PASS the_minimising_r_is_unique [exactly one k attains the minimum]
+PASS n_times_w_star_is_the_integer_4 [28 * 1/7 = 4]
+PASS A_every_column_v_r_star_is_a_legal_LP_column [r* = 3 <= e(v) = 5 for all 28 vertices]
+PASS A_x_is_nonnegative [x[(v,3)] = 1/21 at all 28 vertices, 0 elsewhere]
+PASS A_every_vertex_hears_at_least_1 [min_u (Ax)_u = 1, and in fact every entry equals 1]
+PASS A_primal_cost_is_4 [cost = 28 * 3/21 = 4]
+PASS B_y_is_nonnegative [y(v) = 1/7 at every vertex]
+PASS B_every_dual_constraint_holds [all 140 constraints (v,k), 1 <= k <= e(v) = 5, satisfied]
+PASS B_dual_row_values_are_as_printed [5/7 13/7 3 27/7 4]
+PASS B_the_constraint_is_tight_exactly_at_k_3 [y(N_3[v]) = 3 = c_{v,3}; every other k is slack]
+PASS B_dual_objective_is_4 [sum_v y(v) = 28/7 = 4]
+PASS weak_duality_pins_gamma_bf_to_4 [a feasible primal of cost 4 and a feasible dual of value 4 -- no LP solver needed]
+PASS gamma_bf_is_an_integer [gamma_{b,f}(G) = 4]
+PASS C_the_broadcast_f_0_equals_5_is_legal [f(0) = 5 <= e(0) = 5 and 5 <= diam(G) = 5]
+PASS C_that_broadcast_dominates [N_5[0] = V(G), all 28 vertices]
+PASS C_gamma_b_at_most_5 [the single-vertex broadcast above has cost 5]
+PASS C_counting_bound_row_by_row [cost 1..4 cover at most 5, 13, 21, 27 of 28]
+PASS C_cost_4_cannot_cover_28 [best[4] = 27 < 28]
+PASS C_every_cost_below_4_is_worse [best[1..4] = [5, 13, 21, 27], all < 28]
+PASS C_the_five_printed_partitions_of_4_are_complete_and_correct [[1, 1, 1, 1]->20 ; [2, 1, 1]->23 ; [2, 2]->26 ; [3, 1]->26 ; [4]->27]
+PASS C_gamma_b_at_least_5 [the best cost-4 multiset of balls covers 27 < 28 vertices]
+PASS C_gamma_b_equals_5 [gamma_b(G) = 5]
+PASS D_M_is_a_3_element_subset [M = [0, 6, 15]]
+PASS D_M_pairwise_distances_are_3_3_4 [d(0,6)=3 d(0,15)=4 d(6,15)=3]
+PASS D_M_is_a_multipacking_s_up_to_diam [|M cap N_s[v]| <= s for all 28 vertices and all s = 1..5]
+PASS D_M_is_a_multipacking_s_up_to_rad [robust to the s <= rad(G) convention as well]
+PASS D_no_vertex_sees_two_of_M_within_distance_1 [max_v = 1]
+PASS D_no_vertex_sees_three_of_M_within_distance_2 [max_v = 2]
+PASS D_the_printed_pairwise_ball_intersection_is_right [N_2[0] cap N_2[6] = [1, 2, 3, 4, 5, 8, 26]]
+PASS D_the_printed_ball_N2_15_is_right [|N_2[15]| = 13]
+PASS D_the_triple_intersection_is_empty [so no vertex has all three of M within distance 2]
+PASS D_mp_at_least_3 [the exhibited M is a multipacking of size 3]
+PASS D_F_0_is_the_printed_7_set [F_0 = {v : d(0,v) >= 4} = [10, 11, 13, 14, 15, 17, 18]]
+PASS D_F_0_has_size_n_minus_n_r_star [|F_0| = 7 = 28 - 21]
+PASS D_F_0_is_the_stated_translate_of_a_symmetric_set [F_0 = 14 + {0, +-1, +-3, +-4}]
+PASS D_F_u_equals_u_plus_T_for_every_u [checked at all 28 vertices]
+PASS D_the_counting_identity_forces_equality [a 4-element M gives sum_v |M cap N_3[v]| = 4*21 = 84, against the bound 28*3 = 84]
+NOTE equality therefore forces |M cap N_3[v]| = 3 for EVERY v, i.e. each vertex lies in exactly one F_u with u in M, i.e. the four translates u + T partition Z_28 (4 * 7 = 28).
+PASS D_the_residue_vector_of_T_mod_7_is_as_printed [t = (1,1,0,2,2,0,1)]
+PASS D_the_residue_vector_sums_to_7 [sum t_j = |T| = 7]
+PASS D_each_residue_class_mod_7_holds_exactly_4_elements_of_Z_28 [28 / 7 = 4]
+PASS D_t_is_monic_of_degree_6 [t(x) = 1 + x + 2x^3 + 2x^4 + x^6]
+PASS D_t_differs_from_Phi_7 [the coefficient of x^2 is 0 in t and 1 in Phi_7]
+PASS D_gcd_of_t_and_Phi_7_is_1_over_Q [exact Euclid in Q[x] returns the unit -- so t(zeta) != 0 at every primitive 7th root of 1]
+NOTE hence the Z_7 Fourier transform of t vanishes at no nontrivial character; the constant vector 4 is supported on the trivial character alone, so m must be constant, and 7*m_0 = 4 is impossible over the integers.
+PASS D_no_residue_distribution_of_a_4_element_M_can_tile [all 210 nonnegative m with sum 4 scanned; none has (m*t)(j) = 4 for all j in Z_7]
+PASS D_the_composition_scan_was_exhaustive [C(10,6) = 210 compositions of 4 into 7 parts]
+PASS D_no_4_subset_containing_0_is_a_multipacking [2925 subsets tested exhaustively, 0 multipackings]
+PASS D_that_scan_was_exhaustive_up_to_translation [C(27,3) = 2925; translation by Z_28 is an automorphism, so a nonempty multipacking may be moved to contain 0]
+PASS D_mp_equals_3 [mp(G) = 3, both bounds established]
+PASS the_chain_mp_lt_gamma_bf_lt_gamma_b_is_strict [3 < 4 < 5]
+PASS the_middle_term_is_an_integer [gamma_{b,f}(G) = 4]
+PASS G_is_connected_as_the_problem_requires [the source works throughout with a connected graph]
+PASS G_has_the_property_Problem_4_asks_for [mp = 3 < gamma_bf = 4 < gamma_b = 5, with 4 integral]
+
+NOTE SCOPE. This program re-derives the paper's claims about the one printed graph G = C_28(1,4) and nothing else. It examines no other graph, it claims and proves no minimality, and it reads no external manuscript -- in particular not the unpublished Brewster-Duchesne manuscript to which the source survey credits the vertex-transitive dual that certificate (B) instantiates.
+
+VERDICT: ALL 68 CHECKS PASS
+=== program exited with status 0 ===

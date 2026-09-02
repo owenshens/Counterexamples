@@ -1,0 +1,204 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A four-vertex counterexample to the Clow--van Bommel eternal
+            distance-k domination conjecture}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\begin{document}
+
+\title[A four-vertex counterexample]
+{A four-vertex counterexample to the Clow--van Bommel\\
+ eternal distance-$k$ domination conjecture}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C57, 05C05}
+\keywords{eternal domination, distance-$k$ domination, tree, path,
+counterexample}
+
+\begin{abstract}
+Let $\gamma_k(G)$ be the distance-$k$ domination number of $G$ and let
+$\gamma_{\mathrm{all},k}^{\infty}(G)$ be its eternal distance-$k$ domination
+number in the all-guards-move model. Conjecture~8.2 of Clow and van Bommel
+asserts that for all $k>2$ and all trees $T$, if
+$\gamma_k(T)=\gamma_{\mathrm{all},k}^{\infty}(T)$ then
+$\gamma_{\mathrm{all},k}^{\infty}(T)=\gamma_{\lfloor k/2\rfloor}(T)$.
+The path $P_4$ at $k=3$ refutes it: there
+$\gamma_3=\gamma_{\mathrm{all},3}^{\infty}=1$ while
+$\gamma_{\lfloor 3/2\rfloor}=\gamma=2$. The mechanism is parity, so the
+statement is false for every odd $k\ge3$, witnessed by every tree of diameter
+exactly $k$. The value $\gamma_{\mathrm{all},k}^{\infty}(T)=1$ for
+$\operatorname{diam}(T)\le k$ is Lemma 3.3 of the same paper, so no new
+mathematics is claimed. Even $k$ is not addressed.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}
+
+All graphs are finite and simple, and $d(u,v)$ denotes graph distance. For
+$k\ge1$ a set $S\subseteq V(G)$ is \emph{distance-$k$ dominating} if every
+vertex of $G$ lies within distance $k$ of a vertex of $S$; the least size of
+such a set is $\gamma_k(G)$, and $\gamma_1(G)=\gamma(G)$ is the ordinary
+domination number. Write $N_k[v]=\{u: d(u,v)\le k\}$.
+
+Following Cox, Meger and Messinger \cite{CMM}, a family $\mathcal F$ of
+$g$-element multisets of $V(G)$ (\emph{configurations}) is an \emph{eternal
+distance-$k$ dominating family} in the all-guards-move model if
+\begin{enumerate}
+\item[(i)] every $A\in\mathcal F$ is distance-$k$ dominating, and
+\item[(ii)] for every $A\in\mathcal F$ and every $v\in V(G)$ there are
+  $B\in\mathcal F$ with $v\in B$ and a bijection of multisets
+  $\sigma\colon A\to B$ with $d(a,\sigma(a))\le k$ for all $a\in A$.
+\end{enumerate}
+The least such $g$ is $\gamma_{\mathrm{all},k}^{\infty}(G)$. Condition~(i) ---
+that \emph{every} configuration of the family, not merely the initial one, is
+itself distance-$k$ dominating --- is the published definition \cite[\S2]{CMM},
+and it is the reading used throughout. The refutation does not depend on this
+choice: for the families exhibited below, every configuration of the family is
+reachable, so the weaker reading --- requiring only reachable configurations to
+distance-$k$ dominate --- gives the same values. Cox, Meger and Messinger also prove the
+sandwich
+\begin{equation}\label{eq:sandwich}
+ \gamma_k(G)\;\le\;\gamma_{\mathrm{all},k}^{\infty}(G)\;\le\;
+ \gamma_{\lfloor k/2\rfloor}(G).
+\end{equation}
+
+Clow and van Bommel \cite{CvB} prove for $k=2$ that the two outer quantities in
+\eqref{eq:sandwich} coincide whenever the two left ones do, and in the
+Conclusion of that paper conjecture that the same holds beyond $k=2$:
+
+\begin{quote}
+\textbf{Conjecture 8.2} \cite{CvB}. \emph{For all $k>2$ and trees $T$, if
+$\gamma_k(T)=\gamma_{\mathrm{all},k}^{\infty}(T)$, then
+$\gamma_{\mathrm{all},k}^{\infty}(T)=\gamma_{\lfloor k/2\rfloor}(T)$.}
+\end{quote}
+
+\noindent The statement is quoted from the e-print
+\texttt{arXiv:2308.00054v1}. That the quotation is faithful, and that no
+standing hypothesis of \cite{CvB} has been dropped in transcribing it, is a
+documentary matter checked by reading the source, not by the program of \S3.
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+Let $k=3$ and $T=P_4$, the path $1-2-3-4$. Then
+\[
+ \gamma_3(P_4)=\gamma_{\mathrm{all},3}^{\infty}(P_4)=1,
+ \qquad
+ \gamma_{\lfloor 3/2\rfloor}(P_4)=\gamma(P_4)=2 .
+\]
+Hence the hypothesis of Conjecture~8.2 holds and its conclusion fails, so
+Conjecture~8.2 is false.
+\end{theorem}
+
+\begin{proof}
+$\operatorname{diam}(P_4)=3=k$, so every vertex of $P_4$ is within distance $3$
+of every other; each of the four singletons is therefore a distance-$3$
+dominating set and $\gamma_3(P_4)=1$. The same computation makes the family
+$\mathcal F=\bigl\{\{1\},\{2\},\{3\},\{4\}\bigr\}$ of all four singletons
+eternal: each member distance-$3$ dominates, and an attack at $v$ is answered by
+moving the lone guard to $v$, a move of length at most $3$. So
+$\gamma_{\mathrm{all},3}^{\infty}(P_4)=1$, the value $0$ being impossible.
+Finally $\lfloor 3/2\rfloor=1$, and no single vertex of $P_4$ dominates it:
+$N_1[1]=\{1,2\}$, $N_1[2]=\{1,2,3\}$, $N_1[3]=\{2,3,4\}$, $N_1[4]=\{3,4\}$.
+Since $\{2,3\}$ dominates, $\gamma(P_4)=2$. The conclusion of Conjecture~8.2
+would require $1=2$.
+\end{proof}
+
+Write $\operatorname{rad}(T)$ for the radius; in a tree
+$\operatorname{rad}(T)=\lceil\operatorname{diam}(T)/2\rceil$.
+
+\begin{proposition}\label{prop:oddk}
+Let $k\ge3$ be odd and let $T$ be any tree with $\operatorname{diam}(T)=k$.
+Then $\gamma_k(T)=\gamma_{\mathrm{all},k}^{\infty}(T)=1$ while
+$\gamma_{\lfloor k/2\rfloor}(T)\ge2$, so $T$ is a counterexample to
+Conjecture~8.2 at that $k$.
+\end{proposition}
+
+\begin{proof}
+If $\operatorname{diam}(T)\le k$ then a single vertex distance-$k$ dominates
+$T$ and every move is legal, so exactly as in Theorem~\ref{thm:main}
+$\gamma_k(T)=\gamma_{\mathrm{all},k}^{\infty}(T)=1$; the eternal value is also
+the second case of Lemma~3.3 of \cite{CvB}, proved there five sections before
+Conjecture~8.2. Next $\gamma_j(T)=1$ if and only if $\operatorname{rad}(T)\le
+j$. With $\operatorname{diam}(T)=k$ odd, $\operatorname{rad}(T)=(k+1)/2>
+(k-1)/2=\lfloor k/2\rfloor$, so $\gamma_{\lfloor k/2\rfloor}(T)\ge2$ and the
+conclusion fails.
+\end{proof}
+
+The obstruction is parity: $2\lfloor k/2\rfloor+1$ equals $k+1$ for even $k$ but
+only $k$ for odd $k$. The least tree of diameter exactly $k$ is $P_{k+1}$, which
+gives Theorem~\ref{thm:main} at $k=3$.
+
+\medskip
+\noindent\textbf{Scope.} Conjecture~8.2 is universally quantified over $k>2$, so
+a single odd $k$ refutes it as written. The mechanism needs $k$ odd, and nothing
+above bears on the restriction of Conjecture~8.2 to even $k$, or on the other
+conjectures and questions of \cite[\S8]{CvB}. We refute the printed statement
+and do not speculate about intent.
+
+\medskip
+\noindent\textbf{Attribution.} Theorem~\ref{thm:main} is Lemma~3.3 of
+\cite{CvB} --- quoted, not reproved --- together with $\gamma(P_4)=2$; the
+observation that these contradict Conjecture~8.2, with the parity account of
+it, is what this note adds.
+
+\section{Verification}
+
+Everything above is checkable by hand from the objects printed here: $P_4$, and
+$P_{k+1}$ for Proposition~\ref{prop:oddk}. The accompanying program
+\texttt{verify.py}, with its recorded transcript \texttt{verify.output.txt},
+re-derives the displayed numbers independently --- distances, radii and
+diameters by breadth-first search, each $\gamma_j$ by an exact minimum set
+cover, and each $\gamma_{\mathrm{all},k}^{\infty}$ by a greatest-fixed-point
+solution of the game of \S1 over its full configuration space. It uses exact
+integer arithmetic and the Python standard library only.
+
+The transcript is that of an earlier and wider draft, and the reader should
+read it accordingly. Its Steps 1, 2 and 4 are the checks that belong to this
+note: Step 1 and Step 2 verify every number in Theorem~\ref{thm:main}, and
+Step 4 instantiates Proposition~\ref{prop:oddk} at $k=3,5,7$ and on one
+non-path tree, the general statement resting on the proof above and not on
+those instances. Everything else in the transcript concerns material this note
+does not contain and does not claim: Step 3 treats $P_8$ at $k=3$; Steps 5
+and 6 are headed ``Corollary 4'' and ``Corollary 5'' and refer to a path family,
+to published closed forms and to a correction to \cite{CMM}, none of which is
+stated here; Step 7 is a bounded sweep of the $95$ trees of order at most $9$;
+and the closing scope notes mention a wider census of trees, and locations
+inside the source tarball, that this note does not cite. The internal numbering
+of the transcript is that of the earlier draft and does not match the numbering
+printed above. The program checks no statement about the contents of \cite{CvB}
+or \cite{CMM}; those are documentary claims, checked by reading.
+
+\begin{thebibliography}{9}
+
+\bibitem{CvB}
+A.~Clow and C.~M.\ van Bommel,
+\emph{Eternal distance-2 domination in trees},
+Ars Combinatoria \textbf{163} (2025), 29--49.
+\href{https://doi.org/10.61091/ars163-03}{doi:10.61091/ars163-03};
+\href{https://arxiv.org/abs/2308.00054v1}{arXiv:2308.00054v1}.
+Conjecture~8.2 and Lemma~3.3 are quoted from the e-print.
+
+\bibitem{CMM}
+D.~Cox, E.~Meger, and M.~E.\ Messinger,
+\emph{Eternal distance-$k$ domination on graphs},
+La Matematica \textbf{2} (2023), no.~2, 283--302.
+\href{https://doi.org/10.1007/s44007-023-00044-3}{doi:10.1007/s44007-023-00044-3};
+\href{https://arxiv.org/abs/2104.03835}{arXiv:2104.03835}.
+Source of the definition in \S1 and of the sandwich \eqref{eq:sandwich}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,48 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  4f8f172964d672943fef6774c10aadb9ab920e62ab3c60a6de77981bff7e46e8
+python:  Python 3.9.25
+=== program output follows ===
+verification of: "An Identifying Code of Density 59/156 in the 6-Row Square Strip"
+  finite checks on the printed period-52 tile: density 59/156, domination over the 312
+  vertices of one fundamental domain, and separation for pairs at L1 distance at most 6.
+  The exact value of d*(S_6) is left open and no check below addresses it.
+python 3.9.25 ; exact integer / Fraction arithmetic only
+
+--- part 1: the period-52 tile, as masks and as regenerated rows ---
+PASS period_is_52 [len(MASKS) = 52]
+PASS masks_are_six_bit [max = 58 < 64]
+PASS six_regenerated_rows_of_length_52 [rows = 6, lengths = [52]]
+PASS regenerated_rows_use_only_1_and_dot
+PASS row0_regenerated_from_masks [..1...1..1..111..1..1.....1...1.1.1.1..1..1.1.1.1... (weight 18)]
+PASS row1_regenerated_from_masks [1.1111.1.11.....11.1.1111.111.1.....1.1.1.1.....1.11 (weight 26)]
+PASS row2_regenerated_from_masks [............111.........1.....1.111.1.....1.111.1..1 (weight 15)]
+PASS row3_regenerated_from_masks [.1..1.111.1.....1.111.1.....1.........111........... (weight 15)]
+PASS row4_regenerated_from_masks [111.1.....1.111.1.....1.111.1111.1.11.....11.1.1111. (weight 27)]
+PASS row5_regenerated_from_masks [....1.1.1.1.....1.1.1.1...1.....1..1..111..1..1...1. (weight 17)]
+PASS row_weights_are_18_26_15_15_27_17 [[18, 26, 15, 15, 27, 17]]
+PASS row_weights_sum_to_118 [sum = 118]
+PASS mask_sequence_matches_its_shift_by_52_on_x_in_minus_60_to_119
+
+--- part 2: domination over 312 vertices, separation for all 8,372 pairs at L1 distance at most 6, and disjoint closed neighbourhoods on every swept pair at distance 3..6 (the remaining step, disjointness at every distance >= 3, is taken from the note) ---
+PASS code_cells_per_period_is_118 [118 of 312]
+PASS fundamental_domain_has_312_cells [6 x 52 = 312]
+PASS density_is_exactly_59_over_156 [118/312 = 59/156 = 0.378205128205]
+PASS zero_domination_failures_over_312_vertices [0 failures]
+PASS pair_count_at_L1_distance_at_most_6_is_8372 [8372 pairs]
+PASS relevant_pair_count_at_distance_at_most_2_is_1612 [1612 pairs at distance 1 or 2]
+PASS zero_separation_failures_over_those_8372_pairs [0 failures]
+PASS the_disjointness_branch_actually_executed [6760 pairs at L1 distance 3..6 were tested; at R < 3 this count is 0 and the next check would pass vacuously, which is exactly how it was once lost]
+PASS closed_neighbourhoods_are_disjoint_on_every_pair_swept_at_distance_3_to_6 [all 6760 swept pairs at distance 3..6 have disjoint closed neighbourhoods; the general statement at every distance >= 3 is proved by hand in the note and is not established by this sweep]
+
+--- part 3: where 59/156 sits inside the bracket Theorem 30(f) records at k = 6 ---
+PASS lower_endpoint_at_k_6_is_43_over_120 [7/20 + 1/120 = 43/120]
+PASS upper_endpoint_at_k_6_is_2_over_5 [7/20 + 1/20 = 2/5]
+PASS the_bracket_at_k_6_has_width_1_over_24 [2/5 - 43/120 = 1/24]
+PASS the_density_59_over_156_lies_strictly_inside_that_bracket [43/120 < 59/156 < 2/5]
+PASS gap_to_the_upper_endpoint_is_17_over_780 [2/5 - 59/156 = 17/780]
+PASS gap_to_the_lower_endpoint_is_31_over_1560 [59/156 - 43/120 = 31/1560]
+
+NOTE SCOPE: the checks above establish that the hard-coded period-52 masks have density 59/156, dominate all 312 vertices in one fundamental domain, and separate all 8,372 swept pairs at L1 distance at most 6. Every swept pair at distance 3 through 6 has disjoint closed neighbourhoods. NOT ESTABLISHED HERE: disjointness or separation at L1 distance greater than 6, the exact value of d*(S_6), any lower bound, the optimality of the printed tile, and the cases k >= 7.
+VERDICT: ALL 28 CHECKS PASS
+=== program exited with status 0 ===

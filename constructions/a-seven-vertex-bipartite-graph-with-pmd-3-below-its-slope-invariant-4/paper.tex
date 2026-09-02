@@ -1,0 +1,295 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Seven-Vertex Bipartite Graph Whose Positive Matching Decomposition
+            Number Lies Below Its Slope Invariant}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\pmd}{\operatorname{pmd}}
+\newcommand{\slope}{\mathrm{s}}
+\newcommand{\Kinv}{\mathrm{K}}
+\newcommand{\Gam}{\Gamma}
+
+\title[A bipartite graph with $\pmd<\Kinv$]
+{A Seven-Vertex Bipartite Graph Whose Positive Matching Decomposition Number
+ Lies Below Its Slope Invariant}
+
+\date{}
+
+\subjclass[2020]{05C70, 13F55, 05C85}
+\keywords{positive matching decomposition, bipartite graph, edge ideal, slope,
+greedy algorithm}
+
+\begin{document}
+
+\begin{abstract}
+Farrokhi D.~G., Gharakhloo and Yazdan Pour introduced the positive matching
+decomposition number $\pmd(\Gam)$ of a graph and, for a bipartite graph, an
+invariant $\Kinv(\Gam)$ obtained by minimising the output of a greedy
+slope-based algorithm over all labellings of the two sides; they proved
+$\Delta(\Gam)\le\pmd(\Gam)\le\Kinv(\Gam)$ and asked whether the second
+inequality is ever strict. We answer this affirmatively with the theta graph
+$\Gam=\Theta(2,2,4)$ on seven vertices: $\pmd(\Gam)=3$ by a decomposition
+exhibited below and checkable by hand, while $\Kinv(\Gam)=4$ by running the
+authors' own algorithm on all $3!\,4!=144$ labellings (all $288$, if the two
+sides may also be exchanged).
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $\Gam$ be a finite simple graph. Following Farrokhi D.~G., Gharakhloo and
+Yazdan Pour \cite{FGY}, a matching $M$ of $\Gam$ is \emph{positive} when the
+corresponding sum of variables generates a prime ideal after inversion; we
+never use that definition directly, only the combinatorial characterisation the
+authors prove for it \cite[criterion (iii)]{FGY}, which we therefore take as
+the working definition here:
+
+\begin{equation}\label{eq:pos}
+\parbox{0.86\textwidth}{a matching $M$ of $\Gam$ is \emph{positive} if and only
+if for every non-empty $N\subseteq M$ the induced subgraph $\Gam[V(N)]$ on the
+endpoints of $N$ has a vertex of degree $1$ whose incident edge lies in $N$.}
+\end{equation}
+
+The \emph{positive matching decomposition number} $\pmd(\Gam)$ is the least $p$
+for which the edge set admits an \emph{ordered} partition
+$E(\Gam)=M_1\uplus\dots\uplus M_p$ such that each $M_i$ is a positive matching
+of $\Gam-(M_1\cup\dots\cup M_{i-1})$. Since a matching contains at most one
+edge at each vertex and the parts cover $E(\Gam)$,
+\begin{equation}\label{eq:delta}
+  \Delta(\Gam)\le\pmd(\Gam).
+\end{equation}
+
+For a bipartite graph the authors introduce an upper bound through a greedy
+algorithm driven by a numerical \emph{slope}. Fix a bipartition
+$V(\Gam)=X\uplus Y$ and a labelling $\tau$, that is, an ordering
+$X=\{x_1,\dots,x_m\}$ and $Y=\{y_1,\dots,y_n\}$, and put
+$\slope(x_iy_j)=j-i$. Their Algorithm~1 produces parts $M_1,M_2,\dots$ from the
+edge set; we quote it from \cite{FGY}, with the pseudocode macros set as words
+and indentation.
+
+\medskip
+\begin{center}\small
+\begin{tabular}{@{}l@{}}
+\textsc{Require}: A labeled bipartite graph $\Gam$ with bipartition $X,Y$\\
+\textsc{Ensure}: A positive matching decomposition of $\Gam$\\
+$k\longleftarrow 0$\\
+\textbf{while} $E(\Gam)\neq\varnothing$\\
+\quad $k\longleftarrow k+1$\\
+\quad $X'\longleftarrow X\setminus\{\text{isolated vertices of }X\}$\\
+\quad $Y'\longleftarrow\varnothing$\\
+\quad $M_k\longleftarrow\varnothing$\\
+\quad \textbf{while} $X'\neq\varnothing$\\
+\quad\quad $s\longleftarrow\min(\mathrm{Slopes}(\Gam[X'\cup Y]))$\\
+\quad\quad $M\longleftarrow\{xy\in E(\Gam[X'\cup Y])\colon\ \mathrm{slope}(xy)=s\}$\\
+\quad\quad $M_k\longleftarrow M_k\cup\{xy\in M\colon\ y\notin Y'\}$\\
+\quad\quad $X'\longleftarrow X'\setminus\{x\colon\ xy\in M\}$\\
+\quad\quad $Y'\longleftarrow Y'\cup\{y\colon\ xy\in M\}$\\
+\quad \textbf{end while}\\
+\quad $E(\Gam)\longleftarrow E(\Gam)\setminus M_k$\\
+\textbf{end while}\\
+\textbf{return} $M_1,\ldots,M_k$
+\end{tabular}
+\end{center}
+
+\medskip
+Two edges of equal slope $s$ have distinct $X$-endpoints and, since $j=s+i$,
+distinct $Y$-endpoints, so the class $M$ selected at a pass of the inner loop is
+itself a matching and the order in which its edges are examined is immaterial:
+each part, and hence the number $\Kinv(\tau)$ of parts, is well defined. Each
+part is a matching, since an $x$ leaves $X'$ as soon as it contributes and a
+$Y$-endpoint is used at most once. Finally
+\begin{equation}\label{eq:K}
+  \Kinv(\Gam)=\min_\tau \Kinv(\tau),
+\end{equation}
+the minimum over all $m!\,n!$ labellings, and \cite{FGY} proves
+$\pmd(\Gam)\le\Kinv(\Gam)$; with \eqref{eq:delta} this gives the chain
+$\Delta\le\pmd\le\Kinv$ that precedes the question we answer. The source denotes
+this invariant by a fraktur $\mathfrak{K}$; we use an upright $\Kinv$. The
+question is \cite[Question~1]{FGY}:
+
+\begin{quote}\sloppy
+\textbf{Question 1.} Is there any bipartite graph $\Gam$
+satisfying $\pmd(\Gam)<\Kinv(\Gam)$?
+\end{quote}
+
+\noindent Since $\Kinv$ is defined through the slope $j-i$, which is not symmetric in the
+two sides, and since Algorithm~1 peels from $X$, the definition leaves open
+whether a witness may also exchange $X$ and $Y$. Every value below is given for
+both readings: $\Kinv$ minimised over the $m!\,n!$ labellings of one
+orientation, and over all $2\,m!\,n!$ labellings when the sides may be
+exchanged. Nothing in this paper depends on the choice.
+
+\section{The witness}
+
+Let $X=\{x_1,x_2,x_3\}$, $Y=\{y_1,y_2,y_3,y_4\}$ and
+\begin{equation}\label{eq:gamma}
+  E(\Gam)=\{\,x_1y_1,\;x_1y_2,\;\;x_2y_1,\;x_2y_3,\;x_2y_4,\;\;
+              x_3y_2,\;x_3y_3,\;x_3y_4\,\},
+\end{equation}
+that is, the rows of the bipartite adjacency matrix are the bitmasks
+$3,13,14$ over $y_1,\dots,y_4$. So $\Gam$ has $7$ vertices and $8$ edges,
+degrees $2,3,3$ on $X$ and $2,2,2,2$ on $Y$, and $\Delta(\Gam)=3$. The two
+vertices of degree~$3$ are $x_2$ and $x_3$, and deleting them leaves three
+paths with $1$, $1$ and $3$ vertices, so
+\[
+  \Gam=\Theta(2,2,4),
+\]
+the graph obtained from two vertices by joining them with three internally
+disjoint paths of lengths $2$, $2$ and $4$. Under the labelling
+$0,1,2=x_1,x_2,x_3$ and $3,4,5,6=y_1,y_2,y_3,y_4$ its graph6 string is
+\texttt{FEhb?}.
+
+\begin{theorem}\label{thm:main}
+For $\Gam=\Theta(2,2,4)$ as in \eqref{eq:gamma},
+\[
+  \pmd(\Gam)=3<4=\Kinv(\Gam),
+\]
+the value of $\Kinv$ being $4$ both over the $144$ labellings of the
+orientation printed above and over all $288$ labellings when the two sides may
+be exchanged. In particular Question~1 of \cite{FGY} has answer \emph{yes}.
+\end{theorem}
+
+The two halves are of different character and we treat them separately: the
+value of $\pmd$ is settled by an exhibited decomposition and \eqref{eq:delta},
+the value of $\Kinv$ by a finite exhaustion of the authors' own algorithm.
+
+\subsection*{$\pmd(\Gam)=3$}
+
+\begin{lemma}\label{lem:forest}
+Let $M$ be a matching of a graph $\Gam$ such that $\Gam[V(M)]$ is acyclic.
+Then $M$ is positive.
+\end{lemma}
+
+\begin{proof}
+Let $\emptyset\neq N\subseteq M$ and $F=\Gam[V(N)]$. As $V(N)\subseteq V(M)$
+and an induced subgraph of an induced subgraph is induced, $F$ is a subgraph of
+$\Gam[V(M)]$ and hence a forest. Every edge of $N$ has both endpoints in
+$V(N)$, so $N\subseteq E(F)$ and $F$ has an edge; a forest with an edge has a
+vertex $\ell$ of degree~$1$. Now $\ell\in V(N)$ and $N$ is a matching, so
+$\ell$ is an endpoint of exactly one edge $f\in N$, and $f\in E(F)$. Since
+$\ell$ has degree $1$ in $F$, the unique edge of $F$ at $\ell$ is $f$. Thus
+$F$ has a degree-$1$ vertex whose incident edge lies in $N$, which is
+\eqref{eq:pos}.
+\end{proof}
+
+\begin{corollary}\label{cor:forest}
+If $\Gam$ is a forest then every matching of $\Gam$ is positive and
+$\pmd(\Gam)=\Delta(\Gam)$.
+\end{corollary}
+
+\begin{proof}
+Induced subgraphs of a forest are forests, so Lemma~\ref{lem:forest} applies to
+every matching. A forest is $\Delta$-edge-colourable, and each colour class is
+a matching, hence a positive one; so $\pmd\le\Delta$, and \eqref{eq:delta}
+gives equality.
+\end{proof}
+
+\begin{proof}[Proof that $\pmd(\Gam)=3$]
+Put
+\begin{align*}
+  M_1&=\{x_2y_1,\;x_3y_3\},\\
+  M_2&=\{x_1y_1,\;x_2y_4,\;x_3y_2\},\\
+  M_3&=\{x_1y_2,\;x_2y_3,\;x_3y_4\},
+\end{align*}
+an ordered partition of the eight edges \eqref{eq:gamma} into three matchings.
+The subgraph induced by $V(M_1)=\{x_2,y_1,x_3,y_3\}$ is the path
+$y_1x_2y_3x_3$, which is acyclic, so $M_1$ is positive by
+Lemma~\ref{lem:forest}. Deleting $M_1$ leaves exactly the path
+\[
+  \Gam-M_1 \;=\; y_1\,x_1\,y_2\,x_3\,y_4\,x_2\,y_3
+\]
+on all seven vertices, a tree with $\Delta=2$; by Corollary~\ref{cor:forest}
+its edge set splits into two positive matchings, namely its two alternating
+classes, which are $M_2$ and $M_3$. Hence $\pmd(\Gam)\le3$. Conversely
+$\pmd(\Gam)\ge\Delta(\Gam)=3$ by \eqref{eq:delta}, so $\pmd(\Gam)=3$.
+\end{proof}
+
+\subsection*{$\Kinv(\Gam)=4$}
+
+Algorithm~1 is deterministic once a labelling is fixed, and there are only
+$3!\,4!=144$ labellings per orientation, so the value \eqref{eq:K} is a finite
+computation on a graph with $8$ edges. Carried out over all of them, the number
+of parts takes the values
+$\{4,5\}$ on the orientation printed in \eqref{eq:gamma} and the constant value
+$4$ on the orientation with $X$ and $Y$ exchanged. Hence
+\[
+  \Kinv(\Gam)=4
+\]
+in both readings, and with $\pmd(\Gam)=3$ this proves Theorem~\ref{thm:main}.
+For instance the printed labelling itself gives the four parts
+$\{x_2y_1,x_3y_2\}$, $\{x_1y_1,x_3y_3\}$, $\{x_1y_2,x_2y_3,x_3y_4\}$,
+$\{x_2y_4\}$. The exhaustion is carried out by \texttt{verify.py} in exact
+integer arithmetic.
+
+\section{Verification}
+
+The value $\pmd(\Gam)=3$ can be checked by hand from what is printed above: the
+eight edges \eqref{eq:gamma}, the three parts $M_1,M_2,M_3$,
+Lemma~\ref{lem:forest} and the bound \eqref{eq:delta}. The value
+$\Kinv(\Gam)=4$ cannot. Its lower bound is the exhaustion of the $144$,
+respectively $288$, labellings in \eqref{eq:K}, and we have no argument for it
+that a reader can carry out without a machine.
+
+The accompanying program \texttt{verify.py} (Python~3.9 or later, standard
+library only, no external data file) reads the objects printed here as literals
+and re-derives every quantity this paper states: the decoding of the graph6
+string \texttt{FEhb?} and its agreement with \eqref{eq:gamma}; the
+identification of $\Gam$ as $\Theta(2,2,4)$; the agreement of two structurally
+independent implementations of \eqref{eq:pos}; the positivity of $M_1,M_2,M_3$
+in their successive residuals and the value $\pmd(\Gam)=3$ by exhaustive
+search; and $\Kinv(\Gam)=4$ over $144$ and over $288$ labellings. It prints one
+line per check, closes with \texttt{VERDICT: ALL 80 CHECKS PASS} and exits $0$
+only if every check passed.
+
+The recorded run establishes more than this paper claims, and its labelling was
+not brought back into line with the present text. Steps 1--6 are the checks that
+bear on Theorem~\ref{thm:main}. Steps 7 and 8 --- a census of the bipartite
+graphs of order at most $7$, the minimality and uniqueness of $\Gam$ among them,
+and a second, cubic witness $M_5$ on ten vertices --- concern statements this
+paper does not make, and their labels, and the closing \texttt{NOTE SCOPE}
+paragraph, speak of values ``the paper prints'' that are printed in no version
+of this note. Those labels are inherited from a longer manuscript and should be
+read as claims about the program's own computation, not about anything asserted
+here. Nothing in Sections~1--2 depends on them, and this note asserts none of
+them.
+
+Two things are taken from \cite{FGY} rather than checked here. The
+characterisation \eqref{eq:pos} is a theorem of the source, used as the
+definition of ``positive'' throughout; nothing here returns to the algebraic
+definition. And Algorithm~1 has to be read: the program implements it both as
+the source's pseudocode, statement for statement in the source's own variables,
+and in the streamlined form used for the exhaustions, checks the two against
+each other, and finds that both reproduce, part for part, the parts the source
+prints for each of its two worked examples; but that the statements displayed in
+Section~1 are the ones printed at lines $549$--$574$ of the e-print source of
+\cite{FGY} is a comparison left to the reader.
+
+\begin{thebibliography}{9}
+
+\bibitem{FGY}
+M.~Farrokhi D.~G., Sh.~Gharakhloo, and A.~A. Yazdan Pour,
+\emph{Positive matching decompositions of graphs},
+Discrete Appl. Math. \textbf{320} (2022), 311--323.
+\href{https://doi.org/10.1016/j.dam.2022.05.012}{doi:10.1016/j.dam.2022.05.012};
+\href{https://arxiv.org/abs/2110.12168}{arXiv:2110.12168}. Statement numbers
+and line references are quoted from the e-print v2, the only full text we could
+access.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,252 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An identifying code of density 59/156 in the 6-row square strip}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Ncl}{N}
+\newcommand{\dstar}{d^{*}}
+
+\title[An identifying code of density 59/156 in the 6-row square strip]
+{An Identifying Code of Density $59/156$ in the 6-Row Square Strip}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C63, 94B25}
+\keywords{identifying code, minimum density, infinite square strip, periodic code,
+explicit construction}
+
+\begin{document}
+
+\begin{abstract}
+Let $S_k$ be the subgraph of the square lattice induced by
+$\mathbb Z\times\{0,\dots,k-1\}$ and let $\dstar(S_k)$ be the minimum density of an
+identifying code of $S_k$ for radius $1$. Theorem~30 of the Lobstein--Hudry--Charon
+survey records $\dstar(S_k)$ for $k\le5$ and, for $k\ge6$, the bracket
+$7/20+1/(20k)\le \dstar(S_k)\le 7/20+3/(10k)$, which at $k=6$ is
+$[43/120,\,2/5]$ of width $1/24$. We exhibit an explicit period-$52$ identifying code
+of $S_6$ of density $59/156$, printed here in full, giving
+\[
+  \dstar(S_6)\ \le\ \frac{59}{156}=0.3782051282\ldots\ <\ \frac25 ,
+\]
+so the recorded interval at $k=6$ narrows from above; nothing in the source is contradicted.
+Verifying the code from the definition is a finite check of $312$ vertices and $1612$ vertex
+pairs and needs no solver; the accompanying program carries it out. Only the upper bound is
+established here; the exact value of $\dstar(S_6)$ is left open, and no claim is made that
+$59/156$ is close to it.
+\end{abstract}
+
+\maketitle
+
+\section{The source statement}
+
+Let $S_k$ denote the subgraph of the square lattice induced by
+$\mathbb Z\times\{0,\dots,k-1\}$, the \emph{$k$-row infinite square strip}. For a vertex
+$v$ write $\Ncl[v]$ for its \emph{closed} neighbourhood in $S_k$. A set
+$C\subseteq V(S_k)$ is an \emph{identifying code} (of radius $1$) if
+\begin{equation}\label{eq:idc}
+  \Ncl[u]\cap C\neq\emptyset \quad\text{for every }u,
+  \qquad
+  \Ncl[u]\cap C\neq \Ncl[v]\cap C \quad\text{for all } u\neq v .
+\end{equation}
+The set $\Ncl[u]\cap C$ is the \emph{identifier} of $u$. We take the \emph{density} of $C$ and
+the invariant $\dstar$ from the source, so that every statement below is about exactly the
+quantity Theorem~30 brackets: \cite[Section~6.4.1]{LHC} defines the density of a code $C$ in
+$G_\pi^{[k]}$, for every $k\ge1$, as
+$\limsup_{n\to\infty}|C\cap N_n[v]|/|N_n[v]|$, where $N_n[v]$ is the ball of radius $n$ about an
+arbitrary vertex $v$, and $\dstar(S_k)=\partial_1^{Id}(G_S^{[k]})$ is the infimum of the densities
+of the identifying codes of $S_k$.
+
+The code exhibited in Section~2 is periodic with period $52$, so its density is a limit rather than
+merely a $\limsup$, and it takes the same value if the balls $N_n[v]$ are replaced by rectangles
+$[-n,n]\times\{0,\dots,k-1\}$: at $k=6$ the ball $N_n[v]$ and the rectangle
+$[-n,n]\times\{0,\dots,5\}$ agree except on at most $6\cdot6=36$ cells near the two ends, out of
+the $6(2n+1)$ cells of the rectangle, so the two window ratios differ by $O(1/n)$ and have the
+same limit. Either window therefore yields the density computed in Section~\ref{sec:bound}, which
+the program evaluates as the exact rational $118/312$ over one period.
+
+The state of knowledge is recorded in A.~Lobstein, O.~Hudry and I.~Charon,
+\emph{Locating-Domination and Identification}, Chapter~6 of \emph{Topics in Domination in
+Graphs} \cite{LHC}, Section~6.4.1.1 ``The Square Grid'', where $\partial_1^{Id}$ is that
+chapter's symbol for the minimum density we call $\dstar$ and the superscript $[k]$ denotes
+the strip of height $k$. Its Theorem~30 reads, in part (with the source's stacked fractions
+written inline and parentheses added in $1/(20k)$ and $3/(10k)$):
+
+\begin{quote}
+\textbf{Theorem 30}
+(f) ([23]) For $k\ge6$, we have
+\[
+  7/20+1/(20k)\le \partial_1^{Id}(G_S^{[k]})\le 7/20+3/(10k).
+\]
+\end{quote}
+
+Parts (a)--(e) record exact values for $k=1,\dots,5$; for $k\ge6$ the source records only the
+bracket of part~(f). At $k=6$ that bracket is
+\[
+  \Bigl[\tfrac{7}{20}+\tfrac{1}{120},\ \tfrac{7}{20}+\tfrac{3}{60}\Bigr]
+  = \Bigl[\tfrac{43}{120},\ \tfrac{2}{5}\Bigr],
+  \qquad \tfrac{2}{5}-\tfrac{43}{120}=\tfrac{1}{24},
+\]
+the upper endpoint being exactly $2/5$. Part~(f) is a proved theorem carrying a gap at every
+$k\ge6$; the source leaves the value at $k=6$ undetermined, recording only the interval
+$[43/120,2/5]$. What the present note does is narrow that recorded interval from above.
+
+\medskip
+\noindent\textbf{Attribution.} The bracket endpoints of Theorem~30(f) are due to Bouznif,
+Havet and Preissmann \cite{BHP}. Since the transfer-matrix and periodicity machinery of
+\cite{Jiang}, \cite{BHP} and \cite{BDMP} could in principle evaluate $k=6$, we record what each
+of the works we read reaches: \cite{DGM} gives $k=1,2$ and the first $k\ge6$ bracket; \cite{BHP}
+proves the two bracket endpoints and, as an exact value, only $\dstar(S_3)=7/18$; \cite{Jiang}
+supplies the periodicity theorem and the minimum-cycle-mean route and evaluates $k=4$ and $k=5$;
+\cite{BDMP} resolves heights $1,2,3,4$. None of them states a value or a code at $k=6$, which is
+why \cite{LHC} still records that cell as an interval in 2020. No priority claim is made beyond
+that: no search was carried out past the works listed here, and $59/156$ or a better bound may
+well be recorded elsewhere. What is offered is the code of Section~2 and the verification of
+\eqref{eq:idc} for it.
+
+\section{The object, and the upper bound}\label{sec:bound}
+
+Let $L=52$, let the $52$ integers below be $c_0,\dots,c_{51}$, read left to right and top
+to bottom, and put
+\[
+  C=\bigl\{(x,y)\in\mathbb Z\times\{0,\dots,5\}\ :\ \text{bit } y \text{ of } c_{x \bmod 52}
+  \text{ equals } 1\bigr\}.
+\]
+
+\begin{center}
+\footnotesize
+\begin{tabular}{l}
+\texttt{18 24 19 2 58 2 41 10 40 3 58 0 21 21 21 0 58 3}\\
+\texttt{40 10 41 2 58 2 22 16 51 2 26 16 23 16 37 20 5 48}\\
+\texttt{23 0 42 41 42 0 23 48 5 20 37 16 23 16 50 6}
+\end{tabular}
+\end{center}
+
+\noindent Every $c_x$ satisfies $0\le c_x<64$. Equivalently, writing \texttt{1} for a cell
+in $C$ and a dot for a cell outside it, one period of $C$ is the following $6\times52$
+array, row $y$ being the row $y$ of the strip:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{ll}
+\texttt{row 0} & \texttt{..1...1..1..111..1..1.....1...1.1.1.1..1..1.1.1.1...}\\
+\texttt{row 1} & \texttt{1.1111.1.11.....11.1.1111.111.1.....1.1.1.1.....1.11}\\
+\texttt{row 2} & \texttt{............111.........1.....1.111.1.....1.111.1..1}\\
+\texttt{row 3} & \texttt{.1..1.111.1.....1.111.1.....1.........111...........}\\
+\texttt{row 4} & \texttt{111.1.....1.111.1.....1.111.1111.1.11.....11.1.1111.}\\
+\texttt{row 5} & \texttt{....1.1.1.1.....1.1.1.1...1.....1..1..111..1..1...1.}
+\end{tabular}
+\end{center}
+
+The row weights are $18$, $26$, $15$, $15$, $27$, $17$; they sum to $118$ code cells out of
+the $6\cdot52=312$ cells of the fundamental domain.
+
+\begin{theorem}\label{thm:upper}
+The set $C$ above is an identifying code of $S_6$, of density $118/312=59/156$, so
+\[
+  \dstar(S_6)\le\frac{59}{156}<\frac{2}{5},
+  \qquad \frac{2}{5}-\frac{59}{156}=\frac{17}{780}.
+\]
+\end{theorem}
+
+\begin{proof}
+$C$ is invariant under $(x,y)\mapsto(x+52,y)$ and meets a fundamental domain in $118$ of
+$312$ cells, so its density is $118/312=59/156$. It remains to verify \eqref{eq:idc}, and
+the point is that this is a \emph{finite} check with an explicit bound.
+
+If $\Ncl[u]\cap \Ncl[v]\neq\emptyset$ then some vertex is at distance at most $1$ from
+both $u$ and $v$, so $d(u,v)\le2$. Contrapositively, if $d(u,v)\ge3$ the two closed
+neighbourhoods are disjoint; if moreover both identifiers are nonempty --- which is the
+domination clause --- then they are distinct sets, since a nonempty set cannot equal a set
+disjoint from it. So the separation clause of \eqref{eq:idc} only has to be verified for
+pairs at distance at most $2$, and by the $52$-periodicity of $C$ only for pairs whose
+left-most vertex lies in $[0,51]\times\{0,\dots,5\}$.
+
+That is $312$ domination tests and $1612$ pair tests, each one an inspection of at most
+$10$ cells of the printed array; all of them pass. The accompanying program carries out this
+verification and reports no failures.
+\end{proof}
+
+\section{Scope}
+
+$59/156$ lies strictly inside $[43/120,2/5]$, with $2/5-59/156=17/780$ and
+$59/156-43/120=31/1560$: Theorem~\ref{thm:upper} narrows from above the interval the source
+records at $k=6$; nothing in Theorem~30(f) is contradicted. The value of $\dstar(S_6)$, and
+the cases $k\ge7$, are left open here.
+
+The tile of Section~2 was found by a randomised local search over periodic patterns of period
+dividing $52$, and $52$ was simply the period at which a valid pattern of this weight turned up;
+no exhaustive search was performed at that or any other period, and no certified minimum is
+claimed. In particular we make no claim that $59/156$ is close to optimal: it is one interior
+point of the recorded interval $[43/120,2/5]$, and the transfer-matrix and minimum-cycle-mean
+machinery of \cite{Jiang}, \cite{BHP} and \cite{BDMP} may well settle $k=6$ outright. Only the
+inequality $\dstar(S_6)\le59/156$ is asserted.
+
+\section{Verification}
+
+The accompanying program \texttt{verify.py} (Python~3.9+, standard library only, no external
+data file, exact integer and \texttt{Fraction} arithmetic) reads the $52$ masks printed in
+Section~2, regenerates the six row strings from them, and re-derives the row weights, the count
+$118$ of $312$ and the density $59/156$ as an exact rational, and then verifies \eqref{eq:idc}:
+no domination failures over the $312$ vertices of the fundamental domain and no separation
+failures among the relevant pairs. Its recorded run is \texttt{verify.output.txt}, one
+\texttt{PASS} line per check. The run also prints some checks corresponding to material deleted
+from this note (the empty columns, the minimality of the period, the bracket arithmetic, and a
+sweep of pairs at distance $3$ to $6$); those support nothing claimed here. It establishes the
+upper bound of Theorem~\ref{thm:upper} and nothing else.
+
+\begin{thebibliography}{9}
+
+\bibitem{BDMP}
+M.~Bouznif, J.~Darlay, J.~Moncel, and M.~Preissmann,
+\emph{Exact values for three domination-like problems in circular and infinite grid graphs
+of small height},
+Discrete Math. Theor. Comput. Sci. \textbf{21} (2019), no.~3, paper~\#12.
+\href{https://doi.org/10.23638/DMTCS-21-3-12}{doi:10.23638/DMTCS-21-3-12}.
+
+\bibitem{BHP}
+M.~Bouznif, F.~Havet, and M.~Preissmann,
+\emph{Minimum-density identifying codes in square grids},
+INRIA Research Report RR-8845 (hal-01259550v1); AAIM 2016,
+Lecture Notes in Comput. Sci. \textbf{9778}, 77--88.
+\href{https://doi.org/10.1007/978-3-319-41168-2_7}{doi:10.1007/978-3-319-41168-2\_7}.
+
+\bibitem{DGM}
+M.~Daniel, S.~Gravier, and J.~Moncel,
+\emph{Identifying codes in some subgraphs of the square lattice},
+Theoret. Comput. Sci. \textbf{319} (2004), 411--421.
+\href{https://doi.org/10.1016/j.tcs.2004.02.007}{doi:10.1016/j.tcs.2004.02.007}.
+
+\bibitem{Jiang}
+M.~Jiang,
+\emph{Periodicity of identifying codes in strips},
+Inform. Process. Lett. \textbf{135} (2018), 77--84.
+\href{https://doi.org/10.1016/j.ipl.2018.03.007}{doi:10.1016/j.ipl.2018.03.007};
+\href{https://arxiv.org/abs/1607.03848v2}{arXiv:1607.03848v2}, which is the version
+used here.
+
+\bibitem{LHC}
+A.~Lobstein, O.~Hudry, and I.~Charon,
+\emph{Locating-Domination and Identification},
+Chapter~6 of \emph{Topics in Domination in Graphs} (T.~W. Haynes, S.~T. Hedetniemi,
+M.~A. Henning, eds.), Springer, 2020, 251--299.
+\href{https://doi.org/10.1007/978-3-030-51117-3_8}{doi:10.1007/978-3-030-51117-3\_8}.
+Theorem~30 is quoted from the open copy
+\href{https://hal.science/hal-02916929/document}{hal-02916929v1}, PDF page~11
+(manuscript page~10).
+
+\end{thebibliography}
+
+\end{document}

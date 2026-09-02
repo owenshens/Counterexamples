@@ -1,0 +1,232 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A Cyclic Completely Quasi-Uniform Nested SQS(22)}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\SQS}{\mathrm{SQS}}
+\newcommand{\Zn}[1]{\mathbb{Z}_{#1}}
+\newcommand{\nb}[4]{\{#1,#2\mid #3,#4\}}
+
+\title[A cyclic completely quasi-uniform nested $\SQS(22)$]
+{A Cyclic Completely Quasi-Uniform Nested $\SQS(22)$}
+
+\date{}
+
+\subjclass[2020]{05B05, 05B07, 51E10}
+\keywords{Steiner quadruple system, nested design, quasi-uniform nesting,
+cyclic design, construction}
+
+\begin{document}
+
+\begin{abstract}
+A \emph{nested} $\SQS(v)$ is a Steiner quadruple system together with a
+splitting of each block into two pairs; the \emph{multiplicity} of a pair is the
+number of blocks in which it occurs as one of the two halves. The nesting is
+\emph{completely quasi-uniform} if every pair of points occurs and the
+multiplicities are not all equal but any two differ by at most~$1$. Lu remarks
+that for $v\equiv4\pmod6$, apart from the Boolean orders and $v=10$, no example
+is currently known; the smallest order left uncovered by the two results he
+cites is $v=22$. No question or conjecture is attached to that remark, and this
+note settles nothing that anybody has posed: it simply exhibits a completely
+quasi-uniform nested $\SQS(22)$ invariant under the cyclic translation group
+$\Zn{22}$, printed here as $19$ base nested blocks. The cyclic $\SQS(22)$
+underlying it may well be classical; only the printed splitting is offered.
+\end{abstract}
+
+\maketitle
+
+\section{Definitions and the context}
+
+Throughout, $V$ is a $v$-set and $\binom{V}{2}$ its set of pairs. A
+\emph{Steiner quadruple system} $\SQS(v)$ is a $3$-$(v,4,1)$ design: a set
+$\mathcal Q$ of $4$-subsets of $V$ such that every $3$-subset of $V$ lies in
+exactly one member of $\mathcal Q$. Hanani proved that an $\SQS(v)$ exists
+exactly when $v\equiv2$ or $4\pmod 6$ (or $v\le1$) \cite{Hanani60}.
+
+A \emph{nested} $\SQS(v)$ is a set $\mathcal B$ of \emph{nested blocks}
+$\nb xyzw$, each an unordered pair of disjoint pairs, such that the underlying
+quadruples $\{x,y,z,w\}$ form an $\SQS(v)$; we write the two halves separated
+by a bar. The \emph{multiplicity} $\mu(P)$ of $P\in\binom V2$ is the number of
+nested blocks having $P$ as a half. The nesting is \emph{uniform} if $\mu$ is
+constant, \emph{quasi-uniform} if $\mu$ is \emph{not} constant while
+$|\mu(P)-\mu(P')|\le1$ for all $P,P'$, and \emph{completely} quasi-uniform if
+in addition $\mu(P)\ge1$ for \emph{every} $P\in\binom V2$. These are the
+definitions of Lu \cite{Lu}, who attributes the notion of a nested $\SQS$ to
+Chee, Dau, Etzion, Kiah and Zhang \cite{CDEKZ}.
+
+The remark that prompted this note is quoted from \cite{Lu}:
+
+\begin{quote}
+``In contrast, for completely quasi-uniform nested $\SQS(v)$ with
+$v\equiv4\pmod6$, the situation remains largely unresolved. Apart from the
+Boolean cases and the smallest nontrivial case $\SQS(10)$ given in Example~5.1,
+no further examples are currently known.''
+\end{quote}
+
+This is a statement of the state of knowledge: Lu attaches no problem, question
+or conjecture to it, and names no order, so nothing below settles a posed
+statement. We address only $v=22$; the orders $28,34,40,\dots$ are untouched, as
+is Problem~3 of \cite{CDEKZ}, which asks for an \emph{infinite} family. We ran
+no isomorphism test and searched no catalogue of cyclic quadruple systems, so we
+claim only that the printed object \emph{is} a completely quasi-uniform nested
+$\SQS(22)$: neither the design nor its splitting is claimed to be new, and
+nothing here bounds the number of such systems.
+
+The relevant orders $v\equiv4\pmod6$ with $v\ge10$ begin $10,16,22,28,\dots$. Of these, $v=10$ is Lu's Example~5.1 and
+$v=16=2^4$ is Boolean, covered by his theorem producing a completely
+quasi-uniform nested $\SQS(2^m)$ for every even $m\ge4$. So $v=22$ is the
+smallest order not covered by those two results, and it is the order treated
+here.
+
+\begin{theorem}\label{thm:main}
+A completely quasi-uniform nested $\SQS(22)$ exists. One is invariant under the
+cyclic group $\Zn{22}$ acting by $x\mapsto x+1$, and is the union of the
+orbits of the $19$ base nested blocks listed in
+Section~\textup{\ref{sec:object}}. \textup{(}No claim is made that $\Zn{22}$ is
+its full automorphism group.\textup{)}
+\end{theorem}
+
+
+
+\section{The object}\label{sec:object}
+
+Let $V=\Zn{22}=\{0,1,\dots,21\}$ and let $G=\Zn{22}$ act by $x\mapsto x+1$
+$\pmod{22}$. Each of the following $19$ nested blocks is listed with the length
+of its $G$-orbit; $\mathcal B$ is the union of those $19$ orbits.
+
+\begin{center}
+\begin{verbatim}
+B01  { 0,  1 |  2,  4}   22        B11  { 0,  2 | 12, 19}   22
+B02  { 0,  1 |  5,  6}   22        B12  { 0, 18 |  2,  6}   22
+B03  { 0,  7 |  1,  8}   22        B13  { 0, 18 |  3,  9}   22
+B04  { 0,  1 |  9, 19}   22        B14  { 0, 11 |  3, 14}   11
+B05  { 0, 10 |  1, 11}   22        B15  { 0,  8 |  4, 15}   22
+B06  { 0, 14 |  1, 20}   22        B16  { 0,  9 |  2,  7}   22
+B07  { 0,  2 |  8, 14}   22        B17  { 0, 13 |  2, 11}   11
+B08  { 0,  3 |  7, 17}   22        B18  { 0, 17 |  4,  9}   22
+B09  { 0, 13 |  3,  6}   22        B19  { 0, 16 |  5, 11}   11
+B10  { 0,  5 |  2, 10}   22
+\end{verbatim}
+\end{center}
+
+Explicitly, $\mathcal B=\bigl\{\,\nb{a+t}{b+t}{c+t}{d+t}: \nb abcd \in
+\{B01,\dots,B19\},\ t\in\Zn{22}\,\bigr\}$, all residues mod $22$.
+
+\begin{lemma}\label{lem:orbits}
+Sixteen of the nineteen orbits have length $22$ and three, those of $B14$,
+$B17$ and $B19$, have length $11$, so $|\mathcal B|=16\cdot22+3\cdot11=385$.
+\end{lemma}
+
+\begin{proof}
+The stabiliser of a nested block is a subgroup of $\Zn{22}$, so it is one of
+$\{0\}$, $\{0,11\}$, the subgroup $H$ of order $11$, and $\Zn{22}$ itself. The
+orbits of $H$ on $V$ are its two cosets, of size $11$, and $\Zn{22}$ is
+transitive on $V$; since an invariant nested block has an invariant underlying
+quadruple, which would then be a union of orbits of size $11$ or $22$, neither
+$H$ nor $\Zn{22}$ can stabilise a nested block. Hence the stabiliser is $\{0\}$
+or $\{0,11\}$, every orbit has length $22$ or $11$, and length $11$
+occurs exactly when the block is fixed by $\sigma:x\mapsto x+11$. Now a nested
+block is fixed by $\sigma$ if and only if its underlying quadruple is a union of
+two \emph{diameters} $\{a,a+11\}$. Indeed, a fixed nested block has a fixed
+quadruple, and the orbits of $\sigma$ on $V$ are exactly the eleven diameters;
+conversely, if the quadruple is $\{a,a+11,b,b+11\}$ then $\sigma$ preserves each
+of its three splittings, fixing both halves of
+$\{a,a+11\}\mid\{b,b+11\}$ and interchanging the halves of the other two.
+Among $B01,\dots,B19$ the quadruples that are unions of diameters are exactly
+\[
+ B14:\ \{0,11\}\cup\{3,14\},\qquad
+ B17:\ \{0,11\}\cup\{2,13\},\qquad
+ B19:\ \{0,11\}\cup\{5,16\};
+\]
+hence three orbits of length $11$ and sixteen of length $22$.
+\end{proof}
+
+\section{The counts}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Everything is a finite count on $22$ points, carried out on the $385$ nested
+blocks obtained from the table of Section~\ref{sec:object}.
+
+\emph{It is an $\SQS(22)$.} The $385$ nested blocks have $385$ distinct
+underlying quadruples, and $385=\frac{22\cdot21\cdot20}{24}$; each of the
+$\binom{22}3=1540$ triples lies in exactly one of them. (Equivalently, and as a
+second count: each of the $231$ pairs lies in exactly $\frac{v-2}2=10$ of the
+quadruples, and each point in $\frac{21\cdot20}6=70$.)
+
+\emph{It is nested and complete.} Every block is split into two disjoint pairs
+by construction, and all $\binom{22}2=231$ pairs occur as a half.
+
+\emph{It is quasi-uniform, not uniform.} The multiplicity profile is
+\[
+ \#\{P:\mu(P)=3\}=154,\qquad \#\{P:\mu(P)=4\}=77,
+\]
+two values differing by $1$ and not all equal, with
+$154\cdot3+77\cdot4=770=2\cdot385$.
+
+\emph{It is $\Zn{22}$-invariant} because $\mathcal B$ is by definition a union
+of $\Zn{22}$-orbits.
+\end{proof}
+
+\begin{remark}
+Chee, Dau, Etzion, Kiah and Zhang \cite{CDEKZ} use the same terminology without
+the non-uniformity clause, i.e.\ for them ``quasi-uniform'' only requires
+multiplicities differing by at most $1$. The object above is quasi-uniform in
+both senses, since its multiplicities are $3$ and $4$.
+\end{remark}
+
+\section{Verification}
+
+Every claim of Theorem~\ref{thm:main} is a finite count on the $385$ nested
+blocks generated by the table of Section~\ref{sec:object}, and a reader who
+expands that table needs nothing else: the $19$ base blocks, the rule
+$x\mapsto x+1$, and a tally of triples and of pair multiplicities. A short
+standard-library Python program, \texttt{verify.py}, accompanies this note; it
+reads the $19$ lines exactly as printed above and checks their orbit lengths
+(Lemma~\ref{lem:orbits}), the $385$ distinct underlying quadruples, the unique
+coverage of all $1540$ triples, completeness, the multiplicity profile
+$\{3^{154},4^{77}\}$, and invariance under $x\mapsto x+1$. Its recorded run is
+in \texttt{verify.output.txt}. The quotation and definitions above were
+transcribed by hand and are not machine-checked.
+
+\begin{thebibliography}{9}
+
+\bibitem{CDEKZ}
+Y.~M. Chee, S.~H. Dau, T.~Etzion, H.~M. Kiah, and X.~Zhang,
+\emph{Pairs in nested Steiner quadruple systems},
+J. Combin. Des. \textbf{33} (2025), no.~5, 177--187.
+\href{https://doi.org/10.1002/jcd.21973}{doi:10.1002/jcd.21973};
+\href{https://arxiv.org/abs/2410.14417}{arXiv:2410.14417}.
+
+\bibitem{Hanani60}
+H.~Hanani,
+\emph{On quadruple systems},
+Canad. J. Math. \textbf{12} (1960), 145--157.
+\href{https://doi.org/10.4153/CJM-1960-013-3}{doi:10.4153/CJM-1960-013-3}.
+
+\bibitem{Lu}
+X.-N. Lu,
+\emph{Completely (quasi-)uniform nested Boolean Steiner quadruple systems},
+J. Combin. Des. \textbf{34} (2026), no.~3, 139--156.
+\href{https://doi.org/10.1002/jcd.22016}{doi:10.1002/jcd.22016};
+\href{https://arxiv.org/abs/2509.06663v3}{arXiv:2509.06663v3}.
+The quotation above is from the final paragraph of Section~5 of
+arXiv:2509.06663v3; section and example numbers refer to that version, and the
+journal numbering may differ.
+
+\end{thebibliography}
+
+\end{document}

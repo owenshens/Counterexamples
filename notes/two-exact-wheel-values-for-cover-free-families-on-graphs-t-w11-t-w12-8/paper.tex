@@ -1,0 +1,269 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Two non-bold wheel entries of Parida-Moura's Table 4 are equalities}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\CFF}{\mathrm{CFF}}
+
+\title[Two non-bold wheel entries are equalities]
+{Two non-bold wheel entries of Parida--Moura's Table~4 are equalities:
+ $t(W_{11})=t(W_{12})=8$}
+
+\date{}
+
+\subjclass[2020]{05D05, 05B40, 05C90}
+\keywords{cover-free family, cover-free family on a graph, wheel, Sperner
+family, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ on $n$ vertices let $t(G)$ be the least $t$ admitting a
+$G$-cover-free family on the ground set $[t]$, in the sense of Parida and
+Moura. Table~4 of their preprint tabulates $t(P_n)$, $t(C_n)$, $t(W_n)$ and
+$t(K_n)$ for $n\le 12$ under the caption ``Upper bounds \dots\ where the bold
+entries indicate exact values''; the two wheel entries $t(W_{11})\le 8$ and
+$t(W_{12})\le 8$ are printed non-bold. We show that both are equalities,
+\[
+ t(W_{11})=t(W_{12})=8 .
+\]
+Table~4 leaves the exactness of these two non-bold upper bounds undetermined,
+and no statement of that preprint asks whether they are exact; what we do is
+supply the two matching lower bounds and so turn those two printed bounds into
+equalities. The upper bounds come
+from two families exhibited in full below. The lower bounds are exhaustive
+non-existence statements: there is no $W_{11}$-$\CFF(7,11)$ and no
+$W_{12}$-$\CFF(7,12)$, established by an exhaustive search over the whole
+solution space.
+\end{abstract}
+
+\maketitle
+
+\section{The definition and the two table entries}
+
+Let $G=([1,n],E)$ be a graph. Following Parida and Moura
+\cite[Definitions 3.1 and 4.1]{PM}, a family
+$(B_1,\dots,B_n)$ of subsets of
+$[1,t]$, with $B_i$ sitting on vertex $i$, is a \emph{$G$-cover-free family}
+$G$-$\CFF(t,n)$ when
+\begin{align}
+ &B_a\setminus B_b\neq\varnothing
+   \text{ and } B_b\setminus B_a\neq\varnothing
+   &&(\{a,b\}\in E), \label{eq:S}\\
+ &B_{i_0}\setminus(B_a\cup B_b)\neq\varnothing
+   &&(\{a,b\}\in E,\ i_0\notin\{a,b\}),
+   \label{eq:CF}
+\end{align}
+and
+\[
+ t(G)=\min\{\,t : \text{a } G\text{-}\CFF(t,|V(G)|) \text{ exists}\,\}.
+\]
+Throughout, $P_n$ and $C_n$ are the path and the cycle on $n$ vertices and
+$W_n$ is the wheel on $n$ vertices: a hub joined to every vertex of a rim cycle
+$C_{n-1}$. This is the convention of \cite{PM}, where $W_n$ is a universal
+vertex joined to all vertices of a cycle of length $n-1$.
+
+\medskip
+The two entries at issue are in Table~4 of \cite{PM}, whose columns are $n$,
+$t(P_n)$, $t(C_n)$, $t(W_n)$, $t(K_n)$. In the $t(W_n)$ column that table lists
+a bold $7$ for $n=10$ and a plain $8$ for each of $n=11$ and $n=12$, under the
+caption ``Upper bounds for $t(P_n)$, $t(C_n)$, $t(W_n)$, and $t(K_n)$, where
+the bold entries indicate exact values.'' The table is introduced with the
+words ``we display the known values for $t(P_n), t(C_n)$, and $t(W_n)$ or their
+upper bounds for $n \leq 12$''. So by the source's own caption these two plain
+entries stand there as upper bounds whose exactness is left undetermined; we
+determine them below. No statement of \cite{PM} asks whether they are exact:
+the source contains no conjecture, and its five Open Problem statements concern
+other objects.
+
+\begin{theorem}\label{thm:main}
+$t(W_{11})=8$ and $t(W_{12})=8$.
+\end{theorem}
+
+Section~\ref{sec:upper} proves $\le$ by exhibiting the two families;
+Section~\ref{sec:lower} proves $\ge$ by an exhaustive census.
+
+\section{The upper bound: two exhibited families}\label{sec:upper}
+
+The upper bound $8$ is already printed in \cite{PM}. The two paragraphs below
+are elementary and are recorded only so that the two witnesses exhibited here
+are self-contained; no novelty is claimed for them. We use the following
+observations about \eqref{eq:S}--\eqref{eq:CF}.
+
+\begin{lemma}\label{lem:anti}
+Let $m\ge3$ and let $(B_1,\dots,B_m)$ be a $C_m$-$\CFF(t,m)$, with the cycle
+$1,2,\dots,m,1$. Then $B_i\setminus B_j\neq\varnothing$ for all $i\neq j$; in
+particular the $B_i$ are nonempty and pairwise distinct.
+\end{lemma}
+
+\begin{proof}
+Fix $i\neq j$ and read indices modulo $m$. If $i\in\{j-1,j+1\}$ then $\{i,j\}$
+is an edge and \eqref{eq:S} gives $B_i\setminus B_j\neq\varnothing$. Otherwise
+$i\notin\{j,j+1\}$, so \eqref{eq:CF} applies to the edge $\{j,j+1\}$ with
+$i_0=i$ and yields
+$\varnothing\neq B_i\setminus(B_j\cup B_{j+1})\subseteq B_i\setminus B_j$.
+\end{proof}
+
+\begin{lemma}\label{lem:hub}
+Let $m\ge3$, let $(B_1,\dots,B_m)$ be a $C_m$-$\CFF(t,m)$ on $[1,t]$, and set
+$B_0=\{t+1\}$. Then $(B_0,B_1,\dots,B_m)$ is a $W_{m+1}$-$\CFF(t+1,m+1)$, where
+the hub is vertex $0$ and the rim is the cycle $1,2,\dots,m,1$. Consequently
+$t(W_{m+1})\le t(C_m)+1$.
+\end{lemma}
+
+\begin{proof}
+Every $B_i$ with $i\ge1$ lies in $[1,t]$ and $B_0=\{t+1\}$ is disjoint from all
+of them; all sets lie in $[1,t+1]$. There are two kinds of edge.
+
+\emph{Hub edges $\{0,i\}$.} For \eqref{eq:S}:
+$B_0\setminus B_i=\{t+1\}\neq\varnothing$, and
+$B_i\setminus B_0=B_i\neq\varnothing$ by Lemma~\ref{lem:anti}. For
+\eqref{eq:CF} with $i_0=k\notin\{0,i\}$:
+$B_k\setminus(B_0\cup B_i)=B_k\setminus B_i\neq\varnothing$, again by
+Lemma~\ref{lem:anti}.
+
+\emph{Rim edges $\{i,i+1\}$.} Condition \eqref{eq:S} is inherited from the
+$C_m$-$\CFF$. For \eqref{eq:CF} with $i_0=0$:
+$B_0\setminus(B_i\cup B_{i+1})=\{t+1\}\neq\varnothing$; and with $i_0=k\ge1$,
+$k\notin\{i,i+1\}$, it is inherited from the $C_m$-$\CFF$ as well.
+\end{proof}
+
+\begin{lemma}\label{lem:mono}
+A $G$-$\CFF(t,n)$ is also a $G$-$\CFF(t+1,n)$. Hence if no $G$-$\CFF(t,n)$
+exists then $t(G)\ge t+1$.
+\end{lemma}
+
+\begin{proof}
+Neither \eqref{eq:S} nor \eqref{eq:CF} mentions the ground set; enlarging
+$[1,t]$ to $[1,t+1]$ leaves every set, every difference and every union
+unchanged, and $B_i\subseteq[1,t]\subseteq[1,t+1]$. The second sentence follows
+because the set of $t$ admitting a $G$-$\CFF(t,n)$ is therefore an up-set.
+\end{proof}
+
+Here are the two objects. On the ground set $\{1,\dots,7\}$, indexed along the
+rim cycle $v_1,v_2,\dots$, put
+\begin{align}
+ R_{10}&=\bigl(\{1\},\{2,3\},\{2,4\},\{2,5\},\{2,6\},
+   \notag\\
+       &\qquad\ \{6,7\},\{3,6\},\{3,5\},\{5,7\},\{4,7\}\bigr),
+   \label{eq:R10}\\[2pt]
+ R_{11}&=\bigl(\{1\},\{2,3,4\},\{2,3,5\},\{2,3,6\},\{2,7\},\{2,4,6\},
+   \notag\\
+       &\qquad\ \{4,5,6\},\{3,4,6\},\{3,4,7\},\{3,5,7\},\{5,6,7\}\bigr).
+   \label{eq:R11}
+\end{align}
+
+\begin{lemma}\label{lem:witness}
+$R_{10}$ is a $C_{10}$-$\CFF(7,10)$ and $R_{11}$ is a $C_{11}$-$\CFF(7,11)$.
+\end{lemma}
+
+\begin{proof}
+Direct inspection of \eqref{eq:S}--\eqref{eq:CF}. For $R_{10}$ this is $10$
+edges, the last of them the wrap edge $\{v_{10},v_1\}$, hence $20$ instances of
+\eqref{eq:S} and $10\cdot 8=80$ instances of \eqref{eq:CF}; for $R_{11}$ it is
+$11$ edges, $22$ instances of \eqref{eq:S} and $11\cdot 9=99$ of
+\eqref{eq:CF}. Every one is a set difference between explicitly listed sets of
+size at most $3$. The accompanying program performs all $221$ of them and
+reports the number of violations, which is $0$ in both cases.
+\end{proof}
+
+\begin{proof}[Proof of $t(W_{11})\le 8$ and $t(W_{12})\le 8$]
+Apply Lemma~\ref{lem:hub} with $t=7$ to $R_{10}$ and to $R_{11}$, which are
+$C_{10}$- and $C_{11}$-cover-free families by Lemma~\ref{lem:witness}. With
+$B_0=\{8\}$ this gives, on the ground set $\{1,\dots,8\}$, a
+$W_{11}$-$\CFF(8,11)$
+\[
+ \bigl(\{8\}\,;\,R_{10}\bigr)
+\]
+and a $W_{12}$-$\CFF(8,12)$
+\[
+ \bigl(\{8\}\,;\,R_{11}\bigr),
+\]
+the hub carrying $\{8\}$ and the rim carrying \eqref{eq:R10} respectively
+\eqref{eq:R11} in the printed order.
+\end{proof}
+
+\section{The lower bound: an exhaustive census}\label{sec:lower}
+
+\begin{proof}[Proof of $t(W_{11})\ge 8$ and $t(W_{12})\ge 8$]
+By Lemma~\ref{lem:mono} it suffices to show that no $W_{11}$-$\CFF(7,11)$ and
+no $W_{12}$-$\CFF(7,12)$ exists. Each is a finite question: an assignment of a
+subset of $[1,7]$ to each of $n$ vertices, so $(2^7)^n$ tuples, namely $2^{77}$
+for $n=11$. It is decided as follows.
+
+\emph{Symmetry.} Conditions \eqref{eq:S} and \eqref{eq:CF} are built from set
+differences and unions only, so the whole constraint system is invariant under
+the symmetric group $S_7$ acting on the ground set. The orbits of $S_7$ on
+subsets of $[1,7]$ are exactly the size classes, so a solution exists if and
+only if one exists in which the set on the first vertex of the search order is
+one of the eight nested representatives
+$\varnothing,\{1\},\{1,2\},\dots,\{1,\dots,7\}$. Restricting the first vertex
+to those eight masks is therefore exact, not a heuristic.
+
+\emph{Decomposition.} Fixing in addition the set on the second vertex of the
+search order, arbitrarily among all $2^7=128$ subsets, splits that canonical
+space into $8\times128=1024$ shards. They are pairwise disjoint, and their union
+is the whole canonical space, because every canonical tuple has exactly one pair
+of first two sets.
+
+\emph{Enumeration.} Each shard is enumerated by depth-first search over the
+remaining vertices, taking all $2^7$ subsets at each, and backtracking on
+\eqref{eq:S} or \eqref{eq:CF} as soon as every vertex a condition mentions has
+been assigned. No derived lemma is used as a prune, so an empty census is a
+statement about \eqref{eq:S}--\eqref{eq:CF} alone.
+
+\emph{Outcome.} All $1024$ of $1024$ expected shards return, and the totals are
+\[
+\begin{array}{lccc}
+ & \text{solutions} & \text{shards} & \text{nodes}\\
+ W_{11}\text{ at }t=7: & 0 & 1024/1024 & 14{,}002{,}112\\
+ W_{12}\text{ at }t=7: & 0 & 1024/1024 & 14{,}015{,}792
+\end{array}
+\]
+By Lemma~\ref{lem:mono}, $t(W_{11})\ge8$ and $t(W_{12})\ge8$.
+\end{proof}
+
+Theorem~\ref{thm:main} follows by combining the two sections.
+
+\section{What was checked}\label{sec:status}
+
+The accompanying program \texttt{verify.py}, whose recorded run is
+\texttt{verify.output.txt}, checks the two printed witnesses
+\eqref{eq:R10}--\eqref{eq:R11} and their hub extensions directly against
+\eqref{eq:S}--\eqref{eq:CF} and re-runs the complete $t=7$ censuses for
+$W_{11}$ and $W_{12}$, reproducing the shard, solution and node counts reported
+above.
+
+The upper bound is hand-checkable from \eqref{eq:R10}--\eqref{eq:R11} with $221$
+elementary set differences; the lower bound rests on two exhaustive censuses,
+which the program re-runs rather than replaces by a hand proof. Only the two
+equalities of Theorem~\ref{thm:main} are established: the other non-bold cells
+of Table~4 are neither proved nor used, no
+$t(W_n)$ with $n\ge13$ is claimed, and no least-order claim is made --- nothing
+here says $W_{11}$ is the smallest wheel whose table entry was left inexact.
+The transcription and
+interpretation of Table~4 are read by hand off the e-print of \cite{PM} rather
+than produced by the computation.
+
+\begin{thebibliography}{9}
+
+\bibitem{PM}
+P.~Parida and L.~Moura,
+\emph{Cover-free families on graphs},
+arXiv:2605.12634v1 [math.CO], 12 May 2026.
+\href{https://arxiv.org/abs/2605.12634}{arXiv:2605.12634}.
+Definition, table and numbering references are to v1.
+
+\end{thebibliography}
+
+\end{document}

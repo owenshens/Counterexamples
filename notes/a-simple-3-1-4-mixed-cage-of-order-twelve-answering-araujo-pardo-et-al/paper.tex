@@ -1,0 +1,278 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Under a simplicity hypothesis, the order of a [3,1;4]-mixed cage is twelve}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\mn}[1]{n[#1]}
+
+\title[{Order twelve under a simplicity hypothesis}]{Under a simplicity
+hypothesis, the order of a $[3,1;4]$-mixed cage is twelve}
+
+\date{}
+
+\subjclass[2020]{05C35, 05C20, 05C38}
+\keywords{mixed graph, mixed cage, girth, directed cage, circulant}
+
+\begin{document}
+
+\begin{abstract}
+Araujo-Pardo, Hern\'andez-Cruz and Montellano-Ballesteros proved
+$\mn{z,1;4}\le 3(z+1)$ for odd $z$ and $\mn{z,1;4}\le 3z+2$ for even $z$, with
+equality for $z\in\{1,2\}$, and proposed as a first problem the search for a
+matching lower bound. Under the standing hypothesis that mixed graphs are
+\emph{simple}, we compute the single case $z=3$: $\mn{3,1;4}=12$. The upper half
+is their own circulant on $\mathbb Z_{12}$; the lower half is two lines from an
+elementary digraph lemma --- a loopless, digon-free, directed-triangle-free
+digraph on $m$ vertices with minimum out-degree $\delta\ge1$ has $m\ge
+2\delta+2$ --- applied to the digraph induced on the out-neighbourhood of one
+vertex. The same argument gives $\mn{z,1;4}\ge\lceil(5z+6)/2\rceil$ for all
+$z\ge2$. The simplicity reading is a hypothesis, not a theorem about the source,
+whose text contains both a sentence allowing multiple edges and arcs and a
+definition requiring a simple graph; we exhibit an order-$6$ multigraph object
+for which the value $12$ fails, so the multigraph variant is not decided here.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+A \emph{mixed graph} has both edges and arcs. Following Araujo-Pardo,
+Hern\'andez-Cruz and Montellano-Ballesteros \cite{AHM}, a mixed graph is
+\emph{$[z,r]$-regular} if every vertex is the tail of exactly $z$ arcs, the head
+of exactly $z$ arcs, and incident with exactly $r$ edges; a \emph{walk}
+traverses an edge in either direction and an arc only forwards; the \emph{girth}
+is the length of a shortest cycle in that sense; and $\mn{z,r;g}$ denotes the
+least order of a $[z,r]$-regular mixed graph of girth $g$, a \emph{$[z,r;g]$-mixed
+cage}. Throughout, mixed graphs are \emph{simple}: at most one arc joins a given
+ordered pair of vertices, and no arc is parallel to an edge. This convention is
+a hypothesis, and it is load-bearing; we return to it below. Since $r=1$ means
+the edges form a perfect matching, the order of a $[z,1;g]$-mixed graph is even.
+
+The target statement is Theorem~3.3 of \cite{AHM}, verbatim:
+
+\begin{quote}
+\textbf{Theorem.} Let $z\ge1$ be an integer, then we have that
+$\mn{z,1;4}\le 3(z+1)$ if $z$ is odd, $3z+2$ otherwise. Moreover, the equality
+holds for $z\in\{1,2\}$.
+\end{quote}
+
+The equality clause covers $z\in\{1,2\}$; the case treated here is $z=3$, where
+$3(z+1)=12$. A matching lower bound, in general and not specifically at $z=3$,
+is asked for in the closing paragraph of Section~4 of \cite{AHM}:
+
+\begin{quote}
+As a first problem, we propose to find a lower bound for the order of a
+$[z,1;4]$-mixed cage. This, together with the upper bound given in Theorem~3.3,
+could result in an exact value for the order of this family of mixed cages.
+\end{quote}
+
+\medskip
+\noindent\textbf{The simplicity convention.} Two clauses of \cite{AHM} conflict:
+its opening says ``We allow multiple edges and arcs'', while its definition of a
+mixed regular graph asks for ``a simple and finite graph $G$''. We do not resolve
+which reading the problem quoted above intends, and we make no claim to settle
+or extend that problem. Instead we prove a simple-graph statement, with
+simplicity as an explicit hypothesis; the remark in Section~3 shows that the
+value below is false under the multigraph reading.
+
+\begin{theorem}\label{thm:main}
+For simple mixed graphs, $\mn{3,1;4}=12$.
+\end{theorem}
+
+Consequently, for simple mixed graphs, the odd-$z$ bound $3(z+1)$ of
+Theorem~3.3 of \cite{AHM} is tight at $z=3$. Whether this is the same assertion
+as an extension of that theorem's equality clause depends on the unresolved
+convention discussed above.
+
+\section{The witness}
+
+The inequality $\mn{3,1;4}\le 12$ is Lemma~3.1(1) of \cite{AHM} at $n=3$: the
+mixed circulant $C$ on $\mathbb Z_{12}$ with
+
+\begin{center}
+arcs $i\to i+1$, $i\to i+2$, $i\to i+7$ \qquad and \qquad edges $\{i,i+6\}$,
+\end{center}
+
+all indices modulo $12$. In full:
+
+\begin{center}\ttfamily\small
+\begin{tabular}{l}
+a 0 1\ \ a 0 2\ \ a 0 7\ \ a 1 2\ \ a 1 3\ \ a 1 8\ \ a 2 3\ \ a 2 4\ \ a 2 9\\
+a 3 4\ \ a 3 5\ \ a 3 10\ \ a 4 5\ \ a 4 6\ \ a 4 11\ \ a 5 0\ \ a 5 6\ \ a 5 7\\
+a 6 1\ \ a 6 7\ \ a 6 8\ \ a 7 2\ \ a 7 8\ \ a 7 9\ \ a 8 3\ \ a 8 9\ \ a 8 10\\
+a 9 4\ \ a 9 10\ \ a 9 11\ \ a 10 0\ \ a 10 5\ \ a 10 11\ \ a 11 0\ \ a 11 1\ \ a 11 6\\[2pt]
+e 0 6\ \ e 1 7\ \ e 2 8\ \ e 3 9\ \ e 4 10\ \ e 5 11
+\end{tabular}
+\end{center}
+
+\noindent(\texttt{a u v} is the arc $u\to v$; \texttt{e u v} is the edge
+$\{u,v\}$; $36$ arcs and $6$ edges on $12$ vertices.)
+
+Out-degree and in-degree are $3$, the in-differences
+being $12-1=11$, $12-2=10$, $12-7=5$. The edges form a perfect matching, so
+$r=1$. There is no digon, since none of $11,10,5$ lies in $\{1,2,7\}$; no arc is
+parallel to an edge, since $6\notin\{1,2,7\}$. There is no directed triangle,
+because the ten three-term sums from $\{1,2,7\}$ with repetition are
+\[
+ 3,\;4,\;9,\;5,\;10,\;3,\;6,\;11,\;4,\;9 \pmod{12},
+\]
+none of them $0$; and no mixed triangle (an edge $\{x,y\}$ together with arcs
+$x\to w\to y$), because the six two-term sums
+\[
+ 2,\;3,\;8,\;4,\;9,\;2 \pmod{12}
+\]
+avoid the edge difference $6$. Finally $1+2+2+7=12$, so $0\to1\to3\to5\to0$ is a
+directed $4$-cycle. Hence the girth is exactly $4$ and $C$ is a
+$[3,1;4]$-mixed graph of order $12$.
+
+\section{The lower bound}
+
+Everything rests on one elementary lemma about digraphs.
+
+\begin{lemma}\label{lem:L}
+Let $H$ be a digraph on $m$ vertices with no loop, no digon, no directed
+triangle, and minimum out-degree $\delta\ge1$. Then $m\ge 2\delta+2$.
+\end{lemma}
+
+\begin{proof}
+The number of arcs is at least $m\delta$ and equals the sum of the in-degrees,
+so some vertex $a$ has in-degree at least $\delta$. Put $Q=N^-(a)$ and
+$P=N^+(a)$; then $|Q|,|P|\ge\delta\ge1$, and $P\cap Q=\varnothing$ because a
+vertex in both would give a digon at $a$, and $a\notin P\cup Q$ because there is
+no loop. Pick $p\in P$. Then $N^+(p)$ omits $p$ (no loop), omits $a$ (else
+$a\to p\to a$ is a digon), and omits every $q\in Q$ (else $a\to p\to q\to a$ is
+a directed triangle on three distinct vertices). Hence
+\[
+ \delta\;\le\;|N^+(p)|\;\le\;m-2-|Q|\;\le\;m-2-\delta . \qedhere
+\]
+\end{proof}
+
+Lemma~\ref{lem:L} is tight at $\delta=1$: the directed $4$-cycle has $m=4=2\cdot
+1+2$. That is the case used below. At $m=3$ the lemma says there is no such
+digraph with $\delta\ge1$, and one sees it directly: follow $a\to b\to c$; then
+$c\to a$ is a directed triangle and $c\to b$ a digon, so $c$ has nowhere to
+point.
+
+\begin{theorem}\label{thm:lower}
+For every $z\ge2$, $\mn{z,1;4}\ge\lceil(5z+6)/2\rceil$, and hence
+$\mn{z,1;4}\ge 2\lceil(5z+6)/4\rceil$ because $r=1$ forces the order to be even.
+\end{theorem}
+
+\begin{proof}
+Let $(D,M)$ be a $[z,1;4]$-mixed graph of order $n$, with $M$ the perfect
+matching of edges. Fix a vertex $u$, let $v=M(u)$, $A=N^+(u)$, $B=N^-(u)$ and
+$S=V\setminus(\{u,v\}\cup A\cup B)$. These four sets are pairwise disjoint:
+$A\cap B=\varnothing$ since a common vertex would give a digon, $u\notin A\cup B$
+since there is no loop, and $v\notin A\cup B$ since an arc parallel to the edge
+$\{u,v\}$ is a cycle of length $2$. As $|A|=|B|=z$, we get
+$|S|=n-2z-2$.
+
+Let $a\in A$. Then $N^+(a)$ omits $u$ (a digon with $u\to a$), omits $v$
+(otherwise $u\to a\to v$ together with the edge $\{v,u\}$ is a cycle of length
+$3$), and omits every $b\in B$ (otherwise $u\to a\to b\to u$ is a directed
+triangle). So $N^+(a)\subseteq (A\setminus\{a\})\cup S$, whence
+$|N^+(a)\cap A|\ge z-|S|$.
+
+Let $H$ be the digraph induced on $A$. It has $m=|A|=z$ vertices, and it
+inherits from $D$ the absence of loops, digons and directed triangles. If
+$z-|S|\le0$ then $|S|\ge z$ and $n=2z+2+|S|\ge 3z+2$. Otherwise $H$ has
+minimum out-degree at least $z-|S|\ge1$, so Lemma~\ref{lem:L} gives
+$z\ge 2(z-|S|)+2$, i.e. $|S|\ge\lceil (z+2)/2\rceil$ and therefore
+\[
+ n=2z+2+|S|\;\ge\;2z+2+\Bigl\lceil\tfrac{z+2}{2}\Bigr\rceil
+ \;=\;\Bigl\lceil\tfrac{5z+6}{2}\Bigr\rceil .
+\]
+For $z\ge2$ the second alternative is the smaller of the two, so it is the
+bound. The parity refinement is immediate.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose a $[3,1;4]$-mixed graph has order $10$. Then, in the notation of the
+previous proof, $|S|=10-2\cdot3-2=2$, so the digraph induced on $A=N^+(u)$ has
+$3$ vertices, no loop, no digon, no directed triangle and minimum out-degree at
+least $3-2=1$. Lemma~\ref{lem:L} demands $3\ge 4$, a contradiction. Orders
+below $10$ are excluded by the same one-vertex count: $n\le 6$ is impossible
+because $\{u\}\cup\{v\}\cup A\cup B$ already has $2+3+3=8$ elements, and $n=8$
+forces $|S|=0$, so $H$ would have minimum out-degree $3$ on $3$ vertices and
+Lemma~\ref{lem:L} demands $3\ge8$. As the order is even, $\mn{3,1;4}\ge12$;
+equivalently, Theorem~\ref{thm:lower} at $z=3$ gives
+$\lceil 21/2\rceil=11$ and parity lifts it to $12$. The circulant of
+Section~2 has order $12$. Hence $\mn{3,1;4}=12$.
+\end{proof}
+
+At $z=2$, Theorem~\ref{thm:lower} returns $\lceil16/2\rceil=8$, the published
+value $\mn{2,1;4}=8$ of \cite{AHM}.
+
+\begin{remark}[the simplicity hypothesis is load-bearing]
+Without it the value drops to at most $6$. On $\mathbb Z_6$ take the arc
+$i\to i+1$ with multiplicity three and the edges $\{i,i+3\}$: every vertex is the
+tail of three arcs, the head of three arcs and incident with one edge; parallel
+arcs point the same way, so they create no cycle of length $2$; $3\notin\{1\}$,
+so no arc is parallel to an edge; $1+1+1=3\ne0\bmod 6$, so there is no directed
+triangle; $1+1=2\ne3$, so there is no mixed triangle; and $0\to1\to2\to3$ with
+the edge $\{3,0\}$ is a cycle of length $4$. The multigraph variant is not
+decided here.
+\end{remark}
+
+\section{Prior work}
+
+Delete the perfect matching from a $[z,1;4]$-mixed graph and there remains a
+digraph of minimum out-degree $z$ with no digon and no directed triangle; counts
+of that kind are standard: the introduction of \cite{AHM} records that Behzad,
+Chartrand and Wall \cite{BCW} proved the analogous lower bound
+$\lceil(5z+4)/2\rceil$ on the order of a $z$-regular digraph of girth $4$. We
+claim no novelty for Lemma~\ref{lem:L} or for the count in
+Theorem~\ref{thm:lower}.
+
+We do not claim that the circulant of Section~2 is the unique simple
+$[3,1;4]$-mixed cage, and we say nothing about $g\ne4$ or $r\ne1$.
+
+\section{Verification}
+
+The mathematics needs no machine: the order-$12$ witness is settled by the
+difference computations of Section~2, and Lemma~\ref{lem:L} together with the
+count in the proof of Theorem~\ref{thm:main} excludes every smaller order in two
+lines. The accompanying program \texttt{verify.py} re-derives that in exact
+integer arithmetic from the link list printed in Section~2, confirms
+Lemma~\ref{lem:L} by exhaustive enumeration of all loopless, digon-free,
+directed-triangle-free digraphs on at most five vertices, and rechecks the objects
+exhibited in Sections~2 and~3.
+Its transcript \texttt{verify.output.txt} records $66$ passing checks in nine
+parts; parts~1--5 and~7 are the ones bearing on the statements above, and
+parts~6, 8 and~9 are arithmetic on constants quoted from the literature and
+comparisons no longer discussed here. The transcript's scope note names the
+quoted constants, and records that nothing there decides the multigraph variant
+beyond exhibiting the order-$6$ object, and that nothing there claims the
+order-$12$ witness is unique.
+
+\begin{thebibliography}{9}
+
+\bibitem{AHM}
+G.~Araujo-Pardo, C.~Hern\'andez-Cruz, and J.~J. Montellano-Ballesteros,
+\emph{Mixed cages},
+Graphs Combin. \textbf{35} (2019), no.~4, 989--999.
+\href{https://doi.org/10.1007/s00373-019-02050-1}{doi:10.1007/s00373-019-02050-1};
+\href{https://arxiv.org/abs/1702.07255}{arXiv:1702.07255}.
+Quotations above are from the preprint.
+
+\bibitem{BCW}
+M.~Behzad, G.~Chartrand, and C.~E. Wall,
+\emph{On minimal regular digraphs with given girth},
+Fund. Math. \textbf{69} (1970), 227--231.
+
+\end{thebibliography}
+
+\end{document}

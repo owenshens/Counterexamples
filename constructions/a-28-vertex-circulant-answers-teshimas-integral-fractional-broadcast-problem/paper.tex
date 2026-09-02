@@ -1,0 +1,270 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+ pdftitle={A 28-vertex circulant with integral fractional broadcast number
+strictly between its multipacking and broadcast numbers}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{problem}{Problem 4 (Teshima)}
+
+\newcommand{\mult}{\operatorname{mp}}
+\newcommand{\gb}{\gamma_b}
+\newcommand{\gbf}{\gamma_{b,f}}
+\newcommand{\ecc}{\operatorname{e}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\Zn}[1]{\mathbb Z_{#1}}
+
+\title[A circulant with integral $\gbf$ strictly between $\mult$ and $\gb$]
+{A 28-vertex circulant with integral fractional broadcast number strictly
+between its multipacking and broadcast numbers}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C12, 90C05}
+\keywords{broadcast domination, fractional broadcast number, multipacking,
+circulant graph, linear programming duality}
+
+\begin{document}
+
+\begin{abstract}
+Problem~4 of the open-problems section of Teshima's multipacking survey asks
+whether some graph $G$ has $\gbf(G)$ an integer with
+$\mult(G)<\gbf(G)<\gb(G)$. We exhibit such a graph. For the circulant
+$G=C_{28}(1,4)$ on $\Zn{28}$,
+\[
+ \mult(G)=3<\gbf(G)=4<\gb(G)=5 ,
+\]
+and the middle term is the integer $4$. Each of the three values is certified by hand: an
+explicit primal and an explicit dual of the broadcast linear program pin $\gbf=4$ by
+weak duality, a ball-counting bound pins $\gb=5$, and the multipacking number is pinned
+between an exhibited $3$-element multipacking and a mod-$7$ tiling obstruction. The dual
+is the instantiation at $r=3$ of the vertex-transitive formula that is Theorem~10 of the
+survey itself; the only argument here that is not such an instantiation is the mod-$7$
+obstruction pinning $\mult=3$. We make no claim that this is the first such witness: we
+did not determine the literature status of the problem, and did not read several of the
+most directly relevant items.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Throughout, $G=(V,E)$ is a connected graph, $\ecc(v)$ is the eccentricity of $v$, and
+$N_k[v]=\{u: d(u,v)\le k\}$. A \emph{broadcast} on $G$ is a map
+$f:V\to\{0,1,\dots,\diam(G)\}$ with $f(v)\le \ecc(v)$ for all $v$; it is
+\emph{dominating} if every $u\in V$ lies in $N_{f(v)}[v]$ for some $v$ with $f(v)\ge 1$;
+its \emph{cost} is $\sigma(f)=\sum_v f(v)$, and $\gb(G)$ is the least cost of a
+dominating broadcast. A set $M\subseteq V$ is a \emph{multipacking} if
+\begin{equation}\label{eq:mp}
+ |M\cap N_s[v]|\le s
+ \qquad\text{for every }v\in V\text{ and every }1\le s\le\diam(G),
+\end{equation}
+and $\mult(G)$ is the largest size of a multipacking. Finally $\gbf(G)$ is the optimum of
+the broadcast linear program
+\begin{equation}\label{eq:lp}
+ \gbf(G)=\min\Bigl\{\,c\cdot x \;:\; Ax\ge \mathbf 1,\ x\ge 0\,\Bigr\},
+\end{equation}
+whose columns are the pairs $(v,k)$ with $1\le k\le \ecc(v)$, whose rows are the vertices,
+with $A_{u,(v,k)}=1$ iff $d(u,v)\le k$, and with cost $c_{(v,k)}=k$. Linear programming
+duality gives $\mult\le \gbf\le\gb$. All of this is verbatim from the source below, whose
+notation we keep.
+
+\begin{problem}
+Does there exist a graph $G$ with integral $\gbf(G)$ such that
+$\mult(G)<\gbf(G)<\gb(G)$?
+\end{problem}
+
+\noindent The statement is quoted verbatim, in the survey's own notation, from the fourth of
+the seven problems of the \emph{Open Problems} subsection of the \emph{Conclusions} of
+\cite{Teshima2014}; it carries no citation there.
+
+\section{The witness}
+
+Let $G=C_{28}(1,4)$ be the circulant on $\Zn{28}$ in which $i$ is joined to $i\pm1$ and to
+$i\pm4$. It is a connected, $4$-regular, vertex-transitive graph with $28$ vertices and
+$56$ edges; in \texttt{graph6} it is the $64$-byte line
+\begin{center}\small
+\verb|[hdHGcH@GC_H?H?C_@G?H??c?@G?@G??c??H??@G??C_??H_??HO??Cc??@K_??H|
+\end{center}
+Breadth-first search from $0$ gives the levels
+\[
+ \{0\},\quad
+ \{1,4,24,27\},\quad
+ \{2,3,5,8,20,23,25,26\},\quad
+ \{6,7,9,12,16,19,21,22\},
+\]
+\[
+ \{10,11,13,15,17,18\},\quad \{14\},
+\]
+so $\ecc(v)=5$ for every $v$, $\rad(G)=\diam(G)=5$, and, writing $n_k=|N_k[v]|$,
+\begin{equation}\label{eq:profile}
+ (n_1,n_2,n_3,n_4,n_5)=(5,13,21,27,28).
+\end{equation}
+Because $\rad=\diam$ here, the convention in \eqref{eq:mp} and the variant that ranges
+$s$ only up to $\rad(G)$, common elsewhere in the literature, agree on $G$.
+
+\begin{theorem}\label{thm:main}
+For $G=C_{28}(1,4)$,
+\[
+ \mult(G)=3<\gbf(G)=4<\gb(G)=5,
+\]
+and $\gbf(G)=4$ is an integer. So $G$ has the property Problem~4 asks for.
+\end{theorem}
+
+The proof is four short certificates. Only \eqref{eq:profile}, the level lists above and
+the single set
+\begin{equation}\label{eq:T}
+ T:=\{v: d(0,v)\ge 4\}=\{10,11,13,14,15,17,18\}=14+\{0,\pm1,\pm3,\pm4\}
+\end{equation}
+are used, with integer arithmetic throughout except for the two fixed rationals $1/21$
+and $1/7$ in (A) and (B).
+
+\subsection*{(A) $\gbf(G)\le4$}
+Put $x_{(v,3)}=\tfrac1{21}$ for all $28$ vertices $v$ and $x=0$ on every other column. The
+column $(v,3)$ is legal because $3\le \ecc(v)=5$. Each $u\in V$ satisfies
+$(Ax)_u=|N_3[u]|/21=n_3/21=1$, so $Ax=\mathbf 1\ge\mathbf 1$, and the cost is
+$28\cdot 3/21=4$.
+
+\subsection*{(B) $\gbf(G)\ge4$}
+Put $y_v=\tfrac17$ for all $v$. For each column $(v,k)$, $1\le k\le5$,
+\[
+ \sum_{u\in N_k[v]}y_u=\frac{n_k}{7}
+ =\frac57,\ \frac{13}7,\ 3,\ \frac{27}7,\ 4
+ \quad\text{against}\quad
+ c_{(v,k)}=k=1,2,3,4,5 ,
+\]
+so $y$ is dual feasible, with equality exactly at $k=3$; its objective is
+$\sum_v y_v=28/7=4$. Weak duality alone now gives $\gbf(G)\ge4$, and with (A),
+$\gbf(G)=4$.
+
+\smallskip
+\begin{sloppypar}
+This dual is not ours. It is the instantiation at $r=3$ of the vertex-transitive formula
+$\gbf(G)=n\cdot\min_{1\le r\le\rad(G)} r/n_r$, which is Theorem~10 of the source survey
+itself \cite{Teshima2014}, where it is credited to R.~C.~Brewster and L.~Duchesne \cite{BD}.
+Here $\min(1/5,2/13,1/7,4/27,5/28)=1/7$, attained at $r=3$, and $28\cdot\tfrac17=4$.
+\end{sloppypar}
+
+\subsection*{(C) $\gb(G)=5$}
+Upper bound: $f(0)=5$ and $f\equiv0$ elsewhere is a legal broadcast, since $5\le\ecc(0)=5$
+and $5\le\diam(G)$, and it dominates because $N_5[0]=V$. So $\gb(G)\le5$.
+
+Lower bound, by counting only. A dominating broadcast of cost $c$ assigns positive values
+$k_1,\dots,k_m$ with $\sum k_i=c$ and $1\le k_i\le5$, and covers at most
+$\sum_i n_{k_i}$ vertices. At $c=4$ the multisets are
+\[
+ [4]\mapsto 27,\quad
+ [3,1]\mapsto 26,\quad
+ [2,2]\mapsto 26,\quad
+ [2,1,1]\mapsto 23,\quad
+ [1,1,1,1]\mapsto 20,
+\]
+with maximum $27<28$; and the same recursion gives maxima $5,13,21$ at $c=1,2,3$, all
+below $28$. So no broadcast of cost at most $4$ dominates, and $\gb(G)=5$.
+
+\subsection*{(D) $\mult(G)=3$}
+\emph{Lower bound.} $M=\{0,6,15\}$ has pairwise distances $3,3,4$. Over all $28$ vertices
+$v$, $\max_v|M\cap N_1[v]|=1$ and $\max_v|M\cap N_2[v]|=2$; concretely
+$N_2[0]\cap N_2[6]=\{1,2,3,4,5,8,26\}$, which is disjoint from
+$N_2[15]=\{7,10,11,\dots,20,23\}$, so no vertex has all three of $M$ within distance $2$.
+For $s\ge3$ the condition \eqref{eq:mp} is vacuous since $|M|=3$. Hence $M$ is a
+multipacking and $\mult(G)\ge3$.
+
+\emph{Upper bound.} Suppose $M$ is a multipacking with $|M|=4$. Summing the $s=3$ case of
+\eqref{eq:mp} over all $v$ and exchanging the order of summation,
+\[
+ \sum_{v\in V}|M\cap N_3[v]|=\sum_{u\in M}|N_3[u]|=4\cdot 21=84
+ \le 28\cdot 3=84 .
+\]
+Equality is forced, so $|M\cap N_3[v]|=3$ for \emph{every} $v$: each vertex $v$ has exactly
+one $u\in M$ with $d(u,v)\ge4$. Writing $F_u=\{v:d(u,v)\ge4\}$, the four sets $F_u$
+($u\in M$) therefore partition $\Zn{28}$, and $4\cdot 7=28$ is consistent. By
+vertex-transitivity of the circulant, $F_u=u+T$ with $T$ as in \eqref{eq:T}.
+
+Reduce modulo $7$. Let $t_j=|\{\tau\in T:\tau\equiv j\bmod 7\}|$, so
+\[
+ (t_0,\dots,t_6)=(1,1,0,2,2,0,1),
+\]
+and let $m_j=|\{u\in M: u\equiv j\bmod 7\}|$, so $\sum_j m_j=4$. Each residue class of
+$\Zn{28}$ modulo $7$ contains exactly $4$ elements, and the tiling says every $x\in\Zn{28}$
+has exactly one representation $x=u+\tau$ with $u\in M$, $\tau\in T$; counting such pairs
+inside a fixed class gives
+\begin{equation}\label{eq:conv}
+ (m*t)(j):=\sum_{a\in\Zn7} m_a\,t_{j-a}=4
+ \qquad\text{for every } j\in\Zn 7 .
+\end{equation}
+Now $t(x)=1+x+2x^3+2x^4+x^6$ is monic of degree $6$, and so is
+$\Phi_7(x)=1+x+\dots+x^6$, which is irreducible over $\mathbb Q$. If $t$ vanished at a
+primitive $7$th root of unity $\zeta$ then $\Phi_7\mid t$, and equality of degrees with
+both monic would force $t=\Phi_7$ --- false, since $t$ has coefficient $0$ at $x^2$. So
+$t(\zeta)\ne0$ for every nontrivial character of $\Zn7$. The right-hand side of
+\eqref{eq:conv} is the constant vector $4$, whose Fourier transform is supported on the
+trivial character alone; hence $\widehat m$ vanishes at every nontrivial character, $m$ is
+constant, and $7m_0=4$ --- impossible over the integers. Therefore no $4$-element
+multipacking exists and $\mult(G)\le3$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Combine (A)--(D): $\mult(G)=3$, $\gbf(G)=4$, $\gb(G)=5$. The chain is strict and the middle
+term is an integer, which is the property Problem~4 asks for. $G$ is connected,
+as the problem requires.
+\end{proof}
+
+\section{Scope}
+
+\noindent\textbf{Status and priority.} We make no priority claim, and we do not establish
+that Problem~4 was still unanswered: several of the most directly relevant items --- among
+them the manuscript \cite{BD} to which the survey credits the formula that certificate (B)
+instantiates --- we did not read. What is offered here is an explicit witness with hand
+certificates; whether it is the first, an independent one, or a rediscovery we do not know.
+
+\medskip
+\noindent\textbf{Minimality.} We do not claim that $G$ has least order among graphs
+satisfying Problem~4, and nothing here bounds that order from below.
+
+\medskip
+\noindent\textbf{Verification.} The program \texttt{verify.py} accompanying this note
+re-derives, in exact integer and rational arithmetic and from the \texttt{graph6} string
+and the definitions printed above, every quantity claimed in Theorem~\ref{thm:main}: the
+ball profile, the primal and dual feasibility of (A) and (B) at all $140$ constraints, the
+counting bound of (C), and both halves of (D) --- the latter three independent ways, by the
+polynomial argument above, by an exhaustive scan of all $210$ residue distributions, and by an exhaustive scan of all $2{,}925$ four-element subsets containing $0$ (legitimate because
+$\Zn{28}$ acts transitively). It covers this graph and nothing else, and states in its own
+output what it does not cover.
+
+\begin{thebibliography}{9}
+
+\bibitem{BD}
+R.~C. Brewster and L.~Duchesne,
+\emph{Broadcast domination and fractional multipackings},
+Manuscript, 2013; cited in \cite{Teshima2014}, and not obtainable.
+
+\bibitem{Teshima2014}
+L.~E. Teshima,
+\emph{Multipackings in graphs},
+\href{https://arxiv.org/abs/1409.8057}{arXiv:1409.8057v1} (2014).
+
+\bibitem{Yang2015}
+F.~Yang,
+\emph{New results on broadcast domination and multipacking},
+M.Sc.\ thesis, University of Victoria, 2015, handle \texttt{1828/6627}.
+
+\bibitem{Yang2019}
+F.~Yang,
+\emph{Limited broadcast domination},
+Ph.D.\ thesis, University of Victoria, 2019, handle \texttt{1828/11444}.
+
+\end{thebibliography}
+
+\end{document}

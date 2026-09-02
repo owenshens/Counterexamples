@@ -1,0 +1,97 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  e0b8bdee313b100d6cb514f2bb42893972afc631c4f2000bca40290cfdc1190b
+python:  Python 3.9.25
+=== program output follows ===
+verification of "Under a simplicity hypothesis, the order of a [3,1;4]-mixed cage is twelve"
+python 3.9.25 ; exact integer / Fraction arithmetic only, no floating-point decision
+
+=== part 1: the order-12 witness, transcribed by hand from Section 2 and rebuilt from the circulant ===
+PASS printed_list_has_12_vertices_36_arcs_6_edges [n=12, |A|=36, |E|=6]
+PASS printed_arcs_equal_the_circulant_with_differences_1_2_7 [two independent constructions, label-equal as sets of ordered pairs]
+PASS printed_edges_equal_the_difference_6_perfect_matching [{i, i+6} for i = 0..5]
+PASS no_loop
+PASS out_degree_is_3_at_every_vertex [min=max=3]
+PASS in_degree_is_3_at_every_vertex [min=max=3]
+PASS edges_form_a_perfect_matching_so_r_equals_1
+PASS paper_in_differences_are_5_10_11 [[5, 10, 11]]
+PASS no_in_difference_lies_in_the_arc_set_so_no_digon [{5,10,11} cap {1,2,7} = empty]
+PASS edge_difference_6_is_not_an_arc_difference_so_no_arc_parallel_to_an_edge
+PASS the_ten_three_term_sums_are_exactly_those_printed [[3, 4, 9, 5, 10, 3, 6, 11, 4, 9]]
+PASS no_three_term_sum_vanishes_so_no_directed_triangle
+PASS the_six_two_term_sums_are_exactly_those_printed [[2, 3, 8, 4, 9, 2]]
+PASS no_two_term_sum_equals_the_edge_difference_so_no_mixed_triangle
+PASS there_is_no_cycle_of_length_2
+PASS there_is_no_cycle_of_length_3_exhaustively [all 1320 ordered triples of distinct vertices examined]
+PASS the_exhibited_4_cycle_0_1_3_5_is_a_directed_4_cycle [1+2+2+7 = 12 = 0 mod 12]
+PASS girth_is_exactly_4_by_definitional_enumeration [shortest cycle (0, 1, 3, 5)]
+PASS girth_is_exactly_4_by_an_independent_link_bfs [bfs girth = 4]
+PASS the_two_girth_routes_agree
+PASS the_witness_is_a_valid_3_1_4_mixed_graph_of_order_12 [degrees, matching and girth all as claimed]
+
+=== part 2: the second labelling and the relabelling phi ===
+PASS phi_is_a_bijection_of_Z12
+PASS labelling_B_has_36_arcs_and_6_edges [|A|=36, |E|=6]
+PASS phi_maps_the_arcs_of_labelling_A_onto_the_arcs_of_labelling_B
+PASS phi_maps_the_edges_of_labelling_A_onto_the_canonical_matching [{{0,1},{2,3},{4,5},{6,7},{8,9},{10,11}}]
+PASS labelling_B_is_independently_a_valid_3_1_4_mixed_graph_of_girth_4 [girth 4 by both routes]
+
+=== part 3: Lemma L, by exhaustive enumeration of small digraphs ===
+PASS lemma_L_holds_for_every_loopless_digon_free_triangle_free_digraph_on_1_vertices [all 3^0 = 1 such digraphs enumerated; max attainable min-out-degree = 0]
+PASS lemma_L_holds_for_every_loopless_digon_free_triangle_free_digraph_on_2_vertices [all 3^1 = 3 such digraphs enumerated; max attainable min-out-degree = 0]
+PASS lemma_L_holds_for_every_loopless_digon_free_triangle_free_digraph_on_3_vertices [all 3^3 = 27 such digraphs enumerated; max attainable min-out-degree = 0]
+PASS lemma_L_holds_for_every_loopless_digon_free_triangle_free_digraph_on_4_vertices [all 3^6 = 729 such digraphs enumerated; max attainable min-out-degree = 1]
+PASS lemma_L_holds_for_every_loopless_digon_free_triangle_free_digraph_on_5_vertices [all 3^10 = 59049 such digraphs enumerated; max attainable min-out-degree = 1]
+PASS no_such_digraph_on_3_vertices_has_min_out_degree_at_least_1 [this single fact is the whole lower bound at z = 3]
+PASS lemma_L_is_tight_at_delta_1_on_4_vertices [witness [(0, 2), (1, 3), (2, 1), (3, 0)], and 4 = 2*1+2]
+PASS on_5_vertices_the_min_out_degree_still_cannot_exceed_1 [consistent with 5 >= 2*delta+2 forcing delta <= 1]
+
+=== part 4: the exclusion of every order below 12 at z = 3 ===
+PASS order_2_is_impossible_for_a_3_1_4_mixed_graph [the disjoint sets {u},{v},N+(u),N-(u) already need 8 vertices]
+PASS order_4_is_impossible_for_a_3_1_4_mixed_graph [the disjoint sets {u},{v},N+(u),N-(u) already need 8 vertices]
+PASS order_6_is_impossible_for_a_3_1_4_mixed_graph [the disjoint sets {u},{v},N+(u),N-(u) already need 8 vertices]
+PASS order_8_is_impossible_for_a_3_1_4_mixed_graph [the digraph induced on N+(u) has m = 3, is loopless, digon-free and directed-triangle-free with min out-degree >= 3, and the exhaustive Lemma L table caps that at 0]
+PASS order_10_is_impossible_for_a_3_1_4_mixed_graph [the digraph induced on N+(u) has m = 3, is loopless, digon-free and directed-triangle-free with min out-degree >= 1, and the exhaustive Lemma L table caps that at 0]
+PASS order_12_is_NOT_excluded_by_the_argument [the argument must not refute its own witness; S absorbs every out-arc of A; this branch gives only n >= 3z+2]
+PASS orders_2_through_11_are_excluded_and_girth_of_the_order_12_object_is_4 [each order k with 2 <= k <= 11 excluded, and the order-12 object has girth 4]
+
+=== part 5: the general bound of Theorem 3 ===
+PASS theorem_3_at_z_3_gives_11_and_parity_lifts_it_to_12 [ceil(21/2) = 11, 2*ceil(21/4) = 12]
+PASS theorem_3_at_z_2_reproduces_the_published_exact_value_8 [forced positive: n[2,1;4] = 8 is proved in the source]
+PASS theorem_3_never_exceeds_the_source_upper_bound_for_2_le_z_le_200 [a lower bound above a construction would be a bug]
+PASS the_source_upper_bound_is_even_for_every_z [as it must be, since r = 1 forces even order]
+PASS transcribed_brackets_at_z_5_and_z_6_are_16_to_18_and_18_to_20 [the two transcribed formulas of [APdM] Theorem 3 evaluate to the brackets 16..18 at z = 5 and 
+18..20 at z = 6. IMPORTED, NOT PROVED HERE: that those formulas are correct bounds on n[5,1;4] and n[6,1;4]; no check below establishes either endpoint]
+
+=== part 6: the source's other constructions, as forced positives ===
+PASS published_witness_z1_n6_is_a_valid_mixed_graph_of_girth_4 [C_6(1): n[1,1;4] <= 6 ; girth 4 by enumeration and 4 by bfs]
+PASS published_witness_z2_n8_is_a_valid_mixed_graph_of_girth_4 [C_8(1,5): n[2,1;4] <= 8 ; girth 4 by enumeration and 4 by bfs]
+PASS published_witness_z4_n14_is_a_valid_mixed_graph_of_girth_4 [C_14(1,2,8,9): n[4,1;4] <= 14 ; girth 4 by enumeration and 4 by bfs]
+
+=== part 7: the multigraph reading, which is a different and undecided problem ===
+PASS multigraph_object_has_out_and_in_degree_3_with_multiplicity [counted from the explicit 18-arc multiset: out [3, 3, 3, 3, 3, 3], in [3, 3, 3, 3, 3, 3]]
+PASS multigraph_object_edges_form_a_perfect_matching_of_Z6
+PASS parallel_arcs_create_no_cycle_of_length_2 [parallel arcs point the same way; and -1 = 5 is not an arc difference]
+PASS multigraph_object_has_no_arc_parallel_to_an_edge
+PASS multigraph_object_has_no_directed_triangle [1+1+1 = 3 != 0 mod 6]
+PASS multigraph_object_has_no_mixed_triangle [1+1 = 2 != 3]
+PASS multigraph_object_has_a_cycle_of_length_4 [0->1->2->3 closed by the edge {3,0}]
+PASS so_under_a_multigraph_reading_n_3_1_4_is_at_most_6 [girth of the support is 4, and multiplicity changes no cycle length]
+PASS the_same_object_is_REJECTED_as_a_simple_z3_object [anti-control; problems: out-degrees [1, 1, 1, 1, 1, 1]; in-degrees [1, 1, 1, 1, 1, 1]]
+
+=== part 8: arithmetic on QUOTED literature constants (not derived here) ===
+PASS quoted_n_AHM_1_1_4_equals_6 [n_0[1,r;4] = 2(r+2) at r = 1]
+PASS the_preprint_inequality_substitutes_to_exactly_12_at_z_3 [10 + 6 - 4 = 12, the same number this paper proves]
+PASS the_preprint_inequality_is_false_at_z_2_given_the_published_exact_value_8 [7 + 6 - 4 = 9 > 8 = n[2,1;4]]
+PASS the_preprint_inequality_is_false_at_z_4_given_the_verified_order_14_construction [13 + 6 - 4 = 15 > 14, and C_14(1,2,8,9) is verified above]
+
+=== part 9: the baseline comparison printed in Section 4 ===
+PASS shen_baseline_and_theorem_3_at_z_3_are_10_and_12 [the strict improvement is at the target cell]
+PASS the_directed_cage_baseline_at_z_3_is_also_only_10 [n[3,4] = 10, already even]
+PASS the_directed_cage_baseline_at_z_4_ties_theorem_3_at_14 [n[4,4] = 13, lifted to 14]
+PASS the_z_7_to_12_comparison_table_is_exactly_as_printed [shen [22, 24, 26, 30, 32, 36] vs theorem 3 [22, 24, 26, 28, 32, 34] -- ties at 7,8,9,11 and losses at 10,12]
+
+NOTE SCOPE. This program checks the note's own claims and nothing else. It reads the 36-arc/6-edge link list transcribed by hand from Section 2, rebuilds it independently from the circulant description, and re-derives every difference, sum, girth and bound; Lemma L is confirmed by complete enumeration of all loopless digon-free digraphs on at most 5 vertices, which covers the m = 3 instance the lower bound uses. GAPS NOT COVERED: this program never reads the paper, so the agreement of the transcribed link list with the printed one is not checked here; and the published constants n[2,1;4] = 8, n[z,4] = 3z+1 and n_AHM[1,1;4] = 6 are QUOTED, not derived here, so part 8 and part 9 are arithmetic consequences of the literature rather than independent verifications of it; nothing here decides the multigraph variant beyond exhibiting an order-6 object for it; nothing here claims the order-12 witness is unique; and nothing here touches girth g != 4 or edge-degree r != 1.
+
+VERDICT: ALL 66 CHECKS PASS
+=== program exited with status 0 ===

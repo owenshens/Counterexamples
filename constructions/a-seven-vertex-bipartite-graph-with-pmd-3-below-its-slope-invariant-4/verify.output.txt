@@ -1,0 +1,109 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  55ff807b66682adeacfd41f2876075910b9f112357401e9e663caa8a3471f157
+python:  Python 3.9.25
+=== program output follows ===
+exact verification of "A Seven-Vertex Bipartite Graph Whose Positive Matching
+Decomposition Number Lies Below Its Slope Invariant"
+python 3.9.25
+
+=== Step 1: the witness Gamma = Theta(2,2,4), as printed
+PASS bitmasks_match_printed_edge_list [rows (3,13,14) <-> 8 printed edges]
+PASS graph6_decodes_to_order_seven ['FEhb?' -> n = 7]
+PASS graph6_edge_set_is_the_printed_one [8 edges, label for label]
+PASS graph6_agrees_with_the_bitmasks_under_the_printed_bijection [0,1,2 = x1,x2,x3 and 3,4,5,6 = y1,y2,y3,y4]
+PASS edge_count_is_eight
+PASS the_printed_sides_are_a_bipartition [no decoded edge joins two x or two y]
+PASS degree_sequence_as_printed [x = (2, 3, 3), y = (2, 2, 2, 2)]
+PASS max_degree_is_three
+PASS gamma_is_connected
+PASS exactly_two_vertices_of_degree_three [x2 and x3 (decoded labels [1, 2])]
+PASS deleting_them_leaves_three_paths_with_1_1_3_vertices [internal vertex counts [1, 1, 3] -> path lengths 2, 2, 4]
+PASS so_gamma_is_theta_2_2_4 [path lengths [2, 2, 4], summing to |E| = 8, on 2 + 5 vertices]
+
+=== Step 2: the transcription of Algorithm 1, against the source examples
+PASS example_i_part_count_matches_the_source [K(tau) = 3, source prints 3]
+PASS example_i_parts_match_the_source_edge_for_edge [[[(1, 2), (3, 1)], [(1, 3), (2, 1), (3, 2)], [(2, 3)]]]
+PASS example_i_literal_pseudocode_also_matches_the_source_edge_for_edge [the pseudocode of lines 549-574 run statement for statement]
+PASS example_ii_part_count_matches_the_source [K(tau) = 4, source prints 4]
+PASS example_ii_parts_match_the_source_edge_for_edge [[[(2, 3), (3, 1)], [(1, 1), (3, 3)], [(1, 2)], [(1, 3)]]]
+PASS example_ii_literal_pseudocode_also_matches_the_source_edge_for_edge [the pseudocode of lines 549-574 run statement for statement]
+PASS every_run_returns_an_ordered_partition_of_E_into_matchings [648 runs, 0 defects]
+PASS algorithm_1_is_tie_order_independent_hence_deterministic [equal-slope offers have distinct columns j = s + i; 0 disagreements]
+PASS alg1_equals_the_literal_pseudocode_part_for_part [every bipartite graph of order <= 6 under every labelling, plus every labelling of Gamma, both source examples and M_5 in both orientations: 82402 runs, 0 disagreements]
+
+=== Step 3: the positivity criterion, two independent implementations
+PASS all_subsets_and_peeling_criteria_agree [678 matchings over 9 graphs, 0 disagreements]
+PASS no_perfect_matching_of_K33_is_positive [6 perfect matchings, none positive]
+PASS lemma_1_acyclic_induced_subgraph_implies_positive [232 matchings with acyclic induced subgraph, 0 not positive]
+
+=== Step 4: pmd(Gamma) = 3
+PASS the_three_printed_parts_are_matchings [sizes 2, 3, 3]
+PASS the_three_printed_parts_partition_E
+PASS M1_is_positive_in_Gamma
+PASS the_subgraph_induced_by_V_M1_is_a_path_on_four_vertices [y1-x2-y3-x3 (1-based [(2, 1), (2, 3), (3, 3)]), acyclic]
+PASS Gamma_minus_M1_is_exactly_the_printed_path [y1-x1-y2-x3-y4-x2-y3]
+PASS that_path_is_a_forest_with_max_degree_two [connected, acyclic, 6 edges on 7 vertices]
+PASS M2_is_positive_in_Gamma_minus_M1
+PASS M3_is_positive_in_Gamma_minus_M1_minus_M2
+PASS nothing_is_left_after_the_third_part
+PASS hence_pmd_at_most_three [three parts, each positive in its own residual, exhausting E]
+PASS pmd_is_at_least_Delta_equals_three [a matching holds at most one edge at each vertex, and the parts partition E]
+PASS exhaustive_search_gives_pmd_exactly_three
+PASS Gamma_has_matchings_of_size_three_but_none_is_positive [8 matchings of size 3, largest positive matching has size 2]
+PASS so_the_part_sizes_of_any_3_part_decomposition_are_forced_to_2_3_3 [the first part has size <= 2 and 8 = 2+3+3 with three parts of size <= 3]
+
+=== Step 5: K(Gamma) = 4, exhaustively
+PASS the_printed_orientation_has_144_labelings [3! * 4! = 144]
+PASS no_labeling_of_the_printed_orientation_gives_fewer_than_four_parts [the set of values over 144 labelings is [4, 5]]
+PASS nor_does_any_labeling_of_the_exchanged_orientation [X = the 4-side: values [4] over its 144 labelings]
+PASS algorithm_1_on_the_printed_labeling_returns_the_printed_four_parts [[[(2, 1), (3, 2)], [(1, 1), (3, 3)], [(1, 2), (2, 3), (3, 4)], [(2, 4)]]]
+PASS K_of_Gamma_is_4_in_the_per_orientation_reading [144 labelings]
+PASS K_of_Gamma_is_4_when_the_sides_may_be_exchanged [288 labelings]
+PASS THE_ANSWER_pmd_3_is_strictly_below_K_4 [Question 1 of the source is answered YES]
+PASS the_published_bound_Delta_le_pmd_le_K_holds_for_Gamma [3 <= 3 <= 4]
+
+=== Step 6: graphs that must NOT be witnesses
+PASS source_example_ii_has_K_tau_4_on_the_printed_labeling
+PASS but_its_K_over_all_72_labelings_is_3_so_it_is_not_a_witness [pmd = K = 3; the strict gap at a FIXED labelling is not a gap for K(Gamma)]
+PASS K22_has_pmd_equal_to_K [pmd = K = 3]
+PASS C6_has_pmd_equal_to_K [pmd = K = 3]
+PASS K33_has_pmd_equal_to_K [pmd = K = 5]
+PASS K14_has_pmd_equal_to_K [pmd = K = 4]
+PASS published_values_pmd_Kmn_equal_m_plus_n_minus_1_reproduced [10 pairs 1<=m<=n<=4, 0 mismatches]
+
+=== Step 7: the census of all bipartite graphs of order at most 7
+PASS census_sides_may_be_exchanged_order_2 [2 classes, 0 witnesses]
+PASS census_sides_may_be_exchanged_order_3 [3 classes, 0 witnesses]
+PASS census_sides_may_be_exchanged_order_4 [10 classes, 0 witnesses]
+PASS census_sides_may_be_exchanged_order_5 [18 classes, 0 witnesses]
+PASS census_sides_may_be_exchanged_order_6 [54 classes, 0 witnesses]
+PASS census_sides_may_be_exchanged_order_7 [128 classes, 1 witnesses]
+PASS the_unique_order_7_witness_is_Gamma_itself [canonical form (3, 4, (3, 13, 14)), pmd 3, K 4]
+PASS oracle_Delta_le_pmd_le_K_on_every_class_sides_may_be_exchanged [215 classes of order <= 7, 0 violations]
+PASS census_per_orientation_order_2 [2 classes, 0 witnesses]
+PASS census_per_orientation_order_3 [6 classes, 0 witnesses]
+PASS census_per_orientation_order_4 [15 classes, 0 witnesses]
+PASS census_per_orientation_order_5 [36 classes, 0 witnesses]
+PASS census_per_orientation_order_6 [92 classes, 0 witnesses]
+PASS census_per_orientation_order_7 [256 classes, 2 witnesses]
+PASS the_two_order_7_witnesses_are_the_two_orientations_of_Gamma [splits [(3, 4), (4, 3)]]
+PASS oracle_Delta_le_pmd_le_K_on_every_class_per_orientation [407 classes of order <= 7, 0 violations]
+PASS order_7_classes_with_no_isolated_vertex_as_printed [[((1, 6), 1), ((2, 5), 11), ((3, 4), 42)], total 54 of 128]
+PASS computed_census_has_no_witness_below_order_7_and_one_at_order_7 [under both readings of K, and with isolated vertices allowed]
+
+=== Step 8: the 3-regular witness M_5 on ten vertices
+PASS M5_graph6_decodes_to_the_printed_fifteen_edges ['IhEIHCPaG' -> 10 vertices, 15 edges]
+PASS M5_is_cubic
+PASS M5_is_bipartite_with_the_printed_sides [X = evens, Y = odds]
+PASS M5_rowmasks_match_the_printed_ones [(21, 11, 22, 13, 26)]
+PASS rotation_by_one_is_an_automorphism_exchanging_the_two_sides
+PASS M5_has_max_degree_three_and_pmd_four [exhaustive over positive matchings of every residual]
+PASS M5_has_14400_labelings_per_orientation [5! * 5!]
+PASS K_of_M5_is_5_in_both_readings [14,400 and 28,800 labelings]
+PASS M5_is_a_second_witness_pmd_4_below_K_5 [4 < 5, and M_5 is 3-regular]
+
+NOTE SCOPE -- what this program does NOT cover.  It re-derives, in exact integer arithmetic and from the objects printed in the note, the quantities the note states: the witness Gamma and its pmd and K.  Steps 7 and 8 go beyond the note's claims: the census of all bipartite graphs of order at most 7 under both readings of K, the minimality and uniqueness of Gamma among them, and the second witness M_5 are computations of this program, asserted nowhere in the note.  NOT RE-RUN here: (a) the source's combinatorial characterisation of a positive matching, which is a theorem of the source and is taken as the definition throughout -- this program never touches the underlying algebraic definition; (b) the READING of the source's pseudocode.  Step 2 goes as far as a program here can: the pseudocode is written out statement for statement as `alg1_source_literal`, it reproduces both of the source's worked examples part for part, and it agrees with the streamlined form used everywhere else in this program on every bipartite graph of order <= 6 under every labelling and on every labelling of Gamma, the two source examples and M_5.  What no program here can settle is that those statements are the ones printed at lines 549-574 of the source file; that single comparison is left to the reader; (c) every order >= 8 except the single graph M_5, so nothing here says how many witnesses of order 8 or 9 exist; (d) any infinite family, and in particular no lower bound on K for r-regular bipartite graphs is proved or used anywhere in this program.
+
+VERDICT: ALL 80 CHECKS PASS
+=== program exited with status 0 ===

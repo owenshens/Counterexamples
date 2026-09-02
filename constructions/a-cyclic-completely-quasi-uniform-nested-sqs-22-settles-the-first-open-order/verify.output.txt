@@ -1,0 +1,43 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9f8dabe377ab01c513e84e9c2948c0d3d5ab419071593e4c972255059c0c3c26
+python:  Python 3.9.25
+=== program output follows ===
+verification of "A Cyclic Completely Quasi-Uniform Nested SQS(22)"
+python 3.9.25, standard library only, exact integer arithmetic only
+the object is read from the 19 lines printed in Section 2 of the paper
+
+--- Step 1: the printed table of base nested blocks ---
+PASS parsed_19_base_nested_blocks_from_the_printed_table [parsed 19 rows, paper prints 19]
+PASS labels_are_B01_through_B19_each_exactly_once [19 distinct labels B01..B19 (the table is printed in two columns, so the reading order is B01,B11,B02,...)]
+PASS every_printed_point_lies_in_Z_22 [all 76 entries in 0..21]
+PASS every_base_block_is_a_4_set_split_into_two_disjoint_pairs [19 blocks, 4 distinct points each, halves disjoint]
+PASS printed_orbit_lengths_are_16_twenty_twos_and_3_elevens [multiset of printed lengths = {22: 16, 11: 3}]
+PASS printed_orbit_lengths_sum_to_385 [16*22 + 3*11 = 385]
+
+--- Step 2: Lemma 2, the orbits under x -> x+1 ---
+PASS computed_orbit_length_equals_the_printed_length_for_all_19_blocks [orbit lengths 22,22,22,22,22,22,22,11,22,22,22,22,22,11,22,22,22,11,22]
+PASS every_orbit_length_divides_22_and_is_22_or_11 [stabilisers are trivial or {0,11}]
+PASS the_three_short_orbits_are_exactly_B14_B17_B19 [short-orbit labels = B14,B17,B19]
+PASS a_base_block_has_a_short_orbit_iff_its_quadruple_is_a_union_of_two_diameters [the biconditional of Lemma 2 holds on all 19 rows]
+PASS the_diameter_decompositions_printed_in_the_proof_of_Lemma_2_are_correct [B14 = {0,11}+{3,14}, B17 = {0,11}+{2,13}, B19 = {0,11}+{5,16}]
+PASS all_three_splittings_of_a_diameter_union_quadruple_are_sigma_invariant [checked for every unordered pair of distinct diameters, all 3 splittings]
+PASS the_19_orbits_are_pairwise_disjoint_and_give_385_nested_blocks [|B| = 385]
+PASS the_nested_block_set_is_invariant_under_x_to_x_plus_1 [B is a union of Z_22-orbits, verified elementwise]
+
+--- Step 3: Theorem 1, the underlying quadruples form an SQS(22) ---
+PASS the_385_nested_blocks_have_385_distinct_underlying_quadruples [385 nested blocks, 385 distinct quadruples]
+PASS the_number_of_triples_of_a_22_set_is_1540 [C(22,3) = 1540]
+PASS every_one_of_the_1540_triples_is_covered_exactly_once [1540 triples covered, multiplicity set [1]]
+
+--- Step 4: Theorem 1, completeness and the quasi-uniform profile ---
+PASS the_number_of_pairs_of_a_22_set_is_231 [C(22,2) = 231]
+PASS all_231_pairs_occur_as_a_half_so_the_nesting_is_complete [231 distinct pairs occur, minimum multiplicity 3]
+PASS the_multiplicity_profile_is_154_pairs_at_3_and_77_pairs_at_4 [profile = {3: 154, 4: 77}]
+PASS the_nesting_is_quasi_uniform_and_not_uniform [two values, 3 and 4, differing by 1]
+PASS the_multiplicity_sum_is_770_equals_twice_385 [154*3 + 77*4 = 770 = 2*385]
+
+NOTE SCOPE: this program checks the single completely quasi-uniform nested SQS(22) printed in the note: its orbit lengths, 385 distinct underlying quadruples, unique coverage of all 1540 triples, completeness, multiplicity profile {3: 154, 4: 77}, and invariance under x -> x+1. It does not test isomorphism, enumerate other systems, or determine the full automorphism group.
+
+VERDICT: ALL 22 CHECKS PASS
+=== program exited with status 0 ===
