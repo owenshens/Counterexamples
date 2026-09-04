@@ -1,0 +1,426 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 3x3 Counterexample Family to Conjecture 4.5 of Chen-Cao's arXiv:1801.00225v1}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\per}{per}
+\newcommand{\ws}{\omega}
+\newcommand{\wt}{\tilde{\omega}}
+
+\title[A counterexample family to Conjecture 4.5 of \texttt{arXiv:1801.00225v1}]
+{A $3\times3$ Counterexample Family to Conjecture~4.5 of
+Chen--Cao's \texttt{arXiv:1801.00225v1}}
+
+\date{}
+
+\subjclass[2020]{15A15, 15B51, 05A05, 52B12}
+\keywords{permanent, doubly substochastic matrix, prescribed matrix sum,
+counterexample, convexity on a polytope}
+
+\begin{document}
+
+\begin{abstract}
+Let $\ws_n$ be the set of $n\times n$ doubly substochastic matrices (nonnegative,
+all row sums and all column sums at most $1$), let $\sigma(A)$ be the sum of all
+entries of $A$, and let $\ws_n^{\,s}=\{A\in\ws_n:\sigma(A)=s\}$. Chen and Cao
+determined $\max\{\per(I-A):A\in\ws_n^{\,s}\}$ for $n$ even and for $n$ odd with
+$s\le n-1$, left the remaining cell open, and conjectured a two-branch value for
+$n=3$, $2<s\le 3$ (their Conjecture~4.5), whose printed form needs two readings fixed
+before it can be tested (Section~\ref{sec:src}). In the fixed-mass reading, with the
+second branch read as the one their own Lemma~4.4 proves, the conjecture is false at
+\emph{every} $s$ in the open interval $(2,3)$. The witness is the one-parameter
+family
+\[
+ A(s)=\begin{pmatrix}0&1-u&u\\ 1-u&0&u\\ u&u&0\end{pmatrix},
+ \qquad u=\tfrac{s-2}{2},
+\]
+\[
+ \per\bigl(I-A(s)\bigr)=\frac{s^{3}-5s^{2}+4s+12}{4},
+\]
+which lies in $\ws_3^{\,s}$ and exceeds \emph{both} of the conjectured branches, the
+excess over the first being exactly $s(s-3)^{2}/4$. At $s=5/2$ the conjecture
+predicts $23/16$ and the witness gives $51/32$. Equivalently, Chen--Cao's own
+Lemma~4.4 is not tight anywhere on $(2,3)$. The true value
+of $\max\{\per(I-A):A\in\ws_3^{\,s}\}$ remains open; at $s=5/2$ what is established
+here is $51/32\le\max\le2$. The journal version of record was not obtained, so every
+statement here about what the source prints is a statement about the e-print
+\texttt{arXiv:1801.00225v1}.
+\end{abstract}
+
+\maketitle
+
+\section{The statement refuted}\label{sec:src}
+
+\subsection*{Notation, in the source's own words}
+An $n\times n$ nonnegative matrix is \emph{doubly stochastic} if every row sum and
+every column sum equals $1$, and \emph{doubly substochastic} if every row sum and
+every column sum is at most~$1$. Write $\Omega_n$ for the doubly stochastic
+matrices, $\ws_n$ for the doubly substochastic ones, and $\wt_n$ for the
+\emph{row} substochastic ones (only the row sums are constrained). For a square
+matrix $A=[a_{ij}]$ let $\sigma(A)=\sum_{i,j}a_{ij}$, and put
+\[
+ \ws_n^{\,s}=\{A\in\ws_n:\sigma(A)=s\},
+ \qquad
+ \wt_n^{\,s}=\{A\in\wt_n:\sigma(A)=s\}.
+\]
+No symmetry, no zero diagonal and no rationality is assumed anywhere in $\ws_n$.
+The distinction between $\ws_n$ and $\wt_n$ is the axis of this note: Chen and Cao
+settled the row substochastic problem in the cell at issue and left the doubly
+substochastic one open.
+
+\subsection*{The source statement, verbatim}
+Chen and Cao~\cite{chencao} prove
+\begin{equation}\label{eq:thm31}
+ \max\{\per(I-A):A\in\ws_n^{\,s}\}
+ =2^{e/2}\Bigl[1+\bigl(\tfrac{s-e}{2}\bigr)^{2}\Bigr],
+ \qquad e=2\lfloor s/2\rfloor,
+\end{equation}
+under the hypothesis ``$n$ is even, or $n$ is odd and $\sigma(A)\le n-1$'' (their
+Theorem~3.1; their Theorem~3.13 is the same formula over $\wt_n^{\,s}$), and they
+say of the excluded cell that ``for $A\in\ws_n^s$, the upper bound of $\per(I-A)$
+still remains mystery''. In Section~4 they settle the row substochastic half of
+that cell,
+\begin{equation}\label{eq:thm41}
+ \max\{\per(I-A):A\in\wt_n^{\,s},\ n-1<s\le n\}=2^{\frac{n-1}{2}}
+ \qquad (n \text{ odd}),
+\end{equation}
+observe that their maximiser there is \emph{not} doubly substochastic (a column sum
+exceeds $1$), and then conjecture the $n=3$ value.
+
+All statement numbers and all quotations below are from the \LaTeX{} e-print
+\texttt{arXiv:1801.00225v1} (\url{https://arxiv.org/e-print/1801.00225}), whose single
+source file \texttt{per\_I-A\_LAASubmission.tex} has SHA-256 beginning
+\texttt{9113694030113dda}; the statement numbering follows from its preamble, in which
+\texttt{thm}, \texttt{lem} and \texttt{conj} share one counter. The target statement,
+verbatim:
+\begin{equation}\label{eq:c45}
+ \max_{A\in\ws_3}\{\per(I-A)\}=
+ \begin{cases}
+  \dfrac{\sigma^{2}(A)-5\sigma(A)+12}{4}
+   &\text{if }\ \dfrac{-3+\sqrt{57}}{2}<\sigma(A)\le3,\\[8pt]
+  6-4\sigma(A)
+   &\text{if }\ 2<\sigma(A)\le\dfrac{-3+\sqrt{57}}{2},
+ \end{cases}
+\end{equation}
+and the half of it the authors \emph{prove}, verbatim (Lemma~4.4):
+\begin{equation}\label{eq:l44}
+ \max_{A\in\ws_3}\{\per(I-A)\}
+ \ \ge\ \max\Bigl\{\tfrac{\sigma^{2}(A)-5\sigma(A)+12}{4},\ 6-2\sigma(A)\Bigr\}
+ \qquad(2<\sigma(A)\le3),
+\end{equation}
+proved by exhibiting the two matrices
+\begin{equation}\label{eq:their}
+ A_0=\begin{pmatrix}0&\tfrac12&\tfrac{\sigma}{2}-1\\
+   \tfrac12&0&\tfrac12\\ \tfrac{\sigma}{2}-1&\tfrac12&0\end{pmatrix},
+ \qquad
+ A_1=\begin{pmatrix}0&1&0\\1&0&0\\0&0&\sigma-2\end{pmatrix},
+\end{equation}
+with $\per(I-A_0)=\frac{\sigma^{2}-5\sigma+12}{4}$ and
+$\per(I-A_1)=6-2\sigma$. \textbf{So \eqref{eq:c45} is precisely the assertion that
+\eqref{eq:l44} is tight}, and that is what we refute.
+
+\subsection*{Two readings, and which one is refuted}
+Two points of reading must be fixed before anything is claimed.
+
+First, \eqref{eq:c45} is printed as a maximum over all of $\ws_3$ whose right-hand
+side depends on $\sigma(A)$; read literally that is ill-formed, since
+$\max_{A\in\ws_3}\per(I-A)$ is the single number~$2$. The intended
+\emph{fixed-mass} reading, $\max$ over $\ws_3^{\,\sigma}$, is forced by
+\eqref{eq:l44} directly above it and by Conjecture~4.6, which writes
+$\max\{\per(I-B):B\in\ws_3^{\,s'}\}$ explicitly. That is the reading refuted here.
+
+Second, the printed second branch $6-4\sigma$ is negative for $\sigma>3/2$ and hence
+throughout its own stated range, whereas $\per(I-A)\ge\det(I-A)\ge0$ for doubly
+substochastic $A$; it is also contradicted in print by \eqref{eq:l44}, which the
+source states just above it. It is a misprint for the $6-2\sigma$ of \eqref{eq:l44}, and three
+independent arguments say so: the printed threshold $\frac{-3+\sqrt{57}}2$ is the root
+of $s^{2}+3s-12$, i.e.\ the crossover of the first branch with $6-2s$ (the crossover
+with $6-4s$ is the root of $s^{2}+11s-12$, namely $s=1$, outside $(2,3]$
+entirely); the authors' own $A_1$ realises $6-2\sigma$ exactly and $6-4\sigma$ never;
+and positivity forbids $6-4\sigma$. \textbf{Refuting the printed reading would
+therefore be worth nothing, and we do not claim it as content.} We refute the
+corrected, and strongest, reading
+\begin{equation}\label{eq:V}
+ V(s):=\max\Bigl\{\tfrac{s^{2}-5s+12}{4},\ 6-2s\Bigr\},
+\end{equation}
+which is exactly the lower bound \eqref{eq:l44} proves. As it happens the witness
+below exceeds $6-4s$ as well, so the refutation is independent of how the misprint
+is read; and at the headline mass $s=5/2$ the governing branch is the first one,
+printed identically in the \emph{proved} \eqref{eq:l44}, so there the two readings
+coincide.
+
+\subsection*{What text we read}
+\textbf{The version of record was not obtained.} Every sentence of this note about
+``what the source prints'' is a statement about \texttt{arXiv:1801.00225v1} and
+nothing else. The arXiv abstract page carries \texttt{[v1]} only and no
+\texttt{journal-ref}; we found no open copy of the journal version; and the reference
+list deposited with \texttt{doi:10.1016/j.laa.2018.06.031} agrees with the preprint's
+twelve \verb|\bibitem|s in eleven entries and differs in one, a term-rank paper
+replacing a preprint citation, so refereeing did alter the document. The Crossref
+record for the DOI carries no update or relation entry and we found no corrigendum
+notice; we do not conclude from that that no correction exists, since the journal text
+itself was not read and one citation-index channel could not be read either. We
+therefore state the claim in the form: \emph{Conjecture~4.5 of
+\texttt{arXiv:1801.00225v1}, in the reading fixed above, is false.} The residual risk
+is discussed in Section~\ref{sec:open}.
+
+\section{The witness}\label{sec:wit}
+
+For $s\in(2,3)$ set $u=\frac{s-2}{2}\in(0,\tfrac12)$ and
+\begin{equation}\label{eq:A}
+ A(s)=\begin{pmatrix}0&1-u&u\\ 1-u&0&u\\ u&u&0\end{pmatrix}.
+\end{equation}
+Membership in $\ws_3^{\,s}$ is checkable by eye. The entries are $0$, $u>0$ and
+$1-u>0$. The row sums are $(1,\,1,\,2u)$ and, since $A(s)$ is symmetric, the column
+sums are the same; $2u=s-2\le1$ exactly because $s\le3$. Finally
+$\sigma(A(s))=2(1-u)+4u=2+2u=s$, exactly. The column-sum clause is the one that
+matters: dropping it would place the matrix in the row substochastic class
+$\wt_3$, where the maximum \eqref{eq:thm41} is already known.
+
+For a zero-diagonal $A=\begin{psmallmatrix}0&a&b\\c&0&d\\e&f&0\end{psmallmatrix}$ the
+six permutations of $S_3$ give
+\begin{equation}\label{eq:per3}
+ \per(I-A)=1+ac+be+df-ade-bcf ,
+\end{equation}
+so with $a=c=1-u$ and $b=d=e=f=u$,
+\begin{equation}\label{eq:f}
+\begin{split}
+ \per\bigl(I-A(s)\bigr)&=1+(1-u)^{2}+2u^{2}-2(1-u)u^{2}=2-2u+u^{2}+2u^{3}\\
+ &=:f(s)=\frac{s^{3}-5s^{2}+4s+12}{4}.
+\end{split}
+\end{equation}
+
+\subsection*{The headline instance}
+At $s=5/2$, i.e.\ $u=1/4$,
+\[
+ A=\begin{pmatrix}0&\tfrac34&\tfrac14\\[2pt] \tfrac34&0&\tfrac14\\[2pt]
+   \tfrac14&\tfrac14&0\end{pmatrix}\in\ws_3,
+ \qquad
+ \sigma(A)=\tfrac52,
+\]
+with row sums and column sums $(1,1,\tfrac12)$ and
+\[
+ \per(I-A)=1+\tfrac9{16}+\tfrac1{16}+\tfrac1{16}-\tfrac3{64}-\tfrac3{64}
+ =\tfrac{51}{32}=1.59375 .
+\]
+Since $\tfrac52>\tfrac{-3+\sqrt{57}}2=2.274917\ldots$, the first branch of
+\eqref{eq:c45} is in force and predicts $\tfrac{25/4-25/2+12}{4}=\tfrac{23}{16}
+=1.4375$. The excess is exactly $\tfrac5{32}$ and the ratio is $\tfrac{51}{46}$.
+
+\subsection*{Exact values}
+Table~\ref{tab:inst} lists every value we record. All entries are exact rationals.
+
+\begin{table}[ht]
+\small
+\begin{tabular}{llllll}
+\hline
+$s$ & $1-u,\ u$ & $\per(I-A(s))=f(s)$ & $V(s)$ & branch & excess\\
+\hline
+$21/10$ & $19/20,\ 1/20$ & $7611/4000=1.902750$ & $9/5=1.8$ & second & $411/4000$\\
+$9/4$   & $7/8,\ 1/8$    & $453/256=1.769531$   & $3/2=1.5$ & second & $69/256$\\
+$5/2$   & $3/4,\ 1/4$    & $51/32=1.593750$     & $23/16=1.4375$ & first & $5/32$\\
+$11/4$  & $5/8,\ 3/8$    & $383/256=1.496094$   & $93/64=1.453125$ & first & $11/256$\\
+$14/5$  & $3/5,\ 2/5$    & $186/125=1.488000$   & $73/50=1.46$ & first & $7/250$\\
+$29/10$ & $11/20,\ 9/20$ & $5939/4000=1.484750$ & $591/400=1.4775$ & first & $29/4000$\\
+$2$ & $1,\ 0$ & $2$ & $2$ & --- & $0$\\
+$3$ & $1/2,\ 1/2$ & $3/2$ & $3/2$ & --- & $0$\\
+\hline
+\end{tabular}
+\medskip
+\caption{The witness against the corrected conjectured value \eqref{eq:V}. In the last
+two rows the mass is an endpoint, where the true maximum is published and the family
+returns exactly it, with no violation: $f(2)=2$ is \eqref{eq:thm31} at $n=3$, $e=2$,
+and $f(3)=3/2$ is Chen--Cao's Lemma~4.2, the value over $\Omega_3$.}
+\label{tab:inst}
+\end{table}
+
+\section{The refutation}\label{sec:thm}
+
+\begin{theorem}\label{thm:main}
+For every $s$ with $2<s<3$ the matrix $A(s)$ of \eqref{eq:A} lies in
+$\ws_3^{\,s}$ and
+\[
+ \max\{\per(I-A):A\in\ws_3^{\,s}\}\ \ge\ f(s)\ >\ V(s),
+\]
+where $V$ is the value \eqref{eq:V}: Conjecture~4.5 of \texttt{arXiv:1801.00225v1} in
+the reading fixed in Section~\ref{sec:src}, which is also the lower bound Lemma~4.4
+proves.
+Consequently Conjecture~4.5 of \texttt{arXiv:1801.00225v1}, in the reading fixed in
+Section~\ref{sec:src}, is false at every mass in $(2,3)$, and Lemma~4.4 is not tight
+anywhere on that interval.
+\end{theorem}
+
+\begin{proof}
+Membership and the value $f(s)$ are Section~\ref{sec:wit}. Two polynomial identities
+finish it; both are exact coefficient identities, not numerical comparisons. First,
+\begin{equation}\label{eq:id1}
+ f(s)-\frac{s^{2}-5s+12}{4}=\frac{s^{3}-6s^{2}+9s}{4}=\frac{s(s-3)^{2}}{4}>0
+ \qquad(2<s<3),
+\end{equation}
+since $s>0$ and $s\ne3$. Second, with $t=s-2\in(0,1)$,
+\begin{equation}\label{eq:id2}
+ f(s)-(6-2s)=\frac{s^{3}-5s^{2}+12s-12}{4}=t+\frac{t^{2}}4+\frac{t^{3}}4>0 .
+\end{equation}
+Because $V$ is the \emph{maximum} of the two branches and $f$ exceeds both of them at
+every interior mass, $f>V$ there. (For completeness, $f$ also exceeds the printed
+branch $6-4s$, which is negative on the whole interval, so no reading of the misprint
+and no reading of the threshold rescues the conjecture.) Equality in \eqref{eq:id1}
+occurs on $[2,3]$ only at $s=3$, and \eqref{eq:id2} degenerates only at $s=2$.
+\end{proof}
+
+The witness respects the two upper bounds proved for this functional: since
+$A(s)\in\ws_3\subset\wt_3$, Chen--Cao's \eqref{eq:thm41} and Malek's
+theorem~\cite{malek} both give $\per(I-A(s))\le2$ at $n=3$, and indeed
+$2-f(s)=(s-2)(2+3s-s^{2})/4>0$ on $(2,3]$, the roots of $2+3s-s^{2}$ being
+$\tfrac{3\pm\sqrt{17}}2$.
+
+\section{What is not settled}\label{sec:open}
+
+\subsection*{The upper bound is open, and this is the main limit}
+What is proved here is $\max\ge f(s)$ together with $f(s)>V(s)$. It is \emph{not}
+proved that $\max=f(s)$. Malek's bound~\cite{malek} gives only $\max\le2$ at $n=3$,
+and $f<2$ on $(2,3]$, so it does not decide the question. \textbf{At $s=5/2$ the
+honest bracket is $51/32\le\max\le2$}; the conjectured $23/16$ is excluded, and
+nothing here determines the true value.
+
+\subsection*{No optimality of $A(s)$ is claimed}
+$A(s)$ is exhibited only as a feasible point beating $V(s)$. \textbf{It is not claimed
+here to maximise $\per(I-A)$ over $\ws_3^{\,s}$}, on any slice of that polytope or
+over all of it; no global search over the nine free entries is offered here, and none
+is performed by the program accompanying this note. The natural tool for a rigorous
+finish is Cao and Chen's partition of the polytope of doubly substochastic matrices by
+the sum of all entries, which characterises the extreme points of exactly
+$\ws_n^{\,s}$~\cite{caochen}. That $A(s)$ has a zero diagonal is a fact about it;
+nothing here assumes a zero diagonal, and Lemma~4.4's own second witness $A_1$ of
+\eqref{eq:their} carries $a_{33}=\sigma-2\ne0$.
+
+\subsection*{The residual risk in the journal text}
+Only \texttt{arXiv:1801.00225v1} was read, and the reference list deposited with the
+DOI shows that it is not the printed document (Section~\ref{sec:src}). The refutation
+is unaffected by an edit to the misprinted branch or to the
+threshold, since at $s=5/2$ the printed and the corrected readings coincide and the
+governing first branch there is printed identically in the \emph{proved}
+\eqref{eq:l44}. The risk that remains is wholesale replacement of the conjecture in
+print: if refereeing replaced the two-branch value by the cubic $f$, then this note
+shrinks to a correction of the preprint record. The refutation of the v1 text is
+unaffected either way.
+
+\subsection*{Prior art}
+The source has four indexed citers, all of which were read; none of them quotes
+Conjecture~4.5 or~4.6 at all, they cite Lemma~4.2 and Theorems~3.1, 3.13 and~4.1.
+Malek's theorem~\cite{malek}, which we read only through its zbMATH review, lands
+adjacent --- an upper bound of $2^{\lfloor n/2\rfloor}$, with no prescribed-mass
+parameter --- rather than on the target. The citer list is not certified complete: one
+citation-index channel could not be read, and the zbMATH review of the source's own
+record is licence-blocked; neither is read here as a negative.
+
+The closest live work is Lavi~\cite{lavi}, which settles a \emph{neighbouring}
+conjecture of the same source --- the Kim--Roush value
+$\max_{A\in\Omega_{2k+1}}\per(I-A)=3\cdot2^{k-2}$, i.e.\ the doubly stochastic
+endpoint $s=n$ --- with an equality classification. It contains no counterexample to
+Conjecture~4.5 and no value on $\ws_3^{\,s}$ for $2<s<3$; it records the cell at issue
+here as open: ``For odd $n$ and $n-1<s\le n$, they determined the row-substochastic
+maximum but left the doubly substochastic case open.'' Two further papers by
+overlapping authors are adjacent but do not touch the target: Chen, Li, Yang, Zhu and
+Cao~\cite{clyzc19} prove convexity of the permanent along the segment $[I,A]$ for
+\emph{row} substochastic $A$ and conjecture a minimum over transportation polytopes,
+with no maximum over $\ws_n^{\,s}$; and Chen, Zhu, Li, Yang and Cao~\cite{czlyc21}
+characterise the extreme points of transportation polytopes with fixed total sum and
+give the maximum of $\per(A)$ there, not of $\per(I-A)$.
+
+\section{Reproduction and verification}\label{sec:repro}
+
+The load-bearing verification is by hand. Section~\ref{sec:wit} exhibits a
+$3\times3$ matrix with entries in $\{0,\tfrac14,\tfrac34\}$, six row and column sums,
+and a six-term permanent; Section~\ref{sec:thm} is two polynomial identities in one
+variable. No computation is needed to check any claim in this note, and none of the
+claims rests on floating-point arithmetic.
+
+A program accompanies this note as a re-derivation, not as evidence: it recomputes every
+permanent by the full $n!$ expansion over exact rationals, reproduces
+Table~\ref{tab:inst} including the governing branch at each mass, and verifies
+\eqref{eq:id1} and \eqref{eq:id2} by exact coefficient comparison rather than by
+sampling. It also carries out checks on material not stated in this note --- the
+geometry of the symmetric zero-diagonal slice at each tabulated mass, and a direct-sum
+lift of the witness to $n=5,7$ --- which support no claim made above. Its transcript
+records $97$ passing checks and no failures.
+
+What that run does and does not establish should be stated plainly. Its per-matrix
+checks --- membership in $\ws_3$, the mass and the permanent --- are carried out at the
+eight masses of Table~\ref{tab:inst}, six interior and two endpoints, and at no other
+mass; the strict comparison $f(s)>V(s)$ is checked at the six interior masses only,
+while at $s=2$ and $s=3$ the program checks and records the equality $f(s)=V(s)$, with
+excess exactly $0$ and no violation. Several of its check names and step headings are
+phrased as statements over the whole open interval, but what is evaluated at those
+places is exactly those sampled masses. The claim for every $s\in(2,3)$ rests on the two
+polynomial identities of Section~\ref{sec:thm}, which are proved by hand and re-checked
+by the program as identities between coefficients rather than at sample points; the
+strict signs of those two expressions on $(2,3)$ are read off by hand and are not
+machine-verified. The program does \emph{not} attempt the open upper bound of
+Section~\ref{sec:open}, performs no global search, contains no floating-point decision,
+and reads no source text: what the source prints is quoted from
+\texttt{arXiv:1801.00225v1} in Section~\ref{sec:src}, and the journal version of record
+was never obtained.
+
+\begin{thebibliography}{9}
+
+\bibitem{chencao}
+Z.~Chen and L.~Cao,
+\emph{On the maximum of the permanent of $(I-A)$},
+Linear Algebra Appl. \textbf{555} (2018), 412--431.
+\href{https://doi.org/10.1016/j.laa.2018.06.031}{doi:10.1016/j.laa.2018.06.031};
+\href{https://arxiv.org/abs/1801.00225}{arXiv:1801.00225}.
+All statement numbers and quotations in this note are from the e-print
+\texttt{arXiv:1801.00225v1}, identified in Section~\ref{sec:src}; it is
+the only full text we could reach, and the journal version was not obtained.
+
+\bibitem{malek}
+Malek,
+\emph{On the maximum of $\mathrm{per}(I-A)$},
+Linear Multilinear Algebra \textbf{19} (1986), no.~4, 347--355.
+Read only through its zbMATH review, Zbl 0604.15009 (reviewer F.~J. Gaines), from
+which we quote the bound $\per(I-A)\le2^{\lfloor n/2\rfloor}$ for row substochastic
+$A$; the article itself is paywalled and pre-digital and we did not obtain it.
+
+\bibitem{caochen}
+L.~Cao and Z.~Chen,
+\emph{Partitions of the polytope of doubly substochastic matrices},
+Linear Algebra Appl. (2019).
+\href{https://doi.org/10.1016/j.laa.2018.10.024}{doi:10.1016/j.laa.2018.10.024};
+\href{https://arxiv.org/abs/1803.00435}{arXiv:1803.00435}.
+Cited for its characterisation of the extreme points of $\ws_n^{\,s}$, which is the
+natural tool for the upper bound left open in Section~\ref{sec:open}.
+
+\bibitem{lavi}
+Y.~Lavi,
+\emph{The maximum of $\per(I-A)$ in odd order},
+\href{https://arxiv.org/abs/2608.08933}{arXiv:2608.08933} (2026).
+
+\bibitem{clyzc19}
+Z.~Chen, J.~Li, L.~Yang, Z.~Zhu and L.~Cao,
+\emph{Inequalities for permanents and permanental minors of row substochastic
+matrices},
+Electron. J. Linear Algebra \textbf{35} (2019), 633--643.
+\href{https://doi.org/10.13001/ela.2019.5143}{doi:10.13001/ela.2019.5143}.
+
+\bibitem{czlyc21}
+Z.~Chen, Z.~Zhu, J.~Li, L.~Yang and L.~Cao,
+\emph{Extreme points of certain transportation polytopes with fixed total sums},
+Electron. J. Linear Algebra \textbf{37} (2021), 256--271.
+\href{https://doi.org/10.13001/ela.2021.5141}{doi:10.13001/ela.2021.5141}.
+
+\end{thebibliography}
+
+\end{document}

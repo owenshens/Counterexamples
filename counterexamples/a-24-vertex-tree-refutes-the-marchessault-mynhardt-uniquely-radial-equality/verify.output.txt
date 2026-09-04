@@ -1,0 +1,55 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d0251bc5b97d1c224f2f18567bd7c2aa415e1e4046cb71cb5f610ea80e8aa724
+python:  Python 3.9.25
+=== program output follows ===
+PASS T is a tree on 24 vertices with 23 edges  --  n=24 m=23 connected=True
+PASS the vertex set of T is exactly the printed spine plus the four pendants  --  |V|=24
+PASS the degrees of T are as printed: six leaves, four vertices of degree 3, the rest of degree 2  --  leaves=u1 u2 u3 u4 v0 v19 | deg-3=v2 v7 v12 v17
+PASS diam(T) = 19, realised by the pair (v0,v19)  --  diam=19
+PASS rad(T) = 10, attained exactly at v9 and v10  --  rad=10 centre=v9 v10
+PASS the diametrical path of T is unique, so every split-set lies in the spine  --  diametrical pairs = [('v0', 'v19')]
+PASS the pruned split-set enumerator agrees with exhaustive enumeration of all edge subsets on P12  --  pruned=5 subsets brute=5 subsets, sizes=[1, 3]
+PASS the pruned split-set enumerator agrees with exhaustive enumeration of all edge subsets on the two-block chain  --  pruned=1 subsets brute=1 subsets, sizes=[1]
+PASS T has maximum split-set cardinality |M| = 3, and exactly one maximum split-set  --  m=3 #maximum split-sets=1 all cardinalities present=[1, 3]
+PASS that unique maximum split-set is the one printed in the paper  --  M = v4v5 v9v10 v14v15
+PASS T - M has four components, each on six vertices  --  sizes=[6, 6, 6, 6]
+PASS every radial subtree of T is a copy of S(2,2,1): radius exactly 2, and uniquely radial (gamma_b = rad = 2 attained by exactly one broadcast)  --  rad=2 diam=4 gamma_b=2 #gamma_b-broadcasts=1 | rad=2 diam=4 gamma_b=2 #gamma_b-broadcasts=1 | rad=2 diam=4 gamma_b=2 #gamma_b-broadcasts=1 | rad=2 diam=4 gamma_b=2 #gamma_b-broadcasts=1
+PASS anti-control: P5 also has radius 2 and gamma_b = 2, but it has four gamma_b-broadcasts and so is NOT uniquely radial -- the hypothesis really does need the six-vertex spider  --  rad=2 gamma_b=2 #gamma_b-broadcasts=4
+PASS the printed broadcast of strength 2 at each block centre is a dominating broadcast of cost 8, so gamma_b(T) <= 8  --  sigma=8
+PASS the cited Herke--Mynhardt formula gives gamma_b(T) = (diam T - |M|)/2 = 8, agreeing with that witness  --  (19 - 3)/2 = 8
+PASS T is non-radial (it has a split-set, and gamma_b = 8 < 10 = rad), so the paper's bound is in force  --  gamma_b=8 rad=10 #split-sets=5
+PASS the equality of the problem therefore demands i_bn(T) = gamma_b + ceil((|M|+1)/3) = 10  --  8 + ceil(4/3) = 10
+PASS witness A is a legal broadcast of cost 9 (f = 1 on nine vertices)  --  sigma=9
+PASS the support of witness A is an independent set of T  --  no two of the nine are adjacent
+PASS witness A is dominating: every one of the 24 vertices hears a broadcaster  --  unheard vertices = none
+PASS witness A is bn-independent, and the vertices hearing more than one broadcaster are exactly v1, v3, v8, v13, v18  --  multiply heard = v1 v3 v8 v13 v18
+PASS U_f^E for witness A is exactly the three edges v5v6, v10v11, v15v16  --  U_f^E = v5v6 v10v11 v15v16
+PASS witness A is maximal bn-independent by the quoted uncovered-edge criterion: T - U_f^E has four components and each holds at least two broadcasters  --  broadcasters per component = [3, 2, 2, 2]
+PASS witness A is maximal bn-independent by the quoted boundary criterion: B_f(v) - PB_f(v) is non-empty at all nine broadcasters  --  |B_f - PB_f| = [1, 2, 1, 1, 1, 1, 1, 1, 1]
+PASS witness A is maximal by the direct test as well: no unit increment of f, at any vertex of T, stays bn-independent  --  24 vertices tested
+PASS witness B is a legal broadcast of cost 9 with a different shape (g(v4)=4, g(v9)=1, g(v13)=2, g(v17)=2)  --  sigma=9, e(v4)=15 >= 4
+PASS witness B is dominating and bn-independent  --  multiply heard = v8 v15
+PASS U_g^E for witness B is the single edge v10v11  --  U_g^E = v10v11
+PASS witness B is maximal bn-independent by both of the paper's criteria  --  components of T - U_g^E carry [2, 2] broadcasters
+PASS under witness B exactly two vertices hear more than one broadcaster -- v8 and v15 -- and each lies on the boundary of both broadcasters it hears; the many vertices strictly inside some ball all hear exactly one broadcaster, which "overlaps only in boundaries" permits (reading the condition as a ban on strict interiors would give a false negative here)  --  multiply heard = v8 v15 ; strictly inside some ball = 16 vertices, none of them multiply heard
+PASS i_bn(T) <= 9 from witness A, and i_bn(T) >= gamma_b(T) = 8 from the cited inequality, so i_bn(T) is 8 or 9  --  i_bn(T) in {8,9}, predicted 10
+PASS both admissible values differ from the predicted 10, so the equality of the problem fails on T  --  8 != 10 and 9 != 10
+PASS the paper's inequality i_bn(T) <= gamma_b(T) + ceil((|M|+1)/3) is NOT contradicted: 9 <= 10  --  9 <= 10
+PASS the nine closed neighbourhoods N[u1..u4], N[v0], N[v19], N[v5], N[v10], N[v15] are pairwise disjoint, so gamma(T) >= 9  --  centres = u1 u2 u3 u4 v0 v5 v10 v15 v19
+PASS the support of witness A is an independent dominating set of T of size 9, so gamma(T) = i(T) = 9 = gamma_b(T) + 1  --  |S| = 9
+PASS control 1 (chain of two S(2,2,1)) satisfies the hypothesis with |M| = 1: n=12, diam=9, one maximum split-set, both radial subtrees uniquely radial of radius 2, gamma_b = 4  --  m=1 gamma_b=4
+PASS control 1 returns EQUALITY: a maximal bn-independent broadcast of cost 5 exists and an exhaustive search finds none of cost <= 4, so i_bn = 5 = gamma_b + 1 exactly as the quoted |M| in {1,2} theorem requires  --  cost 5 witness maximal=True; cheapest of cost <=4 = None
+PASS control 2 returns a STRICT inequality: on P12, gamma_b = 4 and |M| = 3, a maximal bn-independent broadcast of cost 5 exists and none of cost <= 4 does, so i_bn = 5 < 6 = gamma_b + ceil(4/3), matching Neilson's ceil(2n/5)  --  gamma_b=4 m=3 i_bn=5 predicted=6 ceil(2*12/5)=5
+PASS and control 2 is outside the hypothesis for the right reason: its four radial subtrees are copies of P3, of radius 1, not >= 2  --  component gamma_b values are all 1
+PASS the second exhibited tree T5 (chain of five S(2,2,1)) is a tree on 30 vertices with diameter 24  --  n=30 m=29 diam=24
+PASS T5 has maximum split-set cardinality |M| = 4 -- an EVEN one -- and exactly one maximum split-set, the printed one  --  m=4 #maximum=1 M=w4w5 w9w10 w14w15 w19w20
+PASS all five radial subtrees of T5 are uniquely radial of radius exactly 2, so T5 satisfies the hypothesis too  --  components=5
+PASS gamma_b(T5) = (24 - 4)/2 = 10, matched by the printed dominating broadcast of cost 10 at the five block centres  --  (24-4)/2 = 10, sigma = 10
+PASS the problem demands i_bn(T5) = 12, while the printed cost-11 broadcast is a maximal bn-independent broadcast by both criteria, so i_bn(T5) in {10,11}  --  predicted=12 witness cost=11 U_h^E=w5w6 w10w11 w15w16 w20w21 broadcasters per component of T5-U_h^E=[3, 2, 2, 2, 2]
+PASS so the equality fails on T5 as well, and there is no parity obstruction to |M| being even  --  10 != 12 and 11 != 12
+
+VERDICT: ALL 45 CHECKS PASS
+
+NOT RE-RUN HERE: (1) no exhaustive search over the broadcasts of T or of T5 is performed, so no exact value of i_bn(T) is established here, and no exact value of i_bn(T5) is established either; what is established above is i_bn(T) in {8,9} and i_bn(T5) in {10,11}, which is all the refutation uses. (2) The lower bound gamma_b(G) <= i_bn(G) and the formula gamma_b(T) = (diam T - |M|)/2 for a maximum split-set are transcribed from the source as cited results and are not proved here; only their arithmetic on these trees is checked, and the value 8 (resp. 10) is independently corroborated by the exhibited dominating broadcast of that cost, which bounds gamma_b from above only. (3) The two maximality criteria the paper quotes from the source are transcribed as criteria; they are applied and cross-checked against each other and, on witness A, against a direct no-single-increment test, but they are not proved. (4) No bibliographic or attribution claim is checked: the wording of the problem, its numbering in either version, the reading of "uniquely radial", and the claim that no earlier work answers it. (5) The k-fold family of which T and T5 are the members k=4 and k=5 is not treated: nothing here bears on any other k. (6) Nothing is checked about trees other than T, T5 and the three small controls, and no repair of the equality is proposed or tested.
+=== program exited with status 0 ===

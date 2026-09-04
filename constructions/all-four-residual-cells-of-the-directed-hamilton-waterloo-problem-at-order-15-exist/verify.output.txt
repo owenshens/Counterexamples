@@ -1,0 +1,83 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  b7cd3e61f087d06527b978575eb40e48241bfff85e09dcf92545f9c9748fbf48
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: all four residual cells of the directed
+Hamilton-Waterloo problem at order 15 exist -- HWP*(15; 3^11,5^3),
+HWP*(15; 3^12,5^2), HWP*(15; 3^13,5^1), HWP*(15; 3^13,15^1)
+python 3.9.25, exact integer arithmetic only
+
+=== Step 0: the ground set and the exception clause
+PASS K_star_15_has_210_arcs [15*14 = 210 = |A(K*_15)|]
+PASS a_solution_needs_exactly_14_spanning_factors [210/15 = 14 = v-1]
+PASS listing_parses_as_four_labelled_cells [4 cell headers, ['HWP*(15; 3^11, 5^3)', 'HWP*(15; 3^12, 5^2)', 'HWP*(15; 3^13, 5^1)', 'HWP*(15; 3^13, 15^1)']]
+PASS the_four_listed_cells_are_exactly_the_cells_of_the_exception_clause [clause r in {11,12,13} at (3,5) and r=13 at (3,15), with r+s=14, gives [(3, 5, 11, 3), (3, 5, 12, 2), (3, 5, 13, 1), (3, 15, 13, 1)]]
+NOTE the clause is re-derived from its own wording, not copied from the listing
+PASS cell_3p11_5p3_necessary_conditions [3 | 15, 5 | 15, r+s = 11+3 = 14, arcs 15*14 = 210]
+PASS cell_3p12_5p2_necessary_conditions [3 | 15, 5 | 15, r+s = 12+2 = 14, arcs 15*14 = 210]
+PASS cell_3p13_5p1_necessary_conditions [3 | 15, 5 | 15, r+s = 13+1 = 14, arcs 15*14 = 210]
+PASS cell_3p13_15p1_necessary_conditions [3 | 15, 15 | 15, r+s = 13+1 = 14, arcs 15*14 = 210]
+
+=== HWP*(15; 3^11, 5^3)
+PASS cell_3p11_5p3_prints_14_factors [14 factors printed, 14 required]
+PASS cell_3p11_5p3_every_factor_is_a_permutation_of_Z_15 [all factors are permutations of Z_15]
+PASS cell_3p11_5p3_every_factor_is_fixed_point_free [no cycle of length 1 and no loop]
+PASS cell_3p11_5p3_cycle_types_match_the_printed_labels [every cycle type equals its printed label]
+PASS cell_3p11_5p3_census_of_labels_matches_the_cell [labels seen {3: 11, 5: 3}, cell wants {3: 11, 5: 3}]
+PASS cell_3p11_5p3_arc_set_is_exactly_A_of_K_star_15 [210 arcs, each exactly once, and the set equals A(K*_15)]
+PASS cell_3p11_5p3_identity_adjoined_array_is_a_latin_square [all 15 columns are permutations of Z_15]
+PASS cell_3p11_5p3_sigma_i_of_0_is_a_bijection_onto_1_to_14 [sigma_i(0) over i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS cell_3p11_5p3_satisfies_every_checked_condition_of_the_criterion [factor count, permutation, fixed-point-freeness, cycle types, label census, arc-set identity, Latin square and second-entry bijection all hold]
+
+=== HWP*(15; 3^12, 5^2)
+PASS cell_3p12_5p2_prints_14_factors [14 factors printed, 14 required]
+PASS cell_3p12_5p2_every_factor_is_a_permutation_of_Z_15 [all factors are permutations of Z_15]
+PASS cell_3p12_5p2_every_factor_is_fixed_point_free [no cycle of length 1 and no loop]
+PASS cell_3p12_5p2_cycle_types_match_the_printed_labels [every cycle type equals its printed label]
+PASS cell_3p12_5p2_census_of_labels_matches_the_cell [labels seen {3: 12, 5: 2}, cell wants {3: 12, 5: 2}]
+PASS cell_3p12_5p2_arc_set_is_exactly_A_of_K_star_15 [210 arcs, each exactly once, and the set equals A(K*_15)]
+PASS cell_3p12_5p2_identity_adjoined_array_is_a_latin_square [all 15 columns are permutations of Z_15]
+PASS cell_3p12_5p2_sigma_i_of_0_is_a_bijection_onto_1_to_14 [sigma_i(0) over i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS cell_3p12_5p2_satisfies_every_checked_condition_of_the_criterion [factor count, permutation, fixed-point-freeness, cycle types, label census, arc-set identity, Latin square and second-entry bijection all hold]
+
+=== HWP*(15; 3^13, 5^1)
+PASS cell_3p13_5p1_prints_14_factors [14 factors printed, 14 required]
+PASS cell_3p13_5p1_every_factor_is_a_permutation_of_Z_15 [all factors are permutations of Z_15]
+PASS cell_3p13_5p1_every_factor_is_fixed_point_free [no cycle of length 1 and no loop]
+PASS cell_3p13_5p1_cycle_types_match_the_printed_labels [every cycle type equals its printed label]
+PASS cell_3p13_5p1_census_of_labels_matches_the_cell [labels seen {3: 13, 5: 1}, cell wants {3: 13, 5: 1}]
+PASS cell_3p13_5p1_arc_set_is_exactly_A_of_K_star_15 [210 arcs, each exactly once, and the set equals A(K*_15)]
+PASS cell_3p13_5p1_identity_adjoined_array_is_a_latin_square [all 15 columns are permutations of Z_15]
+PASS cell_3p13_5p1_sigma_i_of_0_is_a_bijection_onto_1_to_14 [sigma_i(0) over i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS cell_3p13_5p1_satisfies_every_checked_condition_of_the_criterion [factor count, permutation, fixed-point-freeness, cycle types, label census, arc-set identity, Latin square and second-entry bijection all hold]
+
+=== HWP*(15; 3^13, 15^1)
+PASS cell_3p13_15p1_prints_14_factors [14 factors printed, 14 required]
+PASS cell_3p13_15p1_every_factor_is_a_permutation_of_Z_15 [all factors are permutations of Z_15]
+PASS cell_3p13_15p1_every_factor_is_fixed_point_free [no cycle of length 1 and no loop]
+PASS cell_3p13_15p1_cycle_types_match_the_printed_labels [every cycle type equals its printed label]
+PASS cell_3p13_15p1_census_of_labels_matches_the_cell [labels seen {3: 13, 15: 1}, cell wants {3: 13, 15: 1}]
+PASS cell_3p13_15p1_arc_set_is_exactly_A_of_K_star_15 [210 arcs, each exactly once, and the set equals A(K*_15)]
+PASS cell_3p13_15p1_identity_adjoined_array_is_a_latin_square [all 15 columns are permutations of Z_15]
+PASS cell_3p13_15p1_sigma_i_of_0_is_a_bijection_onto_1_to_14 [sigma_i(0) over i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS cell_3p13_15p1_satisfies_every_checked_condition_of_the_criterion [factor count, permutation, fixed-point-freeness, cycle types, label census, arc-set identity, Latin square and second-entry bijection all hold]
+
+=== Step 2: the four witnesses are distinct objects
+PASS the_four_witnesses_are_pairwise_distinct_factor_sets [four distinct sets of 14 permutations]
+
+=== Step 3: controls, both polarities
+PASS control_positive_the_14_translations_of_Z_15_partition_A_of_K_star_15 [210 arcs, each exactly once]
+PASS control_positive_translation_cycle_types_are_as_predicted [x+c has gcd(c,15) cycles of length 15/gcd(c,15): 3^5 for c in {5,10}, 5^3 for c in {3,6,9,12}, 15^1 for gcd(c,15)=1]
+PASS control_negative_reversing_one_factor_of_3p11_5p3_is_rejected [arc set identity fails: 210 arcs printed; missing 15 [(0, 2), (1, 6), (2, 5), (3, 8)]; repeated 15 [(0, 5), (1, 13]
+PASS control_negative_the_reversal_is_also_convicted_by_the_second_entry_diagnostic [sigma_i(0) over i = [1, 3, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+PASS control_negative_duplicating_a_factor_of_3p11_5p3_is_rejected [arc set identity fails: 210 arcs printed; missing 15 [(0, 2), (1, 6), (2, 5), (3, 8)]; repeated 15 [(0, 3), (1, 14]
+PASS control_negative_deleting_a_factor_of_3p11_5p3_is_rejected [13 factors printed, 14 required; 195 arcs printed; missing 15 [(0, 4), (1, 11), (2, 8), (3, 5)]; repeat]
+PASS control_negative_mislabelling_a_cycle_type_in_3p11_5p3_is_rejected [F14 labelled 3^5 but has cycle lengths [5, 5, 5]]
+PASS control_negative_dropping_one_printed_parenthesis_in_3p11_5p3_is_rejected [F1 covers [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; F1 defines 12 of 15 images]
+
+NOTE SCOPE: this program checks the four exhibited factorizations of K*_15 and nothing else. It re-derives that each is a solution of its cell, hence that the four cells of the exception clause of printed Lemma 4.2 of Yetgin-Odabasi-Ozkan all exist.
+NOTE NOT RE-RUN: the searches that FOUND these objects (their logs were not preserved; a re-run would return different objects, and the objects printed in the note are the claim); and the cases of printed Lemma 4.2 outside the four cells, which are the source authors' own. No non-existence, census or exhaustion claim is checked or made here: every verdict above is the existence of an exhibited object.
+
+VERDICT: ALL 53 CHECKS PASS
+=== program exited with status 0 ===

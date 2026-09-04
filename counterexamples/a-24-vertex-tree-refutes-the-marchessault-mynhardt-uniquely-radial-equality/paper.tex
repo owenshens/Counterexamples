@@ -1,0 +1,422 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 24-vertex tree refuting the Marchessault-Mynhardt uniquely-radial equality}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rad}{rad}
+\newcommand{\ibn}{i_{\mathrm{bn}}}
+\newcommand{\gb}{\gamma_{b}}
+
+\title[A 24-vertex tree and the uniquely-radial equality]
+      {A 24-Vertex Tree Refuting the Marchessault--Mynhardt Uniquely-Radial Equality}
+\date{}
+
+\subjclass[2020]{05C69, 05C05}
+\keywords{broadcast domination, boundary independent broadcast, lower boundary
+independence, split-set, radial subtree, uniquely radial, tree}
+
+\begin{document}
+
+\begin{abstract}
+Let $T$ be the tree on $24$ vertices obtained by chaining four copies of the
+spider $S(2,2,1)$. Its maximum split-set is unique and has $|M|=3$, and each of
+its four radial subtrees is uniquely radial of radius exactly $2$, so $T$
+satisfies the hypothesis of Problem~19 of Marchessault and Mynhardt (Problem~2
+of \texttt{arXiv:2105.04611v2}). We exhibit a maximal boundary independent
+broadcast on $T$ of cost $9$, whence
+\[
+  \gb(T)=8\ \le\ \ibn(T)\ \le\ 9,
+  \qquad\text{while}\qquad
+  \gb(T)+\Bigl\lceil\tfrac{|M|+1}{3}\Bigr\rceil=10 .
+\]
+Both admissible values differ from $10$, so the answer to that problem is
+\emph{no}. The published inequality
+$\ibn(T)\le\gb(T)+\lceil(|M|+1)/3\rceil$ is untouched. The phrase ``uniquely
+radial'' carries no numbered definition in the source; we use it in the sense
+fixed by its use there, as explained in the introduction.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Throughout, $T$ is a tree. A \emph{broadcast} on $T$ is a function
+$f\colon V(T)\to\{0,1,\dots,\diam T\}$ with $f(v)\le e(v)$ for every $v$, where
+$e(v)$ is the eccentricity of $v$; we write $V_f^{+}=\{v: f(v)>0\}$ and
+$\sigma(f)=\sum_{v}f(v)$. A vertex $x$ \emph{hears} $u\in V_f^{+}$ when
+$d(x,u)\le f(u)$, and $f$ is \emph{dominating} when every vertex hears some
+broadcaster. The minimum cost of a dominating broadcast is the broadcast
+domination number $\gb(T)$.
+
+A broadcast is \emph{boundary independent}, or \emph{bn-independent}, when its
+broadcast balls overlap only in boundaries: with
+\[
+  N_f(u)=\{x: d(x,u)\le f(u)\},\qquad B_f(u)=\{x: d(x,u)=f(u)\},
+\]
+$f$ is bn-independent when every vertex $x$ that hears more than one
+broadcasting vertex satisfies $d(x,u)\ge f(u)$ for \emph{all} $u\in V_f^{+}$.
+The \emph{lower} boundary independent broadcast number $\ibn(T)$ is the
+\emph{minimum} cost of a \emph{maximal} bn-independent broadcast. In particular,
+exhibiting one maximal bn-independent broadcast of cost $9$ proves
+$\ibn(T)\le 9$; no minimality argument is needed.
+
+Two further notions from \cite{MM2024} are needed. An edge $xy$ is
+\emph{covered} by $u\in V_f^{+}$ when $x,y\in N_f(u)$ and at least one of $x,y$
+is not in $B_f(u)$; $U_f^{E}$ denotes the set of edges covered by no
+broadcaster. And for a diametrical path $P$ of $T$, a set $M\subseteq E(P)$ is a
+\emph{split-set} when every component-subpath of $P-M$ has even positive length
+and is diametrical in its own component of $T-M$ (\cite{MM2024},
+Definition~1). When $M$ is a \emph{maximum} split-set, the components of $T-M$
+are the \emph{radial subtrees} of $T$. As quoted in \cite{MM2024} (Theorem~1), a
+theorem of Herke and Mynhardt says that $T$ is non-radial exactly when it has a
+split-set, and that then
+\begin{equation}\label{eq:HM}
+  \gb(T)=\frac{\diam T-|M|}{2}
+\end{equation}
+for a maximum split-set $M$. A radial subtree is called \emph{uniquely radial}
+in \cite{MM2024} when its broadcast domination number equals its radius and is
+attained by exactly one broadcast. The phrase carries no numbered definition
+there. What is defined is \emph{radial}: \cite{MM2024} asks ``which graphs $G$
+satisfy $\gb(G)=\rad(G)$? Such a graph $G$ is called radial''. The force of
+``uniquely'' is fixed by use, in the discussion of the tree $T_1$ of Figure~3 of
+\cite{MM2024}, whose radial subtrees are declared not uniquely radial because
+each one ``has a dominating broadcast of cost $2$ from a central vertex, as well
+as the broadcast shown''. We adopt that reading, and it is the one clause of the
+hypothesis below that is a reading rather than a quotation.
+
+Three results of \cite{MM2024} are quoted below and not reproved. First, the
+inequalities $\gb(G)\le\ibn(G)\le\rad(G)$ (the first from
+\cite{MM2024}, Proposition~3, the second from the paragraph following it).
+Second, the upper bound (\cite{MM2024}, Theorem~5)
+\begin{equation}\label{eq:bound}
+  \ibn(T)\ \le\ \gb(T)+\Bigl\lceil\frac{|M|+1}{3}\Bigr\rceil ,
+\end{equation}
+which asserts ``$\le$'' only. Third, the theorem settling the two smallest
+cells (\cite{MM2024}, Theorem~6): if the radial subtrees of $T$ are uniquely
+radial and $|M|\in\{1,2\}$, then $\ibn(T)=\gb(T)+1$. Since
+$\lceil(|M|+1)/3\rceil=1$ for $|M|\in\{1,2\}$,
+that theorem is exactly the equality case of \eqref{eq:bound} in those two
+cells. The problem we answer asks whether the equality persists beyond them.
+
+\begin{problem}[\cite{MM2024}, Problem~19, p.~96, quoted verbatim; = Problem~2
+of the e-print \cite{MM2021}]\label{prob:19}
+Let $T$ be a tree whose radial subtrees are uniquely radial with radii at least
+$2$ for any maximum split-set $M$. Is it true that
+$\ibn(T)=\gb(T)+\bigl\lceil\frac{|M|+1}{3}\bigr\rceil$?
+\end{problem}
+
+The answer is no.
+
+\begin{theorem}\label{thm:main}
+Let $T$ be the tree of Section~\ref{sec:object}. Then $T$ has a unique maximum
+split-set $M$, with $|M|=3$; each of its four radial subtrees is uniquely radial
+of radius exactly $2$; and
+\[
+  \gb(T)=8,\qquad 8\le\ibn(T)\le 9,\qquad
+  \gb(T)+\Bigl\lceil\frac{|M|+1}{3}\Bigr\rceil=10 .
+\]
+In particular $\ibn(T)\ne\gb(T)+\bigl\lceil\frac{|M|+1}{3}\bigr\rceil$, so the
+answer to Problem~\ref{prob:19} is negative.
+\end{theorem}
+
+Theorem~\ref{thm:main} contradicts no theorem of \cite{MM2024}. The
+inequality~\eqref{eq:bound} asserts only ``$\le$'', and $9\le 10$; the case
+$|M|\le 2$ is untouched, because $|M|=3$ here. What fails is only the
+conjectured equality, and it fails in the first cell the quoted theorem does not
+reach.
+
+\section{The tree}\label{sec:object}
+
+Let $S(2,2,1)$ be the $6$-vertex spider with centre $c$, two legs $c\,a_1\,a_2$
+and $c\,b_1\,b_2$ of length~$2$, and one pendant $u$ at $c$; it has $\diam=4$
+and $\rad=2$. Let $T$ be the chain of four copies of $S(2,2,1)$, obtained by
+adding the three edges $b_2^{(i)}a_2^{(i+1)}$ for $i=1,2,3$. Thus $T$ has a
+spine $v_0v_1\cdots v_{19}$, reading
+\[
+  a_2^{(1)}a_1^{(1)}c^{(1)}b_1^{(1)}b_2^{(1)}\;\bigl|\;
+  a_2^{(2)}a_1^{(2)}c^{(2)}b_1^{(2)}b_2^{(2)}\;\bigl|\;
+  a_2^{(3)}a_1^{(3)}c^{(3)}b_1^{(3)}b_2^{(3)}\;\bigl|\;
+  a_2^{(4)}a_1^{(4)}c^{(4)}b_1^{(4)}b_2^{(4)},
+\]
+together with four pendants $u_1,u_2,u_3,u_4$ attached at the block centres
+$c^{(i)}$, which are the spine vertices $v_2,v_7,v_{12},v_{17}$. Its $24$
+vertices are $v_0,\dots,v_{19},u_1,\dots,u_4$ and its $23$ edges are, in full,
+\begin{equation}\label{eq:edges}
+\begin{gathered}
+  v_0v_1,\;v_1v_2,\;v_2v_3,\;v_3v_4,\;v_4v_5,\;v_5v_6,\;v_6v_7,\;v_7v_8,\;
+  v_8v_9,\;v_9v_{10},\\
+  v_{10}v_{11},\;v_{11}v_{12},\;v_{12}v_{13},\;v_{13}v_{14},\;v_{14}v_{15},\;
+  v_{15}v_{16},\;v_{16}v_{17},\;v_{17}v_{18},\;v_{18}v_{19},\\
+  v_2u_1,\;v_7u_2,\;v_{12}u_3,\;v_{17}u_4 .
+\end{gathered}
+\end{equation}
+Its leaves are $v_0,v_{19},u_1,u_2,u_3,u_4$; the vertices
+$v_2,v_7,v_{12},v_{17}$ have degree $3$ and every other spine vertex has degree
+$2$. Finally $\diam T=d(v_0,v_{19})=19$ and $\rad T=10$, attained at $v_9$ and
+$v_{10}$.
+
+\section{$T$ satisfies the hypothesis}\label{sec:hyp}
+
+\begin{lemma}\label{lem:uniquepath}
+$(v_0,v_{19})$ is the only pair of vertices of $T$ at distance $19$, so the
+diametrical path of $T$ is unique and every split-set of $T$ consists of spine
+edges.
+\end{lemma}
+
+\begin{proof}
+Every vertex of maximum eccentricity is a leaf, and the leaves are
+$v_0,v_{19},u_1,\dots,u_4$. Now $d(v_0,v_{19})=19$, while
+$d(v_0,u_i)\in\{3,8,13,18\}$, $d(u_i,v_{19})\in\{18,13,8,3\}$ and
+$d(u_i,u_j)\le 17$ for $i\ne j$.
+\end{proof}
+
+For $1\le p\le 19$ write $e_p=v_{p-1}v_p$ for the $p$-th spine edge, so that by
+Lemma~\ref{lem:uniquepath} a split-set is a set $\{e_{p_1},\dots,e_{p_m}\}$ with
+$p_1<\dots<p_m$. The component-subpaths then have lengths
+\begin{equation}\label{eq:parts}
+  p_1-1,\quad p_2-p_1-1,\quad\dots,\quad p_m-p_{m-1}-1,\quad 19-p_m ,
+\end{equation}
+and these $m+1$ lengths are even, positive and sum to $19-m$.
+
+\begin{lemma}\label{lem:parity}
+For any split-set $M$ of any tree $T$, $|M|\equiv\diam T\pmod 2$.
+\end{lemma}
+
+\begin{proof}
+The $|M|+1$ component-subpath lengths are even and sum to $\diam T-|M|$.
+\end{proof}
+
+\begin{lemma}\label{lem:splitset}
+$T$ has a unique maximum split-set, namely
+\[
+  M=\{e_5,e_{10},e_{15}\}=\{v_4v_5,\;v_9v_{10},\;v_{14}v_{15}\},
+\]
+and $|M|=3$.
+\end{lemma}
+
+\begin{proof}
+\emph{Forbidden positions.} Cutting $e_p$ makes both $v_{p-1}$ and $v_p$
+endpoints of component-subpaths. Suppose some centre $c^{(i)}$ is an endpoint of
+a subpath of length $L$, and let $y$ be that subpath's other endpoint. The
+pendant $u_i$ lies in the same component of $T-M$ and satisfies
+$d(u_i,y)=L+1>L$, so the subpath is not diametrical in its component. As the
+centres are the spine vertices at positions $2,7,12,17$, this forbids
+$p\in\{2,3,7,8,12,13,17,18\}$. Cutting $e_1$ or $e_{19}$ leaves a subpath of
+length $0$, which is not positive. The admissible positions are therefore
+\[
+  p\in\{4,5,6,9,10,11,14,15,16\}.
+\]
+
+\emph{Parity.} By \eqref{eq:parts}, $p_1-1$ even forces $p_1$ odd; then
+$p_{j+1}-p_j-1$ even forces $p_{j+1}\not\equiv p_j\pmod 2$, so the parities
+alternate. Among the admissible positions the odd ones are $\{5,9,11,15\}$ and
+the even ones are $\{4,6,10,14,16\}$. By Lemma~\ref{lem:parity}, $m$ is odd.
+
+\emph{Spacing.} Each subpath has even positive length, hence length at least
+$2$, so $p_{j+1}\ge p_j+3$.
+
+\emph{Conclusion.} If $m\ge 5$ then $p_m\ge p_1+3(m-1)\ge 5+12=17$, and no
+admissible position is at least $17$; with $m$ odd this leaves $m\in\{1,3\}$.
+For $m=3$ we need $p_1$ odd, $p_2$ even and $p_3$ odd, all admissible, with gaps
+at least $3$. If $p_1=5$ then $p_2\in\{10,14,16\}$; $p_2\in\{14,16\}$ forces
+$p_3\ge 17$, impossible, and $p_2=10$ forces $p_3=15$. If $p_1=9$ then
+$p_2\in\{14,16\}$ and $p_3\ge 17$, impossible; if $p_1=11$ then $p_2\ge 14$ and
+again $p_3\ge 17$; and $p_1=15$ leaves no room. So $(p_1,p_2,p_3)=(5,10,15)$ is
+the only possibility. Its subpath lengths are $4,4,4,4$, each even and positive,
+and each subpath is diametrical in its component: the component of $v_0$ is
+$\{v_0,\dots,v_4,u_1\}$, in which $d(v_0,v_4)=4$ while $d(u_1,v_0)=d(u_1,v_4)=3$,
+so its diameter is $4$; the other three components are identical copies. Hence
+$M=\{e_5,e_{10},e_{15}\}$ is a split-set, and it is the unique one of maximum
+cardinality.
+\end{proof}
+
+Because the maximum split-set is unique, the quantifier ``for any maximum
+split-set $M$'' in Problem~\ref{prob:19} ranges over one set only, and the value
+$|M|=3$ entering the formula is unambiguous.
+
+\begin{lemma}\label{lem:ur}
+Each of the four radial subtrees of $T$ is a copy of $S(2,2,1)$, and is uniquely
+radial of radius exactly $2$.
+\end{lemma}
+
+\begin{proof}
+Each component of $T-M$ consists of one block's five spine vertices together
+with that block's pendant, i.e.\ is a copy of $S(2,2,1)$, with $\rad=2$ and
+unique centre $c$. We claim its only dominating broadcast of cost $2$ is
+$\{c\mapsto 2\}$. A single vertex of strength $2$ must be within distance $2$ of
+all six vertices, and only $c$ is: $a_1$ misses $b_2$, $u$ misses $a_2$, and
+$a_2$ misses $b_1$, each at distance $3$. Two vertices of strength $1$ cannot
+dominate, because $a_2$ forces a broadcaster in $\{a_1,a_2\}$, $b_2$ forces one
+in $\{b_1,b_2\}$ and $u$ forces one in $\{u,c\}$, and these three requirements
+are pairwise disjoint. Hence $\gb=2=\rad$ and the $\gb$-broadcast is unique.
+\end{proof}
+
+Finally, $T$ has a split-set, so $T$ is non-radial and \eqref{eq:HM} applies:
+\begin{equation}\label{eq:gb}
+  \gb(T)=\frac{\diam T-|M|}{2}=\frac{19-3}{2}=8 ,
+\end{equation}
+which is corroborated from above by the dominating broadcast
+$\{v_2\mapsto 2,\,v_7\mapsto 2,\,v_{12}\mapsto 2,\,v_{17}\mapsto 2\}$ of cost
+$8$ at the four block centres, and is consistent with $\gb(T)=8<10=\rad T$.
+Consequently Problem~\ref{prob:19} demands
+\begin{equation}\label{eq:pred}
+  \ibn(T)\ \overset{?}{=}\ \gb(T)+\Bigl\lceil\frac{|M|+1}{3}\Bigr\rceil
+  \ =\ 8+\Bigl\lceil\frac{4}{3}\Bigr\rceil\ =\ 10 .
+\end{equation}
+\section{The certificate}\label{sec:cert}
+
+We use one maximality criterion of \cite{MM2024}, quoted and not reproved.
+
+\begin{proposition}[\cite{MM2024}, Proposition~7]\label{prop:crit}
+If $f$ is bn-independent, $|V_f^{+}|\ge 2$, and every component of $T-U_f^{E}$
+contains at least two broadcasting vertices, then $f$ is maximal bn-independent.
+\end{proposition}
+
+\begin{lemma}\label{lem:witnessA}
+Let
+\[
+  S=\{v_0,v_2,v_4,v_7,v_9,v_{12},v_{14},v_{17},v_{19}\}
+\]
+and let $f\equiv 1$ on $S$ and $f\equiv 0$ elsewhere. Then $f$ is a maximal
+bn-independent broadcast on $T$ of cost $9$. Consequently $\ibn(T)\le 9$.
+\end{lemma}
+
+\begin{proof}
+$f$ is a broadcast, since $f\le 1\le e(v)$ everywhere, and $\sigma(f)=|S|=9$.
+
+\emph{$S$ is independent.} Consecutive members of $S$ are at spine distance
+$2,2,3,2,3,2,3,2$, never $1$.
+
+\emph{$f$ is dominating.} The nine members of $S$ hear themselves. Of the
+remaining fifteen vertices: $v_1$ is heard by $v_0$, $v_3$ by $v_2$, $v_5$ by
+$v_4$, $v_6$ by $v_7$, $v_8$ by $v_7$, $v_{10}$ by $v_9$, $v_{11}$ by $v_{12}$,
+$v_{13}$ by $v_{12}$, $v_{15}$ by $v_{14}$, $v_{16}$ by $v_{17}$ and $v_{18}$ by
+$v_{17}$; and $u_1,u_2,u_3,u_4$ by $v_2,v_7,v_{12},v_{17}$ respectively, every
+block centre being a broadcaster.
+
+\emph{$f$ is bn-independent.} The vertices hearing more than one broadcaster are
+exactly $v_1,v_3,v_8,v_{13},v_{18}$: each is the midpoint of one of the five
+spine paths of length $2$ joining two members of $S$, and no other vertex is
+within distance $1$ of two members of $S$. Each of the five lies at distance
+exactly $1=f(u)$ from both broadcasters it hears, and at distance at least $1$
+from every member of $S$, because none of them belongs to $S$ ($S$ being
+independent). So the required condition $d(x,u)\ge f(u)=1$ for all
+$u\in V_f^{+}$ holds at each.
+
+\emph{$f$ is maximal, by Proposition~\ref{prop:crit}.} With $f\equiv 1$ on
+its support we have $N_f(u)=N[u]$ and $B_f(u)=N(u)$, so an edge is covered by
+$u$ if and only if $u$ is one of its endpoints. Hence $U_f^{E}$ is the set of
+edges with neither endpoint in $S$, namely
+\[
+  U_f^{E}=\{v_5v_6,\;v_{10}v_{11},\;v_{15}v_{16}\} ,
+\]
+and $T-U_f^{E}$ has the four components
+\[
+  \{v_0,\dots,v_5,u_1\},\quad\{v_6,\dots,v_{10},u_2\},\quad
+  \{v_{11},\dots,v_{15},u_3\},\quad\{v_{16},\dots,v_{19},u_4\},
+\]
+carrying $3,2,2,2$ broadcasters respectively. Since $|V_f^{+}|=9\ge 2$, the
+criterion applies.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemmas~\ref{lem:splitset} and~\ref{lem:ur} put $T$ inside the hypothesis of
+Problem~\ref{prob:19}, with $|M|=3$, and \eqref{eq:gb} gives $\gb(T)=8$, so the
+demanded value is $10$ by \eqref{eq:pred}. Lemma~\ref{lem:witnessA} gives
+$\ibn(T)\le 9$. For the lower bound, $\gb(T)\le\ibn(T)$ is quoted from
+\cite{MM2024}, so $\ibn(T)\ge 8$. Hence $\ibn(T)\in\{8,9\}$, and both values
+differ from $10$.
+\end{proof}
+
+\section*{Scope}
+
+Every step above is finite and recomputable from the edge list \eqref{eq:edges}
+and the broadcast printed there. The exact value of $\ibn(T)$ is \emph{not}
+claimed as a result of this note: no exhaustive search over the broadcasts of
+$T$ is carried out here, either by hand or by the verification program
+accompanying this note. Nothing in Theorem~\ref{thm:main} depends on it, since
+$8\ne 10$ and $9\ne 10$ alike. No claim is made about any tree other than $T$,
+and no repair of Problem~\ref{prob:19} is proposed: we neither propose a
+hypothesis restoring the equality nor characterise the trees for which it does
+hold.
+
+A search of the boundary independent broadcast literature turned up no answer to
+Problem~\ref{prob:19} and no tree with the properties above. The abstract page
+of \cite{MM2021} carries exactly two versions and no erratum; of the papers we
+could find citing \cite{MM2024}, none answers this problem; and the later paper
+of Hoepner, MacGillivray and Mynhardt (\href{https://doi.org/10.7151/dmgt.2546}
+{doi:10.7151/dmgt.2546}) answers neighbouring problems of the same list, but not
+this one. That search was not exhaustive, and it turned up no settled range of
+$|M|$ beyond the $|M|\in\{1,2\}$ of the quoted theorem.
+
+\medskip
+\noindent\textbf{Exact verification.}
+A verification program, \texttt{verify.py}, accompanies this note, together with
+the recorded output \texttt{verify.output.txt} of a run of it. It is
+Python~3.9+ and uses the standard library only, reads the edge list
+\eqref{eq:edges} and the broadcast $f$ exactly as printed, and re-derives from
+the definitions restated in Section~\ref{sec:intro}: that $T$ is a tree of the
+stated order, size, degree sequence, diameter and radius; that its diametrical
+path is unique; the complete list of split-sets of $T$, hence $|M|=3$ and the
+uniqueness of the maximum split-set; the radius, broadcast domination number and
+\emph{number} of $\gb$-broadcasts of each radial subtree, hence unique radiality
+under the reading of Section~\ref{sec:intro}; the value $8$ that \eqref{eq:HM}
+demands of $\gb$, together with the exhibited dominating broadcast of that cost;
+and that $f$ is a legal broadcast of cost $9$, is dominating, is bn-independent
+with exactly the stated set of multiply-heard vertices, has exactly the stated
+$U_f^{E}$, and satisfies the hypotheses of Proposition~\ref{prop:crit}. The
+split-set enumerator prunes on the even-positive-length condition, and is
+therefore also checked against exhaustive enumeration of \emph{all} edge subsets
+of the diametrical path on two small trees, where the two agree exactly.
+
+Beyond these, the recorded run contains checks on further objects and quantities
+--- a second broadcast on $T$, the domination number of $T$, a five-block chain,
+and small control trees --- none of which is discussed in this note and none of
+which anything above relies on.
+
+The program does not check the interpretive and bibliographic assertions of this
+note --- the wording and numbering of Problem~\ref{prob:19}, the reading of
+``uniquely radial'', and the claim that no earlier work answers it --- and it
+does not prove the results quoted from \cite{MM2024}: the formula \eqref{eq:HM},
+the inequality $\gb\le\ibn$ and Proposition~\ref{prop:crit} are transcribed as
+cited results, and only their arithmetic and their application to $T$ are
+checked. The program prints one line per check and a closing verdict, and exits
+$0$ only if every check passes; the recorded run reports $45$ checks, all
+passing. Its own closing statement of what it does not cover is reproduced with
+it.
+
+\begin{thebibliography}{9}
+
+\bibitem{MM2024}
+E.~M. Marchessault and C.~M. Mynhardt,
+\emph{Lower boundary independent broadcasts in trees},
+Discuss. Math. Graph Theory \textbf{44} (2024), 75--99,
+\href{https://doi.org/10.7151/dmgt.2434}{doi:10.7151/dmgt.2434}.
+Problem~19 is on p.~96, in Section~5 (Open Problems).
+
+\bibitem{MM2021}
+E.~M. Marchessault and C.~M. Mynhardt,
+\emph{Lower boundary independent broadcasts in trees},
+e-print \href{https://arxiv.org/abs/2105.04611v2}{arXiv:2105.04611v2}
+(27 June 2021).
+Problem~2 of its Section~5 (Open Problems) is Problem~19 of \cite{MM2024},
+clause for clause.
+
+\end{thebibliography}
+
+\end{document}

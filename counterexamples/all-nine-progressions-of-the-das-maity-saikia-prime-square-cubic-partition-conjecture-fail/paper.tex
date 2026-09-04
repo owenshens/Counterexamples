@@ -1,0 +1,395 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+% last-resort stretch, so a long \texttt{} token never runs into the margin
+\emergencystretch=3em
+
+\hypersetup{
+  pdftitle={All nine progressions of the conjecture of Das, Maity and Saikia
+            on generalized cubic partitions modulo prime squares printed in
+            arXiv:2503.19399v2 fail}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem*{conjecture}{Conjecture 7.2 of \cite{DMS}, as printed in arXiv:2503.19399v2}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[Nine progressions conjectured in arXiv:2503.19399v2 fail]
+{All Nine Progressions of the Conjecture of Das, Maity and Saikia on
+ Generalized Cubic Partitions Modulo Prime Squares Printed in
+ arXiv:2503.19399v2 Fail}
+
+\date{}
+
+\subjclass[2020]{11P83, 05A17, 11P82}
+\keywords{generalized cubic partitions, partition congruences, prime square moduli,
+counterexample, eta-quotient}
+
+\begin{document}
+
+\begin{abstract}
+Let $a_c(n)$ be defined by $\sum_{n\ge0}a_c(n)q^n=1/(f_1f_2^{\,c-1})$, where
+$f_k=\prod_{m\ge1}(1-q^{km})$. In the concluding remarks of the e-print
+arXiv:2503.19399v2 of their paper on generalized cubic and overcubic partitions, Das,
+Maity and Saikia conjecture nine arithmetic progressions of the shape
+$a_{p-6}(p^2n+r)\equiv0\pmod{p^2}$, for $p\in\{31,43,59,71,83\}$. Every one of the nine
+is false as printed there. The cheapest witness is
+\[
+ a_{65}(41)=451303321502143296879\equiv 2170\not\equiv 0 \pmod{71^2},
+\]
+which kills the fourth line at $n=0$, the smallest index its own quantifier admits; the
+other eight lines hold at $n=0$ and fail at $n=1$. The witness needs no computer: modulo
+$71$ the coefficient equals the $41$st coefficient of $f_2^{7}/f_1$, which is a $21$-term
+dot product of two published integer sequences and equals $-31$, and $71\nmid31$. The
+refuted text is the e-print; the paywalled version of record has not been read.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+For an integer $c\ge1$ put
+\begin{equation}\label{eq:def}
+ \sum_{n\ge0}a_c(n)\,q^n \;=\; \frac{1}{f_1\,f_2^{\,c-1}},
+ \qquad f_k:=\prod_{m\ge1}\bigl(1-q^{km}\bigr),\qquad a_c(0)=1 ,
+\end{equation}
+which is the displayed generating function of \cite{DMS}: one uncoloured copy
+of every part, together with $c-1$ further colours for the \emph{even} parts only. For
+$c=2$ these are the classical cubic partition numbers
+$1,1,3,4,9,12,23,31,54,73,118,159,\dots$ (OEIS \texttt{A002513} \cite{A002513}).
+
+\begin{remark}\label{rem:prose}
+The prose sentence accompanying \eqref{eq:def} in \cite{DMS} says that each part may
+appear in $c$ colours, i.e.\ describes $1/f_1^{\,c}$, and drops the word ``even''. That
+reading is not the one the authors computed with: under $1/f_1^{\,c}$ the series at $c=2$
+is not \texttt{A002513}, and \emph{none} of the nine cells below vanishes even at $n=0$.
+The displayed form \eqref{eq:def} is confirmed by the modular-forms table of \cite{DMS},
+which carries $\eta(2z)^{\,c-1}$ in every row, i.e.\ the even-part factor
+$f_2^{\,c-1}$, and by Ghoshal and Jana \cite{GJ}, who in restating the definition write
+that each \emph{even} part may appear in $c$ colours. Everything below uses
+\eqref{eq:def}.
+\end{remark}
+
+The target is the second of the three conjectures in the concluding remarks of \cite{DMS},
+i.e.\ item~2 of the enumerated list of Section~7, which prints as Conjecture~7.2.
+
+\begin{conjecture}
+For all $n\ge0$, we have
+\begin{align*}
+ a_{25}(31^2n+r)&\equiv 0 \pmod{31^2}, & r&\in\{41,\,81,\,585\},\\
+ a_{37}(43^2n+r)&\equiv 0 \pmod{43^2}, & r&\in\{716,\,987\},\\
+ a_{53}(59^2n+100)&\equiv 0 \pmod{59^2},\\
+ a_{65}(71^2n+r)&\equiv 0 \pmod{71^2}, & r&\in\{41,\,47\},\\
+ a_{77}(83^2n+157)&\equiv 0 \pmod{83^2}.
+\end{align*}
+\end{conjecture}
+
+\noindent
+It is a conjunction of nine progressions, one for each triple $(c,p,r)$ listed in
+Table~\ref{tab:cells}, each with $c=p-6$; one non-vanishing coefficient falsifies it as
+printed, and $n=0$ is
+admitted by the source's own quantifier ``for all $n\ge0$''. Its lead-in sentence reads
+``We also have the following conjecture, which cannot be proved similarly like the proof of
+Theorem~[\,\ldots\,]'', the cross-reference there being to the proved congruence
+$a_3(7^2n+39)\equiv0\pmod{7^2}$ of \cite{DMS}.
+
+\emph{Locator and scope.} The conjecture above is quoted from the arXiv e-print
+\texttt{arXiv:2503.19399v2}, with only the inter-column spacing reset and the source's
+equation label dropped; the nine progressions are otherwise as printed. The block carrying
+it is byte-identical in v1 and v2. The version of record is behind a paywall with no
+open-access copy, and its body has not been read: everything below is scoped to the
+e-print. See \S\ref{sec:open}, item~(W1).
+
+\section{The result}
+
+\begin{theorem}\label{thm:main}
+Every one of the nine progressions of Conjecture~7.2 as printed in arXiv:2503.19399v2 is
+false. Explicitly:
+\begin{enumerate}
+\item[(i)] The fourth line fails at $n=0$, the smallest index it asserts anything about:
+\begin{equation}\label{eq:witness}
+ a_{65}(41)=451303321502143296879\equiv 2170 \pmod{71^2},\qquad 2170\ne0 ,
+\end{equation}
+and indeed $a_{65}(41)\equiv 40\pmod{71}$, so the congruence fails already modulo the
+first power of the prime.
+\item[(ii)] Each of the other eight lines holds at $n=0$ and fails at $n=1$; seven of
+those eight fail at $n=1$ already modulo $p$. The eighteen values are in
+Table~\ref{tab:cells}.
+\end{enumerate}
+\end{theorem}
+
+Part~(i) is the whole refutation of the conjecture as printed, and it is a statement about
+one coefficient of a power series with $42$ terms. Part~(ii) is what stops the result
+being read as a misprint: it is not that eight lines survive and one does not.
+
+The two residues in part~(i) are verified by one multiplication each:
+\begin{align}
+ 451303321502143296879&=71\cdot 6356384809889342209+40, \label{eq:div1}\\
+ 451303321502143296879&=5041\cdot 89526546618159749+2170,\label{eq:div2}
+\end{align}
+where $5041=71^2$; and $2170=71\cdot30+40$, so the two lines agree.
+
+\section{A one-integer certificate}\label{sec:cert}
+
+The following reduction replaces the large integer of \eqref{eq:witness} by a single small
+one, and shows that $r=41$ cannot work for $p=71$. Here $p(\cdot)$ denotes the ordinary
+partition function (OEIS \texttt{A000041} \cite{A000041}).
+
+\begin{lemma}\label{lem:red}
+Let $p\ge7$ be prime, $c=p-6$, and put
+$b(m):=[q^m]\,f_2^{7}/f_1\in\mathbb{Z}$. Then for every $N\ge0$
+\[
+ a_c(N)\;\equiv\;\sum_{j\ge0,\;2pj\le N}p(j)\,b(N-2pj)\pmod p .
+\]
+\end{lemma}
+
+\begin{proof}
+Since $(1-x)^p\equiv1-x^p\pmod p$ we have $f_2^{\,p}\equiv f_{2p}\pmod p$, and $f_2^{7}$
+has constant term $1$, so $f_2^{-7}\in\mathbb{Z}[[q]]$ and
+$f_2^{\,c-1}=f_2^{\,p-7}=f_2^{\,p}/f_2^{7}\equiv f_{2p}/f_2^{7}\pmod p$. Hence
+\[
+ \frac{1}{f_1f_2^{\,c-1}}\;\equiv\;\frac{f_2^{7}}{f_1}\cdot\frac{1}{f_{2p}}\pmod p .
+\]
+Now $1/f_{2p}=\sum_{j\ge0}p(j)q^{2pj}$; comparing coefficients of $q^N$ gives the claim.
+\end{proof}
+
+The displayed congruence in that proof is Equation~(14) of \cite{Gua}, so the reduction is
+not new; it is restated here only to fix the notation used below.
+
+\begin{corollary}\label{cor:red}
+If $N<2p$ then $a_{p-6}(N)\equiv b(N)\pmod p$.
+\end{corollary}
+
+Apply Corollary~\ref{cor:red} with $p=71$, $c=65$ (so $c-1=64=71-7$) and $N=41<142$.
+Since $f_2^{7}$ carries only even exponents, writing
+$e(k):=[x^k]\prod_{n\ge1}(1-x^n)^7$, so that $[q^{2k}]f_2^{7}=e(k)$, the sum has exactly
+$21$ terms and nothing is omitted:
+\begin{equation}\label{eq:dot}
+ b(41)=\sum_{k=0}^{20}e(k)\,p(41-2k).
+\end{equation}
+Both rows are published sequences: $e$ is OEIS \texttt{A000730} \cite{A000730} and $p$ is
+\texttt{A000041}. Table~\ref{tab:dot} prints them and the products.
+
+\begin{table}[ht]
+\scriptsize
+\begin{tabular}{r|rrrrrrrrrrr}
+$k$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$\\
+$e(k)$ & $1$ & $-7$ & $14$ & $7$ & $-49$ & $21$ & $35$ & $41$ & $-49$ & $-133$ & $98$\\
+$p(41-2k)$ & $44583$ & $31185$ & $21637$ & $14883$ & $10143$ & $6842$ & $4565$ & $3010$
+ & $1958$ & $1255$ & $792$\\
+\hline
+$k$ & $11$ & $12$ & $13$ & $14$ & $15$ & $16$ & $17$ & $18$ & $19$ & $20$ &\\
+$e(k)$ & $-21$ & $126$ & $112$ & $-176$ & $-105$ & $-126$ & $140$ & $-35$ & $147$
+ & $259$ &\\
+$p(41-2k)$ & $490$ & $297$ & $176$ & $101$ & $56$ & $30$ & $15$ & $7$ & $3$ & $1$ &
+\end{tabular}
+\medskip
+\caption{The certificate \eqref{eq:dot}. The $21$ products are
+$+44583$, $-218295$, $+302918$, $+104181$, $-497007$, $+143682$, $+159775$, $+123410$,
+$-95942$, $-166915$, $+77616$, $-10290$, $+37422$, $+19712$, $-17776$, $-5880$, $-3780$,
+$+2100$, $-245$, $+441$, $+259$; the positive ones sum to $1016099$ and the negative ones
+to $1016130$, so $b(41)=-31$. Spot checks from $\prod(1-x^n)^7$: $e(0)=1$, $e(1)=-7$,
+$e(2)=21-7=14$, $e(3)=-35+49-7=7$.}
+\label{tab:dot}
+\end{table}
+
+Therefore $b(41)=-31$ and $a_{65}(41)\equiv-31\equiv40\pmod{71}$. \emph{Since $71\nmid31$,
+$a_{65}(41)$ is not divisible by $71$, a fortiori not by $71^2$, and the conjecture as
+printed is false.}
+
+\section{All nine lines}\label{sec:census}
+
+Table~\ref{tab:cells} evaluates all nine printed cells at $n=0,1,2$.
+
+\begin{table}[ht]
+\small
+\begin{tabular}{rrr|rrr|r}
+$c$ & $p$ & $r$ & $n=0$ & $n=1$ & $n=2$ & $n=1$ mod $p$\\
+\hline
+$25$ & $31$ & $41$ & $\mathbf{0}$ & $87$ & $154$ & $25$\\
+$25$ & $31$ & $81$ & $\mathbf{0}$ & $425$ & $685$ & $22$\\
+$25$ & $31$ & $585$ & $\mathbf{0}$ & $336$ & $823$ & $26$\\
+$37$ & $43$ & $716$ & $\mathbf{0}$ & $382$ & $199$ & $38$\\
+$37$ & $43$ & $987$ & $\mathbf{0}$ & $301$ & $288$ & $\mathbf{0}$\\
+$53$ & $59$ & $100$ & $\mathbf{0}$ & $1768$ & $3210$ & $57$\\
+$65$ & $71$ & $41$ & $\mathbf{2170}$ & $3779$ & $1478$ & $16$\\
+$65$ & $71$ & $47$ & $\mathbf{0}$ & $3518$ & $885$ & $39$\\
+$77$ & $83$ & $157$ & $\mathbf{0}$ & $429$ & $6028$ & $14$
+\end{tabular}
+\medskip
+\caption{$a_c(p^2n+r)\bmod p^2$ for the nine printed cells, and the $n=1$ column reduced
+mod $p$. Every line is false. Eight of the nine $n=1$ values are not even divisible by
+$p$; the single exception is $(c,p,r)=(37,43,987)$, where $301=43\cdot7$ is divisible by
+$43$ and not by $43^2$, so that line is false all the same.}
+\label{tab:cells}
+\end{table}
+
+All $18\,221$ residue classes $r\in[0,p^2)$ for these five primes, with $c=p-6$, were
+tested at $n=0,1,2$, with the following outcome.
+
+\begin{corollary}\label{cor:census}
+For each of the five primes $p\in\{31,43,59,71,83\}$ and $c=p-6$ there is no residue
+$r$ modulo $p^2$ whatsoever for which $a_c(p^2n+r)\equiv0\pmod{p^2}$ holds for the three
+consecutive values $n=0,1,2$. In particular no re-choice of any of the nine printed
+residues rescues any of the five lines.
+\end{corollary}
+
+\section{Related published results}\label{sec:diag}
+
+Normalising the relevant eta-quotient, $\eta(2z)^{7}/\eta(z)=q^{13/24}f_2^{7}/f_1$, so by
+Lemma~\ref{lem:red} the governing variable is $24N+13$. Guadalupe's published mod-$p$
+congruence for this family concerns the residues with
+\begin{equation}\label{eq:diag}
+ 24r+13\equiv0\pmod p ,
+\end{equation}
+and \emph{criterion \eqref{eq:diag} is not ours.} It is equivalent to
+$r\equiv13(p^2-1)/24\pmod p$, and in that form it is Guadalupe's Theorem~3.2 of
+\cite{Gua} (Theorem~3 of the published version): for every prime $p\ge7$ with
+$p\equiv3,7\pmod 8$, $a_{p-6}\bigl(pn+13(p^2-1)/24\bigr)\equiv0\pmod p$ for all $n\ge0$;
+which rests in turn on Ahlgren's identity \cite[p.~223]{Ahl} for the same series
+$f_2^{7}/f_1$. That theorem is a \emph{sufficient} condition for mod-$p$ divisibility, and
+we neither claim nor use any converse: \eqref{eq:diag} is used here only as a diagnostic,
+and the nine cells are settled directly by Theorem~\ref{thm:main} and
+Table~\ref{tab:cells}, not by it.
+
+None of Conjecture~7.2's nine residues satisfies \eqref{eq:diag}: in printed order,
+$(24r+13)\bmod p$ equals $5,4,10,40,8,53,3,5,46$. So none of the nine is an instance of
+Guadalupe's theorem: at $p=71$ its class is $13(71^2-1)/24=2730\equiv32\pmod{71}$, i.e.\
+the already-proved line $a_{65}(71n+32)$ of \cite{DMS}, \emph{not} the witness class $41$.
+
+\emph{Adjacent work, and what it does not settle.} \cite{Gua} is the closest item: besides
+the criterion above, its Equation~(14) is the first step of Lemma~\ref{lem:red}, as noted
+there. It proves a mod-$p$ family in the class just described, and treats neither the
+modulus $p^2$ nor any of the nine residues of Conjecture~7.2.
+Amdeberhan, Sellers and Singh \cite{ASS} introduce $a_c$ and prove congruences modulo a
+prime, not modulo $p^2$. Ghoshal and Jana \cite{GJ} confirm Conjecture~7.3 of \cite{DMS},
+the overcubic lines modulo $6$ and $12$: a different numbered statement. Dockery
+\cite{Doc} treats powers of $5$, Guadalupe \cite{Gua2} the modulus $5$, and Thejitha,
+Sellers and Fathima \cite{TSF} a two-parameter generalisation $a_{r,s}$; none of the three
+addresses prime-square moduli or the primes named here. We have found no work recording the
+failure of any of the nine progressions, and claim no priority for it: what is offered here
+is a finite computation, and the tools it uses are the cited ones.
+
+\section{What is not settled}\label{sec:open}
+
+\begin{enumerate}
+\item[(W1)] \emph{The body of the version of record has not been read.} The refuted text
+is the arXiv e-print. The journal version is behind a paywall with no open-access full text
+available, so nothing here certifies that the published revision still prints these nine
+residues. Two facts bound that risk without removing it: the conjecture block is
+byte-identical in v1 and v2, and by Corollary~\ref{cor:census} every residue-level variant
+of the statement is false as well.
+\item[(W2)] \emph{The residue sweep is complete in the class but only three terms deep.}
+All $18\,221$ classes were tested, but at $n=0,1,2$ only, so the honest form of that
+negative is exactly Corollary~\ref{cor:census}. Theorem~\ref{thm:main}(i) and
+\S\ref{sec:cert} carry no depth dependence whatever.
+\item[(W3)] \emph{The sweep is confined to these five primes with $c=p-6$}, and says
+nothing about other pairs $(c,p)$; a true congruence of the same shape does exist
+elsewhere, namely the proved theorem $a_3(7^2n+39)\equiv0\pmod{7^2}$ of \cite{DMS}, which
+the same code rediscovers as the unique survivor over all $49$ classes to depth $52$.
+Theorem~\ref{thm:main} is a finite verification of explicitly exhibited coefficients, not a
+structural result, and nothing here bears on the proved theorems of \cite{DMS}.
+\end{enumerate}
+
+\section{Verification}
+
+The accompanying program \texttt{verify.py}, with its recorded run in
+\texttt{verify.output.txt}, re-derives from the definition \eqref{eq:def} every quantity
+this note asserts: the exact integer $a_{65}(41)$ of \eqref{eq:witness}, its residues and
+the division identities \eqref{eq:div1}--\eqref{eq:div2}; the \texttt{A000730} row and the
+dot product \eqref{eq:dot} giving $b(41)=-31$; Lemma~\ref{lem:red}, numerically at $p=71$
+for $N=0,\dots,1050$ with zero mismatches in a range where $978$ of the $1051$ values are
+non-zero mod $71$; all $27$ entries of Table~\ref{tab:cells} and its mod-$p$ column; the
+sweep over all $18\,221$ classes behind Corollary~\ref{cor:census}; and the arithmetic of
+\eqref{eq:diag}. It also checks the coefficient routine against published data
+(\texttt{A000041}, \texttt{A002513}) and against the source's own proved congruences
+$a_{p-6}(pn+r_p)\equiv0\pmod p$ at $p=43,59,71,83$, with no exception. It uses the Python
+standard library only, exact integer arithmetic throughout, no floating point and no
+randomness, and reports
+\begin{center}\texttt{VERDICT: ALL 55 CHECKS PASS}\end{center}
+Its closing scope statement, printed in \texttt{verify.output.txt}, lists what it does
+not cover: nothing bibliographic is re-derived, the paywalled version of record is not
+consulted, and the residue sweep is not extended past depth~$3$ or past the five primes
+named.
+
+\begin{thebibliography}{9}
+
+\bibitem{Ahl}
+S.~Ahlgren,
+\emph{Multiplicative relations in powers of Euler's product},
+J. Number Theory \textbf{89} (2001), 222--233.
+\href{https://doi.org/10.1006/jnth.2001.2648}{doi:10.1006/jnth.2001.2648}.
+The identity used in \S\ref{sec:diag} is on p.~223.
+
+\bibitem{DMS}
+H.~Das, S.~Maity, and M.~P. Saikia,
+\emph{Arithmetic properties of generalized cubic and overcubic partitions},
+Eur. J. Math. \textbf{12} (2026), no.~3, Paper No.~34, 22 pp.
+\href{https://doi.org/10.1007/s40879-026-00909-1}{doi:10.1007/s40879-026-00909-1};
+e-print \href{https://arxiv.org/abs/2503.19399}{arXiv:2503.19399}
+(v1, 25 March 2025; v2, 28 April 2026). The conjecture refuted here is quoted in full in
+\S1 from the e-print, because the numbering of the published version could not be
+verified; see \S\ref{sec:open}\,(W1).
+
+\bibitem{ASS}
+T.~Amdeberhan, J.~A. Sellers, and A.~Singh,
+e-print \href{https://arxiv.org/abs/2407.00058}{arXiv:2407.00058}.
+Cited for the introduction of $a_c$ and for congruences modulo a prime.
+
+\bibitem{Doc}
+Dockery,
+e-print \href{https://arxiv.org/abs/2508.05833}{arXiv:2508.05833}.
+Cited for congruences modulo powers of $5$.
+
+\bibitem{GJ}
+S.~Ghoshal and A.~Jana,
+\emph{Combinatorial proof of a result on generalized overcubic partitions and related
+conjectures},
+e-print \href{https://arxiv.org/abs/2512.04775}{arXiv:2512.04775}.
+Cited for its restatement of the definition \eqref{eq:def} and for its confirmation of
+Conjecture~7.3 of \cite{DMS}.
+
+\bibitem{Gua}
+R.~Guadalupe,
+\emph{A note on congruences for generalized cubic partitions modulo primes},
+Integers \textbf{25} (2025), Paper A20; e-print
+\href{https://arxiv.org/abs/2407.15628}{arXiv:2407.15628}.
+Theorem~3.2 of the e-print, numbered Theorem~3 in the published version, is the criterion
+\eqref{eq:diag}; its Equation~(14) is the first step of Lemma~\ref{lem:red}.
+
+\bibitem{Gua2}
+R.~Guadalupe,
+Bull. Aust. Math. Soc.\ (2025),
+\href{https://doi.org/10.1017/s0004972725000279}{doi:\allowbreak
+10.1017/\allowbreak s0004972725000279}. Cited for congruences modulo $5$.
+
+\bibitem{TSF}
+Thejitha, J.~A. Sellers, and S.~N. Fathima,
+e-print \href{https://arxiv.org/abs/2601.15680}{arXiv:2601.15680}.
+Cited for the two-parameter generalization $a_{r,s}$.
+
+\bibitem{A000041}
+OEIS Foundation Inc., sequence \texttt{A000041}, \emph{a(n) is the number of partitions of
+n}. \href{https://oeis.org/A000041}{oeis.org/A000041}.
+
+\bibitem{A000730}
+OEIS Foundation Inc., sequence \texttt{A000730}, \emph{Expansion of
+$\prod_{k\ge1}(1-x^k)^7$}. \href{https://oeis.org/A000730}{oeis.org/A000730}.
+
+\bibitem{A002513}
+OEIS Foundation Inc., sequence \texttt{A002513}, \emph{Number of ``cubic partitions'' of
+n: expansion of $\prod_{k>0}1/((1-x^{2k})^2(1-x^{2k-1}))$}.
+\href{https://oeis.org/A002513}{oeis.org/A002513}.
+
+\end{thebibliography}
+
+\end{document}

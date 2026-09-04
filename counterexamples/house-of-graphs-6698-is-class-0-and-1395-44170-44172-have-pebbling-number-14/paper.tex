@@ -1,0 +1,433 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Pebbling numbers of four cubic 12-vertex graphs of girth 3 and
+            diameter 3: one is Class 0, three are 14}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\HoG}[1]{\#\mathrm{#1}}
+\newcommand{\Reach}{\operatorname{Reach}}
+
+\title[Four cubic $12$-vertex graphs: one Class~$0$, three with $\pi=14$]
+{Pebbling numbers of four cubic $12$-vertex graphs of girth~$3$ and
+ diameter~$3$: one is Class~$0$, the other three are~$14$}
+
+\date{}
+
+\subjclass[2020]{05C57, 05C12, 05C30}
+\keywords{graph pebbling, pebbling number, Class 0 graph, cubic graph,
+truncated tetrahedron, flower snark, House of Graphs, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+In the final remarks of \emph{The only Class~$0$ Flower snark is the smallest}
+(arXiv:2505.22941v2), Bridi, Martins, Marquezino and de Figueiredo suggest
+investigating whether the pebbling number of the House of Graphs graphs
+$\HoG{1395}$ (the truncated tetrahedron), $\HoG{44170}$ and $\HoG{44172}$ is
+indeed $13$, and whether $\HoG{6698}$ is Class~$0$. We settle both questions for
+the four explicit cubic $12$-vertex graphs of girth~$3$ and diameter~$3$ whose
+adjacency lists are printed below; these lists were served by the House of Graphs
+REST API for those four ids, but we do not verify that identification, and every
+statement here is a statement about the lists as printed. For three of them the
+suggested value $13$ does not hold: $\pi=14$, and each excess is witnessed by an
+explicit $13$-pebble unsolvable configuration whose unsolvability is certified by
+the finite move-closed set of configurations reachable from it, so that lower
+bound rests on the closure of three single configurations rather than on an
+exhaustive sweep of the configurations of a given total. The fourth has
+$\pi=12$, i.e.\ it \emph{is} Class~$0$, and it is not isomorphic to $J_3$; so the
+Flower snark $J_3$ is not the only Class~$0$ graph among the cubic $12$-vertex
+graphs of girth~$3$ and diameter~$3$.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+We use the definitions of the source paper verbatim \cite[\S2]{BMMF}. A
+\emph{configuration} on a graph $G$ is a map $C\colon V(G)\to\mathbb{N}$, where
+$C(v)$ is the number of pebbles at $v$; its \emph{total} is $\sum_v C(v)$. A
+\emph{pebbling move} removes two pebbles from a vertex $v$ and places one pebble
+on a neighbour $u\in N(v)$. If some sequence of pebbling moves places a pebble on
+a target vertex $r$, then $C$ is \emph{$r$-solvable}; otherwise $C$ is
+\emph{$r$-unsolvable}. The \emph{pebbling number} $\pi(G)$ is the least $t$ such
+that every configuration of total $t$ is $r$-solvable for every $r\in V(G)$.
+Always $\pi(G)\ge n(G)$, and $G$ is \emph{Class~$0$} if $\pi(G)=n(G)$.
+
+The source paper proves that the Flower snark $J_3$ is Class~$0$, i.e.\
+$\pi(J_3)=12$, and closes with the following suggestion, which we quote verbatim
+from the final remarks of its \texttt{arXiv} v2 \LaTeX{} source:
+
+\begin{quote}\small
+As a suggestion of application, one natural direction is to consider other cubic
+graphs with $12$ vertices, girth~$3$, and diameter~$3$---the same parameters as
+the Flower snark $J_3$. According to the House of Graphs
+database~\cite{HoG1}, only five such graphs exist. Besides $J_3$, the others
+include graphs with IDs \#1395, \#6698, \#44170, and \#44172. The graph \#1395 is
+known as the truncated tetrahedral graph. We find unsolvable configurations with
+$12$ pebbles for the graphs \#1395, \#44170, and \#44172 (see
+Figure~[reference omitted]), implying that these graphs are not Class~$0$. One
+could investigate whether the pebbling number of these three graphs is indeed
+$13$; and whether graph \#6698 is Class~$0$, i.e., determine whether $J_3$ is the
+only Class~$0$ graph among the five with the same parameters.
+\end{quote}
+
+Only the presentation is altered: the citation of the database is re-keyed to our
+bibliography (our \cite{HoG1} is the source's own database reference), the
+bracketed note stands for the source's cross-reference to its figure of
+$12$-pebble unsolvable configurations, which we do not reproduce, and a footnote
+giving the database address is omitted.
+
+The suggestion has two halves. The first offers a value tentatively rather than
+asserting it: the source's own figure of $12$-pebble unsolvable configurations
+already gives $\pi\ge13$ for the three graphs, so what its suggested value~$13$
+would require is the upper bound $\pi\le13$. The second half is posed neutrally.
+
+Throughout, $\HoG{1395}$, $\HoG{6698}$, $\HoG{44170}$ and $\HoG{44172}$ are names
+for the four adjacency lists printed in \S\ref{sec:graphs}, and nothing below is a
+claim about the House of Graphs database. Those lists were served by the
+database's REST API for the four ids named in the quotation; we could not
+afterwards read the database's holdings, since its search endpoint returned
+HTTP~401 to us, so the identification of the printed lists with those ids is not
+verified here and is not verified by the accompanying program. Three of the lists
+are, however, pinned to the source's own figure of $12$-pebble unsolvable
+configurations by an exact edge-set identity: reading the node labels of each of
+its three subfigures as $\text{API index}=\text{label}-1$ reproduces the fetched
+adjacency list of the corresponding graph exactly, $18=18$ edges with empty
+symmetric difference. For $\HoG{6698}$, which the source's figure does not show,
+there is no such pin.
+
+\begin{theorem}\label{thm:13}
+$\pi(\HoG{1395})\ge14$, $\pi(\HoG{44170})\ge14$ and $\pi(\HoG{44172})\ge14$. In
+particular the suggested value $13$ does not hold for any of the three graphs.
+\end{theorem}
+
+Theorem~\ref{thm:13} is carried by the three configurations of
+Table~\ref{tab:witnesses}, each of total $13$; \S\ref{sec:certs} certifies each
+of them by the finite set of configurations reachable from it, which is closed
+under pebbling moves and contains no configuration with a pebble on the target.
+Checking such a certificate is the deterministic closure of one configuration:
+still a finite search of the configurations reachable from it, but not an
+enumeration of the configurations of a given total. The three closures
+have $6358$, $1912$ and $1711$ members; we do not print them, so at that size the
+check is delegated to a program.
+
+\begin{theorem}\label{thm:exact}
+$\pi(\HoG{1395})=\pi(\HoG{44170})=\pi(\HoG{44172})=14$ and
+$\pi(\HoG{6698})=12$. In particular $\HoG{6698}$ is Class~$0$, so $J_3$ is
+\emph{not} the only Class~$0$ cubic $12$-vertex graph of girth~$3$ and
+diameter~$3$.
+\end{theorem}
+
+The upper bounds in Theorem~\ref{thm:exact} rest on exhaustive search, organised
+by the two elementary lemmas of \S\ref{sec:exhaustive}; the lower bounds are
+certificates. Nothing in the source paper is contradicted: both of its proved
+statements, $\pi(J_3)=12$ and $\pi\ge13$ for the three graphs, are confirmed
+here.
+
+\section{The graphs}\label{sec:graphs}
+
+Vertices are $0,\dots,11$; the lists below are the adjacency lists served by the
+House of Graphs REST API for the four ids, under
+$\text{API index}=\text{HoG label}-1$. Every statement in this note about the five
+named graphs is a statement about these lists as printed, so a reader who
+distrusts the database can still check it.
+
+\medskip
+\noindent\texttt{\#1395} (the truncated tetrahedral graph):
+\[\begin{array}{llll}
+ 0\colon 1,2,3 & 1\colon 0,8,9 & 2\colon 0,3,11 & 3\colon 0,2,10\\
+ 4\colon 5,6,10 & 5\colon 4,7,11 & 6\colon 4,8,10 & 7\colon 5,9,11\\
+ 8\colon 1,6,9 & 9\colon 1,7,8 & 10\colon 3,4,6 & 11\colon 2,5,7
+\end{array}\]
+
+\noindent\texttt{\#6698} (the graph the source asks about):
+\[\begin{array}{llll}
+ 0\colon 1,2,3 & 1\colon 0,8,9 & 2\colon 0,3,11 & 3\colon 0,2,10\\
+ 4\colon 5,8,10 & 5\colon 4,8,11 & 6\colon 7,9,11 & 7\colon 6,9,10\\
+ 8\colon 1,4,5 & 9\colon 1,6,7 & 10\colon 3,4,7 & 11\colon 2,5,6
+\end{array}\]
+
+\noindent\texttt{\#44170}:
+\[\begin{array}{llll}
+ 0\colon 1,2,3 & 1\colon 0,10,11 & 2\colon 0,10,11 & 3\colon 0,8,9\\
+ 4\colon 5,6,8 & 5\colon 4,7,8 & 6\colon 4,9,10 & 7\colon 5,9,11\\
+ 8\colon 3,4,5 & 9\colon 3,6,7 & 10\colon 1,2,6 & 11\colon 1,2,7
+\end{array}\]
+
+\noindent\texttt{\#44172}:
+\[\begin{array}{llll}
+ 0\colon 1,2,3 & 1\colon 0,9,11 & 2\colon 0,10,11 & 3\colon 0,7,8\\
+ 4\colon 5,6,8 & 5\colon 4,9,10 & 6\colon 4,9,10 & 7\colon 3,8,11\\
+ 8\colon 3,4,7 & 9\colon 1,5,6 & 10\colon 2,5,6 & 11\colon 1,2,7
+\end{array}\]
+
+\noindent The control $J_3$ is taken from the source's own figure for $J_3$ with
+its labels $A,\dots,L$ read as $0,\dots,11$, i.e.\ the edges
+$AB$, $AC$, $AD$, $BE$, $BF$, $CG$, $CH$, $DI$, $DJ$, $EK$, $FL$, $EF$, $GK$,
+$IK$, $HL$, $JL$, $HI$, $GJ$.
+
+\begin{proposition}\label{prop:objects}
+Each of the five graphs is a simple connected cubic graph on $12$ vertices with
+$18$ edges, girth~$3$, radius~$3$ and diameter~$3$; they are pairwise
+non-isomorphic. Moreover $\HoG{1395}$ is isomorphic to the truncation of $K_4$,
+and the graph just read off the source's figure is isomorphic to the standard
+Flower snark $J_3$ (three stars $K_{1,3}$ with centres $a_i$ and leaves
+$b_i,c_i,d_i$; a triangle on the $b_i$; a $6$-cycle $c_0c_1c_2d_0d_1d_2$).
+\end{proposition}
+
+Every clause of Proposition~\ref{prop:objects} is recomputed from the printed
+lists by the accompanying program.
+
+\section{Three certificates}\label{sec:certs}
+
+For a configuration $C$ let $\Reach(C)$ be the set of configurations obtainable
+from $C$ by (possibly empty) sequences of pebbling moves.
+
+\begin{lemma}\label{lem:cert}
+Let $r\in V(G)$ and let $S$ be a set of configurations with $C\in S$, $S$ closed
+under pebbling moves, and $D(r)=0$ for every $D\in S$. Then $C$ is
+$r$-unsolvable, and $\pi(G)\ge\lvert C\rvert+1$ where $\lvert C\rvert$ is the
+total of $C$.
+\end{lemma}
+
+\begin{proof}
+By induction along a sequence of moves, every configuration reachable from $C$
+lies in $S$, hence has no pebble on $r$; so no sequence of moves places a pebble
+on $r$. As $C$ has total $\lvert C\rvert$ and is not $r$-solvable, $\pi(G)>\lvert
+C\rvert$.
+\end{proof}
+
+The set $S=\Reach(C)$ is closed by construction, and it is finite because a
+pebbling move strictly decreases the total. So a certificate is just the finite
+list $\Reach(C)$, and checking it is bookkeeping: generate the moves, confirm
+none lands a pebble on $r$.
+
+\begin{table}[ht]
+\caption{The three witnesses. Each has total $13$ and $C(r)=0$, and each
+$\Reach(C)$ is closed under moves and free of pebbles on $r$.}
+\label{tab:witnesses}
+\[
+\begin{array}{clcl r}
+ & \text{graph} & r & C=(C(0),\dots,C(11)) & \lvert\Reach(C)\rvert\\\hline
+W_1 & \HoG{1395}  & 0 & (0,0,0,0,3,4,1,3,0,1,1,0) & 6358\\
+W_2 & \HoG{44170} & 1 & (0,0,1,1,5,5,0,0,1,0,0,0) & 1912\\
+W_3 & \HoG{44172} & 5 & (3,1,1,0,0,0,1,7,0,0,0,0) & 1711
+\end{array}
+\]
+\end{table}
+
+\begin{proof}[Proof of Theorem~\ref{thm:13}]
+Apply Lemma~\ref{lem:cert} to $S=\Reach(W_i)$ for $i=1,2,3$ with the targets of
+Table~\ref{tab:witnesses}. Each $W_i$ has total $13$, so
+$\pi\ge14$ for the corresponding graph.
+\end{proof}
+
+\begin{sloppypar}
+The source's own three $12$-pebble configurations, read off its figure of
+unsolvable configurations under $\text{API index}=\text{label}-1$, are
+re-certified unsolvable in the same way, which confirms its bound $\pi\ge13$:
+$\HoG{1395}$, $r=0$, $(0,0,0,0,0,7,3,0,0,1,1,0)$, $\lvert\Reach\rvert=1262$;
+$\HoG{44170}$, $r=5$, $(5,1,1,0,0,0,0,0,0,0,5,0)$, $1251$; and $\HoG{44172}$,
+$r=0$, $(0,0,0,0,7,1,1,0,0,1,1,1)$, $483$.
+\end{sloppypar}
+
+\section{The exact values}\label{sec:exhaustive}
+
+Fix $G$ and a target $r$. A configuration with $C(r)\ge1$ is $r$-solvable
+trivially, so let
+\[
+ U_s(r)=\{\,C : \textstyle\sum_v C(v)=s,\ C(r)=0,\ C\ \text{is $r$-unsolvable}\,\}.
+\]
+Then $\pi(G)=\max_{r}\min\{s : U_s(r)=\emptyset\}$ follows from the definition
+together with Lemma~\ref{lem:down} below. Two lemmas make $U_s(r)$ computable
+without ever enumerating the whole space.
+
+\begin{lemma}[downward closure]\label{lem:down}
+If $C'\le C$ pointwise and $C$ is $r$-unsolvable, then $C'$ is $r$-unsolvable.
+Consequently $U_s(r)=\emptyset$ implies $U_{s'}(r)=\emptyset$ for all $s'\ge s$,
+and every $C\in U_s(r)$ arises as $C'+e_v$ for some $C'\in U_{s-1}(r)$ and some
+$v\ne r$.
+\end{lemma}
+
+\begin{proof}
+Every move legal at $C'$ is legal at $C$, and applying the same move to both
+preserves $C'\le C$; so a sequence of moves solving $C'$ solves $C$, and the
+first claim is the contrapositive. If $C\in U_{s+1}(r)$, remove one pebble from
+any $v\ne r$ with $C(v)\ge1$: the result lies in $U_s(r)$ by the first claim,
+which gives both remaining assertions.
+\end{proof}
+
+\begin{lemma}[one-move recurrence]\label{lem:rec}
+Let $C$ have total $s\ge1$ and $C(r)=0$. Then $C\in U_s(r)$ if and only if for
+every $v$ with $C(v)\ge2$: $r\notin N(v)$, and $C-2e_v+e_u\in U_{s-1}(r)$ for
+every $u\in N(v)$.
+\end{lemma}
+
+\begin{proof}
+$C$ is $r$-solvable iff some first move leads to an $r$-solvable configuration or
+places a pebble on $r$ directly; a move from $v$ to $r$ is available exactly when
+$C(v)\ge2$ and $r\in N(v)$. A move lowers the total by $1$, so the recurrence is
+acyclic and needs no fixed point. Configurations all of whose entries are at most
+$1$ admit no move and are therefore in $U_s(r)$, which is the base case.
+\end{proof}
+
+Lemmas~\ref{lem:down} and~\ref{lem:rec} give a complete algorithm: compute
+$U_0(r)=\{0\}$, and obtain $U_s(r)$ by adding one pebble in every possible way to
+every member of $U_{s-1}(r)$ --- complete by Lemma~\ref{lem:down} --- and testing
+each candidate by Lemma~\ref{lem:rec}. The search stops at the first empty level,
+which by Lemma~\ref{lem:down} is $\min\{s:U_s(r)=\emptyset\}$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:exact}]
+Running the algorithm on the printed adjacency lists for all $12$ targets of each
+graph gives the level sizes $\lvert U_s(r)\rvert$ recorded in
+Table~\ref{tab:counts}: for $\HoG{6698}$ (and for the control $J_3$) every target
+already has $U_{12}(r)=\emptyset$, while $U_{11}(r)\ne\emptyset$, so
+$\pi(\HoG{6698})=12=n$ and $\HoG{6698}$ is Class~$0$; for the other three graphs
+$U_{13}(r)\ne\emptyset$ for at least one target and $U_{14}(r)=\emptyset$ for all
+targets, so $\pi=14$.
+\end{proof}
+
+\begin{table}[ht]
+\caption{$\lvert U_s(r)\rvert$ by target $r=0,\dots,11$, and the sums over all
+$12$ targets. Every entry is a count of $r$-unsolvable configurations; a
+configuration with a pebble on $r$ is $r$-solvable by definition and is not
+counted.}
+\label{tab:counts}
+\[
+\begin{array}{llr}
+s & \text{per-target vector} & \text{sum}\\\hline
+12 & \HoG{1395}\colon (165,165,165,165,165,165,165,165,165,165,165,165) & 1980\\
+12 & \HoG{44170}\colon (0,229,229,0,91,91,0,0,91,3,0,0) & 734\\
+12 & \HoG{44172}\colon (8,0,0,94,4,153,153,94,18,5,5,8) & 542\\
+12 & \HoG{6698}\colon (0,0,0,0,0,0,0,0,0,0,0,0) & 0\\
+12 & J_3\colon (0,0,0,0,0,0,0,0,0,0,0,0) & 0\\[2pt]
+13 & \HoG{1395}\colon (2,2,2,2,2,2,2,2,2,2,2,2) & 24\\
+13 & \HoG{44170}\colon (0,20,20,0,4,4,0,0,4,0,0,0) & 52\\
+13 & \HoG{44172}\colon (0,0,0,0,0,6,6,0,0,0,0,0) & 12\\
+13 & \HoG{6698}\colon (0,0,0,0,0,0,0,0,0,0,0,0) & 0\\[2pt]
+14 & \text{all five graphs}\colon (0,\dots,0) & 0
+\end{array}
+\]
+\end{table}
+
+The sweep accounts for the whole space: for a fixed target the configurations with
+$C(r)=0$ and total $s$ number $\binom{s+10}{10}$, which is $646\,646$ at $s=12$
+and $1\,144\,066$ at $s=13$, so the Class-$0$ statement for $\HoG{6698}$ is a
+statement about all $12\cdot646\,646=7\,759\,752$ of them. The three witnesses of
+Table~\ref{tab:witnesses} are members of the corresponding $U_{13}$, which ties
+the certificates of \S\ref{sec:certs} to the sweep.
+
+So the answer to the source's restatement of its own question --- ``determine
+whether $J_3$ is the only Class~$0$ graph among the five with the same
+parameters'' --- is no: the graph printed here as $\HoG{6698}$ is Class~$0$ as
+well, and it is not isomorphic to $J_3$.
+
+\section{Scope}\label{sec:scope}
+
+The upper bounds have no hand-checkable certificate here: that
+$U_{12}=\emptyset$ for $\HoG{6698}$, and $U_{14}=\emptyset$ for the other three,
+is proved by exhaustion over a search space whose completeness is itself proved
+(Lemma~\ref{lem:down}), but it is exhaustion, and no weight-function or LP-dual
+certificate for $\pi(\HoG{6698})\le12$, checkable with integer arithmetic and no
+program, is offered. Theorem~\ref{thm:13} asks for less trust, resting on the
+closure of three single configurations of a few thousand members each rather than
+on an exhaustive sweep, but those closures are not printed here either, so it too
+is a machine check, only a small and local one.
+
+Only the five graphs printed in \S\ref{sec:graphs} are treated. How many cubic
+$12$-vertex graphs of girth~$3$ and diameter~$3$ there are, and what their
+pebbling numbers are, is not settled here; in particular the source's report that
+the database holds five such graphs is neither used nor contradicted.
+
+We give exact values, not a characterisation: nothing here explains why
+$\HoG{6698}$ is Class~$0$ while $\HoG{1395}$, $\HoG{44170}$ and $\HoG{44172}$ are
+not. Neighbouring cells are untouched: cubic $12$-vertex graphs of girth~$4$ or
+girth~$5$ at diameter~$3$, girth-$3$ members of diameter at least~$4$, every
+$n\ne12$, and the source's own question about extending its method beyond
+diameter~$3$. The best published diameter-$3$ upper bound,
+$\pi\le\frac{3}{2}n+O(1)$~\cite{bukh,psy}, gives roughly $20$ at $n=12$ and
+cannot separate $12$ from $13$ from $14$, so no prior theorem forces any of the
+values above.
+
+\begin{remark}[verification]
+The program \texttt{verify.py} accompanying this note recomputes, from the
+adjacency lists of \S\ref{sec:graphs} transcribed into it, using only the Python
+standard library and exact integer arithmetic, the graph parameters and
+identifications of Proposition~\ref{prop:objects}, the reachability certificates
+of \S\ref{sec:certs} with their sizes, all of Table~\ref{tab:counts}, and the
+pebbling number of each of the five named graphs; its recorded run also reports
+quantities this note does not print, among them the pebbling numbers of eleven
+further cubic $12$-vertex graphs of girth~$3$ and diameter~$3$, which nothing here
+claims. It does not parse this note, so the transcription of the printed objects
+into its inputs is not checked by it; it does not fetch or parse any House of
+Graphs record, so the identification of the four adjacency lists with the ids
+$\HoG{1395}$, $\HoG{6698}$, $\HoG{44170}$ and $\HoG{44172}$ is not checked by it
+either, as its own scope note records.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{BMMF}
+G.~A. Bridi, A.~L.~A. Martins, F.~L. Marquezino, C.~M.~H. de Figueiredo,
+\emph{The only Class $0$ Flower snark is the smallest},
+arXiv:2505.22941v2 [math.CO], 2 June 2025.
+\newblock DOI \texttt{10.48550/arXiv.2505.22941}. The quotation in \S1 is from the
+final remarks of the v2 \LaTeX{} source; the definitions quoted in \S1 and the
+theorem $\pi(J_3)=12$ are from its Section~2.
+
+\bibitem{HoG1}
+G.~Brinkmann, K.~Coolsaet, J.~Goedgebeur, H.~M\'elot,
+\emph{House of Graphs: a database of interesting graphs},
+Discrete Appl. Math. \textbf{161} (2013), 311--314.
+\newblock This is the reference the source paper cites for the database.
+
+\bibitem{HoG2}
+K.~Coolsaet, S.~D'hondt, J.~Goedgebeur,
+\emph{House of Graphs 2.0: A database of interesting graphs and more},
+Discrete Appl. Math. \textbf{325} (2023), 97--107.
+\newblock The four adjacency lists of \S\ref{sec:graphs} were served by this
+version's REST API, \texttt{houseofgraphs.org/api/graphs/<id>}.
+
+\bibitem{chung}
+F.~R.~K. Chung,
+\emph{Pebbling in hypercubes},
+SIAM J. Discrete Math. \textbf{2} (1989), 467--472.
+
+\bibitem{psv}
+L.~Pachter, H.~S. Snevily, B.~Voxman,
+\emph{On pebbling graphs},
+Congr. Numer. \textbf{107} (1995), 65--80.
+
+\bibitem{bukh}
+B.~Bukh,
+\emph{Maximum pebbling number of graphs of diameter three},
+J. Graph Theory \textbf{52} (2006), 353--357.
+
+\bibitem{psy}
+L.~Postle, N.~Streib, C.~Yerger,
+\emph{Pebbling graphs of diameter three and four},
+J. Graph Theory \textbf{72} (2013), 398--417.
+
+\bibitem{ADFHS}
+M.~Adauto, C.~M.~H. de Figueiredo, G.~Hurlbert, D.~Sasaki,
+\emph{On the pebbling numbers of Flower, Blanu\v{s}a and Watkins snarks},
+Discrete Appl. Math. \textbf{361} (2025), 336--346.
+\newblock Proves $\pi(J_3)\le13$; it does not consider any of the four graphs
+above.
+
+\end{thebibliography}
+
+\end{document}

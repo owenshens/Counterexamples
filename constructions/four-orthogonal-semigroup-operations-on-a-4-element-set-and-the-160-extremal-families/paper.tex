@@ -1,0 +1,415 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Four Pairwise Orthogonal Semigroup Operations on a Four-Element Set,
+            and the 160 Extremal Families}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem*{problemA}{Problem}
+
+\newcommand{\Sops}{\mathbb S}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\Nmols}{N}
+
+\title[Four orthogonal semigroup operations on a four-element set]
+{Four Pairwise Orthogonal Semigroup Operations on a Four-Element Set,
+and the 160 Extremal Families}
+
+\date{}
+
+\subjclass[2020]{20M10, 05B15, 20N05}
+\keywords{orthogonal operations, semigroup, Cayley table, completely simple semigroup,
+orthogonal Latin squares, orthogonal array, exhaustive census}
+
+\begin{document}
+
+\begin{abstract}
+We settle the single cell $n=4$ of a problem of Ara\'ujo, Bentz, Cameron, Hendrey and Kinyon, who
+ask, for the set $\Sops_n$ of semigroup operations on a fixed $n$-element set, for the maximum size
+$\max(n)$ of a pairwise orthogonal family and for the extremal families, as functions of $n$. At
+$n=4$ the maximum is $4$, and there are exactly $160$
+labelled extremal families, forming $10$ orbits under the diagonal action of $\mathrm{Sym}(4)$, of
+sizes $8,8,8,8,8,24,24,24,24,24$. A family of four operations is exhibited, and the lower bound
+$\max(4)\ge4$ is proved by hand: identifying the $4$-set with $(\FF_2)^2$, the operation
+$f_M(a,b)=b+M(a)$ is associative exactly when the linear map $M$ is idempotent, and $f_M\perp f_N$
+exactly when $M+N$ is invertible. The matching upper bound is a finite exhaustion over all $3492$
+associative tables on a fixed $4$-set; the same census gives $\max(1)=1$ and $\max(2)=\max(3)=3$.
+The classical ceiling for this problem is
+$\Nmols(n)+2$, which gives only $\max(4)\le5$; nothing here settles $n\ge5$.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Ara\'ujo, Bentz, Cameron, Hendrey and Kinyon close their paper on complete mappings of semigroups
+\cite{ABCHK} with a list of problems. The seventh of the thirteen problem environments of their
+closing section of problems reads, character for character (lines 4606--4611 of the \LaTeX{} e-print
+of \texttt{2608.25092v1}; the sole change is that the map, set inline there, is displayed here):
+
+\begin{problemA}[\cite{ABCHK}, seventh problem of the closing list]
+Let $\Sops_n$ be the set of semigroup operations on a fixed $n$-element set. Say that two operations
+$\cdot$ and $\ast$ are orthogonal if the map
+\[(x,y)\longmapsto (x\cdot y,x\ast y)\]
+from $X^2$ to $X^2$ is a bijection. Determine the maximum size of a family of pairwise orthogonal
+semigroup operations on an $n$-element set, and identify the extremal families.
+\end{problemA}
+
+The letter $X$ is not bound inside the environment, and we read it as the fixed $n$-element set. The
+notation $\Sops_n$ occurs exactly once in the source, in this Problem, so \cite{ABCHK} states no
+value, no bound, no conjecture and no table for any $n$. The reading of ``orthogonal'' as the single
+joint map $X^2\to X^2$ is the source's own, matching the cell-by-cell superposition in its worked
+example of order $3$.
+
+Throughout, $X$ is a fixed set with $|X|=n$; $\Sops_n$ is the set of \emph{all} associative binary
+operations $X\times X\to X$, that is all $n\times n$ Cayley tables over $X$ with
+$(x*y)*z=x*(y*z)$. These are \emph{labelled} operations on a \emph{fixed} set, and no isomorphism
+quotient is taken anywhere. Write $f\perp g$ for orthogonality. Three immediate consequences of the
+definition are used below: $\perp$ is symmetric (compose with the coordinate swap of $X^2$); for
+$n\ge2$ no operation is orthogonal to itself, since the image of $(x,y)\mapsto(x\cdot y,x\cdot y)$
+lies in the diagonal and has at most $n<n^2$ points; and orthogonality forces both operations to be
+surjective. Set
+\[
+  \max(n)=\max\{\,|F| : F\subseteq\Sops_n\ \text{pairwise orthogonal}\,\}.
+\]
+
+\begin{theorem}\label{thm:main}
+$\max(4)=4$. A pairwise orthogonal family of four semigroup operations on $\{1,2,3,4\}$ is exhibited
+in Section~\ref{sec:obj}, and no five semigroup operations on a $4$-element set are pairwise
+orthogonal. There are exactly $160$ labelled families attaining the maximum; they form $10$ orbits
+under the diagonal action of $\mathrm{Sym}(4)$, of sizes $8,8,8,8,8,24,24,24,24,24$, listed in
+Section~\ref{sec:class}.
+\end{theorem}
+
+\begin{proposition}\label{prop:small}
+$\max(1)=1$, $\max(2)=\max(3)=3$, with respectively $1$, $2$ and $3$ labelled extremal families, in
+one orbit each. Hence $\max(n)=1,3,3,4$ for $n=1,2,3,4$, and both halves of the Problem are answered
+for every $n\le4$.
+\end{proposition}
+
+\section{The object}\label{sec:obj}
+
+The following four Cayley tables on the fixed set $\{1,2,3,4\}$ are pairwise orthogonal. Rows are
+indexed by $a$, columns by $b$, and the entry is $a*b$.
+
+\[
+f_1=\begin{array}{c|cccc} & 1&2&3&4\\\hline 1&1&1&1&1\\ 2&2&2&2&2\\ 3&3&3&3&3\\ 4&4&4&4&4
+\end{array}
+\qquad
+f_2=\begin{array}{c|cccc} & 1&2&3&4\\\hline 1&1&2&3&4\\ 2&1&2&3&4\\ 3&3&4&1&2\\ 4&3&4&1&2
+\end{array}
+\]
+\[
+f_3=\begin{array}{c|cccc} & 1&2&3&4\\\hline 1&1&2&3&4\\ 2&2&1&4&3\\ 3&2&1&4&3\\ 4&1&2&3&4
+\end{array}
+\qquad
+f_4=\begin{array}{c|cccc} & 1&2&3&4\\\hline 1&1&2&3&4\\ 2&4&3&2&1\\ 3&1&2&3&4\\ 4&4&3&2&1
+\end{array}
+\]
+
+Concatenating the rows, these are
+\begin{center}
+\texttt{1111222233334444},\quad
+\texttt{1234123434123412},\\
+\texttt{1234214321431234},\quad
+\texttt{1234432112344321},
+\end{center}
+which is the notation used in the table of Section~\ref{sec:class}. Here $f_1$ is the left-zero band
+$L(x,y)=x$, of Rees--Sushkevich type $(|I|,|G|,|\Lambda|)=(4,1,1)$; each of $f_2,f_3,f_4$ is a right
+group $\mathbb Z_2\times R_2$, of type $(1,2,2)$.
+
+\medskip
+\noindent\textbf{$f_4$ is published in \cite{ABCHK} and is cited, not claimed.} At lines 706--720 of
+the same e-print the authors write:
+``Using \textsc{Mace4}, we found that the (completely simple) semigroup $S$ given by the Cayley
+table [\,$1\,2\,3\,4$ / $4\,3\,2\,1$ / $1\,2\,3\,4$ / $4\,3\,2\,1$\,] has eight distinct complete
+mappings. \dots\ None of those complete mappings preserve $E(S)=\{1,3\}$.'' That is exactly $f_4$,
+and indeed its idempotents are $1$ and $3$. It is published there for an unrelated purpose and
+carries no orthogonality claim, so Theorem~\ref{thm:main} is untouched; but the table is theirs.
+
+\subsection*{Why this family works, by hand}
+Identify $X$ with $(\FF_2)^2$ by writing $0,1,2,3$ for the four elements and $+$ for bitwise
+\textsc{xor}, so $a=a_0+2a_1$. Then $f_1(a,b)=a$ and $f_i(a,b)=b+M_i(a)$ for $i=2,3,4$, where
+\[
+M_2=\begin{pmatrix}0&0\\0&1\end{pmatrix},\qquad
+M_3=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad
+M_4=\begin{pmatrix}1&0\\1&0\end{pmatrix}
+\]
+act on $(a_0,a_1)^{\mathsf T}$; concretely $M_2$ sends $0,1,2,3$ to $0,0,2,2$, while $M_3$ sends
+them to $0,1,1,0$ and $M_4$ to $0,3,0,3$. Each $M_i$ is $\FF_2$-linear, of rank $1$, and
+idempotent.
+
+\begin{lemma}\label{lem:hand}
+Let $A$ be an elementary abelian $2$-group and $M,N$ linear endomorphisms of $A$, and put
+$f_M(a,b)=b+M(a)$.
+\begin{enumerate}
+\item[(i)] $f_M$ is associative if and only if $M^2=M$.
+\item[(ii)] $f_M\perp f_N$ if and only if $M+N$ is invertible.
+\item[(iii)] $f_M\perp L$ for every $M$, where $L(a,b)=a$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) $f_M(f_M(a,b),c)=c+M(b+M(a))=c+M(b)+M^2(a)$ while $f_M(a,f_M(b,c))=c+M(b)+M(a)$; these agree for
+all $a,b,c$ if and only if $M^2=M$. (ii) The pair map is $(a,b)\mapsto(b+M(a),b+N(a))$. The sum of
+the two coordinates is $(M+N)(a)$, free of $b$; so if $M+N$ is invertible one recovers $a$ from
+$u+v$ and then $b$ from $u+M(a)$, and conversely if $(M+N)(a)=0$ with $a\ne0$ then $N(a)=M(a)$, so the
+distinct pairs $(a,b)$ and $(0,b+M(a))$ have the same image $(b+M(a),b+M(a))$. (iii) The pair map
+is $(a,b)\mapsto(a,b+M(a))$, with inverse $(u,v)\mapsto(u,v+M(u))$.
+\end{proof}
+
+Part (ii) of Lemma~\ref{lem:hand} is classical, not ours; see Section~\ref{sec:attr}\,(C). Part (i)
+is the restriction to associative operations. Applying the lemma: $M_2,M_3,M_4$ are idempotent, so
+$f_2,f_3,f_4$ are associative; $f_1=L$ is associative because $(a\cdot b)\cdot c=a=a\cdot(b\cdot c)$ and is orthogonal to each
+$f_{M_i}$; and
+\[
+M_2+M_3=\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad
+M_2+M_4=\begin{pmatrix}1&0\\1&1\end{pmatrix},\quad
+M_3+M_4=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\]
+all have determinant $1$ over $\FF_2$. So all six pairs are orthogonal and $\max(4)\ge4$, with no
+computation involved. The computation of Section~\ref{sec:upper} supplies only the matching upper
+bound $\max(4)\le4$.
+
+\section{The upper bound}\label{sec:upper}
+
+\begin{lemma}\label{lem:free}
+Let $n\ge2$.
+\begin{enumerate}
+\item[(i)] (Balance.) If $f\in\Sops_n$ has an orthogonal partner then every value $a\in X$ occupies
+exactly $n$ of the $n^2$ cells of the table of $f$.
+\item[(ii)] Two commutative operations are never orthogonal. In particular no two group operations
+on a $4$-set are orthogonal, every group of order $4$ being abelian.
+\item[(iii)] $L(x,y)=x$ and $R(x,y)=y$ are associative with pair map the identity of $X^2$, and any
+group operation $g$ is orthogonal to both; so $\max(n)\ge3$.
+\item[(iv)] A family containing both $L$ and $R$ has size at most $3$ when $n=4$.
+\item[(v)] $\max(n)\le \Nmols(n)+2$, where $\Nmols(n)$ is the maximum number of mutually orthogonal
+Latin squares of order $n$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The $n^2$ image pairs are distinct, and those with first coordinate $a$ lie among the $n$ pairs
+$(a,\ast)$, so at most $n$ cells carry the value $a$; summing $n$ values to $n^2$ forces exactly
+$n$. (ii) $(x,y)$ and $(y,x)$ have the same image. (iii) Rows of a group table are permutations, so
+$g\perp L$; columns are, so $g\perp R$. (iv) $f\perp L$ and $f\perp R$ together say that every row
+and every column of $f$ is a permutation, i.e.\ $f$ is a quasigroup; an associative quasigroup is a
+group, and by (ii) two group operations are never orthogonal, so at most one further member is
+possible. (v) Given a pairwise orthogonal family of size $k\ge2$, re-index the $n^2$ cells of $X^2$
+by the bijection supplied by two of its members. Those two become the two coordinate projections,
+and the remaining $k-2$ operations become $k-2$ Latin squares, pairwise orthogonal.
+\end{proof}
+
+Part (v) is the sharp classical form of the orthogonal-array bound; see
+Section~\ref{sec:attr}\,(A). Since $\Nmols(4)=3$, it gives $\max(4)\le5$, and with (iii) the value
+is pinned only to $3\le\max(4)\le5$. Section~\ref{sec:obj} closes the lower half at $4$ by hand, so
+the single statement left for a computation is the negative
+
+\begin{center}
+\emph{no five associative operations on a fixed $4$-set are pairwise orthogonal.}
+\end{center}
+
+\noindent\textbf{The exhaustion, as arithmetic.} All $3492$ labelled associative operations on the
+fixed set $[4]$ are generated --- no isomorphism quotient, no balance pruning, no lemma used to
+shrink the vertex set. The count $3492$ agrees with the published value $A023814(4)$ \cite{OEIS} of
+the number of labelled associative binary operations on a $4$-set; the completeness of the vertex
+set, that is the claim that these $3492$ tables are all of $\Sops_4$, is pinned by that agreement
+rather than proved here, and it cannot be eliminated by any argument inside this note. The orbit
+count of the diagonal $\mathrm{Sym}(4)$ action on those tables
+is $188=A027851(4)$, the number of semigroups of order $4$ up to isomorphism, and the orbit sizes
+sum to $3492$, so that decomposition is a partition. Of the $3492$ tables, exactly $48$ are
+value-balanced. Each of the remaining $3444$ carries some value in at least $5$ of its $16$ cells,
+which by Lemma~\ref{lem:free}\,(i) leaves it with no orthogonal partner at all: those $3444$
+vertices have degree $0$ and lie in no clique of size $\ge2$. Restricting to the $48$ therefore
+loses nothing. Among the $48$ there are $354$ orthogonal pairs out of all $\binom{48}{2}=1128$, and
+the numbers of cliques by size are
+\[
+  48,\quad 354,\quad 542,\quad 160,\quad 0 .
+\]
+The last two entries are each obtained twice: once by enumerating all cliques level by level, and
+once by an algorithm-free scan testing every one of the $\binom{48}{4}=194{,}580$ four-subsets and
+every one of the $\binom{48}{5}=1{,}712{,}304$ five-subsets pair by pair. The load-bearing negative
+therefore does not depend on any clique algorithm. This proves $\max(4)\le4$ and, with
+Section~\ref{sec:obj}, Theorem~\ref{thm:main}. Running the same census at $n=1,2,3$ gives
+$1,8,113$ associative tables, of which $1,4,5$ are balanced, with $0,5,7$ edges and maximum cliques
+of size $1,3,3$ attained by $1,2,3$ families; this is Proposition~\ref{prop:small}.
+
+\begin{remark}
+The $48$ balanced tables are exactly the completely simple ones. This equivalence is nowhere assumed
+above, and no general form of it is claimed here: it is a checked fact about the census, the
+accompanying program verifying in both directions, for $n\le4$ only, that a table on $[n]$ is
+value-balanced if and only if $SaS=S$ for every $a$.
+\end{remark}
+
+\section{Orbit representatives at $n=4$}\label{sec:class}
+
+At $n=4$ there are $160$ labelled extremal families, in $10$ orbits under relabelling of $X$, of
+sizes $5\cdot24+5\cdot8=160$. Because the Problem asks for families of \emph{labelled} operations, the
+count is of labelled families and the orbit decomposition is reported in addition to it. Tables are
+written in the flat row-concatenated form of Section~\ref{sec:obj}; recall
+$L=\texttt{1111222233334444}$ and $R=\texttt{1234123412341234}$.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}rrll@{}}
+\# & size & contains & representative\\
+\hline
+1 & 24 & --- & \texttt{1133224411332244}, \texttt{1212212134344343},\\
+  &   &   & \texttt{1234123443214321}, \texttt{1234341234121234}\\
+2 & 24 & --- & \texttt{1133224411332244}, \texttt{1212212134344343},\\
+  &   &   & \texttt{1234123443214321}, \texttt{3412123412343412}\\
+3 & 24 & --- & \texttt{1133224411332244}, \texttt{1221122143344334},\\
+  &   &   & \texttt{1234341234121234}, \texttt{1414232332324141}\\
+4 & 24 & --- & \texttt{1133224411332244}, \texttt{1221211234434334},\\
+  &   &   & \texttt{1234123434123412}, \texttt{1414232332324141}\\
+5 & 24 & --- & \texttt{1133224411332244}, \texttt{1221211234434334},\\
+  &   &   & \texttt{1234123434123412}, \texttt{4141323223231414}\\
+6 & 8 & $L$ & \texttt{1111222233334444}, \texttt{1234123434123412},\\
+  &   &   & \texttt{1234214321431234}, \texttt{1234432112344321}\ \ $(\ast)$\\
+7 & 8 & $L$ & \texttt{1111222233334444}, \texttt{1234123434123412},\\
+  &   &   & \texttt{1234214321431234}, \texttt{4321123443211234}\\
+8 & 8 & a group op & \texttt{1133224411332244}, \texttt{1221122143344334},\\
+  &   &   & \texttt{1234214334124321}, \texttt{1414323232321414}\\
+9 & 8 & $R$ & \texttt{1133224433114422}, \texttt{1221211234434334},\\
+  &   &   & \texttt{1234123412341234}, \texttt{1414232332324141}\\
+10 & 8 & $R$ & \texttt{1133224433114422}, \texttt{1221211234434334},\\
+  &   &   & \texttt{1234123412341234}, \texttt{4141323223231414}\\
+\end{tabular}
+\end{center}
+
+\noindent The row marked $(\ast)$ is the family of Section~\ref{sec:obj}. Of the $160$ families, $16$
+contain $L$ only (orbits $6,7$), $16$ contain $R$ only (orbits $9,10$), $128$ contain neither, and
+none contains both, as Lemma~\ref{lem:free}\,(iv) already forces.
+
+\section{Relation to known work}\label{sec:attr}
+
+\noindent\textbf{(A)} The ceiling of Lemma~\ref{lem:free}\,(v) is classical in both of its forms and
+is claimed here in neither. A pairwise orthogonal family of $k$ operations is a set of $k$ columns
+of an index-$1$ strength-$2$ orthogonal array $OA(n^2,k,n,2)$, whence $k\le n+1$ by the Rao and
+Bose--Bush bounds \cite{Rao,BoseBush}; the sharper $\max(n)\le\Nmols(n)+2$ is that bound in
+Latin-square form, and $\Nmols$ is the classical MOLS number, with $\Nmols(4)=3$ and
+$\Nmols(6)=1$ by Tarry \cite{Tarry}. The source paper's own introduction works in exactly this
+orthogonal-mate language and cites Mann \cite{Mann1,Mann2}. What is claimed here is only the
+associative determination and the exhaustion.
+
+\medskip
+\noindent\textbf{(B)} The phrase ``orthogonal systems of operations'' names an established
+literature that \cite{ABCHK} does not cite: Belousov \cite{Belousov}, U\v{s}an and Stojakovi\'c
+\cite{UsanStojakovic}, Belyavskaya and Mullen \cite{BelyavskayaMullen}, Belyavskaya
+\cite{Belyavskaya2005}, Fryz \cite{Fryz2018}. That school studies orthogonality of $k$-invertible,
+quasigroup and $n$-ary operations, and proves criteria and coordinatisation theorems; the framework
+terminology is theirs. None of it imposes associativity, and none of the items retrieved states a
+maximum at order $4$. Of them, Fryz \cite{Fryz2018} stands closest to an extremality question, its
+subject being the number of ways an orthogonal set of operations can be completed, but the operations
+completed there are $k$-invertible rather than associative. Adjacent from the other side, and
+restricted to Cayley tables of groups, are Bailey, Cameron, Kinyon and Praeger \cite{BCKP} and Evans,
+Martin, Minden and Ollis (arXiv:1807.08580); neither addresses $\Sops_n$, nor either half of the
+Problem.
+
+\medskip
+\noindent\textbf{(C)} Lemma~\ref{lem:hand}\,(ii) belongs to that school. It is the case
+$A=M$, $B=I$, $C=N$, $D=I$ of the classical criterion for orthogonality of \emph{linear} operations
+$f(x,y)=Ax+By$ over an abelian group, and it is stated here as a special case of a known criterion
+rather than as a new observation. We do not attribute it to a particular statement in the literature
+of (B). Part (i) of the same lemma is the
+associativity condition $M^2=M$, which is what confines the family used here to $\Sops_4$.
+
+\section{What is not settled}
+
+The Problem asks for $\max(n)$ and the extremal families as functions of $n$. What is settled here is
+the cells $n\le4$: $\max(n)=1,3,3,4$ with $1,2,3,160$ extremal families in $1,1,1,10$ relabelling
+orbits. Nothing above closes $n\ge5$, and the result should not be quoted as closing the Problem: no
+table of order above $4$ is generated anywhere by the accompanying program, and no value of
+$\max(n)$ for $n\ge5$ is claimed. The ceiling of Lemma~\ref{lem:free}\,(v) is quoted from the
+classical literature and is not reproved here.
+
+\begin{thebibliography}{99}
+
+\bibitem{ABCHK}
+J.~Ara\'ujo, W.~Bentz, P.~J. Cameron, K.~Hendrey, and M.~Kinyon,
+\emph{Complete mappings of semigroups},
+arXiv:2608.25092v1, 2026.
+\href{https://arxiv.org/abs/2608.25092}{arXiv:2608.25092}.
+Quotations and line numbers are from the \LaTeX{} e-print
+(\texttt{Complete\_Mappings\_arXiv.tex}), not from the PDF.
+
+\bibitem{BCKP}
+R.~A. Bailey, P.~J. Cameron, M.~Kinyon, and C.~E. Praeger,
+\emph{Diagonal groups and arcs over groups},
+Des. Codes Cryptogr. \textbf{90} (2022), 2069--2080;
+\href{https://arxiv.org/abs/2010.16338}{arXiv:2010.16338}.
+
+\bibitem{Belousov}
+V.~D. Belousov,
+\emph{Systems of orthogonal operations},
+Mat. Sb. (N.S.) \textbf{77} (1968), 38--58;
+English translation, Math. USSR-Sb. \textbf{6} (1968), 32--52.
+\href{https://doi.org/10.1070/SM1968v006n01ABEH001050}{doi:10.1070/SM1968v006n01ABEH001050}.
+
+\bibitem{Belyavskaya2005}
+G.~B. Belyavskaya,
+\emph{Pairwise orthogonality of $n$-ary operations},
+Bul. Acad. \c{S}tiin\c{t}e Repub. Mold. Mat. \textbf{2005}, no.~3(49), 5--18.
+
+\bibitem{BelyavskayaMullen}
+G.~B. Belyavskaya and G.~L. Mullen,
+\emph{Orthogonal hypercubes and $n$-ary operations},
+Quasigroups Related Systems \textbf{13} (2005), no.~1, 73--86.
+
+\bibitem{BoseBush}
+R.~C. Bose and K.~A. Bush,
+\emph{Orthogonal arrays of strength two and three},
+Ann. Math. Statistics \textbf{23} (1952), 508--524.
+
+\bibitem{Fryz2018}
+I.~V. Fryz,
+\emph{Algorithm for the complement of orthogonal operations},
+2018; Zbl 1480.20147.
+
+\bibitem{Mann1}
+H.~B. Mann,
+\emph{The construction of orthogonal Latin squares},
+Ann. Math. Statistics \textbf{13} (1942), 418--423.
+
+\bibitem{Mann2}
+H.~B. Mann,
+\emph{On orthogonal Latin squares},
+Bull. Amer. Math. Soc. \textbf{50} (1944), 249--257.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+sequences \href{https://oeis.org/A023814}{A023814} (labelled associative binary operations on an
+$n$-set: $1,1,8,113,3492,\ldots$) and \href{https://oeis.org/A027851}{A027851} (semigroups of order
+$n$ up to isomorphism: $1,5,24,188,\ldots$).
+
+\bibitem{Rao}
+C.~R. Rao,
+\emph{Factorial experiments derivable from combinatorial arrangements of arrays},
+J. Roy. Statist. Soc. Suppl. \textbf{9} (1947), 128--139.
+
+\bibitem{Tarry}
+G.~Tarry,
+\emph{Le probl\`eme des $36$ officiers},
+C. R. Assoc. France Av. Sci. \textbf{29} (1900), part 2, 170--203.
+
+\bibitem{UsanStojakovic}
+J.~U\v{s}an and Z.~Stojakovi\'c,
+\emph{Orthogonal systems of partial operations},
+Zb. Rad. Prirod.-Mat. Fak. Univ. Novom Sadu \textbf{8} (1978), 47--51.
+
+\end{thebibliography}
+
+\end{document}

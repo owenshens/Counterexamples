@@ -1,0 +1,541 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={An Explicit Negatively Associated Determinantal Point Process with No Symmetric Kernel, Minimal at n=3}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\DPP}{DPP}
+\newcommand{\bbR}{\mathbb R}
+\newcommand{\bbC}{\mathbb C}
+
+\title[An explicit negatively associated DPP with no symmetric kernel]
+{An Explicit Negatively Associated Determinantal Point Process\\ with No Symmetric Kernel,
+Minimal at $n=3$}
+
+\date{}
+
+\subjclass[2020]{60G55, 15A15, 60E15, 15B48}
+\keywords{determinantal point process, nonsymmetric kernel, negative association,
+principal minors, strongly Rayleigh}
+
+\begin{document}
+
+\begin{abstract}
+In the discussion section of \cite{Poinas} Poinas asks: \emph{does a negatively associated
+determinantal point process that does not have the same distribution as a $\DPP$ with a
+symmetric kernel even exist?} Read as a question about negative association in the standard
+sense recalled in Section~\ref{sec:question}, it does, already on three points. The
+rational kernel
+\[
+ W=\begin{pmatrix}
+  1/2 & 1/10 & 1/25\\ 1/10 & 1/2 & 1/10\\ 1/4 & 1/10 & 1/2
+ \end{pmatrix}
+\]
+is a $\DPP$ kernel, $\DPP(W)$ is negatively associated -- strictly so for nonconstant
+increasing functions on nonempty disjoint supports -- and no real symmetric, indeed no
+Hermitian, kernel has its law, because the law invariant $\sigma^{2}-4uvw$ equals
+$441/10^{8}>0$ while every real symmetric kernel forces $\sigma^{2}-4uvw=0$ and every
+Hermitian kernel forces $\sigma^{2}-4uvw\le0$. No smaller ground set carries such a process:
+at $n\le2$ a short case check shows every negatively associated $\DPP$ to be symmetrisable.
+Two qualifications belong here and not further down. First, $\DPP(W)$ is \emph{not} strongly
+Rayleigh, while the sentence motivating the question in \cite{Poinas} attributes negative
+association to symmetric-kernel $\DPP$s by citing \cite{BBL,Lyons}, and the theorem of
+\cite{BBL} gives those $\DPP$s the stronger strongly Rayleigh property; nothing here settles
+the question with
+negative association replaced by that property. Second, non-symmetrisable determinantal laws
+are not new: Section~\ref{sec:attribution} records two published constructions, one of them in
+\cite{Poinas} itself, whose three-point laws already have positive invariant, and for neither
+is negative association -- the other half of the question -- established.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:question}
+
+Fix $n\ge1$ and $K\in M_{n}(\bbR)$. Following \cite[\S2]{Poinas}, the \emph{determinantal
+measure} with kernel $K$ is the set function
+\begin{equation}\label{eq:defdpp}
+ \mu\bigl(\{X:\ A\subseteq X\}\bigr)=\det K_{A}\qquad(A\subseteq[n]),
+\end{equation}
+where $K_{A}$ is the principal submatrix on $A$ and $\det K_{\emptyset}=1$. Its atoms are
+recovered by M\"obius inversion,
+\begin{equation}\label{eq:mobius}
+ \mathbb P(X=A)=\sum_{A\subseteq T\subseteq[n]}(-1)^{|T|-|A|}\det K_{T},
+\end{equation}
+and $K$ is called a \emph{$\DPP$ kernel} exactly when all $2^{n}$ of these numbers are
+nonnegative, i.e.\ when $\mu$ is a probability measure; $\DPP(K)$ then denotes the resulting
+random subset of $[n]$. For \emph{symmetric} $K$, \cite[\S2]{Poinas} records that this
+happens iff every eigenvalue of $K$ lies in $[0,1]$.
+
+A random subset $X\subseteq[n]$ is \emph{negatively associated} (NA) if for all
+\emph{disjoint} $A,B\subseteq[n]$ and all increasing $f\colon2^{A}\to\bbR$,
+$g\colon2^{B}\to\bbR$,
+\begin{equation}\label{eq:na}
+ \mathbb E\bigl[f(X\cap A)\,g(X\cap B)\bigr]\le
+ \mathbb E\bigl[f(X\cap A)\bigr]\,\mathbb E\bigl[g(X\cap B)\bigr].
+\end{equation}
+Negative association is not defined in \cite{Poinas}; it is imported there by the citations
+\cite{BBL,Lyons}, and \eqref{eq:na} is the standard finite-ground-set form. Every $\DPP$
+with a symmetric kernel is strongly Rayleigh \cite{BBL} and hence NA. Two laws
+$\DPP(K)$, $\DPP(S)$ coincide iff $\det K_{A}=\det S_{A}$ for \emph{every} $A\subseteq[n]$,
+because by \eqref{eq:defdpp} the principal minors are the inclusion probabilities.
+
+\medskip
+\noindent\textbf{The question, and where it is.}
+The paragraph below is quoted from the subsubsection \emph{Negative association} of the
+section \emph{Discussion and open problems} of \cite{Poinas}. The question is unnumbered and
+in prose.
+
+\begin{quote}
+``All DPPs with symmetric kernels satisfy a strong dependency property called negative
+association [Borcea, Lyons] that extends to continuous DPPs with numerous applications
+[Ghosh, Poinas17]. Since negative association implies pairwise repulsion then a necessary
+condition for a DPP with kernel $K$ to be negatively associated is that
+$K_{i,j}K_{j,i}\ge 0$ for any $i,j\in[n]$ which is obviously not satisfied by all generic
+DPP kernels. The question naturally arising from this conclusion is what condition on $K$ is
+needed for the associated DPP to be negatively associated? In fact, does a negatively
+associated DPP that does not have the same distribution as a DPP with symmetric kernel even
+exist?''
+\end{quote}
+
+\noindent
+In the source the four bracketed items are \verb|\cite| commands; apart from those the
+paragraph is quoted as it stands. The clause settled below is its final sentence.
+
+It is an existence question about \emph{negative association} as defined in \eqref{eq:na}, and
+that is the reading taken here. A caution is owed: the paragraph opens by attributing negative
+association to symmetric-kernel $\DPP$s, and those satisfy the stronger strongly Rayleigh
+property as recorded above, so a reader may take the question to be about strongly Rayleigh
+measures instead. The witness below is \emph{not} strongly Rayleigh
+(Section~\ref{sec:open}), so under that stronger reading the question is not settled here. The
+\emph{first} question of the quoted paragraph -- ``what condition on $K$ is needed?'' -- is a
+different target and is not addressed below.
+
+\section{The witness}\label{sec:witness}
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+ W=\begin{pmatrix}
+   1/2 & 1/10 & 1/25\\ 1/10 & 1/2 & 1/10\\ 1/4 & 1/10 & 1/2
+  \end{pmatrix}.
+\]
+Then \emph{(i)} $W$ is a $\DPP$ kernel; \emph{(ii)} $\DPP(W)$ is negatively associated, and
+\eqref{eq:na} is \emph{strict} whenever $A,B$ are nonempty and $f,g$ are both nonconstant; and
+\emph{(iii)} no real symmetric matrix, and no
+Hermitian matrix, has the same principal minors as $W$, so $\DPP(W)$ is the law of no
+symmetric-kernel and of no Hermitian-kernel $\DPP$. In particular the final question of
+\cite[\S{}Discussion and open problems, ``Negative association'']{Poinas}, read as a question
+about \eqref{eq:na}, has the answer \textbf{yes}.
+\end{theorem}
+
+\begin{proof}[Proof of (i)]
+Every $1\times1$ minor is $1/2$. Every $2\times2$ principal minor is
+$1/4-1/100=6/25$, because
+$W_{12}W_{21}=W_{13}W_{31}=W_{23}W_{32}=1/100$ (namely
+$\tfrac1{10}\tfrac1{10}$, $\tfrac1{25}\tfrac14$, $\tfrac1{10}\tfrac1{10}$). By the six-term
+Laplace expansion,
+\[
+ \det W=\tfrac18-3\cdot\tfrac12\cdot\tfrac1{100}
+ +W_{12}W_{23}W_{31}+W_{13}W_{32}W_{21}
+ =\tfrac18-\tfrac3{200}+\tfrac1{400}+\tfrac1{2500}=\tfrac{1129}{10000}.
+\]
+The minors depend only on $|A|$, so the law is exchangeable. By \eqref{eq:mobius} the eight
+atoms are
+\[
+ \begin{array}{r@{\quad}l}
+  \mathbb P(X=\emptyset) &=1-3\cdot\tfrac12+3\cdot\tfrac6{25}-\tfrac{1129}{10000}
+   =\tfrac{1071}{10000},\\[2pt]
+  \mathbb P(X=\{i\}) &=\tfrac12-2\cdot\tfrac6{25}+\tfrac{1129}{10000}
+   =\tfrac{1329}{10000},\\[2pt]
+  \mathbb P(X=\{i,j\}) &=\tfrac6{25}-\tfrac{1129}{10000}=\tfrac{1271}{10000},\\[2pt]
+  \mathbb P(X=[3]) &=\tfrac{1129}{10000}.
+ \end{array}
+\]
+Their sum is $(1071+3\cdot1329+3\cdot1271+1129)/10000=1$ exactly, and all eight are
+\emph{strictly} positive, the smallest being $1071/10000$. Hence $\mu$ is a probability
+measure and $W$ is a $\DPP$ kernel. (Also $\mathbb P(X=\emptyset)=\det(I-W)\ne0$, so
+$L=W(I-W)^{-1}$ exists and $\DPP(W)$ is an $L$-ensemble.)
+\end{proof}
+
+\begin{proof}[Proof of (ii)]
+Write $D(f,g)=\mathbb E[fg]-\mathbb E[f]\mathbb E[g]$, so that \eqref{eq:na} reads
+$D(f,g)\le0$. The defect $D$ is bilinear and vanishes as soon as $f$ or $g$ is constant; in
+that case \eqref{eq:na} holds with equality, which is why strictness is asserted only for
+nonconstant $f,g$. Every increasing $f$ on a finite Boolean lattice is a \emph{nonnegative}
+combination of up-set indicators plus a constant, namely
+$f=v_{1}+\sum_{i\ge2}(v_{i}-v_{i-1})\mathbf 1_{\{f\ge v_{i}\}}$ over its distinct values
+$v_{1}<\dots<v_{m}$; if $f$ is nonconstant then $m\ge2$, each coefficient
+$v_{i}-v_{i-1}$ is strictly positive, and each $\{f\ge v_{i}\}$, $i\ge2$, is a proper nonempty
+up-closed family. So \eqref{eq:na} for all increasing $f,g$ is \emph{equivalent} to the finite
+list of inequalities $D(\mathbf 1_{U},\mathbf 1_{V})\le0$ over proper nonempty up-closed
+$U\subseteq2^{A}$, $V\subseteq2^{B}$, not merely implied by it, and if every one of those is
+strict then $D(f,g)<0$ for every pair of nonconstant increasing $f,g$.
+
+At $n=3$ the disjoint pairs are $(\{i\},\{j\})$ and $(\{i\},\{j,k\})$, three of each; the
+proper nonempty up-sets number $1$ on a one-element lattice and $4$ on a two-element
+lattice, so there are $3\cdot1\cdot1+3\cdot1\cdot4=15$ inequivalent inequalities, $30$ when
+both orders of each pair are counted. Exchangeability collapses them to three classes, each
+\emph{strict}:
+\[
+ \begin{array}{lccc}
+  \text{class} & \text{LHS} & \text{RHS} & \text{slack}\\ \hline
+  \{i\in X\}\ \text{vs}\ \{j\in X\} & 6/25 & 1/4 & 1/100\\
+  \{i\in X\}\ \text{vs}\ \{j,k\in X\} & 1129/10000 & 3/25 & 71/10000\\
+  \{i\in X\}\ \text{vs}\ \{X\cap\{j,k\}\ne\emptyset\} & 3671/10000 & 19/50 & 129/10000
+ \end{array}
+\]
+All $30$ ordered inequalities hold, with minimum slack $71/10000>0$. (The first class is
+exactly the necessary condition $K_{ij}K_{ji}\ge0$ of \cite{Poinas} quoted in
+Section~\ref{sec:question}; here all three products equal $1/100$.)
+\end{proof}
+
+For (iii) we isolate the invariant.
+
+\section{The obstruction is a single law invariant}\label{sec:invariant}
+
+For a triple $\{i,j,k\}\subseteq[n]$ and $K\in M_{n}(\bbC)$ put
+\begin{equation}\label{eq:inv}
+\begin{gathered}
+ u=K_{ij}K_{ji},\qquad v=K_{ik}K_{ki},\qquad w=K_{jk}K_{kj},\\
+ p=K_{ij}K_{jk}K_{ki},\qquad q=K_{ik}K_{kj}K_{ji},\qquad \sigma=p+q.
+\end{gathered}
+\end{equation}
+
+\begin{lemma}\label{lem:pq}
+$pq=uvw$ identically, with no hypothesis on $K$; consequently
+$\sigma^{2}-4uvw=(p-q)^{2}$. Moreover $u,v,w$ and $\sigma$ are functions of the principal
+minors of $K$ alone:
+\[
+ u=K_{ii}K_{jj}-\det K_{\{i,j\}},\qquad
+ \sigma=\det K_{\{i,j,k\}}-K_{ii}K_{jj}K_{kk}+K_{ii}w+K_{jj}v+K_{kk}u .
+\]
+\end{lemma}
+
+\begin{proof}
+$pq=(K_{ij}K_{ji})(K_{jk}K_{kj})(K_{ki}K_{ik})=uvw$ after regrouping the six factors, and
+$(p+q)^{2}-4pq=(p-q)^{2}$. The first displayed identity is the $2\times2$ expansion; the
+second is the six-term expansion of $\det K_{\{i,j,k\}}$ with $p+q$ collected.
+\end{proof}
+
+\begin{theorem}[representability]\label{thm:A}
+Fix $u,v,w>0$ and a value $\sigma$. Among matrices with the invariants \eqref{eq:inv} on a
+given triple:
+a real matrix exists iff $\sigma^{2}\ge4uvw$; a real \textbf{symmetric} one exists iff
+$\sigma^{2}=4uvw$; a \textbf{Hermitian} one exists iff $\sigma^{2}\le4uvw$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:pq}, $p$ and $q$ are the two roots of $z^{2}-\sigma z+uvw$. For real
+matrices they must be real, i.e.\ $\sigma^{2}\ge4uvw$. For real \emph{symmetric} $S$ the two
+$3$-cycle products coincide, $p=q=S_{ij}S_{jk}S_{ki}$, so $\sigma=2p$ and $uvw=p^{2}$, i.e.\
+$\sigma^{2}=4uvw$; conversely $\sigma^{2}=4uvw$ with $u,v,w>0$ is realised by
+$S_{ij}=\varepsilon_{ij}\sqrt u$ etc.\ with signs chosen so that the product is
+$\sigma/2$. For Hermitian $S$ one has $q=\bar p$, so $\sigma=2\operatorname{Re}p$ and
+$uvw=|p|^{2}$, whence
+\begin{equation}\label{eq:herm}
+ \sigma^{2}-4uvw=4(\operatorname{Re}p)^{2}-4|p|^{2}=-4(\operatorname{Im}p)^{2}\le0;
+\end{equation}
+conversely any $\sigma$ with $\sigma^{2}\le4uvw$ is realised by a $p$ on the circle
+$|p|^{2}=uvw$ with $2\operatorname{Re}p=\sigma$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(iii)]
+For $W$ on $\{1,2,3\}$: $u=v=w=1/100$, $p=W_{12}W_{23}W_{31}=1/400$,
+$q=W_{13}W_{32}W_{21}=1/2500$, so $\sigma=29/10000$ and, by Lemma~\ref{lem:pq},
+\[
+ \sigma^{2}-4uvw=(p-q)^{2}=\Bigl(\tfrac1{400}-\tfrac1{2500}\Bigr)^{2}
+ =\Bigl(\tfrac{21}{10000}\Bigr)^{2}=\frac{441}{10^{8}}>0 .
+\]
+Since $u,v,w,\sigma$ are functions of the principal minors alone, any matrix with the law of
+$\DPP(W)$ has the same value $441/10^{8}$; by Theorem~\ref{thm:A} that excludes every real
+symmetric matrix (which needs $0$) and, by \eqref{eq:herm}, every Hermitian matrix (which
+needs $\le0$).
+\end{proof}
+
+\begin{remark}[an algebra-free version of the same exclusion]\label{rem:signs}
+A real symmetric $S$ with the principal minors of $W$ must have $S_{ii}=1/2$ and
+$S_{ij}^{2}=W_{ii}W_{jj}-\det W_{\{i,j\}}=1/100$, hence $S_{ij}=\pm1/10$: the modulus is
+\emph{forced}, and $1/100$ is a rational square, so no irrationality escapes. Enumerating the
+eight sign patterns gives only two values of $\det S$, namely $14/125$ and $27/250$, and
+neither is $\det W=1129/10000$. This settles (iii) for the real symmetric case with no
+algebra at all.
+\end{remark}
+
+\section{Minimality in $n$}\label{sec:sharp}
+
+\begin{theorem}\label{thm:D}
+A negatively associated $\DPP$ whose law is the law of no symmetric-kernel $\DPP$ exists for
+\textbf{exactly} the $n\ge3$. In particular $n=3$ is the smallest possible ground set.
+\end{theorem}
+
+\begin{proof}
+\emph{$n\ge3$.} Take $K_{n}=W\oplus\operatorname{diag}(c_{4},\dots,c_{n})$ with rationals
+$c_{i}\in(0,1)$. For block-diagonal $K$ the minors factorise over blocks -- this is
+\cite[\S2]{Poinas}: ``if $K$ is a block diagonal matrix with diagonal blocks
+$K_{1},\dots,K_{l}$ then $K$ being a $\DPP$ kernel is equivalent to each $K_{i}$ being a
+$\DPP$ kernel'' -- so the atoms factorise, all stay strictly positive, and $\DPP(K_{n})$ is
+the independent superposition of $\DPP(W)$ with independent Bernoulli$(c_{i})$'s. Negative
+association is closed under independent superposition \cite[property P7]{JDP}, so
+$\DPP(K_{n})$ is NA. The obstruction is inherited by the principal submatrix on
+$\{1,2,3\}$: any symmetric or Hermitian $L$ with the same law has the same principal minors,
+hence the same $u,v,w,\sigma$ on $\{1,2,3\}$, hence $\sigma^{2}-4uvw\le0$ there, against
+$441/10^{8}>0$. No information about $L$ outside $\{1,2,3\}$ is used, so one bad triple
+obstructs at every larger $n$.
+
+\emph{$n\le2$ is impossible.} At $n=1$, \eqref{eq:na} is vacuous (there is no pair of
+disjoint nonempty subsets) and $K=(K_{11})$ is symmetric anyway. At $n=2$ the law is
+determined by $(K_{11},K_{22},u)$ with $u=K_{12}K_{21}$, and the single NA inequality is
+$\mathbb P(1,2\in X)\le\mathbb P(1\in X)\mathbb P(2\in X)$, i.e.\
+$K_{11}K_{22}-u\le K_{11}K_{22}$, i.e.\ $u\ge0$. Then the symmetric
+$S=\begin{psmallmatrix}K_{11}&\sqrt u\\ \sqrt u&K_{22}\end{psmallmatrix}$ reproduces both
+$1\times1$ minors and the $2\times2$ minor $K_{11}K_{22}-u$, hence every atom; and $S$ has
+spectrum in $[0,1]$ because its characteristic polynomial satisfies
+$\chi(0)=\mathbb P(X=\{1,2\})\ge0$, $\chi(1)=\mathbb P(X=\emptyset)\ge0$ and
+$0\le\tfrac12\operatorname{tr}S\le1$. So every NA $\DPP$ on at most two points is
+symmetrisable.
+\end{proof}
+
+\section{Real-symmetric-kernel laws lie on a hypersurface}\label{sec:generic}
+
+Coordinatise the $3$-point $\DPP$ laws by the $7$ invariants
+$(a_{1},a_{2},a_{3};u,v,w;\sigma)$ with $a_{i}=K_{ii}$; by Lemma~\ref{lem:pq} these are exactly
+the principal minors, so they are exactly the law.
+
+\begin{theorem}\label{thm:generic}
+The negatively associated $3$-point $\DPP$ laws have nonempty interior in this
+$7$-dimensional space, whereas the laws of real symmetric kernels are confined to the
+hypersurface $\sigma^{2}=4uvw$, a closed Lebesgue-null set of codimension one. Consequently
+\textbf{Lebesgue-almost every negatively associated $3$-point $\DPP$ law is the law of no
+$\DPP$ with a real symmetric kernel.}
+\end{theorem}
+
+The restriction to real symmetric kernels is essential: Hermitian kernels are confined only to
+the region $\sigma^{2}\le4uvw$, which is full-dimensional, so no analogous genericity statement
+against Hermitian kernels is made here; see Section~\ref{sec:open}.
+
+\begin{proof}
+At the law of $W$ all eight atom inequalities, all $30$ NA inequalities, $u,v,w>0$ and
+$\sigma^{2}-4uvw>0$ hold \emph{strictly} (Section~\ref{sec:witness}), and each is a
+polynomial in the seven free coordinates; so an open neighbourhood of that law consists of NA
+$\DPP$ laws with $\sigma^{2}>4uvw$. The symmetric locus is $\{\sigma^{2}=4uvw\}$ by
+Theorem~\ref{thm:A}, the zero set of a nonzero polynomial.
+\end{proof}
+
+\section{What was already in print}\label{sec:attribution}
+
+\emph{Determinantal laws that are the law of no symmetric kernel are already in print, in two
+published constructions; whether either is negatively associated we do not know.} We record
+this because presenting non-symmetrisability as a discovery would be an overclaim.
+
+\medskip
+\noindent\textbf{(a) The asking paper's own coupling.} Poinas' coupling construction
+\cite[Prop.~``Construction coupling'']{Poinas} builds
+from a symmetric $\DPP$ kernel $K$ and a parameter vector $p$ the $2n$-site kernel
+$\mathcal K=\begin{psmallmatrix}K&K-D(p)\\K&K\end{psmallmatrix}$. On the triple
+$\{1,2,1'\}$ (two sites of the first copy, one of the second) one gets $u=w=b^{2}$ with
+$b=K_{12}$, $v=K_{11}(K_{11}-p_{1})$ and $\sigma^{2}-4uvw=(b^{2}p_{1})^{2}>0$ whenever
+$p_{1}>0$ and $b\ne0$. So the paper's own coupling law is already non-symmetrisable; should it
+also be negatively associated -- which we have not checked -- bare existence would follow from
+that construction alone. Poinas does not test it for negative association.
+
+\medskip
+\noindent\textbf{(b) The one-dependent class the paper itself cites.} Borodin, Diaconis and
+Fulman \cite{BDF} -- reference \texttt{[Borodin09]} of \cite{Poinas} -- construct
+determinantal two-block-factor processes with nonsymmetric kernels; their
+$X_{i}=\mathbf 1\{Y_{i}\le p,\,Y_{i+1}>p\}$ gives, at $n=3$,
+$K=d\begin{psmallmatrix}1&1&0\\1&1&1\\1&1&1\end{psmallmatrix}$ with $d=p(1-p)$, whose law
+forces $\det K=0$ while a symmetric competitor would need $-d^{3}$. Their Theorem~4.1 and
+Example~6 give $\mathbb P(0,0,0)=1-3d+d^{2}$ at $a_{2}=d$, $a_{3}=a_{4}=0$ -- the same atom we
+obtain by M\"obius inversion from that kernel, an external published checksum. Not every
+member works: their descent process of a uniform permutation on three sites has $u=w=1/12$,
+$v=0$, $\sigma=0$, hence $\sigma^{2}=4uvw$, and \emph{is} symmetrisable.
+
+\medskip
+\noindent\textbf{What this leaves.} In the sources we read we did not find negative
+association stated for any nonsymmetric $\DPP$ kernel, nor the question whether an NA $\DPP$
+law can fail to be a symmetric-kernel law: \cite{BDF} contains no occurrence of ``negative
+association'', ``negative dependence'' or ``repulsi'', and its only remark on the point is the
+warning that the negative-dependence references ``mostly deal with symmetric
+kernels\ldots whereas all of our examples involve nonsymmetric kernels''. This is a statement
+about what those sources \emph{say}, not about what is decidable: for the two-block-factor
+process displayed in~(b) the three-point NA inequalities can be tested directly from the atoms
+recorded there, and we do not present that test as open. Our search could not
+reach MathSciNet or Google Scholar (Section~\ref{sec:open}), so no priority is claimed here.
+What is offered is the explicit witness with its exact verification, the impossibility at
+$n\le2$, and the codimension count of Section~\ref{sec:generic}.
+
+Finally, the direction of Theorem~\ref{thm:A} used here is the \emph{elementary} one
+(symmetric $\Rightarrow p=q\Rightarrow\sigma^{2}=4uvw$). The hard converse -- when principal
+minors determine a matrix up to diagonal similarity and transposition -- is the subject of
+\cite{Loewy,Stevens,Mantelos,Arvind}, and is not needed.
+
+\section{What is not settled}\label{sec:open}
+
+\begin{itemize}
+\item \textbf{Theorem~\ref{thm:generic} has no Hermitian analogue.} The law
+$(\tfrac12,\tfrac12,\tfrac12;\tfrac1{100},\tfrac1{100},\tfrac1{100};0)$ has atoms
+$\tfrac{11}{100},\tfrac{13}{100}(\times3),\tfrac{13}{100}(\times3),\tfrac{11}{100}$, is NA
+with slack $1/100$, and \emph{is} the law of the Hermitian kernel
+$\begin{psmallmatrix}1/2&1/10&-i/10\\1/10&1/2&1/10\\ i/10&1/10&1/2\end{psmallmatrix}$; all
+inequalities being strict, an open $7$-dimensional set of NA laws is Hermitian-representable.
+The Hermitian exclusion in Theorem~\ref{thm:main} is a \emph{pointwise} statement about $W$,
+not a genericity statement.
+\item \textbf{$\DPP(W)$ is not strongly Rayleigh}, so the analogous existence question for
+strongly Rayleigh measures is \emph{not} answered here. With
+$f(x)=\sum_{A}\mathbb P(X=A)\prod_{i\in A}x_{i}$ and
+$D_{ij}f=\partial_{i}f\,\partial_{j}f-f\,\partial_{i}\partial_{j}f$, Br\"and\'en's criterion
+for multiaffine polynomials \cite{Branden} requires $D_{ij}f\ge0$ on $\bbR^{3}$; at
+$x=(-4,-4,-2)$ and $(i,j)=(1,2)$ one computes
+$\partial_{1}f=\partial_{2}f=2735/10^{4}$, $f=-7675/10^{4}$,
+$\partial_{1}\partial_{2}f=-987/10^{4}$, so
+$D_{12}f=(2735^{2}-7675\cdot987)/10^{8}=-19/20000<0$. $\DPP(W)$ \emph{is} negatively
+associated, but any
+restatement of this result must say ``negatively associated'', never ``strongly Rayleigh''.
+\item \textbf{The continuous-space version of the question is untouched.} What is settled here
+is the finite-ground-set question of \cite{Poinas}; ``Continuous setting'' is a separate
+subsubsection of the same discussion section.
+\item \textbf{Prior-art coverage.} MathSciNet and Google Scholar were not reachable to us, so
+a scoop in an unpublished thesis, in lecture notes, or in a work indexed only by MR cannot be
+excluded.
+\end{itemize}
+
+\section{Reproduction and verification}\label{sec:verify}
+
+Every object above is printed in full, in exact rationals, so the entire verification can be
+redone with a pen: the eight atoms of $W$ by \eqref{eq:mobius}, the three slack classes, the
+six-term determinant, Lemma~\ref{lem:pq}, and Theorem~\ref{thm:main}(iii) in four
+multiplications and one subtraction. Remark~\ref{rem:signs} replaces even
+Theorem~\ref{thm:A} by an eight-case enumeration.
+
+The accompanying program \texttt{verify.py} (Python~3.9+, standard library only, exact
+\texttt{Fraction} arithmetic, no float decision anywhere) reads the matrices \emph{as printed
+above} and re-derives the numbers in the results of this paper, apart from the two groups
+listed at the end of this section: the minors and atoms of $W$ by two
+independent routes, negative association brute-forced \emph{from} \eqref{eq:na} over all
+ordered pairs of disjoint nonempty sets and all pairs of proper nonempty up-closed families
+with up-closure \emph{tested} rather than assumed, the invariants of \eqref{eq:inv} with
+$u$ and $\sigma$ cross-checked against the principal minors, the eight-sign-pattern exclusion
+of Remark~\ref{rem:signs}, the identity \eqref{eq:herm} on $1728$ Hermitian candidates with
+the forced moduli, the padding and the $n\le2$ sweep of
+Theorem~\ref{thm:D}, and the strong-Rayleigh point above. Its
+up-set enumerator is pinned against the Dedekind numbers $2,3,6,20,168,7581$
+(OEIS A000372) and its test counts against the prediction $30,348,4560,140058$ for
+$n=3,4,5,6$. The recorded run reports
+\texttt{VERDICT: ALL 71 CHECKS PASS} and its transcript, together with the scope statement the
+program prints for itself, accompanies this paper.
+
+\medskip
+\noindent\textbf{Reading the transcript against this paper.} Its sections 1 and 2 verify
+Theorem~\ref{thm:main}(i) and (ii); its section 3 verifies Lemma~\ref{lem:pq},
+Theorem~\ref{thm:main}(iii) and Remark~\ref{rem:signs}; its section 8, headed ``Theorem D'',
+verifies the padding and
+$n\le2$ parts of Theorem~\ref{thm:D}; its section 10 verifies the strong-Rayleigh point of
+Section~\ref{sec:open}. Its remaining headings name objects not discussed above and on which
+nothing above depends: the controls of its section 4, the closed-form slack formula it calls
+``Theorem B'', a second $n=3$ witness $W'$, the $\sigma$-interval it calls ``Theorem C'', the
+$n=4$ witness, the box certificate of its section 9, and the conditional-association checks.
+Those labels are the program's own and do not correspond to statements of this paper.
+
+\medskip
+\noindent\textbf{What the program does \emph{not} cover.} Two groups of numbers appearing
+above are outside its $71$ checks, and are stated here so that a reader does not look for
+them in the transcript. They are elementary and were checked by hand only.
+\begin{itemize}
+\item The arithmetic of Section~\ref{sec:attribution}: the triple invariants of Poinas'
+coupling ($u=w=b^{2}$, $v=K_{11}(K_{11}-p_{1})$, gap $(b^{2}p_{1})^{2}$), and the
+Borodin--Diaconis--Fulman numbers ($\det K=0$ against a symmetric competitor's $-d^{3}$, the
+external checksum $\mathbb P(0,0,0)=1-3d+d^{2}$, and $u=w=1/12$, $v=0$ for the descent
+process). The program's ``source's own kernel'' control is the uniform-on-even-subsets
+kernel, a \emph{different} object from the two discussed there.
+\item The Hermitian counterexample in the first item of Section~\ref{sec:open} (atoms
+$11/100$ and $13/100$, NA slack $1/100$). The program verifies the Hermitian
+\emph{inequality} \eqref{eq:herm} on $1728$ candidates, which is what
+Theorem~\ref{thm:main}(iii) needs; it does not evaluate that particular kernel.
+\end{itemize}
+\noindent
+Neither group is load-bearing for any theorem above: the first is attribution, the second is
+a disclaimer that only weakens Theorem~\ref{thm:generic}.
+
+\begin{thebibliography}{9}
+
+\bibitem{Arvind}
+V.~Arvind, A.~Chatterjee, P.~Mukhopadhyay, and others,
+\emph{Characterizing and testing principal minor equivalence of matrices},
+\href{https://arxiv.org/abs/2410.01961}{arXiv:2410.01961};
+\href{https://doi.org/10.1145/3717823.3718146}{doi:10.1145/3717823.3718146}.
+
+\bibitem{BBL}
+J.~Borcea, P.~Br\"and\'en, and T.~M. Liggett,
+\emph{Negative dependence and the geometry of polynomials},
+J. Amer. Math. Soc. \textbf{22} (2009), no.~2, 521--567.
+\href{https://doi.org/10.1090/S0894-0347-08-00618-8}{doi:10.1090/S0894-0347-08-00618-8}.
+
+\bibitem{BDF}
+A.~Borodin, P.~Diaconis, and J.~Fulman,
+\emph{On adding a list of numbers (and other one-dependent determinantal processes)},
+Bull. Amer. Math. Soc. \textbf{47} (2010), no.~4, 639--670.
+\href{https://doi.org/10.1090/S0273-0979-2010-01306-9}{doi:10.1090/S0273-0979-2010-01306-9}.
+
+\bibitem{Branden}
+P.~Br\"and\'en,
+\emph{Polynomials with the half-plane property and matroid theory},
+Adv. Math. \textbf{216} (2007), no.~1, 302--320.
+\href{https://doi.org/10.1016/j.aim.2007.05.011}{doi:10.1016/j.aim.2007.05.011}.
+
+\bibitem{JDP}
+K.~Joag-Dev and F.~Proschan,
+\emph{Negative association of random variables with applications},
+Ann. Statist. \textbf{11} (1983), no.~1, 286--295.
+\href{https://doi.org/10.1214/aos/1176346079}{doi:10.1214/aos/1176346079}.
+
+\bibitem{Loewy}
+R.~Loewy,
+\emph{Principal minors and diagonal similarity of matrices},
+Linear Algebra Appl. \textbf{78} (1986), 23--64.
+\href{https://doi.org/10.1016/0024-3795(86)90015-7}{doi:10.1016/0024-3795(86)90015-7}.
+
+\bibitem{Lyons}
+R.~Lyons,
+\emph{Determinantal probability measures},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{98} (2003), 167--212.
+\href{https://doi.org/10.1007/s10240-003-0018-x}{doi:10.1007/s10240-003-0018-x}.
+
+\bibitem{Mantelos}
+H.~Sapranidis Mantelos,
+\emph{Determinantally equivalent nonzero functions},
+\href{https://arxiv.org/abs/2302.02471}{arXiv:2302.02471};
+\href{https://doi.org/10.1016/j.disc.2026.115021}{doi:10.1016/j.disc.2026.115021}.
+
+\bibitem{Poinas}
+A.~Poinas,
+\emph{On determinantal point processes with nonsymmetric kernels},
+Electron. J. Probab. \textbf{31} (2026), no.~94.
+\href{https://doi.org/10.1214/26-ejp1550}{doi:10.1214/26-ejp1550};
+\href{https://arxiv.org/abs/2406.03360}{arXiv:2406.03360}.
+The quotation in Section~\ref{sec:question} is from the \LaTeX{} e-print of \textbf{v4}, the
+post-acceptance version of record.
+
+\bibitem{Stevens}
+M.~Stevens,
+\emph{Equivalent symmetric kernels of determinantal point processes},
+Random Matrices Theory Appl. \textbf{10} (2021), no.~3, 2150027.
+\href{https://doi.org/10.1142/S2010326321500271}{doi:10.1142/S2010326321500271}.
+
+\end{thebibliography}
+
+\end{document}

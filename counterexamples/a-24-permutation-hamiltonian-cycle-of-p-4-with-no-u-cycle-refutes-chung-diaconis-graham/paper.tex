@@ -1,0 +1,399 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A 24-Permutation Hamiltonian Cycle of P(4) That Does Not Extend
+  to a u-Cycle}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\DeclareMathOperator{\stt}{st}
+\DeclareMathOperator{\Ham}{Ham}
+\DeclareMathOperator{\Eul}{Eul}
+
+\title[A Hamiltonian cycle of $P(4)$ that does not extend to a u-cycle]
+{A 24-Permutation Hamiltonian Cycle of $P(4)$ That Does Not Extend to a
+u-Cycle}
+
+\date{}
+
+\subjclass[2020]{05A05, 05C45, 05C20, 68R15}
+\keywords{universal cycle, u-cycle for permutations, graph of overlapping
+permutations, Hamiltonian cycle, linear extension, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $P(n)$ be the digraph of overlapping permutations: its vertices are the
+$n!$ permutations of $\{1,\dots,n\}$, with an arc $x_1\cdots x_n\to
+y_1\cdots y_n$ when $x_2\cdots x_n$ and $y_1\cdots y_{n-1}$ are
+order-isomorphic. Chung, Diaconis and Graham introduced a procedure turning a
+Hamiltonian cycle of $P(n)$ into a universal cycle for $n$-permutations,
+provided the strict inequalities the cycle forces on the letters have no
+directed cycle. Kitaev and Qiu report that the authors of that paper believe
+this to be the case for \emph{any} Hamiltonian cycle of $P(n)$, and in 2026
+restate the belief as a conjecture. We exhibit a directed Hamiltonian cycle of
+$P(4)$ whose forced inequalities contain the directed cycle
+$u_2<u_5<u_7<u_9<u_{12}<u_{14}<u_{17}<u_{20}<u_{23}<u_2$. It therefore admits
+no linear extension and does not extend to a u-cycle, so the universally
+quantified statement as those two papers report it fails already at $n=4$. The
+proof is a $24$-entry table, $24$ arc checks and nine readings of a window, and
+needs no computation. We did not obtain the 1992 paper itself and make no claim
+about what it states: what is refuted is the statement as reported in 2024 and
+conjectured in 2026. The existence of u-cycles for $n$-permutations, and
+Hurlbert's construction to which Chung, Diaconis and Graham refer, are
+untouched.
+\end{abstract}
+
+\maketitle
+
+\section{The statement that is refuted}
+
+For a word $w$ of distinct letters, $\stt(w)$ denotes its standardisation: the
+permutation of $\{1,\dots,|w|\}$ order-isomorphic to $w$. The digraph is
+defined by Kitaev and Qiu \cite{KQ2024} as follows; we quote the \LaTeX{}
+source of their e-print \texttt{arXiv:2408.05984v1} verbatim, inserting only
+line breaks for width.
+
+{\footnotesize\begin{verbatim}
+the vertex set of $P(n)$ is the set of all $n!$ permutations of
+$\{1,2,\ldots,n\}$, and there is an edge $x_1x_2\cdots x_n\rightarrow
+y_1y_2\cdots y_n$ if and only if, for $2\leq i<j\leq n$, $x_i<x_j$ if and
+only if $y_{i-1}<y_{j-1}$.
+\end{verbatim}}
+
+\noindent
+Equivalently, $p\to q$ is an arc of $P(n)$ if and only if
+$\stt(p_2\cdots p_n)=\stt(q_1\cdots q_{n-1})$.
+
+Given a directed Hamiltonian cycle $C=(p_0,\dots,p_{N-1})$ of $P(n)$, where
+$N=n!$, the Chung--Diaconis--Graham procedure \cite{CDG1992} introduces $N$
+undetermined letters $u_0,\dots,u_{N-1}$ placed on a circle and requires, for
+every $i$, that the \emph{window}
+\[
+ (u_i,u_{i+1},\dots,u_{i+n-1}),
+ \qquad\text{indices mod }N,
+\]
+be order-isomorphic to $p_i$. Any two positions lying in a common window
+therefore have their relative order forced. Write $D(C)$ for the digraph on
+$\{0,\dots,N-1\}$ whose arcs $a\to b$ are the forced strict inequalities
+$u_a<u_b$. If $D(C)$ is acyclic then any linear extension of it gives a u-cycle
+for $n$-permutations; if $D(C)$ has a directed cycle then no assignment of
+letters realises all $N$ windows and $C$ yields nothing.
+
+The belief we refute is reported later in the same file. Quoted exactly,
+including the source's own grammatical slip ``believe that this to be the
+case'':
+
+{\footnotesize\begin{verbatim}
+Even though obtaining a Hamiltonian cycle $C$ in $P(n)$ is straightforward,
+arguing that the implied ordering on the values is in fact a partial order,
+i.e.\ has no cycles, is a difficult task. While the authors of \cite{CDG1992}
+believe that this to be the case for {\em any} Hamiltonian cycle in $P(n)$,
+they refer to \cite{Hurlbert} where a particular construction of $C$ is
+offered that guarantees the ordering be a partial order.
+\end{verbatim}}
+
+\noindent
+The load-bearing word is the quantifier \texttt{\{\char`\\em any\}}. The same
+two authors restate it as an open conjecture in 2026 \cite{KQ2026}
+(\texttt{arXiv:2603.01005v1}); we quote that sentence \emph{together with its
+antecedent}, because the antecedent is what fixes the class quantified over.
+
+{\footnotesize\begin{verbatim}
+Any Eulerian cycle in a graph formed by clusters can be extended to a
+Hamiltonian cycle in the graph of overlapping permutations (since each edge
+corresponds to exactly one permutation and we know this permutation). At
+least some of these Hamiltonian cycles (possibly all, which is conjectured),
+can be extended to u-cycles for permutations via linear extensions of
+partially ordered sets as described in~\cite{CDG1992}.
+\end{verbatim}}
+
+\begin{lemma}\label{lem:bij}
+Let $H_n$ be the multidigraph with vertex set $S_{n-1}$ in which each
+$p\in S_n$ is the edge $\stt(p_1\cdots p_{n-1})\to\stt(p_2\cdots p_n)$. Then
+$P(n)$ is the line digraph of $H_n$, and the cyclic orderings of $S_n$ whose
+consecutive entries are arcs of $P(n)$ are exactly the Eulerian circuits of
+$H_n$. In particular $\Ham(P(n))\leftrightarrow\Eul(H_n)$ is a bijection, not
+an inclusion.
+\end{lemma}
+
+\begin{proof}
+By definition $p\to q$ is an arc of $P(n)$ if and only if
+$\stt(p_2\cdots p_n)=\stt(q_1\cdots q_{n-1})$, that is, if and only if the head
+of the edge $p$ of $H_n$ equals the tail of the edge $q$. A cyclic ordering of
+all of $S_n$ with consecutive entries adjacent in $P(n)$ is therefore a closed
+walk in $H_n$ using every edge exactly once, and conversely.
+\end{proof}
+
+Hence the 2026 phrase ``possibly all'' and the 2024 quantifier ``\emph{any}
+Hamiltonian cycle in $P(n)$'' quantify over the same set, and the Eulerian
+route of \cite{KQ2026} is a reparametrisation of the whole search space rather
+than a construction landing in a distinguished subclass. What is refuted below
+is the statement as both sources give it.
+
+\medskip\noindent\textbf{Provenance of the quotations, and what they do not
+fix.} The paper \cite{CDG1992} is not open access and we did not read it; the
+belief is quoted only through the two citing papers above, whose \texttt{v1}
+e-print \LaTeX{} sources we read directly, and the quoted spans are exact
+substrings of those files. We therefore do not claim that Chung, Diaconis and
+Graham ever asserted the universally quantified statement, still less that they
+posed it as a mathematical assertion rather than an expectation: \cite{KQ2024}
+reports a belief at second hand, and its own observation that \cite{CDG1992}
+refer to \cite{Hurlbert} for a construction carrying a guarantee is consistent
+with less having been claimed there. The one firm anchor is the 2026
+parenthetical ``possibly all, which is conjectured''. A reader who holds that no
+universal assertion was ever posed in \cite{CDG1992} should read what follows as
+settling that conjecture of \cite{KQ2026} in the negative and as saying nothing
+about \cite{CDG1992}. Neither published journal version of \cite{KQ2024,KQ2026}
+was obtainable, so we cannot exclude a copy-edit having altered the quoted
+sentences; see Section~\ref{sec:open}.
+
+\medskip\noindent\textbf{Adjacent work.} Isaak \cite{Isaak2006} proves that the
+Hurlbert--Jackson digraphs $P(n,k)$, whose vertices are the $k$-permutations of
+an $n$-set and whose arcs are the $(k+1)$-permutations, are Hamiltonian for
+$k\le n-3$, using restricted Eulerian cycles and a line-digraph relation of the
+kind used in Lemma~\ref{lem:bij}; that is an existence result on a different
+digraph over an $n$-letter alphabet, and it says nothing about acyclicity of the
+order forced by a cycle of the order-isomorphism digraph $P(n)$. Asplund and Fox
+\cite{AsplundFox} work with the digraph $P(n)$ itself, count its short cycles
+and raise the existence and counting question for Hamiltonian cycles in it;
+neither their counts nor that question concerns the order forced on the letters,
+so they settle nothing about u-cycles. The conjecture quoted above is restated,
+not resolved, in \cite{KQ2026}. We claim no priority for what follows.
+
+\section{The counterexample}
+
+\begin{theorem}\label{thm:main}
+Let $n=4$, $N=24$, and let $C=(p_0,\dots,p_{23})$ be
+\begin{center}\footnotesize
+\begin{tabular}{r|cccccccccccc}
+$i$   & 0&1&2&3&4&5&6&7&8&9&10&11\\\hline
+$p_i$ & 1234&1243&1432&4312&4132&1324&3142&1423&4123&1342&3421&4213
+\end{tabular}
+
+\medskip
+\begin{tabular}{r|cccccccccccc}
+$i$   & 12&13&14&15&16&17&18&19&20&21&22&23\\\hline
+$p_i$ & 2134&2341&2413&4231&2314&2143&2431&4321&3214&3241&3412&3124
+\end{tabular}
+\end{center}
+closed by the arc $p_{23}\to p_0$, that is $3124\to1234$. Then $C$ is a
+directed Hamiltonian cycle of $P(4)$ and $D(C)$ contains the directed cycle
+\begin{equation}\label{eq:chain}
+ u_2<u_5<u_7<u_9<u_{12}<u_{14}<u_{17}<u_{20}<u_{23}<u_2 .
+\end{equation}
+Hence the implied ordering is not a partial order, $C$ has no linear extension,
+and $C$ does not extend to a u-cycle for $4$-permutations. Consequently the
+universally quantified statement reported in \cite{KQ2024} and conjectured in
+\cite{KQ2026} fails already at $n=4$.
+\end{theorem}
+
+\begin{proof}
+\emph{Every arc holds.} With the rule
+$p\to q\iff\stt(p_2p_3p_4)=\stt(q_1q_2q_3)$:
+\begin{center}\small
+\begin{tabular}{@{}l@{\ }l@{\qquad}l@{\ }l@{}}
+$0\to1$ & $\stt(234)=123=\stt(124)$ & $12\to13$ & $\stt(134)=123=\stt(234)$\\
+$1\to2$ & $\stt(243)=132=\stt(143)$ & $13\to14$ & $\stt(341)=231=\stt(241)$\\
+$2\to3$ & $\stt(432)=321=\stt(431)$ & $14\to15$ & $\stt(413)=312=\stt(423)$\\
+$3\to4$ & $\stt(312)=312=\stt(413)$ & $15\to16$ & $\stt(231)=231=\stt(231)$\\
+$4\to5$ & $\stt(132)=132=\stt(132)$ & $16\to17$ & $\stt(314)=213=\stt(214)$\\
+$5\to6$ & $\stt(324)=213=\stt(314)$ & $17\to18$ & $\stt(143)=132=\stt(243)$\\
+$6\to7$ & $\stt(142)=132=\stt(142)$ & $18\to19$ & $\stt(431)=321=\stt(432)$\\
+$7\to8$ & $\stt(423)=312=\stt(412)$ & $19\to20$ & $\stt(321)=321=\stt(321)$\\
+$8\to9$ & $\stt(123)=123=\stt(134)$ & $20\to21$ & $\stt(214)=213=\stt(324)$\\
+$9\to10$ & $\stt(342)=231=\stt(342)$ & $21\to22$ & $\stt(241)=231=\stt(341)$\\
+$10\to11$ & $\stt(421)=321=\stt(421)$ & $22\to23$ & $\stt(412)=312=\stt(312)$\\
+$11\to12$ & $\stt(213)=213=\stt(213)$ & $23\to0$ & $\stt(124)=123=\stt(123)$
+\end{tabular}
+\end{center}
+The last entry is the wrap arc, so this is a cycle and not a path. No $p_i$
+equals $p_{i+1}$, so neither of the two self-loops of $P(4)$ --- which are
+$1234\to1234$ and $4321\to4321$, and which no Hamiltonian cycle may use ---
+lies on $C$.
+
+\emph{It is Hamiltonian.} Group the entries by first letter:
+\begin{center}\small
+\begin{tabular}{c|l}
+first letter & suffixes occurring\\\hline
+$1$ & $234,\ 243,\ 432,\ 324,\ 423,\ 342$\\
+$2$ & $134,\ 341,\ 413,\ 314,\ 143,\ 431$\\
+$3$ & $142,\ 421,\ 214,\ 241,\ 412,\ 124$\\
+$4$ & $312,\ 132,\ 123,\ 213,\ 231,\ 321$
+\end{tabular}
+\end{center}
+Each row lists all six permutations of the three remaining letters, and
+$4\cdot6=24=|S_4|$, so the $24$ entries are distinct and exhaust $S_4$.
+
+\emph{The contradiction.} Window $i$ occupies the cyclic positions
+$i,i+1,i+2,i+3$ and is order-isomorphic to $p_i$, so the rank of $u_{i+k-1}$
+inside window $i$ is the $k$-th letter of $p_i$. Nine windows suffice, each
+contributing the inequality between the two letters of consecutive rank shown:
+\begin{center}\small
+\begin{tabular}{c|c|c|l|c}
+window $i$ & $p_i$ & positions & ranks & forced\\\hline
+$2$ & $1432$ & $(2,3,4,5)$ & $u_2{=}1,\ u_3{=}4,\ u_4{=}3,\ u_5{=}2$ & $u_2<u_5$\\
+$5$ & $1324$ & $(5,6,7,8)$ & $u_5{=}1,\ u_6{=}3,\ u_7{=}2,\ u_8{=}4$ & $u_5<u_7$\\
+$6$ & $3142$ & $(6,7,8,9)$ & $u_6{=}3,\ u_7{=}1,\ u_8{=}4,\ u_9{=}2$ & $u_7<u_9$\\
+$9$ & $1342$ & $(9,10,11,12)$ & $u_9{=}1,\ u_{10}{=}3,\ u_{11}{=}4,\ u_{12}{=}2$ & $u_9<u_{12}$\\
+$12$ & $2134$ & $(12,13,14,15)$ & $u_{12}{=}2,\ u_{13}{=}1,\ u_{14}{=}3,\ u_{15}{=}4$ & $u_{12}<u_{14}$\\
+$14$ & $2413$ & $(14,15,16,17)$ & $u_{14}{=}2,\ u_{15}{=}4,\ u_{16}{=}1,\ u_{17}{=}3$ & $u_{14}<u_{17}$\\
+$17$ & $2143$ & $(17,18,19,20)$ & $u_{17}{=}2,\ u_{18}{=}1,\ u_{19}{=}4,\ u_{20}{=}3$ & $u_{17}<u_{20}$\\
+$20$ & $3214$ & $(20,21,22,23)$ & $u_{20}{=}3,\ u_{21}{=}2,\ u_{22}{=}1,\ u_{23}{=}4$ & $u_{20}<u_{23}$\\
+$23$ & $3124$ & $(23,0,1,2)$ & $u_{23}{=}3,\ u_0{=}1,\ u_1{=}2,\ u_2{=}4$ & $u_{23}<u_2$
+\end{tabular}
+\end{center}
+The last row is a wrap-around window. Concatenating the nine forced
+inequalities gives \eqref{eq:chain}, a cycle of \emph{strict} inequalities, so
+no values whatsoever can be assigned to $u_0,\dots,u_{23}$.
+\end{proof}
+
+\section{The reading of the source}
+
+\noindent\textbf{The wrap-around windows, pinned to published
+output.} Everything above rests on reading all $N$ windows, including the $n-1$
+that wrap around; omitting those is the single error that would manufacture a
+false ``acyclic''. That the wrap-around reading is the source's own is settled
+by the source's own worked example at $n=3$ in
+\texttt{arXiv:2408.05984v1}: for the Hamiltonian cycle
+\[
+ 132\to312\to123\to231\to321\to213\to132
+\]
+of $P(3)$ they publish the u-cycle word $U_3=142342$. Read as a
+\emph{circular} word of length $6$, its six windows of length $3$ are
+\[
+ (1,4,2),\ (4,2,3),\ (2,3,4),\ (3,4,2),\ (4,2,1),\ (2,1,4)
+ \;\longrightarrow\;
+ 132,\ 312,\ 123,\ 231,\ 321,\ 213,
+\]
+their cycle in order, \emph{including} the two wrap-around windows $(4,2,1)$
+and $(2,1,4)$. Applying the forced-order construction to their cycle returns
+the transitive reduction
+$\{a\to c,\ a\to f,\ c\to d,\ f\to d,\ d\to b,\ d\to e\}$ on the six positions
+$a,\dots,f$, which is their published Hasse diagram, and $142342$ is one of its
+linear extensions. By contrast, dropping the wrap-around windows makes the
+forced order of the cycle of Theorem~\ref{thm:main} acyclic --- which is exactly
+the failure mode this control excludes.
+
+\medskip\noindent\textbf{Independence of the reading.} Theorem~\ref{thm:main}
+does not depend on which of the two natural readings of ``the implied
+ordering'' is taken. The source's literal all-ordered-pairs reading gives $72$
+forced strict inequalities on the exhibited cycle, with no antisymmetry
+violation; the consecutive-rank reading used in the proof gives $46$. Both
+contain all nine links of \eqref{eq:chain}.
+
+\section{What is not settled}\label{sec:open}
+
+Only $n=4$ is settled. Whether every $n\ge5$ admits a Hamiltonian cycle of
+$P(n)$ whose forced order is cyclic is not settled here, and we report no
+computation at $n\ge5$. Neither do we report how many Hamiltonian cycles of
+$P(4)$ have cyclic forced order: no such count is claimed anywhere in this
+paper. The arc counts $72$ and $46$ are about the exhibited cycle alone.
+
+\medskip\noindent\textbf{Sources not read.} The paper \cite{CDG1992} itself (no
+open-access copy
+exists; publisher access refused), Hurlbert's 1990 Rutgers thesis
+\cite{Hurlbert} (not online, no repository record; it is the source of the
+existential construction, which this paper does not contradict), and the survey
+\cite{JSH2009} (full text refused at the only location we found). Neither
+paywalled journal version of \cite{KQ2024,KQ2026} was obtainable, so the
+published-versus-preprint text was never diffed; the risk is low, since
+\cite{KQ2026} independently restates the conjecture as open in 2026.
+
+\medskip\noindent\textbf{What is not claimed.} U-cycles for $n$-permutations
+exist for every $n$, and every published construction that actually produces
+one still works; Hurlbert's construction \cite{Hurlbert}, to which
+\cite{CDG1992} refer, is untouched. What fails is only the
+shortcut of starting from an \emph{arbitrary} Hamiltonian cycle. By
+Lemma~\ref{lem:bij}, ``take an Eulerian cycle of the cluster graph and lift
+it'' \cite{KQ2026} is not an alternative guarantee: it generates every
+Hamiltonian cycle of $P(n)$, the one exhibited above included, and
+\cite{KQ2026} itself claims no more for it than that ``at least some'' of the
+resulting cycles work.
+
+\section{Reproduction and verification}
+
+Everything in Theorem~\ref{thm:main} is checkable from the printed tables with
+no computer. The program \texttt{verify.py} accompanying this paper reads the
+$24$-entry cycle printed above, together with the published $n=3$ objects of
+\cite{KQ2024}, and re-derives: that the cycle is a Hamiltonian cycle of $P(4)$
+using neither self-loop; that each of the nine links of \eqref{eq:chain} is
+forced by the window named in the table; that the forced digraph is cyclic under
+both readings of the source; the arc counts $46$ and $72$ and the absence of
+antisymmetry violations; and that Kitaev and Qiu's own cycle, word
+$U_3=142342$ and Hasse diagram are reproduced by the convention used here, while
+dropping the wrap-around windows would make the exhibited cycle look acyclic. It
+reports $73$ checks, all passing, in exact integer arithmetic, using only the
+Python standard library.
+
+The recorded output covers more than this paper claims, and the surplus is not
+claimed here: a second $24$-permutation Hamiltonian cycle of $P(4)$ with cyclic
+forced order, which this paper does not print; exhaustive verdicts at $n=3$ and
+$n=2$; and a total number of Hamiltonian cycles of $P(4)$ obtained from an
+integer Matrix--Tree cofactor with published de Bruijn control counts. The
+program re-derives nothing about $n\ge5$. The verbatim quotations above are
+facts about external e-print files and are not checked by the program.
+
+\begin{thebibliography}{9}
+
+\bibitem{AsplundFox}
+J.~Asplund and N.~Fox,
+\emph{Enumerating cycles in the graph of overlapping permutations},
+Discrete Math. \textbf{341} (2018), no.~2, 427--438.
+\href{https://arxiv.org/abs/1609.02210}{arXiv:1609.02210}.
+
+\bibitem{CDG1992}
+F.~Chung, P.~Diaconis, and R.~Graham,
+\emph{Universal cycles for combinatorial structures},
+Discrete Math. \textbf{110} (1992), 43--59.
+\href{https://doi.org/10.1016/0012-365X(92)90699-G}
+{doi:10.1016/0012-365X(92)90699-G}.
+Not open access; we did not read it, and quote its belief only through
+\cite{KQ2024,KQ2026}.
+
+\bibitem{Hurlbert}
+G.~Hurlbert,
+Ph.D. thesis, Rutgers University, 1990.
+Cited as \texttt{\char`\\cite\{Hurlbert\}} by \cite{KQ2024} for the
+construction that does carry a guarantee; we could not obtain it, and record
+only the bibliographic data \cite{KQ2024} gives.
+
+\bibitem{Isaak2006}
+G.~Isaak,
+\emph{Hamiltonicity of digraphs for universal cycles of permutations},
+European J. Combin. \textbf{27} (2006), no.~6, 801--805.
+\href{https://doi.org/10.1016/j.ejc.2005.05.007}
+{doi:10.1016/j.ejc.2005.05.007}.
+
+\bibitem{JSH2009}
+B.~Jackson, B.~Stevens, and G.~Hurlbert,
+\emph{Research problems on Gray codes and universal cycles},
+Discrete Math. \textbf{309} (2009), 5341--5348.
+Full text not obtainable to us.
+
+\bibitem{KQ2024}
+S.~Kitaev and D.~Qiu,
+\emph{On a family of universal cycles for multi-dimensional permutations},
+\href{https://arxiv.org/abs/2408.05984}{arXiv:2408.05984v1}, 2024.
+The passages quoted above are exact substrings of the \LaTeX{} source of that
+e-print.
+
+\bibitem{KQ2026}
+S.~Kitaev and D.~Qiu,
+\emph{On shortening universal words for multi-dimensional permutations},
+\href{https://arxiv.org/abs/2603.01005}{arXiv:2603.01005v1}, 2026.
+The passage quoted above is an exact substring of the \LaTeX{} source of that
+e-print.
+
+\end{thebibliography}
+
+\end{document}

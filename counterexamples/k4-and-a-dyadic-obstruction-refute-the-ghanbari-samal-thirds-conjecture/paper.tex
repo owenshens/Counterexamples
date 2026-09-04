@@ -1,0 +1,596 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A dyadic obstruction, and K4, against the thirds conjecture for cubic
+  graphs under uniform random embedding}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\DeclareMathOperator{\Aut}{Aut}
+
+\title[A dyadic obstruction, and $K_4$, against the thirds conjecture]
+{A Dyadic Obstruction, and $K_4$, against the Thirds Conjecture for Cubic
+Graphs under Uniform Random Embedding}
+
+\date{}
+
+\subjclass[2020]{05C10, 05C30, 05C80}
+\keywords{random embedding, rotation system, signature, singular edge, facial walk,
+cubic graph, cycle double cover, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Ghanbari and \v{S}\'{a}mal conjectured that in a random embedding
+$(\pi,\lambda)$ of a bridgeless cubic graph $G$ with $m$ edges, the expected
+numbers of bad singular, good singular and regular edges are each exactly
+$m/3$. The source does not define the underlying probability measure; we settle
+the conjecture under two uniform models of ``random embedding'' --- all signed
+rotation systems, and the orientable ones --- and we do not settle it under any
+non-uniform or limiting measure. (Sampling signatures at one fixed rotation is
+not a third model: by the switching lemma below it is another parametrization of
+the first, with the same induced distribution of edge classes.) Under the uniform
+measure on the $2^{n+m}$ signed rotation systems all three parts fail, in two
+independent ways. First, a divisibility
+argument: for a connected edge-transitive cubic graph $\Aut(G)$-equivariance
+forces each per-edge class probability to be a single dyadic rational
+$A_i/2^{n+m}$, so $\mathbb{E}[\#\text{class }i]=m/3$ would require
+$3A_i=2^{n+m}$. Second, an exact census of the $2^{10}=1024$ signed rotation
+systems of $K_4$, carried out at one fixed rotation and tabulated
+signature by signature in the accompanying program, gives
+$(\mathbb{E}[\#\mathrm{bad}],\mathbb{E}[\#\mathrm{good}],\mathbb{E}[\#\mathrm{reg}])
+=(\tfrac{27}{16},\tfrac{69}{32},\tfrac{69}{32})$
+against the conjectured $m/3=2$, so $m/3$ is not a member of that
+multiset and no relabelling of the three classes rescues any part. On the
+uniform orientable model the numbers change but the three equalities still
+fail. What is contradicted is the exact constant $m/3$; the near-uniform split the
+source observed is not in dispute, and the conjecture's only consumer in the
+source paper keeps its conclusion, which that paper already proves
+unconditionally by a different route.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture, verbatim}
+
+Let $G$ be a graph. Following Mohar and Thomassen \cite{MT}, a
+\emph{combinatorial embedding} of $G$ is a pair $(\pi,\lambda)$, where $\pi$
+assigns to each vertex a cyclic order of the darts at that vertex and
+$\lambda:E(G)\to\{+1,-1\}$ is a \emph{signature}. Ghanbari and \v{S}\'{a}mal
+\cite[lines 117--120 of \texttt{main.tex}]{GS} classify an edge $e$ of an
+embedded graph as follows: $e$ is \emph{singular} if some facial walk $F$
+traverses $e$ twice, and \emph{regular} otherwise; a singular edge traversed
+twice in the same direction by $F$ is \emph{good singular}, and one traversed
+twice in opposite directions is \emph{bad singular}. They then propose the
+following \cite[Conjecture~1, \texttt{main.tex} lines 306--313]{GS}, quoted
+character for character from the arXiv \LaTeX{} source:
+
+\begingroup\footnotesize
+\begin{verbatim}
+\begin{conjecture}\label{rnd-emb-conj}
+In a random embedding of a bridgeless cubic graph $G$,
+    \begin{enumerate}
+        \item The expected number of bad singular edges is $\frac{m}{3}$.
+        \item The expected number of good singular edges is $\frac{m}{3}$.
+        \item The expected number of regular edges is $\frac{m}{3}$.
+    \end{enumerate}
+\end{conjecture}
+\end{verbatim}
+\endgroup
+
+\noindent
+The sentence immediately preceding it, at \texttt{main.tex} lines 301--304,
+is the one that fixes $m$: ``Let $(\pi,\lambda)$ be a
+random embedding of a cubic graph $G$. Results of several computer experiments
+counting the number of singular edges in a random embedding of a cubic graph
+indicate that the expected number of bad singular edges is $\frac{m}{3}$,
+where $m$ is the number of edges in $G$.''
+
+That sentence fixes $m$, and it is all the source says about the probability
+space: no measure on embeddings is defined there or elsewhere in \cite{GS}, so
+what follows depends on a choice of measure that we must make and state. We
+work with the uniform measure on signed rotation systems, which is the space
+the source's own Mohar--Thomassen notation $(\pi,\lambda)$ names, and we return
+in \S\ref{sec:scope} to the uniform orientable model and to what is left
+open. Throughout, $n=|V(G)|$, $m=|E(G)|=3n/2$, and
+\[
+ \Omega=\Omega(G)=\{(\pi,\lambda)\}, \qquad |\Omega|=2^{n}\cdot 2^{m}=2^{n+m},
+\]
+with the uniform measure: at each vertex of a cubic graph there are exactly
+$2$ cyclic orders of the $3$ darts, and $\lambda$ ranges over $\{\pm1\}^{E}$.
+Since $n$ is even, $m/3=n/2$ is an integer, so no crude integrality argument is
+available.
+
+The quantifier over $G$ is read as universal, i.e.\ one counterexample graph
+suffices. That is the source's own use of the statement: its only consumer,
+Theorem~4.1 at \texttt{main.tex} lines 317--319, is proved at lines 320--322 by
+a first-moment argument applied to the single fixed $G$ it is handed, which
+consumes $\mathbb{E}[\cdot]$ for that $G$ and not an average over a family.
+
+Two lines of work are adjacent to Conjecture~1 of \cite{GS} and settle no part
+of it. Bender and Richmond \cite{BR} bound the number of singular edges of an
+embedding of a $3$-edge-connected graph in terms of the Euler characteristic of
+the surface --- a deterministic worst-case bound, $0$ on the sphere and $1$ in
+the projective plane --- with no random model and no expectation. The
+random-embedding papers of the source's co-author and collaborators --- Campion
+Loth and Mohar \cite{CLM}, and Campion Loth, Halasz, Ma\v{s}a\v{r}\'{\i}k,
+Mohar and \v{S}\'{a}mal \cite{CLHMMSa,CLHMMSb} --- compute expectations over
+uniformly random rotation systems, but of face counts only: none of them
+computes the expected number of bad singular, good singular or regular edges,
+and none addresses the $m/3$ split. The total-embedding-distribution literature,
+for instance Chen, Ou and Zou \cite{COZ}, enumerates signed rotation systems by
+genus rather than by edge class, and so does not record the class counts used
+below.
+
+\section{A dyadic obstruction}
+
+\begin{theorem}\label{thm:dyadic}
+Let $G$ be a finite connected edge-transitive cubic graph, and let $\Omega$
+carry the uniform measure. Then for each of the three classes
+$i\in\{\mathrm{bad\ singular},\ \mathrm{good\ singular},\ \mathrm{regular}\}$
+one has $\mathbb{E}[\#\text{class }i]\neq m/3$; so each of the three parts of
+the conjecture fails for $G$ in this model.
+\end{theorem}
+
+\begin{proof}
+Put $N=|\Omega|=2^{n+m}$.
+\begin{enumerate}
+\item For each edge $e$ and each class $i$, the number $A_{e,i}$ of
+$(\pi,\lambda)\in\Omega$ in which $e$ lies in class $i$ is a non-negative
+integer, so $\mathbb{P}[e\in\text{class }i]=A_{e,i}/N$ is \emph{dyadic}.
+\item Each $\sigma\in\Aut(G)$ acts on $\Omega$ by
+$(\pi,\lambda)\mapsto(\pi^{\sigma},\lambda^{\sigma})$. Being a group action it
+is a bijection of the $N$ systems, and it carries facial walks to facial walks
+preserving the number of traversals of an edge and their relative directions.
+Hence $e$ lies in class $i$ under $(\pi,\lambda)$ if and only if $\sigma(e)$
+lies in class $i$ under the image, and $A_{e,i}=A_{\sigma(e),i}$.
+\item Edge-transitivity makes all $A_{e,i}$ equal to a common $A_i$, so by
+linearity $\mathbb{E}[\#\text{class }i]=\sum_{e}A_{e,i}/N=m\,A_i/N$.
+\item If $\mathbb{E}[\#\text{class }i]=m/3$ then $A_i/N=1/3$, i.e.
+$3A_i=2^{n+m}$, which is impossible because $3$ divides no power of $2$. This
+argument is run for each $i$ separately.\qedhere
+\end{enumerate}
+\end{proof}
+
+Three remarks fix the strength of Theorem~\ref{thm:dyadic}.
+
+The divisibility must be applied per edge, never to the total: for a cubic
+graph $m=3n/2$ is always divisible by $3$, so $m/3=n/2$ is an integer and
+``$3$ divides no power of $2$'' says nothing about
+$\mathbb{E}[\#\text{class }i]=m/3$ directly. Edge-transitivity is what converts
+the total into a per-edge statement, and without it the argument does not run.
+
+``Bridgeless'' is redundant in the hypothesis: a connected edge-transitive
+graph with a bridge has every edge a bridge, hence is a tree, and a tree has a
+leaf and so is not cubic.
+
+The hypothesis is met by infinitely many graphs --- infinitely many connected
+cubic arc-transitive graphs exist, the sextet construction of Biggs and Hoare
+\cite{BH} being one source --- but the conclusion is quantitatively weak:
+\[
+ \bigl|\mathbb{E}[\#\text{class }i]-\tfrac{m}{3}\bigr|
+ =\frac{m}{N}\Bigl|A_i-\frac{N}{3}\Bigr|\ \ge\ \frac{m}{3N},
+\]
+since $A_i$ is an integer and $3\nmid N$; on $K_4$ this reads $1/512$. The floor
+improves to $1/32$ once one knows in addition that $2^{n}\mid A_i$, which holds
+because the switching action of Lemma~\ref{lem:gauge} is free with all orbits of
+size $2^{n}$ and each class is constant on orbits: the nearest multiple of $16$
+to $N/3=1024/3$ is $16/3$ away, and $\tfrac{m}{N}\cdot\tfrac{16}{3}=1/32$.
+By itself the theorem would license the reply
+``the exact equality is impossible, restate it asymptotically''; the
+computation of \S\ref{sec:k4} shows the deviation on $K_4$ is ten times that
+floor.
+
+\section{The \texorpdfstring{$K_4$}{K4} computation}\label{sec:k4}
+
+\subsection*{Face tracing}
+Let $G$ be cubic. Face tracing runs on the $4m$ \emph{arrival states}
+$(f,y,t)$, where $f\in E(G)$, $y$ is an endpoint of $f$ and $t\in\{+1,-1\}$,
+under $\Phi=T\circ R$:
+\begin{itemize}
+\item $R$ (rotate at $y$): from $(f,y,t)$, depart $y$ along
+$g=\pi_{y}^{\,t}(f)$, keeping $t$;
+\item $T$ (traverse $g$ from $y$): arrive at
+$\bigl(g,z,t\cdot\lambda(g)\bigr)$, where $z$ is the far end of $g$.
+\end{itemize}
+The reversal $\operatorname{rev}(f,u,t)=(f,v,-t\lambda(f))$, with $v$ the
+other end of $f$, is an involution satisfying
+$\operatorname{rev}\circ\Phi\circ\operatorname{rev}=\Phi^{-1}$, so facial
+walks correspond to pairs $\{C,\operatorname{rev}(C)\}$ of $\Phi$-cycles and
+the number of faces is $f=(\#\Phi\text{-orbits})/2$. Writing $A=(f,u,+1)$ and
+$B=(f,u,-1)$ for an edge $f=uv$, the definitions of \cite{GS} read
+\begin{equation}\label{eq:class}
+\begin{gathered}
+ f\ \text{good singular}\iff A\sim_{\Phi}B,\qquad
+ f\ \text{bad singular}\iff A\sim_{\Phi}\operatorname{rev}(B),\\
+ \text{and $f$ regular otherwise},
+\end{gathered}
+\end{equation}
+and these are mutually exclusive and exhaustive (both would force
+$A\sim_{\Phi}\operatorname{rev}(A)$, which is impossible). The conjecture's
+``$1/3$ each'' shape is the guess that the three possible same-cycle relations
+among an edge's four tracing states are equally likely.
+
+\subsection*{The switching lemma}
+Switching at a vertex $v$ means replacing $\pi_v$ by $\pi_v^{-1}$ \emph{and}
+flipping $\lambda$ on the three edges at $v$; this leaves the facial walks,
+hence all three edge classes, unchanged \cite[\texttt{main.tex} lines
+158--161]{GS}. Switching at $S\subseteq V$ therefore flips $\pi$ on $S$ and
+flips $\lambda$ on the cut $\delta(S)$, and for fixed $S$ the map
+$\lambda\mapsto\lambda\cdot\delta(S)$ is a bijection of $\{\pm1\}^{E}$.
+
+\begin{lemma}\label{lem:gauge}
+$\mathbb{Z}_2^{V}$ acts on $\Omega$ by switching, the action is free with all
+orbits of size $2^{n}$, each orbit meets $\{\pi=\pi_0\}$ in exactly one point,
+and all three edge classes are constant on orbits. Consequently, for every
+fixed rotation $\pi_0$ and every class $i$,
+\[
+ \mathbb{E}_{(\pi,\lambda)\sim\Omega}\bigl[\#\text{class }i\bigr]
+ \;=\;
+ \mathbb{E}_{\lambda\sim\{\pm1\}^{E}}\bigl[\#\text{class }i \,\bigm|\, \pi=\pi_0\bigr]
+ \qquad\text{exactly.}
+\]
+\end{lemma}
+
+\begin{proof}
+Switching at $S$ changes $\pi$ at exactly the vertices of $S$, so the
+stabiliser of any point is trivial and orbits have size $2^{n}$; and the orbit
+of $(\pi_0,\lambda)$ meets $\{\pi=\pi_0\}$ only at $S=\emptyset$. Class
+invariance is the vertex statement iterated over $S$. Averaging a
+class-constant function over $\Omega$ is therefore averaging it over the $2^m$
+orbit representatives $(\pi_0,\lambda)$.
+\end{proof}
+
+\subsection*{The count}
+Take $K_4$ on $\{0,1,2,3\}$ with the six edges indexed $0,\dots,5$ in the
+order
+\[
+ (0,1),\ (0,2),\ (0,3),\ (1,2),\ (1,3),\ (2,3),
+\]
+so that dart $2i$ is the end of edge $i$ at its smaller vertex and dart $2i+1$
+the other end. Let $\pi_0$ take, at each vertex, the three incident darts in
+increasing dart order; explicitly
+\[
+ \pi_0: \quad 0\mapsto(1,2,3),\quad 1\mapsto(0,2,3),\quad
+ 2\mapsto(0,1,3),\quad 3\mapsto(0,1,2)
+\]
+as cyclic orders of neighbours. Tracing \eqref{eq:class} at $(\pi_0,\lambda)$
+for each of the $2^{6}=64$ signatures $\lambda$ classifies all six edges; the
+per-signature table --- signature, number of faces, Euler genus $2-(n-m+f)$,
+the six classes and the triple $(\text{bad},\text{good},\text{reg})$ --- is
+recorded in the accompanying program \texttt{verify.py} rather than printed
+here, and any single row of it can be redone by hand. Over the $64$ signatures
+the three class columns sum to $108$, $138$ and $138$.
+
+
+\begin{theorem}\label{thm:k4}
+For $G=K_4$, which is edge-transitive, every edge is bad singular in exactly
+$288$ of the $1024$ signed rotation systems, good singular in exactly $368$,
+and regular in exactly $368$. Hence
+\[
+ \mathbb{P}[e\ \mathrm{bad}]=\tfrac{288}{1024}=\tfrac{9}{32},\qquad
+ \mathbb{P}[e\ \mathrm{good}]=\mathbb{P}[e\ \mathrm{regular}]
+ =\tfrac{368}{1024}=\tfrac{23}{64},
+\]
+and by linearity over the six edges
+\[
+ \mathbb{E}[\#\mathrm{bad}]=\tfrac{27}{16}=1.6875,\qquad
+ \mathbb{E}[\#\mathrm{good}]=\mathbb{E}[\#\mathrm{regular}]
+ =\tfrac{69}{32}=2.15625,
+\]
+against the conjectured value $m/3=2$; in particular
+$2\notin\{\tfrac{27}{16},\tfrac{69}{32},\tfrac{69}{32}\}$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:gauge} it suffices to average over the $2^6=64$ signatures
+at the single rotation $\pi_0$; each is classified by \eqref{eq:class} from a
+trace of the $24$ arrival states of $K_4$, tabulated row by row in
+\texttt{verify.py}. The class column
+sums are $108$, $138$, $138$, so by Lemma~\ref{lem:gauge} the number of
+(system, edge) pairs over all of $\Omega$ with the edge bad singular is
+$\tfrac{1024}{64}\cdot 108=1728$, and $\tfrac{1024}{64}\cdot 138=2208$ for each
+of the other two classes. Now $\Aut(K_4)=S_4$ is transitive on the six edges,
+so by step~(2) of the proof of Theorem~\ref{thm:dyadic} the count $A_{e,i}$ is
+independent of $e$; dividing by $6$ gives $288$, $368$, $368$ per edge. The
+probabilities and, by linearity, the expectations follow.
+\end{proof}
+
+\begin{corollary}\label{cor:k4}
+In the uniform model $\Omega$, the three expectations of $K_4$ are all
+different from $m/3$, and no relabelling of the three classes changes that.
+Since $K_4$ is a simple, $3$-connected, bridgeless cubic graph, each of the
+three parts of the conjecture fails on it under this measure.
+\end{corollary}
+
+\begin{proof}
+The conjecture asserts that all three class expectations equal $m/3$, so a
+relabelling permutes parts (1), (2), (3) and leaves the asserted set of
+equalities unchanged; by Theorem~\ref{thm:k4} the value $m/3=2$ is not an
+element of the multiset of the three expectations.
+\end{proof}
+
+\subsection*{The orientable signatures}
+The system $(\pi_0,\lambda)$ is orientable exactly when $\lambda$ is a
+coboundary $\delta(S)$. The $16$ vertex subsets of $K_4$ collapse $2$-to-$1$
+onto $8$ distinct signatures, namely
+\begingroup\small
+\begin{verbatim}
+   ++++++    ---+++    -++--+    +-+-+-
+   ++-+--    +----+    -+--+-    --++--
+\end{verbatim}
+\endgroup
+\noindent
+(in the same edge order as above). Their bad counts are
+$2,3,3,3,3,2,0,2$, with \emph{good count $0$
+throughout}, exactly as \cite[\texttt{main.tex} line 119]{GS} demands
+(``in orientable embeddings all singular edges are bad singular''); their
+Euler genera are all even, as orientability also demands. Neither fact was
+used in the tracing, so both test the good/bad convention against the
+source's own assertion.
+
+\section{A sign-flip involution}
+
+Line 304 of \cite{GS} says the expectation ``seems to be the same for good
+singular edges and regular edges''. It is the same, exactly, for every edge of
+every loopless graph.
+
+\begin{theorem}\label{thm:involution}
+Let $G$ be a graph without loops and $e\in E(G)$. Then flipping $\lambda(e)$ is
+a measure-preserving involution of $\Omega$ that exchanges the event
+$\{e\ \mathrm{regular}\}$ with $\{e\ \mathrm{good\ singular}\}$ and fixes
+$\{e\ \mathrm{bad\ singular}\}$; and it changes the number of faces by $-1$,
+$+1$ and $0$ respectively. Hence
+\begin{equation}\label{eq:involution}
+ \mathbb{P}[e\ \mathrm{good}]=\mathbb{P}[e\ \mathrm{regular}]
+ \quad\text{exactly},\qquad
+ \mathbb{E}[\#\mathrm{bad}]=m-2\,\mathbb{E}[\#\mathrm{good}],
+\end{equation}
+so parts (2) and (3) of the conjecture are each equivalent to part (1), which
+is the aggregate assertion $\mathbb{E}[\#\mathrm{bad}]=m/3$: equivalently, that
+a uniformly random edge of $G$ is bad singular with probability $1/3$. No
+equality of the individual per-edge probabilities is asserted.
+\end{theorem}
+
+\begin{proof}
+Write $e=uv$, $\lambda'=\lambda\cdot\mathbf{1}_{e}$, and let $\Phi,\Phi'$ be
+the tracing permutations of $(\pi,\lambda)$ and $(\pi,\lambda')$. Since
+$\lambda\mapsto\lambda'$ is a bijection of $\{\pm1\}^{E}$ it is measure
+preserving, so only the classification has to be tracked.
+
+Let $S$ be the four states on $e$, and put $A=(e,u,+1)$, $B=(e,u,-1)$,
+$P=\operatorname{rev}(A)$, $Q=\operatorname{rev}(B)$, so that
+$\{P,Q\}=\{(e,v,+1),(e,v,-1)\}$ and $\operatorname{rev}|_{S}=(A\,P)(B\,Q)$.
+Let $\tau=(A\,B)(P\,Q)$ be the involution of $S$ negating the sign bit.
+Because $e$ is not a loop, $\Phi$ leaves $S$ at the first step, and a step of
+$\Phi$ \emph{arrives} in $S$ exactly when it traverses $e$; that step is the
+only place $\lambda(e)$ is consulted. Hence $\Phi'$ agrees with $\Phi$ off
+those steps and satisfies $\Phi'=\tau\circ\Phi$ there, so: every $\Phi$-orbit
+disjoint from $S$ is also a $\Phi'$-orbit, and the first-return maps
+$\sigma,\sigma':S\to S$ of $\Phi,\Phi'$ satisfy
+\begin{equation}\label{eq:return}
+ \sigma'=\tau\circ\sigma .
+\end{equation}
+Moreover $\#\Phi\text{-orbits}=\#\sigma\text{-cycles}+K$, where $K$ counts the
+$\Phi$-orbits disjoint from $S$, and the same with primes and the same $K$.
+Two states of $S$ are $\Phi$-equivalent iff they lie in one $\sigma$-cycle, so
+by \eqref{eq:class}, $e$ is good singular iff $A,B$ lie in one $\sigma$-cycle
+and bad singular iff $A,Q$ do; and under $\lambda'$ one has
+$\operatorname{rev}'(A)=Q$, $\operatorname{rev}'(B)=P$, so $e$ is good
+singular iff $A,B$ lie in one $\sigma'$-cycle and bad singular iff $A,P$ do.
+
+Now $\operatorname{rev}\circ\Phi\circ\operatorname{rev}=\Phi^{-1}$ and
+$\operatorname{rev}(S)=S$ give
+$\operatorname{rev}\sigma\operatorname{rev}=\sigma^{-1}$ on $S$; and no
+$\sigma$-cycle contains both $A$ and $P=\operatorname{rev}(A)$, nor both $B$
+and $Q$, since a $\Phi$-cycle is never its own mirror. Enumerating the
+$\sigma$-cycle containing $A$ under those two constraints leaves exactly three
+possibilities, and \eqref{eq:return} determines each image:
+\[
+\begin{array}{lll}
+ \sigma=\mathrm{id}       & \sigma'=(A\,B)(P\,Q) & \text{regular}\to\text{good},\\
+ \sigma=(A\,B)(P\,Q)     & \sigma'=\mathrm{id}   & \text{good}\to\text{regular},\\
+ \sigma=(A\,Q)(B\,P)     & \sigma'=(A\,P)(B\,Q) & \text{bad}\to\text{bad}.
+\end{array}
+\]
+(For the first case: if $A$ is a fixed point of $\sigma$ then
+$\sigma^{-1}(P)=\operatorname{rev}\sigma\operatorname{rev}(P)
+=\operatorname{rev}\sigma(A)=P$ and likewise for $Q$, and $B$ cannot be
+$\sigma$-joined to $P$ without violating $\sigma^{-1}(P)=P$; the other two
+cases are forced the same way from $\sigma(A)=B$ and $\sigma(A)=Q$.) This is
+the asserted exchange, and it also proves the trichotomy. Counting
+$\sigma$-cycles gives $4,2,2$ respectively, so
+$f=(\#\sigma\text{-cycles}+K)/2$ changes by $-1$, $+1$, $0$. The displayed
+identities follow from
+$\mathbb{P}[\mathrm{bad}]+\mathbb{P}[\mathrm{good}]+\mathbb{P}[\mathrm{reg}]=1$
+and linearity over the $m$ edges.
+\end{proof}
+
+Neither Theorem~\ref{thm:dyadic} nor \S\ref{sec:k4} uses
+\eqref{eq:involution}; it is not needed to settle the conjecture, and is
+recorded only because it settles, as a theorem, a coincidence the source
+noticed empirically.
+
+\section{What is, and is not, settled}\label{sec:scope}
+
+\subsection*{The source paper keeps its theorem}
+The conjecture's only consumer in \cite{GS} is Theorem~4.1
+(\texttt{main.tex} lines 317--319): ``Suppose that Conjecture~1 is true and
+let $G$ be a bridgeless cubic graph. Then, there exists an embedding of $G$
+with at most $\frac{m}{3}$ singular edges.'' The failure of the conjecture in
+the models treated here removes that hypothesis, so the proof at lines
+320--322 no longer supports the conclusion. The conclusion itself is unaffected, and \cite{GS} already contains
+an unconditional proof of it in the referee remark at lines 324--325: take any
+perfect matching and extend the complementary $2$-factor to a facial double
+cover; then only matching edges can be singular. A bridgeless cubic graph has
+a perfect matching \cite{Pet}, and a perfect matching of a cubic graph on $n$
+vertices has $n/2=m/3$ edges, so the bound follows with no probabilistic
+input. What is lost is a conjecture and one redundant conditional proof, not a
+theorem.
+
+\subsection*{The measure is not defined by the source}
+``Let $(\pi,\lambda)$ be a random embedding'' is the whole of it, so everything
+above depends on our choice of $\Omega$ and the conjecture is settled only
+under the models we name. Two uniform models were checked, and the three
+equalities fail under each: (i) uniform on the $2^{n+m}$ signed
+rotation systems, used above, and the space the source's own Mohar--Thomassen
+notation names --- sampling $\lambda$ uniformly at a fixed $\pi$ is not a
+further model but the same one in other coordinates, with the same induced
+distribution of edge classes and hence identical numbers, by
+Lemma~\ref{lem:gauge}; and (ii) uniform on the \emph{orientable}
+embeddings, i.e.\ on the $2^{n}$ pure rotation systems, where on $K_4$ the
+eight coboundary signatures above give
+\[
+ \mathbb{E}[\#\mathrm{bad}]=\tfrac{18}{8}=\tfrac94,\quad
+ \mathbb{E}[\#\mathrm{good}]=0,\quad
+ \mathbb{E}[\#\mathrm{regular}]=\tfrac{15}{4},
+\]
+against $m/3=2$: parts (1) and (3) fail by $+\tfrac14$ and $+\tfrac74$, and
+part (2) fails degenerately by line 119. The sign of the deviation flips
+between (i) and (ii), so any statement of the form
+``$\mathbb{E}[\#\mathrm{bad}]\le m/3$'' must name its measure. A non-uniform or
+limiting measure is not covered: the source reports ``several computer
+experiments'', it does not say what they sampled, and if they sampled some
+other space then what is settled here is the conjecture under each of the two
+uniform models above, not the statement about whatever was sampled there.
+
+\subsection*{Only the exact constant is contradicted}
+The computed per-edge probabilities are all near $1/3$ --- on $K_4$,
+$\tfrac{9}{32}=0.28125$ for bad and $\tfrac{23}{64}=0.359375$ for good and for
+regular --- and separating $\mathbb{E}[\#\mathrm{bad}]$ from $m/3$ by sampling
+needs many samples. So what is contradicted is the exact constant $m/3$, not
+the near-uniform split the source observed. Whether
+$\mathbb{E}[\#\mathrm{bad}]/m$ tends to $1/3$ along some family, and whether
+$\mathbb{E}[\#\mathrm{bad}]<m/3$ always holds in the uniform signed-rotation
+model, are not addressed here; the latter is in any case false without the
+model qualifier, since the orientable model gives $9/4>2$ on $K_4$.
+
+\subsection*{Further limits}
+Theorem~\ref{thm:dyadic} covers only edge-transitive cubic graphs; for the
+rest only exhaustive counting is offered, on the seven graphs listed in
+\S\ref{sec:verification}. Nothing here proves the conjecture fails for
+\emph{every} bridgeless cubic graph, though being universally quantified it
+needs only one counterexample. The infinitude of the connected cubic
+arc-transitive family is quoted from \cite{BH} and standard census material
+rather than verified here. The unproved Properties 6--9 of \cite{GS} are used
+nowhere above. The identification of the three computed expectations with the
+three parts of the conjecture is a reading of the source's prose, made here and
+not verified by the program; nor does the program check that $K_4$ as it
+hard-codes it is simple and $3$-connected, which is left to the reader.
+Finally, the program checks two conditions transcribed from the literature and
+used nowhere above: a bound of Bender and Richmond \cite{BR} on the number of
+singular edges of an embedding of a $3$-edge-connected graph, in the form the
+authors of \cite{GS} themselves state it (their companion e-print
+arXiv:2511.07285, \texttt{CDC.tex} line 133), and the orientable genus
+distribution of $K_4$ given by Gross and Furst \cite{GF}. Neither the 1990 nor
+the 1987 paper was consulted here beyond its published abstract, so those two
+checks test the tracer against restatements only, and no claim about either is
+made.
+
+\section{Verification}\label{sec:verification}
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library
+only, exact integer and \texttt{Fraction} arithmetic, no floating-point
+decision) implements the face tracing of \eqref{eq:class} from the definitions
+and re-derives every number above. It carries the $64$-row table of $K_4$
+signature data \emph{as data} and compares it, row by row --- signature,
+faces, Euler genus, six-letter class string and triple --- with its own trace
+of the $24$ arrival states of $K_4$; it then exhausts the full $2^{n+m}$ space
+of $\theta$, $K_4$, $K_{3,3}$ and the $3$-prism, and all $2^{m}$ signatures at
+each of two fixed rotations of $Q_3$, Wagner $V_8$ and Petersen, the latter
+licensed by Lemma~\ref{lem:gauge}; on each of those seven cells the three
+computed expectations all differ from $m/3$. That lemma is tested rather than
+assumed:
+the program switches at every vertex of every embedding of $\theta$ and $K_4$,
+and at every vertex of a bounded sample on the other five cells, and it also
+checks directly that the per-edge counters are the same at every rotation it
+traces. Theorem~\ref{thm:involution} is likewise tested in its face-count form,
+on every (embedding, edge) pair of $\theta$ and $K_4$. The program also
+checks the source's line 119 on every orientable embedding, checks
+that some embedding of $K_4$ does carry a good singular edge, so that the
+negative results are not vacuous, and reproduces row by row the two
+transcribed literature conditions recorded in \S\ref{sec:scope}, which are
+used nowhere in this paper. Here $\theta$ is the $3$-dipole, a
+multigraph, and is a cell of this conjecture only if multigraphs count as
+bridgeless cubic, a reading the source neither grants nor denies; nothing above
+depends on it. The recorded run of the program is \texttt{verify.output.txt}.
+
+\begin{thebibliography}{9}
+
+\bibitem{BR}
+E.~A. Bender and L.~B. Richmond,
+\emph{$3$-edge-connected embeddings have few singular edges},
+J. Graph Theory \textbf{14} (1990), no.~4, 475--477.
+\href{https://doi.org/10.1002/jgt.3190140411}{doi:10.1002/jgt.3190140411}.
+
+\bibitem{CLM}
+J.~Campion Loth and B.~Mohar,
+\emph{Expected number of faces in a random embedding of any graph is at most
+linear},
+Combin. Probab. Comput. \textbf{32} (2023).
+\href{https://doi.org/10.1017/s096354832300010x}{doi:10.1017/s096354832300010x};
+arXiv:2202.07746.
+
+\bibitem{CLHMMSa}
+J.~Campion Loth, K.~Halasz, T.~Ma\v{s}a\v{r}\'{\i}k, B.~Mohar and
+R.~\v{S}\'{a}mal,
+\emph{Random $2$-cell embeddings of multistars},
+Proc. Amer. Math. Soc. \textbf{150} (2022), no.~9.
+arXiv:2103.05036.
+
+\bibitem{CLHMMSb}
+J.~Campion Loth, K.~Halasz, T.~Ma\v{s}a\v{r}\'{\i}k, B.~Mohar and
+R.~\v{S}\'{a}mal,
+\emph{Random embeddings of graphs: the expected number of faces in most graphs
+is logarithmic},
+Proc. 35th ACM--SIAM Symposium on Discrete Algorithms (SODA 2024).
+arXiv:2211.01032.
+
+\bibitem{COZ}
+Y.~Chen, L.~Ou and Q.~Zou,
+\emph{Total embedding distributions of Ringel ladders},
+arXiv:1011.3869, 2010.
+
+\bibitem{BH}
+N.~L. Biggs and M.~J. Hoare,
+\emph{The sextet construction for cubic graphs},
+Combinatorica \textbf{3} (1983), 153--165.
+\href{https://doi.org/10.1007/BF02579289}{doi:10.1007/BF02579289}.
+
+\bibitem{GS}
+B.~Ghanbari and R.~\v{S}\'{a}mal,
+\emph{Facial diagrams and cycle double cover},
+arXiv:2605.01410v1, 2026 (EUROCOMB'25 extended abstract).
+\href{https://arxiv.org/abs/2605.01410}{arXiv:2605.01410}.
+Line numbers refer to \texttt{main.tex} in the arXiv e-print source, the only
+version published.
+
+\bibitem{GF}
+J.~L. Gross and M.~L. Furst,
+\emph{Hierarchy for imbedding-distribution invariants of a graph},
+J. Graph Theory \textbf{11} (1987), no.~2, 205--220.
+\href{https://doi.org/10.1002/jgt.3190110211}{doi:10.1002/jgt.3190110211}.
+
+\bibitem{MT}
+B.~Mohar and C.~Thomassen,
+\emph{Graphs on Surfaces},
+Johns Hopkins University Press, Baltimore, 2001.
+
+\bibitem{Pet}
+J.~Petersen,
+\emph{Die Theorie der regul\"{a}ren Graphs},
+Acta Math. \textbf{15} (1891), 193--220.
+\href{https://doi.org/10.1007/BF02392606}{doi:10.1007/BF02392606}.
+
+\end{thebibliography}
+
+\end{document}

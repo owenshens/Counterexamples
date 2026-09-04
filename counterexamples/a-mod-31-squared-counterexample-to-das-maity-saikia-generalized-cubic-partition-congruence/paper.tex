@@ -1,0 +1,277 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A mod 31 squared counterexample to a generalized cubic partition
+            congruence of Das, Maity and Saikia}
+}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\vv}{v}
+
+\emergencystretch=3em
+
+\title[A mod $31^2$ counterexample to a cubic partition congruence]
+{A mod $31^2$ counterexample to a generalized cubic partition congruence
+of Das, Maity and Saikia}
+
+\date{}
+
+\subjclass[2020]{11P83, 05A17, 11F03}
+\keywords{generalized cubic partition, partition congruence, $p$-adic
+valuation, Ramanujan--Kolberg, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For $c\ge1$ let $a_c(n)$ be the number of partitions of $n$ in which the even
+parts may take $c$ colours, so that $\sum_{n\ge0}a_c(n)q^n=1/(f_1f_2^{c-1})$
+with $f_k=(q^k;q^k)_\infty$. In the Concluding Remarks of the preprint
+\cite{DasMaitySaikia}, Das, Maity and Saikia conjecture three congruences to a
+prime-square modulus, the first of which is
+$a_{25}(31^2n+644)\equiv0\pmod{31^2}$ for all $n\ge0$; they state explicitly
+that they leave it open because the Ramanujan--Kolberg bound is too large for
+their computer. We refute it at $n=2$. The exact value of $a_{25}(2566)$ is a
+$182$-digit integer, printed in full below; it satisfies
+$a_{25}(2566)\equiv682=22\cdot31\pmod{31^2}$, so its $31$-adic valuation is
+exactly $1$ and the congruence fails. What survives is
+the first power: $a_{25}(31^2n+644)\equiv0\pmod{31}$ does hold for all $n$, but
+that is a published theorem of Guadalupe \cite{Guadalupe}, and it is only its
+lift to $31^2$ that is false.
+\end{abstract}
+
+\maketitle
+
+\section{The conjecture}\label{sec:conj}
+
+Write $f_k=(q^k;q^k)_\infty$. Following Amdeberhan, Sellers and Singh
+\cite{ASS}, a \emph{generalized cubic partition} of $n$ is a partition of $n$ in
+which each \emph{even} part may appear in one of $c\ge1$ colours, and $a_c(n)$
+denotes the number of these, with $a_c(0)=1$. Equivalently, and this is the
+definition used throughout,
+\begin{equation}\label{eq:gf}
+  \sum_{n\ge0}a_c(n)q^n \;=\; \frac{1}{f_1 f_2^{\,c-1}}.
+\end{equation}
+Thus $a_1(n)$ is the ordinary partition function (OEIS A000041) and $a_2(n)$
+counts Chan's cubic partitions (OEIS A002513) \cite{OEIS}.
+
+\begin{remark}\label{rem:defn}
+The source \cite{DasMaitySaikia} defines $a_c(n)$ by \eqref{eq:gf}, but its
+prose reads ``each part may appear in $c\ge1$ different colors'', which would
+give $1/f_1^{\,c}$ instead. The word \emph{even} was dropped; both \cite{ASS},
+where the function originates, and \cite{Guadalupe} carry it. Equation
+\eqref{eq:gf} is the authoritative object, and nothing below is sensitive to the
+choice: under the prose reading $1/f_1^{25}$ the congruence at issue already
+fails at $n=0$, with residue $550$ rather than $0$ modulo $961$.
+\end{remark}
+
+The statement refuted here is the first displayed congruence of the first
+conjecture in the Concluding Remarks of \texttt{arXiv:2503.19399v2}
+\cite{DasMaitySaikia}, quoted below from the source of that version. We identify
+it by that position and not by a number: no claim is made here about how the
+source numbers this conjecture, and \cite{GhoshalJana} refers to its third
+congruence as ``Conjecture 7.3''.
+
+\medskip
+\noindent\textbf{Conjecture} (Concluding Remarks of
+\texttt{arXiv:2503.19399v2} \cite{DasMaitySaikia})\textbf{.}
+\emph{For all $n\ge0$, we have}
+\begin{align}
+  a_{25}(31^2n+644)&\equiv0 \pmod{31^2},\label{eq:line1}\\
+  a_{41}(47^2n+256)&\equiv0 \pmod{47^2},\label{eq:line2}\\
+  a_{61}(67^2n+555)&\equiv0 \pmod{67^2}.\label{eq:line3}
+\end{align}
+
+\medskip
+\noindent
+The single quantifier ``for all $n\ge0$'' scopes the whole display: there is no
+side hypothesis, no exceptional set and no ``sufficiently large $n$'', and the
+constants $c=25$, $p=31$ and $r=644$ are fixed, so one explicit $n$ refutes
+\eqref{eq:line1}. The authors print Ramanujan--Kolberg parameters for each of
+the three lines, including the bound $\lfloor\nu\rfloor=3813$ of Radu's
+algorithm \cite{Radu} for \eqref{eq:line1}, and then write, verbatim:
+\begin{quote}
+``Since the bound $\nu$ is large for the computation to take a significant
+amount of time in a modest computer, we leave the above as an open problem.''
+\end{quote}
+Deciding \eqref{eq:line1} at a single $n$, however, needs one coefficient of one
+truncated series and not the cells of a certificate.
+
+\section{The counterexample}\label{sec:refute}
+
+\begin{theorem}\label{thm:main}
+Congruence \eqref{eq:line1}, the first displayed congruence of the conjecture
+quoted above from \texttt{arXiv:2503.19399v2} \cite{DasMaitySaikia}, is false.
+Explicitly it
+fails at $n=2$: with
+$N=31^2\cdot2+644=1922+644=2566$,
+\[
+  a_{25}(2566)\;\equiv\;682\;=\;22\cdot31 \pmod{31^2},
+  \qquad\text{so}\qquad \vv_{31}\bigl(a_{25}(2566)\bigr)=1 .
+\]
+In particular $31\mid a_{25}(2566)$ while $31^2\nmid a_{25}(2566)$.
+\end{theorem}
+
+\begin{proof}
+Let $W$ be the $182$-digit integer
+\begin{center}\ttfamily\footnotesize
+1471465862381281557802668516631902844710 \\
+2593034654589643689045403133888112437860 \\
+2701871704379341548682799083362285352501 \\
+0333330703396635284385120674666433997413 \\
+0010853309981128071099
+\end{center}
+and let $Q$ be the $180$-digit integer
+\begin{center}\ttfamily\footnotesize
+4746664072197682444524737150425493047452 \\
+4493660176095624803372268173832620767291 \\
+1941521627030134028009029301168662427422 \\
+6881711946440758981887486047311077411009 \\
+68092042257455744229
+\end{center}
+Then $a_{25}(2566)=W$, and $31Q=W$, so $31\mid W$. Reducing $Q$ modulo $31$
+gives $22\ne0$, whence $\vv_{31}(W)=1$ exactly and
+$W\equiv 31\cdot 22=682\pmod{961}$. Since $682\ne0$ and
+$N=2566=31^2\cdot2+644$ lies on the progression of \eqref{eq:line1} with
+$n=2\ge0$, the congruence asserted there fails at that cell.
+
+Only the identity $a_{25}(2566)=W$ needs a computation, and it is verified in
+\S\ref{sec:verify}; the rest is the division of one printed integer by another.
+A reader with any computer algebra system needs the coefficient of $q^{2566}$ in
+$1/\bigl((q;q)_\infty(q^2;q^2)_\infty^{24}\bigr)$, a $2567$-term truncation, and
+one division by $31$.
+\end{proof}
+
+\section{The companion congruence modulo $31$}\label{sec:why}
+
+That the whole progression is divisible by the first power of $31$ is not new
+and is not claimed here. Theorem 3 of Guadalupe \cite{Guadalupe} reads: \emph{let
+$p\ge7$ be a prime with $p\equiv3,7\pmod 8$; then for all $n\ge0$,
+$a_{p-6}\bigl(pn+13(p^2-1)/24\bigr)\equiv0\pmod p$.} At $p=31$ we have
+$31\equiv7\pmod 8$ and $13(31^2-1)/24=520=31\cdot16+24$, while
+$961n+644=31(31n+20)+24$ with $31n+20\ge20\ge16$ for every $n\ge0$. Hence
+\begin{equation}\label{eq:published}
+  a_{25}(31^2n+644)\equiv0 \pmod{31}\qquad\text{for all }n\ge0
+\end{equation}
+is a published theorem, predating \cite{DasMaitySaikia} and cited in it. What
+\eqref{eq:line1} adds to \eqref{eq:published} is the second power, and it is
+only that lift which Theorem~\ref{thm:main} refutes.
+
+\section{The computation and \texttt{verify.py}}\label{sec:verify}
+
+The single coefficient that decides Theorem~\ref{thm:main} is the $2567$th of a
+truncated $q$-series, so the computation is small; what needs care is that the
+right series is being expanded. The program \texttt{verify.py} accompanying this
+note is Python 3.9 or later, standard library only, exact integer arithmetic, no
+external data file. It recomputes $a_{25}(0),\dots,a_{25}(2566)$ over
+$\mathbb{Z}$ by two routes that share no arithmetic ---
+(i) building $D=f_1f_2^{24}$ from the generalized pentagonal numbers and
+inverting it by $A_0=1$, $A_n=-\sum_{j=1}^{n}D_jA_{n-j}$, in which no division
+and no modular inverse occurs because $D_0=1$; and
+(ii) the logarithmic-derivative recurrence
+$n\,a_c(n)=\sum_{j=1}^{n}B(j)a_c(n-j)$ with
+$B(j)=\sigma(j)+2(c-1)\sigma(j/2)[2\mid j]$, which forms no $q$-product and
+touches no pentagonal number, every division by $n$ being asserted exact ---
+finds the two routes equal at all $2567$ coefficients, and compares the result
+against the integers $W$ and $Q$ of \S\ref{sec:refute} \emph{as decimal
+strings}, so a misprint in this paper would fail the program.
+
+Two published sequences pin \eqref{eq:gf} against Remark~\ref{rem:defn}: at
+$c=1$ the program reproduces OEIS A000041 and at $c=2$ OEIS A002513
+\cite{OEIS}. The recorded run of \texttt{verify.py} reports
+\begin{center}
+\texttt{VERDICT: ALL 35 CHECKS PASS}
+\end{center}
+and the program exits nonzero if any check fails. The run reports more than this
+note uses: residue-class sweeps, checks that congruences proved in
+\cite{DasMaitySaikia} are not violated over the bounded ranges swept, and
+residues for the other two displayed lines. None of that is claimed here, and
+all of it is a statement about a bounded range. Its output also records what it
+does not do: it proves none of the three congruences on any progression, it does
+not compute the exact integers behind the other two lines, and it does not check
+the source's Ramanujan--Kolberg parameter table against \cite{Radu} --- its final
+section recomputes one set of residues from the formula as printed in the source,
+and this note makes no claim about that table.
+
+\section{Scope}\label{sec:scope}
+
+Only \eqref{eq:line1}, as printed and quoted in \S\ref{sec:conj}, is refuted,
+and only by exhibiting one $n$. Nothing here is a claim about $\vv_{31}$ at an
+unlisted cell: the congruence does hold at $n=0,1,10$ of the window checked by
+\texttt{verify.py}, with $\vv_{31}=2$ exactly at $n=0$ and $n=1$, and no
+assertion is made about how often that happens.
+
+Nothing new modulo the first power of $31$ is proved here: \eqref{eq:published}
+is the $p=31$ case of Theorem 3 of \cite{Guadalupe} and is quoted, not proved.
+
+No Ramanujan--Kolberg certificate is offered or completed, in either direction:
+nothing checked here would have proved \eqref{eq:line1} had the cells examined
+all vanished, and Theorem~\ref{thm:main} needs no certificate.
+
+Finally, all quotations and parameter values are taken from the source of
+\texttt{arXiv:\allowbreak 2503.19399v2}, submitted 28 April 2026, and the wording
+quoted in \S\ref{sec:conj} is established here for that version only. The version
+of record (\emph{Eur.\ J.\ Math.} \textbf{12} (2026), no.~3, Paper No.~34) was
+revised on 26 May 2026 and accepted on 28 May 2026, that is, after that
+\texttt{arXiv} version; its body is paywalled and was not read, so whether the
+accepted version prints this conjecture in this wording is not established here.
+
+\begin{thebibliography}{9}
+
+\bibitem{ASS}
+T.~Amdeberhan, J.~A.~Sellers, and A.~Singh,
+\emph{Arithmetic properties for generalized cubic partitions and
+overpartitions modulo a prime},
+Aequationes Math. \textbf{99} (2025), 1197--1208.
+\href{https://doi.org/10.1007/s00010-024-01116-7}{doi:10.1007/s00010-024-01116-7}.
+The definition of $a_c(n)$ originates here, with the word \emph{even}.
+
+\bibitem{DasMaitySaikia}
+H.~Das, S.~Maity, and M.~P.~Saikia,
+\emph{Arithmetic properties of generalized cubic and overcubic partitions},
+\href{https://arxiv.org/abs/2503.19399}{arXiv:2503.19399v2} (28 April 2026);
+published as Eur. J. Math. \textbf{12} (2026), no.~3, Paper No.~34, 22 pp.
+The conjecture quoted here, and every quotation and parameter value, are from
+the \texttt{arXiv} source of v2; the journal text was not consulted.
+
+\bibitem{GhoshalJana}
+S.~Ghoshal and A.~Jana,
+\emph{Combinatorial proof of a result on generalized overcubic partitions and
+related conjectures},
+\href{https://arxiv.org/abs/2512.04775}{arXiv:2512.04775} (2025).
+Quotes the third congruence of the same conjecture of \cite{DasMaitySaikia} as
+``Conjecture 7.3''.
+
+\bibitem{Guadalupe}
+R.~Guadalupe,
+\emph{A note on congruences for generalized cubic partitions modulo primes},
+Integers \textbf{25} (2025), Article A20;
+\href{https://math.colgate.edu/~integers/z20/z20.pdf}{available from the journal}.
+Theorem 3 gives \eqref{eq:published} at $p=31$.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{The On-Line Encyclopedia of Integer Sequences},
+sequences \href{https://oeis.org/A000041}{A000041} ($a_1$, the partition
+function) and \href{https://oeis.org/A002513}{A002513} ($a_2$, the cubic
+partitions).
+
+\bibitem{Radu}
+S.~Radu,
+\emph{An algorithmic approach to Ramanujan's congruences},
+Ramanujan J. \textbf{20} (2009), 215--251.
+\href{https://doi.org/10.1007/s11139-009-9174-0}{doi:10.1007/s11139-009-9174-0}.
+Not obtained; cited only for the algorithm whose bound is reported in
+\cite{DasMaitySaikia}.
+
+\end{thebibliography}
+
+\end{document}

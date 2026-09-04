@@ -1,0 +1,131 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5a09a0dd5307f140bb1a3f9a7fecbd03a2729c56a49f339b6c9e5f29ce6183b9
+python:  Python 3.9.25
+=== program output follows ===
+PASS graph.3-regular [every vertex of a 324-vertex window has exactly 3 distinct neighbours]
+PASS graph.symmetric [w in N(v) implies v in N(w) throughout the window]
+PASS graph.no-loop [no vertex is its own neighbour]
+PASS graph.Z2-translation-is-an-automorphism [N(v+(dx,dy)) = N(v)+(dx,dy) for (dx,dy) in {(1,0),(0,1),(1,1),(-1,2)}]
+PASS shells.1-3-5-8-11-from-all-four-vertex-types [shells (d=0..4) = (1,3,5,8,11) for a=0,1,2,3; a=0:(1, 3, 5, 8, 11) a=1:(1, 3, 5, 8, 11) a=2:(1, 3, 5, 8, 11) a=3:(1, 3, 5, 8, 11)]
+PASS ball-sizes [|B_2| = 1+3+5 = 9, |B_3| = 1+3+5+8 = 17]
+PASS shells.prefix-3-5-8-11 [the computed coordination prefix from a=0 is 3,5,8,11]
+PASS graph.short-cycle-profile-at-sampled-vertices [through each of 36 sampled vertices: no 3-, 5-, 6- or 7-cycle, exactly one 4-cycle and exactly two 8-cycles -- i.e. one square and two octagons through each sampled vertex, the vertex figure of the truncated square tiling; no classification over Archimedean nets and no global isomorphism is checked here]
+
+--- W1: a pattern of density 9/80 defined in this file, giving delta_{4,2}(H) <= 9/80 (upper bound only; no matching lower bound is checked) ---
+PASS W1.class-count [4 vertex types x index 20 = 80 classes]
+PASS W1.lattice-invariant [membership of T is unchanged by both generators (20,0) and (1,1)]
+PASS W1.density [9 tower classes of 80 -> 9/80 = 9/80]
+PASS W1.is-a-(4,2)-broadcast [min f = 2 >= r = 2 over all 80 classes; violations = 0]
+PASS W1.f-range [min f = 2, max f = 5]
+PASS W1.matches-transcribed-table [all 80 entries of the W1 table listed in this program reproduced by fresh BFS]
+PASS W1.nine-tower-classes [9 of 80: 0@0 0@5 0@10 0@12 0@14 0@16 0@18 1@2 1@7]
+PASS W1.tight-classes [17 classes with f = 2 exactly, and they are the ones listed in this program]
+PASS W1.hand-check.3@(0,0) [f = 4; 0@(0,0) at d=1 and 0@(-1,-1) at d=3]
+PASS W1.hand-check.0@(3,0) [f = 4; 1@(2,0) and 1@(3,1), both at d=2]
+PASS W1.hand-check.0@(4,0) [f = 3; three towers at d=3 exactly, none within d=2]
+PASS W1.hand-check.2@(4,0) [f = 4; 0@(4,-1) at d=1 and 0@(5,0) at d=3]
+PASS W1.outer-shell-mechanism-at-0@(4,0) [no tower within distance 2; f = 3 from 0@(4,-1), 0@(5,0), 1@(3,1) at distance exactly 3]
+
+--- W5: the note's T_5.  delta_{4,2}(H) <= 1/10 < 9/80 ---
+PASS W5.class-count [4 vertex types x index 5 = 20 classes]
+PASS W5.lattice-invariant [membership of T is unchanged by both generators (5,0) and (4,1)]
+PASS W5.density [2 tower classes of 20 -> 1/10 = 1/10]
+PASS W5.is-a-(4,2)-broadcast [min f = 2 >= r = 2 over all 20 classes; violations = 0]
+PASS W5.f-range [min f = 2, max f = 4]
+PASS W5.printed-table [all 20 entries of the T_5 table printed in the note reproduced by fresh BFS]
+PASS W5.beats-the-conjectured-value [1/10 = 0.100000 < 9/80 = 0.112500, an improvement of exactly 1/80, i.e. 11.1% of 9/80]
+PASS W5.below-the-radius-2-packing-floor [1/10 < 1/|B_2| = 1/9, so W5 cannot rely on within-distance-2 reception alone]
+PASS W5.outer-shell-mechanism-at-0@(1,0) [no tower within distance 2; f = 1+1 = 2 from 0@(1,-1) and 0@(0,0) at distance exactly 3]
+
+--- W2, W3: patterns defined in this file at densities 1/7 and 1/6 ---
+PASS W2.class-count [4 vertex types x index 7 = 28 classes]
+PASS W2.lattice-invariant [membership of T is unchanged by both generators (7,0) and (1,1)]
+PASS W2.density [4 tower classes of 28 -> 1/7 = 1/7]
+PASS W2.is-a-(4,3)-broadcast [min f = 3 >= r = 3 over all 28 classes; violations = 0]
+PASS W2.f-range [min f = 3, max f = 7]
+PASS W2.matches-transcribed-table [all 28 entries of the W2 table listed in this program reproduced by fresh BFS; min 3 attained at 5 classes]
+PASS W3.class-count [4 vertex types x index 3 = 12 classes]
+PASS W3.lattice-invariant [membership of T is unchanged by both generators (3,0) and (0,1)]
+PASS W3.density [2 tower classes of 12 -> 1/6 = 1/6]
+PASS W3.is-a-(4,4)-broadcast [min f = 4 >= r = 4 over all 12 classes; violations = 0]
+PASS W3.f-range [min f = 4, max f = 6]
+PASS W3.matches-transcribed-table [all 12 entries of the W3 table listed in this program reproduced by fresh BFS]
+
+--- W6, W7: the note's T_6 and T_7, at densities 1/8 and 5/36 ---
+PASS W6.class-count [4 vertex types x index 4 = 16 classes]
+PASS W6.lattice-invariant [membership of T is unchanged by both generators (4,0) and (1,1)]
+PASS W6.density [2 tower classes of 16 -> 1/8 = 1/8]
+PASS W6.is-a-(4,3)-broadcast [min f = 3 >= r = 3 over all 16 classes; violations = 0]
+PASS W6.f-range [min f = 3, max f = 5]
+PASS W6.printed-table [all 16 entries of the T_6 table printed in the note reproduced by fresh BFS]
+PASS W6.beats-the-conjectured-value [1/8 = 0.125000 < 1/7 = 0.142857]
+PASS W6.tight-class-1@(0,0) [f = 3 = r from the single tower 0@(0,0) at d = 1]
+PASS W6.tight-class-2@(0,0) [f = 3 = 2+1 from 0@(0,0) at d = 2 and 3@(1,-1) at d = 3]
+PASS W7.class-count [4 vertex types x index 18 = 72 classes]
+PASS W7.lattice-invariant [membership of T is unchanged by both generators (6,0) and (0,3)]
+PASS W7.density [10 tower classes of 72 -> 5/36 = 5/36]
+PASS W7.is-a-(4,4)-broadcast [min f = 4 >= r = 4 over all 72 classes; violations = 0]
+PASS W7.f-range [min f = 4, max f = 5]
+PASS W7.printed-table [all 72 entries of the T_7 table printed in the note reproduced by fresh BFS]
+PASS W7.beats-the-conjectured-value [5/36 = 0.138889 < 1/6 = 0.166667]
+
+--- W4: delta_{4,2} <= 1/9, and it is NOT a perfect radius-2 code ---
+PASS W4.class-count [4 vertex types x index 9 = 36 classes]
+PASS W4.lattice-invariant [membership of T is unchanged by both generators (3,0) and (0,3)]
+PASS W4.density [4 tower classes of 36 -> 1/9 = 1/9]
+PASS W4.is-a-(4,2)-broadcast [min f = 2 >= r = 2 over all 36 classes; violations = 0]
+PASS W4.f-range [min f = 2, max f = 5]
+PASS W4.matches-transcribed-table [all 36 entries of the W4 table listed in this program reproduced by fresh BFS]
+PASS W4.beats-the-conjectured-value [1/9 = 0.111111 < 9/80 = 0.112500]
+PASS W4.ball-of-0@(0,0)-has-9-vertices [|B_2| = 9 and its 9 vertices lie in 9 distinct classes mod 3]
+PASS W4.ball-of-0@(1,1)-has-9-vertices [|B_2| = 9 and its 9 vertices lie in 9 distinct classes mod 3]
+PASS W4.ball-of-1@(1,0)-has-9-vertices [|B_2| = 9 and its 9 vertices lie in 9 distinct classes mod 3]
+PASS W4.ball-of-1@(2,2)-has-9-vertices [|B_2| = 9 and its 9 vertices lie in 9 distinct classes mod 3]
+PASS W4.entry-count [4 balls x 9 = 36 entries, i.e. exactly the class count]
+PASS W4.only-32-distinct-classes-covered [36 entries cover only 32 distinct classes, so the balls do NOT partition the domain]
+PASS W4.four-collisions [exactly the four doubly-covered classes listed in this program: 1@(0,1) 2@(1,1) 2@(2,0) 3@(1,0)]
+PASS W4.four-uncovered-classes [exactly four classes have NO tower within distance 2: 0@(0,1) 1@(0,2) 1@(2,1) 2@(2,1)]
+PASS W4.uncovered-classes-are-served-from-shell-3 [their f values are 0@(0,1):3, 1@(0,2):2, 1@(2,1):2, 2@(2,1):2]
+PASS W4.is-not-a-distance-2-dominating-set [four classes lie at distance >= 3 from every tower, so W4 does NOT settle delta_{3,1}]
+
+--- the baseline: the (3,1) broadcast T31 written out in this file, of density 1/8, checked here to be a (4,2) broadcast as well (this one witness only; the general implication is not verified) ---
+PASS T31.as-(3,1).class-count [4 vertex types x index 4 = 16 classes]
+PASS T31.as-(3,1).lattice-invariant [membership of T is unchanged by both generators (4,0) and (1,1)]
+PASS T31.as-(3,1).density [2 tower classes of 16 -> 1/8 = 1/8]
+PASS T31.as-(3,1).is-a-(3,1)-broadcast [min f = 1 >= r = 1 over all 16 classes; violations = 0]
+PASS T31.as-(3,1).f-range [min f = 1, max f = 3]
+PASS T31.as-(4,2).class-count [4 vertex types x index 4 = 16 classes]
+PASS T31.as-(4,2).lattice-invariant [membership of T is unchanged by both generators (4,0) and (1,1)]
+PASS T31.as-(4,2).density [2 tower classes of 16 -> 1/8 = 1/8]
+PASS T31.as-(4,2).is-a-(4,2)-broadcast [min f = 3 >= r = 2 over all 16 classes; violations = 0]
+PASS T31.as-(4,2).f-range [min f = 3, max f = 5]
+PASS baseline.ordering [9/80 = 0.112500 < 1/8 = 0.125000]
+PASS baseline.novelty-interval [1/10 < 9/80 < 1/8 and 1/8 - 1/10 = 1/40, i.e. 20% of 1/8]
+
+--- the lower bound, from the published shell sizes alone ---
+PASS lower.C(2) [C(2) = 1*2 + 3*2 + 5*2 + 8*1 = 26]
+PASS lower.C(3) [C(3) = 1*3 + 3*3 + 5*2 + 8*1 = 30]
+PASS lower.C(4) [C(4) = 1*4 + 3*3 + 5*2 + 8*1 = 31 (the cap does not bite at r = 4)]
+PASS lower.C(2)-arithmetic [NOTE (capping/double-counting lemma, comment above, not verified here): given r <= density * C(r), C(2) = 26 yields the bound 2/26 = 1/13 = 0.076923; only the identity 2/26 = 1/13 is checked]
+PASS lower.C(3)-arithmetic [NOTE (capping/double-counting lemma, not verified here): given r <= density * C(r), C(3) = 30 yields 3/30 = 1/10 = 0.100000; only the identity 3/30 = 1/10 is checked]
+PASS lower.C(4)-arithmetic [NOTE (capping/double-counting lemma, not verified here): given r <= density * C(r), C(4) = 31 yields 4/31 = 0.129032; only the value 4/C(4) = 4/31 is checked]
+PASS lower.beats-the-naive-weight-count [the uncapped per-tower emission is 4+9+10+8 = 31, giving only 2/31 = 0.064516; the capped count 1/13 is strictly stronger]
+
+--- the constants of the note, and their consistency ---
+PASS record.sandwich-4-2 [constants ordered: 1/13 <= 1/10 < 9/80; the upper bound delta_{4,2} <= 1/10 is witnessed by W5, while the lower end 1/13 rests on the capping lemma NOT verified here]
+PASS record.sandwich-4-3 [constants ordered: 1/10 < 1/8 < 1/7; the upper bound delta_{4,3} <= 1/8 is witnessed by W6, while the lower end 1/10 rests on the capping lemma NOT verified here]
+PASS record.sandwich-4-4 [constants ordered: 4/31 < 5/36 < 1/6; the upper bound delta_{4,4} <= 5/36 is witnessed by W7, while the lower end 4/31 rests on the capping lemma NOT verified here]
+PASS record.four-constants-are-ordered [the four constants 1/12, 1/10, 1/8, 5/36 increase in this order; 1/10, 1/8, 5/36 are the upper bounds witnessed above by W5, W6, W7, and 1/12 is a literal written here and not checked as a bound. No claim that these are bounds of record and no monotonicity of delta_{4,r} is verified]
+PASS record.two-(4,4)-witnesses-are-also-(4,3)-broadcasts [the two (4,4) witnesses W3 and W7 are checked to be (4,3) broadcasts as well, which is the monotonicity the ordering above relies on]
+
+NOT RE-RUN: this program checks the exhibited patterns and the arithmetic printed above, and
+NOT RE-RUN: nothing else. It does not search over period lattices and so establishes no lower
+NOT RE-RUN: bound and no optimality: no claim that any density above is least is checked.
+NOT RE-RUN: The capping/double-counting step behind r/C(r) is not verified; only the integers
+NOT RE-RUN: C(2), C(3), C(4) and the fractions r/C(r) are computed.
+NOT RE-RUN: It reads no external file and no figure, and it makes no claim about the figures
+NOT RE-RUN: of any cited paper.
+
+VERDICT: ALL 99 CHECKS PASS
+=== program exited with status 0 ===

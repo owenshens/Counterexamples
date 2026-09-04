@@ -1,0 +1,265 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title[A tree refuting a $GRM_{-2}$ lower bound]{A 12-Vertex Tree Refuting the
+\texorpdfstring{$GRM_{-2}$}{GRM(-2)} Lower Bound for Trees of Maximum Degree Four}
+\date{}
+\subjclass[2020]{Primary 05C09; Secondary 05C05, 05C07, 05C35, 92E10}
+\keywords{general reduced second Zagreb index, $GRM_\lambda$, reduced Zagreb index,
+molecular tree, maximum degree, extremal tree, counterexample}
+
+\hypersetup{
+  pdftitle={A 12-vertex tree refuting the GRM(-2) lower bound for trees of maximum degree four}
+}
+
+\begin{document}
+
+\begin{abstract}
+For a graph $G$ and $\lambda\in\mathbb{R}$, the general reduced second Zagreb index is
+$GRM_\lambda(G)=\sum_{uv\in E(G)}(\deg u+\lambda)(\deg v+\lambda)$. Ba\v{s}i\'{c} and
+Ili\'{c} assert that every tree $T$ of order $n$ with $\Delta(T)=4$ and
+$n\not\equiv\{1,2,3\}\pmod 4$ satisfies $GRM_{-2}(T)\ge -n$, and that this value is attained.
+We exhibit a tree on $12$ vertices with maximum degree $4$ and $GRM_{-2}=-13<-12$, so the
+assertion is false, and we exhibit an infinite family showing
+that for every $n\equiv 0\pmod 4$ with $n\ge 16$ the assertion fails by $2$. Consequently the
+claimed extremal family $TT^4_{opt}(k)$ is not extremal for any $k\ge 2$. The refutation is a
+finite hand computation on eleven edges. We do not determine the exact minimum at any order,
+we do not decide whether the assertion holds at $n=8$, and
+we make no claim about the source's other results.
+\end{abstract}
+
+\maketitle
+
+\section{The claim under test, and its locator}\label{sec:claim}
+
+For a graph $G$ and a real parameter $\lambda$, Horoldagva, Buyantogtokh, Das and Lee
+\cite{Horoldagva} introduced the \emph{general reduced second Zagreb index}
+\begin{equation}\label{eq:def}
+  GRM_\lambda(G)=\sum_{uv\in E(G)}\bigl(\deg(u)+\lambda\bigr)\bigl(\deg(v)+\lambda\bigr),
+\end{equation}
+so that
+\begin{equation}\label{eq:grm2}
+  GRM_{-2}(T)=\sum_{uv\in E(T)}\bigl(\deg(u)-2\bigr)\bigl(\deg(v)-2\bigr).
+\end{equation}
+Write $m_{ij}$ for the number of edges of $T$ whose endpoint degrees are $i$ and $j$, and
+$n_i$ for the number of vertices of degree $i$.
+
+Ba\v{s}i\'{c} and Ili\'{c} \cite{BasicIlic} devote their Section~4 to the minimum of
+$GRM_{-2}$ over trees of maximum degree $4$. All references below are to line numbers of the
+arXiv \LaTeX{} e-print of \cite{BasicIlic}, version~1; the class is fixed at line~797 by the
+phrase ``\emph{for any tree $T$ with a maximal degree of $\Delta=4$}'', and the section
+heading at line~766 reads ``\emph{Minimum value of $GRM_{-2}$ in the class of molecular trees
+with maximal degree 4}''.
+The source's Section~4 rests on its own reduction, the displayed equation at line~800,
+\begin{equation}\label{eq:main2}
+  -GRM_{-2}(T)=-3m_{12}-m_{13}-m_{22}-m_{34}-3m_{44}+n-n_3+3 ,
+\end{equation}
+which in turn comes from its pre-substitution formula at line~795,
+\begin{equation}\label{eq:l795}
+  -GRM_{-2}(T)=m_{13}+2m_{14}-m_{33}-2m_{34}-4m_{44}.
+\end{equation}
+The section closes four residue cases in turn. The last of them, at line~838, is quoted here
+character for character:
+\begin{verbatim}
+Therefore, based on equation (\ref{main2}), if $n
+\not\equiv \{1, 2, 3\} \pmod{4}$, it follows that
+$GRM_{-2}(T) \geq -n$.
+\end{verbatim}
+With the class of line~797, this is the following statement, which we refute.
+
+\begin{quote}
+\textbf{Claim} (\cite{BasicIlic}, line~838). \emph{For every tree $T$ of order $n$ with
+$\Delta(T)=4$ and $n\equiv 0\pmod 4$ one has $GRM_{-2}(T)\ge -n$.}
+\end{quote}
+
+Line~842 adds that the value $-n=-(4k+4)$ \emph{is attained}, at parameters listed at
+lines~843 and~844, and line~845 names the family $TT^4_{opt}(k)$ of trees realising it.
+The adjacent improvement of Dehgardi and Klav\v{z}ar
+\cite{DehgardiKlavzar}, reference \textup{[3]} of \cite{BasicIlic}, is restricted to
+$\lambda\ge-\tfrac12$ and so says nothing about $\lambda=-2$.
+
+\section{The counterexample}\label{sec:ce}
+
+\begin{theorem}\label{thm:main}
+There is a tree $W_1$ on $n=12$ vertices with $\Delta(W_1)=4$ and $GRM_{-2}(W_1)=-13$. Since
+$12\equiv 0\pmod 4$ and $-13<-12=-n$, the Claim of Section~\textup{\ref{sec:claim}} is false.
+\end{theorem}
+
+\begin{proof}
+Let $W_1$ have vertex set $\{0,1,\dots,11\}$ and the eleven edges
+\begin{equation}\label{eq:w1}
+  01,\quad 02,\quad 03,\quad 04,\quad 15,\quad 56,\quad 57,\quad
+  68,\quad 89,\quad 8\,\text{-}\,10,\quad 8\,\text{-}\,11 .
+\end{equation}
+Pictorially, $0$ and $8$ are the two branch vertices, joined by the path $0,1,5,6,8$, with a
+single extra leaf at $5$:
+\[
+\begin{array}{ccccccccc}
+ 2\ \ 3\ \ 4 & & & & & & & & 9\ \ 10\ \ 11\\[-2pt]
+ \diagdown\ |\ \diagup & & & & & & & & \diagdown\ \ |\ \ \diagup\\[-2pt]
+ 0 & \text{---} & 1 & \text{---} & 5 & \text{---} & 6 & \text{---} & 8\\[-2pt]
+ & & & & |\\[-2pt]
+ & & & & 7
+\end{array}
+\]
+
+\emph{$W_1$ is a tree.} It has $12$ vertices and $11=n-1$ edges, no loop and no repeated edge
+in \eqref{eq:w1}, and every vertex is reached from $0$ by
+$0\to\{1,2,3,4\}$, $1\to 5$, $5\to\{6,7\}$, $6\to 8$, $8\to\{9,10,11\}$. A connected graph
+with $n-1$ edges is a tree.
+
+\emph{Degrees.} From \eqref{eq:w1}, $\deg 0=\deg 8=4$, $\deg 5=3$, $\deg 1=\deg 6=2$, and
+$2,3,4,7,9,10,11$ are leaves. The degree sequence is $(4,4,3,2,2,1^7)$, whose sum is
+$22=2\cdot 11$. In particular $\Delta(W_1)=4$ exactly, attained at $0$ and at $8$, so $W_1$
+lies in the class of line~797 under either reading of it, $\Delta=4$ or $\Delta\le 4$.
+
+\emph{The value.} Evaluate \eqref{eq:grm2} edge by edge. Only the seven edges incident with a
+leaf contribute, because an edge with an endpoint of degree $2$ contributes $0$.
+\[
+\begin{array}{l|c|r|r}
+ \text{edges} & \text{end degrees} & \text{each} & \text{subtotal}\\\hline
+ 02,\ 03,\ 04 & (4,1) & (4-2)(1-2)=-2 & -6\\
+ 89,\ 8\text{-}10,\ 8\text{-}11 & (4,1) & -2 & -6\\
+ 57 & (3,1) & (3-2)(1-2)=-1 & -1\\
+ 01 & (4,2) & (4-2)(2-2)=0 & 0\\
+ 15 & (2,3) & 0 & 0\\
+ 56 & (3,2) & 0 & 0\\
+ 68 & (2,4) & 0 & 0\\\hline
+ \multicolumn{3}{r|}{\text{total}} & -13
+\end{array}
+\]
+Hence $GRM_{-2}(W_1)=-13$, while the Claim asserts $GRM_{-2}(W_1)\ge -12$.
+\end{proof}
+
+Two remarks fix the scope of Theorem~\ref{thm:main}. First, $W_1$ itself violates only the
+Claim of line~838: the source's earlier conclusions at line~822 ($GRM_{-2}\ge-(n+2)$ for
+$n\ne 4k+1$) and line~830 ($GRM_{-2}\ge-(n+1)$ for $n\not\equiv\{1,2\}\pmod 4$) both survive
+at $W_1$, the second with equality, since $-13=-(n+1)$. The tree $W_2$ of
+Section~\ref{sec:family} violates line~830 as well. Second, at $n=8$ the bound $-n$ is
+attained, by the double star obtained by joining two vertices of degree $4$, which has
+$m_{14}=6$, $m_{44}=1$ and $GRM_{-2}=6\cdot(-2)+1\cdot 4=-8=-n$; we do not decide whether
+$GRM_{-2}(T)\ge-8$ holds for every tree $T$ of order $8$ with $\Delta(T)=4$, and nothing here
+depends on that.
+
+The edge partition of $W_1$ is $m_{13}=1$, $m_{14}=6$, $m_{23}=2$, $m_{24}=2$, all other
+$m_{ij}=0$, with $n_1=7$, $n_2=2$, $n_3=1$, $n_4=2$; both \eqref{eq:main2} and
+\eqref{eq:l795} return $-GRM_{-2}(W_1)=13$.
+
+\section{An infinite family}\label{sec:family}
+
+\begin{proposition}\label{prop:family}
+For every $k\ge 3$ there is a tree $F(k)$ of order $n=4k+4$ with $\Delta=4$ and
+$GRM_{-2}(F(k))=-(n+2)$.
+\end{proposition}
+
+\begin{proof}
+Take any tree $S$ (a \emph{skeleton}) on $k+1$ nodes in which a distinguished node $v$ has
+degree $3$ and every node has degree at most $4$; such an $S$ exists for every $k\ge 3$, for
+instance the tree on $\{0,1,\dots,k\}$ with edges $01,02,03$ together with the path edges
+$i(i+1)$ for $3\le i\le k-1$ (no path edge at all when $k=3$, where $S=K_{1,3}$), whose
+node $v=0$ has degree $3$. Subdivide every edge of $S$ exactly once, which creates $k$ new
+vertices of degree $2$, and then attach $4-d_S(u)$ pendant vertices to each node $u\ne v$,
+where $d_S(u)$ is the degree of $u$ in $S$.
+
+In the resulting tree $F(k)$ the node $v$ has degree $3$ and all three of its neighbours are
+subdivision vertices, so $n_3=1$ and $m_{13}=0$; each node $u\ne v$ has degree $4$, so
+$n_4=k$; the $k$ subdivision vertices give $n_2=k$; and every edge of $F(k)$ either joins a
+degree-$2$ vertex to something or joins a degree-$4$ vertex to a leaf, whence
+$m_{12}=m_{22}=m_{33}=m_{34}=m_{44}=0$. The skeleton degree sum is $2k$, so
+$\sum_{u\ne v}d_S(u)=2k-3$ and the number of pendant vertices is
+$n_1=m_{14}=4k-(2k-3)=2k+3$. Therefore
+\[
+  n=n_1+n_2+n_3+n_4=(2k+3)+k+1+k=4k+4 ,
+\]
+and by \eqref{eq:grm2} only the $m_{14}$ edges contribute, each $-2$, so
+$GRM_{-2}(F(k))=-2(2k+3)=-(4k+6)=-(n+2)$.
+\end{proof}
+
+For $k=3$ this is the tree $W_2$ on $16$ vertices with edges
+\[
+ 01,\ 02,\ 03,\ 04,\ 15,\ 56,\ 57,\ 68,\ 79,\ 8\text{-}10,\ 8\text{-}11,\ 8\text{-}14,\
+ 9\text{-}12,\ 9\text{-}13,\ 9\text{-}15,
+\]
+with $\Delta=4$ attained at $0,8,9$, $m_{14}=9$ and $GRM_{-2}(W_2)=-18<-16$. Note that $W_2$
+violates the source's line~830 as well, since $-18<-17=-(n+1)$, while $W_1$ does not.
+
+\begin{corollary}
+The family $TT^4_{opt}(k)$ of \textup{\cite{BasicIlic}}, line~845, is not the set of extremal
+trees of order $n=4k+4$ for any $k\ge 2$.
+\end{corollary}
+
+\begin{proof}
+Both parameter sets the source assigns to its optimal tree have $m_{13}=m_{33}=m_{34}=0$; the
+first (line~843) has $m_{14}=2k+2$ and $m_{44}=0$, the second (line~844) has $m_{14}=2k+4$ and
+$m_{44}=1$. By \eqref{eq:l795} they give $-GRM_{-2}=2(2k+2)=4k+4=n$ and
+$-GRM_{-2}=2(2k+4)-4=4k+4=n$ respectively, i.e. $GRM_{-2}=-n$ in both cases. By
+Theorem~\ref{thm:main} and Proposition~\ref{prop:family} the minimum at $n=4k+4$ is at most
+$-(n+1)$ for $k=2$ and at most $-(n+2)$ for $k\ge 3$, strictly below $-n$.
+\end{proof}
+
+\section{What is not settled}\label{sec:open}
+
+\begin{itemize}
+\item \emph{No exact minimum is claimed.} Theorem~\ref{thm:main} and
+      Proposition~\ref{prop:family} give upper bounds on
+      $\min\{GRM_{-2}(T):|V(T)|=n,\ \Delta(T)=4\}$ only. We do not prove a matching lower
+      bound at any order, we do not claim that the trees exhibited here are minimisers, and we
+      make no claim about the number of minimisers.
+\item \emph{No corrected replacement for $TT^4_{opt}(k)$ is proved here.} The inductive
+      structural characterisation at line~846 of \cite{BasicIlic} is not repaired.
+\item \emph{The disputed statements are line~838, the line~830 bound at $n\equiv0\pmod4$ with
+      $n\ge16$, and the attainment claim at lines~842--846.} We assert nothing about the
+      source's $\Delta=3$ results, its $\lambda\ge-1$ material, or its $\Delta=4$ conclusions
+      at $n\equiv 1,2,3\pmod 4$.
+\item \emph{``Molecular tree'' is never separately defined} in \cite{BasicIlic}; we read the
+      class as it is fixed at line~797. All trees exhibited here have $\Delta$ exactly $4$, so
+      the refutation is insensitive to reading the class as $\Delta\le 4$ instead.
+\item \emph{What the accompanying program does.} The recorded run in the folder of this note
+      recomputes $GRM_{-2}$ and the degree and edge counts of $W_1$, $W_2$, the tree $F(4)$ on
+      $20$ vertices and the $n=8$ double star from their edge lists, and instantiates $F(k)$
+      for $k=3,\dots,12$. It enumerates no trees, so it decides no minimum and does not
+      address $n=8$ beyond the double star; the general statement of
+      Proposition~\ref{prop:family} for all $k\ge 3$ is established by the proof above, not by
+      that run.
+\item \emph{This corrects a preprint.} \cite{BasicIlic} has one version, no journal reference
+      and no erratum at the time of writing. Should a refereed version appear with a repaired
+      Section~4, the target of this note would cease to exist in the literature, though nothing
+      about $W_1$ would change.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{BasicIlic}
+M.~Ba\v{s}i\'{c} and A.~Ili\'{c},
+\emph{Further results on the lower bound on reduced Zagreb index of trees},
+\href{https://arxiv.org/abs/2604.06044}{arXiv:2604.06044}, 2026.
+(All line numbers cited here refer to \texttt{main.tex} of the version-1 e-print,
+$966$ lines, $61{,}112$ bytes.)
+
+\bibitem{DehgardiKlavzar}
+N.~Dehgardi and S.~Klav\v{z}ar,
+\emph{Improved lower bounds on the general reduced second Zagreb index of trees},
+preprint, 2023; cited as reference \textup{[3]} of \cite{BasicIlic}. Published form:
+N.~Dehgardi, S.~Klav\v{z}ar and M.~Azari,
+J. Comb. Optim. \textbf{51} (2026), Paper No.~50
+(\href{https://arxiv.org/abs/2605.30402}{arXiv:2605.30402}); it treats
+$\lambda\ge-\tfrac12$ only.
+
+\bibitem{Horoldagva}
+B.~Horoldagva, L.~Buyantogtokh, K.~C.~Das and S.-G.~Lee,
+\emph{On general reduced second Zagreb index of graphs},
+Hacettepe J. Math. Stat. \textbf{48} (2019), 1046--1056.
+
+\end{thebibliography}
+
+\end{document}

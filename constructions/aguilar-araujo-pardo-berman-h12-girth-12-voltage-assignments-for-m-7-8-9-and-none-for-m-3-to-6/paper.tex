@@ -1,0 +1,609 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Voltage assignments on a 44-vertex reconstruction of H12: girth 12 for m = 7, 8, 9, and none for 3 <= m <= 6}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[A $44$-vertex reconstruction of $H_{12}$, for $m\le 9$]
+{Voltage assignments on a $44$-vertex reconstruction of $H_{12}$:
+ girth~$12$ for $m=7,8,9$, and none for $3\le m\le 6$}
+
+\date{}
+
+\subjclass[2020]{05C35, 05C25, 05C38}
+\keywords{bi-regular cage, semicubic graph, girth, voltage graph, lift,
+ generalized hexagon, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+Aguilar, Araujo-Pardo and Berman exhibit a voltage graph $H_{12}$ on $44$ vertices whose
+$\mathbb{Z}_m$ lifts are $(\{3,m\};12)$-graphs of order $41m+3$ for every $m\ge 10$, and ask,
+in the third sub-bullet under ``Related to semicubic graphs'' of their Section~6 (p.~29), for
+voltage assignments on that same $H_{12}$ producing girth~$12$ for $m\in\{3,4,\dots,9\}$, or a
+proof that none exists. This note is about one explicit $44$-vertex voltage graph, printed in
+full in Section~\ref{sec:base}, which is our reading of the source's Figure~16 and its
+Tables~3--4; we do \emph{not} verify that it is the source's $H_{12}$, and we therefore do not
+claim to settle the cited question --- whether we do turns entirely on that identification,
+which is stated and bounded in Section~\ref{sec:corr}. For the graph printed below: girth-$12$
+assignments exist for $m=7,8,9$ --- exhibited here in full, at orders $290$, $331$ and $372$ ---
+and none exists for $m=3,4,5,6$. The two smaller witnesses are checked as graphs in their own
+right, so they give
+\[
+ n(\{3,7\};12)\le 290\ \ (\text{was }334),
+ \qquad
+ n(\{3,8\};12)\le 331\ \ (\text{was }374),
+\]
+independently of the identification; both lie strictly above the published lower bounds $272$
+and $308$. The $m=9$ witness carries \emph{no} record claim: Goedgebeur, Jooken and
+Van~den~Eede publish $n(\{3,9\};12)\le 360<372$. The second question of the same sub-bullet,
+which asks for a \emph{different} graph $H'_{12}$, is untouched and remains open at every $m$.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:q}
+
+Following Aguilar, Araujo-Pardo and Berman \cite{AAB}, a \emph{$(\{3,m\};g)$-graph} is a graph
+whose every vertex has degree $3$ or $m$ and whose girth is $g$; $n(\{3,m\};g)$ denotes the
+least order of such a graph. In a voltage graph over $\mathbb{Z}_m$ a \emph{pinned} vertex
+$v^{*}$ is a base vertex of degree~$1$ whose lift is a \emph{single} vertex joined to all $m$
+copies of its unique neighbour, so that $\deg v^{*}=m$; a base whose other vertices have
+degree~$3$ and which carries $s$ pinned vertices therefore lifts to a graph with exactly $s$
+vertices of degree $m$ and all others of degree~$3$ \cite[Remark~3.1]{AAB}. Unlabelled edges
+carry voltage~$0$.
+
+The source's Theorem~5.6 (p.~27) reads, verbatim:
+
+\begin{quote}
+``The graph $(H_{12};m)$ given by the voltage graph $H_{12}$ shown in Figure 16 with voltages
+given in Table 4 has girth 12 for $m \ge 10$. Moreover, it is a $(\{3,m\};12)$-graph with three
+vertices of degree $m$ and $41m$ vertices of degree 3.''
+\end{quote}
+
+\noindent
+Our target is the \emph{first sentence} of the third sub-bullet under the bullet ``Related to
+semicubic graphs'' in Section~6, ``Open questions'', of \cite{AAB}, on p.~29, verbatim
+(subscripts written $H_{12}$, $T_{12}$, $H'_{12}$):
+
+\begin{quote}
+``Find different voltage assignments for the graph $H_{12}$ that produce graphs of girth 12 for
+$m \in \{3, 4, \dots , 9\}$, or show no assignments exist. \emph{Preliminary investigations
+suggest that new arc assignments are required to find smaller examples.} Does there exist a
+different graph $H'_{12}$ (for example, using the same modified tree structure and arcs
+$a, b, c, d$ but different arcs among the remaining leaves of $T_{12}$) that produces graphs of
+girth 12 for these smaller values of $m$? For example, can we find graphs of small girth if we
+construct a 16-cycle among the remaining leaves of $T_{12}$, or if we interlace two 8-cycles
+differently?''
+\end{quote}
+
+The parent bullet, pp.~28--29, reads ``Related to semicubic graphs: Find voltage assignments to
+construct graphs of girth 10 and 12 for missing values of $m$. More specifically:''. The
+locator for the target is therefore: \cite{AAB}, Section~6 ``Open questions'', third
+sub-bullet under ``Related to semicubic graphs'', p.~29.
+
+\medskip
+\noindent\textbf{Scope.}
+That sub-bullet contains \emph{two} questions. Everything below concerns the first, and only in
+the form it takes for the explicit graph of Section~\ref{sec:base}; nothing here bears on the
+second, the different graph $H'_{12}$. Nothing here may be read as ``the third open question is
+closed'': that reading needs the identification of Section~\ref{sec:corr}, which is not
+established here.
+
+\medskip
+\noindent
+Why $m=9$ was singled out by the authors, \cite[p.~28]{AAB}, verbatim:
+
+\begin{quote}
+``To compare the parameters we recall that the lower bound given in Lemma 3.4 in [6] is
+$n(\{3,m\};12) \ge \lceil 109m/3\rceil + 17$. The graphs $(G_{12}, m)$ with $m \ge 9$ has order
+$49m + 3$ whereas the graphs $(H_{12}, m)$ with $m \ge 10$ has order $41m + 3$. \dots
+Interestingly, if we are able to find a voltage assignment to construct an $(H_{12},9)$ we
+would be able to construct a graph of order 372.''
+\end{quote}
+
+\noindent
+That order-$372$ graph is exhibited in Section~\ref{sec:exist}. The lower bound quoted there is
+attributed by \cite{AAB} to Lemma~3.4 of Araujo-Pardo, Balbuena, Garc\'ia-V\'azquez, Marcote
+and Valenzuela \cite{ABGMV}.
+
+\section{The $44$-vertex base graph, in full}\label{sec:base}
+
+Everything below is a statement about one explicit $44$-vertex graph, so that graph is printed
+here completely: a reader needs neither the source's figure nor any program. It is our reading
+of the graph of \cite[Figure~16]{AAB}; that reading, and the two places where the source's
+printed tables have to be read against their own deletion list to obtain it, are recorded in
+Section~\ref{sec:corr}, which also states what has \emph{not} been verified about the
+identification. \emph{Convention.} From here on ``$H_{12}$'' abbreviates the graph printed in
+this section, and nothing else; it is not asserted to be the graph of \cite[Figure~16]{AAB}.
+
+\medskip
+\noindent\textbf{The $44$ vertices} ($x^{*},y^{*},z^{*}$ are the three pinned vertices):
+{\small
+\begin{verbatim}
+x*, x, x0, x1, x00, x01, x10, x11, x010, x011, x100, x101, x110,
+x111, x0100, x0101, x0110, x0111, x1010, x1011, x1110, x1111,
+y*, y, y0, y1, y01, y10, y11, y010, y011, y101, y110,
+z*, z, z0, z1, z01, z10, z11, z010, z011, z101, z110
+\end{verbatim}}
+
+\noindent\textbf{The $43$ tree edges, all at voltage $0$:}
+{\footnotesize
+\begin{verbatim}
+x*-x, x-x0, x-x1, x0-x00, x0-x01, x1-x10, x1-x11, x01-x010, x01-x011,
+x10-x100, x10-x101, x11-x110, x11-x111, x010-x0100, x010-x0101,
+x011-x0110, x011-x0111, x101-x1010, x101-x1011, x111-x1110, x111-x1111,
+y*-y, y-y0, y-y1, y0-y01, y1-y10, y1-y11, y01-y010, y01-y011,
+y10-y101, y11-y110,
+z*-z, z-z0, z-z1, z0-z01, z1-z10, z1-z11, z01-z010, z01-z011,
+z10-z101, z11-z110,
+x00-y0, x00-z0
+\end{verbatim}}
+
+\noindent\textbf{The $20$ labelled arcs} (name: tail $\to$ head). These are the only edges
+carrying a voltage, and they are the $20$ coordinates of every voltage tuple in this note,
+always in this order:
+{\footnotesize
+\begin{verbatim}
+a: x100 ->y10     b: x100 ->z10     c: x110 ->y11     d: x110 ->z11
+e: x0100->y010    j: x0101->y011    q: x0110->y101    u: x0111->y110
+w: x1010->y110    s: x1011->y101    l: x1110->y011    g: x1111->y010
+f: x0100->z101    k: x0101->z110    r: x0110->z010    v: x0111->z011
+al:x1010->z010    t: x1011->z011    p: x1110->z101    h: x1111->z110
+\end{verbatim}}
+\noindent(the arc written \texttt{al} is the source's $\alpha$). The coordinate order is
+\[
+ \varphi=[\,a,b,c,d,e,j,q,u,w,s,l,g,f,k,r,v,\alpha,t,p,h\,].
+\]
+
+\medskip
+\noindent\textbf{The lift.} For $\varphi\colon\{\text{arcs}\}\to\mathbb{Z}_m$, the derived graph
+$(H_{12},\varphi)$ has, for each non-pinned base vertex $v$, the $m$ vertices $(v,i)$,
+$i\in\mathbb{Z}_m$, together with the three single vertices $x^{*},y^{*},z^{*}$. A tree edge
+$u$--$v$ contributes $(u,i)$--$(v,i)$ for every $i$; an arc $X\colon t\to h$ contributes
+$(t,i)$--$(h,\,i+\varphi(X)\bmod m)$ for every $i$; and $x^{*}$ is joined to $(x,i)$ for all
+$i$, likewise $y^{*}$ to $(y,i)$ and $z^{*}$ to $(z,i)$.
+
+\begin{proposition}\label{prop:base}
+The graph above has $44$ vertices and $63$ edges, no loop and no repeated edge; its degree
+sequence is $1$ three times and $3$ forty-one times, and the three vertices of degree~$1$ are
+exactly $x^{*},y^{*},z^{*}$; the $43$ tree edges form a spanning tree, so the cycle rank is
+$63-44+1=20$ and the $20$ arcs are a cotree; and it is bipartite, with classes of sizes $23$
+and $21$, every one of the $20$ arcs joining opposite classes. Consequently $(H_{12},\varphi)$
+has order $41m+3$ and $63m$ edges, exactly three vertices of degree $m$ and $41m$ of
+degree~$3$, and is bipartite.
+\end{proposition}
+
+Restoring the eight leaves that \cite[p.~27]{AAB} deletes from $T_{12}$ to form $H_{12}$ ---
+namely $x1000$, $x1001$, $x1100$, $x1101$, $y100$, $y111$, $z100$, $z111$, attached to
+$x100,x100,x110,x110,y10,y11,z10,z11$ respectively --- gives a tree on $52$ vertices with $51$
+edges, hence $49$ non-pinned vertices. That reproduces the source's own $49m+3$ and its
+``$441=49\cdot 9$ vertices of degree 3'' for the companion family $G_{12}$, and $52-8=44$,
+$51-8=43$ reproduce Theorem~5.6's ``$41m$ vertices of degree 3''.
+
+\section{The search space, and the necessary condition}\label{sec:space}
+
+\subsection*{Why $\mathbb{Z}_m^{20}$ with the tree at $0$ is the whole space}
+Two independent reasons. First, it is literally the space the question asks about: in
+\cite{AAB} the graph $H_{12}$ carries voltages on exactly the $20$ labelled arcs of Table~4,
+and every other edge is unlabelled, i.e.\ at voltage~$0$. Second, it is gauge-complete anyway.
+\emph{Switching} --- re-indexing the fibre over each base vertex by an arbitrary
+$f\colon V\to\mathbb{Z}_m$ --- zeroes the voltages on any spanning tree without changing the
+derived graph up to isomorphism. By Proposition~\ref{prop:base} the $43$ tree edges \emph{are}
+a spanning tree and the cycle rank is $20$, so the normalised space has dimension exactly the
+cycle rank. The pinned vertices do not break this: a pinned vertex is joined to \emph{all} $m$
+copies of its unique neighbour, so the voltage on its pendant edge is irrelevant, and switching
+at that neighbour merely permutes the fibre cyclically, which the pinned join is invariant
+under. A census of $\mathbb{Z}_m^{20}$ therefore meets every isomorphism class of lift and
+decides the cell as posed.
+
+\subsection*{The short-cycle system}
+A base cycle of length $q$ whose arc voltages sum to $\sigma$ lifts to cycles of length
+$q\cdot m/\gcd(\sigma,m)$. Hence
+
+\begin{lemma}\label{lem:nec}
+If $(H_{12},\varphi)$ has girth $\ge 12$ then $\sigma_C(\varphi)\not\equiv 0 \pmod m$ for every
+cycle $C$ of $H_{12}$ of length $<12$, where $\sigma_C$ is the sum of the arc voltages picked
+up by traversing $C$ once, each arc counted $+1$ if traversed tail to head and $-1$ otherwise.
+\end{lemma}
+
+The condition is \emph{necessary only}, which is the safe direction for a nonexistence proof and
+the only direction used in Section~\ref{sec:none}: unsatisfiability of the necessary system
+rules out girth $\ge 12$, hence a fortiori girth exactly $12$. (Identifying the three pinned
+fibres can only merge vertices, which never lengthens a cycle; closed walks and lollipops can
+only lower the girth further.)
+
+The census of cycles of $H_{12}$ shorter than $12$ is complete and finite: there are
+\[
+ 18 + 27 + 82 = 127 \text{ cycles of lengths } 6,\,8,\,10,
+ \quad\text{i.e. } \mathbf{254} \text{ directed},
+\]
+and there is no cycle of length below $6$ and none of odd length (the graph is bipartite). The
+$254$ is the source's own published integer for $H_{12}$, \cite[p.~27]{AAB}: ``There are 254
+such cycles''. All $127$ coefficient vectors have entries in $\{-1,0,+1\}$, with arity
+histogram $\{1{:}16,\,2{:}44,\,3{:}4,\,4{:}55,\,6{:}6,\,8{:}2\}$. The $16$ arity-one
+constraints force $16$ of the $20$ arcs to be nonzero; the four arcs \emph{not} so forced are
+exactly $w,s,p,h$, each of whose single-arc fundamental cycle has length $12$.
+
+\section{The existence half: three witnesses}\label{sec:exist}
+
+\begin{theorem}\label{thm:exist}
+For each $m\in\{7,8,9\}$ the voltage assignment $\varphi$ listed below makes $(H_{12},\varphi)$
+a connected bipartite $(\{3,m\};12)$-graph on $41m+3$ vertices, with $63m$ edges, no loop and
+no multiple edge, exactly three vertices of degree~$m$ and $41m$ of degree~$3$, and girth
+exactly $12$.
+\end{theorem}
+
+\noindent In the coordinate order $[a,b,c,d,e,j,q,u,w,s,l,g,f,k,r,v,\alpha,t,p,h]$:
+
+\medskip
+\noindent$W_7$, a $(\{3,7\};12)$-graph on $\mathbf{290}$ vertices:
+{\small
+\begin{verbatim}
+phi = [1, 2, 2, 1, 2, 4, 6, 3, 0, 5, 5, 6, 1, 5, 3, 1, 1, 4, 0, 3]
+\end{verbatim}}
+\noindent A shortest cycle, as lift vertices $(\text{base vertex},\text{fibre index})$:
+{\small
+\begin{verbatim}
+(y11,5) (y1,5) (y,5) (y0,5) (y01,5) (y010,5)
+(x0100,3) (z101,4) (z10,4) (z1,4) (z11,4) (x110,3)
+\end{verbatim}}
+
+\noindent$W_8$, a $(\{3,8\};12)$-graph on $\mathbf{331}$ vertices:
+{\small
+\begin{verbatim}
+phi = [1, 2, 2, 1, 3, 7, 3, 1, 0, 4, 1, 7, 1, 3, 7, 3, 1, 7, 0, 4]
+\end{verbatim}}
+{\small
+\begin{verbatim}
+(x100,7) (y10,0) (y1,0) (y,0) (y0,0) (y01,0)
+(y011,0) (x1110,7) (x111,7) (x11,7) (x1,7) (x10,7)
+\end{verbatim}}
+
+\noindent$W_9$, a $(\{3,9\};12)$-graph on $\mathbf{372}$ vertices --- the order the authors name
+on their p.~28:
+{\small
+\begin{verbatim}
+phi = [1, 2, 2, 1, 7, 6, 3, 1, 0, 5, 1, 3, 1, 3, 6, 7, 1, 3, 0, 5]
+\end{verbatim}}
+{\small
+\begin{verbatim}
+(x0,7) (x00,7) (z0,7) (z,7) (z1,7) (z10,7)
+(z101,7) (x1110,7) (x111,7) (x11,7) (x1,7) (x,7)
+\end{verbatim}}
+
+\begin{proof}
+Each witness is a finite exhibited object and every assertion of Theorem~\ref{thm:exist} is a
+finite computation on it, carried out on the $41m+3$ vertex lift built from
+Section~\ref{sec:base}: count the vertices and edges, check for loops and repeated pairs, take
+the degree histogram, run one breadth-first search for connectivity, and run breadth-first
+search from every vertex, capped at depth~$6$, for the girth. For a graph of girth $g\le 12$
+there is a root on a shortest cycle from which the two arcs of that cycle meet at depth
+$\lfloor g/2\rfloor\le 6$, so the cap loses nothing, and the minimum of
+$d(u)+d(w)+1$ over the non-tree edges of all those searches is the girth exactly. The three
+displayed $12$-cycles are the certificates that the girth is not larger: each is $12$ distinct
+lift vertices whose $12$ consecutive pairs are edges of the lift, which one checks directly
+against the tables of Section~\ref{sec:base}. That measurement is the only computation the
+existence half depends on, and it uses no solver.
+\end{proof}
+
+\subsection*{Witnesses keeping the published values of $a,b,c,d$}
+Theorem~\ref{thm:exist} is unrestricted. With $a,b,c,d$ fixed at the source's Table-4 values
+$1,-1,-1,1$ and only the remaining $16$ arcs free, witnesses satisfying every assertion of
+Theorem~\ref{thm:exist} still exist at all three values of $m$:
+{\footnotesize
+\begin{verbatim}
+m=7  phi = [1, 6, 6, 1, 6, 5, 2, 5, 0, 5, 3, 2, 1, 6, 4, 6, 5, 4, 2, 5]
+m=8  phi = [1, 7, 7, 1, 6, 5, 5, 1, 0, 3, 6, 1, 1, 4, 7, 5, 1, 2, 0, 2]
+m=9  phi = [1, 8, 8, 1, 1, 6, 3, 1, 0, 7, 1, 6, 2, 4, 5, 8, 1, 2, 0, 3]
+\end{verbatim}}
+\noindent (here $6=-1$ in $\mathbb{Z}_7$, $7=-1$ in $\mathbb{Z}_8$, $8=-1$ in $\mathbb{Z}_9$).
+For $m\le 6$ the restricted cell is empty a fortiori, since by
+Theorem~\ref{thm:none} the full cell is.
+
+\section{The nonexistence half: $m=3,4,5,6$}\label{sec:none}
+
+\begin{theorem}\label{thm:none}
+For each $m\in\{3,4,5,6\}$ there is \emph{no} $\varphi\in\mathbb{Z}_m^{20}$ for which
+$(H_{12},\varphi)$ has girth $\ge 12$; in particular none for which it has girth exactly $12$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:nec} it suffices to exhibit, for each $m$, a set of arcs and a set of
+short-cycle constraints supported on those arcs alone which is already unsatisfiable over
+$\mathbb{Z}_m$: a partial assignment violating a necessary constraint cannot be completed, so
+the whole cell $\mathbb{Z}_m^{20}$ is decided. The following four sets work; in each case
+\emph{every} tuple over the listed arcs is enumerated flat, with no search and no propagation,
+and none survives.
+\[
+\begin{array}{c|l|r|r}
+ m & \text{arcs} & \text{tuples} & \text{survivors}\\\hline
+ 3 & g,f,k,p,h & 3^{5}=243 & 0\\
+ 4 & u,w,s,r,v,\alpha,t & 4^{7}=16{,}384 & 0\\
+ 5 & q,u,w,s,r,v,\alpha,t & 5^{8}=390{,}625 & 0\\
+ 6 & q,u,w,s,r,v,\alpha,t & 6^{8}=1{,}679{,}616 & 0
+\end{array}
+\]
+The constraints used are, in each case, exactly those of the $127$ of Section~\ref{sec:space}
+whose support lies inside the listed arc set; they are recomputed from the tables of
+Section~\ref{sec:base} by the accompanying program. No enumeration over $\mathbb{Z}_m^{20}$
+itself is performed or needed: what is enumerated is only the four small cores in the table, and
+the orders $41m+3$ that the four empty cells would have given are $126$, $167$, $208$ and $249$.
+\end{proof}
+
+\subsection*{$m=3$ is a pencil-and-paper proof}
+For $m=3$ the ten constraints supported on $g,f,k,p,h$ read, over $\mathbb{Z}_3$,
+\begin{gather*}
+ g\ne 0,\quad f\ne 0,\quad k\ne 0,\quad f\ne k,\quad p\ne f,\quad p\ne h,\\
+ h\ne g,\quad h\ne k,\quad h\ne g+k,\quad f-k-p+h\ne 0 .
+\end{gather*}
+(For instance $f-k-p+h\ne0$ comes from the octagon
+$x0100 \xrightarrow{f} z101 \xleftarrow{p} x1110 - x111 - x1111 \xrightarrow{h} z110
+\xleftarrow{k} x0101 - x010 - x0100$.) Since $g,f,k$ are nonzero they lie in $\{1,2\}$, and
+$f\ne k$ forces $\{f,k\}=\{1,2\}$. Four cases:
+
+\begin{itemize}
+\item $g=1,k=1$ (so $f=2$): $h\ne 1$ and $h\ne g+k=2$, so $h=0$; then $p\ne f=2$ and
+      $p\ne h=0$, so $p=1$; but $f-k-p+h=2-1-1+0=0$. Contradiction.
+\item $g=1,k=2$ (so $f=1$): $h\ne 1$, $h\ne 2$, $h\ne g+k=0$ --- no value remains.
+\item $g=2,k=1$ (so $f=2$): $h\ne 2$, $h\ne 1$, $h\ne g+k=0$ --- no value remains.
+\item $g=2,k=2$ (so $f=1$): $h\ne 2$ and $h\ne g+k=1$, so $h=0$; then $p\ne 1$ and $p\ne 0$, so
+      $p=2$; but $f-k-p+h=1-2-2+0=-3\equiv 0$. Contradiction.
+\end{itemize}
+
+\noindent
+So the $m=3$ half needs no computer. At $m=3$ the three pinned vertices have degree $m=3$ as
+well, so the lift is \emph{cubic}, on $41\cdot3+3=126$ vertices, and $126$ is the order of the
+$(3,12)$-cage. A cubic graph of girth $12$ on $126$ vertices \emph{is} a $(3,12)$-cage, and the
+$(3,12)$-cage is unique \cite{DS16}. Hence
+
+\begin{corollary}\label{cor:cage}
+The $(3,12)$-cage is not a $\mathbb{Z}_3$ lift of $H_{12}$; equivalently, $H_{12}$ does not
+present the Tutte $12$-cage \textup{\cite{Tutte}} as a $\mathbb{Z}_3$ lift.
+\end{corollary}
+
+\begin{remark}
+Two riders on Corollary~\ref{cor:cage}. (i) The \emph{uniqueness} of the $(3,12)$-cage is
+quoted from the literature \cite{DS16} and was not re-verified here; what is proved here is the
+emptiness of $\mathbb{Z}_3^{20}$, plus the arithmetic $41\cdot 3+3=126$. (ii) The notation
+$n(\{3,3\};12)$ is not used anywhere in this note and should not be: the framework in which
+every other number here is stated requires the two degrees to be distinct, so the $m=3$ cell
+lies outside it. Write ``the $(3,12)$-cage'', or ``$(H_{12},3)$''.
+\end{remark}
+
+\begin{remark}[the boundary of Theorem~\ref{thm:none}]
+Theorem~\ref{thm:none} is a statement about $20$-arc voltage assignments on the graph of
+Section~\ref{sec:base}, in the switching normal form of Section~\ref{sec:space}. It does
+\emph{not} say $n(\{3,m\};12)>41m+3$ for those $m$, and nothing here may be read that way. It is
+a nonexistence statement about one construction.
+\end{remark}
+
+\section{Consequences for the published bounds}\label{sec:record}
+
+The published record table for bi-regular cages is compiled by Goedgebeur, Jooken and
+Van~den~Eede \cite{GJV}; the four rows relevant here read, in their version of record,
+\[
+\begin{array}{c|r|r}
+ m & \text{lower bound} & \text{upper bound}\\\hline
+ 6 & 235 & 250 \to 243\\
+ 7 & 272 & 334\\
+ 8 & 308 & 374\\
+ 9 & 344 & 374 \to 360
+\end{array}
+\]
+where ``$x\to y$'' is their own notation for ``$x$ from the literature, $y$ our improvement''.
+Theorem~\ref{thm:exist} therefore gives
+
+\begin{corollary}\label{cor:record}
+$n(\{3,7\};12)\le 290$ and $n(\{3,8\};12)\le 331$.
+\end{corollary}
+
+Both lie strictly inside the published feasible window --- $\lceil 109\cdot7/3\rceil+17=272<290$
+and $\lceil 109\cdot 8/3\rceil+17=308<331$ --- so the remaining gaps are $18$ and $23$.
+
+\medskip
+\noindent\textbf{Attribution.} The $334$ at $m=7$ belongs to Araujo-Pardo, Balbuena,
+L\'opez-Ch\'avez and Montejano \cite{ABLM}, Theorem~2.2 --- a reference of \cite{AAB} itself,
+not a bound of \cite{AAB}: the source's own Table~1 (p.~4) prints
+$\mathrm{rec}(\{3,7\};12)=376$, i.e.\ it does not cite the better $334$ that sits in its own
+bibliography. So no sentence here improves the source's authors at $m=7$. The $374$ at $m=8$
+\emph{is} theirs (Corollary~2.4 of \cite{AAB}); only there does this note improve a bound of
+\cite{AAB}.
+
+\medskip
+\noindent\textbf{Adjacent work, and what it does not settle.} \cite{GJV} is the current
+compilation of the $n(\{r,m\};g)$ bounds and the nearest work to this note: its Section~4
+generalises the \emph{gluing} theorem of \cite{AAB} --- ``In [2] Aguilar, Araujo-Pardo, and
+Berman generalized Theorem 3 from [5]\dots\ we generalize their theorem a) for all girths
+$g\ge5$, b) for more pairs $(r,m)$, c) by improving their bound'' --- and not the $H_{12}$
+voltage-graph construction. It therefore says nothing about voltage assignments on $H_{12}$ for
+$m<10$, and its girth-$12$ rows leave the $m=7$ and $m=8$ upper bounds $334$ and $374$ with an
+empty improvement column; its own improvements in this range are at $m=6$ ($250\to243$) and
+$m=9$ ($374\to360$), the latter being the $360$ that keeps the $m=9$ witness below from carrying
+a record claim. \cite{ABLM}, Theorem~2.2, supplies the $334$ by a construction unrelated to
+$H_{12}$ and settles nothing about it; \cite{ABGMV}, Lemma~3.4, supplies only the lower bound
+$\lceil 109m/3\rceil+17$ and no upper bound. None of the three addresses the sub-bullet's
+question, and none of them settles the identification of Section~\ref{sec:corr}.
+
+\medskip
+\noindent\textbf{The $m=8$ bound against Table~1 of the source.}
+Table~1 of \cite{AAB}, p.~4, prints $\mathrm{rec}(\{3,8\};12)=\mathbf{304}$, which is
+\emph{below} our $331$, so a referee reading that page will read
+Corollary~\ref{cor:record} as false; the claim should not be quoted without this paragraph. We
+read that $304$ as a misprint for $374$. No erratum is available to us and none is verified
+here; what is checked is the following. (i) $304<308$, and $308$ is the lower bound printed in
+the adjacent column of the same row, reproduced by
+$\lceil 109\cdot8/3\rceil+17=291+17=308$: so the printed $304$ is inconsistent with the lower
+bound of its own row. (ii) Table~1's technique column names Corollary~2.4 of \cite{AAB} (p.~7)
+for that entry: ``There exist $(3,m;12)$-graphs of order: $41m+\frac{m}{3}+2$ for $m=3k$;
+$41m+\frac{m}{3}+86+\frac{2}{3}$ for $m=3k+1$; $41m+\frac{m}{3}+43+\frac{1}{3}$ for $m=3k+2$'',
+and at $m=8=3\cdot2+2$ that is $328+\frac83+43+\frac13=374$, while in exact rational arithmetic
+the same corollary reproduces every other $\mathrm{rec}(\{3,m\};12)$ entry of Table~1 ($252$,
+$250$, $250$, $376$, $374$ at $m=4,5,6,7,9$). (iii) \cite{GJV} print $374$ for that row,
+attributed to the same corollary, with an empty improvement column.
+
+\medskip
+\noindent\textbf{The $m=9$ witness carries no record claim.}
+$\;372>360$, and $360$ is published \cite{GJV}. The $372$ of Theorem~\ref{thm:exist} realises
+the order the authors of \cite{AAB} name on their p.~28, but it improves nothing, and no
+sentence here may say that it does. The orders $413$ at $m=10$ and $454$ at $m=11$ are
+Theorem~5.6 of \cite{AAB} and not ours. And $m=6$ carries nothing either:
+\cite{GJV}'s improved $n(\{3,6\};12)\le 243$ is below the order $249$ that $(H_{12},6)$ would
+have had --- moot in any case, since Theorem~\ref{thm:none} empties that cell.
+
+\section{Reading $H_{12}$ off the source's tables}\label{sec:corr}
+
+Tables~3 and~4 of \cite{AAB}, and the prose on its p.~27, cannot be transcribed literally into a
+graph whose $41$ non-pinned vertices all have degree~$3$: they name leaves that the same page
+deletes. Section~\ref{sec:base} therefore prints the graph we read from
+\cite[Figure~16]{AAB}, and the two places where that reading departs from the printed tables are
+these.
+
+\begin{enumerate}
+\item \textbf{Two endpoint misprints, against the source's own deletion list.} Tables~3 and 4
+print the $x$-leaf sequence ``\dots $x1010$, $x1001$ \dots'' where the surviving leaf set forces
+$x1011$ ($x1001$ is itself one of the eight deleted leaves, and is used twice while $x1011$ is
+never used); and Table~4's third row gives starting leaves $x1100,x1101$ for the arcs $p,h$,
+although both are deleted on p.~27, the surviving leaves still needing a $z$-arc being
+$x1110,x1111$.
+\item \textbf{The p.~27 prose ``we added new labeled directed arcs from $x100$ to $y10$, $z10$
+and from $x110$ to $y111$ and $z111$'' cannot be read literally}, since $y111$ and $z111$ are
+both in the deletion list; we read it as Table~4's $x110\to y11,z11$, which is what gives
+$y11,z11$ degree~$3$.
+\end{enumerate}
+
+\noindent\textbf{What supports the identification, and what does not.} On the reading above all
+$41$ non-pinned vertices are cubic, and the short-cycle census of Section~\ref{sec:space}
+reproduces the source's own published $254$ and its $41m+3$; restoring the eight deleted leaves
+reproduces its $49m+3$ and $441$. Those are the whole of the evidence offered here. We do
+\emph{not} supply an independent, arc-by-arc transcription of Figure~16, and the accompanying
+program does not check one: it is given the graph of Section~\ref{sec:base} and checks
+statements about that graph. Nor do we claim that the reading above is the only reading with all
+$41$ vertices cubic. Accordingly Proposition~\ref{prop:base},
+Theorems~\ref{thm:exist} and~\ref{thm:none} and Corollaries~\ref{cor:cage}
+and~\ref{cor:record} are statements about the graph printed in Section~\ref{sec:base}, and this
+note does not claim more. In particular it does not claim to answer the question of \cite{AAB}:
+that would need the printed graph to be the $H_{12}$ of \cite[Figure~16]{AAB}, which is exactly
+what is not established here and what a referee would have to check against the source, arc by
+arc. Corollary~\ref{cor:record} is the one consequence unaffected by this, since its two
+witnesses are exhibited and checked as graphs in their own right.
+
+\section{What is not settled}\label{sec:open}
+
+\begin{itemize}
+\item \textbf{The identification of the printed graph with \cite[Figure~16]{AAB} is not
+established} (Section~\ref{sec:corr}), so the question of \cite{AAB} is not claimed to be
+answered, in either direction.
+\item \textbf{The second question of the sub-bullet --- the different graph $H'_{12}$ --- is
+completely untouched and remains open, at every $m$.} Nothing here rewires the leaf-joining arcs
+of $T_{12}$, builds a $16$-cycle among the remaining leaves, or interlaces two $8$-cycles
+differently, and nothing here says whether such an $H'_{12}$ exists at any $m$.
+\item \textbf{The \emph{second} sub-bullet of the same page is a different question and is not
+answered here.} Verbatim, \cite[p.~29]{AAB}: ``Find voltage assignments to produce
+$(G_{12};m)$ graphs with the construction given in Theorem 5.5 for any $4\le m\le 8$, or show
+no such graphs exist''. That is the $G_{12}$ family of order $49m+3$, not the $41m+3$ family
+treated here.
+\item \textbf{Optimality is open.} Whether $290$ and $331$ are the true values of
+$n(\{3,7\};12)$ and $n(\{3,8\};12)$ is not addressed; the published lower bounds $272$ and
+$308$ stand untouched. No attempt was made to raise them, and none to find a smaller
+$(\{3,7\};12)$ or $(\{3,8\};12)$ graph outside this family.
+\item \textbf{Counting is not claimed}, at any $m$: the number of assignments passing the
+necessary system of Lemma~\ref{lem:nec} is not the number giving girth $12$.
+\item \textbf{Isomorphism questions are unexamined:} whether the witnesses of
+Section~\ref{sec:exist} are pairwise non-isomorphic, and whether any is isomorphic to a known
+graph, was not checked.
+\item \textbf{The uniqueness of the $(3,12)$-cage is an inherited external fact}, used only in
+Corollary~\ref{cor:cage} and flagged there.
+\item \textbf{Nonexistence is about this construction, not about the cage numbers} --- see the
+remark closing Section~\ref{sec:none}. In particular the emptiness at $m=4,5,6$ says nothing
+about \cite{GJV}'s $n(\{3,4\};12)\le 220$, $n(\{3,5\};12)\le 230$, $n(\{3,6\};12)\le 243$.
+\end{itemize}
+
+\section{Verification}\label{sec:verify}
+
+Every computational assertion of Sections~\ref{sec:base}--\ref{sec:record} is re-derived, from
+the objects printed above and from nothing else, by the accompanying program \texttt{verify.py}
+(Python~3.9+, standard library
+only, exact integer and \texttt{Fraction} arithmetic, no floating point in any decision). It
+rebuilds the base graph from the tables of Section~\ref{sec:base} and checks
+Proposition~\ref{prop:base}; recomputes the short-cycle census and the arity histogram of
+Section~\ref{sec:space}, reproducing the source's published $254$; builds all six lifts and
+measures order, edge count, loops, repeated pairs, degree histogram, connectivity and exact
+girth, and checks the three displayed $12$-cycles edge by edge; re-runs the four flat
+enumerations of Theorem~\ref{thm:none} and the four-case argument for $m=3$; and re-derives the
+arithmetic of Section~\ref{sec:record}, including Corollary~2.4 of \cite{AAB} in exact
+rationals at $m=4,\dots,9$. Its recorded run is in
+\texttt{verify.output.txt}. Its output
+also carries arithmetic side points this note does not state --- among them the total size of the
+four cells emptied by Theorem~\ref{thm:none}, and evaluations of \cite{GJV}'s Theorem~4.2 and of
+Table~1 of \cite{AAB}; the Theorem~4.2 checks evaluate selected parameter choices and are not
+minimisations over its cases and parameters, and no check of the run verifies an erratum. The
+program
+is a convenience, not a dependency: the existence half reduces to one breadth-first search on a
+$290$-vertex graph, and the $m=3$ half is the four-case argument above.
+
+\medskip
+\noindent\textbf{What \texttt{verify.py} does not cover.} It does not check that the graph of
+Section~\ref{sec:base} is the graph of \cite[Figure~16]{AAB}: the program is handed that graph,
+and the readings of Section~\ref{sec:corr} are assertions about the source's tables, which are
+not reprinted here. A reader who wants them checked must fetch Tables~3 and~4 and Figure~16 from
+\cite{AAB}. Beyond that, the program's own closing scope note lists the inherited external facts
+it does not re-run, among them the uniqueness of the $(3,12)$-cage used in
+Corollary~\ref{cor:cage} and the record values $334$, $374$ and $360$, which are transcribed
+from the literature and not recomputed.
+
+\begin{thebibliography}{9}
+
+\bibitem{AAB}
+F.~Aguilar, G.~Araujo-Pardo, and L.~W. Berman,
+\emph{Semicubic cages and small graphs of even girth derived from voltage graphs},
+Ars Math. Contemp. \textbf{26} (2026), \#P3.03.
+\href{https://doi.org/10.26493/1855-3974.3116.35e}{doi:10.26493/1855-3974.3116.35e};
+preprint \href{https://arxiv.org/abs/2305.03290}{arXiv:2305.03290}.
+All page references are to the $30$-page journal galley.
+
+\bibitem{GJV}
+J.~Goedgebeur, J.~Jooken, and Van~den~Eede,
+\emph{Computational methods for finding bi-regular cages},
+Ars Math. Contemp., published online 15 December 2025.
+\href{https://doi.org/10.26493/1855-3974.3497.56c}{doi:10.26493/1855-3974.3497.56c};
+preprint \href{https://arxiv.org/abs/2411.17351}{arXiv:2411.17351}.
+
+\bibitem{ABLM}
+Araujo-Pardo, Balbuena, L\'opez-Ch\'avez, and Montejano,
+\emph{On bi-regular cages of even girth at least 8},
+Aequationes Math. \textbf{86} (2013), 201--216.
+
+\bibitem{ABGMV}
+Araujo-Pardo, Balbuena, Garc\'ia-V\'azquez, Marcote, and Valenzuela,
+Discrete Math. \textbf{308} (2008), 2484--2491.
+The source of the lower bound $n(\{3,m\};12)\ge\lceil 109m/3\rceil+17$, as attributed by
+\cite[Lemma~3.4 of its reference {[6]}, quoted p.~28]{AAB}.
+
+\bibitem{Tutte}
+W.~T. Tutte,
+\emph{A family of cubical graphs},
+Proc. Cambridge Philos. Soc. \textbf{43} (1947), 459--474.
+
+\bibitem{DS16}
+G.~Exoo and R.~Jajcay,
+\emph{Dynamic cage survey},
+Electron. J. Combin., Dynamic Survey DS16.
+Quoted here only for the order and the uniqueness of the $(3,12)$-cage.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,56 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  3bdd93f279c976a61b30fe898876887a46e96cdefe5b25dc6c80d6cc50678386
+python:  Python 3.9.25
+=== program output follows ===
+PASS published-odd-degree-rows                      :: 30 cells of Table 1 (d = 3,5,7,9,11; n = 2..9) reproduced from the seeds and eq:P, 0 mismatches
+PASS published-n3-column                            :: v_3^2..v_3^6 = [4, 4, 8, 0, 2], 5 of 5, including v_3^4 = 8 and v_3^6 = 2 which need the v_1^2 = 2 anomaly
+PASS published-a6-diagonal                          :: v_5^4, v_6^6, v_7^8, v_8^10, v_9^12 = [36, 128, 292, 544, 900], 5 of 5
+PASS published-v4-2-convention                      :: v_4^2 = 4, matching the source convention v_m^2 = 4 for m >= 2
+PASS published-cells-total                          :: 39 DISTINCT published cells, all reproduced, 0 mismatches; the recurrence is calibrated against the source before it is used anywhere below
+PASS witness-equals-recurrence-values               :: f_7(5..9) = [12, 88, 296, 680, 1288], equal to the five printed cells
+PASS witness-forced-by-published-cells              :: each of v_5^3=12, v_6^5=88, v_7^7=296, v_8^9=680, v_9^11=1288 follows from eq:P applied to OTHER published cells, exactly as the paper prints the sums
+PASS witness-fourth-difference                      :: Delta^4 (12, 88, 296, 680, 1288) = 4 != 0, so no polynomial of degree <= 3 agrees with f_7 on n = 5..9
+PASS witness-difference-tower-as-printed            :: the tower printed in the paper is reproduced line for line: [[76, 208, 384, 608], [132, 176, 224], [44, 48], [4]]
+PASS witness-window-inside-asserted-range           :: the asserted range at a = 7 is n >= ceil(7/2)+1 = 5, the window is n = 5..9, and 2n-7 = 2 has no integer solution so the exclusion clause is vacuous
+PASS witness-back-extrapolation                     :: the cubic through (6,88),(7,296),(8,680),(9,1288) predicts 8 at n = 5, while f_7(5) = 12
+PASS reverse-row-a2-closed-form                     :: f_2(n) = 4(n-1) for n = 1..59, consistent with (but not proving) F_2 = 4x^2/(1-x)^2
+PASS reverse-row-a3-closed-form                     :: f_3(n) = 4(n-2) for n = 2..59, consistent with (but not proving) F_3 = 4x^3/(1-x)^2
+PASS reverse-row-start-indices                      :: the least n with 2n-a >= 3 (i.e. defined and not the excluded cell) is floor(a/2)+2 for every a = 0..80, and the printed row lengths over n <= 9 are then 8,8,7,7,6,6 for a = 0..5, as the source prints them
+PASS exclusion-clause-and-admissible-start          :: for a = 0..80: 2n-a = 2 is solvable exactly for even a, at n = a/2+1 = ceil(a/2)+1; and s(a) = floor(a/2)+2 equals the literal bound ceil(a/2)+1 for odd a, one more for even a
+PASS printed-polynomials-G2-to-G8                   :: G_2..G_8 built from the ladder eq:G agree coefficient for coefficient with the polynomials printed in the paper
+PASS G-at-one-equals-8-16-16-48                     :: G_4(1), G_5(1), G_6(1), G_7(1) = 8, 16, 16, 48, computed from the coefficient
+   lists built above; the note states only that G_a(1) > 0
+PASS dictionary-identity                            :: [x^n] G_a == (Delta^{floor(a/2)+1} f_a)(n - floor(a/2) - 1) verified in 1414 instances over a = 2..40, 0 mismatches; this ties the generating function to the recurrence
+PASS degree-of-G                                    :: deg G_{2m} = 3m-1 and deg G_{2m+1} = 3m for every a = 2..80
+PASS leading-coefficient-is-plus-minus-4            :: L_a = 4(-1)^{floor(a/2)+1} for every a = 2..80, so |L_a| = 4 throughout -- one boundary quantum that never cancels
+PASS G-at-one-positive                              :: G_a(1) > 0 for every a = 2..80 (min = 4); GRANTING the paper's identity F_a = G_a/(1-x)^{floor(a/2)+1} (eq:F, not re-derived here), this gives pole order exactly floor(a/2)+1 and degree exactly floor(a/2)
+PASS G-at-one-recursion                             :: the x = 1 specialisation of eq:G holds for a = 4..80: G_a(1) = 2G_{a-2}(1) for even a and G_{a-1}(1) + 2G_{a-2}(1) for odd a, from G_2(1) = G_3(1) = 4
+PASS agreement-threshold-is-a-minus-1               :: deg G_a - floor(a/2) = a - 1 for every a = 2..80, i.e. f_a agrees with a degree-floor(a/2) polynomial exactly from n = a-1 on
+PASS last-obstruction-value-and-position            :: (Delta^{floor(a/2)+1} f_a)(a-2) = 4(-1)^{floor(a/2)+1} != 0 and the same difference vanishes at n = a-1, a, a+1, a+7, for every a = 2..80
+PASS constant-k-th-difference-equals-G-at-one       :: Delta^{floor(a/2)} f_a equals the constant G_a(1) on the sampled window n = a-1..a+24 for a = 2..40, so the leading coefficient of the polynomial is G_a(1)/floor(a/2)!
+PASS census-hold-set-is-a-at-most-6                 :: over a = 2..80 the statement holds on its whole admissible range for EXACTLY a = 2,3,4,5,6 and fails for a = 7..80 (74 values)
+PASS census-a0-and-a1                               :: f_0(n) = v_n^{2n} = 2 for n = 1..39 (degree exactly 0) and f_1(n) = v_n^{2n-1} = 0 for n = 1..39, so a = 0 holds and a = 1 is the degenerate index the paper declines to use
+PASS failing-indices-are-a-contiguous-block         :: for every a = 7..80 the failing base indices inside the asserted range are EXACTLY n = s(a), ..., a-2 -- no coefficient of G_a vanishes in that window
+PASS failure-count-formula                          :: #failing n = ceil(a/2)-3 = floor((a-5)/2) for every a = 7..80
+PASS failure-counts-at-the-sampled-indices          :: failure counts computed by this program (the note asserts no such counts): {7: 1, 8: 1, 9: 2, 10: 2, 15: 5, 16: 5, 40: 17, 80: 37}
+PASS repaired-hypothesis-is-least-correct-start     :: for every a = 2..80 the least admissible n_0 >= s(a) beyond every obstruction is exactly max(floor(a/2)+2, a-1), which is eq:repair; it is 6 at a = 7, and the weaker repair floor(a/2)+2 = 5 there is the refuted bound
+PASS repair-terms-coincide-from-a5                  :: the two terms of eq:repair coincide exactly for a >= 5 (both are 4 at a = 5); only a = 2,3,4 are governed by the admissible start
+PASS independent-difference-census                  :: a second census computed from RAW difference tables of the recurrence (no generating function anywhere) agrees with the G-based census for all 41 values a = 0..40: empty failure set iff a <= 6, else exactly s(a)..a-2
+PASS ten-certificates-a7-to-a16                     :: on the shortest window inside the asserted range, n = s(a)..s(a)+k+1, the final difference is [4, -4, 36, -44, 172, -260, 488, -996, 344, -2164] -- all nonzero, all equal to the printed list, and all equal to the corresponding coefficient of G_a
+PASS first-and-last-obstruction-agree-only-at-a7-a8 :: the first obstruction equals the last (magnitude 4) exactly at a = 7 and a = 8, the only a with a single failing n
+PASS checksum-x9-of-G7-from-published-integers      :: 1288 - 4*680 + 6*296 - 4*88 + 12 = 4 = [x^9] G_7, the witness recovered from published integers with no recurrence at all
+PASS checksum-a6-vanishes-from-published-integers   :: 900 - 4*544 + 6*292 - 4*128 + 36 = 0 outright from the published a = 6 diagonal, the control for the same computation
+PASS f7-at-n10-two-routes                           :: v_10^13 = 2168 both from the recurrence and from expanding G_7/(1-x)^4 -- two independent routes
+PASS control-a6-stays-silent-on-its-range           :: MUST STAY SILENT: a = 6 over n = 5..60 has Delta^4 identically 0, so the detector does not simply always fire
+PASS control-a6-fires-with-the-excluded-cell        :: MUST FIRE: prepending the excluded cell v_4^2 = 4 to the a = 6 window gives Delta^4 = 4 != 0 at n = 4 = a-2, exactly where Corollary 3 puts it
+PASS control-a4-wrong-degree-fires                  :: MUST FIRE: a = 4 tested against the WRONG hypothesis "degree 1" gives Delta^2 = (8,8,8,8) on n = 4..9
+PASS control-a4-correct-degree-silent               :: MUST STAY SILENT: the same a = 4 window against its CORRECT degree 2 gives Delta^3 = (0,0,0)
+PASS control-corrupted-witness-is-silenced          :: FALSIFICATION CONTROL: corrupting the witness 12 -> 8 makes Delta^4 vanish, so the detector is reading the data and is not stuck on "fails"
+PASS companion-null-proved-sibling-theorem          :: thm:polynomials (fixed degree d, the theorem the source PROVES) is corroborated at m = 2 on the sampled window n = ceil(d/2)+1..85 with degree exactly d-2, for all 39 values d = 2..40: zero obstructions in that window. The defect is specific to the reverse diagonal
+PASS companion-null-would-have-caught-a-shifted-range :: and the same test DOES fire one step below that range at d = 8, so the null above is a real test and not a vacuous one
+
+SCOPE -- what this program does NOT check.  (1) prop:recurrences of the source is NOT re-proved: eq:P is taken as given, and the conventions around it are pinned against the source's own printed integers only.  (2) NOT RE-RUN: flat-foldability itself.  No mountain-valley assignment of M_{2,n} is enumerated anywhere here, so the model behind eq:P is trusted; Theorem 1 (a = 7) does not depend on it, since its five values are printed cells, but every value at n >= 10 does.  (3) The census stops at a = 80 and n = 130.  Proposition 2, Corollary 3 and the FALSITY assertion of Theorem 4 are PROVED for all a and are only corroborated here; but the EXACT failing set of Theorem 4, and hence the attainment of the upper bound ceil(a/2)-3 on the number of failures, rests on this census alone and is NOT claimed beyond a = 80.  (4) The line numbers, byte count and md5 quoted in paper.tex are NOT checked: they are properties of an external file this program does not fetch.
+
+VERDICT: ALL 45 CHECKS PASS
+=== program exited with status 0 ===

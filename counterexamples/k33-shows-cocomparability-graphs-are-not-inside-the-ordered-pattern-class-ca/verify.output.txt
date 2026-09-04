@@ -1,0 +1,74 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  1fb55abd49ea121dc986708c812a8668727567b3b9c40aa7f0ec5b51a70dfdff
+python:  Python 3.9.25
+=== program output follows ===
+verification of "K_{3,3} is a cocomparability graph with no P_a-avoiding vertex order"
+python 3.9.25, exact integer arithmetic only
+
+=== Step 1: K_{3,3}, the witness exhibited in the note
+NOTE E(K_{3,3}) as printed = 03 04 05 13 14 15 23 24 25
+NOTE parts A = [0, 1, 2], B = [3, 4, 5]
+PASS printed_edge_list_is_exactly_the_cross_pairs_of_the_two_printed_parts [9 cross pairs, no within-part pair]
+PASS order_is_6_and_size_is_9 [n=6, m=9]
+PASS k33_is_3_regular [degrees [3, 3, 3, 3, 3, 3]]
+PASS k33_is_triangle_free [0 triangles]
+PASS complement_of_k33_is_two_disjoint_triangles [complement = 01 02 12 34 35 45, 2 components of order 3]
+
+=== Step 2: no vertex order of K_{3,3} avoids P_a  (Theorem 1, second half)
+PASS no_order_of_k33_avoids_pa_incremental_decider [0 of 720 orders avoid P_a]
+PASS no_order_of_k33_avoids_pa_prunefree_quadruple_scan [0 of 720 orders, all C(6,4)=15 position quadruples examined in each]
+PASS the_two_pa_deciders_agree_on_all_720_orders_of_k33 [0 disagreements between two independent implementations]
+PASS the_pa_occurrence_printed_for_the_alternating_order_is_an_occurrence [order 031425, positions (0, 2, 3, 5) carry the vertices (0, 1, 4, 5): non-edge 0-1, edges 0-4 and 1-5]
+PASS pigeonhole_step_of_the_hand_proof_holds_for_every_one_of_the_720_orders [in every order, two vertices of one part follow the second vertex of the other]
+
+=== Step 3: K_{3,3} IS a cocomparability graph  (Theorem 1, first half)
+PASS the_order_012345_of_k33_is_umbrella_free [0 violations among the C(6,3)=20 triples]
+PASS this_orientation_of_the_complement_of_k33_is_a_transitive_orientation [6 arcs = |E(complement)| = 6, 0 reversed pairs, 0 transitivity violations]
+PASS complement_of_k33_admits_a_transitive_orientation_by_independent_exhaustive_search [search over all 2^6 = 64 orientations of the complement]
+PASS k33_is_the_inversion_graph_of_the_permutation_456123 [pi = 4 5 6 1 2 3 (1-based); its 9 inversions are exactly E(K_{3,3})]
+
+=== Step 4: Theorem 2 -- membership of complete multipartite graphs
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_2_vertices [1 complete multipartite graphs, 0 mismatches]
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_3_vertices [2 complete multipartite graphs, 0 mismatches]
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_4_vertices [4 complete multipartite graphs, 0 mismatches]
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_5_vertices [6 complete multipartite graphs, 0 mismatches]
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_6_vertices [10 complete multipartite graphs, 0 mismatches]
+PASS theorem_2_criterion_agrees_with_exhaustive_search_on_n_7_vertices [14 complete multipartite graphs, 0 mismatches]
+PASS the_orders_built_by_sufficiency_order_avoid_pa_for_every_admissible_partition [all admissible partitions with 2 <= n <= 10]
+PASS theorem_2_places_k33_and_the_octahedron_outside_ca [K_{3,3}: n_2=3>2;  K_{2,2,2}: n_3=2>1]
+PASS theorem_2_places_k4_inside_ca_as_the_source_observation_states [all 24 orders of K_4 avoid P_a]
+
+=== Step 5: Corollary 3 -- every complete multipartite graph is a permutation graph
+PASS the_block_reversal_permutation_realises_every_complete_multipartite_graph [inversion graph equals the graph for every partition with 2 <= n <= 8]
+PASS orienting_each_part_by_index_transitively_orients_the_complement [a disjoint union of transitive tournaments, 2 <= n <= 8]
+
+=== Step 6: the minimum order of a graph outside C_a is 6
+PASS every_labeled_graph_on_4_vertices_is_in_ca [64 of 64 edge masks covered (56 avoid P_a in the identity order)]
+PASS every_labeled_graph_on_5_vertices_is_in_ca [1024 of 1024 edge masks covered (608 avoid P_a in the identity order)]
+NOTE P_a has four vertices, so every graph on at most 3 vertices is trivially in C_a
+NOTE E(prism), as constructed by this program = 01 02 03 12 14 25 34 35 45
+NOTE E(octahedron K_{2,2,2}), as constructed by this program = 02 03 04 05 12 13 14 15 24 25 34 35
+PASS the_prism_is_outside_ca_and_is_a_cocomparability_graph [0 of 720 orders avoid P_a; complement 04 05 13 15 23 24 is bipartite=True and transitively orientable]
+PASS the_octahedron_is_outside_ca_and_is_a_cocomparability_graph [0 of 720 orders avoid P_a; complement 01 23 45 is bipartite=True and transitively orientable]
+PASS the_three_order_6_graphs_used_here_are_pairwise_non_isomorphic [sizes (9, 9, 12), triangle counts (0, 2, 8)]
+
+=== Step 7: controls, both polarities, including published ones
+PASS complete_graphs_are_in_ca_because_pa_requires_a_non_edge [K_4..K_7 all in C_a]
+PASS edgeless_graphs_are_in_ca [n=4..7]
+PASS all_24_orders_of_k4_avoid_both_pa_and_pb_as_the_source_observation_states [24 and 24]
+PASS c6_is_in_ca_via_the_cycle_order_which_the_source_parenthetical_needs [the cycle order has no crossing pair of edges at all]
+PASS c5_is_not_a_cocomparability_graph_reproducing_the_gallai_control [no transitive orientation among the 2^5 orientations of the complement]
+PASS c6_is_not_a_cocomparability_graph_reproducing_the_gallai_control [no transitive orientation among the 2^9 orientations of the complement]
+PASS c7_is_not_a_cocomparability_graph_reproducing_the_gallai_control [no transitive orientation among the 2^14 orientations of the complement]
+PASS k23_is_in_ca_via_the_order_0_2_3_4_1 [order 0 2 3 4 1]
+PASS k2m_is_in_ca_for_m_up_to_5_via_the_order_built_here [first vertex of the 2-part, then the m-part, then the second vertex of the 2-part]
+PASS k34_as_constructed_here_has_no_pa_avoiding_order [0 of 5040 orders]
+PASS k4_and_k23_are_not_in_c_empty_matching_the_forbidden_minors_of_outerplanar_graphs [0 of 24 and 0 of 120 orders avoid P_emptyset]
+NOTE E(8-vertex graph built here) = 01 04 07 12 23 26 34 45 56 67   (C_8 with the chords 04 and 26, m=10)
+PASS the_order_01345627_of_this_8_vertex_graph_avoids_pab_and_contains_pa [order 0 1 3 4 5 6 2 7: avoids P_ab, contains P_a -- this fails if a and b are swapped]
+PASS the_two_cocomparability_deciders_agree_on_all_64_labeled_graphs_on_4_vertices [umbrella-avoidance versus transitive orientation of the complement]
+
+NOTE SCOPE / NOT RE-RUN. Theorem 2 is proved in the paper for all orders; the exhaustive cross-check above covers 2 <= n <= 7 only, and the explicit sufficiency orders 2 <= n <= 10. The claim that the umbrella characterisation of cocomparability agrees with "the complement has a transitive orientation" is checked exhaustively at n=4 and on every named graph here, and is otherwise quoted from the literature, not proved. The minimum-order statement is exhaustive over ALL labeled graphs on at most 5 vertices; at order 6 this program exhibits three pairwise non-isomorphic witnesses and does NOT claim they are the only ones. No claim is made or checked here about orders 7 and above, about a finite forbidden-subgraph characterisation of C_a, or about the inclusion "cocomparability graphs are interval filament graphs", which is quoted from the source and not re-derived.
+VERDICT: ALL 43 CHECKS PASS
+=== program exited with status 0 ===

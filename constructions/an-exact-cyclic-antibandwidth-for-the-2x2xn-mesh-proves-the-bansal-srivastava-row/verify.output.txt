@@ -1,0 +1,83 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  5420af9a710b77e9bcefb57b96722b40e52ffd792f5712cc8b84c0bf474f362b
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- a matching labelling for CAB(P_2 x P_2 x P_n) = 2(n-1)
+interpreter: 3.9.25 (main, May 25 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]
+
+--- A. the label tables printed in the note, read literally
+PASS n3-table-is-a-labelling   labels 1..12 used once each, on all 12 vertices
+PASS n3-table-matches-the-closed-form   every printed label equals the closed form at n=3
+PASS n3-edge-count   |E| = 20 = 8*3-4
+PASS n3-distance-multiset   multiset [(4, 8), (5, 6), (6, 6)]
+PASS n3-minimum-is-2n-2   min = 4 = 2*3-2
+PASS n4-table-is-a-labelling   labels 1..16 used once each, on all 16 vertices
+PASS n4-table-matches-the-closed-form   every printed label equals the closed form at n=4
+PASS n4-edge-count   |E| = 28 = 8*4-4
+PASS n4-distance-multiset   multiset [(6, 12), (7, 8), (8, 8)]
+PASS n4-minimum-is-2n-2   min = 6 = 2*4-2
+PASS mesh-is-the-cylinder-C4-box-Pn-for-n-2-to-30   edge sets coincide under (u,v) -> 0,1,2,3 around the 4-cycle, n = 2..30
+PASS neighbour-rule-equals-the-literal-product-predicate-n-2-to-14   the three O(n) families == the O(N^2) all-pairs product test, n = 2..14
+
+--- B. the sweep n = 2..500: the 498 tabulated cells n_3 = 3..500, plus the endpoint n = 2
+PASS sweep-covers-the-whole-tabulated-row   499 values of n swept, containing all 498 cells n_3 = 3..500
+PASS sweep-vertex-and-edge-counts   |V| = 4n and |E| = 8n-4 on every cell
+PASS sweep-degree-multiset   eight 3s and 4(n-2) 4s for n >= 3; 3-regular at n = 2; every cell
+PASS sweep-closed-form-is-a-bijection   eq. (2) hits each of 1..4n exactly once, every cell
+PASS sweep-distance-multiset   exactly {2n-2: 4(n-1), 2n-1: 2n, 2n: 2n} on every cell
+PASS sweep-minimum-is-2n-2   so CAB(P_2xP_2xP_n) >= 2(n-1) on every cell, n = 2..500
+PASS cell-335-multiset   P_2x2x335, 1340 vertices, 2676 edges: [(668, 1336), (669, 670), (670, 670)]
+PASS cell-500-multiset   P_2x2x500, 2000 vertices, 3996 edges: [(998, 1996), (999, 1000), (1000, 1000)]
+
+--- C. the counting upper bound of Lemma 2, by brute force in Z_{4n}
+PASS window-count-is-three   #{b in Z_4n : D_c(0,b) >= 2n-1} = 3 = N-2k+1, every n = 2..500
+PASS window-count-is-monotone-in-k   the count cannot grow with k, so ruling out k = 2n-1 rules out every larger k
+PASS lemma-2-side-condition-holds   k = 2n-1 <= N/2 and 2(k-1) < N at every swept n
+PASS maximum-degree-is-four-for-n-ge-3   Delta(G_n) = 4 for n = 3..30, and by the sweep degree multiset for all n >= 3
+PASS upper-bound-follows-from-lemma-2   a degree-4 vertex contradicts Lemma 2 at k = 2n-1: 4 > 3, every n = 3..500
+PASS both-bounds-agree-at-2n-2-on-every-swept-cell   the attained minimum and the Lemma 2 ceiling both read 2(n-1), n = 3..500
+PASS formula-values-at-four-cells   2(n-1) at n_3 = 3, 168, 335, 500 is 4, 334, 668, 998
+PASS 668-exceeds-667-and-998-exceeds-997   the two quoted integers 667 and 997 are strictly below 668 and 998
+PASS lemma-2-is-not-tight-in-general   P_3xP_3xP_3: N=27, Delta=6, the Lemma 2 ceiling is 11
+
+--- D. complete rotation-pinned search, with the constraint as the only prune
+PASS exhaustive-nothing-attains-2n-1   pinned solution counts at k = 2n-1 for n = 3..8: [0, 0, 0, 0, 0, 0]
+PASS exhaustive-optimum-counts   (n, pinned, total) optimal labellings: [(3, 8, 96), (4, 8, 128), (5, 8, 160)]
+PASS endpoint-n-1-CAB-C4-is-1   unpruned enumeration of all 3! = 6 pinned labellings of C_4; 2(n-1) = 0, so n=1 fails
+PASS endpoint-n-2-CAB-Q3-is-2   unpruned enumeration of all 7! = 5040 pinned labellings of Q_3 gives 2; the search finds nothing at k = 3
+PASS search-engine-agrees-with-unpruned-enumeration   pinned count at k = 2 on Q_3, pruned search vs full enumeration
+
+--- E. negative controls -- the checker and the search must be able to say NO
+PASS control-identity-labelling-scores-1   naive layer-by-layer labelling, (n, min): [(3, 1), (4, 1), (5, 1), (50, 1)] -- far below 2n-2
+PASS control-one-transposition-breaks-the-witness   swapping labels 1 and 2 in the n=4 witness drops the minimum to 5
+PASS control-the-witness-does-not-over-attain   the closed form attains 2n-2 and not 2n-1 at n = 3, 4, 5, 10, 100
+
+--- F. the arithmetic of the two-dimensional route recorded in the note
+PASS floor-is-vacuous-at-n2-equals-4   floor(n_2(n_1-1)/2) = 2(n_1-1) at n_2 = 4, n_1 = 4..500
+PASS grid-is-a-spanning-subgraph-of-the-cylinder-n-2-to-40   P_4 box P_n is a proper subgraph of C_4 box P_n with exactly n fewer edges, n = 2..40
+PASS edge-count-difference-is-n-at-every-cell   (8n-4) - (7n-4) = n at every n = 2..500
+
+--- G. the two tori C_4 box C_3 and C_4 box C_4, by complete search
+PASS torus3-nothing-attains-5   4-regular on 12 vertices: Lemma 2 caps at 4, and the complete search finds nothing at k = 5
+PASS torus4-does-not-attain-6   C_4 box C_4 has no labelling with every edge at cyclic distance >= 6 = 2*4-2
+
+NOT RE-RUN: the quoted source statement itself.  The conjectured row, the certified optima
+NOT RE-RUN:   4 and 334, and the quoted best-known values 667 and 997 are facts about
+NOT RE-RUN:   external documents.  This program checks the MATHEMATICS against those
+NOT RE-RUN:   integers; it does not fetch them.
+NOT RE-RUN: the priority question.  Nothing here can tell whether an extremal labelling of
+NOT RE-RUN:   the 4 x n grid, or a toroidal formula, already yields Proposition 1.
+NOT RE-RUN: the exhaustive census beyond n = 8.  Section D decides n = 3..8 and counts the
+NOT RE-RUN:   optima at n = 3,4,5 only.  The claim on all 498 cells rests on the PROOF
+NOT RE-RUN:   (Proposition 1 and Lemma 2), checked cell by cell in sections B and C; the
+NOT RE-RUN:   searches are corroboration, not the load-bearing step.
+NOT RE-RUN: the count 32n of optimal labellings.  It is computed at n = 3,4,5 only.
+NOT RE-RUN: CAB(C_4 box C_n) beyond n = 4.  Section G searches n = 3 at k = 5 and n = 4 at
+NOT RE-RUN:   k = 6 only.
+NOT RE-RUN: the other four rows of the conjectured table (3x3, 4x4, 5x5, 6x6).  Only the
+NOT RE-RUN:   Lemma 2 ceiling at P_3xP_3xP_3 is computed, as a witness that the bound is not
+NOT RE-RUN:   tight in general.
+
+VERDICT: ALL 42 CHECKS PASS
+=== program exited with status 0 ===

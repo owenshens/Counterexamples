@@ -1,0 +1,138 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d401441a5b805f1d727a5b9ff6bd7b7e5bd93a6e5f7fe2a97f27c30db307a145
+python:  Python 3.9.25
+=== program output follows ===
+verification of: the hexagonal prism under a closed-neighbourhood one-round rule,
+C_6 [] K_2 = Cay(Z_6 x Z_2, {(+-1,0),(0,1)}),  gamma_f^infty = 46/13 for that reading
+python 3.9.25, exact integer / Fraction arithmetic only
+
+=== Step 1: the graph the paper names, rebuilt from its definition
+NOTE N[v] for v = 0..11 : [[0, 1, 5, 6], [0, 1, 2, 7], [1, 2, 3, 8], [2, 3, 4, 9], [3, 4, 5, 10], [0, 4, 5, 11], [0, 6, 7, 11], [1, 6, 7, 8], [2, 7, 8, 9], [3, 8, 9, 10], [4, 9, 10, 11], [5, 6, 10, 11]]
+PASS order_is_12  [n=12]
+PASS three_regular_every_closed_neighbourhood_has_size_4
+PASS size_is_18_edges  [m=18]
+PASS graph_is_bipartite
+PASS closed_neighbourhoods_match_the_lists_printed_in_the_paper
+PASS the_moebius_prism_Cay_Z12_pm1_6_is_NOT_bipartite_so_it_is_a_different_graph  [the one other 12-vertex cubic abelian Cayley graph whose value the source already knows]
+PASS domination_number_of_C6_box_K2_is_4  [gamma=4 attained by (0, 1, 2, 10)]
+
+=== Step 2: controls, run before any claim of the paper is touched
+PASS control_published_witness_on_Cay_Z8_totals_8_over_3  [8/3]
+PASS control_published_witness_on_Cay_Z8_is_fractionally_dominating  [closed-nbhd sums ['4/3', '5/3', '4/3', '1', '4/3', '1', '4/3', '5/3']]
+PASS control_published_witness_on_Cay_Z8_has_the_printed_neighbourhood_sums
+PASS control_published_witness_on_Cay_Z8_is_even_so_its_8_translates_are_well_defined
+PASS control_the_8_translates_form_an_eternal_family_of_total_weight_8_over_3
+PASS control_all_64_ordered_pairs_of_that_family_are_reconfigurable_so_gamma_f_infty_Cay_Z8_is_at_most_8_over_3  [64/64]
+PASS control_published_lower_bound_formula_is_exact_at_n_equals_10  [28/5]
+PASS control_published_Cayley_companion_is_exact_at_m_equals_4
+PASS the_published_lower_bound_formula_does_NOT_apply_at_n_equals_6  [hypothesis is n = 10 mod 12; at n = 6 the formula would give 40/11 > 46/13 and refute the value]
+PASS control_uniform_one_quarter_is_fractionally_dominating_with_total_3
+PASS control_FORCED_NEGATIVE_a_demand_of_11_over_10_at_vertex_0_from_uniform_one_quarter_is_refused  [N[0] holds 4 x 1/4 = 1 < 11/10, so no one-hop move can answer it]
+PASS the_sources_own_connectivity_bound_gives_15_over_4_at_n_12_kappa_3
+PASS control_FORCED_POSITIVE_the_15_over_4_family_is_a_genuine_eternal_strategy
+PASS the_new_value_strictly_improves_the_incumbent_upper_bound  [46/13 = 3.538461538462 < 15/4 < 4]
+
+=== Step 3: the upper bound, family 1 (denominator 13), rebuilt from the printed h-profile
+PASS family1_profiles_h0_and_h1_are_even_so_the_12_translates_are_well_defined
+NOTE seed f_(0,0) = ['1', '1/13', '1/13', '5/13', '1/13', '1/13', '6/13', '0', '6/13', '6/13', '6/13', '0']
+PASS family1_seed_matches_the_values_printed_in_the_paper
+PASS family1_seed_total_is_46_over_13  [46/13]
+NOTE closed-neighbourhood sums of the seed = ['21/13', '15/13', '1', '1', '1', '15/13', '19/13', '1', '1', '23/13', '1', '1']
+PASS family1_seed_neighbourhood_sums_are_the_twelve_values_printed_in_the_paper
+PASS family1_all_12_members_have_total_weight_exactly_46_over_13
+PASS family1_all_12_members_are_fractionally_dominating
+PASS family1_member_indexed_by_v_carries_weight_exactly_1_at_v
+PASS family1_the_12_translates_are_pairwise_distinct
+
+=== Step 4: a further weight family (denominator 26) supplied in this program, an independent optimum
+PASS family2_seed_total_is_46_over_13  [46/13]
+PASS family2_seed_is_invariant_under_the_stabiliser_i_maps_to_minus_i
+NOTE closed-neighbourhood sums of X_0 = ['20/13', '15/13', '1', '1', '1', '15/13', '20/13', '1', '1', '23/13', '1', '1']
+PASS family2_seed_neighbourhood_sums_are_the_twelve_values_listed_in_this_program
+PASS family2_all_12_members_have_total_weight_exactly_46_over_13
+PASS family2_all_12_members_are_fractionally_dominating
+PASS family2_member_indexed_by_v_carries_weight_exactly_1_at_v
+PASS the_two_families_are_genuinely_different_optima
+
+=== Step 5: transportation plans checked arc by arc (one from the note, three supplied here)
+PASS plan_family1_f00_to_f30_has_13_arcs  [13 arcs]
+PASS plan_family1_f00_to_f30_every_arc_is_an_edge_or_a_self_loop
+PASS plan_family1_f00_to_f30_every_vertex_ships_exactly_its_own_source_weight  [ships ['1', '1/13', '1/13', '5/13', '1/13', '1/13', '6/13', '0', '6/13', '6/13', '6/13', '0']]
+PASS plan_family1_f00_to_f30_every_vertex_receives_exactly_its_target_weight  [delivers ['5/13', '1/13', '1/13', '1', '1/13', '1/13', '6/13', '6/13', '0', '6/13', '0', '6/13']]
+PASS plan_family1_f00_to_f30_total_shipped_is_46_over_13  [46/13]
+PASS plan_family1_f00_to_f30_the_attacked_vertex_3_receives_exactly_1  [1]
+PASS plan_family2_X0_to_X30_has_16_arcs  [16 arcs]
+PASS plan_family2_X0_to_X30_every_arc_is_an_edge_or_a_self_loop
+PASS plan_family2_X0_to_X30_every_vertex_ships_exactly_its_own_source_weight  [ships ['1', '1/26', '1/13', '11/26', '1/13', '1/26', '6/13', '1/26', '6/13', '11/26', '6/13', '1/26']]
+PASS plan_family2_X0_to_X30_every_vertex_receives_exactly_its_target_weight  [delivers ['11/26', '1/13', '1/26', '1', '1/26', '1/13', '11/26', '6/13', '1/26', '6/13', '1/26', '6/13']]
+PASS plan_family2_X0_to_X30_total_shipped_is_46_over_13  [46/13]
+PASS plan_family2_X0_to_X30_the_attacked_vertex_3_receives_exactly_1  [1]
+PASS plan_family2_X0_to_X01_has_21_arcs  [21 arcs]
+PASS plan_family2_X0_to_X01_every_arc_is_an_edge_or_a_self_loop
+PASS plan_family2_X0_to_X01_every_vertex_ships_exactly_its_own_source_weight  [ships ['1', '1/26', '1/13', '11/26', '1/13', '1/26', '6/13', '1/26', '6/13', '11/26', '6/13', '1/26']]
+PASS plan_family2_X0_to_X01_every_vertex_receives_exactly_its_target_weight  [delivers ['6/13', '1/26', '6/13', '11/26', '6/13', '1/26', '1', '1/26', '1/13', '11/26', '1/13', '1/26']]
+PASS plan_family2_X0_to_X01_total_shipped_is_46_over_13  [46/13]
+PASS plan_family2_X0_to_X01_the_attacked_vertex_6_receives_exactly_1  [1]
+PASS plan_family2_X0_to_X31_has_22_arcs  [22 arcs]
+PASS plan_family2_X0_to_X31_every_arc_is_an_edge_or_a_self_loop
+PASS plan_family2_X0_to_X31_every_vertex_ships_exactly_its_own_source_weight  [ships ['1', '1/26', '1/13', '11/26', '1/13', '1/26', '6/13', '1/26', '6/13', '11/26', '6/13', '1/26']]
+PASS plan_family2_X0_to_X31_every_vertex_receives_exactly_its_target_weight  [delivers ['11/26', '6/13', '1/26', '6/13', '1/26', '6/13', '11/26', '1/13', '1/26', '1', '1/26', '1/13']]
+PASS plan_family2_X0_to_X31_total_shipped_is_46_over_13  [46/13]
+PASS plan_family2_X0_to_X31_the_attacked_vertex_9_receives_exactly_1  [1]
+
+=== Step 6: every ordered pair of each family, by exact integer max-flow
+PASS family1_denominator_13_all_144_ordered_pairs_are_reconfigurable_in_one_round  [144/144 feasible, violations=[]]
+PASS family2_denominator_26_all_144_ordered_pairs_are_reconfigurable_in_one_round  [144/144 feasible, violations=[]]
+PASS UPPER_BOUND_gamma_f_infty_C6_box_K2_is_at_most_46_over_13  [a total response map r(f_u, v) = f_v exists, so the strategy is eternal at total weight 46/13]
+
+=== Step 7: the lower bound -- the 9-node attack-tree LP rebuilt from the printed rules
+PASS the_attack_tree_has_9_nodes_with_the_printed_parent_and_attack_maps
+PASS the_second_attack_set_is_the_three_vertices_of_the_other_hexagon_at_distances_3_4_3
+PASS the_LP_has_the_493_variables_201_equalities_and_116_inequalities_printed  [493 vars, 201 eq, 116 ineq]
+PASS every_inequality_row_is_accounted_for_by_a_label
+PASS the_paper_prints_31_nonzero_multipliers_on_the_at_least_one_rows  [6 attack + 25 domination]
+PASS the_attack_part_of_the_dual_objective_is_17_over_13  [17/13]
+PASS the_domination_part_of_the_dual_objective_is_29_over_13  [29/13]
+PASS the_31_multipliers_sum_to_46_over_13  [46/13]
+PASS no_at_least_one_row_of_node_3_or_node_8_carries_a_nonzero_multiplier  [the printed dual vector puts no weight on the >= 1 rows of nodes 3 and 8]
+PASS every_multiplier_on_an_inequality_row_is_non_positive_as_the_dual_requires
+PASS the_paper_prints_exactly_123_nonzero_equality_potentials  [123]
+PASS every_printed_potential_has_denominator_dividing_13
+PASS the_potentials_of_the_root_and_of_nodes_1_2_and_8_flow_rows_vanish
+PASS all_493_dual_column_inequalities_hold_in_exact_rational_arithmetic  [493/493 satisfied, violations=[]]
+PASS the_dual_objective_of_the_certificate_is_exactly_46_over_13  [46/13]
+PASS LOWER_BOUND_by_weak_duality_gamma_f_infty_C6_box_K2_is_at_least_46_over_13  [a dual-feasible point of value 46/13 bounds the primal optimum, which bounds gamma_f^infty]
+
+=== Step 8: the two bounds meet, and every published number they must respect
+PASS THEOREM_gamma_f_infty_C6_box_K2_equals_46_over_13  [46/13 = 3.538461538461538]
+PASS the_published_strict_inequality_7_over_2_less_than_gamma_f_infty_survives  [margin 1/26]
+PASS the_published_upper_bound_4_is_true_and_slack
+PASS the_fractional_domination_number_of_C6_box_K2_is_3  [uniform 1/4 attains it and summing the 12 closed-neighbourhood inequalities gives 4S >= 12]
+PASS the_sources_corollary_gamma_f_infty_minus_gamma_f_less_than_1_holds  [46/13 - 3 = 7/13]
+PASS gamma_f_infty_is_strictly_below_the_domination_number_as_the_source_predicts  [46/13 < gamma = 4]
+
+=== Step 9: the configuration that defeats the last step of the published proof
+PASS the_sources_own_x_equals_0_configuration_has_total_weight_7_over_2  [7/2]
+PASS the_sources_own_x_equals_0_configuration_is_fractionally_dominating
+PASS every_arc_of_the_printed_response_is_an_edge_or_a_self_loop
+PASS no_vertex_ships_more_than_it_holds_the_one_hop_budget_is_respected
+PASS the_response_conserves_the_total_weight_7_over_2  [7/2]
+PASS the_response_puts_weight_exactly_1_on_the_attacked_vertex_j  [1]
+NOTE closed-neighbourhood sums after the response = {'a': '3/2', 'b': '1', 'c': '1', 'd': '3/2', 'e': '1', 'f': '1', 'g': '1', 'h': '1', 'i': '5/4', 'j': '3/2', 'k': '5/4', 'l': '1'}
+PASS the_resulting_configuration_is_fractionally_dominating_so_the_attack_at_j_IS_answerable
+PASS so_the_published_claim_that_h_and_l_are_forced_to_0_after_the_response_is_unjustified  [h = 1/4 and l = 1/4, both nonzero]
+
+=== Step 10: the ancillary upper bound gamma_f^infty(Cay(Z_16,{+-1,8})) <= 9/2
+PASS Cay_Z16_pm1_8_is_16_vertices_cubic_with_24_edges
+PASS the_printed_Cay_Z16_seed_totals_9_over_2  [9/2]
+PASS the_printed_Cay_Z16_seed_is_fractionally_dominating_all_sums_1_or_3_over_2  [sums ['3/2', '1', '1', '1', '1', '3/2', '1', '1', '3/2', '1', '1', '3/2', '1', '1', '1', '1']]
+PASS the_printed_Cay_Z16_seed_is_even_so_its_16_translates_are_well_defined
+PASS all_16_translates_total_9_over_2_are_fractionally_dominating_and_carry_1_at_their_centre
+PASS all_256_ordered_pairs_of_the_Cay_Z16_family_are_reconfigurable  [256/256, violations=[]]
+PASS the_domination_number_of_Cay_Z16_pm1_8_is_5_so_9_over_2_is_below_it  [gamma=5 attained by (0, 1, 2, 6, 12)]
+
+NOTE SCOPE. This program checks claims of the accompanying note and nothing wider. NOT RE-RUN here: the floating-point linear programs that FOUND the witness families and the dual certificate (they are re-checked above as exhibited objects, which is why no solver is needed); and no attack tree other than the 9-node tree printed in the note is built or certified here. Every check above encodes the closed-neighbourhood reading of the one-round rule, so none of them can discriminate between that reading and a stricter one; for a stricter rule nothing here bounds gamma_f^infty. GAPS NOT COVERED: nothing above bears on any cell of the source Problem 7.5 other than C_6 [] K_2, and no general-k statement is tested.
+
+VERDICT: ALL 100 CHECKS PASS
+=== program exited with status 0 ===

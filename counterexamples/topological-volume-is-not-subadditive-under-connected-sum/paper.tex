@@ -1,0 +1,252 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A counterexample, with a hyperbolic summand, to a printed
+  subadditivity question for topological volume}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem*{question}{Question}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\volt}{\operatorname{vol_t}}
+\newcommand{\volh}{\operatorname{vol_h}}
+\newcommand{\HH}{\mathbb{H}}
+
+\title[A counterexample to a subadditivity question]
+{A counterexample, with a hyperbolic summand, to a printed subadditivity
+question for topological volume}
+
+\date{}
+
+\subjclass[2020]{57K32, 57K30, 57M50}
+\keywords{topological volume, hyperbolic volume, connected sum, Weeks manifold,
+counterexample}
+
+\begin{document}
+
+\begin{abstract}
+For a closed orientable $3$--manifold $M$, Kegel, Ray, Spreer, Em Thompson and Tillmann
+define the \emph{topological volume} $\volt(M)$ to be the infimum of $\volh(M\setminus L)$
+over the hyperbolic links $L\subset M$, the empty link included, and ask whether
+$\volt(M\#N)\le\volt(M)+\volt(N)$ for all closed orientable $M,N$. We exhibit one pair for
+which this fails, so the question is false exactly as printed. Let $W$ be the Weeks
+manifold. Then $W$ is hyperbolic, so $\volt(W)=\volh(W)\le 0.943$, whereas $W\#W$ is
+reducible and therefore not hyperbolic, so every competitor in its infimum is an
+\emph{orientable cusped} finite-volume hyperbolic $3$--manifold and Cao--Meyerhoff gives
+$\volt(W\#W)\ge 2v_0=2.029883212819307\ldots>1.886\ge\volt(W)+\volt(W)$. Both summands here
+are hyperbolic; the reading of the question in which the summands are not hyperbolic, which
+is the substantive connected-sum problem, is untouched.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Let $M$ be a closed orientable $3$--manifold. A \emph{link} in $M$ is a possibly empty,
+possibly disconnected closed $1$--submanifold $L\subset M$, and $L$ is \emph{hyperbolic} if
+$M\setminus L$ admits a complete hyperbolic structure of finite volume. Kegel, Ray, Spreer,
+Em Thompson and Tillmann \cite{KRSTT} define
+\begin{equation}\label{eq:def}
+  \volt(M)=\inf\bigl\{\,\volh(M\setminus L)\;\big|\;L\subset M
+  \text{ is a hyperbolic link}\,\bigr\},
+\end{equation}
+following Bessi\`eres, Besson, Boileau, Maillot and Porti \cite{BBBMP}. Because the empty
+link is admitted, they record immediately after \eqref{eq:def} that
+\begin{equation}\label{eq:hyp}
+  \volt(M)=\volh(M)\qquad\text{whenever $M$ is hyperbolic,}
+\end{equation}
+in their own words: \emph{``If $M$ admits a complete hyperbolic structure, then
+$\volt(M)=\volh(M)$, since volume decreases under Dehn filling.''}
+Write $v_0$ for the volume of the regular ideal hyperbolic tetrahedron, so that
+\begin{align*}
+  v_0&=1.014941606409653625021203\ldots,\\
+  2v_0&=2.029883212819307250042405\ldots
+\end{align*}
+
+In the subsection \emph{Connected sums} of \cite{KRSTT} the authors ask the following,
+quoted verbatim.
+
+\begin{question}[\cite{KRSTT}, first Question of the subsection \emph{Connected sums}]
+``Let $M$ and $N$ be closed, orientable $3$-manifolds. Is
+$\volt(M\# N)\le\volt(M)+\volt(N)$?''
+\end{question}
+
+As printed, the Question carries exactly two hypotheses, \emph{closed} and
+\emph{orientable}: no primeness, no irreducibility and no hyperbolicity clause. We found no
+standing convention elsewhere in \cite{KRSTT} that would add one.
+
+\section{Two lemmas}
+
+\begin{lemma}[a floor at non-hyperbolicity]\label{lem:floor}
+Let $X$ be a closed orientable $3$--manifold that is not hyperbolic. Then
+$\volt(X)\ge 2v_0$.
+\end{lemma}
+
+\begin{proof}
+Let $L\subset X$ be a hyperbolic link. Then $L\ne\emptyset$: otherwise $X$ itself would
+carry a complete finite-volume hyperbolic structure, contrary to hypothesis. Hence
+$X\setminus L$ is a non-compact --- so cusped --- complete finite-volume hyperbolic
+$3$--manifold, and it is orientable, orientability being inherited from $X$. By
+Cao--Meyerhoff \cite{CM}, \emph{every orientable cusped hyperbolic $3$--manifold has volume
+at least $2v_0$}, whence $\volh(X\setminus L)\ge 2v_0$. Take the infimum over $L$.
+\end{proof}
+
+\begin{remark}
+The hypothesis \emph{orientable} in \cite{CM} is load-bearing: the Gieseking manifold is a
+non-orientable cusped hyperbolic $3$--manifold of volume
+$v_0=1.014941606409653\ldots<1.886$, so a floor of $v_0$ would not suffice below.
+Lemma~\ref{lem:floor}
+does not presuppose that the infimum in \eqref{eq:def} is attained, nor that it is finite:
+every competitor is bounded below by $2v_0$, so the infimum is, whatever it is.
+\end{remark}
+
+\begin{lemma}[reducible $\Rightarrow$ not hyperbolic]\label{lem:red}
+If neither $M$ nor $N$ is $S^3$, then $M\#N$ is reducible and is not hyperbolic.
+\end{lemma}
+
+\begin{proof}
+The summing sphere bounds a ball on neither side, so it is essential and $M\#N$ is
+reducible. A closed hyperbolic $3$--manifold has universal cover $\HH^3$, hence is
+aspherical, hence has $\pi_2=0$, hence contains no essential embedded $2$--sphere by the
+Sphere Theorem: it is irreducible.
+\end{proof}
+
+\section{The counterexample}
+
+Let $W$ be the Weeks manifold. It is closed, orientable and hyperbolic, so
+$\volt(W)=\volh(W)$ by \eqref{eq:hyp}, and
+\begin{equation}\label{eq:weeks}
+  \volh(W)\le 0.943
+\end{equation}
+by Gabai--Meyerhoff--Milley, whose abstract reads, verbatim: \emph{``We also show how this
+result can be used to construct a complete list of all one-cusped hyperbolic
+three-manifolds with volume $\le 2.848$ and all closed hyperbolic three-manifolds with
+volume $\le 0.943$. In particular, the Weeks manifold is the unique smallest volume closed
+orientable hyperbolic $3$-manifold.''} We use only the \emph{bound} \eqref{eq:weeks}, never
+a decimal expansion of $\volh(W)$.
+
+\begin{theorem}\label{thm:A}
+$\volt(W\# W)\ge 2v_0>1.886\ge\volt(W)+\volt(W)$. In particular the Question of \S1 is
+false at the pair $(W,W)$.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:hyp} and \eqref{eq:weeks}, $\volt(W)+\volt(W)\le 2\times 0.943=1.886$. Neither
+summand is $S^3$, so $W\# W$ is not hyperbolic by Lemma~\ref{lem:red}, and
+Lemma~\ref{lem:floor} applied to $X=W\# W$ gives $\volt(W\# W)\ge 2v_0$. Finally
+$2v_0-1.886\ge 0.143883212819307>0$.
+\end{proof}
+
+\section{What is not settled}
+
+Both summands of the counterexample are hyperbolic, and that is what the argument uses: the
+substantive connected-sum problem, in which the summands are not hyperbolic, is untouched.
+There Lemma~\ref{lem:floor} already gives $\volt(M),\volt(N)\ge 2v_0$, so a counterexample
+would need a lower bound on $\volt(M\# N)$ exceeding a sum of at least $4v_0$, and nothing
+above supplies one. The authors of \cite{KRSTT} state \eqref{eq:hyp} and quote
+Cao--Meyerhoff's $2v_0$ minimum themselves, so a hypothesis of primeness, or of
+non-hyperbolic summands, may well have been intended and omitted; we settle the question as
+printed and make no claim about what was meant. Nothing above supports or refutes
+$\volt(M\#N)\le\volt(M)+\volt(N)+2v_0$ or any other repaired form. We exhibit the one pair
+$(W,W)$ and count no others. The two mathematical inputs beyond \eqref{eq:weeks} are the
+source's own: \eqref{eq:hyp} is its sentence, and it quotes Cao--Meyerhoff itself.
+
+\medskip
+\noindent\textbf{Adjacent work.} The subsection \emph{Connected sums} of \cite{KRSTT}
+records
+\[
+  \volt(L(2,1)\# L(3,1))<\volt(L(2,1))+\volt(L(3,1)),
+\]
+an instance in which the
+inequality of the Question of \S1 holds strictly, and the summary of related work in
+\cite{KRSTT} says on the strength of it that $\volt$ ``is not additive under connected
+sum''; that sentence is about that strict inequality and not about any failure of the
+inequality it asks about, which \cite{KRSTT} leaves open. Example 2.1 of
+\cite{KRSTT} computes $\volt(S^3)=2v_0$ from the same minimum-volume input, which is the
+argument of Lemma~\ref{lem:floor} run for the single manifold $S^3$; we did not find the
+general statement of Lemma~\ref{lem:floor} there. The
+Oberwolfach report \cite{Oberwolfach}, by a working group including a co-author of
+\cite{KRSTT}, closes by asking to better understand the behaviour of hyperbolic volume under
+connected sums, and settles nothing about the inequality above.
+
+\section{Verification}
+
+The result above is a hand proof: two lemmas from published theorems, then arithmetic on
+three decimal places. Nothing in \S\S1--3 needs a computer.
+
+A program (\texttt{verify.py}, with its transcript \texttt{verify.output.txt}) accompanies
+this note because the note prints numbers. It is standard-library Python, and in exact
+arithmetic it recomputes $v_0$ and $2v_0$ from $2v_0=3\operatorname{Cl}_2(2\pi/3)$ by the
+Clausen--Bernoulli expansion with an explicit truncation bound, cross-checked against
+$v_0=\operatorname{Cl}_2(\pi/3)$ via the Clausen duplication identity, and re-decides
+$2v_0>1.886$ and $v_0<1.886$ as comparisons of exact rationals. Those digit expansions are
+the only values in this note that come from computation rather than from print; the bound
+$0.943$ is transcribed, and no decimal expansion of $\volh(W)$ is used anywhere. The program
+does not, and cannot, check the topological content quoted from the literature ---
+\eqref{eq:hyp}, Cao--Meyerhoff, Gabai--Meyerhoff--Milley, the Sphere Theorem and
+Kneser--Milnor are imported, and its own transcript says so.
+
+The transcript's $38$ checks also cover material this note does not state, and they are not
+evidence for anything it does state: rows of Table~1 of \cite{KRSTT}; a second route through
+a census reach of $3.07$ quoted from a theorem this note does not use, together with ten
+further pairs $W\# N$ built on that route, whose premise --- irreducibility of those rows ---
+the run leaves unverified; by-product ratios; and one floating-point SnapPy measurement that
+the run itself flags as not interval-certified. Theorem~\ref{thm:A} uses none of them, and
+this note asserts none of them.
+
+\begin{thebibliography}{9}
+
+\bibitem{BBBMP}
+L.~Bessi\`eres, G.~Besson, M.~Boileau, S.~Maillot, and J.~Porti,
+\emph{Geometrisation of $3$-manifolds},
+EMS Tracts in Mathematics \textbf{13}, European Mathematical Society, 2010,
+\S1.3.2. \href{https://doi.org/10.4171/082}{doi:10.4171/082}.
+Not open access; consulted only through works that restate its definition of the invariant,
+including \cite{KRSTT}.
+
+\bibitem{CM}
+C.~Cao and G.~R. Meyerhoff,
+\emph{The orientable cusped hyperbolic $3$-manifolds of minimum volume},
+Invent. Math. \textbf{146} (2001), no.~3, 451--478.
+\href{https://doi.org/10.1007/s002220100167}{doi:10.1007/s002220100167}; MR1869847.
+The hypothesis \emph{orientable} in the title is the one used in Lemma~\ref{lem:floor}.
+
+\bibitem{GMM}
+D.~Gabai, R.~Meyerhoff, and P.~Milley,
+\emph{Minimum volume cusped hyperbolic three-manifolds},
+\href{https://arxiv.org/abs/0705.4325}{arXiv:0705.4325}.
+The bound \eqref{eq:weeks} is the sentence of the abstract quoted in \S3, read at that
+address; that quotation, and not a journal volume or page, is the citation this note relies
+on. We give no journal coordinates for this item because we did not check any.
+
+\bibitem{KRSTT}
+M.~Kegel, A.~Ray, J.~Spreer, E.~Thompson, and S.~Tillmann,
+\emph{On a volume invariant of $3$-manifolds},
+Expo. Math. \textbf{44} (2026), no.~4, Paper No.~125782, 31 pp.
+\href{https://doi.org/10.1016/j.exmath.2026.125782}{doi:10.1016/j.exmath.2026.125782};
+preprint \href{https://arxiv.org/abs/2402.04839v2}{arXiv:2402.04839v2}.
+All quotations in this note are from the \texttt{v2} e-print, the version revised following
+a referee report.
+
+\bibitem{Oberwolfach}
+K.~Ben Aribi, B.~Burton, S.~Ibarra, J.~Morgan, J.~Purcell, J.~S. Quintanilha, F.~Santoro,
+S.~Schleimer, and E.~Thompson,
+\emph{Computing the topological volume of some three-manifolds},
+Oberwolfach Rep. \textbf{21} (2024), no.~3, 2530--2534.
+\href{https://doi.org/10.4171/OWR/2024/43}{doi:10.4171/OWR/2024/43}.
+\emph{Caution:} the coordinates \cite{KRSTT} gives for this report do not
+resolve; the item is identified here by title and author list.
+
+\end{thebibliography}
+
+\end{document}

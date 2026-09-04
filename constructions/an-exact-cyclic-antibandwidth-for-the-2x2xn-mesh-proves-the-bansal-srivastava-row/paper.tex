@@ -1,0 +1,330 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\setlength{\emergencystretch}{2em}
+
+\DeclareMathOperator{\CAB}{CAB}
+\newcommand{\Dc}{D_{c}}
+
+\title[Cyclic antibandwidth of $P_2\times P_2\times P_n$]{A Matching Labelling for the Cyclic
+Antibandwidth of the \texorpdfstring{$2\times2\times n$}{2x2xn} Mesh}
+\date{}
+\subjclass[2020]{Primary 05C78; Secondary 05C76, 05C85, 68R10}
+\keywords{cyclic antibandwidth, graph labelling, three-dimensional mesh, Cartesian product,
+cylinder, extremal labelling, benchmark conjecture}
+
+\hypersetup{
+  pdftitle={A Matching Labelling for the Cyclic Antibandwidth of the 2x2xn Mesh}
+}
+
+\begin{document}
+
+\begin{abstract}
+We prove that the cyclic antibandwidth of the three-dimensional mesh $P_2\times P_2\times P_n$,
+equivalently of the cylinder $C_4\,\square\,P_n$, is $2(n-1)$ for every integer $n\ge2$: one
+closed-form labelling attains $2n-2$, and a three-line counting bound shows nothing attains more
+for $n\ge3$, the endpoint $n=2$ being settled separately. In particular
+$\CAB(P_{2\times2\times335}) = 668$ and $\CAB(P_{2\times2\times500}) = 998$; the identity is false
+at $n=1$. This settles the first row of a table of conjectured three-dimensional mesh values
+attributed to Bansal and Srivastava, which asserts
+$\CAB(P_2\times P_2\times P_{n_3}) = 2(n_3-1)$ for $n_3 = 3,\dots,500$; two of those $498$ cells
+already carried a certificate of optimality in the benchmark paper that reproduces the table, and
+it is from that paper, not from the 2011 original, that we quote the row. The upper bound is also a
+two-line consequence of the published two-dimensional mesh formula evaluated at $n_2 = 4$, which we
+record; the matching labelling of the cylinder we do not claim as new, the two papers carrying that
+formula not having been obtained in full.
+\end{abstract}
+
+\maketitle
+
+\section{The statement}
+
+Throughout, $G$ is a finite simple graph on $N = |V(G)|$ vertices. Following
+\cite[\S2.1]{SAT2026}: a \emph{labelling} of $G$ is a bijection $f\colon V(G)\to\{1,\dots,N\}$; for
+an edge $\{x,y\}$ the \emph{cyclic distance} is
+\[
+  \Dc(x,y) \;=\; \min\bigl(\,|f(x)-f(y)|,\; N-|f(x)-f(y)|\,\bigr);
+\]
+and
+\[
+  \CAB_f(G) \;=\; \min_{\{x,y\}\in E(G)} \Dc(x,y),
+  \qquad
+  \CAB(G) \;=\; \max_{f} \CAB_f(G).
+\]
+A \emph{three-dimensional mesh} $P_{n_1\times n_2\times n_3}$ is the Cartesian product
+$P_{n_1}\times P_{n_2}\times P_{n_3}$ of three paths \cite[Appendix~A]{SAT2026}.
+
+A table of conjectured exact $\CAB$ values for five families of three-dimensional meshes is
+attributed to Bansal and Srivastava \cite{BansalSrivastava}. We did not read their 2011 paper; the
+table is reproduced and attributed in \cite{SAT2026}, in the table
+captioned ``Conjectured CAB value of 3D mesh instances'', and it is from there that we quote. In
+the \LaTeX{} e-print source of
+arXiv:2601.04239v1 its first data row reads
+\begin{verbatim}
+2 & 2 & $3$--$500$ & $2(n_3 - 1)$ \rule{0pt}{12pt} \\
+\end{verbatim}
+where \verb|\rule| is vertical spacing with no mathematical content. That is, the conjecture under
+consideration is
+\begin{equation}\label{eq:conj}
+  \CAB(P_2\times P_2\times P_{n_3}) \;=\; 2(n_3-1)
+  \qquad\text{for } n_3 = 3,4,\dots,500 .
+\end{equation}
+The authors of \cite{SAT2026} caution that a conjectured value ``may be less than the actual optimal
+CAB value''. Theorem~\ref{thm:main} below proves the equality.
+
+The benchmark of \cite{SAT2026} reports four instances of this family, $n_3 = 3$, $168$, $335$ and
+$500$. At $n_3 = 3$ and $n_3 = 168$ its exact solvers certify the conjectured values $4$ and $334$
+as optimal, so two of the $498$ cells of \eqref{eq:conj} carry a certificate of optimality there;
+at $n_3 = 335$ and $n_3 = 500$ none of them certifies anything. For those two instances the values
+$667$ and $997$ are the best entries recorded in the OPTSICOM cyclic antibandwidth repository
+\cite{Optsicom}; they are that repository's entries, not a statement about every labelling anyone
+has built.
+
+\begin{theorem}\label{thm:main}
+For every integer $n \ge 2$,
+\[
+  \CAB(P_2\times P_2\times P_n) \;=\; 2(n-1).
+\]
+In particular \eqref{eq:conj} holds at all $498$ of its tabulated cells, and for every $n_3 > 500$
+as well. The identity is false at $n=1$, where $\CAB(P_2\times P_2\times P_1) = \CAB(C_4) = 1$.
+\end{theorem}
+
+\section{The graph, and a labelling that attains \texorpdfstring{$2n-2$}{2n-2}}
+
+Write $G_n = P_2\times P_2\times P_n$ and index $V(G_n)$ by triples $(u,v,i)$ with $u,v\in\{0,1\}$
+and $0\le i\le n-1$, two triples being adjacent exactly when they differ in one coordinate and
+differ there by $1$. Thus
+\[
+  N \;=\; |V(G_n)| \;=\; 4n, \qquad |E(G_n)| \;=\; 8n-4,
+\]
+the edges falling into three families: $2n$ \emph{$v$-edges} $(u,v,i)(u,1-v,i)$, $2n$
+\emph{$u$-edges} $(u,v,i)(1-u,v,i)$, and $4(n-1)$ \emph{$i$-edges} $(u,v,i)(u,v,i+1)$. Since
+$P_2\times P_2$ is the $4$-cycle $(0,0)(1,0)(1,1)(0,1)$, the graph $G_n$ is the cylinder
+$C_4\,\square\,P_n$. For $n\ge3$ its degree sequence consists of eight $3$'s and $4(n-2)$ $4$'s, so
+$\Delta(G_n) = 4$.
+
+\begin{proposition}\label{prop:lower}
+For every integer $n\ge2$ the map
+\begin{equation}\label{eq:f}
+  f(u,v,i) \;=\; \bigl(1 + 2i + u\bigr) \;+\; 2n\cdot\bigl((u+v+i) \bmod 2\bigr)
+\end{equation}
+is a labelling of $G_n$, and $\CAB_f(G_n) = 2n-2$. Its edge distances are $2n$ on every $v$-edge,
+$2n-1$ on every $u$-edge and $2n-2$ on every $i$-edge.
+\end{proposition}
+
+\begin{proof}
+Put $g(u,i) = 1+2i+u$ and $b(u,v,i) = (u+v+i)\bmod2$, so that $f = g + 2n\,b$. The map
+$(u,i)\mapsto g$ is a bijection $\{0,1\}\times\{0,\dots,n-1\}\to\{1,\dots,2n\}$, being the base-$2$
+expansion, and for fixed $(u,i)$ the two choices of $v$ give the two values of $b$. Hence
+$(u,v,i)\mapsto(g,b)$ is a bijection onto $\{1,\dots,2n\}\times\{0,1\}$ and
+$(g,b)\mapsto g+2nb$ is a bijection onto $\{1,\dots,4n\}$. So $f$ is a labelling.
+
+Every edge of $G_n$ changes exactly one coordinate by $1$, hence flips the parity $b$. Let
+$d = |\Delta g|$ across an edge. Then $\Delta f = \Delta g \pm 2n$, so
+$|\Delta f| \in \{2n-d,\,2n+d\}$, and since $d\le 2\le 2n$ both members lie in $[0,4n]$; as
+$\min(t, 4n-t)$ takes the same value at $t = 2n-d$ and $t = 2n+d$, in either case
+\[
+  \Dc \;=\; 2n - d .
+\]
+Now $d = 0$ on a $v$-edge (the coordinate $v$ does not occur in $g$), $d = 1$ on a $u$-edge and
+$d = 2$ on an $i$-edge, giving the three stated values. The three families have
+$2n + 2n + 4(n-1) = 8n-4 = |E(G_n)|$ members, so they exhaust $E(G_n)$. For $n\ge2$ the $i$-edges
+are present, so the minimum is $2n-2$.
+\end{proof}
+
+\section{The matching upper bound}
+
+\begin{lemma}\label{lem:window}
+Let $G$ be a graph on $N\ge2$ vertices and let $k$ be an integer with $1\le k\le N/2$. If
+$\CAB(G)\ge k$ then every vertex of $G$ has degree at most $N-2k+1$.
+\end{lemma}
+
+\begin{proof}
+Fix a labelling $f$ with $\CAB_f(G)\ge k$ and read labels in $\mathbb{Z}_N$. For $a\in\mathbb{Z}_N$
+the residues at cyclic distance at most $k-1$ from $a$ are $a, a\pm1,\dots,a\pm(k-1)$, and these
+$2k-1$ residues are distinct because $2(k-1) < N$. Hence exactly $N-(2k-1)$ residues lie at cyclic
+distance $\ge k$ from $a$. Let $x$ be a vertex. Its $\deg(x)$ neighbours carry distinct labels, all
+at cyclic distance $\ge k$ from $f(x)$, so $\deg(x)\le N-2k+1$.
+\end{proof}
+
+Equivalently $\CAB(G)\le\lfloor(N-\Delta(G)+1)/2\rfloor$ whenever the right-hand side is at most
+$N/2$. This bound is elementary and is not claimed as new; see \S\ref{sec:print}.
+
+\begin{theorem}\label{thm:upper}
+$\CAB(G_n)\le 2n-2$ for every $n\ge3$.
+\end{theorem}
+
+\begin{proof}
+Here $N = 4n$ and, since $n\ge3$, the vertex $(0,0,1)$ has the four distinct neighbours
+$(1,0,1)$, $(0,1,1)$, $(0,0,0)$, $(0,0,2)$. Suppose $\CAB(G_n)\ge k$ for some $k\ge 2n-1$. As
+$\CAB_f\ge k$ implies $\CAB_f\ge 2n-1$, we may take $k = 2n-1$, which satisfies
+$k\le 2n = N/2$. Lemma~\ref{lem:window} then forces
+\[
+  4 \;\le\; N-2k+1 \;=\; 4n - 2(2n-1) + 1 \;=\; 3,
+\]
+a contradiction.
+\end{proof}
+
+Proposition~\ref{prop:lower} and Theorem~\ref{thm:upper} give
+$\CAB(G_n) = 2(n-1)$ for all $n\ge3$, which is Theorem~\ref{thm:main} on the tabulated range and
+beyond. The two endpoints are settled separately.
+
+\begin{proposition}\label{prop:ends}
+$\CAB(G_1) = \CAB(C_4) = 1$ and $\CAB(G_2) = \CAB(Q_3) = 2$.
+\end{proposition}
+
+\begin{proof}
+For $n=1$, $N=4$ and the only pairs of residues at cyclic distance $2$ in $\mathbb{Z}_4$ are
+$\{1,3\}$ and $\{2,4\}$. A labelling with $\CAB_f(C_4)\ge2$ would make each of the four edges of
+$C_4$ such a pair, but the four edges are four distinct pairs and only two are available. Hence
+$\CAB(C_4)=1$, while $2(n-1)=0$.
+
+For $n=2$, $G_2 = Q_3$ is $3$-regular on $N=8$ vertices, and Lemma~\ref{lem:window} with $k=3$
+gives no contradiction. Suppose $\CAB_f(Q_3)\ge3$. By the count in the proof of
+Lemma~\ref{lem:window} exactly $8-2\cdot3+1 = 3$ residues lie at cyclic distance $\ge3$ from a
+given $a\in\mathbb{Z}_8$, namely $a+3$, $a+4$, $a+5$. Every vertex has exactly three neighbours, so
+those three residues are all used: $f$ is an isomorphism from $Q_3$ onto the circulant
+$\mathrm{Circ}(8;\{\pm3,4\})$. Since $\gcd(3,8)=1$ the $\pm3$ edges of that circulant form the
+single $8$-cycle $0,3,6,1,4,7,2,5$, and the four $4$-edges join the antipodal pairs of this cycle,
+so the circulant is the M\"obius ladder on eight vertices. It contains the $5$-cycle
+$0-3-6-1-4-0$, with successive differences $3,3,3,3,4$, and is therefore not bipartite, whereas
+$Q_3$ is. This contradiction gives $\CAB(Q_3)\le2$, and Proposition~\ref{prop:lower} gives
+$\CAB(Q_3)\ge2$.
+\end{proof}
+
+\section{Two instances written out}
+
+For $n=3$ ($N=12$, $20$ edges) the labelling \eqref{eq:f} is, as \texttt{label = (u,v,i)},
+\begin{verbatim}
+ 1=(0,0,0)   2=(1,1,0)   3=(0,1,1)   4=(1,0,1)
+ 5=(0,0,2)   6=(1,1,2)   7=(0,1,0)   8=(1,0,0)
+ 9=(0,0,1)  10=(1,1,1)  11=(0,1,2)  12=(1,0,2)
+\end{verbatim}
+with edge distance multiset $\{4^{8},\,5^{6},\,6^{6}\}$ and minimum $4$. This agrees with the
+independently certified optimum $4^{*}$ of \cite{SAT2026}. For $n=4$ ($N=16$, $28$ edges) it is
+\begin{verbatim}
+ 1=(0,0,0)   2=(1,1,0)   3=(0,1,1)   4=(1,0,1)
+ 5=(0,0,2)   6=(1,1,2)   7=(0,1,3)   8=(1,0,3)
+ 9=(0,1,0)  10=(1,0,0)  11=(0,0,1)  12=(1,1,1)
+13=(0,1,2)  14=(1,0,2)  15=(0,0,3)  16=(1,1,3)
+\end{verbatim}
+with edge distance multiset $\{6^{12},\,7^{8},\,8^{8}\}$ and minimum $6 = 2(4-1)$.
+
+At the two largest cells of \eqref{eq:conj} the same formula gives
+$\CAB(P_{2\times2\times335}) = 668$ on $1340$ vertices and $\CAB(P_{2\times2\times500}) = 998$ on
+$2000$ vertices, one above each of the entries $667$ and $997$ recorded in \cite{Optsicom}.
+
+\section{What is already in print, and what is not settled}\label{sec:print}
+
+\subsection*{The upper bound is a corollary of a published two-dimensional formula}
+The two-dimensional mesh optimum $\CAB(P_{n_1}\times P_{n_2}) = n_2(n_1-1)/2$ is attributed to
+\cite{STV2005} and \cite{RSSTV2009}; the OPTSICOM repository \cite{Optsicom} records it as an exact
+equality in every case except $n_1$ even with $n_2$ odd, where only the bracket
+$\lfloor n_2(n_1-1)/2\rfloor\le\CAB\le\lceil n_2(n_1-1)/2\rceil$ is stated as proved. At $n_2 = 4$
+the exceptional case does not arise and the value is the integer $2(n_1-1)$, so
+$\CAB(P_n\times P_4) = 2(n-1)$ is in print.
+The grid $P_n\times P_4$ is a spanning subgraph of $C_4\,\square\,P_n = G_n$ --- the cylinder has
+exactly $n$ more edges, one per layer --- and $\CAB$ cannot increase when edges are added on a fixed
+vertex set. Hence Theorem~\ref{thm:upper} follows from that formula for $n\ge4$. We give
+Lemma~\ref{lem:window} because it is self-contained, because we could not read \cite{STV2005} or
+\cite{RSSTV2009} in full (see below), and because it also covers $n=3$. What is left beyond
+that formula is Proposition~\ref{prop:lower}, the matching labelling of the \emph{cylinder}, which
+we do not claim as new either --- whether it is already implicit in \cite{STV2005} or
+\cite{RSSTV2009} could not be checked. Stated at its
+sharpest, what is proved here is that closing the four-vertex direction of the $4\times n$ grid
+into a $4$-cycle does not decrease its cyclic antibandwidth.
+
+\subsection*{Lemma~\ref{lem:window} is elementary, and is not tight}
+It is not claimed as new, and it is not generally tight: for
+$P_3\times P_3\times P_3$ it gives $\lfloor(27-6+1)/2\rfloor = 11$, while \cite{SAT2026} certifies
+the optimum $9$. So nothing here transfers to the other four rows of the conjectured table.
+
+\subsection*{Adjacent work, and what it does not settle}
+The nearest published items are \cite{STV2005}, which introduces the cyclic antibandwidth problem,
+and \cite{RSSTV2009} on antibandwidth and cyclic antibandwidth of meshes and hypercubes. Of the
+latter we could read the abstract but not the text; it states that the authors ``solve the
+antibandwidth problem precisely for two-dimensional meshes, tori and estimate the antibandwidth
+value for hypercubes up to the third-order term'', and that for the cyclic antibandwidth they
+``prove basic facts and exact results for the same product graphs as for the antibandwidth''. The
+exact cyclic values there are therefore for two-dimensional meshes and tori; $C_4\,\square\,P_n$ is
+neither, and we did not find the value proved here recorded in any source we could reach. That is
+not a novelty claim, and the unread texts bound it in two specific ways. First, the published proof of
+$\CAB(P_n\times P_4) = 2(n-1)$ must exhibit an extremal labelling of the $4\times n$ grid; if that
+labelling happens also to respect the $n$ wrap edges of the cylinder, then
+Proposition~\ref{prop:lower} is an observation about published work rather than a new construction.
+Second, since $C_4\,\square\,C_n$ is $G_n$ together with four further edges, and adding edges cannot
+increase $\CAB$, a published toroidal value $2n-2$ at $C_4\,\square\,C_n$ would give
+Proposition~\ref{prop:lower} at that $n$. Neither possibility has been checked either way, and
+until \cite{RSSTV2009} is read the lower bound should not be described as new.
+\cite{TorokVrto2010}, on the antibandwidth of three-dimensional meshes, was also not read.
+
+\subsection*{Sources not read, and what rests on them}
+\cite{BansalSrivastava} is not openly available and was not read. The conjecture is quoted from the
+e-print of \cite{SAT2026}, which reproduces and attributes the table. If the 2011 wording differs
+--- a different range, or a construction already attached --- that is not accounted for here. The
+version of record of \cite{SAT2026} (\emph{Comput. Optim. Appl.}, published 21 August 2026) has no
+openly readable location either; every quotation above is from arXiv:2601.04239v1 and could differ
+there.
+
+\subsection*{Scope}
+The tabulated row is $n_3\in[3,500]$, and Theorem~\ref{thm:main} covers it together with every
+larger $n_3$ and the endpoint $n=2$; it fails at $n=1$. The two cells that already carried
+certificates of optimality in \cite{SAT2026} are used above as external checks; nothing above bears
+on the other four rows of the conjectured table.
+The accompanying program re-checks the printed labellings and, cell by cell over
+$n = 2,\dots,500$, the bijectivity, degree multiset and edge-distance multiset on which
+Proposition~\ref{prop:lower} and Lemma~\ref{lem:window} are used; beyond $n = 500$ the statement of
+Theorem~\ref{thm:main} rests on those two proofs alone. The program does not fetch any of the
+external documents quoted here and cannot bear on the priority question above.
+
+\begin{thebibliography}{9}
+
+\bibitem{BansalSrivastava}
+R.~Bansal and K.~Srivastava,
+\emph{A memetic algorithm for the cyclic antibandwidth maximization problem},
+Soft Comput. \textbf{15} (2011), no.~2, 397--412.
+\href{https://doi.org/10.1007/s00500-009-0538-6}{doi:10.1007/s00500-009-0538-6}
+
+\bibitem{Optsicom}
+OPTSICOM project,
+\emph{Cyclic antibandwidth problem} (instances, best-known values and known optima),
+\href{https://grafo.etsii.urjc.es/optsicom/cab/}{grafo.etsii.urjc.es/optsicom/cab/}.
+
+\bibitem{RSSTV2009}
+A.~Raspaud, H.~Schr\"oder, O.~S\'ykora, L.~T\"or\"ok and I.~Vr\v{t}o,
+\emph{Antibandwidth and cyclic antibandwidth of meshes and hypercubes},
+Discrete Math. \textbf{309} (2009), no.~11, 3541--3552.
+\href{https://doi.org/10.1016/j.disc.2007.12.058}{doi:10.1016/j.disc.2007.12.058}
+
+\bibitem{STV2005}
+O.~S\'ykora, L.~T\"or\"ok and I.~Vr\v{t}o,
+\emph{The cyclic antibandwidth problem},
+Electron. Notes Discrete Math. \textbf{22} (2005), 223--227.
+\href{https://doi.org/10.1016/j.endm.2005.06.030}{doi:10.1016/j.endm.2005.06.030}
+
+\bibitem{SAT2026}
+H.~Truong Xuan and K.~To Van,
+\emph{Solving cyclic antibandwidth problem by SAT},
+\href{https://arxiv.org/abs/2601.04239v1}{arXiv:2601.04239v1}, 2026;
+Comput. Optim. Appl., published 21 August 2026,
+\href{https://doi.org/10.1007/s10589-026-00819-8}{doi:10.1007/s10589-026-00819-8}
+
+\bibitem{TorokVrto2010}
+L.~T\"or\"ok and I.~Vr\v{t}o,
+\emph{Antibandwidth of three-dimensional meshes},
+Discrete Math. \textbf{310} (2010), no.~3, 505--510.
+\href{https://doi.org/10.1016/j.disc.2009.03.029}{doi:10.1016/j.disc.2009.03.029}
+
+\end{thebibliography}
+
+\end{document}

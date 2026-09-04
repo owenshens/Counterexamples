@@ -1,0 +1,122 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  14121aa907789e10f8610ea32ecdefd759f003187f8ad5d7e33e2afea87f714c
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+1. THE PRIMARY WITNESS W  (n = 3)
+==============================================================================
+PASS W_principal_minors_match_the_paper [det W = 1129/10000, every pair minor = 6/25, every singleton = 1/2]
+PASS W_minors_depend_only_on_cardinality_so_the_law_is_exchangeable
+PASS W_atoms_exact [empty 1071/10000, singletons 1329/10000, pairs 1271/10000, top 1129/10000 (all over 10^4)]
+PASS W_atoms_sum_to_one_exactly
+PASS W_all_eight_atoms_strictly_positive_so_W_is_a_DPP_kernel [min atom = 1071/10000]
+PASS W_min_atom_is_1071_over_10000
+PASS W_atoms_reproduced_by_a_second_independent_route [det(K - I_{A^c}) route agrees with Moebius inversion on all 8 atoms]
+PASS W_complement_atom_is_det_I_minus_W_so_L_ensemble_exists [P(X = empty) = det(I - W) = 1071/10000 != 0]
+
+==============================================================================
+2. NEGATIVE ASSOCIATION OF DPP(W), BRUTE-FORCED FROM THE DEFINITION
+==============================================================================
+PASS upset_enumerator_reproduces_the_Dedekind_numbers_OEIS_A000372 [k = 0..5 gives [2, 3, 6, 20, 168, 7581]]
+PASS every_generated_family_passed_an_independent_up_closure_test [7780 families generated, 7780 independently re-tested for up-closure -- up-closure is TESTED, not assumed by construction]
+PASS the_up_closure_tester_rejects_a_deliberate_non_up_closed_family [the family {{1}} on the 2-element lattice omits {1,2} and is correctly rejected, so the tester is not vacuous]
+PASS predicted_ordered_test_counts_from_the_Dedekind_numbers [N(3),N(4),N(5),N(6) = [30, 348, 4560, 140058]]
+PASS W_NA_enumerator_produced_exactly_the_predicted_30_ordered_inequalities
+PASS W_is_negatively_associated_zero_violations [30 ordered inequalities, 0 violations]
+PASS W_min_NA_slack_is_71_over_10000_strictly_positive [min slack 71/10000, no equalities: DPP(W) is STRICTLY negatively associated]
+PASS W_satisfies_the_sources_own_necessary_condition_K_ij_K_ji_ge_0 [all three products equal 1/100 > 0]
+PASS NA_class_P_pairwise_slack_1_over_100 [P(i,j in X) = 6/25 vs 1/4]
+PASS NA_class_T_slack_71_over_10000 [P(all three) = 1129/10000 vs (1/2)(6/25)]
+PASS NA_class_U_slack_129_over_10000 [P(1 in X, X meets {2,3}) = 3671/10000 vs (1/2)(19/25)]
+
+==============================================================================
+3. NO REAL SYMMETRIC KERNEL REPRODUCES DPP(W) (COMPLETE SIGN ENUMERATION), AND NO
+   GAUSSIAN-RATIONAL HERMITIAN CANDIDATE WITH THE FORCED MODULI DOES EITHER (1728
+   CANDIDATES; the general Hermitian case is proved in the paper, not here)
+==============================================================================
+PASS W_triple_invariants [u = v = w = 1/100, p = 1/400, q = 1/2500, sigma = 29/10000]
+PASS identity_pq_equals_uvw_holds_with_no_hypothesis
+PASS u_and_sigma_are_functions_of_the_principal_minors_alone [u = K_ii K_jj - det K_{ij} and sigma = det K - K_ii K_jj K_kk + K_ii w + K_jj v + K_kk u]
+PASS W_gap_sigma_squared_minus_4uvw_is_441_over_10_to_the_8 [gap = (p - q)^2 = (21/10000)^2 = 441/100000000 > 0]
+PASS forced_symmetric_off_diagonal_squares_are_rational_squares [S_ij^2 = K_ii K_jj - det K_{ij} = 1/100 for all three pairs, so S_ij = +-1/10]
+PASS no_real_symmetric_matrix_reproduces_det_W_complete_8_pattern_enumeration [the 8 achievable determinants are ['14/125', '27/250'], none equals 1129/10000]
+PASS hermitian_identity_gap_equals_minus_4_Im_p_squared_on_every_candidate [1728 Hermitian candidates with the forced moduli |S_ij|^2 = 1/100; for each, sigma^2 - 4uvw = -4 Im(p)^2 <= 0]
+PASS no_hermitian_candidate_attains_W_positive_gap_or_sigma [W has gap 441/10^8 > 0; none of the 1728 enumerated Gaussian-rational Hermitian candidates with the forced moduli attains a nonnegative gap or sigma = 29/10000 -- the general Hermitian exclusion is the paper's Lemma, not re-derived here]
+
+==============================================================================
+4. CONTROLS, IN BOTH POLARITIES
+==============================================================================
+PASS positive_control_symmetric_kernel_is_NA_with_min_slack_1_over_125 [S = (1/2)I + (1/10)(J - I): min atom 27/250, 30 checks, 0 violations]
+PASS positive_control_gap_is_exactly_zero_so_the_test_never_flags_a_symmetric_matrix
+PASS negative_control_is_still_a_genuine_DPP_kernel [W with W_21 flipped to -1/10: min atom 1179/10000]
+PASS negative_control_FAILS_negative_association_so_the_decider_can_say_no [10 of 30 inequalities violated, min slack -1/100 = u < 0]
+PASS sources_own_uniform_on_even_subsets_kernel_is_a_DPP_kernel [(1/2)[[1,0,-1],[1,1,0],[0,1,1]]: min atom 0]
+PASS sources_own_kernel_passes_the_necessary_condition_and_is_non_symmetrisable [all pairwise products 0, gap = 1/64 > 0]
+PASS sources_own_kernel_FAILS_negative_association_min_slack_minus_one_eighth [so non-symmetrisability ALONE answers nothing: 6 violations]
+PASS anti_control_is_nonsymmetric_yet_its_gap_is_exactly_zero [Kc = [[1/2,1/5,1/5],[1/20,1/2,1/10],[1/20,1/10,1/2]] is NA, nonsymmetric, gap 0]
+PASS anti_control_has_exactly_the_symmetric_controls_law [so the certificate is NOT merely testing whether K is literally symmetric]
+
+==============================================================================
+5. THEOREM B (closed form at n = 3) AGAINST THE BRUTE FORCE
+==============================================================================
+PASS thmB_agrees_with_brute_force_on_W [closed form 71/10000, brute force 71/10000, NA = True]
+PASS thmB_agrees_with_brute_force_on_W_prime [closed form 3/625, brute force 3/625, NA = True]
+PASS thmB_agrees_with_brute_force_on_symmetric_control [closed form 1/125, brute force 1/125, NA = True]
+PASS thmB_agrees_with_brute_force_on_negative_control [closed form -1/100, brute force -1/100, NA = False]
+PASS thmB_agrees_with_brute_force_on_source_even_kernel [closed form -1/8, brute force -1/8, NA = False]
+PASS thmB_agrees_with_brute_force_on_anti_control [closed form 1/125, brute force 1/125, NA = True]
+
+==============================================================================
+6. THE SECOND n = 3 WITNESS W'
+==============================================================================
+PASS Wprime_is_a_DPP_kernel_with_min_atom_131_over_1250
+PASS Wprime_is_negatively_associated_min_slack_3_over_625
+PASS Wprime_gap_is_9_over_390625_positive
+
+==============================================================================
+7. THEOREM C: AN INTERVAL OF SUCH LAWS IN THE EXCHANGEABLE SLICE
+==============================================================================
+PASS thmC_slice_admissibility_of_the_base_symmetric_kernel [t = 1/2, s = 1/10 satisfy t + 2s <= 1 and 2ts^2 <= (1-t)[(1-t)^2 - 3s^2]]
+PASS thmC_interval_endpoints [symmetrisable point 2s^3 = 1/500, NA ceiling 2ts^2 = 1/100, length 2s^2(t-s) = 8/1000]
+PASS thmC_every_tested_member_of_the_sigma_interval_is_NA_and_non_symmetrisable [22 rational members of (1/500, 1/100] built as K_13 = s^2 m, K_31 = s^2/K_13; each is a DPP kernel, strictly NA, gap > 0]
+PASS thmC_lower_endpoint_is_exactly_the_symmetrisable_point
+PASS thmC_ceiling_is_real_a_larger_sigma_breaks_NA_not_the_DPP_property [K_13 = 1, K_31 = 1/100 gives sigma = 101/10000 > 1/100: still a DPP kernel, NA fails with min slack -1/10000]
+
+==============================================================================
+8. THEOREM D: n = 4 WITNESS, PADDING, AND THE n <= 2 IMPOSSIBILITY
+==============================================================================
+PASS K4_is_a_DPP_kernel_with_min_atom_1079_over_25000 [16 atoms summing to 1 exactly]
+PASS K4_is_negatively_associated_348_checks_0_violations_min_slack_179_over_37500 [strictly NA at n = 4 and not block diagonal]
+PASS K4_triple_gaps_are_121_over_9e8_on_two_triples_and_0_on_the_other_two [obstruction on {1,2,3} and {1,3,4}: {'(0, 1, 2)': '121/900000000', '(0, 1, 3)': '0', '(0, 2, 3)': '121/900000000', '(1, 2, 3)': '0'}]
+PASS K4_2x2_minors_equal_the_symmetric_reference_S4 [moving (K_13, K_31) from (1/10,1/10) to (3/25,1/12) keeps every pair product at 1/100]
+PASS padding_W_by_an_independent_Bernoulli_stays_a_DPP_kernel [K_4 = W (+) diag(1/3), min atom 357/10000]
+PASS padded_kernel_is_negatively_associated_348_checks_0_violations [min slack 0 over all 348 -- the padded coordinate is independent, so some inequalities are EQUALITIES (108 of them) and NA is defined with <=, so slack 0 passes]
+PASS padded_kernel_inherits_the_obstruction_on_the_triple_1_2_3 [a single bad triple is a permanent obstruction: any same-law symmetric or Hermitian competitor has the same principal minors on {1,2,3}]
+PASS atoms_of_the_padding_factorise_as_an_independent_superposition
+PASS n_equals_2_sweep_450_rational_NA_2x2_DPP_kernels_with_square_pair_invariant_are_all_symmetrisable [450 NA 2x2 DPP kernels swept (u = bc a rational square); for each, S with off-diagonal sqrt(u) reproduces EVERY principal minor and has spectrum in [0,1]. 300 kernels with u < 0 were correctly rejected by the brute-force NA test.]
+PASS n_equals_1_negative_association_is_vacuous [there is no pair of disjoint nonempty subsets of a 1-element ground set]
+
+==============================================================================
+9. THE BOX CERTIFICATE: THE PHENOMENON IS FULL-DIMENSIONAL
+==============================================================================
+PASS box_certificate_has_the_39_constraints_of_the_paper [8 atoms + 30 NA slacks + (p - q), as exact polynomials in the 9 entries]
+PASS box_certificate_at_radius_1_over_100_is_positive [min monomial-wise lower bound over the box |K_ij - W_ij| <= 1/100 is 1339/1000000 > 0, binding constraint ('p-q',)]
+PASS box_certificate_min_lower_bound_is_1339_over_1000000_binding_p_minus_q [so EVERY real 3x3 matrix within 1/100 of W entrywise is a DPP kernel, is negatively associated, and is non-symmetrisable]
+PASS the_binding_bound_re_derived_by_hand [p >= 0.09*0.09*0.24 = 1944/10^6 and q <= 0.05*0.11*0.11 = 605/10^6]
+PASS the_p_minus_q_bound_is_TIGHT_attained_at_a_corner_of_the_box [the interval bound is not conservative for the binding constraint]
+PASS box_certificate_at_radius_1_over_50_is_reported_not_hidden [delta 1/50: min lower bound -6351/125000, binding ('atom', ()) -- interval arithmetic is conservative, so a negative bound is not by itself a bad matrix]
+PASS box_certificate_at_radius_1_over_20_is_reported_not_hidden [delta 1/20: min lower bound -5781/20000, binding ('atom', ()) -- interval arithmetic is conservative, so a negative bound is not by itself a bad matrix]
+
+==============================================================================
+10. DPP(W) IS NA AND CONDITIONALLY NA, BUT NOT STRONGLY RAYLEIGH
+==============================================================================
+PASS W_conditional_laws_on_one_fixed_coordinate_are_all_negatively_associated [6 conditional laws (each of the 3 coordinates, both values), 0 violations]
+PASS the_conditional_test_is_not_vacuous_the_sources_kernel_fails_it [3 of 6 conditional laws of the even-subsets kernel violate NA]
+PASS W_violates_Brandens_strong_Rayleigh_criterion_at_an_explicit_point [x = (-4,-4,-2), (i,j) = (1,2): D_12 f = (2735^2 - 7675*987)/10^8 = -19/20000 < 0, so DPP(W) is NOT strongly Rayleigh]
+PASS the_strong_Rayleigh_probe_is_not_vacuous_the_symmetric_control_passes_at_that_point [D_12 f = 1/2500 >= 0 for the symmetric control]
+
+NOT RE-RUN / SCOPE. (a) The claim that DPP(W) is not strongly Rayleigh is established here at ONE explicit point, which suffices to refute the criterion; no sweep of Branden's criterion over all of R^3 is performed, and none is needed. (b) The conditional-NA check fixes ONE coordinate at a time; deeper conditionings and the full CNA+ hierarchy are not enumerated here. (c) The n <= 2 impossibility is PROVED in the paper by hand; what runs here is a finite exact sweep of 2x2 DPP kernels whose pair invariant is a rational square, which is a corroboration, not the proof. (d) Theorem C is verified on a finite rational sample of the sigma-interval, not on the whole interval; the interval statement itself is proved in the paper. (e) The box certificate is a SOUND LOWER BOUND, so a negative bound at radius 1/50 or 1/20 is not evidence of a bad matrix; 1/100 is a certified lower bound on the true radius, not the radius. (f) Poinas' first question at n >= 4, the continuous-space version of the question, and the facet description of the 7-dimensional NA region are OPEN and nothing here bears on them.
+
+VERDICT: ALL 71 CHECKS PASS
+=== program exited with status 0 ===

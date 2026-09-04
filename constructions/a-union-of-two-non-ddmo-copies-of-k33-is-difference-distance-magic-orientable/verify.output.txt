@@ -1,0 +1,75 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  3843314e74fc5216dbd75b60c476982cce85b4e537f39f97770a7494605e5a3c
+python:  Python 3.9.25
+=== program output follows ===
+verification of the objects printed in: A Union of Two Non-DDMO Copies of K_{3,3}
+Is Difference Distance Magic Orientable
+python 3.9.25, exact integer and Fraction arithmetic only
+
+=== Part 1: the oriented K_{3,3} of the note, and an oriented W_4 used below
+PASS D_is_an_orientation_no_repeated_and_no_opposite_arcs [9 arcs]
+PASS D_underlying_graph_is_K33_on_parts_012_and_345 [all 9 A-B pairs occur exactly once]
+PASS D_is_3_regular
+PASS D_in_and_out_degrees_are_as_printed [in (2, 1, 1, 1, 2, 2) out (1, 2, 2, 2, 1, 1)]
+PASS D_weight_system_collapses_to_exactly_two_equations [every row of M is +-(f0-f1-f2) or +-(f3-f4-f5), so wt=0 iff f0=f1+f2 and f3=f4+f5]
+PASS W_is_an_orientation_no_repeated_and_no_opposite_arcs [8 arcs]
+PASS W_underlying_graph_is_W4_equals_K5_minus_two_independent_edges [complement inside K_5 is {1,2},{3,4}]
+PASS W_degree_sequence_is_4_3_3_3_3 [hub 0 has degree 4; rim is the 4-cycle 1-3-2-4-1]
+
+=== Part 2: the n = 12 witness, two copies of D
+PASS n12_the_two_label_sets_are_disjoint_and_their_union_is_1_to_12 [copy 1 [1, 2, 5, 6, 8, 10] ; copy 2 [3, 4, 7, 9, 11, 12]]
+PASS n12_copy_1_all_six_weights_zero [f = (6, 1, 5, 10, 2, 8)]
+PASS n12_copy_2_all_six_weights_zero [f = (12, 3, 9, 11, 4, 7)]
+PASS n12_the_disjoint_union_is_an_oriented_graph_on_12_vertices
+PASS n12_all_twelve_weights_of_the_union_are_zero
+PASS n12_f_is_a_bijection_onto_1_to_12
+PASS n12_is_a_DDM_labeling_of_the_union [so the union is a DDMOG on 12 vertices]
+PASS n12_the_four_sum_triples_are_as_printed [1+5=6, 2+8=10, 3+9=12, 4+7=11]
+PASS n12_the_partition_into_four_sum_triples_covers_1_to_12
+PASS n12_every_part_sum_is_even [12, 20, 24, 22; copy sums 32 and 46, both even]
+
+=== Part 3: an n = 11 zero-weight labelled union, W u D
+PASS W_component_of_the_n11_union_all_five_weights_zero [f = (10, 11, 1, 3, 7) on label set [1, 3, 7, 10, 11]]
+PASS n11_D_component_all_six_weights_zero [f = (8, 2, 6, 9, 4, 5) on label set [2, 4, 5, 6, 8, 9]]
+PASS n11_f_is_a_bijection_onto_1_to_11
+PASS n11_all_eleven_weights_of_the_union_are_zero [so the union is a DDMOG on 11 vertices]
+PASS n11_the_W_component_label_set_is_not_an_interval [a component of a disconnected DDMOG receives a SUBSET, not the interval {1,...,5}]
+
+=== Part 4: no component is a DDMOG, and K_{3,3} is not DDMO
+PASS K33_has_512_orientations
+PASS no_orientation_of_K33_is_a_DDMOG_brute_force_over_all_512_times_720 [0 of the 512 orientations admit a DDM labeling; 512 x 6! = 368640 bijections tested]
+PASS no_orientation_of_K33_is_a_DDMOG_independent_exact_kernel_route [the Fraction-RREF kernel enumeration agrees with the brute force on all 512 orientations]
+PASS K33_parity_obstruction_every_B_vertex_has_odd_outdeg_minus_indeg [so S_B is even for any zero-weight labeling, while 1+...+6 = 21 is odd (= Altman et al. 2024, Theorem 5 at m=n=3: (3+3)(3+3+1)=42 is not a multiple of 4)]
+PASS the_exhibited_W_orientation_is_not_a_DDMOG [0 of the 5! = 120 bijections onto {1,...,5}; by hand 15 = 3*f0 + 2*f2 has no admissible solution]
+PASS W4DDM_is_an_orientation_of_W4 [underlying graph isomorphic to W_4]
+PASS W4_is_DDMO_the_exhibited_orientation_and_labeling_is_a_DDM_labeling [f = (1, 2, 4, 3, 5), all weights 0 -- so W_4 IS DDMO (Altman et al. 2024, Theorem 10)]
+
+=== Part 5: small-order enumerations (orders 4, 5 and the 5+5 split of 1..10)
+PASS min_degree_at_least_3_forces_order_at_least_4 [a graph on n <= 3 vertices has maximum degree n-1 < 3]
+PASS order_4_no_orientation_of_K4_realises_any_injective_labeling_inside_1_to_12 [0 of 64 orientations; a BOUNDED statement -- labels are bounded by 12 here, and no unbounded claim is tested]
+PASS order_5_exactly_26_labelled_graphs_have_min_degree_at_least_3 [26 labelled graphs on 5 vertices with min degree >= 3]
+PASS order_5_they_form_exactly_3_isomorphism_classes_with_10_9_and_8_edges [K_5 (10 edges), K_5-e (9), W_4 (8)]
+PASS order_5_the_three_representatives_used_below_are_those_three_classes [and they are pairwise non-isomorphic]
+PASS order_5_W4_representative_is_the_underlying_graph_of_W
+PASS order_5_orientation_counts_are_1024_512_and_256_totalling_1792
+PASS order_5_no_orientation_of_K5_or_K5_minus_e_realises_ANY_label_set_inside_1_to_12 [0 of the 1536 orientations of the two non-DDMO order-5 graphs admit an injective positive zero-weight labeling with labels <= 12]
+PASS order_5_exactly_18_of_the_1792_orientations_realise_anything_inside_1_to_12 [all 18 are orientations of W_4 (18 of its 256); this is the WEAKER predicate "realises some label set", not "is a DDMOG"]
+PASS order_5_Aut_W4_has_order_8 [the hub is the unique vertex of degree 4, so Aut(W_4) = Aut(C_4) = D_4]
+NOTE order-5 DDMOG census: 10 of the 256 labelled orientations of W_4 are DDMOGs; they carry 48 DDM labelings in total; they fall into 2 isomorphism class(es) with orbit size(s) [2, 8] under Aut(W_4), and [4, 8] DDM labeling(s) per class representative.
+PASS order_5_every_DDMOG_has_underlying_graph_W4 [no orientation of K_5 or of K_5-e is a DDMOG, while 10 orientations of W_4 are -- the first sentence of Altman et al. 2024, Theorem 10]
+PASS order_5_W4_has_10_DDMOG_orientations_in_exactly_2_isomorphism_classes [orbit sizes 2 and 8 under the order-8 group Aut(W_4); "only two unique orientations" of Altman et al. 2024, Theorem 10]
+PASS order_5_the_48_W4_DDM_labelings_form_exactly_6_classes_up_to_isomorphism [Aut(W_4) acts freely on the 48 (orientation, labeling) pairs, so 48/8 = 6 classes -- "There are exactly 6 such labelings on only two unique orientations", Altman et al. 2024, Theorem 10, reproduced in full]
+PASS n10_five_subsets_of_1_to_10_realisable_by_some_order_5_orientation_number_99 [99 of the 252 five-subsets]
+PASS n10_those_realisable_by_a_NON_DDMOG_orientation_number_29 [29 -- the subtotal the 5+5 join uses; reading the 29 as the total understates by 3.4x]
+PASS n10_no_5plus5_split_of_1_to_10_has_both_halves_carried_by_a_non_DDMOG_order_5_orientation [no 5+5 split of {1,...,10} has both halves carried by a non-DDMOG orientation]
+
+=== Part 6: the source Theorem 5.1 corollary and a k-copies parity arithmetic check
+PASS corollary_source_theorem_5_1_is_not_an_if_and_only_if [the union D u D is a DDMOG while NO component is a DDMOG, so the hypothesis of that theorem fails and its conclusion holds]
+PASS k_copies_of_D_parity_condition_3k(6k+1)_even_iff_k_even_verified_for_k_1_to_24 [the arithmetic equivalence 3k(6k+1) even iff k even is machine-checked for k = 1..24 only; no general implication is tested]
+PASS k_equals_2_is_attained_and_k_equals_1_is_impossible [k = 2 is the n = 12 witness; k = 1 fails because K_{3,3} is not DDMO]
+
+NOTE SCOPE -- what this program does NOT re-run.  (1) The order-6 census of Altman et al. (2024): their 22 unique 6-vertex oriented DDMOGs, and the 19 isomorphism classes of 6-vertex graphs of minimum degree >= 3, are NOT enumerated here, and no agreement with them is asserted.  The only order-6 graph the note uses is K_{3,3}, whose 512 orientations are swept exhaustively in Part 4.  (2) Component orders 7 and above are never enumerated.  (3) No lane containing an isolated (order-1) component is enumerated, and no minimum order and no witness count is established here.  (4) The sufficiency half of the k-even remark rests on the classical triple-packing construction of Guy (1976) and is NOT verified here; only its necessity half, and the case k = 2, are established above.  (5) The order-4 check above bounds labels by 12 and establishes nothing for unbounded labels.
+
+VERDICT: ALL 49 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,195 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  097444922d37d99ea191c1f7a489e071fcafae6863412ad36633fa4b6f4e6560
+python:  Python 3.9.25
+=== program output follows ===
+verification of: four pairwise orthogonal semigroup operations on a four-element set,
+and the 160 extremal families.  Source: arXiv:2608.25092v1, the seventh problem of
+the closing list of problems, the cell n = 4.
+python 3.9, standard library only, exact integer arithmetic.
+
+--- A. the family exhibited in Section 2 ---
+PASS flat-decodes-f1 1111222233334444
+PASS flat-decodes-f2 1234123434123412
+PASS flat-decodes-f3 1234214321431234
+PASS flat-decodes-f4 1234432112344321
+PASS array-agrees-with-flat-f1 printed array = printed flat string
+PASS array-agrees-with-flat-f2 printed array = printed flat string
+PASS array-agrees-with-flat-f3 printed array = printed flat string
+PASS array-agrees-with-flat-f4 printed array = printed flat string
+PASS associative-f1 all 64 triples
+PASS associative-f2 all 64 triples
+PASS associative-f3 all 64 triples
+PASS associative-f4 all 64 triples
+PASS balanced-f1 each value fills 4 of the 16 cells
+PASS balanced-f2 each value fills 4 of the 16 cells
+PASS balanced-f3 each value fills 4 of the 16 cells
+PASS balanced-f4 each value fills 4 of the 16 cells
+PASS orthogonal-f1-f2 the joint map is a bijection of X^2
+PASS orthogonal-f1-f3 the joint map is a bijection of X^2
+PASS orthogonal-f1-f4 the joint map is a bijection of X^2
+PASS orthogonal-f2-f3 the joint map is a bijection of X^2
+PASS orthogonal-f2-f4 the joint map is a bijection of X^2
+PASS orthogonal-f3-f4 the joint map is a bijection of X^2
+PASS self-pair-not-orthogonal-f1 image lies in the diagonal, 4 < 16 points
+PASS self-pair-not-orthogonal-f2 image lies in the diagonal, 4 < 16 points
+PASS self-pair-not-orthogonal-f3 image lies in the diagonal, 4 < 16 points
+PASS self-pair-not-orthogonal-f4 image lies in the diagonal, 4 < 16 points
+PASS lower-bound-max4-at-least-4 four distinct associative operations, pairwise orthogonal
+PASS f1-is-the-left-zero-band f1(x,y) = x
+PASS f1-rees-type-I4-triv-L1 (|I|,|G|,|L|) = (4,1,1)
+PASS rees-type-I1-Z2-L2-f2 right group Z_2 x R_2
+PASS rees-type-I1-Z2-L2-f3 right group Z_2 x R_2
+PASS rees-type-I1-Z2-L2-f4 right group Z_2 x R_2
+PASS f4-is-the-source-papers-published-table the Mace4 example at tex 706-720
+PASS f4-idempotents-are-1-and-3 E(S) = {1,3}, as printed there
+
+--- B. the F_2 picture of Section 3 ---
+PASS xor-form-f1 f1(a,b) = a
+PASS xor-form-f2 f(a,b) = b + M2(a); M2(0,1,2,3) = (0, 0, 2, 2)
+PASS xor-form-f3 f(a,b) = b + M3(a); M3(0,1,2,3) = (0, 1, 1, 0)
+PASS xor-form-f4 f(a,b) = b + M4(a); M4(0,1,2,3) = (0, 3, 0, 3)
+PASS idempotent-M2 M^2 = M
+PASS rank-one-M2 rank 1
+PASS idempotent-M3 M^2 = M
+PASS rank-one-M3 rank 1
+PASS idempotent-M4 M^2 = M
+PASS rank-one-M4 rank 1
+PASS sum-invertible-M2-M3 det = 1 over GF(2)
+PASS sum-invertible-M2-M4 det = 1 over GF(2)
+PASS sum-invertible-M3-M4 det = 1 over GF(2)
+PASS associative-iff-idempotent-over-the-16-linear-maps f_M is associative for exactly the 8 idempotent M of 16
+PASS orthogonal-iff-sum-invertible-over-all-linear-pairs all 256 ordered pairs
+PASS left-zero-band-orthogonal-to-every-linear-f invertible M or not
+PASS exactly-six-rank-one-idempotents over GF(2), 2x2
+PASS rank-one-graph-3-regular-9-edges 9 edges, 3-regular
+PASS rank-one-graph-has-two-triangles-and-no-4-clique 1 + 3 = 4 is tight for this mechanism
+PASS the-M2-M3-M4-triangle-is-one-of-them 
+PASS higher-rank-idempotents-are-not-excluded M = 0, N = I: idempotent, M + N invertible
+PASS latin-square-a1 L_a(x,y) = a x + y over GF(4)
+PASS latin-square-a2 L_a(x,y) = a x + y over GF(4)
+PASS latin-square-a3 L_a(x,y) = a x + y over GF(4)
+PASS three-mols-of-order-4 N(4) >= 3, so the classical ceiling N(4) + 2 = 5 is not vacuous
+PASS only-one-of-the-three-mols-is-associative a^2 = a forces a = 1
+
+--- C. the unpruned census for n = 1,2,3,4 ---
+NOTE n=1: 1 tables from 1 backtracking nodes, 0 ms
+PASS A023814-n1 A023814(1) = 1
+PASS census-all-associative-n1 re-tested
+PASS census-distinct-n1 no repeats
+PASS A027851-n1 A027851(1) = 1, as the diagonal S_1 orbit count
+NOTE n=2: 8 tables from 26 backtracking nodes, 0 ms
+PASS A023814-n2 A023814(2) = 8
+PASS census-all-associative-n2 re-tested
+PASS census-distinct-n2 no repeats
+PASS A027851-n2 A027851(2) = 5, as the diagonal S_2 orbit count
+NOTE n=3: 113 tables from 1230 backtracking nodes, 2 ms
+PASS A023814-n3 A023814(3) = 113
+PASS census-all-associative-n3 re-tested
+PASS census-distinct-n3 no repeats
+PASS A027851-n3 A027851(3) = 24, as the diagonal S_3 orbit count
+NOTE n=4: 3492 tables from 136152 backtracking nodes, 479 ms
+PASS A023814-n4 A023814(4) = 3492
+PASS census-all-associative-n4 re-tested
+PASS census-distinct-n4 no repeats
+PASS A027851-n4 A027851(4) = 188, as the diagonal S_4 orbit count
+PASS backtracking-agrees-with-brute-force-n2 same set as a sweep of all 2^4 tables
+PASS backtracking-agrees-with-brute-force-n3 same set as a sweep of all 3^9 tables
+PASS balanced-count-n1 1 of 1 tables are value-balanced
+PASS every-unbalanced-table-has-an-overfull-value-n1 each of the 0 unbalanced tables has a value in > 1 cells
+PASS balanced-iff-completely-simple-n1 set identity over all 1 tables, both directions
+PASS edges-n1 0 of C(1,2) = 0 pairs orthogonal
+PASS no-self-loops-n1 no operation is orthogonal to itself for n >= 2
+PASS balanced-count-n2 4 of 8 tables are value-balanced
+PASS every-unbalanced-table-has-an-overfull-value-n2 each of the 4 unbalanced tables has a value in > 2 cells
+PASS balanced-iff-completely-simple-n2 set identity over all 8 tables, both directions
+PASS edges-n2 5 of C(4,2) = 6 pairs orthogonal
+PASS no-self-loops-n2 no operation is orthogonal to itself for n >= 2
+PASS balanced-count-n3 5 of 113 tables are value-balanced
+PASS every-unbalanced-table-has-an-overfull-value-n3 each of the 108 unbalanced tables has a value in > 3 cells
+PASS balanced-iff-completely-simple-n3 set identity over all 113 tables, both directions
+PASS edges-n3 7 of C(5,2) = 10 pairs orthogonal
+PASS no-self-loops-n3 no operation is orthogonal to itself for n >= 2
+PASS balanced-count-n4 48 of 3492 tables are value-balanced
+PASS every-unbalanced-table-has-an-overfull-value-n4 each of the 3444 unbalanced tables has a value in > 4 cells
+PASS balanced-iff-completely-simple-n4 set identity over all 3492 tables, both directions
+PASS edges-n4 354 of C(48,2) = 1128 pairs orthogonal
+PASS no-self-loops-n4 no operation is orthogonal to itself for n >= 2
+PASS control-unbalanced-tables-are-isolated 100000 seeded random pairs with an unbalanced member: 0 orthogonal
+
+--- C2. cliques, level by level and by algorithm-free subset scan ---
+PASS cliques-by-size-n1 {1: 1}
+PASS max-n1 max(1) = 1
+PASS extremal-count-n1 1 labelled extremal families
+PASS cliques-by-size-n2 {1: 4, 2: 5, 3: 2, 4: 0}
+PASS max-n2 max(2) = 3
+PASS extremal-count-n2 2 labelled extremal families
+PASS cliques-by-size-n3 {1: 5, 2: 7, 3: 3, 4: 0}
+PASS max-n3 max(3) = 3
+PASS extremal-count-n3 3 labelled extremal families
+PASS cliques-by-size-n4 {1: 48, 2: 354, 3: 542, 4: 160, 5: 0}
+PASS max-n4 max(4) = 4
+PASS extremal-count-n4 160 labelled extremal families
+PASS subset-scan-C48-4 194580 4-subsets examined pair by pair (= C(48,4)): 160 are cliques
+PASS subset-scan-C48-5-is-empty 1712304 5-subsets examined pair by pair (= C(48,5)): 0 are cliques, so max(4) <= 4
+PASS two-methods-agree-on-the-160 same 160 families
+PASS max4-equals-4 max(4) = 4 with exactly 160 labelled extremal families
+PASS rees-type-breakdown-of-the-48 [((1, 1, 4), 1), ((1, 2, 2), 12), ((1, 4, 1), 16), ((2, 1, 2), 6), ((2, 2, 1), 12), ((4, 1, 1), 1)]
+PASS sixteen-group-tables-twelve-cyclic-four-klein 12 labelled Z_4 and 4 labelled Klein tables
+PASS group-operations-span-no-edge the 16 group operations on [4] are pairwise non-orthogonal
+
+--- D. the classification of Section 4 ---
+PASS extremal-families-are-4-sets 160 families of size 4
+PASS orbit-count-n4 10 orbits under diagonal Sym(4)
+PASS orbit-sizes-n4 [8, 8, 8, 8, 8, 24, 24, 24, 24, 24]
+PASS orbits-partition-the-160 sum 160, cover 160
+PASS orbit-count-n2 2 extremal families at n = 2 in 1 orbit(s)
+PASS orbit-count-n3 3 extremal families at n = 3 in 1 orbit(s)
+PASS paper-orbit-1-is-an-extremal-family the four printed tables
+PASS paper-orbit-1-has-size-24 as printed
+PASS paper-orbit-2-is-an-extremal-family the four printed tables
+PASS paper-orbit-2-has-size-24 as printed
+PASS paper-orbit-3-is-an-extremal-family the four printed tables
+PASS paper-orbit-3-has-size-24 as printed
+PASS paper-orbit-4-is-an-extremal-family the four printed tables
+PASS paper-orbit-4-has-size-24 as printed
+PASS paper-orbit-5-is-an-extremal-family the four printed tables
+PASS paper-orbit-5-has-size-24 as printed
+PASS paper-orbit-6-is-an-extremal-family the four printed tables
+PASS paper-orbit-6-has-size-8 as printed
+PASS paper-orbit-7-is-an-extremal-family the four printed tables
+PASS paper-orbit-7-has-size-8 as printed
+PASS paper-orbit-8-is-an-extremal-family the four printed tables
+PASS paper-orbit-8-has-size-8 as printed
+PASS paper-orbit-9-is-an-extremal-family the four printed tables
+PASS paper-orbit-9-has-size-8 as printed
+PASS paper-orbit-10-is-an-extremal-family the four printed tables
+PASS paper-orbit-10-has-size-8 as printed
+PASS paper-lists-all-ten-orbits-once the ten representatives meet 10 distinct orbits
+PASS section-2-family-is-the-sixth-printed-representative 
+PASS L-and-R-are-vertices both balanced
+PASS L-orth-R their joint map is the identity of X^2
+PASS L-R-split-16-16-128-0 L only 16, R only 16, neither 128, both 0
+PASS no-extremal-family-contains-both-L-and-R both-count over the 160 families is 0
+PASS only-eight-families-contain-a-group-operation 8 of the 160
+PASS those-group-operations-are-the-four-klein-tables no Z_4 table occurs in any extremal family
+PASS the-printed-klein-table-occurs 1234214334124321
+PASS the-group-containing-families-are-one-orbit-of-8 
+PASS the-naive-3-family-is-not-extremal {L, R, Klein} is a 3-clique contained in no maximum family
+
+SCOPE -- what this program does NOT establish:
+NOTE (a) it settles the cells n = 1,2,3,4 of the source Problem and nothing beyond them;
+NOTE     no table of order above 4 is generated anywhere, so no value of max(n)
+NOTE     for n >= 5 is computed or supported here.
+NOTE (b) the ceiling max(n) <= N(n) + 2 quoted in the paper is classical (orthogonal
+NOTE     arrays / MOLS). This program only exhibits three MOLS of order 4 to show the
+NOTE     ceiling is not vacuous; it does not prove N(4) = 3, nor N(6) = 1 (Tarry).
+NOTE (c) the attributions of Section 5 are textual and bibliographic facts about
+NOTE     arXiv:2608.25092v1 and about the Belousov school; no program checks them. The
+NOTE     identification of f4 with the table at tex 706-720 is checked here only at the
+NOTE     level of the table itself and of E(S) = {1,3}.
+NOTE (d) nothing here is a claim of novelty or of minimality; those are judgements.
+
+NOTE elapsed 1628 ms
+VERDICT: ALL 155 CHECKS PASS
+=== program exited with status 0 ===

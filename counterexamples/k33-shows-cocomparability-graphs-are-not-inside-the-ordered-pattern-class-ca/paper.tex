@@ -1,0 +1,288 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={K(3,3) is a cocomparability graph with no P_a-avoiding vertex order}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Ca}{C_a}
+\newcommand{\Pa}{P_a}
+
+\title[$K_{3,3}$ and the ordered pattern class $C_a$]
+{$K_{3,3}$ is a cocomparability graph\\ with no $\Pa$-avoiding vertex order}
+
+\date{}
+
+\subjclass[2020]{05C62, 05C75, 06A07}
+\keywords{ordered graph, forbidden ordered pattern, cocomparability graph,
+permutation graph, grounded intersection graph, interval filament graph}
+
+\begin{document}
+
+\begin{abstract}
+Feuilloley and Habib classify grounded intersection graph classes by forbidden
+ordered patterns, and ask (their Open problem~2) whether the class $\Ca$ --- the
+graphs admitting a vertex order with no occurrence of the four-vertex ordered
+pattern $\Pa$ --- and the cocomparability graphs are incomparable, offering as the
+alternative that the cocomparability graphs are contained in $\Ca$. We settle the
+inclusion the question leaves open: $K_{3,3}$ is a permutation graph, hence a
+cocomparability graph, and none of its $6!=720$ vertex orders avoids $\Pa$, so the
+cocomparability graphs are not contained in $\Ca$ and the alternative offered in the
+problem's parenthetical is false. The argument is short and uses no computer. The
+other direction --- that the reverse inclusion fails, witnessed by $C_6$ --- is
+asserted by the source itself and is taken from there; so incomparability follows,
+but only one of its two halves is proved here. Since the cocomparability
+graphs are interval filament graphs, the inclusion $\Ca\subseteq{}$interval
+filament graphs, singled out in the paper as the lowest edge of its diagram, is
+strict.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Feuilloley and Habib \cite{FH} classify classes of grounded intersection graphs by
+forbidden \emph{ordered} patterns. For $S\subseteq\{a,b,c,d\}$ they define,
+verbatim:
+
+\begin{quote}
+``Let $S \subseteq \{a,b,c,d\}$, the pattern $P_{S}$ is the pattern on four
+vertices, with edges $(1,3)$ and $(2,4)$, and non-edge set $S$. The class
+$\mathcal C_{S}$ is the class where $P_{S}$ is forbidden.''
+\end{quote}
+
+The four optional pairs are named $a=(1,2)$, $b=(2,3)$, $c=(3,4)$, $d=(1,4)$ on
+the immediately preceding line of the same source, and by its drawing convention
+(``plain edges for edges, dashed edges for non-edges, and nothing for undecided
+edges'') a pair outside $S$ is unconstrained. Concretely:
+
+\begin{quote}
+$\Pa$ is the ordered pattern on $v_1<v_2<v_3<v_4$ with $v_1v_3\in E$,
+$v_2v_4\in E$ and $v_1v_2\notin E$, the three pairs $(2,3)$, $(3,4)$, $(1,4)$
+being unconstrained; and $G\in\Ca$ iff some linear order of $V(G)$ contains no
+four vertices realizing $\Pa$.
+\end{quote}
+
+The same definition, with the same names for the four pairs, is repeated by four of
+the same authors in \cite{DFHP}, so the reading above is not an inference from a
+single sentence.
+
+The paper's second open problem is stated verbatim:
+
+\begin{quote}
+``Are $C_a$ and cocomparability graphs incomparable? (Or are cocomparability
+graphs included in $C_a$, the reverse being impossible, as witnessed by $C_6$?)''
+\end{quote}
+
+and its lead-in says why it is asked (the missing word after ``if'' is the
+source's own, quoted unrepaired):
+
+\begin{quote}
+``Of course settling the status of each inclusion (either equality or strict
+inclusion) is a natural direction. For example, the lowest such edge in the
+diagram is for the inclusion of $C_a$ in interval filament graphs. This question
+would be solved if could answer positively the following, innocent-looking
+problem.''
+\end{quote}
+
+The statement unfolds into two existentials. That some member of $\Ca$ is not a
+cocomparability graph is the source's own, witnessed by $C_6$: the cycle order
+$1,2,\dots,6$ has no crossing pair of edges at all, hence no $\Pa$, while $C_6$
+is not a cocomparability graph by Gallai \cite{Gallai}, the citation the source
+itself uses. The open content is the other direction, and it is what
+Theorem~\ref{thm:main} settles.
+
+\begin{remark}
+Two conventions of the source are recorded because they could otherwise be
+mistaken for mathematics. First, the paper writes the class both as
+$\mathcal C_a$ and as $C_a$; the two denote the same class and we write $\Ca$.
+Second, the source defines $\mathcal C_{\mathcal F}$ as ``the set of
+\textbf{connected} graphs that have an ordering avoiding the patterns in
+$\mathcal F$''. Read literally that clause makes the open problem degenerate
+(the disconnected cocomparability graph $2K_2$ would settle it for a reason having
+nothing to do with patterns) and it also falsifies the paper's own assertion that
+interval graphs are contained in $\Ca$; it is a normalisation. Nothing below turns
+on the choice, because the witness we exhibit is connected.
+\end{remark}
+
+The same shape of statement is already published for a sibling pattern.
+Catanzaro, Chaplick, Felsner, B.~V.~Halld\'orsson, M.~M.~Halld\'orsson, Hixon and
+Stacho \cite{MPT} characterise the max point-tolerance graphs by a vertex order
+(their Definition~5.3 and Theorem~5.4) requiring that for all $u<v<w<x$ with
+$uw,vx\in E$ one has $vw\in E$; that is avoidance of the four-vertex pattern with
+edges $(1,3)$, $(2,4)$ and non-edge $(2,3)$, which is the class $C_b$ of \cite{FH}
+(there identified with the grounded rectangle graphs, of which max point-tolerance
+is a synonym). Their Observation~6.9 states that this class ``is incomparable with
+both planar graphs and permutation graphs'', the witness being the octahedron
+$K_{2,2,2}$, a permutation graph that is not a max point-tolerance graph; Jel\'inek
+and T\"opfer \cite{JT} restate it as ``neither Per nor any superclass of Per is
+contained in Mpt''. Neither work addresses $\Ca$, and neither settles Open
+problem~2: their statement is about $C_b$, and their witness does not transfer,
+since \cite{MPT} also states that every complete bipartite graph is a 2D ray graph
+and that 2D ray graphs are max point-tolerance graphs, which on their account puts
+$K_{3,3}$ inside $C_b$; we do not re-derive either statement.
+
+\section{The witness}
+
+Let $G=K_{3,3}$ with parts $A=\{0,1,2\}$ and $B=\{3,4,5\}$, so $n=6$, $m=9$ and
+\begin{align*}
+  E(K_{3,3})&=\{03,\,04,\,05,\,13,\,14,\,15,\,23,\,24,\,25\},\\
+  \overline{K_{3,3}}&=\{01,02,12\}\cup\{34,35,45\}=2K_3 .
+\end{align*}
+
+\begin{theorem}\label{thm:main}
+The cocomparability graphs are not contained in $\Ca$, and the failure already
+occurs inside the permutation graphs: $K_{3,3}$ is a permutation graph, hence a
+cocomparability graph, and none of the $720$ linear orders of $V(K_{3,3})$
+avoids $\Pa$.
+\end{theorem}
+
+\begin{proof}[Proof that $K_{3,3}$ is a cocomparability graph]
+The inversions of $\pi=4\,5\,6\,1\,2\,3$ are exactly the nine pairs $\{i,j\}$ with
+$i\in\{1,2,3\}$ and $j\in\{4,5,6\}$, so the inversion graph of $\pi$ is $K_{3,3}$,
+which is therefore a permutation graph. By Pnueli, Lempel and Even \cite{PLE} the
+permutation graphs are exactly the graphs that are simultaneously comparability and
+cocomparability graphs.
+\end{proof}
+
+\begin{proof}[Proof that no order of $K_{3,3}$ avoids $\Pa$]
+In $K_{3,3}$ two vertices are non-adjacent iff they lie in the same part. So an
+occurrence of $\Pa$ at positions $i<j<k<l$ needs $v_i,v_j$ in one part, say $A$;
+the edge $v_iv_k$ then forces $v_k\in B$ and the edge $v_jv_l$ forces $v_l\in B$.
+Hence
+\begin{equation}\label{eq:occ}
+  \Pa \text{ occurs} \iff
+  \begin{minipage}{0.62\textwidth}
+  some two vertices of one part sit at positions $i<j$ and two vertices of the
+  other part both sit at positions $>j$.
+  \end{minipage}
+\end{equation}
+Fix an order and write $p_1<p_2<p_3$ for the positions of $A$ and
+$q_1<q_2<q_3$ for those of $B$. Applying \eqref{eq:occ} to the pair
+$(p_1,p_2)$, avoidance allows at most one vertex of $B$ after $p_2$, so at least
+two vertices of $B$ precede $p_2$, i.e.\ $q_2<p_2$. Applying it to $(q_1,q_2)$
+gives $p_2<q_2$. These contradict each other, so every order contains $\Pa$.
+\end{proof}
+
+For a concrete occurrence, take the alternating order $0\,3\,1\,4\,2\,5$ and the
+positions $1<3<4<6$, carrying the vertices $0,1,4,5$: the pair $01$ is a non-edge
+and $04$, $15$ are edges.
+
+\begin{corollary}\label{cor:incomparable}
+$\Ca$ and the cocomparability graphs are incomparable, which is the answer asked
+for by Open problem~2 of \cite{FH}.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} gives one direction. The other is the source's own
+assertion, quoted in Section~1 and reproduced there: $C_6\in\Ca$ via the cycle
+order, and $C_6$ is not a cocomparability graph \cite{Gallai}. Only the direction
+of Theorem~\ref{thm:main} is new here.
+\end{proof}
+
+\section{The consequence for the diagram of \cite{FH}}
+
+The lead-in quoted in Section~1 singles out the inclusion of $\Ca$ in the interval
+filament graphs as the lowest edge of the paper's Figure~1, and observes that a
+positive answer to the open problem settles it.
+
+\begin{corollary}\label{cor:filament}
+$\Ca\subsetneq{}$interval filament graphs.
+\end{corollary}
+
+\begin{proof}
+The inclusion cocomparability ${}\subseteq{}$ interval filament is one of the
+items of the observation in \cite{FH} that collects the inclusions of its
+Figure~1; we do not re-derive it. Strictness is
+Theorem~\ref{thm:main}: $K_{3,3}$ is a cocomparability graph, hence an interval
+filament graph, and $K_{3,3}\notin\Ca$.
+\end{proof}
+
+\section{The companion program}\label{sec:verify}
+
+The file \texttt{verify.py} accompanying this note checks the objects printed above:
+the printed edge list of $K_{3,3}$ against the printed parts, ``$0$ of $720$ orders
+of $K_{3,3}$ avoid $\Pa$'' by two independent deciders, the pigeonhole step of the
+second proof on each of the $720$ orders, the occurrence printed for the alternating
+order, and that the inversion graph of $\pi$ is $K_{3,3}$; it also includes a check
+that would fail if the optional pairs $a$ and $b$ of the pattern were read the wrong
+way round, and checks of the two facts about $C_6$ that the source's parenthetical
+asserts. It does not re-derive the inclusion cocomparability ${}\subseteq{}$
+interval filament, which is quoted from \cite{FH}.
+
+The program is not confined to this note, and the reader should be warned. It is
+Python~3.9+, standard library only, and reports $43$ checks, all passing, but fewer
+than half of them bear on the statements above; the rest verify results this note
+does not state --- a membership criterion for complete multipartite graphs, that
+every complete multipartite graph is a permutation graph, that no graph on at most
+five vertices lies outside $\Ca$, and further controls --- and its section headings
+and scope note accordingly refer to numbered theorems and corollaries that do not
+appear here. Nothing above depends on any of those checks.
+
+\section{What is not settled}
+
+No characterization of $\Ca\cap{}$cocomparability is offered, and no structural
+(non-pattern) description of $\Ca$; the latter is Open problem~3 of \cite{FH} and
+is untouched here. Nothing here bears on whether $\Ca$ has a finite forbidden
+induced subgraph characterization, and no such claim is made. $K_{3,3}$ is not
+claimed to be the only witness of its order.
+Corollary~\ref{cor:incomparable} is half quoted: the direction witnessed by $C_6$
+is the source's assertion and is not proved here.
+Corollary~\ref{cor:filament} inherits the inclusion cocomparability
+${}\subseteq{}$ interval filament from \cite{FH} and does not re-derive it.
+Finally, the result is easy, and that is the honest framing: the decisive step is a
+short pigeonhole argument about a six-vertex graph, and its interest is the
+diagram consequence that \cite{FH} itself said the problem would buy.
+
+\begin{thebibliography}{9}
+
+\bibitem{DFHP}
+G.~Ducoffe, L.~Feuilloley, M.~Habib, and F.~Pitois,
+\emph{Pattern detection in ordered graphs},
+arXiv:2302.11619, 2023.
+\href{https://arxiv.org/abs/2302.11619}{arXiv:2302.11619}.
+
+\bibitem{FH}
+L.~Feuilloley and M.~Habib,
+\emph{Classifying grounded intersection graphs via ordered forbidden patterns},
+arXiv:2112.00629, 2021.
+\href{https://arxiv.org/abs/2112.00629}{arXiv:2112.00629}.
+All quotations are from the \textbf{v2} \LaTeX{} e-print, which is the version of
+record (two versions, no journal reference, no erratum).
+
+\bibitem{JT}
+V.~Jel\'inek and M.~T\"opfer,
+\emph{On grounded L-graphs and their relatives},
+arXiv:1808.04148, 2018.
+\href{https://arxiv.org/abs/1808.04148}{arXiv:1808.04148}.
+
+\bibitem{MPT}
+D.~Catanzaro, S.~Chaplick, S.~Felsner, B.~V.~Halld\'orsson, M.~M.~Halld\'orsson,
+T.~Hixon, and J.~Stacho,
+\emph{Max point-tolerance graphs},
+Discrete Appl. Math. \textbf{216} (2017), 84--97;
+\href{https://arxiv.org/abs/1508.03810}{arXiv:1508.03810}.
+
+\bibitem{Gallai}
+T.~Gallai,
+\emph{Transitiv orientierbare Graphen},
+Acta Math. Acad. Sci. Hungar. \textbf{18} (1967), 25--66.
+
+\bibitem{PLE}
+A.~Pnueli, A.~Lempel, and S.~Even,
+\emph{Transitive orientation of graphs and identification of permutation graphs},
+Canad. J. Math. \textbf{23} (1971), 160--175.
+
+\end{thebibliography}
+
+\end{document}

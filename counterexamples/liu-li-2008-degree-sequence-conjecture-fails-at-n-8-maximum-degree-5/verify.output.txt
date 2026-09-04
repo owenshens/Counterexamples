@@ -1,0 +1,115 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  b001f1e24101a7c6c7c7d33f9b9380700317d3b9850ae0aa5185f6a90299d0db
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- computational checks for the note on (n, Delta) = (8, 5); the statement of the
+    Liu-Li 2008 conjecture is NOT re-derived here and is taken from the paper, Section 2
+    (its predicted degree sequence at (8,5) is assumed to be (5,5,5,5,5,5,5,3))
+exact integer / exact rational arithmetic only; standard library only
+python: 3.9.25
+
+=== Step 1: the cell (n, Delta) = (8, 5) and what the conjecture predicts there
+PASS ambient_clause_3_le_Delta_le_n_minus_2 [3 <= 5 <= 6]
+PASS n_times_Delta_is_even [n*Delta = 40]
+PASS predicted_minimum_degree_is_Delta_minus_2_equals_3 [delta = 3, predicted degree sequence (5,5,5,5,5,5,5,3)]
+PASS predicted_class_has_19_edges [degree sum 38, edges 19]
+PASS predicted_class_complement_has_9_edges_and_degrees_4_and_seven_2s [complement: 9 edges, degrees [2, 2, 2, 2, 2, 2, 2, 4]]
+PASS parity_leaves_only_delta_in_1_3_on_8_vertices [admissible delta values with an integral edge count: [1, 3]]
+
+=== Step 2: the witness H, read from the edge list printed in the paper
+PASS H_edge_list_is_18_distinct_edges_no_loop [18 distinct edges]
+PASS H_degree_sequence_is_1_and_seven_5s [degrees [1, 5, 5, 5, 5, 5, 5, 5]]
+PASS H_maximum_degree_is_exactly_5_and_H_is_not_regular [max 5, min 1]
+PASS H_is_connected
+PASS H_graph6_decodes_to_the_printed_edge_list [graph6 GI[z~g]
+PASS H_graph6_re_encodes_to_the_same_string [encode -> GI[z~g]
+PASS H_core_is_the_seven_degree_5_vertices_and_the_pendant_is_unique [core [1, 2, 3, 4, 5, 6, 7], pendant [0]]
+PASS H_core_is_K7_minus_exactly_four_edges [missing pairs [(1, 5), (2, 3), (4, 7), (6, 7)]]
+PASS the_four_missing_edges_form_P3_plus_2K2 [the four missing pairs span 7 vertices in 3 components with degrees [1, 1, 1, 1, 1, 1, 2]; the P_3 centre is [7]]
+PASS the_pendant_hangs_on_the_P3_centre [pendant 0 attached to [7]; P_3 centre [7]]
+PASS H_second_labelling_is_18_edges_with_the_same_degree_sequence [degrees [5, 5, 5, 5, 5, 5, 5, 1], connected]
+PASS H_second_labelling_graph6_decodes_and_re_encodes [graph6 GNz~s?]
+PASS the_two_labellings_of_H_are_cospectral [identical characteristic polynomials]
+PASS H_characteristic_polynomial_matches_the_paper [x^8..x^0 = [1, 0, -18, -32, 5, 32, 12, 0, 0]]
+
+=== Step 3: Fact 2 -- lambda_1(H) > 49/10, by two independent exact routes
+PASS the_Rayleigh_vector_is_a_nonzero_integer_vector [8 integers, largest 3914936]
+PASS the_Rayleigh_quotient_equals_the_fraction_printed_in_the_paper [x^T A x / x^T x = 61272483059723/12499997522989]
+PASS the_Rayleigh_quotient_exceeds_49_over_10 [61272483059723/12499997522989 > 49/10]
+PASS route_A_gives_lambda_1_of_H_above_49_over_10 [Rayleigh's principle: lambda_1 >= any quotient]
+PASS p_H_at_49_over_10_equals_the_value_printed_in_the_paper [p_H(49/10) = -27065510199/100000000]
+PASS p_H_at_49_over_10_is_negative [route B: a monic real-rooted polynomial negative at t has its largest root above t]
+PASS p_H_is_monic
+PASS p_H_at_5_matches_the_paper [p_H(5) = 16800]
+PASS p_H_at_99_over_20_matches_the_paper [p_H(99/20) = 197988807248001/25600000000 > 0]
+
+=== Step 4: the three representatives of the predicted class
+PASS C1_is_19_edges_with_degree_sequence_5pow7_3_and_connected [degrees [5, 5, 5, 5, 5, 5, 5, 3]]
+PASS C1_graph6_decodes_and_re_encodes [graph6 GFz~v?]
+PASS C1_characteristic_polynomial_matches_the_paper [x^8..x^0 = [1, 0, -19, -24, 12, 0, 0, 0, 0]]
+PASS C1_all_eight_leading_minors_of_97I_minus_20A_are_positive [minors [97, 9409, 912673, 77238481, 6396925057, 355826560529, 8841684881313, 28053247092561]]
+PASS C1_those_minors_are_exactly_the_ones_printed_in_the_paper
+PASS C1_value_at_49_over_10_matches_the_paper_and_is_positive [p(49/10) = 846855031701/100000000]
+PASS C1_det_97I_minus_20A_equals_20pow8_times_p_at_97_over_20 [det = 28053247092561]
+PASS C2_is_19_edges_with_degree_sequence_5pow7_3_and_connected [degrees [5, 5, 5, 5, 5, 5, 5, 3]]
+PASS C2_graph6_decodes_and_re_encodes [graph6 GLv~v?]
+PASS C2_characteristic_polynomial_matches_the_paper [x^8..x^0 = [1, 0, -19, -28, 24, 36, -8, 0, 0]]
+PASS C2_all_eight_leading_minors_of_97I_minus_20A_are_positive [minors [97, 9409, 873873, 77398481, 6308461057, 349728752529, 8491067905313, 23557099988561]]
+PASS C2_those_minors_are_exactly_the_ones_printed_in_the_paper
+PASS C2_value_at_49_over_10_matches_the_paper_and_is_positive [p(49/10) = 813058555701/100000000]
+PASS C2_det_97I_minus_20A_equals_20pow8_times_p_at_97_over_20 [det = 23557099988561]
+PASS C3_is_19_edges_with_degree_sequence_5pow7_3_and_connected [degrees [5, 5, 5, 5, 5, 5, 5, 3]]
+PASS C3_graph6_decodes_and_re_encodes [graph6 GZn]~?]
+PASS C3_characteristic_polynomial_matches_the_paper [x^8..x^0 = [1, 0, -19, -30, 28, 62, -3, -24, 1]]
+PASS C3_all_eight_leading_minors_of_97I_minus_20A_are_positive [minors [97, 9409, 835073, 72082881, 5633183857, 364595360529, 8202660545313, 18809429316561]]
+PASS C3_those_minors_are_exactly_the_ones_printed_in_the_paper
+PASS C3_value_at_49_over_10_matches_the_paper_and_is_positive [p(49/10) = 784932497701/100000000]
+PASS C3_det_97I_minus_20A_equals_20pow8_times_p_at_97_over_20 [det = 18809429316561]
+PASS lambda_1_of_H_lies_strictly_between_the_two_rationals_printed [49017/10000 < lambda_1(H) < 24509/5000]
+PASS lambda_1_of_C1_lies_strictly_between_the_two_rationals_printed [48419/10000 < lambda_1(C1) < 2421/500]
+PASS lambda_1_of_C2_lies_strictly_between_the_two_rationals_printed [48431/10000 < lambda_1(C2) < 3027/625]
+PASS lambda_1_of_C3_lies_strictly_between_the_two_rationals_printed [12111/2500 < lambda_1(C3) < 9689/2000]
+PASS the_three_representatives_are_strictly_ordered_C1_lt_C2_lt_C3 [disjoint brackets, so lambda_1(C1) < lambda_1(C2) < lambda_1(C3) among these three representatives; that these three exhaust the conjecture-allowed class is established separately in Step 5, and the conjecture's own statement is not verified here]
+
+=== Step 5: Fact 3 -- the COMPLETE predicted class, by our own enumeration
+NOTE enumerating every labeled graph on 8 vertices with degree sequence (5,5,5,5,5,5,5,3)
+NOTE     by generating its 9-edge complement, whose degrees are (4,2,2,2,2,2,2,2)
+PASS the_predicted_class_has_exactly_21000_labeled_members [labeled graphs with degree sequence (5^7,3): 21000]
+PASS every_member_of_the_predicted_class_is_connected [connected: 21000 of 21000]
+PASS THE_DECISION_every_one_of_the_21000_satisfies_Sylvester_on_97I_minus_20A [violations = 0, i.e. lambda_1(G) < 97/20 = 4.85 for EVERY G in the predicted class]
+PASS the_weaker_matrix_49I_minus_10A_also_has_zero_violations [violations = 0 (this matrix certifies only lambda_1 < 49/10 = 4.90)]
+PASS the_class_splits_into_exactly_three_isomorphism_types [complement cycle types found: [((3, 3), (3,)), ((3, 6), ()), ((4, 5), ())]]
+PASS the_three_orbit_sizes_are_840_10080_10080_and_sum_to_21000 [{'((3, 3), (3,))': 840, '((3, 6), ())': 10080, '((4, 5), ())': 10080}]
+PASS the_hand_orbit_formulas_reproduce_those_three_counts [8*C(7,4)*3 = 840; 8*C(7,2)*(5!/2) = 10080; 8*C(7,3)*(3!/2)*(4!/2) = 10080]
+PASS C1_C2_C3_realise_the_three_distinct_types [{'C1': '((3, 3), (3,))', 'C2': '((3, 6), ())', 'C3': '((4, 5), ())'}]
+PASS C1_is_the_type_of_orbit_size_840 [C1 complement type ((3, 3), (3,)) has orbit 840, consistent with |Aut| = 8!/840 = 48]
+
+=== Step 6: the witness class (5,5,5,5,5,5,5,1) is a single isomorphism class
+PASS the_witness_class_has_exactly_2520_labeled_members [labeled graphs with degree sequence (5^7,1): 2520]
+PASS every_member_of_the_witness_class_is_connected [connected: 2520 of 2520]
+PASS the_witness_class_is_a_SINGLE_isomorphism_type [complement cycle type ((3, 3, 4), ()), orbit 2520]
+PASS 2520_equals_8_factorial_over_16_so_the_automorphism_group_has_order_16 [8!/|Aut| = 40320/16 = 2520]
+PASS every_one_of_the_2520_has_lambda_1_above_49_over_10 [2520 of 2520 have det(49I - 10A) < 0]
+PASS H_lies_in_that_class_hence_H_is_forced_by_its_degree_sequence [H is the unique (5^7,1) graph up to isomorphism, so it is not a discovery]
+
+=== Step 7: controls -- the certifier must fire and must stay silent
+PASS control_K8_is_REFUSED_by_Sylvester_at_97_over_20 [lambda_1(K_8) = 7 > 4.85, so the certifier must and does refuse it]
+PASS control_K6_plus_K2_is_disconnected_so_it_is_outside_the_class [max degree 5, non-regular, lambda_1 = 5 exactly -- the anti-control a broken connectivity filter would report as a spectacular refutation]
+PASS control_K6_plus_K2_is_also_REFUSED_by_Sylvester_at_97_over_20 [lambda_1 = 5 > 4.85]
+PASS control_P8_is_certified_at_97_over_20 [lambda_1(P_8) < 2]
+PASS control_C8_is_certified_at_97_over_20 [lambda_1(C_8) = 2]
+PASS control_K1_7_is_certified_at_97_over_20 [lambda_1(K_{1,7}) = sqrt(7) = 2.6457...]
+PASS control_the_certifier_REFUSES_H_at_97_over_20 [the certifier failing in the right direction on the right object]
+PASS control_the_lower_bound_test_stays_silent_on_C3_at_49_over_10 [C3 has p(49/10) > 0, so no root above 49/10 is claimed]
+
+=== Step 8: the conclusion, assembled from the exact facts above
+PASS 97_over_20_is_strictly_below_49_over_10 [4.85 < 4.90, so the two bounds separate strictly]
+PASS H_beats_every_graph_of_the_predicted_degree_sequence [lambda_1(H) > 49/10 > 97/20 > lambda_1(G) for all 21000 labeled G with degseq (5^7,3)]
+PASS therefore_no_maximiser_at_8_5_can_carry_the_predicted_degree_sequence [the family is finite and non-empty (H is in it), so a maximiser M exists and lambda_1(M) >= lambda_1(H) > 97/20 > lambda_1(G) for every predicted G]
+PASS reading_robustness_a_graph_of_maximum_degree_at_most_4_cannot_compete [lambda_1(G) <= Delta(G) <= 4 < 4.85 < lambda_1(H), so "maximum degree at most Delta" changes nothing]
+
+NOTE SCOPE. This program re-derives (i) the quantities transcribed into this file from the paper about H, C1, C2 and C3 -- their edge lists, graph6 strings, characteristic polynomials, the leading minors of 97I - 20A, the exact evaluations at 49/10, 5 and 99/20, the Rayleigh quotient, and the four spectral brackets (NOT RE-RUN: the paper itself is not parsed, so completeness of this list against the paper is not verified here), (ii) the completeness of the predicted class at (8,5) and the strict bound lambda_1 < 97/20 over ALL 21000 of its labeled members, and (iii) the single-isomorphism-class structure of the witness class. It establishes nothing about any cell other than (8,5) -- in particular nothing here concerns Delta = n-2, which belongs to Huang-Liu-Yang. Which graph ATTAINS lambda(8,5) is not certified here and is not needed: the refutation needs only that H beats every graph of the predicted degree sequence.
+
+VERDICT: ALL 82 CHECKS PASS
+=== program exited with status 0 ===

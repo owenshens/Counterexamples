@@ -1,0 +1,275 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={All Four Residual Cells of the Directed Hamilton-Waterloo Problem at Order 15 Exist}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\DeclareMathOperator{\lcmop}{lcm}
+\newcommand{\Kstar}{K^{*}}
+\newcommand{\HWP}{\mathrm{HWP}^{*}}
+\newcommand{\Zfif}{\mathbb{Z}_{15}}
+
+\title[The four residual cells at order $15$]
+{All Four Residual Cells of the Directed Hamilton--Waterloo Problem at Order $15$ Exist}
+
+\date{}
+
+\subjclass[2020]{05C70, 05C20, 05B15}
+\keywords{Hamilton--Waterloo problem, complete symmetric digraph, directed
+$2$-factorization, sharply transitive set, Latin square}
+
+\begin{document}
+
+\begin{abstract}
+For odd $v$ and $m,n \mid v$, the directed Hamilton--Waterloo problem
+$\HWP(v; m^{r}, n^{s})$ asks for a decomposition of the arc set of the complete
+symmetric digraph $\Kstar_{v}$ into $r$ spanning factors that are disjoint
+unions of directed $m$-cycles and $s$ spanning factors that are disjoint unions
+of directed $n$-cycles. Yetgin, Odaba\c{s}\i{} and \"Ozkan determine
+$\HWP(15; m^{r}, n^{s})$ for $(m,n)\in\{(3,5),(3,15),(5,15)\}$ apart from four
+cells, which their printed Lemma 4.2 records as possible exceptions:
+$r\in\{11,12,13\}$ when $(m,n)=(3,5)$, and $r=13$ when $(m,n)=(3,15)$. That
+lemma poses no problem about those cells; it leaves their four values
+undetermined. We exhibit a factorization in each of the four, which determines
+those four values and removes that lemma's exception clause at $v=15$.
+Each witness is printed here in full, as $14$ fixed-point-free permutations of
+$\Zfif$ whose arc sets partition the $210$ arcs of $\Kstar_{15}$; a reader can
+check it by hand and needs no code.
+\end{abstract}
+
+\maketitle
+
+\sloppy
+
+\section{The statement and the four cells}
+
+Throughout, $\Kstar_{v}$ denotes the complete symmetric digraph on $v$ vertices:
+for every unordered pair $\{x,y\}$ both arcs $(x,y)$ and $(y,x)$ are present, so
+$\Kstar_{15}$ has $15 \cdot 14 = 210$ arcs. A \emph{factor} is spanning, and
+$\HWP(v; m^{r}, n^{s})$ \emph{has a solution} when the arc set of $\Kstar_{v}$
+decomposes into $r$ factors, each a disjoint union of directed $m$-cycles, and
+$s$ factors, each a disjoint union of directed $n$-cycles. Counting arcs and
+vertices forces $r+s=v-1$, $m \mid v$ and $n \mid v$.
+
+Yetgin, Odaba\c{s}\i{} and \"Ozkan \cite{YOO} prove, for odd $v$ and
+$(m,n) \in \{(3,5),(3,15),(5,15)\}$, that $\HWP(v; m^{r}, n^{s})$ has a solution
+if and only if $r+s=v-1$ and $\lcmop(m,n) \mid v$, with a short list of possible
+exceptions, all at $v=15$. Their $v=15$ lemma, printed as Lemma~4.2, reads
+verbatim:
+
+\begin{quote}
+For nonnegative integers $r$ and $s$, $\HWP(15; m^{r}, n^{s})$ has a solution for
+$(m,n)\in \{(3,5),(3,15),(5,15)\}$ if and only if $r+s=14$ except possibly for
+$r\in \{11,12,13\}$ when $(m, n)=(3, 5)$ and for $r=13$ when $(m, n)=(3, 15)$.
+\end{quote}
+
+The quotation is taken from the arXiv e-print of \cite{YOO} (arXiv:2209.14588v1)
+and the statement stands unchanged in the version of record; only the macro for
+$\HWP$ and the line breaks are ours.
+
+Since $r+s=14$, the exception clause names exactly four cells, written below as
+quadruples $(m,n,r,s)$:
+\[
+  (3,5,11,3), \qquad (3,5,12,2), \qquad (3,5,13,1), \qquad (3,15,13,1).
+\]
+Each satisfies the necessary conditions, so the point left undetermined in each
+cell is sufficiency: whether a witness exists. The source records the four as
+possible exceptions and poses no problem about them; the theorem below
+determines the four values it leaves undetermined.
+
+\begin{theorem}\label{thm:main}
+$\HWP(15; 3^{11}, 5^{3})$, $\HWP(15; 3^{12}, 5^{2})$, $\HWP(15; 3^{13}, 5^{1})$
+and $\HWP(15; 3^{13}, 15^{1})$ all have solutions; a witness for each is printed
+in Section~\textup{\ref{sec:witnesses}}. Consequently the clause ``except
+possibly for $r\in\{11,12,13\}$ when $(m,n)=(3,5)$ and for $r=13$ when
+$(m,n)=(3,15)$'' may be deleted from printed Lemma~\textup{4.2} of
+\textup{\cite{YOO}}.
+\end{theorem}
+
+\section{The criterion used to check the witnesses}
+
+\begin{lemma}\label{lem:crit}
+Let $m,n \mid 15$ and $r+s=14$. A solution of $\HWP(15; m^{r}, n^{s})$ is the
+same thing as a list $\sigma_{1},\dots,\sigma_{14}$ of fixed-point-free
+permutations of $\Zfif$ such that
+\begin{enumerate}
+\item[(i)] each $\sigma_{i}$ has all of its cycles of one and the same length,
+that length being $m$ for $r$ of the indices and $n$ for the remaining $s$; and
+\item[(ii)] the $210$ arcs $(x,\sigma_{i}(x))$, $x \in \Zfif$,
+$1 \le i \le 14$, are pairwise distinct.
+\end{enumerate}
+Equivalently: the $15\times 15$ array whose row $0$ is the identity and whose
+row $i$ is $\sigma_{i}$ is a Latin square of order $15$.
+\end{lemma}
+
+\begin{proof}
+A factor of $\Kstar_{15}$ that is a disjoint union of directed cycles is
+spanning and has in-degree and out-degree $1$ at every vertex, hence is the
+functional digraph $\{(x,\sigma(x))\}$ of a permutation $\sigma$ with no fixed
+point, and its cycle lengths are the cycle lengths of $\sigma$; conversely a
+fixed-point-free permutation all of whose cycles have length $m$ gives a factor
+consisting of $15/m$ directed $m$-cycles. Fourteen such factors contribute
+$14 \cdot 15 = 210$ arcs, which is exactly the number of arcs of $\Kstar_{15}$,
+so they are pairwise arc-disjoint if and only if their union is the whole arc
+set; that is (ii). For the reformulation, (ii) says that for each fixed $x$ the
+$14$ values $\sigma_{1}(x),\dots,\sigma_{14}(x)$ are pairwise distinct, and each
+differs from $x$ because the $\sigma_{i}$ are fixed-point-free; together with the
+entry $x$ in row $0$ they therefore exhaust $\Zfif$, i.e.\ column $x$ of the
+array is a permutation of $\Zfif$. The rows are permutations because the
+$\sigma_{i}$ are. Conversely, in a Latin square of order $15$ whose row $0$ is
+the identity, column $x$ already contains the symbol $x$ in row $0$, so no other
+row can have $\sigma_{i}(x)=x$.
+\end{proof}
+
+So the check on each printed witness below is three lines:
+\begin{enumerate}
+\item[(a)] each printed factor is a set of disjoint cycles whose entries are all
+of $\Zfif$, with every cycle length equal to the printed label;
+\item[(b)] no cycle has length $1$, so each factor is fixed-point-free; and
+\item[(c)] the $210$ arcs are pairwise distinct --- equivalently, adjoining the
+identity, every column of the resulting array is a permutation of $\Zfif$.
+\end{enumerate}
+
+\section{The four witnesses}\label{sec:witnesses}
+
+The vertex set is $\Zfif$. Each factor is printed as the permutation
+$\sigma_{i}$ in cycle notation, with its uniform cycle type as a label; its arc
+set is $\{(x,\sigma_{i}(x)) : x \in \Zfif\}$, i.e.\ each printed cycle
+$(a_{1},a_{2},\dots,a_{k})$ contributes the arcs $a_{1}\to a_{2} \to \cdots \to
+a_{k} \to a_{1}$, in that direction. In the last listing $F_{14}$ is a single
+directed cycle
+through all $15$ vertices, as $n=15$ requires.
+
+\begingroup\footnotesize
+\begin{verbatim}
+HWP*(15; 3^11, 5^3)
+F1   3^5   (0,1,2)(3,4,5)(6,7,8)(9,10,11)(12,13,14)
+F2   3^5   (0,2,5)(1,6,13)(3,8,11)(4,7,12)(9,14,10)
+F3   3^5   (0,3,9)(1,14,4)(2,7,6)(5,13,11)(8,12,10)
+F4   3^5   (0,4,12)(1,11,6)(2,8,9)(3,5,14)(7,10,13)
+F5   3^5   (0,5,11)(1,3,12)(2,6,4)(7,9,8)(10,14,13)
+F6   3^5   (0,6,8)(1,7,5)(2,4,14)(3,13,9)(10,12,11)
+F7   3^5   (0,7,14)(1,13,3)(2,11,8)(4,6,10)(5,9,12)
+F8   3^5   (0,8,13)(1,4,9)(2,10,5)(3,6,12)(7,11,14)
+F9   3^5   (0,9,7)(1,10,2)(3,14,8)(4,11,13)(5,12,6)
+F10  3^5   (0,10,6)(1,5,8)(2,9,13)(3,7,4)(11,12,14)
+F11  3^5   (0,11,1)(2,13,12)(3,10,7)(4,8,5)(6,14,9)
+F12  5^3   (0,12,7,2,3)(1,8,14,5,10)(4,13,6,9,11)
+F13  5^3   (0,13,8,4,10)(1,12,9,5,7)(2,14,6,3,11)
+F14  5^3   (0,14,1,9,4)(2,12,8,10,3)(5,6,11,7,13)
+
+HWP*(15; 3^12, 5^2)
+F1   3^5   (0,1,2)(3,4,5)(6,7,8)(9,10,11)(12,13,14)
+F2   3^5   (0,2,7)(1,3,14)(4,12,9)(5,6,10)(8,11,13)
+F3   3^5   (0,3,6)(1,9,8)(2,4,13)(5,7,14)(10,12,11)
+F4   3^5   (0,4,9)(1,10,2)(3,11,6)(5,8,13)(7,12,14)
+F5   3^5   (0,5,10)(1,7,11)(2,12,3)(4,14,8)(6,13,9)
+F6   3^5   (0,7,1)(2,8,9)(3,5,13)(4,11,12)(6,14,10)
+F7   3^5   (0,8,14)(1,11,4)(2,6,5)(3,9,7)(10,13,12)
+F8   3^5   (0,9,13)(1,4,6)(2,11,8)(3,10,14)(5,12,7)
+F9   3^5   (0,10,4)(1,8,12)(2,13,6)(3,7,9)(5,14,11)
+F10  3^5   (0,11,3)(1,14,13)(2,5,4)(6,9,12)(7,10,8)
+F11  3^5   (0,12,8)(1,5,9)(2,10,7)(3,13,4)(6,11,14)
+F12  3^5   (0,13,11)(1,12,5)(2,9,14)(3,8,10)(4,7,6)
+F13  5^3   (0,6,8,3,12)(1,13,7,4,10)(2,14,9,5,11)
+F14  5^3   (0,14,4,8,5)(1,6,12,2,3)(7,13,10,9,11)
+
+HWP*(15; 3^13, 5^1)
+F1   3^5   (0,1,2)(3,4,5)(6,7,8)(9,10,11)(12,13,14)
+F2   3^5   (0,2,4)(1,9,7)(3,11,14)(5,6,13)(8,10,12)
+F3   3^5   (0,4,8)(1,6,2)(3,13,9)(5,7,12)(10,14,11)
+F4   3^5   (0,5,10)(1,12,6)(2,9,13)(3,14,4)(7,11,8)
+F5   3^5   (0,6,5)(1,14,8)(2,11,3)(4,9,12)(7,13,10)
+F6   3^5   (0,7,3)(1,5,12)(2,10,9)(4,13,11)(6,8,14)
+F7   3^5   (0,8,9)(1,13,4)(2,5,11)(3,12,10)(6,14,7)
+F8   3^5   (0,9,1)(2,14,10)(3,5,8)(4,12,7)(6,11,13)
+F9   3^5   (0,10,6)(1,11,5)(2,12,14)(3,8,13)(4,7,9)
+F10  3^5   (0,11,7)(1,10,13)(2,8,4)(3,6,12)(5,14,9)
+F11  3^5   (0,12,11)(1,7,14)(2,13,8)(3,9,6)(4,10,5)
+F12  3^5   (0,13,12)(1,8,11)(2,3,7)(4,6,10)(5,9,14)
+F13  3^5   (0,14,13)(1,3,10)(2,7,5)(4,11,6)(8,12,9)
+F14  5^3   (0,3,1,4,14)(2,6,9,11,12)(5,13,7,10,8)
+
+HWP*(15; 3^13, 15^1)
+F1   3^5   (0,1,2)(3,4,5)(6,7,8)(9,10,11)(12,13,14)
+F2   3^5   (0,2,9)(1,7,4)(3,13,10)(5,14,11)(6,8,12)
+F3   3^5   (0,4,11)(1,12,3)(2,7,14)(5,8,9)(6,10,13)
+F4   3^5   (0,5,13)(1,8,10)(2,3,11)(4,6,14)(7,9,12)
+F5   3^5   (0,6,12)(1,11,13)(2,4,10)(3,14,8)(5,9,7)
+F6   3^5   (0,7,3)(1,9,14)(2,10,8)(4,12,11)(5,6,13)
+F7   3^5   (0,8,1)(2,5,12)(3,10,6)(4,13,9)(7,11,14)
+F8   3^5   (0,9,6)(1,5,7)(2,11,3)(4,8,13)(10,12,14)
+F9   3^5   (0,10,14)(1,3,12)(2,13,7)(4,9,8)(5,11,6)
+F10  3^5   (0,11,7)(1,10,5)(2,6,4)(3,8,14)(9,13,12)
+F11  3^5   (0,12,4)(1,14,6)(2,8,5)(3,7,13)(9,11,10)
+F12  3^5   (0,13,8)(1,6,11)(2,14,9)(3,5,4)(7,12,10)
+F13  3^5   (0,14,5)(1,13,2)(3,6,9)(4,7,10)(8,11,12)
+F14  15^1  (0,3,9,1,4,14,13,11,8,7,6,2,12,5,10)
+\end{verbatim}
+\endgroup
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Each of the four listings satisfies (a), (b) and (c) above, as one verifies
+directly from the printed cycles; by Lemma~\ref{lem:crit} each listing is then a
+solution of the cell named in its header. The accompanying program
+\texttt{verify.py} redoes the same check mechanically on the same printed text
+(Section~\ref{sec:verif}).
+\end{proof}
+
+\section{Scope}\label{sec:verif}
+
+Combining the four witnesses with the cases already proved in
+\cite{YOO} --- all of $(m,n)=(5,15)$, and every $(3,5)$ and $(3,15)$ case outside
+$r\in\{11,12,13\}$ and $r=13$ respectively --- printed Lemma~4.2 becomes: for
+nonnegative $r,s$, $\HWP(15; m^{r}, n^{s})$ has a solution for
+$(m,n)\in\{(3,5),(3,15),(5,15)\}$ if and only if $r+s=14$. Those other cases are
+the authors', and were not re-verified here; what is verified here is the four
+listings above. Nothing outside $v=15$ is constructed or claimed. In particular
+Lemma 4.1 of \cite{YOO}, which lifts a complete list of solutions at one odd
+order to larger odd orders, is the authors' own; it is neither verified nor used
+here.
+
+The four witnesses were found by a constraint solver; nothing in
+Theorem~\ref{thm:main} depends on the solver, a re-run would return different
+objects, and the objects printed above are the claim.
+
+The program \texttt{verify.py} that accompanies this note calls no solver: it
+parses the listing of Section~\ref{sec:witnesses} out of its own source --- the
+same characters as are printed above --- and re-derives, for each cell, the
+necessary conditions, the factor count, that every factor is a fixed-point-free
+permutation of $\Zfif$ whose cycle type matches its printed label, that the
+census of labels matches the cell, that the $210$ arcs are exactly the arcs of
+$\Kstar_{15}$ (as a set identity: none missing and none repeated), and that the
+array obtained by adjoining the identity is a Latin square. The four cells are
+re-derived from the wording of the exception clause rather than copied from the
+listing. No non-existence, census or exhaustion claim is made or checked
+anywhere: every verdict is the existence of an exhibited object.
+
+Nothing beyond the four
+factorizations printed above is claimed.
+
+\begin{thebibliography}{9}
+
+\bibitem{YOO}
+F.~Yetgin, U.~Odaba\c{s}\i{}, and S.~\"Ozkan,
+\emph{On the directed Hamilton--Waterloo problem with two cycle sizes},
+Contrib. Discrete Math. \textbf{20} (2025), no.~1, 74--94.
+\href{https://doi.org/10.55016/ojs/cdm.v20i1.75051}{doi:10.55016/ojs/cdm.v20i1.75051};
+e-print \href{https://arxiv.org/abs/2209.14588}{arXiv:2209.14588}.
+Statement numbers cited here are those of the version of record.
+
+\end{thebibliography}
+
+\end{document}

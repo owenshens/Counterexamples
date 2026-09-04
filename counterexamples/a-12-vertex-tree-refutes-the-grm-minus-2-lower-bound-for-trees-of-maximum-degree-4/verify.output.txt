@@ -1,0 +1,108 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  d9e8b947ed29f57d8326deda51cdcbf9780e2b8d95d2702cfbe4388feedc0a46
+python:  Python 3.9.25
+=== program output follows ===
+CHECKER for "A 12-vertex tree refuting the GRM_{-2} lower bound for trees of maximum
+degree four".  Source under test: arXiv:2604.06044v1, main.tex l.838,
+  "Therefore, based on equation (\ref{main2}), if $n \not\equiv \{1, 2, 3\} \pmod{4}$,
+   it follows that $GRM_{-2}(T) \geq -n$."
+GRM_{-2}(T) = sum_{uv in E(T)} (deg u - 2)(deg v - 2)   [l.121/l.154 at lambda = -2]
+
+--- FORCED POSITIVE CONTROLS: values written as literals in this file ------------------
+PASS control-K13   GRM_{-2}(K_{1,3}) = -3, literal in this file -3
+PASS control-K14   GRM_{-2}(K_{1,4}) = -8, literal in this file -8
+PASS control-K15   GRM_{-2}(K_{1,5}) = -15, literal in this file -15
+PASS control-P5   GRM_{-2}(P_5) = 0, literal in this file 0
+
+--- W1,  n = 12 ---------------------------------------------------------------
+PASS W1-is-a-tree   12 vertices, 11 edges, no loop, no repeated edge, connected
+PASS W1-degree-sum-is-twice-the-edge-count   sum of degrees 22 = 2 * 11 edges; degree sequence [4, 4, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1]
+PASS W1-maximum-degree-is-exactly-4   Delta = 4, attained at [0, 8] -- inside the class fixed at main.tex l.797
+PASS W1-edge-partition-matches-the-expected-table   m_ij = {'m13': 1, 'm14': 6, 'm23': 2, 'm24': 2}
+PASS W1-vertex-counts-match-the-expected-table   n_i = {'n1': 7, 'n2': 2, 'n3': 1, 'n4': 2}
+PASS W1-GRM-minus-2-equals-the-expected-value   direct edge sum = -13, expected value recorded in this file -13
+PASS W1-source-formula-l795-agrees   -(m13+2m14-m33-2m34-4m44) = -13
+PASS W1-source-equation-main2-l800-agrees   -(-3m12-m13-m22-m34-3m44+n-n3+3) = -13
+PASS W1-identity-GRM-equals-minus-n-plus-3-plus-S   S = 2, so -(n+3)+S = -13
+PASS W1-satisfies-the-source-system-prva-to-sesta   exact rational evaluation at l.785-790 returns n_1=7, n_2=2, n_4=2, m_14=6, m_24=2, m_33=0
+PASS W1-l838-bound-status-is-VIOLATED   claimed bound -n = -12, actual GRM_{-2} = -13  ==>  l.838 VIOLATED by 1
+PASS W1-counting-identity-n-equals-3n3-4n4-1-m22-m33-m34   3*1 + 4*2 + 1 + 0 - 0 - 0 = 12 = n
+
+--- W2,  n = 16 ---------------------------------------------------------------
+PASS W2-is-a-tree   16 vertices, 15 edges, no loop, no repeated edge, connected
+PASS W2-degree-sum-is-twice-the-edge-count   sum of degrees 30 = 2 * 15 edges; degree sequence [4, 4, 4, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS W2-maximum-degree-is-exactly-4   Delta = 4, attained at [0, 8, 9] -- inside the class fixed at main.tex l.797
+PASS W2-edge-partition-matches-the-expected-table   m_ij = {'m14': 9, 'm23': 3, 'm24': 3}
+PASS W2-vertex-counts-match-the-expected-table   n_i = {'n1': 9, 'n2': 3, 'n3': 1, 'n4': 3}
+PASS W2-GRM-minus-2-equals-the-expected-value   direct edge sum = -18, expected value recorded in this file -18
+PASS W2-source-formula-l795-agrees   -(m13+2m14-m33-2m34-4m44) = -18
+PASS W2-source-equation-main2-l800-agrees   -(-3m12-m13-m22-m34-3m44+n-n3+3) = -18
+PASS W2-identity-GRM-equals-minus-n-plus-3-plus-S   S = 1, so -(n+3)+S = -18
+PASS W2-satisfies-the-source-system-prva-to-sesta   exact rational evaluation at l.785-790 returns n_1=9, n_2=3, n_4=3, m_14=9, m_24=3, m_33=0
+PASS W2-l838-bound-status-is-VIOLATED   claimed bound -n = -16, actual GRM_{-2} = -18  ==>  l.838 VIOLATED by 2
+PASS W2-counting-identity-n-equals-3n3-4n4-1-m22-m33-m34   3*1 + 4*3 + 1 + 0 - 0 - 0 = 16 = n
+
+--- W3,  n = 20 ---------------------------------------------------------------
+PASS W3-is-a-tree   20 vertices, 19 edges, no loop, no repeated edge, connected
+PASS W3-degree-sum-is-twice-the-edge-count   sum of degrees 38 = 2 * 19 edges; degree sequence [4, 4, 4, 4, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS W3-maximum-degree-is-exactly-4   Delta = 4, attained at [0, 6, 11, 12] -- inside the class fixed at main.tex l.797
+PASS W3-edge-partition-matches-the-expected-table   m_ij = {'m14': 11, 'm23': 3, 'm24': 5}
+PASS W3-vertex-counts-match-the-expected-table   n_i = {'n1': 11, 'n2': 4, 'n3': 1, 'n4': 4}
+PASS W3-GRM-minus-2-equals-the-expected-value   direct edge sum = -22, expected value recorded in this file -22
+PASS W3-source-formula-l795-agrees   -(m13+2m14-m33-2m34-4m44) = -22
+PASS W3-source-equation-main2-l800-agrees   -(-3m12-m13-m22-m34-3m44+n-n3+3) = -22
+PASS W3-identity-GRM-equals-minus-n-plus-3-plus-S   S = 1, so -(n+3)+S = -22
+PASS W3-satisfies-the-source-system-prva-to-sesta   exact rational evaluation at l.785-790 returns n_1=11, n_2=4, n_4=4, m_14=11, m_24=5, m_33=0
+PASS W3-l838-bound-status-is-VIOLATED   claimed bound -n = -20, actual GRM_{-2} = -22  ==>  l.838 VIOLATED by 2
+PASS W3-counting-identity-n-equals-3n3-4n4-1-m22-m33-m34   3*1 + 4*4 + 1 + 0 - 0 - 0 = 20 = n
+
+--- D8,  n = 8 ---------------------------------------------------------------
+PASS D8-is-a-tree   8 vertices, 7 edges, no loop, no repeated edge, connected
+PASS D8-degree-sum-is-twice-the-edge-count   sum of degrees 14 = 2 * 7 edges; degree sequence [4, 4, 1, 1, 1, 1, 1, 1]
+PASS D8-maximum-degree-is-exactly-4   Delta = 4, attained at [0, 4] -- inside the class fixed at main.tex l.797
+PASS D8-edge-partition-matches-the-expected-table   m_ij = {'m14': 6, 'm44': 1}
+PASS D8-vertex-counts-match-the-expected-table   n_i = {'n1': 6, 'n4': 2}
+PASS D8-GRM-minus-2-equals-the-expected-value   direct edge sum = -8, expected value recorded in this file -8
+PASS D8-source-formula-l795-agrees   -(m13+2m14-m33-2m34-4m44) = -8
+PASS D8-source-equation-main2-l800-agrees   -(-3m12-m13-m22-m34-3m44+n-n3+3) = -8
+PASS D8-identity-GRM-equals-minus-n-plus-3-plus-S   S = 3, so -(n+3)+S = -8
+PASS D8-satisfies-the-source-system-prva-to-sesta   exact rational evaluation at l.785-790 returns n_1=6, n_2=0, n_4=2, m_14=6, m_24=0, m_33=0
+PASS D8-l838-bound-status-is-HOLDS   claimed bound -n = -8, actual GRM_{-2} = -8  ==>  l.838 HOLDS
+
+--- FORCED NEGATIVES: the source's weaker bounds must SURVIVE where the paper says ----
+PASS W1-respects-the-source-bound-at-l822   l.822 asks GRM_{-2} >= -(n+2) = -14 and W1 gives -13
+PASS W1-meets-the-source-bound-at-l830-with-equality   l.830 asks GRM_{-2} >= -(n+1) = -13 and W1 gives exactly that, so W1 refutes l.838 ALONE
+PASS W2-also-violates-the-source-bound-at-l830   l.830 asks >= -17 at n=16 and W2 gives -18
+PASS W2-meets-the-source-bound-at-l822-with-equality   l.822 asks >= -18 and W2 gives exactly that
+PASS W3-meets-the-source-bound-at-l822-with-equality   l.822 asks >= -22 and W3 gives exactly that
+
+--- THE FAMILY F(k) AS BUILT HERE: order 4k+4 and GRM_{-2} = -(n+2) CHECKED FOR k = 3..12
+    (the general k >= 3 claim is NOT machine-checked here) ---------------------------
+PASS family-k3-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=3: n=16, Delta=4, GRM_{-2}=-18 = -(n+2), n_3=1, m_14=9  (16 vertices, 15 edges, no loop, no repeated edge, connected)
+PASS family-k4-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=4: n=20, Delta=4, GRM_{-2}=-22 = -(n+2), n_3=1, m_14=11  (20 vertices, 19 edges, no loop, no repeated edge, connected)
+PASS family-k5-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=5: n=24, Delta=4, GRM_{-2}=-26 = -(n+2), n_3=1, m_14=13  (24 vertices, 23 edges, no loop, no repeated edge, connected)
+PASS family-k6-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=6: n=28, Delta=4, GRM_{-2}=-30 = -(n+2), n_3=1, m_14=15  (28 vertices, 27 edges, no loop, no repeated edge, connected)
+PASS family-k7-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=7: n=32, Delta=4, GRM_{-2}=-34 = -(n+2), n_3=1, m_14=17  (32 vertices, 31 edges, no loop, no repeated edge, connected)
+PASS family-k8-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=8: n=36, Delta=4, GRM_{-2}=-38 = -(n+2), n_3=1, m_14=19  (36 vertices, 35 edges, no loop, no repeated edge, connected)
+PASS family-k9-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=9: n=40, Delta=4, GRM_{-2}=-42 = -(n+2), n_3=1, m_14=21  (40 vertices, 39 edges, no loop, no repeated edge, connected)
+PASS family-k10-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=10: n=44, Delta=4, GRM_{-2}=-46 = -(n+2), n_3=1, m_14=23  (44 vertices, 43 edges, no loop, no repeated edge, connected)
+PASS family-k11-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=11: n=48, Delta=4, GRM_{-2}=-50 = -(n+2), n_3=1, m_14=25  (48 vertices, 47 edges, no loop, no repeated edge, connected)
+PASS family-k12-has-order-4k+4-Delta-4-and-GRM-minus-n-minus-2   k=12: n=52, Delta=4, GRM_{-2}=-54 = -(n+2), n_3=1, m_14=27  (52 vertices, 51 edges, no loop, no repeated edge, connected)
+PASS family-k3-is-isomorphic-to-W2   AHU canonical forms agree on 16 vertices
+PASS family-k4-is-isomorphic-to-W3   AHU canonical forms agree on 20 vertices
+
+--- THE SOURCE'S OWN CLAIMED EXTREMAL PARAMETERS AT l.843 AND l.844 EVALUATE TO -n ----
+PASS l843-first-claimed-extremal-case-has-GRM-equal-minus-n   checked k = 2..12 through the source formula at l.795; every case gives -n
+PASS l844-second-claimed-extremal-case-has-GRM-equal-minus-n   checked k = 2..12; every case gives -n, so TT^4_opt(k) sits 1 above W1 at k=2 and 2 above F(k) for k >= 3
+
+SCOPE OF THIS RUN: it recomputes GRM_{-2} and the degree and edge counts of the graphs
+listed below from their edge lists. It does NOT enumerate trees, so it establishes no exact
+minimum at any order and identifies no minimisers. The statement of the family claim for
+all k >= 3 is not machine-checked here: only k = 3..12 are instantiated. This run does not
+decide the case n = 8 beyond the single double star D8.
+
+objects checked: W1 (n=12), W2 (n=16), W3 (n=20), D8 (n=8 anti-control), F(k) for k=3..12,
+and the source's claimed extremal parameter sets at l.843 and l.844.
+VERDICT: ALL 70 CHECKS PASS
+=== program exited with status 0 ===

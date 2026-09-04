@@ -1,0 +1,139 @@
+=== provenance (added by the run harness, not by the program) ===
+program: census.c enumeration kernel, built with gcc -O3 -march=native -fopenmp -o census census.c -lm (gcc 11.5.0)
+sha256:  8dc2c88908dc62af38dd046f82626824f88eeb106d7b3c8bdf964e398d0f684e
+program: census.py driver: exact 80-significant-digit Decimal arithmetic, the controls, the isomorphism/automorphism tests and the verdict (Python 3.9.25)
+sha256:  a9ba702473f35f7c41d1f77169e8e1e39ad7582e5eda2c144ace5c8067b8e01d
+host: a many-core machine; nauty geng
+command: python3.9 census.py /usr/local/bin/geng ./census
+wall: 2026-09-03T05:46:56Z -> 05:49:28Z, 2 min 32 s wall
+ (pass 1, the 261,080 isomorphism classes: 0.3 s; pass 2, all 2^36 labelled graphs: 148.9 s in parallel)
+notes: both sha256 values were computed with sha256sum on that machine, against the two files the machine actually ran; the program output below is byte-identical to
+ the file the run wrote on that machine, whose sha256sum there was c5c3d1c139fb2f80d0fe35ad829a5414b56e945b2cd8b60fcd173e9f383fc949
+=== program output follows ===
+====================================================================================================
+census of the nine-vertex diameter-three cell G_{9,3} for the Euler-Sombor index
+EU(G) = sum over edges xy of sqrt(d(x)^2 + d(x)d(y) + d(y)^2)
+exact arithmetic: every EU value below is an 80-significant-digit Decimal, never a float
+====================================================================================================
+NOTE host nproc = 128
+NOTE generator  = /usr/local/bin/geng  (version banner not printed)
+NOTE kernel     = ./census
+
+=== Pass 1: every isomorphism class of connected 9-vertex graph, from geng
+command: /usr/local/bin/geng -q -c 9 | ./census classes
+NOTE pass 1 wall clock = 0.3 s, exit status 0
+NOTE geng emitted 261080 graph6 lines; kernel bucketed 261080 classes into 60753 (diameter, profile) buckets
+PASS CONTROL_geng_emits_A001349_9_equal_261080_connected_classes [261080]
+PASS CONTROL_no_malformed_graph6_line_and_no_disconnected_graph_from_geng_c [malformed=0 disconnected=0]
+PASS CONTROL_every_class_landed_in_exactly_one_bucket [261080]
+NOTE diameter strata measured: D=1:1, D=2:91518, D=3:148229, D=4:19320, D=5:1818, D=6:180, D=7:13, D=8:1
+NOTE diameter strata in paper : D=1:1, D=2:91518, D=3:148229, D=4:19320, D=5:1818, D=6:180, D=7:13, D=8:1
+PASS CONTROL_the_eight_measured_diameter_strata_reproduce_the_papers_Section_5_table [[1, 91518, 148229, 19320, 1818, 180, 13, 1]]
+PASS CONTROL_the_D_3_cell_holds_exactly_148229_isomorphism_classes [148229]
+PASS CONTROL_the_m_equals_8_classes_reproduce_A000055_9_equal_47_unlabelled_trees [47]
+NOTE D=3 sizes present: m = 8..28 (21 values)
+NOTE D=3 class count by size: 8:3, 9:17, 10:76, 11:369, 12:1483, 13:4381, 14:9621, 15:16547, 16:23013, 17:26173, 18:24441, 19:18828, 20:12040, 21:6477, 22:2980, 23:1185, 24:412, 25:131, 26:38, 27:11, 28:3
+PASS CONTROL_the_D_3_stratum_has_exactly_21_sizes_m_8_to_28 [21 sizes]
+PASS CONTROL_the_21_per_size_class_counts_reproduce_the_papers_list [[3, 17, 76, 369, 1483, 4381, 9621, 16547, 23013, 26173, 24441, 18828, 12040, 6477, 2980, 1185, 412, 131, 38, 11, 3]]
+PASS CONTROL_the_per_size_counts_sum_to_the_cell_size_148229 [148229]
+
+=== Pass 1, step 2: exact 80-digit evaluation of EU on every profile of the cell
+NOTE EU(G) is a function of the edge profile alone, so the 148229 classes of the cell reduce to 30966 distinct exact values to be compared
+NOTE distinct profiles in the cell = 30966, covering 148229 classes
+PASS CONTROL_the_profile_reduction_is_lossless_classes_still_sum_to_148229 [148229]
+NOTE smallest gap between two DISTINCT profile values anywhere in the cell = 1.038011241280298561547138384396945E-7
+PASS no_two_distinct_profiles_of_the_cell_are_within_1e_30_so_no_comparison_here_is_delicate [min gap = 1.038011241280298561547138384E-7]
+
+--- the five cheapest and the five dearest profiles of the cell
+     EU = 40.009800121795   m=10   classes=     1   profile: (2,2)^4 (2,3)^6
+     EU = 42.769714484633   m= 9   classes=     1   profile: (1,4)^4 (2,2)^2 (2,4)^2 (4,4)^1
+     EU = 43.829034212094   m= 8   classes=     1   profile: (1,4)^3 (1,5)^4 (4,5)^1
+     EU = 44.840944536169   m= 9   classes=     1   profile: (1,3)^1 (1,5)^3 (2,2)^2 (2,3)^1 (2,5)^1 (3,5)^1
+     EU = 45.694475454946   m=10   classes=     1   profile: (1,4)^2 (2,2)^2 (2,3)^4 (3,4)^2
+     ...
+     EU = 307.349988030104   m=27   classes=     1   profile: (1,7)^1 (6,6)^2 (6,7)^14 (7,7)^10
+     EU = 309.233267792063   m=27   classes=     1   profile: (1,7)^1 (5,7)^5 (6,7)^6 (7,7)^15
+     EU = 319.850655008544   m=28   classes=     1   profile: (3,7)^3 (4,7)^4 (7,7)^21
+     EU = 323.183706800923   m=28   classes=     1   profile: (2,7)^2 (5,7)^5 (7,7)^21
+     EU = 329.777869165404   m=28   classes=     1   profile: (1,7)^1 (6,7)^6 (7,7)^21
+
+--- MINIMUM over G_{9,3}
+NOTE EU_min to 60 digits = 40.009800121795059661641462635204672890364465581877714645789
+NOTE classes attaining it = 1   (representative graph6: H?`@f?[)
+NOTE runner-up value      = 42.769714484633   (margin 2.759914362838)
+PASS the_measured_minimum_equals_8sqrt3_plus_6sqrt19_to_1e_60 [difference = 0E-78]
+PASS the_measured_minimum_truncates_to_the_papers_printed_40_009800121795059 [40.009800121795059]
+PASS THE_MINIMUM_IS_ATTAINED_BY_EXACTLY_ONE_ISOMORPHISM_CLASS_zero_ties [classes at the minimum = 1, ties = 0]
+NOTE argmin: degrees [2, 2, 2, 2, 2, 2, 2, 3, 3], m=10, diameter 3
+PASS the_argmin_returned_by_the_census_is_isomorphic_to_the_theta_graph_Theta_3_3_4 [graph6 H?`@f?[]
+PASS the_argmin_has_diameter_exactly_3_and_is_bicyclic_m_equals_10
+NOTE |Aut(argmin)| = 4, so the argmin accounts for 9!/|Aut| = 90720 labelled graphs
+
+--- MAXIMUM over G_{9,3}
+NOTE EU_max to 60 digits = 329.777869165403581142871319158766259127286436637234505674714
+NOTE classes attaining it = 1   (representative graph6: HTm||~})
+NOTE runner-up value      = 323.183706800923   (margin 6.594162364481)
+PASS the_measured_maximum_equals_147sqrt3_plus_sqrt57_plus_6sqrt127_to_1e_60 [difference = 0E-77]
+PASS the_measured_maximum_truncates_to_the_papers_printed_329_777869165403581 [329.777869165403581]
+PASS THE_MAXIMUM_IS_ATTAINED_BY_EXACTLY_ONE_ISOMORPHISM_CLASS_zero_ties [classes at the maximum = 1, ties = 0]
+NOTE argmax: degrees [1, 6, 7, 7, 7, 7, 7, 7, 7], m=28, diameter 3
+PASS the_argmax_returned_by_the_census_is_isomorphic_to_H_1_6 [graph6 HTm||~}]
+PASS the_argmax_has_diameter_exactly_3_and_m_equals_28
+NOTE |Aut(argmax)| = 720, so the argmax accounts for 9!/|Aut| = 504 labelled graphs
+PASS the_runner_up_to_the_maximum_is_H_2_5_at_147sqrt3_plus_2sqrt67_plus_5sqrt109 [323.1837068009]
+PASS the_margin_of_the_maximum_over_the_runner_up_is_the_papers_6_5941623645 [6.5941623645]
+
+=== Pass 1, step 3: four more values the census must reproduce, three of them published
+NOTE min over the trees of the cell (m=8)      = 43.8290342121
+NOTE min over the unicyclic members (m=9)      = 42.7697144846
+NOTE max over the unicyclic members (m=9)      = 62.7871695845
+PASS the_best_tree_in_the_cell_is_D_3_4_at_sqrt61_plus_3sqrt21_plus_4sqrt31_43_8290342121 [43.8290342121]
+PASS the_unicyclic_runner_up_is_4sqrt21_plus_8sqrt3_plus_4sqrt7_equal_42_7697144846 [42.7697144846]
+PASS PUBLISHED_the_unicyclic_maximum_of_the_cell_is_sharp_for_Sekar_et_al_Theorem_3_2_at_n_9 [62.7871695845]
+PASS the_strict_order_of_Theorem_A_bicyclic_below_unicyclic_below_best_tree [gaps 2.7599143628 and 1.0593197275]
+NOTE min over G_{9,4} = 31.1769145362 attained by 1 class(es), representative H?bB@_W
+PASS PUBLISHED_the_minimum_of_the_D_4_cell_is_Kizilirmak_Lemma_2_EU_C_9_equal_18sqrt3 [31.1769145362]
+PASS that_D_4_minimiser_is_the_9_cycle_itself
+
+=== Pass 1, step 4: the sweep can report non-uniqueness -- the paper's two genuine ties
+NOTE min over G_{9,5} = 29.8156544620 attained by 1 isomorphism class(es)
+NOTE min over G_{9,6} = 27.9421539941 attained by 2 isomorphism class(es)
+PASS the_reported_minimum_at_n_9_D_6_is_a_genuine_TIE_of_two_classes_as_the_paper_states [classes = 2]
+NOTE min over G_{9,7} = 28.0071566301 attained by 2 isomorphism class(es)
+PASS the_reported_minimum_at_n_9_D_7_is_a_genuine_TIE_of_two_classes_as_the_paper_states [classes = 2]
+NOTE min over G_{9,8} = 26.0761123130 attained by 1 isomorphism class(es)
+
+=== Pass 2: independent sweep of all 2^36 labelled graphs on {0..8} -- no geng, no canonical form, no isomorphism test
+command: ./census labelled 40.00980012179506 329.77786916540356 1e-06
+NOTE pass 2 wall clock = 148.9 s, exit status 0
+NOTE labelled graphs swept   = 68719476736 (= 2^36)
+NOTE labelled disconnected   = 2423185664
+NOTE labelled connected      = 66296291072
+NOTE exponential formula     = 66296291072 connected labelled graphs on 9 nodes
+NOTE labelled by diameter    = D=1:1, D=2:22646116111, D=3:38771223120, D=4:4472284320, D=5:369230400, D=6:34171200, D=7:3084480, D=8:181440
+PASS CONTROL_the_labelled_sweep_saw_all_2_to_the_36_graphs
+PASS CONTROL_the_labelled_connected_count_equals_the_exponential_formula_value [66296291072]
+PASS CROSS_PASS_every_stratum_obeys_classes_at_most_labelled_at_most_9_factorial_times_classes [D=3: 148229 classes, 38771223120 labelled]
+PASS CROSS_PASS_the_D_1_stratum_is_the_single_labelled_graph_K_9 [1]
+PASS CROSS_PASS_the_D_8_stratum_is_9_factorial_over_2_equal_181440_labellings_of_the_path_P_9 [181440]
+PASS NOTHING_IN_THE_CELL_BEATS_THE_MINIMUM_found_by_the_class_pass [labelled graphs below EU_min-1e-6 = 0]
+PASS NOTHING_IN_THE_CELL_BEATS_THE_MAXIMUM_found_by_the_class_pass [labelled graphs above EU_max+1e-6 = 0]
+PASS the_labelled_sweeps_own_double_extrema_agree_with_the_exact_class_pass_values [min 40.009800121795 max 329.777869165404]
+NOTE labelled graphs within 1e-6 of the minimum = 90720, in 1 distinct profile(s)
+NOTE labelled graphs within 1e-6 of the maximum = 504, in 1 distinct profile(s)
+PASS the_minimum_window_holds_exactly_one_profile_and_it_is_the_class_passs_argmin_profile [(2,2)^4 (2,3)^6]
+PASS the_maximum_window_holds_exactly_one_profile_and_it_is_the_class_passs_argmax_profile [(1,7)^1 (6,7)^6 (7,7)^21]
+PASS UNIQUENESS_CONFIRMED_LABELLED_the_minimum_window_holds_exactly_9_factorial_over_Aut_graphs [90720 = 362880/4, so exactly one isomorphism class attains the minimum]
+PASS UNIQUENESS_CONFIRMED_LABELLED_the_maximum_window_holds_exactly_9_factorial_over_Aut_graphs [504 = 362880/720, so exactly one isomorphism class attains the maximum]
+
+====================================================================================================
+HEADLINE (measured, not transcribed):
+  the cell G_{9,3} has exactly 148229 isomorphism classes
+  max EU over G_{9,3} = 329.777869165403581142871319158766
+                      = 147*sqrt3 + sqrt57 + 6*sqrt127, attained by 1 class: H(1,6)
+  min EU over G_{9,3} = 40.009800121795059661641462635205
+                      = 8*sqrt3 + 6*sqrt19, attained by 1 class: Theta(3,3,4)
+  ties at the maximum: 0      ties at the minimum: 0
+====================================================================================================
+VERDICT: 43 checks, 43 PASS, 0 FAIL -- BOTH EXTREMA OF G_{9,3} ARE EXHAUSTIVELY CONFIRMED AND UNIQUE
+=== program exited with status 0 ===

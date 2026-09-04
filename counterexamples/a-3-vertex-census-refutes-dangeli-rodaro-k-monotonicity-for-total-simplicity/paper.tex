@@ -1,0 +1,501 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Non-monotonicity in k at n = 3: a census contradicting a k-monotonicity
+            clause transcribed from D'Angeli and Rodaro}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\SCC}{\mathrm{SCC}}
+\newcommand{\TS}{\mathrm{TS}}
+
+\title[Non-monotonicity in $k$ at $n=3$]
+{Non-Monotonicity in $k$ at $n=3$: A Census Contradicting a $k$-Monotonicity
+Clause Transcribed from D'Angeli and Rodaro}
+
+\date{}
+
+\subjclass[2020]{05C80, 68Q45, 05C20, 60C05}
+\keywords{totally simple graph, lumpable partition, $k$-out digraph, random digraph,
+synchronizing automaton, counterexample, exhaustive census}
+
+\begin{document}
+
+\sloppy
+
+\begin{abstract}
+For a uniformly random $k$-out digraph $G$ on $n$ labelled vertices --- each vertex
+choosing its $k$ out-edge heads independently and uniformly \emph{with replacement} ---
+let
+$P(n,k)=\Pr\bigl(G \text{ totally simple}\mid G \text{ strongly connected}\bigr)$.
+A three-clause conjecture of D'Angeli and Rodaro, as we transcribe it by hand from the
+e-print (Section~\ref{sec:locator}), asserts among other things that for each fixed $n$ the
+map $k\mapsto P(n,k)$ is nondecreasing on $k\ge2$.  An exhaustive census at $n=3$
+contradicts that clause.  Writing $B(n,k)$ for the total weight of the strongly connected states
+and $A(n,k)$ for the total weight of those that are also totally simple,
+\[
+  A(3,2)=114,\quad B(3,2)=296,\qquad A(3,3)=5132,\quad B(3,3)=13754,
+\]
+so $P(3,2)=\tfrac{57}{148}>\tfrac{2566}{6877}=P(3,3)$, the inequality being decided by
+$114\cdot13754=1\,567\,956>1\,519\,072=5132\cdot296$.  All four integers have closed forms
+in $k$ that a reader can evaluate by hand, so no computation is needed to check the
+inequality.  Two caveats bound what this settles.  The clause, its quantifiers and the
+probability model are transcribed by hand from the cited e-print, of which we can supply
+neither an immutable copy nor a hash; and the drop, about $1.2$ percentage points,
+disappears under the rival uniform measure on labelled $k$-out multigraphs, so
+Section~\ref{sec:model} records what pins the with-replacement reading.  Nothing here bears
+on the two \emph{asymptotic} clauses of the same conjecture, which remain open.  The
+denominators are not new: $B(n,2)$ is a published $1965$/$1971$ automaton census, and
+$B(3,3)=13754$ is on record as well.
+\end{abstract}
+
+\maketitle
+
+\section{The clause, as transcribed, and its locator}
+\label{sec:locator}
+
+The source is D. D'Angeli and E. Rodaro, \emph{On totally synchronizing graphs},
+arXiv:2607.17335 \cite{DR}, version~v1, submitted 19 July 2026.  All line references are to
+its \LaTeX{} e-print source rather than to the compiled PDF: the file
+\texttt{totally\_main.tex}, $143\,403$ bytes, $1977$ lines.  In the section ``Totally
+simple graphs'' the source states a three-clause conjecture, tex lines $1457$--$1471$; it
+is unnumbered in the source, carries no \verb|\cite|, and is attributed to nobody there.
+
+We can supply neither an immutable copy of that e-print nor a cryptographic hash of it, and
+we have not confirmed that the arXiv identifier resolves for a third party.  Everything this
+note attributes to the source --- the clause quoted below, its ambient quantifiers, the
+definitions of Section~\ref{sec:model} and the probability model --- is hand transcription
+from the file named above, and it is not checked by the accompanying program
+(Section~\ref{sec:verify}).  A reader who cannot obtain the file cannot check that part.
+What is proved here without reference to the source is the arithmetic of
+Theorem~\ref{thm:main}: $P(3,2)>P(3,3)$ in the model of Section~\ref{sec:model}.
+
+The clause at issue is the second one, tex line $1463$, transcribed verbatim:
+
+\begin{verbatim}
+Moreover, for fixed $n$ the function $k \longmapsto
+\Pr(\text{$G$ is totally simple}\mid \mathrm{SCC})$
+is nondecreasing.
+\end{verbatim}
+
+\noindent
+The conjecture opens ``Fix $k\ge2$'', so on this transcription the clause asserts
+\begin{equation}\label{eq:clause}
+  P(n,k)\;\le\;P(n,k+1)
+  \qquad\text{for every $n\ge1$ and every $k\ge2$,}
+\end{equation}
+where $P(n,k)=\Pr(G\text{ totally simple}\mid\SCC)$.  \emph{The clause places no lower
+bound on $n$.}  The first clause of the same conjecture (tex line $1461$) asserts
+$P(n,k)\to1$ as $n\to\infty$ for fixed $k$, and the third (tex lines $1465$--$1470$)
+asserts an expansion $P(n,k)=1-\exp(-c_kn+\beta_k)+o(1)$ with $c_k$ increasing in $k$.
+Both of those are asymptotic; nothing below bears on them.
+
+\section{The model and the predicate}
+\label{sec:model}
+
+\subsection*{The measure}
+The source fixes the model in the paragraph at tex lines $1445$--$1455$: ``in our model
+each vertex chooses independently $k$ outgoing edges with replacement, and the head of
+each edge is uniform in $V$''.  So, with $V=\{0,\dots,n-1\}$, the probability space is
+$V^{kn}$ with the uniform measure.  Only the out-multiset of each vertex matters for what
+follows, so we work with the \emph{state} $c=(c_{vw})_{v,w\in V}$, where $c_{vw}$ is the
+number of edges $v\to w$ and $\sum_wc_{vw}=k$ for every $v$; loops and parallel edges are
+allowed.  The number of ordered choices realising a state is its weight
+\begin{equation}\label{eq:weight}
+  W(c)=\prod_{v\in V}\frac{k!}{\prod_{w\in V}c_{vw}!},
+  \qquad\text{and}\qquad
+  \sum_{c}W(c)=n^{kn}.
+\end{equation}
+Write $a_{vw}:=c_{vw}$ when the matrix notation is more convenient.
+
+\subsection*{The predicate}
+For a partition $\mathcal C$ of $V$ the source calls $\mathcal C$ \emph{lumpable} (tex
+$339$--$343$) if for every pair of blocks $C_i,C_j$ and all $u,u'\in C_i$ one has
+$|\delta_u(C_j)|=|\delta_{u'}(C_j)|$, where $\delta_u(C_j)$ is the set of edges from $u$
+into $C_j$.  A congruence different from the discrete relation $\Delta_G$ and the
+universal relation $\nabla_G$ is called \emph{nontrivial} (tex $355$), and an automaton is
+\emph{simple} when its only congruences are the discrete and the universal one (tex
+$240$).  Chaining that with the definition of \emph{totally simple} (tex $1357$--$1359$),
+with the source's lemma identifying lumpable partitions with congruences (tex
+$1375$--$1377$) and with its theorem relating lumpability to simplicity (tex
+$1386$--$1388$) --- and with the source's own
+restatement at tex $1510$, ``total simplicity is equivalent to the absence of nontrivial
+lumpable partitions'' --- gives the form we use:
+\begin{equation}\label{eq:TS}
+\begin{gathered}
+  G \text{ is \emph{totally simple}}\\
+  \iff\quad
+  \text{no partition of $V$ other than $\Delta_G$ and $\nabla_G$ is lumpable.}
+\end{gathered}
+\end{equation}
+Both $\Delta_G$ and $\nabla_G$ are always lumpable ($\nabla_G$ because
+$|\delta_u(V)|=k$ for every $u$; $\Delta_G$ vacuously), so excluding both is forced by the
+source rather than chosen by us, and the predicate is well posed.
+
+\subsection*{The three quantities}
+Set
+\begin{equation}\label{eq:ABP}
+  B(n,k)=\!\!\sum_{c\ \text{str.\ conn.}}\!\!W(c),
+  \qquad
+  A(n,k)=\!\!\sum_{\substack{c\ \text{str.\ conn.}\\ c\ \text{totally simple}}}\!\!W(c),
+\end{equation}
+\begin{equation}\label{eq:P}
+  P(n,k)=\frac{A(n,k)}{B(n,k)}.
+\end{equation}
+Then $P(n,k)=\Pr(G\text{ totally simple}\mid\SCC)$ in the source's model.
+
+\begin{remark}[the model is load-bearing]\label{rem:model}
+``Uniformly random $k$-out graph'' also admits a rival reading: the uniform measure on
+labelled $k$-out multigraphs, i.e.\ weight $1$ per state instead of \eqref{eq:weight}.
+Under that rival reading the counterexample below \emph{does not exist}: writing $P_u$ for
+the rival quantity, $P_u(3,2)=\tfrac{34}{65}<\tfrac{133}{243}=P_u(3,3)$, by
+$34\cdot486=16\,524<17\,290=266\cdot65$ on the unreduced rival state counts, and every
+rival $k$-step we computed is nondecreasing.  Since the drop found below is only about
+$1.2$ percentage points, the choice of model is the difference between a counterexample and
+none.  Two features of the source pin the ordered reading used here.  First, tex $1449$ says ``with replacement'' in words.
+Second, the source's own displayed identity at tex $1452$,
+$\Pr(\delta_V(v)=\emptyset)=(1-1/n)^{kn}$ for the event that no edge lands on $v$, is true
+in the ordered model and false in the rival one: at $n=3,k=2$ it gives
+$(2/3)^6=64/729$, whereas the rival measure gives $(3/6)^3=1/8$.  The residual risk in
+this note is therefore a \emph{reading} risk, not an arithmetic one.
+\end{remark}
+
+\section{The counterexample at $n=3$}
+\label{sec:refutation}
+
+\begin{theorem}\label{thm:main}
+In the model of Section~\ref{sec:model},
+\[
+  A(3,2)=114,\qquad B(3,2)=296,\qquad A(3,3)=5132,\qquad B(3,3)=13754,
+\]
+so that
+\begin{align*}
+  P(3,2)&=\frac{114}{296}=\frac{57}{148}=0.385135\ldots,\\
+  P(3,3)&=\frac{5132}{13754}=\frac{2566}{6877}=0.373127\ldots
+\end{align*}
+and therefore $P(3,2)>P(3,3)$.  Consequently \eqref{eq:clause} --- the clause as
+transcribed in Section~\ref{sec:locator} from tex line $1463$ of \cite{DR}, read in this
+model --- is false.
+\end{theorem}
+
+Nothing in the comparison needs decimals.  Cross-multiplying the two unreduced fractions,
+\begin{equation}\label{eq:cross}
+  114\cdot13754=1\,567\,956
+  \;>\;
+  1\,519\,072=5132\cdot296,
+\end{equation}
+and the gap is
+\begin{equation}\label{eq:drop}
+  P(3,2)-P(3,3)=\frac{57}{148}-\frac{2566}{6877}=\frac{12221}{1017796}=0.0120073\ldots,
+\end{equation}
+about $1.2$ percentage points.  Here $n=3$ is a fixed $n$ and both $k=2$ and $k=3$ satisfy
+the conjecture's own ``Fix $k\ge2$'', so the counterexample lies inside the clause's own
+quantifiers.  The value $k=1$ is \emph{not} used: $P(3,1)=1>P(3,2)$ is also a decrease, but
+$k=1$ is outside the source's range.
+
+The rest of this section proves Theorem~\ref{thm:main} in closed form, so that a reader
+needs no program.  Throughout, $n=3$ and indices are read modulo $3$.
+
+\subsection*{Step 1: total simplicity at $n=3$ is three column inequalities}
+
+\begin{proposition}\label{prop:columns}
+A $3$-vertex $k$-out graph with edge multiplicities $a_{ij}$ is totally simple if and only
+if in each column the two off-diagonal entries differ:
+\[
+  a_{10}\neq a_{20},
+  \qquad
+  a_{01}\neq a_{21},
+  \qquad
+  a_{02}\neq a_{12}.
+\]
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:TS} the partitions to be excluded are those other than $\Delta$ and $\nabla$,
+and the only such partitions of a $3$-set are the three of shape $2+1$.  Fix
+$\mathcal C=\{\{i,i'\},\{j\}\}$.  The singleton block imposes nothing.  For the block
+$\{i,i'\}$, lumpability requires $|\delta_i(\{j\})|=|\delta_{i'}(\{j\})|$, i.e.\
+$a_{ij}=a_{i'j}$, and $|\delta_i(\{i,i'\})|=|\delta_{i'}(\{i,i'\})|$; since each row sums
+to $k$, the latter reads $k-a_{ij}=k-a_{i'j}$ and is equivalent to the former.  So
+$\mathcal C$ is lumpable exactly when the two off-diagonal entries of column $j$ agree, and
+total simplicity is the conjunction of the three negations.
+\end{proof}
+
+\subsection*{Step 2: the denominator $B(3,k)$}
+
+\begin{proposition}\label{prop:B}
+$B(3,k)=(3^k-1)^3-3\,(2^k-1)^2(3^k-1)$; in particular
+\begin{align*}
+  B(3,2)&=8^3-3\cdot3^2\cdot8=512-216=296,\\
+  B(3,3)&=26^3-3\cdot7^2\cdot26=17\,576-3822=13\,754,
+\end{align*}
+and $B(3,4)=80^3-3\cdot15^2\cdot80=512\,000-54\,000=458\,000$.
+\end{proposition}
+
+\begin{proof}
+For a vertex $v$ let $S_v=\{w\neq v: a_{vw}>0\}$.  A $3$-vertex state fails to be strongly
+connected if and only if some $S_v$ is empty (an \emph{all-loop} vertex) or there is a
+\emph{closed pair} $\{u,v\}$, meaning $S_u=\{v\}$ and $S_v=\{u\}$.  Indeed, if every $S_v$
+is nonempty and the state is not strongly connected, take a sink component $C$ of the
+condensation: every vertex of $C$ has its out-support inside $C$, so $|C|=1$ is impossible
+and $|C|=3$ would be strong connectivity, leaving $|C|=2$, which is a closed pair.
+
+The ordered weight of the vertices $v$ with $S_v\neq\emptyset$ is $3^k-1$ each (all $3^k$
+head choices, minus the single all-loop choice), giving $(3^k-1)^3$ for the first term.
+For a fixed closed pair $\{u,v\}$, vertex $u$ must send all $k$ heads into $\{u,v\}$ with
+at least one to $v$, of weight $2^k-1$, and likewise for $v$; the third vertex is
+unrestricted apart from $S_w\neq\emptyset$, of weight $3^k-1$.  The three closed pairs are
+pairwise incompatible, since two of them share a vertex, which would then be forced to be
+all-loops and hence to have $S=\emptyset$.  Subtracting gives the formula.
+\end{proof}
+
+\subsection*{Step 3: the numerator $A(3,k)$ as a matrix trace}
+
+Give vertex $i$ the ordered pair $(s_i,t_i)=(a_{i,i+1},a_{i,i+2})$, so that
+$a_{ii}=k-s_i-t_i$ and the ordered weight of vertex $i$ is the trinomial
+\[
+  W_k[s][t]=\frac{k!}{s!\,t!\,(k-s-t)!}\quad(s+t\le k),
+  \qquad W_k[s][t]=0\quad(s+t>k),
+\]
+a symmetric $(k+1)\times(k+1)$ matrix.  In these coordinates $a_{10}=t_1$, $a_{20}=s_2$,
+$a_{01}=s_0$, $a_{21}=t_2$, $a_{02}=t_0$, $a_{12}=s_1$, so
+Proposition~\ref{prop:columns} becomes the cyclic system
+\begin{equation}\label{eq:cycle}
+  t_0\neq s_1,
+  \qquad
+  t_1\neq s_2,
+  \qquad
+  t_2\neq s_0 .
+\end{equation}
+Let $D=J-I$ be the all-ones-minus-identity matrix of size $k+1$ and put $f(t)=\sum_{q\ge1}W_k[t][q]$.
+
+\begin{proposition}\label{prop:A}
+$\displaystyle A(3,k)=\operatorname{tr}\bigl((W_kD)^3\bigr)-3\Bigl[\bigl(\textstyle\sum_tf(t)\bigr)^2-\sum_tf(t)^2\Bigr]$.
+\end{proposition}
+
+\begin{proof}
+Since $(W_kD)[s][s']=\sum_{t\neq s'}W_k[s][t]$, expanding the trace gives
+$\operatorname{tr}((W_kD)^3)=\sum\prod_{i}W_k[s_i][t_i]$ over all
+$(s_i,t_i)_{i=0,1,2}$ obeying \eqref{eq:cycle}: that is exactly the total ordered weight of
+the totally simple states, strong connectivity not yet imposed.
+
+It remains to subtract the totally simple states that are not strongly connected.  If a
+state is totally simple then, by the sink-component argument in the proof of
+Proposition~\ref{prop:B} together with Proposition~\ref{prop:columns}, it has no closed
+pair: a closed pair $\{u,v\}$ forces $a_{uw}=a_{vw}=0$ in the column of the third vertex
+$w$.  Hence a totally simple state fails strong connectivity precisely when some vertex is
+all-loops, and at most one vertex can be, since two all-loop vertices $i,i'$ would give
+$a_{iw}=a_{i'w}=0$.  Say vertex $0$ is all-loops, i.e.\ $s_0=t_0=0$, of weight
+$W_k[0][0]=1$.  Then \eqref{eq:cycle} reads $s_1\ge1$, $t_2\ge1$ and $t_1\neq s_2$, while
+the requirement that vertices $1$ and $2$ are not all-loops is automatic.  Summing over
+$s_1\ge1$ at fixed $t_1$ contributes $\sum_{s\ge1}W_k[s][t_1]=f(t_1)$ by symmetry of
+$W_k$, and summing over $t_2\ge1$ at fixed $s_2$ contributes $f(s_2)$; the surviving
+constraint is $t_1\neq s_2$.  So the count is
+$\sum_{t_1\neq s_2}f(t_1)f(s_2)=(\sum f)^2-\sum f^2$, and there are three choices of the
+all-loop vertex.
+\end{proof}
+
+\subsection*{Step 4: the arithmetic, in full}
+
+For $k=2$ and $k=3$ the matrices are, with rows indexed by $s$ and columns by $t$,
+\[
+  W_2=\begin{pmatrix}1&2&1\\2&2&0\\1&0&0\end{pmatrix},
+  \qquad
+  W_3=\begin{pmatrix}1&3&3&1\\3&6&3&0\\3&3&0&0\\1&0&0&0\end{pmatrix},
+\]
+with row sums $4,4,1$ summing to $3^2=9$ and $8,12,6,1$ summing to $3^3=27$.  Their
+traces and corrections are
+\begin{align*}
+  \operatorname{tr}\bigl((W_2D)^3\bigr)&=150,
+  & f&=(3,2,0),
+  & 3\bigl[5^2-13\bigr]&=36,\\
+  \operatorname{tr}\bigl((W_3D)^3\bigr)&=5798,
+  & f&=(7,9,3,0),
+  & 3\bigl[19^2-139\bigr]&=666,
+\end{align*}
+so that $A(3,2)=150-36=114$ and $A(3,3)=5798-666=5132$.
+Together with Proposition~\ref{prop:B} this proves Theorem~\ref{thm:main}: all four
+integers are obtained from a $3\times3$ and a $4\times4$ integer matrix and two
+subtractions, and \eqref{eq:cross} concludes.  The same route at $k=4$ gives
+$\operatorname{tr}((W_4D)^3)=189\,518$, $f=(15,28,18,4,0)$, correction
+$3[65^2-1349]=8628$, hence $A(3,4)=180\,890$ and
+\begin{equation}\label{eq:isolated}
+  P(3,4)=\frac{180\,890}{458\,000}=\frac{18089}{45800}=0.394956\ldots>P(3,3),
+\end{equation}
+so monotonicity resumes at the very next step.  The corrections $36$, $666$ and $8628$ are
+exactly the weights of the states that are totally simple and \emph{not} strongly
+connected.
+
+Propositions~\ref{prop:B} and~\ref{prop:A} give $A(3,k)$ and $B(3,k)$ in closed form for
+every $k$.  Evaluating them and comparing consecutive values by exact cross-multiplication
+is a finite computation, and the program of Section~\ref{sec:verify} carried it out for
+$2\le k\le30$: in that range $k=2\to3$ is the only step along $n=3$ at which
+\eqref{eq:clause} fails, and $P(3,k)<P(3,k+1)$ strictly for $3\le k\le29$.  This is a
+verified computation rather than a consequence of the closed forms alone, and it says
+nothing about $k>30$.
+
+\section{Total simplicity does not imply strong connectivity}
+\label{sec:secondary}
+
+This is secondary to the counterexample; it is recorded because the numerator computation
+depends on it.
+
+\begin{proposition}\label{prop:1455}
+Some totally simple $3$-vertex $2$-out graphs are not strongly connected.  Hence the
+sentence transcribed from tex line $1455$ of \cite{DR}, ``if a $k$-out digraph $G$ is not
+strongly connected, then it is automatically nontrivially lumpable'', and the assertion of
+the source's remark at tex $1516$--$1521$ that every totally simple $k$-out graph is
+strongly connected, are both false.
+\end{proposition}
+
+\begin{proof}
+The $2$-out graph $0\to\{0,0\}$, $1\to\{0,2\}$, $2\to\{1,1\}$ on $\{0,1,2\}$, written as
+out-multisets, has $a_{10}=1\neq0=a_{20}$, $a_{01}=0\neq2=a_{21}$ and
+$a_{02}=0\neq1=a_{12}$, so it is totally simple by Proposition~\ref{prop:columns}; yet
+vertex $0$ is all loops and reaches nothing, so it is not strongly connected.  The remark's
+argument takes a sink strongly connected component $C$ and forms ``the equivalence relation
+whose only non-singleton class is $C$''; when $|C|=1$ that relation is $\Delta_G$, which the
+source itself calls trivial at tex $355$, and the graph just exhibited realises that gap.
+\end{proof}
+
+Consequently $P(n,k)$ is \emph{not} $\Pr(\TS)/\Pr(\SCC)$: the joint weight $A(n,k)$ must be
+computed with the strong connectivity test applied, as in \eqref{eq:ABP}.
+
+\section{Status: what is settled, and what is not}
+\label{sec:status}
+
+The clause \eqref{eq:clause} is false as transcribed: one fixed $n$ and one $k$-step inside
+its own quantifiers suffice, and Theorem~\ref{thm:main} exhibits them with closed-form
+integers.  Two things bound that.  The clause, its quantifiers and the identification of the
+model are hand transcription from an e-print we cannot pin (Section~\ref{sec:locator}); and
+the failure is in the ordered/with-replacement model only --- the dip \eqref{eq:drop}
+vanishes under the rival reading of Remark~\ref{rem:model}, which records the rival numbers
+and the two features of the source that pin the reading used.
+
+The two \emph{asymptotic} clauses of the same conjecture --- $P(n,k)\to1$ as $n\to\infty$
+(tex $1461$) and the expansion $1-\exp(-c_kn+\beta_k)+o(1)$ with $c_k$ increasing (tex
+$1465$--$1470$) --- are not addressed here, and no finite census can address them.  They
+remain open.  The large-$n$ intent of the conjecture survives everything computed here: the
+source's own sampled table at $n=8,9,10$ (tex $1484$--$1506$) is monotone in $k$ at each of
+those three values of $n$, and $n=3$ lies five below the smallest $n$ it samples.  Replacing
+``for fixed $n$'' by ``for fixed $n\ge4$'' is consistent with every cell we know of, but
+that is not a theorem: it is quantified over all $n\ge4$ and all $k\ge2$ and supported by
+finitely many cells.  Nor do we claim that $k=2\to3$ is the only violation along $n=3$
+beyond $k=30$.
+
+The denominators are not new.  The numbers $B(n,2)$ are the classical census of labelled
+strongly connected $n$-state $2$-input automata, OEIS \texttt{A027834} \cite{OEIS}, with
+$B(3,2)=296$ and $B(4,2)=20\,958$ the third and fourth terms; the sequence goes back to
+Harrison \cite{Harrison} and Liskovets \cite{Liskovets}.  Neither is $B(3,3)=13\,754$ new.
+An editorial note in OEIS \texttt{A006691} \cite{OEISb}, quoting Robinson \cite{Robinson}
+and Liskovets \cite{Liskovets}, records \texttt{A006692} ($49$, $6877$, $1854545,\dots$) as
+a normalised count of labelled strongly connected automata with three inputs, the $p$-state
+value being $(p-1)!$ times its $(p-1)$st term; at $p=3$ that is $2!\cdot6877=13\,754$.  On
+that reading $B(n,k)$ is on record for every $k$, not only for $k=2$.  We have not verified
+that normalisation independently, and the program checks only the two terms $296$ and
+$20\,958$ against its own census.
+
+Adjacent work settles nothing about the numerator or about $k$-monotonicity.  Harrison's
+census of strongly connected sequential machines \cite{HarrisonSCC} and the subsequent
+literature on automorphism groups and quotients of strongly connected automata count or
+classify such automata without the lumpability refinement, and the sources just cited give
+$B(n,k)$ but not $A(n,k)$; none of them addresses the behaviour of $P(n,k)$ in $k$.  We
+claim no priority for the lumpability-refined numerator $A(n,k)$: searches of
+\texttt{A027834}'s host database along both the $k$-axis ($114,5132,180890$) and the
+$n$-axis ($1,9,114,6720$) return no sequence, which is a failed search and not evidence of
+novelty.
+
+\section{Reproduction and verification}
+\label{sec:verify}
+
+The accompanying program \texttt{verify.py} (Python~3.9+, standard library only)
+independently re-derives the census integers of Theorem~\ref{thm:main} and the other
+census values printed here, within the limits recorded below.  It enumerates the state space
+exhaustively at $n=3$ for $k=1,2,3,4$, at $n=4$ for $k=2$ and at $n=2$ for $k=2,3$,
+deciding lumpability from the definition over \emph{all} set partitions with $\Delta$ and
+$\nabla$ removed; it re-runs $n=3$, $k=2,3$ a second time as a direct enumeration over the
+$3^{kn}$ raw ordered edge tuples with weight $1$ per tuple and no multinomial weight
+anywhere; it checks the two independent closed forms of Propositions~\ref{prop:B}
+and~\ref{prop:A} against the census and against each other for $2\le k\le30$; it verifies
+the total-weight identity $n^{kn}$ of \eqref{eq:weight} in every cell and that $\Delta$ and
+$\nabla$ are lumpable on every state; and it decides every inequality by
+exact integer or \texttt{Fraction} arithmetic.  Its recorded run reports
+\texttt{VERDICT: ALL 56 CHECKS PASS}.
+
+The limits of that program are recorded in its own output and repeated here.  It does not
+recompute any cell with $n\ge5$, nor $n=4$ with $k\ge3$, so the repair discussed in
+Section~\ref{sec:status} is consistent with, not verified by, it; and it does not recompute
+the source's Monte Carlo table at $n=8,9,10$, nor any attribution in
+Section~\ref{sec:status} --- of those it checks only that its own census reproduces the two
+hand-transcribed terms $296$ and $20\,958$, and it does not touch the
+\texttt{A006691}/\texttt{A006692} normalisation.  Above all, it does not read \cite{DR}: the
+quoted clause, the tex line numbers, the definitions of Section~\ref{sec:model} and the
+identification of the probability model are transcribed from the e-print by hand, and the
+program checks arithmetic in the model as transcribed.  Its output banner speaks of a
+counterexample to the clause and calls the clause refuted; that reading of the source is the
+part of this note a reader must check against \cite{DR} directly, and it is the residual
+risk recorded in Remark~\ref{rem:model} and in Section~\ref{sec:locator}.
+
+\begin{thebibliography}{9}
+
+\bibitem{DR}
+D.~D'Angeli and E.~Rodaro,
+\emph{On totally synchronizing graphs},
+arXiv:2607.17335v1, 19 July 2026.
+Abstract page \href{https://arxiv.org/abs/2607.17335v1}{arxiv.org/abs/2607.17335v1};
+e-print source \href{https://arxiv.org/e-print/2607.17335v1}{arxiv.org/e-print/2607.17335v1}.
+Line numbers quoted in this note refer to the \LaTeX{} source file
+\texttt{totally\_main.tex} of that e-print.  We supply no copy or hash of that file.
+
+\bibitem{Harrison}
+M.~A. Harrison,
+\emph{A census of finite automata},
+Canad. J. Math. \textbf{17} (1965), 100--113.
+
+\bibitem{HarrisonSCC}
+M.~A. Harrison,
+\emph{Enumeration of strongly connected sequential machines},
+Inform. and Control \textbf{8} (1965),
+\href{https://doi.org/10.1016/S0019-9958(65)90316-5}{doi:10.1016/S0019-9958(65)90316-5}.
+
+\bibitem{Robinson}
+R.~W. Robinson,
+\emph{Counting strongly connected finite automata},
+in: Graph Theory with Applications to Algorithms and Computer Science
+(Kalamazoo, 1984), Wiley, New York, 1985.
+
+\bibitem{Liskovets}
+V.~A. Liskovets,
+\emph{The number of connected initial automata},
+Vesti Akad. Nauk Belarus. SSR, Ser. Fiz.-Mat. Navuk \textbf{3} (1971), 26--30.
+
+\bibitem{OEIS}
+OEIS Foundation Inc.,
+\emph{Sequence \texttt{A027834}: number of labeled strongly connected $n$-state $2$-input
+automata},
+The On-Line Encyclopedia of Integer Sequences,
+\href{https://oeis.org/A027834}{oeis.org/A027834}.
+
+\bibitem{OEISb}
+OEIS Foundation Inc.,
+\emph{Sequences \texttt{A006691} (with the editorial note of P.~Hadjicostas, February
+$2021$) and \texttt{A006692}: connected $n$-state finite automata with $3$ inputs},
+The On-Line Encyclopedia of Integer Sequences,
+\href{https://oeis.org/A006691}{oeis.org/A006691},
+\href{https://oeis.org/A006692}{oeis.org/A006692}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,81 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  88a1e82db678e47be5781a2ccdce1e93c370e9e0a2ef92ec7589a4baf7122e34
+python:  Python 3.9.25
+=== program output follows ===
+==============================================================================
+PART 1  the factor S_{3,2} of Section 2, its near alpha-valuation gamma,
+        and Proposition 3 (S_{3,2} has no alpha-valuation)
+==============================================================================
+PASS s32-structure                          |V|=7 |E|=6 tree connected degrees 3,2,2,2,1,1,1; bipartition {c,l1,l2,l3}|{m1,m2,m3}
+PASS gamma-is-beta-valuation                differences [1, 2, 3, 4, 5, 6] == {1..6}
+PASS gamma-is-near-alpha                    V_small labels [0, 4, 1, 2] below V_large labels [5, 3, 6] pointwise on edges
+PASS gamma-is-NOT-alpha (anti-control)      no x in {0..6} straddles every edge; max gamma(V_small)=4 > 3=min gamma(V_large)
+PASS s32-prop3-caseA                        sum = 24-2b(c) in [24, 22, 20, 18], all even, never 21
+PASS s32-prop3-caseB                        sum = 2b(c)+12 in [18, 20, 22, 24], all even, never 21
+PASS s32-alpha-free-complete                288 candidates permitted by Fact 2(ii) examined, 0 alpha-valuations
+PASS s32-census-all-5040-injections         7!=5040 injections -> 60 beta, 24 near-alpha, 0 alpha
+
+==============================================================================
+PART 2  K = S_{3,2} wtp S_{3,2} rebuilt from the definition of Section 1,
+        and the alpha-valuation b printed in Section 3
+==============================================================================
+PASS K-intrinsic-equals-product             the hub/grid/row/column/pendant graph of S3 maps edge-for-edge onto S_{3,2} wtp S_{3,2} under h->cc, R_i->l_ic, C_j->cl_j, P_ij->l_il_j, Q_ij->m_im_j
+PASS K-order-and-size                       |V(K)|=25 |P|=16 |Q|=9 |E(K)|=36
+PASS K-connected                            so K has a unique bipartition, which is therefore P|Q
+PASS K-every-edge-runs-P-to-Q               all 36 edges join P to Q
+PASS K-degree-sequence                      9^1 4^9 3^6 1^9 as stated in S3; hub cc has degree 9
+PASS b-domain-is-V(K)                       25 labels, one per vertex of the rebuilt K
+PASS b-injective-in-0-to-36                 25 distinct labels in [0,36]; the 12 unused are [6, 10, 11, 12, 13, 14, 16, 19, 22, 24, 25, 26]
+PASS b-is-beta-valuation                    the 36 edge differences are exactly {1,...,36}
+PASS b-printed-difference-blocks            all four blocks of S3 reproduce value-for-value in the printed order
+PASS b-printed-blocks-tile-1-to-36          the 36 printed values, sorted, are 1,2,...,36 with no gap or repeat
+PASS b-is-alpha-boundary-27                 the only straddling x in {0..36} is 27; max_P=27 < 28=min_Q
+PASS b-weighted-degree-identity             sum_Q deg.b - sum_P deg.b = 666 = 1+2+...+36
+PASS b-difference-36-spot-check             difference 36 is carried by cl_2=0 ~ m_1m_2=36, and those two ARE adjacent under the definition
+PASS b-is-not-separable                     b(cl_1)-b(cl_2)=3 but b(l_1l_1)-b(l_1l_2)=8; a separable phi(x,y)=p(x)+q(y) would force these equal (S4)
+PASS b-corruption-refused (anti-control)    swapping b(cl_2) with b(l_1l_2) is not graceful, and a non-injective labelling is refused outright
+
+==============================================================================
+PART 3  Lemma 5 / Corollary 6: the product labelling sigma of the
+        literature is graceful on K but has NO boundary
+==============================================================================
+PASS sigma-is-beta-valuation                sigma is graceful on the same 36 edges of K
+PASS sigma-is-NOT-alpha                     max_P sigma = 28 > 15 = min_Q sigma, so no x straddles: the published construction cannot witness the counterexample
+PASS lemma5-criterion-agrees                m(h_C-h_D+1) = 12 and g_B-g_A = -1, so the criterion 12 < -1 is FALSE, matching the previous check
+PASS control-P3-has-alpha                   P_3 labelled 0,2,1 is alpha with boundary 1
+PASS lemma5-recovers-snevily                both factors alpha => sigma is an alpha-valuation of the product (|V|=5, |E|=4, boundary [3]), which is Snevily's theorem
+
+==============================================================================
+PART 4  the non-isomorphic pair S_{3,2}, S_{4,2}: Proposition 7 and the
+        32-vertex witness of Theorem 8
+==============================================================================
+PASS s42-structure                          |V|=9 |E|=8 tree; degrees 4,2,2,2,2,1,1,1,1; S_{4,2} is not isomorphic to S_{3,2} (different order)
+PASS delta-is-beta-valuation                differences [1, 2, 3, 4, 5, 6, 7, 8] == {1..8}
+PASS delta-is-near-alpha                    V_small = {c,b_0,...,b_3} with labels [0, 4, 2, 5, 1]
+PASS delta-is-NOT-alpha                     5=delta(b_2) exceeds 3=delta(a_3), so no x straddles every edge
+PASS s42-prop7-caseA                        sum = 42-3b(c) forces b(c)=2; centre gives {3,4,5,6} so leaf edges owe {1,2,7,8}; difference 1 needs [(5, 4)] and every difference-2 pair [(5, 3), (6, 4)] meets it, so 1 and 2 cannot coexist
+PASS s42-prop7-caseB                        sum = 3b(c)+18 forces b(c)=6; centre gives {3,4,5,6} so leaf edges owe {1,2,7,8}; difference 1 needs [(4, 3)] and every difference-2 pair [(4, 2), (5, 3)] meets it
+PASS s42-alpha-free-complete                5760 candidates permitted by Fact 2(ii) examined, 0 alpha-valuations
+PASS L-order-and-size                       |V(L)|=32 |P|=20 |Q|=12 |E(L)|=48, connected, every edge P->Q
+PASS L-degree-profile                       deg cc = 12, deg cb_j = 3, deg b_ic = 4, deg b_ib_j = 1, and 12+12+12+12 = 48 edges as stated in Theorem 8
+PASS L-labels-injective-in-0-to-48          32 distinct labels in [0,48] = [0,|E(L)|]
+PASS L-is-beta-valuation                    the 48 edge differences are exactly {1,...,48}
+PASS L-is-alpha-boundary-36                 the only straddling x in {0..48} is 36; max_P=36 < 37=min_Q
+PASS L-weighted-degree-identity             sum_Q deg.b - sum_P deg.b = 1176 = 1+2+...+48
+
+==============================================================================
+PART 5  controls in both polarities: the same predicates, applied to
+        objects whose status is already published
+==============================================================================
+PASS control-paths-alpha                    zigzag labelling verifies: m=2:x=1 m=3:x=1 m=4:x=2 m=5:x=2 m=6:x=3 m=7:x=3 m=8:x=4
+PASS control-Kpq-alpha                      Rosa's labelling of K_1,1,K_1,2,K_1,3,K_1,4,K_2,1,K_2,2,K_2,3,K_2,4,K_3,1,K_3,2,K_3,3,K_3,4,K_4,1,K_4,2,K_4,3,K_4,4 all verify with boundary p-1
+PASS control-cycles-alpha-iff-0-mod-4 (anti-control) exhaustive over all injections: alpha exists for C_4 and for NONE of C_5, C_6, C_7, reproducing the published 'C_m has an alpha-valuation precisely if m = 0 mod 4' on 4 <= m <= 7
+
+SCOPE.  This program checks the objects PRINTED in the paper and the
+        finite claims made about them.  It does not search for further
+        counterexamples, does not claim K is of least order, and
+        establishes nothing about factors on more than 9 vertices.
+
+VERDICT: ALL 44 CHECKS PASS
+=== program exited with status 0 ===

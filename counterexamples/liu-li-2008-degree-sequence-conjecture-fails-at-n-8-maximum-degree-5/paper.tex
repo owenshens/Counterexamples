@@ -1,0 +1,408 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Aut}{Aut}
+
+\title[The Liu--Li predicted degree sequence at $(8,5)$]{The Liu--Li Predicted
+Degree Sequence Is Not Extremal at
+\texorpdfstring{$(n,\Delta)=(8,5)$}{(n,Delta)=(8,5)}}
+\date{}
+\subjclass[2020]{Primary 05C50; Secondary 05C35, 15A18, 05C31}
+\keywords{spectral radius, nonregular graph, prescribed maximum degree, degree
+sequence, extremal graph, Sylvester's criterion, counterexample}
+
+\hypersetup{
+  pdftitle={The Liu-Li predicted degree sequence is not extremal at (n,Delta)=(8,5)}
+}
+
+\begin{document}
+
+\begin{abstract}
+Let $\mathcal{G}(n,\Delta)$ be the set of graphs attaining the maximum spectral
+radius among all connected nonregular graphs on $n$ vertices with maximum degree
+$\Delta$. Liu and Li conjectured in 2008 that for $3\le\Delta\le n-2$ every
+member of $\mathcal{G}(n,\Delta)$ has degree sequence
+$(\Delta,\dots,\Delta,\delta)$ with $\delta=\Delta-1$ when $n\Delta$ is odd and
+$\delta=\Delta-2$ when $n\Delta$ is even. We exhibit an $18$-edge graph $H$ on
+$8$ vertices with $\lambda_1(H)>49/10$ and prove, by an exact integer
+certificate, that every connected graph on $8$ vertices with the predicted
+degree sequence $(5,5,5,5,5,5,5,3)$ satisfies $\lambda_1<97/20$; that class has
+exactly three isomorphism types, and the accompanying program also checks all
+$21{,}000$ of its labeled members one by one. Hence no member of
+$\mathcal{G}(8,5)$ carries the predicted degree sequence and the conjecture is
+false at $(n,\Delta)=(8,5)$. We do \emph{not} claim priority for refuting the
+conjecture: counterexamples at $\Delta=n-2$ are an undrawn corollary of a 2024
+preprint of Huang, Liu and Yang, as we explain in Section~\ref{sec:priority}.
+\end{abstract}
+
+\maketitle
+
+\section{Prior work}\label{sec:priority}
+
+The bare assertion ``the Liu--Li 2008 conjecture is false'' is not new. Huang,
+Liu and Yang \cite{HLY} determine $\mathcal{G}(n,n-2)$ exactly (their
+Theorem~7), which yields counterexamples to the conjecture at every even
+$n\ge 8$ with $\Delta=n-2$, and determine $\mathcal{G}(n,n-3)$ for $n\ge 59$
+(their Theorem~8), which yields counterexamples at every even $n\ge 60$ with
+$\Delta=n-3$. They state the Liu--Li conjecture as their own Conjecture~1 and do
+not remark that their theorems contradict it. We claim no priority for the
+refutation.
+
+What is offered here is one cell, $(n,\Delta)=(8,5)$. It has $\Delta=n-3$ and
+$n=8$, so it lies in the gap between the two theorems of \cite{HLY}, and Liu
+\cite{Liu2024} proves the conjecture for $\Delta=3$ and $\Delta=4$; the argument
+below is an exact, solver-free integer certificate over the \emph{complete}
+predicted class. Whether the cell was already settled by
+Table~1 of \cite{LSW2007}, which we could not read, is discussed in
+Section~\ref{sec:notsettled}.
+
+\section{The conjecture, verbatim}\label{sec:conj}
+
+Let $\lambda_1(G)$ denote the largest eigenvalue of the adjacency matrix of $G$.
+Following \cite[Section on extreme eigenvalues of nonregular
+graphs]{LiuNing}: ``Let $\mathcal{G}(n,\Delta)$ denote the set of graphs
+attaining the maximum spectral radius among all connected nonregular graphs with
+$n$ vertices and maximum degree $\Delta$, and let $\lambda(n,\Delta)$ denote the
+maximum spectral radius.''
+
+The target is the following. It appears as Conjecture~2.12 of Liu and Li
+\cite{LiuLi}, in the form ``Let $G$ be a connected non-regular graph on $n$
+vertices and $2<\Delta<n-1$. Then $G$ is $\lambda_1$-extremal if and only if $G$
+is a graph with the greatest maximum eigenvalue in classes $C_\pi$ and
+$\pi=(\Delta,\Delta,\dots,\Delta,\delta)$, where $\delta=(\Delta-1)$, when
+$n\Delta$ is odd, $\delta=(\Delta-2)$, when $n\Delta$ is even.'' Two modern
+restatements keep only the forward direction, which is the weaker statement:
+verbatim from the e-print of \cite{LiuNing} and, character for character
+identically, from the e-print of \cite{Liu2024}:
+
+\begin{quote}
+Let $3\leq\Delta\leq n-2$ and $G\in\mathcal{G}(n,\Delta)$. Then $G$ has degree
+sequence $(\Delta,\ldots,\Delta,\delta)$, where
+\[
+\delta =
+\begin{cases}
+\Delta-1, & n\Delta\ \text{is odd},\\
+\Delta-2, & n\Delta\ \text{is even}.
+\end{cases}
+\]
+\end{quote}
+
+The quantification, made explicit with no words added to the mathematics: for
+all integers $n,\Delta$ with $3\le\Delta\le n-2$ and for \emph{all}
+$G\in\mathcal{G}(n,\Delta)$ the degree sequence of $G$ is
+$(\Delta,\dots,\Delta,\delta)$ with $\delta$ as displayed. A counterexample to
+this forward-only form is a counterexample to the ``if and only if'' of
+\cite{LiuLi}, which is the stronger statement.
+
+\section{The cell \texorpdfstring{$(n,\Delta)=(8,5)$}{(n,Delta)=(8,5)}}
+\label{sec:cell}
+
+The ambient clause holds: $3\le 5\le n-2=6$. Since $n\Delta=40$ is even, the
+rule predicts $\delta=\Delta-2=3$, i.e.\ degree sequence
+$(5,5,5,5,5,5,5,3)$, written $(5^7,3)$ below. Such a graph has degree sum
+$7\cdot 5+3=38$, hence $19$ edges, and its complement on $8$ vertices has
+$28-19=9$ edges with degree sequence $(4,2,2,2,2,2,2,2)$. Since $7\cdot5=35$ is
+odd, any $\delta$ with $(5^7,\delta)$ graphical must be odd, and nonregularity
+forces $1\le\delta\le 4$; so the only available sequences of the shape ``all but
+one vertex of degree $\Delta$'' are $(5^7,3)$ and $(5^7,1)$.
+
+Liu, Huang and You \cite{LHY2009} write in their Remark~2.11:
+``Conjecture~1.4 is true for small $n$, where $n\le 7$. Since $2<\Delta<n-1$, it
+need to be verified for $n=5,6,7$ as follows'', and then list exactly the six
+cells $g(5,3),g(6,3),g(6,4),g(7,3),g(7,4),g(7,5)$ with their extremal degree
+sequences and spectral radii; that verification stops at $n=7$.
+
+\section{The exhibited objects}
+
+\subsection{The witness \texorpdfstring{$H$}{H}}
+On the vertex set $\{0,\dots,7\}$ let $H$ have the $18$ edges
+\[
+\begin{array}{l}
+07,\;12,\;13,\;14,\;16,\;17,\;24,\;25,\;26,\;27,\\
+34,\;35,\;36,\;37,\;45,\;46,\;56,\;57 .
+\end{array}
+\]
+Then $\deg(0)=1$ and $\deg(v)=5$ for $v=1,\dots,7$, so the degree sum is
+$36=2\cdot 18$; the degree sequence is $(5^7,1)$; the maximum degree is exactly
+$5$; $H$ is not regular; and $H$ is connected, since $\{1,\dots,7\}$ induces
+$K_7$ minus four edges and vertex $0$ hangs off vertex $7$. In graph6 this
+labelling is \texttt{GI[z\textasciitilde{}g}.
+
+The four pairs missing from the core $\{1,\dots,7\}$ are $15,23,47,67$, i.e.\ the
+path $4$--$7$--$6$ together with two disjoint edges: $P_3+2K_2$. The pendant
+vertex $0$ is attached to vertex $7$, the centre of that $P_3$. So
+\[
+H=\bigl(K_7-(P_3+2K_2)\bigr)\ \text{with a pendant vertex on the $P_3$ centre}.
+\]
+
+A second labelling of the same graph, graph6 \texttt{GNz\textasciitilde{}s?}, is
+used below because the Rayleigh vector is written in it. Its $18$ edges are
+\[
+\begin{array}{l}
+03,\;04,\;05,\;06,\;07,\;12,\;13,\;14,\;15,\;16,\\
+23,\;24,\;25,\;26,\;35,\;36,\;45,\;46 .
+\end{array}
+\]
+The two labellings are cospectral, and the characteristic polynomial of $H$ is
+\begin{equation}\label{eq:pH}
+\begin{aligned}
+p_H(x)&=x^8-18x^6-32x^5+5x^4+32x^3+12x^2\\
+      &=x^2\bigl(x^6-18x^4-32x^3+5x^2+32x+12\bigr).
+\end{aligned}
+\end{equation}
+
+\begin{remark}\label{rem:notafind}
+$H$ is exhibited, but it is not a discovery. There are exactly $2{,}520$ labeled
+graphs on $8$ vertices with degree sequence $(5^7,1)$, all connected, and they
+form a \emph{single} isomorphism class with $|\Aut|=16$, since
+$2520=8!/16$. Indeed the complement of such a graph has $10$ edges and degrees
+$(6,2^7)$, so it consists of three cycles glued at the single vertex of degree
+$6$; on $8$ vertices the only possible lengths are $3,3,4$, and the labeled
+count is $8\cdot\binom{7}{3}\cdot\frac{3!}{2}\cdot 3=2520$. Hence $H$ is
+\emph{forced} by its degree sequence, and it is the $n=8$ member $H_1(8)$ of the
+family in \cite{HLY}. What is proved below is not a property of the graph but a
+comparison: this forced graph has strictly larger spectral radius than every
+graph of the degree sequence the conjecture predicts at $(8,5)$. Optimality of
+$H$ in $\mathcal{G}(8,5)$ is not proved here.
+\end{remark}
+
+\subsection{The predicted class}
+The connected graphs on $8$ vertices with degree sequence $(5^7,3)$ number
+exactly $21{,}000$ labeled graphs and fall into exactly three isomorphism
+classes, with automorphism group orders $48,4,4$ and orbit sizes
+$840+10080+10080=21000$. The classification is by hand: the complement has $9$
+edges and degrees $(4,2^7)$, so the component containing the degree-$4$ vertex
+has $k+1$ edges on $k$ vertices with all degrees in $\{2,4\}$ and a single $4$,
+hence is two cycles glued at one vertex (a theta graph would need two vertices
+of degree $3$); the remaining vertices form disjoint cycles. On $8$ vertices with
+$9$ edges the only possibilities for the glued lengths, together with the
+leftover cycles, are $(3,3)$ plus a disjoint $C_3$; $(3,6)$; and $(4,5)$, since
+a leftover of one or two vertices cannot form a cycle. The corresponding labeled
+counts are $8\binom{7}{4}\cdot 3=840$, $8\binom{7}{2}\cdot\frac{5!}{2}=10080$ and
+$8\binom{7}{3}\cdot\frac{3!}{2}\cdot\frac{4!}{2}=10080$, which sum to exactly the
+labeled total, so no class is missed and none is double counted.
+
+Representatives, each with $19$ edges:
+\[
+\begin{array}{l}
+C_1\ (\texttt{GFz\textasciitilde{}v?}):\ \,
+03,04,05,06,07,13,14,15,16,17,\\
+\qquad\qquad\qquad\ \ 23,24,25,26,27,35,36,45,46\\[3pt]
+C_2\ (\texttt{GLv\textasciitilde{}v?}):\ \,
+03,04,05,06,07,12,14,15,16,17,\\
+\qquad\qquad\qquad\ \ 23,25,26,27,34,35,36,45,46\\[3pt]
+C_3\ (\texttt{GZn]\textasciitilde{}?}):\ \,
+02,04,05,06,07,12,13,15,16,17,\\
+\qquad\qquad\qquad\ \ 23,24,27,34,35,36,45,46,56
+\end{array}
+\]
+with characteristic polynomials, as coefficient lists from $x^8$ down to $x^0$,
+\begin{equation}\label{eq:pC}
+\begin{aligned}
+p_{C_1}&:\ [1,0,-19,-24,12,0,0,0,0],\\
+p_{C_2}&:\ [1,0,-19,-28,24,36,-8,0,0],\\
+p_{C_3}&:\ [1,0,-19,-30,28,62,-3,-24,1].
+\end{aligned}
+\end{equation}
+Which representative realises which complement type is recorded in the
+accompanying program and is not needed below.
+
+\section{The refutation}
+
+The argument is three exact facts and one finiteness remark. Nothing
+floating point enters it.
+
+\begin{lemma}[membership]\label{lem:member}
+$H$ is connected, nonregular, has maximum degree exactly $5$, and lies on $n=8$
+vertices with $3\le 5\le 6$. Hence $H$ belongs to the family over which
+$\mathcal{G}(8,5)$ is defined.
+\end{lemma}
+
+\begin{proof}
+Immediate from the edge list and the degrees in Section~4.1.
+\end{proof}
+
+\begin{lemma}[lower bound]\label{lem:lower}
+$\lambda_1(H)>49/10$.
+\end{lemma}
+
+\begin{proof}
+In the second labelling of Section~4.1, with $A$ the adjacency matrix, the explicit
+integer vector
+\[
+\begin{aligned}
+x=(\,&3251590,\,3914936,\,3914936,\,3818824,\\
+    &3818824,\,3818824,\,3818824,\,663346\,)
+\end{aligned}
+\]
+has exact rational Rayleigh quotient
+\[
+\frac{x^{\mathsf T}Ax}{x^{\mathsf T}x}
+=\frac{61272483059723}{12499997522989}=4.901799616\ldots>\frac{49}{10}.
+\]
+Since $A$ is real symmetric, $\lambda_1(A)=\max_{x\ne 0}x^{\mathsf T}Ax/x^{\mathsf T}x$,
+so $\lambda_1(H)>49/10$. Independently, $p_H$ of \eqref{eq:pH} is monic with all
+roots real and $p_H(49/10)=-27065510199/100000000<0$, which forces its largest
+root above $49/10$.
+\end{proof}
+
+\begin{lemma}[upper bound over the whole predicted class]\label{lem:upper}
+Every connected graph $G$ on $8$ vertices with degree sequence $(5^7,3)$
+satisfies $\lambda_1(G)<97/20$.
+\end{lemma}
+
+\begin{proof}
+For a symmetric matrix $A$ and integers $c,d>0$, the matrix $cI-dA$ is positive
+definite if and only if $\lambda_1(A)<c/d$; and by Sylvester's criterion
+positive definiteness is equivalent to the positivity of all $n$ leading
+principal minors, which for an integer matrix is a statement about $n$ integers.
+
+For the three representatives the eight leading principal minors of the integer
+matrix $97I-20A$ are
+\[
+\begin{array}{ll}
+C_1:&[\,97,\ 9409,\ 912673,\ 77238481,\ 6396925057,\ 355826560529,\\
+    &\ \ 8841684881313,\ 28053247092561\,]\\[2pt]
+C_2:&[\,97,\ 9409,\ 873873,\ 77398481,\ 6308461057,\ 349728752529,\\
+    &\ \ 8491067905313,\ 23557099988561\,]\\[2pt]
+C_3:&[\,97,\ 9409,\ 835073,\ 72082881,\ 5633183857,\ 364595360529,\\
+    &\ \ 8202660545313,\ 18809429316561\,]
+\end{array}
+\]
+all positive, so $\lambda_1(C_i)<97/20$ for $i=1,2,3$. The last entry of each
+list cross-checks against \eqref{eq:pC}, since
+$\det(97I-20A)=20^8\,p(97/20)$ with $20^8=25{,}600{,}000{,}000$. Since spectra
+are isomorphism invariants and the class has
+exactly the three isomorphism classes classified in Section~4.2, the bound holds
+for every member.
+\end{proof}
+
+\begin{remark}[the classification is not on the critical path]\label{rem:sweep}
+Lemma~\ref{lem:upper} as proved above rests on the hand classification of
+Section~4.2, i.e.\ on a completeness argument. The accompanying program
+\texttt{verify.py} removes that dependency: it generates all $21{,}000$ labeled
+graphs of degree sequence $(5^7,3)$ directly, by enumerating their $9$-edge
+complements of degrees $(4,2^7)$, confirms that all $21{,}000$ are connected, and
+verifies Sylvester's criterion on $97I-20A$ for each one individually, with zero
+violations.
+\end{remark}
+
+\begin{theorem}\label{thm:main}
+The Liu--Li conjecture is false at $(n,\Delta)=(8,5)$: no member of
+$\mathcal{G}(8,5)$ has degree sequence $(5,5,5,5,5,5,5,3)$.
+\end{theorem}
+
+\begin{proof}
+The family of connected nonregular graphs on $8$ vertices with maximum degree
+exactly $5$ is finite and, by Lemma~\ref{lem:member}, non-empty, so
+$\mathcal{G}(8,5)$ is non-empty. Let $M\in\mathcal{G}(8,5)$. By maximality and
+Lemmas~\ref{lem:member}, \ref{lem:lower} and \ref{lem:upper},
+\[
+\lambda_1(M)\ \ge\ \lambda_1(H)\ >\ \frac{49}{10}\ >\ \frac{97}{20}\ >\ \lambda_1(G)
+\]
+for every connected $G$ on $8$ vertices with degree sequence $(5^7,3)$. Hence
+$M$ does not have that degree sequence. Since $n\Delta=40$ is even, the
+conjecture demands $\delta=\Delta-2=3$, i.e.\ exactly that sequence, for every
+member of $\mathcal{G}(8,5)$. The conjecture therefore fails at $(8,5)$, and
+since the pinned form is the forward direction of the ``if and only if'' of
+\cite{LiuLi}, the original fails there too.
+\end{proof}
+
+\begin{remark}[the sequence carried by the witness]
+$H$ has degree sequence $(5^7,1)$, i.e.\ $\delta=1=\Delta-4$. The replacement
+conjecture of Liu and Ning \cite{LiuNing} (Conjecture~2 of \cite{HLY}) predicts
+$\delta=1$ for $\Delta$ odd and $n$ even, and $\delta=1$ is also the shape that
+Theorem~8 of \cite{HLY} proves asymptotically at $\Delta=n-3$; the witness here
+is consistent with that prediction and does not prove it.
+\end{remark}
+
+\section{Scope}\label{sec:notsettled}
+
+Only the cell $(8,5)$ is reported. The refutation of the conjecture is not new
+and no priority is claimed here (Section~\ref{sec:priority}); the increment is
+this one cell together with an exact whole-class certificate. The witness is not
+a find: it is forced by its degree sequence and it \emph{is} $H_1(8)$ of
+\cite{HLY} (Remark~\ref{rem:notafind}). Which graph attains $\lambda(8,5)$ is
+not established here, and Theorem~\ref{thm:main} does not need it: it needs only
+that $H$ beats every graph of the predicted degree sequence. In particular we do
+not assert as a certified statement that $H\in\mathcal{G}(8,5)$, and Liu's
+replacement conjecture is not proved either. Nothing here concerns any other $n$
+or $\Delta$: the $\Delta=n-2$ cells, including at $n=8$, are Theorem~7 of
+\cite{HLY}, and at $\Delta=5$ the cells $n=10$ and $n=12$ are untouched.
+
+One residual priority risk remains. We could not obtain Table~1 of
+\cite{LSW2007}, the table of $\lambda_1$-extremal graphs that \cite{LiuLi}
+explicitly consults (``by checking the Table 1 of [7]''); if it reaches $n=8$,
+this cell was settled in 2007. The indirect evidence against is that Bolian Liu,
+an author of both \cite{LiuLi} and \cite{LHY2009}, wrote in 2009 that the
+conjecture ``need[s] to be verified for $n=5,6,7$'' and listed exactly those six
+cells, and that both \cite{Liu2024} and \cite{HLY} treat $\Delta\ge 5$ as open.
+A successor should obtain that table.
+
+\section*{Verification}
+
+The accompanying program \texttt{verify.py} (Python 3.9+, standard library only)
+re-derives the quantities transcribed into it from the objects printed above: the
+degrees, connectivity, structure and graph6 encodings of $H$ and of
+$C_1,C_2,C_3$; the characteristic polynomials, by Newton's identities on
+integer traces; the Rayleigh quotient; the exact rational evaluations; and the
+leading principal minors of $97I-20A$. It does not parse this paper, so it does
+not certify that that list of transcribed quantities is complete. It then carries
+out the complete enumerations of Remarks~\ref{rem:notafind} and \ref{rem:sweep}
+and runs certifier controls in both polarities. It does not re-derive the
+statement of the Liu--Li conjecture, which it takes from Section~\ref{sec:conj},
+and it does not establish which graph attains $\lambda(8,5)$. Its recorded output
+accompanies this paper.
+
+\begin{thebibliography}{9}
+
+\bibitem{HLY}
+Z.~Huang, J.~Liu and C.~Yang,
+\emph{Nonregular graphs with a given maximum degree attaining maximum spectral
+radius},
+\href{https://arxiv.org/abs/2411.17371}{arXiv:2411.17371}, 26 November 2024.
+
+\bibitem{LiuLi}
+B.~Liu and G.~Li,
+\emph{A note on the largest eigenvalue of non-regular graphs},
+Electron. J. Linear Algebra \textbf{17} (2008), 54--61.
+\href{https://doi.org/10.13001/1081-3810.1249}{doi:10.13001/1081-3810.1249}
+
+\bibitem{LHY2009}
+B.~Liu, Y.~Huang and Z.~You,
+\emph{On $\lambda_1$-extremal non-regular graphs},
+Electron. J. Linear Algebra \textbf{18} (2009), 735--744.
+\href{https://doi.org/10.13001/1081-3810.1341}{doi:10.13001/1081-3810.1341}
+
+\bibitem{Liu2024}
+L.~Liu,
+\emph{Extremal spectral radius of nonregular graphs with prescribed maximum
+degree},
+J. Combin. Theory Ser. B \textbf{169} (2024), 430--479;
+\href{https://arxiv.org/abs/2203.10245}{arXiv:2203.10245}.
+
+\bibitem{LiuNing}
+L.~Liu and B.~Ning,
+\emph{Unsolved problems in spectral graph theory},
+Oper. Res. Trans. \textbf{27} (2023), no.~4, 33--60;
+\href{https://arxiv.org/abs/2305.10290}{arXiv:2305.10290}.
+
+\bibitem{LSW2007}
+B.~Liu, J.~Shen and X.~Wang,
+\emph{On the largest eigenvalue of non-regular graphs},
+J. Combin. Theory Ser. B \textbf{97} (2007), 1010--1018.
+\href{https://doi.org/10.1016/j.jctb.2007.02.008}{doi:10.1016/j.jctb.2007.02.008}
+
+\end{thebibliography}
+
+\end{document}

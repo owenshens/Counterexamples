@@ -1,0 +1,102 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  a7e21243d1309b6f1fe3eb84fabfed6976946348306429830dfecb486f838dd8
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: the complex cross-polytope B_1(C^2) -- real fractional
+illumination number 2^2, and not a complex-linear image of the polydisc
+python 3.9.25, exact rational arithmetic only
+
+NOTE object.body               K = { z in C^2 : |z_1| + |z_2| <= 1 }
+NOTE object.support            h_K(u) = max(|u_1|,|u_2|)
+NOTE object.extreme_set        ext(K) = C_1 u C_2, C_1 = {(e^{i a},0)}, C_2 = {(0,e^{i b})}
+NOTE object.measure            mu = 2*Unif(C_1) + 2*Unif(C_2), total mass 4
+NOTE object.claimed_illstar    ill^*(K) = 4
+NOTE rational unit-circle sample: 36 points from the Pythagorean triples 3-4-5, 5-12-13, 8-15-17, 7-24-25
+
+=== Step 0: the object block parses, and the exact square-root eliminations are sound
+PASS measure_parses_to_mass_2_per_circle_and_total_mass_4 [2 + 2 = 4]
+PASS claimed_value_is_4_and_equals_2_to_the_n_at_n_2 [ill^* = 4, 2^2 = 4]
+PASS exact_sqrt_eliminations_reproduce_known_values [sqrt(9/25)+sqrt(16/25) = 7/5, sqrt(1)+sqrt(1) = 2 and sqrt(1/4)+sqrt(1/4) = 1 all decided exactly]
+
+=== Step 1: K is a complex convex body in the source's sense
+PASS the_defining_norm_is_the_sum_of_the_two_moduli_on_samples [|z_1| + |z_2| = 1/3 + 2/3 = 1 for all 36 unit directions]
+PASS K_is_invariant_under_the_circle_action_on_samples [|e^{i th} z_j| = |z_j| exactly on 576 (rotation, point) pairs]
+PASS K_is_centrally_symmetric_on_samples [z in K  <=>  -z in K]
+PASS K_is_full_dimensional_of_real_dimension_4 [four points of K with determinant 1/16 != 0]
+PASS every_sample_point_of_K_is_an_explicit_convex_combination_of_De1_and_De2 [z = r_1 (u_1,0) + r_2 (0,u_2) + (1-r_1-r_2) 0, all weights >= 0, so K = conv(D e_1 u D e_2)]
+
+=== Step 2: the support function of K is max(|u_1|,|u_2|)
+PASS the_sample_points_used_as_test_points_all_lie_in_K [64 test points of K]
+PASS support_function_of_K_is_max_of_the_two_moduli_on_samples [never exceeded on K, and attained at an axis extreme point]
+PASS support_function_of_the_polydisc_is_the_sum_of_the_moduli_on_samples [h_{D^2}(u) = |u_1| + |u_2|, so K = (D^2)^circ is the polar situation]
+
+=== Step 3: the boundary of K, its extreme set, and its mixed faces
+PASS every_sampled_boundary_point_falls_in_exactly_one_of_the_three_classes [axis1=216 axis2=216 mixed=432 unclassified=0]
+PASS each_point_of_C1_is_exposed_hence_extreme_on_samples [Re(conj(u) z_1) <= |z_1| <= |z_1|+|z_2| <= 1 on K, equality only at (u,0)]
+PASS no_mixed_boundary_point_is_extreme_on_samples [each SAMPLED mixed point is exhibited as a proper combination of one point of C_1 and one of C_2, hence is not extreme; the inclusion ext(K) subset C_1 u C_2 and the extremality of every point of the two circles are the paper's closed-form arguments and are NOT established here]
+PASS the_mixed_face_of_K_is_a_one_dimensional_segment_on_samples [F(K,(u_1,u_2)) = conv{(u_1,0),(0,u_2)}: a segment, so K has a 1-dimensional proper face and is not smooth]
+PASS the_face_of_the_polydisc_at_a_torus_normal_is_a_single_point_on_samples [ext(D^2) is the 2-torus (real dimension 2); ext(K) is two circles (real dimension 1)]
+
+=== Step 4: the closed-form illumination criteria agree with the DEFINITION
+PASS criterion_for_a_point_of_C1_matches_interior_membership_on_samples [1136 (boundary point, direction) pairs; criterion Re(conj(u)v_1) + |v_2| < 0]
+PASS criterion_for_a_point_of_C2_matches_interior_membership_on_samples [848 pairs; criterion Re(conj(u)v_2) + |v_1| < 0]
+PASS criterion_for_a_mixed_boundary_point_matches_interior_membership_on_samples [576 pairs; criterion Re(conj(u_1)v_1) + Re(conj(u_2)v_2) < 0]
+PASS the_first_order_reduction_of_the_norm_is_exact_at_small_t_on_samples [|u + t v_1| + t|v_2| < 1  <=>  2(A + |v_2|) + t(|v_1|^2 - |v_2|^2) < 0, and the linear term t|v_2| is not dropped]
+PASS a_pure_second_axis_direction_never_illuminates_a_point_of_C1_and_conversely [the criterion reads 0 + |v_2| = 1 > 0, so that circle contributes 0]
+
+=== Step 5: lower bound ill^*(K) >= 4, by exact averaging
+PASS illuminating_a_point_of_C1_forces_modulus_v1_strictly_above_modulus_v2 [600 illuminating directions found, every one with |v_1| > |v_2|]
+PASS illuminating_a_point_of_C2_forces_modulus_v2_strictly_above_modulus_v1 [532 illuminating directions found, every one with |v_2| > |v_1|]
+PASS no_sampled_direction_illuminates_points_of_both_circles [V_1 = {|v_1| > |v_2|} and V_2 = {|v_2| > |v_1|} are disjoint, so no single direction serves both circles]
+PASS the_illuminated_arc_shrinks_monotonically_and_strictly_as_the_ratio_c_grows [counts of sampled alpha with cos alpha < -c: c=0:17, c=7/25:15, c=5/13:13, c=8/17:11, c=3/5:9, c=4/5:7, c=15/17:5, c=12/13:3, c=24/25:1]
+PASS the_arc_has_cos_equal_to_minus_c_at_its_endpoints_so_its_length_is_2_arccos_c [endpoints at cos alpha = -c, midpoint alpha = pi with cos = -1 < -c, and c >= 0 so 2 arccos(c) <= pi with equality only at c = 0 (i.e. only when v_2 = 0)]
+PASS the_hard_coded_cone_mass_constant_used_below_is_2 [CONSTANT ASSERTED, NOT DERIVED: the paper's averaging argument 2 pi <= int_0^{2pi} mu(A_K(x_alpha)) d alpha = int_{V_1} 2 arccos(|v_2|/|v_1|) d mu <= pi mu(V_1) yields mu(V_1) >= 2; that derivation is imported from the note and is not verified here -- only the arithmetic 2*2 = 4 below is]
+PASS lower_bound_is_exactly_4 [mu(R^4) >= mu(V_1) + mu(V_2) >= 2 + 2 = 4]
+
+=== Step 6: upper bound ill^*(K) <= 4, via the exhibited measure mu
+PASS an_open_half_circle_has_normalised_measure_one_half_by_the_antipodal_involution [w -> -w is a measure-preserving bijection between {<w,u> < 0} and {<w,u> > 0}; 72 sampled pairs lie on the null set {<w,u> = 0}]
+PASS on_C1_the_first_circle_directions_illuminate_exactly_an_open_half_circle [the criterion reduces to cos(phi - alpha) < 0]
+PASS mass_received_by_a_point_of_C1_is_exactly_1 [2 * (1/2) from the first circle + 0 from the second = 1 >= 1]
+PASS mass_received_by_a_point_of_C2_is_exactly_1 [symmetric in the two coordinates]
+PASS a_mixed_point_receives_an_open_half_circle_from_each_axis_circle [mass 1 + 1 = 2 >= 1 at every mixed boundary point]
+PASS every_direction_illuminates_every_interior_point_on_samples [mass 4 >= 1 at interior points, so no interior constraint binds]
+PASS upper_bound_is_the_total_mass_4 [mu(R^4) = 2 + 2 = 4 (parsed), and the constraint mu(A_K(x)) >= 1 was confirmed on the SAMPLED points of each of the three boundary classes and sampled interior points above; universality over all x is the paper's closed-form argument, not checked here]
+PASS the_two_imported_bounds_meet_arithmetically_at_4 [GIVEN the imported cone-mass bound mu(V_1) >= 2 (Step 5, asserted not derived) and the paper's closed-form universality of mu(A_K(x)) >= 1, the arithmetic here gives 4 <= ill^*(B_1(C^2)) <= 4 = 2^2; the two ingredients are imported, not verified here]
+
+=== Step 7: K is not a complex zonoid, hence not a linear image of the polydisc
+PASS the_rational_enclosure_of_pi_is_valid_and_tight [3.141592653589793 < pi < 3.141592653589793 (Machin's formula, alternating tail; the enclosure is exact and its width is below 10^-19)]
+PASS the_identity_for_the_modulus_of_a_plus_e_it_a_is_exact_on_samples [|a + e^{it} a|^2 = 2a^2(1 + cos t) = (2a|cos(t/2)|)^2]
+PASS the_period_integral_of_abs_cos_half_t_is_4 [int_0^{2pi} |cos(t/2)| dt = 2 int_0^{pi} |cos u| du = 2 * 2 = 4]
+PASS the_mean_value_M_at_equal_moduli_is_4_over_pi_times_r_strictly_above_r [M(r,r)/r = 4/pi in (1.2732, 1.2733) > 1 = max(r,r)/r]
+PASS M_with_a_vanishing_second_modulus_is_a_and_strictly_exceeds_half_of_a [M(a,0) = a > a/2, so nu can charge no point with x_2 = 0]
+PASS the_scalar_arithmetic_of_the_mean_value_contradiction_at_equal_moduli [IMPORTED (the note's zonoid mean-value argument, NOT verified here): the representation h_K = int M(|x_1|,|x_2|) dnu, the inequality int M dnu >= int (|x_1|+|x_2|)/2 dnu, the equality-a.e. step, and the strict inequality M > max at every pair of positive moduli. Verified here only: 1 = (1+1)/2, and M(r,r)/r = 4/pi in (1.2732,1.2733) > 1 (Step 7), and M(a,0) = a > a/2; GIVEN the imported argument these arithmetic facts close the contradiction.]
+PASS K_is_not_a_complex_zonoid_by_the_imported_face_dimension_lemma_on_samples [IMPORTED (source's zonoid face lemma, NOT verified here): a complex zonoid has no 1-dimensional proper face; the sampled mixed faces of K are segments (Step 3, on samples), so GIVEN the imported lemma and the paper's closed-form face computation this is a second route to the same conclusion]
+PASS K_is_therefore_not_a_linear_image_of_the_polydisc [T(D^2) = D T(e_1) + D T(e_2) is a 2-generator complex zonotope, hence a complex zonoid; K is not one]
+
+=== Step 8: controls of both polarities
+PASS forced_yes_control_the_polydisc_criterion_matches_interior_membership_on_samples [204 pairs on bd D^2: v illuminates iff both real parts are negative]
+PASS forced_yes_control_the_polydisc_upper_bound_is_4 [uniform mass 4 on the direction torus gives 4 * (1/2) * (1/2) = 1 at every point of the 2-torus]
+PASS forced_yes_control_the_polydisc_lower_bound_is_also_4 [each v illuminates an (a,b)-set of area at most pi*pi, and 4 pi^2 <= pi^2 mu gives mu >= 4: the SAME averaging identity reproduces the published ill^*(D^2) = 2^2]
+PASS forced_yes_control_reproduces_the_published_value_at_n_1 [every norm on C^1 has unit ball rD, a linear image of D, with ill^* = 2 = 2^1: both clauses hold at n = 1 and the machinery returns YES]
+PASS discriminating_control_the_euclidean_ball_criterion_matches_interior_membership [910 pairs on S^3: v illuminates x iff <x,v> < 0]
+PASS discriminating_control_the_euclidean_ball_value_is_2_strictly_below_4 [2 * (1/2) = 1: the half-space measure of an open hemisphere times mass 2 gives exactly 1 at a boundary point (the hemisphere measure 1/2 and the matching lower bound are imported from the source, not derived here), and 2 < 4, so the method separates]
+
+=== Step 9: why exactly n = 2, and the real anti-control
+PASS the_n_extreme_circles_of_B1_of_Cn_are_pairwise_illumination_disjoint_on_samples [for n = 2..8 no sampled modulus vector satisfies two of the n conditions |v_i| > sum_{j != i} |v_j|; 176 single-condition witnesses seen]
+PASS 2n_equals_2_to_the_n_exactly_at_n_1_and_n_2_and_is_smaller_beyond [equality set = [1, 2], and 2n < 2^n for 3 <= n <= 30]
+PASS the_witness_is_strictly_interior_for_n_at_least_3_so_only_n_2_falls [2n < 2^n at n = 3 and n = 4 (6 < 8, 8 < 16); ASSUMING the paper's formula ill^*(B_1(C^n)) = 2n, the witness therefore lies strictly below 2^n and is silent for n >= 3 -- the values ill^*(B_1(C^3)) and ill^*(B_1(C^4)) are not computed here]
+PASS real_anti_control_the_real_l1_ball_of_R2_is_a_linear_image_of_the_square [T(x,y) = ((x+y)/2,(x-y)/2) maps [-1,1]^2 bijectively onto B_1(R^2), det = -1/2 -- so the REAL equality case is unharmed at the coincidence dimension]
+
+=== Step 10: the companion classical conjecture is supported, not refuted
+PASS three_directions_at_120_degrees_illuminate_the_whole_circle_C1 [the three open half-circles (phi + 1/4, phi + 3/4) for phi in {0, 1/3, 2/3} turns cover R/Z]
+PASS two_directions_never_illuminate_the_whole_circle_C1_on_samples [none of the 25 sampled centre pairs covers R/Z; the general argument -- an open arc of length 1/2 cannot contain the closed complementary arc of length 1/2, hence 3 directions per circle are necessary -- is the paper's closed-form argument and is NOT verified here]
+PASS claimed_classical_value_is_6_below_7_and_no_sampled_direction_illuminates_points_of_both_circles [the OBJECT block claims ill(K) = 6 < 7 = 2^{n+1} - 1; 3 directions per circle suffice (checked exactly by covers_circle) and are necessary by the paper's closed-form arc argument (IMPORTED, not verified here); separately, the sampled-direction disjointness check passed; this program does not establish ill(K) = 6]
+
+=== Step 11: the refutation, assembled
+PASS the_bound_ill_star_at_most_2_to_the_n_is_satisfied_with_equality_not_violated [4 <= 4: the FIRST conjunct of the conjecture is NOT refuted by this witness]
+PASS the_equality_clause_of_the_conjecture_fails_at_n_2 [K attains 2^2 (Step 6) and is not a linear image of D^2 (Step 7), so at n = 2 the equality set contains at least the two orbits of D^2 and of K]
+
+NOTE SCOPE: re-derived above are the ARITHMETIC of the value ill^*(B_1(C^2)) = 4 GIVEN the imported cone-mass bound mu(V_1) >= 2, the explicit mass-4 measure with its constraint confirmed on SAMPLED points of each of the three boundary classes (universality imported), the exactness of the first-order illumination criteria against interior membership on samples, one non-zonoid route (the mean-value computation) in full and a second route CONDITIONAL on the imported zonoid face lemma, the two control values (D^2 returning 4, the complex Euclidean ball returning 2), and the dimension arithmetic 2n vs 2^n. NOT claimed: nothing here enumerates complex convex bodies, so this program does NOT claim that {D^2, B_1(C^2)} exhausts the equality set at n = 2; nothing decides any cell n >= 3 beyond the closed-form 2n < 2^n; the topological step 'a 2-torus is not a disjoint union of two circles' is a homeomorphism statement and is NOT machine-checked here (the zonoid route of Step 7 proves the same conclusion and is the one the paper leans on); and every check named `_on_samples` tests a closed-form criterion against the definition on finite sets of rational unit vectors -- that is a test of the criterion, not a proof of it, and the proofs are the closed-form arguments printed in the paper.
+VERDICT: ALL 59 CHECKS PASS
+=== program exited with status 0 ===

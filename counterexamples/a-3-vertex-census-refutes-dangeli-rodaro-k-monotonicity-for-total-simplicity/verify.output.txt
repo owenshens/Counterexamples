@@ -1,0 +1,93 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  75888c5fc3348f349ffd9104d7cdc87f436a589f574022292fee55c29ba47d24
+python:  Python 3.9.25
+=== program output follows ===
+verification of: the exact 3-vertex census arithmetic behind a claimed
+counterexample to the k-monotonicity clause of a conjecture attributed to
+D'Angeli-Rodaro (the clause text and its location at arXiv:2607.17335v1,
+totally_main.tex line 1463 are TRANSCRIBED BY HAND, NOT PARSED HERE).
+What is verified: P(3,2) = 57/148 > P(3,3) = 2566/6877 in the
+ordered/with-replacement model. Whether that model is the source's intended
+one, and whether line 1463 states the clause as transcribed, are NOT checked.
+python 3.9.25, exact integer and rational arithmetic only
+
+=== Step 1: the predicate -- the partition lattice, and Delta/Nabla excluded
+PASS bell_numbers_n_2_to_7_reproduced [Bell(2..7) = [2, 5, 15, 52, 203, 877]]
+PASS nontrivial_partition_count_n3_is_bell3_minus_2 [3 = Bell(3) - 2]
+PASS nontrivial_partition_count_n4_is_bell4_minus_2 [13 = Bell(4) - 2]
+PASS delta_and_nabla_are_lumpable_on_every_state [all 216 states at n=3,k=2; so excluding both is forced, not chosen]
+PASS column_criterion_equals_generic_decider_at_n3 [4591 states at k=2,3,4; 0 mismatches]
+
+=== Step 2: the exhaustive census in the paper's ordered model, n = 3
+PASS total_weight_identity_n3_k2 [enumerated weight 729 = 3^6]
+PASS state_count_identity_n3_k2 [216 = C(4,2)^3]
+PASS total_weight_identity_n3_k3 [enumerated weight 19683 = 3^9]
+PASS state_count_identity_n3_k3 [1000 = C(5,3)^3]
+PASS total_weight_identity_n3_k4 [enumerated weight 531441 = 3^12]
+PASS state_count_identity_n3_k4 [3375 = C(6,4)^3]
+PASS B_3_2_equals_296 [strongly connected weight]
+PASS A_3_2_equals_114 [strongly connected AND totally simple weight]
+PASS B_3_3_equals_13754 [strongly connected weight]
+PASS A_3_3_equals_5132 [strongly connected AND totally simple weight]
+PASS B_3_4_equals_458000 [strongly connected weight]
+PASS A_3_4_equals_180890 [strongly connected AND totally simple weight]
+
+=== Step 3: a SECOND enumeration, direct over raw ordered edge tuples (weight 1)
+PASS ordered_tuple_total_is_3_to_the_6 [729 raw tuples enumerated]
+PASS ordered_tuple_route_agrees_at_n3_k2 [A=114 B=296, no multinomial weight anywhere]
+PASS ordered_tuple_total_is_3_to_the_9 [19683 raw tuples enumerated]
+PASS ordered_tuple_route_agrees_at_n3_k3 [A=5132 B=13754, no multinomial weight anywhere]
+
+=== Step 4: the closed forms the paper prints, checked against the census
+PASS B_closed_form_matches_census_n3_k2_3_4 [B(3,k) = (3^k-1)^3 - 3(2^k-1)^2(3^k-1) = [296, 13754, 458000]]
+PASS transfer_matrix_traces_are_150_5798_189518 [tr((W_k D)^3) for k=2,3,4]
+PASS scc_corrections_are_36_666_8628 [3[(sum f)^2 - sum f^2]]
+PASS trace_minus_correction_equals_census_A [A(3,k) = [114, 5132, 180890]]
+PASS inclusion_exclusion_closed_form_equals_census_A [k=2: S2,S3,S4 = (26, 86, 32) ; k=3: (230, 2066, 702)]
+PASS two_independent_closed_forms_agree_for_k_2_to_30 [transfer-matrix route vs inclusion-exclusion route, 29 values of k]
+PASS correction_term_equals_weight_of_totally_simple_but_not_scc [36, 666, 8628 -- two derivations aimed at different questions agree]
+
+=== Step 5: the exact comparison P(3,2) > P(3,3) in the ordered model
+PASS P_3_2_equals_57_over_148 [exact rational 57/148 = 0.385135135]
+PASS P_3_3_equals_2566_over_6877 [exact rational 2566/6877 = 0.373127817]
+PASS P_3_4_equals_18089_over_45800 [exact rational 18089/45800 = 0.394956332]
+PASS cross_multiplication_gives_a_STRICT_decrease_from_k2_to_k3 [114*13754 = 1567956  >  5132*296 = 1519072]
+PASS the_decrease_is_decided_without_any_floating_point [Fraction comparison only]
+PASS drop_equals_12221_over_1017796 [12221/1017796 = 0.01200732, about 1.2 percentage points]
+PASS the_dip_is_isolated_P_3_4_exceeds_P_3_3 [18089/45800 > 2566/6877: monotonicity resumes at once]
+PASS B_3_1_equals_2_and_P_3_1_equals_1_computed_but_not_used [B(3,1) = (3-1)! = 2 cyclic permutations, P(3,1) = 1; k=1 is not used above]
+PASS closed_forms_reproduce_P_3_k_at_k_2_3_4
+PASS exactly_one_violation_on_the_whole_n3_line_k_2_to_30 [violating k-steps: [2]]
+PASS P_3_k_strictly_increases_for_every_k_from_3_to_30 [P(3,3) = 0.373127817 rising to P(3,30) = 0.708531594]
+
+=== Step 6: the n = 4, k = 2 census, and two transcribed literals compared
+PASS total_weight_identity_n4_k2 [65536 = 4^8]
+PASS B_4_2_equals_20958_matching_hand_transcribed_A027834_term [census value vs one transcribed literal, not a database lookup]
+PASS B_3_2_equals_296_matching_hand_transcribed_A027834_term
+PASS A_4_2_equals_6720
+PASS P_4_2_equals_160_over_499 [0.320641283]
+
+=== Step 7: the model-sensitivity disclosure, itself checked
+PASS rival_model_P_3_2_equals_34_over_65 [A_u=34 B_u=65, 0.523077]
+PASS rival_model_P_3_3_equals_133_over_243 [A_u=266 B_u=486, 0.547325]
+PASS rival_model_P_3_4_equals_87_over_148 [A_u=1218 B_u=2072, 0.587838]
+PASS rival_model_shows_NO_violation_at_n3_for_k_2_to_4 [34*486 = 16524 < 266*65 = 17290]
+PASS indegree_zero_probability_in_the_ordered_model_is_64_over_729 [Pr(no edge lands on v) = (1-1/n)^{kn} = 64/729 in the ordered model]
+PASS the_same_probability_in_the_rival_model_is_1_over_8_not_64_over_729 [the two readings give different values for this same event]
+
+=== Step 8: three exhibited 3-vertex states, and the TS-but-not-SCC weights
+PASS cerny_underlying_2_out_graph_is_scc_and_totally_simple [one graph tested: 0->{1,1}, 1->{1,2}, 2->{2,0}]
+PASS printed_state_is_scc_but_NOT_totally_simple [partition {{1,2},{0}} is lumpable since a_10 = a_20 = 1]
+PASS printed_state_is_totally_simple_but_NOT_strongly_connected [one exhibited 3-vertex state; total simplicity does not imply strong connectivity]
+PASS weight_of_totally_simple_and_not_scc_is_36_at_k2_and_666_at_k3 [nonzero in every cell computed, so Pr(TS|SCC) is NOT Pr(TS)/Pr(SCC)]
+PASS weight_of_totally_simple_and_not_scc_is_8628_at_n3_k4_and_1584_at_n4_k2 [out of 3^12 = 531441 and 4^8 = 65536 respectively]
+PASS every_2_vertex_k_out_graph_is_totally_simple_at_k_2_and_3_control [Bell(2)-2 = 0 nontrivial partitions, so P(2,2) = P(2,3) = 1]
+
+NOTE SCOPE -- what this program does NOT do. It computes finitely many exact census values at n = 2,3,4 and one non-monotone k-step among them. It does not read or parse the source, so the wording of any clause and its location are transcribed by hand here. Asymptotic statements (Pr -> 1 as n -> infinity, and any 1 - exp(-c_k n + beta_k) + o(1) expansion with c_k increasing) are untouched: no finite computation can settle them, and nothing here claims to.
+NOTE SCOPE -- cells NOT enumerated here. Exhaustively enumerated above: n=3 at k=1,2,3,4 (and n=3 at k=2,3 a second time over raw ordered tuples), n=4 at k=2, n=2 at k=2,3. The closed forms are exercised at n=3 for k=2..30 and are n=3 ONLY. Cells at n>=5, and n=4 at k>=3, are NOT recomputed here; the proposed repair "for fixed n >= 4" is therefore CONSISTENT WITH, NOT VERIFIED BY, this program.
+NOTE SCOPE -- the model is a READING of the source. Both readings are computed above and the counterexample exists in the ordered/with-replacement one only. The residual risk in this result is that reading, not the arithmetic.
+NOTE SCOPE -- NOT recomputed or looked up here: any sampled table at larger n, and any attribution of the numbers B(n,2). The values 296 and 20958 are transcribed by hand in the CLAIMED block above and only compared against this census.
+
+VERDICT: ALL 56 CHECKS PASS
+=== program exited with status 0 ===

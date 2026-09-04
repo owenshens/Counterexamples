@@ -1,0 +1,615 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The Maximum Euler-Sombor Index at Diameter Three, and Both Extrema at Nine Vertices}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\EU}{\mathit{EU}}
+\newcommand{\Gnd}{\mathcal G}
+
+\title[Euler--Sombor at diameter three]
+{The Maximum Euler--Sombor Index at Diameter Three, and Both Extrema at Nine Vertices}
+
+\date{}
+
+\subjclass[2020]{05C09, 05C35, 05C12, 92E10}
+\keywords{Euler--Sombor index, degree-based topological index, diameter,
+extremal graph, theta graph, bicyclic graph}
+
+\begin{document}
+
+\begin{abstract}
+The Euler--Sombor index of a graph $G$ is
+\[
+ \EU(G)=\sum_{xy\in E(G)}\sqrt{d(x)^2+d(x)d(y)+d(y)^2}.
+\]
+Khanra and Das asked for the extremal values and extremal graphs of $\EU$
+over ``the class of all connected graphs with given diameter''; Sekar,
+Balachandran, Elumalai and Liu reproduce the request as their ``Problem~1'',
+and a 2026 survey by Ali, Gutman, R\'eti, Albalahi and Hamza poses it with the
+order fixed as well, which is the reading taken here. We settle one column and
+one cell, not the problem. For every $n\ge4$ the maximum of $\EU$ over the
+connected graphs of order $n$ and diameter exactly $3$ equals
+\[
+ \frac{\sqrt3}{2}(n-2)^2(n-3)+\sqrt{n^2-3n+3}+(n-3)\sqrt{3n^2-15n+19},
+\]
+attained by exactly one graph up to isomorphism, namely $H(1,n-3)$;
+the proof is a closed form and uses no computation.
+We also settle the single cell $n=9$, $D=3$ in the other direction: over the
+$148\,229$ isomorphism classes of that cell the minimum is
+$8\sqrt3+6\sqrt{19}=40.0098\ldots$, attained by exactly one class, the
+\emph{bicyclic} theta graph $\Theta(3,3,4)$, so that the minimiser there is
+neither a tree nor unicyclic and the best tree in the cell is only third. That
+half is settled by the exhaustive census shipped with this paper, not by hand.
+Problem~1 quantifies over all $n$ and all $D$ and is \emph{not} resolved here;
+\S\ref{sec:open} says exactly what remains, including the one paywalled paper
+that could reduce our maximum half to a rediscovery.
+\end{abstract}
+
+\maketitle
+
+\section{The problem and its source}
+
+For a graph $G$ write $d(x)=d_G(x)$. The \emph{Euler--Sombor index} is
+\begin{equation}\label{eq:EU}
+ \EU(G)=\sum_{xy\in E(G)}\sqrt{d(x)^2+d(y)^2+d(x)d(y)},
+\end{equation}
+in the normalisation printed on journal page~761 of \cite{Sekar} and in the
+abstract of \cite{Kizilirmak}. Khanra and Das close \cite{KhanraDas} with a
+list of open problems whose item~(1) reads, on journal page~546, verbatim:
+
+\begin{quote}
+Here we propose the following open problems on Euler Sombor index of a graph:
+Determine the extremal values and extremal graphs with respect to Euler Sombor
+index over the following sets: (1) the class of all connected graphs with given
+diameter; \ldots
+\end{quote}
+
+Sekar, Balachandran, Elumalai and Liu \cite{Sekar} reproduce item~(1) as a
+numbered problem. On journal page~762, immediately after the sentence ``Very
+recently, Khanra et al.\ [17] posed the following open problem:'', they print
+verbatim:
+
+\begin{quote}
+\textbf{Problem 1.} Determine the extremal values and extremal graphs with
+respect to Euler Sombor index over the class of all connected graphs with given
+diameter.
+\end{quote}
+
+The label ``Problem~1'' is theirs; the problem is Khanra and Das's. A 2026
+survey by Ali, Gutman, R\'eti, Albalahi and Hamza \cite{Survey} still poses it,
+as Problem~3.1.6 on journal page~109, in exactly the parameterisation used
+below: ``Characterize graphs minimizing/maximizing the EUSO index among all
+fixed-order connected graphs with a given (i) diameter or (ii) domination
+number.''
+
+Throughout, \emph{given diameter} means diameter \emph{exactly} $D$: for
+$n\ge2$ and $D\ge1$ put
+\[
+ \Gnd_{n,D}=\{G:\ G\ \text{connected},\ |V(G)|=n,\ \diam(G)=D\},
+\]
+\[
+ M(n,D)=\max_{G\in\Gnd_{n,D}}\EU(G),
+ \qquad
+ m(n,D)=\min_{G\in\Gnd_{n,D}}\EU(G).
+\]
+
+\section{Results}
+
+For $a,b\ge1$ with $a+b=n-2$ let $H(a,b)$ be the graph on
+$\{u,v\}\cup W$, $|W|=n-2$, obtained from the complete graph on $W$ by
+splitting $W=A\sqcup B$ with $|A|=a$, $|B|=b$, joining $u$ to every vertex of
+$A$ and $v$ to every vertex of $B$, and leaving $u$ and $v$
+\emph{non-adjacent}. Note $H(a,b)\cong H(b,a)$.
+
+\begin{theorem}\label{thm:B}
+For every $n\ge4$,
+\[
+ M(n,3)=\frac{\sqrt3\,(n-2)^2(n-3)}{2}
+        +\sqrt{n^2-3n+3}
+        +(n-3)\sqrt{3n^2-15n+19},
+\]
+and the maximum is attained by exactly one graph up to isomorphism, namely
+$H(1,n-3)$.
+\end{theorem}
+
+\begin{theorem}\label{thm:A}
+$m(9,3)=8\sqrt3+6\sqrt{19}=40.009800121795059\ldots$, attained by exactly one
+graph up to isomorphism, the bicyclic theta graph $\Theta(3,3,4)$ of
+\S\ref{sec:objects}. In particular the minimiser of $\Gnd_{9,3}$ is neither a
+tree nor unicyclic: the best tree in the cell is the double star $D(3,4)$ with
+$\EU=\sqrt{61}+3\sqrt{21}+4\sqrt{31}=43.8290342121\ldots$, only third, behind
+the unicyclic runner-up $4\sqrt{21}+8\sqrt3+4\sqrt7=42.7697144846\ldots$.
+\end{theorem}
+
+At $n=9$ Theorem~\ref{thm:B} reads
+\[
+ M(9,3)=147\sqrt3+\sqrt{57}+6\sqrt{127}=329.777869165403581\ldots,
+\]
+attained uniquely up to isomorphism by $H(1,6)$, with margin
+$6.5941623645\ldots$ over the runner-up
+$\EU(H(2,5))=147\sqrt3+2\sqrt{67}+5\sqrt{109}$.
+
+Theorem~\ref{thm:B} is proved in \S\ref{sec:max} by a closed-form argument that
+uses nothing about $n$ beyond $n\ge4$ and performs no search. The uniqueness
+and exhaustiveness assertions of Theorem~\ref{thm:A} are computer-assisted: the
+\emph{value} $8\sqrt3+6\sqrt{19}$ and the object $\Theta(3,3,4)$ are
+hand-checkable from \S\ref{sec:objects}, and \S\ref{sec:min} confines the
+minimiser to $m\le10$ edges by a strict inequality; but ``no other member of
+the cell does better, and exactly one attains the value'' rests on the
+exhaustive census of \S\ref{sec:min}, shipped with this paper as
+\texttt{census.c}, \texttt{census.py} and \texttt{census.output.txt}.
+
+\medskip
+\noindent\textbf{Status.} Problem~1 quantifies
+over all $n$ and all $D$ and is \emph{not} resolved here. What is settled is
+the maximum half of the column $D=3$ for all $n\ge4$, together with the single
+cell $(n,D)=(9,3)$ in both directions. The minimum half at $D=3$ is undecided
+already for $n=10$; no cell with $D\ge4$ and $n>9$ is touched. Every uniqueness
+statement is up to isomorphism. See \S\ref{sec:open}.
+
+\medskip
+\noindent\textbf{Prior art, and what it does not settle.} We make no priority
+claim. The extremal \emph{object} $H(1,n-3)$ is already in print for this
+class: Vetr\'ik \cite{Vetrik} proves sharp upper bounds for
+$I_f(G)=\sum_{uv\in E}f(d(u),d(v))$ over graphs of given order and diameter,
+and his corollary's maximiser for the sum-connectivity index $\chi_a$ at $a=1$
+must be $H(1,n-3)$ as well, since $\chi_1$ is the first Zagreb index
+$M_1=\sum_vd_v^2$, at $n=9$ $M_1(H(a,b))=343+a^2+b^2$ gives $380>372>368$ on
+the three splits, and the whole tier $m\le27$ obeys
+$M_1\le\Delta\cdot2m\le14m\le378<380$. What \cite{Vetrik} does not settle, so
+far as we can tell, is $\EU$ itself: every index family named in its abstract
+carries an exponent $\ge1$, whereas the edge function of \eqref{eq:EU} is
+$1$-homogeneous and concave, and the Euler--Sombor index did not exist in 2023
+\cite{TangEtAl}. That reading is an inference from an abstract and from the
+restatement of the hypothesis in \cite{VetrikDML}, not a reading of the
+theorem; \S\ref{sec:open} records the risk that it is wrong. The adjacent
+Euler--Sombor items are these. Sekar, Balachandran, Elumalai and Liu
+\cite{Sekar} bound $\EU$ over the \emph{unicyclic} graphs of given diameter, a
+proper subclass of $\Gnd_{n,D}$, and so do not decide either extremum over the
+whole cell; their Theorem~3.2 is used below only as a normalisation pin.
+Kizilirmak \cite{Kizilirmak} works with $\EU$ under a diameter constraint;
+only Lemma~2 of that paper, the value $\EU(C_9)$, is used here, again as a pin.
+Khanra and Das \cite{KhanraDas} and the survey \cite{Survey} pose the problem
+and do not answer it. So far as we could determine, none of these items
+exhibits $M(n,3)$ or the minimiser of $\Gnd_{9,3}$; we did not read
+\cite{Vetrik}.
+What \S\ref{sec:max} supplies is the Euler--Sombor \emph{value} of $M(n,3)$
+with an argument that the maximiser is unique, and \S\ref{sec:min} the minimum
+in the single cell $(9,3)$. The auxiliary bound of Step~1 below is classical
+and is credited there.
+
+\section{The two extremal objects, exhibited}\label{sec:objects}
+
+Both are printed completely, so a reader needs no code and no graph6 decoder.
+
+\subsection*{The maximiser $H(1,6)$: $9$ vertices, $28$ edges}
+Vertices $u,v,w_1,\ldots,w_7$. Edges: the $21$ pairs $w_iw_j$,
+$1\le i<j\le7$; the edge $uw_1$; and the six edges $vw_2,vw_3,\ldots,vw_7$.
+The vertices $u$ and $v$ are not adjacent.
+
+Degrees: $d(u)=1$, $d(v)=6$, and $d(w_i)=7$ for $i=1,\ldots,7$; the degree
+sequence is $(1,6,7,7,7,7,7,7,7)$. Checks: $21+1+6=28=\binom82$ and
+$1+6+7\cdot7=56=2\cdot28$.
+
+Diameter exactly $3$: the only neighbour of $u$ is $w_1$, and $w_1\not\sim v$,
+so $d(u,v)=3$ along $u\,w_1\,w_j\,v$ for any $j\ge2$; every other pair of
+vertices is at distance at most $2$, since $w_1,\ldots,w_7$ is a clique meeting
+every neighbourhood.
+
+Its index: each of the $21$ clique edges joins two vertices of degree $7$ and
+contributes $\sqrt{49+49+49}=7\sqrt3$; the edge $uw_1$ joins degrees $(1,7)$
+and contributes $\sqrt{1+49+7}=\sqrt{57}$; each edge $vw_i$ joins degrees
+$(6,7)$ and contributes $\sqrt{36+49+42}=\sqrt{127}$. Hence
+\begin{align*}
+ \EU(H(1,6))&=147\sqrt3+\sqrt{57}+6\sqrt{127}\\
+ &=254.6114687126+7.5498344353+67.6165660175\\
+ &=329.7778691654\ldots
+\end{align*}
+The edge degree-pair profile is $(1,7)^1,(6,7)^6,(7,7)^{21}$.
+
+\subsection*{The minimiser $\Theta(3,3,4)$: $9$ vertices, $10$ edges, bicyclic}
+Two vertices $u,v$ joined by three internally disjoint paths of lengths
+$3,3,4$:
+\[
+ u\,a_1\,a_2\,v,\qquad u\,b_1\,b_2\,v,\qquad u\,c_1\,c_2\,c_3\,v .
+\]
+Vertices: $u,v,a_1,a_2,b_1,b_2,c_1,c_2,c_3$. Edges ($10$):
+$ua_1$, $a_1a_2$, $a_2v$, $ub_1$, $b_1b_2$, $b_2v$, $uc_1$, $c_1c_2$,
+$c_2c_3$, $c_3v$.
+Degrees: $d(u)=d(v)=3$ and all seven internal vertices have degree $2$; the
+degree sum is $7\cdot2+2\cdot3=20=2\cdot10$, and the cyclomatic number is
+$10-9+1=2$, so the graph is bicyclic.
+
+Diameter exactly $3$: $u\not\sim v$ and the shortest $u$--$v$ path has length
+$3$; the extremal pairs are two internal vertices on different paths, e.g.
+$d(a_1,b_2)=3$ (via $a_1ub_1b_2$) and $d(a_1,c_2)=3$ (via $a_1uc_1c_2$), and no
+pair exceeds $3$.
+
+Its index: the four path-interior edges $a_1a_2,b_1b_2,c_1c_2,c_2c_3$ join two
+degree-$2$ vertices and contribute $\sqrt{4+4+4}=2\sqrt3$ each; the six
+remaining edges join a degree-$2$ vertex to $u$ or $v$ and contribute
+$\sqrt{4+9+6}=\sqrt{19}$ each. Hence
+\begin{align*}
+ \EU(\Theta(3,3,4))&=8\sqrt3+6\sqrt{19}\\
+ &=13.8564064606+26.1533936612=40.0098001218\ldots
+\end{align*}
+The profile is $(2,2)^4,(2,3)^6$.
+
+\begin{remark}\label{rem:ties}
+All four theta graphs $\Theta(l_1,l_2,l_3)$ on $9$ vertices with
+$l_1+l_2+l_3=10$ and every $l_i\ge2$ share this profile and hence the
+\emph{same} index $8\sqrt3+6\sqrt{19}$. What separates them is the diameter:
+$\Theta(2,2,6)$, $\Theta(2,3,5)$ and $\Theta(2,4,4)$ all have diameter $4$,
+and only $\Theta(3,3,4)$ has diameter $3$. So the minimiser is unique
+\emph{in the cell} although its value is shared by graphs outside it; the
+clause ``diameter exactly $3$'' does real work.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:B}}\label{sec:max}
+
+Fix $n\ge4$ and put $c=n-2$. In $H(a,b)$ we have $d(u)=a$, $d(v)=b$, every
+vertex of $W$ has degree $c=n-2$, the size is
+$\binom{n-2}2+a+b=\binom{n-1}2$, and $\diam H(a,b)=3$ exactly (the argument of
+\S\ref{sec:objects} for $(a,b)=(1,6)$ is verbatim the general one).
+
+\medskip
+\noindent\textbf{Step 1 (edge ceiling; classical).}
+Let $G\in\Gnd_{n,3}$ and pick $u,v$ with $d(u,v)=3$. Put $A=N(u)$, $B=N(v)$
+and $R=V(G)\setminus(\{u,v\}\cup A\cup B)$. Since $d(u,v)=3$ we have
+$u\not\sim v$ and $A\cap B=\emptyset$, so $|A|+|B|+|R|=n-2$. The pairs
+$uv$; $\{u,b\}$ for $b\in B$; $\{u,r\}$ and $\{v,r\}$ for $r\in R$; and
+$\{v,a\}$ for $a\in A$ are pairwise distinct non-edges, and there are
+$1+|A|+|B|+2|R|=(n-1)+|R|\ge n-1$ of them. Hence
+\begin{equation}\label{eq:ore}
+ |E(G)|\ \le\ \binom n2-(n-1)\ =\ \binom{n-1}2 .
+\end{equation}
+
+\medskip
+\noindent\textbf{Step 2 (equality cases).}
+Equality in \eqref{eq:ore} forces $R=\emptyset$ and forces every pair not on
+the list above to be an edge, i.e.\ $A\cup B$ induces a complete graph, $u$ is
+joined to all of $A$ and $v$ to all of $B$. Thus $G=H(|A|,|B|)$ with
+$|A|+|B|=n-2$ and $|A|,|B|\ge1$ (if $|A|=0$ then $u$ is isolated). Up to
+isomorphism these are $\lfloor(n-2)/2\rfloor$ graphs; at $n=9$ exactly three,
+$H(1,6)$, $H(2,5)$, $H(3,4)$.
+
+\begin{remark}[Attribution]\label{rem:ore}
+Steps 1 and 2 --- the bound \eqref{eq:ore} for a graph of diameter $3$
+\emph{and} its equality characterisation --- are classical: they are the
+Ore-type extremal problem ``maximum size of a graph of given order and
+diameter''. They are re-derived here because the derivation is four lines, not
+because they are new; see \cite{Ore2023} for a modern proof and entry point,
+and \cite{Tokyo2010} for the $2$-connected refinement. What is proved below is
+the Euler--Sombor layer on top: Step~3 and Step~4.
+\end{remark}
+
+\medskip
+\noindent\textbf{Step 3 (the whole tier $|E|\le\binom{n-1}2-1$ is beaten).}
+If $\diam(G)\ge3$ then no vertex has degree $n-1$ --- such a vertex is adjacent
+to everything and forces $\diam\le2$ --- so $\Delta(G)\le n-2$ and every edge
+term of \eqref{eq:EU} obeys
+$\sqrt{d_x^2+d_xd_y+d_y^2}\le\sqrt{3\Delta^2}=\sqrt3\,(n-2)$.
+(The hypothesis is $\diam\ge3$, not $\diam\ge2$: the star $K_{1,n-1}$ has
+diameter $2$ and $\Delta=n-1$.)
+Since $\binom{n-1}2-1-\binom{n-2}2=n-3$, any $G\in\Gnd_{n,3}$ with
+$|E(G)|\le\binom{n-1}2-1$ satisfies
+\[
+ \EU(G)\ \le\ \underbrace{\sqrt3(n-2)\binom{n-2}2}_{\text{the clique part of every }H(a,b)}
+            +\ \sqrt3\,(n-2)(n-3),
+\]
+so that whole tier is strictly beaten by $H(1,n-3)$ as soon as
+\begin{equation}\label{eq:star}
+\begin{split}
+ \sqrt3\,(n-2)(n-3)\ <\ &\sqrt{(n-2)^2+(n-2)+1}\\
+ &+(n-3)\sqrt{3(n-3)^2+3(n-3)+1}.
+\end{split}
+\end{equation}
+Write $s=n-3\ge1$; \eqref{eq:star} becomes
+$\sqrt{s^2+3s+3}+s\sqrt{3s^2+3s+1}>\sqrt3\,s(s+1)$. Since
+$\sqrt3\,s(s+1)=s\sqrt{3s^2+6s+3}$,
+\begin{align*}
+ \sqrt3\,s(s+1)-s\sqrt{3s^2+3s+1}
+ &=\frac{s(3s+2)}{\sqrt{3s^2+6s+3}+\sqrt{3s^2+3s+1}}\\
+ &<\frac{s(3s+2)}{2\sqrt{3s^2}}
+ =\frac{\sqrt3}{2}s+\frac1{\sqrt3},
+\end{align*}
+while $\sqrt{s^2+3s+3}>s+1$ because $s^2+3s+3-(s+1)^2=s+2>0$. Finally
+\begin{align*}
+ (s+1)-\Bigl(\tfrac{\sqrt3}2s+\tfrac1{\sqrt3}\Bigr)
+ &=\Bigl(1-\tfrac{\sqrt3}2\Bigr)s+\Bigl(1-\tfrac1{\sqrt3}\Bigr)\\
+ &=0.1339745\ldots s+0.4226497\ldots>0 ,
+\end{align*}
+so \eqref{eq:star} holds for every $s\ge1$, with a margin growing linearly in
+$n$. The left-hand bound is valid on the \emph{whole} discarded tier, so
+nothing can hide there. At $n=9$ the cap on the tier is
+$27\cdot7\sqrt3=189\sqrt3=327.3576026305\ldots$, below
+$329.7778691654\ldots$
+
+\medskip
+\noindent\textbf{Step 4 (which $H(a,b)$ wins).}
+Every edge from the apex $u$ of degree $t$ to the clique joins degrees $t$ and
+$c$, so those $t$ edges contribute
+\[
+ \varphi(t)=t\sqrt{t^2+ct+c^2},
+ \qquad\text{and}\qquad
+ \EU(H(a,b))=\sqrt3\,c\binom c2+\varphi(a)+\varphi(c-a).
+\]
+With $q(t)=t^2+ct+c^2$,
+\[
+ \varphi'(t)=\frac{4t^2+3ct+2c^2}{2\sqrt q},
+ \qquad
+ \varphi''(t)=\frac{8t^3+12ct^2+15c^2t+4c^3}{4q^{3/2}}>0
+\]
+for $t\ge0$ and $c>0$,
+the numerator of $\varphi''$ being
+$2(8t+3c)q-(4t^2+3ct+2c^2)(2t+c)
+ =(16t^3+22ct^2+22c^2t+6c^3)-(8t^3+10ct^2+7c^2t+2c^3)$.
+So $\varphi$ is strictly convex, hence $a\mapsto\varphi(a)+\varphi(c-a)$ is
+strictly convex on $[1,c-1]$ and is maximised only at the endpoints $a=1$ and
+$a=c-1$, which give isomorphic graphs. Therefore $H(1,n-3)$ is the unique
+maximiser among the graphs of Step~2, and by Step~3 among all of
+$\Gnd_{n,3}$. Evaluating $\EU(H(1,n-3))$ gives
+\begin{align*}
+ \sqrt3\,(n-2)\binom{n-2}2&+\sqrt{1+(n-2)+(n-2)^2}\\
+ &+(n-3)\sqrt{(n-3)^2+(n-3)(n-2)+(n-2)^2},
+\end{align*}
+which is the closed form of Theorem~\ref{thm:B}. \qed
+
+\section{The minimum at $n=9$, $D=3$}\label{sec:min}
+
+\noindent\textbf{No monotonicity is available.} Adding an edge strictly
+increases $\EU$, but $\Gnd_{n,D}$ is closed under neither edge addition (an
+added edge can drop the diameter) nor edge deletion (a deleted edge can raise
+it or disconnect), so the minimiser is not forced onto a tree: $C_6$ has
+diameter $3$ and every spanning tree of $C_6$ is $P_6$, of diameter $5$.
+
+\medskip
+\noindent\textbf{A floor that amputates the search space.}
+For $x,y>0$ we have $x^2+xy+y^2-\tfrac34(x+y)^2=\tfrac14(x-y)^2\ge0$, so each
+edge term of \eqref{eq:EU} is at least $\tfrac{\sqrt3}2(d_x+d_y)$; summing over
+edges and applying Cauchy--Schwarz to $\sum_vd_v^2\ge4m^2/n$ gives, for every
+graph of order $n$ and size $m$,
+\begin{equation}\label{eq:floor}
+ \EU(G)\ \ge\ \frac{\sqrt3}{2}\sum_{v}d_v^2\ \ge\ \frac{2\sqrt3\,m^2}{n}.
+\end{equation}
+At $n=9$, $m=11$ already gives
+\[
+ \frac{2\sqrt3\cdot121}{9}=46.5729217146\ldots>43.8290342121\ldots=\EU(D(3,4)),
+\]
+and the right-hand side of \eqref{eq:floor} increases in $m$. Since $D(3,4)$ lies
+in $\Gnd_{9,3}$, the minimiser has $m\in\{8,9,10\}$: it is a tree, unicyclic
+or bicyclic.
+
+\medskip
+\noindent\textbf{$m=8$ by hand.} The only $9$-vertex trees of diameter $3$ are
+the double stars $D(a,7-a)$ (adjacent centres of degrees $a+1$ and $8-a$,
+carrying $a$ and $7-a$ leaves), and
+\[
+ \begin{array}{l}
+ D(3,4)=\sqrt{61}+3\sqrt{21}+4\sqrt{31}=43.8290342121\ldots,\\
+ D(2,5)=\sqrt{63}+2\sqrt{13}+5\sqrt{43}=47.9355491\ldots,\\
+ D(1,6)=\sqrt{67}+\sqrt7+6\sqrt{57}=56.1301107\ldots,
+ \end{array}
+\]
+so the best tree in the cell is $D(3,4)$, already above
+$8\sqrt3+6\sqrt{19}$.
+
+\medskip
+\noindent\textbf{$m=10$: the cheapest profile is not realisable at diameter
+$3$.}
+By \eqref{eq:floor} the cheapest way to spend $10$ edges on $9$ vertices is to
+keep the degrees as equal as the class allows, and the cheapest degree sequence
+is $(3,3,2^7)$. Among edge profiles realising it, the cheapest is the one with
+a single $(3,3)$-edge, worth
+$13\sqrt3+4\sqrt{19}=39.9522\ldots<40.0098\ldots$; so if that profile were
+realisable at diameter $3$ the claimed minimum would be wrong. It is not
+realisable. A single $(3,3)$-edge makes the two degree-$3$ vertices adjacent,
+which forces either a theta graph $\Theta(1,b,c)$ with $b+c=9$ or a dumbbell
+with a handle of length $1$; and $\Theta(1,2,7)$, $\Theta(1,3,6)$,
+$\Theta(1,4,5)$ and every $C_a$--$C_b$ dumbbell with $a+b=9$ have diameter at
+least $4$. If, on the other hand, the profile has no
+$(3,3)$-edge, then the two degree-$3$ vertices are non-adjacent, all six of
+their edges run to degree-$2$ vertices, and a connected graph with degrees in
+$\{2,3\}$ and exactly two vertices of degree $3$ is a theta graph or a
+dumbbell; a $9$-vertex dumbbell has diameter at least $5$, so the graph is
+$\Theta(l_1,l_2,l_3)$ with $\sum l_i=10$ and every $l_i\ge2$, and by
+Remark~\ref{rem:ties} only $(3,3,4)$ has diameter $3$.
+No written argument is given here for the remaining degree sequences with
+$m=10$ --- the next one met is $(4,2^8)$, whose cheapest profile costs
+$4\sqrt{28}+12\sqrt3=41.9506\ldots$, and we do not go through the rest --- and
+none is given for $m=9$. Those cases are settled by the census below, not by
+hand.
+
+\medskip
+\noindent\textbf{$m=9$, exhaustiveness and uniqueness: the census.} The
+unicyclic case and the exhaustiveness and uniqueness assertions of
+Theorem~\ref{thm:A} rest on enumeration. That enumeration is shipped with this
+paper: \texttt{census.c} is the enumeration kernel, \texttt{census.py} the
+driver carrying the arithmetic, the controls, the automorphism counts and the
+verdict, and \texttt{census.output.txt} the retained output of the run, whose
+header records the reproduction command. It has two passes that share no
+enumeration machinery. Pass~1 reads every isomorphism class of connected
+nine-vertex graph from \texttt{nauty}'s \texttt{geng}, stratifies them by
+diameter, and compares $\EU$ over the cell in $80$-significant-digit
+\texttt{Decimal} arithmetic; since \texttt{geng} emits one graph6 line per
+class, the number of classes in an extremal bucket \emph{is} the number of
+ties, and it is $1$ at each end. Pass~2 uses no generator, no canonical form
+and no isomorphism test: it sweeps all $2^{36}$ labelled graphs on nine
+vertices, finds no graph of the cell beating either extremum, and finds exactly
+$504=9!/|\mathrm{Aut}(H(1,6))|=9!/720$ labelled graphs within $10^{-6}$ of the
+maximum and exactly $90\,720=9!/|\mathrm{Aut}(\Theta(3,3,4))|=9!/4$ within
+$10^{-6}$ of the minimum, i.e.\ one orbit at each end and nothing else. All
+$43$ checks pass.
+
+The driver reproduces its controls before printing any extremum and refuses to
+print one if a control fails. \texttt{geng -c 9} emits
+$261\,080=A001349(9)$ connected classes; the eight diameter strata are
+$1$, $91\,518$, $148\,229$, $19\,320$, $1818$, $180$, $13$, $1$, which sum to
+that figure, so the cell
+$\Gnd_{9,3}$ holds exactly $148\,229$ isomorphism classes. The $21$ per-size
+class counts of the $D=3$ stratum, for $m=8,\ldots,28$,
+\[
+ \begin{gathered}
+ 3,\ 17,\ 76,\ 369,\ 1483,\ 4381,\ 9621,\ 16547,\ 23013,\ 26173,\ 24441,\\
+ 18828,\ 12040,\ 6477,\ 2980,\ 1185,\ 412,\ 131,\ 38,\ 11,\ 3,
+ \end{gathered}
+\]
+sum to $148\,229$ as well; and the labelled pass's own count of connected
+labelled graphs on nine nodes, $66\,296\,291\,072$, matches the exponential
+formula evaluated in exact integer arithmetic. Two published values by other
+authors pin the normalisation \eqref{eq:EU}: the census's maximum over the
+\emph{unicyclic} members of $\Gnd_{9,3}$ is the right-hand side of Theorem~3.2
+of \cite{Sekar} at $n=9$, namely
+$5\sqrt{57}+\sqrt{79}+\sqrt{67}+\sqrt{13}+\sqrt{19}=62.7871695845\ldots$, so
+that theorem is sharp at $n=9$; and the census's minimum over $\Gnd_{9,4}$ is
+Lemma~2 of \cite{Kizilirmak}, $\EU(C_9)=18\sqrt3=31.1769145362\ldots$,
+attained by the $9$-cycle alone. The census also reports that the smallest gap
+between two distinct profile values anywhere in the cell is
+$1.0380112\ldots\times10^{-7}$; at $80$ significant digits no comparison it
+makes is delicate.
+
+\begin{remark}
+We claim the minimiser of no cell other than $(9,3)$.
+\end{remark}
+
+\section{What is not settled}\label{sec:open}
+
+\noindent\textbf{The one risk to Theorem~\ref{thm:B}.} Vetr\'ik \cite{Vetrik}
+proves sharp \emph{upper} bounds on $I_f$ over graphs of given order and
+diameter, and \S2 records that his extremal object must coincide with ours. Its
+full text is paywalled, with no open-access or repository copy and no preprint,
+and we could not read it. What we did read is the publisher's abstract, in which
+every index family carries an exponent $\ge1$ ($\chi_a$, $R_a$, $FGO_a$ with
+$a\ge1$; $GZ_{a,b}$, $M_{a,b}$ with $a,b\ge1$), whereas the edge function of
+\eqref{eq:EU} is $1$-homogeneous and concave. Vetr\'ik's own later paper
+\cite{VetrikJAMC} says of \cite{Vetrik} that ``the result presented in [17]
+holds for $R_a$, where $a\ge1$, and for $M_{a,b}$, where $a,b\ge1$'', and the
+$f$-condition as printed in \cite{VetrikDML} fails for
+$f(x,y)=\sqrt{x^2+xy+y^2}$: with $(x_1,y_1)=(1,1)$, $(x_2,y_2)=(1,5)$ one has
+$\sqrt7-\sqrt3=0.9137\ldots>\sqrt{39}-\sqrt{31}=0.6772\ldots$, so the required
+increasing-differences clause is violated. On that evidence $\EU$ appears to lie
+outside the class. \emph{But that is an inference from an abstract and from a
+second paper's restatement of the hypothesis, not a reading of the theorem.} If
+the hypothesis of \cite{Vetrik} does admit a concave $1$-homogeneous $f$, then
+Theorem~\ref{thm:B} is a rediscovery and what survives is
+Theorem~\ref{thm:A}'s minimum half together with the two numerical values.
+
+\medskip
+\noindent\textbf{Cells left open.} The minimum half at $D=3$ is undecided for
+every $n\ge10$, and every cell with $D\ge4$ and $n>9$ is untouched in both
+directions.
+
+\medskip
+\noindent\textbf{What the two shipped programs do and do not cover.} The census
+of \S\ref{sec:min} --- \texttt{census.c}, \texttt{census.py} and its retained
+transcript \texttt{census.output.txt}, whose header records the sha256 sums of
+the two files that were run, the wall clock and the reproduction
+command --- is what carries the exhaustiveness and the uniqueness of both
+extrema of $\Gnd_{9,3}$. The second program, \texttt{verify.py} with its
+transcript \texttt{verify.output.txt}, enumerates nothing: it re-derives what a
+pencil can reach --- Theorem~\ref{thm:B} in full, the two objects of
+\S\ref{sec:objects} with their closed-form values and diameters, the strict
+ordering $40.0098\ldots<42.7697\ldots<43.8290\ldots$ among the three named
+graphs $\Theta(3,3,4)$, one hand-built unicyclic member of the cell and the
+double star $D(3,4)$, and no others, the amputation \eqref{eq:floor}, the tier
+cap of Step~3 and the strata identities
+--- and its closing note says correctly that it cannot itself see the
+exhaustiveness or the uniqueness of the minimum, and that the strata counts it
+re-prints are transcriptions of the census rather than re-reads. Neither program
+reads \cite{Vetrik}; the $f$-class exclusion discussed above is a computation on
+the condition as printed in \cite{VetrikDML}, not a reading of Vetr\'ik's
+hypothesis. Where a
+surd identity is asserted it is checked to a stated tolerance.
+
+\begin{thebibliography}{9}
+
+\bibitem{Survey}
+A.~Ali, I.~Gutman, T.~R\'eti, A.~M. Albalahi, and A.~E. Hamza,
+\emph{Survey on extremal results and bounds for elliptic Sombor and
+Euler--Sombor indices},
+Discrete Math. Lett. \textbf{17} (2026), 101--112,
+\href{https://doi.org/10.47443/dml.2026.056}{doi:10.47443/dml.2026.056}.
+Problem~3.1.6 is on journal page~109.
+
+\bibitem{KhanraDas}
+B.~Khanra and S.~Das,
+\emph{Euler Sombor index of trees, unicyclic and chemical graphs},
+MATCH Commun. Math. Comput. Chem. \textbf{94} (2025), 525--548.
+The open problem quoted in \S1 is item~(1) of its concluding list, journal
+page~546.
+
+\bibitem{Kizilirmak}
+G.~O. Kizilirmak,
+MATCH Commun. Math. Comput. Chem. \textbf{94} (2025), 725--738.
+Its abstract, journal page~725, prints the same normalisation of $\EU$ as
+\eqref{eq:EU}; the Lemma~2 used as a pin in \S\ref{sec:min} is on journal
+page~728. Title not recorded in the source we consulted.
+
+\bibitem{Ore2023}
+\emph{A simple proof of Ore's theorem on the maximum size of $k$-connected
+graphs with given order and diameter},
+Graphs Combin. (2023),
+\href{https://doi.org/10.1007/s00373-023-02628-w}{doi:10.1007/s00373-023-02628-w}.
+Authors not recorded in the source we consulted.
+
+\bibitem{Sekar}
+S.~Sekar, S.~Balachandran, S.~Elumalai, and H.~Liu,
+\emph{Maximum Euler Sombor index of unicyclic graphs with given diameter},
+MATCH Commun. Math. Comput. Chem. \textbf{95} (2026), no.~3, 759--776,
+\href{https://doi.org/10.46793/match.95-3.12225}{doi:10.46793/match.95-3.12225}.
+Problem~1 is on journal page~762; the index \eqref{eq:EU} is defined on
+journal page~761; Theorem~3.2 is on journal page~764.
+
+\bibitem{TangEtAl}
+Z.~Tang, Q.~Li, and H.~Deng,
+Int. J. Quantum Chem. \textbf{124} (2024), e27387; and I.~Gutman,
+Milit. Techn. Courier \textbf{72} (2024), 1--12.
+These are the two 2024 papers that introduce the Euler--Sombor index, cited as
+references [20] and [7] of \cite{Sekar}. Titles not recorded in the source we
+consulted.
+
+\bibitem{Tokyo2010}
+\emph{Extremal $2$-connected graphs with given diameter},
+Tokyo J. Math. (2010),
+\href{https://doi.org/10.3836/tjm/1270041609}{doi:10.3836/tjm/1270041609}.
+Authors not recorded in the source we consulted.
+
+\bibitem{Vetrik}
+T.~Vetr\'ik,
+\emph{Degree-based function index for graphs with given diameter},
+Discrete Appl. Math. \textbf{333} (2023), 59--70,
+\href{https://doi.org/10.1016/j.dam.2023.02.018}{doi:10.1016/j.dam.2023.02.018}.
+Nearest prior art; see \S2 and \S\ref{sec:open}. Its full text was not
+accessible to us.
+
+\bibitem{VetrikDML}
+T.~Vetr\'ik and P.~Kaemawichanurat,
+Discrete Math. Lett. \textbf{15} (2025), 23--30.
+The $f$-condition tested in \S\ref{sec:open} is Definition~1.1 as printed
+here, and its Lemma~1.1 attributes three cases to \cite{Vetrik}. Title not
+recorded in the source we consulted.
+
+\bibitem{VetrikJAMC}
+T.~Vetr\'ik,
+J. Appl. Math. Comput. (2024),
+\href{https://doi.org/10.1007/s12190-024-02307-w}{doi:10.1007/s12190-024-02307-w};
+open access, and the source of the sentence about \cite{Vetrik} quoted in
+\S\ref{sec:open}. Title not recorded in the source we consulted.
+
+\end{thebibliography}
+
+\end{document}

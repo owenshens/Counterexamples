@@ -1,0 +1,520 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The hexagonal prism under a closed-neighbourhood one-round rule:
+    fractional eternal domination number 46/13}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{problem}{Problem 7.5 of \cite{FED}}
+
+\newcommand{\fed}{\gamma_f^{\infty}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Cay}{\operatorname{Cay}}
+\newcommand{\half}{\tfrac12}
+
+\title[The hexagonal prism under a closed-neighbourhood rule]
+{The Hexagonal Prism under a Closed-Neighbourhood One-Round Rule:
+ Fractional Eternal Domination Number $46/13$}
+
+\date{}
+
+\subjclass[2020]{05C69, 05C57, 05C25, 90C05}
+\keywords{fractional eternal domination, cubic abelian Cayley graph, prism,
+linear programming duality, exact value}
+
+\begin{document}
+
+\begin{abstract}
+For the hexagonal prism $C_6\mathbin{\square}K_2$, and for the
+\emph{closed-neighbourhood} reading of the defender's one-round rule set out in
+Section~\ref{sec:intro},
+\[
+  \fed(C_6\mathbin{\square}K_2)=\frac{46}{13}=3.\overline{538461}\,,
+\]
+and the infimum is attained. That reading is ours and not a quotation: the
+source states the rule in a form we read as leaving unmoved weight in place, and
+both certificates below encode that reading, so if the intended rule is stricter
+they concern a different game and the value above is not the value asked for.
+This graph is the cell $k=1$ of the first family of Problem 7.5 of Devvrit,
+Krim-Yee, Kumar, MacGillivray, Seamone, Virgile and Xu, who asked for the exact
+value of the fractional eternal domination number $\fed(G)$ when $G$ is a cubic
+abelian Cayley graph of the two exceptional types $C_{4k+2}\mathbin{\square}K_2$
+($k\ne2$) and $\Cay(\Z_{8k},\{\pm1,4k\})$, and who prove for this cell only
+$\tfrac72<\fed(C_6\mathbin{\square}K_2)\le 4$. The upper bound here is an
+explicit $12$-member family of rational weight functions, printed in full; the
+lower bound is a $9$-node attack tree together with a dual certificate in exact
+rationals, also printed in full, so both halves can be checked against the
+printed objects alone --- the $493$ dual column inequalities being tedious
+rather than difficult. A closing remark records that, for the same reading of
+the rule, the last step of the published proof of $\tfrac72<\fed$ is not
+justified; the published inequality is nevertheless true, since
+$\tfrac72<\tfrac{46}{13}$. No other cell of the
+authors' question is settled here, and we do not settle which rule they
+intended.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+We use the definitions of Devvrit et al.\ \cite{FED}. A
+\emph{fractional dominating function} of a graph $G$ is a map
+$w\colon V(G)\to\mathbb{R}_{\ge0}$ with $\sum_{x\in N[v]}w(x)\ge1$ for every
+$v\in V(G)$, and $G$ is \emph{$S$-fractionally dominated} if it admits a
+fractional dominating function of total weight at most $S$. In the eternal
+game, weights are assigned so that $S$-fractional domination is maintained
+under vertex attacks: writing $w_i$ for the weight function at time step $i$
+and $m_{xy,i}$ for the weight moved from $x$ to $y\in N(x)$ in round $i$, the
+defender may move simultaneously from as many vertices as desired subject to
+$\sum_{y\in N(x)}m_{xy,i}\le w_i(x)$, and the resulting $w_{i+1}$ must again
+$S$-fractionally dominate $G$ and satisfy $w_{i+1}(v_i)\ge1$, where $v_i$ is
+the vertex attacked in round $i$. The \emph{fractional eternal domination
+number} $\fed(G)$ is the infimum of those $S$ for which $G$ can be eternally
+$S$-fractionally dominated.
+
+Two features of this definition are used below, and the first of them is our
+reading of the source rather than a quotation from it. The budget constraint we
+have quoted is stated in \cite{FED} as
+$\sum_{y\in N(x)}m_{xy,i}\le w_i(x)$, an open-neighbourhood sum bounded by the
+weight at $x$; we read it as leaving unmoved weight where it is, so that a
+legal round transports weight along \emph{closed} neighbourhoods with budget
+$w_i(x)$ at $x$. Everything below --- the family of
+Section~\ref{sec:upper} and the linear program of Section~\ref{sec:lower}
+alike --- encodes that reading, and if the intended rule is stricter (for
+instance if weight must leave $x$ along open neighbourhoods) then both encode a
+different game and the value below is not the value asked for. We have not
+found in \cite{FED} an update equation for $w_{i+1}$ that decides between the
+two readings, and we do not decide it here; that is why
+Theorem~\ref{thm:main} below is stated for the closed-neighbourhood rule rather
+than as a determination of the cell the authors asked about. The accompanying
+program encodes the same reading, so no check in it can discriminate between
+the two. Second, in the
+fractional model of \cite{FED} the attacker is unrestricted, in particular it
+may attack a vertex that already carries weight.
+
+Devvrit et al.\ prove that a cubic abelian Cayley graph $G$ satisfies
+$\fed(G)<\gamma(G)$ if and only if $G\cong C_{4k+2}\mathbin{\square}K_2$ or
+$G\cong\Cay(\Z_{8k},\{\pm1,4k\})$ for some positive integer $k$, and compute
+$\fed$ exactly for all other cubic abelian Cayley graphs. For the two
+exceptional families they ask:
+
+\begin{problem}
+Let $k$ be a positive integer. Determine the exact value of $\fed(G)$ when $G$
+is isomorphic to
+\begin{itemize}
+\item $C_{4k+2}\mathbin{\square}K_2$ for $k\ne2$;
+\item $\Cay(\Z_{8k},\{\pm1,4k\})$.
+\end{itemize}
+\end{problem}
+
+\noindent
+Ordering the cells of this question by $|V|$, the value is already a theorem of
+\cite{FED} at $|V|=8$, namely $\fed(\Cay(\Z_8,\{\pm1,4\}))=\tfrac83$, and at
+$|V|=20$, namely $\fed(C_{10}\mathbin{\square}K_2)=\tfrac{28}{5}$ (the cell
+$k=2$ excluded by the first bullet). The smallest cell it leaves open is
+therefore $k=1$ of the first bullet, the hexagonal prism
+$C_6\mathbin{\square}K_2$ on $12$ vertices, where \cite{FED} proves
+\[
+  \tfrac72<\fed(C_6\mathbin{\square}K_2)\le4 .
+\]
+The upper bound there is derived from the general estimate
+$\fed(G)\le(n+\kappa)/(\kappa+1)$ of \cite{FED} for a graph of connectivity
+$\kappa$, which at $n=12$, $\kappa=3$ gives $\tfrac{15}{4}$; so \cite{FED} in
+fact also yields $\fed(C_6\mathbin{\square}K_2)\le\tfrac{15}{4}=3.75$ here.
+
+\begin{theorem}\label{thm:main}
+For the closed-neighbourhood one-round rule read off above,
+$\displaystyle \fed(C_6\mathbin{\square}K_2)=\frac{46}{13}$, and the infimum is
+attained: an eternal strategy of total weight exactly $\tfrac{46}{13}$ exists.
+\end{theorem}
+
+The value is consistent with the published statements about this cell:
+$\tfrac72<\tfrac{46}{13}<\tfrac{15}{4}<4$, with
+$\tfrac{46}{13}-\tfrac72=\tfrac1{26}$; and
+$\tfrac{46}{13}-\gamma_f(C_6\mathbin{\square}K_2)=\tfrac{46}{13}-3=\tfrac7{13}<1$,
+as the corollary $\fed-\gamma_f<1$ of \cite{FED} for cubic abelian Cayley
+graphs demands. (Here $\gamma_f(C_6\mathbin{\square}K_2)=3$: the uniform weight
+$\tfrac14$ is fractionally dominating with total $3$, and summing the twelve
+closed neighbourhood inequalities gives $4S\ge12$.)
+Section~\ref{sec:upper} proves the upper bound and Section~\ref{sec:lower} the
+lower bound, closing with a remark on the published proof of
+$\tfrac72<\fed$; Section~\ref{sec:open} states what is \emph{not} settled.
+
+\medskip
+\noindent\textbf{Notation.} Throughout, $G=C_6\mathbin{\square}K_2$ with vertex
+set $V=\Z_6\times\{0,1\}$, edges $(i,j)\sim(i\pm1,j)$ and $(i,0)\sim(i,1)$.
+We also write $v=i+6j$, so that $V=\{0,\dots,11\}$ with
+\begin{center}\footnotesize
+\begin{tabular}{llll}
+$N[0]=\{0,1,5,6\}$   & $N[1]=\{0,1,2,7\}$   & $N[2]=\{1,2,3,8\}$    & $N[3]=\{2,3,4,9\}$\\
+$N[4]=\{3,4,5,10\}$  & $N[5]=\{0,4,5,11\}$  & $N[6]=\{0,6,7,11\}$   & $N[7]=\{1,6,7,8\}$\\
+$N[8]=\{2,7,8,9\}$   & $N[9]=\{3,8,9,10\}$  & $N[10]=\{4,9,10,11\}$ & $N[11]=\{5,6,10,11\}$.
+\end{tabular}
+\end{center}
+Thus $G$ is $3$-regular with $18$ edges, $3$-connected, bipartite and of girth
+$4$.
+
+\section{The upper bound}\label{sec:upper}
+
+\begin{lemma}\label{lem:frame}
+Let $\mathcal F=\{f_v : v\in V\}$ be a family of fractional dominating
+functions of $G$, indexed by $V$, such that
+\begin{enumerate}
+\item[(i)] each $f_v$ has total weight $S$;
+\item[(ii)] $f_v(v)=1$ for every $v$;
+\item[(iii)] for every ordered pair $(u,v)\in V\times V$ there is a
+  transportation plan $x\colon\{(a,b):b\in N[a]\}\to\mathbb{R}_{\ge0}$ with
+  $\sum_{b\in N[a]}x(a,b)=f_u(a)$ for all $a$ and
+  $\sum_{a:\,b\in N[a]}x(a,b)=f_v(b)$ for all $b$.
+\end{enumerate}
+Then $\fed(G)\le S$, and the infimum is attained.
+\end{lemma}
+
+\begin{proof}
+Play from $f_{v_0}$ for any $v_0$, and respond to an attack at $v$, from the
+current configuration $f_u$, by moving to $f_v$; (iii) says the move is legal
+for the one-round rule, since weight sent from $a$ to $a$ itself is weight left
+in place, (i) says the total is unchanged, $f_v$ is fractionally dominating,
+and (ii) says $f_v(v)=1\ge1$. The strategy therefore survives every infinite
+sequence of attacks at total weight exactly $S$.
+\end{proof}
+
+For $(m,t)\in V$ put $f_{(m,t)}(i,j)=h_{j\oplus t}\bigl((i-m)\bmod6\bigr)$,
+where $\oplus$ is addition mod $2$ and
+\[
+\begin{aligned}
+  h_0&:\ 0\mapsto1,\quad \pm1\mapsto\tfrac1{13},\quad
+        \pm2\mapsto\tfrac1{13},\quad 3\mapsto\tfrac5{13};\\
+  h_1&:\ 0\mapsto\tfrac6{13},\quad \pm1\mapsto0,\quad
+        \pm2\mapsto\tfrac6{13},\quad 3\mapsto\tfrac6{13}.
+\end{aligned}
+\]
+Both profiles are even, so each $f_{(m,t)}$ is invariant under the stabiliser
+$\{\mathrm{id},\,i\mapsto-i\}$ of $(0,0)$ and the twelve translates are well
+defined. Written out, the seed $f=f_{(0,0)}$ is
+\[
+  f=\Bigl(1,\tfrac1{13},\tfrac1{13},\tfrac5{13},\tfrac1{13},\tfrac1{13}
+   \,\Big|\,\tfrac6{13},0,\tfrac6{13},\tfrac6{13},\tfrac6{13},0\Bigr)
+\]
+in the order $v=0,\dots,11$, of total weight
+$1+\tfrac9{13}+\tfrac{24}{13}=\tfrac{46}{13}$. Its twelve closed neighbourhood
+sums are
+\[
+  \tfrac{21}{13},\ \tfrac{15}{13},\ 1,\ 1,\ 1,\ \tfrac{15}{13}
+  \ \Big|\
+  \tfrac{19}{13},\ 1,\ 1,\ \tfrac{23}{13},\ 1,\ 1,
+\]
+all at least $1$; translation carries this to every
+member, so (i) and (ii) of Lemma~\ref{lem:frame} hold with
+$S=\tfrac{46}{13}$.
+
+For (iii), here is one plan in full, for $f_{(0,0)}\to f_{(3,0)}$; the notation
+$a\!\to\!b=q$ means that $a$ ships $q$ to $b$, and $b\in N[a]$ in every case:
+\begin{center}\ttfamily\small
+0->0=5/13\quad 0->1=1/13\quad 0->5=1/13\quad 0->6=6/13\quad 1->2=1/13\\
+2->3=1/13\quad 3->3=5/13\quad 4->3=1/13\quad 5->4=1/13\quad 6->7=6/13\\
+8->9=6/13\quad 9->3=6/13\quad 10->11=6/13
+\end{center}
+Every vertex ships exactly its own weight and every vertex receives exactly the
+target weight,
+\[
+\begin{aligned}
+ \text{ships}&:\ \bigl(1,\tfrac1{13},\tfrac1{13},\tfrac5{13},\tfrac1{13},
+   \tfrac1{13}\mid\tfrac6{13},0,\tfrac6{13},\tfrac6{13},\tfrac6{13},0\bigr),\\
+ \text{receives}&:\ \bigl(\tfrac5{13},\tfrac1{13},\tfrac1{13},1,\tfrac1{13},
+   \tfrac1{13}\mid\tfrac6{13},\tfrac6{13},0,\tfrac6{13},0,\tfrac6{13}\bigr),
+\end{aligned}
+\]
+the second of which is $f_{(3,0)}$. The total shipped
+is $\tfrac{46}{13}$, and the attacked vertex $3$ receives
+$\tfrac1{13}+\tfrac5{13}+\tfrac1{13}+\tfrac6{13}=1$. All $144$ ordered pairs
+of the family are feasible for (iii); each is a transportation problem with
+integer data after scaling by $13$, and the accompanying program decides all
+$144$ by exact integer maximum flow.
+
+By Lemma~\ref{lem:frame}, $\fed(C_6\mathbin{\square}K_2)\le\tfrac{46}{13}$.
+
+\section{The lower bound}\label{sec:lower}
+
+\subsection{A finite attack tree is a relaxation}
+Fix a finite rooted tree $T$ with nodes $0,1,\dots,N$, root $0$, parent map
+$p$, and an attacked vertex $a_k\in V$ for each $k\ge1$. Consider
+
+\begin{equation}\label{eq:lp}
+\begin{aligned}
+\text{minimise } & S\\
+\text{subject to } &\textstyle\sum_{v\in V}w_k(v)=S && (0\le k\le N)\\
+ &\textstyle\sum_{u\in N[v]}w_k(u)\ge1 && (0\le k\le N,\ v\in V)\\
+ & w_k(a_k)\ge1 && (1\le k\le N)\\
+ &\textstyle\sum_{y\in N[u]}x_k(u,y)=w_{p(k)}(u) && (1\le k\le N,\ u\in V)\\
+ &\textstyle\sum_{u:\,y\in N[u]}x_k(u,y)=w_k(y) && (1\le k\le N,\ y\in V)\\
+ & S\ge0,\ w_k(v)\ge0,\ x_k(u,y)\ge0. &&
+\end{aligned}
+\end{equation}
+
+\begin{lemma}\label{lem:relax}
+If $L$ is the optimum of \eqref{eq:lp} then $L\le\fed(G)$.
+\end{lemma}
+
+\begin{proof}
+An eternal defender surviving at total weight $S$ survives, in particular, the
+attacks of $T$: taking $w_0$ to be its initial configuration, $w_k$ the
+configuration reached along the path from the root to $k$, and $x_k$ the moves
+it makes in that round, every constraint of \eqref{eq:lp} is one of the game's
+own requirements. So $S$ is feasible for \eqref{eq:lp} and $L\le S$; take the
+infimum over $S$.
+\end{proof}
+
+Three remarks make Lemma~\ref{lem:relax} robust rather than delicate. The root
+configuration $w_0$ is \emph{free}, so no uniqueness or symmetry lemma about
+optimal initial configurations is needed. Any subtree of a legal attacker is a
+legal attacker, so pruning $T$ can only decrease $L$ --- it can never
+invalidate the bound. And an attacker that plays one fixed first attack and
+only then branches is weaker than one that branches immediately, so using such
+a tree is safe.
+
+\subsection{The tree}
+Take $N=8$ with
+\[
+\begin{array}{l@{\qquad}l}
+ p(1)=0, & a_1=(0,0)\\
+ p(2)=1,\ p(4)=1,\ p(7)=1, & a_2=(2,1),\ a_4=(3,1),\ a_7=(4,1)\\
+ p(3)=2,\ p(5)=p(6)=4,\ p(8)=7, & a_3=a_6=a_8=(5,1),\ a_5=(1,1).
+\end{array}
+\]
+The second attacks $\{(2,1),(3,1),(4,1)\}$ are the three vertices of the other
+hexagon at distances $3,4,3$ from the first attack. For this tree
+\eqref{eq:lp} has $493$ variables ($S$; the $9\times12$ weights $w_k(v)$; and
+$8\times48$ flows $x_k(u,y)$, one per node $k\ge1$ and per ordered pair
+$(u,y)$ with $y\in N[u]$), $201$ equalities (nine total-weight rows, then
+$8\times(12+12)$ flow rows) and $116$ inequalities ($9\times12$ domination
+rows and $8$ attack rows).
+
+\begin{proposition}\label{prop:lower}
+The optimum of \eqref{eq:lp} for this tree is exactly $\tfrac{46}{13}$;
+consequently $\fed(C_6\mathbin{\square}K_2)\ge\tfrac{46}{13}$.
+\end{proposition}
+
+\begin{proof}
+Only ``$\ge$'' is needed for the theorem, and it follows from weak duality once
+a dual feasible point of objective $\tfrac{46}{13}$ is exhibited. Let
+$\alpha_k\ge0$ be the multiplier of the row $w_k(a_k)\ge1$, let
+$\beta_{k,v}\ge0$ be the multiplier of the row
+$\sum_{u\in N[v]}w_k(u)\ge1$, and let $\lambda_k$, $\mu^{\mathrm{out}}_{k,u}$,
+$\mu^{\mathrm{in}}_{k,y}$ be the free multipliers of the total-weight,
+out-flow and in-flow equalities respectively. Dual feasibility is the system of
+$493$ column inequalities of \eqref{eq:lp}, one per primal variable, and the
+dual objective is $\sum_k\alpha_k+\sum_{k,v}\beta_{k,v}$.
+
+Take $\alpha_1=\tfrac4{13}$, $\alpha_2=\tfrac2{13}$, $\alpha_4=\tfrac4{13}$,
+$\alpha_5=\tfrac3{13}$, $\alpha_6=\tfrac2{13}$, $\alpha_7=\tfrac2{13}$,
+$\alpha_3=\alpha_8=0$, and let $13\,\beta_{k,v}$ be given by
+\[
+\small
+\begin{array}{l@{\ }l}
+ k=1: & (1,2)\mapsto1,\ (1,3)\mapsto1,\ (1,4)\mapsto1,\ (1,7)\mapsto2,\\
+      & (1,8)\mapsto1,\ (1,10)\mapsto1,\ (1,11)\mapsto2\\
+ k=2: & (2,1)\mapsto1,\ (2,3)\mapsto1,\ (2,11)\mapsto1\\
+ k=4: & (4,1)\mapsto1,\ (4,2)\mapsto2,\ (4,4)\mapsto2,\ (4,5)\mapsto1,\\
+      & (4,6)\mapsto1,\ (4,11)\mapsto1\\
+ k=5: & (5,0)\mapsto1,\ (5,2)\mapsto1,\ (5,10)\mapsto1\\
+ k=6: & (6,0)\mapsto1,\ (6,4)\mapsto1,\ (6,8)\mapsto1\\
+ k=7: & (7,3)\mapsto1,\ (7,5)\mapsto1,\ (7,7)\mapsto1,
+\end{array}
+\]
+all other $\beta_{k,v}$ being $0$. There are $31$ nonzero multipliers on the
+$\ge$ rows; the attack part sums to
+$(4+2+4+3+2+2)/13=\tfrac{17}{13}$ and the domination part to
+$(9+3+8+3+3+3)/13=\tfrac{29}{13}$, so the dual objective is exactly
+$\tfrac{17}{13}+\tfrac{29}{13}=\tfrac{46}{13}$.
+
+The free multipliers are $\lambda_3=-\tfrac7{13}$,
+$\lambda_4=-\tfrac1{13}$, $\lambda_5=-\tfrac3{13}$,
+$\lambda_6=-\tfrac2{13}$, all other $\lambda_k=0$, together with the
+following, where each row lists $13\mu^{\mathrm{out}}_{k,u}$ for
+$u=0,1,\dots,11$ and then $13\mu^{\mathrm{in}}_{k,y}$ for $y=0,1,\dots,11$;
+all multipliers not listed --- in particular every flow multiplier of nodes
+$1$ and $8$ --- are $0$:
+\begin{center}\ttfamily\small
+\begin{tabular}{@{}r@{\ \ }l@{}}
+k=2 out: &  6\ \ 5\ \ 5\ \ 5\ \ 6\ \ 6\ \ 6\ \ 5\ \ 5\ \ 5\ \ 6\ \ 6\\
+k=2 in:  & -6\ -6\ -5\ -6\ -6\ -6\ -6\ -6\ -5\ -6\ -6\ -6\\
+k=3 out: &  7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\ \ 7\\
+k=3 in:  & -7\ -7\ -7\ -7\ -7\ -7\ -7\ -7\ -7\ -7\ -7\ -7\\
+k=4 out: & -1\ -1\ -1\ \ 0\ -1\ -1\ -1\ -1\ \ 0\ \ 0\ \ 0\ -1\\
+k=4 in:  &  1\ \ 1\ \ 0\ \ 0\ \ 0\ \ 1\ \ 1\ \ 0\ \ 0\ \ 0\ \ 0\ \ 0\\
+k=5 out: &  1\ \ 0\ \ 1\ \ 2\ \ 2\ \ 2\ \ 0\ \ 0\ \ 0\ \ 2\ \ 2\ \ 2\\
+k=5 in:  & -2\ -1\ -2\ -2\ -2\ -2\ -2\ \ 0\ -2\ -2\ -2\ -2\\
+k=6 out: &  0\ \ 1\ \ 1\ \ 1\ \ 0\ \ 0\ \ 0\ \ 1\ \ 1\ \ 1\ \ 0\ \ 0\\
+k=6 in:  & -1\ -1\ -1\ -1\ -1\ \ 0\ -1\ -1\ -1\ -1\ -1\ \ 0\\
+k=7 out: & -1\ -1\ -1\ -2\ -2\ -2\ -1\ -1\ -1\ -2\ -2\ -2\\
+k=7 in:  &  1\ \ 1\ \ 1\ \ 1\ \ 2\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 2\ \ 1
+\end{tabular}
+\end{center}
+This is $123$ nonzero equality multipliers, every one of denominator $13$.
+Substituting into the $493$ column inequalities of \eqref{eq:lp} verifies them
+all in exact rational arithmetic; the accompanying program does exactly that,
+having first rebuilt \eqref{eq:lp} from the description above. Weak duality now
+gives $L\ge\tfrac{46}{13}$, and Section~\ref{sec:upper} together with
+Lemma~\ref{lem:relax} gives $L\le\fed(G)\le\tfrac{46}{13}$, so
+$L=\tfrac{46}{13}$ as well.
+\end{proof}
+
+Theorem~\ref{thm:main} follows from Section~\ref{sec:upper} and
+Proposition~\ref{prop:lower}.
+
+\begin{remark}
+The inequality $\tfrac72<\fed(C_6\mathbin{\square}K_2)$ is true, by
+Theorem~\ref{thm:main}, but its published proof ends with a step that is not
+justified for the reading of the rule used here; we record this because a reader
+reconstructing the lower bound from \cite{FED}
+will otherwise reconstruct it. In the labelling of the relevant figure of
+\cite{FED} --- inner cycle $a\,b\,c\,d\,e\,f$, outer cycle
+$g\,h\,i\,j\,k\,l$, with $a\sim g$, $b\sim h$, \ldots, $f\sim l$ --- the
+argument assumes a first attack at $a$ and derives a family of configurations
+parameterised by $x\in[0,\half]$, namely $a=1$, $b=f=h=l=0$, $c=e=x$,
+$d=j=\half-x$, $g=i=k=\half$. Its last step asserts that, after a response to a
+second attack at $j$, ``there must be a weight of $1$ on $j$, $\half$ on $d$
+and $0$ on each of the vertices $c,e,h,i,k,l$''. For the closed-neighbourhood
+reading used throughout this note that is not forced: start from the $x=0$
+member
+\[
+ a=1,\quad d=g=i=j=k=\tfrac12,\quad b=c=e=f=h=l=0
+\]
+of total weight $\tfrac72$, and answer an attack at $j$ by the one-round move
+\[
+\begin{aligned}
+ &a\to b=\tfrac12,\quad a\to f=\tfrac12,\quad g\to a=\tfrac14,\\
+ &i\to h=\tfrac14,\quad i\to j=\tfrac14,\quad
+  k\to l=\tfrac14,\quad k\to j=\tfrac14,
+\end{aligned}
+\]
+with $d$, $j$ and the remaining $\tfrac14$ at $g$ left in place. No vertex
+ships more than it holds, the total is conserved, and the resulting
+configuration
+\[
+\begin{aligned}
+ &a=\tfrac14,\ b=\tfrac12,\ c=0,\ d=\tfrac12,\ e=0,\ f=\tfrac12,\\
+ &g=\tfrac14,\ h=\tfrac14,\ i=0,\ j=1,\ k=0,\ l=\tfrac14
+\end{aligned}
+\]
+puts weight $1$ on the attacked vertex $j$ and has all twelve closed
+neighbourhood sums at least $1$. So the attack at $j$ \emph{is} answerable at
+total weight $\tfrac72$ from that configuration, and $h=l=\tfrac14\ne0$. The
+accompanying program checks this configuration and this response arc by arc.
+Whether the step can be justified under a stricter reading of the movement rule
+we do not say.
+\end{remark}
+
+\section{What is not settled}\label{sec:open}
+
+\begin{enumerate}
+\item \textbf{Which game is being played is not settled.} The value
+  $\tfrac{46}{13}$ is a value for the closed-neighbourhood one-round rule of
+  Section~\ref{sec:intro}, which is our reading of \cite{FED} and not a
+  quotation from it. Both certificates above and the accompanying program encode
+  that reading, so none of them discriminates between it and a stricter one; for
+  a stricter rule nothing here bounds $\fed$, and the cell of the authors'
+  question stays open.
+\item \textbf{The authors' question is not determined.} At most one cell of it
+  is. If the reading above is the intended one, the cells left open after
+  Theorem~\ref{thm:main} are
+  $\{C_{4k+2}\mathbin{\square}K_2 : k\ge3\}\cup
+   \{\Cay(\Z_{8k},\{\pm1,4k\}) : k\ge2\}$: every cell of both families except
+  $\tfrac{46}{13}$ and $\tfrac{28}{5}$ at $k=1,2$ of the first and $\tfrac83$ at
+  $k=1$ of the second. Nothing here should be read as settling the question as a
+  whole.
+\item \textbf{No general theorem follows.} The method is cell by cell: an
+  explicit finite family of weight functions, and a finite attack tree. It
+  gives no construction for general $k$, and it does not address the authors'
+  separate questions of whether $\fed$ is always rational, or whether $n$
+  fractional dominating functions always suffice --- the latter is what makes a
+  bounded search for a family inconclusive rather than a lower bound when it
+  finds nothing.
+\item \textbf{Only the $9$-node dual is certified here.} Other attack trees were
+  solved in the course of the work; none of their optima is quoted or used
+  above, and no certificate for any of them is printed. Theorem~\ref{thm:main}
+  rests on the $9$-node dual printed above and on nothing else.
+\item \textbf{The certificates were found numerically.} A floating-point
+  linear programming solver located the witness family and the dual vector.
+  That is how they were found and not why they hold: every object above is
+  exhibited as exact rationals and every verification --- fractional
+  domination, transportation feasibility, the $493$ dual column inequalities,
+  the objective --- is carried out in exact integer or rational arithmetic. No
+  floating-point value appears anywhere in the chain of reasoning.
+\end{enumerate}
+
+\section{Reproduction and verification}
+
+Everything needed is printed above: the family is determined by the profiles
+$h_0,h_1$ of Section~\ref{sec:upper}; the lower bound by the attack tree, the
+linear program \eqref{eq:lp} with its stated row and variable ordering, and the
+$31+123$ multipliers of Proposition~\ref{prop:lower}. Reconfigurability of a
+single ordered pair is a transportation problem with integer data after scaling
+by $13$, and the plan printed in Section~\ref{sec:upper} can be checked by
+hand; the dual objective $\tfrac{17}{13}+\tfrac{29}{13}$ can be re-added by
+hand; the $493$ dual column inequalities are the one part that is tedious
+rather than difficult.
+
+A program accompanying this note re-derives all of it from the printed objects,
+in exact integer and \texttt{Fraction} arithmetic, using only the Python
+standard library: it rebuilds $G$ and checks it against the closed
+neighbourhoods printed above; rebuilds the family from its profiles and checks
+total weight, fractional domination and the centre condition for all $12$
+members; checks the printed transportation plan arc by arc; decides all $144$
+ordered pairs by exact integer maximum flow; rebuilds \eqref{eq:lp} and
+verifies its dimensions $493/201/116$, then verifies all $493$ dual column
+inequalities and the dual objective; and re-checks the configuration and the
+response of the remark that closes Section~\ref{sec:lower}. What it does not do
+is re-run the floating-point linear programs that found the family and the dual
+vector; those are re-checked only as exhibited objects. Nor can it bear on the
+reading of the movement rule: it encodes the same reading, in the same closed
+neighbourhoods.
+
+The output of the recorded run is wider than the note: besides the checks just
+listed it records controls, a second family of weight functions of total weight
+$\tfrac{46}{13}$, three further transportation plans, an ancillary upper bound
+for $\Cay(\Z_{16},\{\pm1,8\})$, and a closing scope note whose phrase ``the
+accompanying note'' should not be read as a scope statement about the sections
+above. Nothing above depends on any of that extra material, and none of it is
+claimed here; what is and is not settled here is stated in
+Section~\ref{sec:open}.
+
+\begin{thebibliography}{9}
+
+\bibitem{FED}
+F.~Devvrit, A.~Krim-Yee, N.~Kumar, G.~MacGillivray, B.~Seamone, V.~Virgile, and
+A.~Xu,
+\emph{Fractional eternal domination: securely distributing resources across a
+network},
+Discuss. Math. Graph Theory \textbf{44} (2024), no.~4, 1395--1428.
+\href{https://doi.org/10.7151/dmgt.2503}{doi:10.7151/dmgt.2503};
+\href{https://arxiv.org/abs/2304.11795}{arXiv:2304.11795}.
+Statements, the problem quoted in Section~1, and all verbatim definitions are
+cited from the arXiv e-print, which has a single version.
+
+\bibitem{KSV}
+A.~Krim-Yee, B.~Seamone, and V.~Virgile,
+\emph{Eternal domination on prisms of graphs},
+Discrete Appl. Math. \textbf{283} (2020), 734--736.
+\href{https://doi.org/10.1016/j.dam.2020.01.032}{doi:10.1016/j.dam.2020.01.032};
+\href{https://arxiv.org/abs/1902.00799}{arXiv:1902.00799}.
+Concerns the integer parameter on prisms and does not treat the fractional
+game; listed because its title is close to the present subject.
+
+\end{thebibliography}
+
+\end{document}

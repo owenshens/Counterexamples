@@ -1,0 +1,94 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  8417a0874d45ee32e3a1bbd4a5dccce1fcb7145b1427d63fcb583a9e3fb47d36
+python:  Python 3.9.25
+=== program output follows ===
+verify.py -- girth-12 lifts of G_12 at m=6,7,8 and nonexistence on its printed arc set at m=4,5
+python 3.9.25, exact integer arithmetic only, standard library only
+
+PASS arc_symbol_order_is_the_authors_own_list [a,b,c,...,epsilon with i,m,n,o skipped]
+PASS printed_tree_equals_the_tree_derived_from_the_sources_pruning_rule [two independent constructions of the same 51 edges]
+PASS order_of_T12_is_52 [49 ordinary + 3 pinned]
+PASS size_of_T12_is_51 [no repeated tree edge, so T_12 is a tree on 52 vertices]
+PASS number_of_arcs_is_24
+PASS size_of_G12_is_75 [51 tree edges + 24 arcs, all distinct]
+PASS cycle_rank_of_G12_is_24 [beta = 75 - 52 + 1 = 24]
+PASS tree_edge_count_identity_48_plus_3_pinned_equals_51 [counts only: 49 ordinary vertices, so the subtree they span has 48 edges, and 48 + 3 pinned edges = 51 = |E(T_12)|; the standard gauge/T-normalisation argument that these 51 tree voltages may be taken to be 0 and that the 24 arc voltages then parametrise all lifts up to isomorphism (Gross-Tucker voltage-graph normalisation) is NOT re-verified here]
+PASS degree_multiset_of_G12_is_three_1s_and_fortynine_3s
+PASS the_three_degree_one_vertices_are_exactly_the_pinned_ones
+PASS each_of_the_twelve_x_leaves_carries_exactly_two_arcs
+PASS each_x_leaf_has_one_y_arc_and_one_z_arc
+PASS each_of_the_twelve_y_and_z_leaves_receives_exactly_two_arcs
+PASS the_two_printed_voltage_rows_are_reproduced_by_the_symbol_order [x->y [1, 2, 1, 2, 2, 1, 1, 2, 2, 1, 3, -1] ; x->z [2, 1, -1, 3, -1, 3, 1, -1, -3, -2, -1, 2]]
+PASS largest_printed_absolute_voltage_is_3
+PASS the_literal_printed_table_is_impossible_x1001_would_have_degree_5 [so the duplicated 8th Starting-leaf entry must read x_1011, the only 4-bit x-leaf label otherwise missing; with the correction every non-pinned vertex has degree 3]
+PASS G12_is_connected_and_bipartite
+PASS all_three_pinned_to_pinned_tree_distances_are_6 [so every lift already contains a 12-cycle: "girth 12" here is exactly "no cycle shorter than 12", never "girth at least 12"]
+PASS the_four_tree_distances_the_hand_proof_uses_are_9 [six steps up to x_00 then three down, so each of k,p,v,alpha closes a fundamental cycle of length 1+9 = 10]
+PASS undirected_simple_cycles_of_length_at_most_10_number_126 [length histogram {6: 12, 8: 24, 10: 90}]
+PASS cycle_length_histogram_is_twelve_6s_twentyfour_8s_ninety_10s
+PASS twice_the_census_size_is_252 [the source states "there are 252 short cycles"; so the authors count each cycle in both directions]
+PASS the_census_contains_no_4_cycle
+PASS a_second_census_by_cycle_space_XOR_returns_the_same_126_edge_sets [path-DFS with min-index canonicalisation, and XOR of fundamental cycles over every subset of the 24 co-tree arcs of size <= 10, agree]
+PASS exactly_14_of_the_24_arcs_are_forced_nonzero [a and c have fundamental cycles of length 8, the other twelve of length 10]
+PASS the_remaining_ten_arcs_have_fundamental_cycles_of_length_12 [so q,r,s,t,u,w,beta,gamma,delta,epsilon may legitimately be 0, which is why zero entries appear in the exhibited witnesses]
+PASS every_short_cycle_carries_at_least_one_arc [T_12 is a tree, so the criterion is 126 nontrivial linear forms]
+PASS support_size_histogram_of_the_126_forms_is_14_44_4_40_24 [{1: 14, 2: 44, 3: 4, 4: 40, 6: 24}]
+PASS control0_the_heawood_graph_as_a_Z7_lift_is_cubic_order_14_girth_6 [a published object with no input from this problem: the (3,6)-cage has 14 vertices and girth 6, and both girth routes say 6]
+PASS control1_the_arc_free_lift_of_T12_has_girth_12_at_m_4_5_and_9 [the source lemma girth(T_4t;m) = 4t = 12; the test must stay SILENT here, and does; orders [(4, 199), (5, 248), (9, 444)]]
+PASS published_lift_has_order_49m_plus_3_and_size_75m_for_m_3_to_14 [orders 150, 199, 248, 297, 346, 395, 444, ..., 689]
+PASS published_lift_has_three_vertices_of_degree_m_and_49m_of_degree_3 [at m=3 the pinned vertices also have degree 3]
+PASS published_girth_profile_is_6_6_8_8_8_10_then_12_from_m_9_on [m=3..14 -> [6, 6, 8, 8, 8, 10, 12, 12, 12, 12, 12, 12]]
+PASS printed_voltages_give_girth_12_for_exactly_m_9_to_14_in_range_3_to_14 [with the PRINTED voltages the lift has girth 12 for exactly m >= 9, so the source theorem is TIGHT for the object it names]
+PASS the_printed_assignment_gives_girth_8_not_12_at_m_6 [so the witnesses below are DIFFERENT assignments on the SAME arc set]
+PASS published_absolute_voltage_sums_are_exactly_the_set_1_to_8 [the source states they "all lie in the set {1,...,8}"; the set is attained exactly, multiset {1: 33, 2: 29, 3: 23, 4: 15, 5: 11, 6: 6, 7: 5, 8: 4}]
+PASS no_short_cycle_of_the_published_assignment_sums_to_zero_over_Z
+PASS the_published_assignment_hits_a_multiple_of_m_for_every_m_at_most_8 [vanishing forms per m: {3: 29, 4: 19, 5: 11, 6: 6, 7: 5, 8: 4, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0}]
+PASS first_family_m6_exhibited_residues_already_lie_in_Z_6
+PASS first_family_m6_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=297 size=450 degrees {3: 294, 6: 3}]
+PASS first_family_m6_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS first_family_m6_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 6, checked independently of the lift]
+PASS first_family_m7_exhibited_residues_already_lie_in_Z_7
+PASS first_family_m7_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=346 size=525 degrees {3: 343, 7: 3}]
+PASS first_family_m7_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS first_family_m7_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 7, checked independently of the lift]
+PASS first_family_m8_exhibited_residues_already_lie_in_Z_8
+PASS first_family_m8_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=395 size=600 degrees {3: 392, 8: 3}]
+PASS first_family_m8_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS first_family_m8_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 8, checked independently of the lift]
+PASS second_family_m6_exhibited_residues_already_lie_in_Z_6
+PASS second_family_m6_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=297 size=450 degrees {3: 294, 6: 3}]
+PASS second_family_m6_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS second_family_m6_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 6, checked independently of the lift]
+PASS second_family_m7_exhibited_residues_already_lie_in_Z_7
+PASS second_family_m7_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=346 size=525 degrees {3: 343, 7: 3}]
+PASS second_family_m7_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS second_family_m7_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 7, checked independently of the lift]
+PASS second_family_m8_exhibited_residues_already_lie_in_Z_8
+PASS second_family_m8_lift_is_a_3_m_graph_of_order_49m_plus_3 [n=395 size=600 degrees {3: 392, 8: 3}]
+PASS second_family_m8_lift_has_girth_exactly_12_by_both_algorithms [BFS-from-every-vertex 12, delete-edge-then-BFS 12]
+PASS second_family_m8_satisfies_the_criterion_no_short_form_vanishes [all 126 forms nonzero mod 8, checked independently of the lift]
+PASS hand_core_k_p_v_alpha_yields_four_singleton_forms_from_10_cycles [each of k,p,v,alpha closes a fundamental cycle of length 10, so each is forced nonzero]
+PASS hand_core_k_p_v_alpha_yields_all_six_difference_forms [pair cycle lengths k-p 6, v-alpha 6, k-v 8, p-alpha 8, k-alpha 10, p-v 10]
+PASS the_hand_core_is_exactly_ten_forms [k!=0 ; p!=0 ; v!=0 ; alpha!=0 ; k!=p ; k!=v ; k!=alpha ; p!=v ; p!=alpha ; v!=alpha]
+PASS every_form_of_both_hand_cores_really_is_one_of_the_126_cycle_forms [nothing is assumed: each constraint is an enumerated short cycle]
+PASS the_hand_core_is_UNSAT_over_Z_4_all_256_assignments_fail [k,p,v,alpha must be four pairwise-distinct NONZERO residues, which needs m-1 >= 4; Z_4 has only three nonzero residues -- pigeonhole]
+PASS the_hand_core_also_re_proves_m_3_impossible
+PASS the_hand_core_is_VACUOUS_at_m_5_6_7_8_so_it_cannot_have_killed_them [e.g. a satisfying (k,p,v,alpha) at m=5 is [1, 2, 3, 4]]
+PASS all_six_exhibited_witnesses_satisfy_the_hand_core_subsystem [(k,p,v,alpha) = [(6, (3, 5, 1, 2)), (7, (3, 4, 1, 5)), (8, (3, 4, 1, 5)), (6, (5, 4, 1, 3)), (7, (4, 5, 1, 6)), (8, (4, 5, 1, 6))]]
+PASS a_second_independent_hand_core_b_d_f_h_has_ten_forms_and_is_UNSAT_at_4 [the z-arcs of the four x-leaves below x_01: b!=0 ; d!=0 ; f!=0 ; h!=0 ; b!=d ; b!=f ; b!=h ; d!=f ; d!=h ; f!=h]
+PASS the_second_core_is_also_vacuous_at_m_5
+PASS m4_is_UNSAT_over_the_COMPLETE_cell_Z_4_to_the_24_on_the_printed_arc_set [no Z_4 voltage assignment on the 24 arcs of G_12 AS PRINTED gives girth 12; all 24 variables branched, all 126 forms enforced, no gauge quotient and no unit-orbit cut; 184 search nodes]
+NOTE m=4 exhaustion visited 184 nodes (node counts depend on the variable ordering and are reported, not claimed)
+PASS m5_is_UNSAT_over_the_COMPLETE_cell_Z_5_to_the_24_on_the_printed_arc_set [no Z_5 voltage assignment on the 24 arcs of G_12 AS PRINTED gives girth 12; all 24 variables branched, all 126 forms enforced, no gauge quotient and no unit-orbit cut; 66505 search nodes]
+NOTE m=5 exhaustion visited 66505 nodes (node counts depend on the variable ordering and are reported, not claimed)
+PASS m6_is_SAT_and_the_searchs_own_vector_lifts_to_girth_12 [the very search that returns UNSAT at m=4,5 returns a solution at m=6 in 4387 nodes, and its full lift has girth 12]
+PASS m7_is_SAT_and_the_searchs_own_vector_lifts_to_girth_12 [the very search that returns UNSAT at m=4,5 returns a solution at m=7 in 241 nodes, and its full lift has girth 12]
+PASS m8_is_SAT_and_the_searchs_own_vector_lifts_to_girth_12 [the very search that returns UNSAT at m=4,5 returns a solution at m=8 in 96 nodes, and its full lift has girth 12]
+PASS at_m_4_the_only_UNSAT_cores_on_at_most_4_variables_are_three_4_cliques [3 cores, all of size 4: [('b', 'd', 'f', 'h'), ('j', 'k', 'l', 'p'), ('k', 'p', 'v', 'alpha')]]
+PASS at_m_4_there_is_no_UNSAT_core_on_three_or_fewer_variables
+PASS at_m_5_there_is_NO_UNSAT_core_on_four_or_fewer_variables [an all-distinct clique of size 4 kills every m <= 4 and no m = 5; this search covers subsets of at most FOUR of the 24 variables and says nothing about larger subsets]
+NOTE SCOPE of this program. It re-derives the following quantities transcribed from the paper: the graph and its checksums by two constructions, the 126-cycle census by two algorithms, the five published invariants of the source, the six exhibited voltage vectors and their lift girths by two algorithms, the m=4 hand pigeonhole together with its vacuity at every m >= 5, the complete exhaustions over Z_4^24 and Z_5^24 with no symmetry reduction, and the absence of a small paper certificate at m=5 up to 4 variables. This program does not parse the paper and makes no claim to have enumerated everything the paper states. NOT RE-RUN HERE: the WIDE variant in which the 24 arcs themselves are re-paired, which is untouched at m=4,5; the standard gauge/normalisation argument, of which only the counts are checked; and any statement about published order records, of which this paper makes none.
+
+VERDICT: ALL 80 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,170 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  9a9a0ef5dad23b0739205259c2882af6138ea62b92d421f79cf1a4962cceba38
+python:  Python 3.9.25
+=== program output follows ===
+====================================================================================================
+verification of "The Maximum Euler-Sombor Index at Diameter Three, and Both Extrema at Nine Vertices"
+exact arithmetic only: 60-significant-digit Decimal square roots, no float decision anywhere
+====================================================================================================
+
+=== Step 1: H(1,6), the paper's claimed maximiser, rebuilt from the edge list transcribed by hand from Section 3 (transcription not machine-verified; maximality not re-checked here)
+NOTE vertices (9): u, v, w1, w2, w3, w4, w5, w6, w7
+NOTE edges (28): w1w2 w1w3 w1w4 w1w5 w1w6 w1w7 w2w3 w2w4 w2w5 w2w6 w2w7 w3w4 w3w5 w3w6 w3w7 w4w5 w4w6 w4w7 w5w6 w5w7 w6w7 uw1 vw2 vw3 vw4 vw5 vw6 vw7
+NOTE degrees: u=1 v=6 w1..w7=[7, 7, 7, 7, 7, 7, 7]
+NOTE EU(H(1,6)) to 60 digits = 329.777869165403581142871319158766259127286436637234505674718
+NOTE 147*sqrt3 + sqrt57 + 6*sqrt127 = 329.777869165403581142871319158766259127286436637234505674714
+PASS H_1_6_has_order_9 [n=9]
+PASS H_1_6_has_size_28_equal_to_C_8_2 [m=28]
+PASS H_1_6_degree_sequence_is_1_6_7x7 [[1, 6, 7, 7, 7, 7, 7, 7, 7]]
+PASS H_1_6_degree_sum_is_twice_the_size [56]
+PASS H_1_6_edge_profile_is_1_7_once_6_7_six_times_7_7_twentyone_times [{(1, 7): 1, (6, 7): 6, (7, 7): 21}]
+PASS H_1_6_u_and_v_are_nonadjacent
+PASS H_1_6_distance_from_u_to_v_is_3 [d(u,v)=3]
+PASS H_1_6_is_connected_with_diameter_exactly_3 [diam=3]
+PASS H_1_6_every_pair_other_than_uv_is_within_distance_2
+PASS H_1_6_EU_equals_147sqrt3_plus_sqrt57_plus_6sqrt127_to_1e-50 [difference = 4E-57]
+PASS H_1_6_EU_equals_the_value_printed_in_the_paper_329_777869165403581 [329.777869165403581]
+PASS H_1_6_the_three_summands_are_the_ones_the_paper_derives_by_hand [254.6114687126 + 7.5498344353 + 67.6165660175]
+
+=== Step 2: Theta(3,3,4), the paper's claimed minimiser, rebuilt from the edge list transcribed by hand from Section 3 (minimality and uniqueness not re-run here; see SCOPE)
+NOTE vertices (9): a1, a2, b1, b2, c1, c2, c3, u, v
+NOTE edges (10): a1-u a1-a2 a2-v b1-u b1-b2 b2-v c1-u c1-c2 c2-c3 c3-v
+NOTE EU(Theta(3,3,4)) to 60 digits = 40.0098001217950596616414626352046728903644655818777146457883
+NOTE 8*sqrt3 + 6*sqrt19 = 40.0098001217950596616414626352046728903644655818777146457885
+PASS Theta_3_3_4_has_order_9 [n=9]
+PASS Theta_3_3_4_has_size_10 [m=10]
+PASS Theta_3_3_4_is_bicyclic_cyclomatic_number_2
+PASS Theta_3_3_4_degree_sequence_is_2x7_3_3 [[2, 2, 2, 2, 2, 2, 2, 3, 3]]
+PASS Theta_3_3_4_degree_sum_is_twice_the_size [20]
+PASS Theta_3_3_4_profile_is_2_2_four_times_and_2_3_six_times_with_no_3_3_edge [{(2, 2): 4, (2, 3): 6}]
+PASS Theta_3_3_4_terminals_u_v_are_nonadjacent_at_distance_3 [d(u,v)=3]
+PASS Theta_3_3_4_is_connected_with_diameter_exactly_3 [diam=3]
+PASS Theta_3_3_4_the_two_extremal_pairs_named_in_the_paper_are_at_distance_3 [d(a1,b2)=3 d(a1,c2)=3]
+PASS Theta_3_3_4_EU_equals_8sqrt3_plus_6sqrt19_to_1e-50 [difference = -2E-58]
+PASS Theta_3_3_4_EU_equals_the_value_printed_in_the_paper_40_009800121795059 [40.009800121795060]
+PASS Theta_3_3_4_the_two_summands_are_the_ones_the_paper_derives_by_hand [13.8564064606 + 26.1533936612]
+
+=== Step 3: the H(a,b) ladder at n = 9 and the uniqueness margin of Theorem B
+NOTE H(1,6): m=28 diam=3  EU=329.7778691654  apex part=75.1664004528
+NOTE H(2,5): m=28 diam=3  EU=323.1837068009  apex part=68.5722380883
+NOTE H(3,4): m=28 diam=3  EU=319.8506550085  apex part=65.2391862959
+PASS every_H_a_b_at_n_9_has_size_28_and_diameter_exactly_3
+PASS the_three_unordered_splits_of_n_minus_2_equal_7_are_exactly_1_6_2_5_3_4
+PASS the_ladder_is_strict_H_1_6_beats_H_2_5_beats_H_3_4
+PASS apex_part_of_H_1_6_is_sqrt57_plus_6sqrt127_equal_75_1664004528 [75.1664004528]
+PASS apex_part_of_H_2_5_is_2sqrt67_plus_5sqrt109_equal_68_5722380883 [68.5722380883]
+PASS apex_part_of_H_3_4_is_3sqrt79_plus_4sqrt93_equal_65_2391862959 [65.2391862959]
+PASS H_2_5_EU_is_147sqrt3_plus_2sqrt67_plus_5sqrt109_equal_323_1837068009 [323.1837068009]
+PASS H_3_4_EU_is_147sqrt3_plus_3sqrt79_plus_4sqrt93_equal_319_8506550085 [319.8506550085]
+PASS the_gap_between_H_1_6_and_H_2_5_at_n_9_is_6_5941623645 [6.5941623645]
+
+=== Step 4: the closed form of Theorem B, and the convexity that makes H(1,n-3) unique
+NOTE n= 4 : Theorem B = 8.7556042373            direct EU(H(1,n-3)) = 8.7556042373            diam=3  splits=1
+NOTE n= 5 : Theorem B = 27.9118064307           direct EU(H(1,n-3)) = 27.9118064307           diam=3  splits=1
+NOTE n= 6 : Theorem B = 64.4000826675           direct EU(H(1,n-3)) = 64.4000826675           diam=3  splits=2
+NOTE n= 7 : Theorem B = 123.4113034449          direct EU(H(1,n-3)) = 123.4113034449          diam=3  splits=2
+NOTE n= 8 : Theorem B = 210.1389712763          direct EU(H(1,n-3)) = 210.1389712763          diam=3  splits=3
+NOTE n= 9 : Theorem B = 329.7778691654          direct EU(H(1,n-3)) = 329.7778691654          diam=3  splits=3
+NOTE n=10 : Theorem B = 487.5233846407          direct EU(H(1,n-3)) = 487.5233846407          diam=3  splits=4
+NOTE n=11 : Theorem B = 688.5712125677          direct EU(H(1,n-3)) = 688.5712125677          diam=3  splits=4
+NOTE n=12 : Theorem B = 938.1172158572          direct EU(H(1,n-3)) = 938.1172158572          diam=3  splits=5
+NOTE n=13 : Theorem B = 1241.3573551604         direct EU(H(1,n-3)) = 1241.3573551604         diam=3  splits=5
+NOTE n=14 : Theorem B = 1603.4876509776         direct EU(H(1,n-3)) = 1603.4876509776         diam=3  splits=6
+PASS theorem_B_closed_form_equals_a_direct_evaluation_of_EU_H_1_n_minus_3_for_n_4_to_14
+PASS H_1_n_minus_3_has_diameter_exactly_3_for_n_4_to_14
+PASS among_all_H_a_b_the_split_a_equals_1_is_the_unique_maximum_for_n_4_to_14
+PASS theorem_B_at_n_9_reproduces_147sqrt3_plus_sqrt57_plus_6sqrt127 [329.777869165404]
+PASS theorem_B_at_n_4_gives_2sqrt3_plus_2sqrt7_which_is_EU_of_the_path_P4 [8.7556042373]
+PASS the_only_member_of_G_4_3_is_P4_and_H_1_1_is_isomorphic_to_it
+PASS theorem_B_at_n_5_gives_9sqrt3_plus_sqrt13_plus_2sqrt19_equal_27_9118064307 [27.9118064307]
+PASS the_numerator_of_phi_double_prime_is_the_positive_polynomial_the_paper_states [identity and positivity for 2<=c<=29, 0<=t<=29]
+PASS inequality_star_of_step_3_holds_for_every_n_from_4_to_199 [n=4:1.827 n=5:1.931 n=6:2.046 n=7:2.168 n=8:2.293 n=9:2.420 n=10:2.549 n=11:2.679]
+PASS the_star_margin_grows_with_slope_1_minus_sqrt3_over_2 [0.1339746]
+
+=== Step 5: three 9-vertex diameter-3 double stars and one hand-built unicyclic witness, each with EU above EU(Theta(3,3,4)), plus a few smaller-order comparison graphs
+NOTE D(1,6): n=9 m=8 diam=3 centre degrees [2, 7]  EU=56.1301106946
+NOTE D(2,5): n=9 m=8 diam=3 centre degrees [3, 6]  EU=47.9355491056
+NOTE D(3,4): n=9 m=8 diam=3 centre degrees [4, 5]  EU=43.8290342121
+PASS the_three_9_vertex_double_stars_are_trees_of_diameter_exactly_3
+PASS the_least_of_the_three_tested_9_vertex_double_stars_is_D_3_4_equal_sqrt61_plus_3sqrt21_plus_4sqrt31 [43.8290342121]
+PASS the_other_two_double_stars_have_the_surd_forms_the_paper_prints [D(2,5)=47.9355491 D(1,6)=56.1301107]
+PASS the_three_tested_9_vertex_double_stars_are_all_above_the_claimed_minimum [least is 43.8290342121]
+NOTE unicyclic witness (one hand-built 9-vertex diameter-3 unicyclic graph, not shown minimal in its class): n=9 m=9 diam=3 degrees=[1, 1, 1, 1, 2, 2, 2, 4, 4] EU=42.7697144846
+PASS the_hand_built_unicyclic_witness_is_a_9_vertex_diameter_3_graph_with_9_edges_and_cyclomatic_number_1
+PASS its_degree_sequence_is_1_1_1_1_2_2_2_4_4 [[1, 1, 1, 1, 2, 2, 2, 4, 4]]
+PASS its_EU_is_4sqrt21_plus_8sqrt3_plus_4sqrt7_equal_42_7697144846 [42.7697144846]
+PASS strict_order_EU_Theta_3_3_4_below_the_unicyclic_witness_below_the_best_of_the_three_double_stars [gaps 2.7599143628 and 3.8192340903]
+PASS the_cheapest_m_equals_10_profile_with_one_3_3_edge_would_have_beaten_the_minimum [39.9522562726]
+PASS the_three_theta_1_b_graphs_with_that_profile_have_diameter_4_at_n_9 [Theta(1,2,7)=4 Theta(1,3,6)=4 Theta(1,4,5)=4]
+PASS the_next_cheapest_m_equals_10_degree_sequence_4_2x8_costs_4sqrt28_plus_12sqrt3_above_the_minimum [41.9506201793]
+PASS C6_has_diameter_3_while_every_spanning_tree_of_C6_is_P6_of_diameter_5
+PASS at_n_8_EU_D_3_3_is_below_EU_Theta_3_3_3_while_at_n_9_EU_Theta_3_3_4_is_below_EU_D_3_4 [n=8: D(3,3)=34.4236574 < Theta(3,3,3)=36.5456985]
+PASS D_3_3_at_n_8_is_4sqrt3_plus_6sqrt21_and_Theta_3_3_3_is_6sqrt3_plus_6sqrt19 [34.4236574 and 36.5456985]
+PASS C7_has_diameter_3_and_EU_14sqrt3_below_every_9_vertex_tree_analogue_at_n_7 [24.2487113060]
+
+=== Step 6: the four theta graphs of Remark 3 share one EU and are separated by the diameter
+NOTE Theta(2, 2, 6)  n=9 m=10 diam=4 profile={(2, 2): 4, (2, 3): 6} EU=40.0098001218
+NOTE Theta(2, 3, 5)  n=9 m=10 diam=4 profile={(2, 2): 4, (2, 3): 6} EU=40.0098001218
+NOTE Theta(2, 4, 4)  n=9 m=10 diam=4 profile={(2, 2): 4, (2, 3): 6} EU=40.0098001218
+NOTE Theta(3, 3, 4)  n=9 m=10 diam=3 profile={(2, 2): 4, (2, 3): 6} EU=40.0098001218
+PASS all_four_thetas_have_order_9_size_10_and_the_same_edge_profile
+PASS all_four_thetas_have_the_same_EU_equal_to_the_claimed_minimum
+PASS only_Theta_3_3_4_has_diameter_3_the_other_three_have_diameter_4 [{(2, 2, 6): 4, (2, 3, 5): 4, (2, 4, 4): 4, (3, 3, 4): 3}]
+PASS the_four_partitions_of_10_into_three_parts_each_at_least_2_are_exactly_those_four
+
+=== Step 7: the two amputations, and the star that shows Step 3 needs diam >= 3
+NOTE K_{1,8}: n=9 m=8 diam=2 Delta=8 EU=68.3520299625
+PASS K_1_8_has_diameter_2_and_maximum_degree_n_minus_1_so_step_3_must_assume_diam_at_least_3
+PASS K_1_8_EU_is_8sqrt73_equal_68_3520299625 [68.3520299625]
+PASS the_floor_expression_at_m_11_n_9_evaluates_to_46_5729217146_which_exceeds_EU_D_3_4 [46.5729217146]
+PASS the_floor_is_a_valid_lower_bound_on_both_exhibited_objects
+PASS the_first_inequality_of_the_floor_holds_edgewise_on_both_exhibited_objects [equality holds exactly on the (7,7) and (2,2) edges, where the two sides are both a multiple of sqrt3]
+PASS the_step_3_tier_cap_at_n_9_is_189sqrt3_equal_327_3576026305_below_the_claimed_maximum [327.3576026305]
+PASS the_tier_cap_is_27_times_sqrt3_times_7_because_C_8_2_minus_1_equals_27_and_Delta_at_most_7
+
+=== Step 8: the exhaustion identities of Section 5, re-added
+NOTE the eight diameter strata at n=9 sum to 261080
+NOTE the 21 per-size class counts of the D=3 stratum sum to 148229
+PASS the_eight_diameter_strata_at_n_9_sum_to_261080_connected_graphs
+PASS the_D_3_stratum_holds_148229_isomorphism_classes_by_both_readings
+PASS the_complete_cover_has_12_shapes_and_12_times_2_to_the_21_equals_25165824
+PASS the_number_of_free_pairs_after_normalising_a_distance_3_pair_is_C_7_2_equal_21
+PASS the_47_unlabelled_9_vertex_trees_are_the_published_count_A000055_9
+
+=== Step 9: two published values by other authors, which pin the normalisation of EU
+NOTE Sekar et al. Theorem 3.2 at n=9 = 5sqrt57+sqrt79+sqrt67+sqrt13+sqrt19 = 62.7871695845464501515847726862033541724562114414221581025153
+NOTE their witness: n=9 m=9 diam=3 degrees=[1, 1, 1, 1, 1, 1, 2, 3, 7] EU=62.7871695845
+PASS the_Sekar_witness_is_a_unicyclic_9_vertex_graph_of_diameter_exactly_3
+PASS its_degree_sequence_is_the_one_their_formula_describes_1x6_2_3_7 [[1, 1, 1, 1, 1, 1, 2, 3, 7]]
+PASS its_EU_equals_their_Theorem_3_2_bound_at_n_9_to_1e-40_so_that_bound_is_sharp_at_n_9 [difference = -1E-58]
+PASS that_bound_at_n_9_equals_5sqrt57_plus_sqrt79_plus_sqrt67_plus_sqrt13_plus_sqrt19_equal_62_7871695845 [62.7871695845]
+PASS the_Sekar_witness_lies_strictly_between_EU_Theta_3_3_4_and_EU_H_1_6
+PASS Kizilirmak_Lemma_2_at_n_9_gives_EU_C_9_equal_18sqrt3_equal_31_1769145362 [31.1769145362]
+PASS C_9_has_diameter_4_so_it_is_outside_the_cell_and_does_not_contradict_the_minimum [diam=4]
+NOTE K_9-e: n=9 m=35 diam=2 degrees=[7, 7, 8, 8, 8, 8, 8, 8, 8] EU=472.9845356716
+PASS K_9_minus_e_has_diameter_2_so_it_is_outside_the_cell_although_its_EU_exceeds_EU_H_1_6
+PASS K_9_minus_e_EU_is_168sqrt3_plus_182_equal_472_9845356716 [472.9845356716]
+PASS P_9_has_diameter_8_so_the_path_is_outside_the_cell
+
+=== Step 10: the prior-art check of Section 2, done exactly
+NOTE M_1(H(1,6)) = 380, and 343 + 1 + 36 = 380
+NOTE M_1(H(2,5)) = 372, and 343 + 4 + 25 = 372
+NOTE M_1(H(3,4)) = 368, and 343 + 9 + 16 = 368
+PASS M_1_of_H_a_b_at_n_9_equals_343_plus_a_squared_plus_b_squared
+PASS M_1_orders_the_three_splits_380_above_372_above_368
+PASS the_whole_m_at_most_27_tier_obeys_M_1_at_most_14m_at_most_378_below_380 [Delta<=7 so M_1 <= 2*Delta*m = 14m]
+PASS the_f_condition_of_the_nearest_prior_art_fails_for_the_Euler_Sombor_edge_function [sqrt7-sqrt3 = 0.913701 > sqrt39-sqrt31 = 0.677234]
+
+=== [ANTI] four objects the checker must reject (a checker that cannot fail verifies nothing)
+NOTE H(1,6)+uv has diameter 2, so the added edge drops it out of the cell
+PASS ANTI_1_H_1_6_plus_the_edge_uv_is_rejected_because_its_diameter_is_2
+PASS ANTI_2_Theta_2_4_4_is_rejected_at_diameter_3_although_its_EU_equals_the_minimum_exactly
+PASS ANTI_3_a_disconnected_graph_reports_minus_1_and_is_never_given_a_diameter [diameter() = -1]
+PASS ANTI_4_the_checker_disagrees_with_a_deliberately_wrong_candidate_maximum_of_320 [EU(H(1,6)) - 320 = 9.777869]
+
+NOT RE-RUN, and this program cannot see it: the EXHAUSTIVENESS and UNIQUENESS of the minimum half of Theorem A. This program enumerates nothing over G_{9,3}; it verifies the exhibited objects, the closed form of Theorem B, the two search-space amputations and the strict orderings. The claim that all 148,229 isomorphism classes of the cell were evaluated and that exactly one attains each extremum rests on the exhaustive census of the paper Section 5, which this program does not re-run, so the counts re-added in Step 8 are transcriptions rather than re-reads.
+NOTE SCOPE: also not re-run here -- any cell with n > 9, the minimum half at D = 3 for n >= 10 (which the paper does not claim), and the full text of the nearest prior art (Vetrik, Discrete Appl. Math. 333 (2023) 59-70), which is paywalled; the f-class exclusion checked in Step 10 is an exact computation on the condition AS PRINTED IN A SECOND PAPER, not a reading of that theorem hypothesis.
+
+VERDICT: ALL 92 CHECKS PASS
+=== program exited with status 0 ===

@@ -1,0 +1,442 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The sailing league problem at ten teams and twenty-four flights: the case n=3, opt(10,24,5)=2}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\opt}{\operatorname{opt}}
+
+\title[The sailing league problem at ten teams and twenty-four flights]
+{The Sailing League Problem at Ten Teams and Twenty-Four Flights:
+the Case $n=3$, $\opt(10,24,5)=2$}
+
+\date{}
+
+\subjclass[2020]{05B30, 05C70, 90C27, 05B05}
+\keywords{sailing league problem, tournament plan, pairing list, utility value}
+
+\begin{document}
+
+\begin{abstract}
+Sch\"uler and Sch\"urmann introduced the \emph{sailing league problem}: for
+parameters $(N_{\mathrm{teams}},N_{\mathrm{flights}},N_{\mathrm{inrace}})$,
+minimise $\lambda_{\max}-\lambda_{\min}$ over pairing lists. At the end of
+their case study of the Asian Pacific Sailing Champions League they record that
+the case $N_{\mathrm{teams}}=10$, $N_{\mathrm{inrace}}=5$,
+$N_{\mathrm{flights}}=8n$ with $n\ge3$ ``still appears to be open''. We settle
+exactly one member of that family, the case $n=3$: writing
+$\opt(N_{\mathrm{teams}},N_{\mathrm{flights}},N_{\mathrm{inrace}})$ for the
+minimum,
+\[
+  \opt(10,24,5)=2 .
+\]
+The upper bound is an explicit $24\times10$ tournament plan, printed here in
+full, whose $45$ pair counts are $30$ tens and $15$ twelves; it is a pairing
+list in the source's sense and repeats three of its flights. The lower bound
+uses no computer: $\lambda=32/3$ is not an integer, and utility $1$ would force
+a $6$-regular graph on $10$ vertices in which every triple spans an even number
+of edges, which does not exist. The cases $n\ge4$ are not settled here.
+\end{abstract}
+
+\maketitle
+
+\section{The result}\label{sec:result}
+
+Fix $N_{\mathrm{teams}}=10$ and $N_{\mathrm{inrace}}=5$ and write a
+\emph{tournament plan} on $F$ flights as an $F\times10$ matrix $M$ over
+$\{1,2\}$: the entry $M[f][t]$ names which of the two races of flight $f$ team
+$t$ sails in, and every row must carry exactly five $1$s and five $2$s, since
+each flight partitions the ten teams into two races of five. For teams
+$t\ne u$ put
+\[
+  \lambda(t,u)=\#\{f: M[f][t]=M[f][u]\},
+\]
+the number of races in which $t$ and $u$ meet, and let the \emph{utility value}
+be $\lambda_{\max}-\lambda_{\min}$ over the $45$ unordered pairs. The sailing
+league problem asks to minimise it; write
+$\opt(N_{\mathrm{teams}},N_{\mathrm{flights}},N_{\mathrm{inrace}})$ for the
+minimum.
+
+\begin{theorem}\label{thm:main}
+$\opt(10,24,5)=2$.
+\end{theorem}
+
+The upper bound is the plan of Table~\ref{tab:plan}
+(Section~\ref{sec:object}); the matching lower bound is
+Theorem~\ref{thm:lower} in Section~\ref{sec:lower}. Both halves are
+checkable by hand from objects printed below.
+
+\section{The open statement, verbatim}\label{sec:source}
+
+All quotations are from the arXiv e-print \LaTeX{} source of
+\cite{SchuelerSchuermann}, in which the macros \verb|\Nteams|,
+\verb|\Nflights|, \verb|\Ninrace| expand to $N_{\mathrm{teams}}$,
+$N_{\mathrm{flights}}$, $N_{\mathrm{inrace}}$.
+
+The open statement is unnumbered prose at the end of Section~5.1 (``Asian
+Pacific Sailing Champions League''), immediately before Section~5.2:
+\begingroup\footnotesize
+\begin{verbatim}
+We finally note that the problem of finding an optimal
+tournament plan for parameters $\Nteams = 10$, $\Ninrace = 5$
+and $\Nflights = n\cdot 8$ with $n\geq 3$
+($n$~times the base schedule of the Asian Pacific Champions League)
+still appears to be open.
+\end{verbatim}
+\endgroup
+The quantifier is as printed: for all integers $n\ge3$. This note settles
+$n=3$, i.e. $N_{\mathrm{flights}}=24$, and nothing beyond it.
+
+The parenthetical is a gloss on the \emph{flight count}, not a structural
+demand that the plan consist of $n$ copies of one $8$-flight base schedule. The
+sentence names the parameter triple, and the source's own definition of the
+problem (line $252$) is stated for the triple:
+\begingroup\footnotesize
+\begin{verbatim}
+For parameters $\Nteams, \Nflights$, $\Ninrace$ the corresponding
+\emph{sailing league problem} asks to find a pairing list with
+$\lambda_{\max} - \lambda_{\min}$ as small as possible.
+\end{verbatim}
+\endgroup
+\noindent The authors' own $n=2$ answer is likewise not a repetition: in their
+$16$-flight table, rows $9$--$16$ are not a repeat of rows $1$--$8$; only rows
+$1$--$8$ double as the $8$-flight optimum.
+
+The definition the result depends on is at lines $192$--$203$: a
+\emph{pairing list} is a set $T$ of $N_{\mathrm{teams}}$ teams, a list $R$ of
+races each of cardinality $N_{\mathrm{inrace}}$, and a list $F$ of
+$N_{\mathrm{flights}}$ flights partitioning $R$ such that each flight
+partitions $T$. Since $N_{\mathrm{inrace}}=5$ divides $N_{\mathrm{teams}}=10$
+with quotient $2$, each flight is exactly a $5/5$ split, which is the matrix
+formulation of Section~\ref{sec:result}. Their averaging lemma (line $235$)
+gives
+\begin{equation}\label{eq:avg}
+  \lambda
+  =\frac{N_{\mathrm{flights}}\,(N_{\mathrm{inrace}}-1)}{N_{\mathrm{teams}}-1}
+  =\frac{24\cdot4}{9}=\frac{96}{9}=\frac{32}{3},
+\end{equation}
+which is not an integer.
+
+The two solved members are Theorems at lines $1015$--$1022$ and $1052$--$1057$:
+\begingroup\footnotesize
+\begin{verbatim}
+For the parameters $\Nteams = 10$, $\Nflights = 8$ and $\Ninrace = 5$
+an optimal tournament plan has a utility value
+$\lambda_{\max} - \lambda_{\min} = 3$
+and satisfies $\lambda_{\min}=2, \lambda_{\max}=5$.
+\end{verbatim}
+\endgroup
+\begingroup\footnotesize
+\begin{verbatim}
+For the parameters $\Nteams = 10$, $\Nflights = 16$ and $\Ninrace = 5$
+an optimal tournament plan has a utility value
+$\lambda_{\max} - \lambda_{\min} = 2$.
+\end{verbatim}
+\endgroup
+The value at $24$ flights is not settled in the cited source: the string
+\verb|Nflights = 24| does not occur in its \LaTeX{} file, and its appendix of
+best-known plans contains only a $(32,18,8)$ plan and the $(10,16,5)$ plan.
+
+\section{The exhibited plan}\label{sec:object}
+
+Table~\ref{tab:plan} is a $(10,24,5)$ tournament plan. A referee needs no
+program: check that each row carries five $1$s and five $2$s, then count
+same-symbol columns for each of the $45$ pairs.
+
+\begin{table}[ht]
+\caption{A tournament plan for $N_{\mathrm{teams}}=10$,
+$N_{\mathrm{flights}}=24$, $N_{\mathrm{inrace}}=5$ with
+$\lambda_{\max}-\lambda_{\min}=2$.}
+\label{tab:plan}
+\begin{verbatim}
+    Flight |  T1 T2 T3 T4 T5 T6 T7 T8 T9 T10
+      1    |   1  1  1  1  2  2  2  2  1  2
+      2    |   1  1  1  2  1  2  1  2  2  2
+      3    |   1  1  1  2  2  1  2  1  2  2
+      4    |   1  1  2  1  1  1  2  2  2  2
+      5    |   1  2  2  2  2  2  1  1  1  1
+      6    |   1  2  1  1  1  1  2  2  2  2
+      7    |   1  1  2  1  2  2  1  2  2  1
+      8    |   1  2  2  1  2  1  1  2  1  2
+      9    |   1  2  1  2  2  1  2  2  1  1
+     10    |   1  1  2  1  2  2  1  2  2  1
+     11    |   1  2  2  1  2  1  1  2  1  2
+     12    |   1  2  1  2  2  1  2  2  1  1
+     13    |   1  1  2  1  2  2  2  1  1  2
+     14    |   1  2  2  1  2  1  2  1  2  1
+     15    |   1  2  1  2  2  1  1  1  2  2
+     16    |   1  1  2  2  1  1  1  2  2  2
+     17    |   1  2  2  2  1  2  1  2  1  1
+     18    |   1  2  1  1  1  2  2  2  1  2
+     19    |   1  1  2  2  1  2  2  1  1  2
+     20    |   1  2  2  1  1  2  2  1  2  1
+     21    |   1  2  1  1  2  2  1  1  2  2
+     22    |   1  1  2  2  2  1  2  1  2  1
+     23    |   1  2  2  2  1  1  1  1  2  2
+     24    |   1  2  1  2  1  2  1  2  2  1
+\end{verbatim}
+\end{table}
+
+The canonical machine-readable form of the plan is the following list of $24$
+row strings, flight $1$ first, character-exact against Table~\ref{tab:plan}.
+\begin{verbatim}
+1111222212 1112121222 1112212122 1121112222
+1222221111 1211112222 1121221221 1221211212
+1212212211 1121221221 1221211212 1212212211
+1121222112 1221212121 1212211122 1122111222
+1222121211 1211122212 1122122112 1221122121
+1211221122 1122212121 1222111122 1212121221
+\end{verbatim}
+
+The complete table of pair counts (teams $1$ to $10$, symmetric, diagonal
+blank) is
+\begin{verbatim}
+   t= 1:   .  10  10  12  10  12  12  10  10  10
+   t= 2:  10   .  10  12  12  10  10  12  10  10
+   t= 3:  10  10   .  10  12  12  10  10  12  10
+   t= 4:  12  12  10   .  10  10  10  10  12  10
+   t= 5:  10  12  12  10   .  10  12  10  10  10
+   t= 6:  12  10  12  10  10   .  10  12  10  10
+   t= 7:  12  10  10  10  12  10   .  10  10  12
+   t= 8:  10  12  10  10  10  12  10   .  10  12
+   t= 9:  10  10  12  12  10  10  10  10   .  12
+   t=10:  10  10  10  10  10  10  12  12  12   .
+\end{verbatim}
+so $\lambda_{\min}=10$, $\lambda_{\max}=12$, and the utility is $2$; the profile
+is exactly $\{10:30,\ 12:15\}$, and no pair sits at $11$.
+
+\begin{remark}[three repeated flights]
+The plan uses $21$ distinct flights, not $24$: flight $7$ equals flight $10$,
+flight $8$ equals flight $11$, and flight $9$ equals flight $12$. This is legal
+by the source's own definition, one line after the pairing-list definition
+(line $205$):
+\begingroup\footnotesize
+\begin{verbatim}
+Note that we use the term \emph{list} to emphasize that it is allowed
+to repeat races and even flights.
+\end{verbatim}
+\endgroup
+and line $206$: ``Mathematically, one could also use an \emph{incidence
+structure} or a \emph{multiset} here.'' So a pairing list is a multiset of
+flights, and Table~\ref{tab:plan} is a legal $(10,24,5)$ pairing list, hence a
+feasible point of exactly the problem the open sentence poses. The authors'
+published $16$-flight optimum uses $16$ distinct flights. The
+distinct-flights variant --- is there a $24$-flight $(10,5)$ plan of utility
+$2$ with $24$ pairwise distinct flights? --- is a different question, which
+this note does not answer in either direction.
+\end{remark}
+
+\section{The lower bound}\label{sec:lower}
+
+No computer is needed for any step of this section.
+
+\begin{lemma}[the authors' average at this cell]\label{lem:A}
+In each flight a team sails against exactly $N_{\mathrm{inrace}}-1=4$
+opponents, so $\sum_{u\ne t}\lambda(t,u)=24\cdot4=96$ for every team $t$, and
+the grand total over the $45$ pairs is $10\cdot96/2=480$. Consequently
+$\lambda=96/9\notin\mathbb Z$ and no $(10,24,5)$ pairing list has utility $0$.
+\end{lemma}
+
+\begin{proof}
+Utility $0$ means $\lambda_{\min}=\lambda_{\max}$, and then that common value
+equals the average $\lambda$, which must therefore be an integer. This half is
+the authors': their lemma at lines $389$--$392$ states that a perfect pairing
+list forces $\lambda\in\mathbb Z$, equivalently
+$(N_{\mathrm{teams}}-1)\mid N_{\mathrm{flights}}(N_{\mathrm{inrace}}-1)$. Here
+$9\nmid96$.
+\end{proof}
+
+\begin{lemma}[triangle parity]\label{lem:B}
+For any $(10,F,5)$ pairing list and any three distinct teams $t,u,v$,
+\[
+  \lambda(t,u)+\lambda(t,v)+\lambda(u,v)\equiv F \pmod 2 .
+\]
+In particular at $F=24$ every triangle sum is even.
+\end{lemma}
+
+\begin{proof}
+Fix one flight. It splits the ten teams into two races of five, so the three
+teams fall $3+0$ or $2+1$ across the two races. In the first case all three
+pairs are same-race, contributing $3$; in the second exactly one pair is,
+contributing $1$. Either way the contribution is odd, so the total over $F$
+flights is congruent to $F$ modulo $2$.
+\end{proof}
+
+The proof uses only that each flight has exactly \emph{two} races, so
+Lemma~\ref{lem:B} does not transfer to the $18$-team or $32$-team case studies
+of \cite{SchuelerSchuermann} and is claimed for none of them.
+
+\begin{lemma}[the odd graph is a cut]\label{lem:C}
+Let $G$ be a graph on the ten teams all of whose $120$ triples span an even
+number of edges. Then $G$ is a complete bipartite cut: there is
+$U\subseteq T$ with $E(G)=\{\,tu: |\{t,u\}\cap U|=1\,\}$. Its degrees are
+$10-|U|$ on $U$ and $|U|$ off $U$, and its edge count $|U|\,(10-|U|)$ lies in
+$\{0,9,16,21,24,25\}$.
+\end{lemma}
+
+\begin{proof}
+Write $p(t,u)\in\{0,1\}$ for the indicator of $tu\in E(G)$. Fix a team $t_0$,
+set $f(t_0)=0$ and $f(u)=p(t_0,u)$ for $u\ne t_0$. For $u,v\ne t_0$ the triple
+$(t_0,u,v)$ has even $p$-sum, so $p(u,v)=f(u)+f(v)\bmod2$; for $u\ne t_0$ this
+also holds by construction. Hence $tu\in E(G)$ exactly when $f(t)\ne f(u)$,
+i.e. $G$ is the cut determined by $U=f^{-1}(1)$. The degree and edge-count
+statements are immediate, and $k(10-k)$ for $k=0,\dots,5$ gives
+$0,9,16,21,24,25$.
+\end{proof}
+
+\begin{theorem}\label{thm:lower}
+$\opt(10,24,5)\ge2$.
+\end{theorem}
+
+\begin{proof}
+Utility $0$ is impossible by Lemma~\ref{lem:A}. Suppose some plan has utility
+$1$, so all $45$ values lie in a window $\{m,m+1\}$. By Lemma~\ref{lem:A} the
+per-team sum is $96$ over nine neighbours, so $9m\le96\le9m+9$, i.e.
+$9.67\le m\le10.67$, forcing $m=10$ and the window $\{10,11\}$. Let
+$a(t)=\#\{u:\lambda(t,u)=11\}$; then $10\cdot9+a(t)=96$, so $a(t)=6$ for every
+team and the graph of pairs at $11$ is $6$-regular, with $30$ edges. But $11$
+is the only odd value in the window, so that graph is precisely the graph of
+pairs with odd $\lambda$, which by Lemmas~\ref{lem:B} and~\ref{lem:C} is a cut
+$K_{k,10-k}$. Six-regularity would need $10-k=6$ and $k=6$ at once, i.e. $k=4$
+and $k=6$: a contradiction.
+\end{proof}
+
+Theorem~\ref{thm:lower} and Table~\ref{tab:plan} together prove
+Theorem~\ref{thm:main}.
+
+\section{Attribution, and what is not settled}\label{sec:scope}
+
+\noindent\textbf{Due to Sch\"uler and Sch\"urmann \cite{SchuelerSchuermann}.}
+The problem, all definitions, and the open statement settled here at $n=3$;
+the kill of utility $0$, which is their lemma at lines
+$389$--$392$; and the theorems $\opt(10,8,5)=3$ and $\opt(10,16,5)=2$, quoted in
+Section~\ref{sec:source}.
+
+\noindent\textbf{Not settled in the cited source.} The plan of
+Table~\ref{tab:plan} and the parity route of Lemmas~\ref{lem:B}
+and~\ref{lem:C} and Theorem~\ref{thm:lower} do not occur in
+\cite{SchuelerSchuermann}, which contains no parity argument and leaves the
+value at $24$ flights open. For the wider literature see ``Adjacent work''
+below.
+
+\noindent\textbf{Not settled.}
+\begin{itemize}
+\item \emph{Only the case $n=3$ is settled.} The source sentence quantifies
+  over all $n\ge3$. Nothing here settles $n=4$ ($32$ flights) or any larger
+  $n$, and no witness at any flight count other than $24$ appears in this
+  note.
+\item \emph{The plan repeats three flights}, which the source's definition
+  permits. The distinct-flights variant of this cell, and its optimum, are not
+  addressed.
+\end{itemize}
+
+\noindent\textbf{Adjacent work.} In the language of designs, the data of
+Table~\ref{tab:plan} are $v=10$ points, blocks of size $k=5$ resolved into the
+$24$ flights, replication $r=24$, and the two concurrences $10$ and $12$. A
+published line minimises
+exactly this spread of concurrences in a resolvable design --- the bridge-club
+designs, equivalently resolvable regular graph designs --- in cases of block
+size $4$: Elenbogen and Maxim \cite{ElenbogenMaxim} ask for $12$
+players in three tables of four over eight meetings with each pair meeting two
+or three times and report an unsuccessful search; Royle and Wallis
+\cite{RoyleWallis} construct such a design and find exactly two isomorphism
+classes; Kreher, Royle and Wallis \cite{KreherRoyleWallis} treat resolvable
+regular graph designs of block size $4$ on $8$, $12$ and $16$ points, the
+$8$-point case being the two-blocks-per-class analogue of the cell considered
+here; see also Wallis \cite{WallisBridge,WallisRGD}. None of these treats
+$v=10$ with $k=5$, or $r=24$, so none of them settles $\opt(10,24,5)$. Of the
+two-associate-class catalogues, Saurabh \cite{Saurabh} describes its own scope
+as the classical window $2\le r,k\le10$ used by Clatworthy \cite{Clatworthy}
+and tabulates designs on $15$ and $21$ points; $r=24$ lies outside that
+window. Neither catalogue was consulted page by page --- both are paywalled
+--- and Google Scholar and MathSciNet were not reachable when this was
+written; citer registries for \cite{SchuelerSchuermann} report no citing work,
+and keyword sweeps return only the source itself. No priority claim is made.
+
+\section{Reproduction and verification}\label{sec:repro}
+
+Every input needed to redo the work is printed above, and a reader who trusts
+no program can verify Theorem~\ref{thm:main} by hand.
+
+The plan of Table~\ref{tab:plan} was found by a constraint solver. That is
+provenance only: the captured output of the search is not part of this record
+and no program re-runs it, since an object a solver returns is checked
+directly.
+
+The checks were also redone in exact arithmetic with no third-party package:
+the plan re-read from both of its printed forms and its $45$ pair counts,
+profile, totals and repeated flights re-derived; Lemma~\ref{lem:B} verified on
+all $126$ five-five splits against all $120$ triples; and Lemma~\ref{lem:C}
+verified by exhausting every graph on ten labelled vertices all of whose
+triples span an even number of edges (there are exactly $512$, each of them a
+cut, none $6$-regular). The program and a transcript of it being run accompany
+this note; neither is needed in order to redo the work, and neither checks any
+bibliographic or prior-art statement --- those are reads, and their limits are
+recorded in Section~\ref{sec:scope}.
+
+\begin{thebibliography}{9}
+
+\bibitem{Clatworthy}
+W.~H. Clatworthy,
+\emph{Tables of Two-Associate-Class Partially Balanced Designs},
+National Bureau of Standards Applied Mathematics Series 63,
+U.S. Department of Commerce, Washington, D.C., 1973.
+
+\bibitem{ElenbogenMaxim}
+B.~S. Elenbogen and B.~R. Maxim,
+\emph{Scheduling a bridge club (a case study in discrete optimization)},
+Math. Mag. \textbf{65} (1992), no.~1, 18--26.
+\href{https://doi.org/10.2307/2691356}{doi:10.2307/2691356}.
+
+\bibitem{KreherRoyleWallis}
+D.~L. Kreher, G.~F. Royle and W.~D. Wallis,
+\emph{A family of resolvable regular graph designs},
+Discrete Math. \textbf{156} (1996), 269--275.
+\href{https://doi.org/10.1016/0012-365X(95)00052-X}{doi:10.1016/0012-365X(95)00052-X}.
+
+\bibitem{RoyleWallis}
+G.~F. Royle and W.~D. Wallis,
+\emph{Constructing bridge club designs},
+Bull. Inst. Combin. Appl. \textbf{11} (1994), 122--125.
+
+\bibitem{Saurabh}
+S.~Saurabh,
+\emph{An updated table of two-associate-class triangular designs},
+Utilitas Math. \textbf{126} (2026), 223--234.
+\href{https://doi.org/10.61091/um126-11}{doi:10.61091/um126-11}.
+
+\bibitem{SchuelerSchuermann}
+R.~Sch\"uler and A.~Sch\"urmann,
+\emph{Sailing league problems},
+J. Combin. Des. \textbf{32} (2024), no.~4, 171--189.
+\href{https://doi.org/10.1002/jcd.21929}{doi:10.1002/jcd.21929};
+\href{https://arxiv.org/abs/2212.02865}{arXiv:2212.02865}.
+All line numbers quoted above refer to the \LaTeX{} source of the arXiv
+e-print, version v3 of 22 December 2023.
+
+\bibitem{WallisBridge}
+W.~D. Wallis,
+\emph{A bridge club design},
+in: Computational and Constructive Design Theory,
+Math. Appl. \textbf{368}, Kluwer, Dordrecht, 1996, pp.~1--12.
+
+\bibitem{WallisRGD}
+W.~D. Wallis,
+\emph{Regular graph designs},
+J. Statist. Plann. Inference \textbf{51} (1996), 273--281.
+
+\end{thebibliography}
+
+\end{document}

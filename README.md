@@ -2,18 +2,18 @@
 
 Output of an automated mathematics solver framework we developed. The framework mines the
 literature for open conjectures and open existence questions, attacks them, and verifies
-what survives. This repository holds the results: 202 short papers, each with the code that
+what survives. This repository holds the results: 228 short papers, each with the code that
 checks it.
 
-**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **117 papers refuting a published
-conjecture or question**, **33 exhibiting an object whose existence was open**, and
+**[OPEN_RESULTS.md](OPEN_RESULTS.md)** — the list: **132 papers refuting a published
+conjecture or question**, **44 exhibiting an object whose existence was open**, and
 **52 proving a conjecture or recording a note**. Two statements each carry two independent
 papers, which exhibit different objects and are listed separately.
 
 | directory | n | contents |
 |---|---|---|
-| [`counterexamples/`](counterexamples/) | 117 | a published conjecture or question is refuted |
-| [`constructions/`](constructions/) | 33 | an object whose existence was open is exhibited |
+| [`counterexamples/`](counterexamples/) | 132 | a published conjecture or question is refuted |
+| [`constructions/`](constructions/) | 44 | an object whose existence was open is exhibited |
 | [`notes/`](notes/) | 52 | conjectures proved, expository notes, and re-proofs of results due to others |
 
 ## One folder per paper
@@ -49,17 +49,25 @@ its headline, or if the result was already in the literature. Of the 50 candidat
 were published: 16 were withheld because the source had never posed the statement, and one because
 the result was already in print.
 
+From wave 25 onward one further selection rule is applied after review: a paper is published only if
+an **exhibited object** carries its result — a counterexample refuting a published statement, or a
+construction settling an existence question. Of wave 25's 40 reviewed papers, 26 were published and
+14 were held back on that rule alone. All 14 are sound; their contribution is simply a theorem rather
+than an object — a pure non-existence, an equivalence, an exact value whose hard direction has no
+witness, or a closed form. That rule is about what this collection is for, not about correctness.
+
 ## The verification programs
 
-**153 of the 188 papers ship a program and a transcript.** The remaining 35 need none: their
+**193 of the 228 papers ship a program and a transcript.** The remaining 35 need none: their
 decisive check is carried out in the paper itself, on the object it prints, and each of those
 folders says so in its `REVIEW_NOTE.md`.
 
 Each program is **dependency-free** — Python 3.9 or later, standard library only, no
 third-party package and no external data file — so it runs with a bare `python3`. It prints
 one line per check and a final verdict, and exits 0 if and only if every check passed. Across
-the 171 programs — four folders ship a second, independent program beside the first — the recorded
-runs report **9,757 checks, all passing**.
+the 199 programs — four folders ship a second or third program beside the first, and one of those
+transcripts records a C kernel and its Python driver together, each with its own SHA-256 — the
+recorded runs report **11,602 checks, all passing**.
 
 A program takes the object exhibited in its paper as an *input* and derives everything else;
 only the derived quantities are checks. Where a program cannot verify a step — typically a

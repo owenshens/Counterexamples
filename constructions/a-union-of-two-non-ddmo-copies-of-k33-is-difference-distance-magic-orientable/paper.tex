@@ -1,0 +1,262 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={A union of two non-DDMO copies of K(3,3) is difference distance magic orientable}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\imb}{imb}
+\newcommand{\ora}[1]{\overrightarrow{#1}}
+
+\title[A union of two non-DDMO copies of $K_{3,3}$]
+{A Union of Two Non-DDMO Copies of $K_{3,3}$\\ Is Difference Distance Magic Orientable}
+
+\date{}
+
+\subjclass[2020]{05C78, 05C20, 05C22}
+\keywords{difference distance magic labeling, oriented graph, DDMOG, disconnected graph,
+disjoint union, complete bipartite graph}
+
+\begin{document}
+
+\begin{abstract}
+Aceska, Arcila-Maya, Carlson, Marr, Parnes, Ryan, Schuerger and Vasquez close their paper on
+difference distance magic labelings by asking: \emph{is it possible for a union of non-DDMOGs
+to be DDMO?} We answer yes. Let $\ora{D}$ be the orientation of $K_{3,3}$ with parts
+$A=\{0,1,2\}$, $B=\{3,4,5\}$ and arcs
+$0\!\to\!3$, $4\!\to\!0$, $5\!\to\!0$, $3\!\to\!1$, $1\!\to\!4$, $1\!\to\!5$,
+$3\!\to\!2$, $2\!\to\!4$, $2\!\to\!5$.
+Then $\ora{D}\sqcup\ora{D}$ carries the difference distance magic labeling
+$(6,1,5,10,2,8)$, $(12,3,9,11,4,7)$ of $\{1,\dots,12\}$, while $K_{3,3}$ itself has no
+orientation admitting such a labeling. So a disjoint union of two graphs, \emph{neither} of
+which is difference distance magic orientable, is difference distance magic orientable.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:q}
+
+An \emph{oriented graph} is a digraph with no pair of opposite arcs. Following
+Altman, Calzado, Freyberg, Kov\'a\v{r}, Lewis, Marr, Ross and Via~\cite{Altman}
+and Aceska et al.~\cite{Source}, for a vertex $v$ of an oriented graph $\ora{G}$ on $n$
+vertices and a labeling $f$ of its vertices put
+\[
+  \wt(v)\;=\;\sum_{u\to v} f(u)\;-\;\sum_{v\to u} f(u),
+\]
+the in-label sum minus the out-label sum. A \emph{difference distance magic} (DDM) labeling of
+$\ora{G}$ is a bijection $f\colon V(\ora{G})\to\{1,\dots,n\}$ with $\wt(v)=0$ for
+\emph{every} vertex $v$; an oriented graph possessing one is a \emph{DDMOG}, and an undirected
+graph is \emph{DDMO} when at least one of its orientations is a DDMOG.
+
+The source paper~\cite{Source} ends with a paragraph of open questions. Its third question is
+unnumbered prose in the Conclusion (Section~13), in no theorem-like environment, and reads,
+verbatim:
+
+\begin{quote}
+For example, is it possible for a union of non-DDMOGs to be DDMO?
+\end{quote}
+
+\noindent
+Its immediate context, verbatim, is: ``\emph{Furthermore, although most of the DDMOGs in this
+paper have been connected, disconnected DDMOGs are of interest as well. For example, is it
+possible for a union of non-DDMOGs to be DDMO?}'' Throughout, ``union'' means disjoint union,
+which is the source's own usage: its Theorem~5.1 writes a disconnected oriented graph as
+$\bigcup_i\ora{G_i}$.
+
+The question unions \emph{oriented} objects and then applies the \emph{undirected} predicate,
+so it has two inequivalent readings, and we answer both. Fix $k\ge 2$.
+\begin{itemize}
+\item[\textbf{(A)}] (orientations fixed throughout) There are oriented graphs
+$\ora{G_1},\dots,\ora{G_k}$, none a DDMOG, with $\ora{G_1}\sqcup\cdots\sqcup\ora{G_k}$ a DDMOG.
+\item[\textbf{(B)}] (undirected) There are graphs $H_1,\dots,H_k$, none DDMO, with
+$H_1\sqcup\cdots\sqcup H_k$ DDMO.
+\end{itemize}
+An instance of (B) yields one of (A), because a disjoint union has no arcs between parts, so
+any DDMOG orientation of $H_1\sqcup\cdots\sqcup H_k$ restricts to orientations of the $H_i$,
+each a non-DDMOG. We require $k\ge2$.
+
+\begin{theorem}\label{thm:main}
+Reading \textup{(B)}, and hence reading \textup{(A)}, holds with $k=2$: two disjoint copies of
+$K_{3,3}$ form a DDMO graph on $12$ vertices, although $K_{3,3}$ is not DDMO.
+\end{theorem}
+
+No minimality of the order $12$ is claimed. The mechanism is one line: a component of a
+\emph{disconnected} DDMOG on $n$ vertices receives an arbitrary $n_i$-\emph{subset} of
+$\{1,\dots,n\}$, whereas being a DDMOG in its own right demands the \emph{interval}
+$\{1,\dots,n_i\}$.
+
+Since $\wt$ is defined by an equality to zero, replacing $\wt$ by $-\wt$ changes nothing
+below; this matters only because~\cite{Source} reverses the usual superscript convention, so
+that its $N^{+}$ is the in-neighbourhood. All statements are in the convention displayed
+above.
+
+\section{The witness on $12$ vertices}\label{sec:w12}
+
+Let $\ora{D}$ be the orientation of $K_{3,3}$ on $A=\{0,1,2\}$, $B=\{3,4,5\}$ with the nine
+arcs
+\[
+\begin{array}{lll}
+ 0\to 3, & 4\to 0, & 5\to 0,\\
+ 3\to 1, & 1\to 4, & 1\to 5,\\
+ 3\to 2, & 2\to 4, & 2\to 5.
+\end{array}
+\]
+Each of the nine pairs in $A\times B$ occurs exactly once and no pair occurs twice, so
+$\ora{D}$ is indeed an orientation of $K_{3,3}$; its in-degrees are $(2,1,1,1,2,2)$ and its
+out-degrees $(1,2,2,2,1,1)$.
+
+For this orientation the six weight equations collapse. Reading the arcs off,
+\begin{align*}
+ &\wt(0)=f_4+f_5-f_3, &&\wt(1)=\wt(2)=f_3-f_4-f_5,\\
+ &\wt(3)=f_0-f_1-f_2, &&\wt(4)=\wt(5)=f_1+f_2-f_0,
+\end{align*}
+so every row of the weight matrix is $\pm(f_0-f_1-f_2)$ or $\pm(f_3-f_4-f_5)$ and
+\begin{equation}\label{eq:collapse}
+ \wt\equiv 0
+ \iff
+ f_0=f_1+f_2 \ \text{ and }\ f_3=f_4+f_5 .
+\end{equation}
+Equivalently: the label sets realised by $\ora{D}$ are exactly the $6$-sets of the form
+$\{p,q,p+q\}\cup\{r,s,r+s\}$.
+
+\begin{proposition}\label{prop:w12}
+Let $\ora{G}_{12}=\ora{D}\sqcup\ora{D}$, and label the first copy by
+$(f_0,\dots,f_5)=(6,1,5,10,2,8)$ and the second by $(12,3,9,11,4,7)$. This is a DDM labeling
+of $\ora{G}_{12}$.
+\end{proposition}
+
+\begin{proof}
+The two label sets $\{1,2,5,6,8,10\}$ and $\{3,4,7,9,11,12\}$ are disjoint with union
+$\{1,\dots,12\}$, so the labeling is a bijection onto $\{1,\dots,12\}$. By
+\eqref{eq:collapse} all twelve weights vanish as soon as
+\[
+ 1+5=6,\qquad 2+8=10,\qquad 3+9=12,\qquad 4+7=11,
+\]
+which is four additions. Equivalently, the witness is the partition
+$\{1,\dots,12\}=\bigl(\{1,5,6\}\cup\{2,8,10\}\bigr)\sqcup\bigl(\{3,9,12\}\cup\{4,7,11\}\bigr)$
+into four triples $\{a,b,a+b\}$.
+\end{proof}
+
+\section{Neither copy is DDM-orientable}\label{sec:not}
+
+\begin{lemma}[Altman et al.~\cite{Altman}, Theorem~5, at $m=n=3$]\label{lem:k33}
+No orientation of $K_{3,3}$ has a DDM labeling. Hence $K_{3,3}$ is not DDMO and every
+orientation of $K_{3,3}$ is a non-DDMOG.
+\end{lemma}
+
+This is not new: \cite[Theorem~5]{Altman} states that $K_{m,n}$ with $m,n\ge3$ has an
+orientation permitting a DDM labeling if and only if $(m+n)(m+n+1)=4s$ for some
+$s\in\mathbb{N}$, and $(3+3)(3+3+1)=42$ is not a multiple of $4$. That paper is the first item
+in the bibliography of~\cite{Source}. We reproduce the argument, which is the necessity half of
+theirs, only so that the witness is self-contained.
+
+\begin{proof}
+Let $\ora{K}$ be any orientation of $K_{3,3}$ and let $f$ be any labeling with all weights
+zero. Summing the weights over $A$: every arc of $\ora{K}$ joins $A$ to $B$, so no $f(a)$ with
+$a\in A$ occurs in $\sum_{a\in A}\wt(a)$, while $f(b)$ occurs with coefficient
+$\operatorname{outdeg}(b)-\operatorname{indeg}(b)=2\operatorname{outdeg}(b)-3$, which is odd
+because $\deg(b)=3$. Hence $0=\sum_{a\in A}\wt(a)\equiv\sum_{b\in B}f(b)\pmod 2$, so
+$S_B:=\sum_{b\in B}f(b)$ is even, and symmetrically $S_A$ is even. But a DDM labeling has
+$S_A+S_B=1+2+\cdots+6=21$, which is odd; a contradiction.
+\end{proof}
+
+Lemma~\ref{lem:k33} with Proposition~\ref{prop:w12} proves Theorem~\ref{thm:main} and answers
+the question in reading~(B). The
+union defeats the parity obstruction because each copy receives a $6$-\emph{subset} of
+$\{1,\dots,12\}$ of even sum ($32$ and $46$), whereas the \emph{interval} $\{1,\dots,6\}$ has
+odd sum $21$.
+
+\section{Relation to Theorem~5.1 of the source}\label{sec:src}
+
+The witness lies outside the hypothesis of Theorem~5.1 of~\cite{Source}, which asserts that
+$\ora{G}=\bigcup_{i=1}^{k}\ora{G_i}$ is a DDMOG if $\ora{G_1}$ is a DDMOG and
+$\ora{G_2},\dots,\ora{G_k}$ are DDMOGs with $\imb(\ora{G_i})=0$: here no component is a DDMOG
+at all, by Lemma~\ref{lem:k33}. That theorem is stated as a sufficient condition only, and the
+source itself declines the case the witness inhabits --- the prose introducing it reads
+``\emph{However, if a union of DDMOGs happens to contain more than one component that is not
+balanced, it is not immediately clear if a DDM labeling will exist for this union}''.
+
+\section{Verification, and what is not settled}\label{sec:ver}
+
+\noindent\textbf{By hand.} Everything above is hand-sized and needs no machine: the
+$12$-vertex witness is four additions, and Lemma~\ref{lem:k33} is a parity count.
+
+\medskip\noindent\textbf{By machine.} The accompanying program \texttt{verify.py}
+(Python~3.9+, standard library only), in exact integer and rational arithmetic, reads the
+objects printed above and re-checks them, and confirms Lemma~\ref{lem:k33} by two independent
+routes over all $512$ orientations of $K_{3,3}$, which agree. Its recorded transcript also
+carries checks on further material --- minimum orders for witnesses, order-$5$ enumerations, and
+a parity condition for $k$ copies of $\ora{D}$ --- none of which is claimed in this note and
+none of which anything above depends on; where that transcript names a lemma or a remark of the
+paper for a step it did not re-run, no such numbered statement appears above.
+
+\medskip\noindent\textbf{What is not settled.}
+\begin{itemize}
+\item No theorem describing which orders admit witnesses is proved here, and no witnesses are
+counted: Theorem~\ref{thm:main} exhibits one witness, on $12$ vertices, and nothing here rules
+out a witness of smaller order.
+\item The published census of $6$-vertex DDMOGs in~\cite{Altman} --- ``\emph{there are 22
+unique 6-vertex oriented graphs on two underlying non-isomorphic graphs with DDM labelings}''
+--- is \emph{not} reproduced here and no agreement with it is claimed. The only order-$6$
+object this note uses is $K_{3,3}$, whose $512$ orientations are swept exhaustively. Likewise
+the $7$- and $8$-vertex counts of~\cite{Altman} play no role.
+\item The ingredient the argument leans on is published, not new: Lemma~\ref{lem:k33} is
+\cite[Theorem~5]{Altman} at $m=n=3$, and the proof reproduced here is the necessity half of
+theirs. What is claimed here is the answer to the question and the $12$-vertex witness.
+\item Besides \cite{Source} and~\cite{Altman}, the only further paper we located on difference
+distance magic labelings is~\cite{Ornaments}, the one paper we found citing the source; its
+constructions all adjoin a neutralising edge set and so produce connected DDMOGs, and none of
+its own open questions restates or answers the one answered here. The words ``disjoint'',
+``union'', ``component'' and ``disconnect'' do not occur in~\cite{Altman}.
+\item The other two open questions of the same paragraph of~\cite{Source} --- which graphs are
+DDMO, and what properties distinguish DDMOGs from non-DDMOGs --- remain open.
+\item Splitting an interval of labels into blocks of prescribed sum is the standard device of
+the undirected and group distance-magic literature (see e.g.~\cite{CSP}); the mechanism of the
+$12$-vertex witness is recognisably that device, transplanted to the oriented setting.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{Source}
+R.~Aceska, C.~Arcila-Maya, R.~Carlson, A.~Marr, P.~Parnes, J.~Ryan, H.~Schuerger, and
+A.~Vasquez,
+\emph{New results on difference distance magic labelings},
+arXiv:2601.20492v1, 2026.
+\href{https://arxiv.org/abs/2601.20492}{arXiv:2601.20492};
+\href{https://doi.org/10.48550/arXiv.2601.20492}{doi:10.48550/arXiv.2601.20492}.
+The question answered here is unnumbered prose in the Conclusion (Section~13) of that version,
+and is quoted in full in Section~\ref{sec:q}.
+
+\bibitem{Altman}
+K.~Altman, L.~Calzado, B.~Freyberg, P.~Kov\'a\v{r}, E.~Lewis, A.~Marr, L.~Ross, and R.~Via,
+\emph{Difference distance magic oriented graphs},
+Res. Math. Sci. \textbf{11} (2024), no.~4, art.~67.
+\href{https://doi.org/10.1007/s40687-024-00482-7}{doi:10.1007/s40687-024-00482-7}.
+
+\bibitem{Ornaments}
+R.~Aceska, T.~Lort, and A.~Ripperger,
+\emph{Ornaments and difference distance magic oriented graphs},
+arXiv:2606.16001v3, 2026.
+\href{https://arxiv.org/abs/2606.16001}{arXiv:2606.16001}.
+Every DDMOG constructed there is connected, so none of its results bears on the question
+answered here.
+
+\bibitem{CSP}
+B.~Freyberg,
+\emph{On constant sum partitions and applications to distance magic-type graphs},
+AKCE Int. J. Graphs Comb. \textbf{17} (2020), no.~1, 373--379.
+\href{https://doi.org/10.1016/j.akcej.2019.02.003}{doi:10.1016/j.akcej.2019.02.003}.
+
+\end{thebibliography}
+
+\end{document}

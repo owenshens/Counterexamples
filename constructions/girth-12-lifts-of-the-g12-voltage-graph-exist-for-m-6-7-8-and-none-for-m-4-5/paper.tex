@@ -1,0 +1,581 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{array,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Girth-12 lifts of the voltage graph G_12 for m = 6, 7, 8,
+            and nonexistence on its printed arc set for m = 4, 5}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Zm}{\mathbb{Z}_m}
+\newcommand{\Gt}{G_{12}}
+\newcommand{\Tt}{T_{12}}
+
+\title[Girth-12 lifts of $G_{12}$ for $m = 6,7,8$]
+{Girth-12 Lifts of the Voltage Graph $G_{12}$ for $m = 6, 7, 8$,
+ and Nonexistence on Its Printed Arc Set for $m = 4, 5$}
+
+\date{}
+
+\subjclass[2020]{05C35, 05C25, 05C38}
+\keywords{semicubic cage, biregular cage, girth, voltage graph, lift,
+derived graph, exhaustive search}
+
+\begin{document}
+
+\begin{abstract}
+Aguilar, Araujo-Pardo and Berman construct a voltage graph $\Gt$ whose
+$\Zm$-lift is a $(\{3,m\};12)$-graph of order $49m+3$ for every $m \ge 9$, and
+ask, in the second sub-bullet of their open-questions section, for voltage
+assignments producing $(\Gt;m)$-graphs for $4 \le m \le 8$ or a proof that none
+exist. For $m = 6, 7, 8$ we exhibit voltage assignments on the arcs of $\Gt$
+whose lifts are $(\{3,m\};12)$-graphs of orders $297$, $346$, $395$; that
+answers the sub-bullet at those three values of $m$. Separately, with the $24$
+arcs of their Table 3 held fixed as printed --- with the evident correction to
+the duplicated starting leaf --- and only the $24$ voltages varying, we prove
+that no assignment gives girth $12$ at $m = 4$ or at $m = 5$: at $m = 4$ by a
+four-variable pigeonhole argument requiring no computation, four specific arc
+voltages having to be pairwise distinct and nonzero while $\mathbb{Z}_4$ has
+only three nonzero residues; at $m = 5$ by exhaustion of the complete cell
+$\mathbb{Z}_5^{24}$. We do not settle whether the sub-bullet asks only about
+this fixed arc set or about every girth-$12$ graph obtainable from the same
+underlying tree; under the wider reading the cells $m = 4, 5$ remain open, so
+what is proved here at $m = 4, 5$ is a fixed-arc statement. No order record and
+no improved upper bound is claimed at any $m$: the published bounds dominate all
+three witnesses.
+\end{abstract}
+
+\maketitle
+
+\section{The question}\label{sec:q}
+
+Write $n(\{r,m\};g)$ for the least order of a graph all of whose degrees lie in
+$\{r,m\}$, in which both degrees occur, and whose girth is $g$; such a graph is
+a \emph{$(\{r,m\};g)$-graph}. Aguilar, Araujo-Pardo and
+Berman~\cite{AAB} study these for $r=3$ (\emph{semicubic}) using voltage
+graphs. Throughout their paper the voltage group is cyclic: ``\emph{Throughout
+this paper, $\Gamma$ is a cyclic group $\mathbb{Z}_m$ with addition as the group
+operation}''~\cite{AABarxiv}.
+
+Their Theorem 5.5 reads, verbatim and identically in the
+preprint~\cite{AABarxiv} and in the version of record~\cite[p.~25]{AAB}:
+
+\begin{quote}
+``The graph ($\Gt$ ; $m$) in $\mathcal{G}_{4t}$ for $t = 3$ given by the voltage
+graph $\Gt$ formed by adding the arcs and voltage assignments to $\Tt$ given in
+Table 3 has girth 12 for $m \ge 9$. Moreover, it is a $(\{3, m\}; 12)$-graph
+with three vertices of degree $m$ and $49m$ vertices of degree 3.''
+\end{quote}
+
+The question addressed here is the \textbf{second sub-bullet} under the bullet
+``Related to semicubic graphs'' of their Section~6, ``Open questions'', verbatim
+from~\cite[p.~29]{AAB} and, identically, from the preprint~\cite{AABarxiv} (the
+``$\le$'' is the PDF's glyph and the subscripts are flattened as in the source's
+own inline style):
+
+\begin{quote}
+``Find voltage assignments to produce ($\Gt$ ; $m$) graphs with the
+construction given in Theorem 5.5 for any $4 \le m \le 8$, or show no such
+graphs exist.''
+\end{quote}
+
+By Theorem 5.5 the object sought for a given $m$ has order $49m+3$, that is
+$199, 248, 297, 346, 395$ for $m = 4, \dots, 8$, with three vertices of degree
+$m$ and $49m$ of degree $3$, and is the $\Zm$-lift of $\Gt$ under \emph{some}
+voltage assignment on the $24$ arcs of Table 3.
+
+\begin{theorem}\label{thm:main}
+Let $\Gt$ be the graph of Section~\textup{\ref{sec:obj}} --- the tree $\Tt$ of
+Table~\textup{\ref{tab:tree}} together with the $24$ arcs of
+Table~\textup{\ref{tab:arcs}}. For each $m \in \{6,7,8\}$ there is a $\Zm$
+voltage assignment on those $24$ arcs whose lift is a $(\{3,m\};12)$-graph of
+order $49m+3$, namely $297$, $346$, $395$; one such assignment is exhibited for
+each $m$ in Section~\textup{\ref{sec:yes}}.
+\end{theorem}
+
+\begin{theorem}\label{thm:no}
+Let the $24$ arcs of Table~\textup{\ref{tab:arcs}} be held fixed as printed, so
+that only the $24$ voltages vary. Then no $\Zm$ voltage assignment on those
+arcs has a lift of girth $12$ for $m = 4$
+\textup{(}Proposition~\textup{\ref{prop:m4}}, a four-line argument with no
+computation\textup{)}, nor for $m = 5$
+\textup{(}Section~\textup{\ref{sec:m5}}, by exhaustion of all $5^{24}$
+assignments\textup{)}.
+\end{theorem}
+
+\medskip
+\noindent\textbf{Scope of Theorem~\ref{thm:no}.} Theorem~\ref{thm:main} needs no
+caveat: the assignments it exhibits live on the printed arcs, which the
+sub-bullet permits on any reading, so at $m = 6, 7, 8$ the sub-bullet is
+answered outright. Theorem~\ref{thm:no} is narrower --- the $24$ arcs are held
+\emph{fixed as printed} --- and \emph{we do not settle that this is the reading
+its authors intended}. What can be said for it is this: Theorem 5.5 defines
+$\Gt$ as $\Tt$ plus ``\emph{the arcs \textbf{and voltage assignments} \dots
+given in Table 3}'', so the arcs are part of the named object, and~\cite{AAB}
+poses a re-arcing question in a \emph{separate} sub-bullet, about a different
+graph $H'_{12}$. That is an inference about wording and not a proof of intent;
+no author clarification was obtained. Accordingly Theorem~\ref{thm:no} must
+always be read as ``\emph{no $\Zm$ voltage assignment on the arc set of $\Gt$
+gives girth 12}'' at $m = 4, 5$, and never as the unqualified ``no such graphs
+exist''. Under the wider reading, in which each $x$-leaf may be re-paired to
+some $y$-leaf and some $z$-leaf, the cells $m = 4, 5$ are untouched here and
+remain open; see Section~\ref{sec:open}. The group is $\Zm$ and nothing else, by
+the sentence quoted above; in particular the $m=4$ cell is $\mathbb{Z}_4^{24}$
+and not also $(\mathbb{Z}_2 \times \mathbb{Z}_2)^{24}$.
+
+\medskip
+\noindent Theorem 5.5 is not weakened by any of this. With the printed Table-3
+voltages the lift has girth $6,6,8,8,8,10$ at $m = 3,\dots,8$ and $12$ at
+$m = 9,\dots,14$ (recomputed by the program of Section~\ref{sec:prog}), so its
+threshold $m \ge 9$ is exactly attained for the object it names --- a voltage
+graph includes its voltages --- and what Theorem~\ref{thm:main} exhibits are
+\emph{other} assignments on the same underlying graph.
+
+\medskip
+\noindent\textbf{No record is claimed.} The published upper bounds at the three
+cells where we exhibit a graph are $n(\{3,6\};12) \le 243$,
+$n(\{3,7\};12) \le 334$ and $n(\{3,8\};12) \le 374$, as tabulated by
+Goedgebeur, Jooken and Van den Eede~\cite[girth-$12$ rows of its bound
+table]{GJV}; the last is Corollary~3 of~\cite{AAB} itself. Our three witnesses
+have orders $297$, $346$, $395$ and are dominated in every case. The source's
+own introduction says of this family that ``\emph{the order of these graphs is
+bigger than the upper bounds from the identifying vertices construction}''; a
+reading of the witnesses as improvements would contradict it.
+
+\medskip
+\noindent\textbf{Adjacent work.} \cite{GJV} generalises the gluing theorem
+of~\cite{AAB}, and its girth-$12$ table gives bounds for exactly the five cells
+at issue, the bound $243$ at $m = 6$ among them; but it uses no voltage graphs
+or lifts, and it does not address the existence of a girth-$12$ $\Zm$ voltage
+assignment on the arc set of $\Gt$, which is the question here. Exoo and
+Jajcay~\cite{EJ} give girth criteria for $\Zm$ lifts of voltage graphs, the
+closest work methodologically, but treat neither $\Gt$ nor these five cells;
+Exoo~\cite{Exoo04} searches voltage assignments for regular cages, a related
+technique on different objects. Araujo-Pardo, Ramos-Rivera and
+Jajcay~\cite{ARJ} and Araujo-Pardo, Kiss and Sz\H{o}nyi~\cite{AKS} reach
+girth-$12$ bipartite biregular cages through generalized hexagons and designs,
+again different objects, and settle nothing about $\Gt$.
+
+\section{The graph $\Gt$, written out in full}\label{sec:obj}
+
+The source gives $\Tt$ by prose and the arcs by its Table 3. Both are
+transcribed here completely, so that no figure, no external file and no program
+is needed to read what follows. Throughout, ``Table 3'' with no further
+qualification means the source's table; the tables of the present note are
+Tables~\ref{tab:tree} and~\ref{tab:arcs}, and Table~\ref{tab:arcs} is the
+source's Table 3 with the correction of Remark~\ref{rem:typo} applied.
+
+$\Tt$ has $52$ vertices --- $49$ ordinary ones and three \emph{pinned} vertices
+$x^*, y^*, z^*$ of degree $1$ --- and $51$ edges, all carrying voltage $0$. A
+pinned vertex is a degree-$1$ base vertex: in the lift a \emph{single} vertex
+$x^*$ is joined to all $m$ copies of its unique neighbour, so
+$\deg(x^*) = m$ and the voltage on that edge is irrelevant.
+
+\begin{table}[ht]
+\caption{The $51$ tree edges of $\Tt$, all of voltage $0$.}\label{tab:tree}
+\small
+\begin{tabular}{@{}l@{\;}l@{}}
+\toprule
+$X'_3$ ($26$ vertices, $25$ edges)
+ & $x^*x$;\quad $x\,x_0$, $x\,x_1$;\quad
+   $x_0x_{00}$, $x_0x_{01}$;\quad $x_1x_{10}$, $x_1x_{11}$;\\
+ & $x_{01}x_{010}$, $x_{01}x_{011}$;\quad
+   $x_{10}x_{100}$, $x_{10}x_{101}$;\quad
+   $x_{11}x_{110}$, $x_{11}x_{111}$;\\
+ & $x_{010}x_{0100}$, $x_{010}x_{0101}$;\quad
+   $x_{011}x_{0110}$, $x_{011}x_{0111}$;\\
+ & $x_{100}x_{1000}$, $x_{100}x_{1001}$;\quad
+   $x_{101}x_{1010}$, $x_{101}x_{1011}$;\\
+ & $x_{110}x_{1100}$, $x_{110}x_{1101}$;\quad
+   $x_{111}x_{1110}$, $x_{111}x_{1111}$\\
+\midrule
+$Y_2$ ($13$ vertices, $12$ edges)
+ & $y^*y$;\quad $y\,y_0$, $y\,y_1$;\quad $y_0y_{01}$;\quad
+   $y_1y_{10}$, $y_1y_{11}$;\\
+ & $y_{01}y_{010}$, $y_{01}y_{011}$;\quad
+   $y_{10}y_{100}$, $y_{10}y_{101}$;\quad
+   $y_{11}y_{110}$, $y_{11}y_{111}$\\
+\midrule
+$Z_2$ ($13$ vertices, $12$ edges)
+ & the same with $z$ in place of $y$\\
+\midrule
+join edges & $x_{00}y_0$, \quad $x_{00}z_0$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Equivalently, and this is how~\cite{AAB} defines it: the vertices of $X'_3$ are
+the binary strings of length at most $4$ with every string beginning $00$
+deleted except $00$ itself (so $x_{00}$ is a leaf of the tree part), plus the
+pinned $x^*$ above the root; the vertices of $Y_2 = Z_2$ are the binary strings
+of length at most $3$ with every string beginning $00$ deleted, plus $y^*$;
+and $x_{00}$ is joined to $y_0$ and to $z_0$. The twelve depth-$5$ leaves
+$x_{0100}, \dots, x_{1111}$ are exactly the twelve ``Starting leaf'' entries of
+Table 3, and the six leaves of each of $Y_2$, $Z_2$ are its ``End'' entries.
+
+\begin{table}[ht]
+\caption{The $24$ arcs, with the authors' own symbol names and the printed
+Table-3 voltages. Reading the symbols in the order
+$a,b,c,\dots,\varepsilon$ reproduces both printed voltage rows.}\label{tab:arcs}
+\small
+\begin{tabular}{@{}clr@{\qquad}clr@{}}
+\toprule
+sym & arc & volt. & sym & arc & volt.\\
+\midrule
+$a$ & $x_{0100}\to y_{010}$ & $+1$ & $b$ & $x_{0100}\to z_{110}$ & $+2$\\
+$c$ & $x_{0101}\to y_{011}$ & $+2$ & $d$ & $x_{0101}\to z_{111}$ & $+1$\\
+$e$ & $x_{0110}\to y_{100}$ & $+1$ & $f$ & $x_{0110}\to z_{100}$ & $-1$\\
+$g$ & $x_{0111}\to y_{101}$ & $+2$ & $h$ & $x_{0111}\to z_{101}$ & $+3$\\
+$j$ & $x_{1000}\to y_{010}$ & $+2$ & $k$ & $x_{1000}\to z_{010}$ & $-1$\\
+$l$ & $x_{1001}\to y_{011}$ & $+1$ & $p$ & $x_{1001}\to z_{011}$ & $+3$\\
+$q$ & $x_{1010}\to y_{110}$ & $+1$ & $r$ & $x_{1010}\to z_{100}$ & $+1$\\
+$s$ & $x_{1011}\to y_{111}$ & $+2$ & $t$ & $x_{1011}\to z_{101}$ & $-1$\\
+$u$ & $x_{1100}\to y_{100}$ & $+2$ & $v$ & $x_{1100}\to z_{010}$ & $-3$\\
+$w$ & $x_{1101}\to y_{101}$ & $+1$ & $\alpha$ & $x_{1101}\to z_{011}$ & $-2$\\
+$\beta$ & $x_{1110}\to y_{110}$ & $+3$ & $\gamma$ & $x_{1110}\to z_{110}$ & $-1$\\
+$\delta$ & $x_{1111}\to y_{111}$ & $-1$ & $\varepsilon$ & $x_{1111}\to z_{111}$ & $+2$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The symbol names $a, b, \dots, \varepsilon$ (the list skips $i, m, n, o$) are
+the authors' own, taken from a commented-out substitution list in the
+preprint's source. Reading the $24$ symbols in the
+interleaved order above reproduces both printed voltage rows exactly ---
+$x\!\to\!y$: $1,2,1,2,2,1,1,2,2,1,3,-1$ and $x\!\to\!z$:
+$2,1,-1,3,-1,3,1,-1,-3,-2,-1,2$ --- which is an internal checksum on the table.
+
+\begin{remark}[a forced correction to the published Table 3]\label{rem:typo}
+The \textbf{eighth} ``Starting leaf'' entry is printed $x_{1001}$ in both
+sub-rows, duplicating the sixth; it must read $x_{1011}$, as in
+Table~\ref{tab:arcs}. This is a defect of the published paper, present in the
+preprint \texttt{.tex} and on p.~26 of the version of record alike. Three
+independent confirmations: $x_{1011}$ is the only one of the twelve $4$-bit
+$x$-leaf labels otherwise missing; the paper's own commented-out earlier
+version of the same assignment, in the preprint's source, reads
+``$(x_{1011}y_{111}) = 3$, $(x_{1011}z_{101}) = 9$'', and $y_{111}$, $z_{101}$
+are exactly the printed eighth ``End'' entries; and under the literal printed
+reading $x_{1001}$ would have degree $5$ and $x_{1011}$ degree $1$, so the
+object would not be the one Theorem 5.5 describes, whereas with the correction
+every non-pinned vertex has degree $3$ and every $y$- and $z$-leaf receives
+exactly two arcs. All numbers below use the corrected reading.
+\end{remark}
+
+With Table~\ref{tab:arcs} in place, $\Gt$ has $|V| = 52$, $|E| = 75$, cycle rank
+$\beta = 75 - 52 + 1 = 24$, degree multiset $\{1^3, 3^{49}\}$ with the three
+degree-$1$ vertices exactly $x^*, y^*, z^*$; it is connected, bipartite, and has
+no $4$-cycles. All three pinned-to-pinned tree distances equal $6$, so every
+lift already contains a $12$-cycle: ``girth $12$'' below means exactly ``no
+cycle shorter than $12$'', never ``girth at least $12$''.
+
+\section{The decision criterion}\label{sec:crit}
+
+Let $v$ assign an element of $\Zm$ to each of the $24$ arcs, tree edges being
+$0$, and let $\mathcal{C}$ be the set of simple cycles of $\Gt$ of length at
+most $10$. Traversing a cycle, an arc contributes $+v$ if crossed in its
+direction and $-v$ otherwise.
+
+\begin{lemma}\label{lem:crit}
+The lift $(\Gt;m)_v$ has girth $12$ if and only if
+$\sum_{e \in C} \pm v(e) \not\equiv 0 \pmod m$ for every $C \in \mathcal{C}$.
+\end{lemma}
+
+\begin{proof}
+Necessity is elementary: if a simple cycle $C$ of length $L \le 10$ has
+$\sum_C v \equiv 0$, then $C$ lifts to a simple $L$-cycle, and $L < 12$.
+
+For sufficiency, three families of base walks could lift to a short cycle:
+simple cycles, which the condition handles; lollipop walks through a pinned
+vertex; and non-reversing non-cycle walks. The proof of Theorem 5.5
+in~\cite[p.~25]{AAB} disposes of the last two, verbatim: ``\emph{By
+construction of $\Tt$, all lollipop walks lift to long cycles. Next, we need to
+consider non-reversing non-cycle walks in the voltage graph that may lift to
+short cycles. From Observation \textup{[nonCycleWalks]}, any such walk must
+involve at least one 4-cycle. However, analysis of the cycles in $\Gt$ shows
+that, in fact, there are no 4-cycles (by construction), so there are no short
+walks of this sort that lift to short cycles.}'' Both disposals are properties
+of the \emph{arc set alone}, so they hold for every assignment on those arcs and
+not only for the printed one. Directly: a pinned-vertex lollipop with tree-stem length $d$ and loop length $c$ lifts to a
+cycle of length $2d + c + 2 \ge 12$, the two minima being $(d,c) = (1,8)$ via
+the $8$-cycle
+$y_0\,y_{01}\,y_{010}\,x_{0100}\,x_{010}\,x_{01}\,x_0\,x_{00}\,y_0$ and
+$(d,c) = (2,6)$, each giving exactly $12$; and $\Gt$ has no $4$-cycle.
+\end{proof}
+
+Only necessity is used for the nonexistence proofs, so exhausting the assignment
+space against the condition and finding nothing \emph{proves} nonexistence:
+dropping a walk family can only weaken the constraint set, which is safe for a
+NO. Theorem~\ref{thm:main} does not rely on Lemma~\ref{lem:crit} at all --- every
+witness in Section~\ref{sec:yes} is verified by building the full lift and
+computing its girth.
+
+Two facts about $\mathcal{C}$ and about the parametrisation:
+
+\begin{proposition}\label{prop:census}
+$|\mathcal{C}| = 126$, with $12$ cycles of length $6$, $24$ of length $8$ and
+$90$ of length $10$; counted with both orientations this is $252$, the number
+published in the proof of Theorem 5.5 \textup{(}``\emph{There are 252 short
+cycles that are not formed by going back and forth along a single
+edge}''\textup{)}.
+\end{proposition}
+
+\begin{proposition}\label{prop:gauge}
+The $24$ arc voltages are a complete parametrisation of the $\Zm$ lifts of
+$\Gt$ up to isomorphism. Consequently the $m = 4$ and $m = 5$ cells are exactly
+$\mathbb{Z}_4^{24}$ and $\mathbb{Z}_5^{24}$.
+\end{proposition}
+
+\begin{proof}
+This is the standard spanning-tree normalisation for voltage graphs (Gross and
+Tucker), applied here. A pinned vertex is joined to all $m$ copies of its
+neighbour, so its edge voltage is irrelevant: that fixes $3$ of the $51$ tree
+edges. The gauge move $v(e) \mapsto v(e) + f(\mathrm{head}) - f(\mathrm{tail})$,
+for $f : V_{\mathrm{ord}} \to \Zm$, induces the lift isomorphism
+$w^i \mapsto w^{i + f(w)}$; the $49$ ordinary vertices span a tree with $48$
+edges, and choosing $f$ along that tree sets all $48$ of those voltages to $0$.
+Since $48 + 3 = 51 = |E(\Tt)|$, all tree voltages may be taken $0$ and the
+remaining $\beta = 24$ arc voltages are free.
+\end{proof}
+
+Of this proposition the program of Section~\ref{sec:prog} checks only the counts
+$49$, $48$ and $48+3 = 51 = |E(\Tt)|$; the normalisation argument itself is the
+standard one just cited and is not re-verified there. Nothing in
+Theorem~\ref{thm:no} depends on the ``up to isomorphism'' clause: the two
+nonexistence proofs quantify over \emph{all} of $\mathbb{Z}_4^{24}$ and
+$\mathbb{Z}_5^{24}$ with no quotient taken.
+
+Exactly $14$ of the $24$ arcs are forced nonzero, namely those whose
+fundamental cycle has length at most $10$: $a, b, c, d, e, f, g, h, j, k, l, p,
+v, \alpha$, with $a$ and $c$ at length $8$ and the other twelve at length $10$.
+The remaining ten, $q, r, s, t, u, w, \beta, \gamma, \delta, \varepsilon$, have
+fundamental cycles of length $12$ and may legitimately be $0$; zero entries do
+occur in the witnesses below.
+
+\section{Existence at $m = 6, 7, 8$}\label{sec:yes}
+
+Each witness is $24$ residues, listed in the symbol order of
+Table~\ref{tab:arcs}. The base graph is Section~\ref{sec:obj} and the lift is
+the standard $\Zm$ derived graph, so a reader needs nothing further.
+
+\medskip
+\noindent\textbf{$m = 6$, a $(\{3,6\};12)$-graph of order $297$.}
+\[
+\begin{aligned}
+&a{=}1,\ b{=}3,\ c{=}3,\ d{=}4,\ e{=}2,\ f{=}1,\ g{=}4,\ h{=}2,
+ \ j{=}2,\ k{=}3,\ l{=}1,\ p{=}5,\\
+&q{=}3,\ r{=}3,\ s{=}2,\ t{=}5,\ u{=}5,\ v{=}1,\ w{=}3,\ \alpha{=}2,
+ \ \beta{=}0,\ \gamma{=}5,\ \delta{=}1,\ \varepsilon{=}3.
+\end{aligned}
+\]
+
+\noindent\textbf{$m = 7$, a $(\{3,7\};12)$-graph of order $346$.}
+\[
+\begin{aligned}
+&a{=}1,\ b{=}3,\ c{=}3,\ d{=}4,\ e{=}4,\ f{=}1,\ g{=}6,\ h{=}2,
+ \ j{=}2,\ k{=}3,\ l{=}1,\ p{=}4,\\
+&q{=}2,\ r{=}0,\ s{=}4,\ t{=}4,\ u{=}2,\ v{=}1,\ w{=}0,\ \alpha{=}5,
+ \ \beta{=}3,\ \gamma{=}0,\ \delta{=}6,\ \varepsilon{=}5.
+\end{aligned}
+\]
+
+\noindent\textbf{$m = 8$, a $(\{3,8\};12)$-graph of order $395$}: the $m=7$
+vector read in $\mathbb{Z}_8$, with $g = 7$ in place of $6$.
+
+\medskip
+In each case the lift has $49m+3$ vertices and $75m$ edges, three vertices of
+degree $m$ and $49m$ of degree $3$, and girth exactly $12$. The three
+occurrences of $0$ at $m=7,8$ are legal: $r$, $w$, $\gamma$ are among the ten
+arcs whose fundamental cycles have length $12$.
+
+\section{Nonexistence at $m = 4$: a pigeonhole, with no computation}
+\label{sec:m4}
+
+\begin{proposition}\label{prop:m4}
+No $\mathbb{Z}_4$ voltage assignment on the $24$ arcs of $\Gt$ has a lift of
+girth $12$. The same argument re-proves the case $m = 3$.
+\end{proposition}
+
+\begin{proof}
+Consider the four arcs into $z_{010}$ and $z_{011}$, in the notation of
+Table~\ref{tab:arcs}:
+\begin{align*}
+k &= v(x_{1000}\!\to\! z_{010}), & v &= v(x_{1100}\!\to\! z_{010}),\\
+p &= v(x_{1001}\!\to\! z_{011}), & \alpha &= v(x_{1101}\!\to\! z_{011}).
+\end{align*}
+
+\emph{(i) Each is nonzero.} In $\Tt$ we have $d(x_{1000}, z_{010}) = 9$: six
+steps up to $x_{00}$, then three down, along
+\[
+x_{1000}\ x_{100}\ x_{10}\ x_1\ x\ x_0\ x_{00}\ z_0\ z_{01}\ z_{010}.
+\]
+So the arc $k$ closes a cycle of length $1 + 9 = 10 \le 10$ whose only arc is
+$k$, namely
+\[
+x\ x_0\ x_{00}\ z_0\ z_{01}\ z_{010}\ x_{1000}\ x_{100}\ x_{10}\ x_1\ x .
+\]
+By Lemma~\ref{lem:crit} (necessity), $k \not\equiv 0$. The three other
+distances are $9$ as well, so $p, v, \alpha \not\equiv 0$.
+
+\emph{(ii) They are pairwise distinct.} Each of the six pairs is joined by a
+cycle of length at most $10$ traversing one of the two arcs forwards and the
+other backwards, using $d(x_{1000},x_{1001}) = d(x_{1100},x_{1101}) = 2$, the
+four cross distances $= 6$, and $d(z_{010},z_{011}) = 2$:
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+pair & length & cycle\\
+\midrule
+$k,p$ & $6$ & $x_{100}\,x_{1000}\,z_{010}\,z_{01}\,z_{011}\,x_{1001}$\\
+$v,\alpha$ & $6$ & $x_{110}\,x_{1100}\,z_{010}\,z_{01}\,z_{011}\,x_{1101}$\\
+$k,v$ & $8$ & $x_1\,x_{10}\,x_{100}\,x_{1000}\,z_{010}\,x_{1100}\,x_{110}\,x_{11}$\\
+$p,\alpha$ & $8$ & $x_1\,x_{10}\,x_{100}\,x_{1001}\,z_{011}\,x_{1101}\,x_{110}\,x_{11}$\\
+$k,\alpha$ & $10$ & $x_1\,x_{10}\,x_{100}\,x_{1000}\,z_{010}\,z_{01}\,z_{011}\,x_{1101}\,x_{110}\,x_{11}$\\
+$p,v$ & $10$ & $x_1\,x_{10}\,x_{100}\,x_{1001}\,z_{011}\,z_{01}\,z_{010}\,x_{1100}\,x_{110}\,x_{11}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Each such cycle has voltage sum $\pm(v_1 - v_2)$ for the two arcs concerned, so
+necessity gives $k \ne p$, $k \ne v$, $k \ne \alpha$, $p \ne v$,
+$p \ne \alpha$, $v \ne \alpha$ in $\Zm$.
+
+\emph{(iii)} Hence $k, p, v, \alpha$ are four pairwise distinct nonzero
+elements of $\Zm$, which requires $m - 1 \ge 4$. But $\mathbb{Z}_4$ has only
+three nonzero residues, and $\mathbb{Z}_3$ only two. Pigeonhole.
+\end{proof}
+
+\section{Nonexistence at $m = 5$}\label{sec:m5}
+
+\begin{proposition}\label{prop:m5}
+No $\mathbb{Z}_5$ voltage assignment on the $24$ arcs of $\Gt$ has a lift of
+girth $12$.
+\end{proposition}
+
+The cell is $\mathbb{Z}_5^{24}$ by Proposition~\ref{prop:gauge}, that is
+$5^{24} = 59{,}604{,}644{,}775{,}390{,}625$ points. Branch-and-prune against the
+$126$ necessary conditions of Lemma~\ref{lem:crit}, over the \emph{complete}
+space with no gauge quotient and no symmetry break of any kind, exhausts it and
+returns no solution. Only necessity is used, so the negative cannot be an
+artefact of an over-strong constraint set. This case is machine-only here: we
+know of no short hand argument for it.
+
+\section{The accompanying program}\label{sec:prog}
+
+This folder contains \texttt{verify.py} and \texttt{verify.output.txt}, a
+recorded run of it: Python~3.9, standard library only, no solver and no external
+data file, $80$ checks, all passing. It is built from Section~\ref{sec:obj}
+alone and does not parse this note. The quantities transcribed out of the note
+and re-derived there are: the tree by two independent constructions, and the
+invariants of Section~\ref{sec:obj};
+the census of Proposition~\ref{prop:census} by two algorithms (path-DFS with
+min-index canonicalisation, and XOR of fundamental cycles over the co-tree
+arcs), agreeing on edge sets; the impossibility of the literal printed Table 3
+(Remark~\ref{rem:typo}); published invariants of~\cite{AAB} --- the
+``$252$ short cycles'' as $126 \times 2$, the absolute voltage sums lying in
+``$\{1,2,\dots,8\}$'', the absence of $4$-cycles, the order $49m+3$ with three
+vertices of degree $m$, and the girth profile of the printed table reported in
+Section~\ref{sec:q}; the girth of each
+witness of Section~\ref{sec:yes} on the full lift, by two algorithms
+(BFS from every vertex, and deleting each edge and BFS-ing between its
+endpoints); the ten constraints of Proposition~\ref{prop:m4}, each identified
+with one of the $126$ enumerated cycle forms; and the exhaustions of
+$\mathbb{Z}_4^{24}$ and
+$\mathbb{Z}_5^{24}$, all $24$ variables branched, all $126$ forms enforced, no
+gauge quotient and no symmetry break.
+
+What it does not do. It does not re-verify the normalisation argument of
+Proposition~\ref{prop:gauge}, only its counts; it says nothing about the wide
+variant of Section~\ref{sec:open}; and it makes no statement about published
+order records, of which this note claims none. The recorded run also prints
+checks on matters this note makes no claim about, and it makes no claim to have
+enumerated everything stated here.
+
+\section{What is not settled}\label{sec:open}
+
+\begin{enumerate}
+\item \textbf{The wide reading is open at $m = 4$ and $m = 5$, and which reading
+the sub-bullet intends is not settled here.}
+Whether a \emph{different} pairing of the twelve $x$-leaves to
+the $y$- and $z$-leaves --- one of each, no $4$-cycles --- admits a girth-$12$
+$\mathbb{Z}_4$ or $\mathbb{Z}_5$ assignment is untouched. In favour of the narrow
+reading, the sibling sub-bullets of~\cite[p.~28--29]{AAB} spell the wide variant
+out explicitly (``\emph{either a different voltage assignment for the same arcs
+as in $H_{10}$, or a different assignment of arcs and voltages using the same
+`underlying' tree}'') and ours contains no such device; but that is an inference
+about wording, not an author statement, so a reader who prefers the wide reading
+should treat Theorem~\ref{thm:no} as a statement about the $\Gt$ arc set only,
+and the wide question at $m = 4, 5$ as open. The issue does not arise at
+$m = 6, 7, 8$, where Theorem~\ref{thm:main} answers the sub-bullet on either
+reading.
+\item \textbf{Nothing is claimed about $m \ge 9$} beyond reproducing Theorem 5.5,
+nor about the sibling $H_{10}$ and $H_{12}$ sub-bullets of the same
+open-questions section, nor about the $(3,14)$-cage bullet, nor about any order
+record or upper bound at any $m$.
+\item \textbf{The Table-3 correction is ours.} Remark~\ref{rem:typo} is a
+defect of the published paper; the correction is forced three ways, but it is
+a correction and a referee should see it as such.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+
+\bibitem{AAB}
+F.~Aguilar, G.~Araujo-Pardo, and L.~W. Berman,
+\emph{Semicubic cages and small graphs of even girth derived from voltage
+graphs},
+Ars Math. Contemp. \textbf{26} (2026), \#P3.03.
+\href{https://doi.org/10.26493/1855-3974.3116.35e}{doi:10.26493/1855-3974.3116.35e}.
+Received 5 May 2023, accepted 6 August 2025, published online 2 June 2026.
+Page references are to the journal galley.
+
+\bibitem{AABarxiv}
+F.~Aguilar, G.~Araujo-Pardo, and L.~W. Berman,
+\emph{Semicubic cages and small graphs of even girth from voltage graphs},
+\href{https://arxiv.org/abs/2305.03290}{arXiv:2305.03290v1}, 5 May 2023.
+Quotations of commented-out material are from its single e-print source file
+\texttt{AABsemicubiccagesArxive.tex}. The version of record~\cite{AAB} carries
+``derived'' in its title; this version does not.
+
+\bibitem{GJV}
+J.~Goedgebeur, J.~Jooken, and T.~Van den Eede,
+\emph{Computational methods for finding bi-regular cages},
+\href{https://arxiv.org/abs/2411.17351}{arXiv:2411.17351v1}, 26 November 2024.
+The girth-$12$ rows of its bound table are the published landscape for the cells
+at issue here; the bound $374$ at $m = 8$ is attributed there to Corollary~3
+of~\cite{AAB}. The bounds are quoted at second hand through that table.
+
+\bibitem{EJ}
+G.~Exoo and R.~Jajcay,
+\emph{On the girth of voltage graph lifts},
+European J. Combin. \textbf{32} (2011).
+\href{https://doi.org/10.1016/j.ejc.2010.12.003}{doi:10.1016/j.ejc.2010.12.003}.
+
+\bibitem{Exoo04}
+G.~Exoo,
+\emph{Voltage graphs, group presentations and cages},
+Electron. J. Combin. \textbf{11} (2004).
+\href{https://doi.org/10.37236/1843}{doi:10.37236/1843}.
+
+\bibitem{ARJ}
+G.~Araujo-Pardo, A.~Ramos-Rivera, and R.~Jajcay, on bipartite biregular cages,
+\href{https://arxiv.org/abs/1907.11568}{arXiv:1907.11568}. Cited by e-print
+number and authors only; the title is not quoted here.
+
+\bibitem{AKS}
+G.~Araujo-Pardo, Gy.~Kiss, and T.~Sz\H{o}nyi, on bipartite biregular cages via
+generalized polygons and designs,
+\href{https://arxiv.org/abs/2310.12137}{arXiv:2310.12137}. Cited by e-print
+number and authors only; the title is not quoted here.
+
+\end{thebibliography}
+
+\end{document}

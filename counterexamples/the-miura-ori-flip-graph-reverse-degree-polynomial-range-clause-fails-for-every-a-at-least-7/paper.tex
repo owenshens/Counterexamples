@@ -1,0 +1,500 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={The reverse degree-polynomial range clause for the 2 x n Miura-ori
+            flip graph fails for every a >= 7}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\OFG}{\mathrm{OFG}}
+\newcommand{\N}{\mathbb{N}}
+
+\title[The reverse degree-polynomial range clause fails for every $a\ge7$]
+{The Reverse Degree-Polynomial Range Clause for the
+ $2\times n$ Miura-ori Flip Graph Fails for Every $a\ge 7$}
+
+\date{}
+
+\subjclass[2020]{05C07, 05A15, 52C99}
+\keywords{origami flip graph, Miura-ori, degree sequence, quasi-polynomiality,
+generating function, counterexample}
+
+\begin{document}
+
+\begin{abstract}
+Let $v_n^d$ be the number of vertices of degree $d$ in the origami flip graph
+$\OFG(M_{2,n})$ of the $2\times n$ Miura-ori, and put $f_a(n):=v_n^{2n-a}$.
+A labelled theorem of Christensen, Hull, O'Neil, Pappano, Ter-Saakov and Yang,
+printed with no proof, asserts that $f_a$ agrees with a polynomial of degree
+$\lfloor a/2\rfloor$ on the whole of $n\ge\lceil a/2\rceil+1$, for every
+$a\in\N_0$. We refute the range clause. The witness at $a=7$ consists of five
+integers printed in that paper's own degree-distribution table,
+$f_7(5),\dots,f_7(9)=12,88,296,680,1288$, whose fourth forward difference is
+$4\ne 0$ although the window lies inside the asserted range. A
+generating-function argument then shows the failure is an infinite family:
+writing $k_a=\lfloor a/2\rfloor$ and
+$G_a=(1-x)^{k_a+1}\sum_{n\ge1}f_a(n)x^n$, we prove $G_a$ is a polynomial of
+degree $3\lfloor a/2\rfloor-1$ or $3\lfloor a/2\rfloor$ according to the parity
+of $a$, with leading coefficient exactly $4(-1)^{\lfloor a/2\rfloor+1}$ and
+$G_a(1)>0$. Hence the asserted statement is false for every $a\ge7$, with its
+last obstruction at $n=a-2$. Granting the source's own exclusion of the
+degree-$2$ cell, $a=0$ and $2\le a\le6$ do satisfy the asserted range; we assert
+nothing at the degenerate index $a=1$. What survives
+is proved rather than refuted: polynomiality, and degree exactly
+$\lfloor a/2\rfloor$, hold for all $a\ge2$, and the repaired hypothesis is
+$n\ge\max(\lfloor a/2\rfloor+2,\,a-1)$.
+\end{abstract}
+
+\maketitle
+
+\section{The statement, with its locator}
+
+Let $M_{2,n}$ be the $2\times n$ Miura-ori crease pattern and $\OFG(M_{2,n})$
+its origami flip graph, whose vertices are the flat-foldable mountain--valley
+assignments of $M_{2,n}$ and whose edges join two assignments differing by a
+face flip. Following Christensen, Hull, O'Neil, Pappano, Ter-Saakov and
+Yang~\cite{CHOPTY}, $v_n^d$ denotes the number of vertices of degree $d$ in
+$\OFG(M_{2,n})$, and we abbreviate the \emph{reverse diagonal}
+\[
+  f_a(n) \ :=\ v_n^{\,2n-a}\qquad (a\in\N_0).
+\]
+
+Our target is the theorem at lines 1256--1258 of the arXiv e-print \LaTeX{}
+source \texttt{Miuradraft-v2.tex} of~\cite{CHOPTY}; we call it the
+\emph{reverse-diagonal theorem}
+below. We quote from the source file rather than the PDF so that the locator is
+exact.
+
+\begin{quote}\footnotesize
+\begin{verbatim}
+\begin{theorem} \label{thm:reversepolynomials}
+The explicit formula for $v_n^{2n-a}$ where $n \ge
+\left\lceil \frac{a}{2} \right\rceil+1$ is a polynomial
+of $n$ with degree $\left\lfloor \frac{a}{2}
+\right\rfloor$ for all $a \in \N_0$.
+\end{theorem}
+\end{verbatim}
+\end{quote}
+
+\noindent
+(The source lines have been re-wrapped to fit this page; not a character of
+the statement is altered.) The sentence that introduces the theorem, at line
+1254, reads:
+
+\begin{quote}
+``The data in Table \texttt{\textbackslash ref\{tab:reversepolynomialdata\}}
+suggests the following Theorem, which can be proven using
+Proposition~\texttt{\textbackslash ref\{prop:recurrences\}} and induction.''
+\end{quote}
+
+\noindent
+The environment then closes with no proof. Two further lines of the same file
+are used below and are quoted here because our argument rests on them.
+
+\begin{itemize}
+\item Line 1236 fixes the index set and states a carve-out in one paragraph:
+the reverse sequences are collected ``for all $a \in \N_0$, where
+$\N_0=\N\cup\{0\}$'', ``this time excluding the edge case where there are
+exactly $4$ vertices labeled with $2n-a$ (i.e.\ $2n-a=2$)''.
+\item Line 1204 records the anomaly $v_1^2=2$, against $v_m^2=4$ for $m\ge2$.
+\item The source's recurrence proposition of lines 1189--1202, which it
+\emph{proves} there, gives
+\[
+ b_n^d=v_{n-1}^{d-2},\qquad
+ w_n^d=v_{n-1}^{d}+w_{n-1}^{d-1}+v_{n-2}^{d-2},
+\]
+\[
+ v_n^d=v_{n-1}^{d}+w_{n-1}^{d-1}+v_{n-1}^{d-2}+v_{n-2}^{d-2}.
+\]
+\end{itemize}
+
+\noindent
+Eliminating $w$ from the last two identities (as~\cite{CHOPTY} itself does at
+line 1219) puts the recurrence in pure-$v$ form:
+\begin{equation}\label{eq:P}
+  v_n^d \;=\; v_{n-1}^{d}+v_{n-1}^{d-1}+v_{n-1}^{d-2}
+            +v_{n-2}^{d-2}-v_{n-2}^{d-3}
+  \qquad (n\ge 3),
+\end{equation}
+with the conventions of~\cite{CHOPTY}: $v_m^e=0$ for $e<2$ or $e>2m$,
+$v_1^2=2$, and $v_m^2=4$ for $m\ge2$. We take
+\eqref{eq:P} as given; it is a consequence of a proposition the source proves.
+
+\medskip\noindent\textbf{Two readings of the admissible start.}
+Since $2n-a=2$ has an integer solution only for even $a$, namely at
+$n=a/2+1=\lceil a/2\rceil+1$, the theorem's literal first admissible $n$ is
+itself the cell excluded at line 1236 when $a$ is even. Read literally the
+theorem therefore already fails at $a=6$, where the claimed degree is
+$\lfloor6/2\rfloor=3$ and the first admissible index is $n=4$: taking
+$f_6(4)=v_4^2=4$ from the convention at line 1204,
+\[
+ f_6(4),\dots,f_6(8)\;=\;4,\;36,\;128,\;292,\;544,
+\]
+whose fourth forward difference is $544-4\cdot292+6\cdot128-4\cdot36+4=4\ne0$.
+That is not what we rest on. Throughout what follows we
+instead grant the source its own exclusion clause and work from
+\begin{equation}\label{eq:s}
+  s(a)\;:=\;\Big\lfloor \tfrac a2\Big\rfloor+2,
+\end{equation}
+which for \emph{odd} $a$ equals the literal bound $\lceil a/2\rceil+1$ and for
+\emph{even} $a$ is one larger. That makes the refutation harder, and it makes
+the $a=7$ witness below independent of any quantifier quibble. Consistently
+with \eqref{eq:s}, the printed rows of the source's reverse-polynomial data
+table begin at
+$n=\lfloor a/2\rfloor+2$ in all six of the rows $a=0,\dots,5$ it displays.
+
+\section{The witness at \texorpdfstring{$a=7$}{a=7}}
+
+At $a=7$ the claimed degree is $\lfloor7/2\rfloor=3$, the claimed range is
+$n\ge\lceil7/2\rceil+1=5=s(7)$, and the exclusion clause is vacuous, since
+$2n-7=2$ has no integer solution.
+
+\begin{theorem}\label{thm:a7}
+The reverse-diagonal theorem of~\cite{CHOPTY} quoted above is false at $a=7$.
+\end{theorem}
+
+\begin{proof}
+The five values
+\begin{equation}\label{eq:witness}
+  f_7(5),f_7(6),f_7(7),f_7(8),f_7(9)\;=\;12,\;88,\;296,\;680,\;1288
+\end{equation}
+are cells of the source's own degree-distribution table. Their Newton
+forward-difference table is
+\[
+\begin{array}{lccccc}
+ f      & 12 & 88 & 296 & 680 & 1288\\
+ \Delta^1&    & 76 & 208 & 384 & 608\\
+ \Delta^2&    &    & 132 & 176 & 224\\
+ \Delta^3&    &    &     & 44  & 48\\
+ \Delta^4&    &    &     &     & \mathbf{4}
+\end{array}
+\]
+A function agreeing on five consecutive integers with a polynomial of degree at
+most $3$ has vanishing fourth forward difference there. Here it is $4\ne0$, and
+the window $n=5,\dots,9$ lies entirely inside the asserted range $n\ge5$.
+\end{proof}
+
+\begin{remark}
+The five integers of \eqref{eq:witness} are not a printing accident: they are
+forced by \eqref{eq:P} from other cells of the same table,
+\begin{align*}
+ v_5^3&=8+4+0+0-0=12,\\
+ v_6^5&=36+36+12+8-4=88,\\
+ v_7^7&=80+128+88+36-36=296,\\
+ v_8^9&=140+292+296+80-128=680,\\
+ v_9^{11}&=216+544+680+140-292=1288 .
+\end{align*}
+The cells consumed here are recorded in Table~\ref{tab:cells}.
+\end{remark}
+
+\begin{table}[ht]
+\caption{Cells of the degree-distribution table of~\cite{CHOPTY} quoted in
+this note. A dash is a printed blank, read as $0$. Rows are indexed by the
+degree $d$ and columns by $n=2,\dots,9$.}
+\label{tab:cells}
+\[
+\begin{array}{r|rrrrrrrr}
+ d\backslash n & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\\hline
+ 3  & 0 & 4 & 8 & 12 & 16 & 20 & 24 & 28\\
+ 5  & - & 0 & 8 & 36 & 88 & 168 & 280 & 428\\
+ 7  & - & - & 0 & 12 & 80 & 296 & 792 & 1744\\
+ 9  & - & - & - & 0 & 16 & 140 & 680 & 2396\\
+ 11 & - & - & - & - & 0 & 20 & 216 & 1288
+\end{array}
+\]
+\medskip
+Additionally: the whole $n=3$ column, $v_3^2=4$, $v_3^3=4$, $v_3^4=8$,
+$v_3^5=0$, $v_3^6=2$; the $a=6$ reverse diagonal
+$v_5^4,v_6^6,v_7^8,v_8^{10},v_9^{12}=36,128,292,544,900$; and $v_4^2=4$ from
+the convention at line 1204.
+\end{table}
+
+\section{The infinite family}
+
+\subsection*{The reverse-diagonal recurrence}
+Substituting $d=2n-a$ into \eqref{eq:P} and using $f_a(n)=v_n^{2n-a}$,
+\begin{equation}\label{eq:R}
+ f_a(n)=f_a(n-1)+f_{a-1}(n-1)-f_{a-1}(n-2)+f_{a-2}(n-1)+f_{a-2}(n-2)
+\end{equation}
+for every $n\ge3$.
+Put $F_a(x):=\sum_{n\ge1}f_a(n)x^n$. Multiplying \eqref{eq:R} by $x^n$ and
+summing over $n\ge3$ leaves the boundary polynomial
+$f_a(1)x+\bigl[f_a(2)-f_a(1)-f_{a-1}(1)-f_{a-2}(1)\bigr]x^2$. Now
+$f_a(1)=v_1^{2-a}=0$ for $a\ge1$ and $f_a(2)=v_2^{4-a}=0$ for $a\ge3$, so
+\emph{for every $a\ge3$ the boundary vanishes identically} and
+\begin{equation}\label{eq:F}
+ (1-x)F_a \;=\; x(1-x)F_{a-1}\;+\;x(1+x)F_{a-2}\qquad(a\ge3),
+\end{equation}
+with the two seeds, obtained from the $a=2$ instance of \eqref{eq:R} whose
+boundary term $2x^2$ is not zero,
+\[
+ F_0=\frac{2x}{1-x},\qquad F_1=0,\qquad
+ F_2=\frac{4x^2}{(1-x)^2},\qquad F_3=\frac{4x^3}{(1-x)^2}.
+\]
+Equivalently $f_2(n)=4(n-1)$ and $f_3(n)=4(n-2)$ exactly, which reproduces the
+$a=2$ and $a=3$ rows of the source's reverse-polynomial data table.
+
+\subsection*{The normalised numerator}
+Write $k_a:=\lfloor a/2\rfloor$ and
+\[
+ G_a(x)\;:=\;(1-x)^{k_a+1}F_a(x).
+\]
+Since $k_a-k_{a-1}=1$ and $k_a-k_{a-2}=1$ for even $a$, while $k_a-k_{a-1}=0$
+and $k_a-k_{a-2}=1$ for odd $a$, dividing \eqref{eq:F} by
+$(1-x)^{k_a+1}$ leaves no remainder:
+\begin{equation}\label{eq:G}
+\begin{aligned}
+ G_a&=x(1-x)G_{a-1}+x(1+x)G_{a-2} && (a\ \text{even}),\\
+ G_a&=x\,G_{a-1}+x(1+x)G_{a-2} && (a\ \text{odd}),
+\end{aligned}
+\end{equation}
+with $G_2=4x^2$ and $G_3=4x^3$. Hence every $G_a$, $a\ge2$, lies in
+$\mathbb Z[x]$; explicitly
+\begin{align*}
+ G_4&=4x^3+8x^4-4x^5, & G_5&=8x^4+12x^5-4x^6,\\
+ G_6&=4x^4+20x^5+8x^6-20x^7+4x^8, &&\\
+ G_7&=12x^5+40x^6+16x^7-24x^8+4x^9, &&
+\end{align*}
+\[
+ G_8=4x^5+36x^6+56x^7-36x^8-56x^9+32x^{10}-4x^{11}.
+\]
+
+\subsection*{The dictionary}
+For any $F=\sum_{n}f(n)x^n$ with $f(n):=0$ for $n\le0$, and any $j\ge0$,
+\begin{equation}\label{eq:dict}
+ [x^n](1-x)^jF(x)=(\Delta^jf)(n-j),
+\end{equation}
+because $[x^n](1-x)^jF=\sum_i(-1)^i\binom ji f(n-i)$, and re-indexing $i=j-t$
+turns this into $(-1)^j\sum_t(-1)^t\binom jt f(n-j+t)=(\Delta^jf)(n-j)$. With
+$j=k_a+1$ this reads
+\begin{equation}\label{eq:dictG}
+ [x^n]G_a=\bigl(\Delta^{k_a+1}f_a\bigr)(n-k_a-1),
+\end{equation}
+i.e.\ $G_a$ \emph{is} the $(k_a+1)$-st difference table of $f_a$, shifted.
+
+\subsection*{The degree and the leading coefficient}
+\begin{proposition}\label{prop:deg}
+For $m\ge1$, $\deg G_{2m}=3m-1$ and $\deg G_{2m+1}=3m$, and the leading
+coefficient of $G_a$ is $L_a=4(-1)^{\lfloor a/2\rfloor+1}$ for every $a\ge2$.
+Moreover $G_a(1)>0$ for every $a\ge2$.
+\end{proposition}
+
+\begin{proof}
+Let $D_a=\deg G_a$. In \eqref{eq:G} the competing leading terms are
+$-L_{a-1}x^{D_{a-1}+2}$ against $L_{a-2}x^{D_{a-2}+2}$ for even $a$, and
+$L_{a-1}x^{D_{a-1}+1}$ against $L_{a-2}x^{D_{a-2}+2}$ for odd $a$. From
+$D_2=2$, $D_3=3$ the claimed formula follows by induction, and in both parities
+the first candidate \emph{strictly} dominates: for even $a$ one has
+$D_{a-1}=D_{a-2}+1$, hence $D_{a-1}+2>D_{a-2}+2$; for odd $a$ one has
+$D_{a-1}+1=D_{a-2}+3>D_{a-2}+2$. So no cancellation can occur, and
+$L_a=-L_{a-1}$ for even $a$, $L_a=L_{a-1}$ for odd $a$. With $L_2=L_3=4$ this
+gives $L_a=4(-1)^{\lfloor a/2\rfloor+1}$; in particular $|L_a|=4$ for all
+$a\ge2$. Setting $x=1$ in \eqref{eq:G} kills the $x(1-x)$ term, so
+$G_a(1)=2G_{a-2}(1)$ for even $a$ and $G_a(1)=G_{a-1}(1)+2G_{a-2}(1)$ for odd
+$a$; with $G_2(1)=G_3(1)=4>0$, induction gives $G_a(1)>0$.
+\end{proof}
+
+\begin{corollary}\label{cor:threshold}
+For every $a\ge2$: $f_a$ agrees with a polynomial of degree exactly
+$\lfloor a/2\rfloor$ on $[a-1,\infty)$, and $a-1$ is the least such threshold.
+The last nonvanishing value of $\Delta^{k_a+1}f_a$ is at base $n=a-2$, where it
+equals $4(-1)^{\lfloor a/2\rfloor+1}$.
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:dictG}, $\Delta^{k_a+1}f_a(n)=[x^{n+k_a+1}]G_a$, which vanishes
+exactly when $n+k_a+1>D_a$, i.e.\ when $n>D_a-k_a-1$. Proposition~\ref{prop:deg}
+gives $D_a-k_a=a-1$ in both parities ($3m-1-m=2m-1$ and $3m-m=2m$), so
+$\Delta^{k_a+1}f_a$ vanishes on $[a-1,\infty)$ and equals $L_a$ at $n=a-2$.
+Vanishing of the $(k_a+1)$-st difference on a half-line is agreement there with
+a polynomial of degree $\le k_a$; the degree is exactly $k_a$ because
+$\Delta^{k_a}f_a$ is eventually the constant $G_a(1)\ne0$, again
+by \eqref{eq:dictG} with $j=k_a$ and Proposition~\ref{prop:deg}. The leading
+coefficient of that polynomial is $G_a(1)/k_a!$.
+\end{proof}
+
+\begin{theorem}\label{thm:family}
+The reverse-diagonal theorem of~\cite{CHOPTY} is false for every $a\ge7$. The
+base indices $n$ inside the asserted range at which
+$\Delta^{\lfloor a/2\rfloor+1}f_a(n)\ne0$ all lie in $\{s(a),\dots,a-2\}$, and
+the largest of them is $n=a-2$, which carries the value
+$4(-1)^{\lfloor a/2\rfloor+1}$. For $2\le a\le 6$, by contrast, every
+nonvanishing value of $\Delta^{\lfloor a/2\rfloor+1}f_a$ lies strictly below
+$s(a)$, so on the range $n\ge s(a)$ granted by the source's exclusion clause
+those five indices satisfy the theorem. Taken literally, with first admissible
+index $\lceil a/2\rceil+1$, the theorem fails at $a=6$ as well; see Section~1.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:threshold} the obstruction at $n=a-2$ is nonzero for
+every $a\ge2$, and it sits inside the range $n\ge s(a)$ precisely when
+\[
+  a-2\ \ge\ \Big\lfloor\frac a2\Big\rfloor+2
+  \iff \Big\lceil\frac a2\Big\rceil\ \ge\ 4
+  \iff a\ge 7 .
+\]
+For those $a$ the window $n=a-2,\dots,a-2+k_a+1$ lies in the asserted range,
+and $\Delta^{k_a+1}f_a(a-2)\ne0$ contradicts agreement there with a polynomial
+of degree $\le\lfloor a/2\rfloor$. Conversely for $2\le a\le6$ the same
+inequality shows $a-2<s(a)$, so every nonvanishing value of
+$\Delta^{k_a+1}f_a$ lies strictly below the first admissible $n$ and the
+statement holds on the whole of $n\ge s(a)$.
+\end{proof}
+
+\begin{remark}
+This explains the source's own confirming window rather than merely
+contradicting it. The caption of its reverse-polynomial data table (line 1250)
+says: ``The code computed all sequences up to $a=16$, but only confirmed
+polynomial patterns up to $a=6$.'' The obstruction exists for every $a\ge2$,
+but $a-2<\lfloor a/2\rfloor+2$ exactly when $a\le6$, so for those $a$ it lies
+below $s(a)$ and is invisible to any check confined to the range. The two
+cut-offs are the same inequality $\lceil a/2\rceil\ge4$.
+\end{remark}
+
+\section{What survives, and the repaired hypothesis}
+
+Proposition~\ref{prop:deg} and Corollary~\ref{cor:threshold} prove the half of
+the reverse-diagonal theorem that the source only asserted:
+
+\begin{corollary}
+For every $a\ge2$, $f_a$ agrees on a half-line with a polynomial of degree
+exactly $\lfloor a/2\rfloor$ and leading coefficient
+$G_a(1)/\lfloor a/2\rfloor!$. The same holds for $a=0$ by inspection, since
+$f_0(n)=v_n^{2n}=2$.
+\end{corollary}
+
+Consequently, replacing the range clause of that theorem by
+\begin{equation}\label{eq:repair}
+ n\ \ge\ \max\Bigl(\Bigl\lfloor \frac a2\Bigr\rfloor+2,\ a-1\Bigr)
+\end{equation}
+makes it true for every $a\ge2$, and for $a=0$; the degenerate index $a=1$ is
+outside anything claimed here. The repair also supersedes the even-$a$
+boundary question, since $\lfloor a/2\rfloor+2$ excludes the degree-$2$ cell in
+both parities. At $a=7$ the repaired bound is $6$; the two terms record the
+admissible start \eqref{eq:s} and the agreement threshold of
+Corollary~\ref{cor:threshold} respectively. In particular
+the weaker repair
+$n\ge\lfloor a/2\rfloor+2$ is \emph{not} correct: it is $5$ at $a=7$, which is
+the very threshold Theorem~\ref{thm:a7} refutes.
+
+\medskip
+\noindent\textbf{Status.}
+What is refuted is the \emph{range clause} of the reverse-diagonal theorem, as
+a statement quantified over all $a\in\N_0$ and all $n\ge\lceil a/2\rceil+1$.
+Polynomiality and the degree $\lfloor a/2\rfloor$ are \emph{not} refuted: they
+are true for every $a\ge2$ and are proved above, where the source asserts them
+without proof. Nothing here touches the source's proved sibling theorem at lines
+1208--1226 (fixed degree $d$), which our program corroborates at $m=2$ for
+$d=2,\dots,40$ on a sampled window $n=\lceil d/2\rceil+1,\dots,85$ of its stated
+range, finding no obstruction there. The defect is specific to the
+reverse diagonal, whose range clause is the sibling's word for word with $d$
+replaced by $a$.
+
+\medskip
+\noindent\textbf{What is not settled.}
+\begin{itemize}
+\item The source's recurrence proposition is \emph{not} re-proved here. It is
+proved in~\cite{CHOPTY} at lines 1191--1202 and taken as given; what we add is
+the $w$-elimination \eqref{eq:P} and the boundary conventions, which are pinned
+against the source's own printed integers (Table~\ref{tab:cells}) rather than
+re-derived from the degree-extension-forest construction. If that proposition
+failed at a boundary not exercised by those cells, \eqref{eq:R} would need
+redoing.
+\item No stage of this work brute-forced mountain--valley assignments of
+$M_{2,n}$; the flat-foldability model is trusted, legitimately, because the
+source proves the recurrence it comes from. Theorem~\ref{thm:a7} does not
+depend on the model at all, since its five values are printed cells. The family
+$a\ge8$, and every value at $n\ge10$, does.
+\item Nothing is claimed about the theorem at the degenerate index $a=1$. The
+seed $F_1=0$ above records that the reverse diagonal there is the zero sequence
+(the census reproduces $f_1(n)=0$ for $n\le39$), so whether the asserted
+``degree exactly $\lfloor1/2\rfloor=0$'' is to count as failing at $a=1$ turns
+on the convention assigning a degree to the zero polynomial and on nothing else.
+We draw no conclusion from it, and the refutation does not use it.
+\item Beyond $a=80$ and $n=130$ nothing is checked by computation.
+Proposition~\ref{prop:deg}, Corollary~\ref{cor:threshold} and
+Theorem~\ref{thm:family} are proved for all $a$; the accompanying census only
+corroborates them inside those bounds. Which indices of
+$\{s(a),\dots,a-2\}$ other than $n=a-2$ actually fail is not asserted here.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Related work, and a prior threshold of the same shape.}
+Gupta~\cite{GuptaOne} enumerates degree-$4$ and degree-$5$ vertices of
+$\OFG(M_{m,n})$ by height functions, together with diameters; it says nothing
+about a reverse diagonal (its ``antidiagonal'' is the grid antidiagonal
+$\{i+j=s\}$ of a height function). Gupta~\cite{GuptaTwo} reached, in the
+\emph{fixed-$d$ bivariate} slicing of the same family, a validity region
+$m,n\ge\max(d-1,2)$ with the count departing from the polynomial below it, and
+an onset magnitude $4$: ``one step below, this departure has leading
+coefficient $-4$ times a Baxter number'' through $d=11$. So neither the
+threshold shape ``parameter minus one'' nor the magnitude $4$ is presented here
+as unprecedented. Neither work settles the reverse-diagonal slicing $d=2n-a$:
+\cite{GuptaTwo} contains no such slicing, at $m=2$ its region
+$m,n\ge\max(d-1,2)$ forces $d\le3$, and it treats the $m=2$ results
+of~\cite{CHOPTY} as correct and settled.
+
+\section{Verification}
+
+Theorem~\ref{thm:a7} needs no computer: five integers printed
+in~\cite{CHOPTY} and ten subtractions.
+Theorem~\ref{thm:family}, Proposition~\ref{prop:deg},
+Corollary~\ref{cor:threshold} and the repair \eqref{eq:repair} are hand algebra,
+printed above in full with $G_2,\dots,G_8$ written out.
+
+The accompanying program \texttt{verify.py} (Python~3.9+, standard library only,
+exact integer arithmetic throughout) re-derives the \emph{finite} assertions of
+this note from the objects printed above: the seeds $v_1^2=2$, $v_2^2=4$,
+$v_2^3=0$, $v_2^4=2$; the recurrence \eqref{eq:P}; the cells of
+Table~\ref{tab:cells}; the witness \eqref{eq:witness}; the polynomials
+$G_2,\dots,G_8$. It calibrates the recurrence against the source's printed
+integers before using it, verifies the dictionary \eqref{eq:dictG} against the
+recurrence, checks the degree, leading-coefficient and positivity statements of
+Proposition~\ref{prop:deg}, the threshold $a-1$ and the repair
+\eqref{eq:repair} for $a\le80$ --- both from $G_a$ and directly from difference
+tables --- and censuses the source's proved sibling theorem as a null. It does
+\emph{not} verify the universal arguments: the proofs of
+Proposition~\ref{prop:deg}, Corollary~\ref{cor:threshold} and
+Theorem~\ref{thm:family} are hand proofs and are only corroborated there; the
+source's recurrence proposition is not re-proved; no mountain--valley assignment
+is enumerated anywhere; and the line numbers, byte count and md5 of the source
+file are not fetched. Its transcript, with its own closing statement of scope,
+is \texttt{verify.output.txt}.
+
+\begin{thebibliography}{9}
+
+\bibitem{CHOPTY}
+L.~Christensen, T.~C. Hull, E.~O'Neil, V.~Pappano, N.~Ter-Saakov, and K.~Yang,
+\emph{The origami flip graph of the $2\times n$ Miura-ori},
+\href{https://arxiv.org/abs/2506.19700v2}{arXiv:2506.19700v2}, 2026.
+Quotations and line numbers refer to the \LaTeX{} source
+\texttt{Miuradraft-v2.tex} of the v2 e-print ($148\,285$ bytes, md5
+\texttt{adca23f5c2eade3979cfc77682341c6d}); we located no later e-print version
+and no journal reference for it.
+
+\bibitem{GuptaOne}
+C.~Gupta,
+\emph{Height functions on the $m\times n$ Miura-ori flip graph: degree sequence
+and diameter},
+\href{https://arxiv.org/abs/2606.22614}{arXiv:2606.22614v2}, 2026.
+
+\bibitem{GuptaTwo}
+C.~Gupta,
+\emph{One construction for the Miura-ori flip-graph degree sequence},
+\href{https://arxiv.org/abs/2607.05567}{arXiv:2607.05567v3}, 26 August 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,106 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  847f82d47a34b2757a5e032de95f04027b7e6d4c417b4fd8416e2d54932d7582
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: opt(10,24,5) = 2 -- the sailing league problem for
+N_teams = 10, N_inrace = 5, N_flights = 24 (the n = 3 member left open by
+Schueler and Schuermann, J. Combin. Des. 32 (2024), no. 4, 171-189)
+python 3.9.25, exact integer / Fraction arithmetic only
+
+=== Step 1: the exhibited object, read from the paper in both of its printed forms
+PASS grid_has_24_flight_lines_numbered_1_to_24 [flights 1..24]
+PASS printed_grid_and_printed_row_string_list_agree [24 of 24 rows identical]
+PASS plan_has_24_rows_of_length_10_over_the_alphabet_1_2
+PASS every_flight_is_a_five_five_split [all 24 rows have five 1s and five 2s]
+NOTE row strings: 1111222212 1112121222 1112212122 1121112222 1222221111 1211112222 1121221221 1221211212 1212212211 1121221221 1221211212 1212212211 1121222112 1221212121 1212211122 1122111222 1222121211 1211122212 1122122112 1221122121 1211221122 1122212121 1222111122 1212121221
+
+=== Step 2: the lambda table, the profile and the utility of the exhibited plan
+PASS all_45_entries_of_the_printed_lambda_table_are_reproduced [45 of 45 entries agree]
+PASS lambda_min_is_10 [lambda_min = 10]
+PASS lambda_max_is_12 [lambda_max = 12]
+PASS utility_of_the_exhibited_plan_is_2 [lambda_max - lambda_min = 2]
+PASS profile_is_30_pairs_at_10_and_15_pairs_at_12 [profile [(10, 30), (12, 15)]]
+PASS no_pair_sits_at_lambda_11 [0 pairs at 11]
+PASS grand_total_is_480_equals_24_times_2_times_C_5_2 [sum over the 45 pairs = 480]
+PASS profile_arithmetic_closes [30*10 + 15*12 = 480]
+PASS every_team_sum_is_96_equals_24_times_4 [per-team sums [96]]
+
+=== Step 3: the lambda = 12 graph -- cubic, and the Petersen graph
+PASS the_fifteen_lambda_12_pairs_printed_in_the_paper_are_exactly_the_computed_ones [15 edges, set equality]
+PASS the_lambda_12_graph_is_cubic [degree sequence [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]]
+PASS the_lambda_12_graph_is_strongly_regular_with_parameters_10_3_0_1 [adjacent pairs share [0] common neighbours, non-adjacent pairs share [1]]
+PASS an_explicit_bijection_to_the_kneser_graph_K_5_2_petersen_exists [team t -> 2-subset: 1:[1, 2], 2:[1, 3], 3:[1, 4], 4:[4, 5], 5:[2, 5], 6:[3, 5], 7:[3, 4], 8:[2, 4], 9:[2, 3], 10:[1, 5]]
+PASS design_parameters_of_the_exhibited_plan_are_v_10_k_5_r_24_b_48 [v=10 k=5 r=24 b=48; lambda_1 = 10 on intersecting 2-subsets, lambda_2 = 12 on disjoint ones]
+
+=== Step 4: the repeated flights, disclosed in the paper, and the periodicity checks
+PASS the_plan_uses_21_distinct_flights_of_24 [21 distinct rows]
+PASS the_repeated_flights_are_exactly_7_10_and_8_11_and_9_12 [repeat classes [(7, 10), (8, 11), (9, 12)]]
+PASS the_plan_is_not_12_periodic [rows 1-12 differ from rows 13-24, so the plan is not a doubled 12-flight plan]
+PASS the_plan_is_not_8_periodic [rows 1-8, 9-16, 17-24 are not all equal, so the plan is not three copies of one base schedule]
+
+=== Step 5: Lemma A -- the authors' average at this cell, and utility 0
+PASS lambda_average_is_32_over_3_by_the_authors_lemma [lambda = 24*4/9 = 32/3]
+PASS lambda_average_is_not_an_integer_so_utility_0_is_impossible [denominator 3, so no perfect pairing list exists at 24 flights]
+PASS the_per_team_sum_and_the_grand_total_agree_with_the_average [(sum of the ten per-team sums) / (10*9) = 960/90 = 32/3]
+
+=== Step 6: Lemma B exhaustively -- every triple, in every five-five split
+PASS there_are_126_five_five_splits_of_10_teams [126 splits]
+PASS lemma_B_holds_on_every_split_and_every_triple [15120 checks (126 splits x 120 triples), 0 violations]
+PASS hence_every_triangle_sum_is_congruent_to_N_flights_mod_2 [verified on the exhibited plan too: all 120 triangle sums even (N_flights = 24)]
+
+=== Step 7: Lemma C exhaustively -- every graph on 10 labelled vertices with all triples even
+PASS the_number_of_graphs_on_10_vertices_with_all_120_triples_even_is_512 [512 graphs, all distinct]
+PASS every_one_of_them_is_a_complete_bipartite_cut [0 of 512 fail; each bipartition exhibited and verified against all 45 pairs]
+PASS the_realised_edge_counts_are_exactly_0_9_16_21_24_25 [k(10-k) for k in [0, 1, 2, 3, 4, 5] -> [0, 9, 16, 21, 24, 25]]
+PASS the_realised_degree_sequences_are_exactly_the_six_listed_in_the_paper [0^10, 1^9 9, 2^8 8^2, 3^7 7^3, 4^6 6^4, 5^10]
+PASS none_of_the_512_is_6_regular [0 six-regular graphs among all graphs with all triples even]
+PASS the_only_regular_all_even_triple_graphs_have_degree_0_or_5 [regular degrees realised: [0, 5]]
+
+=== Step 8: Theorem 1 -- the lower bound opt(10,24,5) >= 2, with no assumption left implicit
+PASS at_24_flights_utility_at_most_1_forces_the_window_10_11 [9m <= 96 <= 9m+9 has the unique solution m = 10]
+PASS that_window_forces_the_odd_lambda_graph_to_be_6_regular [11 is the only odd value in {10,11}; 90 + a(t) = 96 gives a(t) = 6 for every team]
+PASS no_6_regular_graph_has_all_triples_even_so_utility_1_is_impossible_at_24_flights [6-regular needs 30 edges; 30 is not of the form k(10-k) and 6 is not a realised regular degree]
+PASS theorem_1_opt_10_24_5_is_at_least_2 [utility 0 killed by Lemma A, utility 1 killed by Lemmas B and C]
+PASS combined_with_the_exhibited_plan_opt_10_24_5_equals_2 [upper bound 2 from Step 2, lower bound 2 from Theorem 1]
+
+=== Step 9: the utility-2 profile census at 24 flights
+PASS at_24_flights_utility_2_allows_only_the_windows_9_10_11_and_10_11_12 [9m <= 96 <= 9m+18 gives m in [9, 10]]
+PASS the_window_9_10_11_is_impossible [0 of 512 candidate odd graphs admit per-team counts summing to 96]
+PASS every_surviving_case_pins_its_per_team_counts_uniquely [211 surviving odd graphs, all with a unique per-team solution]
+PASS exactly_two_utility_2_profiles_survive_up_to_relabelling [profiles [((10, 18), (11, 24), (12, 3)), ((10, 30), (12, 15))]]
+PASS profile_P1_arithmetic_closes_at_480 [30*10 + 15*12 = 480]
+PASS profile_P2_arithmetic_closes_at_480 [18*10 + 24*11 + 3*12 = 480]
+PASS the_surviving_odd_graphs_are_the_empty_graph_and_the_210_four_six_cuts [1 empty graph (profile P1) and 210 cuts K_{4,6} (profile P2)]
+PASS the_exhibited_plan_realises_profile_P1_with_a_cubic_12_graph [profile [(10, 30), (12, 15)], 12-graph cubic]
+PASS the_window_5_at_which_the_odd_graph_would_be_K_5_5_is_excluded [k = 5 (odd graph K_{5,5}, degree sequence 5^10) survives the crude per-team bound but not d(t) = 6 - 2c(t), which forces d(t) even]
+
+=== Step 10: by-products of the same route at other even flight counts
+PASS byproduct_opt_10_12_5_is_at_least_2 [lambda = 16/3; window {5,6}: odd graph is the 5-graph, forced 6-regular (30 edges) -> impossible]
+PASS byproduct_opt_10_16_5_is_at_least_2 [lambda = 64/9; window {7,8}: odd graph is the 7-graph, forced 8-regular (40 edges) -> impossible]
+PASS byproduct_opt_10_32_5_is_at_least_2 [lambda = 128/9; window {14,15}: odd graph is the 15-graph, forced 2-regular (10 edges) -> impossible]
+PASS control_the_same_route_at_8_flights_gives_only_at_least_2_and_never_contradicts_the_published_3 [lambda = 32/9; window {3,4}: odd graph is the 3-graph, forced 4-regular (20 edges) -> impossible -- the authors prove opt(10,8,5) = 3, so >= 2 is weaker and consistent]
+
+=== Step 11: calibration controls on the authors' OWN published 16-flight table
+PASS the_published_16_flight_table_is_a_legal_pairing_list [16 rows, each a five-five split]
+PASS control_A_the_authors_16_flight_theorem_is_reproduced [lambda_min=6 lambda_max=8 UTILITY=2, profile [(6, 20), (8, 25)], total 320, per-team sums 64 -- their theorem states utility 2]
+PASS control_B_the_authors_8_flight_theorem_is_reproduced_including_its_lambda_min_and_lambda_max [lambda_min=2 lambda_max=5 UTILITY=3, profile [(2, 6), (3, 16), (4, 15), (5, 8)], total 160, per-team sums 32 -- their Theorem thm:asian_pacific states lambda_min=2, lambda_max=5, utility 3]
+
+=== Step 12: the NON-VACUOUS parity test -- truncations of the authors' table that carry ODD
+             lambda values, so that 0 violations is not guaranteed in advance
+PASS parity_prediction_holds_on_the_published_table_truncated_to_7_flights [20 pairs have odd lambda; predicted shape = the complement of a cut (two cliques); realised with |U| = 5 and k(10-k) = 25]
+PASS parity_prediction_holds_on_the_published_table_truncated_to_8_flights [24 pairs have odd lambda; predicted shape = a complete bipartite cut; realised with |U| = 4 and k(10-k) = 24]
+PASS parity_prediction_holds_on_the_published_table_truncated_to_9_flights [36 pairs have odd lambda; predicted shape = the complement of a cut (two cliques); realised with |U| = 1 and k(10-k) = 9]
+PASS parity_prediction_holds_on_the_published_table_truncated_to_11_flights [20 pairs have odd lambda; predicted shape = the complement of a cut (two cliques); realised with |U| = 5 and k(10-k) = 25]
+PASS parity_prediction_holds_on_the_published_table_truncated_to_13_flights [20 pairs have odd lambda; predicted shape = the complement of a cut (two cliques); realised with |U| = 5 and k(10-k) = 25]
+PASS parity_prediction_holds_on_the_published_table_truncated_to_16_flights [0 pairs have odd lambda; predicted shape = a complete bipartite cut; realised with |U| = 0 and k(10-k) = 0]
+
+=== Scope
+NOTE SCOPE: this program verifies the single cell (N_teams, N_flights, N_inrace) = (10, 24, 5), i.e. the n = 3 member of the family the source leaves open. The family N_flights = 8n with n >= 3 is NOT closed: n = 4 (32 flights), n = 5 (40 flights) and every larger n remain open, and only the bound opt(10,32,5) >= 2 is established above -- no 32-flight witness exists in this record.
+NOTE SCOPE: the exhibited plan uses 21 distinct flights, three of them twice (7 = 10, 8 = 11, 9 = 12). That is legal because the source defines a pairing LIST and says explicitly that races and even flights may repeat. The distinct-flights variant of this cell is a DIFFERENT question and is not answered here, nor is its optimum.
+NOTE NOT RE-RUN: the search that FOUND the plan. The plan was produced by a CP-SAT run whose captured stdout is not part of the record; this program does not re-run any solver, needs none, and takes the plan purely as a printed object. Nothing above depends on the search.
+NOTE NOT RE-RUN: profile P2 is shown to be the only other arithmetically admissible utility-2 profile; whether any (10, 24, 5) plan REALISES P2 is unknown and irrelevant to opt(10,24,5) = 2. Likewise the exact values of opt(10,12,5) and opt(10,16,5) are not claimed here -- only the bound >= 2 in each case (opt(10,16,5) = 2 is the authors' own theorem).
+NOTE NOT RE-RUN: the bibliographic and prior-art record (the journal reference, the DOI, the citer registries and the design catalogues). Those are reads, not computations, and are not checked here.
+
+VERDICT: ALL 61 CHECKS PASS
+=== program exited with status 0 ===

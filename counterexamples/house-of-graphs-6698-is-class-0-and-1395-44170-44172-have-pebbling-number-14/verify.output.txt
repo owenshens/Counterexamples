@@ -1,0 +1,153 @@
+=== provenance (added by the run harness, not by the program) ===
+program: verify.py
+sha256:  423f7598635fd85d9472fd65c347f2ec0319195ee1d2a8374f0d9925e86965ae
+python:  Python 3.9.25
+=== program output follows ===
+verification of the note: pebbling numbers of four cubic 12-vertex graphs
+of girth 3 and diameter 3 -- #6698 is Class 0, and
+pi(#1395) = pi(#44170) = pi(#44172) = 14, not the suggested 13
+python 3.9.25, exact integer arithmetic only
+mode: FULL, workers: 32
+
+=== Step 1: the exhibited graphs, validated as objects
+PASS hog1395_is_a_simple_symmetric_cubic_graph_on_12_vertices_with_18_edges [n=12 m=18 degrees={3}]
+PASS hog1395_is_connected_with_girth_3_radius_3_diameter_3 [connected=True girth=3 radius=3 diameter=3]
+PASS hog6698_is_a_simple_symmetric_cubic_graph_on_12_vertices_with_18_edges [n=12 m=18 degrees={3}]
+PASS hog6698_is_connected_with_girth_3_radius_3_diameter_3 [connected=True girth=3 radius=3 diameter=3]
+PASS hog44170_is_a_simple_symmetric_cubic_graph_on_12_vertices_with_18_edges [n=12 m=18 degrees={3}]
+PASS hog44170_is_connected_with_girth_3_radius_3_diameter_3 [connected=True girth=3 radius=3 diameter=3]
+PASS hog44172_is_a_simple_symmetric_cubic_graph_on_12_vertices_with_18_edges [n=12 m=18 degrees={3}]
+PASS hog44172_is_connected_with_girth_3_radius_3_diameter_3 [connected=True girth=3 radius=3 diameter=3]
+PASS J3_is_a_simple_symmetric_cubic_graph_on_12_vertices_with_18_edges [n=12 m=18 degrees={3}]
+PASS J3_is_connected_with_girth_3_radius_3_diameter_3 [connected=True girth=3 radius=3 diameter=3]
+NOTE every ambient clause of the source sentence (cubic, 12 vertices, girth 3, diameter 3) holds for all five graphs, recomputed above
+
+=== Step 2: invariants, each by two structurally different routes
+PASS hog1395_triangle_count_is_4 [triangles=4]
+PASS hog1395_4_cycle_count_is_0_by_direct_enumeration_and_by_the_trace_formula [direct=0 trace=0 pair_sum=0]
+PASS hog1395_the_naive_pair_sum_is_exactly_twice_the_true_4_cycle_count [pair_sum=0 = 2 x 0]
+PASS hog1395_has_automorphism_group_of_order_24_and_1_vertex_orbits [|Aut|=24 orbits=1 [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]]]
+PASS hog6698_triangle_count_is_3 [triangles=3]
+PASS hog6698_4_cycle_count_is_0_by_direct_enumeration_and_by_the_trace_formula [direct=0 trace=0 pair_sum=0]
+PASS hog6698_the_naive_pair_sum_is_exactly_twice_the_true_4_cycle_count [pair_sum=0 = 2 x 0]
+PASS hog6698_has_automorphism_group_of_order_36_and_2_vertex_orbits [|Aut|=36 orbits=2 [[0, 2, 3, 4, 5, 6, 7, 8, 9], [1, 10, 11]]]
+PASS hog44170_triangle_count_is_1 [triangles=1]
+PASS hog44170_4_cycle_count_is_3_by_direct_enumeration_and_by_the_trace_formula [direct=3 trace=3 pair_sum=6]
+PASS hog44170_the_naive_pair_sum_is_exactly_twice_the_true_4_cycle_count [pair_sum=6 = 2 x 3]
+PASS hog44170_has_automorphism_group_of_order_12_and_5_vertex_orbits [|Aut|=12 orbits=5 [[0, 10, 11], [1, 2], [3, 6, 7], [4, 5, 8], [9]]]
+PASS hog44172_triangle_count_is_1 [triangles=1]
+PASS hog44172_4_cycle_count_is_4_by_direct_enumeration_and_by_the_trace_formula [direct=4 trace=4 pair_sum=8]
+PASS hog44172_the_naive_pair_sum_is_exactly_twice_the_true_4_cycle_count [pair_sum=8 = 2 x 4]
+PASS hog44172_has_automorphism_group_of_order_8_and_7_vertex_orbits [|Aut|=8 orbits=7 [[0, 11], [1, 2], [3, 7], [4], [5, 6], [8], [9, 10]]]
+PASS J3_triangle_count_is_1 [triangles=1]
+PASS J3_4_cycle_count_is_0_by_direct_enumeration_and_by_the_trace_formula [direct=0 trace=0 pair_sum=0]
+PASS J3_the_naive_pair_sum_is_exactly_twice_the_true_4_cycle_count [pair_sum=0 = 2 x 0]
+PASS J3_has_automorphism_group_of_order_12_and_3_vertex_orbits [|Aut|=12 orbits=3 [[0, 10, 11], [1, 4, 5], [2, 3, 6, 7, 8, 9]]]
+PASS hog44170_vertex_orbit_partition_is_as_printed [[[0, 10, 11], [1, 2], [3, 6, 7], [4, 5, 8], [9]]]
+PASS hog44172_vertex_orbit_partition_is_as_printed [[[0, 11], [1, 2], [3, 7], [4], [5, 6], [8], [9, 10]]]
+NOTE the 4-cycle counts of #44170 and #44172 are 3 and 4; the value 6 and 8 that a pair-sum reports is the undivided count, each 4-cycle being counted once per diagonal pair
+
+=== Step 3: identification of the objects, and pairwise non-isomorphism
+PASS the_from_scratch_truncation_of_k4_is_a_cubic_12_vertex_graph [18 edges]
+PASS hog1395_is_isomorphic_to_the_truncated_tetrahedron_built_from_scratch
+PASS the_figure_j3_is_isomorphic_to_the_flower_snark_j3_built_from_the_standard_recipe [a_i ~ b_i,c_i,d_i; triangle on the b_i; 6-cycle c0c1c2d0d1d2]
+PASS the_figure_j3_is_isomorphic_to_petersen_with_one_vertex_expanded_to_a_triangle [Tietze's graph]
+PASS the_five_graphs_are_pairwise_non_isomorphic [10 pairs tested, 0 isomorphic]
+NOTE so #6698 is not $J_3$ relabelled: its Class-0 status is a fact about a different graph
+
+=== Step 4: the exhibited configurations, certified with no exhaustive search
+PASS W1_on_hog1395_has_total_13_and_no_pebble_on_the_target [r=0 C=[0, 0, 0, 0, 3, 4, 1, 3, 0, 1, 1, 0] (refutation witness, total 13)]
+PASS W1_reachable_set_is_move_closed_misses_the_target_and_has_size_6358 [|Reach|=6358 closed=True pebble_on_target_ever=False]
+PASS W2_on_hog44170_has_total_13_and_no_pebble_on_the_target [r=1 C=[0, 0, 1, 1, 5, 5, 0, 0, 1, 0, 0, 0] (refutation witness, total 13)]
+PASS W2_reachable_set_is_move_closed_misses_the_target_and_has_size_1912 [|Reach|=1912 closed=True pebble_on_target_ever=False]
+PASS W3_on_hog44172_has_total_13_and_no_pebble_on_the_target [r=5 C=[3, 1, 1, 0, 0, 0, 1, 7, 0, 0, 0, 0] (refutation witness, total 13)]
+PASS W3_reachable_set_is_move_closed_misses_the_target_and_has_size_1711 [|Reach|=1711 closed=True pebble_on_target_ever=False]
+PASS X1_on_hog44170_has_total_12_and_no_pebble_on_the_target [r=9 C=[1, 5, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1] (further certificate, total 12)]
+PASS X1_reachable_set_is_move_closed_misses_the_target_and_has_size_198 [|Reach|=198 closed=True pebble_on_target_ever=False]
+PASS X2_on_hog44172_has_total_12_and_no_pebble_on_the_target [r=3 C=[0, 0, 1, 0, 1, 1, 1, 1, 0, 7, 0, 0] (further certificate, total 12)]
+PASS X2_reachable_set_is_move_closed_misses_the_target_and_has_size_313 [|Reach|=313 closed=True pebble_on_target_ever=False]
+PASS S1_on_hog1395_has_total_12_and_no_pebble_on_the_target [r=0 C=[0, 0, 0, 0, 0, 7, 3, 0, 0, 1, 1, 0] (source's own configuration, total 12)]
+PASS S1_reachable_set_is_move_closed_misses_the_target_and_has_size_1262 [|Reach|=1262 closed=True pebble_on_target_ever=False]
+PASS S2_on_hog44170_has_total_12_and_no_pebble_on_the_target [r=5 C=[5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 5, 0] (source's own configuration, total 12)]
+PASS S2_reachable_set_is_move_closed_misses_the_target_and_has_size_1251 [|Reach|=1251 closed=True pebble_on_target_ever=False]
+PASS S3_on_hog44172_has_total_12_and_no_pebble_on_the_target [r=0 C=[0, 0, 0, 0, 7, 1, 1, 0, 0, 1, 1, 1] (source's own configuration, total 12)]
+PASS S3_reachable_set_is_move_closed_misses_the_target_and_has_size_483 [|Reach|=483 closed=True pebble_on_target_ever=False]
+PASS pi_hog1395_is_at_least_14_from_an_exhibited_13_pebble_certificate_alone [pi >= 14]
+PASS pi_hog44170_is_at_least_14_from_an_exhibited_13_pebble_certificate_alone [pi >= 14]
+PASS pi_hog44172_is_at_least_14_from_an_exhibited_13_pebble_certificate_alone [pi >= 14]
+NOTE Theorem 1 (the refutation of the suggested value 13) is complete at this point and needs no exhaustive search: three closed reachable sets, checkable by hand
+
+=== Step 5: the two lemmas the exhaustive sweep rests on, tested on data
+PASS lemma_1_downward_closure_holds_on_every_one_pebble_removal_from_the_certificates [30 removals re-certified unsolvable, 0 failures]
+PASS the_brute_force_odometer_visits_exactly_binom_s_plus_10_choose_10_configurations [s=1:11, s=2:66, s=3:286, s=4:1001, s=5:3003, s=6:8008]
+PASS lemma_2_recurrence_and_forward_reachability_agree_on_every_configuration_to_level_5 [2799 configurations, 0 disagreements (graph #44172, target 5)]
+
+=== Step 6a: the exhaustive level-indexed sweep (the exact pebbling numbers)
+NOTE 60 sweeps in 1.3 s wall (32 workers), slowest single sweep 0.9 s
+PASS the_level_generation_reproduces_the_brute_force_level_sizes_up_to_level_6 [sweep=[1, 11, 63, 247, 736, 1742, 3299] brute=[1, 11, 63, 247, 736, 1742, 3299]]
+PASS per_target_unsolvable_counts_of_hog1395_at_total_12_match_the_transcribed_table [[165, 165, 165, 165, 165, 165, 165, 165, 165, 165, 165, 165]]
+PASS per_target_unsolvable_counts_of_hog1395_at_total_13_match_the_transcribed_table [[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+PASS summed_unsolvable_counts_of_hog1395_are_(1980, 24)_at_totals_12_and_13 [(1980, 24)]
+PASS pi_hog1395_equals_14_exactly [pi=14]
+PASS hog1395_every_target_reaches_an_empty_unsolvable_level_at_or_below_14 [first empty level per target = [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]]
+PASS hog1395_per_target_counts_are_constant_on_automorphism_orbits [1 orbits]
+PASS per_target_unsolvable_counts_of_hog6698_at_total_12_match_the_transcribed_table [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS per_target_unsolvable_counts_of_hog6698_at_total_13_match_the_transcribed_table [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS summed_unsolvable_counts_of_hog6698_are_(0, 0)_at_totals_12_and_13 [(0, 0)]
+PASS pi_hog6698_equals_12_exactly [pi=12]
+PASS hog6698_every_target_reaches_an_empty_unsolvable_level_at_or_below_12 [first empty level per target = [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]]
+PASS hog6698_per_target_counts_are_constant_on_automorphism_orbits [2 orbits]
+PASS per_target_unsolvable_counts_of_hog44170_at_total_12_match_the_transcribed_table [[0, 229, 229, 0, 91, 91, 0, 0, 91, 3, 0, 0]]
+PASS per_target_unsolvable_counts_of_hog44170_at_total_13_match_the_transcribed_table [[0, 20, 20, 0, 4, 4, 0, 0, 4, 0, 0, 0]]
+PASS summed_unsolvable_counts_of_hog44170_are_(734, 52)_at_totals_12_and_13 [(734, 52)]
+PASS pi_hog44170_equals_14_exactly [pi=14]
+PASS hog44170_every_target_reaches_an_empty_unsolvable_level_at_or_below_14 [first empty level per target = [12, 14, 14, 12, 14, 14, 12, 12, 14, 13, 12, 12]]
+PASS hog44170_per_target_counts_are_constant_on_automorphism_orbits [5 orbits]
+PASS per_target_unsolvable_counts_of_hog44172_at_total_12_match_the_transcribed_table [[8, 0, 0, 94, 4, 153, 153, 94, 18, 5, 5, 8]]
+PASS per_target_unsolvable_counts_of_hog44172_at_total_13_match_the_transcribed_table [[0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0]]
+PASS summed_unsolvable_counts_of_hog44172_are_(542, 12)_at_totals_12_and_13 [(542, 12)]
+PASS pi_hog44172_equals_14_exactly [pi=14]
+PASS hog44172_every_target_reaches_an_empty_unsolvable_level_at_or_below_14 [first empty level per target = [13, 12, 12, 13, 13, 14, 14, 13, 13, 13, 13, 13]]
+PASS hog44172_per_target_counts_are_constant_on_automorphism_orbits [7 orbits]
+PASS per_target_unsolvable_counts_of_J3_at_total_12_match_the_transcribed_table [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS per_target_unsolvable_counts_of_J3_at_total_13_match_the_transcribed_table [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+PASS summed_unsolvable_counts_of_J3_are_(0, 0)_at_totals_12_and_13 [(0, 0)]
+PASS pi_J3_equals_12_exactly [pi=12]
+PASS J3_every_target_reaches_an_empty_unsolvable_level_at_or_below_12 [first empty level per target = [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]]
+PASS J3_per_target_counts_are_constant_on_automorphism_orbits [3 orbits]
+PASS hog1395_has_no_unsolvable_configuration_of_total_14_for_any_target [first empty level <= 14 for all 12 targets, so U_14 = U_15 = 0 by Lemma 1]
+PASS hog44170_has_no_unsolvable_configuration_of_total_14_for_any_target [first empty level <= 14 for all 12 targets, so U_14 = U_15 = 0 by Lemma 1]
+PASS hog44172_has_no_unsolvable_configuration_of_total_14_for_any_target [first empty level <= 14 for all 12 targets, so U_14 = U_15 = 0 by Lemma 1]
+PASS hog6698_has_no_unsolvable_configuration_of_total_12_for_any_target_so_it_is_class_0 [0 of 12 x C(22,10) = 7759752 configurations]
+PASS hog6698_does_have_unsolvable_configurations_of_total_11_so_pi_is_at_least_12 [per-target counts at total 11 = [149, 7, 149, 149, 149, 149, 149, 149, 149, 149, 7, 7]]
+PASS J3_has_no_unsolvable_configuration_of_total_12_for_any_target_so_it_is_class_0 [0 of 12 x C(22,10) = 7759752 configurations]
+PASS J3_does_have_unsolvable_configurations_of_total_11_so_pi_is_at_least_12 [per-target counts at total 11 = [3, 49, 9, 9, 49, 49, 9, 9, 9, 9, 3, 3]]
+
+=== Step 6b: the sixteen transcribed graph6 strings, as objects
+PASS all_sixteen_graph6_strings_decode_to_cubic_connected_12_vertex_girth_3_diameter_3_graphs [16 of 16]
+PASS the_sixteen_decoded_graph6_graphs_are_pairwise_non_isomorphic [120 pairs tested, 0 isomorphic]
+PASS the_five_named_graphs_each_appear_among_the_sixteen_decoded_graph6_graphs [['J3', '#6698', '#1395', '#44170', '#44172']]
+PASS the_transcribed_pi_values_of_the_sixteen_graph6_strings_form_the_multiset_12x2_13x5_14x9 [{12: 2, 13: 5, 14: 9}]
+
+=== Step 6c: the pebbling number of every one of the sixteen transcribed graph6 graphs
+NOTE pi is an isomorphism invariant and |U_s(phi(r))| = |U_s(r)| for phi in Aut(G), so the eleven unnamed transcribed graph6 graphs are swept on one target per vertex orbit (78 sweeps)
+NOTE 78 sweeps in 1.4 s wall (32 workers), slowest single sweep 0.7 s
+PASS the_pi_value_of_each_of_the_eleven_unnamed_graph6_graphs_matches_the_transcribed_value [@WEO:13, @WF?:13, ?[EO:13, CcCo:13, _iW_:13, @gDO:14, @gDO:14, ?wF?:14, ?sHG:14, ?kDO:14, AgBG:14]
+PASS the_five_named_graph6_strings_carry_the_pi_values_re_derived_in_step_6a [{'J3': 12, '#6698': 12, '#1395': 14, '#44170': 14, '#44172': 14}]
+PASS the_re_derived_pi_distribution_over_the_sixteen_graph6_graphs_is_12_twice_13_five_times_14_nine [{12: 2, 13: 5, 14: 9}]
+
+=== Step 7: the arithmetic the paper prints
+PASS the_search_space_per_target_at_total_12_is_binom_22_10_equals_646646 [646646]
+PASS the_search_space_per_target_at_total_13_is_binom_23_10_equals_1144066 [1144066]
+PASS twelve_targets_times_binom_22_10_is_7759752 [7759752]
+PASS three_graphs_times_twelve_targets_times_binom_23_10_is_41186376 [41186376]
+PASS the_printed_row_sums_of_the_per_target_tables_are_arithmetically_right [1980 / 734 / 542 and 24 / 52 / 12]
+PASS each_of_the_three_refutation_witnesses_has_exactly_thirteen_pebbles [[13, 13, 13]]
+
+=== scope of this run
+NOTE SCOPE: this program recomputes, from the adjacency lists and graph6 strings transcribed into it, each quantity listed in the CLAIM_* and CENSUS tables above (invariants, orbits, certificate reachable-set sizes, per-target unsolvable counts at totals 12 and 13, the pebbling numbers of all five named graphs and of all sixteen transcribed graph6 graphs). The paper itself is not parsed, so the transcription of its printed objects and figures into the embedded inputs, and the coverage of every quantity the paper asserts, are not checked here.
+NOTE NOT RE-RUN: any count of how many cubic 12-vertex girth-3 diameter-3 graphs there are. This run re-derives only that the sixteen graph6 strings transcribed into this file are sixteen pairwise non-isomorphic such graphs, i.e. at least sixteen; no completeness statement is verified here, and the note claims none.
+NOTE NOT RE-RUN: what the House of Graphs database holds, and the identification of the four adjacency lists with the database ids #1395, #6698, #44170 and #44172 -- the lists are inputs, printed in the paper, and the paper pins them to the source figure by an edge-set identity rather than to the database.
+
+VERDICT: ALL 110 CHECKS PASS
+=== program exited with status 0 ===
