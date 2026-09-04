@@ -106,7 +106,7 @@ elided or truncated.
 **Where the rest of the record lives, and where it has holes.** The decisive mathematics is a hand
 proof and needs no machine; the paper's Sections 2 and 3 are checkable with pencil and paper. Three
 further programs were run during the investigation and are filed, byte-for-byte and with SHA-256
-digests, in this project's artifacts directory `runs/wave23/artifacts/t8101/` alongside its
+digests, in this project's own run record for this problem alongside its
 `MANIFEST.json`. They are *not* part of this folder, they share no code with `verify.py`, and this
 note does not restate their figures as claims of the paper. Quoting only what that manifest itself
 records:
@@ -115,7 +115,7 @@ records:
  captured stdout **is** filed (`t8101_verify.out`, 3,373 bytes, recorded as complete).
 * `t8101_census.py` — an exhaustive census of all 16,777,088 pairs `(M,E)` with `8 ≤ M ≤ 24` and
  `0 ∈ E`. Run on a fleet slot, status Success, RC 0. **Its raw stdout is NOT in the
- record**: the manifest states that the dispatch filed no artifact and that the planned S3 objects
+ record**: the manifest states that the dispatch filed no artifact and that the planned object-store copies
  were reported absent. Only transcribed figures survive.
 * `t8101_a2_seeds.py` — a sweep for further seed orbits. Run on a fleet slot, dispatched
  2026-08-31T07:08:41Z, which the manifest records as **after** the decision on this problem; it did

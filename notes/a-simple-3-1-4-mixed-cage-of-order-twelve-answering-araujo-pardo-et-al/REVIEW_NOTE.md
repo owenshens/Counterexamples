@@ -113,10 +113,10 @@ reconstructing it, so a referee is not misled about how re-runnable they are:
  witness-labelling equality check, and nothing more.
 * `mixedcheck.py`'s exhaustive census (its "PART B") is indexed in that manifest as code
  **with no output**. It was dispatched twice and *never collected*: once during the original
- run (slot S14, still `Pending` — SSM never
- delivered it) and once at the document stage (slot S07, timeout 3000 s, still `InProgress` at
+ run (one fleet slot, still `Pending` — the fleet runner never
+ delivered it) and once at the document stage (a second slot, timeout 3000 s, still `InProgress` at
  hand-off). **No stdout of either dispatch exists in the record.**
-* Two earlier confirmation jobs are cited in the row's own note by slot and command id with
+* Two earlier confirmation jobs are cited in the row's own note by fleet slot and dispatch id with
  `RC=0` — including a census reporting 0 labelled `[3,1;4]`-mixed graphs of order 10 over
  3,136 shards — but **their scripts are not on disk and are named nowhere in the record**,
  and the boxes have self-terminated. They are reported, not shipped, and a referee cannot

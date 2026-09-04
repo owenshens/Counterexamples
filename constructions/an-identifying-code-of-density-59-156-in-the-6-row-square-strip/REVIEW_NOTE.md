@@ -86,26 +86,26 @@ That run was executed for this folder on the local control plane (macOS, arm64) 
 
 **`verify.py` is new code written for this folder, not a copy of the scripts that produced the
 result.** The provenance of the underlying computation, as recorded in the row's artifacts manifest
-(`runs/wave24/artifacts/t11095/MANIFEST.json`, 13 files, sha256 per file):
+(the run record's `MANIFEST.json`, 13 files, sha256 per file):
 
 * the upper-half check (`verify_tile2.py`, sha256 `75d7590900c29567d3918b7da7319b24068d9f052f071ae2bebf99dcccf5ab88`),
  the period-13 witness and minimum-period core (`final.py`), the symmetry scan (`sym.py`), the tile
  equivalence (`cmp.py`) and the encoding cross-check (`xcheck.py`) were run locally as
  `python3 <file>`, each in under 0.08 s, with their outputs filed alongside;
-* the lower-half computation was `runs/wave24/artifacts/t11095/verify6.py` (sha256
- `11b4a5e1abb2529d7d4d8c1b11bf149cc9f528dd0373bd95a7bcaedd2f8baff5`), dispatched as
- `aws/slot_run.sh --detach AUTO runs/wave24/artifacts/t11095/verify6.py 3600 a2-t11095-verify6` on
- slot S09, SSM CommandId `(a dispatch id, redacted)`,
+* the lower-half computation was the run record's `verify6.py` (sha256
+ `11b4a5e1abb2529d7d4d8c1b11bf149cc9f528dd0373bd95a7bcaedd2f8baff5`), dispatched by the fleet
+ dispatch script in detached mode, with the slot chosen automatically and a 3600 s timeout, onto
+ one fleet slot, the recorded dispatch id `(a dispatch id, redacted)`,
  231 s, Success with RC=0 verified, 11,448 B of stdout; and the optimal-core follow-up was `core.py`
- on slot S11, CommandId `(a dispatch id, redacted)`, 172 s,
+ on a second, different slot, recorded dispatch id `(a dispatch id, redacted)`, 172 s,
  4,370 B of stdout.
 
 Three gaps in that record, stated rather than papered over. (i) **Neither slot stdout was written to a
 file**; the manifest records the byte counts but not the bytes, the compute instances self-terminate,
-and the session's AWS credential has expired, so the lower-half violation counts survive only as
+and the session's cloud credential has expired, so the lower-half violation counts survive only as
 transcriptions. (ii) The instance *types* were not recorded and are not guessed. (iii) Of three
 independent lower-bound computations, only one is re-runnable from what was filed: a second attack
-angle's `k = 6` script (CommandId `(a dispatch id, redacted)`, exit 0) and a third
+angle's `k = 6` script (recorded dispatch id `(a dispatch id, redacted)`, exit 0) and a third
 implementation were never filed, because that dispatch omitted the artifact-filing flags. Nothing in
 this folder depends on any of the three.
 

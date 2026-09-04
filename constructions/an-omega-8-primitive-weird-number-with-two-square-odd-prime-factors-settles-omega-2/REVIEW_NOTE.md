@@ -81,7 +81,7 @@ run's artifacts manifest and not reconstructed:
 
 - `run7.py`, sha256 `17c630a25d892f900d76e53bc27bb15b550e8bb4b32eb2cb1868f9933d600784`,
  27,454 B, standard library only -- the exhaustive census of the cell that found `m`. Dispatched
- as `aws/slot_run.sh --detach AUTO .../run7.py 3300 t8202-final`, a separate cloud instance, 24 worker processes,
+ by the fleet dispatch script as `--detach AUTO .../run7.py 3300 t8202-final`, a separate cloud instance, 24 worker processes,
  target phase 203 s, `RC=0`. No randomness and no seed; the workers shard a fixed prefix tree.
 - `idx.py`, sha256 `af9c6c1d5a5e67f3b3b58cc9f18447c40046eb6a1b879b69191c579668681c07`, 1,383 B --
  the index-sequence job. a separate cloud instance, `RC=0`. It imports `sympy`, so it is *not* the program

@@ -114,7 +114,7 @@ Per the artifacts manifest of the underlying record:
  `job2.py` (SHA-256 `88865de3d950eb567f290f24c40ffbc22fe1fc0f7f21bc30737a06887ac17132`,
  24,509 bytes), invoked as
 
- aws/slot_run.sh S02 runs/wave24/artifacts/t10841/job2.py 2400 a2t10841verify
+ the fleet dispatch script, on one fleet slot, with the run record's `job2.py`, a 2400 s timeout and the tag a2t10841verify
 
  on one 32-vCPU worker (), status Success, exit 0, 17,716 bytes of captured stdout.
  **No solver of any kind**: stdlib `itertools`, `collections`, `math.comb` and `multiprocessing`
@@ -136,16 +136,16 @@ Per the artifacts manifest of the underlying record:
 
 Four gaps in that record, stated rather than dressed:
 
-1. **No elapsed time was recorded for either slot job.** `slot_run.sh` printed no wall-clock figure
+1. **No elapsed time was recorded for either slot job.** The fleet dispatch script printed no wall-clock figure
  into the captured stdout and none exists on disk, so none is given here. Neither command timeout
  (2400 s, 900 s) was hit.
-2. **No S3 copy of either slot output exists** (`head_object` 404 on all planned keys), so the
+2. **No object-store copy of either slot output exists** (`head_object` 404 on all planned object-store keys), so the
  captured `.out` files in the run record are the only copies of that stdout.
-3. The `job2.py` dispatch was filed in the record with its SSM command id in two non-identical
- forms, `...f1b3...` and `...91b3...`. `slot_run.sh`'s own dispatch log reads `f1b3`, which is what
+3. The `job2.py` dispatch was filed in the record with its recorded dispatch id in two non-identical
+ forms, `...f1b3...` and `...91b3...`. The fleet dispatch script's own dispatch log reads `f1b3`, which is what
  is quoted above; `91b3` is a transcription error. Nothing in the result depends on it. That
  dispatch also ran as a post-decision verify over an already-terminal row and is logged in the
- run's SSM override log rather than its main dispatch ledger.
+ run's dispatch override log rather than its main dispatch ledger.
 4. A third script in the record, a by-hand transcription re-check of the `Z_11` object, has **no
  captured slot stdout at all** -- that dispatch left no log -- so its reported slot runtime is a
  claim in the record and not a reading. It bears on the object *not* printed here.

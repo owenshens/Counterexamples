@@ -101,9 +101,10 @@ records:
 
 - one script, `census2.py` (9,303 B, sha256
  `8c37a827062b6a46ee7b7e7b5f725197b4ae48bc941791bc5e1103a2743391cb`), dispatched
- 2026-08-31 as `aws/slot_run.sh --detach AUTO census2.py 900 angle1-t11158-evenk-census
- --force-decided` to one slot, EC2, SSM CommandId
- `(a dispatch id, redacted)`; STATUS Success, RC=0, elapsed 85.3 s, single
+ 2026-08-31 by the fleet dispatch script, detached, running `census2.py` under a
+ 900 s cap, to a single auto-assigned slot on a
+ cloud instance, recorded dispatch id `(a dispatch id, redacted)`; STATUS Success, RC=0,
+ elapsed 85.3 s, single
  process, pure Python 3 standard library, **no randomness and no seed**;
 - its complete standard output, `census2.stdout.txt` (2,133 B, sha256
  `c14acc15c59fd8f9efa921169d277af8ebfc600a51bba1fd96aeb27242bf9dda`), recorded as complete

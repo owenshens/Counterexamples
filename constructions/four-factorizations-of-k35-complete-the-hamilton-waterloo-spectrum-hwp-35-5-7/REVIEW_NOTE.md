@@ -15,8 +15,8 @@ the objects printed in it, and a record of that program being run.
 
 Those four files are the whole deliverable and they are self-contained: `paper.tex` compiles with a
 stock TeX distribution and `verify.py` needs only Python 3.9+ and the standard library. Nothing
-here reads an external data file. The *Provenance* section below names further paths under
-`runs/wave23/artifacts/t7941/` — those are internal search-and-archive records of this project,
+here reads an external data file. The *Provenance* section below names further paths inside
+this row's run record — those are internal search-and-archive records of this project,
 **not files shipped in this folder**, and nothing in the paper or in `verify.py` depends on them.
 
 ## What is claimed
@@ -100,15 +100,15 @@ Run locally, single process, Python 3.9.6, under 0.2 s, no randomness. The recor
 is 0.
 
 Where the objects came from, as recorded in this row's artifacts manifest
-(`runs/wave23/artifacts/t7941/MANIFEST.json`, 14 entries):
+(the run record's `MANIFEST.json`, 14 entries):
 
 - The four certificates were found by five CP-SAT search scripts (`job2.py`, `job3a.py`,
  `job4a.py`, `job4b.py`, and `job3b.py` for the inherited `(9,8)` control) dispatched to
- 32-vCPU AWS slots, CP-SAT with 30 workers, `python 3.9.25` and `ortools 9.15.6755`. The
+ 32-vCPU fleet slots, CP-SAT with 30 workers, `python 3.9.25` and `ortools 9.15.6755`. The
  manifest records CP-SAT status `OPTIMAL` and, for four of the five, a wall time; it records
- **no** SSM `CommandId`, slot label or instance id for those five dispatches — those were not
+ **no** recorded dispatch id, slot label or instance id for those five dispatches — those were not
  captured, and the manifest carries `null` there rather than a guess. **The stdout of the five
- search jobs was never captured to a file and no S3 URI for it exists**, so the only surviving
+ search jobs was never captured to a file and no object-store URI for it exists**, so the only surviving
  record of those runs is the manifest's transcription plus the objects themselves.
  Consequently: the search is **not** reproducible from this folder, and CP-SAT with 30 workers
  is not deterministic in any case — a re-run may return a *different* factorization. What the
@@ -118,7 +118,7 @@ Where the objects came from, as recorded in this row's artifacts manifest
  base orbit) and a reconstruction of the published cell `(9,8)`. Neither is printed here: the
  first is redundant, and `(9,8)` belongs to Wang–Lu–Cao.
 - `verify.py` in this folder is a fresh, self-contained program written for the paper's cycle
- presentation. It is not the artifact-side checker (`artifacts/t7941/verify_t7941.py`, which
+ presentation. It is not the artifact-side checker (the run record's `verify_t7941.py`, which
  reads the same factorizations as edge lists); the two agree on all four cells.
 
 ## Scope

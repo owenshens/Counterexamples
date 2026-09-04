@@ -116,7 +116,7 @@ in the paper, and it was run locally under CPython 3.9.6 on the machine that ass
 folder. It is not the program that originally found the witnesses.
 
 The original computation is recorded in this wave's artifacts manifest, at
-`runs/wave24/artifacts/t11509/MANIFEST.json` in the producing repository. **That manifest and the
+the run record's `MANIFEST.json` in the producing repository. **That manifest and the
 scratch files it indexes are not shipped inside this folder**; the four files in this folder are
 the complete contents. Nothing in the paper depends on the manifest, and everything about it that
 bears on the claims is stated below rather than referred out. Its record has limits which must not
@@ -124,20 +124,20 @@ be laundered here:
 
 * The witnesses were found by `arcs3.py` (a complete arc census, `m = 1..p`, over every prime
  `p <= 509`) and re-decided independently by `intcert4.py` (pure-integer certificates plus the
- controls). Both ran as detached AWS SSM jobs, `arcs3.py` on
- (CommandId `(a dispatch id, redacted)`) and `intcert4.py` on
- `(a fleet slot)` (CommandId `(a dispatch id, redacted)`), both SSM Status
- Success with job `RC=0`. A first attempt at `intcert4.py` (CommandId
+ controls). Both ran as detached jobs on the fleet, `arcs3.py` on one slot
+ (the recorded dispatch id `(a dispatch id, redacted)`) and `intcert4.py` on
+ a second slot (the recorded dispatch id `(a dispatch id, redacted)`), both fleet-runner Status
+ Success with job `RC=0`. A first attempt at `intcert4.py` (the recorded dispatch id
  `(a dispatch id, redacted)`) exited `RC=1` on CPython's `int`-to-`str` 4300-digit
  limit and was read as INCOMPLETE, not as a negative.
 * **No digest was filed at dispatch time.** The dispatch harness printed
- `ARTIFACT_NOT_FILED=no wave` for all four jobs, so the files in `artifacts/t11509/` are the
- attack agent's scratch copies from `/tmp/a1-t11509/`, copied byte-for-byte and digested where
+ `ARTIFACT_NOT_FILED=no wave` for all four jobs, so the files in the run record are the
+ attack agent's scratch copies from a scratch directory, copied byte-for-byte and digested where
  they now sit. The invocation lines in that manifest are the runnable form against the filed
  copy, not a transcript of the line that actually ran.
 * **Two of the four recorded outputs are truncated and there is no archived copy.**
  `arcs3.out` and `census.out` are each exactly 20045 bytes and begin mid-line, because the
- dispatch harness prints only the last 20000 bytes of a job log; the planned S3 keys were never
+ dispatch harness prints only the last 20000 bytes of a job log; the planned object-store keys were never
  written. A referee who wants the full arc-census log must re-run rather than fetch. Nothing in
  the present paper depends on the missing head of those logs: every number the paper prints is
  either in the intact `intcert4.out` or in the intact tail of `arcs3.out`, and all of them are
@@ -149,7 +149,7 @@ be laundered here:
 estimated decimal digit counts as `1 + int(bit_length * log10 2)` without correcting the
 estimate, and that is off by one for the three largest cases. The exact counts for the right-hand
 integer are `436214` at `p = 307`, `778821` at `p = 401` and `1307509` at `p = 509`, not the
-`436215`, `778822`, `1307510` recorded in `artifacts/t11509/certificate.txt`. The paper prints
+`436215`, `778822`, `1307510` recorded in the run record's `certificate.txt`. The paper prints
 the exact values, `verify.py` computes them by integer comparison against powers of ten, and
 `verify.output.txt` states the discrepancy in a `NOTE`. No verdict anywhere depends on a digit
 count.

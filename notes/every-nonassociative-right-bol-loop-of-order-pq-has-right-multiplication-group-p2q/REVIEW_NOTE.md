@@ -118,10 +118,10 @@ obtained with.
 **The original computation is a different program and is not shipped here.** For the record,
 and quoting the wave's artifacts manifest rather than reconstructing it: the original run was
 `bolpq.py`, sha256 `d391b8faf8479e9b8d1716a5fa4a9b9cc18c3c3f425f1ff7efafffe50f388958`,
-17,779 bytes, dispatched as
+17,779 bytes, dispatched by the fleet dispatch script from a copy in a scratch directory as
 
- aws/slot_run.sh --detach --force-decided --artifact-tid t7839 --artifact-wave wave23 \
- AUTO /tmp/bol1/bolpq.py 2400 t7839-bolpq
+ detached, filing its artifact under the wave's task record, \
+ running bolpq.py under a 2400 s cap
 
 on a fleet slot, and independently reproduced on a fleet slot (STATUS Success,
 RC = 0). Its captured output is `stdout_S28.txt`, sha256
@@ -133,17 +133,17 @@ of that record, none of them papered over:
 * The interpreter is recorded only as **CPython 3.9**, inferred from a boto3 deprecation
  warning in the captured output, not from a version print.
 * Two stdout byte figures circulate, **16,250** and **15,215**, and our own working notes
- attributed the second to slot **S15** while the file is named for **S28**. That attribution
+ attributed the second to one slot while the file is named for a different one. That attribution
  was wrong, and we correct it rather than leave it standing: `ARTIFACT_STDOUT_BYTES=15215` is
  the *last line of `stdout_S28.txt` itself* (line 79 of 79), so both figures belong to the
- S28-named capture — 15,215 as the harness measured the program's stdout, 16,250 as the file
+ same capture — 15,215 as the harness measured the program's stdout, 16,250 as the file
  sits on disk with the harness's own two-line header and its boto3-warning /
  `ARTIFACT_S3_ABSENT` / `ARTIFACT_STDOUT_BYTES` trailer added. We have not reconciled the
  1,035-byte gap to the byte (that wrapper text measures 1,074 bytes as we count it), and
  neither invocation was re-fetched, so which of the two byte-identical runs physically produced
  the file is still not pinned by anything except its name.
-* All three S3 targets for that job returned `head_object` 404, so the captured stdout is the
- only copy and **there is no S3 URI to cite**.
+* All three object-store targets for that job returned `head_object` 404, so the captured
+ stdout is the only copy and **there is no object-store URI to cite**.
 
 The census figures the two programs report — 534 loops, 44 associative, 490 nonassociative, all
 490 with `|Mlt_r| = p^2 q` and `dim R = 2`, 0 anomalies — agree. That agreement is between two

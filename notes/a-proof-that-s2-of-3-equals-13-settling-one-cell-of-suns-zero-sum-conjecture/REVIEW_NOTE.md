@@ -150,40 +150,40 @@ The run recorded there was made on the author's laptop with Python 3.9.6 and exi
 **`verify.py` is fresh code written for this folder, and it is not the program that produced any
 object here.** `W` is Sun's construction, read off his own proof. The provenance of the machine work
 that *echoed* this result, as recorded in the result's artifacts manifest
-(`runs/wave23/artifacts/t5904/MANIFEST.json`, 7 files with a SHA-256 each; that manifest and those
+(the run record's `MANIFEST.json`, 7 files with a SHA-256 each; that manifest and those
 files are **not** shipped inside this folder and nothing here depends on them), is:
 
 * `fast.py` (sha256 `4eb3b5a4a50efa368b116031e0869afe653c66223bf627c71955b19f5bfbf2fd`, 9,453 B) ran
  an exact CP-SAT maximisation over the 72 classes with multiplicity capped at 2 and 6,288 enforced
  triple constraints, using none of the fibre structure of the paper. It returned
- `status=OPTIMAL alpha=12 bound=12` in 67.4 s on slot **S31**, instance
- **a separate cloud instance**, SSM CommandId **a recorded command id**,
+ `status=OPTIMAL alpha=12 bound=12` in 67.4 s on one fleet slot, instance
+ **a separate cloud instance**, the recorded dispatch id **a recorded command id**,
  `STATUS Success`, `RC = 0`, `ortools 9.15.6755`, 32 vCPU. Its stdout is filed as `fast.out`
  (5,172 B) and the manifest marks it complete: the wrapper's own tail line reads
- `ARTIFACT_STDOUT_BYTES=4141`, well below the ~24 kB SSM ceiling, and the job's final `DONE` is
+ `ARTIFACT_STDOUT_BYTES=4141`, well below the ~24 kB dispatch stdout ceiling, and the job's final `DONE` is
  present. It also reproduced nine published integers of the source to proved optimality as
  controls, and its decision-form run (does a BAD multiset of size 13 exist?) returned `UNKNOWN` at
  its 900 s cap -- **INCOMPLETE, not a negative**, and superseded by the maximisation.
 * `verify_witness.py` (sha256 `28a6648620316fbadd9d6c2a35f6381ae81d8afb251b5dfdab185e1a27c4686f`)
  ran on the control plane in 0.09 s, stdlib only, and re-verified four extremal size-12 multisets
  against the definition; its output is filed as `verify_witness.out`. The manifest's `reproduce`
- field is that invocation, `python3 runs/wave23/artifacts/t5904/verify_witness.py`.
+ field is that invocation, `python3 verify_witness.py` inside the run record.
 
 **Gaps in that record, stated rather than filled.** The manifest itself flags them and this note
 does not improve on it.
 
-* The two slot invocations in the manifest are marked **COMPOSED, NOT COPIED**: `slot_run.sh`
- printed `ARTIFACT_NOT_FILED` (the jobs were dispatched from `/tmp/aa1-t5904/` without
- `--artifact-wave`), so no `ARTIFACT_INVOCATION=` line exists to quote. The dispatched files are
+* The two slot invocations in the manifest are marked **COMPOSED, NOT COPIED**: the fleet dispatch script
+ printed `ARTIFACT_NOT_FILED` (the jobs were dispatched from a scratch directory without
+ the flag that files an artifact), so no `ARTIFACT_INVOCATION=` line exists to quote. The dispatched files are
  recorded as byte-identical to the indexed ones, differing only in path.
-* **The stdout of `check_s2_3.py` was never written to a file.** That job (slot **S21**, instance
- **a separate cloud instance**, CommandId **a recorded command id**) returned
- `Success`/`RC = 0` and was an independently-encoded replication, but no S3 artifact was filed and
+* **The stdout of `check_s2_3.py` was never written to a file.** That job (a different fleet slot, instance
+ **a separate cloud instance**, the recorded dispatch id **a recorded command id**) returned
+ `Success`/`RC = 0` and was an independently-encoded replication, but no object-store artifact was filed and
  its numbers survive only as prose. They are therefore **not** cited in the paper.
 * Three further dispatches (`census.py` twice, `mini.py` once) ended `TimedOut` with 0 B stdout:
  **INCOMPLETE, never negatives**, and nothing in the chain rests on them.
 * Instance types, slot Python versions and total wall clock are recorded as **NOT RECORDED** in the
- manifest, not estimated. `fast.out` has no S3 copy (`head_object` 404 for all three keys), so the
+ manifest, not estimated. `fast.out` has no object-store copy (`head_object` 404 for all three keys), so the
  local capture is the only one.
 * One `UNCHECKABLE` claim in the artifact gate: `witness.json` is JSON rather than a graph, so the
  library's graph6/edge-list cross-decoder cannot read it. The label-equality check was run by

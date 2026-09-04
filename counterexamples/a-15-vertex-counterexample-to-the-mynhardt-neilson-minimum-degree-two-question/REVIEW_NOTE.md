@@ -119,7 +119,7 @@ shasum -a 256 verify.py
 `Gamma_b(G') = 5`, `alpha_bnr(G') = 6`, `alpha_bn(G') = 7` and the counts 283 / 1140 / 1416
 were first produced by three separately written census engines dispatched to remote hosts; the
 row's artifacts manifest records, for two of those engines, the script as run with its SHA-256,
-the invocation, the EC2 instance and the SSM CommandId, together with the captured stdout of
+the invocation, the cloud instance and the recorded dispatch id, together with the captured stdout of
 each (`bcast.out`, `lemma.out`, both recorded as complete and ending in their own job's
 done-marker). `verify.py` reproduces all six of those numbers, and additionally the two counts
 283 and 1140 that the row's own record flags as having come from a single engine.
@@ -130,7 +130,7 @@ records them as gaps:
 * **Six of the ten indexed scripts have no captured stdout.** The manifest states that the jobs
  returned success with RC=0 but that their output was transcribed into the row's database note
  and never written to a file, and that the dispatcher's own `head_object` calls returned 404
- for every S3 copy, so no S3 artifact exists to point at either. The claims that rested only
+ for every object-store copy, so no object-store artifact exists to point at either. The claims that rested only
  on those six --- the 1,026,505-graph 2-connected census, the full uncapped census of the
  22-vertex `G_2'`, and the values for `k = 3, 4` --- are therefore **corroboration, not
  certificate**. None of them is a claim of the paper: the first appears in the paper only as

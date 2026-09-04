@@ -90,19 +90,19 @@ shasum -a 256 verify.py
 one of the programs that found the result. Its provenance is therefore simply the command
 above, run on the laptop control plane, with the output captured by shell redirection.
 
-The programs that *found* the result live in the row's artifacts directory
-(`runs/wave24/artifacts/t10849/`, MANIFEST.json with SHA-256 and byte counts on 21 entries)
+The programs that *found* the result live in the row's run record
+(MANIFEST.json with SHA-256 and byte counts on 21 entries)
 and are **not** shipped here, because nothing in this paper depends on them. What that
 manifest records about them, quoted rather than reconstructed, so that a referee is not
 misled about how re-runnable they are:
 
-* Six scripts ran on AWS slots via SSM; all six report `ssm_status = Success`, `job_rc = 0`,
+* Six scripts ran on fleet slots via the fleet runner; all six report `status = Success`, `job_rc = 0`,
  region `us-east-1`, no randomness. Their `invocation` fields are marked **RECONSTRUCTED**
  in the manifest: no `ARTIFACT_INVOCATION` line was preserved in the row, so the
- `<timeout_s>` argument each was dispatched with **is not in the record**. Command ids and
- instance ids *are* in the record, read off each job's own stdout header.
-* One of the eight retrieved stdout files, `construct.out`, is **truncated** by SSM's ~24 KB
- cap (its body begins mid-tuple), and no S3 copy exists — the manifest records that a
+ `<timeout_s>` argument each was dispatched with **is not in the record**. Dispatch ids and
+ cloud instance ids *are* in the record, read off each job's own stdout header.
+* One of the eight retrieved stdout files, `construct.out`, is **truncated** by the ~24 KB
+ dispatch stdout cap (its body begins mid-tuple), and no object-store copy exists — the manifest records that a
  listing of 2,046 objects under the slots prefix matched none of these jobs.
 * Two review-stage confirmation jobs shipped stdout but **their scripts are not on disk**;
  the manifest marks them `code_on_disk = False` and corroborating rather than load-bearing.

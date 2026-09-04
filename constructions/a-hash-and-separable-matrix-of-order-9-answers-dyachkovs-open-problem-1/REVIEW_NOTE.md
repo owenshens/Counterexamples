@@ -105,8 +105,9 @@ three paragraphs long.
 
 - `sweep_q4_12.py`, sha256 `ad3022ac1f82c3ea786cac18d1a08920d85cf8b69b4a53374018c6b422391868`,
  9,976 B — the SAT encoding of Propositions 5/6/7 and the sweep over `q = 4..12` that returned
- `M`. Dispatched as `aws/slot_run.sh --detach AUTO runs/wave23/artifacts/t8556/sweep_q4_12.py
- 900 t8556p1`, a separate cloud instance, `RC=0`, about 20 s of solving in total.
+ `M`. Dispatched detached through the fleet dispatch script onto an automatically assigned slot,
+ running the run record's `sweep_q4_12.py` under a 900 s timeout, a separate cloud instance,
+ `RC=0`, about 20 s of solving in total.
 - `controls.py`, sha256 `5a7dfff8c24e684f4af853c493b3cd8263e43c76f19eebeb6b9014a567325026`,
  13,674 B — the both-polarity control suite on the source's published matrices. a separate cloud instance, `RC=0`.
 - `defcheck.py`, sha256 `7a8bf33813a19d68f16805e744fa2ae81ae196737828290f8d3916308d42cb38`,
@@ -115,9 +116,9 @@ three paragraphs long.
  weakened symmetry break.
 
 Three limits of that record are stated by the manifest and are repeated here rather than smoothed
-over. (i) All four scripts were dispatched from scratch paths under `/tmp/a1-t8556/` and copied
+over. (i) All four scripts were dispatched from paths under a single scratch directory and copied
 byte-for-byte into the run's artifacts directory afterwards; the invocation lines above are what
-the manifest records. (ii) The exact EC2 instance type, the slot image's `python3` version and the
+the manifest records. (ii) The exact cloud instance type, the runner image's `python3` version and the
 `python-sat` build version **were not captured**; the solvers used were `Cadical153`, `Glucose4`
 and `Minisat22` in default configuration with **no seed set**, so a different build may return a
 *different* valid `C_HS(9,4)`-matrix — which is why `M` is recorded as a printed object rather

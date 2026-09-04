@@ -136,18 +136,18 @@ paper depends on re-running any of them.
  computation at all ... the computations corroborate it".
 - The command the manifest records as the way to re-run the corroborating census is
  `python3 job7_t11440.py`. That script is `job7_t11440.py`, sha256
- `fa5088abbccbf41c261b0ddca6a816951a948580be29b5b6ba529ebf474cb2e3`, 11,155 B, dispatched as
- `aws/slot_run.sh --detach --force-decided AUTO job7_t11440.py 900 t11440-angle2-job7` on slot
- S24, CommandId `(a dispatch id, redacted)`,
+ `fa5088abbccbf41c261b0ddca6a816951a948580be29b5b6ba529ebf474cb2e3`, 11,155 B, dispatched on a
+ fleet slot by the fleet dispatch script, detached, running `job7_t11440.py` under a
+ 900 s cap, recorded dispatch id
+ `(a dispatch id, redacted)`,
  `STATUS Success`, `RC=0`, `vcpu=1`. Its captured stdout is `angle2_job7_OUTPUT.txt`, sha256
  `93321e60d00e833130003d59aa7fc9e9d8275b836b16f3a4a4ef3865e790a2c3`, 1,687 B, recorded complete.
-- Six sibling jobs are indexed the same way, each with its own CommandId in the manifest's
- `invocation` field: `angle2_job1_t11440.py` (S06, `(a dispatch id, redacted)`),
- `angle2_job2_census_t11440.py` (S13, `(a dispatch id, redacted)`),
- `job3_t11440.py` (S29, `(a dispatch id, redacted)`),
- `job4_t11440.py` (S08, `(a dispatch id, redacted)`),
- `job5_t11440.py` (S07, `(a dispatch id, redacted)`) and
- `job6_t11440.py` (S42, `(a dispatch id, redacted)`), all `STATUS Success`, `RC=0`.
+- Six sibling jobs are indexed the same way, each on its own distinct fleet slot and each with its
+ own recorded dispatch id in the manifest's `invocation` field: `angle2_job1_t11440.py`
+ (`(a dispatch id, redacted)`), `angle2_job2_census_t11440.py` (`(a dispatch id, redacted)`),
+ `job3_t11440.py` (`(a dispatch id, redacted)`), `job4_t11440.py` (`(a dispatch id, redacted)`),
+ `job5_t11440.py` (`(a dispatch id, redacted)`) and `job6_t11440.py`
+ (`(a dispatch id, redacted)`), all `STATUS Success`, `RC=0`.
  Interpreters and solvers: CPython 3 with sympy 1.14.0 for exact-rank cross-checks; everything
  else hand-rolled exact integer, `GF(2^16)` and `GF(2^61-1)` linear algebra, no floating point.
 - The run's artifact gate returned `ARTIFACT-GATE t11440 OK files=21 indexed=15 sha_ok=15 notes=0`,
@@ -163,7 +163,7 @@ here rather than smoothed over.
  attest that its output is complete. Their outputs are therefore **not** part of the attested
  record, and nothing in this folder rests on them.
 2. **One indexed output is truncated and says so.** `angle2_job2_OUTPUT_TRUNCATED_PREFIX_LOST.txt`
- (21,110 B, `complete: false`) lost its *front* to the SSM stdout cap; its object-store copy is
+ (21,110 B, `complete: false`) lost its *front* to the dispatch stdout cap; its object-store copy is
  absent (`head_object` 404 — the job never wrote it), so the lost prefix is not recoverable, and
  the lost counts were re-derived and re-printed by job 3. That channel is unread, not empty.
 3. **One printed line of `job7`'s own output is a vacuous check, and it is disclosed rather than

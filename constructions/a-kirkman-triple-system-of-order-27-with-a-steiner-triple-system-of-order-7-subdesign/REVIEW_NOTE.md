@@ -122,7 +122,7 @@ Python 3.9.6; it exited 0.
 **Provenance of the search that produced the design** (recorded because it is *not* what `verify.py`
 re-runs, and because it has one real gap). The files named below are **not shipped in this folder**
 -- the folder ships exactly the five files listed under *Contents*. They live in the underlying run
-record at `runs/wave24/artifacts/t11141/`, and the digests are pointers for matching them there, not
+record, and the digests are pointers for matching them there, not
 files a referee can hash here. Nothing in this folder depends on them: the design is printed in full
 in Table 1 and `verify.py` checks the printed design.
 
@@ -132,9 +132,10 @@ Per the artifacts manifest of the underlying record:
  `30bd72c1b09a7c381e12d8a6ebd509969fdb4e4bdc7c5002b298e744aa5543ff`, 7,069 bytes), a CP-SAT model
  with the automorphism `sigma` and the class action `pi` **prescribed**, invoked as
 
- aws/slot_run.sh --detach AUTO /tmp/kts27a1/pres3.py 2900 kts27pres
+ the fleet dispatch script, detached, with automatic slot selection, on `pres3.py` in a scratch
+ directory, with the timeout argument 2900 and the job tag kts27pres
 
- from the repository root with `SLOT_WANT_VCPU=128` set, on slot **S18**, timeout 2900 s.
+ from the repository root with a 128-vCPU request, on a fleet slot, timeout 2900 s.
  Solver: OR-Tools CP-SAT, with `num_search_workers = min(96, cpu_count())`.
 - Two independent stdlib-only programs on the object are also in that record and were re-run in the
  document stage to capture their output: `witness.py` (SHA-256
@@ -158,16 +159,16 @@ Per the artifacts manifest of the underlying record:
 Five gaps in that record, stated rather than dressed:
 
 1. **The search job's own stdout is not in the record.** It was never filed at dispatch (the log
- printed `ARTIFACT_NOT_FILED=no wave`), the slot has since self-terminated, and the S3 copy
+ printed `ARTIFACT_NOT_FILED=no wave`), the slot has since self-terminated, and the off-box copy
  `(an internal object-store copy)` could not be read
- from the control plane (`sts get-caller-identity` returned `ExpiredToken`,
- `s3 head_object` returned HTTP 400). The CP-SAT figures quoted in the underlying record -- SAT in
+ from the control plane (the credential check returned `ExpiredToken`,
+ `head_object` returned HTTP 400). The CP-SAT figures quoted in the underlying record -- SAT in
  **29.7 s** on the target with **12,681** orbit variables, and SAT in **18.2 s** with **12,753**
  for the positive control -- therefore survive only as quotations in that record, **not** as a
  captured log. They appear nowhere in the paper, and nothing in the paper or in `verify.py`
  depends on them.
-2. **The instance type is not recorded** -- the dispatch log says only `AUTO -> S18 (... preferring
- >=128 vCPU)` and the box has self-terminated -- and **total job wall time was not captured**.
+2. **The instance type is not recorded** -- the dispatch log says only that the slot was chosen
+ automatically `(... preferring >=128 vCPU)` and the box has self-terminated -- and **total job wall time was not captured**.
  The 2900 s timeout was not hit.
 3. **The OR-Tools version is not recorded.** `pres3.py` pip-installs `ortools` unpinned if the
  import fails.

@@ -132,7 +132,7 @@ digests re-hashed). Stated as that manifest records it, and not improved upon:
 - the decisive script is a from-scratch transcription of Algorithm 1, of the positivity
  criterion and of the `K` minimisation, written from the source's LaTeX; it computed the
  headline values, the source's Example (i)/(ii) controls, `M_5`, and the census up to
- isomorphism. It ran on one AWS slot instance under SSM, status `Success`, `RC=0`, python 3.9,
+ isomorphism. It ran on one cloud instance under the fleet runner, status `Success`, `RC=0`, python 3.9,
  one vCPU, no randomness; its complete standard output (3,390 bytes of program output inside a
  4,442-byte capture) is archived beside it, and the numbers in that output are the numbers in
  this paper. A second archived script re-ran the census under a per-orientation reading and
@@ -140,8 +140,8 @@ digests re-hashed). Stated as that manifest records it, and not improved upon:
 - **honest gaps, recorded in that manifest rather than papered over.** Seven further scripts of
  that run -- including the 22-minute census job and a second, independently written census --
  are indexed as code with **no captured output**: the standard output was never written to a
- file, the slot's S3 upload is verified *absent* (HTTP 404 on all three keys), and the AWS
- credentials needed to retrieve anything by command id had **expired** before the manifest was
+ file, the fleet slot's object-store upload is verified *absent* (HTTP 404 on all three keys),
+ and the cloud credentials needed to retrieve anything by dispatch id had **expired** before the manifest was
  written. Those outputs are therefore *unread, not absent*. Two of the indexed scripts were
  dispatched from a scratch directory rather than from the run tree, so the harness did not file
  them at dispatch; the copies indexed are the files at the exact paths that were dispatched,
